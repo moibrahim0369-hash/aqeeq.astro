@@ -3,8 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>عقيق | خريطتك الفلكية وقراءات الأبراج والتاروت</title>
-<meta name="description" content="احسب خريطتك الفلكية ومصفوفة القدر، واسحب كرت تاروت، وشوف توقعات الأبراج الحقيقية كل يوم.">
+<title>عقيق | مصفوفة القدر وخريطتك الفلكية وقراءات الأبراج</title>
+<meta name="description" content="عقيق: احسب مصفوفة قدرك وخريطتك الفلكية بالتفصيل، واعرف نمطك وطاقة مرحلتك وتوقعات الأبراج، واحجز جلسة مع محمد ابراهيم على واتساب.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="عقيق | مصفوفة القدر وخريطتك الفلكية">
+<meta property="og:description" content="احسب مصفوفة قدرك وخريطتك الفلكية بالتفصيل واحجز جلسة على واتساب.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%278%27 fill=%27%2312082A%27/%3E%3Cpath d=%27M20 6A14 14 0 0 0 20 34A17 17 0 0 1 20 6Z%27 fill=%27%23D6AE5E%27/%3E%3C/svg%3E">
+<!-- بعد ما تضيف الموقع في Google Search Console، ضع هنا كود التحقق الي هيدهولك: -->
+<!-- <meta name="google-site-verification" content="ضع-الكود-هنا"> -->
 <meta name="theme-color" content="#12082A">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -297,21 +303,31 @@ details.adv .field{margin-top:12px}
 .mx .mxn.ctr circle{fill:var(--amethyst)}
 .mx .mnum{font-family:var(--display);font-size:20px;fill:var(--moon);text-anchor:middle;dominant-baseline:central}
 .mx .mlet{font-family:var(--display);font-size:12px;fill:var(--gold);text-anchor:middle}
-.deck{display:flex;justify-content:center;gap:10px;margin:24px 0}
-.tback{width:clamp(52px,16vw,84px);aspect-ratio:2/3;padding:0;background:transparent;border:0;cursor:pointer;transition:transform .25s,opacity .25s}
-.tback svg{width:100%;height:100%;display:block}
-.tback:hover:not(:disabled){transform:translateY(-8px)}
-.tback.picked{transform:translateY(-14px)}
-.tback:disabled:not(.picked){opacity:.35;cursor:default}
-.tarot-res{max-width:620px;margin:20px auto 0}
-.tface{width:min(220px,62vw);margin:0 auto 18px;aspect-ratio:2/3;border:2px solid var(--gold);border-radius:14px;background:linear-gradient(180deg,#2c1766,var(--deep));display:grid;justify-items:center;align-content:center;gap:2px;padding:14px 8px;text-align:center}
-.tface .tn{font-family:var(--display);color:var(--gold);font-size:1.6rem}
-.tface .ts{font-family:var(--sym);color:var(--gold);font-size:3rem;line-height:1.2}
-.tface strong{font-family:var(--display);font-size:1.5rem}
-.tface .te{color:var(--mist);font-size:.9rem}
-.tface .trv{color:var(--rose);font-family:var(--display);font-size:.9rem}
-.tface.rev .ts{transform:rotate(180deg)}
 
+.lead2{color:var(--mist);margin-bottom:14px}
+.bond-cat{margin:20px 0 6px;padding:20px;border:1px solid var(--gold-dim);border-radius:18px;background:var(--deep)}
+.bond-cat strong{font-family:var(--display);font-size:1.3rem;color:var(--gold)}
+.bond-cat p{margin-top:6px}
+#b-date{max-width:260px}
+
+.brand .bn{font-size:1.55rem;line-height:1.2}
+.brand .bt{display:none;font-family:var(--body);font-weight:400;font-size:.82rem;color:var(--mist);margin-inline-start:4px}
+@media(min-width:900px){.brand .bt{display:inline}}
+@media(max-width:899px){.wheel{width:min(66vw,280px)}}
+.hero h1.brandmark{font-family:var(--display);font-weight:700;font-size:clamp(3.6rem,17vw,6.6rem);line-height:1.1;color:var(--gold);max-width:none}
+.hero-sub{font-family:var(--display);font-size:1.3rem;color:var(--moon);margin-top:2px}
+.about{max-width:720px}
+.about p{color:var(--mist);margin-top:10px}
+.mx .mxcur{stroke:var(--gold);stroke-width:5;stroke-linecap:round;opacity:.6;fill:none}
+.mx .mxi circle{fill:var(--night);stroke:var(--gold-dim);stroke-dasharray:3 3;stroke-width:1.2}
+.mx .mxm circle{fill:var(--deep);stroke:var(--amethyst);stroke-width:1.5}
+.mx .mnum.sm{font-size:13px;fill:var(--mist)}
+.mx .mage{font-family:var(--body);font-size:11px;fill:var(--mist);text-anchor:middle}
+.mx .mlet{font-size:12px}
+.mxd summary{font-size:1rem;line-height:1.7}
+.mxd .sg{font-family:var(--display);color:var(--gold);min-width:1.2em}
+.mxb{padding:0 0 12px}
+.mxb p{margin:6px 0}
 </style>
 </head>
 <body>
@@ -319,13 +335,12 @@ details.adv .field{margin-top:12px}
   <div class="wrap hd">
     <a class="brand" href="#top" id="top">
       <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z" fill="#D6AE5E"/></svg>
-      <span data-brand></span>
+      <span class="bn" data-brand></span><small class="bt" data-tagline></small>
     </a>
     <div class="hd-act"><a class="ig-top" id="ig-top" href="#book" aria-label="انستجرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg></a><a class="btn sm" data-wa="general" href="#book">واتساب</a></div>
     <nav class="nav" aria-label="التنقل الرئيسي">
-      <a href="#chart">خريطتك</a>
       <a href="#matrix">الماتريكس</a>
-      <a href="#tarot">التاروت</a>
+      <a href="#chart">خريطتك</a>
       <a href="#sky">السما دلوقتي</a>
       <a href="#signs">الأبراج</a>
       <a href="#services">الخدمات</a>
@@ -355,13 +370,39 @@ details.adv .field{margin-top:12px}
         <p class="hint">اضغط على أي برج في العجلة لتشوف توقعاته</p>
       </div>
       <div>
-        <h1>احسب خريطتك الفلكية بالتفصيل</h1>
-        <p class="lead">الكواكب والبيوت والدرجات، مع قراءة تلقائية لشخصيتك ونصايح تناسب خريطتك. وبعدها احجز جلسة معايا لو عايز تعمّق.</p>
+        <h1 class="brandmark"><span data-brand></span></h1>
+        <p class="hero-sub" data-tagline></p>
+        <p class="lead">احسب مصفوفة قدرك وخريطتك الفلكية بالتفصيل، واعرف نمطك وطاقة المرحلة الي إنت فيها. ولو عايز تعمّق، احجز جلسة معايا.</p>
         <div class="cta-row">
-          <a class="btn" href="#chart">احسب خريطتي</a>
-          <a class="btn ghost" data-wa="general" href="#book">احجز جلسة على واتساب</a>
+          <a class="btn" href="#matrix">احسب مصفوفتي</a>
+          <a class="btn ghost" href="#chart">احسب خريطتي الفلكية</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="wrap about">
+      <h2>مين هو عقيق؟</h2>
+      <p>أنا محمد ابراهيم، وعقيق هو اسمي في الفلك والطاقة. بقدم قراءات وجلسات لأي حد عايز يفهم نفسه وعلاقاته وقراراته بشكل أوضح، من خلال مصفوفة القدر وخريطة الميلاد وطاقة الأرقام.</p>
+      <p>كل الحاسبات في الموقع بتشتغل على جهازك ومابتحفظش بياناتك. والقراءات التلقائية بتديك الصورة العامة، ولو عايز قراءة شخصية على حالتك كلمني على واتساب.</p>
+    </div>
+  </section>
+
+  <section class="sec alt" id="matrix">
+    <div class="wrap">
+      <div class="center">
+        <h2>مصفوفة القدر (الماتريكس)</h2>
+        <p class="intro">اكتب تاريخ ميلادك وهتطلع لك مصفوفتك كاملة: شخصيتك وموهبتك، هدفك، الكارما، الحب، الفلوس، مراحل عمرك، وطاقة سنتك الحالية. وتقدر تقارنها بمصفوفة شخص تاني.</p>
+      </div>
+      <form class="cform" id="mform" novalidate>
+        <div class="field"><label for="m-name">الاسم (اختياري)</label><input id="m-name" type="text" maxlength="40" autocomplete="off"></div>
+        <div class="field"><label for="m-date">تاريخ الميلاد</label><input id="m-date" type="date" min="1900-01-01" max="2100-12-31"></div>
+        <p class="ferr" id="merr" role="alert" hidden></p>
+        <button class="btn" type="submit">احسب مصفوفتي</button>
+        <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
+      </form>
+      <div class="result" id="mresult" aria-live="polite" hidden></div>
     </div>
   </section>
 
@@ -398,35 +439,6 @@ details.adv .field{margin-top:12px}
     </div>
   </section>
 
-  <section class="sec" id="matrix">
-    <div class="wrap">
-      <div class="center">
-        <h2>مصفوفة القدر والحيوات السابقة</h2>
-        <p class="intro">اكتب تاريخ ميلادك وشوف مصفوفة القدر (الشخصية والهدف والكارما والحب والفلوس)، وقراءة رمزية لحياتك السابقة من طاقة الأرقام.</p>
-      </div>
-      <form class="cform" id="mform" novalidate>
-        <div class="field"><label for="m-name">الاسم (اختياري)</label><input id="m-name" type="text" maxlength="40" autocomplete="off"></div>
-        <div class="field"><label for="m-date">تاريخ الميلاد</label><input id="m-date" type="date" min="1900-01-01" max="2100-12-31"></div>
-        <p class="ferr" id="merr" role="alert" hidden></p>
-        <button class="btn" type="submit">احسب مصفوفتي</button>
-        <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
-      </form>
-      <div class="result" id="mresult" aria-live="polite" hidden></div>
-    </div>
-  </section>
-
-  <section class="sec alt" id="tarot">
-    <div class="wrap">
-      <div class="center">
-        <h2>اسحب كرتك</h2>
-        <p class="intro">خد نفس عميق وفكر في سؤالك أو الي شاغلك. وبعدين اختار كرت من الي قدامك.</p>
-      </div>
-      <div class="cform"><div class="field"><label for="t-q">سؤالك أو نيتك (اختياري)</label><input id="t-q" type="text" maxlength="80" autocomplete="off"></div></div>
-      <div class="deck" id="tarot-deck"></div>
-      <div class="tarot-res" id="tarot-res" aria-live="polite" hidden></div>
-    </div>
-  </section>
-
   <section class="sec alt" id="sky">
     <div class="wrap">
       <h2>السما دلوقتي</h2>
@@ -459,14 +471,14 @@ details.adv .field{margin-top:12px}
       <p class="intro">اختار الجلسة الي تناسب سؤالك. كل خدمة بتبدأ برسالة على واتساب فيها بياناتك الأساسية.</p>
       <ul>
         <li class="svc">
+          <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="12" width="40" height="40"/><path d="M32 12L52 32L32 52L12 32Z"/><circle cx="32" cy="32" r="5"/></svg>
+          <div class="svc-body"><h3>قراءة مصفوفة القدر</h3><p>قراءة مفصلة لمصفوفتك: شخصيتك وهدفك والكارما والحب والفلوس، وطاقة المرحلة الي إنت فيها وسنتك الحالية.</p><p class="need">هتحتاج: اسمك وتاريخ ميلادك.</p></div>
+          <a class="btn ghost" data-wa="matrix" href="#book">احجز قراءة المصفوفة</a>
+        </li>
+        <li class="svc">
           <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="9"/><path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l5.7 5.7M43.3 43.3L49 49M15 49l5.7-5.7M43.3 20.7L49 15"/></svg>
           <div class="svc-body"><h3>قراءة البرج الشخصية</h3><p>قراءة لبرجك وفترتك الحالية في الحب والشغل والفلوس، مع نصيحة تقدر تطبقها.</p><p class="need">هتحتاج: اسمك وتاريخ ميلادك.</p></div>
           <a class="btn ghost" data-wa="horoscope" href="#book">احجز القراءة</a>
-        </li>
-        <li class="svc">
-          <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="17" y="10" width="26" height="42" rx="3" transform="rotate(-10 30 31)"/><g transform="rotate(8 35 35)"><rect x="22" y="14" width="26" height="42" rx="3" fill="#12082A"/><path d="M35 26L37.5 32.5L44 35L37.5 37.5L35 44L32.5 37.5L26 35L32.5 32.5Z"/></g></svg>
-          <div class="svc-body"><h3>التاروت</h3><p>تسأل سؤال محدد، نفرد الكروت، وتاخد تفسير واضح لحالتك.</p><p class="need">هتحتاج: سؤالك مكتوب بوضوح.</p></div>
-          <a class="btn ghost" data-wa="tarot" href="#book">احجز جلسة تاروت</a>
         </li>
         <li class="svc">
           <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="24"/><circle cx="32" cy="32" r="11"/><path d="M43 32H56M37.5 41.5L44 52.8M26.5 41.5L20 52.8M21 32H8M26.5 22.5L20 11.2M37.5 22.5L44 11.2"/></svg>
@@ -485,7 +497,7 @@ details.adv .field{margin-top:12px}
   <section class="sec alt" id="courses">
     <div class="wrap">
       <h2>الكورسات</h2>
-      <p class="intro">لو عايز تتعلم الفلك والتاروت بنفسك، دي الكورسات الي بجهزها.</p>
+      <p class="intro">لو عايز تتعلم الفلك ومصفوفة القدر بنفسك، دي الكورسات الي بجهزها.</p>
       <ul id="courses-list"></ul>
     </div>
   </section>
@@ -535,7 +547,7 @@ details.adv .field{margin-top:12px}
    كل حاجة بتتغير في الموقع من الأسماء والأرقام والكورسات والفيديوهات هنا.
 ======================================================================= */
 const SITE_NAME = "عقيق";                       // اسم الموقع
-const SITE_TAGLINE = "فلك وتاروت وطاقة"; // الشعار
+const SITE_TAGLINE = "فلك وطاقة ومصفوفة القدر"; // الشعار
 const WA_NUMBER = "201000000000";               // رقم واتساب بالصيغة الدولية، بدون + وبدون صفر البداية (مصر: 20 ثم الرقم)
 const IG_USER = "mohamed.ibrahim.astro";                // يوزر انستجرام
 const FORECAST_LABEL = "توقعات أكتوبر ٢٠٢٦";    // عنوان الفترة في توقعات الأبراج، غيّره مع كل تحديث
@@ -738,7 +750,7 @@ const CITY_GROUPS = [
 const CITIES = [];
 CITY_GROUPS.forEach(gr => gr.c.forEach(c => CITIES.push({ n: c[0], lat: c[1], lon: c[2], tz: c[3] || gr.tz, g: gr.g })));
 
-/* ======================= الأركانا الـ٢٢ (تاروت + ماتريكس + حيوات سابقة) ======================= */
+/* ======================= الأركانا الـ٢٢ (ماتريكس + حيوات سابقة) ======================= */
 const ARCANA = [
   { n: "الساحر", en: "The Magician",
     core: "الإرادة والمهارة، وإن البداية بإيدك", shadow: "الكلام الأكتر من الفعل أو التلاعب بالناس",
@@ -1260,14 +1272,14 @@ if (typeof module !== 'undefined') module.exports = Astro;
   const MSG = {
     general: "أهلاً، عايز أحجز جلسة.",
     horoscope: "أهلاً، عايز أحجز قراءة البرج الشخصية.\n\nالاسم:\nالبرج أو تاريخ الميلاد:",
-    tarot: "أهلاً، عايز أحجز جلسة تاروت.\n\nالاسم:\nسؤالي:",
+    matrix: "أهلاً، عايز أحجز قراءة مصفوفة القدر.\n\nالاسم:\nتاريخ الميلاد:",
     chart: "أهلاً، عايز أحجز قراءة الخريطة الفلكية.\n\nالاسم:\nتاريخ الميلاد:\nوقت الميلاد:\nمكان الميلاد:",
     synastry: "أهلاً، عايز أحجز قراءة توافق فلكي (Synastry).\n\nبياناتي:\nالاسم:\nتاريخ الميلاد:\nوقت الميلاد:\nمكان الميلاد:\n\nبيانات الشخص التاني:\nالاسم:\nتاريخ الميلاد:\nوقت الميلاد:\nمكان الميلاد:"
   };
   $$("[data-wa]").forEach(a => { a.href = waLink(MSG[a.dataset.wa]); openWA(a); });
   $$("[data-brand]").forEach(e => { e.textContent = SITE_NAME; });
   $$("[data-tagline]").forEach(e => { e.textContent = SITE_TAGLINE; });
-  document.title = `${SITE_NAME} | خريطتك الفلكية وقراءات الأبراج والتاروت`;
+  document.title = `${SITE_NAME} | مصفوفة القدر وخريطتك الفلكية وقراءات الأبراج`;
   const ig = $("#ig");
   ig.href = `https://instagram.com/${IG_USER}`; ig.textContent = "@" + IG_USER; openWA(ig);
   $("#period").textContent = FORECAST_LABEL;
@@ -1466,7 +1478,9 @@ if (typeof module !== 'undefined') module.exports = Astro;
       ${ch.hs === "whole-fallback" ? `<p class="note">المكان ده بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فاستخدمنا نظام البيوت الكاملة (Whole Sign).</p>` : ""}`;
 
     h += `<div class="tabs" role="tablist" aria-label="أقسام الخريطة">
-      <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">قراءتك</button>
+      <button class="tab" role="tab" aria-selected="true" aria-controls="tp0" id="tb0">نمطك</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp6" id="tb6" tabindex="-1">روابطك</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp1" id="tb1" tabindex="-1">تفاصيل الكواكب</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="tp5" id="tb5" tabindex="-1">مجالات حياتك</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">نمطك ونصايحك</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">النهاردة ليك</button>
@@ -1487,7 +1501,9 @@ if (typeof module !== 'undefined') module.exports = Astro;
     rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☊")}</span> العقدة الشمالية في ${SIGNS[nf.s].n} ${num(nf.txt)}</h4>
       <p>اتجاه نموك هو ${SIGNS[nf.s].strength}، ${SIGNS[nf.s].growth}. العقدة الجنوبية في ${SIGNS[south].n}: بتميل ترجع لمنطقة راحة قديمة هي ${SIGNS[south].strength}، فاستخدمها كدعم مش كمكان تقعد فيه.</p>
       ${ch.known ? `<p class="sub">في البيت ${HOUSES[nd.house - 1].n}: اتجاه نموك بيمر عن طريق ${HOUSES[nd.house - 1].area}.</p>` : ""}</article>`;
-    h += `<div class="panel" role="tabpanel" id="tp1" aria-labelledby="tb1">${rd}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp0" aria-labelledby="tb0">${patternHTML(S)}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp6" aria-labelledby="tb6" hidden><p class="lead2">اعرف التناغم بينك وبين شخص تاني: حبيب أو صاحب أو شريك شغل. اكتب تاريخ ميلاده وشوف.</p><div class="field"><label for="b-date">تاريخ ميلاد الشخص التاني</label><input id="b-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="b-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="b-go" type="button">اعرف التناغم</button></div><div id="b-out" hidden></div></div>`;
+    h += `<div class="panel" role="tabpanel" id="tp1" aria-labelledby="tb1" hidden>${rd}</div>`;
     h += `<div class="panel" role="tabpanel" id="tp5" aria-labelledby="tb5" hidden>${areasHTML(ch)}</div>`;
 
     /* 2) النمط والنصايح */
@@ -1532,7 +1548,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
     const root = $("#result");
     root.innerHTML = h;
-    bindContact(root); const wa = $("#res-wa", root); wa.href = waLink(summary); openWA(wa);
+    bindContact(root); wirePattern(root, S); const wa = $("#res-wa", root); wa.href = waLink(summary); openWA(wa);
     const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
     tabs.forEach((t, i) => t.addEventListener("click", () => tabs.forEach((x, j) => {
       x.setAttribute("aria-selected", i === j ? "true" : "false"); x.tabIndex = i === j ? 0 : -1; panels[j].hidden = i !== j;
@@ -1664,7 +1680,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
   if (COURSES.length) {
     cl.innerHTML = COURSES.map(c => `<li class="course"><div class="cbody"><h3>${esc(c.title)}</h3><p>${esc(c.desc)}</p><p class="meta">${esc(c.level || "")}${c.price ? ` | ${esc(c.price)}` : ""}${c.soon ? ` <span class="soon">قريبًا</span>` : ""}</p></div>${c.link ? `<a class="btn ghost" href="${esc(c.link)}" target="_blank" rel="noopener">اشترك دلوقتي</a>` : ""}</li>`).join("");
   } else {
-    cl.innerHTML = `<li class="course"><div class="cbody"><h3>الكورسات قريبًا</h3><p>بجهز كورسات تعلّم الفلك والتاروت خطوة بخطوة. تابعني على انستجرام عشان تعرف أول بأول.</p></div><a class="btn ghost" data-ig-link href="#">تابعني على انستجرام</a></li>`;
+    cl.innerHTML = `<li class="course"><div class="cbody"><h3>الكورسات قريبًا</h3><p>بجهز كورسات تعلّم الفلك ومصفوفة القدر خطوة بخطوة. تابعني على انستجرام عشان تعرف أول بأول.</p></div><a class="btn ghost" data-ig-link href="#">تابعني على انستجرام</a></li>`;
   }
   const ytId = u => { const m = String(u).match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : null; };
   const vl = $("#videos-list");
@@ -1673,7 +1689,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
   } else {
     vl.innerHTML = `<li class="vempty">الفيديوهات قريبًا. تابعني على انستجرام لحد ما تنزل.</li>`;
   }
-  /* ============ ميزات إضافية: ماتريكس، حيوات سابقة، تاروت، توقعات يومية ============ */
+  /* ============ ميزات إضافية: ماتريكس، حيوات سابقة، توقعات يومية ============ */
   function wireTabs(root) {
     const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
     tabs.forEach((t, i) => t.addEventListener("click", () => tabs.forEach((x, j) => {
@@ -1744,27 +1760,155 @@ if (typeof module !== 'undefined') module.exports = Astro;
     ]) + NOTE_SYM;
   }
 
-  /* ---------- مصفوفة القدر والحيوات السابقة ---------- */
+  /* ============ مصفوفة القدر: النسخة المفصلة ============ */
   const digSum = n => String(n).split("").reduce((s, c) => s + +c, 0);
   const redArc = n => { while (n > 22) n = digSum(n); return n; };
+  const ARC = n => ARCANA[n - 1];
+  const OUTER = ["A", "F", "B", "G", "C", "H", "D", "I"];
+  const MX_POS = { A: [60, 200], F: [60, 60], B: [200, 60], G: [340, 60], C: [340, 200], H: [340, 340], D: [200, 340], I: [60, 340], E: [200, 200] };
+  const MX_MID = [[60, 130], [130, 60], [270, 60], [340, 130], [340, 270], [270, 340], [130, 340], [60, 270]];
+  const MX_STAGE = ["الطفولة وتشكّل الطبع", "المراهقة وبداية الهوية", "الانطلاقة وبناء الطريق", "الاستقرار والاختبارات", "المراجعة وإعادة الترتيب", "النضج والثمار", "الحكمة والتبسيط", "الإرث والسلام"];
+  const MX_ROLE = {
+    A: { n: "شخصيتك وموهبتك الأساسية", intro: "ده الطبع الي اتولدت بيه وبتتحرك بيه من غير مجهود", real: "ومعناه عمليًا في شغلك وتصرفاتك اليومية:" },
+    B: { n: "هدفك ورسالتك", intro: "ده الاتجاه الي حياتك بتشدك ناحيته", real: "هتلاقيه في اختياراتك ومواقف بتتكرر معاك:" },
+    C: { n: "الي ورثته من العيلة والماضي", intro: "ده الي وصلك من الأهل والبيئة وبيأثر في ردود أفعالك", real: "وبيتجسد غالبًا في بيتك وعلاقتك بأهلك:" },
+    D: { n: "الذيل الكارمي (الدرس المتكرر)", intro: "ده الدرس الي بيتكرر معاك لحد ما تتعلمه", real: "وبيتكرر في مواقف وناس بتحسها مألوفة:" },
+    E: { n: "جوهرك ومنطقة راحتك", intro: "ده قلبك الحقيقي والمكان الي بترجعله لما تتعب", real: "وبتحس بيه لما تبقى على طبيعتك:" },
+    F: { n: "شغلك وتعبيرك عن نفسك", intro: "ده اللون الي بيظهر في شغلك وإبداعك", real: "وفي الشغل بيتجسد في:" },
+    G: { n: "الفلوس والفرص", intro: "ده الي بيشكل علاقتك بالفلوس والفرص", real: "وفي الفلوس بيظهر في:" },
+    H: { n: "الحب والعلاقات", intro: "ده الي بيتحكم في طريقة حبك وعلاقاتك", real: "وفي الحب بيظهر في:" },
+    I: { n: "نقطة الاختبار الي بتكبرك", intro: "ده الموضوع الي حياتك بتختبرك فيه عشان تنضج", real: "وبيظهر في مواقف بتختبرك:" }
+  };
+  const MX_REL = {
+    A: { n: "شخصية العلاقة", intro: "ده الطابع الي بيظهر لما تبقوا مع بعض", real: "والناس حواليكم بتشوفه في:" },
+    B: { n: "هدف العلاقة", intro: "ده الي العلاقة دي جاية تعلمكم أو تبنيه", real: "وهتلاقيه في المواقف الي بتتكرر بينكم:" },
+    C: { n: "الي بتشيلوه من الماضي سوا", intro: "ده الي كل واحد فيكم جاي بيه من أهله وماضيه", real: "وبيظهر في خلافاتكم على:" },
+    D: { n: "الدرس الكارمي بينكم", intro: "ده الدرس الي العلاقة دي بتعلمهولكم", real: "وبيتكرر بينكم في:" },
+    E: { n: "قلب العلاقة", intro: "ده جوهر العلاقة والحاجة الي بتشدكم لبعض", real: "وبتحسوا بيه لما تكونوا على طبيعتكم:" },
+    G: { n: "الفلوس والفرص بينكم", intro: "ده الي بيشكل الفلوس والفرص لما تتشاركوا", real: "وبيظهر في:" },
+    H: { n: "الحب والانجذاب بينكم", intro: "ده الي بيتحكم في الحب والانجذاب بينكم", real: "وبيظهر في:" }
+  };
+  const MX_SHORT = { A: "الشخصية", B: "الهدف", C: "الأهل", D: "الكارما", E: "الجوهر", F: "الشغل", G: "الفلوس", H: "الحب", I: "الاختبار" };
+  const MX_NOTE = `<p class="note">مصفوفة القدر نظام رمزي ليه أكتر من مدرسة، وأسماء النقاط ومعانيها بتختلف بين مدرسة وتانية. ده حساب النسخة الشائعة، وهو للتأمل والوعي بالنفس مش للتنبؤ القاطع. وأسماء زي الموت والشيطان والبرج رمزية، ومعناها التحول والتعلق والتغيير المفاجئ، مش حاجة سيئة بتحصل حرفيًا.</p>`;
+
   function matrixCalc(d, m, y) {
     const A = redArc(d), B = redArc(m), C = redArc(y), D = redArc(A + B + C), E = redArc(A + B + C + D);
-    return { A, B, C, D, E, F: redArc(A + B), G: redArc(B + C), H: redArc(C + D), I: redArc(D + A) };
+    const P = { A, B, C, D, E, F: redArc(A + B), G: redArc(B + C), H: redArc(C + D), I: redArc(D + A) };
+    ["A", "B", "C", "D", "F", "G", "H", "I"].forEach(k => { P[k + "2"] = redArc(P[k] + E); });
+    P.mid = OUTER.map((k, i) => redArc(P[k] + P[OUTER[(i + 1) % 8]]));
+    P.sky = redArc(B + D); P.earth = redArc(A + C); P.self = redArc(P.sky + P.earth);
+    P.year = redArc(A + B + redArc(digSum(new Date().getFullYear())));
+    return P;
   }
   function lifePath(d, m, y) {
     let n = digSum(d) + digSum(m) + digSum(y);
     while (n > 9 && ![11, 22, 33].includes(n)) n = digSum(n);
     return n;
   }
-  function matrixSVG(P) {
-    const pos = { A: [60, 200], B: [200, 60], C: [340, 200], D: [200, 340], E: [200, 200], F: [60, 60], G: [340, 60], H: [340, 340], I: [60, 340] };
-    let o = `<svg class="mx" viewBox="0 0 400 400" role="img" aria-label="مصفوفة القدر"><rect class="mxl" x="60" y="60" width="280" height="280"/><polygon class="mxl" points="200,60 340,200 200,340 60,200"/><path class="mxl faint" d="M60 200H340M200 60V340M60 60L340 340M340 60L60 340"/>`;
-    Object.keys(pos).forEach(k => {
-      const [x, y] = pos[k], c = k === "E";
-      o += `<g class="mxn${c ? " ctr" : ""}"><circle cx="${x}" cy="${y}" r="${c ? 32 : 25}"/><text class="mnum" x="${x}" y="${y}">${P[k]}</text><text class="mlet" x="${x}" y="${y - (c ? 42 : 35)}">${k}</text></g>`;
+  function ageNow(d, m, y) {
+    const t = new Date(); let a = t.getFullYear() - y;
+    if (t.getMonth() + 1 < m || (t.getMonth() + 1 === m && t.getDate() < d)) a--;
+    return a;
+  }
+
+  function matrixSVG(P, cur) {
+    let o = `<svg class="mx" viewBox="-14 -14 428 428" role="img" aria-label="مصفوفة القدر"><rect class="mxl" x="60" y="60" width="280" height="280"/><polygon class="mxl" points="200,60 340,200 200,340 60,200"/><path class="mxl faint" d="M60 200H340M200 60V340M60 60L340 340M340 60L60 340"/>`;
+    if (cur != null) {
+      const [x1, y1] = MX_POS[OUTER[cur]], [x2, y2] = MX_POS[OUTER[(cur + 1) % 8]];
+      o += `<line class="mxcur" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`;
+    }
+    OUTER.forEach(k => {
+      const [x, y] = MX_POS[k], ix = (x + 200) / 2, iy = (y + 200) / 2;
+      o += `<g class="mxi"><circle cx="${ix}" cy="${iy}" r="17"/><text class="mnum sm" x="${ix}" y="${iy}">${P[k + "2"]}</text></g>`;
+    });
+    MX_MID.forEach(([x, y], i) => { o += `<g class="mxm"><circle cx="${x}" cy="${y}" r="15"/><text class="mnum sm" x="${x}" y="${y}">${P.mid[i]}</text></g>`; });
+    OUTER.concat("E").forEach((k, i) => {
+      const [x, y] = MX_POS[k], c = k === "E", r = c ? 32 : 25;
+      o += `<g class="mxn${c ? " ctr" : ""}"><circle cx="${x}" cy="${y}" r="${r}"/><text class="mnum" x="${x}" y="${y}">${P[k]}</text>`;
+      if (!c) {
+        const dx = x - 200, dy = y - 200, L = Math.hypot(dx, dy), lx = (x + dx / L * (r + 14)).toFixed(1), ly = (y + dy / L * (r + 14)).toFixed(1);
+        o += `<text class="mlet" x="${lx}" y="${(+ly - 2).toFixed(1)}">${k}</text><text class="mage" x="${lx}" y="${(+ly + 10).toFixed(1)}">${i * 10}</text>`;
+      } else o += `<text class="mlet" x="200" y="${y - 38}">E</text>`;
+      o += `</g>`;
     });
     return o + "</svg>";
   }
+
+  function roleCard(k, P, R) {
+    const a = ARC(P[k]), r = R[k];
+    return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${r.n}: ${a.n} <span class="hs">رقم ${P[k]}</span></summary><div class="mxb"><p>${r.intro}. ${a.core}.</p><p class="sub">${r.real} ${a.real}</p><p class="sub">نفسيًا: ${a.psy}</p><p class="sub">انتبه من: ${a.shadow}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`;
+  }
+  const mxs = (t, p) => `<article class="rd"><h4>${t}</h4><p>${p}</p></article>`;
+
+  function summaryHTML(P, lp) {
+    const a = ARC(P.A), b = ARC(P.B), dd = ARC(P.D), e = ARC(P.E), sky = ARC(P.sky), earth = ARC(P.earth), self = ARC(P.self), yr = ARC(P.year);
+    let o = `<div class="bond-cat"><strong>ملخص مصفوفتك</strong><p>طبعك الأصلي: ${a.n}. بتتجه ناحية: ${b.n}. والدرس الي بيتكرر معاك: ${dd.n}. وجوهرك الداخلي: ${e.n}.</p></div>`;
+    o += mxs("أقوى ما فيك", `${a.core}. ${a.real}`);
+    o += mxs("الي بيتعبك", `${dd.shadow}. ${dd.psy}`);
+    o += mxs("اتجاهك", `${b.core}. ${b.real}`);
+    o += mxs("خطوة تبدأ بيها دلوقتي", e.release);
+    o += `<h4 class="ph">رسالتك في الحياة</h4>`;
+    o += mxs(`السما: ${sky.n}`, `ده الجانب الروحي، وبيقول إيه الي بتتعلمه من جوه. ${sky.spirit}`);
+    o += mxs(`الأرض: ${earth.n}`, `ده الجانب المادي، وبيقول إيه الي بتبنيه في الواقع. ${earth.real}`);
+    o += mxs(`هدفك الشخصي: ${self.n}`, `${self.core}. ${self.release}`);
+    o += `<h4 class="ph">طاقة رقمك وسنتك</h4>`;
+    o += mxs("مسار الحياة", LP_TXT[lp]);
+    o += mxs(`طاقة سنتك الحالية: ${yr.n}`, `${yr.core}. ${yr.real} ${yr.release}`);
+    return o + MX_NOTE;
+  }
+  function pointsHTML(P) {
+    let o = `<p class="lead2">اضغط على أي نقطة تفتح تفاصيلها: معناها، وإزاي بتظهر في الواقع، والجانب الي محتاج انتباه، وخطوة عملية.</p>`;
+    o += "ABCDEFGHI".split("").map(k => roleCard(k, P, MX_ROLE)).join("");
+    o += `<h4 class="ph">النقاط الداخلية</h4><p class="sub">كل نقطة داخلية بتوضح إزاي مجال النقطة الخارجية بيتفعل من جوهرك، وبتتحسب بجمع النقطة مع المركز.</p>`;
+    o += ["A", "B", "C", "D", "F", "G", "H", "I"].map(k => { const a = ARC(P[k + "2"]); return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${MX_SHORT[k]} من جوه: ${a.n} <span class="hs">رقم ${P[k + "2"]}</span></summary><div class="mxb"><p>${a.core}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`; }).join("");
+    return o + MX_NOTE;
+  }
+  function stagesHTML(P, age) {
+    const ac = age % 80, i = Math.floor(ac / 10), half = (ac % 10) < 5 ? 0 : 1;
+    const st = k => ({ s: ARC(P[OUTER[k]]), m: ARC(P.mid[k]), e: ARC(P[OUTER[(k + 1) % 8]]) });
+    const c = st(i), nx = st((i + 1) % 8), dom = half === 0 ? c.s : c.m;
+    let o = `<p class="lead2">عمرك دلوقتي ${age} سنة${age >= 80 ? " (بعد الـ٨٠ الدورة بتبدأ من الأول)" : ""}. المصفوفة بتقسم العمر لمراحل كل واحدة ١٠ سنين، وكل مرحلة ليها طاقة بداية ومنتصف ونهاية.</p>`;
+    o += `<div class="bond-cat"><strong>مرحلتك الحالية: ${MX_STAGE[i]}</strong><p>من عمر ${i * 10} لعمر ${i * 10 + 10}. بدايتها ${c.s.n}، ومنتصفها ${c.m.n}، ونهايتها ${c.e.n}. ${half === 0 ? `إنت في النص الأول، وطاقة ${c.s.n} هي الأقوى حواليك وبتتحول تدريجيًا ناحية ${c.m.n}.` : `إنت في النص التاني، وطاقة ${c.m.n} بتتحول ناحية ${c.e.n}.`}</p></div>`;
+    o += mxs("الي بيحصل حواليك", `${dom.core}. ${dom.real}`);
+    o += mxs("نفسيًا", dom.psy);
+    o += mxs("انتبه من", `${dom.shadow}.`);
+    o += mxs("خطوة تبدأ بيها", dom.release);
+    o += mxs(`المرحلة الجاية: ${MX_STAGE[(i + 1) % 8]}`, `طاقتها الأساسية ${nx.m.n}. ${nx.m.core}.`);
+    o += `<h4 class="ph">كل مراحل عمرك</h4>`;
+    o += MX_STAGE.map((t, k) => { const s = st(k); return `<details class="acc mxd"><summary>${t} <span class="hs">من ${k * 10} لـ${k * 10 + 10}${k === i ? "، إنت هنا" : ""}</span></summary><div class="mxb"><p class="sub">البداية: ${s.s.n}، المنتصف: ${s.m.n}، النهاية: ${s.e.n}.</p><p>${s.m.core}.</p><p class="sub">انتبه من: ${s.m.shadow}.</p></div></details>`; }).join("");
+    return o + `<p class="note">الدايرة الكبيرة في الرسم بتبين المرحلة الي إنت فيها بخط ذهبي. الدواير الصغيرة على الإطار هي نقط المنتصف (الأعمار ٥، ١٥، ٢٥...).</p>` + MX_NOTE;
+  }
+  function karmaHTML(P, lp) {
+    const lives = [["الحياة الأقرب ليك (الذيل الكارمي)", "D"], ["حياة أبعد", "I"], ["حياة أقدم", "H"]];
+    const D = ARC(P.D), C = ARC(P.C);
+    let o = `<p class="sub">دي قراءة رمزية بتطلع من أرقام تاريخ ميلادك. مش دليل على حياة فعلية، لكنها مرآة لأنماط ممكن تكون بتكررها دلوقتي.</p>`;
+    o += lives.map(([t, k]) => `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> ${t}: ${ARC(P[k]).n}</h4><p>${ARC(P[k]).past}</p></article>`).join("");
+    o += `<h4 class="ph">الدرس المتكرر (الذيل الكارمي)</h4>`;
+    o += mxs(`${D.n}`, `${D.psy}`);
+    o += mxs("وفي الواقع بيتجسد في", D.real);
+    o += mxs("تمرين تحرير", D.release);
+    o += `<h4 class="ph">الي ورثته من العيلة</h4>`;
+    o += mxs(`${C.n}`, `ورثت من الأهل طاقة ${C.n}: ${C.core}. وممكن تكون بتكررها من غير ما تحس في: ${C.shadow}.`);
+    o += mxs("خطوة تكسر بيها النمط", C.release);
+    return o + MX_NOTE;
+  }
+  function compatHTML(P1, P2) {
+    const R = {};
+    ["A", "B", "C", "D", "E", "G", "H"].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
+    let o = `<p class="lead2">اتحسبت بجمع نقط المصفوفتين نقطة نقطة، فبتعرف طاقة العلاقة نفسها مش طاقة كل واحد لوحده.</p>`;
+    o += `<div class="bond-cat"><strong>قلب العلاقة: ${ARC(R.E).n}</strong><p>${ARC(R.E).core}.</p></div>`;
+    o += ["A", "B", "H", "G", "D", "C"].map(k => roleCard(k, R, MX_REL)).join("");
+    const same = "ABCDEFGHI".split("").filter(k => P1[k] === P2[k]);
+    o += `<h4 class="ph">التشابه والتكامل</h4>`;
+    o += mxs("نقاط متطابقة", same.length ? `الأرقام متطابقة في: ${same.map(k => `${MX_SHORT[k]} (${ARC(P1[k]).n})`).join("، ")}. التطابق ده بيخلي الاتنين يتصرفوا بنفس الأسلوب في المجال ده، وده بيقرّب وساعات بيزوّد الصدام.` : "مفيش تطابق مباشر بين نقطة ونقطة. كل واحد فيكم جاي بأسلوب مختلف، وده بيكمّل مش بيكرر.");
+    const cross = [];
+    if (P1.D === P2.B) cross.push("الدرس المتكرر عندك هو هدف الشخص التاني، فهو ممكن يساعدك تتعلمه");
+    if (P2.D === P1.B) cross.push("الدرس المتكرر عنده هو هدفك، فإنت ممكن تساعده يتعلمه");
+    if (P1.D === P2.D) cross.push("الذيل الكارمي واحد بينكم، يعني بتتعلموا نفس الدرس مع بعض");
+    o += mxs("روابط بين النقطتين", cross.length ? cross.join(". ") + "." : "مفيش ربط مباشر بين الدروس والأهداف، والعلاقة بتتحدد أكتر بالوعي والاختيار.");
+    return o + MX_NOTE;
+  }
+
   const mform = $("#mform");
   mform.addEventListener("submit", e => {
     e.preventDefault();
@@ -1773,69 +1917,220 @@ if (typeof module !== 'undefined') module.exports = Astro;
     if (!v) { err.textContent = "اكتب تاريخ الميلاد."; err.hidden = false; return; }
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
+    if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
     renderMatrix($("#m-name").value.trim(), d, m, y);
     const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
   });
   function renderMatrix(name, d, m, y) {
-    const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), AR = k => ARCANA[P[k] - 1];
+    const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
     const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
-    const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة"><button class="tab" role="tab" aria-selected="true" aria-controls="mp1" id="mt1">مصفوفة القدر</button><button class="tab" role="tab" aria-selected="false" aria-controls="mp2" id="mt2" tabindex="-1">حياتك السابقة</button></div>`;
-    let p1 = `<div class="wheel-wrap">${matrixSVG(P)}</div><p class="note">كل رقم من ١ لـ٢٢ بيمثل كارت من الكروت الكبيرة. ده حساب النسخة الشائعة من المصفوفة، وفي مدارس بتحسبها بشكل مختلف شوية.</p>`;
-    p1 += "ABCDEFGHI".split("").map(k => {
-      const a = AR(k), r = ROLES[k];
-      return `<article class="rd"><h4><span class="sg" aria-hidden="true">${k}</span> ${r.n}: ${a.n} <span class="orb">رقم ${P[k]}</span></h4><p>${r.intro} ${a.core}.</p><p class="sub">وانتبه من: ${a.shadow}.</p>${k === "D" || k === "E" ? `<p class="sub">${a.psy}</p>` : ""}</article>`;
-    }).join("") + NOTE_SYM;
-    const lives = [["الحياة الأقرب ليك (الذيل الكارمي)", "D"], ["حياة أبعد", "I"], ["حياة أقدم", "H"]];
-    let p2 = `<p class="sub">دي قراءة رمزية بتطلع من أرقام تاريخ ميلادك. مش دليل على حياة فعلية، لكنها مرآة لأنماط ممكن تكون بتكررها دلوقتي.</p>`;
-    p2 += lives.map(([t, k]) => `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> ${t}: ${AR(k).n}</h4><p>${AR(k).past}</p></article>`).join("");
-    const D = AR("D");
-    p2 += `<h4 class="ph">إزاي ده بيظهر في حياتك دلوقتي</h4><p>${D.psy}</p><p class="sub">وفي الواقع بيتجسد غالبًا في: ${D.real}</p>
-      <h4 class="ph">تمرين تحرير</h4><p>${D.release}</p>
-      <h4 class="ph">طاقة رقمك (مسار الحياة)</h4><p>${LP_TXT[lp]}</p>${NOTE_SYM}`;
+    const names = ["ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
+    const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
+    const compat = `<p class="lead2">اكتب تاريخ ميلاد شخص تاني (حبيب أو صاحب أو شريك شغل) وشوف مصفوفة العلاقة بينكم.</p><div class="field"><label for="mc-date">تاريخ ميلاد الشخص التاني</label><input id="mc-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="mc-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="mc-go" type="button">احسب مصفوفة العلاقة</button></div><div id="mc-out" hidden></div>`;
+    const bodies = [summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
+    const panels = bodies.map((b, i) => `<div class="panel" role="tabpanel" id="mp${i + 1}" aria-labelledby="mt${i + 1}"${i ? " hidden" : ""}>${b}</div>`).join("");
+    const legend = `<p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
+    const msg = `أهلاً، حسبت مصفوفتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${name}\nتاريخ الميلاد: ${d}/${m}/${y}\nنقاطي: A=${P.A}، B=${P.B}، C=${P.C}، D=${P.D}، المركز=${P.E}`;
+    const cta = `<div class="cta-box"><h4>عايز قراءة أعمق لمصفوفتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط المصفوفة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="mx-wa" href="#book">احجز قراءة المصفوفة على واتساب</a></div>`;
     const root = $("#mresult");
-    root.innerHTML = head + tabs + `<div class="panel" role="tabpanel" id="mp1" aria-labelledby="mt1">${p1}</div><div class="panel" role="tabpanel" id="mp2" aria-labelledby="mt2" hidden>${p2}</div>` + CONTACT_LINE;
+    root.innerHTML = head + `<div class="wheel-wrap">${matrixSVG(P, cur)}</div>` + legend + tabs + panels + cta + CONTACT_LINE;
     wireTabs(root); bindContact(root);
+    const wa = $("#mx-wa", root); wa.href = waLink(msg); openWA(wa);
+    $("#mc-go", root).addEventListener("click", () => {
+      const er = $("#mc-err", root), out = $("#mc-out", root); er.hidden = true;
+      const v = $("#mc-date", root).value;
+      if (!v) { er.textContent = "اكتب تاريخ ميلاد الشخص التاني."; er.hidden = false; return; }
+      const [y2, m2, d2] = v.split("-").map(Number);
+      if (y2 < 1900 || y2 > 2100) { er.textContent = "التاريخ لازم يكون بين 1900 و 2100."; er.hidden = false; return; }
+      if (new Date(y2, m2 - 1, d2) > new Date()) { er.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; er.hidden = false; return; }
+      out.innerHTML = compatHTML(P, matrixCalc(d2, m2, y2)); out.hidden = false;
+    });
+  }
+  selectSign(0);
+
+  /* ============ نمطك: قراءة شخصية بأسلوب مباشر (غرايز، نمو، علاقات، روابط) ============ */
+  const PT = {
+    feel: [
+      "لما بتزعل بتتحرك بسرعة: بتتخانق أو تعمل حاجة تفرّغ بيها الغضب، وبعدين تندم على نبرتك. يمكن حاسس إن مفيش حد بيستحمل سرعة مشاعرك، لكن نفس السرعة دي هي الي بتخليك صادق مع نفسك.",
+      "بتحتاج حاجات ثابتة عشان تحس بالأمان: ناس وأماكن وروتين. ولما حاجة تتغير فجأة بتتهز من جواك حتى لو مبينتش. ده مش جمود، ده إنك بتحب تبني حاجة تدوم.",
+      "مشاعرك بتتحول لكلام وتحليل: بدل ما تعيش الإحساس بتفكر فيه وتحكيه. ممكن الناس تفتكر إنك مش متأثر لأنك بتحكي بخفة. الحكي هو طريقتك في الشفاء، فاختار حد يسمعك فعلًا.",
+      "بتحس بكل حاجة وبتمتص مزاج الي حواليك. بتقلق على الناس ونادرًا حد بيسألك إنت كويس ولا لأ. ده مش ضعف، ده عمق في الاحتواء، بس محتاج تحمي نفسك.",
+      "جواك طفل محتاج يتشاف ويتحب. لو حد اتجاهلك بتتجرح أكتر مما بتبين، وساعات بتتصرف بكبرياء عشان تداري. ده مش غرور، ده إنك بتدي بقلبك وعايز تتبادل.",
+      "بتهدأ لما تكون مفيد ومنظم، ولما مشاعرك تتلخبط بتحللها لحد ما تتعب. بتقول لنفسك إنك لازم تكون كويس طول الوقت. محتاج تسمح لنفسك تحس من غير ما تصلّح كل حاجة.",
+      "بتحس بالأمان وسط ناس مرتاحة معاك، والخناق بيوجعك أكتر من غيرك. ممكن تسكت عشان تحافظ على السلام وبعدين تتضايق جواك. ده حبك للانسجام، بس صوتك مهم.",
+      "مشاعرك قوية جدًا وقليل الي بيشوفها. بتحس إنك لو فتحت قلبك هتتجرح، فبتختبر الناس بصمت. ده مش برود، ده إنك بتحب مرة واحدة وبعمق.",
+      "بتحس بالأمان لما تكون حر ومتفائل، والقيود بتخنقك. لما بتتضايق بتهرب لفكرة أو مكان جديد. ده مش هروب بس، ده إيمانك إن فيه حاجة أحسن.",
+      "اتعودت تتحمل لوحدك ومتبينش ضعفك. ممكن تحس إنك لازم تكون قوي طول الوقت. جواك احتياج لحد يطمنك من غير ما تضطر تطلب. اسمح لنفسك تحتاج.",
+      "بتفهم مشاعرك بعقلك، ولما تتضايق بتبعد وتحلل. الناس ممكن تشوفك بارد وإنت جواك بتحس بكتير. محتاج مساحة، ومحتاج برضو حد يقرب بدون ضغط.",
+      "بتحس بكل حاجة وبتتأثر بأجواء الناس لدرجة إنك ساعات متعرفش دي مشاعرك ولا مشاعرهم. بتهرب للخيال أو النوم لما الضغط يزيد. دي حساسية عالية، ومحتاجة حدود."
+    ],
+    drive: [
+      "بتتحرك الأول وتفكر بعدين. الغضب عندك سريع ويروح سريع، والتحدي بيشعلك. عدّ لعشرة قبل الرد وهتوفر على نفسك ندم كتير.",
+      "بتتحرك ببطء، لكن لما تقرر مفيش حد بيزحزحك. بتتضايق ببطء وممكن تنفجر مرة واحدة لو كتمت كتير. قوتك في الصبر، بس الكبت بيتعبك.",
+      "بتتحرك بالكلام والأفكار، وبتبدأ حاجات كتير وبتفقد الحماس. لما تتضايق بتجادل أو بتسخر. وجّه طاقتك في مشروع واحد لحد ما يخلص.",
+      "بتتحرك بالمشاعر مش بالمنطق، وبتدافع عن الي بتحبه بشراسة. لما تتضايق بتسكت أو تتجرح بدل ما تواجه. قول الي ضايقك صريح بدل التلميح.",
+      "بتتحرك بثقة وبتحب تقود. لو اتقلل منك بتتحول لعناد وكبرياء. قوتك في الحماس الدافي، وتعلّم إن الخلاف مش إهانة.",
+      "بتتحرك بالدقة والتنظيم، وبتنتقد نفسك أكتر من غيرك. لما تتضايق بتلاحظ كل الأخطاء بدل ما تقول إيه الي ضايقك فعلًا. شغلك قوة، بس ماتخليش الكمال يعطلك.",
+      "بتتحرك بحذر وبتحب تتجنب المواجهة، فبتأجل قرارات. لما تتضايق بتبقى لطيف من بره وغاضب من جوه. قول لأ بوضوح وهتتفاجئ إن العلاقة مابتتهدش.",
+      "بتتحرك بعمق وإصرار، ولما تقرر بتكمل للآخر. لما تتجرح بتفتكر وبتخطط بصمت. قوتك كبيرة، فركزها في البناء مش في الانتقام.",
+      "بتتحرك بحماس ومغامرة وبتحب الحرية. لما تتضايق بتبالغ في الصراحة وتجرح من غير قصد. وجّه طاقتك في هدف كبير يستاهل.",
+      "بتتحرك بخطة وانضباط وطموح. لما تتضايق بتبقى بارد وصارم. قوتك في التحمل، بس اسمح لنفسك ترتاح من غير ذنب.",
+      "بتتحرك بأفكارك الخاصة ومابتحبش حد يملي عليك. لما تتضايق بتتمرد أو تنسحب. قوتك في الابتكار، بس ماتبعدش عن الي بيحبوك.",
+      "بتتحرك بالحدس والمزاج، وطاقتك بتتقلب. لما تتضايق بتنسحب أو تتجنب. ابدأ بخطوات صغيرة ولاحظ مزاجك قبل ما تقرر."
+    ],
+    mind: [
+      "بتفكر بسرعة وبتتكلم مباشر من غير تزويق. بتحب القرارات السريعة وبتمل من الشرح الطويل. الصراحة قوتك، بس خد بالك من نبرتك.",
+      "بتفكر ببطء وبعملية، وبتاخد وقت قبل ما تغير رأيك. بتحب الحاجات الملموسة. الي بيشوفك عنيد قصده إنك مش بتتسرع.",
+      "دماغك سريعة وفضولية وبتنط من فكرة لفكرة. بتحب الكلام والتعلم. التشتت هو تحديك، فاكتب أفكارك قبل ما تضيع.",
+      "بتفكر بقلبك وبتفتكر كل حاجة بتحس بيها، حتى كلمة اتقالت من سنين. بتتكلم بحساسية. ماتخليش الماضي يتحكم في ردودك.",
+      "بتتكلم بثقة ودفا وبتحب تقنع الناس. بتحب تتسمع. الكلام الجميل سلاحك، فاسمع بنفس القدر.",
+      "بتفكر بدقة وتحليل وبتلاحظ التفاصيل. بتحب تصلّح وتحسّن. القلق الزايد بيخلي دماغك مابتهداش، فاكتب الأفكار وارميها.",
+      "بتفكر بتوازن وبتشوف كل الجوانب، وده بيخليك مترددًا. بتتكلم بلطف. اكتب الإيجابيات والسلبيات وخد قرارك.",
+      "بتفكر بعمق وبتشوف الي ورا الكلام. بتشك بسرعة وبتحب الحقيقة. اسأل بدل ما تفترض.",
+      "بتفكر بالصورة الكبيرة وبتحب الفلسفة والأفكار. بتتكلم بصراحة ممكن تجرح. خد بالك من التفاصيل.",
+      "بتفكر بخطط وأهداف وبتتكلم بإيجاز ومسؤولية. بتشك في الكلام الفاضي. اسمح للأفكار الحرة تدخل.",
+      "بتفكر بشكل مختلف وبتشوف حلول غير تقليدية. بتتكلم بموضوعية وأحيانًا ببرود. اشرح أفكارك ببساطة.",
+      "بتفكر بالصور والحدس والمشاعر مش بالمنطق البحت. أفكارك خيالية وساعات بتتوه. اكتب، وماتقررش وإنت مشتت."
+    ],
+    fear: [
+      "خوفك الأساسي إنك تبان ضعيف أو ماتبقاش الأول. بتخاف تعتمد على حد، فبتعمل كل حاجة لوحدك. النمو إنك تطلب المساعدة، ومش هزيمة.",
+      "خوفك الأساسي إنك تخسر الأمان والاستقرار. بتتمسك بالموجود حتى لو مش مريحك. النمو إنك تعتمد على قيمتك مش على الأشياء.",
+      "خوفك الأساسي إنك ماتبقاش ذكي كفاية أو إن كلامك ملوش قيمة. بتتردد تعبّر عن نفسك. النمو إنك تتكلم حتى لو مش مثالي.",
+      "خوفك الأساسي إنك ماتتحبش أو تتساب. بتتعلق بالأمان العاطفي. النمو إنك تبني أمانك بنفسك.",
+      "خوفك الأساسي إنك ماتتشافش أو ماتبقاش مميز. بتحتاج التصفيق. النمو إنك تحب نفسك من غير جمهور.",
+      "خوفك الأساسي إنك مش كفاية أو إنك تغلط. بتجلد نفسك. النمو إنك تقبل النقص.",
+      "خوفك الأساسي إنك تتساب لو قلت لأ أو اتخذت موقف. بتتجنب الصدام. النمو إنك تحافظ على نفسك جوه العلاقة.",
+      "خوفك الأساسي إنك تتخان أو تفقد السيطرة. بتتحصن وماتفتحش قلبك. النمو إنك تثق بالتدريج.",
+      "خوفك الأساسي إنك تتحبس أو حياتك ماتبقاش ليها معنى. بتهرب من الالتزام. النمو إنك تلتزم بحاجة بتؤمن بيها.",
+      "خوفك الأساسي إنك تفشل أو ماتبقاش ناجح. بتشتغل أكتر من طاقتك. النمو إنك تثبت لنفسك قيمتك من غير نجاح.",
+      "خوفك الأساسي إنك تتحبس في مجموعة أو تفقد استقلالك. بتبعد. النمو إنك تقرب من غير ما تخسر نفسك.",
+      "خوفك الأساسي من الفوضى وفقدان الاتجاه. بتهرب للخيال. النمو إنك تبني حدود وروتين بيحميك."
+    ],
+    love: [
+      "بتحب بشغف وبتحب المطاردة، وبتمل لو العلاقة بقت رتيبة. محتاج حد صريح وقوي مايخافش منك. خد بالك من اندفاعك.",
+      "بتحب ببطء وإخلاص، وبتعبّر عن الحب بالأفعال والوقت. محتاج أمان وثبات. العند في العلاقة هو خطرك.",
+      "بتحب العقل قبل القلب، وبتنجذب للي بتتكلم معاه ساعات. بتمل من الكتمة. محتاج حبيب وصاحب في نفس الشخص.",
+      "بتحب بعمق وحماية، وبتعتبر الحبيب بيت. محتاج أمان عاطفي وحنية. التعلق الزايد هو خطرك.",
+      "بتحب بكرم وبدراما حلوة، وبتحب تدلّل وتتدلّل. محتاج إعجاب وصدق. الكبرياء ممكن يبعّد الي بتحبه.",
+      "بتحب بالاهتمام بالتفاصيل وخدمة الحبيب. بتنتقد بدافع الحب. محتاج حد يقدّر مجهودك.",
+      "بتحب الانسجام والرومانسية وبتحب الشريك اللطيف. بتتجنب الخلاف على حساب نفسك. محتاج توازن.",
+      "بتحب كل حاجة أو مفيش، وبتحب العمق والإخلاص. الغيرة والشك خطرك. محتاج حد صادق ومستعد للعمق.",
+      "بتحب الحرية والمغامرة وبتحب الشريك الصاحب. بتخاف من القيد. محتاج حد يشاركك الرحلة.",
+      "بتحب ببطء وجدية، وبتختار الشريك بعقلك. بتتحفظ في التعبير. محتاج حد يدفّيك.",
+      "بتحب الصداقة قبل الرومانسية وبتحب الاستقلال. بتبعد لو حسيت بخنق. محتاج حد يحترم مساحتك.",
+      "بتحب بحلم وروحانية وبتتفانى. بتشوف الحبيب أحسن من الواقع. محتاج حد حقيقي، وحدودك لازم تكون واضحة."
+    ],
+    partner: [
+      "بتنجذب لحد جريء ومباشر يحركك ويحمسك. لو غابت منه المبادرة هتحس بالملل.",
+      "بتحتاج حد ثابت وحسّي يطمنك ويبني معاك خطوة بخطوة.",
+      "بتحتاج حد ذكي وفضولي تتكلم معاه ساعات ويضحكك.",
+      "بتحتاج حد حنون يحتويك ويحسسك بالأمان من غير ما تطلب.",
+      "بتحتاج حد واثق ودافي يقدّرك ويبرز الي فيك.",
+      "بتحتاج حد منظم وبيهتم بالتفاصيل ويساعدك تتوازن.",
+      "بتحتاج حد لطيف ومتزن يشاركك الانسجام ويحترم رأيك.",
+      "بتحتاج حد عميق وصادق مايخافش من الشدة ولا من الصمت.",
+      "بتحتاج حد حر ومتفائل يوسّع عالمك ومايحبسكش.",
+      "بتحتاج حد جاد وناضج تعتمد عليه وتحترمه.",
+      "بتحتاج حد مستقل ومختلف يحترم مساحتك وأفكارك.",
+      "بتحتاج حد حساس وحالم يفهمك من غير كلام كتير."
+    ]
+  };
+  const SM_REL = {
+    same: "الشمس والقمر عندك من نفس العنصر، فبتحس بنفسك متماسك: الي بتحسه قريب جدًا من الي بتبانه للناس.",
+    comp: "الشمس والقمر عندك بيدعموا بعض: عقلك ومشاعرك بيكملوا بعض بسهولة، وده بيديك استقرار داخلي.",
+    conf: "فيه فرق بين الي بتبانه والي بتحسه. أوقات بتبان حاجة وجواك حاجة تانية، وده بيخليك تحس إنك شخصين. ده تحدي، وهو برضو مصدر عمقك."
+  };
+  const DEEPQ = [
+    "النهاردة اسأل نفسك: أنهي موقف الأسبوع ده فضل في دماغك أكتر من اللازم؟ وإيه الي كنت محتاجه فيه فعلًا؟",
+    "اسأل نفسك: أنهي قرار بتأجله لأنك خايف من رد فعل حد؟ واكتب أسوأ حاجة ممكن تحصل، وهل هي فعلًا بالسوء ده؟",
+    "فكّر: إمتى آخر مرة قلت لأ من غير ما تتبرر؟ وإيه الي حسيت بيه بعدها؟",
+    "اكتب: إيه الحاجة الي بتعملها عشان الناس تحبك وإنت مش عايزها؟",
+    "اسأل نفسك: أنهي علاقة في حياتك بتديك أكتر ما بتاخد؟ وأنهي واحدة العكس؟",
+    "فكّر: إيه الحاجة الي بتقول عليها «أنا كده» وهي في الحقيقة عادة اتعلمتها زمان؟",
+    "اكتب جملة واحدة لنفسك الصغيرة: إيه الي كانت محتاجة تسمعه؟",
+    "اسأل نفسك: لو ماكنتش خايف، كنت هتعمل إيه الأسبوع ده؟"
+  ];
+  const sub = (t, p) => `<article class="rd"><h4>${t}</h4><p>${p}</p></article>`;
+
+  function patternHTML(S) {
+    const ch = S.ch, sg = k => body(ch, k).sign;
+    const sun = sg("sun"), moon = sg("moon"), merc = sg("mercury"), ven = sg("venus"), mar = sg("mars"), sat = sg("saturn");
+    const ea = SIGNS[sun].el, eb = SIGNS[moon].el;
+    const rel = ea === eb ? "same" : ((ea + eb) % 2 === 0 ? "comp" : "conf");
+    const nd = body(ch, "node").sign;
+    let o = `<p class="lead2">ده مش توقع للنهاردة، ده وصف لنمطك الثابت: الطريقة الي بتتصرف وتحس بيها وتحب بيها. اقراه بهدوء وخد الي بيشبهك، وسيب الباقي.</p>`;
+    o += `<h4 class="ph">غرايزك</h4>`;
+    o += sub("إزاي بتحس", PT.feel[moon]);
+    o += sub("إزاي بتتحرك وقت الضغط", PT.drive[mar]);
+    o += sub("إزاي بتفكر وبتتكلم", PT.mind[merc]);
+    if (ch.known) { const r = Math.floor(ch.asc / 30); o += sub("أول انطباع الناس بتاخده عنك", RISING_TXT[r]); }
+    o += sub("بين الي بتبانه والي بتحسه", SM_REL[rel]);
+    o += `<h4 class="ph">مناطق نموك</h4>`;
+    o += sub("خوفك الأساسي", PT.fear[sat]);
+    o += sub("الحاجة الي بتكبّرك", `${SIGNS[sun].growth}. وبالنسبة لاتجاه نموك الأبعد، حياتك بتشدك ناحية ${SIGNS[nd].strength}، يعني كل مرة بتتحرك ناحيتها بتحس إنك قريب من نفسك.`);
+    o += `<h4 class="ph">علاقاتك</h4>`;
+    o += sub("إزاي بتحب", PT.love[ven]);
+    if (ch.known) { const dsc = (Math.floor(ch.asc / 30) + 6) % 12; o += sub("الشريك الي بيكملك", PT.partner[dsc]); }
+    else o += `<p class="note">ولو عرفت وقت ميلادك هنقدر نقولك كمان إيه نوع الشريك الي بيكملك.</p>`;
+    o += `<h4 class="ph">فكرة اليوم</h4>` + sub("للتأمل", DEEPQ[Math.floor(Date.now() / 864e5) % DEEPQ.length]);
+    return o + NOTE_SYM;
   }
 
-  /* ---------- التاروت ---------- */
-  const deck = $("#tarot-deck"), tres = $("#tarot-res"), backs = [];
-  const rnd = n => { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0] % n; };
-  const BACK = `<svg viewBox="0 0 60 90" aria-hidden="true"><rect x="3" y="3" width="54" height="84" rx="6" fill="#1B0F3C" stroke="#D6AE5E" stroke-width="1.5"/><rect x="9" y="9" width="42" height="72" rx="3" fill="none" stroke="#8F7338"/><path d="M30 28L34 40L46 45L34 50L30 62L26 50L14 45L26 40Z" fill="none" stroke="#D6AE5E" stroke-width="1.4"/></svg>`;
-  function buildDeck() {
-    deck.innerHTML = ""; backs.length = 0;
-    for (let k = 0; k < 5; k++) {
-      const b = document.createElement("button");
-      b.type = "button"; b.className = "tback"; b.setAttribute("aria-label", "كرت رقم " + (k + 1)); b.innerHTML = BACK;
-      b.addEventListener("click", () => pick(b));
-      deck.appendChild(b); backs.push(b);
-    }
+  /* ---------- روابط: تناغم بين اتنين ---------- */
+  const BOND_KEYS = ["sun", "moon", "mercury", "venus", "mars", "saturn"];
+  const BOND_IMP = { sun: 3, moon: 3, venus: 3, mars: 3, mercury: 2, saturn: 2 };
+  const BOND_TXT = {
+    high: ["تناغم عالي", "فيه ارتياح طبيعي بينكم، وبتحسوا إنكم فاهمين بعض من غير شرح كتير. الخطر إن السهولة تخليكم تسيبوا العلاقة من غير مجهود، فاشتغلوا عليها زي أي علاقة."],
+    mean: ["علاقة ليها معنى", "دي علاقة فيها جذب وفيها احتكاك مع بعض، وبتعلّم كل واحد فيكم حاجة عن نفسه. مش سهلة ومش مستحيلة، ونجاحها بيعتمد على وعيكم بالاختلافات."],
+    hard: ["علاقة تحدي", "بينكم توتر واضح، وكل واحد بيشوف في التاني حاجة بتضغط عليه. ده مش حكم إن العلاقة فاشلة، لكنه بيقول إنها محتاجة وضوح وحدود وصبر ومش بتمشي بالسهل."],
+    soft: ["علاقة هادية", "مفيش ارتباط فلكي قوي بينكم، فالعلاقة ممكن تكون لطيفة وخفيفة. والعمق فيها بيتبني بالوقت والاختيار مش بالتأثير الفلكي."]
+  };
+  function bondsCalc(A, B) {
+    const out = [];
+    BOND_KEYS.forEach(ka => BOND_KEYS.forEach(kb => {
+      if (ka === "saturn" && kb === "saturn") return;
+      const d = Math.abs(d180(body(A, ka).lon - body(B, kb).lon));
+      for (const AS of ASPECTS) {
+        let lim = Math.min(AS.orb, 6); if (ka === "saturn" || kb === "saturn") lim = Math.min(lim, 4);
+        const orb = Math.abs(d - AS.ang);
+        if (orb <= lim) {
+          const imp = (BOND_IMP[ka] + BOND_IMP[kb]) / 2, w = imp * (1 - orb / lim);
+          const heavy = ka === "saturn" || kb === "saturn" || ka === "mars" || kb === "mars";
+          let kind = ["tri", "sext"].includes(AS.k) ? "h" : (AS.k === "conj" ? (heavy ? "t" : "h") : "t");
+          if (AS.k === "opp" && !heavy) kind = "m";
+          out.push({ ka, kb, AS, w, kind });
+          break;
+        }
+      }
+    }));
+    return out.sort((x, y) => y.w - x.w);
   }
-  function pick(b) {
-    backs.forEach(x => { x.disabled = true; });
-    b.classList.add("picked");
-    showCard(rnd(22), rnd(4) === 0);
+  function bondsHTML(A, B) {
+    const L = bondsCalc(A, B);
+    let H = 0, T = 0;
+    L.forEach(l => { if (l.kind === "h") H += l.w; else if (l.kind === "m") { H += l.w * .5; T += l.w * .5; } else T += l.w; });
+    const cat = H + T < 5 ? "soft" : (H >= 6.5 && H > T * 2 ? "high" : (T >= 4 && T > H * 1.2 ? "hard" : "mean"));
+    let o = `<div class="bond-cat"><strong>${BOND_TXT[cat][0]}</strong><p>${BOND_TXT[cat][1]}</p></div>`;
+    o += `<h4 class="ph">أهم الروابط بينكم</h4>`;
+    o += L.length ? L.slice(0, 5).map(l => {
+      const tag = l.kind === "h" ? "دعم" : (l.kind === "m" ? "جذب وشد" : "احتكاك");
+      return `<article class="rd"><h4>${gl(PLANETS[l.ka].g)} ${PLANETS[l.ka].n} عندك مع ${gl(PLANETS[l.kb].g)} ${PLANETS[l.kb].n} عنده <span class="orb">${tag}</span></h4><p>${themeOf(l.ka)} عندك مع ${themeOf(l.kb)} عنده: ${l.AS.nat}.</p></article>`;
+    }).join("") : `<p>مفيش روابط قريبة واضحة بين الخريطتين.</p>`;
+    o += `<p class="note">النتيجة بتتحسب من تاريخ الميلاد فقط للشخص التاني، فدقة القمر ممكن تفرق لحد ٦ درجات. للقراءة الكاملة بوقت الميلاد، كلمني.</p>` + NOTE_SYM;
+    return o;
   }
-  function showCard(i, rev) {
-    const a = ARCANA[i], q = $("#t-q").value.trim();
-    tres.innerHTML = `<div class="tface${rev ? " rev" : ""}"><span class="tn">${i === 21 ? 0 : i + 1}</span><span class="ts" aria-hidden="true">✦</span><strong>${a.n}</strong><span class="te">${a.en}</span>${rev ? `<span class="trv">مقلوب</span>` : ""}</div>
-      ${q ? `<p class="sub center">نيتك: ${esc(q)}</p>` : ""}
-      <article class="rd"><h4>رسالة الكرت</h4><p>${a.core}.${rev ? " " + a.rev : ""}</p></article>
-      <article class="rd"><h4>في الواقع</h4><p>${a.real}</p></article>
-      <article class="rd"><h4>نفسيًا</h4><p>${a.psy}</p></article>
-      <article class="rd"><h4>روحيًا وطاقيًا</h4><p>${a.spirit}</p></article>
-      <article class="rd"><h4>تحرير</h4><p>${a.release}</p></article>
-      <p class="sub">الجانب الي محتاج انتباه: ${a.shadow}.</p>${NOTE_SYM}
-      <div class="cta-row"><button class="btn ghost" id="t-again" type="button">اسحب كرت تاني</button></div>${CONTACT_LINE}`;
-    tres.hidden = false;
-    $("#t-again").addEventListener("click", () => {
-      tres.hidden = true; tres.innerHTML = "";
-      backs.forEach(x => { x.disabled = false; x.classList.remove("picked"); });
-      $("#tarot").scrollIntoView();
+  function wirePattern(root, S) {
+    const go = $("#b-go", root); if (!go) return;
+    go.addEventListener("click", () => {
+      const err = $("#b-err", root), out = $("#b-out", root); err.hidden = true;
+      const v = $("#b-date", root).value;
+      if (!v) { err.textContent = "اكتب تاريخ ميلاد الشخص التاني."; err.hidden = false; return; }
+      const [y, m, d] = v.split("-").map(Number);
+      if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
+      const B = Astro.chart({ utcMs: Date.UTC(y, m - 1, d, 12, 0), lat: 30, lon: 31, known: false });
+      out.innerHTML = bondsHTML(S.ch, B); out.hidden = false;
     });
-    bindContact(tres); tres.scrollIntoView();
   }
-  buildDeck();
-  selectSign(0);
 
 })();
 
