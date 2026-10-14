@@ -1,0 +1,1844 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>عقيق | خريطتك الفلكية وقراءات الأبراج والتاروت</title>
+<meta name="description" content="احسب خريطتك الفلكية ومصفوفة القدر، واسحب كرت تاروت، وشوف توقعات الأبراج الحقيقية كل يوم.">
+<meta name="theme-color" content="#12082A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600&family=Noto+Sans+Symbols&family=Noto+Sans+Symbols+2&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#12082A;--deep:#1B0F3C;--amethyst:#3A2170;--gold:#D6AE5E;--gold-dim:#8F7338;--moon:#EFE6D2;--mist:#B9ADD8;--rose:#D9788C;
+  --display:"Reem Kufi","Noto Naskh Arabic",serif;--body:"Noto Naskh Arabic","Segoe UI",serif;
+  --sym:"Noto Sans Symbols","Noto Sans Symbols 2","Segoe UI Symbol","Apple Symbols",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--night);scroll-behavior:smooth;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--moon);font-family:var(--body);font-size:1.0625rem;line-height:1.95}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(1.2px 1.2px at 8% 12%,rgba(239,230,210,.9) 50%,transparent 51%),
+  radial-gradient(1px 1px at 22% 38%,rgba(239,230,210,.7) 50%,transparent 51%),
+  radial-gradient(1.4px 1.4px at 36% 8%,rgba(214,174,94,.9) 50%,transparent 51%),
+  radial-gradient(1px 1px at 47% 62%,rgba(239,230,210,.6) 50%,transparent 51%),
+  radial-gradient(1.2px 1.2px at 61% 24%,rgba(239,230,210,.8) 50%,transparent 51%),
+  radial-gradient(1px 1px at 74% 71%,rgba(214,174,94,.7) 50%,transparent 51%),
+  radial-gradient(1.4px 1.4px at 88% 15%,rgba(239,230,210,.9) 50%,transparent 51%),
+  radial-gradient(1px 1px at 93% 52%,rgba(239,230,210,.6) 50%,transparent 51%),
+  radial-gradient(1.2px 1.2px at 15% 82%,rgba(239,230,210,.7) 50%,transparent 51%),
+  radial-gradient(1px 1px at 54% 90%,rgba(214,174,94,.8) 50%,transparent 51%),
+  radial-gradient(900px 600px at 85% -8%,rgba(58,33,112,.55),transparent 70%),
+  radial-gradient(700px 520px at -5% 62%,rgba(42,22,90,.5),transparent 70%)}
+h1,h2,h3,h4,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1040px,100% - 40px);margin-inline:auto}
+.num{unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+[hidden]{display:none!important}
+
+/* header */
+.top{position:sticky;top:0;z-index:20;background:rgba(18,8,42,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(58,33,112,.7)}
+.hd{display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 16px;padding-top:8px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:1.3rem;text-decoration:none}
+.brand svg{width:24px;height:24px}
+.nav{grid-column:1/-1;display:flex;gap:22px;overflow-x:auto;padding:6px 0 8px;font-family:var(--display);font-size:.95rem;white-space:nowrap;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{text-decoration:none;color:var(--mist);flex:none}
+.nav a:hover{color:var(--gold)}
+@media(min-width:900px){
+  .hd{display:flex;justify-content:space-between;gap:24px;padding:0;height:64px}
+  .nav{overflow:visible;padding:0;order:2}
+  .hd .hd-act{order:3}
+}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2;padding:14px 26px;border-radius:999px;border:1.5px solid var(--gold);background:var(--gold);color:#1a0f33;text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s}
+.btn:hover{background:#E6C37B;border-color:#E6C37B}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn.ghost:hover{background:rgba(214,174,94,.14);border-color:var(--gold)}
+.btn.sm{padding:9px 18px;font-size:.92rem}
+.btn svg{width:20px;height:20px;flex:none}
+button.btn{font-family:var(--display)}
+.link{color:var(--gold);font-family:var(--display);text-underline-offset:6px}
+
+/* hero */
+.hero{padding:24px 0 56px}
+.hero .wrap{display:grid;gap:26px;justify-items:center;text-align:center}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2rem,7vw,3.4rem);line-height:1.45;max-width:16ch}
+.lead{color:var(--mist);max-width:34em;font-size:1.1rem;margin-top:14px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px 22px;justify-content:center;align-items:center;margin-top:26px}
+.wheel-box{order:-1;display:grid;justify-items:center;gap:8px}
+.hint{color:var(--mist);font-size:.92rem}
+@media(min-width:900px){
+  .hero{padding:56px 0 88px}
+  .hero .wrap{grid-template-columns:1fr minmax(380px,430px);justify-items:start;text-align:start;align-items:center;gap:56px}
+  .cta-row{justify-content:flex-start}
+  .wheel-box{order:0}
+}
+.wheel{width:min(84vw,420px);height:auto;aspect-ratio:1;overflow:visible;animation:fadeIn 1.4s ease both}
+.wheel .ln{fill:none;stroke:var(--gold-dim);stroke-width:1}
+.wheel .ln.strong{stroke:var(--gold);stroke-width:1.2}
+.wheel .dash{stroke-dasharray:3 6}
+.wheel .faint{stroke:var(--amethyst)}
+.spin-a,.spin-b{transform-box:view-box;transform-origin:200px 200px}
+.spin-a{animation:spin 160s linear infinite}
+.spin-b{animation:spin 100s linear infinite reverse}
+.wg{cursor:pointer;opacity:0;animation:rise .8s ease forwards;animation-delay:calc(var(--i) * 90ms + 300ms)}
+.wg text{font-family:var(--sym);font-size:26px;fill:var(--gold);transition:fill .2s}
+.wg .hit{fill:rgba(0,0,0,0);stroke:none}
+.wg:hover text{fill:var(--moon)}
+.wg:focus-visible{outline:none}
+.wg:focus-visible .hit{stroke:var(--gold);stroke-width:1.5}
+.moon{fill:var(--gold)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0}to{opacity:1}}
+
+/* sections */
+.sec{padding:68px 0}
+.sec h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4.5vw,2.4rem);line-height:1.4;margin-bottom:12px}
+.intro{color:var(--mist);max-width:38em;margin-bottom:32px}
+.center{text-align:center}
+.center .intro{margin-inline:auto}
+.sec.alt{background:linear-gradient(180deg,rgba(27,15,60,.0),rgba(27,15,60,.55) 12%,rgba(27,15,60,.55) 88%,rgba(27,15,60,0))}
+
+/* form */
+.cform{display:grid;gap:18px;max-width:640px;margin-inline:auto}
+.two{display:grid;gap:18px}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.field{display:grid;gap:6px}
+.field label,.field .lb{font-family:var(--display);font-size:.95rem;color:var(--mist)}
+input,select{font:inherit;line-height:1.4;color:var(--moon);background:var(--deep);border:1px solid var(--amethyst);border-radius:12px;padding:12px 14px;min-height:50px;width:100%}
+input:disabled{opacity:.45}
+input:focus,select:focus{outline:2px solid var(--gold);outline-offset:0;border-color:transparent}
+input[type=date],input[type=time]{color-scheme:dark}
+select option,select optgroup{background:var(--deep);color:var(--moon)}
+.chk{display:flex;align-items:center;gap:10px;font-size:.98rem}
+.chk input{width:22px;height:22px;min-height:0;accent-color:var(--gold);flex:none}
+details.adv>summary{cursor:pointer;color:var(--gold);font-family:var(--display);padding:6px 0}
+details.adv .field{margin-top:12px}
+.ferr{color:var(--rose);font-family:var(--display)}
+.privacy{color:var(--mist);font-size:.92rem;text-align:center}
+.cform .btn{justify-self:center;min-width:240px}
+
+/* result */
+.result{max-width:760px;margin:44px auto 0}
+.res-head{text-align:center;margin-bottom:22px}
+.res-head h3{font-family:var(--display);font-size:1.7rem;font-weight:700;line-height:1.5}
+.res-head p{color:var(--mist)}
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:26px}
+.b3{display:grid;justify-items:center;align-content:start;gap:0;padding:16px 6px;border:1px solid var(--gold-dim);border-radius:16px;background:var(--deep);text-align:center;line-height:1.6}
+.b3g{font-family:var(--sym);font-size:2rem;color:var(--gold);line-height:1.3}
+.b3l{color:var(--mist);font-size:.88rem}
+.b3 strong{font-family:var(--display);font-size:1.15rem;font-weight:600}
+.b3.dim{opacity:.7}
+.b3n{font-size:.8rem;color:var(--mist)}
+.wheel-wrap{max-width:520px;margin:0 auto 12px}
+.cw{width:100%;height:auto;display:block}
+.cw .sec{stroke:var(--gold-dim);stroke-width:.8}
+.cw .sec.e0{fill:rgba(214,174,94,.14)}
+.cw .sec.e1{fill:rgba(143,115,56,.16)}
+.cw .sec.e2{fill:rgba(185,173,216,.12)}
+.cw .sec.e3{fill:rgba(58,33,112,.5)}
+.cw .cg{font-family:var(--sym);font-size:22px;fill:var(--gold);text-anchor:middle;dominant-baseline:central}
+.cw .rg{fill:none;stroke:var(--gold-dim);stroke-width:1}
+.cw .hl{stroke:rgba(143,115,56,.7);stroke-width:.8}
+.cw .hl.ax{stroke:var(--gold);stroke-width:1.6}
+.cw .hn{font-family:var(--display);font-size:13px;fill:var(--mist);text-anchor:middle;dominant-baseline:central}
+.cw .as{stroke-width:1;fill:none}
+.cw .as.soft{stroke:rgba(214,174,94,.55)}
+.cw .as.hard{stroke:rgba(217,120,140,.65)}
+.cw .tk{stroke:var(--gold);stroke-width:1.2}
+.cw .pg text{font-family:var(--sym);font-size:25px;fill:var(--moon);text-anchor:middle;dominant-baseline:central}
+.cw .pg text.rx{font-size:12px;fill:var(--rose)}
+.note{color:var(--mist);font-size:.92rem;text-align:center;margin:6px 0 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;margin:26px 0 20px;padding-bottom:6px;scrollbar-width:thin}
+.tab{flex:none;font-family:var(--display);font-size:.95rem;padding:9px 18px;border-radius:999px;border:1px solid var(--amethyst);background:transparent;color:var(--mist);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#1a0f33}
+.rd{padding:16px 0;border-top:1px solid rgba(58,33,112,.9)}
+.rd:first-child{border-top:0}
+.rd h4{font-family:var(--display);font-weight:600;font-size:1.08rem;line-height:1.7;margin-bottom:2px}
+.rd .sg{font-family:var(--sym);color:var(--gold);margin-inline-end:4px}
+.rd p{color:var(--moon)}
+.sub{color:var(--mist);font-size:.98rem}
+.rd .sub{margin-top:4px}
+.rxb{font-style:normal;font-family:var(--display);font-size:.75rem;color:var(--rose);border:1px solid var(--rose);border-radius:999px;padding:0 8px;margin-inline-start:6px;white-space:nowrap}
+.orb{font-family:var(--body);font-weight:400;font-size:.85rem;color:var(--mist);margin-inline-start:6px}
+.ph{font-family:var(--display);font-size:1.15rem;font-weight:600;color:var(--gold);margin:28px 0 8px}
+.panel>.ph:first-child{margin-top:0}
+.panel p+p{margin-top:8px}
+.bars{display:grid;gap:8px;margin:8px 0 14px}
+.bar{display:grid;grid-template-columns:70px 1fr 24px;gap:12px;align-items:center;font-size:.95rem}
+.trk{height:10px;border-radius:999px;background:var(--deep);overflow:hidden}
+.trk i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold));border-radius:999px}
+.lst{display:grid;gap:8px;margin:6px 0}
+.lst li{padding-inline-start:18px;position:relative}
+.lst li::before{content:"";position:absolute;inset-inline-start:0;top:.9em;width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.tbl{border-top:1px solid var(--amethyst);margin-bottom:6px}
+.tr{display:grid;grid-template-columns:1.1fr 1.5fr .8fr;gap:8px;padding:9px 0;border-bottom:1px solid rgba(58,33,112,.7);align-items:center;font-size:.97rem;line-height:1.6}
+.tr .c1 .sg{font-family:var(--sym);color:var(--gold)}
+.tr .c3{color:var(--mist);text-align:end}
+.cta-box{margin-top:36px;padding:28px 20px;border:1px solid var(--gold-dim);border-radius:22px;text-align:center;background:linear-gradient(160deg,#2c1766,var(--deep) 65%)}
+.cta-box h4{font-family:var(--display);font-size:1.3rem;margin-bottom:6px}
+.cta-box p{color:var(--mist);margin-bottom:18px}
+
+/* sky */
+.sky-moon{display:grid;gap:2px;margin-bottom:22px;color:var(--mist)}
+.sky-moon strong{color:var(--moon);font-family:var(--display);font-weight:600}
+.sky-ctl{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin-bottom:20px}
+.sky-ctl .field{min-width:200px}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-bottom:26px}
+.chip{display:grid;justify-items:center;gap:0;padding:12px 6px 10px;background:transparent;color:var(--moon);border:1px solid var(--amethyst);border-radius:14px;font:inherit;font-size:.92rem;line-height:1.55;cursor:pointer}
+.chip .sg{font-family:var(--sym);font-size:1.6rem;color:var(--gold);line-height:1.3}
+.chip .cn{font-family:var(--display)}
+.chip .cs{color:var(--mist)}
+.chip:hover{border-color:var(--gold-dim)}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1a0f33}
+.chip[aria-pressed="true"] .sg,.chip[aria-pressed="true"] .cs{color:#1a0f33}
+.chip .rxb{color:var(--rose);background:var(--night)}
+.sky-panel h3{font-family:var(--display);font-size:1.6rem;font-weight:700;margin-bottom:6px}
+.acc{border-top:1px solid var(--amethyst)}
+.acc:last-child{border-bottom:1px solid var(--amethyst)}
+.acc summary{cursor:pointer;padding:12px 0;font-family:var(--display);list-style:none;display:flex;align-items:center;gap:8px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";margin-inline-start:auto;color:var(--gold);font-size:1.3rem;line-height:1}
+.acc[open] summary::after{content:"−"}
+.acc .sg{font-family:var(--sym);color:var(--gold);font-size:1.3rem}
+.acc .hs{font-family:var(--body);font-size:.88rem;color:var(--mist)}
+.acc p{padding:0 0 14px;color:var(--moon)}
+
+/* signs */
+.period{display:inline-block;font-family:var(--display);color:var(--gold);border:1px solid var(--gold-dim);border-radius:999px;padding:4px 18px;margin-bottom:16px;font-size:.95rem}
+.picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:10px;max-width:640px;margin:0 auto 40px}
+.sign{display:grid;justify-items:center;padding:10px 4px 8px;background:transparent;color:var(--moon);border:1px solid var(--amethyst);border-radius:14px;font-family:var(--body);font-size:.92rem;line-height:1.5;cursor:pointer;transition:background .2s,border-color .2s}
+.sign .sg{font-family:var(--sym);font-size:1.7rem;line-height:1.3;color:var(--gold)}
+.sign:hover{border-color:var(--gold-dim)}
+.sign[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#1a0f33}
+.sign[aria-pressed="true"] .sg{color:#1a0f33}
+.arch{max-width:580px;margin-inline:auto;text-align:center;background:linear-gradient(180deg,#2c1766 0%,var(--deep) 60%);border:1px solid var(--gold-dim);border-radius:170px 170px 22px 22px;padding:54px 26px 34px}
+.arch-g{font-family:var(--sym);font-size:4rem;line-height:1.2;color:var(--gold)}
+.arch h3{font-family:var(--display);font-size:2rem;font-weight:700;line-height:1.5}
+.dates{color:var(--moon)}
+.trait{color:var(--mist);font-size:.98rem}
+.overall{margin:20px auto 8px;max-width:30em;font-size:1.1rem}
+.fcs{text-align:start;margin:18px 0 26px}
+.fc{display:grid;grid-template-columns:62px 1fr;gap:14px;padding:14px 0;border-top:1px solid rgba(143,115,56,.45)}
+.fc h4{font-family:var(--display);font-weight:600;color:var(--gold);font-size:1.05rem;line-height:1.9}
+
+/* services, courses */
+.svc,.course{display:grid;grid-template-columns:64px 1fr;gap:6px 20px;padding:28px 0;border-top:1px solid var(--amethyst)}
+.svc:last-child,.course:last-child{border-bottom:1px solid var(--amethyst)}
+.svc-ic{grid-row:span 2;width:64px;height:64px;color:var(--gold)}
+.svc h3,.course h3{font-family:var(--display);font-size:1.3rem;font-weight:600;line-height:1.6}
+.svc p,.course p{color:var(--mist)}
+.svc .need{font-size:.95rem;color:var(--moon);margin-top:4px}
+.svc .btn{grid-column:2;justify-self:start;margin-top:10px}
+.course{grid-template-columns:1fr}
+.course .btn{justify-self:start;margin-top:8px}
+.meta{font-size:.95rem}
+.soon{font-family:var(--display);font-size:.78rem;color:var(--gold);border:1px solid var(--gold-dim);border-radius:999px;padding:0 10px;margin-inline-start:8px}
+@media(min-width:820px){
+  .svc{grid-template-columns:72px 1fr auto;align-items:center;gap:28px;padding:34px 0}
+  .svc-ic{grid-row:auto;width:72px;height:72px}
+  .svc .btn{grid-column:auto;margin:0}
+  .course{grid-template-columns:1fr auto;align-items:center;gap:28px}
+  .course .btn{margin:0}
+}
+.videos{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.vid{display:grid;gap:8px;text-decoration:none}
+.thumb{position:relative;display:block;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--deep);border:1px solid var(--amethyst)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb svg{position:absolute;inset:0;margin:auto;width:48px;height:48px}
+.vt{font-family:var(--display);line-height:1.6}
+.vempty{color:var(--mist);grid-column:1/-1}
+
+/* steps, book, footer */
+.steps{display:grid;gap:0}
+.step{display:grid;grid-template-columns:44px 1fr;gap:4px 16px;padding-bottom:30px;position:relative}
+.step:last-child{padding-bottom:0}
+.step:not(:last-child)::after{content:"";position:absolute;inset-inline-start:21px;top:50px;bottom:6px;width:1px;background:var(--amethyst)}
+.step .n{grid-row:span 2;width:44px;height:44px;border:1.5px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:var(--display);color:var(--gold);font-size:1.15rem;line-height:1}
+.step h3{font-family:var(--display);font-size:1.1rem;font-weight:600;line-height:1.8}
+.step p{color:var(--mist)}
+@media(min-width:820px){
+  .steps{grid-template-columns:repeat(4,1fr);gap:28px}
+  .step{grid-template-columns:1fr;padding:0;gap:10px}
+  .step .n{grid-row:auto}
+  .step:not(:last-child)::after{display:none}
+}
+.book{text-align:center;border:1px solid var(--gold-dim);border-radius:28px;padding:48px 24px;background:linear-gradient(160deg,#2c1766,var(--deep) 62%)}
+.book h2{margin-bottom:14px}
+.book p{color:var(--mist);max-width:32em;margin-inline:auto}
+.book .btn{margin-top:28px}
+.book .alt2{margin-top:22px;font-size:.98rem}
+.foot{padding:36px 0 56px;border-top:1px solid var(--amethyst);color:var(--mist);font-size:.92rem;text-align:center}
+.foot .brand{justify-content:center;color:var(--moon);margin-bottom:4px}
+.foot .tg{margin-bottom:10px}
+
+@media(max-width:480px){.tr{grid-template-columns:1fr 1.4fr .7fr;font-size:.92rem}.big3{gap:8px}.b3 strong{font-size:1.05rem}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .wg{opacity:1!important}
+}
+
+/* additions */
+.hd-act{display:flex;align-items:center;gap:12px}
+.ig-top{display:grid;place-items:center;color:var(--gold)}
+.ig-top svg{width:26px;height:26px}
+.contact-line{margin-top:28px;text-align:center;color:var(--mist)}
+.contact-line a{color:var(--gold);font-family:var(--display);text-underline-offset:5px}
+.mx{width:100%;max-width:440px;height:auto;display:block;margin:0 auto}
+.mx .mxl{fill:none;stroke:var(--gold-dim);stroke-width:1.2}
+.mx .mxl.faint{stroke:var(--amethyst)}
+.mx .mxn circle{fill:var(--deep);stroke:var(--gold);stroke-width:1.5}
+.mx .mxn.ctr circle{fill:var(--amethyst)}
+.mx .mnum{font-family:var(--display);font-size:20px;fill:var(--moon);text-anchor:middle;dominant-baseline:central}
+.mx .mlet{font-family:var(--display);font-size:12px;fill:var(--gold);text-anchor:middle}
+.deck{display:flex;justify-content:center;gap:10px;margin:24px 0}
+.tback{width:clamp(52px,16vw,84px);aspect-ratio:2/3;padding:0;background:transparent;border:0;cursor:pointer;transition:transform .25s,opacity .25s}
+.tback svg{width:100%;height:100%;display:block}
+.tback:hover:not(:disabled){transform:translateY(-8px)}
+.tback.picked{transform:translateY(-14px)}
+.tback:disabled:not(.picked){opacity:.35;cursor:default}
+.tarot-res{max-width:620px;margin:20px auto 0}
+.tface{width:min(220px,62vw);margin:0 auto 18px;aspect-ratio:2/3;border:2px solid var(--gold);border-radius:14px;background:linear-gradient(180deg,#2c1766,var(--deep));display:grid;justify-items:center;align-content:center;gap:2px;padding:14px 8px;text-align:center}
+.tface .tn{font-family:var(--display);color:var(--gold);font-size:1.6rem}
+.tface .ts{font-family:var(--sym);color:var(--gold);font-size:3rem;line-height:1.2}
+.tface strong{font-family:var(--display);font-size:1.5rem}
+.tface .te{color:var(--mist);font-size:.9rem}
+.tface .trv{color:var(--rose);font-family:var(--display);font-size:.9rem}
+.tface.rev .ts{transform:rotate(180deg)}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap hd">
+    <a class="brand" href="#top" id="top">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z" fill="#D6AE5E"/></svg>
+      <span data-brand></span>
+    </a>
+    <div class="hd-act"><a class="ig-top" id="ig-top" href="#book" aria-label="انستجرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg></a><a class="btn sm" data-wa="general" href="#book">واتساب</a></div>
+    <nav class="nav" aria-label="التنقل الرئيسي">
+      <a href="#chart">خريطتك</a>
+      <a href="#matrix">الماتريكس</a>
+      <a href="#tarot">التاروت</a>
+      <a href="#sky">السما دلوقتي</a>
+      <a href="#signs">الأبراج</a>
+      <a href="#services">الخدمات</a>
+      <a href="#videos">الفيديوهات</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="wheel-box">
+        <svg class="wheel" viewBox="0 0 400 400" role="group" aria-label="عجلة الأبراج. اختار برجك لتشوف توقعاته">
+          <circle class="ln strong" cx="200" cy="200" r="192"/>
+          <g class="spin-a"><g id="ticks" class="ln strong" style="stroke-width:1"></g></g>
+          <circle class="ln" cx="200" cy="200" r="170"/>
+          <circle class="ln" cx="200" cy="200" r="126"/>
+          <g class="spin-b">
+            <circle class="ln dash" cx="200" cy="200" r="112"/>
+            <polygon class="ln faint" points="200,88 297,256 103,256"/>
+            <polygon class="ln faint" points="200,312 103,144 297,144"/>
+            <circle class="ln faint" cx="200" cy="200" r="64"/>
+          </g>
+          <path class="moon" d="M200 168A32 32 0 0 0 200 232A40 40 0 0 1 200 168Z" transform="translate(18 0)"/>
+          <g id="glyphs"></g>
+        </svg>
+        <p class="hint">اضغط على أي برج في العجلة لتشوف توقعاته</p>
+      </div>
+      <div>
+        <h1>احسب خريطتك الفلكية بالتفصيل</h1>
+        <p class="lead">الكواكب والبيوت والدرجات، مع قراءة تلقائية لشخصيتك ونصايح تناسب خريطتك. وبعدها احجز جلسة معايا لو عايز تعمّق.</p>
+        <div class="cta-row">
+          <a class="btn" href="#chart">احسب خريطتي</a>
+          <a class="btn ghost" data-wa="general" href="#book">احجز جلسة على واتساب</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="chart">
+    <div class="wrap">
+      <div class="center">
+        <h2>خريطتك الفلكية</h2>
+        <p class="intro">اكتب بيانات ميلادك وهتطلع لك خريطتك بالكواكب والبيوت والدرجات، مع قراءة ونصايح. أدق نتيجة بتيجي لما تعرف وقت ميلادك بالدقيقة.</p>
+      </div>
+      <form class="cform" id="cform" novalidate>
+        <div class="field"><label for="f-name">الاسم (اختياري)</label><input id="f-name" type="text" autocomplete="off" maxlength="40"></div>
+        <div class="two">
+          <div class="field"><label for="f-date">تاريخ الميلاد</label><input id="f-date" type="date" min="1900-01-01" max="2100-12-31" required></div>
+          <div class="field"><label for="f-time">وقت الميلاد</label><input id="f-time" type="time"></div>
+        </div>
+        <label class="chk"><input id="f-unknown" type="checkbox"> مش عارف وقت ميلادي</label>
+        <div class="field"><label for="f-city">مكان الميلاد</label><select id="f-city"></select></div>
+        <div id="manual" class="two" hidden>
+          <div class="field"><label for="f-lat">خط العرض (شمال +)</label><input id="f-lat" type="number" step="any" inputmode="decimal" placeholder="30.04"></div>
+          <div class="field"><label for="f-lon">خط الطول (شرق +)</label><input id="f-lon" type="number" step="any" inputmode="decimal" placeholder="31.23"></div>
+          <div class="field"><label for="f-off">فرق التوقيت عن جرينتش بالساعات</label><input id="f-off" type="number" step="any" inputmode="decimal" placeholder="2"></div>
+        </div>
+        <details class="adv">
+          <summary>خيارات متقدمة</summary>
+          <div class="field"><label for="f-hs">نظام البيوت</label>
+            <select id="f-hs"><option value="placidus">Placidus (الأشهر)</option><option value="whole">البيوت الكاملة Whole Sign</option></select>
+          </div>
+        </details>
+        <p class="ferr" id="ferr" role="alert" hidden></p>
+        <button class="btn" type="submit">احسب خريطتي</button>
+        <p class="privacy">الحساب بيتم على جهازك. بيانات ميلادك مابتتبعتش لأي سيرفر.</p>
+      </form>
+      <div class="result" id="result" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
+  <section class="sec" id="matrix">
+    <div class="wrap">
+      <div class="center">
+        <h2>مصفوفة القدر والحيوات السابقة</h2>
+        <p class="intro">اكتب تاريخ ميلادك وشوف مصفوفة القدر (الشخصية والهدف والكارما والحب والفلوس)، وقراءة رمزية لحياتك السابقة من طاقة الأرقام.</p>
+      </div>
+      <form class="cform" id="mform" novalidate>
+        <div class="field"><label for="m-name">الاسم (اختياري)</label><input id="m-name" type="text" maxlength="40" autocomplete="off"></div>
+        <div class="field"><label for="m-date">تاريخ الميلاد</label><input id="m-date" type="date" min="1900-01-01" max="2100-12-31"></div>
+        <p class="ferr" id="merr" role="alert" hidden></p>
+        <button class="btn" type="submit">احسب مصفوفتي</button>
+        <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
+      </form>
+      <div class="result" id="mresult" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="tarot">
+    <div class="wrap">
+      <div class="center">
+        <h2>اسحب كرتك</h2>
+        <p class="intro">خد نفس عميق وفكر في سؤالك أو الي شاغلك. وبعدين اختار كرت من الي قدامك.</p>
+      </div>
+      <div class="cform"><div class="field"><label for="t-q">سؤالك أو نيتك (اختياري)</label><input id="t-q" type="text" maxlength="80" autocomplete="off"></div></div>
+      <div class="deck" id="tarot-deck"></div>
+      <div class="tarot-res" id="tarot-res" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="sky">
+    <div class="wrap">
+      <h2>السما دلوقتي</h2>
+      <p class="intro">مواقع الكواكب الحقيقية النهاردة، وإيه الي بيعمله كل كوكب في كل برج. اختار كوكب، وشوف تأثيره على برجك.</p>
+      <div class="sky-ctl">
+        <div class="field"><label for="sky-date">تاريخ تاني</label><input id="sky-date" type="date" min="1900-01-01" max="2100-12-31"></div>
+        <button class="btn ghost sm" type="button" id="sky-today">رجّعني للنهاردة</button>
+      </div>
+      <div class="sky-moon" id="sky-moon"></div>
+      <div class="chips" id="sky-chips" role="group" aria-label="اختيار الكوكب"></div>
+      <div class="sky-panel" id="sky-panel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="signs">
+    <div class="wrap">
+      <div class="center">
+        <span class="period" id="period"></span>
+        <h2>توقعات الأبراج</h2>
+        <p class="intro">اختار برجك وشوف توقعاته. دي قراءة عامة، والقراءة الشخصية على خريطة ميلادك بتكون أدق وأعمق.</p>
+      </div>
+      <div class="picker" id="picker" role="group" aria-label="اختيار البرج"></div>
+      <article class="arch" id="panel" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section class="sec" id="services">
+    <div class="wrap">
+      <h2>الخدمات</h2>
+      <p class="intro">اختار الجلسة الي تناسب سؤالك. كل خدمة بتبدأ برسالة على واتساب فيها بياناتك الأساسية.</p>
+      <ul>
+        <li class="svc">
+          <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="9"/><path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l5.7 5.7M43.3 43.3L49 49M15 49l5.7-5.7M43.3 20.7L49 15"/></svg>
+          <div class="svc-body"><h3>قراءة البرج الشخصية</h3><p>قراءة لبرجك وفترتك الحالية في الحب والشغل والفلوس، مع نصيحة تقدر تطبقها.</p><p class="need">هتحتاج: اسمك وتاريخ ميلادك.</p></div>
+          <a class="btn ghost" data-wa="horoscope" href="#book">احجز القراءة</a>
+        </li>
+        <li class="svc">
+          <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="17" y="10" width="26" height="42" rx="3" transform="rotate(-10 30 31)"/><g transform="rotate(8 35 35)"><rect x="22" y="14" width="26" height="42" rx="3" fill="#12082A"/><path d="M35 26L37.5 32.5L44 35L37.5 37.5L35 44L32.5 37.5L26 35L32.5 32.5Z"/></g></svg>
+          <div class="svc-body"><h3>التاروت</h3><p>تسأل سؤال محدد، نفرد الكروت، وتاخد تفسير واضح لحالتك.</p><p class="need">هتحتاج: سؤالك مكتوب بوضوح.</p></div>
+          <a class="btn ghost" data-wa="tarot" href="#book">احجز جلسة تاروت</a>
+        </li>
+        <li class="svc">
+          <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="24"/><circle cx="32" cy="32" r="11"/><path d="M43 32H56M37.5 41.5L44 52.8M26.5 41.5L20 52.8M21 32H8M26.5 22.5L20 11.2M37.5 22.5L44 11.2"/></svg>
+          <div class="svc-body"><h3>الخريطة الفلكية</h3><p>قراءة كاملة لخريطة ميلادك: الكواكب والبيوت، شخصيتك، نقاط قوتك، والمجالات الي بتاخد أكبر اهتمامك.</p><p class="need">هتحتاج: تاريخ الميلاد، الساعة بالدقيقة، ومكان الميلاد.</p></div>
+          <a class="btn ghost" data-wa="chart" href="#book">احجز قراءة الخريطة</a>
+        </li>
+        <li class="svc">
+          <svg class="svc-ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="32" r="16"/><circle cx="40" cy="32" r="16"/><circle cx="32" cy="32" r="1.8" fill="currentColor"/></svg>
+          <div class="svc-body"><h3>التوافق الفلكي (Synastry)</h3><p>مقارنة بين خريطتين، خريطتك وخريطة شخص تاني، عشان تفهموا أماكن التناغم وأماكن التوتر بينكم. تنفع لعلاقة حب أو شغل أو صداقة.</p><p class="need">هتحتاج: بيانات الميلاد الكاملة للطرفين.</p></div>
+          <a class="btn ghost" data-wa="synastry" href="#book">احجز قراءة التوافق</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec alt" id="courses">
+    <div class="wrap">
+      <h2>الكورسات</h2>
+      <p class="intro">لو عايز تتعلم الفلك والتاروت بنفسك، دي الكورسات الي بجهزها.</p>
+      <ul id="courses-list"></ul>
+    </div>
+  </section>
+
+  <section class="sec" id="videos">
+    <div class="wrap">
+      <h2>الفيديوهات</h2>
+      <p class="intro">شروحات وتوقعات وقراءات قصيرة.</p>
+      <ul class="videos" id="videos-list"></ul>
+    </div>
+  </section>
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <h2>إزاي الحجز؟</h2>
+      <p class="intro">أربع خطوات بسيطة، وكلها على واتساب.</p>
+      <ol class="steps">
+        <li class="step"><span class="n">١</span><h3>ابعت رسالة</h3><p>اضغط زر الحجز واختار الخدمة.</p></li>
+        <li class="step"><span class="n">٢</span><h3>ابعت بياناتك</h3><p>تاريخ ووقت ومكان الميلاد لو الخدمة محتاجة.</p></li>
+        <li class="step"><span class="n">٣</span><h3>نحدد المعاد</h3><p>هرد عليك بالمواعيد المتاحة والسعر.</p></li>
+        <li class="step"><span class="n">٤</span><h3>تاخد جلستك</h3><p>قراءة واضحة تقدر ترجع لها وقت ما تحتاج.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="book">
+    <div class="wrap">
+      <div class="book">
+        <h2>تواصل معايا</h2>
+        <p>لو عايز قراءة شخصية أو عندك سؤال على خريطتك، كلمني على واتساب. وتابعني على انستجرام لتوقعات وفيديوهات جديدة.</p>
+        <div class="cta-row"><a class="btn" data-wa="general" href="#book">كلمني على واتساب</a><a class="btn ghost" id="ig" href="#book" dir="ltr">@</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="brand"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z" fill="#D6AE5E"/></svg><span data-brand></span></div>
+    <p class="tg" data-tagline></p>
+    <p>القراءات للتأمل والترفيه، وهي مش بديل عن استشارة طبية أو قانونية أو مالية.</p>
+  </div>
+</footer>
+
+<script>
+/* ============================== عدّل هنا ==============================
+   كل حاجة بتتغير في الموقع من الأسماء والأرقام والكورسات والفيديوهات هنا.
+======================================================================= */
+const SITE_NAME = "عقيق";                       // اسم الموقع
+const SITE_TAGLINE = "فلك وتاروت وطاقة"; // الشعار
+const WA_NUMBER = "201000000000";               // رقم واتساب بالصيغة الدولية، بدون + وبدون صفر البداية (مصر: 20 ثم الرقم)
+const IG_USER = "mohamed.ibrahim.astro";                // يوزر انستجرام
+const FORECAST_LABEL = "توقعات أكتوبر ٢٠٢٦";    // عنوان الفترة في توقعات الأبراج، غيّره مع كل تحديث
+
+/* الكورسات
+   - soon:true  يظهر "قريبًا" وزر "بلغني لما ينزل" على واتساب
+   - لو الكورس نزل: شيل soon وحط link (رابط الشراء أو التسجيل) و price لو عايز تكتب السعر */
+const COURSES = [
+  // مثال: { title: "أساسيات الفلك للمبتدئين", desc: "من الصفر لحد قراءة الخريطة.", level: "مبتدئ", price: "", link: "رابط الشراء" },
+];
+
+/* الفيديوهات: حط رابط يوتيوب (عادي أو shorts) وعنوان، والصورة بتتجاب لوحدها.
+   أي رابط تاني (تيك توك، انستجرام) هيشتغل كمان لكن من غير صورة.
+   مثال:
+   { title: "الميزان في أكتوبر", url: "https://www.youtube.com/watch?v=XXXXXXXXXXX" },
+*/
+const VIDEOS = [
+];
+
+/* ======================= بيانات ونصوص الموقع ======================= */
+const ELEMENTS = [{ n: "نار", adj: "ناري" }, { n: "تراب", adj: "ترابي" }, { n: "هواء", adj: "هوائي" }, { n: "ماء", adj: "مائي" }];
+const MODALITIES = [{ n: "كاردينال" }, { n: "ثابت" }, { n: "متحول" }];
+
+const SIGNS = [
+  { n: "الحمل", g: "♈", el: 0, mod: 0, ruler: "mars", d: "٢١ مارس – ١٩ أبريل", way: "مباشر وسريع وحماسي", strength: "الشجاعة والمبادرة", shadow: "الاندفاع وقلة الصبر", growth: "تتعلم تبدأ من غير ما تستنى إذن حد، وتكمل الي بدأته" },
+  { n: "الثور", g: "♉", el: 1, mod: 1, ruler: "venus", d: "٢٠ أبريل – ٢٠ مايو", way: "هادي وثابت وحسي", strength: "الصبر والثبات والذوق", shadow: "العند ومقاومة التغيير", growth: "تتعلم تسيب الراحة المضمونة وتجرب الجديد" },
+  { n: "الجوزاء", g: "♊", el: 2, mod: 2, ruler: "mercury", d: "٢١ مايو – ٢٠ يونيو", way: "سريع ومتنقل وفضولي", strength: "الفضول وسرعة البديهة وخفة الدم", shadow: "التشتت وتغيير الرأي", growth: "تتعلم تركز في حاجة واحدة لحد ما تكتمل" },
+  { n: "السرطان", g: "♋", el: 3, mod: 0, ruler: "moon", d: "٢١ يونيو – ٢٢ يوليو", way: "حساس وحنون وحمائي", strength: "الاحتواء والحدس والولاء", shadow: "التعلق والمزاج المتقلب", growth: "تتعلم تحمي نفسك زي ما بتحمي غيرك" },
+  { n: "الأسد", g: "♌", el: 0, mod: 1, ruler: "sun", d: "٢٣ يوليو – ٢٢ أغسطس", way: "واثق ودافي وصاحب حضور", strength: "الكرم والثقة والقيادة", shadow: "الكبرياء والحاجة للتقدير", growth: "تتعلم تعطي من غير ما تستنى التصفيق" },
+  { n: "العذراء", g: "♍", el: 1, mod: 2, ruler: "mercury", d: "٢٣ أغسطس – ٢٢ سبتمبر", way: "دقيق وعملي ومنظم", strength: "الدقة وحل المشاكل وخدمة الناس", shadow: "النقد الزايد وقلق التفاصيل", growth: "تتعلم تسامح نفسك وماتستناش الكمال" },
+  { n: "الميزان", g: "♎", el: 2, mod: 0, ruler: "venus", d: "٢٣ سبتمبر – ٢٢ أكتوبر", way: "لطيف ومتوازن وبيدور على الانسجام", strength: "الذوق والعدل والدبلوماسية", shadow: "التردد وتجنب المواجهة", growth: "تتعلم تاخد قرارك وتقول رأيك حتى لو هتزعل حد" },
+  { n: "العقرب", g: "♏", el: 3, mod: 1, ruler: "pluto", d: "٢٣ أكتوبر – ٢١ نوفمبر", way: "عميق وغامض وشديد", strength: "العمق والإصرار والحدس", shadow: "الشك والسيطرة والغيرة", growth: "تتعلم تثق وتسيب السيطرة" },
+  { n: "القوس", g: "♐", el: 0, mod: 2, ruler: "jupiter", d: "٢٢ نوفمبر – ٢١ ديسمبر", way: "متفائل وحر وبيحب المغامرة", strength: "التفاؤل والصراحة وحب التعلم", shadow: "المبالغة والصراحة الجارحة", growth: "تتعلم تلتزم بالتفاصيل وماتبالغش في الوعود" },
+  { n: "الجدي", g: "♑", el: 1, mod: 0, ruler: "saturn", d: "٢٢ ديسمبر – ١٩ يناير", way: "جاد ومنضبط وطموح", strength: "المسؤولية والصبر والطموح", shadow: "القسوة على النفس والتشاؤم", growth: "تتعلم تفرح في الطريق وماتستناش الوصول بس" },
+  { n: "الدلو", g: "♒", el: 2, mod: 1, ruler: "uranus", d: "٢٠ يناير – ١٨ فبراير", way: "مستقل ومبتكر وغير تقليدي", strength: "الابتكار والاستقلال والنظرة الإنسانية", shadow: "البرود والعند في الرأي", growth: "تتعلم تقرب من مشاعرك ومن الي حواليك" },
+  { n: "الحوت", g: "♓", el: 3, mod: 2, ruler: "neptune", d: "١٩ فبراير – ٢٠ مارس", way: "حالم وحساس وبيتأثر بالأجواء", strength: "الخيال والتعاطف والروحانية", shadow: "الهروب والتوهان وتحمل مسؤولية غيرك", growth: "تتعلم تحط حدود وتفرق بين الحلم والواقع" }
+];
+
+/* ---------- الكواكب ---------- */
+const PLANETS = {
+  sun:     { n: "الشمس",   g: "☉", theme: "هويتك وثقتك",                    give: "حيوية وثقة وظهور",                     watch: "الغرور أو فرض الرأي",                  lens: "جوهرك وطريقة تعبيرك عن نفسك" },
+  moon:    { n: "القمر",   g: "☽", theme: "مشاعرك واحتياجك للأمان",         give: "راحة وانتماء ودفا",                    watch: "التقلب والحساسية الزايدة",             lens: "طريقة إحساسك بالأمان" },
+  mercury: { n: "عطارد",   g: "☿", theme: "تفكيرك وتواصلك",                 give: "وضوح في الأفكار وسهولة في التواصل",     watch: "الشرود وكتر الكلام",                    lens: "طريقة تفكيرك وكلامك" },
+  venus:   { n: "الزهرة",  g: "♀", theme: "حبك وذوقك",                      give: "جاذبية ومتعة وانسجام",                 watch: "الدلع والمبالغة في إرضاء الناس",       lens: "طريقة حبك وإعجابك بالناس" },
+  mars:    { n: "المريخ",  g: "♂", theme: "طاقتك ودافعك",                   give: "حماس وجرأة وسرعة في الإنجاز",          watch: "العصبية والاندفاع",                    lens: "طريقة تحركك ودفاعك عن نفسك" },
+  jupiter: { n: "المشتري", g: "♃", theme: "حظك وتفاؤلك",                    give: "فرص وتوسع ونمو",                       watch: "المبالغة والوعود الكبيرة",             lens: "طريقة نموك وتفاؤلك" },
+  saturn:  { n: "زحل",     g: "♄", theme: "مسؤولياتك وانضباطك",             give: "نتايج ثابتة بالصبر والتنظيم",          watch: "الضغط على نفسك والخوف من الفشل",       lens: "طريقة التزامك وضبط نفسك" },
+  uranus:  { n: "أورانوس", g: "♅", theme: "رغبتك في التغيير والحرية",       give: "تجديد ومفاجآت وأفكار مختلفة",          watch: "التمرد والقرارات المفاجئة" },
+  neptune: { n: "نبتون",   g: "♆", theme: "خيالك وحدسك",                    give: "إلهام وحس فني وروحاني",                watch: "التوهان والأوهام" },
+  pluto:   { n: "بلوتو",   g: "♇", theme: "قوتك الداخلية وقدرتك على التحول", give: "تجديد عميق وقوة",                      watch: "السيطرة والهوس" },
+  node:    { n: "العقدة الشمالية", g: "☊" },
+  lilith:  { n: "ليليث",   g: "⚸" }
+};
+const PLANET_KEYS = ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"];
+
+/* ---------- البيوت ---------- */
+const HOUSES = [
+  { n: "الأول",          area: "شخصيتك وشكل ظهورك قدام الناس" },
+  { n: "الثاني",         area: "فلوسك وإحساسك بقيمتك" },
+  { n: "الثالث",         area: "الكلام والتواصل والتنقلات القريبة" },
+  { n: "الرابع",         area: "البيت والعيلة والجذور" },
+  { n: "الخامس",         area: "الحب والمتعة والإبداع" },
+  { n: "السادس",         area: "الشغل اليومي والصحة والروتين" },
+  { n: "السابع",         area: "العلاقات والشراكات" },
+  { n: "الثامن",         area: "المشاعر العميقة والأسرار والفلوس المشتركة" },
+  { n: "التاسع",         area: "السفر والتعلم والمعتقدات" },
+  { n: "العاشر",         area: "المهنة والمكانة والإنجاز" },
+  { n: "الحادي عشر",     area: "الأصدقاء والأحلام والمجموعات" },
+  { n: "الثاني عشر",     area: "الباطن والعزلة والراحة النفسية" }
+];
+
+/* ---------- قراءات الشمس والقمر والطالع ---------- */
+const SUN_TXT = [
+  "إنت مبادر وشجاع، بتحب تبدأ وتقود ومابتحبش الانتظار. حماسك معدي، لكن محتاج تتعلم تهدّي وتكمل الي بدأته.",
+  "هويتك مبنية على الثبات والاستقرار. بتحب الراحة والجمال والأمان المادي، وبتبني حياتك بخطوات مضمونة.",
+  "فضولك هو وقودك. بتحب تعرف وتتكلم وتجرب، وبتتأقلم بسرعة. تحدّيك إنك تركز في حاجة واحدة لحد ما تكتمل.",
+  "قلبك هو بوصلتك. بتحمي الي بتحبهم وبتعيش بإحساسك، والبيت والعيلة محور مهم عندك. تعلم تحمي نفسك كمان.",
+  "عندك حضور ودفا وكاريزما، وبتحب تتميز وتعطي من قلبك. قوتك في الثقة والكرم، وتحدّيك إنك ماتعتمدش على التصفيق بس.",
+  "عقلك دقيق وبتحب تفيد وتصلّح وتحسّن. بتلاحظ الي غيرك مابيلاحظهوش. تعلم تسامح نفسك وماتستناش الكمال.",
+  "بتدور على التوازن والعدل والجمال في كل حاجة. بتفهم الناس بسهولة، وتحدّيك إنك تاخد قرارك من غير ما تخاف تزعل حد.",
+  "إنت عميق وشديد وبتحس بالحاجة الي ورا الكلام. بتحب بصدق وبتحارب بشراسة. قوتك في التحول، وتحدّيك إنك تثق وتسيب السيطرة.",
+  "بتدور على المعنى والحرية والمغامرة. متفائل وصريح وبتحب تتعلم وتسافر. تحدّيك إنك تلتزم بالتفاصيل وماتبالغش في الوعود.",
+  "طموح ومسؤول، وبتبني بالصبر قدام الناس. بتاخد الحياة بجدية وبتوصل لأهدافك. تعلم تفرح في الطريق وماتستناش الوصول بس.",
+  "إنت مستقل ومختلف، ودماغك بتسبق زمانها. بتحب الحرية والأفكار الجديدة والناس. تحدّيك إنك تقرب من مشاعرك ومن الي حواليك.",
+  "حساس وحالم وروحك واسعة. بتحس بالناس وبتتأثر بأجواءهم، وعندك خيال وإبداع. تحدّيك إنك تحط حدود وتفرق بين الحلم والواقع."
+];
+const MOON_TXT = [
+  "مشاعرك سريعة وصريحة، بتزعل وتفرح بقوة وبتعبّر على طول. بتحس بالأمان لما تتحرك وتعمل حاجة، ومابتحبش تكتم.",
+  "بتحس بالأمان في الروتين والراحة والجمال. مشاعرك ثابتة وبطيئة، وبتتعلق بالي بتحبه. الأكل الحلو والبيت الدافي بيريحوك.",
+  "مزاجك بيتغير مع أفكارك. بتحس بالأمان لما تتكلم وتعرف وتتواصل. الحكي مع حد بتثق فيه بيفرّغك أكتر من الصمت.",
+  "القمر في بيته، فإنت حساس جدًا وحدسك قوي. بتحتاج بيت وعيلة وأمان عاطفي، وبتمتص مزاج الي حواليك. محتاج وقت لوحدك تشحن فيه.",
+  "بتحتاج تحس إنك مهم ومحبوب. مشاعرك دافية وكريمة وبتحب الفرح واللعب والإبداع. بتتأذى لو اتجاهلوك.",
+  "بتهدّى لما تنظّم وتفيد وتكون مشغول بحاجة مفيدة. مشاعرك بتتحول لقلق أحيانًا، والروتين الصحي بيريحك.",
+  "بتحس بالأمان جوه علاقة وصحبة. مشاعرك بتتأثر بالناس القريبين منك، ومابتحبش الخناق. محتاج انسجام حواليك.",
+  "مشاعرك عميقة وقوية ومابتظهرش بسهولة. بتتعلق بقوة وبتحتاج ثقة كاملة. لما تتأذى بتفتكر طويل، والتسامح بيحررك.",
+  "بتحس بالأمان لما تكون حر ومتفائل ومعاك مساحة. بتحتاج سفر وتعلم ومعنى، وبتتضايق من القيود والتفاصيل الخانقة.",
+  "بتكتم مشاعرك وبتحس بالأمان لما تكون مسيطر ومنجز. ممكن تبان باردة من بره، لكن جواك مسؤولية كبيرة. اسمح لنفسك تحتاج حد.",
+  "بتحتاج مساحة وحرية في مشاعرك. بتحس بالأمان وسط ناس بتفهمك وبتقبل اختلافك، وبتتعامل مع المشاعر بعقل أحيانًا.",
+  "إحساسك واسع وبتحس بكل حاجة حواليك، فبتحتاج وقت هادي وعزلة تنضف فيها. الفن والموسيقى والمياه بيريحوك."
+];
+const RISING_TXT = [
+  "بتظهر قدام الناس مباشر وجريء وحماسي. أول انطباع عنك إنك قوي ومبادر.",
+  "بتظهر هادي وثابت ودافي. الناس بتحس معاك بالأمان والاستقرار، وبتلاحظ ذوقك وهدوءك.",
+  "بتظهر فضولي وخفيف الدم وبتحب الكلام. أول انطباع عنك إنك ذكي وسريع وودود.",
+  "بتظهر حساس وحنون وحمائي. الناس بتحس إنك قريب منهم، لكن بتاخد وقت لحد ما تفتح قلبك.",
+  "بتظهر واثق وجذاب وليك حضور. الناس بتنتبه ليك أول ما تدخل، وبتحب تشاركهم الفرح.",
+  "بتظهر هادي ودقيق ومرتب. أول انطباع إنك عملي وناضج ومعتمد عليه.",
+  "بتظهر لطيف ومتوازن وأنيق. الناس بتحس إنك سهل التعامل ودبلوماسي.",
+  "بتظهر غامض وقوي وليك هيبة. نظراتك بتقول أكتر من كلامك، والناس بتاخد وقت لحد ما تفهمك.",
+  "بتظهر متفائل ومنفتح وصريح. أول انطباع إنك صاحب مغامرة وروح حلوة.",
+  "بتظهر جاد ومحترم وناضج. الناس بتشوفك مسؤول وطموح، وبتاخد وقت لحد ما تشوف جانبك الحنين.",
+  "بتظهر مختلف وودود ومستقل. الناس بتشوفك غير تقليدي وبتحترم أفكارك.",
+  "بتظهر حالم وحنون وفيك غموض. الناس بتحس بإحساسك، وأحيانًا بتبان شارد."
+];
+const MOON_ADVICE = [
+  "لما تتضايق، اتحرك أو اتمرن قبل ما ترد أو تتكلم.",
+  "اهتم بجسمك: أكل كويس وراحة ومكان مريح بيهدّوك.",
+  "اكتب أفكارك أو اتكلم مع صاحبك، الحكي بيفرّغ توترك.",
+  "خصص وقت لنفسك في مكان آمن بعيد عن مزاج الناس.",
+  "اعمل حاجة بتفرحك أو بتعبّر عن إبداعك، وماتستناش حد يقدّرك.",
+  "ريّح دماغك بروتين بسيط ونوم منتظم، وماتحاسبش نفسك على كل غلطة.",
+  "ابعد عن الخناق وخلّي حواليك ناس مريحة، لكن قول رأيك.",
+  "افصح عن الي جواك لحد بتثق فيه بدل ما تكتمه.",
+  "سيب لنفسك مساحة، وخروجة أو تعلم حاجة جديدة بيشحنوك.",
+  "اسمح لنفسك تطلب مساعدة وتريّح من غير ما تحس بذنب.",
+  "خد وقت لوحدك، وبعدها اتكلم مع حد قريب عن إحساسك.",
+  "الموسيقى والمياه والخلوة بيشحنوك، وحط حدود مع مزاج الناس."
+];
+const VENUS_EL = [
+  "في الحب بتحب الشغف والمفاجآت والاهتمام الواضح.",
+  "في الحب بتحب الثبات والتصرفات العملية والإحساس بالأمان.",
+  "في الحب بتحب الحوار والخفة والعقل المتقارب.",
+  "في الحب بتحب العمق والاحتواء والمشاعر الصادقة."
+];
+const MARS_EL = [
+  "طاقتك بتشتغل بالمبادرة والمنافسة، فادخل في تحدي واضح.",
+  "طاقتك بتشتغل بالخطة والمثابرة، فاشتغل على المدى الطويل.",
+  "طاقتك بتشتغل بالأفكار والتواصل، فخطط واتكلم قبل ما تتحرك.",
+  "طاقتك بتتحرك بالمشاعر، فاختار معاركك وماتسكتش على الي بيضايقك."
+];
+const EL_DOM = [
+  "النار هي الغالبة عندك: عندك حماس وجرأة وطاقة بتحرك الي حواليك. محتاج تدّي نفسك فسحة للراحة وماتحرقش طاقتك بسرعة.",
+  "التراب هو الغالب عندك: عملي وثابت وبتحب النتايج الملموسة. محتاج تسمح لنفسك بالخيال والمرونة وماتتمسكش بالمضمون بس.",
+  "الهواء هو الغالب عندك: عقلك نشيط وبتحب الكلام والأفكار والناس. محتاج تنزّل أفكارك على الأرض وتتصل بإحساسك.",
+  "الماء هو الغالب عندك: إحساسك عميق وحدسك قوي وبتتأثر بالجو. محتاج حدود واضحة وتفرق بين مشاعرك ومشاعر غيرك."
+];
+const EL_LACK = [
+  "النار قليلة عندك: ممكن تتردد قبل ما تبدأ أو حماسك يقل. جرّب خطوات صغيرة وقرارات سريعة تشعل الدافع.",
+  "التراب قليل عندك: ممكن الروتين والتنظيم المادي يتعبك. ابني عادات بسيطة وحط ميزانية وجدول.",
+  "الهواء قليل عندك: ممكن تلاقي صعوبة في التعبير عن أفكارك أو الانفتاح. ادخل في حوارات وتعلم مع ناس.",
+  "الماء قليل عندك: ممكن تعبّر عن مشاعرك بصعوبة. اسمح لنفسك تعبّر وتتواصل عاطفيًا من غير تحليل زايد."
+];
+const MOD_DOM = [
+  "الطابع الكاردينال غالب: بتبدأ الأمور وبتحب المبادرة، لكن ممكن تفقد الحماس بعد البداية. اعمل خطة متابعة.",
+  "الطابع الثابت غالب: بتكمل وبتصبر ومابتتهزش، لكن ممكن تتصلب في رأيك. جرّب تشوف التغيير كفرصة.",
+  "الطابع المتحول غالب: مرن وبتتأقلم بسهولة، لكن ممكن تتشتت. حدد أولوية واحدة وماتفتحش كذا جبهة."
+];
+
+/* ---------- الزوايا ---------- */
+const ASPECTS = [
+  { k: "conj", ang: 0,   orb: 8, n: "اقتران", nat: "ممتزجين مع بعض كأنهم قوة واحدة",         tr: "لحظة تركيز وبداية جديدة" },
+  { k: "sext", ang: 60,  orb: 4, n: "تسديس",  nat: "بيتعاونوا ويدّوك فرص لو تحركت",           tr: "فرصة سهلة لو استغلتها" },
+  { k: "sq",   ang: 90,  orb: 6, n: "تربيع",  nat: "بينهم توتر بيدفعك تتطور وتتحرك",          tr: "ضغط بيطلب منك تصرف" },
+  { k: "tri",  ang: 120, orb: 7, n: "تثليث",  nat: "منسجمين وبيتدفقوا بسهولة",                tr: "تدفق وراحة وحظ حلو" },
+  { k: "opp",  ang: 180, orb: 8, n: "مقابلة", nat: "بينهم شد وجذب والمطلوب توازن",             tr: "موقف بيحطك قدام اختيار أو شد مع حد" }
+];
+const MOON_TODAY = [
+  "النهاردة الطاقة عالية: اتحرك وابدأ الحاجة الي مؤجلها.",
+  "النهاردة يوم عملي: رتب مهامك وخلّص الأساسيات.",
+  "النهاردة يوم تواصل: كلم الناس وتبادل الأفكار.",
+  "النهاردة المشاعر أوضح: اسمع إحساسك وخد وقت لنفسك."
+];
+const PHASES = ["محاق (قمر جديد)", "هلال متزايد", "تربيع أول", "أحدب متزايد", "بدر (قمر كامل)", "أحدب متناقص", "تربيع أخير", "هلال متناقص"];
+
+/* ---------- توقعات الأبراج العامة (نصوص تجريبية، بدّلها بتوقعاتك) ---------- */
+const FORECASTS = [
+  { overall: "طاقتك عالية، لكن الاندفاع هو الحاجة الوحيدة الي ممكن تعطلك. خد نفس قبل أي رد.", love: "كلمة هادية هتحل موقف كنت شايل منه. ابدأ إنت بالمصالحة.", work: "فرصة تبين فيها قدرتك على القيادة. ركز على مهمة واحدة وخلصها.", money: "مصروف مفاجئ ممكن يظهر. ماتشتريش بدافع الحماس." },
+  { overall: "إيقاعك بطيء وثابت، وده في صالحك. مش لازم تلحق كل حاجة.", love: "الاستقرار هو العنوان. وقت كويس تعمّق علاقة قائمة أو تاخد خطوة جد.", work: "تفاصيل صغيرة بتتجاهلها بتفرق. راجع شغلك قبل التسليم.", money: "فكرة ادخار بسيطة تنفع دلوقتي، حتى لو بمبلغ صغير." },
+  { overall: "دماغك زحمة أفكار. اكتبها قبل ما تتوه منك.", love: "حوار طويل وممتع بيقربك من حد. اسمع قد ما بتتكلم.", work: "رسايل واتصالات جديدة، وواحدة منها ممكن تفتح باب. رد بسرعة.", money: "ماتوزعش فلوسك على أكتر من مشروع في نفس الوقت." },
+  { overall: "مشاعرك أوضح من العادة. اهتم بنفسك وبالي حواليك.", love: "محتاج أمان قبل ما تفتح قلبك. قول احتياجك بصراحة بدل ما تلمّح.", work: "بيئة الشغل مرتاحة أكتر، واقتراحك هيتسمع لو قلته بهدوء.", money: "مصاريف البيت والعيلة في الواجهة. حط ميزانية واضحة." },
+  { overall: "حضورك لافت وبيشد الناس ليك. استخدمه في حاجة تفيد.", love: "اهتمام من حد جديد أو رجوع علاقة قديمة. ماتخليش الكبرياء يضيعها.", work: "وقت مناسب تظهر فيه إنجازاتك. شارك الي عملته بدل ما تستنى حد يلاحظ.", money: "الكرم الزيادة ممكن يرهق جيبك. ادي على قد ما تقدر." },
+  { overall: "ترتيب حياتك هيريحك أكتر من أي حاجة تانية.", love: "ماتحاسبش الي بتحبه على كل تفصيلة. شوف الصورة الكبيرة.", work: "دقتك هي سلاحك. حد هيعتمد عليك في مهمة مهمة.", money: "وقت كويس تراجع اشتراكاتك ومصاريفك الثابتة." },
+  { overall: "بتدور على توازن بين الي إنت عايزه والي الناس عايزاه منك. قرارك لازم يبقى ليك إنت.", love: "علاقة محتاجة وضوح. ماتأجلش المصارحة.", work: "شراكة أو تعاون جديد بيظهر. اقرا الاتفاق كويس.", money: "ماتاخدش قرار مالي كبير وإنت متردد. استنى لحد ما تتأكد." },
+  { overall: "حدسك قوي ومحتاج تثق فيه، لكن ماتفسرش كل صمت على إنه ضدك.", love: "عمق وصدق في علاقة قريبة. سيب الشك يروح.", work: "حاجة كانت مستخبية بتظهر، وده في صالحك لو اتصرفت بذكاء.", money: "فرصة تسترد حاجة أو تنهي التزام قديم." },
+  { overall: "عايز تتحرك وتغيّر جو. حتى خروجة بسيطة هتفرق.", love: "صراحتك جذابة، بس انتبه لنبرة الكلام.", work: "فكرة جديدة أو مهارة تتعلمها هتفتح لك طريق.", money: "سفر أو دورة تستاهل الاستثمار، بشرط تحسبها كويس." },
+  { overall: "شغلك المتواصل بيجيب نتيجة، بس خد راحة مقصودة.", love: "ماتخليش الجدية تخنق الحلاوة في العلاقة. خصص وقت للمتعة.", work: "مسؤولية أكبر في الطريق، وإنت قدها.", money: "خطوة تخطيط طويلة المدى هتبان فايدتها." },
+  { overall: "أفكارك سابقة زمانها. اشرحها ببساطة عشان الناس تفهمك.", love: "محتاج مساحتك وفي نفس الوقت قرب. قول ده بوضوح لشريكك.", work: "مشروع مشترك بيحمّسك، وحد معاك هيكمّل الي ناقصك.", money: "فكرة غير تقليدية للدخل. جرّبها على نطاق صغير الأول." },
+  { overall: "خيالك واسع وإحساسك عالي. حط حدود عشان ماتتأثرش بمزاج غيرك.", love: "مشاعر حلوة، بس ماتبنيش توقعات على وعود مش واضحة.", work: "الإبداع هو طريقك. ماتسيبش التفاصيل الإدارية تتراكم.", money: "ماتسلّفش ولا تضمن حد دلوقتي. حافظ على فلوسك." }
+];
+
+/* ---------- المدن: [الاسم، خط العرض، خط الطول، المنطقة الزمنية] ---------- */
+const CITY_GROUPS = [
+  { g: "مصر", tz: "Africa/Cairo", c: [["القاهرة", 30.0444, 31.2357], ["الجيزة", 30.0131, 31.2089], ["الإسكندرية", 31.2001, 29.9187], ["المنصورة", 31.0409, 31.3785], ["طنطا", 30.7865, 31.0004], ["الزقازيق", 30.5877, 31.5020], ["بنها", 30.4660, 31.1848], ["شبين الكوم", 30.5972, 30.9876], ["دمنهور", 31.0341, 30.4682], ["كفر الشيخ", 31.1107, 30.9388], ["دمياط", 31.4165, 31.8133], ["بورسعيد", 31.2653, 32.3019], ["الإسماعيلية", 30.5965, 32.2715], ["السويس", 29.9668, 32.5498], ["العريش", 31.1316, 33.7984], ["الفيوم", 29.3084, 30.8428], ["بني سويف", 29.0661, 31.0994], ["المنيا", 28.1099, 30.7503], ["أسيوط", 27.1783, 31.1859], ["سوهاج", 26.5591, 31.6957], ["قنا", 26.1551, 32.7160], ["الأقصر", 25.6872, 32.6396], ["أسوان", 24.0889, 32.8998], ["الغردقة", 27.2579, 33.8116], ["شرم الشيخ", 27.9158, 34.3300], ["مرسى مطروح", 31.3543, 27.2373]] },
+  { g: "السعودية", c: [["الرياض", 24.7136, 46.6753, "Asia/Riyadh"], ["جدة", 21.4858, 39.1925, "Asia/Riyadh"], ["مكة المكرمة", 21.3891, 39.8579, "Asia/Riyadh"], ["المدينة المنورة", 24.5247, 39.5692, "Asia/Riyadh"], ["الدمام", 26.4207, 50.0888, "Asia/Riyadh"], ["أبها", 18.2164, 42.5053, "Asia/Riyadh"], ["تبوك", 28.3838, 36.5550, "Asia/Riyadh"]] },
+  { g: "الخليج", c: [["دبي", 25.2048, 55.2708, "Asia/Dubai"], ["أبوظبي", 24.4539, 54.3773, "Asia/Dubai"], ["الشارقة", 25.3463, 55.4209, "Asia/Dubai"], ["الكويت", 29.3759, 47.9774, "Asia/Kuwait"], ["الدوحة", 25.2854, 51.5310, "Asia/Qatar"], ["المنامة", 26.2285, 50.5860, "Asia/Bahrain"], ["مسقط", 23.5880, 58.3829, "Asia/Muscat"]] },
+  { g: "الشام والعراق", c: [["عمّان", 31.9454, 35.9284, "Asia/Amman"], ["بيروت", 33.8938, 35.5018, "Asia/Beirut"], ["دمشق", 33.5138, 36.2765, "Asia/Damascus"], ["حلب", 36.2021, 37.1343, "Asia/Damascus"], ["بغداد", 33.3152, 44.3661, "Asia/Baghdad"], ["البصرة", 30.5085, 47.7835, "Asia/Baghdad"], ["أربيل", 36.1911, 44.0092, "Asia/Baghdad"], ["القدس", 31.7683, 35.2137, "Asia/Jerusalem"], ["رام الله", 31.9038, 35.2034, "Asia/Hebron"], ["غزة", 31.5017, 34.4668, "Asia/Gaza"]] },
+  { g: "اليمن والسودان وشمال أفريقيا", c: [["صنعاء", 15.3694, 44.1910, "Asia/Aden"], ["عدن", 12.7855, 45.0187, "Asia/Aden"], ["الخرطوم", 15.5007, 32.5599, "Africa/Khartoum"], ["طرابلس", 32.8872, 13.1913, "Africa/Tripoli"], ["بنغازي", 32.1167, 20.0667, "Africa/Tripoli"], ["تونس", 36.8065, 10.1815, "Africa/Tunis"], ["الجزائر", 36.7538, 3.0588, "Africa/Algiers"], ["الدار البيضاء", 33.5731, -7.5898, "Africa/Casablanca"], ["الرباط", 34.0209, -6.8416, "Africa/Casablanca"]] },
+  { g: "العالم", c: [["إسطنبول", 41.0082, 28.9784, "Europe/Istanbul"], ["لندن", 51.5074, -0.1278, "Europe/London"], ["باريس", 48.8566, 2.3522, "Europe/Paris"], ["برلين", 52.5200, 13.4050, "Europe/Berlin"], ["روما", 41.9028, 12.4964, "Europe/Rome"], ["مدريد", 40.4168, -3.7038, "Europe/Madrid"], ["موسكو", 55.7558, 37.6173, "Europe/Moscow"], ["نيويورك", 40.7128, -74.0060, "America/New_York"], ["شيكاغو", 41.8781, -87.6298, "America/Chicago"], ["لوس أنجلوس", 34.0522, -118.2437, "America/Los_Angeles"], ["تورنتو", 43.6532, -79.3832, "America/Toronto"], ["سيدني", -33.8688, 151.2093, "Australia/Sydney"], ["مومباي", 19.0760, 72.8777, "Asia/Kolkata"], ["كراتشي", 24.8607, 67.0011, "Asia/Karachi"]] }
+];
+const CITIES = [];
+CITY_GROUPS.forEach(gr => gr.c.forEach(c => CITIES.push({ n: c[0], lat: c[1], lon: c[2], tz: c[3] || gr.tz, g: gr.g })));
+
+/* ======================= الأركانا الـ٢٢ (تاروت + ماتريكس + حيوات سابقة) ======================= */
+const ARCANA = [
+  { n: "الساحر", en: "The Magician",
+    core: "الإرادة والمهارة، وإن البداية بإيدك", shadow: "الكلام الأكتر من الفعل أو التلاعب بالناس",
+    real: "عندك أدوات تبدأ بيها: مهارة أو فرصة أو فكرة. وقت تتحرك وتعرض نفسك بدل ما تستنى حد يديك إذن.",
+    psy: "ثقتك في نفسك أكبر من الي بتحس بيه. الصوت الي بيقولك مش جاهز هو الخوف مش الحقيقة.",
+    spirit: "طاقتك في مرحلة تجسيد: النية لما تتكتب وتتحرك بتتحول لواقع. ركز نيتك على حاجة واحدة.",
+    release: "اكتب حاجة بتأجلها بحجة إنك مش جاهز، وابدأ فيها ١٠ دقايق النهاردة من غير ما تحكم على النتيجة.",
+    rev: "جه مقلوب: تشتت أو موهبة مش مستخدمة، أو إحساس إنك بتمثل. ارجع لحاجة واحدة وخلصها.",
+    past: "حياة اتبنت على الحرفة والمعرفة، صنايعي أو كاتب أو معالج. الدرس الباقي إنك تستخدم موهبتك بصدق من غير ما تثبت لحد حاجة." },
+  { n: "الكاهنة العليا", en: "The High Priestess",
+    core: "الحدس والأسرار والمعرفة الصامتة", shadow: "الانغلاق وكتمان المشاعر",
+    real: "في حاجة لسه مش ظاهرة. استنى قبل ما تاخد قرار، وراقب الي بيتقال بين السطور.",
+    psy: "جواك إجابة عارفها، بس بتسكت عنها عشان تتجنب مواجهة.",
+    spirit: "طاقة الاستقبال: الصمت والأحلام والتأمل بيجيبوا لك رسايل أوضح من البحث في الخارج.",
+    release: "قبل النوم اسأل نفسك سؤال واحد، واكتب أول إجابة تيجي من غير ما تراجعها.",
+    rev: "جه مقلوب: تجاهل للحدس أو أسرار بتتعبك. افتح موضوع بتتجنبه.",
+    past: "حياة قريبة من الصمت والتأمل، كاهنة أو ناسك أو حد بيحتفظ بالأسرار. الدرس الباقي إنك تعبّر بدل ما تحتفظ بكل حاجة جواك." },
+  { n: "الإمبراطورة", en: "The Empress",
+    core: "الحنان والخصوبة والوفرة", shadow: "التدليل الزايد أو التعلق",
+    real: "فترة نمو وراحة، ممكن تظهر في مشروع بيكبر أو علاقة بتدفا. اهتم بجسمك وبيتك.",
+    psy: "محتاج تحس بالأمان والحب من غير ما تكسبهم بالشغل. الحنان حقك مش مكافأة.",
+    spirit: "طاقة الأرض والأنوثة الخلاقة: الطبيعة والراحة والجمال بيشحنوك.",
+    release: "اعمل حاجة لجسمك النهاردة من غير ذنب: حمام دافي، أكلة بتحبها، أو مشوار في مكان أخضر.",
+    rev: "جه مقلوب: إهمال للنفس أو اعتماد زايد على حد. رجّع الاهتمام لنفسك.",
+    past: "حياة فيها رعاية وعطاء وزراعة وأمومة. الدرس الباقي إنك تاخد زي ما بتدي." },
+  { n: "الإمبراطور", en: "The Emperor",
+    core: "الاستقرار والتنظيم والحدود", shadow: "التحكم والعند",
+    real: "وقت تحط نظام وحدود: ميزانية أو جدول أو قرار حاسم قدام شخص. الي بيتبني بقواعد بيعيش.",
+    psy: "الحاجة للسيطرة ممكن تكون خوف من الفوضى. اسأل نفسك: إيه الي بخاف منه لو سبت الموضوع؟",
+    spirit: "طاقة البناء والمسؤولية: ارتباطك بالأرض بيدّي طاقتك ثبات.",
+    release: "اكتب ٣ حدود لازم تحطها الأسبوع ده، وقول واحد منهم لشخص بهدوء.",
+    rev: "جه مقلوب: تسلط أو هروب من المسؤولية. اتوازن بين الحزم والمرونة.",
+    past: "حياة قيادة ومسؤولية كبيرة. الدرس الباقي إن القوة الحقيقية مش في السيطرة." },
+  { n: "الكاهن الأعظم", en: "The Hierophant",
+    core: "التعلم والإرشاد والأصول", shadow: "الجمود والتقليد الأعمى",
+    real: "وقت تسأل حد خبير أو تاخد كورس أو تلتزم بمنهج. الحاجة هتمشي بالأصول مش بالاختصارات.",
+    psy: "بتدور على حد يطمنك أو يوجهك. افتكر إن الإجابة النهائية جواك بعد ما تسمع.",
+    spirit: "طاقة الحكمة المنقولة: التقاليد والمرشدين بيساعدوك لو اخترتهم بوعي.",
+    release: "اسأل نفسك: أنهي قاعدة من الي اتربيت عليها لسه بتخدمني، وأنهي واحدة لازم أفكها؟",
+    rev: "جه مقلوب: تمرد على القواعد أو خضوع لرأي حد. الحل في اختيارك الواعي.",
+    past: "حياة معلّم أو راهب أو حد بيحفظ علم. الدرس الباقي إنك تتعلم وتعلّم من غير ما تفرض." },
+  { n: "العاشقان", en: "The Lovers",
+    core: "الاختيار والعلاقة والانسجام", shadow: "التردد أو علاقة على حساب نفسك",
+    real: "قرار حب أو شراكة قدامك. اختار بقلبك وعقلك مع بعض، وماتختارش من الخوف من الوحدة.",
+    psy: "الاختيار الأصعب هو إنك تبقى صادق مع نفسك الأول.",
+    spirit: "طاقة اتحاد المتناقضات: لما تقبل جانبك الضعيف والقوي بتجذب علاقات أصدق.",
+    release: "اكتب ٣ قيم مش ممكن تتنازل عنها في أي علاقة.",
+    rev: "جه مقلوب: علاقة مش متوازنة أو هروب من قرار. كون واضح.",
+    past: "حياة فيها حب كبير أو اختيار صعب بين اتنين. الدرس الباقي إنك تحب من غير ما تضيع نفسك." },
+  { n: "العربة", en: "The Chariot",
+    core: "الانتصار بالإرادة والتحرك", shadow: "العناد والاندفاع",
+    real: "وقت تتحرك: سفر أو نقلة أو تحدي. ركز على اتجاه واحد وسيطر على الي بيشدك يمين وشمال.",
+    psy: "جواك قوتين متعارضتين. التحكم مش بالقمع، بالتوجيه.",
+    spirit: "طاقة الإرادة المنضبطة: لما تحط نيتك قدامك الطريق بيتفتح.",
+    release: "حدد هدف واحد للشهر ده، وقسّمه لخطوة صغيرة تعملها كل يوم.",
+    rev: "جه مقلوب: تشتت أو إحساس بفقدان السيطرة. وقف ورتب أولوياتك.",
+    past: "حياة محارب أو رحّالة أو قائد قافلة. الدرس الباقي إن الغلبة مش بالقوة بس، بالاتجاه." },
+  { n: "العدالة", en: "Justice",
+    core: "الحق والميزان والمسؤولية عن الاختيار", shadow: "الحكم القاسي أو لوم الغير",
+    real: "موقف أو أوراق أو قرار بيرجع لك بنتيجة اختياراتك. اقرا قبل ما توقّع واتصرف بعدل.",
+    psy: "بتحاسب نفسك أو غيرك بقسوة. العدل الحقيقي فيه رحمة.",
+    spirit: "طاقة الكارما: الي بتزرعه بيرجع. صفّي نيتك.",
+    release: "اكتب موقف بتلوم فيه حد، وبعده اكتب الجزء الي إنت مسؤول عنه فيه.",
+    rev: "جه مقلوب: ظلم أو إنكار مسؤولية. راجع مواقفك بصدق.",
+    past: "حياة قاضي أو حد شاف ظلم. الدرس الباقي إنك تعدل مع نفسك قبل غيرك." },
+  { n: "الناسك", en: "The Hermit",
+    core: "العزلة والبحث الداخلي والحكمة", shadow: "الانعزال والوحدة",
+    real: "وقت تقلل الضجة وتفكر لوحدك. ابعد عن الناس الي بتستنزفك وركز في هدفك.",
+    psy: "الوحدة هنا اختيار مش عقاب، لكن خد بالك ماتتحولش لهروب.",
+    spirit: "طاقة النور الداخلي: الصمت والتأمل بيفتحوا إجابات.",
+    release: "اقعد ٢٠ دقيقة من غير موبايل النهاردة، وسجل أي فكرة بتيجي.",
+    rev: "جه مقلوب: انعزال زايد أو خوف من الناس. افتح باب لحد قريب.",
+    past: "حياة ناسك أو باحث عن الحقيقة. الدرس الباقي إنك ترجع تشارك علمك مع الناس." },
+  { n: "عجلة الحظ", en: "Wheel of Fortune",
+    core: "التغيير والدورات والفرصة", shadow: "مقاومة الدورة أو الاستسلام للحظ",
+    real: "حاجة بتتغير، غالبًا مش بإيدك. الفرصة بتيجي لمن يكون جاهز، فجهز نفسك.",
+    psy: "التغيير بيخوف حتى لو كان للأحسن. سمّي الخوف بدل ما تهرب منه.",
+    spirit: "طاقة الدورة: كل نهاية بداية، والتسليم للتغيير بيخفف التعب.",
+    release: "اكتب ٣ حاجات اتغيرت في حياتك السنة دي، وإيه الي اتعلمته من كل واحدة.",
+    rev: "جه مقلوب: دورة متكررة أو تأخير. دور على الدرس الي بيتعاد.",
+    past: "حياة اتقلبت فيها الأحوال بين غنى وفقر. الدرس الباقي هو الثبات الداخلي وسط التقلب." },
+  { n: "القوة", en: "Strength",
+    core: "الشجاعة الهادية والسيطرة بحنان", shadow: "كبت الغضب أو الضعف",
+    real: "موقف بيطلب صبر وثبات مش صوت عالي. قوتك في الهدوء.",
+    psy: "الغضب والخوف مش أعداء، دول طاقة محتاجة توجّهها.",
+    spirit: "طاقة القلب الشجاع: لما تواجه خوفك بحب بيلين.",
+    release: "لما تغضب النهاردة خد ٣ أنفاس عميقة قبل الرد، وبعدها قول الي محتاجه بصراحة.",
+    rev: "جه مقلوب: انسحاب أو انفجار. محتاج تدعم ثقتك بنفسك.",
+    past: "حياة اتعلمت فيها ترويض غريزة قوية. الدرس الباقي إنك تبقى قوي من غير عنف." },
+  { n: "المشنوق", en: "The Hanged Man",
+    core: "التسليم والنظرة المختلفة", shadow: "التضحية بلا داعي أو الجمود",
+    real: "الموضوع واقف ومش هيتحرك بالضغط. مرحلة انتظار لازم تتقبلها وتشوف الحاجة من زاوية تانية.",
+    psy: "إحساسك إنك عالق ممكن يكون دعوة لتغيير النظرة مش الظروف.",
+    spirit: "طاقة التسليم: لما تسيب السيطرة بتيجي الإجابة.",
+    release: "قول لنفسك: أنا بسيب النتيجة، وابدأ بحاجة صغيرة مختلفة النهاردة.",
+    rev: "جه مقلوب: تأجيل بلا فايدة أو مقاومة. خد قرار.",
+    past: "حياة فيها تضحية أو انتظار طويل. الدرس الباقي إنك تسيب دور الي بيضحي." },
+  { n: "الموت", en: "Death",
+    core: "النهاية والبداية والتحول الجذري", shadow: "التعلق بالماضي",
+    real: "حاجة بتنتهي: وظيفة أو علاقة أو مرحلة. مش لازم تكون نهاية سيئة، هي فتح لمكان جديد.",
+    psy: "الحزن على الي راح طبيعي. اسمح لنفسك تحزن وبعدين تكمل.",
+    spirit: "طاقة التطهير: الي بيتشال بيجيب مساحة للجديد.",
+    release: "اكتب خطاب وداع لشيء انتهى، وبعدها اقطعه أو احرقه بأمان.",
+    rev: "جه مقلوب: تمسك بالقديم أو مقاومة للتغيير. اتأكد إيه الي لازم يخلص.",
+    past: "حياة شهدت خسارات وتحولات كبيرة. الدرس الباقي إنك تتقبل النهايات." },
+  { n: "الاعتدال", en: "Temperance",
+    core: "التوازن والصبر والشفاء", shadow: "التطرف أو التسرع",
+    real: "الحل في الوسط: مواعيد منتظمة، وخلط بين الشغل والراحة، وخطوة بخطوة.",
+    psy: "الصبر مش ضعف، هو مهارة. عوّد نفسك على الإيقاع الهادي.",
+    spirit: "طاقة المياه المتدفقة: التناغم بين الروح والجسد.",
+    release: "رتب يومك بحيث يبقى فيه وقت للشغل ووقت للجسم ووقت للروح، ٣ أوقات ثابتة.",
+    rev: "جه مقلوب: إسراف أو عدم توازن. رجّع الاعتدال.",
+    past: "حياة معالج أو حكيم بيوفّق بين الناس. الدرس الباقي إنك تحافظ على توازنك." },
+  { n: "الشيطان", en: "The Devil",
+    core: "التعلق والرغبة والقيود الي بنختارها", shadow: "الإدمان والتحكم",
+    real: "علاقة أو عادة بتشدك وإنت عارف إنها مش في صالحك. المفتاح في إيدك مش في إيد حد.",
+    psy: "الخوف بيتنكر في شكل رغبة. اسأل: إيه الي بخاف أفقده لو سبتها؟",
+    spirit: "طاقة الظل: الي بتنكره فيك بيتحكم فيك، والمواجهة بتحرر.",
+    release: "اكتب عادة أو علاقة مرهقة، واختار خطوة صغيرة تبعدك عنها النهاردة.",
+    rev: "جه مقلوب: بداية تحرر أو انتكاسة. كمّل بنية صادقة.",
+    past: "حياة فيها تعلق شديد أو إحساس بالقيد. الدرس الباقي هو الحرية الداخلية." },
+  { n: "البرج", en: "The Tower",
+    core: "الانهيار المفاجئ وكشف الحقيقة", shadow: "الصدمة والإنكار",
+    real: "حاجة مبنية على أساس ضعيف بتتهز. مؤلم لكنه بيكشف الحقيقة قبل ما تتأخر.",
+    psy: "الصدمة أول رد فعل. اديني نفسك وقت قبل ما تحكم أو تقرر.",
+    spirit: "طاقة التحرير المفاجئ: البرق بيهد القفص.",
+    release: "اسأل نفسك: إيه الحقيقة الي كنت بتتجنب أشوفها؟ واكتبها بصراحة.",
+    rev: "جه مقلوب: تأجيل الانهيار أو خوف من التغيير. الأحسن إنك تبادر بالتغيير بنفسك.",
+    past: "حياة فيها أزمات كبيرة. الدرس الباقي إنك تبني على أساس صادق." },
+  { n: "النجمة", en: "The Star",
+    core: "الأمل والشفاء والإلهام", shadow: "فقدان الإيمان",
+    real: "بعد فترة صعبة بتبدأ ترتاح. أحلامك ممكنة، ابدأ بخطوات صغيرة.",
+    psy: "هدوء بعد العاصفة. اسمح لنفسك تأمل من غير ما تجلد نفسك.",
+    spirit: "طاقة الشفاء: الماء والليل والنجوم بينضفوا روحك.",
+    release: "اطلع بالليل أو بص للسما ٥ دقايق وقول: أنا أستحق الراحة.",
+    rev: "جه مقلوب: يأس أو بعد عن أحلامك. ارجع لخطوة بسيطة تفتح لك أمل.",
+    past: "حياة كان فيها أمل وسط ظلام، حد بيشفي أو بيرشد. الدرس الباقي إنك تثق في الطريق." },
+  { n: "القمر", en: "The Moon",
+    core: "الخيال والحدس والخوف الغامض", shadow: "الأوهام والقلق",
+    real: "الصورة مش واضحة. ماتاخدش قرارات كبيرة وإنت قلقان، وتأكد من المعلومات.",
+    psy: "المشاعر بتكبر بالليل. اكتب مخاوفك وشوف أنهي واحدة حقيقية.",
+    spirit: "طاقة اللاوعي: أحلامك فيها رسايل.",
+    release: "اكتب حلم أو إحساس غريب، وبعدين اسأل: إيه الحاجة الحقيقية الي بتخوفني؟",
+    rev: "جه مقلوب: وضوح بعد غموض أو قلق بيهدا. كمّل بهدوء.",
+    past: "حياة فنان أو حالم أو حد بيعيش بين عالمين. الدرس الباقي إنك تثبت على الواقع." },
+  { n: "الشمس", en: "The Sun",
+    core: "الفرح والنجاح والوضوح", shadow: "الغرور أو الإرهاق من العطاء",
+    real: "نتيجة إيجابية ووضوح، علاقة أو مشروع بيدفا. استمتع من غير ذنب.",
+    psy: "إحساس بالرضا والقبول. اسمح لنفسك تفرح.",
+    spirit: "طاقة النور والحيوية: الشمس بتجدد روحك.",
+    release: "اقعد ١٠ دقايق في الشمس وفكر في حاجة واحدة بتشكر عليها.",
+    rev: "جه مقلوب: فرح متأخر أو غرور. افتح قلبك.",
+    past: "حياة بسيطة وسعيدة أو قيادة نورانية. الدرس الباقي إنك تعيش الفرح." },
+  { n: "الحكم", en: "Judgement",
+    core: "النداء والتجديد والمحاسبة", shadow: "الندم أو جلد الذات",
+    real: "وقت قرار مصيري: تبدأ فصل جديد بعد ما تراجع الماضي. حاجة مؤجلة بتطلب ردّك.",
+    psy: "في صوت جواك بيقول كفاية. اسمعه.",
+    spirit: "طاقة اليقظة: روحك بتناديك لمستوى أعلى.",
+    release: "اكتب رسالة سماح لنفسك عن غلطة قديمة، واقراها بصوت عالي.",
+    rev: "جه مقلوب: تأجيل النداء أو جلد الذات. سامح نفسك.",
+    past: "حياة اتحاسبت فيها على اختياراتك. الدرس الباقي إنك تسامح وتبدأ من جديد." },
+  { n: "العالم", en: "The World",
+    core: "الاكتمال والإنجاز والتكامل", shadow: "الخوف من الخاتمة",
+    real: "مرحلة بتكتمل: شهادة أو مشروع أو رحلة. افرح بإنجازك وبعدين اختار الخطوة الجاية.",
+    psy: "إحساس بالتمام. ماتدورش على حاجة جديدة قبل ما تحتفل.",
+    spirit: "طاقة التكامل: كل أجزائك مع بعض.",
+    release: "اكتب ٣ إنجازات عملتها السنة دي، وكافئ نفسك.",
+    rev: "جه مقلوب: خاتمة ناقصة أو تأجيل. اقفل الي لسه مفتوح.",
+    past: "حياة اكتملت فيها دورة كبيرة. الدرس الباقي إنك تتقبل الاكتمال وتبدأ." },
+  { n: "المجنون", en: "The Fool",
+    core: "البداية الجديدة والثقة والقفزة", shadow: "الاندفاع من غير حساب",
+    real: "مرحلة جديدة: سفر أو مشروع أو قرار جريء. خد خطوة، بس احسبها.",
+    psy: "فضول وخوف مع بعض. الخوف مش بيمنع القفزة، بس بيعلمك تبص.",
+    spirit: "طاقة النقاء: روح بتبدأ من الصفر.",
+    release: "اعمل حاجة صغيرة مختلفة النهاردة: طريق جديد أو أكلة جديدة أو قرار بسيط بتأجله.",
+    rev: "جه مقلوب: تهور أو خوف من البداية. اعمل خطة بسيطة.",
+    past: "حياة تجوال وبدايات من الصفر. الدرس الباقي إنك تثق من غير حماقة." }
+];
+
+/* ---------- أدوار نقاط المصفوفة ---------- */
+const ROLES = {
+  A: { n: "شخصيتك وموهبتك الأساسية", intro: "ده الطبع الي اتولدت بيه، وبيظهر في الي بتعمله بسهولة:" },
+  B: { n: "هدفك ورسالتك", intro: "ده الاتجاه الي حياتك بتشدك ناحيته:" },
+  C: { n: "الي ورثته من العيلة والماضي", intro: "ده الي وصلك من الأهل والبيئة، وبيأثر في ردود أفعالك:" },
+  D: { n: "الذيل الكارمي (دروس الحيوات السابقة)", intro: "ده الدرس الي بيتكرر معاك لحد ما تتعلمه:" },
+  E: { n: "جوهرك ومنطقة راحتك", intro: "ده قلبك الحقيقي، والمكان الي بترجع له لما تتعب:" },
+  F: { n: "شغلك وتعبيرك عن نفسك", intro: "ده اللون الي بيظهر في شغلك وإبداعك:" },
+  G: { n: "الفلوس والفرص", intro: "ده الي بيشكل علاقتك بالفلوس والفرص:" },
+  H: { n: "الحب والعلاقات", intro: "ده الي بيتحكم في طريقة حبك وعلاقاتك:" },
+  I: { n: "نقطة الاختبار الي بتكبرك", intro: "ده الموضوع الي حياتك بتختبرك فيه عشان تنضج:" }
+};
+
+/* ---------- طاقة الأرقام (مسار الحياة) ---------- */
+const LP_TXT = {
+  1: "رقم ١: الاستقلال والبدايات والقيادة، ودرسك إنك تعتمد على نفسك من غير عند.",
+  2: "رقم ٢: التعاون والحساسية والسلام، ودرسك إنك تثق في نفسك وماتعيشش لإرضاء الناس.",
+  3: "رقم ٣: التعبير والإبداع والبهجة، ودرسك إنك تتكلم بصدق وماتشتتش موهبتك.",
+  4: "رقم ٤: البناء والانضباط والاستقرار، ودرسك إنك تبقى مرن وماتتجمدش.",
+  5: "رقم ٥: الحرية والتغيير والمغامرة، ودرسك الالتزام من غير ما تحس بقيد.",
+  6: "رقم ٦: الحب والمسؤولية والعيلة، ودرسك إنك تهتم بنفسك زي ما بتهتم بالناس.",
+  7: "رقم ٧: التحليل والبحث والروحانية، ودرسك إنك تثق وتفتح قلبك.",
+  8: "رقم ٨: القوة والمال والإنجاز، ودرسك التوازن بين المادة والقيم.",
+  9: "رقم ٩: الإنسانية والتسامح والنهايات، ودرسك إنك تسيب الماضي وتدي من غير ما تنتظر.",
+  11: "رقم ١١ (رقم رئيسي): حدس عالي وحساسية وإلهام، ودرسك إنك تثبت أعصابك وتحول الإلهام لفعل.",
+  22: "رقم ٢٢ (رقم رئيسي): بنّاء الأحلام الكبيرة على الأرض، ودرسك إنك تتحمل الضغط من غير ما تنهار.",
+  33: "رقم ٣٣ (رقم رئيسي): معلّم العطاء والشفاء، ودرسك إنك تحمي نفسك وإنت بتدي."
+};
+
+/* ---------- مواقف واقعية لكل بيت (للتوقعات اليومية والتحليل) ---------- */
+const HOUSE_SIT = [
+  ["ناس بتلاحظ شكلك وتصرفاتك أكتر من العادة", "إحساس إنك عايز تبدأ حاجة جديدة بنفسك", "حد بيقول لك رأيه في طريقتك"],
+  ["مصروف أو دخل مفاجئ", "عرض أو خصم بتفكر تشتري بسببه", "مراجعة لقيمتك قدام نفسك"],
+  ["رسايل ومكالمات كتير", "سفرية قصيرة أو مشوار", "كلام مع إخوات أو جيران"],
+  ["حاجة في البيت أو مع العيلة", "نقاش مع حد من الأهل", "رغبة في الراحة والبقاء في البيت"],
+  ["اهتمام أو رسالة من حد", "خروجة أو وقت متعة", "فكرة إبداعية أو مشروع شخصي"],
+  ["ضغط شغل أو مهام متراكمة", "تعب في الجسم محتاج روتين", "موقف مع زميل"],
+  ["لقاء مع شريك أو عميل", "عرض ارتباط أو اتفاق", "مواجهة محتاجة صراحة"],
+  ["موضوع فلوس مشتركة أو دين", "مشاعر عميقة أو سر بيتكشف", "مرحلة تغيير داخلي"],
+  ["فكرة سفر أو دراسة", "نقاش في معتقدات", "فرصة بتوسع أفقك"],
+  ["فرصة شغل أو ترقية", "نظرة من مديرك أو الناس لإنجازك", "مسؤولية جديدة"],
+  ["عزومة أو تجمع أصحاب", "فكرة مشروع جماعي", "حلم بيقرب"],
+  ["رغبة في العزلة", "أحلام وأفكار غريبة", "تعب نفسي مخفي"]
+];
+const HOUSE_TRIG = [
+  "اتخذت قرار بدافع إنك تثبت نفسك", "صرفت من غير حساب", "رديت بسرعة من غير تفكير", "فتحت خلافات قديمة",
+  "بالغت في المخاطرة أو الدلع", "أهملت راحتك", "تجنبت المصارحة", "كتمت مشاعرك أو حاولت تسيطر على حد",
+  "وعدت بحاجة أكبر من طاقتك", "اتسرعت أو اتحملت فوق طاقتك", "اعتمدت على ناس مش مناسبين", "هربت من الواقع"
+];
+const HOUSE_ADV = [
+  "ابدأ يومك بحاجة صغيرة لنفسك قبل الناس", "راجع مصاريفك قبل ما تشتري", "رد على الرسايل المهمة وخلص كلمة مؤجلة",
+  "اقعد مع حد من الأهل أو رتب ركن في البيت", "اعمل حاجة بتفرحك ولو ساعة", "رتب مهامك وابدأ بالأصعب",
+  "كلم الشخص الي عايز تصارحه بهدوء", "ماتفتحش موضوع مالي كبير، وراقب مشاعرك", "اتعلم حاجة جديدة أو شوف فيديو بيوسع مداركك",
+  "ركز على هدف مهني واحد النهاردة", "اتواصل مع صاحب قريب", "خد وقت هادي لوحدك وماتقررش قرارات كبيرة"
+];
+
+/* ======================= محرك الحسابات الفلكية =======================
+   الشمس: Meeus ch.25 | القمر: Meeus ch.47 (٦٠ حد)
+   عطارد → أورانوس: عناصر مدارية + تصحيحات المشتري/زحل/أورانوس
+   نبتون وبلوتو: عناصر JPL التقريبية (Standish) مع الـ precession
+   البيوت: Placidus أو Whole Sign
+   كل الحسابات بتتم على جهاز المستخدم.
+======================================================================= */
+const Astro = (() => {
+  const RAD = Math.PI / 180, DEG = 180 / Math.PI;
+  const norm = x => ((x % 360) + 360) % 360;
+  const sin = x => Math.sin(x * RAD), cos = x => Math.cos(x * RAD), tan = x => Math.tan(x * RAD);
+  const d180 = x => { x = norm(x); return x > 180 ? x - 360 : x; };
+
+  const jdFromMs = ms => ms / 86400000 + 2440587.5;
+  const msFromJd = jd => (jd - 2440587.5) * 86400000;
+  const yearOf = jd => 2000 + (jd - 2451545) / 365.25;
+  const deltaT = y => (y >= 2000 ? 63.8 + 0.32 * (y - 2000) : 63.8 + 0.45 * (y - 2000)); // ثواني، تقريبي ويكفي
+
+  function nutation(T) {
+    const Om = 125.04452 - 1934.136261 * T;
+    const L = 280.4665 + 36000.7698 * T, Lp = 218.3165 + 481267.8813 * T;
+    return {
+      dpsi: (-17.20 * sin(Om) - 1.32 * sin(2 * L) - 0.23 * sin(2 * Lp) + 0.21 * sin(2 * Om)) / 3600,
+      deps: (9.20 * cos(Om) + 0.57 * cos(2 * L) + 0.10 * cos(2 * Lp) - 0.09 * cos(2 * Om)) / 3600
+    };
+  }
+  const meanObliq = T => 23.439291 - 0.0130042 * T - 1.64e-7 * T * T + 5.04e-7 * T * T * T;
+
+  function keplerE(Mdeg, e) {
+    const M = norm(Mdeg);
+    let E = M + e * DEG * sin(M) * (1 + e * cos(M));
+    for (let k = 0; k < 30; k++) {
+      const dE = (E - e * DEG * sin(E) - M) / (1 - e * cos(E));
+      E -= dE;
+      if (Math.abs(dE) < 1e-10) break;
+    }
+    return E;
+  }
+
+  /* ---------- الشمس ---------- */
+  function sunTrue(T) {
+    const L0 = norm(280.46646 + 36000.76983 * T + 0.0003032 * T * T);
+    const M = norm(357.52911 + 35999.05029 * T - 0.0001537 * T * T);
+    const e = 0.016708634 - 0.000042037 * T - 0.0000001267 * T * T;
+    const C = (1.914602 - 0.004817 * T - 0.000014 * T * T) * sin(M) + (0.019993 - 0.000101 * T) * sin(2 * M) + 0.000289 * sin(3 * M);
+    const v = M + C;
+    return { lon: norm(L0 + C), R: 1.000001018 * (1 - e * e) / (1 + e * cos(v)) };
+  }
+
+  /* ---------- القمر (Meeus 47) ---------- */
+  const MOON_TERMS = [
+    [0, 0, 1, 0, 6288774], [2, 0, -1, 0, 1274027], [2, 0, 0, 0, 658314], [0, 0, 2, 0, 213618], [0, 1, 0, 0, -185116],
+    [0, 0, 0, 2, -114332], [2, 0, -2, 0, 58793], [2, -1, -1, 0, 57066], [2, 0, 1, 0, 53322], [2, -1, 0, 0, 45758],
+    [0, 1, -1, 0, -40923], [1, 0, 0, 0, -34720], [0, 1, 1, 0, -30383], [2, 0, 0, -2, 15327], [0, 0, 1, 2, -12528],
+    [0, 0, 1, -2, 10980], [4, 0, -1, 0, 10675], [0, 0, 3, 0, 10034], [4, 0, -2, 0, 8548], [2, 1, -1, 0, -7888],
+    [2, 1, 0, 0, -6766], [1, 0, -1, 0, -5163], [1, 1, 0, 0, 4987], [2, -1, 1, 0, 4036], [2, 0, 2, 0, 3994],
+    [4, 0, 0, 0, 3861], [2, 0, -3, 0, 3665], [0, 1, -2, 0, -2689], [2, 0, -1, 2, -2602], [2, -1, -2, 0, 2390],
+    [1, 0, 1, 0, -2348], [2, -2, 0, 0, 2236], [0, 1, 2, 0, -2120], [0, 2, 0, 0, -2069], [2, -2, -1, 0, 2048],
+    [2, 0, 1, -2, -1773], [2, 0, 0, 2, -1595], [4, -1, -1, 0, 1215], [0, 0, 2, 2, -1110], [3, 0, -1, 0, -892],
+    [2, 1, 1, 0, -810], [4, -1, -2, 0, 759], [0, 2, -1, 0, -713], [2, 2, -1, 0, -700], [2, 1, -2, 0, 691],
+    [2, -1, 0, -2, 596], [4, 0, 1, 0, 549], [0, 0, 4, 0, 537], [4, -1, 0, 0, 520], [1, 0, -2, 0, -487],
+    [2, 1, 0, -2, -399], [0, 0, 2, -2, -381], [1, 1, 1, 0, 351], [3, 0, -2, 0, -340], [4, 0, -3, 0, 330],
+    [2, -1, 2, 0, 327], [0, 2, 1, 0, -323], [1, 1, -1, 0, 299], [2, 0, 3, 0, 294]
+  ];
+  function moonLonMean(T) { // خط الطول الهندسي (من غير nutation)
+    const T2 = T * T, T3 = T2 * T, T4 = T3 * T;
+    const Lp = norm(218.3164477 + 481267.88123421 * T - 0.0015786 * T2 + T3 / 538841 - T4 / 65194000);
+    const D = norm(297.8501921 + 445267.1114034 * T - 0.0018819 * T2 + T3 / 545868 - T4 / 113065000);
+    const M = norm(357.5291092 + 35999.0502909 * T - 0.0001536 * T2 + T3 / 24490000);
+    const Mp = norm(134.9633964 + 477198.8675055 * T + 0.0087414 * T2 + T3 / 69699 - T4 / 14712000);
+    const F = norm(93.2720950 + 483202.0175233 * T - 0.0036539 * T2 - T3 / 3526000 + T4 / 863310000);
+    const A1 = norm(119.75 + 131.849 * T), A2 = norm(53.09 + 479264.290 * T);
+    const E = 1 - 0.002516 * T - 0.0000074 * T2;
+    let sl = 0;
+    for (const [d, m, mp, f, c] of MOON_TERMS) {
+      let v = c * sin(d * D + m * M + mp * Mp + f * F);
+      const am = Math.abs(m);
+      if (am === 1) v *= E; else if (am === 2) v *= E * E;
+      sl += v;
+    }
+    sl += 3958 * sin(A1) + 1962 * sin(Lp - F) + 318 * sin(A2);
+    return norm(Lp + sl / 1e6);
+  }
+
+  /* ---------- العقدة وليليث (متوسطة) ---------- */
+  const meanNode = T => norm(125.0445479 - 1934.1362891 * T + 0.0020754 * T * T + T * T * T / 467441 - T * T * T * T / 60616000);
+  const meanApogee = T => norm(83.3532465 + 4069.0137287 * T - 0.0103200 * T * T - T * T * T / 80053 + T * T * T * T / 18999000 + 180);
+
+  /* ---------- الكواكب: عناصر مدارية (d = أيام من 1999-12-31 0h) ---------- */
+  const ELS = {
+    mercury: { N: [48.3313, 3.24587e-5], i: [7.0047, 5.00e-8], w: [29.1241, 1.01444e-5], a: [0.387098, 0], e: [0.205635, 5.59e-10], M: [168.6562, 4.0923344368] },
+    venus:   { N: [76.6799, 2.46590e-5], i: [3.3946, 2.75e-8], w: [54.8910, 1.38374e-5], a: [0.723330, 0], e: [0.006773, -1.302e-9], M: [48.0052, 1.6021302244] },
+    mars:    { N: [49.5574, 2.11081e-5], i: [1.8497, -1.78e-8], w: [286.5016, 2.92961e-5], a: [1.523688, 0], e: [0.093405, 2.516e-9], M: [18.6021, 0.5240207766] },
+    jupiter: { N: [100.4542, 2.76854e-5], i: [1.3030, -1.557e-7], w: [273.8777, 1.64505e-5], a: [5.20256, 0], e: [0.048498, 4.469e-9], M: [19.8950, 0.0830853001] },
+    saturn:  { N: [113.6634, 2.38980e-5], i: [2.4886, -1.081e-7], w: [339.3939, 2.97661e-5], a: [9.55475, 0], e: [0.055546, -9.499e-9], M: [316.9670, 0.0334442282] },
+    uranus:  { N: [74.0005, 1.3978e-5], i: [0.7733, 1.9e-8], w: [96.6612, 3.0565e-5], a: [19.18171, -1.55e-8], e: [0.047318, 7.45e-9], M: [142.5905, 0.011725806] }
+  };
+  const el = (k, d) => { const o = ELS[k], f = v => v[0] + v[1] * d; return { N: f(o.N), i: f(o.i), w: f(o.w), a: f(o.a), e: f(o.e), M: f(o.M) }; };
+
+  function helioSchlyter(key, d) {
+    const p = el(key, d);
+    const E = keplerE(p.M, p.e);
+    const xv = p.a * (cos(E) - p.e), yv = p.a * Math.sqrt(1 - p.e * p.e) * sin(E);
+    const v = Math.atan2(yv, xv) * DEG, r = Math.hypot(xv, yv), vw = v + p.w;
+    const xh = r * (cos(p.N) * cos(vw) - sin(p.N) * sin(vw) * cos(p.i));
+    const yh = r * (sin(p.N) * cos(vw) + cos(p.N) * sin(vw) * cos(p.i));
+    const zh = r * sin(vw) * sin(p.i);
+    let lon = norm(Math.atan2(yh, xh) * DEG), lat = Math.atan2(zh, Math.hypot(xh, yh)) * DEG;
+    if (key === 'jupiter' || key === 'saturn' || key === 'uranus') {
+      const Mj = el('jupiter', d).M, Ms = el('saturn', d).M, Mu = el('uranus', d).M;
+      if (key === 'jupiter') {
+        lon += -0.332 * sin(2 * Mj - 5 * Ms - 67.6) - 0.056 * sin(2 * Mj - 2 * Ms + 21) + 0.042 * sin(3 * Mj - 5 * Ms + 21)
+          - 0.036 * sin(Mj - 2 * Ms) + 0.022 * cos(Mj - Ms) + 0.023 * sin(2 * Mj - 3 * Ms + 52) - 0.016 * sin(Mj - 5 * Ms - 69);
+      } else if (key === 'saturn') {
+        lon += 0.812 * sin(2 * Mj - 5 * Ms - 67.6) - 0.229 * cos(2 * Mj - 4 * Ms - 2) + 0.119 * sin(Mj - 2 * Ms - 3)
+          + 0.046 * sin(2 * Mj - 6 * Ms - 69) + 0.014 * sin(Mj - 3 * Ms + 32);
+        lat += -0.020 * cos(2 * Mj - 4 * Ms - 2) + 0.018 * sin(2 * Mj - 6 * Ms - 49);
+      } else {
+        lon += 0.040 * sin(Ms - 2 * Mu + 6) + 0.035 * sin(Ms - 3 * Mu + 33) - 0.015 * sin(Mj - Mu + 20);
+      }
+    }
+    const rr = Math.hypot(xh, yh, zh);
+    return { x: rr * cos(lon) * cos(lat), y: rr * sin(lon) * cos(lat), z: rr * sin(lat) };
+  }
+
+  /* ---------- JPL (Standish) للمقارنة ولبلوتو ونبتون ---------- */
+  const STD = {
+    mercury: [0.38709927, 0.00000037, 0.20563593, 0.00001906, 7.00497902, -0.00594749, 252.25032350, 149472.67411175, 77.45779628, 0.16047689, 48.33076593, -0.12534081],
+    venus: [0.72333566, 0.00000390, 0.00677672, -0.00004107, 3.39467605, -0.00078890, 181.97909950, 58517.81538729, 131.60246718, 0.00268329, 76.67984255, -0.27769418],
+    earth: [1.00000261, 0.00000562, 0.01671123, -0.00004392, -0.00001531, -0.01294668, 100.46457166, 35999.37244981, 102.93768193, 0.32327364, 0.0, 0.0],
+    mars: [1.52371034, 0.00001847, 0.09339410, 0.00007882, 1.84969142, -0.00813131, -4.55343205, 19140.30268499, -23.94362959, 0.44441088, 49.55953891, -0.29257343],
+    jupiter: [5.20288700, -0.00011607, 0.04838624, -0.00013253, 1.30439695, -0.00183714, 34.39644051, 3034.74612775, 14.72847983, 0.21252668, 100.47390909, 0.20469106],
+    saturn: [9.53667594, -0.00125060, 0.05386179, -0.00050991, 2.48599187, 0.00193609, 49.95424423, 1222.49362201, 92.59887831, -0.41897216, 113.66242448, -0.28867794],
+    uranus: [19.18916464, -0.00196176, 0.04725744, -0.00004397, 0.77263783, -0.00242939, 313.23810451, 428.48202785, 170.95427630, 0.40805281, 74.01692503, 0.04240589],
+    neptune: [30.06992276, 0.00026291, 0.00859048, 0.00005105, 1.77004347, 0.00035372, -55.12002969, 218.45945325, 44.96476227, -0.32241464, 131.78422574, -0.00508664],
+    pluto: [39.48211675, -0.00031596, 0.24882730, 0.00005170, 17.14001206, 0.00004818, 238.92903833, 145.20780515, 224.06891629, -0.04062942, 110.30393684, -0.01183482]
+  };
+  function stdHelio(key, T) {
+    const p = STD[key];
+    const a = p[0] + p[1] * T, e = p[2] + p[3] * T, I = p[4] + p[5] * T, L = p[6] + p[7] * T, w = p[8] + p[9] * T, Om = p[10] + p[11] * T;
+    const arg = w - Om, E = keplerE(L - w, e);
+    const xp = a * (cos(E) - e), yp = a * Math.sqrt(1 - e * e) * sin(E);
+    const cw = cos(arg), sw = sin(arg), cO = cos(Om), sO = sin(Om), cI = cos(I), sI = sin(I);
+    return {
+      x: (cw * cO - sw * sO * cI) * xp + (-sw * cO - cw * sO * cI) * yp,
+      y: (cw * sO + sw * cO * cI) * xp + (-sw * sO + cw * cO * cI) * yp,
+      z: (sw * sI) * xp + (cw * sI) * yp
+    };
+  }
+  const precession = T => (5028.796195 * T + 1.1054348 * T * T) / 3600; // درجات من J2000
+  function stdGeoLon(key, T) {
+    const p = stdHelio(key, T), e = stdHelio('earth', T);
+    return norm(Math.atan2(p.y - e.y, p.x - e.x) * DEG + precession(T));
+  }
+
+  /* ---------- خط الطول الظاهري لأي جرم ---------- */
+  const PLANET_KEYS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  function lonOf(key, jde) {
+    const T = (jde - 2451545) / 36525;
+    const dpsi = nutation(T).dpsi;
+    if (key === 'sun') return norm(sunTrue(T).lon + dpsi - 0.00569);
+    if (key === 'moon') return norm(moonLonMean(T) + dpsi);
+    if (key === 'node') return norm(meanNode(T) + dpsi);
+    if (key === 'lilith') return norm(meanApogee(T) + dpsi);
+    if (key === 'pluto' || key === 'neptune') return norm(stdGeoLon(key, T) + dpsi);
+    const d = jde - 2451543.5, s = sunTrue(T);
+    const h = helioSchlyter(key, d);
+    const xg = h.x + s.R * cos(s.lon), yg = h.y + s.R * sin(s.lon);
+    return norm(Math.atan2(yg, xg) * DEG + dpsi);
+  }
+
+  /* ---------- الطالع والبيوت ---------- */
+  function ascMc(ramc, eps, lat) {
+    const mc = norm(Math.atan2(sin(ramc), cos(ramc) * cos(eps)) * DEG);
+    let asc = norm(Math.atan2(cos(ramc), -(sin(ramc) * cos(eps) + tan(lat) * sin(eps))) * DEG);
+    if (norm(asc - mc) > 180) asc = norm(asc + 180);
+    return { asc, mc };
+  }
+  function placidusCusps(ramc, eps, lat, asc, mc) {
+    const cuspBy = raFn => {
+      let ra = raFn(90);
+      for (let i = 0; i < 50; i++) {
+        const lam = norm(Math.atan2(sin(ra), cos(ra) * cos(eps)) * DEG);
+        const dec = Math.asin(sin(eps) * sin(lam)) * DEG;
+        const x = -tan(lat) * tan(dec);
+        if (Math.abs(x) >= 1) return null;
+        const nra = raFn(Math.acos(x) * DEG);
+        if (Math.abs(d180(nra - ra)) < 1e-8) { ra = nra; break; }
+        ra = nra;
+      }
+      return norm(Math.atan2(sin(ra), cos(ra) * cos(eps)) * DEG);
+    };
+    const c11 = cuspBy(D => ramc + D / 3), c12 = cuspBy(D => ramc + 2 * D / 3);
+    const c2 = cuspBy(D => ramc + 180 - 2 * (180 - D) / 3), c3 = cuspBy(D => ramc + 180 - (180 - D) / 3);
+    if ([c11, c12, c2, c3].some(v => v === null)) return null;
+    const c = new Array(12);
+    c[0] = asc; c[1] = c2; c[2] = c3; c[3] = norm(mc + 180);
+    c[4] = norm(c11 + 180); c[5] = norm(c12 + 180); c[6] = norm(asc + 180);
+    c[7] = norm(c2 + 180); c[8] = norm(c3 + 180); c[9] = mc; c[10] = c11; c[11] = c12;
+    return c;
+  }
+  const wholeSignCusps = asc => { const s = Math.floor(asc / 30) * 30; return Array.from({ length: 12 }, (_, i) => norm(s + 30 * i)); };
+  function houseOf(lon, cusps) {
+    for (let i = 0; i < 12; i++) {
+      const a = cusps[i], b = cusps[(i + 1) % 12];
+      if (norm(lon - a) < norm(b - a)) return i + 1;
+    }
+    return 1;
+  }
+
+  /* ---------- الخريطة كاملة ---------- */
+  const BODY_KEYS = [...PLANET_KEYS, 'node', 'lilith'];
+  const RETRO_KEYS = ['mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+
+  function chart({ utcMs, lat, lon, hs = 'placidus', known = true }) {
+    const jd = jdFromMs(utcMs);
+    const jde = jd + deltaT(yearOf(jd)) / 86400;
+    const T0 = (jd - 2451545) / 36525, T = (jde - 2451545) / 36525;
+    const bodies = BODY_KEYS.map(key => {
+      const l = lonOf(key, jde);
+      const sp = d180(lonOf(key, jde + 0.5) - lonOf(key, jde - 0.5));
+      return { key, lon: l, speed: sp, retro: RETRO_KEYS.includes(key) && sp < 0, sign: Math.floor(l / 30) };
+    });
+    const out = { jde, bodies, known, hs, lat, lon };
+    if (known) {
+      const gmst = norm(280.46061837 + 360.98564736629 * (jd - 2451545) + 0.000387933 * T0 * T0 - T0 * T0 * T0 / 38710000);
+      const nu = nutation(T), eps = meanObliq(T) + nu.deps;
+      const ramc = norm(gmst + nu.dpsi * cos(eps) + lon);
+      const { asc, mc } = ascMc(ramc, eps, lat);
+      let cusps = null, used = hs;
+      if (hs === 'placidus') cusps = placidusCusps(ramc, eps, lat, asc, mc);
+      if (!cusps) { cusps = wholeSignCusps(asc); used = hs === 'placidus' ? 'whole-fallback' : 'whole'; }
+      Object.assign(out, { ramc, eps, asc, mc, cusps, hs: used });
+      bodies.forEach(b => { b.house = houseOf(b.lon, cusps); });
+    }
+    return out;
+  }
+
+  /* ---------- أوقات محلية ← UTC باستخدام قاعدة بيانات المتصفح للتوقيت ---------- */
+  function tzOffsetMin(tz, utcMs) {
+    const f = new Intl.DateTimeFormat('en-US', { timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' });
+    const p = {};
+    f.formatToParts(new Date(utcMs)).forEach(x => { p[x.type] = x.value; });
+    const asUtc = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute, +p.second);
+    return (asUtc - Math.floor(utcMs / 1000) * 1000) / 60000;
+  }
+  function localToUtcMs(y, m, d, hh, mm, tz) {
+    const guess = Date.UTC(y, m - 1, d, hh, mm);
+    const o1 = tzOffsetMin(tz, guess);
+    let utc = guess - o1 * 60000;
+    const o2 = tzOffsetMin(tz, utc);
+    if (o2 !== o1) utc = guess - o2 * 60000;
+    return utc;
+  }
+
+  return { chart, lonOf, houseOf, norm, d180, jdFromMs, msFromJd, deltaT, yearOf, localToUtcMs, tzOffsetMin,
+    PLANET_KEYS, BODY_KEYS, _moonLonMean: moonLonMean, _stdGeoLon: stdGeoLon, _helio: helioSchlyter, _sunTrue: sunTrue, _ascMc: ascMc, _plac: placidusCusps, _nut: nutation, _obl: meanObliq };
+})();
+if (typeof module !== 'undefined') module.exports = Astro;
+
+/* ============================== منطق الموقع ============================== */
+(function () {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const VS = "\uFE0E";
+  const norm = Astro.norm, d180 = Astro.d180;
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const waLink = t => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t)}`;
+  const openWA = a => { a.target = "_blank"; a.rel = "noopener"; };
+  const gl = g => g + VS;
+  const num = s => `<span class="num" dir="ltr">${s}</span>`;
+
+  const nmOf = k => PLANETS[k] ? PLANETS[k].n : ({ asc: "الطالع", mc: "وسط السما" })[k];
+  const themeOf = k => (PLANETS[k] && PLANETS[k].theme) || ({ asc: "شخصيتك الظاهرة", mc: "مسارك ومكانتك" })[k];
+  const glyphOf = k => PLANETS[k] ? PLANETS[k].g : ({ asc: "AC", mc: "MC" })[k];
+
+  function fmt(lon) {
+    const s = Math.floor(lon / 30), r = lon - s * 30, d = Math.floor(r), m = Math.floor((r - d) * 60);
+    return { s, d, m, txt: `${d}°${String(m).padStart(2, "0")}′` };
+  }
+  const signLine = lon => { const f = fmt(lon); return `${gl(SIGNS[f.s].g)} ${SIGNS[f.s].n} ${num(f.txt)}`; };
+
+  /* ---------- روابط واتساب ---------- */
+  const MSG = {
+    general: "أهلاً، عايز أحجز جلسة.",
+    horoscope: "أهلاً، عايز أحجز قراءة البرج الشخصية.\n\nالاسم:\nالبرج أو تاريخ الميلاد:",
+    tarot: "أهلاً، عايز أحجز جلسة تاروت.\n\nالاسم:\nسؤالي:",
+    chart: "أهلاً، عايز أحجز قراءة الخريطة الفلكية.\n\nالاسم:\nتاريخ الميلاد:\nوقت الميلاد:\nمكان الميلاد:",
+    synastry: "أهلاً، عايز أحجز قراءة توافق فلكي (Synastry).\n\nبياناتي:\nالاسم:\nتاريخ الميلاد:\nوقت الميلاد:\nمكان الميلاد:\n\nبيانات الشخص التاني:\nالاسم:\nتاريخ الميلاد:\nوقت الميلاد:\nمكان الميلاد:"
+  };
+  $$("[data-wa]").forEach(a => { a.href = waLink(MSG[a.dataset.wa]); openWA(a); });
+  $$("[data-brand]").forEach(e => { e.textContent = SITE_NAME; });
+  $$("[data-tagline]").forEach(e => { e.textContent = SITE_TAGLINE; });
+  document.title = `${SITE_NAME} | خريطتك الفلكية وقراءات الأبراج والتاروت`;
+  const ig = $("#ig");
+  ig.href = `https://instagram.com/${IG_USER}`; ig.textContent = "@" + IG_USER; openWA(ig);
+  $("#period").textContent = FORECAST_LABEL;
+  const igTop = $("#ig-top"); igTop.href = `https://instagram.com/${IG_USER}`; openWA(igTop);
+
+  /* ---------- نصوص مركّبة ---------- */
+  function planetInSign(k, s) {
+    if (k === "sun") return SUN_TXT[s];
+    if (k === "moon") return MOON_TXT[s];
+    const S = SIGNS[s], p = PLANETS[k];
+    if (p.lens) return `${p.lens} بتميل لأسلوب ${S.way}. نقطة قوتك فيها ${S.strength}، وخد بالك من ${S.shadow}.`;
+    return `${p.theme} على مستوى جيلك بتاخد طابع ${S.way}، وده بيظهر في ${S.strength}.`;
+  }
+  function planetInHouse(k, h, mode) {
+    const p = PLANETS[k], H = HOUSES[h - 1];
+    if (mode === "transit") return `الفترة دي ${p.theme} بتتحرك في مجال ${H.area}. تتوقع فيه ${p.give}، وانتبه من ${p.watch}.`;
+    return `${p.theme} بتتركز في مجال ${H.area}. ده المكان الي بتلاقي فيه ${p.give}، وخد بالك من ${p.watch}.`;
+  }
+  const retroText = k => k === "mercury"
+    ? "عطارد راجع: انتبه للتواصل والأوراق والسفر، وراجع قبل ما توقّع أو ترسل."
+    : `${PLANETS[k].n} راجع: وقت مراجعة وإعادة تقييم في ${PLANETS[k].theme}، فراجع قبل ما تبدأ حاجة جديدة.`;
+
+  /* ---------- الزوايا والأنماط ---------- */
+  function natalAspects(ch) {
+    const L = ch.bodies.filter(b => PLANET_KEYS.includes(b.key)).map(b => ({ key: b.key, lon: b.lon }));
+    if (ch.known) L.push({ key: "asc", lon: ch.asc }, { key: "mc", lon: ch.mc });
+    const out = [];
+    for (let i = 0; i < L.length; i++) for (let j = i + 1; j < L.length; j++) {
+      const a = L[i], b = L[j];
+      if ((a.key === "asc" && b.key === "mc") || (a.key === "mc" && b.key === "asc")) continue;
+      const diff = Math.abs(d180(a.lon - b.lon));
+      for (const A of ASPECTS) {
+        let lim = A.orb;
+        if (["sun", "moon"].includes(a.key) || ["sun", "moon"].includes(b.key)) lim += 1;
+        if (["asc", "mc"].includes(a.key) || ["asc", "mc"].includes(b.key)) lim = Math.min(lim, 4);
+        const o = Math.abs(diff - A.ang);
+        if (o <= lim) { out.push({ a: a.key, b: b.key, asp: A, orb: o }); break; }
+      }
+    }
+    return out.sort((x, y) => x.orb - y.orb);
+  }
+  function findPatterns(ch) {
+    const pl = ch.bodies.filter(b => PLANET_KEYS.includes(b.key));
+    const out = [], names = arr => arr.map(b => PLANETS[b.key].n).join(" و");
+    for (let s = 0; s < 12; s++) {
+      const a = pl.filter(b => b.sign === s);
+      if (a.length >= 3) out.push({ t: "تجمّع كواكب", txt: `${a.length} كواكب (${names(a)}) في برج ${SIGNS[s].n}. ده تركيز قوي جدًا في طابع البرج ده، ومعاه طاقة كبيرة وحاجة محتاجة توازن.` });
+    }
+    if (ch.known) for (let h = 1; h <= 12; h++) {
+      const a = pl.filter(b => b.house === h);
+      if (a.length >= 3) out.push({ t: "تجمّع كواكب", txt: `${a.length} كواكب (${names(a)}) في البيت ${HOUSES[h - 1].n}. حياتك بتدور كتير حوالين ${HOUSES[h - 1].area}.` });
+    }
+    const near = (a, b, ang, orb) => Math.abs(Math.abs(d180(a.lon - b.lon)) - ang) <= orb;
+    for (let i = 0; i < pl.length; i++) for (let j = i + 1; j < pl.length; j++) for (let k = j + 1; k < pl.length; k++) {
+      const t = [pl[i], pl[j], pl[k]];
+      if (near(t[0], t[1], 120, 7) && near(t[1], t[2], 120, 7) && near(t[0], t[2], 120, 7)) {
+        out.push({ t: "مثلث كبير", txt: `${names(t)} في تثليث مع بعض. موهبة طبيعية وتدفق سهل في طاقة ${ELEMENTS[SIGNS[t[0].sign].el].n}، لكن السهولة ممكن تخليك تكسل، فاستخدمها بقصد.` });
+      }
+    }
+    for (let i = 0; i < pl.length; i++) for (let j = i + 1; j < pl.length; j++) {
+      if (!near(pl[i], pl[j], 180, 8)) continue;
+      for (let k = 0; k < pl.length; k++) {
+        if (k === i || k === j) continue;
+        if (near(pl[k], pl[i], 90, 7) && near(pl[k], pl[j], 90, 7)) {
+          out.push({ t: "مربع T", txt: `${PLANETS[pl[i].key].n} و${PLANETS[pl[j].key].n} في مقابلة، و${PLANETS[pl[k].key].n} في تربيع معاهم. ده ضغط داخلي بيدفعك للإنجاز، و${PLANETS[pl[k].key].n} هو مفتاح التوازن.` });
+        }
+      }
+    }
+    return out;
+  }
+
+  /* ---------- رسم العجلة ---------- */
+  function spread(items, minSep) {
+    const n = items.length;
+    for (let it = 0; it < 80; it++) {
+      let moved = false;
+      for (let k = 0; k < n; k++) {
+        const a = items[k], b = items[(k + 1) % n];
+        const gap = (((b.disp - a.disp) % 360) + 360) % 360;
+        if (n > 1 && gap < minSep) {
+          const push = (minSep - gap) / 2 + 0.01;
+          a.disp = (a.disp - push + 360) % 360; b.disp = (b.disp + push) % 360; moved = true;
+        }
+      }
+      if (!moved) break;
+    }
+  }
+  function wheelSVG(ch, aspects) {
+    const cx = 260, cy = 260, R1 = 250, R2 = 208, R3 = 92, RP = 174, RN = 110;
+    const base = ch.known ? ch.asc : 0;
+    const th = lon => (180 + (lon - base)) * Math.PI / 180;
+    const pt = (lon, r) => { const a = th(lon); return [(cx + r * Math.cos(a)).toFixed(1), (cy - r * Math.sin(a)).toFixed(1)]; };
+    let o = `<svg class="cw" viewBox="0 0 520 520" role="img" aria-label="رسم الخريطة الفلكية">`;
+    for (let i = 0; i < 12; i++) {
+      const [x0, y0] = pt(i * 30, R1), [x1, y1] = pt(i * 30 + 30, R1), [x2, y2] = pt(i * 30 + 30, R2), [x3, y3] = pt(i * 30, R2);
+      o += `<path class="sec e${SIGNS[i].el}" d="M${x0} ${y0}A${R1} ${R1} 0 0 0 ${x1} ${y1}L${x2} ${y2}A${R2} ${R2} 0 0 1 ${x3} ${y3}Z"/>`;
+      const [gx, gy] = pt(i * 30 + 15, (R1 + R2) / 2);
+      o += `<text class="cg" x="${gx}" y="${gy}">${gl(SIGNS[i].g)}</text>`;
+    }
+    o += `<circle class="rg" cx="${cx}" cy="${cy}" r="${R2}"/><circle class="rg" cx="${cx}" cy="${cy}" r="${R3}"/>`;
+    if (ch.known) {
+      ch.cusps.forEach((c, i) => {
+        const [xa, ya] = pt(c, R2), [xb, yb] = pt(c, R3);
+        o += `<line class="hl${i % 3 === 0 ? " ax" : ""}" x1="${xa}" y1="${ya}" x2="${xb}" y2="${yb}"/>`;
+        const mid = c + norm(ch.cusps[(i + 1) % 12] - c) / 2, [nx, ny] = pt(mid, RN);
+        o += `<text class="hn" x="${nx}" y="${ny}">${i + 1}</text>`;
+      });
+    } else {
+      for (let i = 0; i < 12; i++) {
+        const [xa, ya] = pt(i * 30, R2), [xb, yb] = pt(i * 30, R3);
+        o += `<line class="hl" x1="${xa}" y1="${ya}" x2="${xb}" y2="${yb}"/>`;
+      }
+    }
+    aspects.filter(a => !["asc", "mc"].includes(a.a) && !["asc", "mc"].includes(a.b) && a.asp.k !== "conj").forEach(a => {
+      const la = ch.bodies.find(b => b.key === a.a).lon, lb = ch.bodies.find(b => b.key === a.b).lon;
+      const [xa, ya] = pt(la, R3), [xb, yb] = pt(lb, R3);
+      o += `<line class="as ${["sq", "opp"].includes(a.asp.k) ? "hard" : "soft"}" x1="${xa}" y1="${ya}" x2="${xb}" y2="${yb}"/>`;
+    });
+    const items = ch.bodies.filter(b => PLANET_KEYS.includes(b.key) || b.key === "node").map(b => ({ b, disp: b.lon }));
+    items.sort((a, b) => a.b.lon - b.b.lon);
+    spread(items, 10);
+    items.forEach(({ b, disp }) => {
+      const [t1x, t1y] = pt(b.lon, R2), [t2x, t2y] = pt(b.lon, R2 - 9), [px, py] = pt(disp, RP);
+      o += `<line class="tk" x1="${t1x}" y1="${t1y}" x2="${t2x}" y2="${t2y}"/>`;
+      o += `<g class="pg"><text x="${px}" y="${py}">${gl(PLANETS[b.key].g)}</text>${b.retro ? `<text class="rx" x="${(+px + 13).toFixed(1)}" y="${(+py + 12).toFixed(1)}">℞</text>` : ""}</g>`;
+    });
+    return o + "</svg>";
+  }
+
+  /* ---------- نموذج الخريطة ---------- */
+  const citySel = $("#f-city");
+  CITY_GROUPS.forEach(gr => {
+    const og = document.createElement("optgroup"); og.label = gr.g;
+    CITIES.forEach((c, i) => { if (c.g === gr.g) { const op = document.createElement("option"); op.value = i; op.textContent = c.n; og.appendChild(op); } });
+    citySel.appendChild(og);
+  });
+  const manualOpt = document.createElement("option"); manualOpt.value = "manual"; manualOpt.textContent = "مكان تاني (إدخال يدوي)"; citySel.appendChild(manualOpt);
+  citySel.value = "0";
+  citySel.addEventListener("change", () => { $("#manual").hidden = citySel.value !== "manual"; });
+  $("#f-unknown").addEventListener("change", e => { $("#f-time").disabled = e.target.checked; });
+
+  let LAST = null;
+  $("#cform").addEventListener("submit", e => { e.preventDefault(); calc(); });
+
+  function fail(msg) { const el = $("#ferr"); el.textContent = msg; el.hidden = false; }
+
+  function calc() {
+    $("#ferr").hidden = true;
+    const date = $("#f-date").value;
+    if (!date) return fail("اكتب تاريخ الميلاد.");
+    const [y, m, d] = date.split("-").map(Number);
+    if (y < 1900 || y > 2100) return fail("التاريخ لازم يكون بين 1900 و 2100.");
+    const known = !$("#f-unknown").checked;
+    let hh = 12, mm = 0;
+    if (known) {
+      const t = $("#f-time").value;
+      if (!t) return fail("اكتب وقت الميلاد، أو علّم على (مش عارف وقت ميلادي).");
+      [hh, mm] = t.split(":").map(Number);
+    }
+    let lat, lon, utcMs, placeName;
+    if (citySel.value === "manual") {
+      lat = parseFloat($("#f-lat").value); lon = parseFloat($("#f-lon").value);
+      const off = parseFloat($("#f-off").value);
+      if (![lat, lon, off].every(Number.isFinite) || Math.abs(lat) > 89 || Math.abs(lon) > 180) return fail("اكتب خط العرض والطول وفرق التوقيت بشكل صحيح.");
+      utcMs = Date.UTC(y, m - 1, d, hh, mm) - off * 3600000;
+      placeName = `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
+    } else {
+      const c = CITIES[+citySel.value];
+      lat = c.lat; lon = c.lon; placeName = c.n;
+      try { utcMs = Astro.localToUtcMs(y, m, d, hh, mm, c.tz); }
+      catch (err) { return fail("المتصفح مش قادر يحسب التوقيت المحلي للمكان ده. جرّب الإدخال اليدوي."); }
+    }
+    const ch = Astro.chart({ utcMs, lat, lon, hs: $("#f-hs").value, known });
+    LAST = { ch, name: $("#f-name").value.trim(), y, m, d, hh, mm, known, placeName };
+    renderResult(LAST);
+    const r = $("#result"); r.hidden = false;
+    r.scrollIntoView();
+  }
+
+  /* ---------- عرض النتيجة ---------- */
+  const body = (ch, k) => ch.bodies.find(b => b.key === k);
+
+  function renderResult(S) {
+    const ch = S.ch, asp = natalAspects(ch), pats = findPatterns(ch);
+    const sun = body(ch, "sun"), moon = body(ch, "moon");
+    const risingS = ch.known ? Math.floor(ch.asc / 30) : null;
+    const pad = n => String(n).padStart(2, "0");
+    const when = `${S.d}/${S.m}/${S.y}${S.known ? ` الساعة ${pad(S.hh)}:${pad(S.mm)}` : ""}`;
+    const titleName = S.name ? `خريطة ${esc(S.name)}` : "خريطتك";
+
+    const big = (label, lon, g) => `<div class="b3"><span class="b3g" aria-hidden="true">${gl(g)}</span><span class="b3l">${label}</span><strong>${SIGNS[fmt(lon).s].n}</strong>${num(fmt(lon).txt)}</div>`;
+    let h = `<div class="res-head"><h3>${titleName}</h3><p>${when}، ${esc(S.placeName)}</p></div>
+      <div class="big3">${big("الشمس", sun.lon, "☉")}${big("القمر", moon.lon, "☽")}${ch.known ? big("الطالع", ch.asc, "↑") : `<div class="b3 dim"><span class="b3g" aria-hidden="true">↑</span><span class="b3l">الطالع</span><strong>مش متاح</strong><span class="b3n">محتاج وقت الميلاد</span></div>`}</div>
+      <div class="wheel-wrap">${wheelSVG(ch, asp)}</div>
+      ${ch.known ? "" : `<p class="note">من غير وقت الميلاد مش هنقدر نحسب الطالع والبيوت، والقمر ممكن يفرق لحد ٦ درجات.</p>`}
+      ${ch.hs === "whole-fallback" ? `<p class="note">المكان ده بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فاستخدمنا نظام البيوت الكاملة (Whole Sign).</p>` : ""}`;
+
+    h += `<div class="tabs" role="tablist" aria-label="أقسام الخريطة">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">قراءتك</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp5" id="tb5" tabindex="-1">مجالات حياتك</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">نمطك ونصايحك</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">النهاردة ليك</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp4" id="tb4" tabindex="-1">الجداول</button></div>`;
+
+    /* 1) القراءة */
+    let rd = "";
+    if (ch.known) rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">↑</span> الطالع في ${SIGNS[risingS].n} ${num(fmt(ch.asc).txt)}</h4><p>${RISING_TXT[risingS]}</p>
+      ${(() => { const rk = SIGNS[risingS].ruler, rb = body(ch, rk); return `<p class="sub">حاكم طالعك هو ${PLANETS[rk].n}، وموجود في برج ${SIGNS[rb.sign].n} وفي البيت ${HOUSES[rb.house - 1].n}. ده بيوجّه طاقتك ناحية ${HOUSES[rb.house - 1].area}.</p>`; })()}</article>`;
+    PLANET_KEYS.forEach(k => {
+      const b = body(ch, k), f = fmt(b.lon);
+      rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span> ${PLANETS[k].n} في ${SIGNS[f.s].n} ${num(f.txt)}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4>
+        <p>${planetInSign(k, f.s)}</p>
+        ${ch.known ? `<p class="sub">في البيت ${HOUSES[b.house - 1].n}: ${deepHouse(k, b.house)}</p>` : ""}
+        ${b.retro ? `<p class="sub">${retroText(k)}</p>` : ""}</article>`;
+    });
+    const nd = body(ch, "node"), nf = fmt(nd.lon), south = (nf.s + 6) % 12;
+    rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☊")}</span> العقدة الشمالية في ${SIGNS[nf.s].n} ${num(nf.txt)}</h4>
+      <p>اتجاه نموك هو ${SIGNS[nf.s].strength}، ${SIGNS[nf.s].growth}. العقدة الجنوبية في ${SIGNS[south].n}: بتميل ترجع لمنطقة راحة قديمة هي ${SIGNS[south].strength}، فاستخدمها كدعم مش كمكان تقعد فيه.</p>
+      ${ch.known ? `<p class="sub">في البيت ${HOUSES[nd.house - 1].n}: اتجاه نموك بيمر عن طريق ${HOUSES[nd.house - 1].area}.</p>` : ""}</article>`;
+    h += `<div class="panel" role="tabpanel" id="tp1" aria-labelledby="tb1">${rd}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp5" aria-labelledby="tb5" hidden>${areasHTML(ch)}</div>`;
+
+    /* 2) النمط والنصايح */
+    const elc = [0, 0, 0, 0], mdc = [0, 0, 0];
+    ch.bodies.filter(b => PLANET_KEYS.includes(b.key)).forEach(b => { elc[SIGNS[b.sign].el]++; mdc[SIGNS[b.sign].mod]++; });
+    const elMax = Math.max(...elc), mdMax = Math.max(...mdc);
+    const bars = (arr, labels, max) => arr.map((v, i) => `<div class="bar"><span>${labels[i]}</span><div class="trk"><i style="width:${(v / max * 100).toFixed(0)}%"></i></div><b>${v}</b></div>`).join("");
+    const domEl = elc.map((v, i) => v === elMax ? i : -1).filter(i => i >= 0), domMod = mdc.indexOf(mdMax);
+    const lackEl = elc.map((v, i) => v <= 1 ? i : -1).filter(i => i >= 0);
+    const sunS = sun.sign, moonS = moon.sign, venS = body(ch, "venus").sign, marS = body(ch, "mars").sign;
+    const strengths = [`في جوهرك (الشمس في ${SIGNS[sunS].n}): ${SIGNS[sunS].strength}.`, `في مشاعرك (القمر في ${SIGNS[moonS].n}): ${SIGNS[moonS].strength}.`];
+    const watch = [`${SIGNS[sunS].shadow} (من الشمس في ${SIGNS[sunS].n}).`, `${SIGNS[moonS].shadow} (من القمر في ${SIGNS[moonS].n}).`];
+    if (ch.known) { strengths.push(`في أول انطباع عنك (الطالع ${SIGNS[risingS].n}): ${SIGNS[risingS].strength}.`); watch.push(`${SIGNS[risingS].shadow} (من الطالع ${SIGNS[risingS].n}).`); }
+    const adv = [MOON_ADVICE[moonS], VENUS_EL[SIGNS[venS].el], MARS_EL[SIGNS[marS].el], `اتجاه نموك: ${SIGNS[sunS].growth}.`];
+    let pt = `<h4 class="ph">توزيع العناصر</h4><div class="bars">${bars(elc, ELEMENTS.map(e => e.n), Math.max(elMax, 1))}</div>
+      <p>${domEl.length === 1 ? EL_DOM[domEl[0]] : domEl.map(i => EL_DOM[i]).slice(0, 2).join(" ")}</p>
+      ${lackEl.map(i => `<p class="sub">${EL_LACK[i]}</p>`).join("")}
+      <h4 class="ph">توزيع الطابع</h4><div class="bars">${bars(mdc, MODALITIES.map(m => m.n), Math.max(mdMax, 1))}</div><p>${MOD_DOM[domMod]}</p>
+      <h4 class="ph">أنماط في خريطتك</h4>
+      ${pats.length ? pats.map(p => `<article class="rd"><h4>${p.t}</h4><p>${p.txt}</p></article>`).join("") : `<p>مفيش أنماط كبيرة (تجمّع أو مثلث أو مربع T) في خريطتك، وده معناه إن طاقتك موزعة بشكل مرن من غير تركيز واحد غالب.</p>`}
+      <h4 class="ph">نقاط قوتك</h4><ul class="lst">${strengths.map(t => `<li>${t}</li>`).join("")}</ul>
+      <h4 class="ph">محتاجة انتباه</h4><ul class="lst">${watch.map(t => `<li>${t}</li>`).join("")}</ul>
+      <h4 class="ph">نصايح ليك</h4><ul class="lst">${adv.map(t => `<li>${t}</li>`).join("")}</ul>`;
+    h += `<div class="panel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden>${pt}</div>`;
+
+    /* 3) النهاردة */
+    h += `<div class="panel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>${todayHTML(ch)}</div>`;
+
+    /* 4) الجداول */
+    const hsName = ch.hs === "placidus" ? "Placidus" : "Whole Sign";
+    let tb = `<h4 class="ph">الكواكب</h4><div class="tbl">${ch.bodies.map(b => { const f = fmt(b.lon); return `<div class="tr"><span class="c1"><span class="sg" aria-hidden="true">${gl(PLANETS[b.key].g)}</span> ${PLANETS[b.key].n}</span><span class="c2">${gl(SIGNS[f.s].g)} ${SIGNS[f.s].n} ${num(f.txt)}</span><span class="c3">${ch.known ? "بيت " + b.house : ""}${b.retro ? ' <i class="rxb">راجع</i>' : ""}</span></div>`; }).join("")}</div>`;
+    if (ch.known) {
+      tb += `<h4 class="ph">البيوت (${hsName})</h4><div class="tbl">${ch.cusps.map((c, i) => { const f = fmt(c); return `<div class="tr"><span class="c1">البيت ${HOUSES[i].n}</span><span class="c2">${gl(SIGNS[f.s].g)} ${SIGNS[f.s].n} ${num(f.txt)}</span><span class="c3"></span></div>`; }).join("")}</div>
+        <div class="tbl"><div class="tr"><span class="c1">وسط السما (MC)</span><span class="c2">${signLine(ch.mc)}</span><span class="c3"></span></div></div>`;
+    }
+    tb += `<h4 class="ph">الزوايا بين الكواكب</h4>${asp.length ? asp.slice(0, 16).map(a => { const f = fmt(a.orb); return `<article class="rd asp"><h4>${PLANETS[a.a] ? gl(PLANETS[a.a].g) : glyphOf(a.a)} ${nmOf(a.a)} ${a.asp.n} ${PLANETS[a.b] ? gl(PLANETS[a.b].g) : glyphOf(a.b)} ${nmOf(a.b)} <span class="orb">فرق ${num(f.txt)}</span></h4><p>${themeOf(a.a)}، مع ${themeOf(a.b)}: ${a.asp.nat}.</p></article>`; }).join("") : "<p>مفيش زوايا قريبة بشكل واضح.</p>"}`;
+    h += `<div class="panel" role="tabpanel" id="tp4" aria-labelledby="tb4" hidden>${tb}</div>`;
+
+    /* دعوة للحجز */
+    const summary = `أهلاً، حسبت خريطتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${S.name}\nتاريخ الميلاد: ${when}\nمكان الميلاد: ${S.placeName}\nالشمس: ${SIGNS[sunS].n}\nالقمر: ${SIGNS[moonS].n}${ch.known ? `\nالطالع: ${SIGNS[risingS].n}` : ""}`;
+    h += `<div class="cta-box"><h4>عايز قراءة أعمق لخريطتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط الخريطة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="res-wa" href="#book">احجز قراءة الخريطة على واتساب</a></div>${CONTACT_LINE}`;
+
+    const root = $("#result");
+    root.innerHTML = h;
+    bindContact(root); const wa = $("#res-wa", root); wa.href = waLink(summary); openWA(wa);
+    const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
+    tabs.forEach((t, i) => t.addEventListener("click", () => tabs.forEach((x, j) => {
+      x.setAttribute("aria-selected", i === j ? "true" : "false"); x.tabIndex = i === j ? 0 : -1; panels[j].hidden = i !== j;
+    })));
+  }
+
+  /* ---------- النهاردة ليك (عبور شخصي) ---------- */
+  function todayHTML(ch) {
+    const now = Astro.chart({ utcMs: Date.now(), lat: 30, lon: 31, known: false });
+    const nb = k => now.bodies.find(b => b.key === k);
+    const dateTxt = new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    const mn = nb("moon"), mf = fmt(mn.lon);
+    let o = `<p class="sub">${dateTxt}</p>`;
+    o += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> القمر النهاردة في ${SIGNS[mf.s].n}</h4><p>${MOON_TODAY[SIGNS[mf.s].el]}</p>`;
+    if (ch.known) { const h = Astro.houseOf(mn.lon, ch.cusps); o += `<p class="sub">القمر بيعدي دلوقتي على البيت ${HOUSES[h - 1].n} عندك، فمشاعرك واهتمامك أقرب لـ${HOUSES[h - 1].area}.</p>`; }
+    o += `</article>`;
+    const targets = ["sun", "moon", "mercury", "venus", "mars"].map(k => ({ key: k, lon: body(ch, k).lon }));
+    if (ch.known) targets.push({ key: "asc", lon: ch.asc }, { key: "mc", lon: ch.mc });
+    const order = ["pluto", "neptune", "uranus", "saturn", "jupiter", "mars", "venus", "mercury", "sun"];
+    const hits = [];
+    order.forEach((tk, wi) => {
+      const tb = nb(tk);
+      targets.forEach(n => {
+        const diff = Math.abs(d180(tb.lon - n.lon));
+        for (const A of ASPECTS) { const orb = Math.abs(diff - A.ang); if (orb <= 2) { hits.push({ tk, n: n.key, A, orb, w: wi }); break; } }
+      });
+    });
+    hits.sort((a, b) => a.w - b.w || a.orb - b.orb);
+    o += `<h4 class="ph">عبور الكواكب على خريطتك</h4>`;
+    o += hits.length ? hits.slice(0, 6).map(x => `<article class="rd"><h4>${gl(PLANETS[x.tk].g)} ${PLANETS[x.tk].n} ${x.A.n} ${PLANETS[x.n] ? gl(PLANETS[x.n].g) : glyphOf(x.n)} ${nmOf(x.n)} <span class="orb">فرق ${num(fmt(x.orb).txt)}</span></h4><p>${PLANETS[x.tk].theme} بتتقابل مع ${themeOf(x.n)} عندك: ${x.A.tr}.</p></article>`).join("") : `<p>مفيش عبور قوي النهاردة على الكواكب الشخصية في خريطتك. يوم هادي نسبيًا، فاستغله في روتينك.</p>`;
+    if (ch.known) {
+      o += `<h4 class="ph">الكواكب البطيئة في بيوتك</h4>`;
+      o += ["jupiter", "saturn", "uranus", "neptune", "pluto"].map(k => { const b = nb(k), h = Astro.houseOf(b.lon, ch.cusps), f = fmt(b.lon); return `<article class="rd"><h4>${gl(PLANETS[k].g)} ${PLANETS[k].n} في ${SIGNS[f.s].n}، بيتك ${HOUSES[h - 1].n}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4><p>${deepHouse(k, h, "transit")}</p></article>`; }).join("");
+    }
+    const retros = now.bodies.filter(b => b.retro);
+    if (retros.length) o += `<h4 class="ph">كواكب راجعة دلوقتي</h4>` + retros.map(b => `<p class="sub">${retroText(b.key)}</p>`).join("");
+    return o;
+  }
+
+  /* ---------- السما دلوقتي ---------- */
+  const signAt = (key, ms) => Math.floor(Astro.lonOf(key, Astro.jdFromMs(ms) + Astro.deltaT(Astro.yearOf(Astro.jdFromMs(ms))) / 86400) / 30);
+  const HORIZON = { moon: 4, sun: 35, mercury: 130, venus: 150, mars: 330, jupiter: 480, saturn: 1100, uranus: 3000, neptune: 6000, pluto: 9500 };
+  function nextIngress(key, ms) {
+    const step = key === "moon" ? 0.125 : 1, s0 = signAt(key, ms);
+    let t = ms;
+    for (let i = 0; i * step <= HORIZON[key]; i++) {
+      const t2 = t + step * 864e5;
+      if (signAt(key, t2) !== s0) {
+        let a = t, b = t2;
+        for (let k = 0; k < 24; k++) { const m = (a + b) / 2; if (signAt(key, m) === s0) a = m; else b = m; }
+        return { ms: b, sign: signAt(key, b) };
+      }
+      t = t2;
+    }
+    return null;
+  }
+  const skyDateInput = $("#sky-date");
+  let skyKey = "mars";
+  const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
+
+  function renderSky() {
+    const ms = skyMs(), ch = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false });
+    const b = k => ch.bodies.find(x => x.key === k);
+    const el = norm(b("moon").lon - b("sun").lon), ph = Math.floor(((el + 22.5) % 360) / 45), ill = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
+    const dtxt = new Date(ms).toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    $("#sky-moon").innerHTML = `<strong>${dtxt}</strong><span>القمر ${PHASES[ph]}، مضاء حوالي ${ill}٪، وموجود في برج ${SIGNS[b("moon").sign].n}.</span>`;
+    $("#sky-chips").innerHTML = PLANET_KEYS.map(k => { const p = b(k), f = fmt(p.lon); return `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === skyKey}"><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span><span class="cn">${PLANETS[k].n}${p.retro ? ' <i class="rxb">راجع</i>' : ""}</span><span class="cs">${SIGNS[f.s].n}</span>${num(f.txt)}</button>`; }).join("");
+    $$("#sky-chips .chip").forEach(c => c.addEventListener("click", () => { skyKey = c.dataset.k; renderSky(); }));
+    renderSkyPanel(ch, ms);
+  }
+  function renderSkyPanel(ch, ms) {
+    const k = skyKey, p = PLANETS[k], bd = ch.bodies.find(x => x.key === k), S = SIGNS[bd.sign];
+    const ing = nextIngress(k, ms), dfmt = t => new Date(t).toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" });
+    let ingTxt = "";
+    if (ing) {
+      const back = ing.sign === (bd.sign + 11) % 12;
+      ingTxt = `<p class="sub">${p.n} ${back ? "هيرجع لبرج" : "هيدخل برج"} ${SIGNS[ing.sign].n} تقريبًا يوم ${dfmt(ing.ms)}.</p>`;
+    }
+    let o = `<h3>${p.n} في ${S.n}</h3>
+      <p>الفترة دي ${p.theme} بتتحرك بأسلوب ${S.way}. الأجواء العامة بتساعد على ${S.strength}، لكن انتبه من ${S.shadow}.</p>
+      ${bd.retro ? `<p class="sub">${retroText(k)}</p>` : ""}${ingTxt}
+      <h4 class="ph">تأثيره على كل برج</h4><p class="sub">التأثير بيتحدد حسب البيت الي ${p.n} بيعدي عليه من برجك (نظام البيوت الكاملة).</p>`;
+    o += SIGNS.map((s, i) => { const h = ((bd.sign - i + 12) % 12) + 1; return `<details class="acc"><summary><span class="sg" aria-hidden="true">${gl(s.g)}</span> ${s.n} <span class="hs">بيتك ${HOUSES[h - 1].n}</span></summary><p>${deepHouse(k, h, "transit")}</p></details>`; }).join("");
+    $("#sky-panel").innerHTML = o;
+  }
+  skyDateInput.addEventListener("change", renderSky);
+  $("#sky-today").addEventListener("click", () => { skyDateInput.value = ""; renderSky(); });
+  renderSky();
+
+  /* ---------- عجلة الهيرو وتوقعات الأبراج ---------- */
+  const NS = "http://www.w3.org/2000/svg";
+  const ticks = $("#ticks");
+  for (let k = 0; k < 72; k++) {
+    const a = k * 5 * Math.PI / 180, r1 = k % 6 === 0 ? 172 : 177, r2 = 186;
+    const l = document.createElementNS(NS, "line");
+    l.setAttribute("x1", (200 + Math.cos(a) * r1).toFixed(2)); l.setAttribute("y1", (200 + Math.sin(a) * r1).toFixed(2));
+    l.setAttribute("x2", (200 + Math.cos(a) * r2).toFixed(2)); l.setAttribute("y2", (200 + Math.sin(a) * r2).toFixed(2));
+    ticks.appendChild(l);
+  }
+  const picker = $("#picker"), panel = $("#panel"), pbtns = [];
+  function selectSign(i) {
+    const s = SIGNS[i], f = FORECASTS[i];
+    pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+    panel.innerHTML = `<div class="arch-g" aria-hidden="true">${gl(s.g)}</div><h3>${s.n}</h3><p class="dates">${s.d}</p>
+      <p class="trait">برج ${ELEMENTS[s.el].adj} يحكمه ${PLANETS[s.ruler].n}</p><p class="overall">${f.overall}</p>
+      <div class="fcs"><div class="fc"><h4>الحب</h4><p>${f.love}</p></div><div class="fc"><h4>الشغل</h4><p>${f.work}</p></div><div class="fc"><h4>الفلوس</h4><p>${f.money}</p></div></div>
+      ${dailySign(i)}`;
+  }
+  SIGNS.forEach((s, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "sign";
+    b.innerHTML = `<span class="sg" aria-hidden="true">${gl(s.g)}</span><span>${s.n}</span>`;
+    b.addEventListener("click", () => selectSign(i)); picker.appendChild(b); pbtns.push(b);
+  });
+  const glyphs = $("#glyphs");
+  SIGNS.forEach((s, i) => {
+    const a = (-90 + i * 30) * Math.PI / 180, x = (200 + Math.cos(a) * 148).toFixed(2), y = (200 + Math.sin(a) * 148).toFixed(2);
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "wg"); g.setAttribute("role", "button"); g.setAttribute("tabindex", "0"); g.setAttribute("aria-label", "توقعات برج " + s.n);
+    g.style.setProperty("--i", i);
+    g.innerHTML = `<circle class="hit" cx="${x}" cy="${y}" r="21"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central">${gl(s.g)}</text>`;
+    const go = () => { selectSign(i); $("#signs").scrollIntoView(); };
+    g.addEventListener("click", go);
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    glyphs.appendChild(g);
+  });
+
+  /* ---------- الكورسات والفيديوهات ---------- */
+  const cl = $("#courses-list");
+  if (COURSES.length) {
+    cl.innerHTML = COURSES.map(c => `<li class="course"><div class="cbody"><h3>${esc(c.title)}</h3><p>${esc(c.desc)}</p><p class="meta">${esc(c.level || "")}${c.price ? ` | ${esc(c.price)}` : ""}${c.soon ? ` <span class="soon">قريبًا</span>` : ""}</p></div>${c.link ? `<a class="btn ghost" href="${esc(c.link)}" target="_blank" rel="noopener">اشترك دلوقتي</a>` : ""}</li>`).join("");
+  } else {
+    cl.innerHTML = `<li class="course"><div class="cbody"><h3>الكورسات قريبًا</h3><p>بجهز كورسات تعلّم الفلك والتاروت خطوة بخطوة. تابعني على انستجرام عشان تعرف أول بأول.</p></div><a class="btn ghost" data-ig-link href="#">تابعني على انستجرام</a></li>`;
+  }
+  const ytId = u => { const m = String(u).match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : null; };
+  const vl = $("#videos-list");
+  if (VIDEOS.length) {
+    vl.innerHTML = VIDEOS.map(v => { const id = ytId(v.url); return `<li><a class="vid" href="${esc(v.url)}" target="_blank" rel="noopener"><span class="thumb">${id ? `<img loading="lazy" alt="" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg">` : ""}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(18,8,42,.7)" stroke="#D6AE5E"/><path d="M10 8l6 4-6 4z" fill="#D6AE5E"/></svg></span><span class="vt">${esc(v.title)}</span></a></li>`; }).join("");
+  } else {
+    vl.innerHTML = `<li class="vempty">الفيديوهات قريبًا. تابعني على انستجرام لحد ما تنزل.</li>`;
+  }
+  /* ============ ميزات إضافية: ماتريكس، حيوات سابقة، تاروت، توقعات يومية ============ */
+  function wireTabs(root) {
+    const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
+    tabs.forEach((t, i) => t.addEventListener("click", () => tabs.forEach((x, j) => {
+      x.setAttribute("aria-selected", i === j ? "true" : "false"); x.tabIndex = i === j ? 0 : -1; panels[j].hidden = i !== j;
+    })));
+  }
+  function bindContact(root) {
+    $$("[data-wa-link]", root).forEach(a => { a.href = waLink(MSG.general); openWA(a); });
+    $$("[data-ig-link]", root).forEach(a => { a.href = `https://instagram.com/${IG_USER}`; openWA(a); });
+  }
+  const CONTACT_LINE = `<p class="contact-line">عايز تفاصيل أعمق أو عندك سؤال على حالتك؟ كلمني على <a data-wa-link href="#">واتساب</a> أو على <a data-ig-link href="#">انستجرام</a>.</p>`;
+  const NOTE_SYM = `<p class="note">قراءة رمزية للتأمل والوعي بالنفس، مش تنبؤ قاطع ومش بديل عن استشارة مختصة.</p>`;
+
+  /* ---------- نصوص أعمق للكوكب في البيت ---------- */
+  function deepHouse(k, h, mode) {
+    const s = HOUSE_SIT[h - 1];
+    return `${planetInHouse(k, h, mode)} ممكن يظهر ده في مواقف زي: ${s[0]}، أو ${s[1]}، أو ${s[2]}. والجانب الصعب (${PLANETS[k].watch}) بيزيد لو ${HOUSE_TRIG[h - 1]}.`;
+  }
+  const moonDay = h => `النهاردة مزاجك واهتمامك بيتجهوا لـ${HOUSES[h - 1].area}. ممكن تلاقي نفسك في ${HOUSE_SIT[h - 1][0]}، أو ${HOUSE_SIT[h - 1][1]}. نصيحة اليوم: ${HOUSE_ADV[h - 1]}.`;
+
+  /* ---------- توقعات يومية لكل برج (من حركة الكواكب الحقيقية) ---------- */
+  function dailySign(i) {
+    const now = Astro.chart({ utcMs: Date.now(), lat: 30, lon: 31, known: false });
+    const nb = k => now.bodies.find(b => b.key === k);
+    const hOf = k => ((nb(k).sign - i + 12) % 12) + 1;
+    const dt = new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long" });
+    const mh = hOf("moon");
+    let o = `<div class="fcs"><h4 class="ph">توقعات النهاردة، ${dt}</h4>
+      <article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> يومك (القمر في بيتك ${HOUSES[mh - 1].n})</h4><p>${moonDay(mh)}</p></article>`;
+    ["mercury", "venus", "mars"].forEach(k => {
+      const h = hOf(k), b = nb(k);
+      o += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span> ${PLANETS[k].n} في بيتك ${HOUSES[h - 1].n}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4><p>${deepHouse(k, h, "transit")}</p>${b.retro ? `<p class="sub">${retroText(k)}</p>` : ""}</article>`;
+    });
+    return o + `${NOTE_SYM}</div>`;
+  }
+
+  /* ---------- مجالات حياتك (تحليل أعمق للخريطة) ---------- */
+  function houseLine(ch, h) {
+    const S = SIGNS[Math.floor(ch.cusps[h - 1] / 30)];
+    const ten = ch.bodies.filter(b => PLANET_KEYS.includes(b.key) && b.house === h);
+    let t = `بيتك ${HOUSES[h - 1].n} (${HOUSES[h - 1].area}) بيبدأ في برج ${S.n}، يعني بتتعامل معاه بأسلوب ${S.way}.`;
+    if (ten.length) t += ` وفيه ${ten.map(b => PLANETS[b.key].n).join(" و")}، فالموضوع ده بياخد حيز كبير من حياتك.`;
+    else { const rb = body(ch, S.ruler); t += ` وهو فاضي من الكواكب، فبيتحرك بحاكمه ${PLANETS[S.ruler].n} الموجود في برج ${SIGNS[rb.sign].n} وبيتك ${HOUSES[rb.house - 1].n}.`; }
+    return t;
+  }
+  function areasHTML(ch) {
+    if (!ch.known) return `<p>تحليل مجالات حياتك محتاج وقت الميلاد عشان نعرف البيوت. اكتب وقت ميلادك وجرّب تاني.</p>`;
+    const v = body(ch, "venus"), mr = body(ch, "mars"), mo = body(ch, "moon"), sa = body(ch, "saturn"), nd = body(ch, "node");
+    const mcS = SIGNS[Math.floor(ch.mc / 30)];
+    const sec = (t, a) => `<h4 class="ph">${t}</h4>` + a.map(x => `<article class="rd"><p>${x}</p></article>`).join("");
+    return sec("الحب والعلاقات", [
+      houseLine(ch, 7),
+      `الزهرة (طريقة حبك) في ${SIGNS[v.sign].n}. ${VENUS_EL[SIGNS[v.sign].el]} ${deepHouse("venus", v.house)}`,
+      `المريخ (انجذابك ورغبتك) في ${SIGNS[mr.sign].n}. ${deepHouse("mars", mr.house)}`,
+      houseLine(ch, 5)
+    ]) + sec("الشغل والفلوس", [
+      `${houseLine(ch, 10)} ووسط السما في ${mcS.n}، فالناس بتشوف شغلك بأسلوب ${mcS.way}.`,
+      houseLine(ch, 2),
+      houseLine(ch, 6),
+      `زحل (الاختبار الي بيبني مسارك) في ${SIGNS[sa.sign].n}. ${deepHouse("saturn", sa.house)}`
+    ]) + sec("نفسيتك والجرح والشفاء", [
+      `القمر (احتياجك العاطفي) في ${SIGNS[mo.sign].n}. ${deepHouse("moon", mo.house)}`,
+      `نصيحة تحرير: ${MOON_ADVICE[mo.sign]}`,
+      houseLine(ch, 12),
+      houseLine(ch, 4)
+    ]) + sec("رسالتك في الحياة", [
+      `العقدة الشمالية في ${SIGNS[nd.sign].n} وبيتك ${HOUSES[nd.house - 1].n}: اتجاه نموك بيمر عن طريق ${HOUSES[nd.house - 1].area}، وبتنمّي فيه ${SIGNS[nd.sign].strength}.`
+    ]) + NOTE_SYM;
+  }
+
+  /* ---------- مصفوفة القدر والحيوات السابقة ---------- */
+  const digSum = n => String(n).split("").reduce((s, c) => s + +c, 0);
+  const redArc = n => { while (n > 22) n = digSum(n); return n; };
+  function matrixCalc(d, m, y) {
+    const A = redArc(d), B = redArc(m), C = redArc(y), D = redArc(A + B + C), E = redArc(A + B + C + D);
+    return { A, B, C, D, E, F: redArc(A + B), G: redArc(B + C), H: redArc(C + D), I: redArc(D + A) };
+  }
+  function lifePath(d, m, y) {
+    let n = digSum(d) + digSum(m) + digSum(y);
+    while (n > 9 && ![11, 22, 33].includes(n)) n = digSum(n);
+    return n;
+  }
+  function matrixSVG(P) {
+    const pos = { A: [60, 200], B: [200, 60], C: [340, 200], D: [200, 340], E: [200, 200], F: [60, 60], G: [340, 60], H: [340, 340], I: [60, 340] };
+    let o = `<svg class="mx" viewBox="0 0 400 400" role="img" aria-label="مصفوفة القدر"><rect class="mxl" x="60" y="60" width="280" height="280"/><polygon class="mxl" points="200,60 340,200 200,340 60,200"/><path class="mxl faint" d="M60 200H340M200 60V340M60 60L340 340M340 60L60 340"/>`;
+    Object.keys(pos).forEach(k => {
+      const [x, y] = pos[k], c = k === "E";
+      o += `<g class="mxn${c ? " ctr" : ""}"><circle cx="${x}" cy="${y}" r="${c ? 32 : 25}"/><text class="mnum" x="${x}" y="${y}">${P[k]}</text><text class="mlet" x="${x}" y="${y - (c ? 42 : 35)}">${k}</text></g>`;
+    });
+    return o + "</svg>";
+  }
+  const mform = $("#mform");
+  mform.addEventListener("submit", e => {
+    e.preventDefault();
+    const err = $("#merr"); err.hidden = true;
+    const v = $("#m-date").value;
+    if (!v) { err.textContent = "اكتب تاريخ الميلاد."; err.hidden = false; return; }
+    const [y, m, d] = v.split("-").map(Number);
+    if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
+    renderMatrix($("#m-name").value.trim(), d, m, y);
+    const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
+  });
+  function renderMatrix(name, d, m, y) {
+    const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), AR = k => ARCANA[P[k] - 1];
+    const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
+    const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة"><button class="tab" role="tab" aria-selected="true" aria-controls="mp1" id="mt1">مصفوفة القدر</button><button class="tab" role="tab" aria-selected="false" aria-controls="mp2" id="mt2" tabindex="-1">حياتك السابقة</button></div>`;
+    let p1 = `<div class="wheel-wrap">${matrixSVG(P)}</div><p class="note">كل رقم من ١ لـ٢٢ بيمثل كارت من الكروت الكبيرة. ده حساب النسخة الشائعة من المصفوفة، وفي مدارس بتحسبها بشكل مختلف شوية.</p>`;
+    p1 += "ABCDEFGHI".split("").map(k => {
+      const a = AR(k), r = ROLES[k];
+      return `<article class="rd"><h4><span class="sg" aria-hidden="true">${k}</span> ${r.n}: ${a.n} <span class="orb">رقم ${P[k]}</span></h4><p>${r.intro} ${a.core}.</p><p class="sub">وانتبه من: ${a.shadow}.</p>${k === "D" || k === "E" ? `<p class="sub">${a.psy}</p>` : ""}</article>`;
+    }).join("") + NOTE_SYM;
+    const lives = [["الحياة الأقرب ليك (الذيل الكارمي)", "D"], ["حياة أبعد", "I"], ["حياة أقدم", "H"]];
+    let p2 = `<p class="sub">دي قراءة رمزية بتطلع من أرقام تاريخ ميلادك. مش دليل على حياة فعلية، لكنها مرآة لأنماط ممكن تكون بتكررها دلوقتي.</p>`;
+    p2 += lives.map(([t, k]) => `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> ${t}: ${AR(k).n}</h4><p>${AR(k).past}</p></article>`).join("");
+    const D = AR("D");
+    p2 += `<h4 class="ph">إزاي ده بيظهر في حياتك دلوقتي</h4><p>${D.psy}</p><p class="sub">وفي الواقع بيتجسد غالبًا في: ${D.real}</p>
+      <h4 class="ph">تمرين تحرير</h4><p>${D.release}</p>
+      <h4 class="ph">طاقة رقمك (مسار الحياة)</h4><p>${LP_TXT[lp]}</p>${NOTE_SYM}`;
+    const root = $("#mresult");
+    root.innerHTML = head + tabs + `<div class="panel" role="tabpanel" id="mp1" aria-labelledby="mt1">${p1}</div><div class="panel" role="tabpanel" id="mp2" aria-labelledby="mt2" hidden>${p2}</div>` + CONTACT_LINE;
+    wireTabs(root); bindContact(root);
+  }
+
+  /* ---------- التاروت ---------- */
+  const deck = $("#tarot-deck"), tres = $("#tarot-res"), backs = [];
+  const rnd = n => { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0] % n; };
+  const BACK = `<svg viewBox="0 0 60 90" aria-hidden="true"><rect x="3" y="3" width="54" height="84" rx="6" fill="#1B0F3C" stroke="#D6AE5E" stroke-width="1.5"/><rect x="9" y="9" width="42" height="72" rx="3" fill="none" stroke="#8F7338"/><path d="M30 28L34 40L46 45L34 50L30 62L26 50L14 45L26 40Z" fill="none" stroke="#D6AE5E" stroke-width="1.4"/></svg>`;
+  function buildDeck() {
+    deck.innerHTML = ""; backs.length = 0;
+    for (let k = 0; k < 5; k++) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "tback"; b.setAttribute("aria-label", "كرت رقم " + (k + 1)); b.innerHTML = BACK;
+      b.addEventListener("click", () => pick(b));
+      deck.appendChild(b); backs.push(b);
+    }
+  }
+  function pick(b) {
+    backs.forEach(x => { x.disabled = true; });
+    b.classList.add("picked");
+    showCard(rnd(22), rnd(4) === 0);
+  }
+  function showCard(i, rev) {
+    const a = ARCANA[i], q = $("#t-q").value.trim();
+    tres.innerHTML = `<div class="tface${rev ? " rev" : ""}"><span class="tn">${i === 21 ? 0 : i + 1}</span><span class="ts" aria-hidden="true">✦</span><strong>${a.n}</strong><span class="te">${a.en}</span>${rev ? `<span class="trv">مقلوب</span>` : ""}</div>
+      ${q ? `<p class="sub center">نيتك: ${esc(q)}</p>` : ""}
+      <article class="rd"><h4>رسالة الكرت</h4><p>${a.core}.${rev ? " " + a.rev : ""}</p></article>
+      <article class="rd"><h4>في الواقع</h4><p>${a.real}</p></article>
+      <article class="rd"><h4>نفسيًا</h4><p>${a.psy}</p></article>
+      <article class="rd"><h4>روحيًا وطاقيًا</h4><p>${a.spirit}</p></article>
+      <article class="rd"><h4>تحرير</h4><p>${a.release}</p></article>
+      <p class="sub">الجانب الي محتاج انتباه: ${a.shadow}.</p>${NOTE_SYM}
+      <div class="cta-row"><button class="btn ghost" id="t-again" type="button">اسحب كرت تاني</button></div>${CONTACT_LINE}`;
+    tres.hidden = false;
+    $("#t-again").addEventListener("click", () => {
+      tres.hidden = true; tres.innerHTML = "";
+      backs.forEach(x => { x.disabled = false; x.classList.remove("picked"); });
+      $("#tarot").scrollIntoView();
+    });
+    bindContact(tres); tres.scrollIntoView();
+  }
+  buildDeck();
+  selectSign(0);
+
+})();
+
+</script>
+</body>
+</html>
