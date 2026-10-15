@@ -328,6 +328,35 @@ details.adv .field{margin-top:12px}
 .mxd .sg{font-family:var(--display);color:var(--gold);min-width:1.2em}
 .mxb{padding:0 0 12px}
 .mxb p{margin:6px 0}
+
+/* مسار الحياة والقفل */
+.numbadge{width:104px;height:104px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--gold);background:radial-gradient(circle at 50% 35%,#2c1766,var(--deep));font-family:var(--display);font-size:2.9rem;font-weight:700;color:var(--gold);box-shadow:0 0 36px rgba(214,174,94,.25)}
+.res-head .tg2{color:var(--gold);font-family:var(--display)}
+.fade{position:relative;max-height:5.6em;overflow:hidden}
+.fade::after{content:"";position:absolute;inset:auto 0 0 0;height:3.4em;background:linear-gradient(to bottom,transparent,var(--night))}
+.sec.alt .fade::after{background:linear-gradient(to bottom,transparent,var(--deep))}
+.lrow{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--amethyst);font-family:var(--display)}
+.lrow:last-of-type{border-bottom:1px solid var(--amethyst)}
+.lrow .lk{flex:none;width:18px;height:18px;background:var(--gold);-webkit-mask:var(--lockmask) center/contain no-repeat;mask:var(--lockmask) center/contain no-repeat}
+.lrow .sk{margin-inline-start:auto;display:flex;gap:6px;opacity:.55}
+.sk i{display:block;height:8px;width:46px;border-radius:6px;background:var(--amethyst);filter:blur(1.5px)}
+.sk i:nth-child(2){width:28px}
+:root{--lockmask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V8a5 5 0 0 1 10 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h1zm2 0h6V8a3 3 0 0 0-6 0v2zm3 4a2 2 0 0 0-1 3.7V19h2v-1.3A2 2 0 0 0 12 14z'/%3E%3C/svg%3E")}
+.tab.lk::before{content:"";display:inline-block;width:12px;height:12px;margin-inline-end:6px;vertical-align:-1px;background:var(--gold);-webkit-mask:var(--lockmask) center/contain no-repeat;mask:var(--lockmask) center/contain no-repeat}
+.gate{margin:26px 0 6px;padding:26px 18px;border:1px solid var(--gold-dim);border-radius:22px;text-align:center;background:linear-gradient(160deg,#2c1766,var(--deep) 70%)}
+.gate .lockic{width:30px;height:30px;margin:0 auto 8px;background:var(--gold);-webkit-mask:var(--lockmask) center/contain no-repeat;mask:var(--lockmask) center/contain no-repeat}
+.gate h4{font-family:var(--display);font-size:1.25rem;margin-bottom:4px}
+.gate p{color:var(--mist);font-size:.98rem;margin-bottom:14px}
+.gate-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.gate-in{flex:1 1 220px;max-width:320px;text-align:center;letter-spacing:.03em;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem}
+.gate .ferr{margin-top:10px}
+.gate .gate-buy{margin-top:14px}
+.daily{margin-top:26px;padding:20px 18px;border:1px solid var(--amethyst);border-radius:20px;background:rgba(27,15,60,.6)}
+.daily h4{font-family:var(--display);color:var(--gold);font-size:1.1rem;margin-bottom:6px}
+.dd{display:grid;gap:8px;margin-top:10px}
+.dd div{padding:10px 14px;border-radius:14px;background:rgba(58,33,112,.45);font-size:.98rem}
+.dd b{font-family:var(--display);color:var(--gold);margin-inline-end:6px}
+.unl{display:inline-flex;gap:8px;align-items:center;font-family:var(--display);color:var(--gold);font-size:.95rem;margin-top:6px}
 </style>
 </head>
 <body>
@@ -340,6 +369,7 @@ details.adv .field{margin-top:12px}
     <div class="hd-act"><a class="ig-top" id="ig-top" href="#book" aria-label="انستجرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg></a><a class="btn sm" data-wa="general" href="#book">واتساب</a></div>
     <nav class="nav" aria-label="التنقل الرئيسي">
       <a href="#matrix">الماتريكس</a>
+      <a href="#lifepath">مسارك</a>
       <a href="#chart">خريطتك</a>
       <a href="#sky">السما دلوقتي</a>
       <a href="#signs">الأبراج</a>
@@ -403,6 +433,23 @@ details.adv .field{margin-top:12px}
         <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
       </form>
       <div class="result" id="mresult" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
+  <section class="sec" id="lifepath">
+    <div class="wrap">
+      <div class="center">
+        <h2>مسار حياتك</h2>
+        <p class="intro">رقم واحد طالع من تاريخ ميلادك بيلخص طبعك: نورك وضلّك، وإزاي بتحب، وإيه اللي بيعطلك. أول جزء مجاني، والباقي بيتفتح بكود التفعيل.</p>
+      </div>
+      <form class="cform" id="lpform" novalidate>
+        <div class="field"><label for="lp-name">الاسم (اختياري)</label><input id="lp-name" type="text" maxlength="40" autocomplete="off"></div>
+        <div class="field"><label for="lp-date">تاريخ الميلاد</label><input id="lp-date" type="date" min="1900-01-01" max="2100-12-31"></div>
+        <p class="ferr" id="lperr" role="alert" hidden></p>
+        <button class="btn" type="submit">اعرف مسار حياتي</button>
+        <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
+      </form>
+      <div class="result" id="lpresult" aria-live="polite" hidden></div>
     </div>
   </section>
 
@@ -550,6 +597,8 @@ const SITE_NAME = "عقيق";                       // اسم الموقع
 const SITE_TAGLINE = "فلك وطاقة ومصفوفة القدر"; // الشعار
 const WA_NUMBER = "201000000000";               // رقم واتساب بالصيغة الدولية، بدون + وبدون صفر البداية (مصر: 20 ثم الرقم)
 const IG_USER = "mohamed.ibrahim.astro";                // يوزر انستجرام
+const PAY_URL = "";                             // رابط صفحة الدفع (Gumroad / Lemon Squeezy / Paymob...). لو فاضي الزر بيفتح انستجرام
+const PAY_LABEL = "";                           // نص السعر اختياري، مثال: "٢٩٩ جنيه"
 const FORECAST_LABEL = "توقعات أكتوبر ٢٠٢٦";    // عنوان الفترة في توقعات الأبراج، غيّره مع كل تحديث
 
 /* الكورسات
@@ -752,182 +801,182 @@ CITY_GROUPS.forEach(gr => gr.c.forEach(c => CITIES.push({ n: c[0], lat: c[1], lo
 
 /* ======================= الأركانا الـ٢٢ (ماتريكس + حيوات سابقة) ======================= */
 const ARCANA = [
-  { n: "الساحر", en: "The Magician",
-    core: "الإرادة والمهارة، وإن البداية بإيدك", shadow: "الكلام الأكتر من الفعل أو التلاعب بالناس",
-    real: "عندك أدوات تبدأ بيها: مهارة أو فرصة أو فكرة. وقت تتحرك وتعرض نفسك بدل ما تستنى حد يديك إذن.",
-    psy: "ثقتك في نفسك أكبر من الي بتحس بيه. الصوت الي بيقولك مش جاهز هو الخوف مش الحقيقة.",
-    spirit: "طاقتك في مرحلة تجسيد: النية لما تتكتب وتتحرك بتتحول لواقع. ركز نيتك على حاجة واحدة.",
-    release: "اكتب حاجة بتأجلها بحجة إنك مش جاهز، وابدأ فيها ١٠ دقايق النهاردة من غير ما تحكم على النتيجة.",
-    rev: "جه مقلوب: تشتت أو موهبة مش مستخدمة، أو إحساس إنك بتمثل. ارجع لحاجة واحدة وخلصها.",
-    past: "حياة اتبنت على الحرفة والمعرفة، صنايعي أو كاتب أو معالج. الدرس الباقي إنك تستخدم موهبتك بصدق من غير ما تثبت لحد حاجة." },
-  { n: "الكاهنة العليا", en: "The High Priestess",
-    core: "الحدس والأسرار والمعرفة الصامتة", shadow: "الانغلاق وكتمان المشاعر",
-    real: "في حاجة لسه مش ظاهرة. استنى قبل ما تاخد قرار، وراقب الي بيتقال بين السطور.",
-    psy: "جواك إجابة عارفها، بس بتسكت عنها عشان تتجنب مواجهة.",
-    spirit: "طاقة الاستقبال: الصمت والأحلام والتأمل بيجيبوا لك رسايل أوضح من البحث في الخارج.",
-    release: "قبل النوم اسأل نفسك سؤال واحد، واكتب أول إجابة تيجي من غير ما تراجعها.",
-    rev: "جه مقلوب: تجاهل للحدس أو أسرار بتتعبك. افتح موضوع بتتجنبه.",
-    past: "حياة قريبة من الصمت والتأمل، كاهنة أو ناسك أو حد بيحتفظ بالأسرار. الدرس الباقي إنك تعبّر بدل ما تحتفظ بكل حاجة جواك." },
-  { n: "الإمبراطورة", en: "The Empress",
-    core: "الحنان والخصوبة والوفرة", shadow: "التدليل الزايد أو التعلق",
-    real: "فترة نمو وراحة، ممكن تظهر في مشروع بيكبر أو علاقة بتدفا. اهتم بجسمك وبيتك.",
-    psy: "محتاج تحس بالأمان والحب من غير ما تكسبهم بالشغل. الحنان حقك مش مكافأة.",
-    spirit: "طاقة الأرض والأنوثة الخلاقة: الطبيعة والراحة والجمال بيشحنوك.",
-    release: "اعمل حاجة لجسمك النهاردة من غير ذنب: حمام دافي، أكلة بتحبها، أو مشوار في مكان أخضر.",
-    rev: "جه مقلوب: إهمال للنفس أو اعتماد زايد على حد. رجّع الاهتمام لنفسك.",
-    past: "حياة فيها رعاية وعطاء وزراعة وأمومة. الدرس الباقي إنك تاخد زي ما بتدي." },
-  { n: "الإمبراطور", en: "The Emperor",
-    core: "الاستقرار والتنظيم والحدود", shadow: "التحكم والعند",
-    real: "وقت تحط نظام وحدود: ميزانية أو جدول أو قرار حاسم قدام شخص. الي بيتبني بقواعد بيعيش.",
-    psy: "الحاجة للسيطرة ممكن تكون خوف من الفوضى. اسأل نفسك: إيه الي بخاف منه لو سبت الموضوع؟",
-    spirit: "طاقة البناء والمسؤولية: ارتباطك بالأرض بيدّي طاقتك ثبات.",
-    release: "اكتب ٣ حدود لازم تحطها الأسبوع ده، وقول واحد منهم لشخص بهدوء.",
-    rev: "جه مقلوب: تسلط أو هروب من المسؤولية. اتوازن بين الحزم والمرونة.",
-    past: "حياة قيادة ومسؤولية كبيرة. الدرس الباقي إن القوة الحقيقية مش في السيطرة." },
-  { n: "الكاهن الأعظم", en: "The Hierophant",
-    core: "التعلم والإرشاد والأصول", shadow: "الجمود والتقليد الأعمى",
-    real: "وقت تسأل حد خبير أو تاخد كورس أو تلتزم بمنهج. الحاجة هتمشي بالأصول مش بالاختصارات.",
-    psy: "بتدور على حد يطمنك أو يوجهك. افتكر إن الإجابة النهائية جواك بعد ما تسمع.",
-    spirit: "طاقة الحكمة المنقولة: التقاليد والمرشدين بيساعدوك لو اخترتهم بوعي.",
-    release: "اسأل نفسك: أنهي قاعدة من الي اتربيت عليها لسه بتخدمني، وأنهي واحدة لازم أفكها؟",
-    rev: "جه مقلوب: تمرد على القواعد أو خضوع لرأي حد. الحل في اختيارك الواعي.",
-    past: "حياة معلّم أو راهب أو حد بيحفظ علم. الدرس الباقي إنك تتعلم وتعلّم من غير ما تفرض." },
-  { n: "العاشقان", en: "The Lovers",
-    core: "الاختيار والعلاقة والانسجام", shadow: "التردد أو علاقة على حساب نفسك",
-    real: "قرار حب أو شراكة قدامك. اختار بقلبك وعقلك مع بعض، وماتختارش من الخوف من الوحدة.",
-    psy: "الاختيار الأصعب هو إنك تبقى صادق مع نفسك الأول.",
-    spirit: "طاقة اتحاد المتناقضات: لما تقبل جانبك الضعيف والقوي بتجذب علاقات أصدق.",
-    release: "اكتب ٣ قيم مش ممكن تتنازل عنها في أي علاقة.",
-    rev: "جه مقلوب: علاقة مش متوازنة أو هروب من قرار. كون واضح.",
-    past: "حياة فيها حب كبير أو اختيار صعب بين اتنين. الدرس الباقي إنك تحب من غير ما تضيع نفسك." },
-  { n: "العربة", en: "The Chariot",
-    core: "الانتصار بالإرادة والتحرك", shadow: "العناد والاندفاع",
-    real: "وقت تتحرك: سفر أو نقلة أو تحدي. ركز على اتجاه واحد وسيطر على الي بيشدك يمين وشمال.",
-    psy: "جواك قوتين متعارضتين. التحكم مش بالقمع، بالتوجيه.",
-    spirit: "طاقة الإرادة المنضبطة: لما تحط نيتك قدامك الطريق بيتفتح.",
-    release: "حدد هدف واحد للشهر ده، وقسّمه لخطوة صغيرة تعملها كل يوم.",
-    rev: "جه مقلوب: تشتت أو إحساس بفقدان السيطرة. وقف ورتب أولوياتك.",
-    past: "حياة محارب أو رحّالة أو قائد قافلة. الدرس الباقي إن الغلبة مش بالقوة بس، بالاتجاه." },
-  { n: "العدالة", en: "Justice",
-    core: "الحق والميزان والمسؤولية عن الاختيار", shadow: "الحكم القاسي أو لوم الغير",
-    real: "موقف أو أوراق أو قرار بيرجع لك بنتيجة اختياراتك. اقرا قبل ما توقّع واتصرف بعدل.",
-    psy: "بتحاسب نفسك أو غيرك بقسوة. العدل الحقيقي فيه رحمة.",
-    spirit: "طاقة الكارما: الي بتزرعه بيرجع. صفّي نيتك.",
-    release: "اكتب موقف بتلوم فيه حد، وبعده اكتب الجزء الي إنت مسؤول عنه فيه.",
-    rev: "جه مقلوب: ظلم أو إنكار مسؤولية. راجع مواقفك بصدق.",
-    past: "حياة قاضي أو حد شاف ظلم. الدرس الباقي إنك تعدل مع نفسك قبل غيرك." },
-  { n: "الناسك", en: "The Hermit",
-    core: "العزلة والبحث الداخلي والحكمة", shadow: "الانعزال والوحدة",
-    real: "وقت تقلل الضجة وتفكر لوحدك. ابعد عن الناس الي بتستنزفك وركز في هدفك.",
-    psy: "الوحدة هنا اختيار مش عقاب، لكن خد بالك ماتتحولش لهروب.",
-    spirit: "طاقة النور الداخلي: الصمت والتأمل بيفتحوا إجابات.",
-    release: "اقعد ٢٠ دقيقة من غير موبايل النهاردة، وسجل أي فكرة بتيجي.",
-    rev: "جه مقلوب: انعزال زايد أو خوف من الناس. افتح باب لحد قريب.",
-    past: "حياة ناسك أو باحث عن الحقيقة. الدرس الباقي إنك ترجع تشارك علمك مع الناس." },
-  { n: "عجلة الحظ", en: "Wheel of Fortune",
-    core: "التغيير والدورات والفرصة", shadow: "مقاومة الدورة أو الاستسلام للحظ",
-    real: "حاجة بتتغير، غالبًا مش بإيدك. الفرصة بتيجي لمن يكون جاهز، فجهز نفسك.",
-    psy: "التغيير بيخوف حتى لو كان للأحسن. سمّي الخوف بدل ما تهرب منه.",
-    spirit: "طاقة الدورة: كل نهاية بداية، والتسليم للتغيير بيخفف التعب.",
-    release: "اكتب ٣ حاجات اتغيرت في حياتك السنة دي، وإيه الي اتعلمته من كل واحدة.",
-    rev: "جه مقلوب: دورة متكررة أو تأخير. دور على الدرس الي بيتعاد.",
-    past: "حياة اتقلبت فيها الأحوال بين غنى وفقر. الدرس الباقي هو الثبات الداخلي وسط التقلب." },
-  { n: "القوة", en: "Strength",
-    core: "الشجاعة الهادية والسيطرة بحنان", shadow: "كبت الغضب أو الضعف",
-    real: "موقف بيطلب صبر وثبات مش صوت عالي. قوتك في الهدوء.",
-    psy: "الغضب والخوف مش أعداء، دول طاقة محتاجة توجّهها.",
-    spirit: "طاقة القلب الشجاع: لما تواجه خوفك بحب بيلين.",
-    release: "لما تغضب النهاردة خد ٣ أنفاس عميقة قبل الرد، وبعدها قول الي محتاجه بصراحة.",
-    rev: "جه مقلوب: انسحاب أو انفجار. محتاج تدعم ثقتك بنفسك.",
-    past: "حياة اتعلمت فيها ترويض غريزة قوية. الدرس الباقي إنك تبقى قوي من غير عنف." },
-  { n: "المشنوق", en: "The Hanged Man",
-    core: "التسليم والنظرة المختلفة", shadow: "التضحية بلا داعي أو الجمود",
-    real: "الموضوع واقف ومش هيتحرك بالضغط. مرحلة انتظار لازم تتقبلها وتشوف الحاجة من زاوية تانية.",
-    psy: "إحساسك إنك عالق ممكن يكون دعوة لتغيير النظرة مش الظروف.",
-    spirit: "طاقة التسليم: لما تسيب السيطرة بتيجي الإجابة.",
-    release: "قول لنفسك: أنا بسيب النتيجة، وابدأ بحاجة صغيرة مختلفة النهاردة.",
-    rev: "جه مقلوب: تأجيل بلا فايدة أو مقاومة. خد قرار.",
-    past: "حياة فيها تضحية أو انتظار طويل. الدرس الباقي إنك تسيب دور الي بيضحي." },
-  { n: "الموت", en: "Death",
-    core: "النهاية والبداية والتحول الجذري", shadow: "التعلق بالماضي",
-    real: "حاجة بتنتهي: وظيفة أو علاقة أو مرحلة. مش لازم تكون نهاية سيئة، هي فتح لمكان جديد.",
-    psy: "الحزن على الي راح طبيعي. اسمح لنفسك تحزن وبعدين تكمل.",
-    spirit: "طاقة التطهير: الي بيتشال بيجيب مساحة للجديد.",
-    release: "اكتب خطاب وداع لشيء انتهى، وبعدها اقطعه أو احرقه بأمان.",
-    rev: "جه مقلوب: تمسك بالقديم أو مقاومة للتغيير. اتأكد إيه الي لازم يخلص.",
-    past: "حياة شهدت خسارات وتحولات كبيرة. الدرس الباقي إنك تتقبل النهايات." },
-  { n: "الاعتدال", en: "Temperance",
-    core: "التوازن والصبر والشفاء", shadow: "التطرف أو التسرع",
-    real: "الحل في الوسط: مواعيد منتظمة، وخلط بين الشغل والراحة، وخطوة بخطوة.",
-    psy: "الصبر مش ضعف، هو مهارة. عوّد نفسك على الإيقاع الهادي.",
-    spirit: "طاقة المياه المتدفقة: التناغم بين الروح والجسد.",
-    release: "رتب يومك بحيث يبقى فيه وقت للشغل ووقت للجسم ووقت للروح، ٣ أوقات ثابتة.",
-    rev: "جه مقلوب: إسراف أو عدم توازن. رجّع الاعتدال.",
-    past: "حياة معالج أو حكيم بيوفّق بين الناس. الدرس الباقي إنك تحافظ على توازنك." },
-  { n: "الشيطان", en: "The Devil",
-    core: "التعلق والرغبة والقيود الي بنختارها", shadow: "الإدمان والتحكم",
-    real: "علاقة أو عادة بتشدك وإنت عارف إنها مش في صالحك. المفتاح في إيدك مش في إيد حد.",
-    psy: "الخوف بيتنكر في شكل رغبة. اسأل: إيه الي بخاف أفقده لو سبتها؟",
-    spirit: "طاقة الظل: الي بتنكره فيك بيتحكم فيك، والمواجهة بتحرر.",
-    release: "اكتب عادة أو علاقة مرهقة، واختار خطوة صغيرة تبعدك عنها النهاردة.",
-    rev: "جه مقلوب: بداية تحرر أو انتكاسة. كمّل بنية صادقة.",
-    past: "حياة فيها تعلق شديد أو إحساس بالقيد. الدرس الباقي هو الحرية الداخلية." },
-  { n: "البرج", en: "The Tower",
-    core: "الانهيار المفاجئ وكشف الحقيقة", shadow: "الصدمة والإنكار",
-    real: "حاجة مبنية على أساس ضعيف بتتهز. مؤلم لكنه بيكشف الحقيقة قبل ما تتأخر.",
-    psy: "الصدمة أول رد فعل. اديني نفسك وقت قبل ما تحكم أو تقرر.",
-    spirit: "طاقة التحرير المفاجئ: البرق بيهد القفص.",
-    release: "اسأل نفسك: إيه الحقيقة الي كنت بتتجنب أشوفها؟ واكتبها بصراحة.",
-    rev: "جه مقلوب: تأجيل الانهيار أو خوف من التغيير. الأحسن إنك تبادر بالتغيير بنفسك.",
-    past: "حياة فيها أزمات كبيرة. الدرس الباقي إنك تبني على أساس صادق." },
-  { n: "النجمة", en: "The Star",
-    core: "الأمل والشفاء والإلهام", shadow: "فقدان الإيمان",
-    real: "بعد فترة صعبة بتبدأ ترتاح. أحلامك ممكنة، ابدأ بخطوات صغيرة.",
-    psy: "هدوء بعد العاصفة. اسمح لنفسك تأمل من غير ما تجلد نفسك.",
-    spirit: "طاقة الشفاء: الماء والليل والنجوم بينضفوا روحك.",
-    release: "اطلع بالليل أو بص للسما ٥ دقايق وقول: أنا أستحق الراحة.",
-    rev: "جه مقلوب: يأس أو بعد عن أحلامك. ارجع لخطوة بسيطة تفتح لك أمل.",
-    past: "حياة كان فيها أمل وسط ظلام، حد بيشفي أو بيرشد. الدرس الباقي إنك تثق في الطريق." },
-  { n: "القمر", en: "The Moon",
-    core: "الخيال والحدس والخوف الغامض", shadow: "الأوهام والقلق",
-    real: "الصورة مش واضحة. ماتاخدش قرارات كبيرة وإنت قلقان، وتأكد من المعلومات.",
-    psy: "المشاعر بتكبر بالليل. اكتب مخاوفك وشوف أنهي واحدة حقيقية.",
-    spirit: "طاقة اللاوعي: أحلامك فيها رسايل.",
-    release: "اكتب حلم أو إحساس غريب، وبعدين اسأل: إيه الحاجة الحقيقية الي بتخوفني؟",
-    rev: "جه مقلوب: وضوح بعد غموض أو قلق بيهدا. كمّل بهدوء.",
-    past: "حياة فنان أو حالم أو حد بيعيش بين عالمين. الدرس الباقي إنك تثبت على الواقع." },
-  { n: "الشمس", en: "The Sun",
-    core: "الفرح والنجاح والوضوح", shadow: "الغرور أو الإرهاق من العطاء",
-    real: "نتيجة إيجابية ووضوح، علاقة أو مشروع بيدفا. استمتع من غير ذنب.",
-    psy: "إحساس بالرضا والقبول. اسمح لنفسك تفرح.",
-    spirit: "طاقة النور والحيوية: الشمس بتجدد روحك.",
-    release: "اقعد ١٠ دقايق في الشمس وفكر في حاجة واحدة بتشكر عليها.",
-    rev: "جه مقلوب: فرح متأخر أو غرور. افتح قلبك.",
-    past: "حياة بسيطة وسعيدة أو قيادة نورانية. الدرس الباقي إنك تعيش الفرح." },
-  { n: "الحكم", en: "Judgement",
-    core: "النداء والتجديد والمحاسبة", shadow: "الندم أو جلد الذات",
-    real: "وقت قرار مصيري: تبدأ فصل جديد بعد ما تراجع الماضي. حاجة مؤجلة بتطلب ردّك.",
-    psy: "في صوت جواك بيقول كفاية. اسمعه.",
-    spirit: "طاقة اليقظة: روحك بتناديك لمستوى أعلى.",
-    release: "اكتب رسالة سماح لنفسك عن غلطة قديمة، واقراها بصوت عالي.",
-    rev: "جه مقلوب: تأجيل النداء أو جلد الذات. سامح نفسك.",
-    past: "حياة اتحاسبت فيها على اختياراتك. الدرس الباقي إنك تسامح وتبدأ من جديد." },
-  { n: "العالم", en: "The World",
-    core: "الاكتمال والإنجاز والتكامل", shadow: "الخوف من الخاتمة",
-    real: "مرحلة بتكتمل: شهادة أو مشروع أو رحلة. افرح بإنجازك وبعدين اختار الخطوة الجاية.",
-    psy: "إحساس بالتمام. ماتدورش على حاجة جديدة قبل ما تحتفل.",
-    spirit: "طاقة التكامل: كل أجزائك مع بعض.",
-    release: "اكتب ٣ إنجازات عملتها السنة دي، وكافئ نفسك.",
-    rev: "جه مقلوب: خاتمة ناقصة أو تأجيل. اقفل الي لسه مفتوح.",
-    past: "حياة اكتملت فيها دورة كبيرة. الدرس الباقي إنك تتقبل الاكتمال وتبدأ." },
-  { n: "المجنون", en: "The Fool",
-    core: "البداية الجديدة والثقة والقفزة", shadow: "الاندفاع من غير حساب",
-    real: "مرحلة جديدة: سفر أو مشروع أو قرار جريء. خد خطوة، بس احسبها.",
-    psy: "فضول وخوف مع بعض. الخوف مش بيمنع القفزة، بس بيعلمك تبص.",
-    spirit: "طاقة النقاء: روح بتبدأ من الصفر.",
-    release: "اعمل حاجة صغيرة مختلفة النهاردة: طريق جديد أو أكلة جديدة أو قرار بسيط بتأجله.",
-    rev: "جه مقلوب: تهور أو خوف من البداية. اعمل خطة بسيطة.",
-    past: "حياة تجوال وبدايات من الصفر. الدرس الباقي إنك تثق من غير حماقة." }
+ {
+  "n": "الساحر",
+  "en": "The Magician",
+  "core": "الإرادة والمهارة، وإن البداية بإيدك",
+  "shadow": "الكلام الأكتر من الفعل أو التلاعب بالناس",
+  "real": "عندك أدوات تبدأ بيها: مهارة أو فرصة أو فكرة. وقت تتحرك وتعرض نفسك بدل ما تستنى حد يديك إذن.",
+  "release": "اكتب حاجة بتأجلها بحجة إنك مش جاهز، وابدأ فيها ١٠ دقايق النهاردة من غير ما تحكم على النتيجة."
+ },
+ {
+  "n": "الكاهنة العليا",
+  "en": "The High Priestess",
+  "core": "الحدس والأسرار والمعرفة الصامتة",
+  "shadow": "الانغلاق وكتمان المشاعر",
+  "real": "في حاجة لسه مش ظاهرة. استنى قبل ما تاخد قرار، وراقب الي بيتقال بين السطور.",
+  "release": "قبل النوم اسأل نفسك سؤال واحد، واكتب أول إجابة تيجي من غير ما تراجعها."
+ },
+ {
+  "n": "الإمبراطورة",
+  "en": "The Empress",
+  "core": "الحنان والخصوبة والوفرة",
+  "shadow": "التدليل الزايد أو التعلق",
+  "real": "فترة نمو وراحة، ممكن تظهر في مشروع بيكبر أو علاقة بتدفا. اهتم بجسمك وبيتك.",
+  "release": "اعمل حاجة لجسمك النهاردة من غير ذنب: حمام دافي، أكلة بتحبها، أو مشوار في مكان أخضر."
+ },
+ {
+  "n": "الإمبراطور",
+  "en": "The Emperor",
+  "core": "الاستقرار والتنظيم والحدود",
+  "shadow": "التحكم والعند",
+  "real": "وقت تحط نظام وحدود: ميزانية أو جدول أو قرار حاسم قدام شخص. الي بيتبني بقواعد بيعيش.",
+  "release": "اكتب ٣ حدود لازم تحطها الأسبوع ده، وقول واحد منهم لشخص بهدوء."
+ },
+ {
+  "n": "الكاهن الأعظم",
+  "en": "The Hierophant",
+  "core": "التعلم والإرشاد والأصول",
+  "shadow": "الجمود والتقليد الأعمى",
+  "real": "وقت تسأل حد خبير أو تاخد كورس أو تلتزم بمنهج. الحاجة هتمشي بالأصول مش بالاختصارات.",
+  "release": "اسأل نفسك: أنهي قاعدة من الي اتربيت عليها لسه بتخدمني، وأنهي واحدة لازم أفكها؟"
+ },
+ {
+  "n": "العاشقان",
+  "en": "The Lovers",
+  "core": "الاختيار والعلاقة والانسجام",
+  "shadow": "التردد أو علاقة على حساب نفسك",
+  "real": "قرار حب أو شراكة قدامك. اختار بقلبك وعقلك مع بعض، وماتختارش من الخوف من الوحدة.",
+  "release": "اكتب ٣ قيم مش ممكن تتنازل عنها في أي علاقة."
+ },
+ {
+  "n": "العربة",
+  "en": "The Chariot",
+  "core": "الانتصار بالإرادة والتحرك",
+  "shadow": "العناد والاندفاع",
+  "real": "وقت تتحرك: سفر أو نقلة أو تحدي. ركز على اتجاه واحد وسيطر على الي بيشدك يمين وشمال.",
+  "release": "حدد هدف واحد للشهر ده، وقسّمه لخطوة صغيرة تعملها كل يوم."
+ },
+ {
+  "n": "العدالة",
+  "en": "Justice",
+  "core": "الحق والميزان والمسؤولية عن الاختيار",
+  "shadow": "الحكم القاسي أو لوم الغير",
+  "real": "موقف أو أوراق أو قرار بيرجع لك بنتيجة اختياراتك. اقرا قبل ما توقّع واتصرف بعدل.",
+  "release": "اكتب موقف بتلوم فيه حد، وبعده اكتب الجزء الي إنت مسؤول عنه فيه."
+ },
+ {
+  "n": "الناسك",
+  "en": "The Hermit",
+  "core": "العزلة والبحث الداخلي والحكمة",
+  "shadow": "الانعزال والوحدة",
+  "real": "وقت تقلل الضجة وتفكر لوحدك. ابعد عن الناس الي بتستنزفك وركز في هدفك.",
+  "release": "اقعد ٢٠ دقيقة من غير موبايل النهاردة، وسجل أي فكرة بتيجي."
+ },
+ {
+  "n": "عجلة الحظ",
+  "en": "Wheel of Fortune",
+  "core": "التغيير والدورات والفرصة",
+  "shadow": "مقاومة الدورة أو الاستسلام للحظ",
+  "real": "حاجة بتتغير، غالبًا مش بإيدك. الفرصة بتيجي لمن يكون جاهز، فجهز نفسك.",
+  "release": "اكتب ٣ حاجات اتغيرت في حياتك السنة دي، وإيه الي اتعلمته من كل واحدة."
+ },
+ {
+  "n": "القوة",
+  "en": "Strength",
+  "core": "الشجاعة الهادية والسيطرة بحنان",
+  "shadow": "كبت الغضب أو الضعف",
+  "real": "موقف بيطلب صبر وثبات مش صوت عالي. قوتك في الهدوء.",
+  "release": "لما تغضب النهاردة خد ٣ أنفاس عميقة قبل الرد، وبعدها قول الي محتاجه بصراحة."
+ },
+ {
+  "n": "المشنوق",
+  "en": "The Hanged Man",
+  "core": "التسليم والنظرة المختلفة",
+  "shadow": "التضحية بلا داعي أو الجمود",
+  "real": "الموضوع واقف ومش هيتحرك بالضغط. مرحلة انتظار لازم تتقبلها وتشوف الحاجة من زاوية تانية.",
+  "release": "قول لنفسك: أنا بسيب النتيجة، وابدأ بحاجة صغيرة مختلفة النهاردة."
+ },
+ {
+  "n": "الموت",
+  "en": "Death",
+  "core": "النهاية والبداية والتحول الجذري",
+  "shadow": "التعلق بالماضي",
+  "real": "حاجة بتنتهي: وظيفة أو علاقة أو مرحلة. مش لازم تكون نهاية سيئة، هي فتح لمكان جديد.",
+  "release": "اكتب خطاب وداع لشيء انتهى، وبعدها اقطعه أو احرقه بأمان."
+ },
+ {
+  "n": "الاعتدال",
+  "en": "Temperance",
+  "core": "التوازن والصبر والشفاء",
+  "shadow": "التطرف أو التسرع",
+  "real": "الحل في الوسط: مواعيد منتظمة، وخلط بين الشغل والراحة، وخطوة بخطوة.",
+  "release": "رتب يومك بحيث يبقى فيه وقت للشغل ووقت للجسم ووقت للروح، ٣ أوقات ثابتة."
+ },
+ {
+  "n": "الشيطان",
+  "en": "The Devil",
+  "core": "التعلق والرغبة والقيود الي بنختارها",
+  "shadow": "الإدمان والتحكم",
+  "real": "علاقة أو عادة بتشدك وإنت عارف إنها مش في صالحك. المفتاح في إيدك مش في إيد حد.",
+  "release": "اكتب عادة أو علاقة مرهقة، واختار خطوة صغيرة تبعدك عنها النهاردة."
+ },
+ {
+  "n": "البرج",
+  "en": "The Tower",
+  "core": "الانهيار المفاجئ وكشف الحقيقة",
+  "shadow": "الصدمة والإنكار",
+  "real": "حاجة مبنية على أساس ضعيف بتتهز. مؤلم لكنه بيكشف الحقيقة قبل ما تتأخر.",
+  "release": "اسأل نفسك: إيه الحقيقة الي كنت بتتجنب أشوفها؟ واكتبها بصراحة."
+ },
+ {
+  "n": "النجمة",
+  "en": "The Star",
+  "core": "الأمل والشفاء والإلهام",
+  "shadow": "فقدان الإيمان",
+  "real": "بعد فترة صعبة بتبدأ ترتاح. أحلامك ممكنة، ابدأ بخطوات صغيرة.",
+  "release": "اطلع بالليل أو بص للسما ٥ دقايق وقول: أنا أستحق الراحة."
+ },
+ {
+  "n": "القمر",
+  "en": "The Moon",
+  "core": "الخيال والحدس والخوف الغامض",
+  "shadow": "الأوهام والقلق",
+  "real": "الصورة مش واضحة. ماتاخدش قرارات كبيرة وإنت قلقان، وتأكد من المعلومات.",
+  "release": "اكتب حلم أو إحساس غريب، وبعدين اسأل: إيه الحاجة الحقيقية الي بتخوفني؟"
+ },
+ {
+  "n": "الشمس",
+  "en": "The Sun",
+  "core": "الفرح والنجاح والوضوح",
+  "shadow": "الغرور أو الإرهاق من العطاء",
+  "real": "نتيجة إيجابية ووضوح، علاقة أو مشروع بيدفا. استمتع من غير ذنب.",
+  "release": "اقعد ١٠ دقايق في الشمس وفكر في حاجة واحدة بتشكر عليها."
+ },
+ {
+  "n": "الحكم",
+  "en": "Judgement",
+  "core": "النداء والتجديد والمحاسبة",
+  "shadow": "الندم أو جلد الذات",
+  "real": "وقت قرار مصيري: تبدأ فصل جديد بعد ما تراجع الماضي. حاجة مؤجلة بتطلب ردّك.",
+  "release": "اكتب رسالة سماح لنفسك عن غلطة قديمة، واقراها بصوت عالي."
+ },
+ {
+  "n": "العالم",
+  "en": "The World",
+  "core": "الاكتمال والإنجاز والتكامل",
+  "shadow": "الخوف من الخاتمة",
+  "real": "مرحلة بتكتمل: شهادة أو مشروع أو رحلة. افرح بإنجازك وبعدين اختار الخطوة الجاية.",
+  "release": "اكتب ٣ إنجازات عملتها السنة دي، وكافئ نفسك."
+ },
+ {
+  "n": "المجنون",
+  "en": "The Fool",
+  "core": "البداية الجديدة والثقة والقفزة",
+  "shadow": "الاندفاع من غير حساب",
+  "real": "مرحلة جديدة: سفر أو مشروع أو قرار جريء. خد خطوة، بس احسبها.",
+  "release": "اعمل حاجة صغيرة مختلفة النهاردة: طريق جديد أو أكلة جديدة أو قرار بسيط بتأجله."
+ }
 ];
 
 /* ---------- أدوار نقاط المصفوفة ---------- */
@@ -958,6 +1007,71 @@ const LP_TXT = {
   22: "رقم ٢٢ (رقم رئيسي): بنّاء الأحلام الكبيرة على الأرض، ودرسك إنك تتحمل الضغط من غير ما تنهار.",
   33: "رقم ٣٣ (رقم رئيسي): معلّم العطاء والشفاء، ودرسك إنك تحمي نفسك وإنت بتدي."
 };
+
+/* مسار الحياة: الجزء المجاني (يظهر للكل) والجزء المقفول (بيتشفر ويتفتح بالكود) */
+const LP_FREE = {
+  1: { t: "البادئ", tag: "الشجاعة والاستقلال والبدايات",
+    essence: "جوهرك إنك أول واحد بيخطي الخطوة. طاقتك بتتعب لما تستنى إذن، وبترتاح لما تقرر وتتحرك. جواك صوت بيقولك «أنا لازم أعملها بنفسي»، وده مش عند، ده شكل من أشكال الأمانة مع نفسك.",
+    light: "نورك في الجرأة: بتبدأ حاجات الناس بتتردد قدامها، وبتشد اللي حواليك بثقتك حتى وإنت مش واثق قوي من جواك. لما تمشي ورا قلبك بتفتح طرق ماكانتش موجودة.",
+    shadow: "وفي ضلك حاجة بتخليك تشيل كل حاجة لوحدك وتعتبر الطلب من حد ضعف. وبتحس إن الناس بتبعد عنك من غير ما تفهم ليه، والسبب في" },
+  2: { t: "الحاضن", tag: "الحساسية والتناغم والسلام",
+    essence: "جوهرك إنك بتحس بالناس قبل ما يتكلموا. طاقتك زي الميزان بيلتقط أي اهتزاز في الجو. بتعرف تبني جسور بين اتنين متخاصمين، لكن نفسك أنت ساعات بتتأخر في الطابور.",
+    light: "نورك في الإنصات والرقة: الناس بتحكي لك اللي مابتحكيهوش لحد، وبتحس جنبك بالأمان. وجودك لوحده بيهدّي المكان، وإنت أقوى مما بتتخيل.",
+    shadow: "وفي ضلك خوف خفي من الرفض بيخليك تقول «تمام» وإنت من جواك مش تمام، وبتحتفظ بالزعل لحد ما ينفجر في وقت غلط. والسبب في" },
+  3: { t: "المعبّر", tag: "الكلمة والإبداع والبهجة",
+    essence: "جوهرك إنك قناة للتعبير. اللي جواك عايز يطلع كلام أو فن أو ضحك أو حكاية. لما بتكتم نفسك طاقتك بتنطفي، ولما بتعبّر بصدق بتلمع وتنوّر اللي حواليك.",
+    light: "نورك في خفة الروح والكاريزما: بتعرف تحوّل أصعب موقف لحكاية تضحك وتشفي، والناس بتحب تقعد قريب منك لأنك بتفكّرهم إن الدنيا لسه فيها حلاوة.",
+    shadow: "وفي ضلك حزن بتداريه بالضحك والكلام، وبتشتت موهبتك في حاجات كتير من غير ما تكمل واحدة. والسبب في" },
+  4: { t: "الباني", tag: "الثبات والبناء والأمان",
+    essence: "جوهرك إنك الأساس اللي غيرك بيقف عليه. طاقتك بتحب النظام والخطة والخطوة الثابتة، وبترتاح لما تشوف حاجة اتبنت بإيدك طوبة طوبة. الناس بتعتمد عليك أكتر مما بتحس.",
+    light: "نورك في الصبر والإخلاص: لما بتوعد بتنفذ، ولما بتبدأ حاجة بتكملها. وإنت اللي بيشتغل في هدوء لحد ما النتيجة تتكلم عنك.",
+    shadow: "وفي ضلك خوف من المجهول بيخليك تتمسك بالمألوف حتى لو بقى بيخنقك، وبتحس إن راحتك لازم تتكسب بالتعب والشغل. والسبب في" },
+  5: { t: "الحر", tag: "الحرية والتغيير والتجربة",
+    essence: "جوهرك إنك روح بتتعلم بالتجربة مش بالقعدة. طاقتك بتحتاج هوا وحركة وتنوّع، وأي مكان أو علاقة بتحسسك إنك محبوس بتخليك تسحب نفسك من جواك الأول قبل ما تمشي بجسمك.",
+    light: "نورك في المرونة والفضول: بتتأقلم مع أي حاجة، وبتشوف الفرص في وسط الفوضى، والناس بتحس معاك إن الحياة أوسع من اللي كانت فاكراه.",
+    shadow: "وفي ضلك هروب بيتلبس شكل «حرية»، وبتبدّل الحاجات قبل ما تعمّق في أي حاجة. والسبب في" },
+  6: { t: "الراعي", tag: "الحب والمسؤولية والجمال",
+    essence: "جوهرك إنك قلب بيحب يرعى. طاقتك بتتغذى على إنك تكون مفيد لحد وتعمل بيتك ودايرتك أحلى. بتحس بالمسؤولية ناحية اللي بتحبهم كأنها مكتوبة عليك.",
+    light: "نورك في الحنان والذوق: بتحوّل أي مكان لبيت، وبتعرف تشوف الجمال والاحتياج في الناس. اللي حواليك بيحسوا إنهم مش لوحدهم.",
+    shadow: "وفي ضلك إحساس إن حبك لازم يتقابل بتقدير، وبتدي كتير لحد ما تتعب وتتضايق من غير ما تقول. والسبب في" },
+  7: { t: "الباحث", tag: "العمق والحكمة والصمت",
+    essence: "جوهرك إنك بتدوّر على المعنى اللي ورا الأشياء. طاقتك بتحتاج هدوء وخلوة وسؤال كبير تفكر فيه. بتحس إنك مختلف شوية، وإن الكلام السطحي بيتعبك.",
+    light: "نورك في البصيرة والتحليل: بتشوف اللي مش باين، وبتوصل لإجابات الناس بتدوّر عليها عند غيرك. هدوءك بيدي اللي حواليك إحساس بالعمق.",
+    shadow: "وفي ضلك عزلة بتتحول من راحة لانسحاب، وصعوبة في إنك تسلّم قلبك لحد قبل ما تتأكد مليون مرة. والسبب في" },
+  8: { t: "القادر", tag: "القوة والإنجاز والمكانة",
+    essence: "جوهرك إنك خُلقت تتعامل مع حجم كبير: فلوس وناس ومسؤولية وتأثير. طاقتك بتتحرك بالنتائج، وبتحس بقيمتك لما تشوف إنك غيّرت حاجة في الواقع.",
+    light: "نورك في القدرة على التنظيم والتنفيذ: لما بتحط هدف قدامك بتمشي له بإصرار، والناس بتحس بالأمان وسط قوتك وخبرتك.",
+    shadow: "وفي ضلك علاقة معقدة مع القيمة: ساعات بتقيس نفسك بإنجازك وبس، وبتخاف تظهر ضعفك. والسبب في" },
+  9: { t: "المكتمِل", tag: "العطاء والتسامح والنهايات",
+    essence: "جوهرك إنك روح قديمة في الإحساس. طاقتك بتشوف الصورة الكبيرة وبتتألم لألم الناس، وبتحس إن ليك دور تساعد بيه وتقفل دوايرك بسلام.",
+    light: "نورك في الاتساع والتعاطف: بتسامح أكتر من غيرك، وبتشوف الإنسان ورا الغلطة، والناس بتلاقي عندك حضن مفتوح من غير أحكام.",
+    shadow: "وفي ضلك تمسّك بالماضي وبالناس اللي كان لازم تسيبهم، وبتدي لحد ما تنسى نفسك. والسبب في" }
+};
+const LP_FREE_MASTER = {
+  11: "رقم ١١ رقم رئيسي: بيحمل طاقة الرقم ٢ بحساسيته وحدسه، لكن بشدة أعلى. بتحس بحاجات قبل ما تحصل وبتتأثر بالأجواء أسرع من غيرك، ودرسك إنك تثبّت أعصابك وتحوّل حدسك لخطوات.",
+  22: "رقم ٢٢ رقم رئيسي: بيحمل طاقة الرقم ٤ بقوة بناءه، لكن بحجم أحلام أكبر. جواك رؤية لحاجة كبيرة تفيد ناس كتير، ودرسك إنك تتحمل ضغطها خطوة خطوة من غير ما تحمل نفسك فوق طاقتك.",
+  33: "رقم ٣٣ رقم رئيسي: بيحمل طاقة الرقم ٦ بحنانه ومسؤوليته، لكن بعطاء أوسع. جواك رغبة تشفي وتعلّم وتحتوي، ودرسك إنك تحمي نفسك وإنت بتدي."
+};
+
+const LP_BASE = { 11: 2, 22: 4, 33: 6 };
+
+/* رسالة اليوم: طاقة اليوم (١ لـ ٩) من تاريخ النهاردة، وبتتقابل مع رقم مسار الشخص */
+const DAY_EN = {
+  1: { th: "البداية", msg: "اليوم بيشجع على خطوة أولى. اللي مأجله بقاله فترة، ابدأ منه حاجة صغيرة.", do: "ابدأ بحاجة واحدة بسيطة من غير ما تستنى الوقت المثالي.", dont: "ماتحكمش على نفسك من أول محاولة." },
+  2: { th: "الإنصات والتعاون", msg: "اليوم أنسب للتفاهم والإصغاء أكتر من الإثبات. الجملة اللطيفة بتفتح باب مقفول.", do: "اسمع للآخر لحد ما يخلص قبل ما ترد.", dont: "ماتكتمش زعل صغير لحد ما يكبر." },
+  3: { th: "التعبير", msg: "اليوم بيدي مساحة للكلام والكتابة والإبداع. اللي جواك عايز يطلع بصيغة مفهومة.", do: "عبّر عن فكرة أو إحساس بصراحة ولطف.", dont: "ماتغطيش موضوع مهم بالهزار." },
+  4: { th: "الترتيب والبناء", msg: "اليوم مناسب للتنظيم والتركيز على التفاصيل. خطوة ثابتة النهاردة أحسن من وعد كبير.", do: "رتب مهمة معلقة وخلصها.", dont: "ماتحملش نفسك كل حاجة في يوم واحد." },
+  5: { th: "التغيير والمرونة", msg: "اليوم بيجيب تغيير في الخطة أو فكرة جديدة. اللي بيتأقلم بسرعة بيستفيد.", do: "جرب طريق أو أسلوب مختلف في حاجة صغيرة.", dont: "ماتاخدش قرار كبير بس عشان تهرب من إحساس." },
+  6: { th: "الاهتمام بالقريبين", msg: "اليوم بيلفت النظر للبيت والعلاقات. لفتة بسيطة لحد بتحبه ليها أثر كبير.", do: "اسأل عن حد قريب واهتم بيه فعلًا.", dont: "ماتدّيش لحد تعبان نفسك عشان تثبت حاجة." },
+  7: { th: "الهدوء والمراجعة", msg: "اليوم أنسب للتفكير والمراجعة والخلوة. القرارات الكبيرة تتأجل للوقت اللي رأسك فيه صافي.", do: "خد وقت هادي لنفسك من غير شاشات.", dont: "ماتنسحبش من الكل بحجة إنك محتاج وقت." },
+  8: { th: "الإنجاز والموارد", msg: "اليوم بيركز على الشغل والفلوس والمسؤوليات. خطوة منظمة في ملف مادي هتفرق.", do: "راجع مصروف أو هدف مالي أو مهمة مهمة.", dont: "ماتقيّمش قيمتك بنتيجة اليوم بس." },
+  9: { th: "الختام والتخفيف", msg: "اليوم بيساعد على قفل ملف وتخفيف حمل. السماح والتنضيف بيرتاح بيهم القلب.", do: "اقفل حاجة معلقة: رسالة، اعتذار، أو ترتيب.", dont: "ماترجعش لجرح قديم عشان تفتحه من تاني." }
+};
+const LP_GIFT = { 1: "جرأتك وبداياتك", 2: "حساسيتك وإنصاتك", 3: "تعبيرك وخفة ظلك", 4: "ثباتك وتنظيمك", 5: "مرونتك وفضولك", 6: "حنانك وذوقك", 7: "عمقك وهدوءك", 8: "قدرتك على التنفيذ", 9: "تعاطفك وتسامحك" };
+const LP_CARE = { 1: "الاندفاع والعند", 2: "المجاملة على حساب نفسك", 3: "التشتت والهروب بالهزار", 4: "التصلب والكمالية", 5: "الهروب من الالتزام", 6: "العطاء الزايد", 7: "الانسحاب", 8: "التحكم والضغط", 9: "التعلق بالماضي" };
+
+/* الجزء المقفول مشفّر. بيتفتح بكود التفعيل بس */
+const LOCKED = {"iter": 150000, "blob": "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", "wraps": {"001": "94PXEZWtYHlBCcAvLl+SED5pz4umj9CkciWaf+8vbWj2rRNDkzI06Ocppf62MBUqYwJWExrlxMmDmNNi9hP1kdpn/2WqTFMT87H66w==", "002": "RQBlnUWctoTCJsBCy2uILAFqLaMpckICdkUaSwWDLM4Fd7SPWYaw//wZfwjlS5aDxtOkwoeB8kWlgSgvl79qKzn1B9VSyNjH6e0iMw==", "003": "T8hC+xwfK8UYwU5vpMmuL7w7+Q3DVUg/mNdygPfzR06Nlt0x0ikdEubzlHnh1bWXjHdhn5tr97u1m5oBDvBTkLAmSRPSmZGhIU5Oyw==", "004": "VV0SZBhBtRPZgAxw/82ekUZuYhu3ZfvHpOv1nQJ1sBqHZEW75A9QEa1VDscNslfty7pgudKhnxMaoj/Q1n3Mb/xlIm1/nDh+BW2C/Q==", "005": "kYDxPtrBuSYqW4oWR4+BWVXYbALGzd5l2hV7xv48fFgpBlp6SoD3TNLYtTPVvGbKEC4y9x6Qh8UTSQVWfm2qjlQNVaBogWHMu1U2DA==", "006": "L6NJ7ni+tKMOgtDUAmj4UhmZ+3eI+VFJfuvpmW7ue5/UOsSvN1/pfQIrl4bOvpZ2xK3hRCMGviWIUNJJeV0KguNVweczbSHn0OiM0Q==", "007": "yOfrOSX5XiU+nZVNeSq+CrGmABmlR2YSq3Ur7KRhUrrr2Yx1qYHGXpIfRoDddwMYIPwnwIZqDtw+6uEEdvHnqeR/lfClsxMbCK1SKw==", "008": "TMSmmFznquDyXTsMKB3YPqn7b7tRmOyKKhT18K1TkBK2UG8315t5t0o8uh6RVgIMBbBz7MEBNInBpCcpIez1fLelF/e2C9Xriv8YjA==", "009": "BvRLtgEQYHMWbKLyYuWElHteGZorv7o8yaG2rH6pQ9fYFIl0Xs/MIRsCbxtgF0f+t5FLe/0+t5pRbRqvybstue54CvasP10n7Q130A==", "010": "/o8MtSNgiC6zIckGy6cQHWwmhq0Fi7bGoKc7nR/IhCsjmIh7pGe7avY5PjnvXCYGy4VHCMpnNbbRmBmTANBZCqoNdMSrchYCow8DXA==", "011": "ln1WS8l3I2foeTOG7aujRVrAXjcK4Vb5gTBwImlF3ggUdtm0EzUGSnJaoP7eauM+ItS9ms1Q96If7cIMMj3wJzTVJFMtG7SmIrpe6Q==", "012": "v4NytYcs6TBebiGOnmbB1taSzTZtw1M5Jpj5v5A2PkFZptSaM3dqnLtYVbHSFk09NI4fGX6CsXS2YsROiMhRIF3ZTkA3j4OY2CBRPg==", "013": "qpYeixFHEKm7IbXvE4Bh4gu6s/2rKbJ7Yg3SHcfzrxdeeF/o1sZh/LeJXm1z8S8fVZQ0mSGqs71eUtA8PBvtLTJP51TFdRjcW8lP4w==", "014": "afi86ifphme0r6WJKFbbIBwUxVTe6fb46vgEq4wktPn0+ddUlW2e7eQSxUypq6rvrsTZj6JoaehHuennTXA3DrTEBj161l5c09mGEQ==", "015": "pn2o+zLkyj4DFW40v19ZfPj5MNClTCeQNr9sh4w9pvW45z+Um6xvUcC/C1qj4qKMpDbiq/lYE3+w2UfspMVHu9u7dB7l2eDlWK00bw==", "016": "wPs1qJQdukaVSAM0B0lbbjKat4UDaxtWQiLTiQVDjChpcB5eSZVtXyAaJv6fjLYE9AT+loqgDjzU9yZF6i4lo27GAW9UMHcnCrORXg==", "017": "jTwFIem62y5U/1p4yZ4KKrxza6nKoEY0YufeFZZFcf5NHDQYjoC7ZbkWDTtkof/jo1y6LZePuWosQqu6G1Cvok9rsyB8toh0kT/QeA==", "018": "8DMyeqR5Z9iV1EkFCkUUFWIFOo8IlGqEo4R+ER/DeAXKeP7kI5lQDURpKgvqoxgg/WvG/lLMLAVA7HggKyXBl/lie8TWrpp7WBzi6w==", "019": "QCi8MpO1Bc/wV5+ubRPMseajXO9hay2SazqbNzlA6sllwzC9TVU6wOjEgVV7HH/woqSJncKFW1mxCH0+TiBzwQs7z47x4P/UAxpcSw==", "020": "A8dG+RJRu7gHgoZv2GSuYJNcFhaWPwE1crxxlf4HXEDlPnudLKVKaVfPQD4rFjh+8KMJrPSWPmGHcQf2wAjVGAOZk+KZ4g+ediD4gw==", "021": "H2lT8E38kxN3eGe1HsDLUM9vPhnZL3D3U2jUT7ivxmdysUNCqou3PqR82O7xnXsJMbB2VtNvKHmluqP1+4iksNbk9z61a1hfhMV+hg==", "022": "n+z9TxJ+BDZayD5NJYaJ74dCfAqI1vSfNSL0PjD7ggCPVOZUjUBwSGUESj+frGNpGUXRo+iTLJFg0rf19yy6McRBy6SeuZe4fi36ag==", "023": "1EI+snzV1i3WySJ1pxOTN+rJd6V1UdEVp2Dhz+XZsMtNTG74xX1dd/wqacO405bzVHtVkltTXB8s7yrrf96+eVO0T5BIdyRFiMGPUA==", "024": "w2QdZIoV/rx+Yxm1QlYuXL/fLaS4fNVbFcDeh4j69ZzIVQh9dqu/flKQU/wZ/z1w+jwbVSkNZaNPVc9wZgxhthVQxs0SuSYCCJVMpQ==", "025": "SVSeqR3mE56XzloiFQsGaFV6nFpJm8eFn5HTBpCiKXeyChAVDnbgT4ZNv3Y2Pe2+o73+o6ZYPCD7Jyn5sVZP0LO646jjO0lAdA3qPw==", "026": "M7ze1Dv1uJVb/9F67AUzL1734BppUl84l8Mbb+n+8/uEALzk97mo6+6ozly8dU4QEVKjBOOh1hKDwnfU1ghOAEQq6m9ARCdtf/rLiQ==", "027": "L6aHDzUzfAYP2VmxoXIOPiO7tdpv+VHpE5M0XZ4aZWsaLCs9E/5a/kEZqHQHBbI1REZ1d2ASiB+kLYgoyzJYxQfOr70LeyD3Q4n/5A==", "028": "yUZnWeuELc0qJwEuY1sry56K+805yyWS7Nw2m0qgeY4LCWnrRvSSGuDQZx0AFzmg6u9PbSWwARu85XbLU51a3+UG8qD5WE19RRWJxw==", "029": "tn64jzdCHvBGhOs8zY7BF+S5YJ112p9wrKXHCelMhhZczCP/VaLNoSQ9kQan9oiySjeru26dHr7qUMYEAP9leGnieDhHfL393WZUFA==", "030": "eb6b66n7oXy51FQQMA2YrKoTi8+2bw68gihMOMfiIswoFthPb/+CwUyKbNBNXD7Gckf3eszsOI4MGbvF89URVIJhOvarRCuNubOtkw==", "031": "K1MZisOWC0UnXfUpslVZu0Ei5BwfUpqkqQEpSw7NpDM1r48toVbjfU0ZPz7hEJO9AzafBBn8NrIkuQbmwnswBr6in5zwST8Si/qw3w==", "032": "41WzOOMGNsUWWfRhl4XOmt1OBbCa3NZrKUUmv2KRFIEA4G3F73bCVjEh4uHzmFGTnkJ4i0D1WunZkVMKRjS1VqMvjcTPnVU7DPEsNQ==", "033": "GumOhvHKDEVbky5LKZPD0BI2+uWX9Vmv0gjr/DBydiOyyehhy8ADxq5PyEIOO6spIvfu1uac6fTUBpgFRJUEBHzVJmsK4TiaLOREeA==", "034": "2ew9P6QW9iyvc2uO/s3sAd1xV3kLDZ02UyMHL0jII5rLwpn29a7vhZphtx3oAgnCqQg5uc6ly0zHQbXFS6xWay97fMVfHA0iZvPxAw==", "035": "T+SR+XZoNWxPQU7Izo4kOs1sQ9dVoXffB4CF8OteDBvHxdGnkj2WaGZ7clUebJaxKnrI7mip5rycNMzj57W0/11LDiezg//sdEEu/w==", "036": "auOVlmnec1T/ZPCxYfR1oBJOItBpdD9QPLzFQwREFXL6u078H/BfhdkK2fP3tiO756aM5sQQbDdPXQdxrrx86+MDSkcXEcEsgCZmxw==", "037": "gbr17dGSHcqMXcWD1wMu1/ft72SGcfb9E61mu1IhZG5fHGRcl8OzS+v84rzajfZVUieP6Y0r4LrYKAhp5df15R95eGfJKRgdJzgXpQ==", "038": "O+cqIkYhgbvFCP7gxaPVLzG4yNFI68pc7hMCDJFufi/5MGtQmN93f4nX+lMkexlIknHuYjIsZT6i+nR1Kf1Ds5NA4KjGCGKRP8s6dw==", "039": "ygpGOZumL8HxgKtppz+mGLvZi/Wm0qQVRDY2lBTyeDi4qJ523Km7zB2ERsZRcVNz4GMOqRNRQr13oLdDXG/nEQbbMrP2zYHgVpJzBw==", "040": "XMA5NFtcnf094UlBHz8Ez9JgqIp27gAqnMlVDdu2uBLdrTtXTWGnp7GdByRjpxHe2vWroBIVzxmRWV1DwaJ4kbmNvLgLzCXzuIYU3A==", "041": "bCX8Ue/Uh16MEPJuImYb8c1oHc1WOtZTW8x2MkUTfKbL8MZ61yVIc1B9rAZfTuhWZGWC6lwlGDdPPW+RYSpDSeHnJVJyhB1/+FxplQ==", "042": "1wSB+8zTvtDbwS0DQaZHIXSx/JI6JOdoqNZsXkFvAY6jMrZa5rZlYhztQ0SLguEf9QqCHHrGSL3QNTvKZ/7M/bQ4eorXciE7yuF2AA==", "043": "cCVzTBfb089SuqN8UTqVAF6ohO75e2NKzbpwH6QxxTnQVBhShJUAEb0heD4NMF/+p9q8w81J6auW9EAWt8k9RkSPqjiz5nII0gJKPQ==", "044": "GTBdGTSxTFA9bZ6kJ/VVZ8dHl8wetgB0XsA32i0JH78kD9n6JQApj/z4hklTPwNQ9+V4rWgxiE1b55F86l5mXJIKfhDl78rJQWra6Q==", "045": "bOgCHvQ4phyxATEETJ4Ls0CBp02g8XX6cuj/jJxZuL++JtxXAaBzqzyBEhLKUfuFKEAjZRNFJd8djmFpmU640mwT96hFkOnIb+0kSg==", "046": "qUJiA1APBcxnHpO/gAJvpqskjLnpf+mGkPPXQ7C3uMSsbNDgsdFHX0xGgk7vjqSqgLEcOg/r5iYjqRaw8NaTlsUPsKHxe9H90FaS/g==", "047": "pnsTkAtvv2Awi/wddPBMSBrMs78tfGkqc6/HY3yq+fbzfybBx3uxNSjTjpCa3rT0zHrO4zf8xZdhhdNL8jYtl/wsuBoacsVV2bcRAg==", "048": "0kdn6pGbTQJedpGTwiAeR9zGWHUUEBLjRcWykZoo2hLanNiZEZhVIoUrQMg4hTnq/3+pfKpOX6EZczLmsEykaCH4YdY3/ooEJN79SA==", "049": "SKFtJrTotev5wvuQmVSnuihd560rXAvLc1Nozav1MsHxmcfWnowVzG4SbfcSJuPcIh1yNQcHDr4ehPDE6JUJvZMbssIj4clpfGTR/A==", "050": "2EJ7ZchmZjQI0GLf+KsbalK15u+r10OaCfvfq6D8+tIY9MnygzptlFMlro+xhx2cDV/DDa+igleVxujq21LOc7BvTVQYtVoWlTwkaA==", "051": "4kPUSjOOhjtFJm0ukjI+gstWJGGqHHF+Pud8iGRnrGOuyCs71ae4bMvnHhXDwZhSZatkcTCUeWn7SrJkbvBi9GNi3Tq+MpEn+C87zQ==", "052": "p1Lkqj6q+7rApNuxS4m8ru0K7HtNLYTNSGrJuLaa6EpkfMwLtiyL271JpdAiVoNtLhrMtEknMApAnV8ruHPndvam+48hZZunWzKw5w==", "053": "Y/mFCIDxkUbSeNriBA4HlsR9KPn0hpUV1uebELgRphnyDSsN0e6VqeYTYH5A8R7S8QKkQi5A6UU7BsEe9qMstQMKuMGtxpP9tL2N+g==", "054": "zDFOVTQ+El860HXbvB5XnijgGyGzv04SZzMiH0MeBpQ57xqhd5okh3ObLKD2+mTDCMA4yC1OZSP47CuyTWz8SnkT4E+jeVGDyopDUQ==", "055": "U4N0owZFAudgzcqha/dDjwirTs9OPB+hw9O0jNUsGmQoAoxJpUZj/720P8QZlk9uhHIfd46A7uDM8nn8KGIyyX3DDlSZ+umS31g0Mg==", "056": "uXj2RxgNmWmVpxs14IwDPFjx1TWteGdObreiRg3fqgP2PFO0RelqVhrpFcdtPHjgpr4qzxFkbav3JOTmlAYUkwKQ3CYfNQq6wc5ZyQ==", "057": "OS3E3Ek789tygV5rS19UiXJe8HC7CkUyc0QxnRw1zVsmrcAKUyxE9ua938Bhu1qj/jQQK566IjycNhowO9oZh+pNx9NV+CBBW/FTRQ==", "058": "98Y2NZpAn/xuCYdzQWHHZTYnxHp+Oj220Rm4KTfgkWoPToluWPJVaaM5fzB7rXR4Svcha9RmfYKDB+SogD+yTYJsP/Ly41VY3E0uxw==", "059": "oTpjm6nn/5d4ucnlLcIGjGLfoyX+Aubo6znBIT7dxHgJnTnZhBbIc8i9X9dR9/1f91u+eyQmT/0dd7Xc1CSfsR1j8AzbHHJAWQxjAQ==", "060": "MQyAqE0YYSOCp4b5Kc2+Fj37qu54GXU5s8+mcNzbfAV4CiQVeViZs/29499TJivv0pUnHXBcNjABxDdBNE1Q4xuMgyJ/uCCtuV/FPA==", "061": "RL58yXyOaB25ifxwWY8tWo467nZNpCvp/qgv8bwGOrxEpi92brCppaNEj3PThhpuWnMp5woh3WE71Q+icx8zYV71yJAZtO8ku5kF4Q==", "062": "IobSTdYV2OniESo27JGxqghKBq5LBTPeJYQoo1PyxWPCSS3lcgjeoNgkvK5j9pFgZKIpfQVmzSG0c1o6lqIkiFUHfOGVUVFq4p4u0g==", "063": "oDKtosg7SeBI+fLsDCAhPEJNB1VNSDPujloI48uHEL9t2tj1KP1M8op1xMqTT+/i++HliIQhjyo5nHqPii7Lf4UVjc/D4KerdHeggg==", "064": "un9GryDuz1yiQ04RTiYUWgeF18liWCB8vah3IEOvsywEXZqDZprSzBBOBn2DbMScyqytYmTOwP9jbPXZVH+ot+7V9UAvzdW39V/leA==", "065": "/Ip8qZRytTn6JdJF0t5Fl4u8DrftKDVRL/CD7MrI0JiovD8yukS24tNg0wQ1PsmnPHNZkqpCAkttuPhPA/AHKTbzsXfUmPt9HErL+A==", "066": "EzjlAyvUZfjo4II6IMlZRSDyZEThwYrBMhjKGXVr/ilyg1A2p6W0WJ6xH1Vk1M1fHrmCLfZnVo9Z5JR8mTJBqdnpScs+YzTt8qcqcw==", "067": "Ndw6ks7H3hJvJQybjOZye9kgUYWOGPeZJTTUGvZeD/xeI3ET7VLsYsfBWJQf+gWZiOu9VwtlAyvnhxI3Jf3KKzES+cMFJp9gT4ymUA==", "068": "BXac4gR0bLIHCpHlr3k6a0PbJXQhe5bY8lQQ/+iCm9v4JNAkeWtpfpQ0np0BrcV9iw8+60JDojGAFu7F7+T6ApVFvQGpwpmIUyb9CA==", "069": "cEmM/g3cIVHzxwjD6e/oVH8nq+7h5gZMtxh4Ei3jvn1fu5F5ZG0E913P2UY2If7k5FahPuUfB293B7m4KOmmV/WfgNW9KAWYT+X22Q==", "070": "eNrgRLgTfVnz9deOqMun1ND/0BtqkC/TBWMqandjv0CyUybwRO6QWHT8aZlC4n/8Vx842A9E454DeRJqExrqOU88QM6IxG5QF/lm7w==", "071": "3T2MGKHu1Et2NoqVrUA5TcGyPlB3ZQm3VpgiC+PEYktKVmrsuXY0wqpMjAqJJ8ktg4q8UMqE4CfgnC2Tj2F6KRhBWpFddU7jzK/44w==", "072": "Hb+xtQzHi0Eq0jJ2jy0aWpR3CFTLUt2i2THqZ9wuRAdKije6WzGMnprsSeY+21PCDQWJxfAJ5HeZzZxLIJsf58LHiB4FO/JTTY4ueA==", "073": "Vc7XuIQGfl82g21y2bQu7qYYacfAaAJ5jkq698QtNic/jt0gfYm59UVBhEzNj55SX4Zi4wvm/w3LcaoQi/QlwiquifFG5JieKAPjpA==", "074": "7XvnOWph6JsF8iR726qSPpL+WuaHfu+kKptKcQ4c3+6Q+XsY+NEq2zH31RRvAGqqARFi/iiV8bpTaudEMaJBK7SBreJZwCx+f8Wcwg==", "075": "gLMthx056uZQAWz32JrsDUw8CsEG2iRswQggZDaeCFrQexM6qywawSKzJVzRivDjz2olqBBIRvGI20DLiy+R1GaJwmoqoJNJD76nFg==", "076": "ENr3JnygGp/FW7SN7C3nzPalCe8hONpayWQ0H4rXMZhl2yEnYjsv9TJm997fyGITkakVQBqKMjxrC4AG7Ri6ADgPOVC4CP2LMISD6w==", "077": "BGcC8KtS+DsaNy+RVGRSNUmoHDe2vMyGdiHzONpys0RDjK6I2rrd8rXZk9hxEuCYt9MImjPG0+9zRUBepRTwcGw8l6gcqwWyzbyA7w==", "078": "SBG51iN2PMz6Wrx4swd8SiC8tOvBpPCZhbbPakZ+zUFqnI0blZvLnrrAj8beFMAQbngs/Y4uNf4NgBH2Udg1rR1TWfF5sK4SZqDj+A==", "079": "FBXBrjP+CLYVZUo0qQZ6MQpzGtJZh+NtbEHoHUvH9+ROsEUEcY4Ry6jscUpEGMSRFLd1+8ezu06Z6hGoVQyGkoV0YTEpTtTtlr9LyQ==", "080": "PKZjuVKfASMJCWKV098QBWLATg1Fc8T3Tt9Mx6h7rOCY1LN8SRobk+82ldYmFE5H11j7H+E2w9ZAK0/H6w5D9yWLkyc4ghu4886bqA==", "081": "jzwElALmrTEzgJ/rLTa6xo1vbQSF995BMTioJF7YBMMGpfy71TDNP3IPRgugsuGLTsNstad4TdDLLlK65c1z8YiMqkOZY9cDGqZVJw==", "082": "yMLLUUx5Tsl4PoAhu6GL+Beom3Bkz9wRsn17x67+jnv9W/2yrmKB/knK+RIm/dFdQijUQf1/syFk7waPnzwYNZghek1M4FfiKMx9BQ==", "083": "ey3LoMMdLuvL2ujAKcUIWA0EppY/KqRo3/++UGkWy0kN6IezsAF/eO/mjdICTOUj9ASoRiOK6tO/HliDfFhSY8/oV2pq7TLns6FF1Q==", "084": "crYCRMZLQfUrLbmFOMCBnYXzYEkYuSFu+W8oGg3wb3ry20fCf4gHqflPUJgEaedtjxdA7AHSMLdKYuqlzwTI1KiX9eYM09Mv8QiCvw==", "085": "jJsF1fEsiMbQr2XwR4DsW98ZU8T3Rs/p/Fy2rMlU2crupGQqUnD7tQFxNBEgy1ZnLlO2elhOKrpN88RK/sluIc/lyvk3gv/3L/nd4A==", "086": "aySLYPSZzSWH5am6hcFg2FM3JimXD4FIdVg6kOjWJ7zsdd6QrYfpx9TWxoYxEJblTdlPx2eI137a+nXkxzbrF7dfUG9S99MkTXX+aw==", "087": "95Bi66IOlZESzSoh/7OytLMeAB96030KagPXllDZPQSppjWvETFj3uA0dRR1Faueb3OPDcCod9/nLHNbDZEunx0OLwNG1VdbvOCbjA==", "088": "HBHN23Q43dKa36m8zChJucZY5uisK38LLh9RI2fiNtFGkn26S7M58sdU0TcyUwVJYEqVuQrtyTYHm7hDuVEYl6zup2pJVZU1XN6nDg==", "089": "pMWEFvwgF4tBpInO5liX7sO9ig+WlIAawmEnY/MGtj9nXM+ODQ/Hlz7HpbwLsokgZ4wa51W7VuzV4dLfUEh07oyka9dvoUljlYu2OQ==", "090": "1NziKqxStxfCAzrZ4mT2knG4s+R+xJxt2Btv1mM13bro5tAyIndTRCWGkjdf0DiHhrSaEEOe1nmI1+j19inabwLMrylW8Voys9uj3w==", "091": "kaEhWiePaPUH1jwqT22+w8eeg34DX116kWE7FWgwV+FF+UT9z6pLZe5ZbfRV8fy4/8xt8td/fU+BQa151zDDoeISxTBmYXv8djhmcw==", "092": "mt0jgzZu46piaI3nozM8qjbnqAx/x+R1AQPHkyES94qH6uKdhgDPb7yOVmF/MinOYYE6UbPiZ/vRXQqNMDqt2RSIs1B2CTPPCA+xTg==", "093": "eA9ftdFqqpiZM4+hfuM9iQb9VcGDLKcUXY1wScBjEHrGD5a7G+dBlNEHFdEgrT85Q+1c6Y6gWEIh/FlytGF4C/AT/RdYJHiv/dQpgA==", "094": "7qKh/K68awmCDM+JsfYujwqTUNxfxwiZ34LqJP8rLslznyUck0DkOsfS/0zNpG4ARgfSdQTufQD1v5qsm1jxo3o0FKUbMbU0/oQ4aw==", "095": "54XcjL6RYvbGMQvMtnS8ypoQfnreR9DNKhNM//VgLtAdUs9fgdcZ3OQ/xknJb5Dg90bS8Wyu6DcBsxsBbQrvYQNMP5ZT+HzHOoMo4g==", "096": "YBTENtYA0IHTtmrxojZLAKXCv9ZsxPbDzGZJbWdoAcchG2uhf1EodHKzIHb9jIbY8yFzYEoK2iyhrwd9J+ltWgRCe3PDAk0MUOifwA==", "097": "4iNHLMAeNCKwDxvO4gFtwZC5qKG+NoXKysQnvwPK1DErZbPjtM/NpbzB5nI2a+YzZGh47X0cyF61tvpbtGCyOtinkPoWPhM7ID31PQ==", "098": "AT1gzqnAgeOc2KxVDjLhcsGkJMp+w6awVcFAsANV8hRnbiQp/LagvAn2zecqpPsXaeWdW4Eo0oI4aJXLRn5d8YkHaB1D4FAn3SbgRQ==", "099": "M+4uUabBq+6Mp6ZdZ79+GyqquqIjIMpQj9ctkH/9k9LsmdnqhizIvMcUl8o9ofclfFVHv4TrwCwETJ8r7FIFAGL/6fEx2eImMKSQhA==", "100": "UE43JujMrBYRqWuzPXliO8xV8qPzgag8oIJYg7+A3gNosW+1aZKHzyGlaFht4kMDF2FnqvW41ARxYTkwlUpoR6uPLxgYyV1fJmxvLw==", "101": "9gxCpRNsnQo3i2M7uBAiEg0HgNUlSStcXSamYCSAJqQzFU5oRYDoM2M2Tvsf5Jsw0mtuPVkqGLKX/+/Af0hEWCvC/aNBnkMp74xVZQ==", "102": "bwHSzpJKtWmmHJelSSph60llZUbtrtyBsK6ywEAcb/LpHTIBmN8FPi/HZU0Tzz1wHu6hFeyjiX95uG9MriJhkvrXGWr04v/JBw3MtA==", "103": "5ujJ+SZ9IRZDCJ3Mxy+LeDbMPklP+MoBrPWJ4QvhnsGefmSGyu7UIK+K6dts2PkPNNQ1mWUXqZltEDPMtA5vbTfZmypHkzUQp5p+sg==", "104": "QS8xzEd5+WRJ6J82qRriAuup/GFAKKzuW1n8zaIqIEultP+rdEwZ4Eh3VYFUMvb+FcA6CIumPKmruo2F8E3bGLwfVD/9EZc+rZRd2w==", "105": "cau8LxdpmiDRMGD//yWRFpkNQ+qkXgFhwCiblRxd6h7Jp7hh42KZTwvQDj+aJz7zbAv/fNVz6eBoBM+6V/TBDY54NPoAKA8y0mc6Bg==", "106": "+HAVK15k7sXqgV3k13ohnJeCrSbTYRhaeOS8sj2UK0nX0GUy41cSxR6tyDMFX4xHvw9BKa83i4ktUvt4PFjjKEwZk+tBwBvwdCN4ig==", "107": "bemOitBw2l6OynndGxX9OtxuhogR9j4d1PZUrTBjkTW2lmY3QDvsJ624/yBNdN7tLooO5lBcXs7sJMl9HPB9gPEefZr4cscQxW/ejQ==", "108": "S9Eho9dxcTbW/WqkSxAxxtaJ5u4yy10a2AXbv27s+3bZ6dVb8TS9gd+ay7PNer8dMmLD/AgprxvVaHj8HIpGIyNagYeyQftCZD3vAg==", "109": "PwrS60rvW3xgkV8Vxg3EapLMCMZe4M1FLlospo2byJ2SY5fB7GzAjw6nCP7Je23ml7sNATAaWecma59s0YMNNFaYEq7QdG1jA6JMiw==", "110": "UaTvHVMkDJ9B95iSlNFwPgvpMqLNrVzG1D/oXhXQ8Oq+67XRwzy7pZ2ZEDDI10KVflLgEjnr9spEKFKHelKWUlo7jXATKqqUumrpRA==", "111": "e0T8ngiFmLq4vU4LjHN6n2zt7R4OSpsyHmtwecVF3pQBBNNkiXn/tfuIOkK9vNlCNcJvlvkpdX6Ke/9amoMQZIQUxtU10trr3MN9FQ==", "112": "nB4EB+TtVtD9ILcEbE+marcLpEags3H2jHtFteVIPMxohwYGUtMtu1vyrK2ayGMKDCXRbpxQi7N1i9pP8ciKf+1GALupFX7RwHMKiQ==", "113": "u6wfcm9M2uvineq88The5fnqpl5Z0pxxIy7BxuazgKiDaxoke3Wq6tk2Q7d6veWuC50o2pr8ASqTneVQ0Hu7dV1FWtE3Eal1j+uYxg==", "114": "21byDM0CvX6Xy6ecnUJO3HAxAwpzXC3PaReIgghRZrU0FXlACmDAsEzyTE920VCEiO3zn4TlbTgLMBPEhrQbAu+ei4uSNGMWq4YXiQ==", "115": "FmfvyM3hTV8S8Di0snId4vPvTO33k0WIRzIs8iO1pFqacDzD+XRM+V7agdUuO1XFlmv5fTv8RYWLCHSLZu+9vh+CX+utL2WiAFEJ/A==", "116": "p7ZkBdQNLaMtaLe6ahipu1sPV/KjQhH7za7NBZpvngWcVSQmlbBoy6nSN/XhbDLXp/1WUr6rPU0OOCLDRIYOwAQn71SdTixE5TBduA==", "117": "me49iFrtQ5yrLRzaVxtcklm/66ty68X/0LD1hkJmVrs6+8hVr4mtYZEb0THx2twooM6m2o6Xqpeo7LaIcu1hqltgYqVcEdl7+gfCqg==", "118": "k/EYq4Nte/g04IqOuAkjrecSVWIL83UhTil+UHU7rUyKBBtHmT5tf5uzSWQd1WySXPU12WmOP1NRimXx3d3srMBVhamQvHWhyuZjMQ==", "119": "yeuAiKpYZmd5u6oHscLJu1lTx1dKZyISV5CZmBKNn+gX0VwDa12izwBatCMC1Ci3itkBKY3lsw8H34zwwyHA7fBYYllK73/yUNTNWg==", "120": "3H/xn/8e0IK2xPnBP47murYI3A4ydQWATo7bsQnvOXg//aGCSMErO9WoW2nK7I/0UR2rBiBcEivpxcL1QY1nWSU+dSvU0mjvicbk8g==", "121": "+QCM8ySTeYoMbipNQVE9MbpieWlqBYBp9vX8OJsx/wDvwu3SxPfs0QclIMV293v/Y87zrtvGB9ScZCAyXpmX/6dnIK40UBw9Nq2ORw==", "122": "S6yCrHBi4EBegzaeui1KNk6Z/5mG8hVjZOdD3/I4WPN72AYJt5+Nul9PQ3tTeuj/UAfs5MGL4sIJoSgPiOB3KPuHzABeOaDK1H3g1w==", "123": "i9o71AhxQG65efJcgk95BiaZ+XiU4piKaMZd4Sh7epIhZgW2pxswdOKk95cNOWnmwMsCoskkAhQKNGncVGOAgKD1KqGUbPpP6fI+nw==", "124": "R40n7hQdA8uQ3WgRlHTcY2OZ9CPwblUTY/SQz3r6ntTiYTwjxSv8/L4JsnaSNksCOWxpCioVtWNYoUTVG7HTlbth1fYH5CzNy3zlzg==", "125": "7njLuC0di8ksbHoKySTwQFTkNg5h4lRrf1UslGIP8an2ZdWeLvir1vyxS1bstI3t2z2V0MhR7U9/Mg+YypCtKjU9vZujTdF3Hvu8EA==", "126": "bpin+tvKdMkak3LisFy4JSJd4Z/6n7FsREsxbV45YxQReJQGABQpXFAKRtzFuZXzYuH8KWtfvWm1okvA0Ilwdv+zcBv7sZJwsXE1Qg==", "127": "HwEQhIJaouAluC2aartEFArIM66kjbXWwHomQc7sjPuECD7rn9ZQ7WHGiHGOHoGZMjt38jouq7jRr1O4ECUok+02Inlc3O+jn8L62A==", "128": "v3jGtu3fJawhO/Y95G9ApRo50apcyAjy8rhPKVwY+2jZEm+RHUBu5dVZ7wxHmMShkU16gZzEbPw0662k2pFINV5ul/dgjR6fIUjpqg==", "129": "IWfoE0me4hiN2iUtoadNNQetS16fSZJO4R7/GnW3nQN9cW/VmglWUXGQLbVpJjTjqntPZTDa2DlauBjoVLqTLY3zHbFCdvGFQ5w1JA==", "130": "NXKvBPVGrIn1IWfAmQzMA3lFx5qGJ8T1tMdGIj7sX2wHDkABed7UU0rGXvIbE7qOSGU0LIkaxA+170N2WaB+RGwToSG6NmxUE8ipAg==", "131": "oMpHttQE4dZNoU471IGIgYJe5brLbqM/dHqFMJmyqcZxaa5azjKcFl2FH9ad69NEN5ZX/LvaVxtiwAA1U5/apauA5Hpx8VeTsqFXPw==", "132": "q2w1cKidPmy0mx4ol9cdqhVDFYkCCqok7hnG/RzMf60s/1MZuo4NkEB0ojeIdNUPoBrCG/T8cdmZamcpk+ro626UNDVfMdC6owfO4Q==", "133": "yNcwvQqcQyyTaf6N4Lz0VB1PS4FxnhqXMkHp2qzcAlTDUb8Z9RWflqtBel0bfWoHaKK2+yRDdL9BcaENIuQ2Leo49Spd89/IdnOlLw==", "134": "rMgN5FvGhv4Chosv4rmYhLdvs2fMZ1QBg82uX9tr3P51Q++h8A5ssxfAurexbVfcY7HbtUlYt9EUqi11Ua98pC0m5i3DwFuweCiN6w==", "135": "AVLQx4ChtfTxqxHFhDyaIWw5HKmGhXGRsgBQDBeeOKzUtCZkrKS68GbyeCg3LZIVZETMV7nMSfM2vXmtFN/ZYQuPL7pT2UoX84y2mQ==", "136": "EVGdbhX3e0NeRoESx/fTUxu/y1e82EQzmVxyawYK64cXrEiWmMgePWdRbeRC4aZpCMPnzPQFkLKXkX09oLxA/ZstVekBz5q4dyG03Q==", "137": "RLr9MDzAzslfW4trGrDksPUlY/9t0SC2ReY0AKszn4sCLiVlqHHrUlTuzD6S5Huqqc/FtR3gd6Pw/h4Krvb3KU4eEi+HQbUQtNoX/g==", "138": "Vpr/2R267v39O0P8peS/BdxLFw3piGTLuBkkNUSJqOU/vQfWxdGYbS1e2x+YT3c6FXrRH9xrkurL5gPDd30in94IpXmSlZwk0j/m9w==", "139": "emVxa+M+irx7+14VbiU8+FG7Zb94PrpcVjtMMRDUmO5TOL+4qoO6W1RyJBwukybbHS6yD5GY1Z/WDPBs0kMfMkwGPIhj9Dk+flzRPg==", "140": "uhtwC0QH0xqtkzKZ9Nud0VDnfqKMJ3H5Gy14mQKaA4gbhCu4CUlOZmpvaTj0vIZ6XQ9jBS1rHIwLk6yYKvzaCSsRskPBC6yGVKEdug==", "141": "xE9vI4CwFdnE9UOIN6mqtecnNJ7cjqK55LMYCuVXo8ME5tXqRl+JMjnTuXe4OIAf6LsJEndFXr+iqM+LrJtBL0sW4q5upvJj/9X6Ug==", "142": "kNHdi583uMD1jXUvzpIN3WFVMCWymAXyS/TU+7lrUJ33Ly3teqV2M8deZw1rKC0Srw7ZBLsm8a44hjEi17yciHdg5O8sDf1hDglINQ==", "143": "eiwqx7xRcwx9FwEP7jY9UBNowBMw8wSABUjPLu9o5vCthrqTX9hbGxRRAk4i9kskYpgtNuRuv8XW8+BCVSmsys2qJM2CNgxXb/+u0w==", "144": "VEoqccxu7nX+GVfU8AcyF6z7cQG7lFS6hXsFZ+3ytgowSfleDtgfZtVetF8/efAyQgog/qrT+Wm3ATfeT3JHVEExkJ2V2GgBUxq7NQ==", "145": "UQP4PqlZUE4zamvV/62x01Sagh+YpfxwdLPokYkxaf03aY60WGi6ruwOjj13gLqrPyoVoatNDa5BGCK2zub/ySxCta1PBB3II6o7Ew==", "146": "V983KtokBPA7qPgxKtmkUczvii2oKtJgrMUCZUQpVX+Ydyag4EgR3vWFP1eSxfbL3DpJt6MIaMqGI/+1yud4ks8znE7enwVFiFrT2g==", "147": "HxzkigoRdpQACOFmnzjjPbIP7fS6TqtCWaGXV/ZR0o/y/oPUpiUtsOGbZ4CnXl5quhbVD4Yn9elyL17dzXEIo+wMq8noTi9hLWpedw==", "148": "QgwBwxO7e94yJu46XCpidn93yFz14VoxzD3YQdqLBPw1jDbr7tMRUc/YvFFqGQki+NTSIc+PZORsbx7pYbBK2pMaE3fJlFdUSRApfQ==", "149": "UwAQn9COrbN8DssC6+e++09oTCK+J6w9lEhNGcPs9cJGWQEEQEr8b0PpQxnrqvNSth4fCiDPVZ8fmevIH6FpqoEoOFS7CQi/LRdQlw==", "150": "4FUDZoHYEgr0AzM1aFE51RodwcWE0r9kT2U8aUyG8m6AqOidnlr3/xb0uuE+r2Xodcyr+VmuYFW7H3ilh88nXfKzY9rKodoNjvrX1w==", "151": "vYt3sxyBXwspxjVTh0amWKewI8T18mggRNzY98My/eLfzKIm8y+JvKObFelYZP8cRRE0iMXjVHjyev0oqQs2HqdlQZxwLe21rg1aWg==", "152": "LwDSzJHNV/8iLIoY5wzOGKExnUU6obQ/UG77WizoFMexqKHrC1MasRdXZEtVLbahJtkuVmnydulGY40c1INob9E8Bs++ltThsFHy4g==", "153": "Nc1HXsWqIMTgFBytQCHPUs/NWR9w5KNTYQS+7XnjlEgQqK49cFVhNyvKCzdBnmx9EFeGYlNkCmRU9ZcrE3G9XsJntxQMVv/loxdL+A==", "154": "yhG1lGqbxMnYUVt7L7fmzm6r9g0tT7WmHltm11bmp58jfWFk5SORHSbFA1xQ8rX1S8ha7HRrQOlmYz8QfEBzVe2RDwXGRnSCJpScJQ==", "155": "WRNuBnh7c0RwyUSkTCrnCnV6hFxRVBvQSvTBaVw5P4D2JlPG/et90F9xGSfUiGnu93OaEV/ZFOgHb3JrwUSDqs8C8r72YKj3tqPFHQ==", "156": "vk2546TdEn44arTJmg5yvi1MUm9BB6zWc+MwhLLMNn+M0tOVOQcbgC1DCZeNy4BqEj4+19kts32XKYnO1+Ib2lGmw7yC/Tf0wbXMHA==", "157": "sW9muZZ4QNnxzeLwbEjiPigOUAz3/Q/jdzwCUrHUrVQoG3mgLCaVsIvzIX+TBirf0on4BMD0iDeNN5ENkzu0I1FFBkFHK0d0YqcAhQ==", "158": "GyXlPmRa14EAJ00DZi7Qc+EskQzI6pHvY6QoEK/x2K8pqfOPqqp/sZXF0RI2QSXU5uHFVd+OLa8Ep/BKygCfC8OtLD1CL2VZMoAq8w==", "159": "UgvDxVJqwi6yX18IWI7pV7teraQTry524qUFvoqReALTy4djG73I6lekC8cwkn/Nk2PXiKu/rFFuzE+4gT1pJyr2xZqVqZiIAwQV7A==", "160": "IJzFP23daTc+ovHMv8Jgp0oBGZbCrGv8DYns9JWAyA1E2pY/broqKpltLBEWzQold95c3T7XNt0pICpW0+BG9NyPXRx+kmTT63QtxQ==", "161": "iBwzDWjTx+P6vlepl4tFBGu73zwGNoKw5BdOhT7DxVy1jHD+ryJqnFYK4ALnyEMEiWOBXV6OPf59jvti3FakB3gU8XV596pJ/pbFSA==", "162": "r5tdBHf0HZOY34p67KfvTUfLIIBWK6d8xBqm3y3sVyhmggHWE9aF4K8S01sk8BJc7trZ5njlWgJoBUzIxLNp519OZ8MKsvjeD1tjxg==", "163": "nfgaQGsb1iVjhvv8TLAE8DyOXBIGbQR12wOyoZyhstjTOA0xPZkbEOfQzDjLJsWGBfkSpxNfz5XlsXGjSJtSo2r34+Kt4wgKKcDA3A==", "164": "B4RWsbUGrEST76qwT/gbO5M8JxeIIE8783JEub0Cp9ni4jmNFFk9Sjz1fu/YJWfCI1nInlDrl3hNestOp0/i9+3mRdDE/jIv/PnbYQ==", "165": "glRHF/Pda2zXDSJDgJxLF6fR0sdr5VuCmdVM57EGdrZHa1hvURoO0hjLJG6gc85j/9wl8XxxnbjU0dBoXBAdaVDmSAcg58qmT8XqVA==", "166": "GFzOPThQn4+faWcRP1G3zCUrGw/MLEdBhNtReRy6YRh4oAuGfEG+OMzQepFmNE5E7t3RIZV7EbqAO4y80Dli7jq69rDhBdzTxl/NuA==", "167": "gCPAVRrfgHxfvTDRx5nQlQ/PeYAEDX8jR7O3ZltAvwfUdeRhou/WZ/0hxyXygMauGLiOH2NzCyHPjSlBQmQsxllIg2NM679Ob4qg2A==", "168": "pdpIWTM/Pghgy/onwrUOkWGXPZz/j6LO7cjLzBmkLDhzw+ctAI/jdtMJsTuwv3c2fjg4KImlgolpm2WGfOTKG/Vqi1iWW5pB0I59Rw==", "169": "ommPiV1q9kcO/BEe7YZw/LF2b+84gOopRcPoriq+bm4Vd8gSf37o4OATyEag0Y8sGIza7uipGuJUk+lLMr9Ew92BHqGPpAumTRoxjw==", "170": "24eRMntQNAtRdrvoJ9y62HN0xm62tSy9OqYTQUDJRAAnrSwdx7nevSLMVeLdynGilL8ToxrQb+l9+d1BUEIe0DfWzqoGAozQyBKC8w==", "171": "/CyHsG/fcCnmtcfRCCtrbPxxk6bWmXbyoajH7XvB2+Hwjvqte4DpLjmY8Mb3pNPxlCMs6rCEae3YftdGiXGyRGucsUhO+IqDCJIn2Q==", "172": "falDpfZ5D+Q7fliuV0elOlP76CzGZGoyYMGWUoWJ/HOfeMq5Ohe/KrgJG6gUvqyd+p6Bj5mts42nCzVYY1T4Ty3SwsICY9x8B/4gcw==", "173": "+nDugh6agTrqghu0ITb/yjFwm84gA1DLLLYBmyYcciy+3EsrkGbWWB/jURg+2hExKUxB2BSfKNaTHTa2TLa9AlIblewqh5hWOeIfDA==", "174": "ZdksLZDys3UBeFbwX+klOJHRuvUsETQofMYbhQMxp2SxIbkZjEyN8SKVxvttIhU/vxT/79uSVzwyg/hyU+SzDYY3aHX431A/K7ZiXg==", "175": "bET6HfBPArFxTFO/c7+FaySml0mOWWUN+sCzFm7qLaRnZUriYkir5sWkMMF/dusX4h2C/+aKm9JO/QoQS5GAdiZabXD6QRq8N1GyCg==", "176": "DYKFTTrKd9ZhpUXAv+YFZe0nciPVzI/Vg0+4Vwx64gGGIG9bOG2xi4B5Vun0i1BojdgXZ465W/Bv5WY/ZVcMdrUU6iE3NR+4kocqZQ==", "177": "8Cu9uWWyHrqgyUxyOVnTWWU6ZkjHhkiaG4m4jYX3YB2Bozr2C4FGNxqIu7Vmlck3nHEVtMPYDAIyMzg9A7+N0zXFe5jc2L0FRzl5mw==", "178": "koqnw0aZAD68RoPklvu1PYFXNBj5TmIbebFw9bLdptosXXkcyGchqEEpTzw1A9NQo9IEXsZ9orE/dv8rwtY7v/wEYx1/qgHQxmPksw==", "179": "7FlFKzV5YCnKv3b/fvz/Dpl0ISmysa4VS8zm5rsa9eK6QsKegPVa2CSwTMvqES+07dvati0Yf2k3VFO4ZJ+egQbBBa0Ub6ALXsaRXQ==", "180": "3J90dDCs8+aLVHKVO4DV4gKn8/LDPLS8sjo24jAQ+HoEMh6BEpW5eru9Dfx5feWrglRt/0k15ee6ZXXBTI2MEk2Bnv5hg8Se3FbcHw==", "181": "GN8U/J11ls8QgZUm65MK0hKs3jOXs3Id8fJGXYwXkDyoMclh98WMHkxEMI+0vGC+1RaWiLgcvu1BAqsWA9GOUH2w13GJvdHPY/VfIA==", "182": "WaPg15/1dKajTIaWvCsy+9xCLOiEtFXVWnre5ATny1W33N/SWibPQrq56dvShtysykk8q3C3GkcRh3ZpYmnvyrtL0eIUi0JdT4Ld7Q==", "183": "FV4oN9tdAYHW+Yo/cOm2kHS23V5qnb+xk2eOxnelOQUCPvp8IPAkQwsSV6qicflZaB7lsNMZfoID3NdbY8H9mJZBEuC7fXNVsRlYqg==", "184": "CDcgICT92PpWgrapY6j/eDcRF1Rr75ojXKlMq9cMTSFtis4i2NQhKM4D4nsqNRKo3Oc4yW1+CBmd5Cm4v2dPbVqqNiwxRKCZCqd4bQ==", "185": "cIuUUhZ/YrJbA4Te/Uc9yAv/WkPCiqREGiydiiXh83B61dcOrmxdk3Vfu3Uk3bgTKSsoMPnFBYFchL0Gn62oqYUsWhCxoo+lLQmBWA==", "186": "qIiOS1JX/NDVVZfFL37w9X8OsY2Oc9QHGNcX6AMcJVYFrKTbJgAnIoiHTKJQtgqbt2noig4RDJ0udW2pE4opMrJmvJSkY3u7CJtMvw==", "187": "wsgLU2rxVSIvrnR0cTZcjWnfPUSqbDt8a5Ov4HAaRUbNkBQ6mvbl9smyMxeA3+0pU11Uc/sLF//Oj5kxc5NAEg+ftccNm5aY7n02zg==", "188": "upMdanx7tUzSmqAZkG0xTYo2Hq8yHt4FKBm/tWAr+TiRThwLeV/PLxQB6NLviruInhDxyUUMNCEe4LHXlvTAIfhf5Ul2FMQw4JOZpA==", "189": "Im089S3CdcPs+GPtu6Is4HjRIEH4rYg1XTJejukHwu0qCNC/5OPUJkUlSwHetEFbPm+HdEzQtvQxKVvVcI7XwQNMhnidJBDqjY61ng==", "190": "rSvGUZNM+RO98bw0zgf5IdPrHvdYDcqTUGK7v92PgUV7lCIDbCBtMZgrJBcTA0vrKOFyO+JBoqfCrrwIS8OKgy72bQkuXl5CibtAdw==", "191": "x6rSHNzKmH7iqq+Mq8wX02YZnbp1qt0lVOaGnXCzHF0oR+pp5WCpEo2O3VjZfMDKh7Cx7ptkMOtENGcZ4fAAYzxF8jgAkpskl2li1Q==", "192": "3N2W3+ixyNQ0ulEyPNaerPf4Tean8P9HchaKflN4SIQp4fAAYUh76ErDcdd2IPVjmtQkG+pbwyUV76R+fL7fUdEeJz5NSp3V/JGALA==", "193": "kWz5eS9crz621PdISb0i3Hx9Dkgm3+aOLKEczDsX+kNFJFPlK4xPkn6rOkDO4a9kz0GEUI+r3Cct0CeXGAtXaa7F0UheGsTmgbCM/w==", "194": "ZgbQNF0gHLecwj4iQSHeapAjhkOgxrewYZdyIZuPdHb/5j12Rz23x3moVV3dER8pKcdosZLJXSVaq/4lk1zrqInLHJV3OngTWR8Zfw==", "195": "07SpghZBdgIPCyOFecJY/gFJLya0DXcyl2RLxSRWjqoOZtegKPLt9lbuqoDx/jddiYPgy2Zmwc9u3aEZbY09he9IlNrIDJ1mgHf1eA==", "196": "c1Tpmfzc1cj5KXnve24SfjCjDMc5oURNtKH609rJbqhodyJhSS7JRvdY7TkVjCcftc38KVVKROA2D6cDmH4CMi2ZGcFE5ZN+THZJEg==", "197": "Cf3wYoB8HCxtG85sQiRGpdlfWi3b3NHMPxkJ+vteU1KwhYGEoTNEZi0JD2r85KMRbiLKwQF/XiJRs363YV63U7mdw/8LIuqi97hp5g==", "198": "apvSSCi5bNoppltQ4QAfWR3v3l7SDVfIsZ/eB3qGHqAkzoGyRdbcIbQvfn942+OCGuTkotpiMT+4KZc1hV9MpsEq+rMBF1qIzoa3mQ==", "199": "cQv2qNbvchaT4m5ydUZPDG9Sr32tPS46owyIjTMOwPhNGWGDTUxrzjpBzSscCp3CFWvxKz1TlQIcJfXkWp7/OW9lyYIoEwy0J58vAQ==", "200": "YpSS4mGwx58LaxdYUcyprwAc/Ny6vzlgyBY/l4NntuI/uOKyk9GcVs1QznWVhdC3RW84/3MHFv+BmIpoUzgOaTxZqD9yZBrfNxYF0g==", "201": "Y7JyDGD4tzgdZ4EDDpz0AiEbKLkrXK2WaqfZqTtPxiT9mVIvGH8LMe7k+HYkkP0rcE5p9WE7Lmj9s967wEQ6YEiJRThoJIQClGMLeA==", "202": "9NQ3iOMnQqaOUZyQ44/pf+hBh1DZs7IOnigNS6VENXD15Olzo9E02Wv3MR7F4gSUdoulmcBwnBVd5LxKNSB8mP4Ajg2p1fwVHXFNOg==", "203": "zy4X/z7MJGMMHfV4B/06MaIQXfiZ8C7to9hzMBhyoujQKs6D2Zj2/WIiOa3zEw8dVmgIpfX6WfkJMARdsggxRnX4dXnsNUZWbxtQ/A==", "204": "87k9yQ8BqYuqnFkm8c6NCMGpSA5NRzy3714Ysqn2Jp/aqiuxCgTFu3q+BpXjb4s3G5nyr7y/V/DUPqAOeCybEZnu0qWhisvpdNOS1Q==", "205": "t/ocNpB713JoeQywqd3snAhoMQxBXY0McqeYSbuk5DlFfJ8Ug+J2Ru9D9JsJs4cWH24/W2ENSdvOEaMnwHKZO6gLaEhI/Zwff4SA3g==", "206": "zBezgGsTBKXmLLjwfI19ufbQrH6NB6+ECwGMt+DOu6HTQLUzMnZXS5fqCUaizWVEs9Yw10nqM3I8KF0NNfxLgaZgXeGIKUVXagrZSg==", "207": "LMoJi7jIywSlUhGk+5Afa2fvt0DkV1JKRAqn5Pmz2x53sKrm6owekUTyp7LhS3IeG8KYUQ6Rx0RVI2NaMI4ecc3Z8TY36RAt8yay8A==", "208": "AIXSsecMCroXEyXLiKaz/WmpxYHdoulh//wHDcA4vyQ4K6NOyvbHuVtcblwoWgCeAxDBnpXacud1eKOLPZ3pm1Bog3hkaySO0GP+yg==", "209": "HdMPG3kHstqWm4HjdUcLq1+HPjW7QDgMp794iRb6icSzljHMeP+q9KwhU4EKfSlnDbC7NMR1Z6vBXg1a8C0tO1jOFZutSGU4MrNwJQ==", "210": "soqq2mZ6q3krKEOKFejy3B8erZHjyiZMeGVsoxq8OcWI5oSfoPwODITMlOjGMkaElL2u8IdjjRj7ryK2lS8s7NvY5UgA0pB5KTjZxw==", "211": "I2Fm6XzpVzJ8ngbzhJZb9RJxIVW2omllOl3sbStDyw6Bx8cLoKG0vLzJxOZXLrArf64LRccdJcyHJ4T2lSCljySSFGVP7n6oGu2i+w==", "212": "JHcPFR6oPze7ufdwciH8eD5AoE1cCSnuQLUxvoJOr5Zdg71DTIOd6r65UUgYemYt1xNGdzZVb7X1p/MlNB1Ui54qIpsH9Xdm4nu4Rw==", "213": "ENLdI0SZJkVp1NRGBHBFFmKLBEfnbavxp3iwTn5ywprJXFYSuCCy9c74YgD46cFoPegXyGa2hodBh1XaPDZRE9kAqnFVQMpAJhkosQ==", "214": "ZyYZTJzISZubqZOK1mD5VpKOAIRurJmgnDqZhJBCm++LcyMQNLufNVTk+wx8InZ/5ZdIIPVwV3QmweDwiLIki1HquJIDyYxjAdbifw==", "215": "LDv0inl+vgxmTbqZY1qv1SlFVU42AXHQ0agYJre/gumvmyt0VGz61+WdHvMxnnz5qK1hEegYILHOgPEZ4VmALnlMrw2wx5wlz4DHiw==", "216": "zELS7LVaSxt+OVZjuTkCD5DlLV1Oh0hXwxOvlGJBcuYNe0H0pUNbYd6qpjJ7YORIk5WOj5PShCN2pJHcnaExOqdqx3K2ddIcSHQ8nQ==", "217": "vtjoOE/YjfC4aqjxi8iSJVBxLvy+Z5VBHiX2+f9w8wAo9jk60ly6STuveRpGJ1zucMBtz3gXARLjIRarSgcdmPVT0izuQMfSNhHqew==", "218": "RKFkmG/Eip3sEcZ+R+oDKhVXB2RV3li/px/FctgkIfyQ1dNoE45AHlS1Y4HfInLrJ9rGvfMLczy4mNvsMvWmSIGSVPxTq25xJj0f3g==", "219": "hCoghvJvdw8K5gYN23SgHb7Buqn8oenOs4RaaVlDbHpvtixbfum/RkCpRBcmzq4cKOhIekmT/BepuWPzE9zeLH16l7wT+WTHWKkYHA==", "220": "CUh0+p/JwBwFuMDz3onmaHce2oyOz5IGTAr3ZN5+i4+ReoPsswpJiX1Jo4t7QWFZJhBNcGcPJLwB24t9saznUXcFqgSUgh9dqW0S6g==", "221": "oiL2q3bfvMl50f42r/7QnKDppMGiGXRvqLcAr3/F2aa6faxwwjTepvsWw5rtFVWLfnsDkeKejKng1LhVoA1bhzqsw/sXuRdL6pRSJA==", "222": "Tcztl/M/u6Uh+KkRncsCrJapjqbKa2EHbEeo/DYreiW/qgfNBSF2iSoA8LfeBG9xL0ydBzmnfpAF/w+Vqr+HjnRqKXgyoOpd6ncQWw==", "223": "ImxdJBnIEUDoFF9q0uvn+Q2usT3MZzWPNU+U6CfbkJy9Qh1pXT97dDpDiYDUOobnCkE+G0xMXXpjADEv+l+5G7MkD+Nk2i4lqYeavA==", "224": "Ian9d5VM4HqqW995JmRjf08bA/ZBS1agMCR/EyZRcjJ9xlKWQbP9BDUN3i4rZ4G6PKmac9Uxa9h48K+sbp/4mR0GWYUI171o0dSEig==", "225": "WgWvsWTvx//sZFmnuMgo2OCHjALNvqPMRxIaK+2qLPEX353fKeOAotzK5jbOUjDwZ3XaS6XgHLhiei50JOyy4R+Sy0/8TjCV8/+FeA==", "226": "IFKQ4pSrOV7DD6IBSaMIldxC/9ChoUHIj3AYYf/DPIz1kflgtSG+ar62ipRUN5c+t0KXgsHTrR+WLHQNcR4e8QMht4yBkcgZNF8/kg==", "227": "N096vqqggLSsMBrSg173AmHbVXmHInWXNJVZCUsVRKj+695INGznWhoBmA2EL28Ji98qWJ90GKArjIxgXE3ihXoAy24n/hJwh75QFQ==", "228": "/X+VbGDyhEv8tUp4aT/am3JJ9eK10ZvuVE0rHJIWuYvS1+S980AbPz4odsNgS9Jp72aGQcWE9exc67T8lIFMYQEoFGUCSs5ElbEASg==", "229": "47SloEwBlN/vleFkphVrm6/weS+3kmsSRhL4CkRhIFMZ/mdUeKrIy6Y9YhRffufiz4reOF3AtleRspJPf+Qx/kCL3lPW2OcmB1280w==", "230": "VM3oPAHw5rlFnuV7LMZ36K+eLhVHWWeELvXYG1N03Mlmur54tlDCIkwSC68k3HX14C6Z0k5eqmff0zfqva3UU+Q0SxOAZ4XSxbk+uw==", "231": "69km7tb8F9cDSGzm334GdaZ3V02C3rVDwv/5EjalaUKt1hhXmgFQ7XV3vBNtzSJKoMe2ip2eIFHAyy/XlxCeSzR5b/gw1TcLY+ctCA==", "232": "WvOo+LXl+gwXJb9xGyFJyDYTWf819FoGluPbMvt8uY173rCUYnOOuIePllUaspQ5FvWotyGTQGfn/DZHbkMsqAbT75gvAsdztW72Hg==", "233": "9oB3rh6C7GD1e1kIXlk6joLNalhkkpCSbAR7cnYFPSvmAJw91ylygOk7bvx2LRHlo2DKxgRzxV2WoSL1sN2WWhLDbD/GVBhuhEghhg==", "234": "6tr9y+ZYnfrSuFQ+PIT9Pf42D9ub/3uhCUa/Yp5DZvn6HRKeldmt8kTHgOCpiLXmKh2ZAgwYuYWGeIbQas8liroWbwBwedaxmzjbpw==", "235": "Jd2lf+07y0Og2k0lATcx4PpqrZ+xTC4FyHuoUQQovjawgg9R+1tg37MT4fDC3flLSz+jSISimNDf0+s7lcj2vJm7YByUu5tNpgUlcw==", "236": "9P0ihBaaREUiBkEVJwmLf7SbqbSAjy7zOwFUTN82VkVAENDULY4jHBVp6NbdxXiXLpynpZNXMkrASqtE3pYfX4ArIpE9a+JsGc+p7Q==", "237": "45dC/YOa5uBEozGHz+r7lrwOBQrR4RnZUWx4dGKnjd6KdRW1olJk2TrK70t9Eegc1bS4Fppo+2JMLOS6BQxgRLh2LW1xwjA+W0Yy4w==", "238": "rHuVS8oPtXe2nlx6ZNXG99fUXQZmCoowJGZ0UdDPQkbZHJgrXC6e0iRGvNoSfat3BxG3CM/bu9GN0TOrggMY58uGLmLm80kZ+0NtVA==", "239": "Pk9ydgsFuBdDTayfjZ1WO6rVffK1Fo3apJbFYEPwU2kujB1I9M75NURDEuNC29p9PB+xaAIzjpSgUk8/ydi04imSbKsC8glFGW0Npg==", "240": "labWzMpj89Vi3woN9OTd4fMRojeNJ937LYfBq03m+G30qMh4pyfCAdDcCtYmjL7ggZyi7L0+okkdA8oTEbsQ7w41N4B8aiB9BOE4yQ==", "241": "L0cx4fDUw6MiAc1w4HAuBP1yYndBIxw+SVWfpFgi8ZkOpjl39SDbj/MVntu2eY4AJp8bi+bK0Kt/58CkyP9SWLcnlGXRpkXUGHsAaQ==", "242": "M3CcLeeVXTGGdymOQMZMQTvLjThQy0sOY4DkjpOtscU+7Ej1cdfJkztW9ayMwplSHT37AFcQ37H4ZEn1g2YFxQqBMoZflxiOuQUvEg==", "243": "l+itdi/7+Yy47eMyK6lNeKFFD5maL+0cn7/CON7/Mzbp9IJ0urqciaDZlZNqUlKry5b40Q7Uu4tvwCmrzPiMP78R7yS4m3owgMbIXQ==", "244": "BSD7OH3GjdgrSncG2bsc9+sGj9sQGapuGVpv1DkXYGA9DBHGyQAVn61gOWGweBwgfOwOsAysC2Q4IBCzFmUOCgdzgqMipRUlYSBNHQ==", "245": "mhf2aLbwGwmn1z6/XK+/zf+IPymM/JvRLvHzMIY5EerYYsVr75heX6XodKveNzlqw1zSbKZviqf6dAUw5Y67lg6/hqUulR83tDesEA==", "246": "wy6zM2ShEXekuwZ7fv8E3B0ZOqI47J9+YgEWj/k16v9s9rtLsjctDNdhjYIMER/jR8yCmBh2X3LFgh0/fUj36QYQHDPSBaBREHp/Wg==", "247": "fUCPcc+Wfe/BjcmH1iz0V9RTSajyS3hQkhUWO8hKwAe9tOZaDoZ6mZM8jAw8//WND4yzSptYiCvWP4kqtVOcuy3EzU3l09ajgyHg5A==", "248": "C+JF0+SVKUfLAdSvieWZfsctU3c/Ug9UfSX96PLG+2kgTaLT4NJ9/W3WK5NGgX9sCLjRMzB9vchmZ7DorNTqwkGz8IRgnN1Mj1ggwA==", "249": "Y9vMXOUzTnLIGv9UDKpbEoACJWnQGJv5CbEWGEwLkAmwFv5PoEVkEBz427edPGW1mHsZyMqxgOBxOEUlI66iHV91uZJ+UpkPfhPHLg==", "250": "E5RQWcG0XGS0qzL0SpkAeQEjMnGYz1NJl2El7ImGk6nL19APQM5WVagmeOnoniinMwSjGn1PGynEcC3uIlpIeklDfW7w+0bbAIA+og==", "251": "n5lBEc6J7Tb91r+9DgkburuYYTls92tO7Tt6Dzzuf/2fdPEy0k4OFiHGys+eJShIjXHyo/n9nm2BV9oubXnpl3huI105JMg5mO8p0A==", "252": "mHfTbhsWd+ZWQSYGMMZhhS2PN7vPdr9hh7iFIIvrwC7lqVpbmTbLQoIUYzssSbyHWAFf8+Co1ttxnLChtcdb6gpgXfAtaegz/SDl7g==", "253": "IvTt4uISqeiMFbjxrFt98qT6Ukw5XsxX6OdncM2as28EopDiUr6mQkSLOY42xBaqoZKNY2CXyvDCQ4Nlz0V44lCwY0Kh8fec7V+DiA==", "254": "rFfeu7oI4LnzHDCRSs+XnmVdvhzwxiQx+qpVRs0CNGmAt8fLOcqSmGOHnyZVojev+PRFAIV9Zmp4aGKThVdYrrQMLHoIwktzSWuLMw==", "255": "9AXrdjPHwViwKCCivC4YWtOPq1hIUQr0uQD7XE1CuuWKIRSy6yFjq+9hwSGZ9ZaxbRA2YFusHk8X5L7oFAbQ9IVQ6MiBjpJSOM35ag==", "256": "eUdsji13QpsqAYepYNomUCjfcqmR4FinZ7d9+dnDRB/wpRda+Z5pk1LkWI5e87e/WFlVxrEgVWX08cXVypvdnapubl37fXtJQ8x7vQ==", "257": "krFH+RvHC61cT0dn3dfFmin64kkTxrzPcb/cmaQXcH32rQt9Exc8YwwIDraxuwt6Lmf3ICE8ag4H81kGpAzzS5+RIfr9uM60ZkYUvw==", "258": "2rHJpn8Jb15/mIWLRb9bltYStl1UD1UvvQJAtDXRj2/44SjbephG5R9hmCijn0fy7gnUL0BdxWLMwBmqmU0xbFFoxjw6F/aULzhWCQ==", "259": "BIoQLvCTyo/a7+ygl4vEa1xMaHvVAcXO/p3MI5Sv1oeSGTtEM6LGZHLeP3nEf4K8MxsOb33Zd3864xzrOWR+ttCIUT7JMnLgSGdClg==", "260": "hfNkDdrSYhmriquOEcfTdSBwGexNyY/04157bnXO8JtOr81q06AhrjZY1TCZ/ZuQSuzje7r3js2LVgOR7cahMPzfsFvjnIwpNncUXQ==", "261": "DzENEL09V8BIS8qTNWoONZK7l7FtP/YiDCylAm3vapWh7b8noS5SwzV7veIcfhTyj6pthK4l3vi/Yvb/5gYQAi3yFYyb0r2ohhYkAg==", "262": "VFBxfMnUtMoa0FWPHy6hEI1HbQjtMqfxmoBRCBvWZxWxLHOnmfMjU0rzT526sD0fLRKyf5e/jnMbhW/Zun6WiaNd9WAlzCogZZFQWA==", "263": "gWoozKpxHgrvyt7w8pYrTZVc3Lo63MoHGgcIOCywGoA3lLfXhImWq+fUuooAGVV+LDKIxKZI395PcDkAIkiRcCYEeajDT8xD5NjtEQ==", "264": "EYLQvZrsuI0YEAKReUhLaV0jHXW6LDpYpt6gR9ebDrRqSVx/jXLy6DK4JpokhgL710yBAdR5o1TWnMZuXa+Nirlm43u201NOMxQFyA==", "265": "3o3ETOdYqIRAxNClmaobXs5CvN4A3YhQOdyGAlRCeMkhZEBKihPh8vXYsJ57yCLKAbr0/uyj4p5CbvKNRJsbKAKHqIIOHx+oOhZIwg==", "266": "49l4NnBuh2VWnnNF4tR48hkSLh27uhIaPTAPiGQUnOyI+/5t0ksMm4uFc9qVDfAcW6EkLOQlzhdhrL1TEXvcpD4+biLxU7kTlWoiNg==", "267": "hEVEqQISBm9uGfZ+F3WTSikx9rtvjFGklu8Z7pozlU4cFv3hSf0C9QlQ9QmD4hCI2FMpPdJH0RogzkE/o+3B8u4rSSYrB/AOzndaBg==", "268": "T020Ot5HuAenHP8R/F2Hh30v0bXG28Uonlvn2wHPTW5fuVBc50GUQyeoEwtNY3z3DeCf/60D+XfQLjMZTiUSEj1GUDkkg9659Sb1fw==", "269": "3+YTuhyYQCz/BfOj0MgHdkNB2izN+H3uXsygQ6CbuUrzwO8rsfxrWcWKVXRLHczAeQ/CSrT8JerQlgwibWAWS/K5Xx2Xp7AMkC7egA==", "270": "KS4GQF3lFNf9Wxm2rLJJ+OfGIloi9E0wzjeodYyORN40ZHA1/wrA9GjentsRnE7TmCkMiZRpDJxF9BAR5hqu0MXSHQbWl6mI7bmeIg==", "271": "aMr2R0gqYchWsI3L+DNNpHxFB+3O7jK6kgXfK5C44RVyH3W2uPgPJHeVdoiSfgdKlHfeSGm+WxFVWW9sHic9ljrHdSIvKNXOOtlm+w==", "272": "eFeIC97O9BP2/6kREatN3527iTYoEkUdmAgqJjOYsCapf/m2UUhJ9V4bT3YtEMvdxCm5mbeM7E+UkohqpZjbe3EtSgf60/sarfL37g==", "273": "yEAwTHPtK5EAjg53oHyUvXqsFZthzN/kbFqh9fW3dCLKDHZQIPEn+2Dmgxxh8aTmGUTn6JK7GgIpIzdFfjEUBoLqOmO/Cai8ukiBKw==", "274": "Bu1DIN96RWjPC22PjMsW4ipF2YjyY1u4Ta3WPfqbIDH9eHu1PLc9kPB0RbN9QDSY62msQ31DnskHFFdPIk6nRncezRkC/lqQdgabag==", "275": "KKgjIxKx9tJ1/+ttZ7DFZuM3cScYqyUN1xVbKYJLFUpRQ1ttVexNcLIXG6Rj5Wr6FNFsjflKimtKUi+T/jKSXTdexXG31fPWLiwAzg==", "276": "YLAXTc3KYjs7O6ccUOyV3XRaYSuTYu3ECihRD/0sJbAWZZFpuIJMdWtPFd2Hc3qydDF4ca6RCvMxENfKO3pEX/60iaVKWIcz26ZcwQ==", "277": "X8/PiFFaLzCZUzN32w1QZTTfbcjHXslIj9iajGHle/59d8g1JylCnDE6kyitXUrIiIZuiP7LvmcBJcKI8nps1Io1y9kLnZucEvR+fw==", "278": "bk4BDCv5kaXvXmuHiae27RqKflMq+t5DZP/2Qu1f90b06WSXRIMkuU81wgowBRVZdqDGBmdY2OCg9JEJtPaR0vJXEUG/kw3o53hMkw==", "279": "Jv9uD+ZQOhjzWZVfF3fhWq4K8JtpKJO2hRYXp0zcZxEzyHWi0HrlOI7FGNpiMH25Yl+Yu4WgMcV7CgMnDoa7WeLrxdRKYzpKQye4Yg==", "280": "NXwtfmnEQ+BY56YQxaCRKev6g0wdR4VNvgWBOgtQVeooX0ZHx8cbMon0fT5A+PJZVua1kyr26+7E4O7MeZsgrzKJPAxuqBDiYO2YFw==", "281": "JgAwBLaRNzXmhUV8/yhdFi7Ph8UIID5G8pPbMVrHqM9xQvHVs3PrB9je7x7Ok1qLT9O9l5SRlX9IYlqCff0jNhSdxu9hEyeVkTD0wg==", "282": "N1se0Sqxw1o7WoVyxlpMX9cjIy7GntKeiXczFsqkhirX0Svf3RyvAwBkuvO2ChW5d5ehBm8W8csLv9hPRQ7U5SnKLVHK3bljhi1rPQ==", "283": "FWbOvABweK57fPO0QjxjDPN+HUtQ9wWUWWG9tKvQmQ3O+h4arVtq75xJ3Br9L7kw9vheqMWBkUJhTfDgc6Tl22R2eJMh8BtnX+D7Ig==", "284": "pKiXVG5cMxkme136iQvqNtlktrItqeunrutPavyUR6pExgX1Gf+HdRjUE8mEZWbqlSN8Qec4e2D7IzGmxpTD9gHkFgJwgvy65JF2LQ==", "285": "xUS3YfQ8Wou48xSLrjWgxanWwAK17CscTKWULV5bMBn/JpX1/Z7iWQRe1Q0zR422wW6Ti93C1tTghfNgFMt5Io7xshNcZmPPpuZ4bQ==", "286": "5xhbmOko518kUboh6v6aw/cMtavj00hbcXN127AoOTV6LPG7pak4cloV73zAZ7rQsKMJwQeUut/Nb+eUPrraegfx2myTS6lEHCAhwA==", "287": "NyPa38qJAgEEbs6qd8en4iOOTcmCsG+1YbVj4/PQhrGpKYqVnsrIEWysI8EWkCkgdr+CNJO8t6aF0f+auShBdWFTEznf1EV+y7p5IQ==", "288": "fDdWOBCfs5aVp+iiDxCoNyqID+ajMVetd4l6iw6AdAuC6wNQUTQQZNf/N+1NsjUXgvQ5KOMTJRPLTHEcsFdMcIzZsuhMPMxxoh2gzw==", "289": "8laYPQ8S36hRwb4YxMl/cWkUbXuzOyZIOTj+G1dIv64gZz9zUgvvf/Jlpbn0HQESCcdW+IDHBdijvq9hu1w3nrW6dYcOGIQhXdSKQA==", "290": "XKWBZRqGMk4p0g+lDAMTf71XqclS9Lkw/c4xxQY8pNAOEDVbTahx7X9UzqU+MVEzFnlB39opu5JqBarVBXcpXhrQYP1mVkTCzXmPKg==", "291": "H6XxTNJiJBAzmCFSKO+yCstX6gYUgQMUg+Xf2D8ClzaN3U2GbvG6xdHlT51cSAL6Ufo+bSVr715NuQy4cuo5yoQzuGtvFd54yKI2mg==", "292": "uoB4U3D4oXhHssJRglPAjmOVxohHlG32OTNqiT8IjrxK0S9MquvcwX+DE3wtDLzdTKrKO+Z9BJ5O/VePsV50+URuuwRzRdEV/lqdpw==", "293": "LnTEZ0BJRVHMyzrXsvBpj773tnTZdIboYruM7m8zhPDu2XQHE+axM+X2gn7EkOURhdYljvSHVRJGSSyI3Hm5jHC2dizjgPc7kDes/w==", "294": "kjz8iDBaeFum3xT56CnqyFKCseJfE2N4RTtnH5MdiamlHlRgmaaS1Rz4bdHnMFOcegek3A9ps+FqBdg/nrt+BJBvL2G9Idrq/UKksg==", "295": "Q1ADvOasjCANsOv5DAfpVfmB7I/MFQoi9mFeoN6LXh19P6gwYedluBGq2v8xL9vZHn0E6WjMSZ2914IT4NtxgOnHkLAHeZZD5YyZYw==", "296": "kabSernyGReDG8yZGelNkiRyGTzYJvJJh8TTqLbruvJSkBEIZDYIu0VVKJirX/cFj6Mh3ISFuMEDv/qaoAqjr85HLhZ9qoJ5am3oow==", "297": "yUz7Sp9YeDKXLFD7F8Ll5F0G5tPg8mEjqhfihs0FvUxdSfUdazqn0NmDWYTY7EA/v0pgvpiaZ5woZD17d/eaD95+7Y8e5VlTfU33zQ==", "298": "5n4OdNW34T9WWc9JoQsljcK8wT7LNIiiuBF6PvKbXnyzRrC2DP0zwy/Wm6A5JnwqTUGvgSj5qQ+E2oxan4/RWHHoNgw6dl8lRBBLeA==", "299": "eaRqgZ3eSnkuRFtAWN8Oh8nKxkXC9PUUcO2MAdYaQkg4apb8v19l3wqRAa2TDivaEwcoov9BN//eQOPN+UHiKR2W8TDKiM37mtD3tg==", "300": "6RynDZu+F5gZNw9iK12c2muD/WDungiJaZWS8ZaUAZCopTS/+NBR+wf83JAo68F/W3INBUMY+vwIxTTN1HlUejtB/yywlBvGSTiNHQ=="}};
 
 /* ---------- مواقف واقعية لكل بيت (للتوقعات اليومية والتحليل) ---------- */
 const HOUSE_SIT = [
@@ -1836,7 +1950,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
   function roleCard(k, P, R) {
     const a = ARC(P[k]), r = R[k];
-    return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${r.n}: ${a.n} <span class="hs">رقم ${P[k]}</span></summary><div class="mxb"><p>${r.intro}. ${a.core}.</p><p class="sub">${r.real} ${a.real}</p><p class="sub">نفسيًا: ${a.psy}</p><p class="sub">انتبه من: ${a.shadow}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`;
+    return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${r.n}: ${a.n} <span class="hs">رقم ${P[k]}</span></summary><div class="mxb"><p>${r.intro}. ${a.core}.</p><p class="sub">${r.real} ${a.real}</p>${a.psy ? `<p class="sub">نفسيًا: ${a.psy}</p>` : ""}<p class="sub">انتبه من: ${a.shadow}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`;
   }
   const mxs = (t, p) => `<article class="rd"><h4>${t}</h4><p>${p}</p></article>`;
 
@@ -1844,15 +1958,15 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const a = ARC(P.A), b = ARC(P.B), dd = ARC(P.D), e = ARC(P.E), sky = ARC(P.sky), earth = ARC(P.earth), self = ARC(P.self), yr = ARC(P.year);
     let o = `<div class="bond-cat"><strong>ملخص مصفوفتك</strong><p>طبعك الأصلي: ${a.n}. بتتجه ناحية: ${b.n}. والدرس الي بيتكرر معاك: ${dd.n}. وجوهرك الداخلي: ${e.n}.</p></div>`;
     o += mxs("أقوى ما فيك", `${a.core}. ${a.real}`);
-    o += mxs("الي بيتعبك", `${dd.shadow}. ${dd.psy}`);
+    o += mxs("الي بيتعبك", `${dd.shadow}. ${dd.psy || dd.real}`);
     o += mxs("اتجاهك", `${b.core}. ${b.real}`);
     o += mxs("خطوة تبدأ بيها دلوقتي", e.release);
     o += `<h4 class="ph">رسالتك في الحياة</h4>`;
-    o += mxs(`السما: ${sky.n}`, `ده الجانب الروحي، وبيقول إيه الي بتتعلمه من جوه. ${sky.spirit}`);
+    o += mxs(`السما: ${sky.n}`, `ده الجانب الروحي، وبيقول إيه الي بتتعلمه من جوه. ${sky.spirit || sky.core + "."}`);
     o += mxs(`الأرض: ${earth.n}`, `ده الجانب المادي، وبيقول إيه الي بتبنيه في الواقع. ${earth.real}`);
     o += mxs(`هدفك الشخصي: ${self.n}`, `${self.core}. ${self.release}`);
     o += `<h4 class="ph">طاقة رقمك وسنتك</h4>`;
-    o += mxs("مسار الحياة", LP_TXT[lp]);
+    o += mxs("مسار الحياة", LP_TXT[lp] + ` <a href="#lifepath" data-open-lp>شوف مسار حياتك بالتفصيل</a>`);
     o += mxs(`طاقة سنتك الحالية: ${yr.n}`, `${yr.core}. ${yr.real} ${yr.release}`);
     return o + MX_NOTE;
   }
@@ -1909,6 +2023,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     return o + MX_NOTE;
   }
 
+  let lastMX = null, lastLP = null;
   const mform = $("#mform");
   mform.addEventListener("submit", e => {
     e.preventDefault();
@@ -1921,22 +2036,26 @@ if (typeof module !== 'undefined') module.exports = Astro;
     renderMatrix($("#m-name").value.trim(), d, m, y);
     const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
   });
-  function renderMatrix(name, d, m, y) {
+  function renderMatrix(name, d, m, y, tabIdx) {
+    lastMX = [name, d, m, y];
     const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
     const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
     const names = ["ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
-    const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
+    const lkTab = i => !UNLOCKED && i >= 2;
+    const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab${lkTab(i) ? " lk" : ""}" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
     const compat = `<p class="lead2">اكتب تاريخ ميلاد شخص تاني (حبيب أو صاحب أو شريك شغل) وشوف مصفوفة العلاقة بينكم.</p><div class="field"><label for="mc-date">تاريخ ميلاد الشخص التاني</label><input id="mc-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="mc-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="mc-go" type="button">احسب مصفوفة العلاقة</button></div><div id="mc-out" hidden></div>`;
-    const bodies = [summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
+    const bodies = UNLOCKED ? [summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat] : [summaryHTML(P, lp), pointsHTML(P), stageTeaser(P, age), karmaTeaser(P), compatTeaser()];
     const panels = bodies.map((b, i) => `<div class="panel" role="tabpanel" id="mp${i + 1}" aria-labelledby="mt${i + 1}"${i ? " hidden" : ""}>${b}</div>`).join("");
     const legend = `<p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
     const msg = `أهلاً، حسبت مصفوفتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${name}\nتاريخ الميلاد: ${d}/${m}/${y}\nنقاطي: A=${P.A}، B=${P.B}، C=${P.C}، D=${P.D}، المركز=${P.E}`;
     const cta = `<div class="cta-box"><h4>عايز قراءة أعمق لمصفوفتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط المصفوفة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="mx-wa" href="#book">احجز قراءة المصفوفة على واتساب</a></div>`;
     const root = $("#mresult");
-    root.innerHTML = head + `<div class="wheel-wrap">${matrixSVG(P, cur)}</div>` + legend + tabs + panels + cta + CONTACT_LINE;
-    wireTabs(root); bindContact(root);
-    const wa = $("#mx-wa", root); wa.href = waLink(msg); openWA(wa);
-    $("#mc-go", root).addEventListener("click", () => {
+    root.innerHTML = head + `<div class="wheel-wrap">${matrixSVG(P, cur)}</div>` + legend + tabs + panels + (UNLOCKED ? cta : "") + CONTACT_LINE;
+    wireTabs(root); bindContact(root); wireGates(root);
+    const lpFill = $("#lp-date"); if (lpFill && !lpFill.value) lpFill.value = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+    if (tabIdx) { const tt = $$("[role=tab]", root)[tabIdx]; if (tt) tt.click(); }
+    const wa = $("#mx-wa", root); if (wa) { wa.href = waLink(msg); openWA(wa); }
+    const mcGo = $("#mc-go", root); if (mcGo) mcGo.addEventListener("click", () => {
       const er = $("#mc-err", root), out = $("#mc-out", root); er.hidden = true;
       const v = $("#mc-date", root).value;
       if (!v) { er.textContent = "اكتب تاريخ ميلاد الشخص التاني."; er.hidden = false; return; }
@@ -1947,6 +2066,146 @@ if (typeof module !== 'undefined') module.exports = Astro;
     });
   }
   selectSign(0);
+
+  /* ============ مسار الحياة + القفل ============ */
+  let UNLOCKED = null;
+  const LK_KEY = "aq_code_v1";
+  const b64d = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  async function unlockWith(raw) {
+    if (!(window.crypto && crypto.subtle)) throw new Error("nocrypto");
+    const c = String(raw).toUpperCase().replace(/[^A-Z0-9]/g, "").replace(/^AQ/, "");
+    const m = /^(\d{3})([A-Z0-9]{12})$/.exec(c);
+    if (!m) throw new Error("format");
+    const w = LOCKED.wraps[m[1]];
+    if (!w) throw new Error("bad");
+    const buf = b64d(w), salt = buf.slice(0, 16), iv = buf.slice(16, 28), ct = buf.slice(28);
+    const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(c), "PBKDF2", false, ["deriveKey"]);
+    const kek = await crypto.subtle.deriveKey({ name: "PBKDF2", salt, iterations: LOCKED.iter, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    let dkRaw;
+    try { dkRaw = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, kek, ct); } catch (e) { throw new Error("bad"); }
+    const dk = await crypto.subtle.importKey("raw", dkRaw, "AES-GCM", false, ["decrypt"]);
+    const bb = b64d(LOCKED.blob);
+    const pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: bb.slice(0, 12) }, dk, bb.slice(12));
+    return { data: JSON.parse(new TextDecoder().decode(pt)), code: c };
+  }
+  function applyUnlock(res) {
+    UNLOCKED = res.data;
+    res.data.arc.forEach((f, i) => Object.assign(ARCANA[i], f));
+    try { localStorage.setItem(LK_KEY, res.code); } catch (e) { /* مش مشكلة */ }
+    const idx = (root => { const t = $$("[role=tab]", root).findIndex(x => x.getAttribute("aria-selected") === "true"); return t < 0 ? 0 : t; })($("#mresult"));
+    if (lastMX) renderMatrix(lastMX[0], lastMX[1], lastMX[2], lastMX[3], idx);
+    if (lastLP) renderLP(lastLP[0], lastLP[1], lastLP[2], lastLP[3]);
+  }
+  const buyHref = () => PAY_URL || `https://instagram.com/${IG_USER}`;
+  const buyText = () => PAY_URL ? "اشتري كود التفعيل" + (PAY_LABEL ? " (" + PAY_LABEL + ")" : "") : "اطلب كود التفعيل";
+  function gateBox(txt) {
+    return `<div class="gate"><div class="lockic" aria-hidden="true"></div><h4>الباقي مقفول</h4><p>${txt}</p><div class="gate-form"><input class="gate-in" dir="ltr" inputmode="text" autocomplete="off" spellcheck="false" placeholder="AQ-001-XXXX-XXXX-XXXX" aria-label="كود التفعيل"><button class="btn gate-go" type="button">افتح</button></div><p class="ferr gate-err" role="alert" hidden></p><a class="btn ghost sm gate-buy" href="${esc(buyHref())}" target="_blank" rel="noopener">${buyText()}</a></div>`;
+  }
+  function wireGates(root) {
+    $$(".gate-buy", root).forEach(a => { a.href = buyHref(); });
+  }
+  document.addEventListener("click", async e => {
+    const open = e.target.closest("[data-open-lp]");
+    if (open) { const f = $("#lpform"); if (f) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true })); $("#lpresult").scrollIntoView(); } return; }
+    const go = e.target.closest(".gate-go");
+    if (!go) return;
+    const box = go.closest(".gate"), inp = $(".gate-in", box), er = $(".gate-err", box);
+    er.hidden = true; go.disabled = true; const old = go.textContent; go.textContent = "ثانية...";
+    try { applyUnlock(await unlockWith(inp.value)); }
+    catch (x) {
+      er.textContent = x.message === "nocrypto" ? "المتصفح ده مش بيدعم التفعيل، افتح الموقع من متصفح حديث وعلى رابط https." : x.message === "format" ? "الكود مكتوب غلط. شكله AQ-001-XXXX-XXXX-XXXX." : "الكود ده مش صحيح. راجعه وجرب تاني.";
+      er.hidden = false; go.disabled = false; go.textContent = old;
+    }
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Enter" && e.target.classList && e.target.classList.contains("gate-in")) { e.preventDefault(); $(".gate-go", e.target.closest(".gate")).click(); }
+  });
+  try { const sv = localStorage.getItem(LK_KEY); if (sv) unlockWith(sv).then(applyUnlock).catch(() => { try { localStorage.removeItem(LK_KEY); } catch (e) { } }); } catch (e) { }
+
+  const lockedRows = list => list.map(t => `<div class="lrow"><span class="lk" aria-hidden="true"></span><span>${t}</span><span class="sk" aria-hidden="true"><i></i><i></i></span></div>`).join("");
+  function stageTeaser(P, age) {
+    const ac = age % 80, i = Math.floor(ac / 10), half = (ac % 10) < 5 ? 0 : 1;
+    const s = ARC(P[OUTER[i]]), md = ARC(P.mid[i]), dom = half === 0 ? s : md;
+    return `<p class="lead2">عمرك دلوقتي ${age} سنة. المصفوفة بتقسم العمر لمراحل كل واحدة ١٠ سنين.</p>` +
+      mxs(`مرحلتك الحالية: ${MX_STAGE[i]}`, `طاقتها الأساسية ${dom.n}: ${dom.core}.`) +
+      lockedRows(["الي بيحصل حواليك وإزاي تتعامل معاه", "الجانب النفسي وخطوة تبدأ بيها", "المرحلة الجاية", "كل مراحل عمرك الثمانية"]) +
+      gateBox("افتح تفاصيل مرحلتك الحالية والجاية وكل مراحل عمرك بكود التفعيل.");
+  }
+  function karmaTeaser(P) {
+    const D = ARC(P.D);
+    return `<p class="sub">دي قراءة رمزية بتطلع من أرقام تاريخ ميلادك. مش دليل على حياة فعلية، لكنها مرآة لأنماط ممكن تكون بتكررها دلوقتي.</p>` +
+      mxs(`الدرس المتكرر (الذيل الكارمي): ${D.n}`, `${D.core}.`) +
+      lockedRows(["الحياة الأقرب ليك", "حياة أبعد", "حياة أقدم", "تمرين تحرير الذيل الكارمي", "الي ورثته من العيلة"]) +
+      gateBox("افتح الذيل الكارمي بالتفصيل وتمرين التحرير بكود التفعيل.");
+  }
+  function compatTeaser() {
+    return `<p class="lead2">اكتب تاريخ ميلاد شخص تاني (حبيب أو صاحب أو شريك شغل) وهتطلع لكم مصفوفة العلاقة.</p>` +
+      lockedRows(["قلب العلاقة", "الانجذاب والتناغم", "التحديات المتكررة", "الفلوس والمشاركة", "الدروس بينكم"]) +
+      gateBox("افتح مصفوفة التوافق مع أي شخص بكود التفعيل.");
+  }
+
+  function dailyHTML(lp) {
+    const t = new Date();
+    let dn = digSum(t.getDate()) + digSum(t.getMonth() + 1) + digSum(t.getFullYear());
+    while (dn > 9) dn = digSum(dn);
+    const base = LP_BASE[lp] || lp, DY = DAY_EN[dn];
+    const rel = dn === base ? "النهاردة طاقة اليوم هي نفس طاقة مسارك، فكل حاجة فيك بتتضخم: نورك وضلك." : `طبعك بيقابل طاقة اليوم، فاستخدم ${LP_GIFT[base]}، وراقب ${LP_CARE[base]}.`;
+    return `<div class="daily"><h4>رسالة النهاردة ليك: طاقة ${DY.th}</h4><p>${DY.msg} ${rel}</p><div class="dd"><div><b>اعمل</b>${DY.do}</div><div><b>انتبه</b>${DY.dont}</div></div><p class="note">رسالة للتأمل، بتتجدد كل يوم من تاريخ النهاردة ورقم مسارك.</p></div>`;
+  }
+
+  function lpHTML(lp) {
+    const base = LP_BASE[lp] || lp, F = LP_FREE[base], P = UNLOCKED ? UNLOCKED.lp[base] : null;
+    const mst = LP_FREE_MASTER[lp];
+    let o = "";
+    if (mst) o += `<div class="bond-cat"><strong>رقم رئيسي ${lp}</strong><p>${mst}</p></div>`;
+    o += mxs("جوهرك", F.essence);
+    o += mxs("نورك", F.light);
+    if (P) {
+      o += mxs("ضلّك", P.shadow);
+    } else {
+      o += `<article class="rd"><h4>ضلّك</h4><p class="fade">${F.shadow} ...</p></article>`;
+    }
+    const li = a => "<ul>" + a.map(x => `<li>${x}</li>`).join("") + "</ul>";
+    const secs = P ? [
+      ["مفاتيح النور: إزاي تنوّر أكتر", li(P.lightKeys)],
+      ["مفاتيح الضل: إزاي تهدّيه", li(P.shadowKeys)],
+      ["جوهرك بعمق", `<p>${P.essence}</p>`],
+      ["في الحب والمشاعر", `<p>${P.love}</p><p>${P.feelings}</p>`],
+      ["الجواز والشراكة", `<p>${P.marriage}</p>`],
+      ["القرب والحميمية", `<p>${P.closeness}</p>`],
+      ["البلوكات الداخلية", `<p>${P.blocks}</p>`],
+      ["الطاقات اللي بتعطلك", `<p>${P.hinder}</p>`],
+      ["إزاي تفك كل ده", li(P.unlock)]
+    ] : null;
+    if (mst && UNLOCKED && UNLOCKED.lpm[lp]) o += mxs(`طبقة الرقم الرئيسي ${lp}`, UNLOCKED.lpm[lp]);
+    if (secs) {
+      o += `<h4 class="ph">باقي مسارك</h4>` + secs.map(([t, b]) => `<details class="acc mxd"><summary>${t}</summary><div class="mxb">${b}</div></details>`).join("");
+      o += `<p class="unl">تم فتح القراءة الكاملة</p>`;
+    } else {
+      o += `<h4 class="ph">باقي مسارك</h4>` + lockedRows(["مفاتيح النور", "الضل بالتفصيل ومفاتيحه", "جوهرك بعمق", "في الحب والمشاعر", "الجواز والشراكة", "القرب والحميمية", "البلوكات الداخلية", "الطاقات اللي بتعطلك", "إزاي تفك كل ده"]) +
+        gateBox("افتح القراءة الكاملة لمسارك بكود التفعيل: الحب والجواز والقرب والبلوكات وطريقة الفك.");
+    }
+    return o;
+  }
+  function renderLP(name, d, m, y) {
+    lastLP = [name, d, m, y];
+    const lp = lifePath(d, m, y), base = LP_BASE[lp] || lp, F = LP_FREE[base];
+    const root = $("#lpresult");
+    root.innerHTML = `<div class="res-head"><div class="numbadge" aria-hidden="true">${lp}</div><h3>${name ? esc(name) + ": " : ""}${F.t}${LP_BASE[lp] ? " (رقم رئيسي " + lp + ")" : ""}</h3><p class="tg2">${F.tag}</p><p>${d}/${m}/${y}</p></div>` + dailyHTML(lp) + `<div class="panel" style="margin-top:22px">${lpHTML(lp)}</div>` + MX_NOTE;
+    wireGates(root);
+    root.hidden = false;
+  }
+  $("#lpform").addEventListener("submit", e => {
+    e.preventDefault();
+    const err = $("#lperr"); err.hidden = true;
+    const v = $("#lp-date").value;
+    if (!v) { err.textContent = "اكتب تاريخ الميلاد."; err.hidden = false; return; }
+    const [y, m, d] = v.split("-").map(Number);
+    if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
+    if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    renderLP($("#lp-name").value.trim(), d, m, y);
+    $("#lpresult").scrollIntoView();
+  });
 
   /* ============ نمطك: قراءة شخصية بأسلوب مباشر (غرايز، نمو، علاقات، روابط) ============ */
   const PT = {
@@ -2131,500 +2390,6 @@ if (typeof module !== 'undefined') module.exports = Astro;
       out.innerHTML = bondsHTML(S.ch, B); out.hidden = false;
     });
   }
-  /* =========================================================================
-     ترقية عقيق أسترو الشاملة: بطاقة الهوية + 40% مجاني صادم + 60% بوابة VIP مقفولة
-     (تُضاف في نهاية ملف index.html قبل سطر })(); الأخير مباشرة)
-  ========================================================================= */
-
-  // 1. حقن التصميم الملكي (CSS) تلقائياً داخل الصفحة بدون لمس الأكواد القديمة
-  const aqeeqStyle = document.createElement("style");
-  aqeeqStyle.textContent = `
-    .aura-card {
-      background: linear-gradient(145deg, #0d061f 0%, #1f1147 55%, #12082a 100%);
-      border: 2px solid var(--gold);
-      border-radius: 24px;
-      padding: 28px 22px;
-      margin: 0 auto 28px;
-      max-width: 560px;
-      text-align: center;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.65), inset 0 0 25px rgba(214,174,94,0.12);
-      position: relative;
-      overflow: hidden;
-    }
-    .aura-card::before {
-      content: "✦ AQEEQ ASTRO • عقيق أسترو ✦";
-      display: block;
-      font-family: var(--display);
-      color: var(--gold);
-      font-size: 0.85rem;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      opacity: 0.9;
-    }
-    .aura-title {
-      font-family: var(--display);
-      font-size: 1.65rem;
-      color: var(--moon);
-      margin-bottom: 6px;
-    }
-    .aura-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 16px 0;
-    }
-    .aura-badge {
-      background: rgba(214,174,94,0.12);
-      border: 1px solid var(--gold-dim);
-      border-radius: 999px;
-      padding: 6px 16px;
-      font-family: var(--display);
-      font-size: 0.92rem;
-      color: var(--gold);
-    }
-    .aura-quote {
-      font-size: 1.05rem;
-      color: var(--moon);
-      margin: 14px auto;
-      max-width: 34em;
-      line-height: 1.85;
-    }
-    .soul-reactions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(214,174,94,0.25);
-    }
-    .react-btn {
-      background: rgba(27,15,60,0.8);
-      border: 1px solid var(--amethyst);
-      color: var(--mist);
-      border-radius: 999px;
-      padding: 7px 15px;
-      font-family: var(--display);
-      font-size: 0.86rem;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-    .react-btn:hover, .react-btn.active {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(214,174,94,0.18);
-    }
-    .fusion-box {
-      background: linear-gradient(135deg, rgba(58,33,112,0.45), rgba(27,15,60,0.85));
-      border-right: 4px solid var(--gold);
-      border-radius: 14px;
-      padding: 20px;
-      margin: 22px 0;
-    }
-    .fusion-box h4 {
-      font-family: var(--display);
-      color: var(--gold);
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-    }
-    .do-dont-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    @media(max-width:560px){ .do-dont-grid { grid-template-columns: 1fr; } }
-    .do-box, .dont-box {
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(18,8,42,0.75);
-      border: 1px solid rgba(214,174,94,0.35);
-    }
-    .dont-box { border-color: rgba(217,120,140,0.45); }
-    .do-box strong { color: var(--gold); font-family: var(--display); display: block; margin-bottom: 4px; }
-    .dont-box strong { color: var(--rose); font-family: var(--display); display: block; margin-bottom: 4px; }
-
-    /* بوابة الـ 60% المقفولة */
-    .vip-gate-card {
-      position: relative;
-      border: 1px solid var(--gold-dim);
-      border-radius: 18px;
-      background: rgba(27,15,60,0.55);
-      padding: 22px;
-      margin: 22px 0;
-      overflow: hidden;
-    }
-    .vip-gate-card h4 {
-      font-family: var(--display);
-      color: var(--gold);
-      font-size: 1.22rem;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .teaser-visible {
-      color: var(--moon);
-      line-height: 1.95;
-      margin-bottom: 12px;
-      border-right: 3px solid var(--gold);
-      padding-right: 12px;
-    }
-    .vip-blurred {
-      filter: blur(6px);
-      user-select: none;
-      pointer-events: none;
-      opacity: 0.42;
-      transition: filter 0.5s ease, opacity 0.5s ease;
-    }
-    .vip-unlocked .vip-blurred {
-      filter: none;
-      user-select: text;
-      pointer-events: auto;
-      opacity: 1;
-    }
-    .vip-unlocked .gate-overlay {
-      display: none !important;
-    }
-    .gate-overlay {
-      position: relative;
-      margin-top: -58px;
-      padding: 28px 16px 16px;
-      background: linear-gradient(180deg, rgba(18,8,42,0) 0%, rgba(18,8,42,0.96) 28%, #12082A 100%);
-      text-align: center;
-      border-radius: 14px;
-      z-index: 3;
-    }
-    .gate-overlay p {
-      font-family: var(--display);
-      color: var(--gold);
-      font-size: 1rem;
-      margin-bottom: 12px;
-    }
-    .vip-unlock-bar {
-      background: linear-gradient(145deg, #24134e, #150a30);
-      border: 2px solid var(--gold);
-      border-radius: 20px;
-      padding: 26px 20px;
-      margin: 30px 0;
-      text-align: center;
-    }
-    .vip-unlock-bar h4 {
-      font-family: var(--display);
-      color: var(--gold);
-      font-size: 1.35rem;
-      margin-bottom: 8px;
-    }
-    .vip-input-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      max-width: 440px;
-      margin: 16px auto 12px;
-    }
-    .vip-input-row input {
-      flex: 1;
-      min-width: 180px;
-      text-align: center;
-      border-color: var(--gold-dim);
-    }
-    @media print {
-      .top, .hero, #about, #chart, #sky, #signs, #services, #courses, #videos, #how, #book, .cform, .tabs, .vip-unlock-bar { display: none !important; }
-      .panel { display: block !important; }
-      .vip-blurred { filter: none !important; opacity: 1 !important; }
-      .gate-overlay { display: none !important; }
-    }
-  `;
-  document.head.appendChild(aqeeqStyle);
-
-  // 2. موسوعة الداتا العميقة للأركانا (1 إلى 22) بالهيكلة المعتمدة
-  const AQEEQ_DEEP = {
-    1: {
-      pron: "ذا ماجيشيان", astro: "عطارد (Mercury) - حاكم الجوزاء والعذراء",
-      kw: "التجسيد والخلق (Manifestation) • الإرادة (Willpower) • المبادرة (Initiative) • الابتكار (Innovation)",
-      acad: "البطاقة رقم 1 في الأركانا الكبرى، وتمثل مبدأ الإرادة الواعية وتجسيد الطاقة الروحية في العالم المادي (يد تشير للسماء ويد للأرض) مع امتلاك أدوات العناصر الأربعة.",
-      light: "إنت شخص اتولدت ومعاك «عصا سحرية» اسمها الفكرة والكلمة. عقلك مبيبطلش تفكير وابتكار، ومبتعرفش تكون رقم 2 في حياة حد أو تمشي ورا قطيع. لما بتؤمن بحاجة وتركز عليها، الظروف كلها بتترتب بشكل غريب عشان تحققهالك.",
-      dark: "مشكلتك الحقيقية بتبدأ لما يجيلك شك في قدراتك وتفضل تخطط في دماغك من غير ما تاخد خطوة، أو العكس: لما الغرور ياخدك فتحس إنك أذكى من الكل وتبدأ تتلاعب باللي حواليك عشان تمشي كلامك.",
-      loveTeaser: "إنت بتتشد للشريك الذكي المستقل اللي ليه كيان يحاور عقلك قبل قلبك، لكن البلوك العاطفي بيحصل لما تحاول «تصلّح» شريكك أو تشكله على مزاجك...",
-      loveSecret: "في العمق، إنت بتخاف تسلم رقبتك لحد في الحب عشان متفقدش سيطرتك. النمط اللي بيتكرر معاك هو الانبهار الشديد في البداية ثم الملل لما تكتشف إن الشريك شخص عادي مش خارق. علاجك العاطفي هو تقبل الشريك كرفيق رحلة مش مشروع محتاج تعديل.",
-      moneyTeaser: "رزقك مربوط بـ «اسمك الشخصي ومهارتك الفريدة» (بيزنس خاص، ميديا، تسويق، استشارات)، والفلوس بتقف فوراً لما تشتغل في روتين مفيهوش إبداع...",
-      moneySecret: "شفرة الثروة لرقم 1 هي الجرأة على التسعير وعدم الخوف من المنافسة. أكبر بلوك مالي بيقابلك هو تشتيت فلوسك في كذا فكرة من غير ما تقفل واحدة للآخر. ركز على مشروع واحد يحمل اسمك وهتشوف تدفق مالي ضخم.",
-      childTeaser: "في طفولتك، اتعودت تعتمد على نفسك بدري وحسيت إنك مختلف عن اللي حواليك، وده زرع جواك رغبة دائمة إنك تثبت إنك استثنائي...",
-      childSecret: "الجرح الخفي من الطفولة هو الخوف من إنك متكونش مسموع أو مقدر، فكبرت وإنت شايل عبء إنك لازم تنجح لوحدك من غير ما تطلب مساعدة من مخلوق.",
-      doTxt: "بادر بالخطوة الأولى النهاردة واكتب نيتك بوضوح.", dontTxt: "إياك والتسويف أو الدخول في جدال لإثبات تفوقك."
-    },
-    2: {
-      pron: "ذا هاي بريستيس", astro: "القمر (The Moon) - حاكم برج السرطان",
-      kw: "الحدس والبصيرة (Intuition) • الأسرار (Mystery) • اللاواعي (Subconscious) • الحكمة الباطنية (Inner Wisdom)",
-      acad: "البطاقة رقم 2 في الأركانا الكبرى، وتجلس فيها الكاهنة بين عمودي النور والظلام أمام حجاب الرمان، مما يرمز للتوازن والوصول للمعرفة الباطنية عبر الحدس والصمت.",
-      light: "إنت رادار بشري بيكشف الكدب من أول نظرة! عندك حاسة سادسة مرعبة؛ الشخص ممكن يكون بيضحك في وشك، بس قلبك قافش نيته الحقيقية بالمللي. إنت بير أسرار لكل اللي حواليك وطاقتك فيها حكمة أكبر من سنك.",
-      dark: "أكبر غلطة بتدفع تمنها غالي هي لما «تكدّب إحساسك وتصدق كلام الناس»! وفي الطاقة السلبية، ممكن تتحول لشخص غامض بزيادة، بارد المشاعر، بيكتم جواه لحد ما ينفجر.",
-      loveTeaser: "إنت مستحيل تحب حد سطحي؛ محتاج علاقة فيها تخاطر روحي وأمان نفسي عميق، لكن البلوك العاطفي بييجي من الخوف من المواجهة أو العلاقات الغامضة...",
-      loveSecret: "النمط المتكرر في علاقاتك هو جذب أشخاص غامضين أو غير متاحين عاطفياً، أو إنك تسكت على حاجات بتوجعك وتنتظر الطرف التاني يفهم لوحده بالإحساس! شفاؤك في الحب يبدأ لما تتكلم بصراحة وتبطل تختبر الشريك بصمتك.",
-      moneyTeaser: "رزقك بييجي من «الحدس، المعرفة الخفية، والنصيحة» (علم نفس، روحانيات، طب، تحليل، دبلوماسية)، والفلوس بتتعطل لما تشك في علمك...",
-      moneySecret: "إنت بتعمل فلوس لما تشتغل في هدوء ومن غير ضغط جماهيري مباشر. البلوك المادي بيتفك أول ما تبطل تدرس وتخزن معلومات من غير ما تحولها لخدمة مدفوعة تفيد الناس.",
-      childTeaser: "في طفولتك، كنت الطفل الهادي اللي بيلاحظ كل حاجة في البيت من غير ما يتكلم، وشفت أسرار أو توترات خلتك تتعلم تحمي نفسك بالصمت...",
-      childSecret: "الجرح القديم هو إحساسك إن التعبير المباشر عن مشاعرك ممكن يعمل مشاكل، فقررت تعيش جوه عالمك الداخلي الآمن.",
-      doTxt: "اسمع صوت حدسك وأحلامك النهاردة واكتم خططك.", dontTxt: "لا تتسرع في قرار أو تحكي أسرارك لحد غير أمين."
-    },
-    3: {
-      pron: "ذي إمبريس", astro: "الزهرة (Venus) - حاكم الثور والميزان",
-      kw: "الوفرة والرخاء (Abundance) • الجمال (Beauty) • الخصوبة والإبداع (Creativity) • الاحتواء (Nurturing)",
-      acad: "البطاقة رقم 3 في الأركانا الكبرى، وتجسد نموذج الأم الكبرى والطبيعة الخالقة؛ تجلس وسط حقول القمح وعلى رأسها تاج من 12 نجمة يمثل دورات الكون والوفرة.",
-      light: "مغناطيس الوفرة، الجمال، والدلع! عندك كاريزما دافية بتخلي اللي حواليك يحسوا بالخير والراحة. بتحب تعيش على كبير، وأي حاجة بتحط إيدك فيها (مشروع، بيت، علاقة) بتكبر وتطرح بركة.",
-      dark: "الضربة بتجيلك لما تتحول من «الاحتواء» لـ «السيطرة والخنقة»! إنك تعامل شريكك كأنه طفل مش عارف مصلحته، أو لما تهمل نفسك وتدخل في دور الضحية اللي بتدي الكل ومبتاخدش حاجة.",
-      loveTeaser: "ده أقوى كرت للجواز وتكوين عيلة مستقرة مليانة شغف ووفرة، لكن العلاقة بتبوظ لما تدخل فيها الغيرة المرضية أو التملك الزايد...",
-      loveSecret: "لو إنتِ بنت فامتحانك إنك متلغيش دور الراجل برعايتك الزايدة، ولو إنت راجل فسر سعادتك ورزقك مربوط بإكرام الست اللي في حياتك. النمط المتكرر بيتفك لما تفصل بين الحنان وبين التحكم في قرارات الشريك.",
-      moneyTeaser: "الفلوس بتجيلك بسهولة عن طريق «الجمال، الفن، التجارة، والمشاريع الإبداعية»، والرزق بيقف فوراً لما تستخسر في نفسك...",
-      moneySecret: "طاقة الرقم 3 بتقفل مالياً أول ما تعيش بعقلية التوفير المفرط والحرمان. كل ما دلعت نفسك واهتميت بجودة حياتك ومظهرك، كل ما الفرص المالية الكبيرة جرت وراك.",
-      childTeaser: "علاقتك بـ «الأم» في طفولتك هي المفتاح الرئيسي لكل قراراتك؛ إما رعاية زيادة خلتك شايل مسؤولية الكل، أو بحث دائم عن الحنان...",
-      childSecret: "تصالحك مع طاقة الأمومة والأنوثة في عيلتك هو المفتاح السحري اللي بيفتحلك أبواب الرزق والزواج المستقر.",
-      doTxt: "دلّع نفسك، اهتم بمظهرك، وافتح قلبك لاستقبال الرزق بهدوء.", dontTxt: "لا تتدخل في تفاصيل غيرك ولا تعيش بعقلية الحرمان."
-    },
-    4: {
-      pron: "ذي إمبيرور", astro: "برج الحمل (Aries) المحكوم بالمريخ",
-      kw: "السلطة والقيادة (Authority) • النظام (Order) • الثبات والحماية (Stability) • الإنجاز المادي (Achievement)",
-      acad: "البطاقة رقم 4 في الأركانا الكبرى، وتجسد السلطة الدنيوية والنظام؛ يجلس الإمبراطور على عرش حجري مزين برؤوس الكباش ممسكاً بصولجان الحياة وكرة العالم.",
-      light: "طاقة العمود الفقري وبناء الإمبراطوريات! إنت الشخص اللي لما الدنيا تتلخبط، الكل بيبصلك عشان إنت الكبير اللي بتعرف تتصرف. كلمتك عقد، ولما بتحط إيدك في مسؤولية بتشيلها بصلابة الجبال.",
-      dark: "مشكلتك بتبدأ لما الحزم يقلب لـ «ديكتاتورية، قسوة، وعناد يكسّر الرقبة»! لما تعتبر إظهار مشاعرك ضعف، فتقفل على قلبك بقفل حديد وتتحول لشخص ناشف عايز يمشي الكون بالمسطرة.",
-      loveTeaser: "إنت في الحب مش بتاع كلام معسول؛ حبك بيترجم لأفعال وحماية وأمان مادي، لكن البلوك العاطفي بيحصل لما تدخل العلاقة كأنك «المدير»...",
-      loveSecret: "لو إنتِ بنت وعندك رقم 4، فإنتِ «بنت بميت راجل»، بس فخك إنك بتجذبي رجالة ضعيفة أو اتكالية عشان إنتِ اللي بتسوقي المركب! الحل للبنت إنها تسيب الدريكسيون للشريك وتعيش أنوثتها، وللراجل إنه يفتكر إن البيت محتاج حنية مش أوامر عسكرية.",
-      moneyTeaser: "ده كرت البزنس الكبير، العقارات، المناصب القيادية، والإدارة العليا.. الفلوس بتجيلك لما تكون إنت صاحب القرار...",
-      moneySecret: "الرزق بيتقفل عندك لما ترضى بدور الموظف الصغير اللي بيتحكم فيه مدير أقل منه كفاءة. إنت مخلوق لتأسيس كيانك الخاص أو إدارة منظومة كاملة بانضباط وورق رسمي.",
-      childTeaser: "في طفولتك، اتشكلت شخصيتك بسبب طاقة «الأب» (سواء بوجود أب صارم جداً أو غياب الأب اللي خلاك تشيل المسؤولية بدري)...",
-      childSecret: "جرحك العميق هو خوفك إنك لو ريّحت لحظة أو بطلت تسيطر، كل حاجة حواليك هتنهار. الأمان الحقيقي يبدأ لما تثق إن الدنيا هتمشي حتى لو سبت الكنترول شوية.",
-      doTxt: "نظم أولوياتك، خد قرار حاسم، وحط حدود واضحة في شغلك.", dontTxt: "لا تكن قاسياً أو عنيداً مع أهل بيتك وشريك حياتك."
-    },
-    5: {
-      pron: "ذا هيروفانت", astro: "برج الثور (Taurus)",
-      kw: "الحكمة والتعليم (Wisdom) • التقاليد والأصول (Tradition) • الإرشاد (Guidance) • الالتزام (Commitment)",
-      acad: "البطاقة رقم 5 في الأركانا الكبرى، وتمثل الجسر بين الحكمة والقوانين الأخلاقية؛ يجلس الكاهن بين عمودي المعبد وأمامه تلميذان ومفتاحان متقاطعان لأسرار الوعي.",
-      light: "طاقة المعلّم، المرجع، وصاحب المبدأ! اتولدت بعقلية الكبير العاقل، وعندك موهبة رهيبة في إنك تاخد أي معلومة معقدة وتشرحها للناس ببساطة تدخل القلب. كلمتك ليها وزن وهيبة.",
-      dark: "الفخ المميت بتاعك هو «عقدة الأستاذ اللي شايف نفسه صح والناس كلها غلط»! لما تقفل دماغك على أفكار قديمة، وتقعد تحاسب الناس وتنظر عليهم، أو تشيل هم كلام الناس على حساب راحتك.",
-      loveTeaser: "ده الكرت الرسمي للجواز الشرعي والاستقرار العائلي المبني على الأصول، لكن البلوك العاطفي بيحصل لما تحول البيت لـ «مدرسة أو محكمة»...",
-      loveSecret: "إنت بتخاف تغلط في الاختيار لدرجة إنك ممكن تأجل الارتباط سنين، أو تدخل علاقة تقليدية ترضي الأهل ومترضيش قلبك. شفاؤك العاطفي هو إنك تفصل بين رأي عيلتك وبين احتياج قلبك الحقيقي، وتعيش الرومانسية من غير تنظير.",
-      moneyTeaser: "رزقك الواسع موجود في «نقل العلم، التدريب، الاستشارات، القانون، أو إدارة المؤسسات»، والفلوس بتقف لما تبخل بعلمك...",
-      moneySecret: "أكبر بلوك مالي لرقم 5 هو متلازمة «أنا لسه محتاج أتعلم كمان قبل ما أبدأ». إنت عندك علم يكفي يفتح بيوت، أول ما تبدأ تعلم وتنصح الناس بمقابل مادي محترم، خزائن الرزق هتتفتح.",
-      childTeaser: "اتربيت في بيئة ليها قواعد صارمة واهتمام كبير بـ «الصح والغلط والعيب»، وده خلاك تراقب تصرفاتك طول الوقت...",
-      childSecret: "تحررك النفسي بيبدأ لما تراجع المعتقدات اللي ورثتها من أهلك: خُد اللي بينفعك دلوقتي، وارمي القواعد القديمة اللي بتكتف روحك.",
-      doTxt: "التزم بالأصول والطرق الرسمية، وشارك معلومة مفيدة مع غيرك.", dontTxt: "لا تفرض رأيك بالعافية ولا تقفل عقلك قدام الأفكار الجديدة."
-    },
-    6: {
-      pron: "ذا لافرز", astro: "برج الجوزاء (Gemini)",
-      kw: "الحب والانسجام (Love & Harmony) • الاختيار الحر (Choice) • الجاذبية (Attraction) • اتحاد الأضداد (Union)",
-      acad: "البطاقة رقم 6 في الأركانا الكبرى، وتمثل فلسفياً ونفسياً مفترق الطرق الأخلاقي والاختيار الحر واتحاد الأضداد تحت مباركة الملاك رافائيل.",
-      light: "طاقة القلب اللي بيحرك الكون والجاذبية الساحرة! متنفسك الأول في الحياة هو الحب، الجمال، والتواصل الإنساني. عندك قبول رباني يخلي أي حد يشوفك يرتاحلك في ثواني، وذوقك عالي في كل تفصيلة.",
-      dark: "الوجع الكبير بتاعك اسمه «التردد القاتل، والاعتماد العاطفي، والندم بعد الاختيار»! تفضل محتار بين قرارين، وبعد ما تختار تفضل تبص وراك وتقول يا ريتني اخترت التاني، أو تربط قيمتك بوجود شريك.",
-      loveTeaser: "إنت بتعيش قصص حب سينمائية، بس امتحانك الكارمي هو «المثلثات العاطفية والمقارنات» أو حب صورة مثالية في خيالك...",
-      loveSecret: "أول ما بتشوف أول عيب حقيقي في الشريك بتتصدم وتحس إنك اتخدعت! السر اللي هيغير حياتك العاطفية هو إنك تفهم إن مفيش إنسان كامل، وإنك تبطل تدور على حد يسد فراغك الداخلي؛ حب نفسك الأول هتلاقي الشريك الصح جالك بدون معاناة.",
-      moneyTeaser: "الفلوس مستحيل تجيلك من شغلانة بتعملها غصب عنك! رزقك مربوط بـ «الشغف، العلاقات العامة، الفن، التجميل، والميديا»...",
-      moneySecret: "إنت بتكسب دهب لما تشتغل وسط ناس بتحبهم وفي مجال فيه ذوق وجمال أو شراكات ناجحة. الفلوس بتهرب منك لما تدخل مشروع بس عشان غيرك كسب فيه وإنت قلبك مش حابه.",
-      childTeaser: "في طفولتك، كنت بتدور دايماً على القبول والمدح، وبتزعل أوي لو حسيت إن أهلك بيفضلوا حد عليك أو بينتقدوا شكلك...",
-      childSecret: "الجرح ده خلاك تكبر وإنت بتحاول ترضي الكل عشان تضمن حبهم. النهاردة إنت مش محتاج تثبت حاجة لحد عشان تتحب.",
-      doTxt: "احسم قرارك بقلبك كامل وماتلتفتش للماضي.", dontTxt: "لا ترضي الناس على حساب راحتك ولا تقارن حياتك بغيرك."
-    },
-    7: {
-      pron: "ذا شاريوت", astro: "برج السرطان (Cancer)",
-      kw: "الإرادة والانتصار (Victory) • الحركة والسفر (Movement) • التوجيه (Direction) • الطموح (Ambition)",
-      acad: "البطاقة رقم 7 في الأركانا الكبرى، وتمثل انتصار الإرادة الواعية والسيطرة النفسية؛ يقود المحارب عربته بتوازن القوتين المتضادتين بقوة التركيز الذهني.",
-      light: "إنت موتور طاقة مبيفصلش! راحتك النفسية مش في القعدة الهادية، راحتك في الإنجاز، السفر، وإنك تشوف نفسك بتحقق أهداف مستحيلة. لما بتحط هدف في دماغك، بتتحول لقوة لا يمكن إيقافها.",
-      dark: "أزمتك بتبدأ لما تقف مكانك، فطاقتك بترجع تاكل في أعصابك وتتحول لعصبية، تشتت، أو عناد. أو إنك تتعامل مع الحياة كأنها ساحة حرب، وتفتح 10 مشاريع مع بعض وقبل النهاية بخطوة تزهق وتفركش كل حاجة!",
-      loveTeaser: "في الحب إنت صريح ومباشر ومبتحبش اللف والدوران، لكن الكارثة بتحصل لما تدخل العلاقة بدرع المحارب وتتعامل مع الخلاف كأنه معركة كرامة...",
-      loveSecret: "النمط اللي بيتكرر معاك في العلاقات هو الشغف الناري في البداية (طاقة المطاردة)، وأول ما تضمن الشريك أو تحس إن العلاقة بقت روتينية بتجيلك خنقة ورغبة في الهروب! شفاؤك هو إنك تشارك شريكك أهداف وطموحات متجددة وتنزل درعك جنبه.",
-      moneyTeaser: "فلوسك ورزقك مربوطين بـ «الحركة، التوسع، الميديا، السفر، والتجارة السريعة».. ومستحيل تعمل ثروة وإنت محبوس في مكتب روتيني...",
-      moneySecret: "الفلوس بتجري وراك لما تكون في حالة حركة مستمرة وتستخدم التكنولوجيا والمنصات الحديثة. البلوك المالي بيتفك لما تكمل المشروع اللي بدأته لآخره ومتسيبوش في نص الطريق عشان فكرة جديدة لمعت في دماغك.",
-      childTeaser: "في طفولتك، اتعلمت إن محدش هيجبلك حقك غير دراعك ومجهودك، فقررت تلبس درع القوة وتعتمد على نفسك بدري...",
-      childSecret: "جرحك الخفي هو خوفك إنك لو وقفت أو ضعفت لحظة، القطر هيفوتك والناس هتسبقك. اطمن: قيمتك محفوظة حتى وإنت بترتاح.",
-      doTxt: "حدد هدف واحد بس ركز عليه النهاردة، واتحرك أو غيّر جو المكان.", dontTxt: "لا تتشتت في معارك جانبية ولا تكسر اللي بنيته في لحظة ملل."
-    },
-    8: {
-      pron: "جاستس", astro: "برج الميزان (Libra)",
-      kw: "العدالة والكارما (Justice & Karma) • التوازن (Balance) • الحقيقة (Truth) • السبب والنتيجة (Cause & Effect)",
-      acad: "البطاقة رقم 8 في الأركانا الكبرى، وتجسد قانون السبب والنتيجة (الكارما) والتوازن الأخلاقي؛ تمسك العدالة بالسيف (الحسم) والميزان (الإنصاف).",
-      light: "مغناطيس السلطة وقانون الكارما الفوري! إنت جاي في مهمة تقيلة ليها علاقة ببناء المكانة والمال وإدارة الأمور بحكمة. رمزك اللانهاية (∞)؛ اللي بتزرعه بتحصده أسرع من أي حد، وحقك بيرجعلك قدام عينك.",
-      dark: "الفخ النفسي بتاعك هو سؤال: «ليه بيحصلي كده وأنا معملتش حاجة غلط؟!». لما طاقتك تقفل بتتحول لقاضي قاسي على نفسك وعلى غيرك، وتدخل في حروب إثبات حق تستنزف طاقتك وتعطل رزقك.",
-      loveTeaser: "إنت بتدور على شريك ناضج وواضح لأن الكدب عندك خط أحمر، لكن البلوك العاطفي بيتكرر لما تحول العلاقة لـ «ورقة وقلم وحسابات»...",
-      loveSecret: "في العلاقات، إنت بتخاف جداً من الخذلان أو إن حد يستغلك، فبتحط شروط واختبارات قاسية للشريك. لما تفهم إن الحب مبني على الفضل والرحمة مش بس العدل والمسطرة، هتعيش أعمق استقرار عاطفي في حياتك.",
-      moneyTeaser: "ده كرت المليونيرات، رجال الأعمال، القانون، والإدارة العليا! الفلوس بتعشقك لما تكون إنت صاحب القرار أو المستثمر...",
-      moneySecret: "شفرة الثروة لرقم 8 بتشترط «النزاهة المطلقة والوضوح المالي». أي قرش بيدخل في طاقتك لازم يكون بحق وأصول، وأول ما تدير موارد كبيرة أو تفتح مشروعك الخاص بعقلية استثمارية، بتبني ثروة ضخمة وثابتة.",
-      childTeaser: "في طفولتك، شوفت مواقف حسيت فيها بظلم أو تفرقة، وده خلاك تكره الظلم وتقرر تكون إنت القوي اللي محدش يقدر يجي عليه...",
-      childSecret: "الجرح ده خلاك شايل سيف الدفاع عن النفس طول الوقت. نزل السيف، الكون نفسه بيدافع عنك.",
-      doTxt: "تصرف بنزاهة وهدوء، وراجع التزاماتك وحساباتك بدقة.", dontTxt: "لا تدخل في دور الضحية ولا تحاكم نفسك أو غيرك بقسوة."
-    },
-    9: {
-      pron: "ذا هيرميت", astro: "برج العذراء (Virgo)",
-      kw: "الحكمة والاستنارة (Wisdom) • الخلوة والتأمل (Solitude) • البصيرة (Insight) • العمق الروحي (Soul-Searching)",
-      acad: "البطاقة رقم 9 في الأركانا الكبرى، وترمز للبحث الداخلي عن الحقيقة؛ يقف الحكيم على قمة الجبل حاملاً مصباح النجمة السداسية وعصا المعرفة.",
-      light: "إنت روح قديمة أوي (Old Soul)؛ عميق، حكيم، ومبتعرفش تاخد الأمور من على الوش. عزلتك مش كآبة، دي «خلوة ملكية» بتفصل بيها عن دوشة العالم عشان تشحن طاقتك وترجع بنور وحكمة تنور بيها غيرك.",
-      dark: "الخطر الكبير لما الخلوة تقلب لـ «انعزال، هروب من الواقع، وقفل الباب في وش الدنيا»! لما تقول محدش فاهمني، أو تكتم علمك جواك، أو تهمل الفلوس والجسم بحجة الزهد.",
-      loveTeaser: "إنت أصعب رقم يدخل علاقة سريعة لأنك بتخاف على مساحتك الخاصة، وأكبر نمط بيبوظ علاقاتك هو «انسحابك الصامت وقت الزعل»...",
-      loveSecret: "إنت ممكن تفضل وحيد حتى وإنت جوه علاقة لو الشريك سطحي ومبيفهمش عمقك. علاجك العاطفي هو إنك تعبر عن احتياجك للهدوء بكلام دافي بدل ما تختفي فجأة وتخلي الطرف التاني يفتكر إنك مبقتش تحبه.",
-      moneyTeaser: "رزقك مستحيل ييجي من الشغل العضلي أو الزحمة؛ فلوسك بتتدفق من «عقلك، تخصصك النادر، الكتابة، الأبحاث، والاستشارات العميقة»...",
-      moneySecret: "البلوك المالي الأخطر عندك هو إنك بتستحي تطلب مقابل مادي كبير على علمك أو نصيحتك! أول ما تدرك إن حكمتك دي كنز نادر وتقدّر قيمتها صح، الفلوس هتجيلك لحد مكانك.",
-      childTeaser: "في طفولتك، كنت بتحس إنك غريب وسط اللي في سنك، وكنت بتلاقي راحتك في خيالك وأفكارك الخاصة بعيد عن الدوشة...",
-      childSecret: "ده خلاك تقتنع إن الأمان في الوحدة بس. الحقيقة إنك تقدر تحافظ على سلامك الداخلي وإنت وسط الناس وناجح مادياً وعاطفياً.",
-      doTxt: "خد وقت هادي مع نفسك النهاردة، وشارك نصيحة صادقة مع من يطلبها.", dontTxt: "لا تنعزل هرباً من المواجهة ولا تقلل من قيمة علمك."
-    }
-  };
-
-  // تعميم الهيكل العميق على باقي الأركانا (من 10 إلى 22)
-  ARCANA.forEach((a, idx) => {
-    const num = idx + 1;
-    if (!AQEEQ_DEEP[num]) {
-      AQEEQ_DEEP[num] = {
-        pron: a.en, astro: "طاقة كونية أركانية رقم " + num,
-        kw: `${a.n} (${a.en}) • الوعي والتحول • التوازن الطاقي`,
-        acad: `البطاقة رقم ${num} في الأركانا الكبرى (${a.en})، وتمثل رمزياً ونفسياً ${a.core} ومواجهة ظل ${a.shadow}.`,
-        light: `طاقتك الأساسية في النور تحمل سر (${a.core}). ${a.real} إنت لما بتكون في توازنك الحقيقي، بتلهم كل اللي حواليك بطاقة استثنائية.`,
-        dark: `الفخ النفسي والبلوك الطاقي بيظهر على شكل (${a.shadow}). ${a.psy} وده بيخليك تعيد نفس الدروس لحد ما تنتبه للرسالة.`,
-        loveTeaser: `في العلاقات العاطفية، طاقة (${a.n}) بتخليك تبحث عن ارتباط حقيقي يلمس روحك، لكن البلوك بيحصل لما يسيطر عليك (${a.shadow})...`,
-        loveSecret: `النمط المتكرر في علاقاتك مرتبط بدرس (${a.past}). عشان تكسر الدايرة دي وتجذب شريك متوازن، محتاج تطبق خطوة التحرير: ${a.release}`,
-        moneyTeaser: `في خط المال والمهنة، رزقك بيتفتح بقوة لما تفعل (${a.core}) في شغلك اليومي، وبيتعطل لما تقع في (${a.shadow})...`,
-        moneySecret: `شفرة الوفرة الخاصة برقم ${num} بتطلب منك مرونة ووعي؛ ${a.real} استغل موهبتك الفطرية وهتلاقي الأبواب المغلقة بتتفتح تباعاً.`,
-        childTeaser: `جذور النمط ده اتشكلت من بدري؛ لما كنت بتحاول تفهم (${a.core}) وسط بيئتك الأولى...`,
-        childSecret: `التصالح مع الماضي وفك التعلق بـ (${a.shadow}) هو مفتاح حريتك النفسية الكاملة الآن.`,
-        doTxt: a.release, dontTxt: `احذر اليوم من الوقوع في فخ: ${a.shadow}.`
-      };
-    }
-  });
-
-  // 3. نظام فتح الـ VIP والتقرير الكامل
-  let IS_VIP_UNLOCKED = localStorage.getItem("aqeeq_vip_unlocked") === "1";
-
-  function buildGateBox(title, icon, teaser, secret) {
-    return `<div class="vip-gate-card ${IS_VIP_UNLOCKED ? "vip-unlocked" : ""}">
-      <h4><span>${icon}</span> ${title}</h4>
-      <p class="teaser-visible">${teaser}</p>
-      <div class="vip-blurred">
-        <p>${secret}</p>
-      </div>
-      <div class="gate-overlay">
-        <p>🔒 باقي تحليل (${title}) وروشتة فك البلوك موجودة في التقرير الكامل</p>
-        <a class="btn sm" href="#vip-box-anchor">افتح مصفوفتك الكاملة (VIP)</a>
-      </div>
-    </div>`;
-  }
-
-  const origSummaryHTML = summaryHTML;
-  summaryHTML = function(P, lp) {
-    const dA = AQEEQ_DEEP[P.A], dE = AQEEQ_DEEP[P.E], dD = AQEEQ_DEEP[P.D], dH = AQEEQ_DEEP[P.H], dG = AQEEQ_DEEP[P.G], dC = AQEEQ_DEEP[P.C];
-    const aName = ARC(P.A).n, eName = ARC(P.E).n, dName = ARC(P.D).n;
-    const todayNum = redArc(P.E + redArc(digSum(new Date().getDate()) + digSum(new Date().getMonth() + 1)));
-    const dToday = AQEEQ_DEEP[todayNum];
-
-    let out = `<div class="aura-card">
-      <div class="aura-title">بطاقة الهوية الطاقية</div>
-      <div class="aura-badges">
-        <span class="aura-badge">بصمة الميلاد: ${aName} (${P.A})</span>
-        <span class="aura-badge">مركز الروح: ${eName} (${P.E})</span>
-        <span class="aura-badge">مسار الحياة: ${lp}</span>
-      </div>
-      <p class="aura-quote">"${dE.light.split('.')[0]}."</p>
-      <p class="hint">خد سكرين شوت لبطاقتك الطاقية وشاركها في ستوري انستجرام @${IG_USER}</p>
-      <div class="soul-reactions">
-        <button type="button" class="react-btn" onclick="this.classList.toggle('active')">✨ لمست روحي</button>
-        <button type="button" class="react-btn" onclick="this.classList.toggle('active')">🔥 حصل معايا بالحرف</button>
-        <button type="button" class="react-btn" onclick="this.classList.toggle('active')">👁️ كشفت سري</button>
-      </div>
-    </div>`;
-
-    out += `<h4 class="ph">🌟 القراءة النفسية والطاقية المفتوحة (40% المجانية)</h4>`;
-    out += `<article class="rd">
-      <h4>أ- طاقتك الأساسية في المركز: ${ARC(P.E).n} | ${ARC(P.E).en} - نطق: ${dE.pron} (أركانا ${P.E})</h4>
-      <p><strong>• نور طاقتك (تجليك وقوتك):</strong> ${dE.light}</p>
-      <p class="sub"><strong>• ظل طاقتك (الفخ النفسي والبلوك):</strong> ${dE.dark}</p>
-      <p class="sub"><strong>• الربط الفلكي:</strong> ${dE.astro}</p>
-      <p class="sub"><strong>• التفسير الأكاديمي:</strong> ${dE.acad}</p>
-      <p class="sub"><strong>• الكلمات المفتاحية:</strong> ${dE.kw}</p>
-    </article>`;
-
-    if (P.A !== P.E) {
-      out += `<article class="rd">
-        <h4>ب- بصمة يوم ميلادك: ${ARC(P.A).n} | ${ARC(P.A).en} - نطق: ${dA.pron} (أركانا ${P.A})</h4>
-        <p><strong>• حضورك الخارجي:</strong> ${dA.light}</p>
-        <p class="sub"><strong>• الفخ الخفي:</strong> ${dA.dark}</p>
-      </article>`;
-    }
-
-    out += `<div class="fusion-box">
-      <h4>⚡ معادلة التقاطع الخاصة بك (دمج المصفوفة × مسار الحياة)</h4>
-      <p>بما إن طاقتك في مركز المصفوفة هي <strong>(أركانا ${P.E} - ${eName})</strong>، ومسار حياتك العام من تاريخ ميلادك الكامل هو <strong>(رقم ${lp})</strong>؛ فإنت بتمتلك تركيبة استثنائية: مركزك بيديك (${ARC(P.E).core})، بينما مسار حياتك بيوجهك ناحية (${LP_TXT[lp]}). سر نجاحك الحقيقي هو إنك تستخدم قوة مركزك كوقود عشان تحقق رسالة مسار حياتك من غير ما تقع في فخ (${ARC(P.E).shadow})!</p>
-    </div>`;
-
-    out += `<article class="rd">
-      <h4>🔄 رسالتك الطاقية المتجددة لليوم (تفاعل مصفوفتك مع اليوم: أركانا ${todayNum} - ${ARC(todayNum).n})</h4>
-      <p>طاقة يومك النهاردة بتضغط على وتر <strong>(${ARC(todayNum).core})</strong>. راقب ردود أفعالك لأن المواقف اللي هتقابلك النهاردة مش صدفة، دي مراية للي بيدور جواك.</p>
-      <div class="do-dont-grid">
-        <div class="do-box"><strong>✅ افعل اليوم (Do):</strong><span>${dToday.doTxt}</span></div>
-        <div class="dont-box"><strong>❌ لا تفعل اليوم (Don't):</strong><span>${dToday.dontTxt}</span></div>
-      </div>
-    </article>`;
-
-    out += `<h4 class="ph">🔒 بوابة الأسرار العميقة والتشافي (الـ 60% الشاملة)</h4>`;
-    out += buildGateBox(`شفرتك في الحب والجواز (أركانا ${P.H} - ${ARC(P.H).n})`, "❤️", dH.loveTeaser, dH.loveSecret);
-    out += buildGateBox(`خط المال، الثروة، ومفتاح الرزق (أركانا ${P.G} - ${ARC(P.G).n})`, "💰", dG.moneyTeaser, dG.moneySecret);
-    out += buildGateBox(`جرح الطفولة والبرمجة الموروثة (أركانا ${P.C} - ${ARC(P.C).n})`, "🧸", dC.childTeaser, dC.childSecret);
-    out += buildGateBox(`سر الذيل الكارمي والنمط المتكرر (أركانا ${P.D} - ${dName})`, "🌀",
-      `ذيلك الكارمي يحمل طاقة (${dName} - رقم ${P.D}).. في تجسدك الكارمي، إنت شايل درس قديم بيتكرر معاك في كل مرحلة لما تلاقي نفسك بتواجه (${ARC(P.D).shadow})...`,
-      `القصة الكاملة لذيلك الكارمي: ${ARC(P.D).past} والطريقة العملية الوحيدة عشان تقفل الحساب الكارمي ده للأبد وترتاح نفسياً هي: ${ARC(P.D).release} وقتها بس النمط المتكرر هيختفي وتبدأ صفحة جديدة تماماً.`
-    );
-
-    out += `<div class="vip-unlock-bar" id="vip-box-anchor">
-      <h4>${IS_VIP_UNLOCKED ? "🎉 تم فتح مصفوفتك الكاملة بنجاح!" : "🔓 افتح التقرير الشامل لمصفوفة القدر الآن (الـ 60% الكاملة + كتاب PDF)"}</h4>
-      <p>${IS_VIP_UNLOCKED ? "كل الأقسام السرية فوق مفتوحة قدامك دلوقتي بالكامل، وتقدر تحفظ تقريرك PDF." : "احصل على كود التفعيل الفوري (VIP Key) لفتح كل أسرار الحب، المال، الطفولة، والذيل الكارمي، وتحميل تقريرك الكامل بصيغة PDF."}</p>
-      ${IS_VIP_UNLOCKED ? `<div class="cta-row"><button type="button" class="btn" onclick="window.print()">📄 تحميل / طباعة كتاب مصفوفتك (PDF)</button></div>` : `
-        <div class="vip-input-row">
-          <input type="text" id="vip-code-in" placeholder="أدخل كود التفعيل (VIP Code)">
-          <button type="button" class="btn sm" id="vip-unlock-btn">تفعيل فوري</button>
-        </div>
-        <p class="ferr" id="vip-err-msg" hidden></p>
-        <div class="cta-row">
-          <a class="btn ghost sm" target="_blank" rel="noopener" href="${waLink("أهلاً محمد، حسبت مصفوفتي على موقع عقيق أسترو وعايز أشترك وأستلم كود تفعيل التقرير الكامل (VIP Code).")}">اطلب كود الـ VIP الآن (فودافون كاش / إنستا باي)</a>
-        </div>
-      `}
-    </div>`;
-
-    out += `<details class="acc mxd"><summary>📌 عرض ملخص النقاط السريع الإضافي (السماء، الأرض، والسنة الحالية)</summary><div class="mxb">${origSummaryHTML(P, lp)}</div></details>`;
-    return out;
-  };
-
-  document.addEventListener("click", e => {
-    if (e.target && e.target.id === "vip-unlock-btn") {
-      const inp = document.getElementById("vip-code-in");
-      const err = document.getElementById("vip-err-msg");
-      const code = (inp ? inp.value : "").trim().toUpperCase();
-      if (code === "AQEEQ2026" || code === "777" || code === "VIP2026") {
-        IS_VIP_UNLOCKED = true;
-        localStorage.setItem("aqeeq_vip_unlocked", "1");
-        document.querySelectorAll(".vip-gate-card").forEach(el => el.classList.add("vip-unlocked"));
-        const bar = document.getElementById("vip-box-anchor");
-        if (bar) {
-          bar.innerHTML = `<h4>🎉 مبروك! تم فتح مصفوفتك الكاملة بنجاح</h4><p>كل الأقسام المغلقة بالأعلى أصبحت مفتوحة بالكامل الآن.</p><div class="cta-row"><button type="button" class="btn" onclick="window.print()">📄 تحميل / حفظ كتاب مصفوفتك (PDF)</button></div>`;
-        }
-      } else if (err) {
-        err.textContent = "كود التفعيل غير صحيح. تأكد من الكود أو اطلبه عبر واتساب.";
-        err.hidden = false;
-      }
-    }
-  });
-
-  // 4. حماية حقوق الطبع والنشر باسم محمد إبراهيم (عقيق أسترو)
-  const footWrap = document.querySelector(".foot .wrap");
-  if (footWrap) {
-    const copyP = document.createElement("p");
-    copyP.style.marginTop = "10px";
-    copyP.style.color = "var(--gold)";
-    copyP.style.fontFamily = "var(--display)";
-    copyP.innerHTML = "© ٢٠٢٦ عقيق أسترو (Aqeeq Astro) - محمد إبراهيم. جميع حقوق الطبع والنشر محفوظة.";
-    footWrap.appendChild(copyP);
-  }
-  document.addEventListener("contextmenu", e => e.preventDefault());
-  document.addEventListener("copy", e => {
-    e.clipboardData.setData("text/plain", "جميع الحقوق محفوظة لمنصة عقيق أسترو - محمد إبراهيم (Aqeeq Astro).");
-    e.preventDefault();
-  });
 
 })();
 
