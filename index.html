@@ -12,6 +12,8 @@
 <!-- بعد ما تضيف الموقع في Google Search Console، ضع هنا كود التحقق الي هيدهولك: -->
 <!-- <meta name="google-site-verification" content="ضع-الكود-هنا"> -->
 <meta name="theme-color" content="#12082A">
+<meta name="author" content="محمد ابراهيم (عقيق)">
+<meta name="copyright" content="© 2026 عقيق. جميع الحقوق محفوظة">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600&family=Noto+Sans+Symbols&family=Noto+Sans+Symbols+2&family=Reem+Kufi:wght@500;600;700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
@@ -24,19 +26,7 @@
 *,*::before,*::after{box-sizing:border-box}
 html{background:var(--night);scroll-behavior:smooth;scroll-padding-top:112px;-webkit-text-size-adjust:100%}
 body{margin:0;min-height:100vh;overflow-x:hidden;color:var(--moon);font-family:var(--body);font-size:1.0625rem;line-height:1.95}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
-  radial-gradient(1.2px 1.2px at 8% 12%,rgba(239,230,210,.9) 50%,transparent 51%),
-  radial-gradient(1px 1px at 22% 38%,rgba(239,230,210,.7) 50%,transparent 51%),
-  radial-gradient(1.4px 1.4px at 36% 8%,rgba(214,174,94,.9) 50%,transparent 51%),
-  radial-gradient(1px 1px at 47% 62%,rgba(239,230,210,.6) 50%,transparent 51%),
-  radial-gradient(1.2px 1.2px at 61% 24%,rgba(239,230,210,.8) 50%,transparent 51%),
-  radial-gradient(1px 1px at 74% 71%,rgba(214,174,94,.7) 50%,transparent 51%),
-  radial-gradient(1.4px 1.4px at 88% 15%,rgba(239,230,210,.9) 50%,transparent 51%),
-  radial-gradient(1px 1px at 93% 52%,rgba(239,230,210,.6) 50%,transparent 51%),
-  radial-gradient(1.2px 1.2px at 15% 82%,rgba(239,230,210,.7) 50%,transparent 51%),
-  radial-gradient(1px 1px at 54% 90%,rgba(214,174,94,.8) 50%,transparent 51%),
-  radial-gradient(900px 600px at 85% -8%,rgba(58,33,112,.55),transparent 70%),
-  radial-gradient(700px 520px at -5% 62%,rgba(42,22,90,.5),transparent 70%)}
+body::before{content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(900px 600px at 85% -8%,rgba(58,33,112,.5),transparent 70%),radial-gradient(700px 520px at -5% 62%,rgba(42,22,90,.45),transparent 70%),linear-gradient(180deg,#0B0420,#12082A 55%,#0B0420)}
 h1,h2,h3,h4,p,ul,ol{margin:0}
 ul,ol{padding:0;list-style:none}
 a{color:inherit}
@@ -414,96 +404,140 @@ details.adv .field{margin-top:12px}
 .tab[aria-selected=true]{box-shadow:0 0 0 1px var(--gold) inset}
 @media(prefers-reduced-motion:reduce){.qt,.tool{transition:none}.qt:hover,.tool:hover{transform:none}}
 
+/* ===== الكون: نجوم متحركة ودرب التبانة والشمس ===== */
+#sky-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+#mw{position:fixed;left:50%;top:48%;width:170vmax;height:80vmax;z-index:-2;pointer-events:none;opacity:.6;transform:translate(-50%,-50%) rotate(-28deg);animation:mwsway 120s ease-in-out infinite alternate}
+@keyframes mwsway{from{transform:translate(-50%,-50%) rotate(-30deg)}to{transform:translate(-50%,-50%) rotate(-22deg)}}
+.sun{position:absolute;left:-190px;top:-190px;width:520px;height:520px;pointer-events:none;will-change:transform,opacity}
+.sun::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#FFF6D2 0 5%,#F6D98F 9%,rgba(240,208,138,.55) 20%,rgba(214,174,94,.18) 40%,transparent 66%)}
+.sun::after{content:"";position:absolute;inset:-18%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(240,208,138,.2) 0 3deg,transparent 3deg 15deg);-webkit-mask:radial-gradient(circle,transparent 18%,#000 24%,transparent 62%);mask:radial-gradient(circle,transparent 18%,#000 24%,transparent 62%);animation:corona 90s linear infinite}
+@keyframes corona{to{transform:rotate(360deg)}}
+.hero{padding-top:34px}
+.hero::before{opacity:.45}
+.hero h1.brandmark{font-size:clamp(4.6rem,20vw,8.6rem);line-height:1;margin-top:6px;animation:brandIn 2.4s cubic-bezier(.2,.7,.2,1) both}
+.hero h1.brandmark::before{content:"";display:block;width:34px;height:34px;margin:0 0 4px;background:var(--gold-hi);-webkit-mask:var(--moonmask) center/contain no-repeat;mask:var(--moonmask) center/contain no-repeat}
+:root{--moonmask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z'/%3E%3C/svg%3E")}
+@keyframes brandIn{from{opacity:0;filter:blur(14px);transform:scale(1.18)}to{opacity:1;filter:none;transform:none}}
+.hero-sub{animation:subIn 1.6s .9s both}
+.hero .enter{font-family:var(--display);color:var(--mist);font-size:1.12rem;margin-top:12px;max-width:26em;animation:subIn 1.6s 1.2s both}
+.quick{animation:subIn 1.6s 1.5s both}
+@keyframes subIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.brand .bn{font-family:"Aref Ruqaa","Reem Kufi",serif;font-size:1.9rem;color:var(--gold-hi)}
+.sec.alt{background:linear-gradient(180deg,rgba(11,4,32,0),rgba(18,8,42,.55) 14%,rgba(18,8,42,.55) 86%,rgba(11,4,32,0))}
+.qt,.tool,.gate,.quick{-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@media(prefers-reduced-motion:reduce){#mw,.sun::after{animation:none}.hero h1.brandmark,.hero-sub,.hero .enter,.quick{animation:none}}
+.foot .copy{max-width:46em;margin:10px auto 0;font-size:.85rem;color:var(--mist)}
+/* ===== التصميم الجديد: تطبيق ليلي بكروت وأوراق منزلقة ===== */
+:root{--card:rgba(22,16,58,.8);--line:rgba(139,92,246,.26);--ink:#F4EEFF;--violet:#8B5CF6;--gold-hi:#F0D08A}
+body{background:#070518;font-size:1rem;line-height:1.8}
+.top{position:sticky;top:0;z-index:30;background:rgba(7,5,24,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(139,92,246,.16)}
+.top::after{display:none}
+.hd{display:flex!important;justify-content:space-between;align-items:center;height:62px;padding:0;width:min(600px,100% - 32px);margin-inline:auto}
+.hd .hd-act{order:initial}
+.brand .bn{font-family:"Aref Ruqaa","Reem Kufi",serif;font-size:1.7rem;color:var(--gold-hi);line-height:1.2}
+.brand .bt{display:none!important}
+.hd-act{display:flex;align-items:center;gap:10px}
+.hd-act .btn.sm{padding:7px 14px;font-size:.85rem;border-radius:999px}
+.ig-top{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--gold)}
+.nav{display:none}
 
-/* ===== Aqiq visual refresh: restrained motion, same identity ===== */
-:root{
-  --night:#100722;--deep:#190d32;--amethyst:#39215e;--gold:#d6ae5e;--gold-dim:#8f7338;
-  --moon:#f2eadb;--mist:#bcb0d1;--rose:#d9788c;
-  --display:"Reem Kufi","Noto Naskh Arabic",serif;
-  --body:"Noto Naskh Arabic","Segoe UI",serif;
-}
-html{background:#100722}
-body{background:transparent;isolation:isolate}
-body::before{opacity:.8;background-size:100% 100%;animation:aqiqNebulaDrift 95s ease-in-out infinite alternate}
-@keyframes aqiqNebulaDrift{0%{background-position:0 0}100%{background-position:2% -1%}}
-#aqiq-starfield{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.52;contain:strict}
-body>*:not(#aqiq-starfield){position:relative;z-index:1}
-.top{background:rgba(16,7,34,.82);border-bottom-color:rgba(214,174,94,.18);box-shadow:0 8px 30px rgba(4,1,12,.12)}
-.hd{min-height:64px}
-.brand{letter-spacing:.01em}
-.nav a{transition:color .22s ease}
-.nav a:hover{color:var(--gold);text-shadow:0 0 18px rgba(214,174,94,.2)}
-.hero{position:relative;overflow:hidden;padding-top:clamp(34px,6vw,76px);padding-bottom:clamp(48px,7vw,86px)}
-.hero::before{content:"";position:absolute;width:min(66vw,680px);aspect-ratio:1;top:4%;inset-inline-start:50%;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(73,43,119,.16),rgba(36,17,70,.06) 48%,transparent 70%);filter:blur(8px)}
-.hero>.wrap{position:relative;z-index:1;gap:clamp(24px,5vw,68px)}
-.wheel{filter:drop-shadow(0 0 18px rgba(214,174,94,.09));overflow:visible}
-.spin-a{transform-origin:200px 200px;animation:spin 180s linear infinite}
-.spin-b{transform-origin:200px 200px;animation:spin 240s linear infinite reverse}
-.wheel .ln{transition:stroke .3s ease}
-.hint{letter-spacing:.01em}
-.hero h1.brandmark{text-shadow:0 0 34px rgba(214,174,94,.12);letter-spacing:.01em}
-.hero-sub{font-size:clamp(1.15rem,2.2vw,1.55rem)}
-.lead{max-width:38rem;text-wrap:pretty}
-.btn{box-shadow:0 5px 18px rgba(0,0,0,.08);transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:0 9px 24px rgba(214,174,94,.13)}
-.btn:active{transform:translateY(0)}
-.tool,.qt,.svc,.course,.daily,.bond-cat,.result .b3,.book,.arch,.sky-panel,.gate{transition:border-color .25s ease,background-color .25s ease,box-shadow .25s ease,transform .25s ease}
-.tool,.qt{border-color:rgba(143,115,56,.48);background:linear-gradient(145deg,rgba(35,20,62,.76),rgba(20,9,42,.78))}
-.tool:hover,.qt:hover{border-color:rgba(214,174,94,.72);box-shadow:0 14px 34px rgba(3,1,10,.2),0 0 28px rgba(214,174,94,.045);transform:translateY(-3px)}
-.sec{padding-block:clamp(48px,6vw,78px)}
-.sec.alt{background:linear-gradient(180deg,transparent,rgba(27,15,60,.32) 14%,rgba(27,15,60,.32) 86%,transparent)}
-.sec h2{letter-spacing:.005em;text-wrap:balance}
-.intro,.lead,.about p{line-height:2;text-wrap:pretty}
-input,select{background:rgba(25,13,50,.86);border-color:rgba(103,74,148,.48);transition:border-color .2s ease,box-shadow .2s ease}
-input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
-.cform{padding:clamp(18px,3vw,30px);border:1px solid rgba(143,115,56,.26);border-radius:24px;background:linear-gradient(145deg,rgba(31,16,57,.62),rgba(18,8,38,.42));box-shadow:0 18px 50px rgba(4,1,14,.1)}
-.result{animation:aqiqResultIn .55s cubic-bezier(.2,.7,.2,1) both}
-@keyframes aqiqResultIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.b3,.bond-cat,.daily,.gate,.book{background:linear-gradient(145deg,rgba(35,20,62,.86),rgba(20,9,42,.88));border-color:rgba(143,115,56,.4)}
-.tab{transition:background .2s ease,color .2s ease,border-color .2s ease}
-.tab:hover{border-color:var(--gold-dim);color:var(--moon)}
-.tab[aria-selected="true"]:hover{color:#1a0f33}
-.ph{letter-spacing:.01em}
-.foot{border-top-color:rgba(214,174,94,.18)}
-/* Reveal only after JS confirms the element is in view; no hidden content without JS. */
-.js-reveal-ready .reveal-on-scroll{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.js-reveal-ready .reveal-on-scroll.is-visible{opacity:1;transform:none}
-@media(min-width:900px){.hero>.wrap{align-items:center}}
-@media(max-width:899px){.hero{padding-top:30px}.hero::before{top:0;width:100vw}.hero>.wrap{gap:22px}}
-@media(prefers-reduced-motion:reduce){
-  #aqiq-starfield{display:none!important}
-  .spin-a,.spin-b{animation:none!important}
-  .js-reveal-ready .reveal-on-scroll{opacity:1!important;transform:none!important;transition:none!important}
-  .btn:hover,.tool:hover,.qt:hover{transform:none!important}
-}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:26px 0 18px}
+.hero::before{display:none}
+.hero .wrap{width:min(560px,100% - 32px);display:grid;justify-items:center;text-align:center;gap:6px;position:relative}
+.wheel-box{order:0;display:grid;justify-items:center;gap:4px}
+.wheel{width:min(64vw,250px);margin-top:4px}
+.hero h1.brandmark{font-size:clamp(3.4rem,15vw,5rem);line-height:1.05;margin-top:4px}
+.hero h1.brandmark::before{display:none!important}
+.hero-sub{font-size:1.1rem;color:var(--mist)}
+.hero .enter{font-size:1rem;color:var(--mist);max-width:26em;margin:0 auto}
+.hint{font-size:.85rem;color:var(--mist);opacity:.8}
+.quick{width:100%;max-width:440px;margin-top:14px;padding:18px 18px 14px;border-radius:26px;background:var(--card);border:1px solid var(--line);box-shadow:0 18px 50px rgba(0,0,0,.4);text-align:start}
+.quick>label{font-size:1rem;margin-bottom:10px;color:var(--ink)}
+.qrow{display:grid;grid-template-columns:1fr;gap:10px}
+.qrow .btn{width:100%}
+.quick input{width:100%}
+.quick .privacy{font-size:.82rem;text-align:center}
+.quick .ferr{margin-top:8px}
+.sun{top:-260px;left:-220px}
 
+/* quick result on home */
+.qres{width:min(560px,100% - 32px);margin:8px auto 0;padding:0}
+.qres .wrap{width:100%}
+.qres h2{font-size:1.25rem;padding:0 0 10px;text-align:start}
+.qres h2::after{display:none}
+.qgrid{margin-top:0;gap:12px}
+.qt{border-radius:26px;background:var(--card);border:1px solid var(--line);padding:18px;flex-direction:column}
+.qt::before{display:none}
+.qt:hover{transform:none}
+.qnote{font-size:.85rem}
+
+/* home categories and cards */
+.home{width:min(560px,100% - 32px);margin:0 auto;padding:6px 0 130px;display:grid;gap:12px}
+.cat-h{display:flex;align-items:center;gap:10px;margin:22px 0 6px;font-family:var(--display);color:var(--mist);font-size:1rem}
+.cat-h .cat-i{width:30px;height:30px;border-radius:50%;border:1px solid rgba(214,174,94,.6);display:grid;place-items:center;color:var(--gold);font-family:var(--sym);font-size:.95rem;flex:none}
+.cat-h::after{content:"";flex:1;height:1px;background:linear-gradient(270deg,transparent,rgba(139,92,246,.45))}
+.card{display:flex;align-items:center;gap:14px;padding:14px 14px 14px 12px;border-radius:26px;background:var(--card);border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .2s,border-color .2s,background .2s;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card:hover{transform:translateY(-2px);border-color:rgba(139,92,246,.7);background:rgba(34,24,86,.85)}
+.card .ic{flex:none;width:58px;height:58px;border-radius:19px;display:grid;place-items:center;font-family:var(--sym);font-size:1.6rem;color:#fff;background:linear-gradient(145deg,#7454E0,#3A2170);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 8px 20px rgba(91,60,196,.35)}
+.card .ic.gold{background:linear-gradient(145deg,#EBC67F,#8F7338);color:#1a0f33;box-shadow:0 8px 20px rgba(214,174,94,.25)}
+.card .ic.rose{background:linear-gradient(145deg,#E0708A,#7A2B4A);box-shadow:0 8px 20px rgba(217,120,140,.3)}
+.card .ct{flex:1;display:grid;gap:2px;min-width:0;text-align:start}
+.card .ct b{font-family:var(--display);font-weight:600;font-size:1.1rem;line-height:1.5;color:var(--ink)}
+.card .ct small{color:var(--mist);font-size:.9rem;line-height:1.55}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.pill{font-size:.76rem;line-height:1.4;padding:2px 10px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--mist)}
+.pill.free{background:rgba(214,174,94,.14);border-color:rgba(214,174,94,.4);color:var(--gold-hi)}
+.chev{flex:none;color:var(--mist);font-size:1.7rem;line-height:1;opacity:.7;padding-inline:4px}
+
+/* sheets: each section opens as a full-screen sheet */
+.sec{display:none}
+.sec:target{display:block!important;position:fixed;inset:0;z-index:60;overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(180deg,#0B0630 0%,#0E0738 55%,#070518 100%)!important;padding:0 0 130px;animation:sheetIn .32s ease both}
+.sec:target>.wrap{width:min(600px,100% - 32px);padding-top:76px}
+@keyframes sheetIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.sec h2{font-size:clamp(1.5rem,5vw,1.9rem);padding-bottom:6px}
+.sec h2::after{display:none!important}
+.center h2::after{display:none!important}
+
+.sheet-x{position:fixed;top:14px;inset-inline-start:16px;z-index:70;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(22,16,58,.95);border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:1.05rem;font-family:var(--body)}
+.sheet-x:hover{border-color:var(--gold)}
+.intro{font-size:.98rem}
+.cform{max-width:none}
+.sec .btn{border-radius:18px}
+.bnav{position:fixed;inset-inline:0;bottom:0;z-index:65;display:flex;justify-content:space-around;align-items:center;gap:6px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(8,5,26,.94);border-top:1px solid var(--line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.bnav a{flex:1;max-width:120px;display:grid;justify-items:center;gap:2px;color:var(--mist);text-decoration:none;font-family:var(--display);font-size:.78rem;padding:6px 6px 4px;border-radius:16px;transition:color .2s}
+.bnav a svg{width:24px;height:24px}
+.bnav a.on,.bnav a:hover{color:var(--gold-hi)}
+.bnav a:target{color:var(--gold-hi)}
+.msg-card{margin:18px 0 8px;padding:30px 22px;border-radius:26px;background:var(--card);border:1px solid var(--line);text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.msg-g{display:block;font-family:var(--sym);font-size:2rem;color:var(--gold);margin-bottom:8px}
+.msg-txt{font-family:var(--display);font-size:1.25rem;line-height:2;color:var(--ink)}
+.aff-list{display:grid;gap:10px;margin-top:18px}
+.aff-list li{padding:14px 16px;border-radius:18px;background:var(--card);border:1px solid var(--line);color:var(--ink)}
+.foot{width:min(560px,100% - 32px);margin:0 auto;padding:28px 0 40px;border-top:1px solid rgba(139,92,246,.22);margin-bottom:0}
+.foot .wrap{width:100%}
+.foot .brand{justify-content:center}
+.foot .copy{font-size:.84rem;line-height:1.9}
+.hero .wheel-box{display:grid}
+@media(min-width:900px){.hero .wrap{width:min(560px,100% - 32px)}.hd{width:min(600px,100% - 32px)}}
+.hero .wrap,.hero .wrap>*{justify-self:center}
+@media(min-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr)!important;justify-items:center!important;text-align:center!important}.hero .cta-row{justify-content:center}}
 </style>
-</head>
 <body>
+<canvas id="mw" width="1400" height="660" aria-hidden="true"></canvas>
+<canvas id="sky-bg" aria-hidden="true"></canvas>
 <header class="top">
-  <div class="wrap hd">
-    <a class="brand" href="#top" id="top">
-      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z" fill="#D6AE5E"/></svg>
-      <span class="bn" data-brand></span><small class="bt" data-tagline></small>
-    </a>
+  <div class="hd">
+    <a class="brand" href="#home" id="top"><span class="bn" data-brand></span></a>
     <div class="hd-act"><a class="ig-top" id="ig-top" href="#book" aria-label="انستجرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor"/></svg></a><a class="btn sm" data-wa="general" href="#book">واتساب</a></div>
-    <nav class="nav" aria-label="التنقل الرئيسي">
-      <a href="#matrix">مصفوفة القدر</a>
-      <a href="#lifepath">مسار الحياة</a>
-      <a href="#chart">الخريطة الفلكية</a>
-      <a href="#sky">السما دلوقتي</a>
-      <a href="#signs">الأبراج</a>
-      <a href="#services">الجلسات</a>
-      <a href="#faq">أسئلة</a>
-    </nav>
   </div>
 </header>
-
 <main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="wheel-box">
-        <svg class="wheel" viewBox="0 0 400 400" role="group" aria-label="عجلة الأبراج. اختار برجك لتشوف توقعاته">
+<section class="hero" id="home">
+  <div class="sun" id="sun" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="wheel-box">
+      <svg class="wheel" viewBox="0 0 400 400" role="group" aria-label="عجلة الأبراج. اختار برجك لتشوف توقعاته">
           <circle class="ln strong" cx="200" cy="200" r="192"/>
           <g class="spin-a"><g id="ticks" class="ln strong" style="stroke-width:1"></g></g>
           <circle class="ln" cx="200" cy="200" r="170"/>
@@ -517,78 +551,32 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
           <path class="moon" d="M200 168A32 32 0 0 0 200 232A40 40 0 0 1 200 168Z" transform="translate(18 0)"/>
           <g id="glyphs"></g>
         </svg>
-        <p class="hint">اضغط على أي برج في العجلة لتشوف توقعاته</p>
-      </div>
-      <div>
-        <h1 class="brandmark"><span data-brand></span></h1>
-        <p class="hero-sub" data-tagline></p>
-        <p class="lead">احسب مصفوفة قدرك وخريطتك الفلكية بالتفصيل، واعرف نمطك وطاقة المرحلة الي إنت فيها. ولو عايز تعمّق، احجز جلسة معايا.</p>
-        <form class="quick" id="qform" novalidate>
+      <p class="hint">اضغط على الشاشة واكتب تاريخ ميلادك، وهتلاقي بطاقتك في ثواني.</p>
+    </div>
+    <h1 class="brandmark"><span data-brand></span></h1>
+    <p class="hero-sub" data-tagline></p>
+    <p class="enter">ادخل السما. كل رقم فيه حكاية، وكل كوكب بيشاور على طريق.</p>
+    <form class="quick" id="qform" novalidate>
           <label for="q-date">اكتب تاريخ ميلادك وشوف بطاقتك دلوقتي</label>
           <div class="qrow"><input id="q-date" type="date" min="1900-01-01" max="2100-12-31"><button class="btn" type="submit">اكشف بطاقتي</button></div>
           <p class="ferr" id="qerr" role="alert" hidden></p>
           <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
         </form>
-        <nav class="hero-links" aria-label="الأدوات"><a href="#matrix">مصفوفة القدر</a><a href="#lifepath">مسار الحياة</a><a href="#chart">الخريطة الفلكية</a></nav>
-      </div>
-    </div>
-  </section>
-  <section class="qres" id="quick" hidden>
+  </div>
+</section>
+<section class="qres" id="quick" hidden>
     <div class="wrap">
       <h2 id="qtitle">بطاقتك</h2>
       <div class="qgrid" id="qgrid"></div>
       <p class="qnote">دي لمحة سريعة. اضغط على أي بطاقة وهتفتح لك القراءة بالتفصيل.</p>
     </div>
   </section>
-
-  <section class="sec" id="tools">
+<div class="home">
+<div class="cat-h"><span class="cat-i" aria-hidden="true">✦</span><span>عنك شخصيا</span></div><a class="card" href="#chart"><span class="ic gold" aria-hidden="true">☉</span><span class="ct"><b>خريطة الميلاد</b><small>اكتشاف ذاتك الحقيقية من الكواكب والبيوت</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#matrix"><span class="ic " aria-hidden="true">✦</span><span class="ct"><b>مصفوفة القدر</b><small>مصيرك خطوة بخطوة، من تاريخ ميلادك</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#lifepath"><span class="ic " aria-hidden="true">✧</span><span class="ct"><b>مسار الحياة</b><small>رقمك ونورك وضلّك وإزاي بتحب</small><span class="pills"><span class="pill free">مجاني</span><span class="pill">بكود</span></span></span><span class="chev" aria-hidden="true">‹</span></a><div class="cat-h"><span class="cat-i" aria-hidden="true">☽</span><span>لليوم</span></div><a class="card" href="#signs"><span class="ic gold" aria-hidden="true">♈</span><span class="ct"><b>الأبراج</b><small>توقعات برجك للفترة دي</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#sky"><span class="ic " aria-hidden="true">☿</span><span class="ct"><b>السما دلوقتي</b><small>مواقع الكواكب النهاردة وتراجعاتها والقمر</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#fortune"><span class="ic " aria-hidden="true">✶</span><span class="ct"><b>بسكويت الحظ</b><small>رسالة حكمة بتتغير كل يوم</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#affirm"><span class="ic " aria-hidden="true">♡</span><span class="ct"><b>التأكيدات</b><small>جمل تفكّرك بقوتك كل يوم</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><div class="cat-h"><span class="cat-i" aria-hidden="true">♡</span><span>العلاقات</span></div><a class="card" href="#services"><span class="ic rose" aria-hidden="true">⚭</span><span class="ct"><b>التوافق الفلكي</b><small>مقارنة خريطتين عشان تفهموا التناغم والتوتر</small></span><span class="chev" aria-hidden="true">‹</span></a><div class="cat-h"><span class="cat-i" aria-hidden="true">✪</span><span>تعلّم وتواصل</span></div><a class="card" href="#services"><span class="ic " aria-hidden="true">✪</span><span class="ct"><b>الخدمات والجلسات</b><small>قراءات شخصية تحجزها على واتساب</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#courses"><span class="ic " aria-hidden="true">❖</span><span class="ct"><b>الكورسات</b><small>تعلم الفلك ومصفوفة القدر بنفسك</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#videos"><span class="ic " aria-hidden="true">▶</span><span class="ct"><b>الفيديوهات</b><small>شروحات وتوقعات وقراءات قصيرة</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#how"><span class="ic " aria-hidden="true">➜</span><span class="ct"><b>إزاي الحجز؟</b><small>أربع خطوات بسيطة على واتساب</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#faq"><span class="ic " aria-hidden="true">؟</span><span class="ct"><b>أسئلة شائعة</b><small>الحساب، الخصوصية، والكود</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#about"><span class="ic " aria-hidden="true">◌</span><span class="ct"><b>عني</b><small>مين محمد ابراهيم وعقيق</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#book"><span class="ic " aria-hidden="true">✉</span><span class="ct"><b>تواصل معايا</b><small>واتساب وانستجرام</small></span><span class="chev" aria-hidden="true">‹</span></a>
+</div>
+<section class="sec alt" id="matrix">
     <div class="wrap">
-      <div class="center">
-        <h2>ثلاث أدوات، وقراءة واحدة متكاملة</h2>
-        <p class="intro">كل أداة بتبدأ من تاريخ ميلادك. أول جزء في كل واحدة مجاني، وكود التفعيل بيفتح الباقي.</p>
-      </div>
-      <div class="tgrid">
-        <article class="tool">
-          <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="9" width="30" height="30"/><path d="M24 9 39 24 24 39 9 24Z"/><circle cx="24" cy="24" r="5"/></svg>
-          <h3>مصفوفة القدر</h3>
-          <p>رسمة بالنقاط التسع وامتداداتها من تاريخ ميلادك: شخصيتك وهدفك والكارما والحب والفلوس ومراحل عمرك.</p>
-          <ul class="tl"><li><span><b>مجاني:</b> الرسمة كاملة، والنقاط، وملخص شخصيتك</span></li><li class="pd"><span><b>بكود:</b> الذيل الكارمي، مراحل العمر، والتوافق مع أي شخص</span></li></ul>
-          <a class="btn ghost sm" href="#matrix">احسب مصفوفتي</a>
-        </article>
-        <article class="tool">
-          <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><circle cx="24" cy="24" r="5"/><path d="M24 5v6M24 37v6M5 24h6M37 24h6"/></svg>
-          <h3>مسار الحياة</h3>
-          <p>رقمك من ١ لـ ٩ بيلخص نورك وضلّك وإزاي بتحب وإيه اللي بيعطلك، مع رسالة يومية بتتغير كل يوم.</p>
-          <ul class="tl"><li><span><b>مجاني:</b> جوهرك ونورك ورسالة النهاردة</span></li><li class="pd"><span><b>بكود:</b> الضل ومفاتيحه، الحب والجواز والقرب، والبلوكات وطريقة الفك</span></li></ul>
-          <a class="btn ghost sm" href="#lifepath">اعرف مساري</a>
-        </article>
-        <article class="tool">
-          <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="19"/><path d="M24 5v38M5 24h38M10.5 10.5l27 27M37.5 10.5l-27 27"/><circle cx="24" cy="24" r="4"/></svg>
-          <h3>الخريطة الفلكية</h3>
-          <p>خريطة ميلادك بحساب فلكي حقيقي: الكواكب والبيوت والزوايا، وقراءة لنمطك في الحب والشغل والمشاعر.</p>
-          <ul class="tl"><li><span><b>مجاني:</b> الخريطة والجداول وتحليل النمط</span></li><li class="pd"><span><b>جلسة شخصية:</b> ربط الخريطة بحياتك وأسئلتك</span></li></ul>
-          <a class="btn ghost sm" href="#chart">احسب خريطتي</a>
-        </article>
-      </div>
-      <div class="facts" aria-label="أرقام">
-        <div><strong>٢٢</strong><span>طاقة في المصفوفة</span></div>
-        <div><strong>٩ + ٣</strong><span>مسارات حياة ورقم رئيسي</span></div>
-        <div><strong>١٢</strong><span>بيت و١٢ برج</span></div>
-        <div><strong>١٠</strong><span>كواكب بمواقعها الحقيقية</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="about">
-    <div class="wrap about">
-      <h2>مين هو عقيق؟</h2>
-      <p>أنا محمد ابراهيم، وعقيق هو اسمي في الفلك والطاقة. بقدم قراءات وجلسات لأي حد عايز يفهم نفسه وعلاقاته وقراراته بشكل أوضح، من خلال مصفوفة القدر وخريطة الميلاد وطاقة الأرقام.</p>
-      <p>كل الحاسبات في الموقع بتشتغل على جهازك ومابتحفظش بياناتك. والقراءات التلقائية بتديك الصورة العامة، ولو عايز قراءة شخصية على حالتك كلمني على واتساب.</p>
-    </div>
-  </section>
-
-  <section class="sec alt" id="matrix">
-    <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <div class="center">
         <h2>مصفوفة القدر (الماتريكس)</h2>
         <p class="intro">اكتب تاريخ ميلادك وهتطلع لك مصفوفتك كاملة: شخصيتك وموهبتك، هدفك، الكارما، الحب، الفلوس، مراحل عمرك، وطاقة سنتك الحالية. وتقدر تقارنها بمصفوفة شخص تاني.</p>
@@ -603,9 +591,9 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       <div class="result" id="mresult" aria-live="polite" hidden></div>
     </div>
   </section>
-
-  <section class="sec" id="lifepath">
+<section class="sec" id="lifepath">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <div class="center">
         <h2>مسار حياتك</h2>
         <p class="intro">رقم واحد طالع من تاريخ ميلادك بيلخص طبعك: نورك وضلّك، وإزاي بتحب، وإيه اللي بيعطلك. أول جزء مجاني، والباقي بيتفتح بكود التفعيل.</p>
@@ -620,9 +608,9 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       <div class="result" id="lpresult" aria-live="polite" hidden></div>
     </div>
   </section>
-
-  <section class="sec" id="chart">
+<section class="sec" id="chart">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <div class="center">
         <h2>خريطتك الفلكية</h2>
         <p class="intro">اكتب بيانات ميلادك وهتطلع لك خريطتك بالكواكب والبيوت والدرجات، مع قراءة ونصايح. أدق نتيجة بتيجي لما تعرف وقت ميلادك بالدقيقة.</p>
@@ -653,9 +641,9 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       <div class="result" id="result" aria-live="polite" hidden></div>
     </div>
   </section>
-
-  <section class="sec alt" id="sky">
+<section class="sec alt" id="sky">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <h2>السما دلوقتي</h2>
       <p class="intro">مواقع الكواكب الحقيقية النهاردة، وإيه الي بيعمله كل كوكب في كل برج. اختار كوكب، وشوف تأثيره على برجك.</p>
       <div class="sky-ctl">
@@ -667,9 +655,9 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       <div class="sky-panel" id="sky-panel" aria-live="polite"></div>
     </div>
   </section>
-
-  <section class="sec" id="signs">
+<section class="sec" id="signs">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <div class="center">
         <span class="period" id="period"></span>
         <h2>توقعات الأبراج</h2>
@@ -679,9 +667,9 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       <article class="arch" id="panel" aria-live="polite"></article>
     </div>
   </section>
-
-  <section class="sec" id="services">
+<section class="sec" id="services">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <h2>الخدمات</h2>
       <p class="intro">اختار الجلسة الي تناسب سؤالك. كل خدمة بتبدأ برسالة على واتساب فيها بياناتك الأساسية.</p>
       <ul>
@@ -708,25 +696,25 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       </ul>
     </div>
   </section>
-
-  <section class="sec alt" id="courses">
+<section class="sec alt" id="courses">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <h2>الكورسات</h2>
       <p class="intro">لو عايز تتعلم الفلك ومصفوفة القدر بنفسك، دي الكورسات الي بجهزها.</p>
       <ul id="courses-list"></ul>
     </div>
   </section>
-
-  <section class="sec" id="videos">
+<section class="sec" id="videos">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <h2>الفيديوهات</h2>
       <p class="intro">شروحات وتوقعات وقراءات قصيرة.</p>
       <ul class="videos" id="videos-list"></ul>
     </div>
   </section>
-
-  <section class="sec" id="how">
+<section class="sec" id="how">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <h2>إزاي الحجز؟</h2>
       <p class="intro">أربع خطوات بسيطة، وكلها على واتساب.</p>
       <ol class="steps">
@@ -737,9 +725,9 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       </ol>
     </div>
   </section>
-
-  <section class="sec alt" id="faq">
+<section class="sec alt" id="faq">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <div class="center"><h2>أسئلة بتتسأل كتير</h2></div>
       <p class="method">مواقع الكواكب بتتحسب بمعادلات فلكية حقيقية على جهازك، والبيوت بتتحسب من وقت ومكان الميلاد. النصوص بتترجم الرموز لأنماط نفسية وسلوكية للتأمل.</p>
       <div class="faq">
@@ -753,9 +741,9 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       </div>
     </div>
   </section>
-
-  <section class="sec" id="book">
+<section class="sec" id="book">
     <div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
       <div class="book">
         <h2>تواصل معايا</h2>
         <p>لو عايز قراءة شخصية أو عندك سؤال على خريطتك، كلمني على واتساب. وتابعني على انستجرام لتوقعات وفيديوهات جديدة.</p>
@@ -763,16 +751,40 @@ input:focus,select:focus{box-shadow:0 0 0 4px rgba(214,174,94,.09)}
       </div>
     </div>
   </section>
+<section class="sec" id="about">
+    <div class="wrap about">
+      <h2>مين هو عقيق؟</h2>
+      <p>أنا محمد ابراهيم، وعقيق هو اسمي في الفلك والطاقة. بقدم قراءات وجلسات لأي حد عايز يفهم نفسه وعلاقاته وقراراته بشكل أوضح، من خلال مصفوفة القدر وخريطة الميلاد وطاقة الأرقام.</p>
+      <p>كل الحاسبات في الموقع بتشتغل على جهازك ومابتحفظش بياناتك. والقراءات التلقائية بتديك الصورة العامة، ولو عايز قراءة شخصية على حالتك كلمني على واتساب.</p>
+    </div>
+  </section>
+<section class="sec alt" id="fortune"><div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
+<div class="center"><h2>بسكويت الحظ</h2><p class="intro">رسالة النهاردة. اقراها بهدوء، ومتاخدهاش كوعد ولا كحكم.</p></div>
+<div class="msg-card"><span class="msg-g" aria-hidden="true">✶</span><p class="msg-txt" id="fortune-txt"></p></div>
+<p class="privacy">الرسالة بتتغير كل يوم، وبتتكرر كل فترة.</p>
+</div></section>
+<section class="sec alt" id="affirm"><div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
+<div class="center"><h2>التأكيدات</h2><p class="intro">جمل قصيرة تفكرك بنفسك. اقراها بصوت واطي، ولو حسيت إنها غريبة عليك، ده طبيعي.</p></div>
+<div class="msg-card"><span class="msg-g" aria-hidden="true">♡</span><p class="msg-txt" id="affirm-txt"></p></div>
+<ul class="aff-list" id="affirm-list"></ul>
+</div></section>
 </main>
-
 <footer class="foot">
   <div class="wrap">
     <div class="brand"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z" fill="#D6AE5E"/></svg><span data-brand></span></div>
     <p class="tg" data-tagline></p>
     <p>القراءات للتأمل والترفيه، وهي مش بديل عن استشارة طبية أو قانونية أو مالية.</p>
+    <p class="copy">© 2026 عقيق، محمد ابراهيم. جميع الحقوق محفوظة. كل النصوص والقراءات والتصاميم والحسابات في الموقع ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها أو استخدامها في تطبيقات أو مواقع أخرى بدون إذن كتابي.</p>
   </div>
 </footer>
-
+<nav class="bnav" aria-label="التنقل الرئيسي">
+<a href="#home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M4 11L12 4l8 7v9h-5v-6H9v6H4z"/></svg><span>الرئيسية</span></a>
+<a href="#matrix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/><circle cx="12" cy="12" r="2.5"/></svg><span>مصفوفتي</span></a>
+<a href="#signs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg><span>الأبراج</span></a>
+<a href="#book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg><span>تواصل</span></a>
+</nav>
 <script>
 /* ============================== عدّل هنا ==============================
    كل حاجة بتتغير في الموقع من الأسماء والأرقام والكورسات والفيديوهات هنا.
@@ -1967,7 +1979,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     g.setAttribute("class", "wg"); g.setAttribute("role", "button"); g.setAttribute("tabindex", "0"); g.setAttribute("aria-label", "توقعات برج " + s.n);
     g.style.setProperty("--i", i);
     g.innerHTML = `<circle class="hit" cx="${x}" cy="${y}" r="21"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central">${gl(s.g)}</text>`;
-    const go = () => { selectSign(i); $("#signs").scrollIntoView(); };
+    const go = () => { selectSign(i); location.hash = "#signs"; };
     g.addEventListener("click", go);
     g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
     glyphs.appendChild(g);
@@ -2402,9 +2414,9 @@ if (typeof module !== 'undefined') module.exports = Astro;
   const isoOf = (y, m, d) => `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
   function openTool(id, d, m, y) {
     const iso = isoOf(y, m, d);
-    if (id === "matrix") { $("#m-date").value = iso; $("#mform").requestSubmit(); }
-    else if (id === "life") { $("#lp-date").value = iso; $("#lpform").requestSubmit(); }
-    else { const f = $("#f-date"); if (f) f.value = iso; $("#chart").scrollIntoView(); }
+    if (id === "matrix") { $("#m-date").value = iso; $("#mform").requestSubmit(); location.hash = "#matrix"; }
+    else if (id === "life") { $("#lp-date").value = iso; $("#lpform").requestSubmit(); location.hash = "#lifepath"; }
+    else { const f = $("#f-date"); if (f) f.value = iso; location.hash = "#chart"; }
   }
   $("#qform").addEventListener("submit", e => {
     e.preventDefault();
@@ -2614,49 +2626,97 @@ if (typeof module !== 'undefined') module.exports = Astro;
 </script>
 
 <script>
-/* Aqiq ambient starfield. Decorative only; existing astrology logic remains untouched. */
-(function(){
-  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;
-  const canvas = document.createElement('canvas');
-  canvas.id = 'aqiq-starfield'; canvas.setAttribute('aria-hidden','true');
-  document.body.insertBefore(canvas, document.body.firstChild);
-  const ctx = canvas.getContext('2d'); if (!ctx) { canvas.remove(); return; }
-  let w=0,h=0,dpr=1,stars=[],raf=0,last=0;
-  const rand=(a,b)=>a+Math.random()*(b-a);
-  function resize(){
-    dpr=Math.min(window.devicePixelRatio||1,1.6); w=window.innerWidth; h=window.innerHeight;
-    canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
-    const count=Math.min(115,Math.max(42,Math.round(w*h/12500)));
-    stars=Array.from({length:count},()=>({x:rand(0,w),y:rand(0,h),r:rand(.35,1.25),a:rand(.18,.68),phase:rand(0,Math.PI*2),speed:rand(.12,.42),drift:rand(-.11,.11),gold:Math.random()<.22}));
-  }
-  function draw(t){
-    if(document.hidden){raf=0;return;}
-    if(t-last<40){raf=requestAnimationFrame(draw);return;} last=t;
-    ctx.clearRect(0,0,w,h);
-    for(const s of stars){
-      const twinkle=.65+.35*Math.sin(t*.00045*s.speed+s.phase);
-      s.y-=s.speed*.12; s.x+=s.drift*.08;
-      if(s.y<-3){s.y=h+3;s.x=rand(0,w);} if(s.x<-3)s.x=w+3; if(s.x>w+3)s.x=-3;
-      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle=s.gold?`rgba(214,174,94,${s.a*twinkle})`:`rgba(235,226,255,${s.a*twinkle})`;ctx.fill();
-      if(s.r>1.05){ctx.beginPath();ctx.moveTo(s.x-3,s.y);ctx.lineTo(s.x+3,s.y);ctx.moveTo(s.x,s.y-3);ctx.lineTo(s.x,s.y+3);ctx.strokeStyle=`rgba(214,174,94,${s.a*.18*twinkle})`;ctx.lineWidth=.5;ctx.stroke();}
+/* الكون: نجوم بتجري ناحيتك، السرعة بتزيد مع النزول، ودرب تبانة وشهب */
+(function () {
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cv = document.getElementById("sky-bg"), ctx = cv.getContext("2d");
+  const mw = document.getElementById("mw"), sun = document.getElementById("sun");
+  /* درب التبانة: بيترسم مرة واحدة */
+  (function () {
+    const c = mw.getContext("2d"), w = mw.width, h = mw.height;
+    const g = c.createLinearGradient(0, h * .2, 0, h * .8);
+    g.addColorStop(0, "rgba(120,80,210,0)"); g.addColorStop(.5, "rgba(150,110,235,.30)"); g.addColorStop(1, "rgba(120,80,210,0)");
+    c.fillStyle = g; c.fillRect(0, 0, w, h);
+    for (let i = 0; i < 14; i++) {
+      const x = Math.random() * w, y = h / 2 + (Math.random() - .5) * h * .22, r = 80 + Math.random() * 160;
+      const rg = c.createRadialGradient(x, y, 0, x, y, r);
+      rg.addColorStop(0, i % 3 ? "rgba(214,174,94,.10)" : "rgba(170,130,255,.14)"); rg.addColorStop(1, "rgba(0,0,0,0)");
+      c.fillStyle = rg; c.fillRect(x - r, y - r, r * 2, r * 2);
     }
-    raf=requestAnimationFrame(draw);
+    for (let i = 0; i < 2600; i++) {
+      const x = Math.random() * w, gy = (Math.random() + Math.random() + Math.random() - 1.5) / 1.5;
+      const y = h / 2 + gy * h * .24 + Math.sin(x / 190) * 16, a = .15 + Math.random() * .55;
+      c.fillStyle = `rgba(${Math.random() < .25 ? "214,174,94" : "239,230,210"},${a})`;
+      const s = Math.random() < .06 ? 1.8 : .8; c.fillRect(x, y, s, s);
+    }
+  })();
+  let W, H, DPR, N, stars = [], shoot = null, nextShoot = 4000;
+  const COL = ["239,230,210", "214,174,94", "185,173,216", "255,255,255"];
+  const mk = init => ({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: init ? Math.random() * .98 + .02 : 1, c: COL[(Math.random() * 4) | 0], s: Math.random() * 1.3 + .5, t: Math.random() * 6.28 });
+  function size() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2); W = innerWidth; H = innerHeight;
+    cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    N = W < 700 ? 130 : 240;
+    while (stars.length < N) stars.push(mk(true));
+    stars.length = N;
   }
-  resize();raf=requestAnimationFrame(draw);
-  window.addEventListener('resize',resize,{passive:true});
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!raf)raf=requestAnimationFrame(draw);});
-  /* Gentle section reveal, with a safe fallback for browsers without IntersectionObserver. */
-  if('IntersectionObserver' in window){
-    const targets=document.querySelectorAll('.sec,.tool,.qt,.arch,.book,.svc,.course');
-    targets.forEach(el=>el.classList.add('reveal-on-scroll'));
-    document.documentElement.classList.add('js-reveal-ready');
-    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -24px 0px'});
-    targets.forEach(el=>io.observe(el));
+  size(); addEventListener("resize", size);
+  let last = performance.now(), t0 = last, lastY = scrollY, sv = 0;
+  function frame(now) {
+    const dt = Math.min(now - last, 50); last = now;
+    const dy = Math.abs(scrollY - lastY); lastY = scrollY;
+    sv = sv * .9 + dy * .00005;
+    const intro = reduce ? 0 : .0042 * Math.exp(-(now - t0) / 700);
+    const v = Math.min(.00005 + intro + Math.min(sv, .0007), .0045);
+    ctx.clearRect(0, 0, W, H);
+    const cx = W / 2, cy = H * .46;
+    for (const s of stars) {
+      const zPrev = s.z + v * dt * 7;
+      s.z -= v * dt;
+      const k = cx / s.z * .9, sx = cx + s.x * k, sy = cy + s.y * k * (H / W > 1 ? 1 : .7) * (W / cx) * .5 * 2;
+      if (s.z < .02 || sx < -20 || sx > W + 20 || sy < -20 || sy > H + 20) { Object.assign(s, mk(false)); continue; }
+      const tw = .75 + .25 * Math.sin(now / 700 + s.t);
+      const a = Math.min(1, Math.pow(1 - s.z, .8) * 1.3) * tw;
+      if (v > .0004) {
+        const k2 = cx / zPrev * .9, px = cx + s.x * k2, py = cy + s.y * k2 * (H / W > 1 ? 1 : .7) * (W / cx) * .5 * 2;
+        ctx.strokeStyle = `rgba(${s.c},${a * (intro > .0004 ? .8 : .4)})`; ctx.lineWidth = s.s * (1.2 - s.z);
+        ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(sx, sy); ctx.stroke();
+      } else {
+        ctx.fillStyle = `rgba(${s.c},${a})`;
+        const r = s.s * (1.5 - s.z); ctx.beginPath(); ctx.arc(sx, sy, r, 0, 6.283); ctx.fill();
+      }
+    }
+    /* شهاب كل كام ثانية */
+    nextShoot -= dt;
+    if (!shoot && nextShoot <= 0 && !reduce) { shoot = { x: Math.random() * W * .8 + W * .1, y: Math.random() * H * .35, vx: -(.5 + Math.random() * .4), vy: .22 + Math.random() * .15, l: 0 }; nextShoot = 7000 + Math.random() * 8000; }
+    if (shoot) {
+      shoot.l += dt; shoot.x += shoot.vx * dt; shoot.y += shoot.vy * dt;
+      const al = Math.max(0, 1 - shoot.l / 900), tx = shoot.x - shoot.vx * 140, ty = shoot.y - shoot.vy * 140;
+      const lg = ctx.createLinearGradient(shoot.x, shoot.y, tx, ty);
+      lg.addColorStop(0, `rgba(255,246,210,${al})`); lg.addColorStop(1, "rgba(255,246,210,0)");
+      ctx.strokeStyle = lg; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(shoot.x, shoot.y); ctx.lineTo(tx, ty); ctx.stroke();
+      if (shoot.l > 900) shoot = null;
+    }
+    /* الشمس بتطلع لفوق وتخفت مع النزول */
+    if (sun) { const y = scrollY; sun.style.transform = `translateY(${-y * .28}px)`; sun.style.opacity = Math.max(0, 1 - y / (H * .9)); }
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  if (reduce) { stars.forEach(s => s.z = Math.random() * .9 + .05); frame(performance.now()); addEventListener("scroll", () => frame(performance.now()), { passive: true }); }
+  else {
+    requestAnimationFrame(frame);
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) { last = performance.now(); } });
   }
 })();
 </script>
-
+<script>
+(function(){
+  var F=["اللي بيستنى الإشارة الكاملة بيفوّت وقت الخطوة الصغيرة. ابدأ بحاجة صغيرة النهاردة.","مش لازم تكون مرتاح من كل حاجة عشان تتحرك. الخطوة وانت خايف برضه خطوة.","اللي بيحاول يرضي الكل بيخسر نفسه. قول لا مرة واحدة بهدوء وشوف الدنيا مش هتقع.","الهدوء مش ضعف. ممكن تكون ساكت وعارف انت رايح فين.","النهاردة فرصة تسمّي اللي بتحس بيه بدل ما تكبته. التسمية وحدها بتخفف.","بطّئ شوية في الرد. المسافة اللي بتاخدها قبل ما تتكلم بتحميك من كلام ماتقصدوهوش.","اللي تعبته امبارح مش لازم يتكرر بكرة. ابدأ من النهاردة بقرار صغير ومتابع له.","الناس اللي بتحبك مش محتاجة منك تكون كامل. محتاجين صدقك.","حدودك مش جفا. كل مرة تحافظ فيها على وقتك بتعلّم الناس تحترمه.","اللي ييجي بسهولة ممكن يكون مهم، واللي بيتأخر ممكن يكون بيعلّمك تحمّل.","متحكمش على نفسك من أول محاولة. الهدف إنك تتحرك، مش إنك تكون مثالي.","خد نفس عميق قبل القرار الجاي. الوضوح بييجي بعد الهدوء مش قبله.","اللي حواليك بيشوفوا أكتر مما بتتخيل. ابقى صادق معاهم وده هيكسبك احترامهم.","الماضي فسّر ليك ليه بتعمل كده، بس مش لازم يحدد بكرة."];
+  var A=["أنا بسمع نفسي قبل ما أسمع الناس.","من حقي أحتاج، ومن حقي أقول لا.","أنا بتعلم وبكبر، ومش لازم أكون كامل.","قراراتي بتتاخد بوضوح مش بخوف.","أنا مستحق علاقات بتحترمني.","بتحرك بخطوات صغيرة وبثبت عليها.","حزني مش عيب، وهيعدي."];
+  var d=new Date(),doy=Math.floor((d-new Date(d.getFullYear(),0,0))/864e5);
+  var f=document.getElementById("fortune-txt"); if(f) f.textContent=F[doy%F.length];
+  var a=document.getElementById("affirm-txt"); if(a) a.textContent=A[doy%A.length];
+  var al=document.getElementById("affirm-list"); if(al) al.innerHTML=A.map(function(x){return "<li>"+x+"</li>";}).join("");
+})();
+</script>
 </body>
 </html>
