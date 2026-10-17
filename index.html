@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600&family=Noto+Sans+Symbols&family=Noto+Sans+Symbols+2&family=Reem+Kufi:wght@500;600;700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Cairo:wght@700;800&display=swap" rel="stylesheet"><style>
 :root{
   --night:#12082A;--deep:#1B0F3C;--amethyst:#3A2170;--gold:#D6AE5E;--gold-dim:#8F7338;--moon:#EFE6D2;--mist:#B9ADD8;--rose:#D9788C;
   --display:"Reem Kufi","Noto Naskh Arabic",serif;--body:"Noto Naskh Arabic","Segoe UI",serif;
@@ -601,6 +601,42 @@ body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
 .sx li{margin:4px 0}
 .sx p{margin:0;color:var(--text)}
 .sx a{color:var(--brass-hi)}
+
+/* v9: Alexandria everywhere, compat tool, 4-item nav */
+:root{--display:"Alexandria","Tajawal",sans-serif;--ui:"Alexandria","Tajawal",sans-serif}
+body,body *{font-family:"Alexandria","Tajawal",sans-serif}
+.hero h1.brandmark,.brand .bn{font-family:"Alexandria","Tajawal",sans-serif;font-weight:700}
+svg text,.wg text,.sg,.b3g,.cat-i,.arch-g,.num{font-family:"Noto Sans Symbols","Noto Sans Symbols 2",sans-serif!important}
+.bnav a{flex:1;max-width:none}
+.cp-form .cp-person{border:1px solid var(--line);border-radius:16px;padding:16px;margin:0 0 16px;background:linear-gradient(160deg,rgba(40,20,92,.5),rgba(19,17,58,.7));display:grid;gap:10px;min-width:0}
+.cp-form legend{font-family:var(--display);color:var(--brass-hi);padding:0 6px;font-size:1.05rem}
+.cp-two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cp-note{font-size:.88rem;color:var(--mute);margin:0}
+.cp-res h3{font-family:var(--display);color:var(--brass-hi);font-size:1.5rem;margin:0 0 4px}
+.cp-meta{color:var(--mute);font-size:.92rem;margin:0 0 10px}
+.cp-res .wa-box{margin-top:18px}
+@media (max-width:520px){.cp-two{grid-template-columns:1fr}}
+.cp-res{scroll-margin-top:72px}
+#cp-out{scroll-margin-top:72px}
+
+/* v10: brand, moon, blue sky, intro */
+html,body{background:radial-gradient(1100px 620px at 78% -8%,#1E3A8A 0%,rgba(30,58,138,0) 62%),radial-gradient(900px 560px at 8% 32%,#17307A 0%,rgba(23,48,122,0) 60%),linear-gradient(180deg,#0B1433 0%,#070B22 60%,#0A0A1F 100%)!important;background-attachment:fixed}
+.hero h1.brandmark{font-family:"Alexandria","Tajawal",sans-serif;font-weight:700;font-size:clamp(3rem,8.5vw,4.7rem);line-height:1.25;padding:0;margin:0;color:transparent;background:linear-gradient(180deg,#F7E7BC 0%,#E6CB90 42%,#B8904E 100%);-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 18px rgba(201,163,106,.25))}
+.hero h1.brandmark::before,.hero h1.brandmark::after{display:none!important}
+.brand-row{display:flex;align-items:center;justify-content:center;gap:14px;direction:rtl}
+.brand-moon svg{display:block;width:clamp(34px,5vw,46px);height:auto;fill:#E6CB90;filter:drop-shadow(0 0 14px rgba(230,203,144,.5))}
+@keyframes brandIn{from{opacity:0;filter:blur(12px);letter-spacing:.18em}to{opacity:1;filter:blur(0);letter-spacing:0}}
+@keyframes moonIn{from{opacity:0;transform:rotate(-70deg) scale(.5)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hero h1.brandmark{animation:brandIn 1.7s cubic-bezier(.2,.7,.2,1) both .2s}
+.brand-moon{animation:moonIn 1.5s cubic-bezier(.2,.7,.2,1) both .05s}
+.hero .hero-title,.hero .hero-sub,.wheel-hint,.wheel-sub{animation:rise 1s ease-out both}
+.hero .hero-title{animation-delay:.9s}.hero .hero-sub{animation-delay:1.1s}.wheel-hint{animation-delay:1.5s}.wheel-sub{animation-delay:1.6s}
+@media (prefers-reduced-motion:reduce){.hero h1.brandmark,.brand-moon,.hero .hero-title,.hero .hero-sub,.wheel-hint,.wheel-sub{animation:none!important}}
+
+/* v11: brand name in Cairo */
+.hero h1.brandmark{font-family:"Cairo","Alexandria",sans-serif;font-weight:800;letter-spacing:-.01em}
+.brand .bn{font-family:"Cairo","Alexandria",sans-serif;font-weight:800}
 </style>
 <body>
 <canvas id="mw" width="1400" height="660" aria-hidden="true"></canvas>
@@ -616,7 +652,7 @@ body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
   <div class="sun" id="sun" aria-hidden="true"></div>
   <div class="hero-grid">
     <div class="hero-copy">
-      <h1 class="brandmark"><span data-brand></span></h1>
+      <div class="brand-row"><span class="brand-moon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span><h1 class="brandmark"><span data-brand></span></h1></div>
       <h2 class="hero-title">رحلتك لفهم نفسك… تبدأ من هنا</h2>
       <p class="hero-sub">اكتشف أنماطك، افهم علاقاتك، وشوف حياتك من زاوية جديدة.</p>
       <form class="quick" id="qform" novalidate>
@@ -654,12 +690,7 @@ body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
     </div>
   </section>
 <div class="home">
-<div class="primary">
-<a class="pcard p1" href="#chart"><span class="pk">اكتشف نفسك</span><b>خريطتك الفلكية</b><small>اكتشف مواقع الكواكب والبيوت ودلالاتها في خريطة ميلادك</small><i>‹</i></a>
-<a class="pcard p2" href="#lifepath"><span class="pk">اكتشف نفسك</span><b>مسار حياتك</b><small>اكتشف دلالات رقم مسار حياتك من خلال قراءة رقمية شخصية</small><i>‹</i></a>
-<a class="pcard p3" href="#matrix"><span class="pk">اكتشف نفسك</span><b>مصفوفة القدر</b><small>استكشف رموز مصفوفتك ودلالات الأرقام المرتبطة بتاريخ ميلادك</small><i>‹</i></a>
-</div>
-<div class="grp" id="cat-discover"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/></svg></span><span>اكتشف نفسك</span></div><a class="card" href="#chart"><span class="ic gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="9" ry="4"/><circle cx="19" cy="9" r="1.2"/></svg></span><span class="ct"><b>خريطة الميلاد</b><small>اكتشاف ذاتك الحقيقية من الكواكب والبيوت</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#matrix"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><span class="ct"><b>مصفوفة القدر</b><small>مصيرك خطوة بخطوة، من تاريخ ميلادك</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#lifepath"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 17V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7"/></svg></span><span class="ct"><b>مسار الحياة</b><small>رقمك ونورك وضلّك وإزاي بتحب</small><span class="pills"><span class="pill free">مجاني</span><span class="pill">بكود</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#dream"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/><path d="M18 3v3M16.5 4.5h3"/></svg></span><span class="ct"><b>تفسير الأحلام</b><small>احكِ حلمك واكتشف رموزه وقراءاته المحتملة</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#diary"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12a2 2 0 0 1 2 2v4"/><path d="M4 4v16a2 2 0 0 0 2 2h8"/><path d="M8 8h6M8 12h3"/><path d="M14 18l5-5 2 2-5 5h-2z"/></svg></span><span class="ct"><b>يومياتي</b><small>مساحتك للملاحظات، محفوظة على جهازك بس</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#wishes"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.3 6.4 20.4l1.1-6.3-4.5-4.4 6.2-.9z"/></svg></span><span class="ct"><b>دفتر الأمنيات</b><small>اكتب صورتك الذهنية وخطواتك نحو أمنيتك، محفوظة على جهازك بس</small></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-relations"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/></svg></span><span>العلاقة ما بينكم</span></div><a class="card" href="#services"><span class="ic rose" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12l-5 5a2 2 0 0 1-3 0l-2-2"/><path d="M3 11l4 4"/><path d="M12 6.5a3 3 0 0 1 5 2.2c0 3.5-5 6.3-5 6.3s-5-2.8-5-6.3a3 3 0 0 1 5-2.2z"/></svg></span><span class="ct"><b>التوافق الفلكي</b><small>مقارنة خريطتين عشان تفهموا التناغم والتوتر</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#chat"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h11v8H9l-4 3v-3H4z"/><path d="M9 17h9l2 2v-9h-2"/></svg></span><span class="ct"><b>تحليل المحادثات</b><small>الصق محادثة تختارها بنفسك وشوف أسلوب التواصل</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#ask"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.5-3.5A8 8 0 1 1 8 19z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5"/><circle cx="12" cy="16.5" r=".6"/></svg></span><span class="ct"><b>اسأل عن علاقتك</b><small>اكتب موقفك وخد قراءة متوازنة وخطوات عملية</small></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-forecast"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14.5A7.5 7.5 0 0 1 9.5 6a7.5 7.5 0 1 0 8.5 8.5z"/></svg></span><span>التوقعات والعبور</span></div><a class="card" href="#signs"><span class="ic gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"/></svg></span><span class="ct"><b>توقعات الأبراج</b><small>توقعات برجك للفترة دي</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#fortune"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="ct"><b>إلهام اليوم</b><small>رسالة تساعدك تشوف يومك من زاوية مختلفة</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#affirm"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="ct"><b>التأكيدات</b><small>جمل تفكّرك بقوتك كل يوم</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-sky"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.5 4.2a8.5 8.5 0 1 0 3.3 12.4A7 7 0 0 1 16.5 4.2z"/></svg></span><span>السماء دلوقتي</span></div><a class="card" href="#sky"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l12-4 2 4-12 4z"/><path d="M11 13l-3 7M15 13l4 7"/><circle cx="19" cy="6" r="2"/></svg></span><span class="ct"><b>السما دلوقتي</b><small>مواقع الكواكب النهاردة والتراجعات والقمر</small></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-library"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v16H6.5A1.5 1.5 0 0 0 5 20.5z"/><path d="M5 20.5V4.5M9 8h6"/></svg></span><span>المكتبة والتواصل</span></div><a class="card" href="#services"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><circle cx="15.5" cy="15.5" r="2.5"/><path d="M15.5 14v1.5l1 .8"/></svg></span><span class="ct"><b>الخدمات والجلسات</b><small>قراءات شخصية تحجزها على واتساب</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#courses"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"/></svg></span><span class="ct"><b>الكورسات</b><small>تعلم الفلك ومصفوفة القدر بنفسك</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#videos"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></svg></span><span class="ct"><b>الفيديوهات</b><small>شروحات وتوقعات وقراءات قصيرة</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#how"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l2 2 3.5-4M4 16l2 2 3.5-4M13 7h7M13 16h7"/></svg></span><span class="ct"><b>إزاي الحجز؟</b><small>أربع خطوات بسيطة على واتساب</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#faq"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6M12 16.8h.01"/></svg></span><span class="ct"><b>أسئلة شائعة</b><small>الحساب، الخصوصية، والكود</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#about"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="ct"><b>عني</b><small>مين محمد ابراهيم وعقيق</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#book"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="ct"><b>تواصل معايا</b><small>واتساب وانستجرام</small></span><span class="chev" aria-hidden="true">‹</span></a></div>
+<div class="grp" id="cat-discover"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"/></svg></span><span>اكتشف نفسك</span></div><a class="card" href="#chart"><span class="ic gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="9" ry="4"/><circle cx="19" cy="9" r="1.2"/></svg></span><span class="ct"><b>خريطة الميلاد</b><small>اكتشاف ذاتك الحقيقية من الكواكب والبيوت</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#matrix"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></span><span class="ct"><b>مصفوفة القدر</b><small>مصيرك خطوة بخطوة، من تاريخ ميلادك</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#lifepath"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 17V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7"/></svg></span><span class="ct"><b>مسار الحياة</b><small>رقمك ونورك وضلّك وإزاي بتحب</small><span class="pills"><span class="pill free">مجاني</span><span class="pill">بكود</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#dream"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/><path d="M18 3v3M16.5 4.5h3"/></svg></span><span class="ct"><b>تفسير الأحلام</b><small>احكِ حلمك واكتشف رموزه وقراءاته المحتملة</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#diary"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12a2 2 0 0 1 2 2v4"/><path d="M4 4v16a2 2 0 0 0 2 2h8"/><path d="M8 8h6M8 12h3"/><path d="M14 18l5-5 2 2-5 5h-2z"/></svg></span><span class="ct"><b>يومياتي</b><small>مساحتك للملاحظات، محفوظة على جهازك بس</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#wishes"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.3 6.4 20.4l1.1-6.3-4.5-4.4 6.2-.9z"/></svg></span><span class="ct"><b>دفتر الأمنيات</b><small>اكتب صورتك الذهنية وخطواتك نحو أمنيتك، محفوظة على جهازك بس</small></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-relations"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/></svg></span><span>العلاقة ما بينكم</span></div><a class="card" href="#compat"><span class="ic rose" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12l-5 5a2 2 0 0 1-3 0l-2-2"/><path d="M3 11l4 4"/><path d="M12 6.5a3 3 0 0 1 5 2.2c0 3.5-5 6.3-5 6.3s-5-2.8-5-6.3a3 3 0 0 1 5-2.2z"/></svg></span><span class="ct"><b>التوافق الفلكي</b><small>مقارنة خريطتين عشان تفهموا التناغم والتوتر</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#chat"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h11v8H9l-4 3v-3H4z"/><path d="M9 17h9l2 2v-9h-2"/></svg></span><span class="ct"><b>تحليل المحادثات</b><small>الصق محادثة تختارها بنفسك وشوف أسلوب التواصل</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#ask"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.5-3.5A8 8 0 1 1 8 19z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5"/><circle cx="12" cy="16.5" r=".6"/></svg></span><span class="ct"><b>اسأل عن علاقتك</b><small>اكتب موقفك وخد قراءة متوازنة وخطوات عملية</small></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-forecast"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 14.5A7.5 7.5 0 0 1 9.5 6a7.5 7.5 0 1 0 8.5 8.5z"/></svg></span><span>التوقعات والعبور</span></div><a class="card" href="#signs"><span class="ic gold" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"/></svg></span><span class="ct"><b>توقعات الأبراج</b><small>توقعات برجك للفترة دي</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#fortune"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span><span class="ct"><b>إلهام اليوم</b><small>رسالة تساعدك تشوف يومك من زاوية مختلفة</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#affirm"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="ct"><b>التأكيدات</b><small>جمل تفكّرك بقوتك كل يوم</small><span class="pills"><span class="pill free">مجاني</span></span></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-sky"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16.5 4.2a8.5 8.5 0 1 0 3.3 12.4A7 7 0 0 1 16.5 4.2z"/></svg></span><span>السماء دلوقتي</span></div><a class="card" href="#sky"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l12-4 2 4-12 4z"/><path d="M11 13l-3 7M15 13l4 7"/><circle cx="19" cy="6" r="2"/></svg></span><span class="ct"><b>السما دلوقتي</b><small>مواقع الكواكب النهاردة والتراجعات والقمر</small></span><span class="chev" aria-hidden="true">‹</span></a></div><div class="grp" id="cat-library"><div class="cat-h"><span class="cat-i" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v16H6.5A1.5 1.5 0 0 0 5 20.5z"/><path d="M5 20.5V4.5M9 8h6"/></svg></span><span>المكتبة والتواصل</span></div><a class="card" href="#services"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><circle cx="15.5" cy="15.5" r="2.5"/><path d="M15.5 14v1.5l1 .8"/></svg></span><span class="ct"><b>الخدمات والجلسات</b><small>قراءات شخصية تحجزها على واتساب</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#courses"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"/></svg></span><span class="ct"><b>الكورسات</b><small>تعلم الفلك ومصفوفة القدر بنفسك</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#videos"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></svg></span><span class="ct"><b>الفيديوهات</b><small>شروحات وتوقعات وقراءات قصيرة</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#how"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l2 2 3.5-4M4 16l2 2 3.5-4M13 7h7M13 16h7"/></svg></span><span class="ct"><b>إزاي الحجز؟</b><small>أربع خطوات بسيطة على واتساب</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#faq"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6M12 16.8h.01"/></svg></span><span class="ct"><b>أسئلة شائعة</b><small>الحساب، الخصوصية، والكود</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#about"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><span class="ct"><b>عني</b><small>مين محمد ابراهيم وعقيق</small></span><span class="chev" aria-hidden="true">‹</span></a><a class="card" href="#book"><span class="ic " aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="ct"><b>تواصل معايا</b><small>واتساب وانستجرام</small></span><span class="chev" aria-hidden="true">‹</span></a></div>
 </div>
 <section class="sec alt" id="matrix">
     <div class="wrap">
@@ -911,6 +942,18 @@ body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
 <p class="privacy">بيانات الميلاد بتتطلب فقط لما تحتاج قراءة شخصية، ومابتتحفظش على سيرفر.</p>
 </div></section>
 
+<section class="sec alt" id="compat"><div class="wrap">
+<a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
+<div class="center"><h2>خريطة التوافق الفلكي</h2><p class="intro">أدخل بيانات الشخصين. هنحسب خريطة ميلاد كل واحد بشكل مستقل، وبعدين نقارن مواقع الكواكب والاتصالات بينهم.</p></div>
+<form class="cform cp-form" id="cp-form" novalidate>
+  <div id="cp1"></div>
+  <div id="cp2"></div>
+  <p class="ferr" id="cp-err" role="alert" hidden></p>
+  <button class="btn" type="submit">احسب التوافق</button>
+</form>
+<div class="result" id="cp-out" aria-live="polite" hidden></div>
+</div></section>
+
 <section class="sec alt" id="fortune"><div class="wrap">
 <a class="sheet-x" href="#home" aria-label="إغلاق">✕</a>
 <div class="center"><h2>إلهام اليوم</h2><p class="intro">رسالة تساعدك تشوف يومك من زاوية مختلفة. اقراها بهدوء، ومتاخدهاش كوعد ولا كحكم.</p></div>
@@ -935,9 +978,8 @@ body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
 <nav class="bnav" aria-label="التنقل الرئيسي">
 <a href="#home" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M4 11L12 4l8 7v9h-5v-6H9v6H4z"/></svg><span>الرئيسية</span></a>
 <a href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M3 12l12-4 2 4-12 4z"/><path d="M11 13l-3 7M15 13l4 7"/></svg><span>السماء</span></a>
-<a href="#cat-discover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>اكتشف نفسك</span></a>
 <a href="#book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></svg><span>تواصل</span></a>
-<a href="#account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M17 4h4M19 2v4"/></svg><span>حسابي</span></a>
+<a href="#account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>حسابي</span></a>
 </nav>
 <script>
 /* ============================== عدّل هنا ==============================
@@ -1734,6 +1776,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
   /* ---------- روابط واتساب ---------- */
   const MSG = {
+    synastry_paid: "السلام عليكم، حابب أطلب تقرير التوافق الفلكي المتقدم، وأعرف طريقة الدفع والتفعيل.",
     general: "السلام عليكم، حابب أستفسر عن خدمات عقيق أسترو وأسعارها، ومحتاج أعرف تفاصيل الاشتراك وطريقة الحجز أو تفعيل التقارير المدفوعة.",
     lifepath: "السلام عليكم، أنا حابب أكمل الاشتراك في تقرير مسار الحياة، وأعرف تفاصيل أكتر عن نفسي من خلال التقرير المدفوع. ممكن توضحلي طريقة الدفع وتفعيل التقرير؟",
     matrix_paid: "السلام عليكم، أنا حابب أكمل الاشتراك في تقرير مصفوفة القدر، وأعرف تفاصيل أكتر عن المصفوفة والتحليلات الإضافية. ممكن توضحلي طريقة الدفع وتفعيل التقرير؟",
@@ -1924,6 +1967,156 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const r = $("#result"); r.hidden = false;
     r.scrollIntoView();
   }
+
+  /* ---------- خريطة التوافق الفلكي بين شخصين ---------- */
+  (function initCompat() {
+    const host1 = $("#cp1"), host2 = $("#cp2"), form = $("#cp-form"), out = $("#cp-out"), err = $("#cp-err");
+    if (!host1 || !host2 || !form) return;
+    const CP_KEYS = ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn"].filter(k => PLANETS[k]);
+    const HARM = ["sext", "tri"], CHAL = ["sq", "opp"];
+    const CATS = {
+      emo: { t: "التوافق العاطفي", pairs: [["moon", "moon"], ["moon", "venus"], ["venus", "moon"], ["sun", "moon"], ["moon", "sun"]] },
+      com: { t: "التواصل والتفكير", pairs: [["mercury", "mercury"], ["mercury", "moon"], ["moon", "mercury"], ["mercury", "sun"], ["sun", "mercury"]] },
+      att: { t: "الانجذاب والتفاعل", pairs: [["venus", "mars"], ["mars", "venus"], ["sun", "venus"], ["venus", "sun"], ["mars", "sun"], ["sun", "mars"]] }
+    };
+
+    const personFields = (p, label) => `<fieldset class="cp-person"><legend>${label}</legend>
+      <div class="field"><label for="${p}-name">الاسم (اختياري)</label><input id="${p}-name" type="text" autocomplete="off" maxlength="40"></div>
+      <div class="cp-two">
+        <div class="field"><label for="${p}-date">تاريخ الميلاد</label><input id="${p}-date" type="date" min="1900-01-01" max="2100-12-31" required></div>
+        <div class="field"><label for="${p}-time">وقت الميلاد</label><input id="${p}-time" type="time"></div>
+      </div>
+      <label class="chk"><input id="${p}-unknown" type="checkbox"> مش عارف وقت الميلاد</label>
+      <p class="cp-note">لو الوقت تقريبي أو مش معروف، موقع القمر والطالع ممكن يتغيروا، وده بيأثر على دقة الاتصالات اللي فيها القمر.</p>
+      <div class="field"><label for="${p}-city">مدينة ودولة الميلاد</label><select id="${p}-city"></select></div>
+      <div id="${p}-manual" class="cp-two" hidden>
+        <div class="field"><label for="${p}-lat">خط العرض (شمال +)</label><input id="${p}-lat" type="number" step="any" inputmode="decimal" placeholder="30.04"></div>
+        <div class="field"><label for="${p}-lon">خط الطول (شرق +)</label><input id="${p}-lon" type="number" step="any" inputmode="decimal" placeholder="31.23"></div>
+        <div class="field"><label for="${p}-off">فرق التوقيت عن جرينتش</label><input id="${p}-off" type="number" step="any" inputmode="decimal" placeholder="2"></div>
+      </div>
+    </fieldset>`;
+
+    host1.innerHTML = personFields("cp1", "الشخص الأول");
+    host2.innerHTML = personFields("cp2", "الشخص الثاني");
+    ["cp1", "cp2"].forEach(p => {
+      const sel = $("#" + p + "-city");
+      CITY_GROUPS.forEach(gr => {
+        const og = document.createElement("optgroup"); og.label = gr.g;
+        CITIES.forEach((c, i) => { if (c.g === gr.g) { const op = document.createElement("option"); op.value = i; op.textContent = c.n; og.appendChild(op); } });
+        sel.appendChild(og);
+      });
+      const manual = document.createElement("option"); manual.value = "manual"; manual.textContent = "مكان تاني (إدخال يدوي)";
+      sel.appendChild(manual);
+      sel.value = "0";
+      sel.addEventListener("change", () => { $("#" + p + "-manual").hidden = sel.value !== "manual"; });
+    });
+
+    const readP = p => {
+      const label = p === "cp1" ? "الشخص الأول" : "الشخص الثاني";
+      const ds = $("#" + p + "-date").value;
+      if (!ds) throw "اكتب تاريخ ميلاد " + label + ".";
+      const [y, m, d] = ds.split("-").map(Number);
+      const known = !$("#" + p + "-unknown").checked;
+      let hh = 12, mm = 0;
+      if (known) {
+        const t = $("#" + p + "-time").value;
+        if (!t) throw "اكتب وقت ميلاد " + label + "، أو علّم على (مش عارف وقت الميلاد) لو مش معروف.";
+        [hh, mm] = t.split(":").map(Number);
+      }
+      const sel = $("#" + p + "-city");
+      let lat, lon, utcMs, placeName;
+      if (sel.value === "manual") {
+        lat = parseFloat($("#" + p + "-lat").value); lon = parseFloat($("#" + p + "-lon").value);
+        const off = parseFloat($("#" + p + "-off").value);
+        if (![lat, lon, off].every(Number.isFinite) || Math.abs(lat) > 89 || Math.abs(lon) > 180) throw "اكتب خط العرض والطول وفرق التوقيت لـ" + label + " بشكل صحيح.";
+        utcMs = Date.UTC(y, m - 1, d, hh, mm) - off * 3600000;
+        placeName = `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
+      } else {
+        const c = CITIES[+sel.value];
+        lat = c.lat; lon = c.lon; placeName = c.n;
+        try { utcMs = Astro.localToUtcMs(y, m, d, hh, mm, c.tz); }
+        catch (e) { throw "المتصفح مش قادر يحسب التوقيت المحلي للمكان ده. جرّب الإدخال اليدوي."; }
+      }
+      const ch = Astro.chart({ utcMs, lat, lon, hs: "placidus", known });
+      return { name: $("#" + p + "-name").value.trim() || label, placeName, known, ch, date: `${d}/${m}/${y}` };
+    };
+
+    const compute = (P1, P2) => {
+      const asps = [];
+      CP_KEYS.forEach(a => CP_KEYS.forEach(b => {
+        const A = P1.ch.bodies.find(x => x.key === a), B = P2.ch.bodies.find(x => x.key === b);
+        if (!A || !B) return;
+        let diff = Math.abs(A.lon - B.lon) % 360; if (diff > 180) diff = 360 - diff;
+        for (const asp of ASPECTS) {
+          const orb = Math.abs(diff - asp.ang);
+          if (orb <= asp.orb) { asps.push({ a, b, asp, orb }); break; }
+        }
+      }));
+      const cat = {};
+      Object.keys(CATS).forEach(k => {
+        const list = asps.filter(x => CATS[k].pairs.some(([p, q]) => x.a === p && x.b === q));
+        let score = 0; const pos = [], neg = [];
+        list.forEach(x => {
+          const close = 1 - x.orb / x.asp.orb;
+          const w = 0.5 + close / 2;
+          if (HARM.includes(x.asp.k)) { score += w; pos.push(x); }
+          else if (CHAL.includes(x.asp.k)) { score -= 0.7 * w; neg.push(x); }
+          else { score += 0.5 * w; pos.push(x); }
+        });
+        const level = score >= 1.5 ? "قوي" : score >= 0.5 ? "متوسط" : score > -0.5 ? "محتاج شغل" : "محتاج تفاهم كبير";
+        cat[k] = { t: CATS[k].t, level, pos, neg };
+      });
+      return { asps, cat };
+    };
+
+    const line = x => `<li><strong>${PLANETS[x.a].n} ↔ ${PLANETS[x.b].n}</strong>: ${x.asp.n}، ${x.asp.nat}. ${x.asp.tr}.</li>`;
+    const render = (P1, P2, R) => {
+      const pos = R.asps.filter(x => HARM.includes(x.asp.k)).length;
+      const neg = R.asps.filter(x => CHAL.includes(x.asp.k)).length;
+      const overall = pos > neg + 2
+        ? "التوافق بينكم فيه تدفق طبيعي وانسجام واضح. ده بيفتح باب للتعاون، بس مش ضمان لنجاح العلاقة."
+        : pos + 2 < neg
+          ? "فيه احتكاكات واضحة بين الطاقتين، وده محتاج صبر وتفاهم أكتر، ومش معناه إن العلاقة مش ممكنة."
+          : "فيه انسجام واختلاف متوازنين، والنتيجة هتعتمد أكتر على طريقة التعامل بينكم.";
+      const weak = k => /شغل|تفاهم/.test(R.cat[k].level);
+      const tips = [];
+      if (weak("com")) tips.push("اتفقوا على وقت هادي للكلام في المواضيع الحساسة، ومتسيبوش الكلام يتراكم.");
+      if (weak("emo")) tips.push("اسألوا بعض عن الاحتياج العاطفي بشكل مباشر بدل ما تفترضوه.");
+      if (weak("att")) tips.push("خلّوا مساحة للاهتمامات المختلفة، ومتحسّوهاش تهديد.");
+      if (!tips.length) tips.push("حافظوا على الحوار المفتوح، واهتموا بالاختلافات الصغيرة قبل ما تكبر.");
+      const allPos = Object.values(R.cat).flatMap(c => c.pos), allNeg = Object.values(R.cat).flatMap(c => c.neg);
+      const top = R.asps.slice().sort((x, y) => x.orb - y.orb).slice(0, 6);
+      const unknownNote = [P1, P2].some(p => !p.known)
+        ? `<p class="cp-note">فيه وقت ميلاد غير معروف، والقمر بيتحرك حوالي 13 درجة في اليوم، فالاتصالات اللي فيها القمر تقريبية.</p>` : "";
+      return `<div class="cp-res">
+        <h3>${P1.name} و${P2.name}</h3>
+        <p class="cp-meta">${P1.date} · ${P1.placeName} &nbsp;|&nbsp; ${P2.date} · ${P2.placeName}</p>
+        ${unknownNote}
+        <div class="sx"><h4>نظرة عامة</h4><p>${overall}</p></div>
+        <div class="sx"><h4>مؤشرات التوافق</h4><ul>${Object.keys(R.cat).map(k => `<li><strong>${R.cat[k].t}:</strong> ${R.cat[k].level}</li>`).join("")}</ul></div>
+        <div class="sx"><h4>نقاط الانسجام</h4><ul>${allPos.slice(0, 4).map(line).join("") || "<li>مفيش اتصالات انسجام واضحة في المحاور دي.</li>"}</ul></div>
+        <div class="sx"><h4>نقاط الاختلاف</h4><ul>${allNeg.slice(0, 4).map(line).join("") || "<li>مفيش احتكاكات واضحة في المحاور دي.</li>"}</ul></div>
+        <div class="sx"><h4>أبرز الاتصالات الفلكية</h4><ul>${top.map(line).join("") || "<li>مفيش اتصالات بين الكواكب اللي بنحسبها ضمن المدى.</li>"}</ul></div>
+        <div class="sx"><h4>نصائح عملية</h4><ul>${tips.map(t => `<li>${t}</li>`).join("")}</ul></div>
+        <div class="msg-card"><p class="msg-txt">القراءة دي رمزية للتأمل والفهم، مش حكم على نجاح العلاقة ولا تنبؤ بمستقبلها.</p></div>
+        <div class="wa-box"><p>عايز تقرير توافق متقدم بتفاصيل أعمق عن كل محور؟ التقرير المدفوع بيتفعّل بعد تأكيد الدفع.</p><a class="btn" href="${waLink(MSG.synastry_paid)}" target="_blank" rel="noopener">طلب تقرير التوافق المتقدم</a></div>
+      </div>`;
+    };
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      err.hidden = true; out.hidden = true;
+      try {
+        const P1 = readP("cp1"), P2 = readP("cp2");
+        out.innerHTML = render(P1, P2, compute(P1, P2));
+        out.hidden = false;
+        out.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (ex) {
+        err.textContent = typeof ex === "string" ? ex : "حصل خطأ في الحساب. تأكد من البيانات وجرّب تاني.";
+        err.hidden = false;
+      }
+    });
+  })();
 
   /* ---------- عرض النتيجة ---------- */
   const body = (ch, k) => ch.bodies.find(b => b.key === k);
@@ -2837,7 +3030,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const cx = W / 2, cy = H * .46;
     for (const s of stars) {
       const zPrev = s.z + v * dt * 7;
-      s.z -= v * dt;
+      s.z -= v * dt * 0.1;
       const k = cx / s.z * .9, sx = cx + s.x * k, sy = cy + s.y * k * (H / W > 1 ? 1 : .7) * (W / cx) * .5 * 2;
       if (s.z < .02 || sx < -20 || sx > W + 20 || sy < -20 || sy > H + 20) { Object.assign(s, mk(false)); continue; }
       const tw = .75 + .25 * Math.sin(now / 700 + s.t);
@@ -2967,6 +3160,13 @@ if (typeof module !== 'undefined') module.exports = Astro;
     list.addEventListener("click",function(e){var id=e.target&&e.target.getAttribute&&e.target.getAttribute("data-del");if(!id)return;write(read().filter(function(r){return String(r.id)!==id;}));render();});
     render();
   }
+})();
+</script>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll(".bnav a"));
+  var mark=function(){var h=location.hash||"#home";links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")===h);});};
+  window.addEventListener("hashchange",mark); mark();
 })();
 </script>
 </body>
