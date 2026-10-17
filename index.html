@@ -729,6 +729,8 @@ svg text.hn{fill:#F4EAD0;paint-order:stroke;stroke:#07091C;stroke-width:2.5px}
 .card .ct b::after{content:"";display:block;width:44px;height:1px;margin-top:6px;background:linear-gradient(90deg,#D6AE5E,rgba(214,174,94,0))}
 .card .ct small{color:#E4DAF2}
 .card:hover .ct{border-color:rgba(214,174,94,.55)}
+/* إصلاح: الأقسام المفتوحة كشيت لازم تبقى معتمة عشان ما يظهرش المحتوى اللي ورا */
+section.sec:target,section.sec.alt:target{background:radial-gradient(900px 600px at 80% 0%,rgba(30,58,138,.35),transparent 60%),var(--ink)!important}
 </style>
 <body>
 <div id="sky-layer" aria-hidden="true">
@@ -2864,7 +2866,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       out.innerHTML = compatHTML(P, matrixCalc(d2, m2, y2)); out.hidden = false;
     });
   }
-  selectSign(0);
+  $("#panel").innerHTML = `<p class="sub" style="text-align:center;padding:28px 10px">اختار برجك من القائمة فوق، أو من الدائرة في الصفحة الرئيسية، عشان تشوف توقعاته.</p>`;
 
   /* ============ مسار الحياة + القفل ============ */
   let UNLOCKED = null;
