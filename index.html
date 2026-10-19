@@ -15,13 +15,34 @@
 <!-- بعد ما تضيف الموقع في Google Search Console، ضع هنا كود التحقق الي هيدهولك: -->
 <!-- <meta name="google-site-verification" content="ضع-الكود-هنا"> -->
 <meta content="#12082A" name="theme-color"/>
+<link href="manifest.webmanifest" rel="manifest"/>
+<link href="icons/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<meta content="yes" name="mobile-web-app-capable"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="عقيق" name="apple-mobile-web-app-title"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="عقيق أسترو" property="og:site_name"/>
+<meta content="ar_AR" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<!-- فعّل الكتلة دي بعد ما تحدد الدومين: استبدل https://YOUR-DOMAIN.com بدومينك وشيل علامات التعليق
+<link rel="canonical" href="https://YOUR-DOMAIN.com/">
+<meta property="og:url" content="https://YOUR-DOMAIN.com/">
+<meta property="og:image" content="https://YOUR-DOMAIN.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="عقيق أسترو | فلك وطاقة ومصفوفة القدر">
+<meta name="twitter:image" content="https://YOUR-DOMAIN.com/og-image.png">
+-->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"عقيق أسترو","alternateName":"عقيق","inLanguage":"ar"},{"@type":"Organization","name":"عقيق أسترو","founder":{"@type":"Person","name":"محمد ابراهيم"},"sameAs":["https://instagram.com/mohamed.ibrahim.astro"]}]}</script>
 <meta content="telephone=no" name="format-detection"/>
 <meta content="محمد ابراهيم (عقيق)" name="author"/>
 <meta content="© 2026 عقيق. جميع الحقوق محفوظة" name="copyright"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600&amp;family=Noto+Sans+Symbols&amp;family=Noto+Sans+Symbols+2&amp;family=Reem+Kufi:wght@500;600;700&amp;family=Aref+Ruqaa:wght@700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&amp;family=Cairo:wght@700;800&amp;display=swap" rel="stylesheet"/><style>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&amp;family=Cairo:wght@700;800&amp;display=swap" rel="stylesheet"/><style>
 :root{
   --night:#12082A;--deep:#1B0F3C;--amethyst:#3A2170;--gold:#D6AE5E;--gold-dim:#8F7338;--moon:#EFE6D2;--mist:#B9ADD8;--rose:#D9788C;
   --display:"Reem Kufi","Noto Naskh Arabic",serif;--body:"Noto Naskh Arabic","Segoe UI",serif;
@@ -820,6 +841,7 @@ textarea{font:inherit;line-height:1.8;color:var(--moon);background:var(--deep);b
 @media(prefers-reduced-motion:reduce){#lifepath .lp-start-card{transition:none}}
 
 </style>
+</head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
 <div aria-hidden="true" id="sky-layer">
@@ -902,7 +924,7 @@ textarea{font:inherit;line-height:1.8;color:var(--moon);background:var(--deep);b
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a><div class="center">
 <h2>مسار حياتك</h2>
-<p class="intro">ابدأ بتاريخ ميلادك لاكتشاف رقم مسار حياتك. بعد ظهور النتيجة، استكشف الأقسام السبعة واحدًا واحدًا، وكل المحتوى مفتوح للتجربة حاليًا.</p>
+<p class="intro">ابدأ بتاريخ ميلادك لاكتشاف رقم مسار حياتك. بعد ظهور النتيجة، استكشف الأقسام السبعة واحدًا واحدًا. القسمين الأول والثاني مجانيين، وباقي الأقسام فيها جزء مجاني وتفصيلها بيتفتح بكود التفعيل.</p>
 </div>
 <div class="lp-start" id="lp-start">
   <button class="lp-start-card" id="lp-start-discover" type="button">
@@ -1180,6 +1202,7 @@ textarea{font:inherit;line-height:1.8;color:var(--moon);background:var(--deep);b
 <div class="brand"><svg aria-hidden="true" viewbox="0 0 40 40"><path d="M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z" fill="#D6AE5E"></path></svg><span data-brand=""></span></div>
 <p class="tg" data-tagline=""></p>
 <p>القراءات للتأمل والترفيه، وهي مش بديل عن استشارة طبية أو قانونية أو مالية.</p>
+<div class="foot-act"><button class="btn ghost sm" id="share-site" type="button"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4.2M8.6 13.4l6.8 4.2"/></svg><span>شارك الموقع</span></button><button class="btn ghost sm" hidden id="install-app" type="button"><span>ثبّت التطبيق</span></button></div>
 <p class="copy">© 2026 عقيق، محمد ابراهيم. جميع الحقوق محفوظة. كل النصوص والقراءات والتصاميم والحسابات في الموقع ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها أو استخدامها في تطبيقات أو مواقع أخرى بدون إذن كتابي.</p>
 </div>
 </footer>
@@ -3057,6 +3080,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const idx = (root => { const t = $$("[role=tab]", root).findIndex(x => x.getAttribute("aria-selected") === "true"); return t < 0 ? 0 : t; })($("#mresult"));
     if (lastMX) renderMatrix(lastMX[0], lastMX[1], lastMX[2], lastMX[3], idx);
     if (lastLP) renderLP(lastLP[0], lastLP[1], lastLP[2], lastLP[3]);
+    renderSyn();
   }
   const buyHref = () => PAY_URL || `https://instagram.com/${IG_USER}`;
   const buyText = () => PAY_URL ? "اشتري كود التفعيل" + (PAY_LABEL ? " (" + PAY_LABEL + ")" : "") : "اطلب كود التفعيل";
@@ -3082,7 +3106,70 @@ if (typeof module !== 'undefined') module.exports = Astro;
   document.addEventListener("keydown", e => {
     if (e.key === "Enter" && e.target.classList && e.target.classList.contains("gate-in")) { e.preventDefault(); $(".gate-go", e.target.closest(".gate")).click(); }
   });
+
+  /* ============ مستويات الإتاحة: مجاني / جزء مجاني + قفل / مقفول بالكامل ============ */
+  /* معاينة للتطوير فقط (?preview=all بتفتح كل الأقسام). احذف السطر ده قبل النشر. */
+  const PREVIEW_ALL = /[?&]preview=all(&|$)/.test(location.search);
+  const isOpenAll = () => !!UNLOCKED || PREVIEW_ALL;
+  const LP_TIER = { 1: "free", 2: "free", 3: "mixed", 4: "mixed", 5: "mixed", 6: "mixed", 7: "mixed" };
+  const SYN_TIER = ["free", "mixed", "locked", "locked", "locked"];
+  function tierInfo(tier) {
+    const locked = tier !== "free" && !isOpenAll();
+    const badge = tier === "free" ? "مجاني · مفتوح" : !locked ? "مفتوح بالكود" : tier === "mixed" ? "جزء مجاني · الباقي بكود التفعيل" : "مقفول · بكود التفعيل";
+    return { tier, locked, badge };
+  }
+  /* التشويق المجاني: اللمحة الجاهزة في القسم لو موجودة، وإلا العنوان وأول سطرين من أول فقرة */
+  function teaserOf(html) {
+    const box = document.createElement("div"); box.innerHTML = html;
+    const ready = box.querySelector(".lp-teaser");
+    if (ready) return ready.outerHTML;
+    const art = box.querySelector("article") || box;
+    const h = art.querySelector("h3, h4"), ps = Array.from(art.querySelectorAll("p, li")).slice(0, 2);
+    return `<article class="rd">${h ? `<h4>${h.innerHTML}</h4>` : ""}${ps.map(x => `<p>${x.innerHTML}</p>`).join("")}</article>`;
+  }
+  const gatedBody = (tier, html) => tier === "mixed"
+    ? teaserOf(html) + gateBox("افتح باقي القسم بكود التفعيل.")
+    : gateBox("القسم ده مقفول بالكامل. افتحه بكود التفعيل.");
+
+  /* ============ التوافق الطاقي بين شخصين: خمسة أقسام بمستويات إتاحة ============ */
+  const SYN_ICONS = [
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v8a6 6 0 0 0 12 0V3M6 7h4M14 7h4"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7M6 10v9h12v-9M10 19v-5h4v5"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l10 10M4 4h4M4 4v4M20 4L10 14M20 4h-4M20 4v4M7 17l-3 3M17 17l3 3"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8a4 4 0 1 0 0 8c4 0 6-8 10-8a4 4 0 1 1 0 8c-4 0-6-8-10-8z"/></svg>',
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h17"/><path d="m7 15 4-4 3 2 5-7M15 6h4v4"/></svg>'
+  ];
+  let synItems = null;
+  function renderSyn() {
+    const host = document.querySelector(".energy-compatibility-studio");
+    if (!host) return;
+    if (!synItems) { // أول مرة: اقرا الأقسام الخمسة من الصفحة وشيلها منها
+      const arts = Array.from(host.querySelectorAll(":scope > article.rd"));
+      if (arts.length !== 5) return;
+      synItems = arts.map(a => {
+        const h = a.querySelector("h3"), sm = h.querySelector("small"); if (sm) sm.remove();
+        const title = h.textContent.replace(/^\s*[٠-٩0-9]+\s*[.\-]\s*/, "").trim();
+        h.remove();
+        return { title, html: a.innerHTML };
+      });
+      arts.forEach((a, i) => { if (i) a.remove(); });
+      let box = document.getElementById("syn-sections");
+      if (!box) { box = document.createElement("div"); box.id = "syn-sections"; box.className = "lp-sections"; arts[0].replaceWith(box); }
+    }
+    const out = synItems.map((it, i) => {
+      const ti = tierInfo(SYN_TIER[i]);
+      const body = ti.locked ? gatedBody(ti.tier, it.html) : it.html;
+      return `<details class="acc mxd lp-section${ti.locked ? " lp-tier-locked" : ""}" data-syn-section="${i + 1}" data-tier="${ti.tier}"><summary><span class="lp-sec-icon" aria-hidden="true">${SYN_ICONS[i]}</span><span class="lp-sec-title"><b>${esc(it.title)}</b><small>${ti.badge}</small></span></summary><div class="mxb lp-sec-body">${body}</div></details>`;
+    }).join("");
+    const box = document.getElementById("syn-sections");
+    if (!box) return;
+    const openIdx = Array.from(box.querySelectorAll("details")).map(d => d.open);
+    box.innerHTML = out;
+    box.querySelectorAll("details").forEach((d, i) => { d.open = !!openIdx[i]; });
+    wireGates(box);
+  }
   try { const sv = localStorage.getItem(LK_KEY); if (sv) unlockWith(sv).then(applyUnlock).catch(() => { try { localStorage.removeItem(LK_KEY); } catch (e) { } }); } catch (e) { }
+  renderSyn();
 
   const lockedRows = list => list.map(t => `<div class="lrow"><span class="lk" aria-hidden="true"></span><span>${t}</span><span class="sk" aria-hidden="true"><i></i><i></i></span></div>`).join("");
   function stageTeaser(P, age) {
@@ -3131,7 +3218,9 @@ if (typeof module !== 'undefined') module.exports = Astro;
     };
     const section = (num, icon, title, badge, body, open=false) => {
       const meta = sectionMeta[num] || {desc:"افتح القسم لاستكشاف التفاصيل.",icon};
-      return `<details class="acc mxd lp-section" data-lp-section="${num}"><summary><span class="lp-sec-icon" aria-hidden="true">${meta.icon}</span><span class="lp-sec-title"><b>${title}</b><span class="lp-sec-desc">${meta.desc}</span><small>${badge}</small></span></summary><div class="mxb lp-sec-body">${body}</div></details>`;
+      const ti = tierInfo(LP_TIER[num] || "free");
+      const shown = ti.locked ? gatedBody(ti.tier, body) : body;
+      return `<details class="acc mxd lp-section${ti.locked ? " lp-tier-locked" : ""}" data-lp-section="${num}" data-tier="${ti.tier}"><summary><span class="lp-sec-icon" aria-hidden="true">${meta.icon}</span><span class="lp-sec-title"><b>${title}</b><span class="lp-sec-desc">${meta.desc}</span><small>${ti.badge}</small></span></summary><div class="mxb lp-sec-body">${shown}</div></details>`;
     };
     const essence = (master ? `<div class="bond-cat"><strong>رقم رئيسي ${lp}</strong><p>${master}</p></div>` : "") + (base === 1 ? `
       <article class="rd"><h4>شفرة الروح والجوهر (The Core Blueprint)</h4><p>مسار الحياة رقم (1)، المعروف رمزيًا بالرائد أو البادئ (The Pioneer)، يرتبط في علم الأعداد بمن وُلدوا يوم 1 أو 10 أو 19 أو 28، أو كان مجموع تاريخ ميلادهم الكامل يختزل إلى الرقم 1.</p><p>جوهر الرقم 1 هو المبادرة وصناعة الطريق بدل انتظار أن يمهّده الآخرون. عندك ميل للاستقلال، والشجاعة في بدء شيء من الصفر، والرغبة في ترك بصمتك الخاصة. في أفضل حالاتك، بتعرف تحوّل الفكرة لخطوة عملية وتلهم غيرك بالمبادرة.</p></article>
@@ -3225,7 +3314,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       <article class="rd"><h4>خامساً: أسئلة عملية للمراجعة والتأمل</h4><ul><li>إيه المسؤولية اللي شلتها بدري، وهل لسه شايل منها أكتر من اللازم؟</li><li>إمتى بحس إني لازم أثبت نفسي، وإيه اللي ممكن يساعدني أحس بالأمان من غير صراع؟</li><li>إزاي أطلب المساعدة من غير ما أحس إن استقلالي اتقلل؟</li><li>لو بتربي طفلًا، إزاي أفرّق بين تشجيعه وبين فرض طموحاتي عليه؟</li></ul><p class="note">الأسئلة دي للتأمل الذاتي وليست تشخيصًا نفسيًا. لو ذكريات الطفولة بتسبب ألمًا مستمرًا أو بتعطّل حياتك، فالدعم من مختص نفسي مؤهل ممكن يكون مفيدًا.</p></article>` :
       `<article class="rd"><h4>الطفل الداخلي وتجارب البدايات</h4><p>اسأل نفسك: إيه الاحتياج اللي كنت محتاجه وأنت صغير، ولسه بتحاول تلبّيه دلوقتي؟ وإيه السلوك اللي اتعلمته زمان وبقى محتاج مراجعة؟</p></article><article class="rd"><h4>الأسرة والعلاقة بالأطفال</h4><p>لو بتتعامل مع طفل، ركّز على شخصيته الفعلية واحتياجاته وحدوده، مش على رقم وحده. ولو بتراجع طفولتك، خليك رحيم بنفسك واطلب دعمًا متخصصًا لو الذكريات مؤلمة أو معطّلة لحياتك.</p></article><article class="rd"><h4>الدروس المتكررة والمعنى الشخصي</h4><p>يمكن استخدام مفهوم الكارما كلغة رمزية للتفكير في العادات والاختيارات المتكررة، وليس كإثبات إنك مُعاقَب أو إن أحداثًا بعينها مكتوبة عليك.</p></article>`;
     const paidLabel = "تفاصيل القراءة · متاحة للاختبار";
-    return `<div class="lp-sections-intro"><p>رقم مسارك هو مدخل للتأمل في أنماطك وتجاربك، وليس تشخيصًا أو حكمًا نهائيًا عليك. افتح أي قسم من الأقسام السبعة، وكل المحتوى متاح حاليًا للتجربة.</p><p class="note"><b>ملاحظة تحريرية:</b> النسخة دي تتضمن مراجعة تغطية للعناصر الأساسية المعروفة للأقسام السبعة، مع إضافات موسوعية جديدة موضّحة داخل النص. لا تُعدّ مطابقة حرفية سطرًا بسطر لكل الرسائل الأصلية حتى الآن.</p><p class="note"><b>نطاق التدقيق الحالي:</b> تمت مراجعة وجود العناصر الأساسية: رموز الجوهر والظل، البلوكات الأربعة، الحب والتوافق الرمزي، المال والمهنة، التمارين العملية، الطفولة والتربية، والإضافات التأملية للحياة السابقة. الإضافات الرمزية لا تُعرض كحقائق علمية أو تنبؤات مؤكدة.</p></div>` +
+    return `<div class="lp-sections-intro"><p>رقم مسارك هو مدخل للتأمل في أنماطك وتجاربك، وليس تشخيصًا أو حكمًا نهائيًا عليك. افتح أي قسم من الأقسام السبعة. ${isOpenAll() ? "" : "القسمين الأول والثاني مجانيين، وباقي الأقسام فيها جزء مجاني وتفصيلها بيتفتح بكود التفعيل."}</p><p class="note"><b>ملاحظة تحريرية:</b> النسخة دي تتضمن مراجعة تغطية للعناصر الأساسية المعروفة للأقسام السبعة، مع إضافات موسوعية جديدة موضّحة داخل النص. لا تُعدّ مطابقة حرفية سطرًا بسطر لكل الرسائل الأصلية حتى الآن.</p><p class="note"><b>نطاق التدقيق الحالي:</b> تمت مراجعة وجود العناصر الأساسية: رموز الجوهر والظل، البلوكات الأربعة، الحب والتوافق الرمزي، المال والمهنة، التمارين العملية، الطفولة والتربية، والإضافات التأملية للحياة السابقة. الإضافات الرمزية لا تُعرض كحقائق علمية أو تنبؤات مؤكدة.</p></div>` +
       `<div class="lp-sections">` +
       section(1,"","شفرة الروح والجوهر","مجاني · مفتوح",essence + (base === 1 ? `<article class="rd"><h4>تفاصيل الشفرة الأصلية: الرمز والصورة الذهنية</h4><p>الصورة الذهنية هنا هي «العصا السحرية»: المبادرة والقدرة على تحويل الفكرة إلى بداية ملموسة، لا وعد بأن كل شيء مستحيل سيصبح ممكنًا تلقائيًا. وفي المقابل، مش مطلوب منك تكون «كمالة عدد» أو تمشي وراء حد تاني؛ استقلالك قيمة، لكن مش معناه إنك لازم ترفض التعاون أو تعتبر نفسك دائمًا فوق المساعدة.</p><p>تخيّل نفسك «الجبل»: ثابت وقادر على الاحتمال، لكن الثبات لو زاد عن حده ممكن يتحول لجمود. لذلك جوهر الرقم 1 فيه نور واتزان، وفيه ظل وانحراف محتمل لما الإرادة تتحول لسيطرة أو لما الثقة تتحول لرفض سماع الآخرين.</p><h4>الرموز الفلكية والباطنية في القراءة</h4><p>تظهر في القراءة الرمزية بطاقة «ذا ماجيشيان» (The Magician) بوصفها رمزًا للتركيز وصناعة الإمكانات، وبطاقة «ذا صن» (The Sun) بوصفها رمزًا للوضوح والحيوية. وتُذكر الشمس وعطارد، والأسد والحمل، ومفهوم الـ Monad في الفلسفة، وبعض إشارات الكابالا وعلم النفس التحليلي عند يونغ، والعناصر الأربعة ومبدأ «كما في الأعلى كذلك في الأسفل». دي روابط رمزية بين مدارس مختلفة وليست إثباتًا علميًا لعلاقة سببية.</p><h4>الكلمات المفتاحية</h4><ul><li>Manifestation &amp; Creation: تحويل الفكرة إلى فعل وصناعة بداية.</li><li>Absolute Independence: الاستقلال مع القدرة على طلب الدعم عند الحاجة.</li><li>Innate Leadership: القيادة بالمبادرة وتحمل المسؤولية.</li><li>Willpower &amp; The Word: قوة الإرادة والكلمة والالتزام.</li><li>Initiative &amp; Originality: المبادرة والأصالة في التفكير.</li></ul></article>` : "")) +
       section(2,"","المراية المزدوجة: القناع والحقيقة","مجاني · مفتوح",mirror + (base === 1 ? `<article class="rd"><h4>اللي ورا القناع: الشخصية الحديدية والناقد الداخلي</h4><p>ممكن تبان «الشخصية الحديدية» اللي بتعرف تتصرف، لكن في وحدتك تراجع نفسك بقسوة وتجلد ذاتك على قرار أو كلمة أو غلطة صغيرة. أحيانًا بتخاف تبان محتاج أو ضعيف، فتخبي تعبك بدل ما تطلب دعمًا واضحًا.</p><p>ولما تتجرح، ممكن تختار الصمت أو الانشغال بالشغل والإنجاز، وتبعد لحد ما تحس إنك رجعت متماسك، ثم تتعامل كأن شيئًا لم يحدث. جرّب تسمّي اللي ضايقك لشخص آمن بدل ما تحوّل الانسحاب إلى وسيلة التواصل الوحيدة.</p></article>` : "")) +
@@ -3237,7 +3326,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       `</div>`;
   }
   function applyLP2Sections(root) {
-    const setBody = (n, html) => { const el = root.querySelector(`[data-lp-section="${n}"] .lp-sec-body`); if (el) el.innerHTML = html; };
+    const setBody = (n, html) => { const el = root.querySelector(`[data-lp-section="${n}"] .lp-sec-body`); if (!el) return; const ti = tierInfo(LP_TIER[n] || "free"); el.innerHTML = ti.locked ? gatedBody(ti.tier, html) : html; };
     setBody(1, `
       <article class="rd"><h4>الرادار البشري وصانع السلام (The Intuitive Peacemaker)</h4><p>لمن مجموع تاريخ ميلاده الكامل يختزل إلى الرقم 2، أو وُلد يوم 2 أو 11 أو 20 أو 29.</p></article>
       <article class="rd"><h4>كرت التاروت الحاكم لمسارك</h4><p><b>الكاهنة العليا | The High Priestess</b> (ذا هاي بريستيس)، وترتبط في القراءة الرمزية بالقمر | The Moon (ذا مون).</p></article>
@@ -3736,7 +3825,6 @@ const aqTarotDraw=document.getElementById('tarot-draw');if(aqTarotDraw)aqTarotDr
 const aqSymbolSearch=document.getElementById('symbol-search');if(aqSymbolSearch)aqSymbolSearch.addEventListener('input',()=>{const q=aqSymbolSearch.value.trim().toLowerCase();let count=0;document.querySelectorAll('#symbol-grid .symbol-card').forEach(card=>{const ok=(card.innerText+' '+(card.dataset.keywords||'')).toLowerCase().includes(q);card.hidden=!q||ok;if(!card.hidden)count++;});const empty=document.getElementById('symbol-empty');if(empty)empty.hidden=count>0;});
 const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqDreamSearch.addEventListener('input',()=>{const q=aqDreamSearch.value.trim().toLowerCase();let count=0;document.querySelectorAll('#dream-grid .symbol-card').forEach(card=>{const ok=(card.innerText+' '+(card.dataset.keys||'')).toLowerCase().includes(q);card.hidden=!!q&&!ok;if(!card.hidden)count++;});const empty=document.getElementById('dream-empty');if(empty)empty.hidden=count>0;});
 </script>
-</body>
 <style>
 /* Added tools, preserving the V2 visual language */
 .relationship-studio{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:start}.studio-intro{padding:26px;border-radius:24px;border:1px solid var(--line);background:radial-gradient(ellipse at 80% 0%,rgba(169,154,255,.16),transparent 50%),rgba(17,23,43,.7)}.studio-intro .big-symbol{font-size:52px;color:var(--gold);line-height:1;margin-bottom:18px}.relation-form{background:rgba(15,21,40,.9);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,3vw,28px)}.relation-form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.relation-result{margin-top:18px;padding:22px;border-radius:20px;background:linear-gradient(145deg,rgba(36,31,68,.85),rgba(15,23,42,.94));border:1px solid rgba(169,154,255,.24);animation:riseIn .45s ease both}.relation-score{display:flex;align-items:center;gap:16px;margin:12px 0 20px}.score-ring{width:78px;height:78px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(230,199,126,.55);background:radial-gradient(circle,rgba(230,199,126,.12),transparent 70%);font-size:1.4rem;font-weight:850;color:var(--gold);flex-shrink:0}.result-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.result-point{border:1px solid var(--line);border-radius:15px;padding:14px;background:rgba(255,255,255,.025)}.result-point strong{display:block;color:#e9d8a9;margin-bottom:5px}.result-point p{font-size:.88rem;color:var(--muted);line-height:1.75;margin:0}.notice-soft{font-size:.78rem;color:#9faac3;line-height:1.8;margin-top:15px}.symbol-search{width:100%;margin:18px 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:#0b1122;color:var(--ink);font:inherit}.symbol-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.symbol-card{padding:17px;border:1px solid var(--line);border-radius:18px;background:rgba(18,25,47,.82)}.symbol-card .sym{font-size:27px;color:var(--gold);display:block;margin-bottom:10px}.symbol-card h3{margin:0 0 7px;font-size:1rem}.symbol-card p{font-size:.87rem;line-height:1.8;color:var(--muted);margin:0}.tarot-draw{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;border:1px solid var(--line);border-radius:26px;padding:clamp(18px,3vw,30px);background:radial-gradient(ellipse at 10% 10%,rgba(169,154,255,.15),transparent 45%),rgba(15,21,40,.85)}.tarot-card{min-height:250px;border-radius:18px;border:1px solid rgba(230,199,126,.6);background:repeating-linear-gradient(45deg,rgba(230,199,126,.04) 0 2px,transparent 2px 8px),linear-gradient(145deg,#282044,#0e162d);display:grid;place-items:center;text-align:center;padding:18px;box-shadow:inset 0 0 0 5px rgba(230,199,126,.04),0 16px 45px rgba(0,0,0,.22)}.tarot-card .card-glyph{font-size:55px;color:var(--gold)}.tarot-card strong{display:block;color:#f4e5bc;margin-top:10px}.tarot-copy h3{font-size:1.35rem;margin-top:0}.tarot-copy p{line-height:1.9;color:#bdc4d8}.tarot-copy .prompt{color:var(--gold);font-weight:700}
@@ -3855,5 +3943,48 @@ body { padding-bottom: calc(var(--aq-nav-h) + env(safe-area-inset-bottom) + 12px
 @media(max-width:480px){.lp-section>summary{padding:14px 13px;gap:11px;min-height:88px}.lp-sec-icon{width:42px;height:42px;flex-basis:42px;border-radius:13px}.lp-sec-icon svg{width:22px;height:22px}.lp-sec-title b{font-size:.96rem}.lp-sec-desc{font-size:.82rem}.lp-sec-title small{font-size:.74rem}.lp-sec-body{padding:10px 12px 15px}#lifepath .cform{padding:16px}}
 
 </style>
-
-</head></html>
+<style id="aqeq-tiers">
+.energy-compatibility-studio>.lp-sections,.energy-compatibility-studio>.notice-soft{grid-column:1/-1}
+.energy-compatibility-studio>.lp-sections{max-width:860px;width:100%;margin-inline:auto}
+.lp-sec-body .gate{margin-top:14px}
+.lp-tier-locked>summary small{color:#e5c47f}
+.lp-tier-locked[data-tier="locked"] .lp-sec-icon{opacity:.8}
+</style>
+<style id="aqeq-pwa-share">
+.foot-act{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px auto 8px}
+.foot-act .btn{min-height:44px}
+</style>
+<script>
+(function () {
+  /* PWA: تسجيل الـService Worker (HTTPS أو localhost فقط) */
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+  }
+  /* مشاركة الموقع: Web Share لو متاح، وإلا نسخ الرابط */
+  var sb = document.getElementById('share-site');
+  if (sb) {
+    var label = sb.querySelector('span'), orig = label.textContent;
+    sb.addEventListener('click', function () {
+      var url = location.href.split('#')[0];
+      var d = document.querySelector('meta[name="description"]');
+      var data = { title: document.title, text: d ? d.content : '', url: url };
+      var done = function (msg) { label.textContent = msg; setTimeout(function () { label.textContent = orig; }, 2200); };
+      if (navigator.share) { navigator.share(data).catch(function () {}); return; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { done('تم نسخ الرابط'); }, function () { done('انسخ الرابط من المتصفح'); });
+      } else { done('انسخ الرابط من المتصفح'); }
+    });
+  }
+  /* تثبيت التطبيق: الزر يظهر بس لما المتصفح يسمح */
+  var ib = document.getElementById('install-app'), deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; if (ib) ib.hidden = false; });
+  if (ib) ib.addEventListener('click', function () {
+    if (!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function () { deferred = null; ib.hidden = true; });
+  });
+  window.addEventListener('appinstalled', function () { if (ib) ib.hidden = true; });
+})();
+</script>
+</body>
+</html>
