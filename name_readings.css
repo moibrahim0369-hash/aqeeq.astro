@@ -71,3 +71,38 @@
   .aqeq-reading-card:nth-child(3) { animation-delay: .1s; }
   @keyframes aqeqNameRise { from { opacity: .5; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 }
+
+
+/* Complementary numerology outputs: designed mobile-first */
+.aqeq-extra-numbers {
+  margin-top: 26px; padding-top: 22px;
+  border-top: 1px solid rgba(214,174,94,.28);
+}
+.aqeq-extra-heading { margin-bottom: 15px; }
+.aqeq-extra-heading h3 { margin: 0 0 7px; font-size: clamp(1.2rem, 3vw, 1.65rem); }
+.aqeq-extra-heading p { margin: 0; line-height: 1.8; opacity: .78; }
+.aqeq-extra-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.aqeq-extra-card {
+  min-width: 0; padding: 16px 14px; border-radius: 17px;
+  border: 1px solid rgba(214,174,94,.2);
+  background: linear-gradient(155deg, rgba(214,174,94,.075), rgba(255,255,255,.025));
+}
+.aqeq-extra-card-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.aqeq-extra-eyebrow { display: block; color: #d6ae5e; font-size: .72rem; margin-bottom: 4px; }
+.aqeq-extra-card-head h4 { margin: 0; font-size: 1rem; line-height: 1.5; }
+.aqeq-extra-number {
+  display: inline-flex; flex: 0 0 42px; width: 42px; height: 42px;
+  align-items: center; justify-content: center; border-radius: 13px;
+  border: 1px solid rgba(214,174,94,.42); color: #f2d28b;
+  background: rgba(214,174,94,.1); font-weight: 800; font-size: 1.1rem;
+}
+.aqeq-extra-card h5 { margin: 0 0 10px; font-size: .95rem; }
+.aqeq-extra-copy { font-size: .88rem; line-height: 1.85; overflow-wrap: anywhere; }
+.aqeq-extra-copy p { margin: 0 0 11px; }
+.aqeq-extra-copy p:last-child { margin-bottom: 0; }
+.aqeq-extra-copy strong { color: #f0d18c; }
+.aqeq-extra-note { margin: 14px 0 0; font-size: .78rem; line-height: 1.7; opacity: .65; }
+@media (max-width: 900px) {
+  .aqeq-extra-grid { grid-template-columns: 1fr; }
+  .aqeq-extra-card { padding: 15px; }
+}

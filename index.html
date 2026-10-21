@@ -2696,7 +2696,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
       });
     }
     root.hidden = false;
-    if (window.AqeqNameReadings) window.AqeqNameReadings.render(name, root);
+    if (window.AqeqNameReadings) window.AqeqNameReadings.render(name, root, { day: d, month: m, year: new Date().getFullYear(), lifePath: lp });
   }
   const lpStart = $("#lp-start"), lpForm = $("#lpform"), lpResult = $("#lpresult");
   $("#lp-start-discover").addEventListener("click", () => {
