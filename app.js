@@ -103,17 +103,14 @@
     const { meta, free, premium } = report;
     const p1 = premium.path1 || {};
     const p2 = premium.path2 || {};
-    // Code-only fallback: if a lens lacks prescription_for_partner, reuse the
-    // existing love_lens text of the same path. No text is written or changed.
-    const withPartnerFallback = (pathNumber, lens) => {
-      if (lens.prescription_for_partner) return lens;
-      const loveLens = (DATA?.individual_paths?.[`path_${pathNumber}`] || {}).love_lens || {};
-      return loveLens.prescription_for_partner
-        ? { ...lens, prescription_for_partner: loveLens.prescription_for_partner }
-        : lens;
+    // Family lenses store the partner-facing line as prescription_for_family.
+    // Map it to the field the card reads. No text is written or changed.
+    const withPartnerFallback = (lens) => {
+      if (lens.prescription_for_partner || !lens.prescription_for_family) return lens;
+      return { ...lens, prescription_for_partner: lens.prescription_for_family };
     };
-    const lens1 = withPartnerFallback(report.meta.path1, p1.lens || {});
-    const lens2 = withPartnerFallback(report.meta.path2, p2.lens || {});
+    const lens1 = withPartnerFallback(p1.lens || {});
+    const lens2 = withPartnerFallback(p2.lens || {});
     const daily = premium.dailyBridge || {};
     const bridge = premium.coreBridge || {};
     const attraction = premium.attractionFull || {};
