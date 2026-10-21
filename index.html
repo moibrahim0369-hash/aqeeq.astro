@@ -44,6 +44,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600&amp;family=Noto+Sans+Symbols&amp;family=Noto+Sans+Symbols+2&amp;family=Reem+Kufi:wght@500;600;700&amp;family=Aref+Ruqaa:wght@700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&amp;family=Cairo:wght@700;800&amp;display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="name_readings.css">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -424,6 +425,8 @@
 <a href="#account"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>حسابي</span></a>
 </nav>
 <script src="astronomy.min.js"></script>
+<script src="name_engine.js"></script>
+<script src="name_readings.js"></script>
 <script>
 /* ============================== عدّل هنا ==============================
    كل حاجة بتتغير في الموقع من الأسماء والأرقام والكورسات والفيديوهات هنا.
@@ -2693,6 +2696,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
       });
     }
     root.hidden = false;
+    if (window.AqeqNameReadings) window.AqeqNameReadings.render(name, root);
   }
   const lpStart = $("#lp-start"), lpForm = $("#lpform"), lpResult = $("#lpresult");
   $("#lp-start-discover").addEventListener("click", () => {

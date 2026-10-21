@@ -1,0 +1,73 @@
+/* Aqeq Astro · Name readings, responsive cards */
+.aqeq-name-readings {
+  margin: 28px 0 8px;
+  padding: clamp(16px, 3vw, 28px);
+  border: 1px solid rgba(214,174,94,.28);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 90% 0%, rgba(119,77,180,.18), transparent 48%),
+    linear-gradient(145deg, rgba(23,14,48,.96), rgba(12,10,30,.96));
+  color: var(--text, #f6f0ff);
+  overflow: hidden;
+}
+.aqeq-name-heading { margin: 0 0 22px; }
+.aqeq-name-kicker {
+  display: inline-block; margin-bottom: 8px; color: #d6ae5e;
+  font: 700 .7rem/1.4 system-ui, sans-serif; letter-spacing: .12em;
+}
+.aqeq-name-heading h3 { margin: 0 0 8px; font-size: clamp(1.35rem, 3vw, 1.9rem); }
+.aqeq-name-heading p { margin: 0; line-height: 1.9; opacity: .8; max-width: 72ch; }
+.aqeq-name-groups { display: grid; gap: 18px; }
+.aqeq-name-group {
+  padding: clamp(13px, 2.5vw, 20px);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 18px;
+  background: rgba(255,255,255,.035);
+  min-width: 0;
+}
+.aqeq-name-group > header {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  margin-bottom: 15px; padding-bottom: 13px;
+  border-bottom: 1px solid rgba(214,174,94,.2);
+}
+.aqeq-name-group > header h4 { margin: 0 0 4px; font-size: 1.1rem; }
+.aqeq-name-group > header p { margin: 0; font-size: .88rem; opacity: .72; }
+.aqeq-name-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 auto; min-height: 42px; padding: 7px 13px;
+  border: 1px solid rgba(214,174,94,.5); border-radius: 14px;
+  color: #f2d28b; background: rgba(214,174,94,.09);
+  font-weight: 800; font-size: .95rem; text-align: center;
+}
+.aqeq-reading-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.aqeq-reading-card {
+  min-width: 0; padding: 15px 14px;
+  border: 1px solid rgba(255,255,255,.085); border-radius: 15px;
+  background: rgba(5,5,19,.34);
+}
+.aqeq-reading-card-top { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 10px; }
+.aqeq-card-index {
+  display: inline-flex; flex: 0 0 29px; width: 29px; height: 29px;
+  align-items: center; justify-content: center; border-radius: 9px;
+  color: #e8c77c; background: rgba(214,174,94,.12);
+  font: 700 .75rem/1 system-ui, sans-serif;
+}
+.aqeq-reading-card h5 { margin: 2px 0 0; font-size: .98rem; line-height: 1.6; }
+.aqeq-reading-content { font-size: .91rem; line-height: 1.95; overflow-wrap: anywhere; }
+.aqeq-reading-content p { margin: 0 0 12px; }
+.aqeq-reading-content p:last-child { margin-bottom: 0; }
+.aqeq-reading-content ul { margin: 0 0 12px; padding-inline-start: 1.25rem; }
+.aqeq-reading-content li { margin: 0 0 6px; }
+.aqeq-name-status { margin: 0; padding: 13px 15px; border-radius: 12px; background: rgba(255,255,255,.05); line-height: 1.8; }
+.aqeq-name-error { color: #ffd1c9; }
+.aqeq-name-missing { opacity: .85; }
+@media (max-width: 900px) {
+  .aqeq-reading-grid { grid-template-columns: 1fr; }
+  .aqeq-reading-card { padding: 14px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .aqeq-reading-card { animation: aqeqNameRise .35s ease both; }
+  .aqeq-reading-card:nth-child(2) { animation-delay: .05s; }
+  .aqeq-reading-card:nth-child(3) { animation-delay: .1s; }
+  @keyframes aqeqNameRise { from { opacity: .5; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+}
