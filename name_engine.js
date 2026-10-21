@@ -65,9 +65,18 @@
     }
     return letters;
   }
-  function summarizeGroup(letters) {
+  function reduceToSingleDigit(value) {
+    let current = Math.abs(Number(value) || 0);
+    while (current > 9) current = digitSum(current);
+    return current;
+  }
+  function summarizeGroup(letters, singleDigitOnly) {
     if (!letters.length) return { rawTotal: null, value: null, root: null, isMaster: false, letterCount: 0, status: 'no_matching_letters' };
     const rawTotal = letters.reduce((sum, item) => sum + item.value, 0);
+    if (singleDigitOnly) {
+      const value = reduceToSingleDigit(rawTotal);
+      return { rawTotal, value, root: value, isMaster: false, letterCount: letters.length, status: 'ok' };
+    }
     return { rawTotal, ...reduceNumber(rawTotal), letterCount: letters.length, status: 'ok' };
   }
   function calculateNameNumbers(name, options) {
@@ -76,10 +85,16 @@
     const profile = getLetterProfile(normalized.normalizedName, normalized.language);
     const vowels = profile.filter(item => item.isVowel);
     const consonants = profile.filter(item => !item.isVowel);
+    // Arabic spellings often omit short vowels. If no vowel letters are written,
+    // use the whole name as a documented fallback for Soul Urge so the result
+    // remains a valid single digit instead of becoming unavailable.
+    const soulLetters = vowels.length ? vowels : profile;
+    const soulUrge = summarizeGroup(soulLetters, true);
+    if (!vowels.length && profile.length) soulUrge.status = 'fallback_to_full_name_no_written_vowels';
     return {
-      engine: 'AQEQ ASTRO · Core Name Numbers', version: '1.0.0',
+      engine: 'AQEQ ASTRO · Core Name Numbers', version: '1.1.0',
       language: normalized.language, originalName: normalized.originalName, normalizedName: normalized.normalizedName,
-      soulUrge: summarizeGroup(vowels), expression: summarizeGroup(profile), personality: summarizeGroup(consonants),
+      soulUrge, expression: summarizeGroup(profile), personality: summarizeGroup(consonants),
       diagnostics: {
         supportedLetterCount: profile.length,
         ignoredCharacterCount: [...normalized.normalizedName].length - profile.length,
@@ -88,5 +103,5 @@
       }
     };
   }
-  return Object.freeze({ version:'1.0.0', MASTER_NUMBERS:Object.freeze([11,22,33]), ARABIC_VALUES, LATIN_VALUES, normalizeName, reduceNumber, calculateNameNumbers });
+  return Object.freeze({ version:'1.1.0', MASTER_NUMBERS:Object.freeze([11,22,33]), ARABIC_VALUES, LATIN_VALUES, normalizeName, reduceNumber, calculateNameNumbers });
 });
