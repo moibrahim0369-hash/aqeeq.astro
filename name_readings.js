@@ -122,29 +122,38 @@
     return EXTRA_READINGS[kind] && EXTRA_READINGS[kind][number] || null;
   }
 
-  function renderExtraReadings(day, month, year, lifePathNumber, expressionNumber) {
+  function renderExtraReadings(day, month, year, lifePathNumber, expressionNumber, nameData) {
     const personal = calculatePersonalYear(day, month, year);
     const birthday = calculateBirthdayNumber(day);
     const maturity = calculateMaturityNumber(lifePathNumber, expressionNumber);
     const items = [
-      { key: "personalYear", label: "السنة الشخصية", number: personal.value, badge: String(personal.year), data: extraCard("personalYear", personal.value) },
       { key: "birthday", label: "رقم يوم الميلاد", number: birthday.value, badge: "موهبتك الفطرية", data: extraCard("birthday", birthday.value) },
       { key: "maturity", label: "رقم النضج", number: maturity.value, badge: "بعد سن 35", data: extraCard("maturity", maturity.value) }
     ];
-    return '<section class="aqeq-extra-numbers"><div class="aqeq-extra-heading"><span class="aqeq-name-kicker">AQEQ ASTRO · THE NEXT LAYER</span><h3>الأرقام المكملة لمسارك</h3><p>ثلاث زوايا رمزية تضيف طبقة جديدة لفهم رحلتك.</p></div><div class="aqeq-extra-grid">' +
+    const personalEntry = nameData && nameData.personal_years &&
+      nameData.personal_years.numbers && nameData.personal_years.numbers[String(personal.value)];
+    const personalSections = personalEntry && Array.isArray(personalEntry.sections) ? personalEntry.sections : [];
+    const personalHTML = '<article class="aqeq-personal-year"><div class="aqeq-extra-card-head"><div><span class="aqeq-extra-eyebrow">' +
+      escapeHTML(personal.year) + '</span><h4>السنة الشخصية</h4></div><span class="aqeq-extra-number">' +
+      escapeHTML(personal.value) + '</span></div><h5>' + escapeHTML(personalEntry ? personalEntry.title : "قراءة السنة الشخصية") +
+      '</h5><div class="aqeq-personal-year-grid">' + personalSections.map(function (part, index) {
+        return '<section class="aqeq-personal-year-section"><span class="aqeq-card-index">0' +
+          (index + 1) + '</span><h5>' + escapeHTML(part.title) + '</h5><div class="aqeq-extra-copy">' +
+          contentToHTML(part.content) + '</div></section>';
+      }).join("") + '</div></article>';
+    return '<section class="aqeq-extra-numbers"><div class="aqeq-extra-heading"><span class="aqeq-name-kicker">AQEQ ASTRO · THE NEXT LAYER</span><h3>الأرقام المكملة لمسارك</h3><p>ثلاث زوايا رمزية تضيف طبقة جديدة لفهم رحلتك.</p></div>' +
+      personalHTML + '<div class="aqeq-extra-grid">' +
       items.map(function (item) {
         if (!item.data) return "";
         const d = item.data;
         let body = "";
-        if (item.key === "personalYear") {
-          body = '<p><strong>طاقة السنة:</strong> ' + escapeHTML(d.energy) + '</p><p><strong>أهم الفرص:</strong> ' + escapeHTML(d.opportunities) + '</p><p><strong>تجنّب:</strong> ' + escapeHTML(d.avoid) + '</p>';
-        } else if (item.key === "birthday") {
+        if (item.key === "birthday") {
           body = '<p><strong>الموهبة والمهارة:</strong> ' + escapeHTML(d.skill) + '</p><p><strong>طريقة تنميتها:</strong> ' + escapeHTML(d.practice) + '</p>';
         } else {
           body = '<p><strong>طاقة النضج:</strong> ' + escapeHTML(d.mature) + '</p><p><strong>مفتاح الاتزان:</strong> ' + escapeHTML(d.balance) + '</p>';
         }
         return '<article class="aqeq-extra-card aqeq-extra-' + item.key + '"><div class="aqeq-extra-card-head"><div><span class="aqeq-extra-eyebrow">' + escapeHTML(item.badge) + '</span><h4>' + escapeHTML(item.label) + '</h4></div><span class="aqeq-extra-number">' + escapeHTML(item.number) + '</span></div><h5>' + escapeHTML(d.title) + '</h5><div class="aqeq-extra-copy">' + body + '</div></article>';
-      }).join("") + '</div><p class="aqeq-extra-note">قراءات علم الأعداد هنا رمزية للتأمل الذاتي وليست حقائق علمية أو تنبؤات مؤكدة.</p></section>';
+      }).join("") + '</div><p class="aqeq-extra-note">قراءات علم الأرقام هنا رمزية للتأمل الذاتي وليست حقائق علمية أو تنبؤات مؤكدة.</p></section>';
   }
 
   function numberLabel(result) {
@@ -220,7 +229,7 @@
         if (expressionNumber != null && birthContext.lifePath != null) {
           section.insertAdjacentHTML("beforeend", renderExtraReadings(
             Number(birthContext.day), Number(birthContext.month), Number(birthContext.year),
-            Number(birthContext.lifePath), Number(expressionNumber)
+            Number(birthContext.lifePath), Number(expressionNumber), nameData
           ));
         }
       }

@@ -106,3 +106,26 @@
   .aqeq-extra-grid { grid-template-columns: 1fr; }
   .aqeq-extra-card { padding: 15px; }
 }
+
+
+/* Full personal-year reading: four distinct sections, readable on phones */
+.aqeq-personal-year {
+  margin: 14px 0 16px; padding: clamp(14px, 2.5vw, 20px);
+  border: 1px solid rgba(214,174,94,.27); border-radius: 18px;
+  background: radial-gradient(ellipse at 100% 0%, rgba(119,77,180,.14), transparent 52%), rgba(255,255,255,.025);
+}
+.aqeq-personal-year > h5 { margin: 0 0 14px; font-size: 1.03rem; line-height: 1.7; }
+.aqeq-personal-year-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.aqeq-personal-year-section {
+  min-width: 0; padding: 14px; border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08); background: rgba(5,5,19,.28);
+}
+.aqeq-personal-year-section > .aqeq-card-index { margin-bottom: 9px; }
+.aqeq-personal-year-section h5 { margin: 0 0 9px; font-size: .96rem; line-height: 1.7; }
+.aqeq-personal-year-section .aqeq-extra-copy { line-height: 1.95; font-size: .9rem; }
+.aqeq-personal-year-section .aqeq-extra-copy p { margin: 0 0 10px; }
+.aqeq-personal-year-section .aqeq-extra-copy p:last-child { margin-bottom: 0; }
+@media (max-width: 700px) {
+  .aqeq-personal-year-grid { grid-template-columns: 1fr; }
+  .aqeq-personal-year-section { padding: 13px; }
+}
