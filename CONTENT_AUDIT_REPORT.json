@@ -1,0 +1,16 @@
+{
+  "source_document": "Aqeq_Astro_Pinnacles_Challenges_Content(1).docx",
+  "exact_source_field_comparison": "PASS",
+  "pinnacle_readings": 12,
+  "challenge_readings": 9,
+  "karmic_debt_readings": 4,
+  "pinnacle_text_fields": 84,
+  "challenge_text_fields": 54,
+  "karmic_debt_text_fields": 28,
+  "syntax_check_pinnacles_challenges_js": "PASS",
+  "syntax_check_name_readings_js": "PASS",
+  "runtime_api_smoke_test": "PASS",
+  "rendering": "Uses complete text fields for all sections; cards are not max-height-clamped; section labels match source headings.",
+  "upload_note": "Replace index.html, pinnacles_challenges.js, and name_readings.js in the existing website root. Keep the rest of the site assets.",
+  "comparison_errors": []
+}
