@@ -221,11 +221,20 @@
             '</div></article>';
         }).join("");
 
+        // Be transparent when an Arabic name has no written long-vowel letters.
+        // In that case the engine intentionally uses the full name as a fallback
+        // for Soul Urge; this is an Aqeq-specific adaptation, not a standard
+        // traditional Arabic or Pythagorean rule.
+        const methodNote = group.key === "soul_urge" &&
+          calculated && calculated.status === "fallback_to_full_name_no_written_vowels"
+          ? '<p class="aqeq-name-method-note">ملاحظة في طريقة الحساب: الاسم مكتوب من غير حروف علة ظاهرة، لذلك استخدمنا مجموع الاسم كله كبديل حسابي لرغبة الروح. دي طريقة بديلة خاصة بعقيق أسترو، والنتيجة قراءة رمزية للتأمل.</p>'
+          : "";
+
         return '<article class="aqeq-name-group"><header><div><h4>' +
           escapeHTML(nameData.groups[group.key].label || group.label) +
           '</h4><p>' + escapeHTML(group.sub) + '</p></div><span class="aqeq-name-number">' +
-          escapeHTML(numberLabel(calculated)) + '</span></header><div class="aqeq-reading-grid">' +
-          cardsHTML + '</div></article>';
+          escapeHTML(numberLabel(calculated)) + '</span></header>' + methodNote +
+          '<div class="aqeq-reading-grid">' + cardsHTML + '</div></article>';
       }).join("");
 
       section.innerHTML = '<div class="aqeq-name-heading"><span class="aqeq-name-kicker">AQEQ ASTRO · NAME NUMBERS</span><h3>بصمة اسم ' +
