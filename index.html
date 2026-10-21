@@ -426,6 +426,7 @@
 </nav>
 <script src="astronomy.min.js"></script>
 <script src="name_engine.js"></script>
+<script src="pinnacles_challenges.js"></script>
 <script src="name_readings.js"></script>
 <script>
 /* ============================== عدّل هنا ==============================
@@ -2696,7 +2697,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
       });
     }
     root.hidden = false;
-    if (window.AqeqNameReadings) window.AqeqNameReadings.render(name, root, { day: d, month: m, year: new Date().getFullYear(), lifePath: lp });
+    if (window.AqeqNameReadings) window.AqeqNameReadings.render(name, root, { day: d, month: m, year: new Date().getFullYear(), birthYear: y, lifePath: lp });
   }
   const lpStart = $("#lp-start"), lpForm = $("#lpform"), lpResult = $("#lpresult");
   $("#lp-start-discover").addEventListener("click", () => {
