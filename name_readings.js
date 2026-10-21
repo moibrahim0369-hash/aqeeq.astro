@@ -201,18 +201,33 @@
         ? root.AqeqPinnaclesChallenges.getPinnacleReading(item.value)
         : root.AqeqPinnaclesChallenges.getChallengeReading(item.value);
       const sections = kind === "pinnacle"
-        ? [ ["طاقة القمة والفرص", content && content.energy], ["نبضها النفسي", content && content.psyche], ["طريقة استثمارها", content && content.invest], ["التحذير الطاقي والظل", content && content.shadow] ]
-        : [ ["جذر التحدي", content && content.root], ["الدرس النفسي والروحي", content && content.lesson], ["المهارات المطلوب بناؤها", content && content.skills], ["روشتة التجاوز", content && content.practice] ];
+        ? [
+            ["طاقة القمة والفرص", content && content.energy],
+            ["النبض النفسي والعاطفي", content && content.psyche],
+            ["طريقة الاستثمار والعمل", content && content.invest],
+            ["التحذير والظل الطاقي", content && content.shadow]
+          ]
+        : [
+            ["جذر التحدي", content && content.root],
+            ["الدرس النفسي والروحي", content && content.lesson],
+            ["المهارات اللي محتاجة بناء", content && content.skills],
+            ["روشتة تجاوز التحدي", content && content.practice]
+          ];
       const copy = content
-        ? '<h5>' + escapeHTML(content.title) + '</h5>' + sections.map(function (part) {
-            return '<p><strong>' + escapeHTML(part[0]) + ':</strong> ' + escapeHTML(part[1] || "") + '</p>';
-          }).join("")
+        ? (content.essence ? '<p class="aqeq-pc-essence"><strong>المعنى الجوهري:</strong> ' + escapeHTML(content.essence) + '</p>' : '') +
+          sections.map(function (part) {
+            return '<section class="aqeq-pc-reading-section"><h5>' + escapeHTML(part[0]) +
+              '</h5><p>' + escapeHTML(part[1] || "") + '</p></section>';
+          }).join("") +
+          (kind === "pinnacle" && content.reflection
+            ? '<p class="aqeq-pc-reflection"><strong>سؤال للتأمل:</strong> ' + escapeHTML(content.reflection) + '</p>'
+            : '')
         : '<p>القراءة التفصيلية لهذا الرقم قيد الإعداد.</p>';
       return '<article class="aqeq-pc-card"><div class="aqeq-pc-card-head"><div><span class="aqeq-pc-eyebrow">' +
         eyebrow + ' · ' + String(item.index).padStart(2, "0") + '</span><h4>' + escapeHTML(title) +
         '</h4></div><span class="aqeq-pc-number">' + escapeHTML(item.value) +
         '</span></div><span class="aqeq-pc-period">' + escapeHTML(period) +
-        '</span><div class="aqeq-pc-copy">' + copy + '</div></article>';
+        '</span><div class="aqeq-pc-copy"><h5>' + escapeHTML(content ? content.title : "") + '</h5>' + copy + '</div></article>';
     }
     const pinnacleCards = result.pinnacles.map(function (item) { return card(item, "pinnacle"); }).join("");
     const challengeCards = result.challenges.map(function (item) { return card(item, "challenge"); }).join("");
@@ -220,9 +235,11 @@
       ? debts.items.map(function (item) {
           const reading = root.AqeqPinnaclesChallenges.getKarmicDebtReading(item.debt);
           const body = reading
-            ? '<p><strong>أصل الرمز:</strong> ' + escapeHTML(reading.origin) + '</p>' +
-              '<p><strong>نمط التكرار في الواقع:</strong> ' + escapeHTML(reading.pattern) + '</p>' +
-              '<p><strong>روشتة فك الارتباط والتحرر:</strong> ' + escapeHTML(reading.release) + '</p>'
+            ? (reading.essence ? '<p class="aqeq-pc-essence"><strong>المعنى الجوهري:</strong> ' + escapeHTML(reading.essence) + '</p>' : '') +
+              '<section class="aqeq-pc-reading-section"><h5>أصل الدين الكارمي والنمط الخفي</h5><p>' + escapeHTML(reading.origin) + '</p></section>' +
+              '<section class="aqeq-pc-reading-section"><h5>نمط التكرار في الواقع</h5><p>' + escapeHTML(reading.pattern) + '</p></section>' +
+              '<section class="aqeq-pc-reading-section"><h5>الدرس النفسي والروحي</h5><p>' + escapeHTML(reading.lesson) + '</p></section>' +
+              '<section class="aqeq-pc-reading-section"><h5>روشتة فك الارتباط والتحرر</h5><p>' + escapeHTML(reading.release) + '</p></section>'
             : '<p>' + escapeHTML(item.detail) + '</p><p>' + escapeHTML(item.theme) + '</p>';
           return '<div class="aqeq-pc-debt"><div class="aqeq-pc-card-head"><div><span class="aqeq-pc-eyebrow">KARMIC DEBT · ' +
             escapeHTML(item.source.replace(/_/g, " ")) + '</span><h4>' + escapeHTML(item.title) +
