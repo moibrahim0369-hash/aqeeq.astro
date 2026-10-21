@@ -966,3 +966,8 @@ a,button,summary,.wg,.card,.btn,.bnav a,.svc-ic,.tool-ic,[role="button"]{-webkit
 .mercury-sign-card .msc-desc{color:var(--mute,#A9A1D2);line-height:1.9}
 .mercury-status-note{margin:0 0 18px;padding:16px;border:1px solid var(--line,rgba(176,160,255,.16));border-inline-start:3px solid var(--brass,#C9A36A);border-radius:12px;background:var(--panel,#13113A);color:var(--mute,#A9A1D2);line-height:1.9}
 @media(max-width:480px){.mercury-sign-card{padding:18px 14px}.mercury-status-note{padding:14px}}
+
+/* Final Synastry polish: readable attraction cards and visible master-number notice. */
+.syn-master-badge{display:block;width:fit-content;max-width:100%;margin:12px auto;padding:10px 14px;border:1px solid rgba(230,203,144,.7);border-radius:12px;background:rgba(201,163,106,.13);color:var(--brass-hi,#E6CB90);font-weight:700;text-align:center;line-height:1.8}
+.syn-attraction-grid .syn-result-card{height:100%}
+.syn-result-card h4{line-height:1.7}

@@ -253,6 +253,9 @@ function buildReport(result, data, relationType = 'love') {
       coreBridge: result.coreBridge,
       dailyBridge: result.dailyBridge,
       composite: result.compositeRoot,
+      rawBaseSum: result.rawBaseSum,
+      reducedDay1: result.reducedDay1,
+      reducedDay2: result.reducedDay2,
       isCompositeMaster: result.isCompositeMaster,
       familyType: result.familyType,
       breakdown: { ...result.breakdown }
@@ -264,8 +267,8 @@ function buildReport(result, data, relationType = 'love') {
       healingLine: coreBridgeData.repair_statement || ''
     },
     premium: {
-      path1: { identity: path1Data.core_identity || '', lens: lens1, magicKey: path1Data.magic_key || '' },
-      path2: { identity: path2Data.core_identity || '', lens: lens2, magicKey: path2Data.magic_key || '' },
+      path1: { identity: path1Data.core_identity || '', coreNeed: path1Data.core_need || '', coreWound: path1Data.core_wound || '', shadowSide: path1Data.shadow_side || '', triggers: path1Data.triggers || '', lens: lens1, magicKey: path1Data.magic_key || '' },
+      path2: { identity: path2Data.core_identity || '', coreNeed: path2Data.core_need || '', coreWound: path2Data.core_wound || '', shadowSide: path2Data.shadow_side || '', triggers: path2Data.triggers || '', lens: lens2, magicKey: path2Data.magic_key || '' },
       coreBridge: coreBridgeData,
       dailyBridge: dailyBridgeData,
       masterOverlays,
