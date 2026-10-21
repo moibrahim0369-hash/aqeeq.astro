@@ -2477,7 +2477,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     while (dn > 9) dn = digSum(dn);
     const base = LP_BASE[lp] || lp, DY = DAY_EN[dn];
     const rel = dn === base ? "النهاردة طاقة اليوم هي نفس طاقة مسارك، فكل حاجة فيك بتتضخم: نورك وضلك." : `طبعك بيقابل طاقة اليوم، فاستخدم ${LP_GIFT[base]}، وراقب ${LP_CARE[base]}.`;
-    return `<div class="daily"><h4>رسالة النهاردة ليك: طاقة ${DY.th}</h4><p>${DY.msg} ${rel}</p><div class="dd"><div><b>اعمل</b>${DY.do}</div><div><b>انتبه</b>${DY.dont}</div></div><p class="note">رسالة للتأمل، بتتجدد كل يوم من تاريخ النهاردة ورقم مسارك.</p></div>`;
+    return `<div class="daily"><h4>رسالة النهاردة ليك: طاقة ${DY.th}</h4><p>${DY.msg} ${rel}</p><div class="dd"><div><b>اعمل:</b> ${DY.do}</div><div><b>انتبه:</b> ${DY.dont}</div></div><p class="note">رسالة للتأمل، بتتجدد كل يوم من تاريخ النهاردة ورقم مسارك.</p></div>`;
   }
 
   function lpHTML(lp) {
