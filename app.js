@@ -112,9 +112,8 @@
     const karmic = premium.karmicDebts || [];
     const breakdown = meta.breakdown || {};
 
-    const compositeDisplay = meta.isCompositeMaster
-      ? `${meta.rawBaseSum} / الجذر ${meta.composite}`
-      : String(meta.composite);
+    // Keep composite formatting consistent for every result, including master 11.
+    const compositeDisplay = `${meta.rawBaseSum} / الجذر ${meta.composite}`;
 
     const scoreDetails = `
       <div class="syn-score-breakdown">
@@ -122,7 +121,7 @@
         <p>توافق العائلات: <strong>${breakdown.familyBonus ?? 0}</strong></p>
         <p>الجسر الأساسي: <strong>${breakdown.coreBridgeBonus ?? 0}</strong></p>
         <p>الجسر اليومي: <strong>${breakdown.dailyBridgeBonus ?? 0}</strong></p>
-        <p>المسار المشترك: <strong>${breakdown.compositeBonus ?? 0}</strong></p>
+        <p>مكافأة المسار المشترك: <strong>${breakdown.compositeBonus ?? 0}</strong></p>
         <p>الأرقام الرئيسية: <strong>${breakdown.masterBonus ?? 0}</strong></p>
         <p>الدرس الكارمي: <strong>${breakdown.karmicPenalty ?? 0}</strong></p>
         <p>المجموع قبل الحد: <strong>${meta.rawScore ?? meta.score}</strong></p>
