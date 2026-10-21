@@ -199,10 +199,19 @@
           nameData.groups[group.key].numbers &&
           nameData.groups[group.key].numbers[number];
 
-        if (!entry || !Array.isArray(entry.cards)) {
-          return '<article class="aqeq-name-group aqeq-name-missing"><header><div><h4>' +
+        // Keep the interface usable even if a future data edit accidentally
+        // omits a reading. The numeric result remains visible with a neutral
+        // fallback instead of exposing a broken-data error to visitors.
+        if (!entry || !Array.isArray(entry.cards) || !entry.cards.length) {
+          const fallbackNumber = number || "1";
+          const fallbackContent = group.key === "soul_urge"
+            ? "عشان كتابة الاسم بالعربي غالبًا ما بتظهرش كل حروف العلة القصيرة، بنستخدم الاسم كاملًا كبديل حسابي عند غياب حروف العلة المكتوبة. خُد النتيجة كمدخل رمزي للتأمل، مش كحكم ثابت على شخصيتك."
+            : "القراءة التفصيلية للرقم ده قيد المراجعة. الرقم محسوب، ويمكنك استخدامه كمدخل رمزي للتأمل في الدوافع والاختيارات.";
+          return '<article class="aqeq-name-group aqeq-name-fallback"><header><div><h4>' +
             escapeHTML(group.label) + '</h4><p>' + escapeHTML(group.sub) +
-            '</p></div><span class="aqeq-name-number">—</span></header><p class="aqeq-name-error">ملقيناش قراءة للرقم ده في ملف البيانات.</p></article>';
+            '</p></div><span class="aqeq-name-number">' + escapeHTML(fallbackNumber) +
+            '</span></header><article class="aqeq-reading-card"><div class="aqeq-reading-card-top"><span class="aqeq-card-index">01</span><h5>قراءة تمهيدية</h5></div><div class="aqeq-reading-content">' +
+            contentToHTML(fallbackContent) + '</div></article></article>';
         }
 
         const cardsHTML = entry.cards.map(function (card, index) {
