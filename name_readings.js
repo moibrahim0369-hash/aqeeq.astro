@@ -328,7 +328,7 @@
     const cleanName = String(name || "").trim();
     if (!cleanName) {
       section.querySelector(".aqeq-name-status").textContent =
-        "اكتب اسمك في خانة الاسم عشان تظهر قراءة رغبة الروح والشخصية الظاهرة والتعبير والقدر.";
+        "من فضلك اكتب اسمك أولاً لاكتشاف بصمة طاقتك.";
       section.classList.add("is-empty");
       return;
     }
