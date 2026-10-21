@@ -38,12 +38,12 @@
     const hasLatin = /[A-Za-z]/.test(cleaned);
     let resolved = requested;
     if (requested === 'auto') {
-      if (hasArabic && hasLatin) throw new Error('Mixed Arabic/Latin names require an explicit language');
+      if (hasArabic && hasLatin) throw new Error('يرجى كتابة الاسم إما باللغة العربية بالكامل أو بالإنجليزية بالكامل للحساب الدقيق.');
       if (hasArabic) resolved = 'arabic';
       else if (hasLatin) resolved = 'latin';
-      else throw new Error('No supported Arabic or Latin letters found');
+      else throw new Error(cleaned ? 'الاسم يجب أن يحتوي على حروف أبجدية صحيحة بدون أرقام أو رموز.' : 'من فضلك اكتب اسمك أولاً لاكتشاف بصمة طاقتك.');
     }
-    const normalizedName = [...cleaned].map(ch => resolved === 'arabic' ? (ARABIC_NORMALIZATION[ch] || ch) : ch.toUpperCase()).join('');
+    const normalizedName = [...cleaned].map(ch => resolved === 'arabic' ? (ARABIC_NORMALIZATION[ch] || ch) : ch.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase()).join('');
     return { originalName: name, normalizedName, language: resolved };
   }
   function digitSum(value) {
@@ -89,7 +89,7 @@
     // use the whole name as a documented fallback for Soul Urge so the result
     // remains a valid single digit instead of becoming unavailable.
     const soulLetters = vowels.length ? vowels : profile;
-    const soulUrge = summarizeGroup(soulLetters, true);
+    const soulUrge = summarizeGroup(soulLetters, false);
     if (!vowels.length && profile.length) soulUrge.status = 'fallback_to_full_name_no_written_vowels';
     return {
       engine: 'AQEQ ASTRO · Core Name Numbers', version: '1.1.0',
