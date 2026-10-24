@@ -1,0 +1,8 @@
+# Never publish repository and build metadata as public static assets
+/.git
+/.git/**
+/.wrangler
+/.wrangler/**
+/wrangler.jsonc
+/README*
+/CONTENT_AUDIT_REPORT.json
