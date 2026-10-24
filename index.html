@@ -179,7 +179,7 @@
 </details>
 <p class="ferr" hidden="" id="ferr" role="alert"></p>
 <button class="btn" type="submit">احسب خريطتي</button>
-<p class="privacy">الحساب بيتم على جهازك. بيانات ميلادك مابتتبعتش لأي سيرفر.</p>
+<p class="privacy">الحساب بيتم على جهازك. بيانات ميلادك مابتتبعتش لأي سيرفر إلا لو طلبت «القراءة الكاملة بالذكاء الاصطناعي» بنفسك بعد تسجيل الدخول وموافقتك.</p>
 </form>
 <div aria-live="polite" class="result" hidden="" id="result"></div>
 </div>
@@ -357,9 +357,42 @@
 </div></section>
 <section class="sec alt" id="account"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
-<div class="center"><h2>حسابي</h2><p class="intro">نظام الحسابات لسه مش متفعّل، ومش هنعرض تسجيل دخول وهمي.</p></div>
-<div class="msg-card"><p class="msg-txt">دلوقتي كل اللي بتكتبه في دفتر التجلي ودفتر الأمنيات بيتحفظ على الجهاز اللي إنت فيه بس، ومابيتزامنش بين الأجهزة. لما نفعّل الحسابات هتقدر تحفظ بياناتك وقراءاتك وتكمل من آخر مرة.</p></div>
-<p class="privacy">بيانات الميلاد بتتطلب فقط لما تحتاج قراءة شخصية، ومابتتحفظش على سيرفر.</p>
+<div class="center"><h2>حسابي</h2><p class="intro">الحساب بيخليك تطلب القراءة الكاملة لخريطتك وتوصلك على إيميلك.</p></div>
+<p class="ferr" id="acct-fallback">تسجيل الدخول مش متاح دلوقتي. حدّث الصفحة وجرّب تاني، ولو المشكلة فضلت جرّب من شبكة تانية.</p>
+<p class="acct-ok" hidden="" id="acct-link-msg" role="status"></p>
+
+<div hidden="" id="acct-guest">
+<div aria-label="دخول أو حساب جديد" class="acct-tabs" role="tablist">
+<button aria-selected="true" data-mode="signin" role="tab" type="button">دخول</button>
+<button aria-selected="false" data-mode="signup" role="tab" type="button">حساب جديد</button>
+</div>
+<form class="cform" id="acct-form" novalidate="">
+<div class="field" hidden="" id="acct-name-field"><label for="acct-name">الاسم (اختياري)</label><input autocomplete="name" id="acct-name" maxlength="80" type="text"/></div>
+<div class="field"><label for="acct-email">الإيميل</label><input autocomplete="email" dir="ltr" id="acct-email" inputmode="email" required="" type="email"/></div>
+<div class="field"><label for="acct-pass">كلمة المرور</label><input autocomplete="current-password" dir="ltr" id="acct-pass" minlength="8" required="" type="password"/></div>
+<p class="ferr" hidden="" id="acct-msg" role="alert"></p>
+<button class="btn" id="acct-submit" type="submit">دخول</button>
+<button class="btn ghost" id="acct-forgot" type="button">نسيت كلمة المرور</button>
+</form>
+</div>
+
+<div class="msg-card" hidden="" id="acct-user">
+<p class="msg-txt">إنت داخل بحساب: <strong dir="ltr" id="acct-user-email"></strong></p>
+<p class="privacy">تقدر دلوقتي تطلب القراءة الكاملة من نتيجة خريطتك الفلكية.</p>
+<button class="btn ghost" id="acct-signout" type="button">تسجيل الخروج</button>
+</div>
+
+<div hidden="" id="acct-recovery">
+<div class="center"><h3>كلمة مرور جديدة</h3></div>
+<form class="cform" id="acct-recovery-form" novalidate="">
+<div class="field"><label for="acct-newpass">كلمة المرور الجديدة</label><input autocomplete="new-password" dir="ltr" id="acct-newpass" minlength="8" required="" type="password"/></div>
+<p class="ferr" hidden="" id="acct-recovery-msg" role="alert"></p>
+<button class="btn" type="submit">حفظ كلمة المرور</button>
+</form>
+</div>
+
+<div class="msg-card"><p class="msg-txt">دفتر التجلي ودفتر الأمنيات لسه بيتحفظوا على الجهاز اللي إنت فيه بس، ومابيتزامنوش مع الحساب.</p></div>
+<p class="privacy">الحساب بيحفظ إيميلك واسمك بس. بيانات الميلاد مابتتبعتش لأي سيرفر إلا لما تطلب القراءة الكاملة بنفسك وتوافق.</p>
 </div></section>
 <section class="sec alt" id="compat"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
@@ -1667,6 +1700,28 @@ if (typeof module !== 'undefined') module.exports = Astro;
     panel.addEventListener("click", e => { const t = e.target.closest("[data-kind]"); if (t) act(t); });
   }
 
+  /* ---------- بيانات الخريطة لطلب «القراءة الكاملة» (auth.js بيسمعها) ---------- */
+  function publishChartForReport(S) {
+    try {
+      const ch = S.ch, p2 = n => String(n).padStart(2, "0");
+      const sgn = lon => SIGNS[Math.floor(lon / 30)].n;
+      const dg = lon => Math.round((lon - Math.floor(lon / 30) * 30) * 100) / 100;
+      const planets = ch.bodies.filter(b => PLANETS[b.key]).map(b => ({
+        name: nmOf(b.key), sign: sgn(b.lon), degree: dg(b.lon), house: ch.known ? b.house : null, retrograde: !!b.retro
+      }));
+      const angles = ch.known ? { ascendant: { sign: sgn(ch.asc), degree: dg(ch.asc) }, midheaven: { sign: sgn(ch.mc), degree: dg(ch.mc) } } : null;
+      const houses = ch.known ? ch.cusps.map((c, i) => ({ house: i + 1, sign: sgn(c), degree: dg(c) })) : null;
+      const aspects = natalAspects(ch).slice(0, 40).map(a => ({ between: [nmOf(a.a), nmOf(a.b)], aspect: a.asp.n, orb: Math.round(a.orb * 100) / 100 }));
+      const detail = {
+        userName: S.name || "",
+        birthData: { date: `${S.y}-${p2(S.m)}-${p2(S.d)}`, time: S.known ? `${p2(S.hh)}:${p2(S.mm)}` : null, timeKnown: !!S.known, place: S.placeName, houseSystem: ch.hs },
+        chartData: { planets, angles, houses, aspects }
+      };
+      window.__aqeeqChartPayload = detail;
+      window.dispatchEvent(new CustomEvent("aqeeq:chart-rendered", { detail }));
+    } catch (e) { /* القراءة الكاملة اختيارية: لو فشل التجهيز مايتكسرش عرض الخريطة */ }
+  }
+
   function renderResult(S) {
     const ch = S.ch, asp = natalAspects(ch), pats = findPatterns(ch);
     const sun = body(ch, "sun"), moon = body(ch, "moon");
@@ -1750,10 +1805,11 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
     /* دعوة للحجز */
     const summary = `أهلاً، حسبت خريطتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${S.name}\nتاريخ الميلاد: ${when}\nمكان الميلاد: ${S.placeName}\nالشمس: ${SIGNS[sunS].n}\nالقمر: ${SIGNS[moonS].n}${ch.known ? `\nالطالع: ${SIGNS[risingS].n}` : ""}`;
-    h += `<div class="cta-box"><h4>عايز قراءة أعمق لخريطتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط الخريطة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="res-wa" href="#book">احجز قراءة الخريطة على واتساب</a></div>${CONTACT_LINE}`;
+    h += `<div class="ai-box" id="ai-report-box"></div><div class="cta-box"><h4>عايز قراءة أعمق لخريطتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط الخريطة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="res-wa" href="#book">احجز قراءة الخريطة على واتساب</a></div>${CONTACT_LINE}`;
 
     const root = $("#result");
     root.innerHTML = h;
+    publishChartForReport(S);
     bindContact(root); wirePattern(root, S); wireWheel(root, S); const wa = $("#res-wa", root); wa.href = waLink(summary); openWA(wa);
     const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
     tabs.forEach((t, i) => t.addEventListener("click", () => tabs.forEach((x, j) => {
@@ -3214,5 +3270,6 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 
   <script src="engine.js"></script>
   <script src="app.js"></script>
+<script src="auth.js" type="module"></script>
 </body>
 </html>
