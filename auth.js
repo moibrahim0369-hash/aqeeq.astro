@@ -4,6 +4,7 @@
 import { supabase } from './supabase-client.js';
 
 const REPORT_FN = 'generate-astro-report';
+const CHECKOUT_FN = 'create-checkout';
 const MIN_PASSWORD = 8;
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -209,6 +210,11 @@ async function requestReport(button, status, out, note) {
   say(status, 'بنكتب قراءتك… ممكن تاخد لحد دقيقة ونص. ماتقفلش الصفحة.', true);
   try {
     const { data, error } = await supabase.functions.invoke(REPORT_FN, { body: payload });
+    if (error && error.context && error.context.status === 402) {   // محتاج يشتري القراءة الأول
+      say(status, '');
+      await showBuy(note);
+      return;
+    }
     if (error) throw new Error(await functionError(error));
     if (!data || typeof data.report !== 'string' || !data.report.trim()) {
       throw new Error('تعذر إنشاء القراءة دلوقتي. جرّب مرة تانية بعد شوية.');
@@ -226,6 +232,68 @@ async function requestReport(button, status, out, note) {
     running = false;
     button.disabled = false;
   }
+}
+
+/* ---------- الشراء (Paymob) ---------- */
+function money(cents, cur) {
+  const v = cents / 100;
+  return `${Number.isInteger(v) ? v : v.toFixed(2)} ${cur === 'EGP' ? 'جنيه' : cur}`;
+}
+
+async function showBuy(note) {
+  note.hidden = false;
+  note.textContent = 'بنجهّز تفاصيل الشراء…';
+  const { data: p } = await supabase.from('products')
+    .select('name_ar,amount_cents,currency,active').eq('code', 'full_report').maybeSingle();
+  if (!p || !p.active || !p.amount_cents) {
+    note.textContent = 'القراءة الكاملة هتتاح للشراء قريب.';
+    return;
+  }
+  note.replaceChildren();
+  const buy = h('button', { class: 'btn', type: 'button', text: `اشتري القراءة الكاملة — ${money(p.amount_cents, p.currency)}` });
+  const msg = h('span', { class: 'ai-status', role: 'status', 'aria-live': 'polite' });
+  buy.addEventListener('click', async () => {
+    buy.disabled = true;
+    say(msg, 'بنحوّلك لصفحة الدفع…', true);
+    try {
+      const { data, error } = await supabase.functions.invoke(CHECKOUT_FN, { body: { product: 'full_report' } });
+      if (error) throw new Error(await functionError(error));
+      let u;
+      try { u = new URL(data && data.checkoutUrl); } catch (_) { u = null; }
+      if (!u || u.protocol !== 'https:' || !/(^|\.)paymob\.com$/.test(u.hostname)) {
+        throw new Error('رابط الدفع غير صالح. جرّب تاني.');
+      }
+      location.assign(u.href);
+      setTimeout(() => { buy.disabled = false; }, 8000);   // لو رجع بالـ back والصفحة اتحفظت
+    } catch (err) {
+      say(msg, err && err.message ? err.message : 'حصلت مشكلة. جرّب تاني.');
+      buy.disabled = false;
+    }
+  });
+  note.append(h('span', { text: `${p.name_ar}. بعد الدفع ارجع واضغط «اكتب قراءتي الكاملة» تاني. ` }), buy, ' ', msg);
+}
+
+async function handleOrderReturn() {
+  const q = new URLSearchParams(location.search);
+  const id = q.get('order');
+  if (!id) return;
+  q.delete('order');
+  const rest = q.toString();
+  history.replaceState(null, '', location.pathname + (rest ? `?${rest}` : '') + '#account');
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return;
+  say(ui.linkMsg, 'بنتأكد من الدفع…', true);
+  for (let i = 0; i < 10; i++) {                    // الـ webhook ممكن يتأخر ثواني
+    const { data: { session: s } } = await supabase.auth.getSession();
+    if (!s) { say(ui.linkMsg, 'سجّل دخولك عشان نتأكد من حالة الدفع.'); return; }
+    const { data } = await supabase.from('orders').select('status').eq('id', id).maybeSingle();
+    if (data && data.status === 'paid') {
+      say(ui.linkMsg, 'تم الدفع بنجاح. ارجع للخريطة واضغط «اكتب قراءتي الكاملة».', true);
+      return;
+    }
+    if (data && data.status === 'cancelled') { say(ui.linkMsg, 'الدفع ماتمش. ماتم خصم أي مبلغ.'); return; }
+    await new Promise((r) => setTimeout(r, 3000));
+  }
+  say(ui.linkMsg, 'لسه مستنيين تأكيد الدفع. لو اتخصم المبلغ هيتفعّل تلقائياً خلال دقايق، حدّث الصفحة.');
 }
 
 function renderReportBox(force) {
@@ -322,6 +390,7 @@ function init() {
 
   handleLinkErrors();
   refreshAccountUI();
+  handleOrderReturn();
 }
 
 init();
