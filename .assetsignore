@@ -1,8 +1,32 @@
-# Never publish repository and build metadata as public static assets
+# Keep repository, deployment configuration, secrets, and development metadata private
 /.git
 /.git/**
+/.github
+/.github/**
 /.wrangler
 /.wrangler/**
+/node_modules
+/node_modules/**
+/supabase
+/supabase/**
+/tests
+/tests/**
+/test
+/test/**
+/coverage
+/coverage/**
+/.env
+/.env.*
+/.dev.vars
+/.dev.vars.*
 /wrangler.jsonc
+/wrangler.toml
+/.assetsignore
 /README*
+/CONTRIBUTING*
+/LICENSE*
+/package.json
+/package-lock.json
+/pnpm-lock.yaml
+/yarn.lock
 /CONTENT_AUDIT_REPORT.json
