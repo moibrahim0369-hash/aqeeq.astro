@@ -47,3 +47,21 @@
 @media(max-width:420px){.aqs-story-dialog{width:calc(100vw - 20px);max-width:none;max-height:calc(100dvh - 20px);border-radius:17px}.aqs-story-modal{padding:.7rem}.aqs-story-preview{max-height:66dvh;padding:.35rem}.aqs-story-preview img{max-height:62dvh}.aqs-story-open{flex-wrap:wrap;font-size:.9rem}}
 @media(prefers-reduced-motion:reduce){.aqs-story-open{transition:none}.aqs-story-loading::before{animation-duration:2.4s}}
 
+
+/* Detailed Life Path interpretation cards (paths 8 and 11) */
+.aqm-life-path-profile{margin:1.1rem 0 1.35rem;padding:clamp(1rem,2.6vw,1.5rem);border:1px solid rgba(212,175,55,.24);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(192,57,43,.055));backdrop-filter:blur(14px)}
+.aqm-life-path-heading{margin-bottom:1rem}.aqm-life-path-heading h3{margin:.35rem 0;color:#f0dfb3;font-size:clamp(1.2rem,3vw,1.65rem)}
+.aqm-life-path-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.aqm-life-path-copy{padding:1rem;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(11,13,19,.55)}
+.aqm-life-path-copy h4,.aqm-life-path-blueprint h4{margin:0 0 .55rem;color:#e4cf91;font-size:.96rem}
+.aqm-life-path-copy p{margin:0;color:#d0d3dc;font-size:.9rem;line-height:1.9}
+.aqm-life-path-copy.is-light{border-color:rgba(212,175,55,.2)}
+.aqm-life-path-copy.is-shadow{border-color:rgba(192,57,43,.24)}
+.aqm-life-path-copy.is-body{grid-column:1/-1}
+.aqm-life-path-copy small{display:block;margin-top:.65rem;color:#aab2c4;font-size:.75rem;line-height:1.7}
+.aqm-life-path-blueprint{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1)}
+.aqm-life-path-blueprint ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:.7rem 0 0;padding:0;list-style:none;counter-reset:life-path-step}
+.aqm-life-path-blueprint li{counter-increment:life-path-step;display:flex;flex-direction:column;gap:.45rem;padding:.85rem;border-radius:12px;background:rgba(255,255,255,.035);color:#c9cfda;font-size:.84rem;line-height:1.75}
+.aqm-life-path-blueprint li::before{content:counter(life-path-step,decimal-leading-zero);color:#d4af37;font-size:.72rem;letter-spacing:.08em}
+.aqm-life-path-blueprint li b{color:#f0d6a0;font-weight:650}
+@media(max-width:640px){.aqm-life-path-columns{grid-template-columns:1fr}.aqm-life-path-copy.is-body{grid-column:auto}.aqm-life-path-blueprint ol{grid-template-columns:1fr}.aqm-life-path-profile{margin:.9rem 0;padding:1rem;border-radius:16px}}
