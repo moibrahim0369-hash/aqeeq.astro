@@ -179,9 +179,23 @@
 </details>
 <p class="ferr" hidden="" id="ferr" role="alert"></p>
 <button class="btn" type="submit">احسب خريطتي</button>
-<p class="privacy">الحساب بيتم على جهازك. بيانات ميلادك مابتتبعتش لأي سيرفر.</p>
+<p class="privacy">حساب الخريطة بيتم على جهازك. لو طلبت التقرير الفلكي الشخصي، هنبعت بيانات الميلاد ونتائج الخريطة إلى خوادم عقيق لمعالجة التقرير.</p>
 </form>
 <div aria-live="polite" class="result" hidden="" id="result"></div>
+<div class="result" id="astro-report-panel" style="margin-top:18px">
+  <h3>تقريرك الفلكي الشخصي</h3>
+  <p>سجّل الدخول أو أنشئ حسابًا، ثم اطلب تقريرًا تحليليًا مبنيًا على الخريطة التي حسبتها للتو.</p>
+  <div class="field"><label for="astro-auth-email">البريد الإلكتروني</label><input id="astro-auth-email" type="email" autocomplete="email" required></div>
+  <div class="field"><label for="astro-auth-password">كلمة المرور</label><input id="astro-auth-password" type="password" autocomplete="current-password" minlength="6" required></div>
+  <div class="two">
+    <button class="btn ghost" type="button" id="astro-signup">إنشاء حساب</button>
+    <button class="btn ghost" type="button" id="astro-signin">تسجيل الدخول</button>
+  </div>
+  <p id="astro-auth-status" role="status" aria-live="polite"></p>
+  <button class="btn" type="button" id="astro-generate-report" disabled>أنشئ تقريري الكامل</button>
+  <p id="astro-report-status" role="status" aria-live="polite"></p>
+  <pre id="astro-report-output" hidden style="white-space:pre-wrap;overflow-wrap:anywhere"></pre>
+</div>
 </div>
 </section>
 <section class="sec alt" id="sky">
@@ -1432,6 +1446,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     }
     const ch = Astro.chart({ utcMs, lat, lon, hs: $("#f-hs").value, known });
     LAST = { ch, name: $("#f-name").value.trim(), y, m, d, hh, mm, known, placeName };
+    document.dispatchEvent(new CustomEvent("astro-chart-calculated", { detail: LAST }));
     renderResult(LAST);
     const r = $("#result"); r.hidden = false;
     r.scrollIntoView();
@@ -3214,5 +3229,98 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 
   <script src="engine.js"></script>
   <script src="app.js"></script>
+<script type="module">
+import { supabase, signUp, signIn, signOut, getCurrentSession, generateAstroReport, displayAstroReport } from './supabase-client.js';
+
+const byId = id => document.getElementById(id);
+const authStatus = byId('astro-auth-status');
+const reportStatus = byId('astro-report-status');
+const reportButton = byId('astro-generate-report');
+const reportOutput = byId('astro-report-output');
+
+async function refreshReportAuth() {
+  try {
+    const session = await getCurrentSession();
+    reportButton.disabled = !session?.user;
+    authStatus.textContent = session?.user
+      ? 'تم تسجيل الدخول: ' + (session.user.email || '')
+      : 'سجّل الدخول لإنشاء التقرير.';
+  } catch (error) {
+    reportButton.disabled = true;
+    authStatus.textContent = error instanceof Error ? error.message : 'تعذر التحقق من جلسة الدخول.';
+  }
+}
+
+byId('astro-signup').addEventListener('click', async () => {
+  authStatus.textContent = '';
+  try {
+    const email = byId('astro-auth-email').value.trim();
+    const password = byId('astro-auth-password').value;
+    if (!email || password.length < 6) throw new Error('اكتب بريدًا إلكترونيًا وكلمة مرور من 6 أحرف على الأقل.');
+    const result = await signUp(email, password);
+    if (!result.session) {
+      authStatus.textContent = 'تم إرسال طلب إنشاء الحساب. لو تأكيد البريد مفعّل، افتح رسالة التأكيد ثم سجّل الدخول.';
+    } else {
+      authStatus.textContent = 'تم إنشاء الحساب وتسجيل الدخول.';
+    }
+    await refreshReportAuth();
+  } catch (error) {
+    authStatus.textContent = error instanceof Error ? error.message : 'تعذر إنشاء الحساب.';
+  }
+});
+
+byId('astro-signin').addEventListener('click', async () => {
+  authStatus.textContent = '';
+  try {
+    const email = byId('astro-auth-email').value.trim();
+    const password = byId('astro-auth-password').value;
+    if (!email || !password) throw new Error('اكتب البريد الإلكتروني وكلمة المرور.');
+    await signIn(email, password);
+    await refreshReportAuth();
+  } catch (error) {
+    authStatus.textContent = error instanceof Error ? error.message : 'تعذر تسجيل الدخول.';
+  }
+});
+
+reportButton.addEventListener('click', async () => {
+  reportStatus.textContent = '';
+  reportOutput.hidden = true;
+  if (!window.LAST_ASTRO_CHART) {
+    reportStatus.textContent = 'احسب خريطتك أولًا، ثم اطلب التقرير.';
+    return;
+  }
+  reportButton.disabled = true;
+  reportStatus.textContent = 'جاري إنشاء التقرير...';
+  try {
+    const last = window.LAST_ASTRO_CHART;
+    const payload = {
+      userName: last.name || 'العميل',
+      birthData: {
+        year: last.y, month: last.m, day: last.d,
+        hour: last.hh, minute: last.mm,
+        timeKnown: last.known, placeName: last.placeName
+      },
+      chartData: last.ch
+    };
+    const result = await generateAstroReport(payload);
+    displayAstroReport(reportOutput, result.report);
+    reportOutput.hidden = false;
+    reportStatus.textContent = result.emailSent
+      ? 'تم إنشاء التقرير وإرساله إلى بريد حسابك.'
+      : 'تم إنشاء التقرير. لم يؤكد النظام إرسال بريد إلكتروني.';
+  } catch (error) {
+    reportStatus.textContent = error instanceof Error ? error.message : 'تعذر إنشاء التقرير.';
+  } finally {
+    await refreshReportAuth();
+  }
+});
+
+document.addEventListener('astro-chart-calculated', event => {
+  window.LAST_ASTRO_CHART = event.detail;
+  reportStatus.textContent = 'تم تحديث الخريطة. يمكنك الآن إنشاء التقرير.';
+});
+refreshReportAuth();
+</script>
+
 </body>
 </html>
