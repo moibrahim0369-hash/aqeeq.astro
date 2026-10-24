@@ -1,0 +1,80 @@
+(() => {
+  'use strict';
+  const SIGNS = ['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'];
+  const MASTER = new Set([11,22,33]);
+  const ARCANA = [
+    ['البداية والإرادة','مبادرة وابتكار','اندفاع أو تشتت'],['المعرفة والحدس','إنصات ووعي داخلي','كتمان أو تردد'],['النمو والرعاية','إبداع واحتواء','إفراط في السيطرة'],['النظام والمسؤولية','ثبات وتنظيم','جمود أو تشدد'],['التعلم والقيم','حكمة ومشاركة خبرة','وعظ أو تعلق بالقواعد'],['الاختيار والانسجام','تقارب ووضوح قيم','إرضاء الآخرين'],['الحركة والتقدم','شجاعة وتوجيه للطاقة','استعجال أو صراع'],['العدل والتوازن','إنصاف واتزان','قسوة في الحكم'],['التأمل والخبرة','صبر واستقلال','عزلة أو انغلاق'],['الدورات والفرص','مرونة واستعداد للتغيير','انتظار الحظ'],['القوة والاتزان','شجاعة هادئة وضبط للنفس','كبت أو إنهاك'],['تغيير المنظور','تأنٍ ورؤية مختلفة','تعليق القرار'],['التحول والتجدد','ترك ما انتهى','مقاومة التغيير'],['الاعتدال والمواءمة','توازن وتدرج','تأجيل الاحتياجات'],['الاختيار الواعي','ملاحظة التعلق واستعادة الحرية','تعلق أو إفراط'],['التحرر من البنى القديمة','كشف ما يحتاج إلى إصلاح','هدم بلا خطة'],['المراجعة وإعادة البناء','تعلم من التغيير','خوف من فقد السيطرة'],['الأمل والإلهام','ثقة هادئة ورؤية بعيدة','مثالية أو تشتت'],['الحدس والمشاعر','خيال وتعاطف مع التحقق','ضبابية أو إسقاط'],['الوضوح والحيوية','تعبير ودفء','استنزاف أو مبالغة'],['المراجعة والنداء الداخلي','تعلم من الماضي','لوم الذات'],['الاكتمال والاندماج','إغلاق مرحلة واتساع الأفق','تشتت قبل الإغلاق'],['البدايات المفتوحة','فضول وتجربة','مخاطرة دون تقدير']
+  ];
+  const normDate = value => {
+    if (value instanceof Date && !Number.isNaN(value.getTime())) return {year:value.getFullYear(),month:value.getMonth()+1,day:value.getDate()};
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
+    if (!match) throw new TypeError('تاريخ الميلاد مطلوب بصيغة YYYY-MM-DD');
+    const [,y,m,d] = match.map(Number);
+    const check = new Date(Date.UTC(y,m-1,d));
+    if (check.getUTCFullYear()!==y || check.getUTCMonth()!==m-1 || check.getUTCDate()!==d) throw new RangeError('تاريخ الميلاد غير صالح');
+    return {year:y,month:m,day:d};
+  };
+  function digitSum(value) { return String(Math.abs(Math.trunc(value))).split('').reduce((sum,digit)=>sum+Number(digit),0); }
+  function reduceLifePath(value) { let n=Math.abs(Math.trunc(value)); while(n>9&&!MASTER.has(n)) n=digitSum(n); return n; }
+  function calculateLifePath(birthDate) {
+    const {year,month,day}=normDate(birthDate);
+    const components=[reduceLifePath(day),reduceLifePath(month),reduceLifePath(digitSum(year))];
+    return {number:reduceLifePath(components.reduce((a,b)=>a+b,0)),components};
+  }
+  function reduceArcana(value) { let n=Math.abs(Math.trunc(value)); while(n>22) n=digitSum(n); return n || 22; }
+  function calculateDestinyMatrix(birthDate) {
+    const {year,month,day}=normDate(birthDate);
+    const north=reduceArcana(day), east=reduceArcana(month), south=reduceArcana(digitSum(year)), west=reduceArcana(north+east+south);
+    const nodes={north,east,south,west,northEast:reduceArcana(north+east),southEast:reduceArcana(east+south),southWest:reduceArcana(south+west),northWest:reduceArcana(west+north),center:reduceArcana(north+east+south+west)};
+    return {nodes, lines:{money:['northEast','center','southWest'],love:['northWest','center','southEast']}, formula:'اليوم والشهر ومجموع أرقام السنة؛ الغرب مجموع المحاور الثلاثة، والزوايا مجموع الجارين، والمركز مجموع المحاور الأربعة، مع اختزال الأعداد إلى 1–22 بجمع أرقامها.'};
+  }
+  const lifeTraits = n => {
+    const traits={1:['المبادرة','الاستقلال','القيادة'],2:['التعاون','الإنصات','الحساسية'],3:['التعبير','الإبداع','التواصل'],4:['التنظيم','الثبات','البناء'],5:['المرونة','الفضول','التجربة'],6:['الرعاية','الانسجام','المسؤولية'],7:['التأمل','البحث','التحليل'],8:['الإدارة','الإنجاز','الطموح'],9:['التعاطف','الحكمة','خدمة الآخرين'],11:['الإلهام','الحدس','الرؤية'],22:['البناء الكبير','التخطيط','الأثر العملي'],33:['التعليم','الرعاية','الإلهام']};
+    return traits[n] || traits[reduceLifePath(n)] || traits[1];
+  };
+  const escapeHTML = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const labels={north:'الجوهر · يوم الميلاد',northEast:'موهبة مركبة · المال',east:'الاتصال الروحي · شهر الميلاد',southEast:'خط العلاقات',south:'الدروس · سنة الميلاد',southWest:'مسار الوفرة',west:'تكامل المحاور',northWest:'مساحة العاطفة',center:'المحور المركزي'};
+  function renderSVG(matrix) {
+    const coords={north:[160,31],northEast:[251,69],east:[289,160],southEast:[251,251],south:[160,289],southWest:[69,251],west:[31,160],northWest:[69,69],center:[160,160]};
+    const ring=['north','northEast','east','southEast','south','southWest','west','northWest'];
+    const point=k=>coords[k].join(',');
+    const line=(a,b,cls)=>`<line class="aqm-line ${cls}" x1="${coords[a][0]}" y1="${coords[a][1]}" x2="${coords[b][0]}" y2="${coords[b][1]}"/>`;
+    const polygon=ring.map(point).join(' ');
+    const nodes=Object.entries(coords).map(([key,[x,y]])=>`<g class="aqm-node ${key==='center'?'is-center':''}" tabindex="0" role="button" data-node="${key}" aria-label="${escapeHTML(labels[key])}: ${matrix.nodes[key]}" aria-describedby="aqm-tooltip"><circle cx="${x}" cy="${y}" r="${key==='center'?22:18}"/><text x="${x}" y="${y+5}">${matrix.nodes[key]}</text><title>${escapeHTML(labels[key])}: ${matrix.nodes[key]}</title></g>`).join('');
+    return `<svg class="aqm-svg" viewBox="0 0 320 320" role="img" aria-label="مصفوفة رمزية من ثمانية محاور"> <polygon class="aqm-octagon" points="${polygon}"/> <path class="aqm-star" d="M160 31L251 251L69 69L289 160L31 160L251 69L69 251L160 31M31 160L160 289L289 160M69 69L251 251M251 69L69 251"/>${line('north','south','aqm-axis')}${line('east','west','aqm-axis')}${line('northEast','southWest','aqm-diagonal')}${line('northWest','southEast','aqm-diagonal')}${nodes}</svg>`;
+  }
+  function render(host,dateValue) {
+    const life=calculateLifePath(dateValue), matrix=calculateDestinyMatrix(dateValue), n=life.number, traits=lifeTraits(n), num=matrix.nodes;
+    host.innerHTML=`<section class="aqm-shell" dir="rtl" aria-label="مسار الحياة ومصفوفة القدر"><header class="aqm-header"><span class="aqm-kicker">قراءة رقمية رمزية · ${escapeHTML(dateValue)}</span><h2>مسار الحياة ومصفوفة القدر</h2><p>أداة للتأمل واستكشاف المعاني، وليست قياساً علمياً أو تنبؤاً.</p></header><article class="aqm-hero"><div class="aqm-number">${n}</div><div><span class="aqm-kicker">رقم مسار الحياة</span><h3>طريقك يتشكل بخياراتك</h3><div class="aqm-tags">${traits.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div></div></article><div class="aqm-grid"><article class="aqm-card aqm-chart-card"><div class="aqm-card-head"><div><span class="aqm-kicker">الأركانا الكبرى · 1–22</span><h3>مصفوفة المحاور الثمانية</h3></div></div><div class="aqm-matrix-wrap">${renderSVG(matrix)}<div class="aqm-tooltip" id="aqm-tooltip" role="status" aria-live="polite">اختار نقطة لعرض معناها.</div></div><div class="aqm-lines"><p><b>خط الوفرة الرمزي:</b> ${num.northEast} ← ${num.center} ← ${num.southWest}</p><p><b>خط العلاقات الرمزي:</b> ${num.northWest} ← ${num.center} ← ${num.southEast}</p></div><p class="aqm-method">${escapeHTML(matrix.formula)} خطوط الوفرة والعلاقات هنا وصلات تركيبية بين النقاط المعروضة، وليست صيغة موحدة متفقاً عليها.</p></article><div class="aqm-interpretations"><article class="aqm-card"><span class="aqm-kicker">معنى الرقم ${n}</span><h3>مسار الحياة</h3><div class="aqm-reading"><b>مساحة القوة</b><p>${escapeHTML(traits.join('، '))}. جرّب تحويل هذه السمات إلى خطوات تختارها بوعي.</p></div><div class="aqm-reading is-shadow"><b>ما يستحق الملاحظة</b><p>قد يظهر ظل الرقم بصورة مبالغ فيها عند الضغط. راقب النمط دون اعتباره حكماً ثابتاً على شخصيتك.</p></div></article><article class="aqm-card"><span class="aqm-kicker">الجوهر والدروس</span><h3>النقطة المركزية</h3><div class="aqm-reading"><b>${num.center} · ${escapeHTML(ARCANA[num.center-1][0])}</b><p>${escapeHTML(ARCANA[num.center-1][1])}</p></div><div class="aqm-reading is-shadow"><b>مساحة التوازن</b><p>${escapeHTML(ARCANA[num.center-1][2])}</p></div></article></div></div><details class="aqm-details"><summary>تفاصيل النقاط ومعانيها</summary><div class="aqm-node-list">${Object.keys(labels).map(key=>`<article><b>${escapeHTML(labels[key])} · ${num[key]}</b><p>${escapeHTML(ARCANA[num[key]-1][1])}</p><small>جانب يستحق الانتباه: ${escapeHTML(ARCANA[num[key]-1][2])}</small></article>`).join('')}</div></details><footer class="aqm-disclaimer">الاختزال الرقمي وصيغ المصفوفة تختلف بين المدارس. هذه الحاسبة تعرض طريقة حساب معلنة وبسيطة لأغراض التأمل، لا حقيقة علمية عن القدر.</footer></section>`;
+    const tip=host.querySelector('#aqm-tooltip');
+    host.querySelectorAll('.aqm-node').forEach(node=>{
+      const show=()=>{const key=node.dataset.node, value=num[key], [positive,shadow]=ARCANA[value-1].slice(1);tip.textContent=`${labels[key]} · ${value}: ${positive}. جانب للتأمل: ${shadow}.`;host.querySelectorAll('.aqm-node').forEach(n=>n.classList.toggle('is-active',n===node));};
+      node.addEventListener('mouseenter',show);node.addEventListener('focus',show);node.addEventListener('click',show);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});
+    });
+  }
+  function initResult(root) {
+    if (!root || root.dataset.aqmReady==='true') return;
+    const date=document.querySelector('#f-date')?.value;
+    if (!date || !root.children.length) return;
+    root.dataset.aqmReady='true';
+    const original=[...root.childNodes];
+    root.replaceChildren();
+    const tabs=document.createElement('div');tabs.className='aqm-tabs';tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','أقسام النتيجة');
+    const chartBtn=document.createElement('button'), matrixBtn=document.createElement('button');
+    [[chartBtn,'chart','الخريطة والعبور'],[matrixBtn,'numbers','الأرقام ومصفوفة القدر']].forEach(([btn,id,label],i)=>{btn.type='button';btn.id=`aqm-tab-${id}`;btn.setAttribute('role','tab');btn.setAttribute('aria-selected',String(i===0));btn.setAttribute('aria-controls',`aqm-panel-${id}`);btn.tabIndex=i===0?0:-1;btn.textContent=label;tabs.append(btn);});
+    const chartPanel=document.createElement('div'),matrixPanel=document.createElement('div');
+    chartPanel.id='aqm-panel-chart';matrixPanel.id='aqm-panel-numbers';chartPanel.setAttribute('role','tabpanel');matrixPanel.setAttribute('role','tabpanel');matrixPanel.setAttribute('aria-labelledby','aqm-tab-numbers');chartPanel.setAttribute('aria-labelledby','aqm-tab-chart');chartPanel.className='aqm-tab-panel';matrixPanel.className='aqm-tab-panel';
+    original.forEach(node=>chartPanel.append(node));root.append(tabs,chartPanel,matrixPanel);
+    const activate=id=>{const isChart=id==='chart';chartPanel.hidden=!isChart;matrixPanel.hidden=isChart;chartBtn.setAttribute('aria-selected',String(isChart));matrixBtn.setAttribute('aria-selected',String(!isChart));chartBtn.tabIndex=isChart?0:-1;matrixBtn.tabIndex=isChart?-1:0;};
+    chartBtn.addEventListener('click',()=>activate('chart'));matrixBtn.addEventListener('click',()=>activate('numbers'));
+    tabs.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();(e.target===chartBtn?matrixBtn:chartBtn).click();(e.target===chartBtn?matrixBtn:chartBtn).focus();}});
+    render(matrixPanel,date);
+  }
+  const api={calculateLifePath,calculateDestinyMatrix,reduceArcana,reduceLifePath};
+  window.AqeeqNumerology=api;
+  const mount=()=>{const root=document.querySelector('#result');if(root)initResult(root);};
+  new MutationObserver(()=>{const root=document.querySelector('#result');if(root&&root.dataset.aqmReady==='true'&&!root.querySelector('.aqm-shell'))delete root.dataset.aqmReady;mount();}).observe(document.documentElement,{childList:true,subtree:true});
+  window.addEventListener('DOMContentLoaded',mount);mount();
+})();
+
+
