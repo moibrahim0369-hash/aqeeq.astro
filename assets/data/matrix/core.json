@@ -54,7 +54,8 @@
         "en": "The Magician"
       },
       "headline": "البداية والإرادة",
-      "file": "arcana-01.json"
+      "file": "arcana-01.json",
+      "keywords": []
     },
     {
       "id": 2,
@@ -64,7 +65,8 @@
         "en": "The High Priestess"
       },
       "headline": "المعرفة والحدس",
-      "file": "arcana-02.json"
+      "file": "arcana-02.json",
+      "keywords": []
     },
     {
       "id": 3,
@@ -74,7 +76,8 @@
         "en": "The Empress"
       },
       "headline": "النمو والرعاية",
-      "file": "arcana-03.json"
+      "file": "arcana-03.json",
+      "keywords": []
     },
     {
       "id": 4,
@@ -84,7 +87,8 @@
         "en": "The Emperor"
       },
       "headline": "النظام والمسؤولية",
-      "file": "arcana-04.json"
+      "file": "arcana-04.json",
+      "keywords": []
     },
     {
       "id": 5,
@@ -94,7 +98,8 @@
         "en": "The Hierophant"
       },
       "headline": "التعلم والقيم",
-      "file": "arcana-05.json"
+      "file": "arcana-05.json",
+      "keywords": []
     },
     {
       "id": 6,
@@ -104,7 +109,8 @@
         "en": "The Lovers"
       },
       "headline": "الاختيار والانسجام",
-      "file": "arcana-06.json"
+      "file": "arcana-06.json",
+      "keywords": []
     },
     {
       "id": 7,
@@ -114,7 +120,8 @@
         "en": "The Chariot"
       },
       "headline": "الحركة والتقدم",
-      "file": "arcana-07.json"
+      "file": "arcana-07.json",
+      "keywords": []
     },
     {
       "id": 8,
@@ -124,7 +131,8 @@
         "en": "Justice"
       },
       "headline": "العدل والتوازن",
-      "file": "arcana-08.json"
+      "file": "arcana-08.json",
+      "keywords": []
     },
     {
       "id": 9,
@@ -134,7 +142,8 @@
         "en": "The Hermit"
       },
       "headline": "التأمل والخبرة",
-      "file": "arcana-09.json"
+      "file": "arcana-09.json",
+      "keywords": []
     },
     {
       "id": 10,
@@ -144,7 +153,8 @@
         "en": "Wheel of Fortune"
       },
       "headline": "الدورات والفرص",
-      "file": "arcana-10.json"
+      "file": "arcana-10.json",
+      "keywords": []
     },
     {
       "id": 11,
@@ -154,7 +164,8 @@
         "en": "Strength"
       },
       "headline": "القوة والاتزان",
-      "file": "arcana-11.json"
+      "file": "arcana-11.json",
+      "keywords": []
     },
     {
       "id": 12,
@@ -164,7 +175,8 @@
         "en": "The Hanged Man"
       },
       "headline": "تغيير المنظور",
-      "file": "arcana-12.json"
+      "file": "arcana-12.json",
+      "keywords": []
     },
     {
       "id": 13,
@@ -174,7 +186,8 @@
         "en": "Death"
       },
       "headline": "التحول والتجدد",
-      "file": "arcana-13.json"
+      "file": "arcana-13.json",
+      "keywords": []
     },
     {
       "id": 14,
@@ -184,7 +197,8 @@
         "en": "Temperance"
       },
       "headline": "الاعتدال والمواءمة",
-      "file": "arcana-14.json"
+      "file": "arcana-14.json",
+      "keywords": []
     },
     {
       "id": 15,
@@ -194,7 +208,8 @@
         "en": "The Devil"
       },
       "headline": "الاختيار الواعي",
-      "file": "arcana-15.json"
+      "file": "arcana-15.json",
+      "keywords": []
     },
     {
       "id": 16,
@@ -204,7 +219,8 @@
         "en": "The Tower"
       },
       "headline": "التحرر من البنى القديمة",
-      "file": "arcana-16.json"
+      "file": "arcana-16.json",
+      "keywords": []
     },
     {
       "id": 17,
@@ -213,8 +229,14 @@
         "ar": "النجمة",
         "en": "The Star"
       },
-      "headline": "",
-      "file": "arcana-17.json"
+      "headline": "الأمل والإلهام",
+      "file": "arcana-17.json",
+      "keywords": [
+        "الأمل",
+        "الإلهام",
+        "الاتصال بالبصيرة",
+        "التجدد الروحي"
+      ]
     },
     {
       "id": 18,
@@ -223,8 +245,14 @@
         "ar": "القمر",
         "en": "The Moon"
       },
-      "headline": "",
-      "file": "arcana-18.json"
+      "headline": "الحدس والمشاعر",
+      "file": "arcana-18.json",
+      "keywords": [
+        "العقل الباطن",
+        "الأوهام",
+        "الخوف العميق",
+        "الأحلام والحدس"
+      ]
     },
     {
       "id": 19,
@@ -233,8 +261,15 @@
         "ar": "الشمس",
         "en": "The Sun"
       },
-      "headline": "",
-      "file": "arcana-19.json"
+      "headline": "الوضوح والحيوية",
+      "file": "arcana-19.json",
+      "keywords": [
+        "الوضوح",
+        "النجاح",
+        "الحيوية",
+        "القيادة",
+        "البهجة والازدهار"
+      ]
     },
     {
       "id": 20,
@@ -243,8 +278,14 @@
         "ar": "النداء (الحُكم)",
         "en": "Judgement"
       },
-      "headline": "",
-      "file": "arcana-20.json"
+      "headline": "المراجعة والنداء الداخلي",
+      "file": "arcana-20.json",
+      "keywords": [
+        "الصحوة",
+        "التحرر من أعباء الماضي",
+        "الكارما العائلية",
+        "الولادة الجديدة"
+      ]
     },
     {
       "id": 21,
@@ -253,8 +294,14 @@
         "ar": "العالم",
         "en": "The World"
       },
-      "headline": "",
-      "file": "arcana-21.json"
+      "headline": "الاكتمال والاندماج",
+      "file": "arcana-21.json",
+      "keywords": [
+        "الاكتمال",
+        "الاندماج الشامل",
+        "انتهاء الدورات الكبرى",
+        "السلام الكوني"
+      ]
     },
     {
       "id": 22,
@@ -263,8 +310,15 @@
         "ar": "المجنون",
         "en": "The Fool"
       },
-      "headline": "",
-      "file": "arcana-22.json"
+      "headline": "البدايات المفتوحة",
+      "file": "arcana-22.json",
+      "keywords": [
+        "البدايات الصفرية",
+        "البراءة",
+        "الحرية المطلقة",
+        "الشجاعة في المجهول",
+        "القفزة الروحية"
+      ]
     }
   ]
 }

@@ -6,12 +6,18 @@
     "ar": "الشمس",
     "en": "The Sun"
   },
-  "keywords": [],
-  "headline": "",
+  "keywords": [
+    "الوضوح",
+    "النجاح",
+    "الحيوية",
+    "القيادة",
+    "البهجة والازدهار"
+  ],
+  "headline": "الوضوح والحيوية",
   "core": {
     "psychology": "",
-    "gift": "",
-    "shadowTrap": "",
+    "gift": "تعبير ودفء",
+    "shadowTrap": "استنزاف أو مبالغة",
     "growth": ""
   },
   "chakras": {
