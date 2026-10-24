@@ -121,3 +121,175 @@
 
 
 
+
+
+/* Story Share Card: client-side 9:16 PNG generation */
+(() => {
+  'use strict';
+
+  const SITE_URL = 'https://moibrahim0369-hash.github.io/aqeeq.astro/';
+  const ACCOUNT = '@mohamed.ibrahim.astro';
+  const W = 1080;
+  const H = 1920;
+  const $ = (root, selector) => root.querySelector(selector);
+
+  function roundedRect(ctx, x, y, width, height, radius) {
+    ctx.beginPath();
+    ctx.roundRect(x, y, width, height, radius);
+  }
+
+  function centeredText(ctx, text, y, font, color, maxWidth = 900) {
+    ctx.font = font;
+    ctx.fillStyle = color;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.direction = 'rtl';
+    ctx.fillText(String(text), W / 2, y, maxWidth);
+  }
+
+  function drawStory(data) {
+    const canvas = document.createElement('canvas');
+    canvas.width = W;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const background = ctx.createLinearGradient(0, 0, W, H);
+    background.addColorStop(0, '#080a10');
+    background.addColorStop(.52, '#15131b');
+    background.addColorStop(1, '#0b1019');
+    ctx.fillStyle = background;
+    ctx.fillRect(0, 0, W, H);
+
+    const glow = (x, y, radius, color) => {
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+      gradient.addColorStop(0, color);
+      gradient.addColorStop(1, 'rgba(10,12,18,0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(x-radius, y-radius, radius*2, radius*2);
+    };
+    glow(120, 410, 500, 'rgba(192,57,43,.24)');
+    glow(1000, 1330, 470, 'rgba(212,175,55,.12)');
+
+    // Delicate orbital rings and star points carry the site's night-sky identity.
+    ctx.save();
+    ctx.strokeStyle = 'rgba(212,175,55,.16)';
+    ctx.lineWidth = 2;
+    [300, 385, 470].forEach(radius => {
+      ctx.beginPath(); ctx.arc(W/2, 590, radius, 0, Math.PI*2); ctx.stroke();
+    });
+    for (let i=0;i<34;i++) {
+      const x = 72 + ((i*193 + 41) % 936);
+      const y = 150 + ((i*317 + 89) % 1500);
+      ctx.fillStyle = i%5===0 ? 'rgba(212,175,55,.62)' : 'rgba(237,231,218,.32)';
+      ctx.beginPath(); ctx.arc(x,y,i%5===0?3:1.8,0,Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+
+    // Frosted-glass card.
+    roundedRect(ctx, 66, 92, 948, 1736, 44);
+    ctx.fillStyle = 'rgba(16,19,29,.78)'; ctx.fill();
+    ctx.strokeStyle = 'rgba(226,204,143,.35)'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.save(); roundedRect(ctx, 82, 108, 916, 1704, 34); ctx.clip();
+    const sheen = ctx.createLinearGradient(90, 110, 900, 1650);
+    sheen.addColorStop(0, 'rgba(255,255,255,.045)'); sheen.addColorStop(.5, 'rgba(255,255,255,.008)'); sheen.addColorStop(1, 'rgba(212,175,55,.025)');
+    ctx.fillStyle=sheen;ctx.fillRect(82,108,916,1704);ctx.restore();
+
+    centeredText(ctx, 'عقيق أسترو', 210, '700 70px "Reem Kufi", "Noto Naskh Arabic", serif', '#f2dfad');
+    centeredText(ctx, 'AKEEK ASTRO  ·  خريطة رمزية للتأمل', 277, '500 25px Arial, sans-serif', '#b9a979');
+    ctx.strokeStyle='rgba(212,175,55,.48)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(245,335);ctx.lineTo(835,335);ctx.stroke();
+    centeredText(ctx, `تاريخ الميلاد  ·  ${data.date}`, 394, '500 34px "Noto Naskh Arabic", serif', '#d1d3db');
+
+    // Life-path hero capsule.
+    roundedRect(ctx, 180, 490, 720, 355, 38);
+    const hero=ctx.createLinearGradient(180,490,900,845);hero.addColorStop(0,'rgba(212,175,55,.2)');hero.addColorStop(1,'rgba(192,57,43,.2)');
+    ctx.fillStyle=hero;ctx.fill();ctx.strokeStyle='rgba(212,175,55,.64)';ctx.lineWidth=2;ctx.stroke();
+    centeredText(ctx, 'مسار الحياة', 558, '600 34px "Noto Naskh Arabic", serif', '#d9c58f');
+    centeredText(ctx, data.life.number, 680, '700 118px Arial, sans-serif', '#f5df9a');
+    centeredText(ctx, data.traits.slice(0,3).join('  ·  '), 778, '600 29px "Noto Naskh Arabic", serif', '#f3e8ce', 690);
+
+    centeredText(ctx, 'أركان القدر', 965, '700 43px "Noto Naskh Arabic", serif', '#f0dfb3');
+    const anchors=[['الجوهر',data.matrix.anchors.A],['طاقة الروح',data.matrix.anchors.B],['الكارما الأساسية',data.matrix.anchors.C]];
+    anchors.forEach(([label,value],i)=>{
+      const x=170+i*370;
+      roundedRect(ctx,x,1030,330,208,28);ctx.fillStyle='rgba(255,255,255,.045)';ctx.fill();ctx.strokeStyle='rgba(212,175,55,.25)';ctx.lineWidth=2;ctx.stroke();
+      ctx.textAlign='center';ctx.direction='rtl';ctx.textBaseline='middle';ctx.font='500 27px "Noto Naskh Arabic", serif';ctx.fillStyle='#c9c4b8';ctx.fillText(label,x+165,1090,294);
+      ctx.font='700 68px Arial, sans-serif';ctx.fillStyle='#f0d78e';ctx.fillText(String(value),x+165,1170);
+    });
+
+    centeredText(ctx, 'محصلة الشاكرات', 1374, '700 43px "Noto Naskh Arabic", serif', '#f0dfb3');
+    centeredText(ctx, 'Common Energy-Zone', 1432, '500 24px Arial, sans-serif', '#aeb6ca');
+    const totals=[['الجسد',data.chakras.total.physics],['الطاقة',data.chakras.total.energy],['المشاعر',data.chakras.total.emotions]];
+    totals.forEach(([label,value],i)=>{
+      const x=270+i*270;
+      ctx.beginPath();ctx.arc(x,1570,82,0,Math.PI*2);ctx.fillStyle='rgba(192,57,43,.16)';ctx.fill();ctx.strokeStyle='rgba(212,175,55,.46)';ctx.lineWidth=2;ctx.stroke();
+      ctx.textAlign='center';ctx.direction='rtl';ctx.textBaseline='middle';ctx.font='700 48px Arial,sans-serif';ctx.fillStyle='#f3dda0';ctx.fillText(String(value),x,1555);
+      ctx.font='500 25px "Noto Naskh Arabic",serif';ctx.fillStyle='#d3d0c7';ctx.fillText(label,x,1610);
+    });
+
+    ctx.strokeStyle='rgba(212,175,55,.34)';ctx.beginPath();ctx.moveTo(220,1708);ctx.lineTo(860,1708);ctx.stroke();
+    centeredText(ctx, 'اكتشف شفراتك أنت أيضاً', 1760, '600 28px "Noto Naskh Arabic", serif', '#eee1c1');
+    centeredText(ctx, 'moibrahim0369-hash.github.io/aqeeq.astro', 1807, '500 19px Arial, sans-serif', '#d6bb71', 860);
+    return canvas;
+  }
+
+  function readResult(shell) {
+    const api=window.AqeeqNumerology;
+    const match=$ (shell,'.aqm-header .aqm-kicker')?.textContent.match(/\d{4}-\d{2}-\d{2}/);
+    if(!api||!match) throw new Error('لا تتوفر بيانات المصفوفة لهذا التاريخ.');
+    const date=match[0];
+    return {date,life:api.calculateLifePath(date),matrix:api.calculateDestinyMatrix(date),chakras:api.calculateChakraHealthCard(date),traits:(()=>{
+      const txt=$ (shell,'.aqm-tags')?.innerText||'';return txt.split(/\s+/).filter(Boolean);
+    })()};
+  }
+
+  function ensureModal() {
+    let dialog=document.getElementById('aqs-story-dialog');
+    if(dialog) return dialog;
+    dialog=document.createElement('dialog');dialog.id='aqs-story-dialog';dialog.className='aqs-story-dialog';dialog.setAttribute('aria-labelledby','aqs-story-title');
+    dialog.innerHTML='<div class="aqs-story-modal"><header><div><p class="aqs-story-kicker">بطاقة جاهزة للمشاركة</p><h2 id="aqs-story-title">قصتك في صورة</h2></div><button class="aqs-story-close" type="button" aria-label="إغلاق المعاينة">×</button></header><div class="aqs-story-preview"><div class="aqs-story-loading" role="status">جارٍ تجهيز البطاقة…</div><img alt="معاينة بطاقة قصة عقيق أسترو" hidden></div><p class="aqs-story-error" role="alert" hidden></p><footer><button class="aqs-story-download" type="button">تحميل الصورة</button><button class="aqs-story-share" type="button">مشاركة</button></footer><p class="aqs-story-private">الصورة تُنشأ على جهازك ولا يتم إرسال بيانات الميلاد إلى خادم.</p></div>';
+    document.body.append(dialog);
+    dialog.querySelector('.aqs-story-close').addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
+    return dialog;
+  }
+
+  function savePNG(canvas,date) {
+    canvas.toBlob(blob=>{
+      if(!blob) return;
+      const url=URL.createObjectURL(blob),anchor=document.createElement('a');
+      anchor.href=url;anchor.download=`aqeeq-astro-${date}.png`;document.body.append(anchor);anchor.click();anchor.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1500);
+    },'image/png');
+  }
+
+  function addButton(shell) {
+    if(shell.dataset.aqsReady==='true'||!$ (shell,'.aqm-hero')) return;
+    shell.dataset.aqsReady='true';
+    const button=document.createElement('button');button.className='aqs-story-open';button.type='button';
+    button.innerHTML='<span aria-hidden="true">📸</span> استخراج بطاقة القصة <small>Story Card · 9:16</small>';
+    const header=$ (shell,'.aqm-header');header?.insertAdjacentElement('afterend',button);
+    button.addEventListener('click',async()=>{
+      const dialog=ensureModal(),preview=dialog.querySelector('img'),loading=dialog.querySelector('.aqs-story-loading'),error=dialog.querySelector('.aqs-story-error');
+      error.hidden=true;preview.hidden=true;loading.hidden=false;
+      const open=dialog.showModal?()=>dialog.showModal():()=>dialog.setAttribute('open','');open();
+      try{
+        await document.fonts?.ready;
+        const data=readResult(shell),canvas=drawStory(data),image=canvas.toDataURL('image/png');
+        preview.src=image;preview.hidden=false;loading.hidden=true;
+        dialog.querySelector('.aqs-story-download').onclick=()=>savePNG(canvas,data.date);
+        dialog.querySelector('.aqs-story-share').onclick=async()=>{
+          try{
+            const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+            const file=new File([blob],`aqeeq-astro-${data.date}.png`,{type:'image/png'});
+            if(navigator.share&&navigator.canShare?.({files:[file]})) await navigator.share({files:[file],title:'بطاقة عقيق أسترو',text:'اكتشف شفراتك في عقيق أسترو'});
+            else savePNG(canvas,data.date);
+          }catch(cause){if(cause?.name!=='AbortError')savePNG(canvas,data.date);}
+        };
+      }catch(cause){loading.hidden=true;error.textContent='تعذر تجهيز البطاقة الآن. حدّث النتيجة وحاول مرة أخرى.';error.hidden=false;}
+    });
+  }
+
+  const observe=()=>document.querySelectorAll('.aqm-shell').forEach(addButton);
+  new MutationObserver(observe).observe(document.documentElement,{childList:true,subtree:true});
+  observe();
+})();
+
