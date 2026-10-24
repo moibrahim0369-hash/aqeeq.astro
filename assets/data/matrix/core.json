@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "version": 1,
+  "chakras": [
+    {
+      "key": "sahasrara",
+      "order": 1,
+      "name": "التاج",
+      "sanskrit": "Sahasrara"
+    },
+    {
+      "key": "ajna",
+      "order": 2,
+      "name": "العين الثالثة",
+      "sanskrit": "Ajna"
+    },
+    {
+      "key": "vishuddha",
+      "order": 3,
+      "name": "الحنجرة",
+      "sanskrit": "Vishuddha"
+    },
+    {
+      "key": "anahata",
+      "order": 4,
+      "name": "القلب",
+      "sanskrit": "Anahata"
+    },
+    {
+      "key": "manipura",
+      "order": 5,
+      "name": "الضفيرة الشمسية",
+      "sanskrit": "Manipura"
+    },
+    {
+      "key": "svadhisthana",
+      "order": 6,
+      "name": "العجز",
+      "sanskrit": "Svadhisthana"
+    },
+    {
+      "key": "muladhara",
+      "order": 7,
+      "name": "الجذر",
+      "sanskrit": "Muladhara"
+    }
+  ],
+  "arcana": [
+    {
+      "id": 1,
+      "slug": "magician",
+      "name": {
+        "ar": "الساحر",
+        "en": "The Magician"
+      },
+      "headline": "البداية والإرادة",
+      "file": "arcana-01.json"
+    },
+    {
+      "id": 2,
+      "slug": "high-priestess",
+      "name": {
+        "ar": "الكاهنة العليا",
+        "en": "The High Priestess"
+      },
+      "headline": "المعرفة والحدس",
+      "file": "arcana-02.json"
+    },
+    {
+      "id": 3,
+      "slug": "empress",
+      "name": {
+        "ar": "الإمبراطورة",
+        "en": "The Empress"
+      },
+      "headline": "النمو والرعاية",
+      "file": "arcana-03.json"
+    },
+    {
+      "id": 4,
+      "slug": "emperor",
+      "name": {
+        "ar": "الإمبراطور",
+        "en": "The Emperor"
+      },
+      "headline": "النظام والمسؤولية",
+      "file": "arcana-04.json"
+    },
+    {
+      "id": 5,
+      "slug": "hierophant",
+      "name": {
+        "ar": "الكاهن الأعظم",
+        "en": "The Hierophant"
+      },
+      "headline": "التعلم والقيم",
+      "file": "arcana-05.json"
+    },
+    {
+      "id": 6,
+      "slug": "lovers",
+      "name": {
+        "ar": "العاشقان",
+        "en": "The Lovers"
+      },
+      "headline": "الاختيار والانسجام",
+      "file": "arcana-06.json"
+    },
+    {
+      "id": 7,
+      "slug": "chariot",
+      "name": {
+        "ar": "العربة",
+        "en": "The Chariot"
+      },
+      "headline": "الحركة والتقدم",
+      "file": "arcana-07.json"
+    },
+    {
+      "id": 8,
+      "slug": "justice",
+      "name": {
+        "ar": "العدالة",
+        "en": "Justice"
+      },
+      "headline": "العدل والتوازن",
+      "file": "arcana-08.json"
+    },
+    {
+      "id": 9,
+      "slug": "hermit",
+      "name": {
+        "ar": "الناسك",
+        "en": "The Hermit"
+      },
+      "headline": "التأمل والخبرة",
+      "file": "arcana-09.json"
+    },
+    {
+      "id": 10,
+      "slug": "wheel-of-fortune",
+      "name": {
+        "ar": "عجلة الحظ",
+        "en": "Wheel of Fortune"
+      },
+      "headline": "الدورات والفرص",
+      "file": "arcana-10.json"
+    },
+    {
+      "id": 11,
+      "slug": "strength",
+      "name": {
+        "ar": "القوة",
+        "en": "Strength"
+      },
+      "headline": "القوة والاتزان",
+      "file": "arcana-11.json"
+    },
+    {
+      "id": 12,
+      "slug": "hanged-man",
+      "name": {
+        "ar": "المعلّق",
+        "en": "The Hanged Man"
+      },
+      "headline": "تغيير المنظور",
+      "file": "arcana-12.json"
+    },
+    {
+      "id": 13,
+      "slug": "death",
+      "name": {
+        "ar": "التحول (الموت)",
+        "en": "Death"
+      },
+      "headline": "التحول والتجدد",
+      "file": "arcana-13.json"
+    },
+    {
+      "id": 14,
+      "slug": "temperance",
+      "name": {
+        "ar": "الاعتدال",
+        "en": "Temperance"
+      },
+      "headline": "الاعتدال والمواءمة",
+      "file": "arcana-14.json"
+    },
+    {
+      "id": 15,
+      "slug": "devil",
+      "name": {
+        "ar": "الشيطان",
+        "en": "The Devil"
+      },
+      "headline": "الاختيار الواعي",
+      "file": "arcana-15.json"
+    },
+    {
+      "id": 16,
+      "slug": "tower",
+      "name": {
+        "ar": "البرج",
+        "en": "The Tower"
+      },
+      "headline": "التحرر من البنى القديمة",
+      "file": "arcana-16.json"
+    },
+    {
+      "id": 17,
+      "slug": "star",
+      "name": {
+        "ar": "النجمة",
+        "en": "The Star"
+      },
+      "headline": "",
+      "file": "arcana-17.json"
+    },
+    {
+      "id": 18,
+      "slug": "moon",
+      "name": {
+        "ar": "القمر",
+        "en": "The Moon"
+      },
+      "headline": "",
+      "file": "arcana-18.json"
+    },
+    {
+      "id": 19,
+      "slug": "sun",
+      "name": {
+        "ar": "الشمس",
+        "en": "The Sun"
+      },
+      "headline": "",
+      "file": "arcana-19.json"
+    },
+    {
+      "id": 20,
+      "slug": "judgement",
+      "name": {
+        "ar": "النداء (الحُكم)",
+        "en": "Judgement"
+      },
+      "headline": "",
+      "file": "arcana-20.json"
+    },
+    {
+      "id": 21,
+      "slug": "world",
+      "name": {
+        "ar": "العالم",
+        "en": "The World"
+      },
+      "headline": "",
+      "file": "arcana-21.json"
+    },
+    {
+      "id": 22,
+      "slug": "fool",
+      "name": {
+        "ar": "المجنون",
+        "en": "The Fool"
+      },
+      "headline": "",
+      "file": "arcana-22.json"
+    }
+  ]
+}

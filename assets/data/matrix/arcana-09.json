@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "id": 9,
+  "slug": "hermit",
+  "name": {
+    "ar": "الناسك",
+    "en": "The Hermit"
+  },
+  "keywords": [],
+  "headline": "التأمل والخبرة",
+  "core": {
+    "psychology": "",
+    "gift": "صبر واستقلال",
+    "shadowTrap": "عزلة أو انغلاق",
+    "growth": ""
+  },
+  "chakras": {
+    "sahasrara": {
+      "psychology": "",
+      "shadowTrap": "",
+      "bodySymbol": "",
+      "practice": ""
+    },
+    "ajna": {
+      "psychology": "",
+      "shadowTrap": "",
+      "bodySymbol": "",
+      "practice": ""
+    },
+    "vishuddha": {
+      "psychology": "",
+      "shadowTrap": "",
+      "bodySymbol": "",
+      "practice": ""
+    },
+    "anahata": {
+      "psychology": "",
+      "shadowTrap": "",
+      "bodySymbol": "",
+      "practice": ""
+    },
+    "manipura": {
+      "psychology": "",
+      "shadowTrap": "",
+      "bodySymbol": "",
+      "practice": ""
+    },
+    "svadhisthana": {
+      "psychology": "",
+      "shadowTrap": "",
+      "bodySymbol": "",
+      "practice": ""
+    },
+    "muladhara": {
+      "psychology": "",
+      "shadowTrap": "",
+      "bodySymbol": "",
+      "practice": ""
+    }
+  },
+  "ancestral": {
+    "fatherLine": "",
+    "motherLine": ""
+  },
+  "meta": {
+    "status": "draft",
+    "updated": "2026-10-25"
+  }
+}
