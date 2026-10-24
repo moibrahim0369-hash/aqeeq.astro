@@ -41,7 +41,7 @@
     const line=(a,b,cls)=>`<line class="aqm-line ${cls}" x1="${coords[a][0]}" y1="${coords[a][1]}" x2="${coords[b][0]}" y2="${coords[b][1]}"/>`;
     const polygon=ring.map(point).join(' ');
     const nodes=Object.entries(coords).map(([key,[x,y]])=>`<g class="aqm-node ${key==='center'?'is-center':''}" tabindex="0" role="button" data-node="${key}" aria-label="${escapeHTML(labels[key])}: ${matrix.nodes[key]}" aria-describedby="aqm-tooltip"><circle cx="${x}" cy="${y}" r="${key==='center'?22:18}"/><text x="${x}" y="${y+5}">${matrix.nodes[key]}</text><title>${escapeHTML(labels[key])}: ${matrix.nodes[key]}</title></g>`).join('');
-    return `<svg class="aqm-svg" viewBox="0 0 320 320" role="img" aria-label="مصفوفة رمزية من ثمانية محاور"> <polygon class="aqm-octagon" points="${polygon}"/> <path class="aqm-star" d="M160 31L251 251L69 69L289 160L31 160L251 69L69 251L160 31M31 160L160 289L289 160M69 69L251 251M251 69L69 251"/>${line('north','south','aqm-axis')}${line('east','west','aqm-axis')}${line('northEast','southWest','aqm-diagonal')}${line('northWest','southEast','aqm-diagonal')}${nodes}</svg>`;
+    return `<svg class="aqm-svg" viewBox="0 0 320 320" role="group" aria-label="مصفوفة رمزية من ثمانية محاور"> <polygon class="aqm-octagon" points="${polygon}"/> <path class="aqm-star" d="M160 31L251 251L69 69L289 160L31 160L251 69L69 251L160 31M31 160L160 289L289 160M69 69L251 251M251 69L69 251"/>${line('north','south','aqm-axis')}${line('east','west','aqm-axis')}${line('northEast','southWest','aqm-diagonal')}${line('northWest','southEast','aqm-diagonal')}${nodes}</svg>`;
   }
   function render(host,dateValue) {
     const life=calculateLifePath(dateValue), matrix=calculateDestinyMatrix(dateValue), n=life.number, traits=lifeTraits(n), num=matrix.nodes;
@@ -76,5 +76,6 @@
   new MutationObserver(()=>{const root=document.querySelector('#result');if(root&&root.dataset.aqmReady==='true'&&!root.querySelector('.aqm-shell'))delete root.dataset.aqmReady;mount();}).observe(document.documentElement,{childList:true,subtree:true});
   window.addEventListener('DOMContentLoaded',mount);mount();
 })();
+
 
 
