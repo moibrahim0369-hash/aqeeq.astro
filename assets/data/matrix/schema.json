@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Akeek Astro — Arcana file",
+  "type": "object",
+  "required": ["schemaVersion", "id", "slug", "name", "headline", "core", "chakras", "ancestral", "meta"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "integer", "minimum": 1, "maximum": 22 },
+    "slug": { "type": "string" },
+    "name": { "type": "object", "required": ["ar", "en"], "properties": { "ar": { "type": "string" }, "en": { "type": "string" } } },
+    "keywords": { "type": "array", "items": { "type": "string" } },
+    "headline": { "type": "string" },
+    "core": { "type": "object", "required": ["psychology", "gift", "shadowTrap", "growth"], "additionalProperties": { "type": "string" } },
+    "chakras": {
+      "type": "object",
+      "required": ["sahasrara", "ajna", "vishuddha", "anahata", "manipura", "svadhisthana", "muladhara"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["psychology", "shadowTrap", "bodySymbol", "practice"],
+        "additionalProperties": { "type": "string", "pattern": "^[^<>]*$" }
+      }
+    },
+    "ancestral": { "type": "object", "required": ["fatherLine", "motherLine"], "additionalProperties": { "type": "string" } },
+    "meta": { "type": "object", "required": ["status"], "properties": { "status": { "enum": ["draft", "review", "published"] }, "updated": { "type": "string" } } }
+  }
+}
