@@ -6,12 +6,17 @@
     "ar": "النجمة",
     "en": "The Star"
   },
-  "keywords": [],
-  "headline": "",
+  "keywords": [
+    "الأمل",
+    "الإلهام",
+    "الاتصال بالبصيرة",
+    "التجدد الروحي"
+  ],
+  "headline": "الأمل والإلهام",
   "core": {
     "psychology": "",
-    "gift": "",
-    "shadowTrap": "",
+    "gift": "ثقة هادئة ورؤية بعيدة",
+    "shadowTrap": "مثالية أو تشتت",
     "growth": ""
   },
   "chakras": {

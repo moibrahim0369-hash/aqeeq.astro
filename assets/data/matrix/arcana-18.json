@@ -6,12 +6,17 @@
     "ar": "القمر",
     "en": "The Moon"
   },
-  "keywords": [],
-  "headline": "",
+  "keywords": [
+    "العقل الباطن",
+    "الأوهام",
+    "الخوف العميق",
+    "الأحلام والحدس"
+  ],
+  "headline": "الحدس والمشاعر",
   "core": {
     "psychology": "",
-    "gift": "",
-    "shadowTrap": "",
+    "gift": "خيال وتعاطف مع التحقق",
+    "shadowTrap": "ضبابية أو إسقاط",
     "growth": ""
   },
   "chakras": {
