@@ -1446,6 +1446,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     }
     const ch = Astro.chart({ utcMs, lat, lon, hs: $("#f-hs").value, known });
     LAST = { ch, name: $("#f-name").value.trim(), y, m, d, hh, mm, known, placeName };
+    document.dispatchEvent(new CustomEvent("astro-chart-calculated", { detail: LAST }));
     renderResult(LAST);
     const r = $("#result"); r.hidden = false;
     r.scrollIntoView();
