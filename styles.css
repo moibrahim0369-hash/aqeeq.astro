@@ -971,3 +971,19 @@ a,button,summary,.wg,.card,.btn,.bnav a,.svc-ic,.tool-ic,[role="button"]{-webkit
 .syn-master-badge{display:block;width:fit-content;max-width:100%;margin:12px auto;padding:10px 14px;border:1px solid rgba(230,203,144,.7);border-radius:12px;background:rgba(201,163,106,.13);color:var(--brass-hi,#E6CB90);font-weight:700;text-align:center;line-height:1.8}
 .syn-attraction-grid .syn-result-card{height:100%}
 .syn-result-card h4{line-height:1.7}
+
+/* ===== الحساب والقراءة الكاملة (auth.js) ===== */
+.acct-tabs{display:flex;gap:8px;justify-content:center;margin:0 0 18px}
+.acct-tabs button{font-family:var(--display);font-size:1rem;padding:8px 20px;border-radius:999px;border:1px solid var(--gold-dim);background:transparent;color:var(--mist);cursor:pointer}
+.acct-tabs button[aria-selected="true"]{background:rgba(214,174,94,.16);border-color:var(--gold);color:var(--gold)}
+.acct-ok{color:var(--gold);font-family:var(--display);text-align:center}
+#acct-link-msg,#acct-fallback{text-align:center;margin:0 0 14px}
+#acct-user{text-align:center}
+#acct-user .btn{margin-top:12px}
+.ai-box{margin-top:36px;padding:24px 20px;border:1px solid var(--gold-dim);border-radius:22px;background:rgba(214,174,94,.06);text-align:center}
+.ai-box:empty{display:none}
+.ai-box h4{font-family:var(--display);font-size:1.3rem;margin-bottom:6px}
+.ai-box .chk{display:flex;gap:8px;align-items:flex-start;text-align:start;margin:14px 0}
+.ai-note{color:var(--mist);font-size:.92rem;margin-bottom:14px}
+.ai-status{margin-top:12px}
+.ai-report{white-space:pre-wrap;line-height:1.95;text-align:start;margin-top:18px;padding:18px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
