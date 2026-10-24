@@ -1134,7 +1134,10 @@ const Astro = (() => {
     if (key === 'sun') return norm(sunTrue(T).lon + dpsi - 0.00569);
     if (key === 'moon') return norm(moonLonMean(T) + dpsi);
     if (key === 'node') return norm(meanNode(T) + dpsi);
-    if (key === 'lilith') return norm(meanApogee(T) + dpsi);
+    if (key === 'lilith') {   // ليليث المتوسطة: الأوج بيتسقط من مدار القمر المائل (5.145°) على مسار الشمس، زي Swiss Ephemeris
+      const om = meanNode(T), u = (meanApogee(T) - om) * Math.PI / 180;
+      return norm(om + Math.atan2(Math.cos(5.1453 * Math.PI / 180) * Math.sin(u), Math.cos(u)) * 180 / Math.PI + dpsi);
+    }
     if (key === 'pluto' || key === 'neptune') return norm(stdGeoLon(key, T) + dpsi);
     const d = jde - 2451543.5, s = sunTrue(T);
     const h = helioSchlyter(key, d);
