@@ -9,6 +9,11 @@
   const signInfo = lon => ({name:SIGNS[Math.floor(norm(lon)/30)],degree:norm(lon)%30});
   const round1 = x => Math.round(x*10)/10;
   const siteAstro = () => (typeof Astro !== 'undefined' ? Astro : window.Astro);
+  const canonicalBodyKey = key => {
+    const raw=String(key||''), lower=raw.toLowerCase();
+    if(lower==='node'||lower==='lilith') return null;
+    return Object.keys(BODY_AR).find(k=>k.toLowerCase()===lower) || raw;
+  };
   const fmtDeg = x => `${Math.floor(x)}°${String(Math.round((x%1)*60)%60).padStart(2,'0')}′`;
   const toDate = d => d instanceof Date ? d : new Date(d);
   function getChart(date, lat=30, lon=31) {
@@ -17,8 +22,10 @@
     return engine.chart({utcMs:date.getTime(),lat,lon,known:false});
   }
   function bodiesFromChart(chart) {
-    const list = (chart?.bodies || []).map(b => ({key:b.key, name:BODY_AR[b.key] || b.name || b.key, lon:norm(b.lon), speed:Number(b.speed)||0, retro:!!b.retro}));
-    return list;
+    return (chart?.bodies || []).flatMap(b => {
+      const key=canonicalBodyKey(b.key);
+      return key ? [{key, name:BODY_AR[key] || b.name || key, lon:norm(b.lon), speed:Number(b.speed)||0, retro:!!b.retro}] : [];
+    });
   }
   // Meeus-style periodic true-node correction; useful for a live dashboard, not an ephemeris-grade node.
   function trueNodeApprox(date) {
@@ -52,7 +59,7 @@
     return norm(Math.atan2(eclY,dx)/rad);
   }
   function normalizeNatal(input) {
-    return (input||[]).map(p=>({key:p.key||p.name,name:p.name||BODY_AR[p.key]||p.key,lon:norm(p.lon ?? p.longitude),speed:Number(p.speed)||0,retro:!!p.retro})).filter(p=>Number.isFinite(p.lon));
+    return (input||[]).map(p=>{const key=canonicalBodyKey(p.key||p.name);return key?({key,name:p.name||BODY_AR[key]||key,lon:norm(p.lon ?? p.longitude),speed:Number(p.speed)||0,retro:!!p.retro}):null;}).filter(p=>p&&Number.isFinite(p.lon));
   }
   function calculateAspects(transits,natal,date) {
     natal=natal.filter(p=>!['Asc','MC'].includes(p.key));
