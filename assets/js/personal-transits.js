@@ -144,7 +144,7 @@
     renderAt(new Date());
   }
   window.AqeqPersonalTransits={calculateTransits,calculateAspects,mount};
-  const start=()=>{mount();const r=document.querySelector('#result');if(r)new MutationObserver(()=>{if(!r.querySelector('#aqeek-personal-transits'))mount();}).observe(r,{childList:true,subtree:false});document.addEventListener('click',e=>{if(e.target.closest('#result button[type="submit"],#result .recalc'))setTimeout(mount,0);});};
+  const start=()=>{mount();const r=document.querySelector('#result');if(r)new MutationObserver(()=>mount()).observe(r,{childList:true,subtree:false});document.addEventListener('click',e=>{if(e.target.closest('#result button[type="submit"],#result .recalc'))setTimeout(mount,0);});};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
 
