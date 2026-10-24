@@ -45,6 +45,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&amp;family=Cairo:wght@700;800&amp;display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="name_readings.css">
+<link rel="stylesheet" href="assets/css/personal-transits.css">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -1789,6 +1790,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     h += `<div class="cta-box"><h4>عايز قراءة أعمق لخريطتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط الخريطة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="res-wa" href="#book">احجز قراءة الخريطة على واتساب</a></div>${CONTACT_LINE}`;
 
     const root = $("#result");
+    h += '<div id="aqeek-personal-transits"></div>';
     root.innerHTML = h;
     bindContact(root); wirePattern(root, S); wireWheel(root, S); const wa = $("#res-wa", root); wa.href = waLink(summary); openWA(wa);
     const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
@@ -3250,6 +3252,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 
   <script src="engine.js"></script>
   <script src="app.js"></script>
+  <script src="assets/js/personal-transits.js"></script>
 <script src="auth.js" type="module"></script>
 </body>
 </html>
