@@ -28,6 +28,8 @@ const ui = {
   forgot: $('#acct-forgot'),
   userEmail: $('#acct-user-email'),
   signout: $('#acct-signout'),
+  buy: $('#acct-buy'),
+  buyMsg: $('#acct-buy-msg'),
   recForm: $('#acct-recovery-form'),
   newPass: $('#acct-newpass'),
   recMsg: $('#acct-recovery-msg'),
@@ -182,6 +184,41 @@ async function onSignOut() {
   }
 }
 
+/* ---------- بدء الدفع ---------- */
+const CHECKOUT_HOSTS = ['accept.paymob.com', 'uae.paymob.com', 'ksa.paymob.com', 'oman.paymob.com'];
+
+function safeCheckoutUrl(raw) {
+  try {
+    const u = new URL(raw);
+    return u.protocol === 'https:' && CHECKOUT_HOSTS.includes(u.hostname) ? u.href : null;
+  } catch { return null; }
+}
+
+async function onBuy() {
+  say(ui.buyMsg, '');
+  if (!session) return say(ui.buyMsg, 'سجّل دخولك الأول.');
+  busy(ui.buy, true);
+  let navigating = false;
+  try {
+    const { data, error } = await supabase.functions.invoke('create-checkout', { body: { product: 'full_report' } });
+    if (error) {
+      let msg = '';
+      try { msg = (await error.context.json()).error || ''; } catch { /* no body */ }
+      throw new Error(msg || 'تعذّر بدء الدفع. جرّب تاني بعد شوية.');
+    }
+    const url = safeCheckoutUrl(data && data.checkoutUrl);
+    if (!url) throw new Error('رابط الدفع غير صالح. جرّب تاني.');
+    navigating = true;
+    location.assign(url);
+    setTimeout(() => busy(ui.buy, false), 8000);   // لو المستخدم رجع بزر الرجوع
+  } catch (err) {
+    const m = err && err.message;
+    say(ui.buyMsg, m && !/failed to fetch|network|load failed/i.test(m) ? m : arError(err));
+  } finally {
+    if (!navigating) busy(ui.buy, false);
+  }
+}
+
 /* ---------- الرجوع من صفحة الدفع ---------- */
 async function handleOrderReturn() {
   const q = new URLSearchParams(location.search);
@@ -197,7 +234,7 @@ async function handleOrderReturn() {
     if (!s) { say(ui.linkMsg, 'سجّل دخولك عشان نتأكد من حالة الدفع.'); return; }
     const { data } = await supabase.from('orders').select('status').eq('id', id).maybeSingle();
     if (data && data.status === 'paid') {
-      say(ui.linkMsg, 'تم الدفع بنجاح. ارجع للخريطة واضغط «اكتب قراءتي الكاملة».', true);
+      say(ui.linkMsg, 'تم تأكيد الدفع بنجاح. شكراً لك!', true);
       return;
     }
     if (data && data.status === 'cancelled') { say(ui.linkMsg, 'الدفع ماتمش. ماتم خصم أي مبلغ.'); return; }
@@ -230,6 +267,7 @@ function init() {
   ui.forgot.addEventListener('click', onForgot);
   ui.recForm.addEventListener('submit', onRecovery);
   ui.signout.addEventListener('click', onSignOut);
+  ui.buy.addEventListener('click', onBuy);
 
   // مهم: لا نستدعي أي دالة Supabase تانية جوه الـ callback ده.
   supabase.auth.onAuthStateChange((event, s) => {
