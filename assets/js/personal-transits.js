@@ -11,7 +11,7 @@
   const siteAstro = () => (typeof Astro !== 'undefined' ? Astro : window.Astro);
   const canonicalBodyKey = key => {
     const raw=String(key||''), lower=raw.toLowerCase();
-    if(lower==='node'||lower==='lilith') return null;
+    if(lower==='node'||lower==='lilith'||lower==='fortune') return null;
     return Object.keys(BODY_AR).find(k=>k.toLowerCase()===lower) || raw;
   };
   const fmtDeg = x => `${Math.floor(x)}°${String(Math.round((x%1)*60)%60).padStart(2,'0')}′`;
@@ -64,7 +64,7 @@
   function calculateAspects(transits,natal,date) {
     natal=natal.filter(p=>!['Asc','MC'].includes(p.key));
     const later=new Date(date.getTime()+6*3600000), next=bodiesFromChart(getChart(later));
-    next.push({key:'TrueNode',lon:trueNodeApprox(later)});
+    if(!next.some(p=>p.key==='TrueNode')) next.push({key:'TrueNode',lon:trueNodeApprox(later)});   // احتياطي لو المحرك قديم
     const nextChiron=chironApprox(later);if(nextChiron!=null)next.push({key:'Chiron',lon:nextChiron});
     const nextByKey=new Map(next.map(p=>[p.key,p.lon]));
     const slow=new Set(['Jupiter','Saturn','Uranus','Neptune','Pluto','TrueNode','Chiron']);
@@ -84,11 +84,16 @@
     const date=toDate(currentDate); if(Number.isNaN(date.getTime())) throw new Error('التاريخ غير صالح.');
     const chart=getChart(date,opts.lat??30,opts.lon??31), transits=bodiesFromChart(chart);
     if(!transits.some(p=>p.key==='Moon')) throw new Error('لم يُرجع محرك الموقع مواقع الكواكب المطلوبة.');
-    const later=new Date(date.getTime()+6*3600000), nodeLon=trueNodeApprox(date), nodeSpeed=delta(trueNodeApprox(later),nodeLon)/0.25;
-    const node={key:'TrueNode',name:BODY_AR.TrueNode,lon:nodeLon,speed:nodeSpeed,retro:nodeSpeed<0,approximate:true};
+    const later=new Date(date.getTime()+6*3600000);
+    // العقدة الحقيقية بتيجي دقيقة من محرك الموقع. التقريب بيُستخدم بس لو المحرك ما رجّعهاش.
+    let node=null;
+    if(!transits.some(p=>p.key==='TrueNode')){
+      const nodeLon=trueNodeApprox(date), nodeSpeed=delta(trueNodeApprox(later),nodeLon)/0.25;
+      node={key:'TrueNode',name:BODY_AR.TrueNode,lon:nodeLon,speed:nodeSpeed,retro:nodeSpeed<0,approximate:true};
+    }
     const chLon=chironApprox(date), chNext=chironApprox(later), chSpeed=chLon==null||chNext==null?0:delta(chNext,chLon)/0.25;
     if(chLon!=null) transits.push({key:'Chiron',name:BODY_AR.Chiron,lon:chLon,speed:chSpeed,retro:chSpeed<0,approximate:true});
-    transits.push(node);
+    if(node) transits.push(node);
     const natal=normalizeNatal(natalPlanets), aspects=calculateAspects(transits,natal,date);
     let phaseAngle=null,illumination=null;
     if(window.Astronomy){try{phaseAngle=window.Astronomy.MoonPhase(new window.Astronomy.AstroTime(date)); illumination=window.Astronomy.Illumination(window.Astronomy.Body.Moon,new window.Astronomy.AstroTime(date)).phase_fraction;}catch(_){}}
