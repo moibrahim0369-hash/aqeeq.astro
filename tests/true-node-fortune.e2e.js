@@ -3,7 +3,7 @@ const fs = require('fs');
 const BASE = 'http://127.0.0.1:8765';
 let pass = 0, fail = 0;
 const ok = (c, m) => { c ? pass++ : fail++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
-async function chart(date, time) {
+async function chart(date, time, noLib) {
   const b = await chromium.launch(); const p = await b.newPage(); const errs = [];
   p.on('pageerror', (e) => errs.push(e.message));
   await p.route('**/*', async (r) => {
@@ -14,6 +14,7 @@ async function chart(date, time) {
       t = t.slice(0, j) + 'window.__ch = S.ch; ' + t.slice(j);
       return r.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: t });
     }
+    if (noLib && u.endsWith('/astronomy.min.js')) return r.abort();
     return u.startsWith(BASE) ? r.continue() : r.abort();
   });
   await p.goto(BASE + '/index.html#chart');
@@ -27,6 +28,8 @@ async function chart(date, time) {
     return {
       keys: __ch.bodies.map((x) => x.key), fortune: f, rows: rows.join('|'),
       titles: [...document.querySelectorAll('g.pg title')].map((x) => x.textContent),
+      approx: !!document.querySelector('[data-approx]'), readTn: (document.body.textContent.match(/العقدة الشمالية في [^\s]+/) || [''])[0],
+      tnSign: __ch.bodies.find((x) => x.key === 'truenode').sign, nodeSign: __ch.bodies.find((x) => x.key === 'node').sign,
       el: JSON.stringify(__ch.elements || null) + JSON.stringify(__ch.modalities || null),
     };
   });
@@ -51,5 +54,11 @@ async function chart(date, time) {
   ok(night.errs.length === 0, 'no JS errors (night)');
   const unk = await (async () => { const b = await chromium.launch(); const p = await b.newPage(); const e = []; p.on('pageerror', (x) => e.push(x.message)); await p.goto(BASE + '/index.html#chart'); await p.fill('#f-name', 'x'); await p.fill('#f-date', '1999-09-25'); await p.evaluate(() => { const c = document.querySelector('#f-notime, input[type=checkbox]'); if (c) { c.checked = true; c.dispatchEvent(new Event('change', { bubbles: true })); } const s = document.querySelector('#f-city'); const o = [...s.options].find((x) => x.textContent.includes('القاهرة')); s.value = o.value; s.dispatchEvent(new Event('change', { bubbles: true })); }); await p.click('#cform button[type=submit]'); await p.waitForTimeout(1500); await b.close(); return e; })();
   ok(unk.length === 0, 'unknown-time chart: no JS errors ' + unk.join(';'));
+  ok(day.approx === false, 'library loaded: no approximate notice');
+  const SG = ['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'];
+  ok(day.readTn.includes(SG[Math.floor(131.92319 / 30)]), 'reading uses true node sign: ' + day.readTn);
+  const nl = await chart('1999-09-25', '12:00', true);
+  ok(nl.approx === true, 'library blocked: approximate notice shown');
+  ok(nl.errs.length === 0, 'library blocked: no JS errors ' + nl.errs.join(';'));
   console.log(`\n${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);
 })();
