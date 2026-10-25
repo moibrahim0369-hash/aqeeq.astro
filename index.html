@@ -1742,6 +1742,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       <div class="wheel-wrap">${wheelSVG(ch, asp)}</div>
       <div class="wd-panel" id="wd-panel" aria-live="polite" hidden></div>
       ${ch.known ? "" : `<p class="note">من غير وقت الميلاد مش هنقدر نحسب الطالع والبيوت، والقمر ممكن يفرق لحد ٦ درجات.</p>`}
+      ${typeof Astronomy === "undefined" ? `<p class="note" data-approx="1">تنبيه: مكتبة الحساب الفلكي ما اتحملتش، فموضع العقدة الشمالية تقريبي (ممكن يبقى فيه فرق حوالي ٤–٥ دقايق قوسية). حدّث الصفحة لو الاتصال رجع.</p>` : ""}
       ${ch.hs === "whole-fallback" ? `<p class="note">المكان ده بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فاستخدمنا نظام البيوت الكاملة (Whole Sign).</p>` : ""}`;
 
     h += `<div class="tabs" role="tablist" aria-label="أقسام الخريطة">
@@ -1764,7 +1765,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
         ${ch.known ? `<p class="sub">في البيت ${HOUSES[b.house - 1].n}: ${deepHouse(k, b.house)}</p>` : ""}
         ${b.retro ? `<p class="sub">${retroText(k)}</p>` : ""}</article>`;
     });
-    const nd = body(ch, "node"), nf = fmt(nd.lon), south = (nf.s + 6) % 12;
+    const nd = body(ch, "truenode"), nf = fmt(nd.lon), south = (nf.s + 6) % 12;
     rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☊")}</span> العقدة الشمالية في ${SIGNS[nf.s].n} ${num(nf.txt)}</h4>
       <p>اتجاه نموك هو ${SIGNS[nf.s].strength}، ${SIGNS[nf.s].growth}. العقدة الجنوبية في ${SIGNS[south].n}: بتميل ترجع لمنطقة راحة قديمة هي ${SIGNS[south].strength}، فاستخدمها كدعم مش كمكان تقعد فيه.</p>
       ${ch.known ? `<p class="sub">في البيت ${HOUSES[nd.house - 1].n}: اتجاه نموك بيمر عن طريق ${HOUSES[nd.house - 1].area}.</p>` : ""}</article>`;
@@ -2275,7 +2276,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
   }
   function areasHTML(ch) {
     if (!ch.known) return `<p>تحليل مجالات حياتك محتاج وقت الميلاد عشان نعرف البيوت. اكتب وقت ميلادك وجرّب تاني.</p>`;
-    const v = body(ch, "venus"), mr = body(ch, "mars"), mo = body(ch, "moon"), sa = body(ch, "saturn"), nd = body(ch, "node");
+    const v = body(ch, "venus"), mr = body(ch, "mars"), mo = body(ch, "moon"), sa = body(ch, "saturn"), nd = body(ch, "truenode");
     const mcS = SIGNS[Math.floor(ch.mc / 30)];
     const sec = (t, a) => `<h4 class="ph">${t}</h4>` + a.map(x => `<article class="rd"><p>${x}</p></article>`).join("");
     return sec("الحب والعلاقات", [
@@ -2935,7 +2936,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     const sun = sg("sun"), moon = sg("moon"), merc = sg("mercury"), ven = sg("venus"), mar = sg("mars"), sat = sg("saturn");
     const ea = SIGNS[sun].el, eb = SIGNS[moon].el;
     const rel = ea === eb ? "same" : ((ea + eb) % 2 === 0 ? "comp" : "conf");
-    const nd = body(ch, "node").sign;
+    const nd = body(ch, "truenode").sign;
     let o = `<p class="lead2">ده مش توقع للنهاردة، ده وصف لنمطك الثابت: الطريقة الي بتتصرف وتحس بيها وتحب بيها. اقراه بهدوء وخد الي بيشبهك، وسيب الباقي.</p>`;
     o += `<h4 class="ph">غرايزك</h4>`;
     o += sub("إزاي بتحس", PT.feel[moon]);
