@@ -508,7 +508,9 @@ const PLANETS = {
   uranus:  { n: "أورانوس", g: "♅", theme: "رغبتك في التغيير والحرية",       give: "تجديد ومفاجآت وأفكار مختلفة",          watch: "التمرد والقرارات المفاجئة" },
   neptune: { n: "نبتون",   g: "♆", theme: "خيالك وحدسك",                    give: "إلهام وحس فني وروحاني",                watch: "التوهان والأوهام" },
   pluto:   { n: "بلوتو",   g: "♇", theme: "قوتك الداخلية وقدرتك على التحول", give: "تجديد عميق وقوة",                      watch: "السيطرة والهوس" },
-  node:    { n: "العقدة الشمالية", g: "☊" },
+  node:    { n: "العقدة الشمالية (متوسطة)", g: "☊" },
+  truenode:{ n: "العقدة الشمالية (حقيقية)", g: "☊" },
+  fortune: { n: "سهم السعادة", g: "⊗" },
   lilith:  { n: "ليليث (تقريبي، غير محسوم)",   g: "⚸" }
 };
 const PLANET_KEYS = ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"];
@@ -1127,12 +1129,30 @@ const Astro = (() => {
       return norm(Astronomy.Ecliptic(v).elon);
     } catch (e) { return null; }
   }
+  /* العقدة الحقيقية (osculating): تقاطع مدار القمر اللحظي مع الكسوف. بتتحسب من متجه موضع وسرعة القمر
+     (astronomy-engine) بعد تدويره لإطار الكسوف الحقيقي للتاريخ؛ العقدة الصاعدة = z × (r × v). */
+  function aeTrueNode(jde) {
+    if (typeof Astronomy === 'undefined') return null;
+    try {
+      const y = yearOf(jde), jdUt = jde - deltaT(y) / 86400, t = new Astronomy.AstroTime(new Date(msFromJd(jdUt)));
+      const st = Astronomy.RotateState(Astronomy.Rotation_EQJ_ECT(t), Astronomy.GeoMoonState(t));
+      const hx = st.y * st.vz - st.z * st.vy, hy = st.z * st.vx - st.x * st.vz;
+      const lon = norm(Math.atan2(hx, -hy) * DEG);
+      return Number.isFinite(lon) ? lon : null;
+    } catch (e) { return null; }
+  }
   function legacyLonOf(key, jde) {
     const T = (jde - 2451545) / 36525;
     const dpsi = nutation(T).dpsi;
     if (key === 'sun') return norm(sunTrue(T).lon + dpsi - 0.00569);
     if (key === 'moon') return norm(moonLonMean(T) + dpsi);
     if (key === 'node') return norm(meanNode(T) + dpsi);
+    if (key === 'truenode') {   // احتياطي (لو المكتبة ما اتحمّلتش): العقدة المتوسطة + تصحيحات Meeus الدورية
+      const rad = Math.PI / 180, D = norm(297.85036 + 445267.11148 * T), M = norm(357.52772 + 35999.05034 * T),
+        Mp = norm(134.96298 + 477198.867398 * T), F = norm(93.27191 + 483202.017538 * T);
+      const corr = -1.4979 * Math.sin((2 * D - 2 * F) * rad) - 0.15 * Math.sin(M * rad) - 0.1226 * Math.sin(2 * D * rad) + 0.1176 * Math.sin(2 * F * rad) - 0.0801 * Math.sin((2 * Mp - 2 * F) * rad);
+      return norm(meanNode(T) + corr + dpsi);
+    }
     if (key === 'lilith') {   // ليليث المتوسطة: الأوج بيتسقط من مدار القمر المائل (5.145°) على مسار الشمس، زي Swiss Ephemeris
       const om = meanNode(T), u = (meanApogee(T) - om) * Math.PI / 180;
       return norm(om + Math.atan2(Math.cos(5.1453 * Math.PI / 180) * Math.sin(u), Math.cos(u)) * 180 / Math.PI + dpsi);
@@ -1145,6 +1165,7 @@ const Astro = (() => {
   }
   function lonOf(key, jde) {
     if (key === 'node' || key === 'lilith') return legacyLonOf(key, jde);
+    if (key === 'truenode') { const tn = aeTrueNode(jde); return tn !== null ? tn : legacyLonOf(key, jde); }
     const ae = aeLonOf(key, jde);
     return ae !== null ? ae : legacyLonOf(key, jde);
   }
@@ -1189,8 +1210,8 @@ const Astro = (() => {
   }
 
   /* ---------- الخريطة كاملة ---------- */
-  const BODY_KEYS = [...PLANET_KEYS, 'node', 'lilith'];
-  const RETRO_KEYS = ['mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  const BODY_KEYS = [...PLANET_KEYS, 'node', 'lilith', 'truenode'];
+  const RETRO_KEYS = ['mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'truenode'];
 
   /* Vertex: تقاطع الدائرة العمودية الغربية مع الكسوف، بغض النظر عن الارتفاع */
   function vertexWest(ramc, eps, lat) {
@@ -1232,6 +1253,11 @@ const Astro = (() => {
       if (hs === 'placidus') cusps = placidusCusps(ramc, eps, lat, asc, mc);
       if (!cusps) { cusps = wholeSignCusps(asc); used = hs === 'placidus' ? 'whole-fallback' : 'whole'; }
       Object.assign(out, { ramc, eps, asc, mc, cusps, hs: used, vertex: vertexWest(ramc, eps, lat) });
+      /* سهم السعادة: بالنهار طالع + قمر − شمس، وبالليل طالع + شمس − قمر (الشمس فوق الأفق = نهار) */
+      const sunB = bodies.find(b => b.key === 'sun'), moonB = bodies.find(b => b.key === 'moon');
+      const isDay = norm(sunB.lon - asc) > 180;
+      const fortuneLon = isDay ? norm(asc + moonB.lon - sunB.lon) : norm(asc + sunB.lon - moonB.lon);
+      bodies.push({ key: 'fortune', lon: fortuneLon, speed: 0, retro: false, sign: Math.floor(fortuneLon / 30), day: isDay });
       bodies.forEach(b => { b.house = houseOf(b.lon, cusps); });
     }
     return out;
@@ -1411,13 +1437,13 @@ if (typeof module !== 'undefined') module.exports = Astro;
       const [xa, ya] = pt(la, R3), [xb, yb] = pt(lb, R3);
       o += `<line class="as ${["sq", "opp"].includes(a.asp.k) ? "hard" : "soft"}" x1="${xa}" y1="${ya}" x2="${xb}" y2="${yb}"/>`;
     });
-    const items = ch.bodies.filter(b => PLANET_KEYS.includes(b.key) || b.key === "node").map(b => ({ b, disp: b.lon }));
+    const items = ch.bodies.filter(b => PLANET_KEYS.includes(b.key) || ["node", "truenode", "fortune"].includes(b.key)).map(b => ({ b, disp: b.lon }));
     items.sort((a, b) => a.b.lon - b.b.lon);
     spread(items, 10);
     items.forEach(({ b, disp }) => {
       const [t1x, t1y] = pt(b.lon, R2), [t2x, t2y] = pt(b.lon, R2 - 9), [px, py] = pt(disp, RP);
       o += `<line class="tk" x1="${t1x}" y1="${t1y}" x2="${t2x}" y2="${t2y}"/>`;
-      o += `<g class="pg"${PLANET_KEYS.includes(b.key) ? ` data-kind="planet" data-k="${b.key}"` : ""}><text x="${px}" y="${py}">${gl(PLANETS[b.key].g)}</text>${b.retro ? `<text class="rx" x="${(+px + 13).toFixed(1)}" y="${(+py + 12).toFixed(1)}">℞</text>` : ""}</g>`;
+      o += `<g class="pg"${PLANET_KEYS.includes(b.key) ? ` data-kind="planet" data-k="${b.key}"` : ""}><title>${PLANETS[b.key].n}</title><text x="${px}" y="${py}">${gl(PLANETS[b.key].g)}</text>${b.retro ? `<text class="rx" x="${(+px + 13).toFixed(1)}" y="${(+py + 12).toFixed(1)}">℞</text>` : ""}</g>`;
     });
     return o + "</svg>";
   }
