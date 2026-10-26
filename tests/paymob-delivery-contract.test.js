@@ -8,7 +8,7 @@ const webhook = read('supabase/functions/paymob-webhook/index.ts');
 const report = read('supabase/functions/generate-astro-report/index.ts');
 const auth = read('auth.js');
 const html = read('index.html');
-const migration = read('supabase/migrations/20261026030000_report_delivery_state.sql');
+const migration = read('supabase/migrations/20261026024522_report_delivery_state.sql');
 
 // Webhook signature and success/failure gates.
 assert.ok(webhook.includes('HMAC_FIELDS'), 'Paymob canonical HMAC fields are defined');

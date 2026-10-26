@@ -26,6 +26,7 @@ const ui = {
   msg: $('#acct-msg'),
   submit: $('#acct-submit'),
   forgot: $('#acct-forgot'),
+  google: $('#acct-google'),
   userEmail: $('#acct-user-email'),
   signout: $('#acct-signout'),
   buy: $('#acct-buy'),
@@ -166,6 +167,26 @@ async function onSubmit(e) {
   } finally {
     busy(ui.submit, false);
   }
+}
+
+async function onGoogleSignIn() {
+  say(ui.msg, '');
+  busy(ui.google, true);
+  try {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: redirectUrl() },
+    });
+    if (error) throw error;
+  } catch (err) {
+    say(ui.msg, arError(err));
+    busy(ui.google, false);
+  }
+}
+
+function removeInstagramLinks() {
+  document.querySelectorAll('#ig, #ig-top, [data-ig-link], a[href*="instagram.com"]')
+    .forEach((el) => el.remove());
 }
 
 async function onForgot() {
@@ -343,7 +364,18 @@ function init() {
   document.querySelectorAll('.acct-tabs button').forEach((b) => {
     b.addEventListener('click', () => setMode(b.dataset.mode));
   });
+  if (!ui.google && ui.form.parentNode) {
+    ui.google = document.createElement('button');
+    ui.google.type = 'button';
+    ui.google.id = 'acct-google';
+    ui.google.className = 'btn ghost';
+    ui.google.setAttribute('aria-label', 'المتابعة باستخدام Google');
+    ui.google.textContent = 'G  المتابعة باستخدام Google';
+    ui.form.parentNode.insertBefore(ui.google, ui.form);
+  }
+  removeInstagramLinks();
   ui.form.addEventListener('submit', onSubmit);
+  ui.google?.addEventListener('click', onGoogleSignIn);
   ui.forgot.addEventListener('click', onForgot);
   ui.recForm.addEventListener('submit', onRecovery);
   ui.signout.addEventListener('click', onSignOut);
