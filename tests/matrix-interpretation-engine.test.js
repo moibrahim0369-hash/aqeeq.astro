@@ -16,6 +16,8 @@ const facts = Object.freeze({
 });
 const before = JSON.stringify(facts);
 assert.equal(engine.resolve(facts, [prototype]), null, 'prototype content must never be returned for display');
+assert.equal(engine.resolve(facts, [{ ...prototype, interpretation: { ...prototype.interpretation, reviewStatus: 'draft', completionStatus: 'complete' } }]), null, 'draft content must not be returned even when marked complete');
+assert.equal(engine.resolve(facts, [{ ...prototype, interpretation: { ...prototype.interpretation, reviewStatus: 'approved', completionStatus: 'partial' } }]), null, 'incomplete content must not be returned even when approved');
 const approved = {
   ...prototype,
   interpretation: {
