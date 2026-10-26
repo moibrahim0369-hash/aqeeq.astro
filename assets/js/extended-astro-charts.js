@@ -50,7 +50,7 @@
   }
   window.AqeeqCopyMap={attach:mountCopy};
 
-  const attachTransitCopy=()=>{const host=$('#aqeek-personal-transits');if(host&&!host.querySelector('.aq-copy-map-btn')&&host.querySelector('.aqt-card, .aqt-wheel, .aqt-wrap'))mountCopy(host,'خريطة العبور الشخصي');};
+  const attachTransitCopy=()=>{const host=$('#aqeek-personal-transits');if(host&&!host.querySelector('.aq-copy-map-btn')&&host.querySelector('.aqt-shell'))mountCopy(host,'خريطة العبور الشخصي');};
   attachTransitCopy();new MutationObserver(attachTransitCopy).observe(document.documentElement,{childList:true,subtree:true});
   const section=$('#astro-maps'),content=$('#eam-content');
   if(!section||!content)return;
