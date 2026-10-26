@@ -18,6 +18,8 @@ for (let id = 1; id <= 22; id += 1) {
     assert.equal(typeof entry.core?.[field], 'string', `core.${field} for Arcana ${id}`);
     assert.ok(entry.core[field].trim().length >= 80, `core.${field} should contain a developed draft for Arcana ${id}`);
   }
+  assert.ok(entry.core.growth.startsWith('خطوة تأملية:'), `growth remains gender-neutral for Arcana ${id}`);
+  assert.ok(!entry.core.psychology.includes('تستطيع'), `psychology avoids gendered direct address for Arcana ${id}`);
   assert.ok(!unique.has(entry.core.psychology), `psychology text should be specific to Arcana ${id}`);
   unique.add(entry.core.psychology);
   assert.equal(entry.meta?.status, 'review', `Arcana ${id} remains unpublished`);
