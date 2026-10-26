@@ -42,5 +42,5 @@ assert.match(report, /status: ["']delivered["']/);
 assert.match(auth, /\\.eq\\('status', 'delivered'\\)/);
 assert.match(auth, /\\.eq\\('orders\\.status', 'paid'\\)/);
 assert.match(auth, /ui\\.whatsapp\\.hidden = !delivered/);
-assert.match(html, /id="acct-whatsapp-support"[^>]*hidden/);
+assert.match(html, /<a[^>]*id="acct-whatsapp-support"[^>]*hidden|<a[^>]*hidden[^>]*id="acct-whatsapp-support"/);
 console.log('Paymob webhook/report-delivery contract checks passed. These are source/logic checks, not live provider end-to-end tests.');
