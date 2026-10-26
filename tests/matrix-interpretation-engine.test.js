@@ -15,15 +15,24 @@ const facts = Object.freeze({
   })
 });
 const before = JSON.stringify(facts);
-const base = engine.resolve(facts, [prototype]);
+assert.equal(engine.resolve(facts, [prototype]), null, 'prototype content must never be returned for display');
+const approved = {
+  ...prototype,
+  interpretation: {
+    ...prototype.interpretation,
+    reviewStatus: 'approved',
+    completionStatus: 'complete'
+  }
+};
+const base = engine.resolve(facts, [approved]);
 assert.equal(base.entryId, prototype.id);
 assert.equal(base.position, 'center');
 assert.equal(base.arcanaNumber, 7);
 assert.equal(base.contextFragments.length, 0);
 assert.equal(base.combinationFragments.length, 0);
-assert.equal(base.completeness, 'prototype');
+assert.equal(base.completeness, 'complete');
 assert.equal(JSON.stringify(facts), before, 'resolver must not mutate calculated facts');
-assert.equal(engine.resolve({ matrix: { nodes: { center: 8 } } }, [prototype]), null);
+assert.equal(engine.resolve({ matrix: { nodes: { center: 8 } } }, [approved]), null);
 
 const testOnlyRule = {
   id: 'test-only-context-fixture',
@@ -40,14 +49,14 @@ const testOnlyRule = {
   text: 'fixture overlay'
 };
 // Synthetic rule above exists only to test the resolver mechanics; it is not shipped as method content.
-const withTestFixture = { ...prototype, contextualRules: [testOnlyRule] };
+const withTestFixture = { ...approved, contextualRules: [testOnlyRule] };
 assert.equal(engine.resolve(facts, [withTestFixture]).contextFragments[0].text, 'fixture overlay');
 const combinationFixture = { ...testOnlyRule, id: 'test-only-combination-fixture', text: 'combination fixture' };
-const withCombinationFixture = { ...prototype, combinationRules: [combinationFixture] };
+const withCombinationFixture = { ...approved, combinationRules: [combinationFixture] };
 assert.equal(engine.resolve(facts, [withCombinationFixture]).combinationFragments[0].text, 'combination fixture');
 assert.equal(engine.resolve({ matrix: { nodes: { center: 7, northEast: 3 } } }, [withTestFixture]).contextFragments.length, 0);
 const unverifiedFixture = { ...testOnlyRule, id: 'unverified-fixture', verificationStatus: 'unverified' };
-assert.equal(engine.resolve(facts, [{ ...prototype, contextualRules: [unverifiedFixture] }]).contextFragments.length, 0);
+assert.equal(engine.resolve(facts, [{ ...approved, contextualRules: [unverifiedFixture] }]).contextFragments.length, 0);
 assert.equal(engine.isSourceQualified({ ...testOnlyRule, provenance: { source: { url: 'http://example.invalid', edition: 'test', locator: 'test' } } }), false);
 assert.equal(engine.matchesCondition(facts, { path: 'matrix.nodes.center', operator: 'equals', value: 7 }), true);
 assert.equal(engine.matchesCondition(facts, { path: 'matrix.nodes.center', operator: 'oneOf', values: [7, 8] }), true);
