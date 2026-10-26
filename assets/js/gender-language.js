@@ -25,12 +25,12 @@
   }
   const labels={male:'ذكر',female:'أنثى'};
   function init(){
-    const selects=[...document.querySelectorAll('[data-gender-select]')],saved=localStorage.getItem('aq-gender');
+    const selects=[...document.querySelectorAll('[data-gender-select]')];let saved='';try{saved=localStorage.getItem('aq-gender')||'';}catch(_){}
     selects.filter(s=>s.dataset.genderGroup==='self').forEach(s=>{if(saved)s.value=saved;});
     document.addEventListener('change',event=>{
       const select=event.target.closest('[data-gender-select]');if(!select)return;
       const group=select.dataset.genderGroup;
-      if(group==='self'){localStorage.setItem('aq-gender',select.value);selects.filter(s=>s.dataset.genderGroup==='self').forEach(s=>s.value=select.value);}
+      if(group==='self'){try{localStorage.setItem('aq-gender',select.value);}catch(_){}selects.filter(s=>s.dataset.genderGroup==='self').forEach(s=>s.value=select.value);}
     });
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
