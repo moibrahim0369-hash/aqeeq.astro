@@ -1765,7 +1765,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       const top = R.asps.slice().sort((x, y) => x.orb - y.orb).slice(0, 6);
       const compositePositions = R.composite.positions.map(({ key, lon }) => {
         const sign = SIGNS[Math.floor(Astro.norm(lon) / 30)];
-        return `<div class="cp-composite-chip"><strong>${PLANETS[key].g} ${PLANETS[key].n}</strong><span>${formatPosition(lon)}</span></div>`;
+        return `<div class="cp-composite-chip"><strong>${PLANETS[key].g} ${PLANETS[key].n}</strong><span>${formatPosition(lon)} · ${sign.n}</span></div>`;
       }).join("");
       const compositeAspects = R.composite.aspects.slice(0, 8).map(x =>
         `<li><strong>${PLANETS[x.a].n} — ${PLANETS[x.b].n}</strong>: ${x.asp.n} · الزاوية ${x.angle.toFixed(1)}° · الأورب ${x.orb.toFixed(1)}°.</li>`
@@ -1781,27 +1781,28 @@ if (typeof module !== 'undefined') module.exports = Astro;
       const unknownNote = [P1, P2].some(p => !p.known)
         ? `<p class="cp-note">فيه وقت ميلاد غير معروف، والقمر بيتحرك حوالي 13 درجة في اليوم، فالاتصالات اللي فيها القمر تقريبية.</p>` : "";
       return `<div class="cp-res">
-        <h3>${esc(P1.name)} و${esc(P2.name)}</h3>
-        <p class="cp-meta">${P1.date} · ${P1.placeName} &nbsp;|&nbsp; ${P2.date} · ${P2.placeName}</p>
-        ${unknownNote}
-        ${fallbackNote}
-        <section class="sx cp-wheel-section"><h4>العجلة الثنائية للكواكب والبيوت</h4><div id="cp-bi-wheel" class="aq-wheel-host" aria-label="عجلة التوافق الثنائية"></div></section>
-        <div class="sx"><h4>نظرة عامة</h4><p>${overall}</p></div>
-        <div class="sx"><h4>مؤشرات التوافق</h4><ul>${Object.keys(R.cat).map(k => `<li><strong>${R.cat[k].t}:</strong> ${R.cat[k].level}</li>`).join("")}</ul></div>
-        <div class="sx"><h4>نقاط الانسجام</h4><ul>${allPos.slice(0, 4).map(line).join("") || "<li>مفيش اتصالات انسجام واضحة في المحاور دي.</li>"}</ul></div>
-        <div class="sx"><h4>نقاط الاختلاف</h4><ul>${allNeg.slice(0, 4).map(line).join("") || "<li>مفيش احتكاكات واضحة في المحاور دي.</li>"}</ul></div>
-        <div class="sx"><h4>اتصالات Synastry بين الكواكب الشخصية</h4><ul>${top.map(line).join("") || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul></div>
-        <div class="sx cp-composite">
-          <h4>الخريطة المركّبة Composite</h4>
-          <p class="cp-note">مواضع الكواكب هنا هي منتصفات القوس الأقصر بين خريطتي الميلاد. هذه قراءة فلكية رمزية وليست قياسًا لنجاح العلاقة.</p>
-          <div class="cp-composite-grid">${compositePositions}</div>
-          <h5>اتصالات الكواكب داخل الخريطة المركّبة</h5>
-          <ul>${compositeAspects || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul>
-          ${compositeAngles}
-          ${compositeCusps}
+        <header class="cp-result-head"><div><span class="cp-result-kicker">قراءة توافق رمزية</span><h3>${esc(P1.name)} <span aria-hidden="true">×</span> ${esc(P2.name)}</h3><p class="cp-meta">${P1.date} · ${P1.placeName} <span aria-hidden="true">|</span> ${P2.date} · ${P2.placeName}</p></div><span class="cp-result-mark" aria-hidden="true">☉</span></header>
+        ${unknownNote}${fallbackNote}
+        <section class="cp-overview">
+          <div class="cp-overview-copy"><span class="cp-result-kicker">الصورة العامة</span><p>${overall}</p></div>
+          <div class="cp-indicators">${Object.keys(R.cat).map(k => '<article><strong>'+R.cat[k].t+'</strong><span>'+R.cat[k].level+'</span></article>').join("")}</div>
+        </section>
+        <section class="sx cp-wheel-section"><div class="cp-section-heading"><div><span class="cp-result-kicker">01 · SYNASTRY</span><h4>تراكب الخريطتين</h4></div><span class="cp-section-caption">مواضع واتصالات</span></div><div id="cp-bi-wheel" class="aq-wheel-host" aria-label="عجلة التوافق الثنائية"></div></section>
+        <div class="cp-details-stack">
+          <details class="sx cp-accordion"><summary><span>اتصالات الانسجام</span><small>${allPos.length} اتصال</small></summary><div class="cp-accordion-body"><ul>${allPos.map(line).join("") || "<li>لا توجد اتصالات منسجمة ضمن المحاور المحددة.</li>"}</ul></div></details>
+          <details class="sx cp-accordion"><summary><span>نقاط تحتاج إلى تفاهم</span><small>${allNeg.length} اتصال</small></summary><div class="cp-accordion-body"><ul>${allNeg.map(line).join("") || "<li>لا توجد اتصالات ضاغطة بارزة ضمن المحاور المحددة.</li>"}</ul></div></details>
+          <details class="sx cp-accordion"><summary><span>أقرب اتصالات الكواكب</span><small>حتى 6 اتصالات</small></summary><div class="cp-accordion-body"><ul>${top.map(line).join("") || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul></div></details>
+          <details class="sx cp-accordion cp-composite">
+            <summary><span><small class="cp-result-kicker">02 · COMPOSITE</small><b>الخريطة المركّبة</b></span><small>مواضع مشتركة واتصالات</small></summary>
+            <div class="cp-accordion-body"><p class="cp-note">مواضع الكواكب هي منتصفات القوس الأقصر بين خريطتي الميلاد. هذه قراءة رمزية وليست قياسًا لنجاح العلاقة.</p>
+              <div id="cp-composite-wheel" class="aq-wheel-host" aria-label="عجلة الخريطة المركبة"></div>
+              <div class="cp-composite-grid">${compositePositions}</div><h5>اتصالات داخل الخريطة المركّبة</h5>
+              <ul>${compositeAspects || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul>${compositeAngles}${compositeCusps}
+            </div>
+          </details>
+          <details class="sx cp-accordion"><summary><span>اقتراحات للحوار والتعامل</span><small>نصائح عملية</small></summary><div class="cp-accordion-body"><ul>${tips.map(t => '<li>'+esc(t)+'</li>').join("")}</ul></div></details>
         </div>
-        <div class="sx"><h4>نصائح عملية</h4><ul>${tips.map(t => `<li>${t}</li>`).join("")}</ul></div>
-        <div class="msg-card"><p class="msg-txt">القراءة دي رمزية للتأمل والفهم، مش حكم على نجاح العلاقة ولا تنبؤ بمستقبلها.</p></div>
+        <p class="cp-result-disclaimer">القراءة الفلكية هنا للتأمل والحوار، ولا تحكم على نجاح العلاقة أو مستقبلها.</p>
       </div>`;
     };
 
@@ -1824,6 +1825,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
         const synastry = calculateSynastry(P1, P2);
         out.innerHTML = render(P1, P2, synastry);
         window.AqeeqAstroWheel?.renderSynastryWheel(document.querySelector("#cp-bi-wheel"), P1.ch, P2.ch, synastry.asps);
+        window.AqeeqAstroWheel?.renderCompositeWheel(document.querySelector("#cp-composite-wheel"), synastry.composite);
         out.hidden = false;
         status.dataset.state = "done";
         status.textContent = "اكتمل حساب الخريطتين والـ Composite.";
