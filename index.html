@@ -1567,6 +1567,15 @@ if (typeof module !== 'undefined') module.exports = Astro;
     }
     const ch = Astro.chart({ utcMs, lat, lon, hs: $("#f-hs").value, known });
     LAST = { ch, name: $("#f-name").value.trim(), y, m, d, hh, mm, known, placeName };
+    // Keep the report draft on this device across the Paymob redirect; it is sent only
+    // after the user returns with a verified paid order and presses the report button.
+    try {
+      sessionStorage.setItem("aq-report-draft", JSON.stringify({
+        userName: LAST.name,
+        birthData: { year: y, month: m, day: d, hour: hh, minute: mm, known, placeName, lat, lon, utc: new Date(utcMs).toISOString(), houseSystem: ch.hs },
+        chartData: { bodies: ch.bodies.map(b => ({ key: b.key, lon: b.lon, speed: b.speed, retro: b.retro, sign: b.sign, house: b.house })), asc: ch.asc, mc: ch.mc, cusps: ch.cusps, hs: ch.hs, lat: ch.lat, lon: ch.lon, known: ch.known }
+      }));
+    } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
     renderResult(LAST);
     const r = $("#result"); r.hidden = false;
     r.scrollIntoView();
