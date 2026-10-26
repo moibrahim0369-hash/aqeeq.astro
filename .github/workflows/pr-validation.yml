@@ -1,0 +1,28 @@
+name: PR validation
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feat/arab-atlas-payment-delivery]
+permissions:
+  contents: read
+jobs:
+  contract-and-house-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Atlas regression
+        run: node tests/arab-atlas.test.js
+      - name: House-system structural checks
+        run: node tests/house-systems.test.js
+      - name: Swiss Ephemeris fixture integrity
+        run: node tests/swiss-house-fixtures.test.js
+      - name: Actual engine versus Swiss Ephemeris
+        run: node tests/swiss-house-engine-comparison.test.js
+      - name: Paymob and report-delivery contract
+        run: node tests/paymob-delivery-contract.test.js

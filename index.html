@@ -166,7 +166,7 @@
 <div class="field"><label for="f-time">وقت الميلاد</label><input id="f-time" type="time"/></div>
 </div>
 <label class="chk"><input id="f-unknown" type="checkbox"/> مش عارف وقت ميلادي</label>
-<div class="field"><label for="f-city">مكان الميلاد</label><select id="f-city"></select></div>
+<div class="field"><label for="f-city-search">ابحث عن مدينة أو محافظة</label><input id="f-city-search" type="search" autocomplete="off" placeholder="مثال: الفيوم، بغداد، جدة"/><label for="f-city">مكان الميلاد</label><select id="f-city"></select><small id="f-city-coords" class="note" aria-live="polite">اختار المدينة لعرض الإحداثيات والمنطقة الزمنية.</small></div>
 <div class="two" hidden="" id="manual">
 <div class="field"><label for="f-lat">خط العرض (شمال +)</label><input id="f-lat" inputmode="decimal" placeholder="30.04" step="any" type="number"/></div>
 <div class="field"><label for="f-lon">خط الطول (شرق +)</label><input id="f-lon" inputmode="decimal" placeholder="31.23" step="any" type="number"/></div>
@@ -175,7 +175,7 @@
 <details class="adv">
 <summary>خيارات متقدمة</summary>
 <div class="field"><label for="f-hs">نظام البيوت</label>
-<select id="f-hs"><option value="placidus">Placidus (الأشهر)</option><option value="whole">البيوت الكاملة Whole Sign</option></select>
+<select id="f-hs"><option value="placidus">Placidus</option><option value="whole">Whole Sign (البيوت الكاملة)</option><option value="equal">Equal House (البيوت المتساوية)</option><option value="porphyry">Porphyry (البورفيري)</option></select>
 </div>
 </details>
 <p class="ferr" hidden="" id="ferr" role="alert"></p>
@@ -382,6 +382,8 @@
 <p class="privacy">تقدر تطلب القراءة الكاملة من هنا، والدفع بيتم في صفحة آمنة تابعة لبوابة الدفع.</p>
 <p class="ferr" hidden="" id="acct-buy-msg" role="alert"></p>
 <button class="btn" id="acct-buy" type="button">اشترِ القراءة الكاملة</button>
+<button class="btn" id="acct-generate-report" type="button" hidden>تجهيز التقرير المدفوع</button>
+<a class="btn ghost" hidden id="acct-whatsapp-support" href="https://wa.me/201143813559" target="_blank" rel="noopener noreferrer">تواصل عبر واتساب بخصوص تقريرك</a>
 <button class="btn ghost" id="acct-signout" type="button">تسجيل الخروج</button>
 </div>
 
@@ -656,10 +658,10 @@ const FORECASTS = [
 
 /* ---------- المدن: [الاسم، خط العرض، خط الطول، المنطقة الزمنية] ---------- */
 const CITY_GROUPS = [
-  { g: "مصر", tz: "Africa/Cairo", c: [["القاهرة", 30.0444, 31.2357], ["الجيزة", 30.0131, 31.2089], ["الإسكندرية", 31.2001, 29.9187], ["المنصورة", 31.0409, 31.3785], ["طنطا", 30.7865, 31.0004], ["الزقازيق", 30.5877, 31.5020], ["بنها", 30.4660, 31.1848], ["شبين الكوم", 30.5972, 30.9876], ["دمنهور", 31.0341, 30.4682], ["كفر الشيخ", 31.1107, 30.9388], ["دمياط", 31.4165, 31.8133], ["بورسعيد", 31.2653, 32.3019], ["الإسماعيلية", 30.5965, 32.2715], ["السويس", 29.9668, 32.5498], ["العريش", 31.1316, 33.7984], ["الفيوم", 29.3084, 30.8428], ["بني سويف", 29.0661, 31.0994], ["المنيا", 28.1099, 30.7503], ["أسيوط", 27.1783, 31.1859], ["سوهاج", 26.5591, 31.6957], ["قنا", 26.1551, 32.7160], ["الأقصر", 25.6872, 32.6396], ["أسوان", 24.0889, 32.8998], ["الغردقة", 27.2579, 33.8116], ["شرم الشيخ", 27.9158, 34.3300], ["مرسى مطروح", 31.3543, 27.2373]] },
-  { g: "السعودية", c: [["الرياض", 24.7136, 46.6753, "Asia/Riyadh"], ["جدة", 21.4858, 39.1925, "Asia/Riyadh"], ["مكة المكرمة", 21.3891, 39.8579, "Asia/Riyadh"], ["المدينة المنورة", 24.5247, 39.5692, "Asia/Riyadh"], ["الدمام", 26.4207, 50.0888, "Asia/Riyadh"], ["أبها", 18.2164, 42.5053, "Asia/Riyadh"], ["تبوك", 28.3838, 36.5550, "Asia/Riyadh"]] },
+  { g: "مصر", tz: "Africa/Cairo", c: [["القاهرة", 30.0444, 31.2357], ["الجيزة", 30.0131, 31.2089], ["الإسكندرية", 31.2001, 29.9187], ["المنصورة", 31.0409, 31.3785], ["طنطا", 30.7865, 31.0004], ["الزقازيق", 30.5877, 31.5020], ["بنها", 30.4660, 31.1848], ["شبين الكوم", 30.5972, 30.9876], ["دمنهور", 31.0341, 30.4682], ["كفر الشيخ", 31.1107, 30.9388], ["دمياط", 31.4165, 31.8133], ["بورسعيد", 31.2653, 32.3019], ["الإسماعيلية", 30.5965, 32.2715], ["السويس", 29.9668, 32.5498], ["العريش", 31.1316, 33.7984], ["الفيوم", 29.3084, 30.8428], ["بني سويف", 29.0661, 31.0994], ["المنيا", 28.1099, 30.7503], ["أسيوط", 27.1783, 31.1859], ["سوهاج", 26.5591, 31.6957], ["قنا", 26.1551, 32.7160], ["الأقصر", 25.6872, 32.6396], ["أسوان", 24.0889, 32.8998], ["الغردقة", 27.2579, 33.8116], ["شرم الشيخ", 27.9158, 34.3300], ["مرسى مطروح", 31.3543, 27.2373], ["العلمين", 30.8300, 28.9550], ["مرسى علم", 25.0676, 34.8780], ["الوادي الجديد", 25.4500, 30.5500], ["رفح", 31.2800, 34.2400]] },
+  { g: "السعودية", c: [["الرياض", 24.7136, 46.6753, "Asia/Riyadh"], ["جدة", 21.4858, 39.1925, "Asia/Riyadh"], ["مكة المكرمة", 21.3891, 39.8579, "Asia/Riyadh"], ["المدينة المنورة", 24.5247, 39.5692, "Asia/Riyadh"], ["الدمام", 26.4207, 50.0888, "Asia/Riyadh"], ["أبها", 18.2164, 42.5053, "Asia/Riyadh"], ["تبوك", 28.3838, 36.5550, "Asia/Riyadh"], ["الطائف", 21.2703, 40.4158, "Asia/Riyadh"], ["جازان", 16.8892, 42.5511, "Asia/Riyadh"], ["حائل", 27.5114, 41.7208, "Asia/Riyadh"], ["بريدة", 26.3592, 43.9818, "Asia/Riyadh"], ["ينبع", 24.0895, 38.0618, "Asia/Riyadh"], ["الأحساء", 25.3830, 49.5860, "Asia/Riyadh"]] },
   { g: "الخليج", c: [["دبي", 25.2048, 55.2708, "Asia/Dubai"], ["أبوظبي", 24.4539, 54.3773, "Asia/Dubai"], ["الشارقة", 25.3463, 55.4209, "Asia/Dubai"], ["الكويت", 29.3759, 47.9774, "Asia/Kuwait"], ["الدوحة", 25.2854, 51.5310, "Asia/Qatar"], ["المنامة", 26.2285, 50.5860, "Asia/Bahrain"], ["مسقط", 23.5880, 58.3829, "Asia/Muscat"]] },
-  { g: "الشام والعراق", c: [["عمّان", 31.9454, 35.9284, "Asia/Amman"], ["بيروت", 33.8938, 35.5018, "Asia/Beirut"], ["دمشق", 33.5138, 36.2765, "Asia/Damascus"], ["حلب", 36.2021, 37.1343, "Asia/Damascus"], ["بغداد", 33.3152, 44.3661, "Asia/Baghdad"], ["البصرة", 30.5085, 47.7835, "Asia/Baghdad"], ["أربيل", 36.1911, 44.0092, "Asia/Baghdad"], ["القدس", 31.7683, 35.2137, "Asia/Jerusalem"], ["رام الله", 31.9038, 35.2034, "Asia/Hebron"], ["غزة", 31.5017, 34.4668, "Asia/Gaza"]] },
+  { g: "الشام والعراق", c: [["عمّان", 31.9454, 35.9284, "Asia/Amman"], ["بيروت", 33.8938, 35.5018, "Asia/Beirut"], ["دمشق", 33.5138, 36.2765, "Asia/Damascus"], ["حلب", 36.2021, 37.1343, "Asia/Damascus"], ["بغداد", 33.3152, 44.3661, "Asia/Baghdad"], ["البصرة", 30.5085, 47.7835, "Asia/Baghdad"], ["أربيل", 36.1911, 44.0092, "Asia/Baghdad"], ["الموصل", 36.3350, 43.1189, "Asia/Baghdad"], ["كركوك", 35.4681, 44.3922, "Asia/Baghdad"], ["النجف", 32.0003, 44.3354, "Asia/Baghdad"], ["كربلاء", 32.6160, 44.0249, "Asia/Baghdad"], ["السليمانية", 35.5613, 45.4309, "Asia/Baghdad"], ["القدس", 31.7683, 35.2137, "Asia/Jerusalem"], ["رام الله", 31.9038, 35.2034, "Asia/Hebron"], ["غزة", 31.5017, 34.4668, "Asia/Gaza"]] },
   { g: "اليمن والسودان وشمال أفريقيا", c: [["صنعاء", 15.3694, 44.1910, "Asia/Aden"], ["عدن", 12.7855, 45.0187, "Asia/Aden"], ["الخرطوم", 15.5007, 32.5599, "Africa/Khartoum"], ["طرابلس", 32.8872, 13.1913, "Africa/Tripoli"], ["بنغازي", 32.1167, 20.0667, "Africa/Tripoli"], ["تونس", 36.8065, 10.1815, "Africa/Tunis"], ["الجزائر", 36.7538, 3.0588, "Africa/Algiers"], ["الدار البيضاء", 33.5731, -7.5898, "Africa/Casablanca"], ["الرباط", 34.0209, -6.8416, "Africa/Casablanca"]] },
   { g: "العالم", c: [["إسطنبول", 41.0082, 28.9784, "Europe/Istanbul"], ["لندن", 51.5074, -0.1278, "Europe/London"], ["باريس", 48.8566, 2.3522, "Europe/Paris"], ["برلين", 52.5200, 13.4050, "Europe/Berlin"], ["روما", 41.9028, 12.4964, "Europe/Rome"], ["مدريد", 40.4168, -3.7038, "Europe/Madrid"], ["موسكو", 55.7558, 37.6173, "Europe/Moscow"], ["نيويورك", 40.7128, -74.0060, "America/New_York"], ["شيكاغو", 41.8781, -87.6298, "America/Chicago"], ["لوس أنجلوس", 34.0522, -118.2437, "America/Los_Angeles"], ["تورنتو", 43.6532, -79.3832, "America/Toronto"], ["سيدني", -33.8688, 151.2093, "Australia/Sydney"], ["مومباي", 19.0760, 72.8777, "Asia/Kolkata"], ["كراتشي", 24.8607, 67.0011, "Asia/Karachi"]] }
 ];
@@ -1205,6 +1207,21 @@ const Astro = (() => {
     return c;
   }
   const wholeSignCusps = asc => { const s = Math.floor(asc / 30) * 30; return Array.from({ length: 12 }, (_, i) => norm(s + 30 * i)); };
+  // Equal House: each cusp is exactly 30° from the Ascendant.
+  const equalCusps = asc => Array.from({ length: 12 }, (_, i) => norm(asc + 30 * i));
+  // Porphyry: trisect each of the four ecliptic arcs between ASC, IC, DSC and MC.
+  function porphyryCusps(asc, mc) {
+    const anchors = [norm(asc), norm(mc + 180), norm(asc + 180), norm(mc)];
+    const c = new Array(12);
+    for (let q = 0; q < 4; q++) {
+      const start = anchors[q], end = anchors[(q + 1) % 4];
+      const arc = norm(end - start);
+      c[q * 3] = start;
+      c[q * 3 + 1] = norm(start + arc / 3);
+      c[q * 3 + 2] = norm(start + 2 * arc / 3);
+    }
+    return c;
+  }
   function houseOf(lon, cusps) {
     for (let i = 0; i < 12; i++) {
       const a = cusps[i], b = cusps[(i + 1) % 12];
@@ -1255,7 +1272,10 @@ const Astro = (() => {
       const { asc, mc } = ascMc(ramc, eps, lat);
       let cusps = null, used = hs;
       if (hs === 'placidus') cusps = placidusCusps(ramc, eps, lat, asc, mc);
-      if (!cusps) { cusps = wholeSignCusps(asc); used = hs === 'placidus' ? 'whole-fallback' : 'whole'; }
+      else if (hs === 'whole') cusps = wholeSignCusps(asc);
+      else if (hs === 'equal') cusps = equalCusps(asc);
+      else if (hs === 'porphyry') cusps = porphyryCusps(asc, mc);
+      if (!cusps) { cusps = wholeSignCusps(asc); used = 'whole-fallback'; }
       Object.assign(out, { ramc, eps, asc, mc, cusps, hs: used, vertex: vertexWest(ramc, eps, lat) });
       /* سهم السعادة: بالنهار طالع + قمر − شمس، وبالليل طالع + شمس − قمر (الشمس فوق الأفق = نهار) */
       const sunB = bodies.find(b => b.key === 'sun'), moonB = bodies.find(b => b.key === 'moon');
@@ -1285,7 +1305,7 @@ const Astro = (() => {
   }
 
   return { chart, vertexWest, lonOf, houseOf, norm, d180, jdFromMs, msFromJd, deltaT, yearOf, localToUtcMs, tzOffsetMin,
-    PLANET_KEYS, BODY_KEYS, _moonLonMean: moonLonMean, _stdGeoLon: stdGeoLon, _helio: helioSchlyter, _sunTrue: sunTrue, _ascMc: ascMc, _plac: placidusCusps, _nut: nutation, _obl: meanObliq };
+    PLANET_KEYS, BODY_KEYS, _moonLonMean: moonLonMean, _stdGeoLon: stdGeoLon, _helio: helioSchlyter, _sunTrue: sunTrue, _ascMc: ascMc, _plac: placidusCusps, _whole: wholeSignCusps, _equal: equalCusps, _porphyry: porphyryCusps, _nut: nutation, _obl: meanObliq };
 })();
 if (typeof module !== 'undefined') module.exports = Astro;
 
@@ -1454,14 +1474,65 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
   /* ---------- نموذج الخريطة ---------- */
   const citySel = $("#f-city");
+  const citySearch = $("#f-city-search");
+  const cityCoords = $("#f-city-coords");
   CITY_GROUPS.forEach(gr => {
     const og = document.createElement("optgroup"); og.label = gr.g;
-    CITIES.forEach((c, i) => { if (c.g === gr.g) { const op = document.createElement("option"); op.value = i; op.textContent = c.n; og.appendChild(op); } });
+    CITIES.forEach((c, i) => { if (c.g === gr.g) { const op = document.createElement("option"); op.value = i; op.textContent = c.n; op.dataset.search = (c.n + " " + c.g).toLocaleLowerCase("ar"); og.appendChild(op); } });
     citySel.appendChild(og);
   });
   const manualOpt = document.createElement("option"); manualOpt.value = "manual"; manualOpt.textContent = "مكان تاني (إدخال يدوي)"; citySel.appendChild(manualOpt);
   citySel.value = "0";
-  citySel.addEventListener("change", () => { $("#manual").hidden = citySel.value !== "manual"; });
+  function updateCityCoords() {
+    if (citySel.value === "manual") { cityCoords.textContent = "الإدخال اليدوي: اكتب الإحداثيات وفرق التوقيت بنفسك."; return; }
+    const place = CITIES[Number(citySel.value)];
+    if (!place) return;
+    cityCoords.textContent = "خط العرض: " + place.lat.toFixed(4) + "° · خط الطول: " + place.lon.toFixed(4) + "° · المنطقة الزمنية: " + (place.tz || "غير محددة");
+  }
+  citySearch.addEventListener("input", () => {
+    const q = citySearch.value.trim().toLocaleLowerCase("ar");
+    Array.from(citySel.options).forEach(op => {
+      if (op.value === "manual" || !op.dataset.search) { op.hidden = false; return; }
+      op.hidden = !!q && !op.dataset.search.includes(q);
+    });
+    Array.from(citySel.querySelectorAll("optgroup")).forEach(group => {
+      group.hidden = Array.from(group.options).every(op => op.hidden);
+    });
+    const visible = Array.from(citySel.options).find(op => op.value !== "manual" && !op.hidden);
+    if (q && visible) citySel.value = visible.value;
+    updateCityCoords();
+  });
+  citySel.addEventListener("change", () => { $("#manual").hidden = citySel.value !== "manual"; updateCityCoords(); });
+  updateCityCoords();
+
+  // Prefer the full GeoNames build when present; the checked-in review sample is a safe fallback.
+  // Existing embedded cities remain available if the atlas JSON cannot be fetched.
+  (async function loadArabAtlas() {
+    let atlas = null;
+    for (const url of ["data/atlas/cities-arab.json", "data/atlas/cities-arab-review-sample.json"]) {
+      try {
+        const response = await fetch(url, { cache: "no-cache" });
+        if (response.ok) { atlas = await response.json(); if (Array.isArray(atlas.cities)) break; }
+      } catch (_) { /* continue to the fallback */ }
+    }
+    if (!atlas || !Array.isArray(atlas.cities)) return;
+    const groups = new Map(Array.from(citySel.querySelectorAll("optgroup")).map(g => [g.label, g]));
+    const known = new Set(CITIES.map(p => p.n.trim().toLocaleLowerCase("ar")));
+    atlas.cities.forEach(item => {
+      if (!item || typeof item.name !== "string" || !Number.isFinite(item.lat) || !Number.isFinite(item.lon)) return;
+      const key = item.name.trim().toLocaleLowerCase("ar");
+      if (known.has(key)) return;
+      const place = { n: item.name, lat: item.lat, lon: item.lon, tz: item.timezone || "", g: item.country || "مدن عربية" };
+      const idx = CITIES.push(place) - 1;
+      let group = groups.get(place.g);
+      if (!group) { group = document.createElement("optgroup"); group.label = place.g; groups.set(place.g, group); citySel.insertBefore(group, manualOpt); }
+      const option = document.createElement("option");
+      option.value = String(idx);
+      option.textContent = place.n;
+      option.dataset.search = (place.n + " " + place.g + " " + (item.nameLatin || "")).toLocaleLowerCase("ar");
+      group.appendChild(option);
+    });
+  })();
   $("#f-unknown").addEventListener("change", e => { $("#f-time").disabled = e.target.checked; });
 
   let LAST = null;
@@ -1497,6 +1568,15 @@ if (typeof module !== 'undefined') module.exports = Astro;
     }
     const ch = Astro.chart({ utcMs, lat, lon, hs: $("#f-hs").value, known });
     LAST = { ch, name: $("#f-name").value.trim(), y, m, d, hh, mm, known, placeName };
+    // Keep the report draft on this device across the Paymob redirect; it is sent only
+    // after the user returns with a verified paid order and presses the report button.
+    try {
+      sessionStorage.setItem("aq-report-draft", JSON.stringify({
+        userName: LAST.name,
+        birthData: { year: y, month: m, day: d, hour: hh, minute: mm, known, placeName, lat, lon, utc: new Date(utcMs).toISOString(), houseSystem: ch.hs },
+        chartData: { bodies: ch.bodies.map(b => ({ key: b.key, lon: b.lon, speed: b.speed, retro: b.retro, sign: b.sign, house: b.house })), asc: ch.asc, mc: ch.mc, cusps: ch.cusps, hs: ch.hs, lat: ch.lat, lon: ch.lon, known: ch.known }
+      }));
+    } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
     renderResult(LAST);
     const r = $("#result"); r.hidden = false;
     r.scrollIntoView();
