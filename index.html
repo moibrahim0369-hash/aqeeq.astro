@@ -1593,7 +1593,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
     renderResult(LAST);
     const r = $("#result"); r.hidden = false;
-    window.AqeeqCopyMap?.attach(r, "خريطة الميلاد · " + LAST.name);
+    window.AqeeqCopyMap?.attach(r, LAST.name ? "خريطة الميلاد · " + LAST.name : "خريطة الميلاد");
     r.scrollIntoView();
   }
 
