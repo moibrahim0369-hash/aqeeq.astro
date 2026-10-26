@@ -10,13 +10,14 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   await p.fill('#f-name', 'x'); await p.fill('#f-date', '1999-09-25'); await p.fill('#f-time', '12:00');
   await p.evaluate(() => { const s = document.querySelector('#f-city'); const o = [...s.options].find((x) => x.textContent.includes('القاهرة')); s.value = o.value; s.dispatchEvent(new Event('change', { bubbles: true })); });
   await p.click('#cform button[type=submit]'); await p.waitForTimeout(2500);
+  await p.evaluate(() => { location.hash = '#astro-maps'; }); await p.waitForTimeout(500);
   for (const mode of ['transit', 'solar', 'profections', 'eclipses', 'nodes', 'sidereal']) {
     await p.evaluate((m) => document.querySelector(`[data-eam-mode="${m}"]`).click(), mode);
     await p.waitForTimeout(300);
     await p.evaluate(() => document.querySelector('#eam-calculate').click());
     await p.waitForTimeout(1500);
-    const r = await p.evaluate(() => ({ svg: !!document.querySelector('#eam-result svg.aq-wheel-svg'), planets: document.querySelectorAll('#eam-result .aq-wheel-planet').length, hl: !!document.querySelector('#eam-result .aq-wheel-highlight'), mk: document.querySelectorAll('#eam-result .aq-wheel-marker').length }));
-    ok(r.svg && r.planets > 3, `${mode}: wheel rendered (${JSON.stringify(r)})`);
+    const r = await p.evaluate(() => ({ svg: !!document.querySelector('#eam-result svg.aq-wheel-svg'), planets: document.querySelectorAll('#eam-result .aq-wheel-planet').length, w: Math.round(document.querySelector('#eam-result svg.aq-wheel-svg').getBoundingClientRect().width), hl: !!document.querySelector('#eam-result .aq-wheel-highlight'), mk: document.querySelectorAll('#eam-result .aq-wheel-marker').length }));
+    ok(r.svg && r.planets > 3 && r.w > 250, `${mode}: wheel rendered (${JSON.stringify(r)})`);
     if (mode === 'profections') ok(r.hl, 'profections: active house highlighted');
     if (mode === 'eclipses') ok(r.mk >= 2, 'eclipses: event markers on wheel');
     if (mode === 'nodes') ok(r.mk === 2, 'nodes: north+south markers');
