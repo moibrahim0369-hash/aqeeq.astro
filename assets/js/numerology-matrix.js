@@ -137,7 +137,8 @@
   }
   function initMatrix() {
     const form=document.querySelector('#mform'),host=document.querySelector('#mresult'),dateInput=document.querySelector('#m-date'),error=document.querySelector('#merr');
-    if(!form||!host||!dateInput)return;
+    if(!form||!host||!dateInput||form.dataset.aqmBound==='true')return;
+    form.dataset.aqmBound='true';
     form.addEventListener('submit',event=>{
       event.preventDefault();
       error.hidden=true;
