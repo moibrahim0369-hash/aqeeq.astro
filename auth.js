@@ -30,6 +30,8 @@ const ui = {
   signout: $('#acct-signout'),
   buy: $('#acct-buy'),
   buyMsg: $('#acct-buy-msg'),
+  generateReport: $('#acct-generate-report'),
+  whatsapp: $('#acct-whatsapp-support'),
   recForm: $('#acct-recovery-form'),
   newPass: $('#acct-newpass'),
   recMsg: $('#acct-recovery-msg'),
@@ -94,6 +96,37 @@ function refreshAccountUI() {
   ui.user.hidden = !loggedIn || recovering;
   ui.recovery.hidden = !recovering;
   if (loggedIn && session.user) ui.userEmail.textContent = session.user.email || '';
+  if (ui.generateReport) ui.generateReport.hidden = !loggedIn || !sessionStorage.getItem('aq-paid-report-order');
+  if (!loggedIn && ui.whatsapp) ui.whatsapp.hidden = true;
+  if (loggedIn) refreshDeliveredReportSupport();
+}
+
+async function refreshDeliveredReportSupport() {
+  if (!ui.whatsapp || !session?.user?.id) return;
+  ui.whatsapp.hidden = true;
+  try {
+    const { data, error } = await supabase
+      .from('report_deliveries')
+      .select('order_id, delivery_channel, orders!inner(status, product_code)')
+      .eq('user_id', session.user.id)
+      .eq('status', 'delivered')
+      .eq('orders.status', 'paid')
+      .eq('orders.product_code', 'full_report')
+      .limit(1);
+    if (error) throw error;
+    const delivered = Array.isArray(data) && data.some(row =>
+      row && row.orders && row.orders.status === 'paid' && row.orders.product_code === 'full_report'
+    );
+    ui.whatsapp.hidden = !delivered;
+    if (delivered) {
+      const text = encodeURIComponent('مرحباً، أحتاج مساعدة بخصوص التقرير الفلكي الذي تم تسليمه لي في عقيق أسترو.');
+      ui.whatsapp.href = 'https://wa.me/201143813559?text=' + text;
+    }
+  } catch (err) {
+    // Fail closed: never expose the support link if delivery status cannot be verified.
+    ui.whatsapp.hidden = true;
+    console.error('Could not verify report delivery state');
+  }
 }
 
 function busy(button, on) {
@@ -227,20 +260,67 @@ async function handleOrderReturn() {
   q.delete('order');
   const rest = q.toString();
   history.replaceState(null, '', location.pathname + (rest ? `?${rest}` : '') + '#account');
-  if (!/^[0-9a-f-]{36}$/i.test(id)) return;
+  if (!/^[0-9a-f-]{8}-[0-9a-f-]{4}-[0-9a-f-]{4}-[0-9a-f-]{4}-[0-9a-f-]{12}$/i.test(id)) return;
   say(ui.linkMsg, 'بنتأكد من الدفع…', true);
-  for (let i = 0; i < 10; i++) {                    // الـ webhook ممكن يتأخر ثواني
+  for (let i = 0; i < 10; i++) {
     const { data: { session: s } } = await supabase.auth.getSession();
     if (!s) { say(ui.linkMsg, 'سجّل دخولك عشان نتأكد من حالة الدفع.'); return; }
-    const { data } = await supabase.from('orders').select('status').eq('id', id).maybeSingle();
+    const { data, error } = await supabase.from('orders')
+      .select('id,status,product_code,user_id')
+      .eq('id', id).eq('user_id', s.user.id).maybeSingle();
+    if (error) { say(ui.linkMsg, 'تعذر التحقق من الطلب حالياً. حدّث الصفحة بعد قليل.'); return; }
     if (data && data.status === 'paid') {
-      say(ui.linkMsg, 'تم تأكيد الدفع بنجاح. شكراً لك!', true);
+      if (data.product_code !== 'full_report') {
+        say(ui.linkMsg, 'تم تأكيد الدفع، لكن الطلب ده مش طلب تقرير كامل.', true);
+        return;
+      }
+      sessionStorage.setItem('aq-paid-report-order', data.id);
+      refreshAccountUI();
+      say(ui.linkMsg, 'تم تأكيد الدفع بنجاح. اضغط «تجهيز التقرير المدفوع» لإرسال التقرير إلى إيميل حسابك.', true);
       return;
     }
     if (data && data.status === 'cancelled') { say(ui.linkMsg, 'الدفع ماتمش. ماتم خصم أي مبلغ.'); return; }
     await new Promise((r) => setTimeout(r, 3000));
   }
   say(ui.linkMsg, 'لسه مستنيين تأكيد الدفع. لو اتخصم المبلغ هيتفعّل تلقائياً خلال دقايق، حدّث الصفحة.');
+}
+
+async function onGenerateReport() {
+  if (!session || !ui.generateReport) return;
+  const orderId = sessionStorage.getItem('aq-paid-report-order');
+  if (!orderId) return say(ui.linkMsg, 'لازم نتحقق من طلب مدفوع الأول.');
+  let draft;
+  try { draft = JSON.parse(sessionStorage.getItem('aq-report-draft') || 'null'); } catch { draft = null; }
+  if (!draft || !draft.chartData || !draft.birthData) {
+    return say(ui.linkMsg, 'احسب خريطة الميلاد الأول من قسم «خريطة الميلاد»، وبعدها ارجع واضغط تجهيز التقرير.', false);
+  }
+  busy(ui.generateReport, true);
+  say(ui.linkMsg, 'بنجهز التقرير وهنبعته على إيميل حسابك. ممكن ياخد شوية وقت…', true);
+  try {
+    const { data, error } = await supabase.functions.invoke('generate-astro-report', {
+      body: { orderId, userName: draft.userName || '', birthData: draft.birthData, chartData: draft.chartData }
+    });
+    if (error) {
+      let message = '';
+      try { message = (await error.context.json()).error || ''; } catch (_) {}
+      throw new Error(message || 'تعذر تجهيز التقرير الآن.');
+    }
+    if (!data || data.success !== true) throw new Error((data && data.error) || 'تعذر تجهيز التقرير الآن.');
+    if (data.emailSent && data.deliveryMarked) {
+      sessionStorage.removeItem('aq-paid-report-order');
+      refreshAccountUI();
+      await refreshDeliveredReportSupport();
+      say(ui.linkMsg, 'التقرير اتجهز واتقبل للإرسال على إيميل حسابك. زر واتساب هيظهر بعد تأكيد حالة التسليم.', true);
+    } else if (data.emailSent) {
+      say(ui.linkMsg, 'التقرير اتبعت لمزود البريد، لكن حالة التسليم لسه ما اتأكدتش. زر واتساب هيفضل مخفي لحد ما الحالة تتسجل.', false);
+    } else {
+      say(ui.linkMsg, 'التقرير اتجهز، لكن البريد لم يؤكد الإرسال. لم يتم تسجيل التسليم، وزر واتساب سيظل مخفياً.', false);
+    }
+  } catch (err) {
+    say(ui.linkMsg, arError(err));
+  } finally {
+    busy(ui.generateReport, false);
+  }
 }
 
 /* ---------- ربط كل ده بالصفحة ---------- */
@@ -268,6 +348,7 @@ function init() {
   ui.recForm.addEventListener('submit', onRecovery);
   ui.signout.addEventListener('click', onSignOut);
   ui.buy.addEventListener('click', onBuy);
+  if (ui.generateReport) ui.generateReport.addEventListener('click', onGenerateReport);
 
   // مهم: لا نستدعي أي دالة Supabase تانية جوه الـ callback ده.
   supabase.auth.onAuthStateChange((event, s) => {

@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "source": "GeoNames-compatible review sample",
+  "attribution": "Representative review sample for the Aqeeq Astro atlas. Coordinates are rounded city-center reference coordinates and must be verified against the full GeoNames export before production use. GeoNames data is CC BY 4.0: https://www.geonames.org/",
+  "note": "This sample is for review only, not a complete GeoNames import.",
+  "cities": [
+    {
+      "name": "القاهرة",
+      "nameLatin": "Cairo",
+      "country": "مصر",
+      "countryCode": "EG",
+      "lat": 30.0444,
+      "lon": 31.2357,
+      "timezone": "Africa/Cairo"
+    },
+    {
+      "name": "الإسكندرية",
+      "nameLatin": "Alexandria",
+      "country": "مصر",
+      "countryCode": "EG",
+      "lat": 31.2001,
+      "lon": 29.9187,
+      "timezone": "Africa/Cairo"
+    },
+    {
+      "name": "الفيوم",
+      "nameLatin": "Faiyum",
+      "country": "مصر",
+      "countryCode": "EG",
+      "lat": 29.3084,
+      "lon": 30.8428,
+      "timezone": "Africa/Cairo"
+    },
+    {
+      "name": "أسوان",
+      "nameLatin": "Aswan",
+      "country": "مصر",
+      "countryCode": "EG",
+      "lat": 24.0889,
+      "lon": 32.8998,
+      "timezone": "Africa/Cairo"
+    },
+    {
+      "name": "الرياض",
+      "nameLatin": "Riyadh",
+      "country": "السعودية",
+      "countryCode": "SA",
+      "lat": 24.7136,
+      "lon": 46.6753,
+      "timezone": "Asia/Riyadh"
+    },
+    {
+      "name": "جدة",
+      "nameLatin": "Jeddah",
+      "country": "السعودية",
+      "countryCode": "SA",
+      "lat": 21.4858,
+      "lon": 39.1925,
+      "timezone": "Asia/Riyadh"
+    },
+    {
+      "name": "مكة المكرمة",
+      "nameLatin": "Mecca",
+      "country": "السعودية",
+      "countryCode": "SA",
+      "lat": 21.3891,
+      "lon": 39.8579,
+      "timezone": "Asia/Riyadh"
+    },
+    {
+      "name": "الدمام",
+      "nameLatin": "Dammam",
+      "country": "السعودية",
+      "countryCode": "SA",
+      "lat": 26.4207,
+      "lon": 50.0888,
+      "timezone": "Asia/Riyadh"
+    },
+    {
+      "name": "بغداد",
+      "nameLatin": "Baghdad",
+      "country": "العراق",
+      "countryCode": "IQ",
+      "lat": 33.3152,
+      "lon": 44.3661,
+      "timezone": "Asia/Baghdad"
+    },
+    {
+      "name": "البصرة",
+      "nameLatin": "Basra",
+      "country": "العراق",
+      "countryCode": "IQ",
+      "lat": 30.5085,
+      "lon": 47.7835,
+      "timezone": "Asia/Baghdad"
+    },
+    {
+      "name": "الموصل",
+      "nameLatin": "Mosul",
+      "country": "العراق",
+      "countryCode": "IQ",
+      "lat": 36.335,
+      "lon": 43.1189,
+      "timezone": "Asia/Baghdad"
+    },
+    {
+      "name": "أربيل",
+      "nameLatin": "Erbil",
+      "country": "العراق",
+      "countryCode": "IQ",
+      "lat": 36.1911,
+      "lon": 44.0092,
+      "timezone": "Asia/Baghdad"
+    },
+    {
+      "name": "عمّان",
+      "nameLatin": "Amman",
+      "country": "الأردن",
+      "countryCode": "JO",
+      "lat": 31.9454,
+      "lon": 35.9284,
+      "timezone": "Asia/Amman"
+    },
+    {
+      "name": "بيروت",
+      "nameLatin": "Beirut",
+      "country": "لبنان",
+      "countryCode": "LB",
+      "lat": 33.8938,
+      "lon": 35.5018,
+      "timezone": "Asia/Beirut"
+    },
+    {
+      "name": "الدوحة",
+      "nameLatin": "Doha",
+      "country": "قطر",
+      "countryCode": "QA",
+      "lat": 25.2854,
+      "lon": 51.531,
+      "timezone": "Asia/Qatar"
+    },
+    {
+      "name": "دبي",
+      "nameLatin": "Dubai",
+      "country": "الإمارات",
+      "countryCode": "AE",
+      "lat": 25.2048,
+      "lon": 55.2708,
+      "timezone": "Asia/Dubai"
+    },
+    {
+      "name": "الخرطوم",
+      "nameLatin": "Khartoum",
+      "country": "السودان",
+      "countryCode": "SD",
+      "lat": 15.5007,
+      "lon": 32.5599,
+      "timezone": "Africa/Khartoum"
+    },
+    {
+      "name": "تونس",
+      "nameLatin": "Tunis",
+      "country": "تونس",
+      "countryCode": "TN",
+      "lat": 36.8065,
+      "lon": 10.1815,
+      "timezone": "Africa/Tunis"
+    },
+    {
+      "name": "الدار البيضاء",
+      "nameLatin": "Casablanca",
+      "country": "المغرب",
+      "countryCode": "MA",
+      "lat": 33.5731,
+      "lon": -7.5898,
+      "timezone": "Africa/Casablanca"
+    },
+    {
+      "name": "صنعاء",
+      "nameLatin": "Sanaa",
+      "country": "اليمن",
+      "countryCode": "YE",
+      "lat": 15.3694,
+      "lon": 44.191,
+      "timezone": "Asia/Aden"
+    }
+  ]
+}
