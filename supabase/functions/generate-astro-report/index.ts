@@ -127,24 +127,22 @@ Deno.serve(async (req: Request) => {
     const orderId = typeof body.orderId === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.orderId)
       ? body.orderId
       : null;
+    if (!orderId) throw new HttpError(400, "رقم الطلب المدفوع مطلوب لتجهيز التقرير.");
 
-    // Delivery can only be recorded against this user's already-paid full-report order.
-    // Missing/invalid orderId does not falsely mark any report as delivered.
-    if (orderId) {
-      const { data: paidOrder, error: orderErr } = await admin
-        .from("orders")
-        .select("id")
-        .eq("id", orderId)
-        .eq("user_id", user.id)
-        .eq("status", "paid")
-        .eq("product_code", "full_report")
-        .maybeSingle();
-      if (orderErr) {
-        console.error("paid report order lookup failed:", orderErr.message);
-        throw new HttpError(500, GENERIC_ERROR);
-      }
-      if (!paidOrder) throw new HttpError(403, "الطلب غير مدفوع أو لا يتبع حسابك.");
+    // A paid, same-user full-report order is mandatory. There is no free-call bypass.
+    const { data: paidOrder, error: orderErr } = await admin
+      .from("orders")
+      .select("id")
+      .eq("id", orderId)
+      .eq("user_id", user.id)
+      .eq("status", "paid")
+      .eq("product_code", "full_report")
+      .maybeSingle();
+    if (orderErr) {
+      console.error("paid report order lookup failed:", orderErr.message);
+      throw new HttpError(500, GENERIC_ERROR);
     }
+    if (!paidOrder) throw new HttpError(403, "الطلب غير مدفوع أو لا يتبع حسابك.");
 
     // 3) Paid access (switched on with the REQUIRE_ENTITLEMENT secret once payments are live)
     if (REQUIRE_ENTITLEMENT) {
