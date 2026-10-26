@@ -51,7 +51,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
     return { width: innerWidth, scroll: document.documentElement.scrollWidth, svg: rect?.width || 0, points: document.querySelectorAll('.aqm-gloss').length, labels: document.querySelectorAll('.aqm-gloss .aqm-t-ar').length };
   });
   ok(layout.points === 9 && layout.labels === 9, 'mobile 375px: all nine matrix points and simplified labels render');
-  ok(document.querySelectorAll('.aqm-report-index a').length === 7, 'mobile 375px: report index remains available');
+  ok(await mobile.evaluate(() => document.querySelectorAll('.aqm-report-index a').length === 7), 'mobile 375px: report index remains available');
   ok(layout.scroll <= layout.width + 1 && layout.svg <= layout.width + 1, 'mobile 375px: no horizontal overflow and SVG fits (' + JSON.stringify(layout) + ')');
   ok(mobileErrs.length === 0, 'mobile 375px: no JavaScript console errors ' + mobileErrs.join(';'));
   await mobile.close();
