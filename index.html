@@ -3464,10 +3464,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 
 <script>
 (function () {
-  /* PWA: تسجيل الـService Worker (HTTPS أو localhost فقط) */
-  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
-  }
+  /* لا نسجل Service Worker؛ ملف sw.js غير موجود ضمن أصول المشروع الحالية. */
   /* مشاركة الموقع: Web Share لو متاح، وإلا نسخ الرابط */
   var sb = document.getElementById('share-site');
   if (sb) {
