@@ -75,6 +75,7 @@
 <p class="hero-sub">اكتشف أنماطك، افهم علاقاتك، وشوف حياتك من زاوية جديدة.</p>
 <form class="quick" id="qform" novalidate="">
 <label for="q-date">اكتب تاريخ ميلادك وشوف بطاقتك دلوقتي</label>
+<div class="field q-gender"><label for="q-gender">صيغة التقرير</label><select id="q-gender" data-gender-select data-gender-group="self" required><option value="">اختر الجنس</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
 <div class="qrow"><input id="q-date" max="2100-12-31" min="1900-01-01" type="date"/><button class="btn" type="submit">اكشف بطاقتي</button></div>
 <p class="ferr" hidden="" id="qerr" role="alert"></p>
 <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
@@ -118,6 +119,7 @@
 </div><!-- Hidden: relationship lab CTA removed from home -->
 <form class="cform" id="mform" novalidate="">
 <div class="field"><label for="m-name">الاسم (اختياري)</label><input autocomplete="off" id="m-name" maxlength="40" type="text"/></div>
+<div class="field"><label for="m-gender">صيغة التقرير</label><select id="m-gender" data-gender-select data-gender-group="self" required><option value="">اختر الجنس</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
 <div class="field"><label for="m-date">تاريخ الميلاد</label><input id="m-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <p class="ferr" hidden="" id="merr" role="alert"></p>
 <button class="btn" type="submit">احسب مصفوفتي</button>
@@ -146,6 +148,7 @@
 </div>
 <form class="cform" id="lpform" hidden novalidate="">
 <div class="field"><label for="lp-name">الاسم (اختياري)</label><input autocomplete="off" id="lp-name" maxlength="40" type="text"/></div>
+<div class="field"><label for="lp-gender">صيغة التقرير</label><select id="lp-gender" data-gender-select data-gender-group="self" required><option value="">اختر الجنس</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
 <div class="field"><label for="lp-date">تاريخ الميلاد</label><input id="lp-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <p class="ferr" hidden="" id="lperr" role="alert"></p>
 <button class="btn" type="submit">اعرف مسار حياتي</button>
@@ -163,6 +166,7 @@
 </div>
 <form class="cform" id="cform" novalidate="">
 <div class="field"><label for="f-name">الاسم (اختياري)</label><input autocomplete="off" id="f-name" maxlength="40" type="text"/></div>
+<div class="field"><label for="f-gender">صيغة التقرير</label><select id="f-gender" data-gender-select data-gender-group="self" required><option value="">اختر الجنس</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
 <div class="two">
 <div class="field"><label for="f-date">تاريخ الميلاد</label><input id="f-date" max="2100-12-31" min="1900-01-01" required="" type="date"/></div>
 <div class="field"><label for="f-time">وقت الميلاد</label><input id="f-time" type="time"/></div>
@@ -227,8 +231,8 @@
 <div class="wrap syn-wrap"><a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="center"><span class="eyebrow">AQEQ ASTRO · RELATIONSHIP CODE</span><h2>حاسبة توافق مسارات الحياة والشراكات القدرية</h2><p class="intro">اكتشفوا لغة الاختلاف بينكم: المسار الموحد، الجسر الأساسي، وطريقة التعامل مع نقاط القوة والاحتكاك.</p></div>
 <form id="synastry-form" class="syn-form" novalidate>
-<div class="syn-person"><h3>✦ الطرف الأول</h3><div class="field"><label for="syn-name-a">الاسم</label><input id="syn-name-a" maxlength="80" autocomplete="name" required placeholder="اسم الطرف الأول"></div><div class="field"><label for="syn-date-a">تاريخ الميلاد</label><input id="syn-date-a" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
-<div class="syn-person"><h3>✦ الطرف الثاني</h3><div class="field"><label for="syn-name-b">الاسم</label><input id="syn-name-b" maxlength="80" autocomplete="off" required placeholder="اسم الطرف الثاني"></div><div class="field"><label for="syn-date-b">تاريخ الميلاد</label><input id="syn-date-b" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
+<div class="syn-person"><h3>✦ الطرف الأول</h3><div class="field"><label for="syn-name-a">الاسم</label><input id="syn-name-a" maxlength="80" autocomplete="name" required placeholder="اسم الطرف الأول"></div><div class="field"><label for="syn-gender-a">الجنس</label><select id="syn-gender-a" data-gender-select data-gender-group="syn-a" required><option value="">اختر</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-a">تاريخ الميلاد</label><input id="syn-date-a" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
+<div class="syn-person"><h3>✦ الطرف الثاني</h3><div class="field"><label for="syn-name-b">الاسم</label><input id="syn-name-b" maxlength="80" autocomplete="off" required placeholder="اسم الطرف الثاني"></div><div class="field"><label for="syn-gender-b">الجنس</label><select id="syn-gender-b" data-gender-select data-gender-group="syn-b" required><option value="">اختر</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-b">تاريخ الميلاد</label><input id="syn-date-b" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
 <div class="field syn-rel"><label for="syn-type">نوع العلاقة</label><select id="syn-type" required><option value="romantic">عاطفية / زواج</option><option value="family">أهل / إخوة</option><option value="business">بيزنس / استثمار</option></select></div>
 <p id="syn-error" class="ferr" role="alert" hidden></p><button class="btn" type="submit">اكشف كود التوافق الكوني</button><p class="privacy">الحساب بيتم داخل المتصفح. النتيجة قراءة رمزية للتأمل وليست حكمًا علميًا على نجاح العلاقة.</p>
 </form><div id="syn-result" class="syn-result" aria-live="polite" hidden></div><!-- Hidden: referral note removed --></div></section>
