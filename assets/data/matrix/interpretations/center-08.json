@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-08.draft-01",
+  "arcanaNumber": 8,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-08.json",
+    "headline": "العدل والتوازن",
+    "strengthSeed": "الإنصاف والاتزان يتجليان في سماع الوقائع من أكثر من جهة، وتحديد معيار واحد قبل إصدار الحكم. في العمل، تدعم هذه الطاقة مراجعة العقود والمسؤوليات وتوزيع التقدير. وفي العلاقات، تمنع تراكم الدين العاطفي حين تُناقش التوقعات بوضوح.",
+    "challengeSeed": "قسوة الحكم تظهر في محاسبة الذات والآخرين بلا سياق أو في إطالة المرافعة بحثاً عن براءة كاملة. مثال ذلك استدعاء أخطاء قديمة في كل خلاف جديد، فيصبح الحوار محكمة لا مساحة إصلاح. الحذر من التحيز لا يعني إنكار الألم، بل فصل الواقعة عن الإدانة الشاملة."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يضع المركز التناسب والإنصاف في قلب القرارات. طاقة العدالة تسأل عن الوقائع والمعايير والنتائج، لا عن كسب القضية بأي ثمن.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "فحص القرار من أكثر من زاوية وإظهار أثر القواعد على الأطراف."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "تحويل التقييم إلى إدانة شاملة أو إبقاء الذات في محكمة لا تنتهي."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "العودة إلى خطأ قديم في كل نقاش جديد بدلاً من تحديد ما يحتاج إصلاحاً الآن.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الإجراء الذي يعيد التوازن ويمنع تكرار المشكلة؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "فصل الواقعة عن أثرها وعن الحكم على الشخص، ثم اختيار معالجة محددة.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

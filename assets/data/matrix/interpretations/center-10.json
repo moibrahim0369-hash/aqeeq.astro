@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-10.draft-01",
+  "arcanaNumber": 10,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-10.json",
+    "headline": "الدورات والفرص",
+    "strengthSeed": "المرونة تظهر في تعديل الخطة عند ظهور معلومة جديدة، وفي استثمار التوقيت المناسب دون نسيان الأساس. في العمل، تساعد على التعامل مع السوق أو الفريق المتغير. وفي العلاقات، تسمح بمرور المراحل المختلفة من دون افتراض أن كل فتور نهاية أو كل حماس ضمان دائم.",
+    "challengeSeed": "انتظار الحظ يعني تعليق الاختيار على ظرف مثالي، أو القفز وراء كل فرصة لأنها تبدو نادرة. مثال ذلك ترك مشروع مستقر مراراً لمطاردة وعد غير مختبر، أو تأجيل حديث مهم انتظاراً لـ«الوقت المناسب». التكيف يفقد قيمته حين يصبح تذبذباً بلا معيار."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "ينظم المركز فهم الدورات والتغيرات التي لا تسير على خط مستقيم. عجلة الحظ تدعو لقراءة التوقيت والفرصة مع إبقاء المسؤولية حاضرة.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "التكيف مع الظروف الجديدة واكتشاف منفذ حين تتغير خطة العمل."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "انتظار فرصة مثالية أو الانتقال وراء كل احتمال جديد بلا معيار."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "ترك مشروع عند أول تباطؤ، ثم العودة إليه عندما يتحسن الظرف دون مراجعة سبب التوقف.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الذي تغير فعلاً، وما الذي ما زال تحت مسؤوليتي؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "اختبار فرصة واحدة بحد زمني ومالي واضح وتسجيل ما نتج عنها.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}
