@@ -49,17 +49,20 @@
         getPath(facts, candidate.position.path) === candidate.arcanaNumber;
     });
     if (!entry) return null;
-    const contextFragments = (entry.contextualRules || [])
+    const collectVerified = rules => (rules || [])
       .filter(rule => isSourceQualified(rule) && matchesAll(facts, rule.when))
-      .map(rule => ({ id: rule.id, text: rule.text, source: rule.provenance.source }));
+      .map(rule => ({ id: rule.id, text: rule.text, source: { ...rule.provenance.source } }));
+    const contextFragments = collectVerified(entry.contextualRules);
+    const combinationFragments = collectVerified(entry.combinationRules);
     return {
       entryId: entry.id,
       position: entry.position.key,
       arcanaNumber: entry.arcanaNumber,
-      interpretation: entry.interpretation,
+      interpretation: JSON.parse(JSON.stringify(entry.interpretation)),
       contextFragments,
+      combinationFragments,
       referenceRuleStatus: entry.referenceRule.verificationStatus,
-      calculationBinding: entry.calculationBinding,
+      calculationBinding: entry.calculationBinding ? { ...entry.calculationBinding } : null,
       completeness: entry.interpretation.completionStatus
     };
   }
