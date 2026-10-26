@@ -3047,7 +3047,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
       `<article class="qt"><span class="k">مسار الحياة</span><span class="nb" aria-hidden="true">${lp}</span><h3 class="big">${F.t}</h3><p>${F.tag}. ${F.essence.split(". ")[0]}.</p><button class="btn ghost sm" type="button" data-qopen="life">افتح مساري</button></article>` +
       `<article class="qt"><span class="k">برجك الشمسي</span><span class="sg2" aria-hidden="true">${gl(sg.g)}</span><h3 class="big">${sg.n}</h3><p>أسلوبك: ${sg.way}. نقطة قوتك: ${sg.strength}. وبتتعلم إنك ${sg.growth}.</p><button class="btn ghost sm" type="button" data-qopen="chart">احسب خريطتي الكاملة</button></article>`;
     $("[data-qopen]", $("#qgrid")).forEach(b => b.addEventListener("click", () => openTool(b.dataset.qopen, d, m, y)));
-    const q = $("#quick"); window.AqeeqGender?.apply(q, gender); q.hidden = false; q.scrollIntoView();
+    const q = $("#quick"); window.AqeeqGender?.apply(q, gender); window.AqeeqCopyMap?.attach(q, "بطاقة سريعة · " + d + "/" + m + "/" + y); q.hidden = false; q.scrollIntoView();
   });
 
   /* ============ نمطك: قراءة شخصية بأسلوب مباشر (غرايز، نمو، علاقات، روابط) ============ */
