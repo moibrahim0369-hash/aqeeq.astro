@@ -24,7 +24,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   ok(r.labelsNotice, 'matrix glossary identifies its labels as site-specific interpretive names');
   const nav = await p.evaluate(() => [...document.querySelectorAll('.aqm-report-index a')].map(a => ({href:a.getAttribute('href'),target:!!document.querySelector(a.getAttribute('href'))})));
   ok(nav.length === 7 && nav.every(x => x.target), 'matrix report index has stable links to each existing section: ' + JSON.stringify(nav));
-  ok(!!document.querySelector('#aqm-section-method'), 'method/reference status is disclosed without changing the calculation');
+  ok(await p.evaluate(() => !!document.querySelector('#aqm-section-method')), 'method/reference status is disclosed without changing the calculation');
   const baseline = await p.evaluate(() => {
     const a=window.AqeeqNumerology,d='1999-09-25',m=a.calculateDestinyMatrix(d),c=a.calculateChakraHealthCard(d),g=a.calculateGenerationalLines(d),x=a.calculateDestinyAxes(d);
     return {life:a.calculateLifePath(d).number,nodes:Object.values(m.nodes),chakraRows:c.rows.map(r=>[r.physics,r.energy,r.emotions]),totals:[c.total.physics,c.total.energy,c.total.emotions],male:g.male.points,maleCombined:g.male.combined,female:g.female.points,femaleCombined:g.female.combined,centers:[g.ancestralCenter,g.commonCenter],sky:x.sky,earth:x.earth,axes:[x.soulSearching,x.socialization,x.spiritualExam,x.planetary]};
