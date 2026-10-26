@@ -61,5 +61,17 @@
     if(composite.anglesKnown&&Number.isFinite(composite.mc)){const [x,y]=pt(composite.mc,outer-24);svg.append(el('text',{x,y,class:'aq-wheel-angle-label'},'MC'));}
     host.replaceChildren(svg);legend(host,[['a','مواضع الخريطة المركّبة'],['h','اتصال منسجم'],['c','اتصال ضاغط']],'العجلة تعرض الكواكب الشخصية؛ قائمة المواضع أسفلها تعرض بقية الكواكب أيضاً.');
   }
-  window.AqeeqAstroWheel={renderSynastryWheel,renderCompositeWheel,position};
+  function renderChartWheel(host,chart,aspects=[],label='خريطة فلكية'){
+    if(!host||!chart)return;
+    const svg=baseSvg(label,'عجلة الأبراج والبيوت مع مواضع الكواكب. مرر أو ركز على رمز الكوكب لعرض البرج والدرجة والبيت.');
+    const {outer,center}=drawFramework(svg,chart.known?chart.cusps:null);
+    const bodies=(chart.bodies||[]).filter(b=>PLANETS[b.key]);
+    aspects.slice().sort((a,b)=>a.orb-b.orb).slice(0,10).forEach(a=>{const x=bodies.find(b=>b.key===a.a),y=bodies.find(b=>b.key===a.b);if(!x||!y)return;const [x1,y1]=pt(x.lon,center+5),[x2,y2]=pt(y.lon,center+5),k=a.asp?.k||'';svg.append(el('line',{x1,y1,x2,y2,class:'aq-wheel-aspect '+(['tri','sext'].includes(k)?'harmonious':['sq','opp'].includes(k)?'challenging':'neutral'),opacity:.45}));});
+    bodies.forEach((b,i)=>{const info=PLANETS[b.key],r=160+(i%2)*18,[x,y]=pt(b.lon,r),[tx,ty]=pt(b.lon,r+13),sg=SIGNS[Math.floor(norm(b.lon)/30)],retro=b.retro?' · متراجع':'';const g=el('g',{class:'aq-wheel-planet person-composite',tabindex:'0',role:'img','aria-label':info[0]+' في '+sg+' '+position(b.lon)+(chart.known&&Number.isInteger(b.house)?'، البيت '+b.house:'')+retro});g.append(el('circle',{cx:x,cy:y,r:10,class:'aq-wheel-planet-dot'}),el('text',{x,y:y+4,class:'aq-wheel-planet-glyph'},info[1]),el('text',{x:tx,y:ty,class:'aq-wheel-degree'},position(b.lon)),el('title',{},info[0]+' · '+sg+' '+position(b.lon)+(chart.known&&Number.isInteger(b.house)?' · البيت '+b.house:'')+retro));svg.append(g);});
+    svg.append(el('circle',{cx:260,cy:260,r:center,class:'aq-wheel-center'}),el('text',{x:260,y:255,class:'aq-wheel-center-title'},label.toUpperCase()),el('text',{x:260,y:274,class:'aq-wheel-center-sub'},chart.known?'الأبراج والبيوت':'الأبراج · وقت غير معروف'));
+    if(chart.known&&Number.isFinite(chart.asc)){const [x,y]=pt(chart.asc,outer-7);svg.append(el('text',{x,y,class:'aq-wheel-angle-label'},'ASC'));}
+    if(chart.known&&Number.isFinite(chart.mc)){const [x,y]=pt(chart.mc,outer-24);svg.append(el('text',{x,y,class:'aq-wheel-angle-label'},'MC'));}
+    host.replaceChildren(svg);legend(host,[['a','مواضع الكواكب'],['h','اتصال منسجم'],['c','اتصال ضاغط']],chart.known?'مرر أو المس رمز الكوكب لعرض درجته وبرجه وبيته.':'وقت الميلاد غير معروف؛ البيوت غير معروضة.');
+  }
+  window.AqeeqAstroWheel={renderSynastryWheel,renderCompositeWheel,renderChartWheel,position};
 })();
