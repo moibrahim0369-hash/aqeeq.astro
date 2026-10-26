@@ -35,12 +35,12 @@ assert.notEqual(sign(canonical + 'x'), signature, 'tampered payload must change 
 assert.equal(signature.length, 128, 'Paymob HMAC SHA-512 hex digest is 128 chars');
 
 // Report is only marked delivered after provider accepts email, and only for the paid owner order.
-assert.match(report, /\.eq\('user_id', user\.id\)[\s\S]*?\.eq\('status', 'paid'\)[\s\S]*?\.eq\('product_code', 'full_report'/);
-assert.match(report, /if \(emailSent && orderId\)/);
-assert.match(report, /\.eq\('status', 'pending'\)/);
+assert.match(report, /\\.eq\\(["']user_id["'], user\\.id\\)[\\s\\S]*?\\.eq\\(["']status["'], ["']paid["']\\)[\\s\\S]*?\\.eq\\(["']product_code["'], ["']full_report["']/);
+assert.match(report, /if \\(emailSent && orderId\\)/);
+assert.match(report, /\\.eq\\(["']status["'], ["']pending["']\\)/);
 assert.match(report, /status: ["']delivered["']/);
-assert.match(auth, /\.eq\('status', 'delivered'\)/);
-assert.match(auth, /\.eq\('orders\.status', 'paid'\)/);
-assert.match(auth, /ui\.whatsapp\.hidden = !delivered/);
+assert.match(auth, /\\.eq\\('status', 'delivered'\\)/);
+assert.match(auth, /\\.eq\\('orders\\.status', 'paid'\\)/);
+assert.match(auth, /ui\\.whatsapp\\.hidden = !delivered/);
 assert.match(html, /id="acct-whatsapp-support"[^>]*hidden/);
 console.log('Paymob webhook/report-delivery contract checks passed. These are source/logic checks, not live provider end-to-end tests.');
