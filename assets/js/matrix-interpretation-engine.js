@@ -45,7 +45,7 @@
     if (!facts || !Array.isArray(entries)) return null;
     const entry = entries.find(candidate => {
       const check = validateEntry(candidate);
-      return check.valid && candidate.position.path &&
+      return check.valid && candidate.interpretation.reviewStatus === 'approved' && candidate.interpretation.completionStatus === 'complete' && candidate.position.path &&
         getPath(facts, candidate.position.path) === candidate.arcanaNumber;
     });
     if (!entry) return null;
