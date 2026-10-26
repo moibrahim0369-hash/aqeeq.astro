@@ -39,6 +39,7 @@ assert.equal(signature.length, 128);
 
 // Delivery only follows accepted email and the same user's paid full-report order.
 assert.match(report, /\.eq\(["']user_id["'], user\.id\)[\s\S]*?\.eq\(["']status["'], ["']paid["']\)[\s\S]*?\.eq\(["']product_code["'], ["']full_report["']/);
+assert.ok(report.includes('if (!orderId) throw new HttpError(400'), 'report endpoint requires an order ID');
 assert.ok(report.includes('if (emailSent && orderId)'));
 assert.match(report, /\.eq\(["']status["'], ["']pending["']\)/);
 assert.match(report, /status: ["']delivered["']/);
