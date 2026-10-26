@@ -49,3 +49,5 @@ jobs:
         run: node tests/matrix-titles.e2e.js
       - name: Matrix core interpretation data contract
         run: node tests/matrix-content-core.test.js
+      - name: Matrix chakra interpretation content contract
+        run: node tests/matrix-chakra-content.test.js
