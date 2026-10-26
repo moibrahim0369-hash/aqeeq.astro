@@ -401,12 +401,12 @@
 </div></section>
 <section class="sec alt" id="compat"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
-<div class="center"><h2>خريطة التوافق الفلكي</h2><p class="intro">أدخل بيانات الشخصين. هنحسب خريطة ميلاد كل واحد بشكل مستقل، وبعدين نقارن مواقع الكواكب والاتصالات بينهم.</p></div>
+<div class="center"><h2>Synastry &amp; Composite</h2><p class="intro">أدخل تاريخ ووقت ومكان ميلاد الشخصين لحساب خريطتيهما، مقارنة اتصالات الكواكب الشخصية، وبناء الخريطة المركّبة من منتصفات الكواكب والبيوت.</p></div>
 <form class="cform cp-form" id="cp-form" novalidate="">
 <div id="cp1"></div>
 <div id="cp2"></div>
 <p class="ferr" hidden="" id="cp-err" role="alert"></p>
-<button class="btn" type="submit">احسب التوافق</button>
+<button class="btn" type="submit">احسب Synastry + Composite</button>
 </form>
 <div aria-live="polite" class="result" hidden="" id="cp-out"></div>
 </div></section>
@@ -1586,8 +1586,9 @@ if (typeof module !== 'undefined') module.exports = Astro;
   (function initCompat() {
     const host1 = $("#cp1"), host2 = $("#cp2"), form = $("#cp-form"), out = $("#cp-out"), err = $("#cp-err");
     if (!host1 || !host2 || !form) return;
-    const CP_KEYS = ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn"].filter(k => PLANETS[k]);
-    const HARM = ["sext", "tri"], CHAL = ["sq", "opp"];
+    const CP_KEYS = ["sun", "moon", "mercury", "venus", "mars"];
+    const SYNASTRY_ASPECTS = ASPECTS.filter(x => ["conj", "opp", "tri", "sq"].includes(x.k));
+    const HARM = ["tri"], CHAL = ["sq", "opp"];
     const CATS = {
       emo: { t: "التوافق العاطفي", pairs: [["moon", "moon"], ["moon", "venus"], ["venus", "moon"], ["sun", "moon"], ["moon", "sun"]] },
       com: { t: "التواصل والتفكير", pairs: [["mercury", "mercury"], ["mercury", "moon"], ["moon", "mercury"], ["mercury", "sun"], ["sun", "mercury"]] },
@@ -1655,15 +1656,63 @@ if (typeof module !== 'undefined') module.exports = Astro;
       return { name: $("#" + p + "-name").value.trim() || label, placeName, known, ch, date: `${d}/${m}/${y}` };
     };
 
+    const midpointLongitude = (a, b) => Astro.norm(a + Astro.d180(b - a) / 2);
+    const formatPosition = lon => {
+      const value = Astro.norm(lon);
+      let signIndex = Math.floor(value / 30);
+      let withinSign = value - signIndex * 30;
+      let degree = Math.floor(withinSign);
+      let minute = Math.round((withinSign - degree) * 60);
+      if (minute === 60) {
+        minute = 0;
+        degree += 1;
+        if (degree === 30) { degree = 0; signIndex = (signIndex + 1) % 12; }
+      }
+      return `${SIGNS[signIndex].g} ${SIGNS[signIndex].n} ${degree}°${String(minute).padStart(2, "0")}′`;
+    };
+    const findAspect = diff => SYNASTRY_ASPECTS.find(asp => Math.abs(diff - asp.ang) <= asp.orb) || null;
+
+    const calculateComposite = (P1, P2) => {
+      const positions = CP_KEYS.map(key => {
+        const A = P1.ch.bodies.find(body => body.key === key);
+        const B = P2.ch.bodies.find(body => body.key === key);
+        return { key, lon: midpointLongitude(A.lon, B.lon) };
+      });
+      const aspects = [];
+      for (let i = 0; i < positions.length; i += 1) {
+        for (let j = i + 1; j < positions.length; j += 1) {
+          const A = positions[i], B = positions[j];
+          let angle = Math.abs(A.lon - B.lon);
+          if (angle > 180) angle = 360 - angle;
+          const asp = findAspect(angle);
+          if (asp) aspects.push({ a: A.key, b: B.key, asp, angle, orb: Math.abs(angle - asp.ang) });
+        }
+      }
+      const anglesKnown = P1.known && P2.known &&
+        Number.isFinite(P1.ch.asc) && Number.isFinite(P2.ch.asc) &&
+        Number.isFinite(P1.ch.mc) && Number.isFinite(P2.ch.mc);
+      const cusps = anglesKnown && Array.isArray(P1.ch.cusps) && Array.isArray(P2.ch.cusps)
+        ? P1.ch.cusps.map((cusp, i) => midpointLongitude(cusp, P2.ch.cusps[i]))
+        : null;
+      return {
+        positions,
+        aspects: aspects.sort((a, b) => a.orb - b.orb),
+        anglesKnown,
+        asc: anglesKnown ? midpointLongitude(P1.ch.asc, P2.ch.asc) : null,
+        mc: anglesKnown ? midpointLongitude(P1.ch.mc, P2.ch.mc) : null,
+        cusps
+      };
+    };
+
     const compute = (P1, P2) => {
       const asps = [];
       CP_KEYS.forEach(a => CP_KEYS.forEach(b => {
         const A = P1.ch.bodies.find(x => x.key === a), B = P2.ch.bodies.find(x => x.key === b);
         if (!A || !B) return;
         let diff = Math.abs(A.lon - B.lon) % 360; if (diff > 180) diff = 360 - diff;
-        for (const asp of ASPECTS) {
+        for (const asp of SYNASTRY_ASPECTS) {
           const orb = Math.abs(diff - asp.ang);
-          if (orb <= asp.orb) { asps.push({ a, b, asp, orb }); break; }
+          if (orb <= asp.orb) { asps.push({ a, b, asp, angle: diff, orb }); break; }
         }
       }));
       const cat = {};
@@ -1680,10 +1729,10 @@ if (typeof module !== 'undefined') module.exports = Astro;
         const level = score >= 1.5 ? "قوي" : score >= 0.5 ? "متوسط" : score > -0.5 ? "محتاج شغل" : "محتاج تفاهم كبير";
         cat[k] = { t: CATS[k].t, level, pos, neg };
       });
-      return { asps, cat };
+      return { asps, cat, composite: calculateComposite(P1, P2) };
     };
 
-    const line = x => `<li><strong>${PLANETS[x.a].n} ↔ ${PLANETS[x.b].n}</strong>: ${x.asp.n}، ${x.asp.nat}. ${x.asp.tr}.</li>`;
+    const line = x => `<li><strong>${PLANETS[x.a].n} ↔ ${PLANETS[x.b].n}</strong>: ${x.asp.n} · الزاوية ${x.angle.toFixed(1)}° · الأورب ${x.orb.toFixed(1)}°. ${x.asp.nat}.</li>`;
     const render = (P1, P2, R) => {
       const pos = R.asps.filter(x => HARM.includes(x.asp.k)).length;
       const neg = R.asps.filter(x => CHAL.includes(x.asp.k)).length;
@@ -1700,12 +1749,25 @@ if (typeof module !== 'undefined') module.exports = Astro;
       if (!tips.length) tips.push("حافظوا على الحوار المفتوح، واهتموا بالاختلافات الصغيرة قبل ما تكبر.");
       const allPos = Object.values(R.cat).flatMap(c => c.pos), allNeg = Object.values(R.cat).flatMap(c => c.neg);
       const top = R.asps.slice().sort((x, y) => x.orb - y.orb).slice(0, 6);
+      const compositePositions = R.composite.positions.map(({ key, lon }) => {
+        const sign = SIGNS[Math.floor(Astro.norm(lon) / 30)];
+        return `<div class="cp-composite-chip"><strong>${PLANETS[key].g} ${PLANETS[key].n}</strong><span>${formatPosition(lon)}</span></div>`;
+      }).join("");
+      const compositeAspects = R.composite.aspects.slice(0, 8).map(x =>
+        `<li><strong>${PLANETS[x.a].n} — ${PLANETS[x.b].n}</strong>: ${x.asp.n} · الزاوية ${x.angle.toFixed(1)}° · الأورب ${x.orb.toFixed(1)}°.</li>`
+      ).join("");
+      const compositeAngles = R.composite.anglesKnown
+        ? `<p class="cp-note"><strong>الطالع المركّب:</strong> ${formatPosition(R.composite.asc)} · <strong>وسط السماء:</strong> ${formatPosition(R.composite.mc)}</p>`
+        : `<p class="cp-note">الطالع والبيوت المركّبة غير معروضة لأن وقت الميلاد غير معروف لطرف واحد على الأقل.</p>`;
+      const compositeCusps = R.composite.cusps
+        ? `<details class="cp-composite-houses"><summary>رؤوس البيوت الاثني عشر في الخريطة المركّبة</summary><ol>${R.composite.cusps.map((cusp, i) => `<li>البيت ${i + 1}: ${formatPosition(cusp)}</li>`).join("")}</ol></details>`
+        : "";
       const fallbackNote = [P1, P2].some(p => p.ch.hs === "whole-fallback")
         ? `<p class="cp-note">فيه مكان بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فالبيوت (لو ظهرت) محسوبة بنظام Whole Sign.</p>` : "";
       const unknownNote = [P1, P2].some(p => !p.known)
         ? `<p class="cp-note">فيه وقت ميلاد غير معروف، والقمر بيتحرك حوالي 13 درجة في اليوم، فالاتصالات اللي فيها القمر تقريبية.</p>` : "";
       return `<div class="cp-res">
-        <h3>${P1.name} و${P2.name}</h3>
+        <h3>${esc(P1.name)} و${esc(P2.name)}</h3>
         <p class="cp-meta">${P1.date} · ${P1.placeName} &nbsp;|&nbsp; ${P2.date} · ${P2.placeName}</p>
         ${unknownNote}
         ${fallbackNote}
@@ -1713,7 +1775,16 @@ if (typeof module !== 'undefined') module.exports = Astro;
         <div class="sx"><h4>مؤشرات التوافق</h4><ul>${Object.keys(R.cat).map(k => `<li><strong>${R.cat[k].t}:</strong> ${R.cat[k].level}</li>`).join("")}</ul></div>
         <div class="sx"><h4>نقاط الانسجام</h4><ul>${allPos.slice(0, 4).map(line).join("") || "<li>مفيش اتصالات انسجام واضحة في المحاور دي.</li>"}</ul></div>
         <div class="sx"><h4>نقاط الاختلاف</h4><ul>${allNeg.slice(0, 4).map(line).join("") || "<li>مفيش احتكاكات واضحة في المحاور دي.</li>"}</ul></div>
-        <div class="sx"><h4>أبرز الاتصالات الفلكية</h4><ul>${top.map(line).join("") || "<li>مفيش اتصالات بين الكواكب اللي بنحسبها ضمن المدى.</li>"}</ul></div>
+        <div class="sx"><h4>اتصالات Synastry بين الكواكب الشخصية</h4><ul>${top.map(line).join("") || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul></div>
+        <div class="sx cp-composite">
+          <h4>الخريطة المركّبة Composite</h4>
+          <p class="cp-note">مواضع الكواكب هنا هي منتصفات القوس الأقصر بين خريطتي الميلاد. هذه قراءة فلكية رمزية وليست قياسًا لنجاح العلاقة.</p>
+          <div class="cp-composite-grid">${compositePositions}</div>
+          <h5>اتصالات الكواكب داخل الخريطة المركّبة</h5>
+          <ul>${compositeAspects || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul>
+          ${compositeAngles}
+          ${compositeCusps}
+        </div>
         <div class="sx"><h4>نصائح عملية</h4><ul>${tips.map(t => `<li>${t}</li>`).join("")}</ul></div>
         <div class="msg-card"><p class="msg-txt">القراءة دي رمزية للتأمل والفهم، مش حكم على نجاح العلاقة ولا تنبؤ بمستقبلها.</p></div>
       </div>`;
