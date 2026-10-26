@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "libraryId": "aqeeq.matrix.interpretations",
+  "contentState": "structure-only",
+  "referenceState": {
+    "status": "unverified",
+    "note": "لا يحتوي المستودع على مرجع مدرسة معتمد؛ لا توجد قواعد أو مصادر موثقة في هذه المكتبة."
+  },
+  "positions": [
+    {
+      "id": "north",
+      "dataPath": "matrix.nodes.north",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "northEast",
+      "dataPath": "matrix.nodes.northEast",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "east",
+      "dataPath": "matrix.nodes.east",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "southEast",
+      "dataPath": "matrix.nodes.southEast",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "south",
+      "dataPath": "matrix.nodes.south",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "southWest",
+      "dataPath": "matrix.nodes.southWest",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "west",
+      "dataPath": "matrix.nodes.west",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "northWest",
+      "dataPath": "matrix.nodes.northWest",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    },
+    {
+      "id": "center",
+      "dataPath": "matrix.nodes.center",
+      "kind": "existing-matrix-node",
+      "labelSource": "assets/js/numerology-matrix.js:TITLES",
+      "meaningStatus": "unverified"
+    }
+  ],
+  "sources": [],
+  "arcana": [
+    {
+      "id": "arcana-01",
+      "arcanaNumber": 1,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/0",
+      "coreInterpretation": {
+        "id": "arcana-01.core",
+        "arcanaNumber": 1,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-02",
+      "arcanaNumber": 2,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/1",
+      "coreInterpretation": {
+        "id": "arcana-02.core",
+        "arcanaNumber": 2,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-03",
+      "arcanaNumber": 3,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/2",
+      "coreInterpretation": {
+        "id": "arcana-03.core",
+        "arcanaNumber": 3,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-04",
+      "arcanaNumber": 4,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/3",
+      "coreInterpretation": {
+        "id": "arcana-04.core",
+        "arcanaNumber": 4,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-05",
+      "arcanaNumber": 5,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/4",
+      "coreInterpretation": {
+        "id": "arcana-05.core",
+        "arcanaNumber": 5,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-06",
+      "arcanaNumber": 6,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/5",
+      "coreInterpretation": {
+        "id": "arcana-06.core",
+        "arcanaNumber": 6,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-07",
+      "arcanaNumber": 7,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/6",
+      "coreInterpretation": {
+        "id": "arcana-07.core",
+        "arcanaNumber": 7,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-08",
+      "arcanaNumber": 8,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/7",
+      "coreInterpretation": {
+        "id": "arcana-08.core",
+        "arcanaNumber": 8,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-09",
+      "arcanaNumber": 9,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/8",
+      "coreInterpretation": {
+        "id": "arcana-09.core",
+        "arcanaNumber": 9,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-10",
+      "arcanaNumber": 10,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/9",
+      "coreInterpretation": {
+        "id": "arcana-10.core",
+        "arcanaNumber": 10,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-11",
+      "arcanaNumber": 11,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/10",
+      "coreInterpretation": {
+        "id": "arcana-11.core",
+        "arcanaNumber": 11,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-12",
+      "arcanaNumber": 12,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/11",
+      "coreInterpretation": {
+        "id": "arcana-12.core",
+        "arcanaNumber": 12,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-13",
+      "arcanaNumber": 13,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/12",
+      "coreInterpretation": {
+        "id": "arcana-13.core",
+        "arcanaNumber": 13,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-14",
+      "arcanaNumber": 14,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/13",
+      "coreInterpretation": {
+        "id": "arcana-14.core",
+        "arcanaNumber": 14,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-15",
+      "arcanaNumber": 15,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/14",
+      "coreInterpretation": {
+        "id": "arcana-15.core",
+        "arcanaNumber": 15,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-16",
+      "arcanaNumber": 16,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/15",
+      "coreInterpretation": {
+        "id": "arcana-16.core",
+        "arcanaNumber": 16,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-17",
+      "arcanaNumber": 17,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/16",
+      "coreInterpretation": {
+        "id": "arcana-17.core",
+        "arcanaNumber": 17,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-18",
+      "arcanaNumber": 18,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/17",
+      "coreInterpretation": {
+        "id": "arcana-18.core",
+        "arcanaNumber": 18,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-19",
+      "arcanaNumber": 19,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/18",
+      "coreInterpretation": {
+        "id": "arcana-19.core",
+        "arcanaNumber": 19,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-20",
+      "arcanaNumber": 20,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/19",
+      "coreInterpretation": {
+        "id": "arcana-20.core",
+        "arcanaNumber": 20,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-21",
+      "arcanaNumber": 21,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/20",
+      "coreInterpretation": {
+        "id": "arcana-21.core",
+        "arcanaNumber": 21,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    },
+    {
+      "id": "arcana-22",
+      "arcanaNumber": 22,
+      "catalogRef": "assets/data/matrix/core.json#/arcana/21",
+      "coreInterpretation": {
+        "id": "arcana-22.core",
+        "arcanaNumber": 22,
+        "positionId": null,
+        "reviewStatus": "not-started",
+        "completeness": "empty",
+        "sourceRuleIds": [],
+        "content": {
+          "meaning": null,
+          "strengths": [],
+          "challenges": [],
+          "innerTensions": [],
+          "examples": [],
+          "reflectionQuestions": [],
+          "developmentSteps": []
+        }
+      },
+      "positionInterpretations": []
+    }
+  ],
+  "combinationRules": [],
+  "sectionLinks": []
+}
