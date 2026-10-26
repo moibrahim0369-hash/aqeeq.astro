@@ -135,6 +135,7 @@
     finally{button.disabled=false;button.removeAttribute('aria-busy');}
   }
   section.querySelectorAll('[data-eam-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.eamMode)));
+  section.querySelector('.eam-tabs')?.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();const buttons=[...section.querySelectorAll('[data-eam-mode]')],current=buttons.indexOf(event.target.closest('[data-eam-mode]'));const step=event.key==='ArrowLeft'?1:-1;buttons[(current+step+buttons.length)%buttons.length].click();buttons[(current+step+buttons.length)%buttons.length].focus();});
   document.addEventListener('aqeeq:natal-ready',renderControls);
   renderControls();
 })();
