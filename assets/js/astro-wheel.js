@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const NS='http://www.w3.org/2000/svg', SIGNS=['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'], GLYPHS=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
-  const PLANETS={sun:['الشمس','☉'],moon:['القمر','☽'],mercury:['عطارد','☿'],venus:['الزهرة','♀'],mars:['المريخ','♂'],jupiter:['المشتري','♃'],saturn:['زحل','♄'],uranus:['أورانوس','♅'],neptune:['نبتون','♆'],pluto:['بلوتو','♇']}, PERSONAL=['sun','moon','mercury','venus','mars'];
+  const PLANETS={sun:['الشمس','☉'],moon:['القمر','☽'],mercury:['عطارد','☿'],venus:['الزهرة','♀'],mars:['المريخ','♂'],jupiter:['المشتري','♃'],saturn:['زحل','♄'],uranus:['أورانوس','♅'],neptune:['نبتون','♆'],pluto:['بلوتو','♇'],truenode:['العقدة الشمالية','☊'],node:['العقدة الشمالية','☊'],fortune:['سهم السعادة','⊗']}, PERSONAL=['sun','moon','mercury','venus','mars'];
   const el=(tag,attrs={},text='')=>{const n=document.createElementNS(NS,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,String(v)));if(text)n.textContent=text;return n;};
   const norm=x=>((x%360)+360)%360, pt=(lon,r,c=260)=>{const a=(180+norm(lon))*Math.PI/180;return[c+r*Math.cos(a),c-r*Math.sin(a)];};
   const position=lon=>{const x=norm(lon),d=Math.floor(x%30),m=Math.round((x%1)*60);return String(m===60?(d+1)%30:d).padStart(2,'0')+'°'+String(m===60?0:m).padStart(2,'0')+'′';};
