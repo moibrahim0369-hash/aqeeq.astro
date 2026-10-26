@@ -175,7 +175,7 @@
 <details class="adv">
 <summary>خيارات متقدمة</summary>
 <div class="field"><label for="f-hs">نظام البيوت</label>
-<select id="f-hs"><option value="placidus">Placidus (الأشهر)</option><option value="whole">البيوت الكاملة Whole Sign</option></select>
+<select id="f-hs"><option value="placidus">Placidus</option><option value="whole">Whole Sign (البيوت الكاملة)</option><option value="equal">Equal House (البيوت المتساوية)</option><option value="porphyry">Porphyry (البورفيري)</option></select>
 </div>
 </details>
 <p class="ferr" hidden="" id="ferr" role="alert"></p>
@@ -1205,6 +1205,21 @@ const Astro = (() => {
     return c;
   }
   const wholeSignCusps = asc => { const s = Math.floor(asc / 30) * 30; return Array.from({ length: 12 }, (_, i) => norm(s + 30 * i)); };
+  // Equal House: each cusp is exactly 30° from the Ascendant.
+  const equalCusps = asc => Array.from({ length: 12 }, (_, i) => norm(asc + 30 * i));
+  // Porphyry: trisect each of the four ecliptic arcs between ASC, IC, DSC and MC.
+  function porphyryCusps(asc, mc) {
+    const anchors = [norm(asc), norm(mc + 180), norm(asc + 180), norm(mc)];
+    const c = new Array(12);
+    for (let q = 0; q < 4; q++) {
+      const start = anchors[q], end = anchors[(q + 1) % 4];
+      const arc = norm(end - start);
+      c[q * 3] = start;
+      c[q * 3 + 1] = norm(start + arc / 3);
+      c[q * 3 + 2] = norm(start + 2 * arc / 3);
+    }
+    return c;
+  }
   function houseOf(lon, cusps) {
     for (let i = 0; i < 12; i++) {
       const a = cusps[i], b = cusps[(i + 1) % 12];
@@ -1255,7 +1270,10 @@ const Astro = (() => {
       const { asc, mc } = ascMc(ramc, eps, lat);
       let cusps = null, used = hs;
       if (hs === 'placidus') cusps = placidusCusps(ramc, eps, lat, asc, mc);
-      if (!cusps) { cusps = wholeSignCusps(asc); used = hs === 'placidus' ? 'whole-fallback' : 'whole'; }
+      else if (hs === 'whole') cusps = wholeSignCusps(asc);
+      else if (hs === 'equal') cusps = equalCusps(asc);
+      else if (hs === 'porphyry') cusps = porphyryCusps(asc, mc);
+      if (!cusps) { cusps = wholeSignCusps(asc); used = 'whole-fallback'; }
       Object.assign(out, { ramc, eps, asc, mc, cusps, hs: used, vertex: vertexWest(ramc, eps, lat) });
       /* سهم السعادة: بالنهار طالع + قمر − شمس، وبالليل طالع + شمس − قمر (الشمس فوق الأفق = نهار) */
       const sunB = bodies.find(b => b.key === 'sun'), moonB = bodies.find(b => b.key === 'moon');
@@ -1285,7 +1303,7 @@ const Astro = (() => {
   }
 
   return { chart, vertexWest, lonOf, houseOf, norm, d180, jdFromMs, msFromJd, deltaT, yearOf, localToUtcMs, tzOffsetMin,
-    PLANET_KEYS, BODY_KEYS, _moonLonMean: moonLonMean, _stdGeoLon: stdGeoLon, _helio: helioSchlyter, _sunTrue: sunTrue, _ascMc: ascMc, _plac: placidusCusps, _nut: nutation, _obl: meanObliq };
+    PLANET_KEYS, BODY_KEYS, _moonLonMean: moonLonMean, _stdGeoLon: stdGeoLon, _helio: helioSchlyter, _sunTrue: sunTrue, _ascMc: ascMc, _plac: placidusCusps, _whole: wholeSignCusps, _equal: equalCusps, _porphyry: porphyryCusps, _nut: nutation, _obl: meanObliq };
 })();
 if (typeof module !== 'undefined') module.exports = Astro;
 
