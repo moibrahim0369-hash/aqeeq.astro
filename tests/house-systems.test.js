@@ -37,7 +37,8 @@ for (let i=0;i<12;i++) assert.ok(Math.abs(norm(e[(i+1)%12]-e[i])-30)<1e-9);
 const p = porphyry(17.25, 281.4);
 assert.equal(p.length, 12);
 for (let q=0;q<4;q++) {
-  const arc = norm(p[q*3+3 === 12 ? 0 : q*3+3] - p[q*3]);
+  const nextIndex = (q * 3 + 3) % 12;
+  const arc = norm(p[nextIndex] - p[q * 3]);
   assert.ok(arc > 0 && arc < 180, 'each Porphyry quadrant has a positive arc');
   assert.ok(Math.abs(norm(p[q*3+1]-p[q*3])-arc/3)<1e-8);
   assert.ok(Math.abs(norm(p[q*3+2]-p[q*3+1])-arc/3)<1e-8);
