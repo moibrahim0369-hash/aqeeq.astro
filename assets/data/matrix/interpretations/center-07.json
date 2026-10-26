@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-07.prototype-01",
+  "arcanaNumber": 7,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "المحور المركزي · قراءة الموقع",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "لا يوجد نص أو رابط مرجعي متاح لتوثيق دلالة الرقم 7 في موضع المركز."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js",
+    "baselineFixture": {
+      "date": "1999-09-25",
+      "expectedCenter": 7,
+      "status": "existing-regression-fixture"
+    }
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-07.json",
+    "headline": "الحركة والتقدم",
+    "strengthSeed": "شجاعة وتوجيه للطاقة",
+    "challengeSeed": "استعجال أو صراع"
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "editorial-prototype",
+    "completionStatus": "prototype",
+    "scopeNote": "قراءة رمزية تجريبية من صياغة عقيق أسترو. ليست قاعدة موثقة للمدرسة ولا وصفًا نفسيًا مؤكدًا.",
+    "meaning": "في هذا النموذج، ظهور 7 في المركز يفتح سؤالًا عن اتجاه الحركة: هل تقود طاقتك إلى أولوية اخترتها، أم تتحول كثرة المبادرات إلى حركة بلا وجهة؟ هذه صياغة عقيق لموضع المركز، وليست دلالة مرجعية مثبتة.",
+    "strengths": [
+      {
+        "id": "directed-initiative",
+        "text": "عندما تتضح الأولوية، تستطيع جمع الانتباه حول خطوة عملية والبدء بها بدل انتظار ظروف مثالية."
+      },
+      {
+        "id": "decision-under-pressure",
+        "text": "في المواقف التي تتطلب حسمًا، قد تساعدك الجرأة على نقل النقاش من الاحتمالات إلى قرار قابل للتنفيذ."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "speed-before-clarity",
+        "text": "قد يسبق الإيقاع السريع فهم الهدف أو سماع القيود؛ عندها يتحول الحسم إلى استعجال."
+      },
+      {
+        "id": "carrying-everything",
+        "text": "قد تميل إلى تولي زمام كل خطوة بنفسك، فتتقدم المهمة بينما تقل مساحة التعاون."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "momentum-vs-direction",
+        "poleA": "المبادرة تمنحك زخمًا.",
+        "poleB": "السرعة نفسها قد تصعّب مراجعة الوجهة.",
+        "integration": "سمِّ النتيجة المطلوبة قبل اختيار السرعة؛ يمكن تعديل الخطة بعد اختبارها."
+      },
+      {
+        "id": "autonomy-vs-coordination",
+        "poleA": "الاعتماد على قرارك يختصر التردد.",
+        "poleB": "القرار المنفرد قد يفوّت معلومة يملكها شخص آخر.",
+        "integration": "اطلب معلومة واحدة من المتأثرين بالقرار، ثم احتفظ بمسؤولية الاختيار."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "several-deadlines",
+        "situation": "تتزامن ثلاثة مواعيد تسليم في أسبوع واحد.",
+        "possiblePattern": "تبدأ المهام كلها فورًا لتشعر بأن الأمور تحركت، ثم يتشتت وقتك بين بدايات كثيرة.",
+        "experiment": "رتّبها بحسب أثر التأخير، وأنهِ خطوة محددة من الأولى قبل فتح المهمة التالية."
+      },
+      {
+        "id": "team-plan-disagreement",
+        "situation": "يعترض زميل على خطة تبدو لك واضحة وسريعة.",
+        "possiblePattern": "قد ترد بحل جاهز قبل معرفة القيد الذي بنى عليه اعتراضه.",
+        "experiment": "اسأله عن القيد الأهم، لخّصه بجملة، ثم قرر هل تعدّل الخطة أو تشرح سبب الإبقاء عليها."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما النتيجة التي أريد الوصول إليها قبل أن أزيد سرعة التنفيذ؟",
+      "أي معلومة من شخص آخر قد تحسن قراري قبل أن ألتزم به؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "define-direction",
+        "action": "اكتب نتيجة واحدة قابلة للملاحظة قبل بدء المهمة.",
+        "check": "هل تخدم الخطوة التالية هذه النتيجة مباشرة؟"
+      },
+      {
+        "id": "pace-review",
+        "action": "ضع نقطة مراجعة قصيرة بعد أول خطوة تنفيذية.",
+        "check": "هل ما زالت الوجهة مناسبة، أم أن السرعة سبقت المعطيات؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "توفر مصدر قابل للاستشهاد يثبت تركيب الأرقام أو العلاقة بين الموضع والنقاط الأخرى.",
+      "توثيق المسارات العددية ومدخلاتها ومثال مرجعي قبل كتابة نص مشروط بتركيبة."
+    ]
+  },
+  "contentVersion": 1
+}
