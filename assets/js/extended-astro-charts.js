@@ -4,15 +4,15 @@
   const NAMES={sun:'الشمس',moon:'القمر',mercury:'عطارد',venus:'الزهرة',mars:'المريخ',jupiter:'المشتري',saturn:'زحل',uranus:'أورانوس',neptune:'نبتون',pluto:'بلوتو',truenode:'العقدة الشمالية',node:'العقدة الشمالية',chiron:'كيرون'};
   const GLYPHS={sun:'☉',moon:'☽',mercury:'☿',venus:'♀',mars:'♂',jupiter:'♃',saturn:'♄',uranus:'♅',neptune:'♆',pluto:'♇',truenode:'☊',node:'☊'};
   const ASPECTS=[{deg:0,k:'conj',name:'اقتران'},{deg:60,k:'sext',name:'تسديس'},{deg:90,k:'sq',name:'تربيع'},{deg:120,k:'tri',name:'تثليث'},{deg:180,k:'opp',name:'مقابلة'}];
-  const PERSONAL=new Set(['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto']);
+  const PERSONAL=new Set(['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto']);\n  const CHART_POINTS=new Set([...PERSONAL,'truenode','node','fortune']);
   const $=(q,r=document)=>r.querySelector(q),norm=x=>((x%360)+360)%360,delta=(a,b)=>((a-b+540)%360)-180;
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function fmt(lon){const v=norm(lon),si=Math.floor(v/30);let d=Math.floor(v-si*30),m=Math.round((v-si*30-d)*60);if(m===60){d++;m=0;if(d===30)return '00°00′ '+SIGNS[(si+1)%12];}return String(d).padStart(2,'0')+'°'+String(m).padStart(2,'0')+'′ '+SIGNS[si];}
   const dateStamp=d=>new Date(d).toLocaleString('ar-EG',{dateStyle:'medium',timeStyle:'short'});
   const mapKey=k=>String(k||'').toLowerCase()==='truenode'?'truenode':String(k||'').toLowerCase();
-  function chartBodies(ch){return(ch.bodies||[]).filter(b=>PERSONAL.has(mapKey(b.key))).map(b=>({...b,key:mapKey(b.key),lon:norm(b.lon)}));}
+  function chartBodies(ch){return(ch.bodies||[]).filter(b=>CHART_POINTS.has(mapKey(b.key))).map(b=>({...b,key:mapKey(b.key),lon:norm(b.lon)}));}
   function chartAspects(ch,orb=7){
-    const bodies=chartBodies(ch),out=[];
+    const bodies=chartBodies(ch).filter(b=>b.key!=='fortune'),out=[];
     for(let i=0;i<bodies.length;i++)for(let j=i+1;j<bodies.length;j++){
       const a=bodies[i],b=bodies[j],diff=Math.abs(delta(a.lon,b.lon));
       let best=null;for(const asp of ASPECTS){const distance=Math.abs(diff-asp.deg);if(!best||distance<best.orb)best={...asp,orb:distance};}
