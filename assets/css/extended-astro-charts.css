@@ -35,3 +35,5 @@
 .aq-copy-map-btn:hover,.aq-copy-map-btn:focus-visible{background:rgba(212,175,55,.19);outline:2px solid rgba(212,175,55,.35);outline-offset:2px}
 @media(max-width:700px){.eam-control{grid-template-columns:1fr}.eam-controls{justify-content:stretch}.eam-controls .btn{flex:1 1 100%}}
 @media(max-width:480px){.eam-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.2rem;padding:.25rem}.eam-tabs [role=tab]{padding:.65rem .35rem;font-size:.76rem;white-space:nowrap}.eam-control{padding:.8rem;border-radius:16px}.eam-controls{display:grid;grid-template-columns:1fr;width:100%}.eam-controls .field{width:100%}.eam-result{padding:.65rem;border-radius:18px}.eam-table{font-size:.76rem}.eam-table th,.eam-table td{padding:.58rem .52rem}.aq-copy-map-btn{width:100%}}
+
+.gender-voice-note{margin:.35rem 0 .75rem;padding:.5rem .75rem;border-inline-start:2px solid rgba(212,175,55,.65);border-radius:8px;background:rgba(212,175,55,.055);color:#cbbb91;font-size:.73rem;line-height:1.6}
