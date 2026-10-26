@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const BASE = 'http://127.0.0.1:8765';
 const STUB = `
-const T = globalThis.__sbTest = globalThis.__sbTest || {}; T.calls = []; T.invoke = null;
+const T = globalThis.__sbTest = globalThis.__sbTest || {}; T.calls = []; T.oauthCalls = []; T.invoke = null;
 export function createClient() {
   let session = { access_token: 'tok-1', user: { id: 'u1', email: 'a@b.com' } };
   const subs = [];
@@ -10,6 +10,7 @@ export function createClient() {
     auth: {
       onAuthStateChange(cb) { subs.push(cb); setTimeout(() => cb('INITIAL_SESSION', globalThis.__noSession ? null : session), 0); return { data: { subscription: { unsubscribe() {} } } }; },
       async getSession() { return { data: { session }, error: null }; },
+      async signInWithOAuth(args) { T.oauthCalls.push(args); if (globalThis.__oauthRec) globalThis.__oauthRec(JSON.stringify(args)); return { data: {}, error: null }; },
       async signOut() { return { error: null }; },
     },
     functions: { async invoke(name, o) { T.calls.push([name, o, session.access_token]); if (globalThis.__rec) globalThis.__rec(JSON.stringify([name, o, session.access_token])); return T.invoke ? T.invoke() : { data: { checkoutUrl: 'https://accept.paymob.com/unifiedcheckout/?publicKey=pk&clientSecret=cs' }, error: null }; } },
@@ -19,8 +20,9 @@ export function createClient() {
 }`;
 let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
 async function open(b, noSession, invokeJs) {
-  const p = await b.newPage(); const errs = []; const nav = []; const rec = [];
+  const p = await b.newPage(); const errs = []; const nav = []; const rec = []; const oauth = [];
   await p.exposeFunction('__rec', (x) => rec.push(JSON.parse(x)));
+  await p.exposeFunction('__oauthRec', (x) => oauth.push(JSON.parse(x)));
   p.on('pageerror', (e) => errs.push(e.message));
   await p.addInitScript(`globalThis.__noSession=${!!noSession}`);
   await p.route('**/*', (r) => {
@@ -31,12 +33,15 @@ async function open(b, noSession, invokeJs) {
     return r.abort();
   });
   await p.goto(BASE + '/index.html#account'); await p.waitForTimeout(800);
-  return { p, errs, nav, rec };
+  return { p, errs, nav, rec, oauth };
 }
 (async () => {
   const b = await chromium.launch();
   let t = await open(b, true);
   ok(!(await t.p.isVisible('#acct-buy')), 'signed out: buy button hidden');
+  ok(await t.p.isVisible('#acct-google'), 'signed out: Google sign-in button visible');
+  await t.p.click('#acct-google'); await t.p.waitForTimeout(200);
+  ok(t.oauth.length === 1 && t.oauth[0].provider === 'google' && t.oauth[0].options.redirectTo === BASE + '/index.html', 'Google OAuth uses Supabase and redirects back to the app');
   await t.p.close();
 
   t = await open(b, false);
