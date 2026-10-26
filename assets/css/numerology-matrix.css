@@ -108,3 +108,29 @@
   .aqm-shell .aqm-details:not([open])>:not(summary){display:block!important}
   .aqm-shell .aqm-chakra-detail[hidden]{display:none!important}
 }
+
+
+/* Source-aware Matrix report roadmap */
+.aqm-roadmap{scroll-margin-block:1rem}
+.aqm-roadmap-notice{padding:.8rem 1rem;border-inline-start:3px solid #D4AF37;border-radius:10px;background:rgba(212,175,55,.07);color:#e4d7b5;line-height:1.8}
+.aqm-roadmap-details{margin:.8rem 0;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.025)}
+.aqm-roadmap-details>summary{min-height:44px;padding:.65rem .9rem;display:flex;align-items:center;cursor:pointer;color:#ead9a8;font-weight:700}
+.aqm-roadmap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;padding:.8rem}
+.aqm-roadmap-item{min-width:0;padding:.9rem}
+.aqm-roadmap-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
+.aqm-roadmap-item h4{margin:0;color:#f0dfb3;line-height:1.5}
+.aqm-roadmap-item p{margin:.65rem 0 0;color:#c0c7d6;font-size:.85rem;line-height:1.75;overflow-wrap:anywhere}
+.aqm-roadmap-item code{white-space:normal;overflow-wrap:anywhere;color:#dfc980}
+.aqm-status-badge{flex:0 0 auto;padding:.25rem .55rem;border:1px solid rgba(212,175,55,.25);border-radius:999px;color:#e4d7b5;font-size:.7rem;line-height:1.4}
+.aqm-term-ledger ul{margin:0;padding:.5rem 1.8rem 1rem}
+.aqm-term-ledger li{padding:.45rem 0;color:#e4d7b5}
+.aqm-term-ledger li span{display:block;color:#aeb6ca;font-size:.8rem;line-height:1.6}
+@media(max-width:640px){.aqm-roadmap-grid{grid-template-columns:minmax(0,1fr);padding:.55rem}.aqm-roadmap-item-head{flex-direction:column}.aqm-status-badge{white-space:normal}}
+@media print{
+  .aqm-roadmap-details:not([open])>:not(summary){display:block!important}
+  .aqm-roadmap-details>summary{display:none!important}
+  .aqm-roadmap-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .aqm-roadmap-item{break-inside:avoid}
+  .aqm-roadmap-notice,.aqm-roadmap-item p,.aqm-term-ledger li span{color:#222!important}
+  .aqm-roadmap-item h4,.aqm-roadmap-details summary,.aqm-term-ledger li{color:#111!important}
+}
