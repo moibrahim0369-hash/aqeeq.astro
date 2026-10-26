@@ -24,6 +24,7 @@
   function apply(root,gender){
     if(!root||!gender)return;
     root.dataset.reportGender=gender;
+    root.querySelector('.gender-voice-note')?.remove();const voice=document.createElement('p');voice.className='gender-voice-note';voice.textContent=gender==='female'?'صياغة مؤنثة · هذا التقرير موجّه لكِ.':'صياغة مذكرة · هذا التقرير موجّه لك.';root.insertBefore(voice,root.firstChild);
     const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;
     while((node=walk.nextNode())){if(node.parentElement?.closest('script,style,textarea,input,select'))continue;const next=transform(node.nodeValue,gender);if(next!==node.nodeValue)node.nodeValue=next;}
   }
