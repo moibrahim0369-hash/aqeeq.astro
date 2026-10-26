@@ -75,3 +75,7 @@ Stable internal IDs are used for the existing map, center reading, glossary, cha
 ## Unresolved / owner decision
 
 To add original named programs, age phases, children analysis, official section hierarchy, verified Chakra/ancestor/purpose formulas, or matrix compatibility, provide the project’s source/reference excerpts or approve a specific reference edition. Until then the page preserves its current calculations and clearly marks the gaps.
+
+## Expanded source-aware inventory
+
+The 14-topic checklist and its per-topic implementation statuses now live in [matrix-reference-map.md](matrix-reference-map.md). It records owner-supplied topic labels separately from source terms, current UI/formula behavior, and the evidence needed to validate the source hierarchy. The accompanying [browser inventory](../assets/js/matrix-report-map.js) powers an expandable report section. It does not change any calculation.
