@@ -1559,6 +1559,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
   function calc() {
     $("#ferr").hidden = true;
+    const gender = $("#f-gender").value;
+    if (!gender) return fail("اختار ذكر أو أنثى عشان أضبط صياغة التقرير.");
     const date = $("#f-date").value;
     if (!date) return fail("اكتب تاريخ الميلاد.");
     const [y, m, d] = date.split("-").map(Number);
@@ -1584,7 +1586,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       catch (err) { return fail("المتصفح مش قادر يحسب التوقيت المحلي للمكان ده. جرّب الإدخال اليدوي."); }
     }
     const ch = Astro.chart({ utcMs, lat, lon, hs: $("#f-hs").value, known });
-    LAST = { ch, name: $("#f-name").value.trim(), y, m, d, hh, mm, known, placeName, lat, lon, utcMs };
+    LAST = { ch, name: $("#f-name").value.trim(), y, m, d, hh, mm, known, placeName, lat, lon, utcMs, gender };
     document.dispatchEvent(new Event("aqeeq:natal-ready"));
     // Keep the report draft on this device across the Paymob redirect; it is sent only
     // after the user returns with a verified paid order and presses the report button.
@@ -1597,6 +1599,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
     renderResult(LAST);
     const r = $("#result"); r.hidden = false;
+    window.AqeeqGender?.apply(r, LAST.gender);
     window.AqeeqCopyMap?.attach(r, LAST.name ? "خريطة الميلاد · " + LAST.name : "خريطة الميلاد");
     r.scrollIntoView();
   }
@@ -1616,6 +1619,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
     const personFields = (p, label) => `<fieldset class="cp-person"><legend>${label}</legend>
       <div class="field"><label for="${p}-name">الاسم (اختياري)</label><input id="${p}-name" type="text" autocomplete="off" maxlength="40"></div>
+      <div class="field"><label for="${p}-gender">الجنس وصيغة المخاطبة</label><select id="${p}-gender" data-gender-select data-gender-group="${p}" required><option value="">اختر الجنس</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
       <div class="cp-two">
         <div class="field"><label for="${p}-date">تاريخ الميلاد</label><input id="${p}-date" type="date" min="1900-01-01" max="2100-12-31" required></div>
         <div class="field"><label for="${p}-time">وقت الميلاد</label><input id="${p}-time" type="time"></div>
@@ -1658,6 +1662,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const readP = p => {
       const label = p === "cp1" ? "الشخص الأول" : "الشخص الثاني";
       const ds = $("#" + p + "-date").value;
+      const gender = $("#" + p + "-gender").value;
+      if (!gender) throw "اختار ذكر أو أنثى لـ" + label + " عشان نضبط صياغة القراءة.";
       if (!ds) throw "اكتب تاريخ ميلاد " + label + ".";
       const [y, m, d] = ds.split("-").map(Number);
       const known = !$("#" + p + "-unknown").checked;
@@ -1682,7 +1688,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
         catch (e) { throw "المتصفح مش قادر يحسب التوقيت المحلي للمكان ده. جرّب الإدخال اليدوي."; }
       }
       const ch = Astro.chart({ utcMs, lat, lon, hs: "placidus", known });
-      return { name: $("#" + p + "-name").value.trim() || label, placeName, known, ch, date: `${d}/${m}/${y}` };
+      return { name: $("#" + p + "-name").value.trim() || label, placeName, known, ch, date: `${d}/${m}/${y}`, gender };
     };
 
     const midpointLongitude = (a, b) => Astro.norm(a + Astro.d180(b - a) / 2);
@@ -1798,7 +1804,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       const unknownNote = [P1, P2].some(p => !p.known)
         ? `<p class="cp-note">فيه وقت ميلاد غير معروف، والقمر بيتحرك حوالي 13 درجة في اليوم، فالاتصالات اللي فيها القمر تقريبية.</p>` : "";
       return `<div class="cp-res">
-        <header class="cp-result-head"><div><span class="cp-result-kicker">قراءة توافق رمزية</span><h3>${esc(P1.name)} <span aria-hidden="true">×</span> ${esc(P2.name)}</h3><p class="cp-meta">${P1.date} · ${P1.placeName} <span aria-hidden="true">|</span> ${P2.date} · ${P2.placeName}</p></div><span class="cp-result-mark" aria-hidden="true">☉</span></header>
+        <header class="cp-result-head"><div><span class="cp-result-kicker">قراءة توافق رمزية</span><h3>${esc(P1.name)} <span aria-hidden="true">×</span> ${esc(P2.name)}</h3><p class="cp-meta">${P1.date} · ${P1.placeName} <span aria-hidden="true">|</span> ${P2.date} · ${P2.placeName}</p><p class="cp-gender-meta">صيغة المخاطبة: الطرف الأول ${P1.gender === "female" ? "أنثى" : "ذكر"} · الطرف الثاني ${P2.gender === "female" ? "أنثى" : "ذكر"}</p></div><span class="cp-result-mark" aria-hidden="true">☉</span></header>
         ${unknownNote}${fallbackNote}
         <section class="cp-overview">
           <div class="cp-overview-copy"><span class="cp-result-kicker">الصورة العامة</span><p>${overall}</p></div>
@@ -1841,6 +1847,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
         const P1 = readP("cp1"), P2 = readP("cp2");
         const synastry = calculateSynastry(P1, P2);
         out.innerHTML = render(P1, P2, synastry);
+        if (P1.gender === P2.gender) window.AqeeqGender?.apply(out, P1.gender);
         window.AqeeqAstroWheel?.renderSynastryWheel(document.querySelector("#cp-bi-wheel"), P1.ch, P2.ch, synastry.asps);
         window.AqeeqCopyMap?.attach(out, "خريطة التوافق Synastry & Composite · " + P1.name + " و" + P2.name);
         window.AqeeqAstroWheel?.renderCompositeWheel(document.querySelector("#cp-composite-wheel"), synastry.composite);
@@ -2994,12 +3001,15 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
   $("#lpform").addEventListener("submit", e => {
     e.preventDefault();
     const err = $("#lperr"); err.hidden = true;
-    const v = $("#lp-date").value;
+    const v = $("#lp-date").value, gender = $("#lp-gender").value;
+    if (!gender) { err.textContent = "اختار ذكر أو أنثى عشان نضبط صياغة مسار حياتك."; err.hidden = false; return; }
     if (!v) { err.textContent = "اكتب تاريخ الميلاد."; err.hidden = false; return; }
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
     renderLP($("#lp-name").value.trim(), d, m, y);
+    window.AqeeqGender?.apply($("#lpresult"), gender);
+    window.AqeeqCopyMap?.attach($("#lpresult"), "مسار الحياة · " + $("#lp-name").value.trim());
     $("#lpform").hidden = true; $("#lp-start").hidden = true;
     $("#lpresult").scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
   });
@@ -3014,7 +3024,8 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
   }
   const isoOf = (y, m, d) => `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
   function openTool(id, d, m, y) {
-    const iso = isoOf(y, m, d);
+    const iso = isoOf(y, m, d), gender = $("#q-gender").value;
+    $("#m-gender").value = gender; $("#lp-gender").value = gender; $("#f-gender").value = gender;
     if (id === "matrix") { $("#m-date").value = iso; $("#mform").requestSubmit(); location.hash = "#matrix"; }
     else if (id === "life") { $("#lp-start").hidden = true; $("#lpform").hidden = false; $("#lp-date").value = iso; $("#lpform").requestSubmit(); location.hash = "#lifepath"; }
     else { const f = $("#f-date"); if (f) f.value = iso; location.hash = "#chart"; }
@@ -3022,7 +3033,8 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
   $("#qform").addEventListener("submit", e => {
     e.preventDefault();
     const er = $("#qerr"); er.hidden = true;
-    const v = $("#q-date").value;
+    const v = $("#q-date").value, gender = $("#q-gender").value;
+    if (!gender) { er.textContent = "اختار ذكر أو أنثى عشان نضبط صياغة بطاقتك."; er.hidden = false; return; }
     if (!v) { er.textContent = "اكتب تاريخ الميلاد."; er.hidden = false; return; }
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { er.textContent = "التاريخ لازم يكون بين 1900 و 2100."; er.hidden = false; return; }
@@ -3034,8 +3046,8 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
       `<article class="qt"><span class="k">مصفوفة القدر</span><span class="sg2" aria-hidden="true">${gl("✦")}</span><h3 class="big">${c.n}</h3><p>ده مركز مصفوفتك، جوهرك الداخلي: ${c.core}. وطبعك الأصلي: ${a.n}.</p><button class="btn ghost sm" type="button" data-qopen="matrix">افتح مصفوفتي</button></article>` +
       `<article class="qt"><span class="k">مسار الحياة</span><span class="nb" aria-hidden="true">${lp}</span><h3 class="big">${F.t}</h3><p>${F.tag}. ${F.essence.split(". ")[0]}.</p><button class="btn ghost sm" type="button" data-qopen="life">افتح مساري</button></article>` +
       `<article class="qt"><span class="k">برجك الشمسي</span><span class="sg2" aria-hidden="true">${gl(sg.g)}</span><h3 class="big">${sg.n}</h3><p>أسلوبك: ${sg.way}. نقطة قوتك: ${sg.strength}. وبتتعلم إنك ${sg.growth}.</p><button class="btn ghost sm" type="button" data-qopen="chart">احسب خريطتي الكاملة</button></article>`;
-    $$("[data-qopen]", $("#qgrid")).forEach(b => b.addEventListener("click", () => openTool(b.dataset.qopen, d, m, y)));
-    const q = $("#quick"); q.hidden = false; q.scrollIntoView();
+    $("[data-qopen]", $("#qgrid")).forEach(b => b.addEventListener("click", () => openTool(b.dataset.qopen, d, m, y)));
+    const q = $("#quick"); window.AqeeqGender?.apply(q, gender); q.hidden = false; q.scrollIntoView();
   });
 
   /* ============ نمطك: قراءة شخصية بأسلوب مباشر (غرايز، نمو، علاقات، روابط) ============ */
