@@ -38,6 +38,9 @@ for (let id = 1; id <= 22; id += 1) {
 assert.deepEqual(seen, expected);
 
 const interpretationApi = require('../assets/js/matrix-interpretation-engine.js');
+const centerMeaning = new Set();
+const centerTension = new Set();
+const centerScenario = new Set();
 for (let id = 1; id <= 22; id += 1) {
   const file = path.join(dir, 'interpretations', `center-${String(id).padStart(2, '0')}.json`);
   const entry = JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -50,6 +53,15 @@ for (let id = 1; id <= 22; id += 1) {
   assert.ok(interpretationApi.validateEntry(entry).valid, `interpretation schema for Arcana ${id}: ${interpretationApi.validateEntry(entry).errors.join(', ')}`);
   assert.equal(entry.contextualRules.length, 0);
   assert.equal(entry.combinationRules.length, 0);
+  const narrative = entry.interpretation;
+  for (const [label, value, registry] of [
+    ['meaning', narrative.meaning, centerMeaning],
+    ['tension', narrative.innerTensions[0]?.poleA + '|' + narrative.innerTensions[0]?.poleB + '|' + narrative.innerTensions[0]?.integration, centerTension],
+    ['scenario', narrative.concreteScenarios[0]?.situation + '|' + narrative.concreteScenarios[0]?.possiblePattern + '|' + narrative.concreteScenarios[0]?.experiment, centerScenario]
+  ]) {
+    assert.ok(value && !registry.has(value), `${label} should be specific and non-duplicated for Arcana ${id}`);
+    registry.add(value);
+  }
 }
 
 console.log('Matrix core content contract passed: 22 unique Arcana drafts; unpublished; source rules unverified; chakra and ancestry content still marked incomplete.');
