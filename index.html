@@ -1704,7 +1704,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       };
     };
 
-    const compute = (P1, P2) => {
+    const calculateSynastry = (P1, P2) => {
       const asps = [];
       CP_KEYS.forEach(a => CP_KEYS.forEach(b => {
         const A = P1.ch.bodies.find(x => x.key === a), B = P2.ch.bodies.find(x => x.key === b);
@@ -1731,6 +1731,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
       });
       return { asps, cat, composite: calculateComposite(P1, P2) };
     };
+
+    window.AqeqSynastry = Object.freeze({ calculateSynastry, calculateComposite });
 
     const line = x => `<li><strong>${PLANETS[x.a].n} ↔ ${PLANETS[x.b].n}</strong>: ${x.asp.n} · الزاوية ${x.angle.toFixed(1)}° · الأورب ${x.orb.toFixed(1)}°. ${x.asp.nat}.</li>`;
     const render = (P1, P2, R) => {
@@ -1795,7 +1797,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       err.hidden = true; out.hidden = true;
       try {
         const P1 = readP("cp1"), P2 = readP("cp2");
-        out.innerHTML = render(P1, P2, compute(P1, P2));
+        out.innerHTML = render(P1, P2, calculateSynastry(P1, P2));
         out.hidden = false;
         out.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (ex) {
