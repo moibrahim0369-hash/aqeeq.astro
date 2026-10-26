@@ -33,7 +33,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
     if(ledger) ledger.open=true;
     return {present:!!section,unverified:!!section?.querySelector('.aqm-roadmap-notice')&&section.querySelector('.aqm-roadmap-notice').textContent.includes('لا يتوفر في الملفات المفحوصة نص أو رابط أو إصدار'),topics:section?.querySelectorAll('.aqm-roadmap-item').length||0,terms:section?.querySelectorAll('.aqm-term-ledger li').length||0,unverifiedTitles:[...(section?.querySelectorAll('.aqm-roadmap-item')||[])].every(x=>x.textContent.includes('العنوان الأصلي في المرجع: غير موثق حتى الآن'))};
   });
-  ok(roadmap.present&&roadmap.unverified&&roadmap.topics===13&&roadmap.terms===11&&roadmap.unverifiedTitles,'section roadmap renders 13 owner-supplied topics and 11 unverified brief terms: '+JSON.stringify(roadmap));
+  ok(roadmap.present&&roadmap.unverified&&roadmap.topics===14&&roadmap.terms===11&&roadmap.unverifiedTitles,'section roadmap renders 14 owner-supplied topics and 11 unverified brief terms: '+JSON.stringify(roadmap));
 
   const baseline = await p.evaluate(() => {
     const a=window.AqeeqNumerology,d='1999-09-25',m=a.calculateDestinyMatrix(d),c=a.calculateChakraHealthCard(d),g=a.calculateGenerationalLines(d),x=a.calculateDestinyAxes(d);
@@ -64,7 +64,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   ok(layout.points === 9 && layout.labels === 9, 'mobile 375px: all nine matrix points and simplified labels render');
   ok(await mobile.evaluate(() => document.querySelectorAll('.aqm-report-index a').length === 8), 'mobile 375px: report index remains available');
   const mobileRoadmap=await mobile.evaluate(()=>{const section=document.querySelector('#aqm-section-roadmap');section.querySelectorAll('details').forEach(d=>d.open=true);return {topics:section.querySelectorAll('.aqm-roadmap-item').length,scroll:document.documentElement.scrollWidth,width:innerWidth}});
-  ok(mobileRoadmap.topics===13&&mobileRoadmap.scroll<=mobileRoadmap.width+1,'mobile 375px: roadmap opens with all topics and no horizontal overflow '+JSON.stringify(mobileRoadmap));
+  ok(mobileRoadmap.topics===14&&mobileRoadmap.scroll<=mobileRoadmap.width+1,'mobile 375px: roadmap opens with all topics and no horizontal overflow '+JSON.stringify(mobileRoadmap));
   ok(layout.scroll <= layout.width + 1 && layout.svg <= layout.width + 1, 'mobile 375px: no horizontal overflow and SVG fits (' + JSON.stringify(layout) + ')');
   ok(mobileErrs.length === 0, 'mobile 375px: no JavaScript console errors ' + mobileErrs.join(';'));
   await mobile.close();
