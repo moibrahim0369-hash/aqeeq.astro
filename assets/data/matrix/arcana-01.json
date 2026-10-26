@@ -19,7 +19,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر الرسالة في تحويل المبادرة إلى شيء نافع يختبره الواقع، لا في الاكتفاء بإعلان فكرة كبيرة.",
+      "energyPsychology": "يرتبط صفاء الاتجاه بجمع الأدوات المتاحة وتوجيهها نحو غاية واحدة بدلاً من فتح بدايات متنافسة.",
+      "emotionsPsychology": "يتجدد الإحساس بالمعنى حين يلقى الحماس استجابة واقعية، ويبهت حين يصبح الاعتراف الخارجي مقياس القيمة."
     },
     "ajna": {
       "psychology": "",
@@ -68,6 +71,14 @@
     "contentStatus": "editorial-core-review",
     "authorship": "aqeeq-original",
     "referenceRuleStatus": "unverified",
-    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار."
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "status": "partial-review",
+      "authorship": "aqeeq-original",
+      "publicTopicLabel": "Sahasrara Mission",
+      "referenceRuleStatus": "unverified",
+      "bodySymbolStatus": "omitted-no-verified-rule",
+      "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+    }
   }
 }
