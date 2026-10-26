@@ -12,7 +12,7 @@ assert.ok(!/body\?\.amount(_cents)?|body\?\.currency/.test(source), 'client cann
 assert.ok(source.includes('special_reference: order.id'), 'Paymob merchant reference uses the exact local order UUID');
 assert.ok(source.includes('notification_url: `${SUPABASE_URL}/functions/v1/paymob-webhook`'), 'checkout points to the HMAC webhook');
 assert.ok(source.includes('redirection_url: `${SITE_URL}?order=${order.id}#account`'), 'return URL carries the same order UUID');
-assert.ok(source.includes('typeof out?.client_secret === "string"'), 'checkout requires a provider client secret');
+assert.ok(source.includes('typeof out?.client_secret !== "string"'), 'checkout rejects responses without a provider client secret');
 assert.ok(source.includes('PAYMOB_SECRET_KEY') && source.includes('PAYMOB_PUBLIC_KEY'), 'Paymob credentials are loaded from server environment');
 assert.ok(source.includes('BASE_ALLOW.includes(BASE)'), 'provider host is allowlisted');
 assert.ok(source.includes('return json({ checkoutUrl, orderId: order.id });'), 'response returns the checkout URL and matching order ID');
