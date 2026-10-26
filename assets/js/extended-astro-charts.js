@@ -50,7 +50,7 @@
   }
   window.AqeeqCopyMap={attach:mountCopy};
 
-  const attachTransitCopy=()=>{const host=$('#aqeek-personal-transits');if(host&&!host.querySelector('.aq-copy-map-btn')&&host.querySelector('.aqt-shell'))mountCopy(host,'خريطة العبور الشخصي');};
+  const attachTransitCopy=()=>{const host=$('#aqeek-personal-transits');if(host){window.AqeeqGender?.apply(host,context()?.gender);if(!host.querySelector('.aq-copy-map-btn')&&host.querySelector('.aqt-shell'))mountCopy(host,'خريطة العبور الشخصي');}};
   attachTransitCopy();new MutationObserver(attachTransitCopy).observe(document.documentElement,{childList:true,subtree:true});
   const section=$('#astro-maps'),content=$('#eam-content');
   if(!section||!content)return;
@@ -110,6 +110,7 @@
   function renderChart(result,title,subtitle,ch,extraHTML='',aspects=[]){
     result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">'+esc(title)+'</span><h3>'+esc(subtitle)+'</h3>'+chartSummary(ch)+'</header><div class="eam-wheel" id="eam-wheel"></div>'+chartTable(ch)+extraHTML+aspectLines(aspects);
     window.AqeeqAstroWheel?.renderChartWheel($('#eam-wheel',result),ch,aspects,title);
+    window.AqeeqGender?.apply(result,context()?.gender);
     mountCopy(result,title);
   }
   async function calculate(){
@@ -122,6 +123,7 @@
         const t=currentTransit(natal,date),lines=t.aspects;
         result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Transit Chart · '+esc(dateStamp(date))+'</span><h3>العبور فوق خريطة الميلاد</h3><p class="eam-note">الحلقة الخارجية لمواضع العبور، والداخلية لمواضع الميلاد.</p></header><div class="eam-wheel" id="eam-wheel"></div>'+aspectLines(lines,'اتصالات العبور بخريطة الميلاد');
         window.AqeeqAstroWheel?.renderSynastryWheel($('#eam-wheel',result),natal.ch,t.chart,t.aspects);
+        window.AqeeqGender?.apply(result,natal.gender);
         mountCopy(result,'خريطة العبور · '+dateStamp(date));
       }else if(mode==='solar'){
         const year=Number($('#eam-year',content).value),utc=solarReturnUtc(natal,year),ch=engineChart(utc,natal),aspects=chartAspects(ch);
