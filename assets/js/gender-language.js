@@ -22,7 +22,8 @@
     return text;
   }
   function apply(root,gender){
-    if(!root||!gender)return;
+    if(!root)return;
+    if(!gender){delete root.dataset.reportGender;const old=root.querySelector(':scope > .gender-voice-note');if(old)old.remove();return;}
     root.dataset.reportGender=gender;
     let voice=root.querySelector('.gender-voice-note');if(!voice){voice=document.createElement('p');voice.className='gender-voice-note';root.insertBefore(voice,root.firstChild);}const voiceText=gender==='female'?'صياغة مؤنثة · هذا التقرير موجّه لكِ.':'صياغة مذكرة · هذا التقرير موجّه لك.';if(voice.textContent!==voiceText)voice.textContent=voiceText;
     const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;
