@@ -24,7 +24,7 @@ for (let id = 1; id <= 22; id += 1) {
 
 const loaderSource = fs.readFileSync(path.join(__dirname, '..', 'assets', 'js', 'matrix-loader.js'), 'utf8');
 async function readWithStatus(status) {
-  const core = { arcana: [{ id: 7, name: { ar: 'العربة' } }], chakras: [] };
+  const core = { arcana: Array.from({ length: 22 }, (_, index) => ({ id: index + 1, name: { ar: 'أركانا ' + (index + 1) } })), chakras: Array.from({ length: 22 }, () => ({})) };
   const record = {
     id: 7,
     meta: { chakraContent: { status } },
