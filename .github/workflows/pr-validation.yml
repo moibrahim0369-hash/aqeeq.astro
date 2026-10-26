@@ -26,3 +26,5 @@ jobs:
         run: node tests/swiss-house-engine-comparison.test.js
       - name: Paymob and report-delivery contract
         run: node tests/paymob-delivery-contract.test.js
+      - name: Create-checkout order binding contract
+        run: node tests/create-checkout-contract.test.js
