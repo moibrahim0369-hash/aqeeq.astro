@@ -38,7 +38,7 @@ assert.equal(signature.length, 128, 'Paymob HMAC SHA-512 hex digest is 128 chars
 assert.match(report, /\.eq\('user_id', user\.id\)[\s\S]*?\.eq\('status', 'paid'\)[\s\S]*?\.eq\('product_code', 'full_report'/);
 assert.match(report, /if \(emailSent && orderId\)/);
 assert.match(report, /\.eq\('status', 'pending'\)/);
-assert.match(report, /status: "delivered"/);
+assert.match(report, /status: ["']delivered["']/);
 assert.match(auth, /\.eq\('status', 'delivered'\)/);
 assert.match(auth, /\.eq\('orders\.status', 'paid'\)/);
 assert.match(auth, /ui\.whatsapp\.hidden = !delivered/);
