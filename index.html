@@ -406,6 +406,7 @@
 <div id="cp1"></div>
 <div id="cp2"></div>
 <p class="ferr" hidden="" id="cp-err" role="alert"></p>
+<p class="cp-status" id="cp-status" role="status" aria-live="polite" hidden></p>
 <button class="btn" type="submit">احسب Synastry + Composite</button>
 </form>
 <div aria-live="polite" class="result" hidden="" id="cp-out"></div>
@@ -1584,7 +1585,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
   /* ---------- خريطة التوافق الفلكي بين شخصين ---------- */
   (function initCompat() {
-    const host1 = $("#cp1"), host2 = $("#cp2"), form = $("#cp-form"), out = $("#cp-out"), err = $("#cp-err");
+    const host1 = $("#cp1"), host2 = $("#cp2"), form = $("#cp-form"), out = $("#cp-out"), err = $("#cp-err"), status = $("#cp-status");
     if (!host1 || !host2 || !form) return;
     const CP_KEYS = ["sun", "moon", "mercury", "venus", "mars"];
     const SYNASTRY_ASPECTS = ASPECTS.filter(x => ["conj", "opp", "tri", "sq"].includes(x.k));
@@ -1624,6 +1625,16 @@ if (typeof module !== 'undefined') module.exports = Astro;
       sel.appendChild(manual);
       sel.value = "0";
       sel.addEventListener("change", () => { $("#" + p + "-manual").hidden = sel.value !== "manual"; });
+      const unknownInput = $("#" + p + "-unknown");
+      const timeInput = $("#" + p + "-time");
+      const syncTimeState = () => {
+        const unknown = unknownInput.checked;
+        timeInput.disabled = unknown;
+        timeInput.required = !unknown;
+        if (unknown) timeInput.value = "";
+      };
+      unknownInput.addEventListener("change", syncTimeState);
+      syncTimeState();
     });
 
     const readP = p => {
@@ -1792,17 +1803,36 @@ if (typeof module !== 'undefined') module.exports = Astro;
       </div>`;
     };
 
-    form.addEventListener("submit", e => {
+    form.addEventListener("submit", async e => {
       e.preventDefault();
-      err.hidden = true; out.hidden = true;
+      err.hidden = true;
+      out.hidden = true;
+      status.hidden = false;
+      status.dataset.state = "loading";
+      status.textContent = "بنحسب خريطتي الميلاد ونبني Composite…";
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.setAttribute("aria-busy", "true");
+      }
       try {
+        // Let the live status paint before the synchronous ephemeris calculations begin.
+        await new Promise(resolve => setTimeout(resolve, 16));
         const P1 = readP("cp1"), P2 = readP("cp2");
         out.innerHTML = render(P1, P2, calculateSynastry(P1, P2));
         out.hidden = false;
+        status.dataset.state = "done";
+        status.textContent = "اكتمل حساب الخريطتين والـ Composite.";
         out.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (ex) {
-        err.textContent = typeof ex === "string" ? ex : "حصل خطأ في الحساب. تأكد من البيانات وجرّب تاني.";
+        status.hidden = true;
+        err.textContent = typeof ex === "string" ? ex : "حصل خطأ في الحساب. راجع بيانات الميلاد وحاول تاني.";
         err.hidden = false;
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.removeAttribute("aria-busy");
+        }
       }
     });
   })();
