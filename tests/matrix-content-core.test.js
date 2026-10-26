@@ -28,10 +28,13 @@ for (let id = 1; id <= 22; id += 1) {
   assert.equal(entry.meta?.referenceRuleStatus, 'unverified');
   if (id === 8 || id === 11) assert.equal(entry.meta?.arcanaMappingStatus, 'source-conflict');
   seen.add(entry.id);
-  // The core pass must not make unfinished chakra or ancestry material look complete.
-  assert.ok(Object.values(entry.chakras).every(section =>
-    Object.values(section).every(value => value === '')
-  ), `chakra content remains explicitly incomplete for Arcana ${id}`);
+  // Chakra interpretations remain explicitly incomplete and are not publishable in this batch.
+  assert.equal(entry.meta?.chakraContent?.status, 'partial-review');
+  for (const section of Object.values(entry.chakras)) {
+    for (const field of ['psychology', 'shadowTrap', 'bodySymbol', 'practice']) {
+      assert.equal(section[field], '', `unwritten chakra field ${field} remains empty for Arcana ${id}`);
+    }
+  }
   assert.equal(entry.ancestral.fatherLine, '', `father-line content remains incomplete for Arcana ${id}`);
   assert.equal(entry.ancestral.motherLine, '', `mother-line content remains incomplete for Arcana ${id}`);
 }
