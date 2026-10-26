@@ -1,0 +1,37 @@
+.eam-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin:1.1rem auto 1.4rem;padding:.35rem;border:1px solid rgba(212,175,55,.16);border-radius:999px;background:rgba(255,255,255,.025);width:max-content;max-width:100%}
+.eam-tabs [role=tab]{border:0;border-radius:999px;background:transparent;color:#c3c7d1;padding:.68rem 1rem;font:inherit;cursor:pointer;touch-action:manipulation}
+.eam-tabs [aria-selected=true]{background:linear-gradient(120deg,#b9903d,#d9c078);color:#17130a;font-weight:700;box-shadow:0 4px 20px rgba(212,175,55,.14)}
+.eam-control{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,.8fr);gap:1rem;align-items:center;padding:1.1rem;border:1px solid rgba(212,175,55,.14);border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.015))}
+.eam-kicker{display:block;color:#d6bd7a;font-size:.78rem;letter-spacing:.03em}
+.eam-control>div:first-child>p{color:#b7bdc9;line-height:1.8;margin:.4rem 0 0}
+.eam-controls{display:flex;flex-wrap:wrap;align-items:end;justify-content:flex-end;gap:.6rem}
+.eam-controls .field{flex:1 1 180px;margin:0}
+.eam-controls input,.eam-controls select{width:100%;min-height:44px}
+.eam-method,.eam-note{color:#aeb4c0;font-size:.8rem;line-height:1.8}
+.eam-status{min-height:1.6em;margin:.6rem 0;text-align:center;color:#dac681;font-size:.82rem}
+.eam-result{margin:1rem auto 0;padding:clamp(.75rem,2.2vw,1.3rem);border:1px solid rgba(212,175,55,.15);border-radius:24px;background:rgba(13,16,23,.88);overflow:hidden}
+.eam-result-head{text-align:center;padding:.3rem 0 .85rem;border-bottom:1px solid rgba(212,175,55,.13)}
+.eam-result-head h3{margin:.3rem 0;color:#f1e6cf}
+.eam-angles{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1rem;color:#bcc2ce}
+.eam-angles span{padding:.4rem .7rem;border:1px solid rgba(255,255,255,.08);border-radius:999px}
+.eam-angles b{color:#e0c777}
+.eam-wheel{max-width:650px;margin:.8rem auto}
+.eam-table-wrap{overflow-x:auto;border:1px solid rgba(255,255,255,.08);border-radius:16px}
+.eam-table{width:100%;border-collapse:collapse;min-width:460px;color:#d6d9e0;font-size:.83rem}
+.eam-table th,.eam-table td{padding:.65rem .7rem;text-align:right;border-bottom:1px solid rgba(255,255,255,.06)}
+.eam-table thead{color:#d9c47f;background:rgba(212,175,55,.06)}
+.eam-table tbody tr:last-child>*{border-bottom:0}
+.eam-result .eam-card{margin:1rem 0;padding:.9rem 1rem;border:1px solid rgba(255,255,255,.07);border-radius:16px;background:rgba(255,255,255,.025)}
+.eam-card h4{margin:0 0 .6rem;color:#e5d39f}
+.eam-aspects{padding-inline-start:1.2rem;margin:0;color:#d2d6df;line-height:1.8}
+.eam-aspects li{padding:.45rem 0}
+.eam-aspects li+li{border-top:1px solid rgba(255,255,255,.05)}
+.eam-aspects li span{display:block;color:#9ea6b5;font-size:.76rem}
+.eam-empty{max-width:620px;margin:1rem auto;padding:1.5rem;text-align:center;border:1px dashed rgba(212,175,55,.26);border-radius:22px;background:rgba(255,255,255,.025)}
+.eam-empty>span{font-size:1.8rem;color:#d4af37}
+.eam-empty h3{color:#eadcad}
+.eam-empty p{color:#b5bbc7;line-height:1.8}
+.aq-copy-map-btn{display:block;width:max-content;max-width:100%;margin:1rem auto .15rem;padding:.7rem 1.15rem;border:1px solid rgba(212,175,55,.45);border-radius:999px;background:rgba(212,175,55,.1);color:#e5cf8b;font:inherit;font-size:.83rem;cursor:pointer;touch-action:manipulation}
+.aq-copy-map-btn:hover,.aq-copy-map-btn:focus-visible{background:rgba(212,175,55,.19);outline:2px solid rgba(212,175,55,.35);outline-offset:2px}
+@media(max-width:700px){.eam-control{grid-template-columns:1fr}.eam-controls{justify-content:stretch}.eam-controls .btn{flex:1 1 100%}}
+@media(max-width:480px){.eam-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.2rem;padding:.25rem}.eam-tabs [role=tab]{padding:.65rem .35rem;font-size:.76rem;white-space:nowrap}.eam-control{padding:.8rem;border-radius:16px}.eam-controls{display:grid;grid-template-columns:1fr;width:100%}.eam-controls .field{width:100%}.eam-result{padding:.65rem;border-radius:18px}.eam-table{font-size:.76rem}.eam-table th,.eam-table td{padding:.58rem .52rem}.aq-copy-map-btn{width:100%}}
