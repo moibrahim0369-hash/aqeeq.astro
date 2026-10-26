@@ -41,5 +41,7 @@ jobs:
           exit 1
       - name: Extended chart wheels E2E
         run: node tests/extended-wheels.e2e.js
+      - name: Matrix section inventory contract
+        run: node tests/matrix-report-map.test.js
       - name: Matrix glossary desktop and mobile E2E
         run: node tests/matrix-titles.e2e.js
