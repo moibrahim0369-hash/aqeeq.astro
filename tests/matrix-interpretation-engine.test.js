@@ -20,6 +20,7 @@ assert.equal(base.entryId, prototype.id);
 assert.equal(base.position, 'center');
 assert.equal(base.arcanaNumber, 7);
 assert.equal(base.contextFragments.length, 0);
+assert.equal(base.combinationFragments.length, 0);
 assert.equal(base.completeness, 'prototype');
 assert.equal(JSON.stringify(facts), before, 'resolver must not mutate calculated facts');
 assert.equal(engine.resolve({ matrix: { nodes: { center: 8 } } }, [prototype]), null);
@@ -41,6 +42,9 @@ const testOnlyRule = {
 // Synthetic rule above exists only to test the resolver mechanics; it is not shipped as method content.
 const withTestFixture = { ...prototype, contextualRules: [testOnlyRule] };
 assert.equal(engine.resolve(facts, [withTestFixture]).contextFragments[0].text, 'fixture overlay');
+const combinationFixture = { ...testOnlyRule, id: 'test-only-combination-fixture', text: 'combination fixture' };
+const withCombinationFixture = { ...prototype, combinationRules: [combinationFixture] };
+assert.equal(engine.resolve(facts, [withCombinationFixture]).combinationFragments[0].text, 'combination fixture');
 assert.equal(engine.resolve({ matrix: { nodes: { center: 7, northEast: 3 } } }, [withTestFixture]).contextFragments.length, 0);
 const unverifiedFixture = { ...testOnlyRule, id: 'unverified-fixture', verificationStatus: 'unverified' };
 assert.equal(engine.resolve(facts, [{ ...prototype, contextualRules: [unverifiedFixture] }]).contextFragments.length, 0);
