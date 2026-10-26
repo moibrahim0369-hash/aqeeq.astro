@@ -44,6 +44,7 @@
 <link rel="stylesheet" href="name_readings.css">
 <link rel="stylesheet" href="assets/css/personal-transits.css">
 <link rel="stylesheet" href="assets/css/numerology-matrix.css">
+<link rel="stylesheet" href="assets/css/astro-wheel.css">
 <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 </head>
@@ -1436,7 +1437,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const base = ch.known ? ch.asc : 0;
     const th = lon => (180 + (lon - base)) * Math.PI / 180;
     const pt = (lon, r) => { const a = th(lon); return [(cx + r * Math.cos(a)).toFixed(1), (cy - r * Math.sin(a)).toFixed(1)]; };
-    let o = `<svg class="cw" viewBox="0 0 520 520" role="img" aria-label="رسم الخريطة الفلكية">`;
+    let o = `<svg class="cw" viewBox="0 0 520 520" role="img" aria-label="العجلة الفلكية: الأبراج والبيوت ومواضع الكواكب"><title>خريطة الميلاد: الأبراج والبيوت ومواضع الكواكب</title>`;
     for (let i = 0; i < 12; i++) {
       const [x0, y0] = pt(i * 30, R1), [x1, y1] = pt(i * 30 + 30, R1), [x2, y2] = pt(i * 30 + 30, R2), [x3, y3] = pt(i * 30, R2);
       o += `<path class="sec e${SIGNS[i].el}" d="M${x0} ${y0}A${R1} ${R1} 0 0 0 ${x1} ${y1}L${x2} ${y2}A${R2} ${R2} 0 0 1 ${x3} ${y3}Z"/>`;
@@ -1468,7 +1469,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     items.forEach(({ b, disp }) => {
       const [t1x, t1y] = pt(b.lon, R2), [t2x, t2y] = pt(b.lon, R2 - 9), [px, py] = pt(disp, RP);
       o += `<line class="tk" x1="${t1x}" y1="${t1y}" x2="${t2x}" y2="${t2y}"/>`;
-      o += `<g class="pg"${PLANET_KEYS.includes(b.key) ? ` data-kind="planet" data-k="${b.key}"` : ""}><title>${PLANETS[b.key].n}</title><text x="${px}" y="${py}">${gl(PLANETS[b.key].g)}</text>${b.retro ? `<text class="rx" x="${(+px + 13).toFixed(1)}" y="${(+py + 12).toFixed(1)}">℞</text>` : ""}</g>`;
+      o += `<g class="pg"${PLANET_KEYS.includes(b.key) ? ` data-kind="planet" data-k="${b.key}"` : ""}><title>${PLANETS[b.key].n} · ${SIGNS[b.sign].n} ${fmt(b.lon).txt}${ch.known ? ` · البيت ${b.house}` : ""}</title><text x="${px}" y="${py}">${gl(PLANETS[b.key].g)}</text>${b.retro ? `<text class="rx" x="${(+px + 13).toFixed(1)}" y="${(+py + 12).toFixed(1)}">℞</text>` : ""}</g>`;
     });
     return o + "</svg>";
   }
@@ -1784,6 +1785,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
         <p class="cp-meta">${P1.date} · ${P1.placeName} &nbsp;|&nbsp; ${P2.date} · ${P2.placeName}</p>
         ${unknownNote}
         ${fallbackNote}
+        <section class="sx cp-wheel-section"><h4>العجلة الثنائية للكواكب والبيوت</h4><div id="cp-bi-wheel" class="aq-wheel-host" aria-label="عجلة التوافق الثنائية"></div></section>
         <div class="sx"><h4>نظرة عامة</h4><p>${overall}</p></div>
         <div class="sx"><h4>مؤشرات التوافق</h4><ul>${Object.keys(R.cat).map(k => `<li><strong>${R.cat[k].t}:</strong> ${R.cat[k].level}</li>`).join("")}</ul></div>
         <div class="sx"><h4>نقاط الانسجام</h4><ul>${allPos.slice(0, 4).map(line).join("") || "<li>مفيش اتصالات انسجام واضحة في المحاور دي.</li>"}</ul></div>
@@ -1819,7 +1821,9 @@ if (typeof module !== 'undefined') module.exports = Astro;
         // Let the live status paint before the synchronous ephemeris calculations begin.
         await new Promise(resolve => setTimeout(resolve, 16));
         const P1 = readP("cp1"), P2 = readP("cp2");
-        out.innerHTML = render(P1, P2, calculateSynastry(P1, P2));
+        const synastry = calculateSynastry(P1, P2);
+        out.innerHTML = render(P1, P2, synastry);
+        window.AqeeqAstroWheel?.renderSynastryWheel(document.querySelector("#cp-bi-wheel"), P1.ch, P2.ch, synastry.asps);
         out.hidden = false;
         status.dataset.state = "done";
         status.textContent = "اكتمل حساب الخريطتين والـ Composite.";
@@ -3468,6 +3472,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/life-path-data.js?v=d7fc2633"></script>
 <script src="assets/js/matrix-loader.js"></script>
 <script src="assets/js/numerology-matrix.js"></script>
+<script src="assets/js/astro-wheel.js"></script>
 <script src="auth.js" type="module"></script>
 </body>
 </html>
