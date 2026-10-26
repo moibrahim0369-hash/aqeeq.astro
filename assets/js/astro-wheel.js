@@ -28,6 +28,7 @@
       for(let i=0;i<12;i++){const [x1,y1]=point(i*30,houseR),[x2,y2]=point(i*30,center+4);svg.append(el('line',{x1,y1,x2,y2,class:'aq-wheel-house'}));}
     }
     const find=(ch,k)=>ch.bodies.find(x=>x.key===k);
+  const houseAt=(ch,lon)=>{if(!ch.known||!Array.isArray(ch.cusps))return null;const x=norm(lon);for(let i=0;i<12;i++){const start=norm(ch.cusps[i]),end=norm(ch.cusps[(i+1)%12]),span=norm(end-start),offset=norm(x-start);if(offset<span||Math.abs(offset-span)<1e-8)return i+1;}return null;};
     const positions={};
     PERSONAL.forEach((key,i)=>{
       const a=find(chartA,key),b=find(chartB,key);
@@ -42,10 +43,10 @@
       PERSONAL.forEach(key=>{
         const body=find(ch,key);if(!body)return;
         const [x,y]=point(body.lon,r),[tx,ty]=point(body.lon,r+15),info=PLANETS[key];
-        const group=el('g',{class:'aq-wheel-planet '+cls,tabindex:'0',role:'img','aria-label':info[0]+'، '+SIGNS[Math.floor(norm(body.lon)/30)]+' '+position(body.lon)+(ch.known&&Number.isInteger(body.house)?'، البيت '+body.house:'')});
+        const group=el('g',{class:'aq-wheel-planet '+cls,tabindex:'0',role:'img','aria-label':info[0]+'، '+SIGNS[Math.floor(norm(body.lon)/30)]+' '+position(body.lon)+(houseAt(chartA,body.lon)?'، بيت الشخص الأول '+houseAt(chartA,body.lon):'')});
         group.append(el('circle',{cx:x,cy:y,r:12,class:'aq-wheel-planet-dot'}),el('text',{x,y:y+4,class:'aq-wheel-planet-glyph'},info[1]));
         const label=el('text',{x:tx,y:ty,class:'aq-wheel-degree'},position(body.lon));
-        group.append(label,el('title',{},info[0]+' · '+SIGNS[Math.floor(norm(body.lon)/30)]+' '+position(body.lon)+(ch.known&&Number.isInteger(body.house)?' · البيت '+body.house:'')));
+        group.append(label,el('title',{},info[0]+' · '+SIGNS[Math.floor(norm(body.lon)/30)]+' '+position(body.lon)+(houseAt(chartA,body.lon)?' · بيت الشخص الأول '+houseAt(chartA,body.lon):'')));
         svg.append(group);
       });
     };
