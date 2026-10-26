@@ -24,6 +24,7 @@ for (let id = 1; id <= 22; id += 1) {
   assert.equal(entry.meta?.contentStatus, 'editorial-core-review');
   assert.equal(entry.meta?.authorship, 'aqeeq-original');
   assert.equal(entry.meta?.referenceRuleStatus, 'unverified');
+  if (id === 8 || id === 11) assert.equal(entry.meta?.arcanaMappingStatus, 'source-conflict');
   seen.add(entry.id);
   // The core pass must not make unfinished chakra or ancestry material look complete.
   assert.ok(Object.values(entry.chakras).every(section =>
