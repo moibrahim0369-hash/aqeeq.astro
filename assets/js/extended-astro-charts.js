@@ -71,7 +71,7 @@
     $('#eam-calculate',content)?.addEventListener('click',calculate);
   }
   function mapAspects(aspects){
-    return aspects.map(a=>({a:a.natal.key,b:a.transit.key,asp:{k:a.key,name:a.name},orb:a.orb,angle:Math.abs(delta(a.transit.lon,a.natal.lon))}));
+    const kinds={conjunction:'conj',sextile:'sext',square:'sq',trine:'tri',opposition:'opp'};return aspects.map(a=>({a:mapKey(a.natal.key),b:mapKey(a.transit.key),asp:{k:kinds[a.key]||a.key,name:a.name},name:a.name,orb:a.orb,angle:Math.abs(delta(a.transit.lon,a.natal.lon))}));
   }
   function engineChart(utcMs,natal){
     return Astro.chart({utcMs,lat:natal.ch.lat,lon:natal.ch.lon,hs:['placidus','whole','equal','porphyry'].includes(natal.ch.hs)?natal.ch.hs:'placidus',known:!!natal.ch.known});
@@ -116,7 +116,7 @@
     try{
       if(mode==='transit'){
         const value=$('#eam-date',content).value,date=value?new Date(value):new Date();if(Number.isNaN(date.getTime()))throw new Error('تاريخ ووقت العبور غير صالحين.');
-        const t=currentTransit(natal,date),lines=t.data.aspects;
+        const t=currentTransit(natal,date),lines=t.aspects;
         result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Transit Chart · '+esc(dateStamp(date))+'</span><h3>العبور فوق خريطة الميلاد</h3><p class="eam-note">الحلقة الخارجية لمواضع العبور، والداخلية لمواضع الميلاد.</p></header><div class="eam-wheel" id="eam-wheel"></div>'+aspectLines(lines,'اتصالات العبور بخريطة الميلاد');
         window.AqeeqAstroWheel?.renderSynastryWheel($('#eam-wheel',result),natal.ch,t.chart,t.aspects);
         mountCopy(result,'خريطة العبور · '+dateStamp(date));
