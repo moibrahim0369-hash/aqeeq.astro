@@ -125,7 +125,7 @@
   }
   function render(host,dateValue) {
     const life=calculateLifePath(dateValue), matrix=calculateDestinyMatrix(dateValue), chakras=calculateChakraHealthCard(dateValue), generations=calculateGenerationalLines(dateValue), axes=calculateDestinyAxes(dateValue), n=life.number, traits=lifeTraits(n), num=matrix.nodes, profile=LIFE_PATH_DATA[n];
-    host.innerHTML=`<section class="aqm-shell" dir="rtl" aria-label="مسار الحياة ومصفوفة القدر"><header class="aqm-header"><span class="aqm-kicker">قراءة رقمية رمزية · ${escapeHTML(dateValue)}</span><h2>مسار الحياة ومصفوفة القدر</h2><p>أداة للتأمل واستكشاف المعاني، وليست قياساً علمياً أو تنبؤاً.</p></header><article class="aqm-hero"><div class="aqm-number">${n}</div><div><span class="aqm-kicker">رقم مسار الحياة</span><h3>${escapeHTML(profile?.title || 'طريقك يتشكل بخياراتك')}</h3><div class="aqm-tags">${traits.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div></div></article>${renderLifePathProfile(profile)}<div class="aqm-grid"><article class="aqm-card aqm-chart-card"><div class="aqm-card-head"><div><span class="aqm-kicker">الأركانا الكبرى · 1–22</span><h3>مصفوفة المحاور الثمانية</h3></div></div><div class="aqm-matrix-wrap">${renderSVG(matrix)}<div class="aqm-tooltip" id="aqm-tooltip" role="status" aria-live="polite">اختار نقطة لعرض معناها.</div></div><div class="aqm-lines"><p><b>خط الوفرة الرمزي:</b> ${num.northEast} ← ${num.center} ← ${num.southWest}</p><p><b>خط العلاقات الرمزي:</b> ${num.northWest} ← ${num.center} ← ${num.southEast}</p></div><p class="aqm-method">${escapeHTML(matrix.formula)} خطوط الوفرة والعلاقات هنا وصلات تركيبية بين النقاط المعروضة، وليست صيغة موحدة متفقاً عليها.</p></article><div class="aqm-interpretations"><article class="aqm-card"><span class="aqm-kicker">معنى الرقم ${n}</span><h3>مسار الحياة</h3><div class="aqm-reading"><b>مساحة القوة</b><p>${escapeHTML(traits.join('، '))}. جرّب تحويل هذه السمات إلى خطوات تختارها بوعي.</p></div><div class="aqm-reading is-shadow"><b>ما يستحق الملاحظة</b><p>قد يظهر ظل الرقم بصورة مبالغ فيها عند الضغط. راقب النمط دون اعتباره حكماً ثابتاً على شخصيتك.</p></div></article><article class="aqm-card"><span class="aqm-kicker">الجوهر والدروس</span><h3>النقطة المركزية</h3><div class="aqm-reading"><b>${num.center} · ${escapeHTML(ARCANA[num.center-1][0])}</b><p>${escapeHTML(ARCANA[num.center-1][1])}</p></div><div class="aqm-reading is-shadow"><b>مساحة التوازن</b><p>${escapeHTML(ARCANA[num.center-1][2])}</p></div></article></div></div><details class="aqm-details"><summary>تفاصيل النقاط ومعانيها</summary><div class="aqm-node-list">${Object.keys(labels).map(key=>`<article><b>${escapeHTML(labels[key])} · ${num[key]}</b><p>${escapeHTML(ARCANA[num[key]-1][1])}</p><small>جانب يستحق الانتباه: ${escapeHTML(ARCANA[num[key]-1][2])}</small></article>`).join('')}</div></details><footer class="aqm-disclaimer">الاختزال الرقمي وصيغ المصفوفة تختلف بين المدارس. هذه الحاسبة تعرض طريقة حساب معلنة وبسيطة لأغراض التأمل، لا حقيقة علمية عن القدر.</footer></section>`;
+    host.innerHTML=`<section class="aqm-shell" dir="rtl" aria-label="مصفوفة القدر"><header class="aqm-header"><span class="aqm-kicker">قراءة رقمية رمزية · ${escapeHTML(dateValue)}</span><h2>مصفوفة القدر · الأركانا والمحاور</h2><p>أداة مستقلة للتأمل واستكشاف المعاني، وليست قياساً علمياً أو تنبؤاً.</p></header><div class="aqm-grid"><article class="aqm-card aqm-chart-card"><div class="aqm-card-head"><div><span class="aqm-kicker">الأركانا الكبرى · 1–22</span><h3>مصفوفة المحاور الثمانية</h3></div></div><div class="aqm-matrix-wrap">${renderSVG(matrix)}<div class="aqm-tooltip" id="aqm-tooltip" role="status" aria-live="polite">اختار نقطة لعرض معناها.</div></div><div class="aqm-lines"><p><b>خط الوفرة الرمزي:</b> ${num.northEast} ← ${num.center} ← ${num.southWest}</p><p><b>خط العلاقات الرمزي:</b> ${num.northWest} ← ${num.center} ← ${num.southEast}</p></div><p class="aqm-method">${escapeHTML(matrix.formula)} خطوط الوفرة والعلاقات هنا وصلات تركيبية بين النقاط المعروضة، وليست صيغة موحدة متفقاً عليها.</p></article><div class="aqm-interpretations"><article class="aqm-card"><span class="aqm-kicker">الجوهر والدروس</span><h3>النقطة المركزية</h3><div class="aqm-reading"><b>${num.center} · ${escapeHTML(ARCANA[num.center-1][0])}</b><p>${escapeHTML(ARCANA[num.center-1][1])}</p></div><div class="aqm-reading is-shadow"><b>مساحة التوازن</b><p>${escapeHTML(ARCANA[num.center-1][2])}</p></div></article></div></div><details class="aqm-details"><summary>تفاصيل النقاط ومعانيها</summary><div class="aqm-node-list">${Object.keys(labels).map(key=>`<article><b>${escapeHTML(labels[key])} · ${num[key]}</b><p>${escapeHTML(ARCANA[num[key]-1][1])}</p><small>جانب يستحق الانتباه: ${escapeHTML(ARCANA[num[key]-1][2])}</small></article>`).join('')}</div></details><footer class="aqm-disclaimer">الاختزال الرقمي وصيغ المصفوفة تختلف بين المدارس. هذه الحاسبة تعرض طريقة حساب معلنة وبسيطة لأغراض التأمل، لا حقيقة علمية عن القدر.</footer></section>`;
     host.querySelector('.aqm-details').insertAdjacentHTML('beforebegin',renderAdvancedSections(chakras,generations,axes));
     host.querySelectorAll('[data-chakra-toggle]').forEach(button=>button.addEventListener('click',()=>{const detail=host.querySelector('#'+button.getAttribute('aria-controls')),open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));detail.hidden=!open;button.querySelector('[aria-hidden=\"true\"]').textContent=open?'−':'＋';if(open)mountChakraDeep(detail.querySelector('[data-chakra-deep]'),chakras.rows.find(r=>r.key===button.dataset.chakraToggle));}));
     if(window.AqeeqMatrix)host.querySelectorAll('[data-chakra-toggle]').forEach(button=>{const hint=()=>{const r=chakras.rows.find(x=>x.key===button.dataset.chakraToggle);window.AqeeqMatrix.prefetch([r.physics,r.energy,r.emotions]);};button.addEventListener('pointerenter',hint,{once:true});button.addEventListener('focus',hint,{once:true});});
@@ -135,29 +135,20 @@
       node.addEventListener('mouseenter',show);node.addEventListener('focus',show);node.addEventListener('click',show);node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});
     });
   }
-  function initResult(root) {
-    if (!root || root.dataset.aqmReady==='true') return;
-    const date=document.querySelector('#f-date')?.value;
-    if (!date || !root.children.length) return;
-    root.dataset.aqmReady='true';
-    const original=[...root.childNodes];
-    root.replaceChildren();
-    const tabs=document.createElement('div');tabs.className='aqm-tabs';tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','أقسام النتيجة');
-    const chartBtn=document.createElement('button'), matrixBtn=document.createElement('button');
-    [[chartBtn,'chart','الخريطة والعبور'],[matrixBtn,'numbers','الأرقام ومصفوفة القدر']].forEach(([btn,id,label],i)=>{btn.type='button';btn.id=`aqm-tab-${id}`;btn.setAttribute('role','tab');btn.setAttribute('aria-selected',String(i===0));btn.setAttribute('aria-controls',`aqm-panel-${id}`);btn.tabIndex=i===0?0:-1;btn.textContent=label;tabs.append(btn);});
-    const chartPanel=document.createElement('div'),matrixPanel=document.createElement('div');
-    chartPanel.id='aqm-panel-chart';matrixPanel.id='aqm-panel-numbers';chartPanel.setAttribute('role','tabpanel');matrixPanel.setAttribute('role','tabpanel');matrixPanel.setAttribute('aria-labelledby','aqm-tab-numbers');chartPanel.setAttribute('aria-labelledby','aqm-tab-chart');chartPanel.className='aqm-tab-panel';matrixPanel.className='aqm-tab-panel';
-    original.forEach(node=>chartPanel.append(node));root.append(tabs,chartPanel,matrixPanel);
-    const activate=id=>{const isChart=id==='chart';chartPanel.hidden=!isChart;matrixPanel.hidden=isChart;chartBtn.setAttribute('aria-selected',String(isChart));matrixBtn.setAttribute('aria-selected',String(!isChart));chartBtn.tabIndex=isChart?0:-1;matrixBtn.tabIndex=isChart?-1:0;};
-    chartBtn.addEventListener('click',()=>activate('chart'));matrixBtn.addEventListener('click',()=>activate('numbers'));
-    tabs.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();(e.target===chartBtn?matrixBtn:chartBtn).click();(e.target===chartBtn?matrixBtn:chartBtn).focus();}});
-    render(matrixPanel,date);
+  function initMatrix() {
+    const form=document.querySelector('#mform'),host=document.querySelector('#mresult'),dateInput=document.querySelector('#m-date'),error=document.querySelector('#merr');
+    if(!form||!host||!dateInput)return;
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      error.hidden=true;
+      if(!dateInput.value){error.textContent='اكتب تاريخ الميلاد عشان نحسب مصفوفة القدر.';error.hidden=false;dateInput.focus();return;}
+      try{render(host,dateInput.value);host.hidden=false;host.scrollIntoView({behavior:'smooth',block:'start'});}
+      catch(err){error.textContent='تعذر حساب المصفوفة. راجع التاريخ وحاول مرة تانية.';error.hidden=false;}
+    });
   }
   const api={calculateLifePath,calculateDestinyMatrix,calculateChakraHealthCard,calculateGenerationalLines,calculateDestinyAxes,reduceArcana,reduceLifePath};
   window.AqeeqNumerology=api;
-  const mount=()=>{const root=document.querySelector('#result');if(root)initResult(root);};
-  new MutationObserver(()=>{const root=document.querySelector('#result');if(root&&root.dataset.aqmReady==='true'&&!root.querySelector('.aqm-shell'))delete root.dataset.aqmReady;mount();}).observe(document.documentElement,{childList:true,subtree:true});
-  window.addEventListener('DOMContentLoaded',mount);mount();
+  window.addEventListener('DOMContentLoaded',initMatrix);initMatrix();
 })();
 
 
