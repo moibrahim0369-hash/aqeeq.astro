@@ -83,7 +83,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -106,7 +106,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -129,7 +129,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -152,7 +152,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -175,7 +175,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -198,7 +198,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -221,7 +221,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -244,7 +244,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -267,7 +267,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -290,7 +290,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -313,7 +313,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -336,7 +336,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -359,7 +359,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -382,7 +382,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -405,7 +405,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -428,7 +428,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -451,7 +451,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -474,7 +474,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -497,7 +497,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -520,7 +520,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -543,7 +543,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
@@ -566,7 +566,7 @@
         "positionId": null,
         "reviewStatus": "not-started",
         "completeness": "empty",
-        "sourceRuleIds": [],
+        "sourceIds": [],
         "content": {
           "meaning": null,
           "strengths": [],
