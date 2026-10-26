@@ -255,7 +255,7 @@
         "positionId",
         "reviewStatus",
         "completeness",
-        "sourceRuleIds",
+        "sourceIds",
         "content"
       ],
       "properties": {
@@ -285,7 +285,7 @@
             "complete"
           ]
         },
-        "sourceRuleIds": {
+        "sourceIds": {
           "type": "array",
           "uniqueItems": true,
           "items": {
@@ -306,7 +306,7 @@
         "positionId",
         "reviewStatus",
         "completeness",
-        "sourceRuleIds",
+        "sourceIds",
         "content"
       ],
       "properties": {
@@ -336,7 +336,7 @@
             "complete"
           ]
         },
-        "sourceRuleIds": {
+        "sourceIds": {
           "type": "array",
           "uniqueItems": true,
           "items": {
