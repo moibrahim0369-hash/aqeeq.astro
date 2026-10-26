@@ -36,4 +36,20 @@ for (let id = 1; id <= 22; id += 1) {
   assert.equal(entry.ancestral.motherLine, '', `mother-line content remains incomplete for Arcana ${id}`);
 }
 assert.deepEqual(seen, expected);
+
+const interpretationApi = require('../assets/js/matrix-interpretation-engine.js');
+for (let id = 1; id <= 22; id += 1) {
+  const file = path.join(dir, 'interpretations', `center-${String(id).padStart(2, '0')}.json`);
+  const entry = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.equal(entry.arcanaNumber, id, `center interpretation ID for Arcana ${id}`);
+  assert.equal(entry.position.key, 'center');
+  assert.equal(entry.position.path, 'matrix.nodes.center');
+  assert.equal(entry.referenceRule.verificationStatus, 'unverified');
+  assert.ok(['draft', 'editorial-prototype'].includes(entry.interpretation.reviewStatus));
+  assert.ok(['partial', 'prototype'].includes(entry.interpretation.completionStatus));
+  assert.ok(interpretationApi.validateEntry(entry).valid, `interpretation schema for Arcana ${id}: ${interpretationApi.validateEntry(entry).errors.join(', ')}`);
+  assert.equal(entry.contextualRules.length, 0);
+  assert.equal(entry.combinationRules.length, 0);
+}
+
 console.log('Matrix core content contract passed: 22 unique Arcana drafts; unpublished; source rules unverified; chakra and ancestry content still marked incomplete.');

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-14.draft-01",
+  "arcanaNumber": 14,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-14.json",
+    "headline": "الاعتدال والمواءمة",
+    "strengthSeed": "التوازن والتدرج يظهران في إدارة الانتقال بين مطلبين أو منظورين من دون استنزاف أحدهما. في العمل، يفيد ذلك في التنسيق والوساطة وبناء عملية قابلة للاستمرار. وفي العلاقات، يدعم التفاوض على إيقاع مشترك مع بقاء الاختلاف معلناً.",
+    "challengeSeed": "تأجيل الاحتياجات يحدث حين يُسمى الصمت حكمة في كل مرة، أو تُخفف المشكلة حتى يفقد الجميع القدرة على تسميتها. مثال ذلك قبول توزيع غير منصف للأعمال لأن الحديث عنه «سيعكر الجو». الاعتدال لا يساوي إرضاء الجميع على حساب الحقيقة."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يجعل المركز المواءمة بين عناصر مختلفة مساراً للاتزان. الاعتدال ليس إلغاء التباين؛ بل بناء إيقاع يمكن أن يعيش معه أكثر من احتياج.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "الوساطة والتدرج وتنسيق الجهود دون مطالبة الجميع بالتشابه."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "تلطيف الخلاف إلى درجة إخفاء المشكلة أو تأجيل احتياجات لا تحتمل التأجيل."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "قبول توزيع غير منصف للأعمال لأن الحديث عنه قد يسبب خلافاً مؤقتاً.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الحقيقة التي يجري تخفيفها كي يبقى الجو هادئاً؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "تسمية الحد الأدنى العادل لكل طرف ثم التفاوض على طريقة الوصول إليه.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

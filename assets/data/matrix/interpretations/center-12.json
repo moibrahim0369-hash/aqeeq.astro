@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-12.draft-01",
+  "arcanaNumber": 12,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-12.json",
+    "headline": "تغيير المنظور",
+    "strengthSeed": "التأني ورؤية الزاوية الأخرى يظهران عند إعادة تفسير موقف بعد سماع الطرف المقابل، أو عند قبول خسارة صغيرة تمنع ضرراً أكبر. في العمل، تساعد هذه السمة على مراجعة خطة غير مجدية. وفي العلاقات، تمنح فرصة للتراجع عن رد فوري واستيعاب السياق.",
+    "challengeSeed": "تعليق القرار يظهر حين يُنتظر يقين كامل لا توفره الحياة، أو حين تُقدَّم التضحية كدليل حب ثم تتراكم المرارة. مثال ذلك البقاء في اتفاق غير عادل بحجة «الوقت سيحلّه» دون طرح شروط واضحة. الصبر يصبح تعطيلًا حين لا يقود إلى فهم أو قرار."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يضع المركز تغيير المنظور والتوقف المؤقت في قلب القرار. المعلّق لا يساوي العاجز؛ المسألة أن ينتج الانتظار معلومة أو رؤية، لا أن يصير تعليقاً مفتوحاً.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "إعادة النظر في افتراض قديم وقبول تعديل المسار بعد ظهور زاوية جديدة."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "تأجيل الاختيار طلباً لليقين أو التضحية التي تنتظر مقابلاً غير معلن."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "البقاء في اتفاق غير واضح على أمل أن يفهم الطرف الآخر الاحتياجات وحده.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الشرط المحدد الذي ينهي الانتظار، ومتى تجري مراجعته؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "تسمية المعلومة المطلوبة والموعد الذي يعاد فيه تقييم الخيار.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-09.draft-01",
+  "arcanaNumber": 9,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-09.json",
+    "headline": "التأمل والخبرة",
+    "strengthSeed": "يظهر التأمل والخبرة في البحث المتأني، وتقديم إجابة مبنية على ملاحظة لا على استعراض. في العمل، يبرع هذا النمط في التحليل والتخصص والكتابة أو الإتقان الحرفي. وفي العلاقة، يمنح صدقاً وعمقاً حين يشرح حاجته للمساحة بدلاً من الاختفاء.",
+    "challengeSeed": "العزلة أو الانغلاق يتشكلان عندما يصبح الصمت اختباراً للآخرين أو وسيلة لتجنب طلب المساندة. مثال ذلك الانسحاب من خلاف من دون بيان موعد العودة، فيفهم الطرف الآخر الصمت كرفض. الاستقلال لا يلغي الحاجة الإنسانية إلى تبادل واضح."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يجعل المركز الخبرة المتأملة والاستقلال الفكري أساساً لتكوين الرأي. الناسك يحتاج مساحة للفهم، مع أن المعرفة لا تكتمل إذا بقيت بعيدة عن المشاركة.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "التخصص والصبر واستخلاص معنى عملي من التجربة قبل نقلها."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "الانعزال الذي يحمي التركيز أولاً ثم يمنع طلب الدعم أو تبادل الخبرة."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "الانسحاب من تعاون بسبب اختلاف رأي دون شرح الاحتياج إلى وقت للتفكير.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الذي أحتاج إلى فهمه وحدي، وما الذي يحتاج إلى قوله للطرف الآخر؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "تحديد وقت للعودة إلى الحوار ومشاركة خلاصة موجزة لما اتضح.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-18.draft-01",
+  "arcanaNumber": 18,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-18.json",
+    "headline": "الحدس والمشاعر",
+    "strengthSeed": "الخيال والتعاطف يظهران في فهم المشاعر غير المنطوقة ورؤية أكثر من تفسير للمشهد. في الإبداع، يفتح ذلك صوراً ومعاني جديدة. وفي العلاقة، يساعد على ملاحظة القلق قبل أن يصير اتهاماً، إذا فُصل الشعور عن الدليل.",
+    "challengeSeed": "الضبابية أو الإسقاط يظهران عندما تُعامل المخاوف كوقائع أو يُنسب للآخر قصد لم يصرح به. مثال ذلك قراءة رسالة مقتضبة كرفض قاطع، ثم الرد على ذلك الرفض المتخيل. الحساسية لا تعني أن كل استنتاج دقيق."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يضع المركز الخيال والمخاوف والانطباعات في مساحة تحتاج إلى تمييز. القمر يذكّر بأن الغموض يثير المعنى، لكنه لا يحول التوقع إلى حقيقة.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "التعاطف مع الإشارات الدقيقة والقدرة على تخيل أكثر من تفسير."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "إسقاط المخاوف على نوايا الآخرين أو اتخاذ الانطباع دليلاً نهائياً."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "قراءة رسالة مقتضبة كرفض نهائي ثم الانسحاب دون سؤال صاحبها.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما المعروف مباشرة، وما الذي أضافه الخوف إلى القصة؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "طلب توضيح واحد من المصدر قبل بناء قرار على إشارة ملتبسة.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

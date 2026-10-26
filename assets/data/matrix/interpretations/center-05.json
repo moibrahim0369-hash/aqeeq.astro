@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-05.draft-01",
+  "arcanaNumber": 5,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-05.json",
+    "headline": "التعلم والقيم",
+    "strengthSeed": "تظهر الحكمة في تبسيط فكرة متوارثة دون تسطيحها، وفي بناء لغة مشتركة بين أجيال أو فرق مختلفة. في العمل، يبرز ذلك في التدريب والإرشاد ووضع معايير عادلة. وفي العلاقة، يساعد وضوح القيم على تفاهم مستقر، شرط ألا تتحول المبادئ إلى اختبار دائم للطرف الآخر.",
+    "challengeSeed": "قد يصبح الالتزام بالقواعد وسيلة لتجنب مراجعة ما لم يعد يخدم الناس. مثال ذلك رفض أسلوب جديد لمجرد أنه غير مألوف، أو تقديم النصيحة قبل سماع تجربة من يطلبها. هنا يفقد التعليم صلته بالحياة ويتحول إلى وعظ أو حراسة للانتماء."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يربط المركز الفعل بالقيمة والمعرفة المنقولة. طاقة الكاهن الأعظم تبحث عن إطار يفسر الخبرة؛ والتحدي هو إبقاء الإطار حياً وقابلاً للمراجعة.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "التعليم والتوجيه وصناعة لغة مشتركة تساعد مجموعة على العمل وفق مبدأ مفهوم."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "اعتبار الموروث وحده جواباً كافياً أو تصحيح الآخرين قبل فهم تجربتهم."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "تطبيق سياسة قديمة على حالة جديدة دون فحص أثرها على الأشخاص المعنيين.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما القيمة التي أحاول حفظها، وهل تخدمها هذه الطريقة فعلاً؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "شرح سبب قاعدة واحدة، ثم مراجعة الوسيلة مع بقاء القيمة واضحة.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-17.draft-01",
+  "arcanaNumber": 17,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-17.json",
+    "headline": "الأمل والإلهام",
+    "strengthSeed": "الثقة الهادئة والرؤية البعيدة تظهران في القدرة على تخيل احتمال أفضل ومشاركة أمل لا ينكر الصعوبات. في العمل، تدعم الإبداع والمشاريع ذات الرسالة. وفي العلاقات، تمنح مساحة للتعافي حين يقترن الأمل بسلوك متبادل يمكن ملاحظته.",
+    "challengeSeed": "المثالية أو التشتت يظهران حين تُحمّل فكرة واحدة مهمة إنقاذ الحياة كلها، أو حين تتوزع الطاقة بين أحلام كثيرة بلا تماس مع الواقع. مثال ذلك رفض فرصة مناسبة لأنها لا تطابق الصورة الكاملة، أو تجاهل سلوك مؤذٍ أملاً في نسخة مستقبلية من الشخص."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يجعل المركز الأمل والرؤية المستقبلية مصدر توجيه. النجمة تلهم، لكنها لا تضمن النتيجة؛ قيمتها في ربط الأفق بما يمكن بناؤه في الحاضر.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "إعادة تصور احتمال بعد خيبة، ومشاركة فكرة تمنح المجموعة اتجاهاً أوسع."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "المثالية التي ترفض الخطوات الواقعية أو توزيع الطاقة بين أحلام كثيرة."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "تمنح هذه الدلالة قدرة على التعامل مع الموقف.",
+        "poleB": "وقد تتحول الوسيلة نفسها إلى عائق عند الإفراط فيها.",
+        "integration": "تُقرأ النتيجة من السلوك والسياق معاً، لا من الرقم منفرداً."
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "رفض دور مهني مناسب لأنه لا يطابق تصوراً مثالياً عن المسار كله.",
+        "possiblePattern": "يظهر التوتر بين المورد الذي يتيحه الرمز وبين طريقته حين يهيمن على القرار.",
+        "experiment": "مراجعة ما حدث، وتحديد معلومة أو حد كان سيغير الاختيار."
+      }
+    ],
+    "reflectionQuestions": [
+      "ما العلامة القريبة التي تثبت أن الرؤية تتحرك في الواقع؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "اختيار مؤشر تقدم واحد قابل للملاحظة مع مرونة لتعديل الصورة.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}
