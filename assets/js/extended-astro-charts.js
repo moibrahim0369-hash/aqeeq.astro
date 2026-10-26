@@ -66,10 +66,19 @@
   function renderControls(){
     const ctx=context();
     if(!ctx){content.innerHTML=readyMessage();return;}
-    const title=mode==='transit'?'خريطة العبور الحالية':mode==='solar'?'العودة الشمسية':'الخريطة الفيدية · Lahiri';
-    const description=mode==='transit'?'قارن مواقع الكواكب في التاريخ والوقت المختارين مع خريطة ميلادك.':'تُحسب الخريطة باستخدام وقت ومكان الميلاد المسجلين في خريطتك.';
-    const controls=mode==='transit'?'<label class="field"><span>تاريخ ووقت العبور · بتوقيت جهازك</span><input id="eam-date" type="datetime-local" value="'+nowLocal()+'"></label><button type="button" class="btn ghost sm" id="eam-now">الآن</button>':mode==='solar'?'<label class="field"><span>سنة العودة الشمسية</span><select id="eam-year">'+Array.from({length:8},(_,i)=>new Date().getFullYear()+i).map(y=>'<option value="'+y+'" '+(y===new Date().getFullYear()?'selected':'')+'>'+y+'</option>').join('')+'</select></label>':'<p class="eam-method">النطاق النجمي محسوب بطريقة Lahiri المتوسطة؛ تُطرح قيمة الأيانامشا من المواقع الاستوائية وتُزاح معها رؤوس البيوت.</p>';
-    content.innerHTML='<div class="eam-control"><div><span class="eam-kicker">'+esc(title)+'</span><p>'+esc(description)+'</p></div><div class="eam-controls">'+controls+'<button class="btn" type="button" id="eam-calculate">'+(mode==='transit'?'احسب العبور':mode==='solar'?'احسب العودة الشمسية':'اعرض الخريطة الفيدية')+'</button></div></div><p class="eam-status" id="eam-status" role="status" aria-live="polite"></p><div id="eam-result" class="eam-result" hidden></div>';
+    const titles={transit:'خريطة العبور الحالية',solar:'العودة الشمسية',profections:'التوجيهات السنوية · Annual Profections',eclipses:'خريطة الكسوف والخسوف',nodes:'العقد القمرية والعودة العقدية',sidereal:'الخريطة الفيدية · Lahiri'};
+    const descriptions={transit:'قارن مواقع الكواكب الآن بخريطة ميلادك، مع تحديد بيت الميلاد الذي ينشطه كل كوكب.',solar:'لحظة عودة الشمس إلى درجتها الأصلية وخريطة السنة الشخصية الجديدة.',profections:'البرج السنوي وسيد السنة وفق نظام التوجيهات السنوية التقليدي والبيوت الكاملة.',eclipses:'أحداث الكسوف والخسوف العالمية خلال السنة، وموقعها داخل بيوت خريطة الميلاد.',nodes:'موضع العقدتين في الميلاد والعبور، ومواعيد عودة العقدة الشمالية التقريبية.',sidereal:'تُحسب الخريطة باستخدام وقت ومكان الميلاد المسجلين في خريطتك.'};
+    const title=titles[mode]||titles.sidereal,description=descriptions[mode]||descriptions.sidereal;
+    const yearOptions=()=>Array.from({length:8},(_,i)=>new Date().getFullYear()+i).map(y=>'<option value="'+y+'" '+(y===new Date().getFullYear()?'selected':'')+'>'+y+'</option>').join('');
+    let controls='';
+    if(mode==='transit')controls='<label class="field"><span>تاريخ ووقت العبور · بتوقيت جهازك</span><input id="eam-date" type="datetime-local" value="'+nowLocal()+'"></label><button type="button" class="btn ghost sm" id="eam-now">الآن</button>';
+    else if(mode==='solar')controls='<label class="field"><span>سنة العودة الشمسية</span><select id="eam-year">'+yearOptions()+'</select></label>';
+    else if(mode==='profections')controls='<label class="field"><span>التاريخ السنوي</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
+    else if(mode==='eclipses')controls='<label class="field"><span>السنة</span><select id="eam-year">'+yearOptions()+'</select></label>';
+    else if(mode==='nodes')controls='<label class="field"><span>تاريخ قراءة العقد</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
+    else controls='<p class="eam-method">النطاق النجمي محسوب بطريقة Lahiri المتوسطة؛ تُطرح قيمة الأيانامشا من المواقع الاستوائية وتُزاح معها رؤوس البيوت.</p>';
+    const labels={transit:'احسب العبور',solar:'احسب العودة الشمسية',profections:'احسب سيد السنة',eclipses:'اعرض الكسوف والخسوف',nodes:'احسب محور العقد',sidereal:'اعرض الخريطة الفيدية'};
+    content.innerHTML='<div class="eam-control"><div><span class="eam-kicker">'+esc(title)+'</span><p>'+esc(description)+'</p></div><div class="eam-controls">'+controls+'<button class="btn" type="button" id="eam-calculate">'+labels[mode]+'</button></div></div><p class="eam-status" id="eam-status" role="status" aria-live="polite"></p><div id="eam-result" class="eam-result" hidden></div>';
     $('#eam-now',content)?.addEventListener('click',()=>$('#eam-date',content).value=nowLocal());
     $('#eam-calculate',content)?.addEventListener('click',calculate);
   }
@@ -78,6 +87,94 @@
   }
   function engineChart(utcMs,natal){
     return Astro.chart({utcMs,lat:natal.ch.lat,lon:natal.ch.lon,hs:['placidus','whole','equal','porphyry'].includes(natal.ch.hs)?natal.ch.hs:'placidus',known:!!natal.ch.known});
+  }
+  function natalHouseFor(longitude,natal){
+    const cusps=natal?.ch?.cusps;
+    if(!Array.isArray(cusps)||cusps.length!==12)return null;
+    const lon=norm(longitude);
+    for(let i=0;i<12;i++){
+      const start=norm(cusps[i]),end=norm(cusps[(i+1)%12]);
+      const span=norm(end-start),offset=norm(lon-start);
+      if(offset<span||span===0&&offset===0)return i+1;
+    }
+    return null;
+  }
+  function transitHouseTable(ch,natal){
+    const rows=chartBodies(ch).map(b=>{const house=natalHouseFor(b.lon,natal);return '<tr><th>'+esc(GLYPHS[b.key]||'')+' '+esc(NAMES[b.key]||b.key)+'</th><td>'+esc(fmt(b.lon))+'</td><td>'+(house?'البيت '+house:'غير متاح')+'</td><td>'+(b.retro?'راجع ℞':'مباشر')+'</td></tr>';}).join('');
+    return '<section class="eam-card"><h4>مواقع العبور داخل بيوت الميلاد</h4><p class="eam-note">'+(natal.ch.known?'توزيع الكواكب العابرة على رؤوس البيوت الأصلية لخريطة الميلاد.':'وقت الميلاد غير متاح؛ تعرض المواقع دون تعيين البيوت.')+'</p><div class="eam-table-wrap"><table class="eam-table"><thead><tr><th>الكوكب</th><th>موضع العبور</th><th>بيت الميلاد</th><th>الحركة</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>';
+  }
+  const HOUSE_AREAS=['الهوية والبدايات','الموارد والقيم','التعلم والتواصل','المنزل والجذور','الإبداع والمتعة','العمل اليومي والصحة','الشراكات والعقود','المشاركة والتحول','المعرفة والسفر البعيد','المهنة والسمعة','الأصدقاء والمشروعات','الراحة والخلوة'];
+  const SIGN_RULERS=['المريخ','الزهرة','عطارد','القمر','الشمس','عطارد','الزهرة','المريخ','المشتري','زحل','زحل','المشتري'];
+  function renderProfections(result,natal,value){
+    if(!natal.ch.known||!Number.isFinite(natal.ch.asc)){throw new Error('تحتاج التوجيهات السنوية إلى وقت ميلاد ومكانه لحساب الطالع والبيوت.');}
+    const target=value?new Date(value+'T12:00:00'):new Date(),birth=new Date(natal.utcMs);
+    let age=target.getFullYear()-natal.y;
+    if(target.getMonth()+1<natal.m||(target.getMonth()+1===natal.m&&target.getDate()<natal.d))age--;
+    if(age<0)throw new Error('اختر تاريخاً يوافق يوم الميلاد أو يأتي بعده.');
+    const house=age%12+1,ascSign=Math.floor(norm(natal.ch.asc)/30),sign=(ascSign+house-1)%12,lord=SIGN_RULERS[sign];
+    const inner='<section class="eam-pillar-grid"><article class="eam-pillar"><span>العمر السنوي</span><strong>'+age+'</strong><small>السنة '+(age+1)+' من دورة الميلاد</small></article><article class="eam-pillar"><span>البيت المفعّل</span><strong>'+house+'</strong><small>'+esc(HOUSE_AREAS[house-1])+'</small></article><article class="eam-pillar"><span>البرج السنوي</span><strong>'+esc(SIGNS[sign])+'</strong><small>من طالع الميلاد</small></article><article class="eam-pillar"><span>سيد السنة · Time Lord</span><strong>'+esc(lord)+'</strong><small>الحاكم التقليدي للبرج</small></article></section>';
+    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Annual Profections · '+esc(target.toLocaleDateString('ar-EG'))+'</span><h3>التوجيه السنوي: البيت '+house+' في '+esc(SIGNS[sign])+'</h3><p class="eam-note">طريقة البيوت الكاملة: تنتقل سنة التوجيه عند عيد الميلاد، ويكون حاكم البرج المفعّل سيد السنة.</p></header>'+inner+'<section class="eam-card"><h4>قراءة إرشادية</h4><p class="eam-prose">يضع هذا العام موضوع <b>'+esc(HOUSE_AREAS[house-1])+'</b> في مقدمة الاهتمام، ويشير <b>'+esc(lord)+'</b> إلى الكوكب الذي يُتابع في الخريطة والعبور لفهم توقيتات السنة. هذه دلالة رمزية عامة وليست تنبؤاً حتمياً.</p></section>';
+    window.AqeeqGender?.apply(result,natal.gender);mountCopy(result,'التوجيهات السنوية · سيد السنة '+lord);
+  }
+  function eclipseKindText(engine,kind,type){
+    const table=type==='solar'?{1:'جزئي',2:'حلقي',3:'كلي'}:{0:'شبه ظلي',1:'جزئي',3:'كلي'};
+    const label=engine?.EclipseKind?.[kind]||String(kind);
+    if(/partial/i.test(label))return 'جزئي';if(/annular/i.test(label))return 'حلقي';if(/total/i.test(label))return 'كلي';if(/penumbral/i.test(label))return 'شبه ظلي';
+    return table[Number(kind)]||label;
+  }
+  function eclipseEvents(year,engine,type){
+    const start=new Date(Date.UTC(year,0,1)),end=Date.UTC(year+1,0,1);
+    const search=type==='solar'?engine.SearchGlobalSolarEclipse:engine.SearchLunarEclipse;
+    const next=type==='solar'?engine.NextGlobalSolarEclipse:engine.NextLunarEclipse;
+    if(typeof search!=='function'||typeof next!=='function')throw new Error('دوال الكسوف والخسوف غير متاحة في نسخة Astronomy Engine المحملة.');
+    let event=search(start),out=[],guard=0;
+    while(event&&event.peak?.date&&event.peak.date.getTime()<end&&guard++<10){
+      if(event.peak.date.getTime()>=start.getTime())out.push(event);
+      const following=next(event.peak);
+      if(!following?.peak?.date||following.peak.date<=event.peak.date)break;
+      event=following;
+    }
+    return out;
+  }
+  function renderEclipses(result,natal,year){
+    const engine=typeof Astronomy!=='undefined'?Astronomy:(window.Astronomy||globalThis.Astronomy);
+    if(!engine)throw new Error('مكتبة Astronomy Engine غير محملة.');
+    const items=[...eclipseEvents(year,engine,'solar').map(e=>({e,type:'solar'})),...eclipseEvents(year,engine,'lunar').map(e=>({e,type:'lunar'}))].sort((a,b)=>a.e.peak.date-b.e.peak.date);
+    if(!items.length)throw new Error('لم تُعثر على أحداث كسوف أو خسوف لهذه السنة.');
+    const rows=items.map(({e,type})=>{
+      const date=e.peak.date,chart=engineChart(date.getTime(),natal),body=chart.bodies.find(b=>b.key===(type==='solar'?'sun':'moon'));
+      const house=body?natalHouseFor(body.lon,natal):null,kind=eclipseKindText(engine,e.kind,type),name=type==='solar'?'كسوف شمسي':'خسوف قمري';
+      return '<article class="eam-event"><div><span class="eam-event-date">'+esc(date.toLocaleDateString('ar-EG',{dateStyle:'medium',timeZone:'UTC'}))+'</span><h4>'+name+' · '+kind+'</h4></div><div><b>'+esc(body?fmt(body.lon):'الموضع غير متاح')+'</b><span>بيت الميلاد: '+(house?'البيت '+house+' · '+esc(HOUSE_AREAS[house-1]):'غير متاح لغياب وقت ميلاد دقيق')+'</span></div></article>';
+    }).join('');
+    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Eclipses · '+year+'</span><h3>الكسوف والخسوف في بيوت الميلاد</h3><p class="eam-note">الأحداث عالمية من Astronomy Engine؛ البيت محسوب من موضع الشمس أو القمر عند الذروة مع رؤوس بيوت ميلادك. هذا لا يحدد الرؤية المحلية.</p></header><div class="eam-event-list">'+rows+'</div>';
+    window.AqeeqGender?.apply(result,natal.gender);mountCopy(result,'الكسوف والخسوف · '+year);
+  }
+  function nodeLonAt(ms,natal){const jd=Astro.jdFromMs(ms),jde=jd+Astro.deltaT(Astro.yearOf(jd))/86400;return norm(Astro.lonOf('truenode',jde));}
+  function findNodalReturn(natal,k,natalNode){
+    const target=natal.utcMs+k*6798.383*86400000,step=3*86400000,span=100*86400000;
+    let prevMs=target-span,prev=Astro.d180(nodeLonAt(prevMs,natal)-natalNode),bracket=null;
+    for(let ms=prevMs+step;ms<=target+span;ms+=step){
+      const val=Astro.d180(nodeLonAt(ms,natal)-natalNode);
+      if(prev===0||val===0||prev*val<0){bracket=[ms-step,ms];break;}
+      prev=val;
+    }
+    if(!bracket)return new Date(target);
+    let [lo,hi]=bracket,fl=Astro.d180(nodeLonAt(lo,natal)-natalNode);
+    for(let i=0;i<38;i++){const mid=(lo+hi)/2,fm=Astro.d180(nodeLonAt(mid,natal)-natalNode);if(fl*fm<=0)hi=mid;else{lo=mid;fl=fm;}}
+    return new Date((lo+hi)/2);
+  }
+  function renderNodes(result,natal,value){
+    const date=value?new Date(value+'T12:00:00'):new Date(),ch=engineChart(date.getTime(),natal);
+    const north=ch.bodies.find(b=>b.key==='truenode'||b.key==='node'),south=north?norm(north.lon+180):null;
+    if(!north||!Number.isFinite(natal.utcMs))throw new Error('بيانات العقد القمرية غير مكتملة.');
+    const natalNorth=natal.ch.bodies.find(b=>mapKey(b.key)==='truenode'||mapKey(b.key)==='node');
+    if(!natalNorth)throw new Error('موضع العقدة الشمالية في خريطة الميلاد غير متاح.');
+    const nHouse=natalHouseFor(north.lon,natal),sHouse=natalHouseFor(south,natal),birthNode=norm(natalNorth.lon);
+    const elapsed=(date.getTime()-natal.utcMs)/86400000,k=Math.max(1,Math.floor(elapsed/6798.383)+1);
+    const returns=[k,k+1].map(i=>findNodalReturn(natal,i,birthNode));
+    const fmtHouse=(h)=>h?'البيت '+h+' · '+HOUSE_AREAS[h-1]:'البيوت غير متاحة دون وقت ميلاد دقيق';
+    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Lunar Nodes · Nodal Return</span><h3>محور العقدة الشمالية والجنوبية</h3><p class="eam-note">العقدة الجنوبية مقابلة للشمالية تماماً؛ عودة العقدة تحدث تقريباً كل 18.6 سنة.</p></header><section class="eam-pillar-grid"><article class="eam-pillar"><span>العقدة الشمالية ☊ · عبور</span><strong>'+esc(fmt(north.lon))+'</strong><small>'+esc(fmtHouse(nHouse))+'</small></article><article class="eam-pillar"><span>العقدة الجنوبية ☋ · عبور</span><strong>'+esc(fmt(south))+'</strong><small>'+esc(fmtHouse(sHouse))+'</small></article><article class="eam-pillar"><span>العقدة الشمالية · الميلاد</span><strong>'+esc(fmt(birthNode))+'</strong><small>'+esc(fmtHouse(natalHouseFor(birthNode,natal)))+'</small></article></section><section class="eam-card"><h4>محطات عودة العقدة الشمالية التقريبية</h4><div class="eam-event-list">'+returns.map((d,i)=>'<article class="eam-event"><div><span class="eam-event-date">العودة '+(k+i)+'</span><h4>'+esc(d.toLocaleDateString('ar-EG',{dateStyle:'long'}))+'</h4></div><div><b>توافق محور العقد</b><span>توقيت تقريبي يحسب من حركة العقدة في المحرك.</span></div></article>').join('')+'</div><p class="eam-note">قراءة رمزية لمحور العقد لا تمثل حكماً علمياً على الشخصية أو المصير.</p></section>';
+    window.AqeeqGender?.apply(result,natal.gender);mountCopy(result,'محور العقد القمرية والعودة العقدية');
   }
   function currentTransit(natal,date){
     const nat=chartBodies(natal.ch).map(b=>({key:b.key[0].toUpperCase()+b.key.slice(1),lon:b.lon,speed:b.speed||0,retro:b.retro}));
@@ -121,13 +218,19 @@
       if(mode==='transit'){
         const value=$('#eam-date',content).value,date=value?new Date(value):new Date();if(Number.isNaN(date.getTime()))throw new Error('تاريخ ووقت العبور غير صالحين.');
         const t=currentTransit(natal,date),lines=t.aspects;
-        result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Transit Chart · '+esc(dateStamp(date))+'</span><h3>العبور فوق خريطة الميلاد</h3><p class="eam-note">الحلقة الخارجية لمواضع العبور، والداخلية لمواضع الميلاد.</p></header><div class="eam-wheel" id="eam-wheel"></div>'+aspectLines(lines,'اتصالات العبور بخريطة الميلاد');
+        result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Transit Chart · '+esc(dateStamp(date))+'</span><h3>العبور فوق خريطة الميلاد</h3><p class="eam-note">الحلقة الخارجية لمواضع العبور، والداخلية لمواضع الميلاد.</p></header><div class="eam-wheel" id="eam-wheel"></div>'+transitHouseTable(t.chart,natal)+aspectLines(lines,'اتصالات العبور بخريطة الميلاد');
         window.AqeeqAstroWheel?.renderSynastryWheel($('#eam-wheel',result),natal.ch,t.chart,t.aspects);
         window.AqeeqGender?.apply(result,natal.gender);
         mountCopy(result,'خريطة العبور · '+dateStamp(date));
       }else if(mode==='solar'){
         const year=Number($('#eam-year',content).value),utc=solarReturnUtc(natal,year),ch=engineChart(utc,natal),aspects=chartAspects(ch);
         renderChart(result,'Solar Return · '+year,'العودة الشمسية للحظات عودة الشمس إلى موضع الميلاد',ch,'<p class="eam-note">لحظة العودة: '+esc(new Date(utc).toISOString().replace('T',' ').replace('Z',' UTC'))+'. البيوت محسوبة لمكان الميلاد المسجل.</p>',aspects);
+      }else if(mode==='profections'){
+        renderProfections(result,natal,$('#eam-date',content).value);
+      }else if(mode==='eclipses'){
+        renderEclipses(result,natal,Number($('#eam-year',content).value));
+      }else if(mode==='nodes'){
+        renderNodes(result,natal,$('#eam-date',content).value);
       }else{
         const ch=siderealChart(natal),aspects=chartAspects(ch);
         renderChart(result,'Sidereal · Lahiri','الخريطة الفيدية بالنطاق النجمي',ch,'<p class="eam-note">أيانامشا Lahiri المتوسط: '+ch.ayanamsa.toFixed(4)+'°. قد تختلف قيم الأيانامشا والتقاليد الفيدية الأخرى، وهذه الأداة لا تحسب الداشا أو النكشاترا.</p>',aspects);
