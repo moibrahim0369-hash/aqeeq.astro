@@ -1502,6 +1502,35 @@ if (typeof module !== 'undefined') module.exports = Astro;
   });
   citySel.addEventListener("change", () => { $("#manual").hidden = citySel.value !== "manual"; updateCityCoords(); });
   updateCityCoords();
+
+  // Prefer the full GeoNames build when present; the checked-in review sample is a safe fallback.
+  // Existing embedded cities remain available if the atlas JSON cannot be fetched.
+  (async function loadArabAtlas() {
+    let atlas = null;
+    for (const url of ["data/atlas/cities-arab.json", "data/atlas/cities-arab-review-sample.json"]) {
+      try {
+        const response = await fetch(url, { cache: "no-cache" });
+        if (response.ok) { atlas = await response.json(); if (Array.isArray(atlas.cities)) break; }
+      } catch (_) { /* continue to the fallback */ }
+    }
+    if (!atlas || !Array.isArray(atlas.cities)) return;
+    const groups = new Map(Array.from(citySel.querySelectorAll("optgroup")).map(g => [g.label, g]));
+    const known = new Set(CITIES.map(p => p.n.trim().toLocaleLowerCase("ar")));
+    atlas.cities.forEach(item => {
+      if (!item || typeof item.name !== "string" || !Number.isFinite(item.lat) || !Number.isFinite(item.lon)) return;
+      const key = item.name.trim().toLocaleLowerCase("ar");
+      if (known.has(key)) return;
+      const place = { n: item.name, lat: item.lat, lon: item.lon, tz: item.timezone || "", g: item.country || "مدن عربية" };
+      const idx = CITIES.push(place) - 1;
+      let group = groups.get(place.g);
+      if (!group) { group = document.createElement("optgroup"); group.label = place.g; groups.set(place.g, group); citySel.insertBefore(group, manualOpt); }
+      const option = document.createElement("option");
+      option.value = String(idx);
+      option.textContent = place.n;
+      option.dataset.search = (place.n + " " + place.g + " " + (item.nameLatin || "")).toLocaleLowerCase("ar");
+      group.appendChild(option);
+    });
+  })();
   $("#f-unknown").addEventListener("change", e => { $("#f-time").disabled = e.target.checked; });
 
   let LAST = null;
