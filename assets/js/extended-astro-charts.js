@@ -1,8 +1,8 @@
 (() => {
   'use strict';
   const SIGNS=['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'];
-  const NAMES={sun:'الشمس',moon:'القمر',mercury:'عطارد',venus:'الزهرة',mars:'المريخ',jupiter:'المشتري',saturn:'زحل',uranus:'أورانوس',neptune:'نبتون',pluto:'بلوتو',truenode:'العقدة الشمالية',node:'العقدة الشمالية',chiron:'كيرون'};
-  const GLYPHS={sun:'☉',moon:'☽',mercury:'☿',venus:'♀',mars:'♂',jupiter:'♃',saturn:'♄',uranus:'♅',neptune:'♆',pluto:'♇',truenode:'☊',node:'☊'};
+  const NAMES={sun:'الشمس',moon:'القمر',mercury:'عطارد',venus:'الزهرة',mars:'المريخ',jupiter:'المشتري',saturn:'زحل',uranus:'أورانوس',neptune:'نبتون',pluto:'بلوتو',truenode:'العقدة الشمالية',node:'العقدة الشمالية',fortune:'سهم السعادة',chiron:'كيرون'};
+  const GLYPHS={sun:'☉',moon:'☽',mercury:'☿',venus:'♀',mars:'♂',jupiter:'♃',saturn:'♄',uranus:'♅',neptune:'♆',pluto:'♇',truenode:'☊',node:'☊',fortune:'⊗'};
   const ASPECTS=[{deg:0,k:'conj',name:'اقتران'},{deg:60,k:'sext',name:'تسديس'},{deg:90,k:'sq',name:'تربيع'},{deg:120,k:'tri',name:'تثليث'},{deg:180,k:'opp',name:'مقابلة'}];
   const PERSONAL=new Set(['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto']);
   const CHART_POINTS=new Set([...PERSONAL,'truenode','node','fortune']);
