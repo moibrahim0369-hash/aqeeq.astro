@@ -136,14 +136,15 @@
     });
   }
   function initMatrix() {
-    const form=document.querySelector('#mform'),host=document.querySelector('#mresult'),dateInput=document.querySelector('#m-date'),error=document.querySelector('#merr');
-    if(!form||!host||!dateInput||form.dataset.aqmBound==='true')return;
+    const form=document.querySelector('#mform'),host=document.querySelector('#mresult'),dateInput=document.querySelector('#m-date'),genderInput=document.querySelector('#m-gender'),error=document.querySelector('#merr');
+    if(!form||!host||!dateInput||!genderInput||form.dataset.aqmBound==='true')return;
     form.dataset.aqmBound='true';
     form.addEventListener('submit',event=>{
       event.preventDefault();
       error.hidden=true;
+      if(!genderInput.value){error.textContent='اختار ذكر أو أنثى عشان نضبط صياغة التقرير.';error.hidden=false;genderInput.focus();return;}
       if(!dateInput.value){error.textContent='اكتب تاريخ الميلاد عشان نحسب مصفوفة القدر.';error.hidden=false;dateInput.focus();return;}
-      try{render(host,dateInput.value);host.hidden=false;host.scrollIntoView({behavior:'smooth',block:'start'});}
+      try{render(host,dateInput.value);window.AqeeqGender?.apply(host,genderInput.value);window.AqeeqCopyMap?.attach(host,'مصفوفة القدر');host.hidden=false;host.scrollIntoView({behavior:'smooth',block:'start'});}
       catch(err){error.textContent='تعذر حساب المصفوفة. راجع التاريخ وحاول مرة تانية.';error.hidden=false;}
     });
   }
