@@ -25,7 +25,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الغاية في فضول يختبر الممكن ويحترم عواقب البداية.",
+      "energyPsychology": "تتجدد الطاقة عبر تجارب صغيرة تفتح معرفة جديدة دون تبديد الموارد.",
+      "emotionsPsychology": "ينشأ الأمان من حرية واعية لا من الهرب من كل التزام."
     },
     "ajna": {
       "psychology": "",
@@ -74,6 +77,14 @@
     "contentStatus": "editorial-core-review",
     "authorship": "aqeeq-original",
     "referenceRuleStatus": "unverified",
-    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار."
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "status": "partial-review",
+      "authorship": "aqeeq-original",
+      "publicTopicLabel": "Sahasrara Mission",
+      "referenceRuleStatus": "unverified",
+      "bodySymbolStatus": "omitted-no-verified-rule",
+      "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+    }
   }
 }

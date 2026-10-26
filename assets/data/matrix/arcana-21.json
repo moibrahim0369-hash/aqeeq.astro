@@ -24,7 +24,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر الرسالة في إغلاق الدورات وربط الخبرات ضمن أثر أوسع.",
+      "energyPsychology": "تتجمع الطاقة حين يكتمل العمل بتسليم واضح قبل فتح آفاق أخرى.",
+      "emotionsPsychology": "يمنح الإنهاء الهادئ شعوراً بالاتساع؛ أما الحلقات المعلّقة فتشتت الانتباه."
     },
     "ajna": {
       "psychology": "",
@@ -73,6 +76,14 @@
     "contentStatus": "editorial-core-review",
     "authorship": "aqeeq-original",
     "referenceRuleStatus": "unverified",
-    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار."
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "status": "partial-review",
+      "authorship": "aqeeq-original",
+      "publicTopicLabel": "Sahasrara Mission",
+      "referenceRuleStatus": "unverified",
+      "bodySymbolStatus": "omitted-no-verified-rule",
+      "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+    }
   }
 }

@@ -19,7 +19,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الغاية في كشف ما لا يعمل وإعادة بناء أساس أكثر صدقاً.",
+      "energyPsychology": "تسترد الطاقة وجهتها عندما يُفصل الخلل المحدد عن كل ما ما زال صالحاً.",
+      "emotionsPsychology": "يتراجع الخوف حين تصبح الحقيقة قابلة للتعامل خطوة خطوة."
     },
     "ajna": {
       "psychology": "",
@@ -68,6 +71,14 @@
     "contentStatus": "editorial-core-review",
     "authorship": "aqeeq-original",
     "referenceRuleStatus": "unverified",
-    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار."
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "status": "partial-review",
+      "authorship": "aqeeq-original",
+      "publicTopicLabel": "Sahasrara Mission",
+      "referenceRuleStatus": "unverified",
+      "bodySymbolStatus": "omitted-no-verified-rule",
+      "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+    }
   }
 }
