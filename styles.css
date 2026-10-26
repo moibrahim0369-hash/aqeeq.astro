@@ -980,3 +980,16 @@ a,button,summary,.wg,.card,.btn,.bnav a,.svc-ic,.tool-ic,[role="button"]{-webkit
 #acct-link-msg,#acct-fallback{text-align:center;margin:0 0 14px}
 #acct-user{text-align:center}
 #acct-user .btn{margin-top:12px}
+
+/* Synastry + Composite midpoint chart */
+.cp-composite{margin-top:18px;padding:clamp(16px,2.5vw,24px);border:1px solid rgba(212,175,55,.32);border-radius:20px;background:linear-gradient(145deg,rgba(212,175,55,.07),rgba(11,13,19,.68))}
+.cp-composite h4{color:#e6cb90;margin:0 0 8px}
+.cp-composite h5{color:#e6cb90;margin:18px 0 8px;font-size:.95rem}
+.cp-composite-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:16px 0}
+.cp-composite-chip{min-width:0;padding:12px 10px;border:1px solid rgba(255,255,255,.1);border-radius:13px;background:rgba(255,255,255,.035);display:flex;flex-direction:column;gap:5px}
+.cp-composite-chip strong{color:var(--text,#ece8ff);font-size:.86rem}
+.cp-composite-chip span{color:var(--mute,#a9a1d2);font-size:.78rem;line-height:1.5}
+.cp-composite-houses{margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px}
+.cp-composite-houses summary{cursor:pointer;color:var(--brass-hi,#e6cb90);font-weight:650}
+.cp-composite-houses ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 18px;padding-inline-start:24px;color:var(--mute,#a9a1d2);font-size:.82rem}
+@media(max-width:700px){.cp-composite-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cp-composite-houses ol{grid-template-columns:repeat(2,minmax(0,1fr))}}
