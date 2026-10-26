@@ -30,6 +30,7 @@ const ui = {
   signout: $('#acct-signout'),
   buy: $('#acct-buy'),
   buyMsg: $('#acct-buy-msg'),
+  whatsapp: $('#acct-whatsapp-support'),
   recForm: $('#acct-recovery-form'),
   newPass: $('#acct-newpass'),
   recMsg: $('#acct-recovery-msg'),
@@ -94,6 +95,36 @@ function refreshAccountUI() {
   ui.user.hidden = !loggedIn || recovering;
   ui.recovery.hidden = !recovering;
   if (loggedIn && session.user) ui.userEmail.textContent = session.user.email || '';
+  if (!loggedIn && ui.whatsapp) ui.whatsapp.hidden = true;
+  if (loggedIn) refreshDeliveredReportSupport();
+}
+
+async function refreshDeliveredReportSupport() {
+  if (!ui.whatsapp || !session?.user?.id) return;
+  ui.whatsapp.hidden = true;
+  try {
+    const { data, error } = await supabase
+      .from('report_deliveries')
+      .select('order_id, delivery_channel, orders!inner(status, product_code)')
+      .eq('user_id', session.user.id)
+      .eq('status', 'delivered')
+      .eq('orders.status', 'paid')
+      .eq('orders.product_code', 'full_report')
+      .limit(1);
+    if (error) throw error;
+    const delivered = Array.isArray(data) && data.some(row =>
+      row && row.orders && row.orders.status === 'paid' && row.orders.product_code === 'full_report'
+    );
+    ui.whatsapp.hidden = !delivered;
+    if (delivered) {
+      const text = encodeURIComponent('مرحباً، أحتاج مساعدة بخصوص التقرير الفلكي الذي تم تسليمه لي في عقيق أسترو.');
+      ui.whatsapp.href = 'https://wa.me/201143813559?text=' + text;
+    }
+  } catch (err) {
+    // Fail closed: never expose the support link if delivery status cannot be verified.
+    ui.whatsapp.hidden = true;
+    console.error('Could not verify report delivery state');
+  }
 }
 
 function busy(button, on) {
