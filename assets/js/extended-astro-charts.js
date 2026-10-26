@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const SIGNS=['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'];
-  const NAMES={sun:'الشمس',moon:'القمر',mercury:'عطارد',venus:'الزهرة',mars:'المريخ',jupiter:'المشتري',saturn:'زحل',uranus:'أورانوس',neptune:'نبتون',pluto:'بلوتو',truenode:'العقدة الشمالية',node:'العقدة الشمالية'};
+  const NAMES={sun:'الشمس',moon:'القمر',mercury:'عطارد',venus:'الزهرة',mars:'المريخ',jupiter:'المشتري',saturn:'زحل',uranus:'أورانوس',neptune:'نبتون',pluto:'بلوتو',truenode:'العقدة الشمالية',node:'العقدة الشمالية',chiron:'كيرون'};
   const GLYPHS={sun:'☉',moon:'☽',mercury:'☿',venus:'♀',mars:'♂',jupiter:'♃',saturn:'♄',uranus:'♅',neptune:'♆',pluto:'♇',truenode:'☊',node:'☊'};
   const ASPECTS=[{deg:0,k:'conj',name:'اقتران'},{deg:60,k:'sext',name:'تسديس'},{deg:90,k:'sq',name:'تربيع'},{deg:120,k:'tri',name:'تثليث'},{deg:180,k:'opp',name:'مقابلة'}];
   const PERSONAL=new Set(['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto']);
@@ -38,7 +38,7 @@
     host.querySelector('.aq-copy-map-btn')?.remove();
     const b=document.createElement('button');b.type='button';b.className='aq-copy-map-btn';b.textContent='نسخ بيانات الخريطة بالكامل';
     b.addEventListener('click',async()=>{
-      const clone=host.cloneNode(true);clone.querySelectorAll('.aq-copy-map-btn,button').forEach(x=>x.remove());
+      const clone=host.cloneNode(true);clone.querySelectorAll('.aq-copy-map-btn,button').forEach(x=>x.remove());if(host.id==='result')clone.querySelector('#aqeek-personal-transits')?.remove();
       const svgTitles=[...clone.querySelectorAll('svg title')].map(x=>x.textContent.trim()).filter(Boolean);
       const text=title+'\n\n'+clone.textContent.replace(/\s+/g,' ').trim()+(svgTitles.length?'\n\nتفاصيل العجلة: '+svgTitles.join(' · '):'');
       try{await navigator.clipboard.writeText(text);b.textContent='تم نسخ بيانات الخريطة';}
@@ -49,6 +49,8 @@
   }
   window.AqeeqCopyMap={attach:mountCopy};
 
+  const attachTransitCopy=()=>{const host=$('#aqeek-personal-transits');if(host&&!host.querySelector('.aq-copy-map-btn')&&host.querySelector('.aqt-card, .aqt-wheel, .aqt-wrap'))mountCopy(host,'خريطة العبور الشخصي');};
+  attachTransitCopy();new MutationObserver(attachTransitCopy).observe(document.documentElement,{childList:true,subtree:true});
   const section=$('#astro-maps'),content=$('#eam-content');
   if(!section||!content)return;
   let mode='transit';
