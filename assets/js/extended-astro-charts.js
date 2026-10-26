@@ -1,7 +1,10 @@
 (() => {
   'use strict';
+  const NODE_MODEL='truenode'; // يحافظ على النموذج الحقيقي الذي يستخدمه محرك الترانزيت وحساب عودة العقدة.
+  function selectNodeBody(bodies,model=NODE_MODEL){if(model!=='node'&&model!=='truenode')throw new RangeError('Unsupported lunar node model: '+model);return (bodies||[]).find(b=>String(b.key||'').toLowerCase()===model)||null;}
+  window.AqeeqNodeModel=Object.freeze({defaultModel:NODE_MODEL,selectNodeBody});
   const SIGNS=['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'];
-  const NAMES={sun:'الشمس',moon:'القمر',mercury:'عطارد',venus:'الزهرة',mars:'المريخ',jupiter:'المشتري',saturn:'زحل',uranus:'أورانوس',neptune:'نبتون',pluto:'بلوتو',truenode:'العقدة الشمالية',node:'العقدة الشمالية',fortune:'سهم السعادة',chiron:'كيرون'};
+  const NAMES={sun:'الشمس',moon:'القمر',mercury:'عطارد',venus:'الزهرة',mars:'المريخ',jupiter:'المشتري',saturn:'زحل',uranus:'أورانوس',neptune:'نبتون',pluto:'بلوتو',truenode:'العقدة الشمالية الحقيقية',node:'العقدة الشمالية المتوسطة',fortune:'سهم السعادة',chiron:'كيرون'};
   const GLYPHS={sun:'☉',moon:'☽',mercury:'☿',venus:'♀',mars:'♂',jupiter:'♃',saturn:'♄',uranus:'♅',neptune:'♆',pluto:'♇',truenode:'☊',node:'☊',fortune:'⊗'};
   const ASPECTS=[{deg:0,k:'conj',name:'اقتران'},{deg:60,k:'sext',name:'تسديس'},{deg:90,k:'sq',name:'تربيع'},{deg:120,k:'tri',name:'تثليث'},{deg:180,k:'opp',name:'مقابلة'}];
   const PERSONAL=new Set(['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto']);
@@ -11,7 +14,7 @@
   function fmt(lon){const v=norm(lon),si=Math.floor(v/30);let d=Math.floor(v-si*30),m=Math.round((v-si*30-d)*60);if(m===60){d++;m=0;if(d===30)return '00°00′ '+SIGNS[(si+1)%12];}return String(d).padStart(2,'0')+'°'+String(m).padStart(2,'0')+'′ '+SIGNS[si];}
   const dateStamp=d=>new Date(d).toLocaleString('ar-EG',{dateStyle:'medium',timeStyle:'short'});
   const mapKey=k=>String(k||'').toLowerCase()==='truenode'?'truenode':String(k||'').toLowerCase();
-  function chartBodies(ch){return(ch.bodies||[]).filter(b=>CHART_POINTS.has(mapKey(b.key))).map(b=>({...b,key:mapKey(b.key),lon:norm(b.lon)}));}
+  function chartBodies(ch){return(ch.bodies||[]).filter(b=>CHART_POINTS.has(mapKey(b.key))).map(b=>({...b,key:mapKey(b.key),lon:norm(b.lon)})).filter(b=>!['node','truenode'].includes(b.key)||b.key===NODE_MODEL);}
   function chartAspects(ch,orb=7){
     const bodies=chartBodies(ch).filter(b=>b.key!=='fortune'),out=[];
     for(let i=0;i<bodies.length;i++)for(let j=i+1;j<bodies.length;j++){
@@ -149,7 +152,7 @@
     result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Eclipses · '+year+'</span><h3>الكسوف والخسوف في بيوت الميلاد</h3><p class="eam-note">الأحداث عالمية من Astronomy Engine؛ البيت محسوب من موضع الشمس أو القمر عند الذروة مع رؤوس بيوت ميلادك. هذا لا يحدد الرؤية المحلية.</p></header><div class="eam-event-list">'+rows+'</div>';
     {const markers=items.map(({e,type})=>{const ch=engineChart(e.peak.date.getTime(),natal),b=ch.bodies.find(x=>x.key===(type==='solar'?'sun':'moon'));return b?{lon:b.lon,glyph:type==='solar'?'☉':'☽',title:(type==='solar'?'كسوف شمسي ':'خسوف قمري ')+e.peak.date.toLocaleDateString('ar-EG',{dateStyle:'medium',timeZone:'UTC'})}:null;}).filter(Boolean);result.querySelector('.eam-result-head').insertAdjacentHTML('afterend','<div class="eam-wheel" id="eam-wheel"></div>');window.AqeeqAstroWheel?.renderChartWheel($('#eam-wheel',result),natal.ch,[],'Eclipses '+year,{markers,markerLegend:'مواضع الكسوف والخسوف'});}window.AqeeqGender?.apply(result,natal.gender);mountCopy(result,'الكسوف والخسوف · '+year);
   }
-  function nodeLonAt(ms,natal){const jd=Astro.jdFromMs(ms),jde=jd+Astro.deltaT(Astro.yearOf(jd))/86400;return norm(Astro.lonOf('truenode',jde));}
+  function nodeLonAt(ms,natal){const jd=Astro.jdFromMs(ms),jde=jd+Astro.deltaT(Astro.yearOf(jd))/86400;return norm(Astro.lonOf(NODE_MODEL,jde));}
   function findNodalReturn(natal,k,natalNode){
     const target=natal.utcMs+k*6798.383*86400000,step=3*86400000,span=100*86400000;
     let prevMs=target-span,prev=Astro.d180(nodeLonAt(prevMs,natal)-natalNode),bracket=null;
@@ -165,16 +168,17 @@
   }
   function renderNodes(result,natal,value){
     const date=value?new Date(value+'T12:00:00'):new Date(),ch=engineChart(date.getTime(),natal);
-    const north=ch.bodies.find(b=>b.key==='truenode'||b.key==='node'),south=north?norm(north.lon+180):null;
+    const north=selectNodeBody(ch.bodies),south=north?norm(north.lon+180):null;
     if(!north||!Number.isFinite(natal.utcMs))throw new Error('بيانات العقد القمرية غير مكتملة.');
-    const natalNorth=natal.ch.bodies.find(b=>mapKey(b.key)==='truenode'||mapKey(b.key)==='node');
+    const natalNorth=selectNodeBody(natal.ch.bodies.map(b=>({...b,key:mapKey(b.key)})));
     if(!natalNorth)throw new Error('موضع العقدة الشمالية في خريطة الميلاد غير متاح.');
     const nHouse=natalHouseFor(north.lon,natal),sHouse=natalHouseFor(south,natal),birthNode=norm(natalNorth.lon);
+    result.dataset.nodeModel=NODE_MODEL;result.dataset.natalNodeLongitude=String(birthNode);result.dataset.transitNodeLongitude=String(norm(north.lon));
     const elapsed=(date.getTime()-natal.utcMs)/86400000,k=Math.max(1,Math.floor(elapsed/6798.383)+1);
     const returns=[k,k+1].map(i=>findNodalReturn(natal,i,birthNode));
     const fmtHouse=(h)=>h?'البيت '+h+' · '+HOUSE_AREAS[h-1]:'البيوت غير متاحة دون وقت ميلاد دقيق';
-    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Lunar Nodes · Nodal Return</span><h3>محور العقدة الشمالية والجنوبية</h3><p class="eam-note">العقدة الجنوبية مقابلة للشمالية تماماً؛ عودة العقدة تحدث تقريباً كل 18.6 سنة.</p></header><section class="eam-pillar-grid"><article class="eam-pillar"><span>العقدة الشمالية ☊ · عبور</span><strong>'+esc(fmt(north.lon))+'</strong><small>'+esc(fmtHouse(nHouse))+'</small></article><article class="eam-pillar"><span>العقدة الجنوبية ☋ · عبور</span><strong>'+esc(fmt(south))+'</strong><small>'+esc(fmtHouse(sHouse))+'</small></article><article class="eam-pillar"><span>العقدة الشمالية · الميلاد</span><strong>'+esc(fmt(birthNode))+'</strong><small>'+esc(fmtHouse(natalHouseFor(birthNode,natal)))+'</small></article></section><section class="eam-card"><h4>محطات عودة العقدة الشمالية التقريبية</h4><div class="eam-event-list">'+returns.map((d,i)=>'<article class="eam-event"><div><span class="eam-event-date">العودة '+(k+i)+'</span><h4>'+esc(d.toLocaleDateString('ar-EG',{dateStyle:'long'}))+'</h4></div><div><b>توافق محور العقد</b><span>توقيت تقريبي يحسب من حركة العقدة في المحرك.</span></div></article>').join('')+'</div><p class="eam-note">قراءة رمزية لمحور العقد لا تمثل حكماً علمياً على الشخصية أو المصير.</p></section>';
-    result.querySelector('.eam-result-head').insertAdjacentHTML('afterend','<div class="eam-wheel" id="eam-wheel"></div>');window.AqeeqAstroWheel?.renderChartWheel($('#eam-wheel',result),natal.ch,[],'Lunar Nodes',{markers:[{lon:north.lon,glyph:'☊',title:'العقدة الشمالية (عبور)'},{lon:south,glyph:'☋',title:'العقدة الجنوبية (عبور)'}],markerLegend:'محور العقد الحالي'});window.AqeeqGender?.apply(result,natal.gender);mountCopy(result,'محور العقد القمرية والعودة العقدية');
+    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Lunar Nodes · Nodal Return</span><h3>محور العقدة الشمالية والجنوبية</h3><p class="eam-note">العقدة الجنوبية مقابلة للشمالية تماماً؛ عودة العقدة تحدث تقريباً كل 18.6 سنة.</p></header><section class="eam-pillar-grid"><article class="eam-pillar"><span>العقدة الشمالية الحقيقية ☊ · عبور</span><strong>'+esc(fmt(north.lon))+'</strong><small>'+esc(fmtHouse(nHouse))+'</small></article><article class="eam-pillar"><span>العقدة الجنوبية ☋ · عبور</span><strong>'+esc(fmt(south))+'</strong><small>'+esc(fmtHouse(sHouse))+'</small></article><article class="eam-pillar"><span>العقدة الشمالية الحقيقية · الميلاد</span><strong>'+esc(fmt(birthNode))+'</strong><small>'+esc(fmtHouse(natalHouseFor(birthNode,natal)))+'</small></article></section><section class="eam-card"><h4>محطات عودة العقدة الشمالية التقريبية</h4><div class="eam-event-list">'+returns.map((d,i)=>'<article class="eam-event"><div><span class="eam-event-date">العودة '+(k+i)+'</span><h4>'+esc(d.toLocaleDateString('ar-EG',{dateStyle:'long'}))+'</h4></div><div><b>توافق محور العقد</b><span>توقيت تقريبي يحسب من حركة العقدة في المحرك.</span></div></article>').join('')+'</div><p class="eam-note">قراءة رمزية لمحور العقد لا تمثل حكماً علمياً على الشخصية أو المصير.</p></section>';
+    result.querySelector('.eam-result-head').insertAdjacentHTML('afterend','<div class="eam-wheel" id="eam-wheel"></div>');const nodeWheelChart={...natal.ch,bodies:natal.ch.bodies.filter(b=>mapKey(b.key)!==(NODE_MODEL==='truenode'?'node':'truenode'))};window.AqeeqAstroWheel?.renderChartWheel($('#eam-wheel',result),nodeWheelChart,[],'Lunar Nodes',{markers:[{lon:north.lon,glyph:'☊',title:'العقدة الشمالية الحقيقية (عبور)'},{lon:south,glyph:'☋',title:'العقدة الجنوبية (عبور)'}],markerLegend:'محور العقد الحالي'});window.AqeeqGender?.apply(result,natal.gender);mountCopy(result,'محور العقد القمرية والعودة العقدية');
   }
   function currentTransit(natal,date){
     const nat=chartBodies(natal.ch).map(b=>({key:b.key[0].toUpperCase()+b.key.slice(1),lon:b.lon,speed:b.speed||0,retro:b.retro}));
