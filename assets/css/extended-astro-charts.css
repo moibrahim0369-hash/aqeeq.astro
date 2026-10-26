@@ -37,3 +37,18 @@
 @media(max-width:480px){.eam-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.2rem;padding:.25rem}.eam-tabs [role=tab]{padding:.65rem .35rem;font-size:.76rem;white-space:nowrap}.eam-control{padding:.8rem;border-radius:16px}.eam-controls{display:grid;grid-template-columns:1fr;width:100%}.eam-controls .field{width:100%}.eam-result{padding:.65rem;border-radius:18px}.eam-table{font-size:.76rem}.eam-table th,.eam-table td{padding:.58rem .52rem}.aq-copy-map-btn{width:100%}}
 
 .gender-voice-note{margin:.35rem 0 .75rem;padding:.5rem .75rem;border-inline-start:2px solid rgba(212,175,55,.65);border-radius:8px;background:rgba(212,175,55,.055);color:#cbbb91;font-size:.73rem;line-height:1.6}
+
+.eam-pillar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.7rem;margin:1rem 0}
+.eam-pillar{display:grid;gap:.35rem;min-width:0;padding:.9rem;border:1px solid rgba(212,175,55,.16);border-radius:16px;background:linear-gradient(145deg,rgba(212,175,55,.075),rgba(255,255,255,.025));text-align:center}
+.eam-pillar>span{color:#b9bdc7;font-size:.76rem}
+.eam-pillar strong{color:#e4cf8a;font-size:1.05rem;overflow-wrap:anywhere}
+.eam-pillar small{color:#9ea6b5;line-height:1.65}
+.eam-prose{color:#c6cad3;line-height:1.9;margin:.25rem 0}
+.eam-prose b{color:#e1cd88}
+.eam-event-list{display:grid;gap:.7rem;margin:1rem 0}
+.eam-event{display:grid;grid-template-columns:minmax(130px,.7fr) minmax(0,1fr);gap:.8rem;align-items:center;padding:.85rem 1rem;border:1px solid rgba(255,255,255,.075);border-radius:16px;background:rgba(255,255,255,.025)}
+.eam-event h4{margin:.25rem 0;color:#e8dfca}
+.eam-event>div:last-child{display:grid;gap:.25rem;min-width:0}
+.eam-event>div:last-child b{color:#d8c47f}
+.eam-event>div:last-child span,.eam-event-date{color:#aab1be;font-size:.78rem;line-height:1.65}
+@media(max-width:480px){.eam-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.eam-tabs [role=tab]{white-space:normal;min-height:44px;line-height:1.35}.eam-event{grid-template-columns:1fr;gap:.35rem;padding:.75rem}.eam-pillar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eam-pillar{padding:.72rem .5rem}}
