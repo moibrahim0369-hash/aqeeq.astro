@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يمارس الاعتدال سلطة المزج بين موارد مختلفة؛ النجاح في الضفيرة هو تحويل التوازن إلى قدرة عملية لا إلى تهدئة مؤقتة.",
+      "energyPsychology": "تنتظم الطاقة عبر إيقاع يوزع الجهد والراحة، وتفقد مرونتها عند محاولة الوصول إلى نتيجة فورية بأي ثمن.",
+      "emotionsPsychology": "يطمئن الداخل عندما يُسمح بالتقدم الهادئ دون مقارنته بسرعة الآخرين."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -60,7 +60,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتعلم القمرية التمييز بين حدس القيادة وخوف الفشل؛ القرار القوي لا يحتاج إنكار الغموض.",
+      "energyPsychology": "تحتاج الطاقة إلى وقائع واختبار صغير قبل الالتزام الكبير، خصوصًا عندما تتضخم المخاوف في الخيال.",
+      "emotionsPsychology": "يخف القلق حين يُسمح بتسمية عدم اليقين بدل تغطيته بثقة مصطنعة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -118,6 +121,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يحوّل الساحر الإمكان إلى أثر ملموس؛ في الضفيرة الشمسية تظهر قوته حين يستخدم الأدوات المتاحة ليصنع نتيجة، لا ليجمعها لإثبات التفوق.",
+      "energyPsychology": "تتجه طاقة الإرادة إلى مبادرة واحدة قابلة للقياس؛ ويضعفها فتح مشاريع كثيرة كي يظل الإعجاب حاضرًا.",
+      "emotionsPsychology": "يستقر الشعور بالقيمة عندما يأتي الاعتراف من جودة الفعل، لا من الحاجة إلى إقناع الجميع بالقدرة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

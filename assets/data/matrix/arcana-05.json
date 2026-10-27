@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يمنح المعلم معنى للمكانة عبر المعرفة والخدمة العامة، ويختبر سلطته حين يظن أن احترام القاعدة يعفيه من السؤال.",
+      "energyPsychology": "تتدفق الطاقة في التعليم والتوجيه وبناء معيار مشترك، وتضعف حين تتحول القناعة إلى رقابة على ضمائر الآخرين.",
+      "emotionsPsychology": "يستقر الداخل عندما يُسمح بالاختلاف داخل الجماعة دون اعتباره خيانة للهوية."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تستخدم القوة الانفعال كوقود منضبط، فتثبت حدودها دون إذلال من يقف أمامها أو تحويل الشجاعة إلى استعراض.",
+      "energyPsychology": "تتدفق الحيوية في الفعل المتدرج وتحمل المواجهة، وتستنزفها معركة مستمرة لإثبات من الأقوى.",
+      "emotionsPsychology": "يصبح الغضب قابلًا للاستخدام عندما يكشف حدًا تم تجاوزه بدل أن يحدد قيمة العلاقة كلها."
     },
     "svadhisthana": {
       "psychology": "",
@@ -114,6 +117,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يختبر المعلّق قدرته حين يتوقف عن ربط قيمته بسرعة النتائج؛ التنازل الواعي عن السيطرة يكشف زاوية لم يكن يراها.",
+      "energyPsychology": "تتحول الطاقة من الدفع القسري إلى إعادة تقييم الأولويات، لا إلى تضحية مفتوحة بلا موعد أو غاية.",
+      "emotionsPsychology": "يحتاج الداخل إلى الاعتراف بأن الانتظار مؤلم، وأن هذا الألم لا يبرر إخفاء الاحتياج عن الآخرين."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

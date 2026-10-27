@@ -60,7 +60,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تستدعي المحاكمة مراجعة صادقة للقرارات والنتائج؛ القوة في تحويل الاعتراف إلى اختيار جديد لا إلى إدانة للماضي.",
+      "energyPsychology": "تتجمع الطاقة في إصلاح ما يمكن إصلاحه وإغلاق ما انتهى، بدل تبديدها في تكرار الدفاع عن النفس.",
+      "emotionsPsychology": "يتحرر الشعور بالذنب عندما يتحول إلى مسؤولية محددة، لا إلى عقوبة داخلية بلا نهاية."
     },
     "svadhisthana": {
       "psychology": "",
@@ -118,6 +121,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

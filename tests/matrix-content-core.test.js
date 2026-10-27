@@ -33,12 +33,13 @@ for (let id = 1; id <= 22; id += 1) {
   assert.equal(entry.meta?.chakraContent?.ajna?.status, 'partial-review');
   assert.equal(entry.meta?.chakraContent?.vishuddha?.status, 'partial-review');
   assert.equal(entry.meta?.chakraContent?.anahata?.status, 'partial-review');
+  assert.equal(entry.meta?.chakraContent?.manipura?.status, 'partial-review');
   for (const section of Object.values(entry.chakras)) {
     for (const field of ['psychology', 'shadowTrap', 'bodySymbol', 'practice']) {
       assert.equal(section[field], '', `unwritten chakra field ${field} remains empty for Arcana ${id}`);
     }
   }
-  for (const chakraKey of ['manipura', 'svadhisthana', 'muladhara']) {
+  for (const chakraKey of ['svadhisthana', 'muladhara']) {
     for (const field of ['physicsPsychology', 'energyPsychology', 'emotionsPsychology']) {
       assert.equal(entry.chakras[chakraKey][field] || '', '', `unwritten ${chakraKey} aspect ${field} remains empty for Arcana ${id}`);
     }

@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تدفع العربة نحو إنجاز محدد، لكن الضفيرة الشمسية تذكّرها بأن السيطرة على السرعة ليست دليلًا على صلاح الوجهة.",
+      "energyPsychology": "تزداد الحيوية عندما تتعاون الدوافع المتعارضة على مسار واحد، وتنهكها المنافسة التي تجعل كل اعتراض تحديًا للهيبة.",
+      "emotionsPsychology": "يصبح التراجع الذكي ممكنًا عندما لا يُفهم تعديل الخطة كخسارة للكرامة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

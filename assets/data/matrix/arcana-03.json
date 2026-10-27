@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الإمبراطورة في قدرة على إنماء مشروع أو علاقة بالموارد والرعاية، مع الانتباه إلى أن العطاء لا يلغي حدود الملكية.",
+      "energyPsychology": "تتجدد الحيوية عبر الإبداع والوفرة الحسية، لكنها تتشتت عندما تتحول كل فرصة جميلة إلى التزام جديد.",
+      "emotionsPsychology": "يتوازن الشعور بالاستحقاق حين تُقبل المتعة دون استخدامها كتعويض عن احتياج لم يُسمَّ."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

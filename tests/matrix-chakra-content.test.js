@@ -9,7 +9,7 @@ const aspects = ['physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
 for (let id = 1; id <= 22; id += 1) {
   const entry = JSON.parse(fs.readFileSync(path.join(dataDir, `arcana-${String(id).padStart(2, '0')}.json`), 'utf8'));
   assert.equal(entry.id, id, `Arcana ID for chakra text ${id}`);
-  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha', 'anahata']) {
+  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha', 'anahata', 'manipura']) {
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.status, 'partial-review');
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.authorship, 'aqeeq-original');
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.referenceRuleStatus, 'unverified');
@@ -21,7 +21,7 @@ for (let id = 1; id <= 22; id += 1) {
       assert.ok(entry.chakras[chakraKey][key].trim().length >= 45, `${chakraKey} ${key} has a developed draft for Arcana ${id}`);
     }
   }
-  for (const chakraKey of ['manipura', 'svadhisthana', 'muladhara']) {
+  for (const chakraKey of ['svadhisthana', 'muladhara']) {
     for (const key of aspects) assert.equal(entry.chakras?.[chakraKey]?.[key] || '', '', `${chakraKey} remains unfilled for Arcana ${id}`);
   }
 }
@@ -51,7 +51,7 @@ async function readWithStatuses(statuses, chakraKey) {
   return context.window.AqeeqMatrix.chakraText(7, chakraKey);
 }
 (async () => {
-  const statuses = { sahasrara: 'published', ajna: 'partial-review', vishuddha: 'partial-review' };
+  const statuses = { sahasrara: 'published', ajna: 'partial-review', vishuddha: 'partial-review', anahata: 'partial-review', manipura: 'partial-review' };
   const hiddenVishuddha = await readWithStatuses(statuses, 'vishuddha');
   assert.equal(hiddenVishuddha.empty, true, 'Vishuddha draft remains hidden while unpublished even if Sahasrara is published');
   assert.equal(Object.keys(hiddenVishuddha.fields).length, 0);
@@ -61,5 +61,10 @@ async function readWithStatuses(statuses, chakraKey) {
   assert.equal(publishedVishuddha.fields.physicsPsychology, 'نص الجسد الرمزي المنشور.');
   assert.equal(publishedVishuddha.fields.energyPsychology, 'نص الطاقة الرمزي المنشور.');
   assert.equal(publishedVishuddha.fields.emotionsPsychology, 'نص المشاعر الرمزي المنشور.');
-  console.log('Matrix chakra contract passed: all four reviewed chakra drafts contain the three required aspects; publication remains independently gated per chakra.');
+
+  const hiddenManipura = await readWithStatuses(statuses, 'manipura');
+  assert.equal(hiddenManipura.empty, true, 'Manipura draft remains hidden while unpublished');
+  const publishedManipura = await readWithStatuses({ ...statuses, manipura: 'published' }, 'manipura');
+  assert.equal(publishedManipura.empty, false, 'Manipura loads only after its own explicit publication');
+  console.log('Matrix chakra contract passed: all five reviewed chakra drafts contain the three required aspects; publication remains independently gated per chakra.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تحمي الكاهنة قوتها عبر معرفة ما يستحق الظهور وما يحتاج إعدادًا صامتًا؛ القرار لا يحتاج عرضًا مستمرًا كي يكون نافذًا.",
+      "energyPsychology": "تنمو الطاقة من المراقبة وتوقيت الإفصاح، لا من استنزاف الذات في شرح كل حدس قبل نضجه.",
+      "emotionsPsychology": "يهدأ الداخل حين لا يصبح الصمت وسيلة لمعاقبة الآخرين أو اختبار اعترافهم بعمق ما تعرفه."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

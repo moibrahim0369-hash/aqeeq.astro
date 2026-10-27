@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تنهي طاقة التحول دورًا أو مشروعًا لم يعد يمثلها؛ القوة هنا في تحرير الموارد لا في إبقاء صورة قديمة حية.",
+      "energyPsychology": "تتجدد الحيوية بعد قطع ما يستنزفها، وتحتاج إلى مساحة فارغة قبل ملء الحياة بهدف جديد.",
+      "emotionsPsychology": "يخف الخوف عندما يُسمّى الفقد بوضوح ولا يُترجم فورًا إلى اندفاع يثبت أن كل شيء بخير."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

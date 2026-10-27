@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تستمد العدالة قوتها من قرار يمكن تبريره أمام الأطراف المتأثرة، لا من انتصار شخصي في لحظة نزاع.",
+      "energyPsychology": "تتوازن الطاقة عندما تتوزع المسؤولية والموارد بإنصاف، ويستنزفها حساب المكاسب الخفي بعد كل تعاون.",
+      "emotionsPsychology": "يهدأ الشعور بالذنب حين تُفصل المسؤولية الفعلية عن جلد الذات أو تحميل الآخرين ما لا يخصهم."
     },
     "svadhisthana": {
       "psychology": "",
@@ -114,6 +117,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }
