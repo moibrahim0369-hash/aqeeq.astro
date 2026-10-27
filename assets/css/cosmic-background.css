@@ -47,10 +47,9 @@
 .wheel .pw-sector.odd{fill:rgba(124,86,225,.075)}
 .wheel .pw-div{stroke:rgba(217,178,124,.3);stroke-width:.6}
 .wheel .pw-glow{fill:url(#pwCenter)}
-.wheel .pw-disc{fill:url(#pwDisc);stroke:rgba(217,178,124,.55);stroke-width:1;transition:stroke .2s,fill .2s,filter .2s}
-.wg.pw-e0 .pw-disc{stroke:rgba(229,138,98,.75)}.wg.pw-e1 .pw-disc{stroke:rgba(155,191,138,.75)}.wg.pw-e2 .pw-disc{stroke:rgba(143,184,232,.8)}.wg.pw-e3 .pw-disc{stroke:rgba(150,150,235,.8)}
-.wg text{fill:#f3dcaa}
-.wg:hover .pw-disc,.wg:focus-visible .pw-disc{stroke:#ffe2aa;stroke-width:1.9}
+.wheel .pw-disc{fill:rgba(10,7,24,.55);stroke:rgba(217,178,124,.4);stroke-width:.7}
+.wg text{fill:#e9d3a2;font-weight:300}
+.wg:focus-visible .pw-disc{stroke:#ffe2aa;stroke-width:1.2}
 
 /* سماء أغمق */
 #mw{opacity:.16!important}
@@ -60,14 +59,14 @@
 .wheel,.wheel *,#picker,#picker button,.card,.bnav a,.btn{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
 
 .wheel .pw-pl{cursor:help;outline:none}
-.wheel .pw-pl-dot{fill:rgba(8,5,20,.88);stroke-width:1.1}
+.wheel .pw-pl-dot{fill:rgba(8,5,20,.7);stroke-width:.8;stroke-opacity:.7}
 .wheel .pw-pl-g{font-family:"Noto Sans Symbols","Noto Sans Symbols 2",sans-serif!important;font-size:11px;text-anchor:middle;dominant-baseline:central}
 .wheel .pw-pl:hover .pw-pl-dot,.wheel .pw-pl:focus .pw-pl-dot{fill:rgba(60,44,110,.95);stroke-width:1.8}
 .pw-note{margin:4px 0 0;text-align:center;color:var(--mute,#a89fc0);font-size:.8rem}
 
 /* كارت منازل القمر */
-.sky-moon{display:flex!important;align-items:center;gap:18px;padding:16px 18px;margin:14px 0;border-radius:20px;background:linear-gradient(150deg,rgba(30,22,60,.7),rgba(10,7,24,.7));border:1px solid rgba(217,178,124,.3)}
-.mn-fig{flex:0 0 auto;width:112px;height:112px}
+.sky-moon{display:flex!important;align-items:center;gap:18px;padding:6px 0;margin:10px 0;background:none!important;border:0!important;box-shadow:none!important}
+.mn-fig{flex:0 0 auto;width:128px;height:128px}
 .mn-svg{display:block;width:100%;height:100%}
 .mn-txt{display:grid;gap:6px;min-width:0}
 .mn-kick{color:#d9b27c;font-size:.82rem;letter-spacing:.04em}
@@ -78,3 +77,10 @@
 .mn-next{margin:0;color:#b9b0d0;font-size:.88rem}
 .mn-date{color:#a89fc0}
 @media(max-width:520px){.sky-moon{flex-direction:column;text-align:center}.mn-meta{justify-content:center}}
+
+/* بدون ومضة عند اللمس */
+.wg:active text,.wg:active .hit,.card:active,.btn:active,.btn.ghost:active,.bnav a:active svg{filter:none!important;background:none;fill:inherit}
+.wg:active .hit{fill:transparent!important}
+.wg:active .pw-disc{stroke:rgba(217,178,124,.4)}
+.wheel *{-webkit-tap-highlight-color:transparent;outline:none}
+.wheel .pw-disc,.wheel .pw-pl-dot{transition:none}
