@@ -1,0 +1,17 @@
+/* خلفية كونية: مجرات + كواكب + كوكبات الأبراج */
+#cosmos-bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+/* كوكبة البرج خلف محتوى قسم الأبراج */
+.const-bg{position:sticky;top:0;height:100vh;margin-bottom:-100vh;pointer-events:none;z-index:0;display:grid;place-items:center}
+#signs>.wrap{position:relative;z-index:1}
+.const-bg svg{width:min(92vw,560px);height:min(80vh,560px);opacity:.8;animation:cbIn .9s ease both}
+.cb-line{stroke:rgba(217,178,124,.55);stroke-width:.35;stroke-linecap:round;stroke-dasharray:60;stroke-dashoffset:60;animation:cbDraw 1.1s ease forwards;animation-delay:var(--d,0s)}
+.cb-star{fill:#fff4d6;filter:drop-shadow(0 0 1.4px rgba(255,236,190,.95));opacity:0;animation:cbStar .6s ease forwards,cbTw 3.6s ease-in-out infinite;animation-delay:var(--d,0s),calc(var(--d,0s) + .8s)}
+.cb-halo{fill:rgba(190,205,255,.18)}
+.cb-name{fill:rgba(232,208,150,.75);font:600 3.4px "IBM Plex Sans Arabic",system-ui,sans-serif;text-anchor:middle;letter-spacing:.15px}
+@keyframes cbIn{from{opacity:0;transform:scale(.97)}to{opacity:.8;transform:none}}
+@keyframes cbDraw{to{stroke-dashoffset:0}}
+@keyframes cbStar{to{opacity:1}}
+@keyframes cbTw{0%,100%{opacity:1}50%{opacity:.62}}
+@media (prefers-reduced-motion:reduce){.cb-line{animation:none;stroke-dashoffset:0}.cb-star{animation:none;opacity:1}.const-bg svg{animation:none}}
+
+.const-cap{margin:.2rem 0 .6rem;color:#d9b27c;font-size:.82rem;letter-spacing:.02em;opacity:.9}
