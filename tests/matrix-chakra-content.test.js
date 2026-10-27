@@ -15,7 +15,7 @@ for (let id = 1; id <= 22; id += 1) {
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.referenceRuleStatus, 'unverified');
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.bodySymbolStatus, 'omitted-no-verified-rule');
   }
-  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha']) {
+  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha', 'anahata']) {
     for (const key of aspects) {
       assert.equal(typeof entry.chakras?.[chakraKey]?.[key], 'string', `${chakraKey} ${key} for Arcana ${id}`);
       assert.ok(entry.chakras[chakraKey][key].trim().length >= 45, `${chakraKey} ${key} has a developed draft for Arcana ${id}`);
@@ -61,5 +61,5 @@ async function readWithStatuses(statuses, chakraKey) {
   assert.equal(publishedVishuddha.fields.physicsPsychology, 'نص الجسد الرمزي المنشور.');
   assert.equal(publishedVishuddha.fields.energyPsychology, 'نص الطاقة الرمزي المنشور.');
   assert.equal(publishedVishuddha.fields.emotionsPsychology, 'نص المشاعر الرمزي المنشور.');
-  console.log('Matrix chakra contract passed: all three reviewed chakra drafts remain gated independently; published aspect fields resolve only for the explicitly published chakra.');
+  console.log('Matrix chakra contract passed: all four reviewed chakra drafts contain the three required aspects; publication remains independently gated per chakra.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
