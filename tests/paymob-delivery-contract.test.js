@@ -59,4 +59,15 @@ assert.match(html, /<a[^>]*hidden[^>]*id="acct-whatsapp-support"|<a[^>]*id="acct
 assert.ok(html.includes('id="acct-generate-report"'));
 assert.ok(html.includes('sessionStorage.setItem("aq-report-draft"'));
 
-console.log('Paymob and report-delivery contract checks passed. These are source/logic checks, not live Paymob end-to-end tests.');
+// Daily check-in RPC security regression contract.
+const checkinMigration = read('supabase/migrations/20261027171109_harden_checkin_rpc_permissions_and_indexes.sql');
+assert.ok(checkinMigration.includes('auth.uid() <> p_user_id'), 'legacy UUID overload cannot impersonate another user');
+assert.ok(checkinMigration.includes("SET search_path = ''"), 'SECURITY DEFINER function pins search_path');
+assert.match(checkinMigration, /REVOKE EXECUTE ON FUNCTION public\\.process_daily_check_in\\(uuid, text, integer, text\\) FROM PUBLIC, anon/i);
+assert.match(checkinMigration, /GRANT EXECUTE ON FUNCTION public\\.process_daily_check_in\\(uuid, text, integer, text\\) TO authenticated, service_role/i);
+assert.ok(checkinMigration.includes("now() at time zone 'Africa/Cairo'"), 'check-in streaks follow Cairo calendar dates');
+assert.ok(checkinMigration.includes('USING ((select auth.uid()) = user_id)'), 'report delivery RLS avoids per-row auth.uid evaluation');
+assert.ok(checkinMigration.includes('CREATE INDEX IF NOT EXISTS orders_product_code_idx'), 'orders product foreign key is indexed');
+assert.ok(checkinMigration.includes('CREATE INDEX IF NOT EXISTS payment_events_order_id_idx'), 'payment event order foreign key is indexed');
+
+console.log('Paymob, report-delivery, and check-in security contract checks passed. These are source/logic checks, not live Paymob end-to-end tests.');
