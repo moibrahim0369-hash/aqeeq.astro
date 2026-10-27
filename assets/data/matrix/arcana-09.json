@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يمنح الناسك المحبة عمقاً عبر الحضور المتأمل، ويحتاج أن يشرح حاجته إلى المساحة حتى لا يُقرأ الانسحاب كرفض.",
+      "energyPsychology": "تتجدد الطاقة العاطفية في قرب يسمح بالوحدة والعودة، بدلاً من فرض تواصل دائم أو قطع مفاجئ.",
+      "emotionsPsychology": "يطمئن القلب عندما يُقال «أحتاج وقتاً ثم أعود» بوضوح، بدلاً من ترك الآخر أمام صمت بلا تفسير."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

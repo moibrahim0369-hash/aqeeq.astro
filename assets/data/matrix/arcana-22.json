@@ -52,7 +52,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تجلب خفة الأحمق عفوية إلى المودة، وتحتاج أن تصحبها أمانة في الوعود واحترام لمشاعر الطرف الآخر.",
+      "energyPsychology": "تتجدد الحيوية بالتجربة والمرح، مع العودة إلى الحوار عندما يصبح المزاح ستاراً لموضوع حساس.",
+      "emotionsPsychology": "يطمئن القلب حين يستطيع التعبير ببساطة، كما يستطيع الاعتراف بأن المزاح جرح أو أن القرب يحتاج جدية."
     },
     "manipura": {
       "psychology": "",
@@ -108,6 +111,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

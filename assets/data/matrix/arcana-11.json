@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تُظهر القوة شجاعة البقاء في حوار صعب من دون إذلال أو استعراض؛ اللطف هنا يحتاج حدوداً لا استسلاماً.",
+      "energyPsychology": "تتجدد الحيوية عبر الثقة والحنان المتبادل، مع توزيع مسؤولية تهدئة الخلاف بين الطرفين.",
+      "emotionsPsychology": "يمكن الاعتراف بالغضب والخوف من دون جعل أحدهما ذنباً دائماً؛ تسمية الشعور تفتح مجالاً للفهم."
     },
     "manipura": {
       "psychology": "",
@@ -103,6 +106,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

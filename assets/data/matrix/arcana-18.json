@@ -51,7 +51,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تحتاج القمرية إلى التمييز بين حدس القلب والخوف من الماضي؛ تسأل عن الوقائع بدلاً من ملء الفراغ بتخمينات.",
+      "energyPsychology": "تتوازن الطاقة مع وضوح الاتفاقات والتأكد من الفهم، خصوصاً عندما تثير الإشارات الملتبسة قلقاً.",
+      "emotionsPsychology": "يجد الشعور مساحة آمنة حين يُعترف بالغيرة أو الحيرة كخبرة داخلية، لا كدليل على نية الآخر."
     },
     "manipura": {
       "psychology": "",
@@ -107,6 +110,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }
