@@ -42,7 +42,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يدعو الحساب إلى قول ما حدث وتحمل الجزء الشخصي منه، ثم تسمية ما يلزم لإصلاح الثقة.",
+      "energyPsychology": "تتحول الطاقة إلى حوار مثمر عندما ينتقل الماضي من اللوم المتكرر إلى مراجعة ومسؤولية واضحة.",
+      "emotionsPsychology": "تخف وطأة الندم حين يُترجم إلى اعتذار محدد، مع عدم مطالبة الطرف الآخر بمسامحة فورية."
     },
     "anahata": {
       "psychology": "",
@@ -96,6 +99,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

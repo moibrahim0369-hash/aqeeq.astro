@@ -36,7 +36,7 @@ for (let id = 1; id <= 22; id += 1) {
       assert.equal(section[field], '', `unwritten chakra field ${field} remains empty for Arcana ${id}`);
     }
   }
-  for (const chakraKey of ['vishuddha', 'anahata', 'manipura', 'svadhisthana', 'muladhara']) {
+  for (const chakraKey of ['anahata', 'manipura', 'svadhisthana', 'muladhara']) {
     for (const field of ['physicsPsychology', 'energyPsychology', 'emotionsPsychology']) {
       assert.equal(entry.chakras[chakraKey][field] || '', '', `unwritten ${chakraKey} aspect ${field} remains empty for Arcana ${id}`);
     }

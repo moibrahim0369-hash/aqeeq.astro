@@ -42,7 +42,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تلخص طاقة العالم تجربة معقدة في رسالة تجمع أطرافها، وتعرف متى تتوقف عن إضافة شروح لا تغير المعنى.",
+      "energyPsychology": "تكتمل طاقة الصوت عند مشاركة الخلاصة وإغلاق الحلقة، لا عند الاستمرار في تبرير كل تفصيل.",
+      "emotionsPsychology": "ينشأ الارتياح من حوار يعترف بالتعدد؛ فلا يحتاج القرب إلى اختصار الاختلاف في رأي واحد."
     },
     "anahata": {
       "psychology": "",
@@ -96,6 +99,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

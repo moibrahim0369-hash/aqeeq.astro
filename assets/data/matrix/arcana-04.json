@@ -37,7 +37,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يصبح صوت الإمبراطور واضحاً عندما يحدد المسؤولية والحدود في اتفاق مفهوم، لا حين يفرض رأياً لا يحتمل الرد.",
+      "energyPsychology": "تستفيد طاقة الكلام من بنية مختصرة وثابتة، وتفقد أثرها حين تتحول كل محادثة إلى تعليمات.",
+      "emotionsPsychology": "يشعر الداخل بالأمان مع صراحة تحترم الطرفين؛ أما الحزم المنفرد فيترك شعوراً بالمسافة."
     },
     "anahata": {
       "psychology": "",
@@ -91,6 +94,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

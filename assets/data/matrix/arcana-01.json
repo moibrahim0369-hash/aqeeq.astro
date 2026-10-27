@@ -37,7 +37,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتحول الفكرة إلى عبارة مفهومة وخطوة يمكن اختبارها؛ قوة الساحر في وصل الكلام بالفعل، لا في الإقناع المنفصل عن التنفيذ.",
+      "energyPsychology": "تنتظم طاقة التعبير حين تُوجَّه المهارة إلى رسالة محددة، بدلاً من استعمال البلاغة لفتح مسارات أكثر مما يمكن حمله.",
+      "emotionsPsychology": "يخف التوتر بين النية والصوت عندما يُقال المطلوب بوضوح، لا عندما تُخفى الحيرة خلف ثقة مصطنعة."
     },
     "anahata": {
       "psychology": "",
@@ -91,6 +94,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

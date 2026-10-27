@@ -37,7 +37,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تصوغ العدالة الكلام على أساس الوقائع والإنصاف، وتفرّق بين المساءلة وإهانة الشخص.",
+      "energyPsychology": "تنتظم طاقة الحوار حين يُسمع كل طرف بقدر متوازن، وتنهكها محاكمة لا تبحث عن فهم أو إصلاح.",
+      "emotionsPsychology": "يصبح الاعتذار أو تصحيح العبارة ممكناً عندما لا يُعامل الخطأ كحكم نهائي على قيمة صاحبه."
     },
     "anahata": {
       "psychology": "",
@@ -92,6 +95,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

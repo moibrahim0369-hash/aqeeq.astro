@@ -43,7 +43,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تجرب طاقة الأحمق نبرة جديدة أو بداية حوار بخفة، مع استعداد لتحمل أثر الكلمات بعد صدورها.",
+      "energyPsychology": "تتجدد الطاقة التعبيرية من العفوية واللعب، وتبقى متوازنة حين ترافقها مسؤولية الإصغاء والمتابعة.",
+      "emotionsPsychology": "تسمح الخفة بالاقتراب من موضوع حساس، دون استخدام المزاح للهروب من شعور يحتاج تسمية."
     },
     "anahata": {
       "psychology": "",
@@ -97,6 +100,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }
