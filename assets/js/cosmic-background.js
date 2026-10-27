@@ -26,6 +26,10 @@
         g.fillStyle = 'rgba(' + Math.round(150 + warm * 105) + ',' + Math.round(170 + warm * 62) + ',' + Math.round(255 - warm * 80) + ',' + a.toFixed(3) + ')';
         var sz = r() < .04 ? 1.8 : .8 + r() * .5; g.fillRect(x, y, sz, sz);
       }
+      g.save(); g.globalCompositeOperation = 'source-atop'; g.lineCap = 'round';
+      for (var am = 0; am < arms; am++) { g.beginPath(); for (var u = 0; u <= 1.001; u += .02) { var an = am * (Math.PI * 2 / arms) + Math.log(1 + u * 5.5) * 2.7 + .2, rr = u * R * .95; var px = cx + Math.cos(an) * rr, py = cy + Math.sin(an) * rr; if (u === 0) g.moveTo(px, py); else g.lineTo(px, py); } g.strokeStyle = 'rgba(6,5,16,.32)'; g.lineWidth = 5; g.stroke(); }
+      g.restore();
+      for (var q = 0; q < 14; q++) { var qa = r() * 6.283, qd = R * (.15 + r() * .8); g.fillStyle = 'rgba(255,255,255,' + (.4 + r() * .5).toFixed(2) + ')'; g.fillRect(cx + Math.cos(qa) * qd, cy + Math.sin(qa) * qd, 1.6, 1.6); }
       if (barred) { g.save(); g.translate(cx, cy); g.rotate(.5); var bg = g.createLinearGradient(-R * .4, 0, R * .4, 0); bg.addColorStop(0, 'rgba(255,214,160,0)'); bg.addColorStop(.5, 'rgba(255,226,180,.5)'); bg.addColorStop(1, 'rgba(255,214,160,0)'); g.fillStyle = bg; g.fillRect(-R * .4, -R * .06, R * .8, R * .12); g.restore(); }
       var core = g.createRadialGradient(cx, cy, 0, cx, cy, R * .17);
       core.addColorStop(0, 'rgba(255,250,235,.95)'); core.addColorStop(1, 'rgba(255,214,160,0)'); g.fillStyle = core; g.fillRect(0, 0, S, S);
@@ -43,28 +47,35 @@
 
   /* ---------- كواكب: كرات مظللة، زحل بحلقاته ---------- */
   var PLANETS = [
-    { n: 'عطارد', c: ['#cfc7bd', '#8f877e', '#4b4540'], r: .55 },
-    { n: 'الزهرة', c: ['#f6e2b0', '#d9b270', '#7c5a2f'], r: .8 },
-    { n: 'الأرض', c: ['#7fb6ee', '#2d6bb4', '#0e2a52'], r: .85, earth: true },
-    { n: 'المريخ', c: ['#e58a62', '#b2492e', '#4e1d12'], r: .66 },
-    { n: 'المشتري', c: ['#ecd2aa', '#c49a6c', '#5d4128'], r: 1.7, bands: ['#a77a52', '#e8cfa6', '#b88a5e', '#f0dcb8', '#a47450'] },
-    { n: 'زحل', c: ['#f1dfb0', '#cfae74', '#69502c'], r: 1.45, ring: true },
-    { n: 'أورانوس', c: ['#bdeef0', '#7cc3c8', '#2a5d63'], r: 1.1 },
-    { n: 'نبتون', c: ['#8aa4ff', '#4666e0', '#16226b'], r: 1.08 },
-    { n: 'بلوتو', c: ['#e0cfbb', '#a88f78', '#4b3b2e'], r: .42 }
+    { k: 'mercury', n: 'عطارد', c: ['#cfc7bd', '#8f877e', '#4b4540'], r: .55, per: 62 },
+    { k: 'venus', n: 'الزهرة', c: ['#f6e2b0', '#d9b270', '#7c5a2f'], r: .8, per: 88 },
+    { k: 'earth', n: 'الأرض', c: ['#7fb6ee', '#2d6bb4', '#0e2a52'], r: .85, earth: true, per: 112 },
+    { k: 'mars', n: 'المريخ', c: ['#e58a62', '#b2492e', '#4e1d12'], r: .66, per: 140 },
+    { k: 'jupiter', n: 'المشتري', c: ['#ecd2aa', '#c49a6c', '#5d4128'], r: 1.7, bands: ['#a77a52', '#e8cfa6', '#b88a5e', '#f0dcb8', '#a47450'], per: 190 },
+    { k: 'saturn', n: 'زحل', c: ['#f1dfb0', '#cfae74', '#69502c'], r: 1.45, ring: true, per: 250 },
+    { k: 'uranus', n: 'أورانوس', c: ['#bdeef0', '#7cc3c8', '#2a5d63'], r: 1.1, per: 320 },
+    { k: 'neptune', n: 'نبتون', c: ['#8aa4ff', '#4666e0', '#16226b'], r: 1.08, per: 400 },
+    { k: 'pluto', n: 'بلوتو', c: ['#e0cfbb', '#a88f78', '#4b3b2e'], r: .42, per: 480 }
   ];
+  var SUN = { k: 'sun', n: 'الشمس', sun: true, r: 1 }, MOON = { k: 'moon', n: 'القمر', c: ['#f2f0ea', '#b9b6ae', '#55534f'], r: .8, moon: true };
   function planetSprite(p) {
     var S = 220, c = document.createElement('canvas'); c.width = c.height = S; var g = c.getContext('2d'), cx = S / 2, R = p.ring ? S * .24 : S * .36;
+    if (p.sun) {
+      var h = g.createRadialGradient(cx, cx, 0, cx, cx, S / 2); h.addColorStop(0, 'rgba(255,248,214,1)'); h.addColorStop(.22, 'rgba(255,214,120,.95)'); h.addColorStop(.38, 'rgba(255,170,60,.45)'); h.addColorStop(1, 'rgba(255,140,40,0)');
+      g.fillStyle = h; g.fillRect(0, 0, S, S); return c;
+    }
     if (p.ring) { g.save(); g.translate(cx, cx); g.rotate(-.38); g.scale(1, .32); g.lineWidth = 7; g.strokeStyle = 'rgba(230,205,150,.45)'; g.beginPath(); g.arc(0, 0, R * 1.85, 0, 6.283); g.stroke(); g.lineWidth = 11; g.strokeStyle = 'rgba(214,186,130,.5)'; g.beginPath(); g.arc(0, 0, R * 1.55, 0, 6.283); g.stroke(); g.restore(); }
     g.save(); g.beginPath(); g.arc(cx, cx, R, 0, 6.283); g.clip();
     var body = g.createRadialGradient(cx - R * .38, cx - R * .4, R * .1, cx, cx, R * 1.05); body.addColorStop(0, p.c[0]); body.addColorStop(.55, p.c[1]); body.addColorStop(1, p.c[2]); g.fillStyle = body; g.fillRect(0, 0, S, S);
     if (p.bands) { p.bands.forEach(function (col, i) { g.fillStyle = col; g.globalAlpha = .4; g.fillRect(cx - R, cx - R + i * (R * 2 / p.bands.length) + R * .08, R * 2, R * .2); }); g.globalAlpha = 1; }
     if (p.earth) { g.fillStyle = 'rgba(80,170,90,.55)'; [[-.3, -.1, .3], [.25, .2, .26], [.0, -.45, .16]].forEach(function (k) { g.beginPath(); g.ellipse(cx + k[0] * R, cx + k[1] * R, k[2] * R, k[2] * R * .7, .5, 0, 6.283); g.fill(); }); g.fillStyle = 'rgba(255,255,255,.35)'; g.beginPath(); g.ellipse(cx + R * .1, cx + R * .05, R * .55, R * .09, -.3, 0, 6.283); g.fill(); }
+    if (p.moon) { g.fillStyle = 'rgba(70,68,64,.35)'; [[-.35, -.2, .2], [.3, .1, .26], [-.05, .45, .15], [.4, -.4, .12]].forEach(function (k) { g.beginPath(); g.arc(cx + k[0] * R, cx + k[1] * R, k[2] * R, 0, 6.283); g.fill(); }); }
     var shade = g.createRadialGradient(cx - R * .45, cx - R * .45, R * .2, cx + R * .2, cx + R * .2, R * 1.25); shade.addColorStop(0, 'rgba(0,0,0,0)'); shade.addColorStop(1, 'rgba(2,3,12,.78)'); g.fillStyle = shade; g.fillRect(0, 0, S, S);
     g.restore();
     if (p.ring) { g.save(); g.translate(cx, cx); g.rotate(-.38); g.scale(1, .32); g.lineWidth = 9; g.strokeStyle = 'rgba(230,205,150,.42)'; g.beginPath(); g.arc(0, 0, R * 1.7, Math.PI, 6.283); g.stroke(); g.restore(); }
     return c;
   }
+  var R0 = function (p) { return p.ring ? 220 * .24 : 220 * .36; };
 
   /* ---------- الكانفس ---------- */
   var cv = document.createElement('canvas'); cv.id = 'cosmos-bg'; cv.setAttribute('aria-hidden', 'true');
@@ -73,40 +84,49 @@
   function size() { DPR = Math.min(window.devicePixelRatio || 1, 1.5); W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
   size(); addEventListener('resize', function () { size(); if (reduce) paint(performance.now()); });
 
-  var rg = rng(20261027);
+  var rg = rng(20261027), TAU = Math.PI * 2;
+  /* مجرات رئيسية: كل واحدة في منطقة خاصة بها (بعيدة عن الباقي) وبتتحرك بحركة ليساجو بطيئة */
   var gal = [
-    { s: spiralGalaxy(11, '140,160,255', false), x: .82, y: .20, ph: .05, per: 150, tilt: .55, rot: .3, rs: .006, dx: -.0016 },
-    { s: spiralGalaxy(23, '190,150,255', true), x: .18, y: .46, ph: .45, per: 190, tilt: .8, rot: -.6, rs: -.005, dx: .0013 },
-    { s: ellipticalGalaxy(37), x: .60, y: .74, ph: .70, per: 130, tilt: .7, rot: .9, rs: .003, dx: -.0010 },
-    { s: spiralGalaxy(41, '120,190,255', false), x: .38, y: .12, ph: .85, per: 210, tilt: .4, rot: 1.4, rs: .007, dx: .0011 },
-    { s: spiralGalaxy(59, '255,170,140', false), x: .90, y: .62, ph: .25, per: 170, tilt: .65, rot: -1.1, rs: -.004, dx: -.0012 }
+    { s: spiralGalaxy(11, '140,160,255', false), ax: .20, ay: .13, A: .07, B: .035, px: 83, py: 109, ph: .3, tilt: .6, rot: .3, rs: .020, k: 1 },
+    { s: spiralGalaxy(23, '190,150,255', true), ax: .82, ay: .31, A: .06, B: .04, px: 97, py: 131, ph: 2.1, tilt: .78, rot: -.6, rs: -.016, k: .92 },
+    { s: ellipticalGalaxy(37), ax: .30, ay: .56, A: .07, B: .03, px: 113, py: 89, ph: 4.0, tilt: .72, rot: .9, rs: .010, k: .85 },
+    { s: spiralGalaxy(59, '255,170,140', false), ax: .80, ay: .76, A: .06, B: .035, px: 101, py: 143, ph: 1.2, tilt: .66, rot: -1.1, rs: -.018, k: .95 },
+    { s: spiralGalaxy(41, '120,190,255', false), ax: .16, ay: .90, A: .05, B: .03, px: 127, py: 97, ph: 5.1, tilt: .45, rot: 1.4, rs: .022, k: .8 }
   ];
-  var pl = PLANETS.map(function (p, i) {
-    return { p: p, s: planetSprite(p), lane: .08 + (i * .105 % .86), x: rg(), v: (.00045 + rg() * .0006) * (i % 2 ? -1 : 1), ph: rg(), per: 70 + rg() * 90 };
-  });
+  /* مجرات بعيدة صغيرة جداً: عمق إضافي، بتنجرف ببطء */
+  var far = [], farSprites = [spiralGalaxy(71, '170,180,255', false), ellipticalGalaxy(73), spiralGalaxy(79, '255,200,170', true)];
+  for (var fi = 0; fi < 8; fi++) far.push({ s: farSprites[fi % 3], x: rg(), y: rg(), vx: (rg() - .5) * .004, vy: (rg() - .5) * .002, sz: .045 + rg() * .05, a: .2 + rg() * .22, tilt: .35 + rg() * .6, rot: rg() * 6, rs: (rg() - .5) * .02 });
+  /* الكواكب: مدارات بيضاوية حوالين الشاشة كلها، الكوكب في النص الأسفل أقرب وأكبر شوية */
+  var pl = PLANETS.map(function (p, i) { return { p: p, s: planetSprite(p), rx: .30 + i * .037, ry: .27 + i * .034, tilt: -.5 + i * .17, ph: rg() * TAU, per: p.per }; });
   var lastT = performance.now();
   function paint(now) {
-    var dt = Math.min(now - lastT, 60); lastT = now;
     ctx.clearRect(0, 0, W, H);
-    var base = Math.min(W, H) < 700 ? .62 : 1;
+    var t = now / 1000, m = Math.min(W, H), mob = W < 700;
+    far.forEach(function (o) {
+      if (!reduce) { o.x += o.vx * (now - lastT) / 1000; o.y += o.vy * (now - lastT) / 1000; if (o.x < -.05) o.x = 1.05; if (o.x > 1.05) o.x = -.05; if (o.y < -.05) o.y = 1.05; if (o.y > 1.05) o.y = -.05; o.rot += o.rs * (now - lastT) / 1000; }
+      var D = m * o.sz * (mob ? 1.3 : 1);
+      ctx.save(); ctx.globalAlpha = o.a; ctx.translate(o.x * W, o.y * H); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
+    });
     gal.forEach(function (o) {
-      if (!reduce) { o.x += o.dx * dt / 1000; o.rot += o.rs * dt / 1000; if (o.x < -.25) o.x = 1.25; if (o.x > 1.25) o.x = -.25; }
-      var d = .5 + .5 * Math.sin((now / 1000 / o.per + o.ph) * 6.283);   /* 0 = بعيدة جداً، 1 = قريبة */
-      var D = Math.min(W, H) * (W < 700 ? .95 : 1.15) * (.22 + d * .95), al = .14 + d * .5;
-      ctx.save(); ctx.globalAlpha = al; ctx.translate(o.x * W, o.y * H); ctx.rotate(o.rot); ctx.scale(1, o.tilt);
-      ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
+      var x = (o.ax + o.A * Math.cos(t / o.px * TAU + o.ph)) * W, y = (o.ay + o.B * Math.sin(t / o.py * TAU + o.ph * 1.3)) * H;
+      var d = .5 + .5 * Math.sin(t / (o.px * 1.7) * TAU + o.ph);           /* نبضة عمق خفيفة */
+      var D = m * (mob ? .40 : .24) * o.k * (.85 + .25 * d), al = .30 + .30 * d;
+      if (!reduce) o.rot += o.rs * (now - lastT) / 1000;
+      ctx.save(); ctx.globalAlpha = al; ctx.translate(x, y); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
     });
-    ctx.textAlign = 'center'; ctx.font = '11px "IBM Plex Sans Arabic", system-ui, sans-serif';
+    var cx = W / 2, cy = H / 2, list = [];
     pl.forEach(function (o) {
-      if (!reduce) { o.x += o.v * dt / 1000; if (o.x > 1.12) o.x = -.12; if (o.x < -.12) o.x = 1.12; }
-      var d = .5 + .5 * Math.sin((now / 1000 / o.per + o.ph) * 6.283);
-      var rad = (14 + d * 22) * o.p.r * base * (o.p.r > 1.3 ? .78 : 1), al = .3 + d * .42, x = o.x * W, y = o.lane * H;
-      ctx.globalAlpha = al;
-      var R0 = o.p.ring ? 220 * .24 : 220 * .36, scale = rad / R0, w = 220 * scale;
-      ctx.drawImage(o.s, x - w / 2, y - w / 2, w, w);
-      ctx.globalAlpha = al * .7; ctx.fillStyle = 'rgba(232,208,150,1)'; ctx.fillText(o.p.n, x, y + rad * (o.p.ring ? 2.1 : 1.25) + 12);
+      var th = o.ph + t / o.per * TAU, lx = o.rx * W * Math.cos(th), ly = o.ry * H * Math.sin(th), c = Math.cos(o.tilt), sn = Math.sin(o.tilt);
+      var x = cx + lx * c - ly * sn, y = cy + lx * sn + ly * c, near = .5 + .5 * Math.sin(th);
+      list.push({ o: o, x: x, y: y, near: near });
     });
-    ctx.globalAlpha = 1;
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(217,178,124,.05)';
+    pl.forEach(function (o) { ctx.save(); ctx.translate(cx, cy); ctx.rotate(o.tilt); ctx.beginPath(); ctx.ellipse(0, 0, o.rx * W, o.ry * H, 0, 0, TAU); ctx.stroke(); ctx.restore(); });
+    list.sort(function (a, b) { return a.near - b.near; }).forEach(function (q) {
+      var rad = m * .013 * q.o.p.r * (.7 + .5 * q.near) * (mob ? 1.15 : 1), sc = rad / R0(q.o.p), w = 220 * sc;
+      ctx.globalAlpha = .45 + .4 * q.near; ctx.drawImage(q.o.s, q.x - w / 2, q.y - w / 2, w, w);
+    });
+    ctx.globalAlpha = 1; lastT = now;
   }
   function loop(now) { paint(now); if (!document.hidden) requestAnimationFrame(loop); }
   if (reduce) paint(performance.now());
@@ -142,16 +162,36 @@
     if (host) return host; var sec = document.getElementById('signs'); if (!sec) return null;
     host = document.createElement('div'); host.className = 'const-bg'; host.setAttribute('aria-hidden', 'true'); sec.insertBefore(host, sec.firstChild); return host;
   }
+  var RULERS = [['mars', 'المريخ'], ['venus', 'الزهرة'], ['mercury', 'عطارد'], ['moon', 'القمر'], ['sun', 'الشمس'], ['mercury', 'عطارد'], ['venus', 'الزهرة'], ['pluto', 'بلوتو'], ['jupiter', 'المشتري'], ['saturn', 'زحل'], ['uranus', 'أورانوس'], ['neptune', 'نبتون']];
+  var STARNAMES = { 0: { 0: 'Hamal' }, 1: { 0: 'Aldebaran', 1: 'Elnath' }, 2: { 0: 'Castor', 1: 'Pollux' }, 3: {}, 4: { 0: 'Regulus', 2: 'Algieba', 7: 'Denebola' }, 5: { 0: 'Spica' }, 6: { 0: 'Zubenelgenubi', 1: 'Zubeneschamali' }, 7: { 4: 'Antares', 13: 'Shaula' }, 8: { 2: 'Kaus Australis', 5: 'Nunki' }, 9: { 5: 'Deneb Algedi' }, 10: { 0: 'Sadalsuud', 1: 'Sadalmelik' }, 11: {} };
+  var rulerCache = {};
+  function rulerImg(key) {
+    if (rulerCache[key]) return rulerCache[key];
+    var def = key === 'sun' ? SUN : key === 'moon' ? MOON : PLANETS.filter(function (x) { return x.k === key; })[0]; if (!def) return '';
+    var sp = planetSprite(def), url = sp.toDataURL('image/png'); rulerCache[key] = url; return url;
+  }
   function showConstellation(i) {
     var h = ensureHost(), c = CON[i]; if (!h || !c || i === current) return; current = i;
-    var pts = project(c), NS = 'http://www.w3.org/2000/svg';
-    var lines = c.l.map(function (l, n) { var a = pts[l[0]], b = pts[l[1]]; return '<line class="cb-line" style="--d:' + (n * .12).toFixed(2) + 's" x1="' + a.x.toFixed(2) + '" y1="' + a.y.toFixed(2) + '" x2="' + b.x.toFixed(2) + '" y2="' + b.y.toFixed(2) + '"/>'; }).join('');
-    var stars = pts.map(function (p, n) { var halo = (c.halo || []).indexOf(n) >= 0; return (halo ? '<circle class="cb-halo" cx="' + p.x.toFixed(2) + '" cy="' + p.y.toFixed(2) + '" r="3.4"/>' : '') + '<circle class="cb-star" style="--d:' + (n * .09).toFixed(2) + 's" cx="' + p.x.toFixed(2) + '" cy="' + p.y.toFixed(2) + '" r="' + p.r.toFixed(2) + '"/>'; }).join('');
-    h.innerHTML = '<svg xmlns="' + NS + '" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="presentation">' + lines + stars + '<text x="50" y="95" class="cb-name">كوكبة ' + c.n + ' · ' + c.e + '</text></svg>'; caption();
+    var pts = project(c), NS = 'http://www.w3.org/2000/svg', names = STARNAMES[i] || {};
+    var defs = '<defs><radialGradient id="cbGlow"><stop offset="0" stop-color="#fff6dc" stop-opacity=".95"/><stop offset=".25" stop-color="#ffe2a8" stop-opacity=".5"/><stop offset="1" stop-color="#ffd18a" stop-opacity="0"/></radialGradient><filter id="cbBlur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation=".6"/></filter></defs>';
+    var lines = c.l.map(function (l, n) { var a = pts[l[0]], b = pts[l[1]], co = 'x1="' + a.x.toFixed(2) + '" y1="' + a.y.toFixed(2) + '" x2="' + b.x.toFixed(2) + '" y2="' + b.y.toFixed(2) + '"';
+      return '<line class="cb-line" pathLength="100" style="--d:' + (n * .1).toFixed(2) + 's" ' + co + '/><line class="cb-run" pathLength="100" style="--d:' + (n * .55).toFixed(2) + 's" ' + co + '/>'; }).join('');
+    var stars = pts.map(function (p, n) {
+      var halo = (c.halo || []).indexOf(n) >= 0, x = p.x.toFixed(2), y = p.y.toFixed(2), bright = p.r > 1.25, out = '';
+      if (halo) out += '<circle class="cb-halo" cx="' + x + '" cy="' + y + '" r="3.4"/>';
+      out += '<circle class="cb-glow" style="--d:' + (n * .17).toFixed(2) + 's" cx="' + x + '" cy="' + y + '" r="' + (p.r * 3.4).toFixed(2) + '"/>';
+      if (bright) out += '<path class="cb-spike" d="M' + (p.x - p.r * 3.6).toFixed(2) + ' ' + y + 'H' + (p.x + p.r * 3.6).toFixed(2) + 'M' + x + ' ' + (p.y - p.r * 3.6).toFixed(2) + 'V' + (p.y + p.r * 3.6).toFixed(2) + '"/>';
+      out += '<circle class="cb-star" style="--d:' + (n * .09).toFixed(2) + 's" cx="' + x + '" cy="' + y + '" r="' + p.r.toFixed(2) + '"/>';
+      if (names[n]) out += '<text class="cb-sname" x="' + (p.x + p.r * 2 + .8).toFixed(2) + '" y="' + (p.y + .8).toFixed(2) + '">' + names[n] + '</text>';
+      return out; }).join('');
+    var rl = RULERS[i], img = rulerImg(rl[0]);
+    h.innerHTML = '<div class="cb-float"><svg xmlns="' + NS + '" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="presentation">' + defs + lines + stars + '<text x="50" y="96" class="cb-name">كوكبة ' + c.n + ' · ' + c.e + '</text></svg></div>' +
+      '<div class="cb-orbit"><img class="cb-ruler" alt="" src="' + img + '" data-ruler="' + rl[0] + '"></div>';
+    caption();
   }
   function caption() {
     var panel = document.getElementById('panel'), c = CON[current]; if (!panel || !c) return;
-    var old = panel.querySelector('.const-cap'), txt = '✦ كوكبة ' + c.n + ' · ' + c.e;
+    var txt = '✦ كوكبة ' + c.n + ' · ' + c.e + ' — الكوكب الحاكم: ' + RULERS[current][1], old = panel.querySelector('.const-cap');
     if (old) { if (old.textContent !== txt) old.textContent = txt; return; }
     var anchorEl = panel.querySelector('.dates') || panel.querySelector('h3'); if (!anchorEl) return;
     var p = document.createElement('p'); p.className = 'const-cap'; p.textContent = txt; anchorEl.insertAdjacentElement('afterend', p);
