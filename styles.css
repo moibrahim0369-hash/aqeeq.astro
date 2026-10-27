@@ -945,7 +945,7 @@ a,button,summary,.wg,.card,.btn,.bnav a,.svc-ic,.tool-ic,[role="button"]{-webkit
 .bnav a:active{transform:scale(.88)}
 .bnav a:active svg{filter:drop-shadow(0 0 5px rgba(214,174,94,.6))}
 .btn:active{filter:brightness(1.06)}
-.btn.ghost:active,:active{background:rgba(214,174,94,.14)}
+.btn.ghost:active{background:rgba(214,174,94,.14)}
 @media(hover:hover){
   .wg:hover{filter:drop-shadow(0 0 5px rgba(214,174,94,.45))}
   .card:hover .svc-ic,.card:hover .tool-ic{color:var(--gold);transform:translateY(-1px)}
