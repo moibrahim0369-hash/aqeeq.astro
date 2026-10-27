@@ -37,7 +37,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تقول البرج الحقيقة التي تكشف خللاً في اتفاق أو تصور، ثم تساعد في بناء عبارة تفتح باب الإصلاح بدل الاكتفاء بالصدمة.",
+      "energyPsychology": "تتجه الطاقة إلى إزالة الغموض عن المشكلة المحددة، وتُستنزف إذا انشغلت بحماية الصورة القديمة.",
+      "emotionsPsychology": "يصبح الاضطراب قابلاً للاحتمال عندما يُعترف بأثره ويُسمع الطرف المتأثر دون دفاع فوري."
     },
     "anahata": {
       "psychology": "",
@@ -91,6 +94,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

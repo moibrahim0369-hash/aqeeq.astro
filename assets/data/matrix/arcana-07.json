@@ -37,7 +37,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تكتسب العربة صوتاً مقنعاً عندما تتطابق وجهتها مع كلماتها، وعندما تترك للآخرين مساحة لعرض الطريق البديل.",
+      "energyPsychology": "تتجه الطاقة نحو عبارة مركزة وقرار قابل للتنفيذ؛ ويستنزفها تحويل الحوار إلى سباق لإثبات القيادة.",
+      "emotionsPsychology": "يعبر الهدوء عن نفسه بقدرة على قول «أحتاج إلى تعديل المسار» دون اعتبار التراجع هزيمة."
     },
     "anahata": {
       "psychology": "",
@@ -91,6 +94,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

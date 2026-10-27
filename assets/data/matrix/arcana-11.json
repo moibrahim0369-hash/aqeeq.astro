@@ -37,7 +37,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تجعل القوة الشجاعة هادئة ومباشرة؛ تقول ما يلزم دون ترهيب أو تضخيم للانفعال.",
+      "energyPsychology": "تتدفق طاقة التعبير مع تنفس متزن وإصغاء متبادل، لا مع رفع الصوت لإثبات الحضور.",
+      "emotionsPsychology": "تمنح تسمية الغضب أو الخوف بلغة محترمة انفعالاً قابلاً للفهم بدلاً من أن يتحول إلى اندفاع."
     },
     "anahata": {
       "psychology": "",
@@ -92,6 +95,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

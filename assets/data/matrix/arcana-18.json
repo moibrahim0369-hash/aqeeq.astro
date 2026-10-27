@@ -42,7 +42,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تسمح القمرية بوصف الانطباع كما هو، وتوضح أين ينتهي ما عُرف وأين يبدأ ما لا يزال ظناً.",
+      "energyPsychology": "تحتاج طاقة التعبير إلى وقت لفرز الإشارات المتداخلة؛ فالاستعجال في إعلان المعنى يزيد سوء الفهم.",
+      "emotionsPsychology": "يُسمع الشعور بوضوح حين يُقدَّم كتجربة شخصية لا كحقيقة مفروضة عن نوايا الغير."
     },
     "anahata": {
       "psychology": "",
@@ -96,6 +99,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }

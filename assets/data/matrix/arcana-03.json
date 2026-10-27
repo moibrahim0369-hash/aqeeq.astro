@@ -37,7 +37,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يخرج الإبداع إلى شكل ملموس عبر سرد أو صورة أو رعاية مشتركة، من غير أن يتحول الاهتمام إلى وصاية على صوت الآخرين.",
+      "energyPsychology": "تتجدد الطاقة حين تجد الأفكار قناة إبداعية، وتُصان من التشتت بين كل ما يبدو جميلاً أو محتاجاً للعناية.",
+      "emotionsPsychology": "تزداد حرارة العلاقة عندما يكون التقدير متبادلاً؛ فالكلام الحنون لا يعوّض احتياجاً لم يُطلب بصدق."
     },
     "anahata": {
       "psychology": "",
@@ -91,6 +94,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       }
     }
   }
