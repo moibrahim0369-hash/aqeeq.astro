@@ -28,7 +28,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تفصل العدالة بين الوقائع والتأويل، ثم تراجع الحكم وفق أثره؛ فالدقة هنا تتطلب إنصاف الذات والآخر معاً.",
+      "energyPsychology": "تتوازن الطاقة الذهنية مع معيار واضح ومتسق، وتُستنزف حين يتحول التحليل إلى محكمة لا تسمح بالخطأ.",
+      "emotionsPsychology": "تخف مشاعر الذنب عندما تقود إلى إصلاح محدد، لا إلى إدانة شاملة للشخص."
     },
     "vishuddha": {
       "psychology": "",
@@ -74,12 +77,22 @@
     "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار. تسمية الأركانا 8 و11 متعارضة بين فهرس الدورة والصفحات الفردية؛ هذه الصياغة تتبع قاموس عقيق المحلي إلى حين اختيار إصدار مرجعي.",
     "arcanaMappingStatus": "source-conflict",
     "chakraContent": {
-      "status": "partial-review",
-      "authorship": "aqeeq-original",
-      "publicTopicLabel": "Sahasrara Mission",
-      "referenceRuleStatus": "unverified",
-      "bodySymbolStatus": "omitted-no-verified-rule",
-      "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      }
     }
   }
 }

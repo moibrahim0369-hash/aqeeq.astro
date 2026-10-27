@@ -33,7 +33,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يراجع الحساب الماضي بحثاً عن الدرس والمسؤولية، ويفصل بين ما يمكن إصلاحه وما لا يفيد لوم الذات عليه.",
+      "energyPsychology": "تستعيد الطاقة وجهتها حين تتحول الخبرة إلى موقف جديد، لا إلى إعادة محاكمة للقرار القديم.",
+      "emotionsPsychology": "يخف ثقل الندم عندما يصاحبه اعتذار أو إصلاح مناسب، ثم السماح للنفس بالمضي دون إنكار ما حدث."
     },
     "vishuddha": {
       "psychology": "",
@@ -78,12 +81,22 @@
     "referenceRuleStatus": "unverified",
     "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
     "chakraContent": {
-      "status": "partial-review",
-      "authorship": "aqeeq-original",
-      "publicTopicLabel": "Sahasrara Mission",
-      "referenceRuleStatus": "unverified",
-      "bodySymbolStatus": "omitted-no-verified-rule",
-      "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      }
     }
   }
 }

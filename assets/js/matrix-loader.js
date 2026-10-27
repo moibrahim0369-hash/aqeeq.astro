@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '2';                       // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '3';                       // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -32,7 +32,7 @@
     const meta = c.arcana.find(x => x.id === id) || { name: {} };
     const block = (a.chakras && a.chakras[chakraKey]) || {};
     const fields = {};
-    if (a.meta?.chakraContent?.status === 'published') {
+    if (a.meta?.chakraContent?.[chakraKey]?.status === 'published') {
       FIELDS.forEach(f => { const t = clean(block[f]); if (t) fields[f] = t; });
     }
     return { id, name: (meta.name && meta.name.ar) || '', fields, empty: Object.keys(fields).length === 0 };

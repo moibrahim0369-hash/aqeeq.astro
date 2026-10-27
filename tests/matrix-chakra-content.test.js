@@ -9,15 +9,18 @@ const aspects = ['physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
 for (let id = 1; id <= 22; id += 1) {
   const entry = JSON.parse(fs.readFileSync(path.join(dataDir, `arcana-${String(id).padStart(2, '0')}.json`), 'utf8'));
   assert.equal(entry.id, id, `Arcana ID for chakra text ${id}`);
-  assert.equal(entry.meta?.chakraContent?.status, 'partial-review');
+  assert.equal(entry.meta?.chakraContent?.sahasrara?.status, 'partial-review');
+  assert.equal(entry.meta?.chakraContent?.ajna?.status, 'partial-review');
   assert.equal(entry.meta?.chakraContent?.authorship, 'aqeeq-original');
   assert.equal(entry.meta?.chakraContent?.referenceRuleStatus, 'unverified');
   assert.equal(entry.meta?.chakraContent?.bodySymbolStatus, 'omitted-no-verified-rule');
-  for (const key of aspects) {
-    assert.equal(typeof entry.chakras?.sahasrara?.[key], 'string', `Sahasrara ${key} for Arcana ${id}`);
-    assert.ok(entry.chakras.sahasrara[key].trim().length >= 45, `Sahasrara ${key} has a developed draft for Arcana ${id}`);
+  for (const chakraKey of ['sahasrara', 'ajna']) {
+    for (const key of aspects) {
+      assert.equal(typeof entry.chakras?.[chakraKey]?.[key], 'string', `${chakraKey} ${key} for Arcana ${id}`);
+      assert.ok(entry.chakras[chakraKey][key].trim().length >= 45, `${chakraKey} ${key} has a developed draft for Arcana ${id}`);
+    }
   }
-  for (const chakraKey of ['ajna', 'vishuddha', 'anahata', 'manipura', 'svadhisthana', 'muladhara']) {
+  for (const chakraKey of ['vishuddha', 'anahata', 'manipura', 'svadhisthana', 'muladhara']) {
     for (const key of aspects) assert.equal(entry.chakras?.[chakraKey]?.[key] || '', '', `${chakraKey} remains unfilled for Arcana ${id}`);
   }
 }
@@ -27,7 +30,7 @@ async function readWithStatus(status) {
   const core = { arcana: Array.from({ length: 22 }, (_, index) => ({ id: index + 1, name: { ar: 'أركانا ' + (index + 1) } })), chakras: Array.from({ length: 22 }, () => ({})) };
   const record = {
     id: 7,
-    meta: { chakraContent: { status } },
+    meta: { chakraContent: { sahasrara: { status } } },
     chakras: { sahasrara: {
       psychology: 'نص عام منشور.',
       physicsPsychology: 'نص الجسد المنشور.',
@@ -56,5 +59,5 @@ async function readWithStatus(status) {
   assert.equal(published.fields.physicsPsychology, 'نص الجسد المنشور.');
   assert.equal(published.fields.energyPsychology, 'نص الطاقة المنشور.');
   assert.equal(published.fields.emotionsPsychology, 'نص المشاعر المنشور.');
-  console.log('Matrix chakra contract passed: 22 review-only Sahasrara drafts; unpublished text remains hidden; published legacy and aspect fields resolve correctly.');
+  console.log('Matrix chakra contract passed: 22 review-only Sahasrara and Ajna drafts; per-chakra publication gate hides review text and resolves published legacy/aspect fields.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
