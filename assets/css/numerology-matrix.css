@@ -78,3 +78,7 @@
 .aqm-skel-line:nth-child(2){width:82%}.aqm-skel-line:nth-child(3){width:58%}
 @keyframes aqm-shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
 @media (prefers-reduced-motion:reduce){.aqm-skel-line{animation:none}}
+
+.aqm-t-en{font-weight:700}.aqm-t-ar{font-size:.62em;font-weight:400;opacity:.78;margin-inline-start:.35em;white-space:normal}
+.aqm-gloss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}.aqm-gloss{padding:.85rem;text-align:start}.aqm-gloss h4{margin:.3rem 0}.aqm-gloss p{margin:.3rem 0;font-size:.86rem;line-height:1.7}
+.aqm-gloss .aqm-t-ar{display:block;margin:.15rem 0 .1rem;margin-inline-start:0}
