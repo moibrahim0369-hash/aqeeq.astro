@@ -9,11 +9,12 @@ const aspects = ['physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
 for (let id = 1; id <= 22; id += 1) {
   const entry = JSON.parse(fs.readFileSync(path.join(dataDir, `arcana-${String(id).padStart(2, '0')}.json`), 'utf8'));
   assert.equal(entry.id, id, `Arcana ID for chakra text ${id}`);
-  assert.equal(entry.meta?.chakraContent?.sahasrara?.status, 'partial-review');
-  assert.equal(entry.meta?.chakraContent?.ajna?.status, 'partial-review');
-  assert.equal(entry.meta?.chakraContent?.authorship, 'aqeeq-original');
-  assert.equal(entry.meta?.chakraContent?.referenceRuleStatus, 'unverified');
-  assert.equal(entry.meta?.chakraContent?.bodySymbolStatus, 'omitted-no-verified-rule');
+  for (const chakraKey of ['sahasrara', 'ajna']) {
+    assert.equal(entry.meta?.chakraContent?.[chakraKey]?.status, 'partial-review');
+    assert.equal(entry.meta?.chakraContent?.[chakraKey]?.authorship, 'aqeeq-original');
+    assert.equal(entry.meta?.chakraContent?.[chakraKey]?.referenceRuleStatus, 'unverified');
+    assert.equal(entry.meta?.chakraContent?.[chakraKey]?.bodySymbolStatus, 'omitted-no-verified-rule');
+  }
   for (const chakraKey of ['sahasrara', 'ajna']) {
     for (const key of aspects) {
       assert.equal(typeof entry.chakras?.[chakraKey]?.[key], 'string', `${chakraKey} ${key} for Arcana ${id}`);
