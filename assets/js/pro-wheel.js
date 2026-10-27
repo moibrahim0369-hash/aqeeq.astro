@@ -27,4 +27,33 @@
     g.classList.add('pw-e' + (idx % 4));
     g.insertBefore(el('circle', { class: 'pw-disc', cx: hit.getAttribute('cx'), cy: hit.getAttribute('cy'), r: 19.5 }), g.firstChild);
   });
+
+  /* ===== السماء الآن: الكواكب على العجلة بمواضعها الحقيقية (طول البروج) ===== */
+  var BODIES = [['sun', '☉', 'الشمس', '#ffd98a'], ['moon', '☽', 'القمر', '#e9edf7'], ['mercury', '☿', 'عطارد', '#c9d2dc'], ['venus', '♀', 'الزهرة', '#ffc9d6'], ['mars', '♂', 'المريخ', '#ff9a78'], ['jupiter', '♃', 'المشتري', '#f3d6a4'], ['saturn', '♄', 'زحل', '#e2c98a'], ['uranus', '♅', 'أورانوس', '#9fe3e6'], ['neptune', '♆', 'نبتون', '#9db4ff'], ['pluto', '♇', 'بلوتو', '#d9c4ae']];
+  var SIGN_N = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+  var live = el('g', { class: 'pw-live' }); var mark = svg.querySelector('.moon'); svg.insertBefore(live, mark);
+  function draw() {
+    if (typeof Astro === 'undefined' || !Astro.lonOf) return;
+    try {
+      var jd = Astro.jdFromMs(Date.now()), jde = jd + Astro.deltaT(Astro.yearOf(jd)) / 86400, rows = [];
+      BODIES.forEach(function (b) { var lon = Astro.lonOf(b[0], jde); if (Number.isFinite(lon)) rows.push({ b: b, lon: ((lon % 360) + 360) % 360 }); });
+      rows.sort(function (a, c) { return a.lon - c.lon; });
+      live.textContent = '';
+      var placed = [];
+      rows.forEach(function (r) {
+        var ang = -105 + r.lon, lvl = 0;
+        placed.forEach(function (q) { if (Math.abs(q.lon - r.lon) < 9 && q.lvl === lvl) lvl++; });
+        placed.push({ lon: r.lon, lvl: lvl });
+        var rad = 102 - lvl * 17, p = pt(rad, ang), s = Math.floor(r.lon / 30), deg = Math.floor(r.lon % 30);
+        var g = el('g', { class: 'pw-pl', tabindex: '0', role: 'img', 'aria-label': r.b[2] + ' في ' + SIGN_N[s] + ' ' + deg + ' درجة' });
+        g.appendChild(el('circle', { cx: p[0].toFixed(2), cy: p[1].toFixed(2), r: 9, class: 'pw-pl-dot', style: 'stroke:' + r.b[3] }));
+        var t = el('text', { x: p[0].toFixed(2), y: (p[1] + 0.5).toFixed(2), class: 'pw-pl-g', style: 'fill:' + r.b[3] }); t.textContent = r.b[1]; g.appendChild(t);
+        var ti = el('title', {}); ti.textContent = r.b[2] + ' · ' + SIGN_N[s] + ' ' + deg + '°'; g.appendChild(ti);
+        live.appendChild(g);
+      });
+    } catch (e) { /* الحساب اختياري: العجلة تفضل شغالة */ }
+  }
+  draw(); setInterval(draw, 60000);
+  var sub = document.createElement('p'); sub.className = 'pw-note'; sub.textContent = 'الكواكب على العجلة في مواضعها الحقيقية في السماء الآن';
+  var hint = document.querySelector('.wheel-hint'); if (hint) hint.insertAdjacentElement('afterend', sub);
 })();

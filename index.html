@@ -2066,12 +2066,40 @@ if (typeof module !== 'undefined') module.exports = Astro;
   let skyKey = "mars";
   const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
 
+  /* ---------- كارت منازل القمر: اسم الطور + شكل القمر الحقيقي ---------- */
+  const MOON_NAMES = ["محاق", "هلال متزايد", "تربيع أول", "أحدب متزايد", "بدر", "أحدب متناقص", "تربيع أخير", "هلال متناقص"];
+  const SYNODIC = 29.530588;
+  function moonSVG(el) {
+    const R = 52, wax = el <= 180, e = wax ? el : 360 - el, c = Math.cos(e * Math.PI / 180), rx = Math.abs(c) * R;
+    const lit = e < 1 ? "" : (e > 179 ? `<circle r="${R}" fill="url(#mnLit)"/>` : `<path d="M0 ${-R}A${R} ${R} 0 0 1 0 ${R}A${rx.toFixed(2)} ${R} 0 0 ${c > 0 ? 0 : 1} 0 ${-R}Z" fill="url(#mnLit)"/>`);
+    return `<svg class="mn-svg" viewBox="-64 -64 128 128" role="img" aria-label="شكل القمر الحالي"><defs>
+      <radialGradient id="mnLit" cx="38%" cy="34%" r="75%"><stop offset="0" stop-color="#fffaf0"/><stop offset=".6" stop-color="#eadfc4"/><stop offset="1" stop-color="#cdbf9c"/></radialGradient>
+      <radialGradient id="mnDark" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#2b2745"/><stop offset="1" stop-color="#0f0c1f"/></radialGradient>
+      <radialGradient id="mnHalo"><stop offset="0" stop-color="#ffe8b8" stop-opacity=".35"/><stop offset="1" stop-color="#ffe8b8" stop-opacity="0"/></radialGradient>
+      <clipPath id="mnClip"><circle r="${R}"/></clipPath></defs>
+      <circle r="63" fill="url(#mnHalo)"/><circle r="${R}" fill="url(#mnDark)" stroke="rgba(217,178,124,.35)" stroke-width="1"/>
+      <g clip-path="url(#mnClip)"><g transform="${wax ? "" : "scale(-1 1)"}">${lit}</g>
+      <g fill="rgba(70,62,90,.28)"><ellipse cx="-14" cy="-12" rx="13" ry="9"/><ellipse cx="12" cy="6" rx="16" ry="11"/><ellipse cx="-6" cy="26" rx="9" ry="6"/><circle cx="20" cy="-24" r="6"/><circle cx="-26" cy="14" r="5"/></g></g></svg>`;
+  }
+  function moonCard(ms, moon, sun) {
+    const el = norm(moon.lon - sun.lon), ph = Math.floor(((el + 22.5) % 360) / 45), ill = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
+    const age = el / 360 * SYNODIC, toFull = ((180 - el + 360) % 360) / 360 * SYNODIC, toNew = ((360 - el) % 360) / 360 * SYNODIC;
+    const nd = n => n.toLocaleString("ar-EG", { maximumFractionDigits: 1 });
+    const dtxt = new Date(ms).toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    const live = !skyDateInput.value, ttxt = live ? ` · ${new Date(ms).toLocaleTimeString("ar-EG", { hour: "2-digit", minute: "2-digit" })}` : "";
+    $("#sky-moon").innerHTML = `<div class="mn-fig">${moonSVG(el)}</div><div class="mn-txt">
+      <span class="mn-kick">${live ? "القمر الآن" : "القمر في اليوم ده"}</span>
+      <h3 class="mn-title">القمر <b>${MOON_NAMES[ph]}</b> في برج <b>${SIGNS[moon.sign].n}</b></h3>
+      <p class="mn-meta"><span>مضاء ${nd(ill)}٪</span><span>${el < 180 ? "متزايد" : "متناقص"}</span><span>عمره ${nd(age)} يوم</span></p>
+      <p class="mn-next">${ph === 4 ? "بدر كامل دلوقتي" : "البدر القادم بعد ~" + nd(toFull) + " يوم"} · ${ph === 0 ? "محاق دلوقتي" : "المحاق القادم بعد ~" + nd(toNew) + " يوم"}</p>
+      <small class="mn-date">${dtxt}${ttxt}</small></div>`;
+  }
+  setInterval(() => { if (!skyDateInput.value && !document.hidden) { const ms = Date.now(), ch = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false }); moonCard(ms, ch.bodies.find(x => x.key === "moon"), ch.bodies.find(x => x.key === "sun")); } }, 60000);
+
   function renderSky() {
     const ms = skyMs(), ch = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false });
     const b = k => ch.bodies.find(x => x.key === k);
-    const el = norm(b("moon").lon - b("sun").lon), ph = Math.floor(((el + 22.5) % 360) / 45), ill = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
-    const dtxt = new Date(ms).toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-    $("#sky-moon").innerHTML = `<strong>${dtxt}</strong><span>القمر ${PHASES[ph]}، مضاء حوالي ${ill}٪، وموجود في برج ${SIGNS[b("moon").sign].n}.</span>`;
+    moonCard(ms, b("moon"), b("sun"));
     $("#sky-chips").innerHTML = PLANET_KEYS.map(k => { const p = b(k), f = fmt(p.lon); return `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === skyKey}"><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span><span class="cn">${PLANETS[k].n}${p.retro ? ' <i class="rxb">راجع</i>' : ""}</span><span class="cs">${SIGNS[f.s].n}</span>${num(f.txt)}</button>`; }).join("");
     $$("#sky-chips .chip").forEach(c => c.addEventListener("click", () => { skyKey = c.dataset.k; renderSky(); }));
     renderSkyPanel(ch, ms);
@@ -3248,6 +3276,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     sv = sv * .9 + dy * .00005;
     const intro = 0; /* بدون اندفاع بداية: خطوط الشهب/الحركة اتشالت */
     const v = .00005; /* حركة بطيئة ثابتة، السرعة ما بتتأثرش بالتمرير */
+    if (window.__aqScroll) { if (sun) { const y = scrollY; sun.style.transform = `translateY(${-y * .28}px)`; sun.style.opacity = Math.max(0, 1 - y / (H * .9)); } if (!reduce) requestAnimationFrame(frame); return; }
     ctx.clearRect(0, 0, W, H);
     const cx = W / 2, cy = H * .46;
     for (const s of stars) {
@@ -3376,7 +3405,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
                 {n:.15,rMin:.9,rMax:1.6,aMin:.3,aMax:.62,vMin:.03,vMax:.07}];
     function mk(layer,yAny){return{x:Math.random()*w,y:yAny?Math.random()*h:-2,r:layer.rMin+Math.random()*(layer.rMax-layer.rMin),a:layer.aMin+Math.random()*(layer.aMax-layer.aMin),v:layer.vMin+Math.random()*(layer.vMax-layer.vMin),p:Math.random()*6.28,sway:Math.random()*6.28,warm:Math.random()<.16,layer:layer};}
     function resize(){dpr=Math.min(window.devicePixelRatio||1,1.5);w=window.innerWidth;h=window.innerHeight;canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);var total=Math.min(150,Math.floor(w*h/9500));stars=[];LAYERS.forEach(function(layer){var cnt=Math.round(total*layer.n);for(var i=0;i<cnt;i++)stars.push(mk(layer,true));});}
-    function draw(ts){ctx.clearRect(0,0,w,h);stars.forEach(function(s){s.p+=.012;s.sway+=.006;s.y+=s.v;s.x+=Math.sin(s.sway)*.045;if(s.y>h+2){Object.assign(s,mk(s.layer,false));}var a=s.a*(.65+.35*Math.sin(s.p));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=s.warm?'rgba(214,174,94,'+a+')':'rgba(239,230,210,'+a+')';ctx.fill();});
+    function draw(ts){if(window.__aqScroll){raf=requestAnimationFrame(draw);return;}ctx.clearRect(0,0,w,h);stars.forEach(function(s){s.p+=.012;s.sway+=.006;s.y+=s.v;s.x+=Math.sin(s.sway)*.045;if(s.y>h+2){Object.assign(s,mk(s.layer,false));}var a=s.a*(.65+.35*Math.sin(s.p));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=s.warm?'rgba(214,174,94,'+a+')':'rgba(239,230,210,'+a+')';ctx.fill();});
       raf=requestAnimationFrame(draw);}
     resize();draw();window.addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(raf);}else{cancelAnimationFrame(raf);draw();}});
   }
@@ -3462,6 +3491,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js"></script>
 <script src="auth.js" type="module"></script>
+<script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
 </body>
