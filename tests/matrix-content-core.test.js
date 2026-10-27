@@ -28,9 +28,10 @@ for (let id = 1; id <= 22; id += 1) {
   assert.equal(entry.meta?.referenceRuleStatus, 'unverified');
   if (id === 8 || id === 11) assert.equal(entry.meta?.arcanaMappingStatus, 'source-conflict');
   seen.add(entry.id);
-  // Chakra interpretations remain explicitly incomplete and are not publishable in this batch.
+  // Legacy chakra fields remain empty; three aspect-draft chakras are review-only, with the remaining four unfilled.
   assert.equal(entry.meta?.chakraContent?.sahasrara?.status, 'partial-review');
   assert.equal(entry.meta?.chakraContent?.ajna?.status, 'partial-review');
+  assert.equal(entry.meta?.chakraContent?.vishuddha?.status, 'partial-review');
   for (const section of Object.values(entry.chakras)) {
     for (const field of ['psychology', 'shadowTrap', 'bodySymbol', 'practice']) {
       assert.equal(section[field], '', `unwritten chakra field ${field} remains empty for Arcana ${id}`);
