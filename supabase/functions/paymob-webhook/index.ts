@@ -85,7 +85,7 @@ Deno.serve(async (req: Request) => {
   if (!paid) {
     const { error } = await admin.from("payment_events").upsert(
       {
-        provider: "paymob", provider_event_id: eventId, outcome: "not_paid",
+        // A transaction can notify us while pending/failed and later succeed.\n        // Keep non-paid and paid states on distinct idempotency keys.\n        provider: "paymob", provider_event_id: `${eventId}:not_paid`, outcome: "not_paid",
         order_id: UUID_RE.test(orderRef) ? orderRef : null, amount_cents: Number.isFinite(Number(obj.amount_cents)) ? Number(obj.amount_cents) : null,
       },
       { onConflict: "provider,provider_event_id", ignoreDuplicates: true },
@@ -104,7 +104,7 @@ Deno.serve(async (req: Request) => {
 
   const { data, error } = await admin.rpc("fulfill_paid_order", {
     p_order_id: orderRef,
-    p_event_id: eventId,
+    // Do not let an earlier non-paid callback suppress a later successful callback.\n    // Repeated successful callbacks still share one stable idempotency key.\n    p_event_id: `${eventId}:paid`,
     p_paymob_order_id: Number.isFinite(Number(obj.order?.id)) ? Number(obj.order.id) : null,
     p_amount_cents: Number(obj.amount_cents),
     p_currency: String(obj.currency ?? ""),
