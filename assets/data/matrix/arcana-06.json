@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يربط العشاق القوة بالاختيار المتبادل: لا يكفي أن يكون القرار جذابًا، بل يجب أن ينسجم مع قيمة يمكن تحمل تبعاتها.",
+      "energyPsychology": "تتوزع الطاقة بين رغبة الذات ومصلحة الشراكة، وتحتاج إلى تصريح واضح كي لا تتحول المساومة إلى استنزاف.",
+      "emotionsPsychology": "يخف القلق حين لا تُستخدم الحاجة إلى القبول لتسليم القرار كله للطرف الآخر."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -60,7 +60,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تمنح النجمة الطموح اتجاهًا يتجاوز التصفيق؛ قوتها في مشاركة أمل قابل للعمل مع قبول أن نتائجه لا تُضمن.",
+      "energyPsychology": "تتجدد الحيوية من رؤية طويلة ونقطة إسهام واضحة، وتضعف حين يصبح الإلهام بديلًا عن الاحتكاك بالواقع.",
+      "emotionsPsychology": "يستقر الشعور بالاستحقاق عندما لا يعتمد على عدد من يصفق للرؤية."
     },
     "svadhisthana": {
       "psychology": "",
@@ -118,6 +121,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

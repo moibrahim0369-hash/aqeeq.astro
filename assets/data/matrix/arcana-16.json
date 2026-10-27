@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يسقط البرج صورة نجاح لم تعد تحمل الواقع؛ الضفيرة الشمسية تُجبر على إعادة بناء الثقة من خبرة صادقة لا من واجهة قوية.",
+      "energyPsychology": "تتحرر الطاقة حين يتوقف الدفاع عن نظام انهار، ثم تُستثمر في قرار صغير يمكن إثباته بدل وعد شامل جديد.",
+      "emotionsPsychology": "يحتاج الداخل إلى الحزن على ما فقده دون تحويل الانهيار إلى هوية دائمة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

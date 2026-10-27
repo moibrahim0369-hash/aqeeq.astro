@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تقبل العجلة تغير موقعها ومهمتها؛ الاستحقاق هنا مرونة في إعادة تعريف النجاح عندما ينقلب السياق.",
+      "energyPsychology": "تنتعش الطاقة مع الحركة بين فرص مختلفة، لكنها تحتاج محورًا ثابتًا حتى لا يصبح التغيير هروبًا من مواجهة النتيجة.",
+      "emotionsPsychology": "يخف التوتر حين تُستقبل الخسارة كمعلومة عن دورة انتهت، لا كحكم نهائي على الكفاءة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

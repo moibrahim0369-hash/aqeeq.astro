@@ -61,7 +61,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يبدأ الأحمق من دون ضمانات كاملة، ويختبر قوته حين يلتزم بحد أدنى من المسؤولية بعد لحظة الحماس.",
+      "energyPsychology": "تتجدد الطاقة بالفضول والمخاطرة المحسوبة، وتضيع عندما يصبح التغيير وسيلة لتفادي أي نتيجة ثابتة.",
+      "emotionsPsychology": "يطمئن الداخل عندما تُفهم الحرية كقدرة على الاختيار وتحمل الأثر، لا كغياب لكل التزام."
     },
     "svadhisthana": {
       "psychology": "",
@@ -119,6 +122,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }

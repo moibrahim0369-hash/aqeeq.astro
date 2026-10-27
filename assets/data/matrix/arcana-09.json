@@ -55,7 +55,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يبني الناسك نفوذه من خبرة عميقة لا من حضور صاخب؛ قوته في أن يقدّم خلاصة نافعة بعد اختبارها وحده.",
+      "energyPsychology": "تتجمع الطاقة في بحث أو مهارة محددة، وتحتاج إلى مشاركة النتائج حتى لا يتحول الاستقلال إلى عزلة غير منتجة.",
+      "emotionsPsychology": "يتوازن الداخل عندما لا يُعامل طلب المساعدة كاعتراف بالعجز."
     },
     "svadhisthana": {
       "psychology": "",
@@ -113,6 +116,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }
