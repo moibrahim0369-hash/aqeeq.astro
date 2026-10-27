@@ -12,6 +12,7 @@ SECURITY DEFINER
 SET search_path = ''
 AS $function$
 DECLARE
+    v_today date := (now() at time zone 'Africa/Cairo')::date;
     v_last_date date;
     v_curr_streak int := 0;
     v_long_streak int := 0;
@@ -43,19 +44,19 @@ BEGIN
     WHERE user_id = p_user_id
     FOR UPDATE;
 
-    IF v_last_date = CURRENT_DATE THEN
+    IF v_last_date = v_today THEN
         RETURN json_build_object('status', 'already_checked_in', 'streak', v_curr_streak);
     END IF;
 
     INSERT INTO public.hawkins_daily_checkins (user_id, check_in_date, level_name, frequency_hz, emotion_logged)
-    VALUES (p_user_id, CURRENT_DATE, btrim(p_level_name), p_frequency, NULLIF(btrim(p_emotion), ''))
+    VALUES (p_user_id, v_today, btrim(p_level_name), p_frequency, NULLIF(btrim(p_emotion), ''))
     ON CONFLICT (user_id, check_in_date) DO NOTHING;
 
     IF NOT FOUND THEN
         RETURN json_build_object('status', 'already_checked_in', 'streak', v_curr_streak);
     END IF;
 
-    IF v_last_date = CURRENT_DATE - 1 THEN
+    IF v_last_date = v_today - 1 THEN
         v_curr_streak := v_curr_streak + 1;
     ELSE
         v_curr_streak := 1;
@@ -67,7 +68,7 @@ BEGIN
     UPDATE public.user_streaks
        SET current_streak = v_curr_streak,
            longest_streak = v_long_streak,
-           last_check_in_date = CURRENT_DATE,
+           last_check_in_date = v_today,
            total_check_ins = COALESCE(total_check_ins, 0) + 1,
            updated_at = now()
      WHERE user_id = p_user_id;
