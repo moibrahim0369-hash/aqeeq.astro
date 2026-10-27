@@ -1,5 +1,5 @@
 /* خلفية كونية: مجرات (قريبة وبعيدة) + كل الكواكب المعروفة + كوكبة البرج عند اختياره.
-   لا شهب ولا خطوط حركة. تحترم prefers-reduced-motion (رسمة ثابتة بدون حركة). */
+   نيزك عابر كل كام ثانية (مش مطر مستمر). تحترم prefers-reduced-motion (رسمة ثابتة بدون حركة). */
 (function () {
   'use strict';
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -105,14 +105,31 @@
       }
     });
   }
+  var NEBSEED = [5, 9, 13, 17];
   var nebs = [
     { s: nebulaSprite(5, ['120,70,220', '70,60,190']), ax: .30, ay: .26, A: .06, B: .04, px: 170, py: 210, ph: .4, k: 1.25, a: .13 },
     { s: nebulaSprite(9, ['30,170,190', '40,120,200']), ax: .78, ay: .52, A: .05, B: .05, px: 190, py: 150, ph: 2.2, k: 1.1, a: .11 },
     { s: nebulaSprite(13, ['210,70,130', '170,60,160']), ax: .22, ay: .78, A: .05, B: .04, px: 150, py: 230, ph: 3.9, k: 1.15, a: .10 },
     { s: nebulaSprite(17, ['60,90,230', '90,60,200']), ax: .70, ay: .90, A: .06, B: .03, px: 210, py: 170, ph: 5.3, k: 1.0, a: .11 }
   ];
+  /* ألوان السُدم حسب القسم: كل قسم له سماء بلون مختلف */
+  function hsl(h, sat, l) { h = ((h % 360) + 360) % 360 / 360; var a = sat * Math.min(l, 1 - l); function f(n) { var k = (n + h * 12) % 12; return Math.round(255 * (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)))); } return f(0) + ',' + f(8) + ',' + f(4); }
+  var THEMES = { matrix: 275, lifepath: 175, chart: 215, 'astro-maps': 200, sky: 230, signs: 300, compat: 335, 'life-path-synastry': 345, services: 38, courses: 150, videos: 8, faq: 220, about: 262, manifest: 160, wishes: 30, chat: 195, ask: 245, account: 190, fortune: 48, 'dream-library': 250, 'tarot-lab': 312, 'symbol-library': 20, 'energy-compatibility': 135 };
+  var tintEl = document.createElement('div'); tintEl.id = 'sky-tint'; tintEl.setAttribute('aria-hidden', 'true'); cv.insertAdjacentElement('afterend', tintEl);
+  var themeKey = '';
+  function applyTheme() {
+    var id = (location.hash || '').slice(1), h = THEMES[id], key = h == null ? '' : id;
+    if (key === themeKey) return; themeKey = key;
+    if (h == null) { tintEl.style.background = ''; nebs.forEach(function (o, i) { o.s = o.s0; }); return; }
+    var c1 = hsl(h, .6, .22), c2 = hsl(h + 45, .55, .18);
+    tintEl.style.background = 'radial-gradient(900px 620px at 85% 4%,rgba(' + c1 + ',.6),transparent 62%),radial-gradient(800px 600px at 8% 96%,rgba(' + c2 + ',.5),transparent 60%)';
+    var offs = [0, 40, -40, 80];
+    nebs.forEach(function (o, i) { o.s = nebulaSprite(NEBSEED[i] + 3, [hsl(h + offs[i], .7, .55), hsl(h + offs[i] + 28, .65, .5)]); });
+  }
+  nebs.forEach(function (o) { o.s0 = o.s; });
+  window.addEventListener('hashchange', applyTheme); applyTheme();
   var far = [], farSprites = [spiralGalaxy(71, '170,180,255', false), ellipticalGalaxy(73), spiralGalaxy(79, '255,200,170', true)];
-  for (var fi = 0; fi < 8; fi++) far.push({ s: farSprites[fi % 3], x: rg(), y: rg(), vx: (rg() - .5) * .004, vy: (rg() - .5) * .002, sz: .045 + rg() * .05, a: .14 + rg() * .16, tilt: .35 + rg() * .6, rot: rg() * 6, rs: (rg() - .5) * .02 });
+  for (var fi = 0; fi < 8; fi++) far.push({ s: farSprites[fi % 3], x: rg(), y: rg(), vx: (rg() - .5) * .004, vy: (rg() - .5) * .002, sz: .03 + rg() * .035, a: .08 + rg() * .10, tilt: .35 + rg() * .6, rot: rg() * 6, rs: (rg() - .5) * .02 });
   /* الكواكب: مدارات بيضاوية حوالين الشاشة كلها، الكوكب في النص الأسفل أقرب وأكبر شوية */
   var pl = PLANETS.map(function (p, i) { return { p: p, s: planetSprite(p), rx: .30 + i * .037, ry: .27 + i * .034, tilt: -.5 + i * .17, ph: rg() * TAU, per: p.per }; });
   var lastT = performance.now();
@@ -133,7 +150,7 @@
     gal.forEach(function (o) {
       var x = (o.ax + o.A * Math.cos(t / o.px * TAU + o.ph)) * W, y = (o.ay + o.B * Math.sin(t / o.py * TAU + o.ph * 1.3)) * H;
       var d = .5 + .5 * Math.sin(t / (o.px * 1.7) * TAU + o.ph);           /* نبضة عمق خفيفة */
-      var D = m * (mob ? .40 : .24) * o.k * (.85 + .25 * d), al = .20 + .24 * d;
+      var D = m * (mob ? .27 : .16) * o.k * (.85 + .25 * d), al = .11 + .13 * d;
       if (!reduce) o.rot += o.rs * (now - lastT) / 1000;
       ctx.save(); ctx.globalAlpha = al; ctx.translate(x, y); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
     });
@@ -149,7 +166,27 @@
       var rad = m * .013 * q.o.p.r * (.7 + .5 * q.near) * (mob ? 1.15 : 1), sc = rad / R0(q.o.p), w = 220 * sc;
       ctx.globalAlpha = .45 + .4 * q.near; ctx.drawImage(q.o.s, q.x - w / 2, q.y - w / 2, w, w);
     });
+    drawMeteors(now);
     ctx.globalAlpha = 1; lastT = now;
+  }
+  /* نيزك كل 5–13 ثانية، كل واحد باتجاه وطول ولون وسرعة مختلفة */
+  var meteors = [], nextMeteor = performance.now() + 3500 + Math.random() * 3000, MCOL = ['255,255,255', '255,236,200', '190,220,255', '200,255,236', '255,208,184'];
+  function spawnMeteor() {
+    var mob = W < 700, ang = (18 + Math.random() * 52) * Math.PI / 180, dir = Math.random() < .5 ? 1 : -1, sp = (.5 + Math.random() * .9) * Math.max(W, H);
+    meteors.push({ x: dir > 0 ? Math.random() * W * .7 : W * (.3 + Math.random() * .7), y: Math.random() * H * .5, vx: Math.cos(ang) * dir * sp, vy: Math.sin(ang) * sp, len: (mob ? 70 : 110) + Math.random() * (mob ? 90 : 170), w: .7 + Math.random() * 1.3, col: MCOL[(Math.random() * MCOL.length) | 0], t: 0, max: .6 + Math.random() * .9, glow: Math.random() < .3 });
+  }
+  function drawMeteors(now) {
+    if (reduce) return;
+    var dt = Math.min(.1, (now - lastT) / 1000);
+    if (now >= nextMeteor) { spawnMeteor(); nextMeteor = now + 5000 + Math.random() * 8000; }
+    for (var i = meteors.length - 1; i >= 0; i--) {
+      var m = meteors[i]; m.t += dt; m.x += m.vx * dt; m.y += m.vy * dt;
+      var k = m.t / m.max; if (k >= 1 || m.x < -300 || m.x > W + 300 || m.y > H + 300) { meteors.splice(i, 1); continue; }
+      var a = Math.sin(k * Math.PI), sp = Math.hypot(m.vx, m.vy), tx = m.x - m.vx / sp * m.len, ty = m.y - m.vy / sp * m.len;
+      var g = ctx.createLinearGradient(m.x, m.y, tx, ty); g.addColorStop(0, 'rgba(' + m.col + ',' + (.85 * a).toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + m.col + ',0)');
+      ctx.globalAlpha = 1; ctx.strokeStyle = g; ctx.lineWidth = m.w; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(tx, ty); ctx.stroke();
+      if (m.glow) { var r = 5 + m.w * 3, rg2 = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, r); rg2.addColorStop(0, 'rgba(' + m.col + ',' + (.6 * a).toFixed(3) + ')'); rg2.addColorStop(1, 'rgba(' + m.col + ',0)'); ctx.fillStyle = rg2; ctx.fillRect(m.x - r, m.y - r, r * 2, r * 2); }
+    }
   }
   var lastDraw = 0;
   function loop(now) { if (!window.__aqScroll && now - lastDraw >= 33) { lastDraw = now; paint(now); } else if (window.__aqScroll) { lastT = now; } if (!document.hidden) requestAnimationFrame(loop); }

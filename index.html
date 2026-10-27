@@ -224,6 +224,7 @@
 <h2>توقعات الأبراج</h2>
 <p class="intro">اختار برجك وشوف توقعاته. دي قراءة عامة، والقراءة الشخصية على خريطة ميلادك بتكون أدق وأعمق.</p>
 </div>
+<button class="signs-back" id="signs-back" type="button" aria-label="الرجوع لكل الأبراج"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" transform="scale(-1 1) translate(-24 0)"/></svg><span>كل الأبراج</span></button>
 <div aria-label="اختيار البرج" class="picker" id="picker" role="group"></div>
 <article aria-live="polite" class="arch" id="panel"></article>
 </div>
@@ -2405,8 +2406,11 @@ if (typeof module !== 'undefined') module.exports = Astro;
     }
     return `<p class="mercury-status-note" role="status">عطارد مباشر حالياً. القراءة التفصيلية لتراجع عطارد هتكون متاحة في الفترة القادمة.</p>`;
   }
+  const signsSec = $("#signs");
   function selectSign(i) {
     const s = SIGNS[i], f = FORECASTS[i];
+    signsSec.classList.add("signs-detail");
+    if (signsSec.scrollTo) signsSec.scrollTo(0, 0);
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
     panel.innerHTML = `${mercurySignIntro(i)}
       <div class="arch-g" aria-hidden="true">${gl(s.g)}</div><h3>${s.n}</h3><p class="dates">${s.d}</p>
@@ -2422,6 +2426,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
     b.innerHTML = `<span class="sg" aria-hidden="true">${gl(s.g)}</span><span>${s.n}</span>`;
     b.addEventListener("click", () => selectSign(i)); picker.appendChild(b); pbtns.push(b);
   });
+  $("#signs-back").addEventListener("click", () => { signsSec.classList.remove("signs-detail"); if (signsSec.scrollTo) signsSec.scrollTo(0, 0); });
+  window.addEventListener("hashchange", () => { if (location.hash !== "#signs") signsSec.classList.remove("signs-detail"); });
   const glyphs = $("#glyphs");
   SIGNS.forEach((s, i) => {
     const a = (-90 + i * 30) * Math.PI / 180, x = (200 + Math.cos(a) * 148).toFixed(2), y = (200 + Math.sin(a) * 148).toFixed(2);
