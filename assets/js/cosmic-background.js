@@ -139,13 +139,13 @@
     ctx.save(); ctx.globalCompositeOperation = 'screen';
     nebs.forEach(function (o) {
       var x = (o.ax + o.A * Math.cos(t / o.px * TAU + o.ph)) * W, y = (o.ay + o.B * Math.sin(t / o.py * TAU + o.ph)) * H, D = Math.max(W, H) * o.k * (mob ? .8 : .62);
-      ctx.globalAlpha = o.a; ctx.drawImage(o.s, x - D / 2, y - D / 2, D, D);
+      ctx.globalAlpha = o.a * 1.2; ctx.drawImage(o.s, x - D / 2, y - D / 2, D, D);
     });
     ctx.restore();
     far.forEach(function (o) {
       if (!reduce) { o.x += o.vx * (now - lastT) / 1000; o.y += o.vy * (now - lastT) / 1000; if (o.x < -.05) o.x = 1.05; if (o.x > 1.05) o.x = -.05; if (o.y < -.05) o.y = 1.05; if (o.y > 1.05) o.y = -.05; o.rot += o.rs * (now - lastT) / 1000; }
       var D = m * o.sz * (mob ? 1.3 : 1);
-      ctx.save(); ctx.globalAlpha = o.a; ctx.translate(o.x * W, o.y * H); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
+      ctx.save(); ctx.globalAlpha = o.a * 1.2; ctx.translate(o.x * W, o.y * H); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
     });
     gal.forEach(function (o) {
       var x = (o.ax + o.A * Math.cos(t / o.px * TAU + o.ph)) * W, y = (o.ay + o.B * Math.sin(t / o.py * TAU + o.ph * 1.3)) * H;
