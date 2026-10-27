@@ -84,3 +84,40 @@
 .wg:active .pw-disc{stroke:rgba(217,178,124,.4)}
 .wheel *{-webkit-tap-highlight-color:transparent;outline:none}
 .wheel .pw-disc,.wheel .pw-pl-dot{transition:none}
+
+/* ===== أسماء الكوكبات والنجوم والكواكب: أغمق ومريحة للعين ===== */
+.cb-name{fill:rgba(196,170,122,.6)!important}
+.cb-sname{fill:rgba(190,175,145,.48)!important}
+.const-cap{color:#a98c63!important;opacity:.85}
+.pw-note{color:#8f87a8!important}
+.cb-line{stroke:rgba(214,184,132,.38)}
+
+/* ===== عجلة الرئيسية: أهدى وأريح (من غير دوران ولا ألوان حادة) ===== */
+.wheel .spin-a,.wheel .spin-b{animation:none!important}
+.wheel #ticks{stroke:rgba(217,178,124,.24)!important;stroke-width:.7!important}
+.wheel .ln.strong{stroke:rgba(217,178,124,.38)!important;stroke-width:1!important}
+.wheel .ln{stroke:rgba(217,178,124,.2)}
+.wheel .ln.faint{stroke:rgba(150,135,205,.16)}
+.wheel .ln.dash{stroke:rgba(217,178,124,.12)}
+.wheel .pw-outer{stroke:rgba(217,178,124,.16)}
+.wheel .pw-div{stroke:rgba(217,178,124,.16)}
+.wheel .pw-sector.even{fill:rgba(217,178,124,.025)}
+.wheel .pw-sector.odd{fill:rgba(124,86,225,.04)}
+.wheel .pw-glow{opacity:.55}
+.wheel .moon{opacity:.72}
+.wg text{fill:#d3c093}
+.wheel .pw-disc{stroke:rgba(217,178,124,.26);fill:rgba(10,7,24,.5)}
+.wheel .pw-pl-dot{stroke-opacity:.5}
+.wheel .pw-pl-g{opacity:.85}
+
+/* ===== صفحة التوقعات: برج واحد + زرار رجوع ===== */
+.signs-back{display:none;position:fixed;top:14px;left:16px;z-index:70;align-items:center;gap:6px;height:40px;padding:0 16px 0 12px;border-radius:999px;border:1px solid rgba(217,178,124,.35);background:rgba(14,10,30,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#e4cd9a;font:600 .92rem "IBM Plex Sans Arabic",system-ui,sans-serif;cursor:pointer}
+.signs-back:hover{border-color:rgba(217,178,124,.6)}
+#signs.signs-detail .signs-back{display:inline-flex}
+#signs.signs-detail #picker,#signs.signs-detail .center{display:none}
+#signs:not(.signs-detail) #panel{display:none}
+#signs:not(.signs-detail) .const-bg{display:none}
+#signs.signs-detail>.wrap{padding-top:70px}
+
+/* ===== سماء بلون مختلف لكل قسم ===== */
+#sky-tint{position:fixed;inset:0;z-index:-1;pointer-events:none;transition:background .5s}
