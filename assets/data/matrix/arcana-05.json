@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تمنح المحبة معنى مشتركاً حين يتبادل الطرفان القيم من غير أن يطلب أحدهما من الآخر التنازل عن ضميره.",
+      "energyPsychology": "تنتظم طاقة العلاقة حول التعلم والاحترام المتبادل، لا حول سلطة طرف يحدد وحده ما ينبغي أن يؤمن به الآخر.",
+      "emotionsPsychology": "ينشأ القرب من قبول اختلاف القناعات ومناقشتها؛ الانتماء لا يحتاج أن يكون نسخة متطابقة."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

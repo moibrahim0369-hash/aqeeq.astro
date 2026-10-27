@@ -51,7 +51,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تفتح المحاكمة باب المصالحة أو المراجعة الصادقة؛ الاعتراف بالمسؤولية لا يعني إنكار ما تعرّض له الشخص.",
+      "energyPsychology": "تتجه طاقة العلاقة إلى إصلاح ممكن: قول الحقيقة، سماع أثرها، ثم اختيار ما إذا كان الاستمرار مناسباً.",
+      "emotionsPsychology": "يخف ثقل الماضي حين يطلب المرء ما يحتاجه بوضوح، ويترك للآخر حرية الاستجابة دون فرض الغفران."
     },
     "manipura": {
       "psychology": "",
@@ -107,6 +110,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تختبر العجلة قدرة العلاقة على مرافقة التغير؛ الوفاء هنا مرونة في تجديد الاتفاق لا تشبث بصورة قديمة.",
+      "energyPsychology": "تتوازن طاقة القرب حين يتكيف الطرفان مع التحولات دون التخلي عن الإنصاف أو الوضوح.",
+      "emotionsPsychology": "تخف الحساسية تجاه التقلب عندما لا يُفسر كل تغير بوصفه فقداً للحب، ويُسأل عن معناه مباشرة."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

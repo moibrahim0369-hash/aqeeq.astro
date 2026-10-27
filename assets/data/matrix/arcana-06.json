@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يقوم الحب على اختيار متجدد وحوار صريح حول الرغبة والالتزام؛ الانجذاب وحده لا يجيب عن سؤال التوافق.",
+      "energyPsychology": "تتوازن الحيوية حين يلتقي القرب بالاستقلال وتُسمى الحدود مبكراً، قبل أن تتحول إلى مطالب متبادلة.",
+      "emotionsPsychology": "تطمئن المشاعر عندما يكون القبول حراً، لا ثمناً للخوف من الفقد أو وسيلة لكسب رضا الآخر."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تعبّر الإمبراطورة عن المودة بالرعاية والإبداع، وتبقى العلاقة صحية عندما تتبادل الأطراف العطاء ولا تختزل في دور الرعاية وحده.",
+      "energyPsychology": "تتدفق طاقة القرب عبر الاهتمام الملموس والبهجة المشتركة، مع تجنب تحويل الرعاية إلى طريقة لضمان الحب.",
+      "emotionsPsychology": "يستقر الشعور عندما تُستقبل المودة كما تُمنح، وعندما يُسمح بالاحتياج دون خجل من الاعتماد المتبادل."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

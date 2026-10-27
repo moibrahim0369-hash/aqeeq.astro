@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تقبل المحبة تغير شكلها عند انتهاء مرحلة، وتمنح الوداع الصادق حقه بدلاً من إبقاء رابط لم يعد قائماً.",
+      "energyPsychology": "تتحرر الطاقة العاطفية عندما يُعترف بالتغيير ويُسمح بالحزن، ثم يُعاد تعريف ما يمكن أن يبقى.",
+      "emotionsPsychology": "لا يلغي الختام قيمة ما عُيش؛ قول الحقيقة عن النهاية يحترم الطرفين أكثر من وعود لم تعد صادقة."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

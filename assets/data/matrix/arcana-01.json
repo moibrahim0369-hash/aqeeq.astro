@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر العناية في أن تُقال المودة وتُمارس معاً؛ لا تكفي براعة البداية إذا غاب الإصغاء لما يحتاجه الطرف الآخر.",
+      "energyPsychology": "تتجه طاقة القلب نحو علاقة متبادلة، مع حفظ مساحة للفرد كي لا يصبح القرب ذوباناً في الآخر.",
+      "emotionsPsychology": "ينمو الاطمئنان حين يُطلب التقدير بوضوح، لا حين تتحول المحبة إلى انتظار صامت لاعتراف لا يعرف الطرف الآخر بغيابه."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يكشف التوقف إن كان العطاء اختياراً حراً أم دوراً مفروضاً؛ المحبة لا تكتمل بتأجيل الذات بلا نهاية.",
+      "energyPsychology": "تحتاج طاقة القلب إلى تبادل يسمح بالاستقبال كما يسمح بالعطاء، لا إلى التضحية التي لا تعلن حاجتها.",
+      "emotionsPsychology": "يستعيد الداخل توازنه عندما يطلب مقابلاً عادلاً أو يرفض ما يستنزفه، من دون إخفاء ذلك وراء الصبر."
     },
     "manipura": {
       "psychology": "",
@@ -102,6 +105,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

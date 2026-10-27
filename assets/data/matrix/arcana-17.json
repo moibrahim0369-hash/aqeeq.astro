@@ -51,7 +51,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تغذي النجمة قلباً يشارك الأمل والرعاية، لكنها لا تجعل أحداً مسؤولاً عن إنقاذ الآخر أو ضمان سعادته.",
+      "energyPsychology": "تتجدد الطاقة العاطفية من صدق اللطف والمساندة، مع احترام أن التعافي والاختيار يخصان كل شخص.",
+      "emotionsPsychology": "يصبح القرب أكثر طمأنينة عندما لا يُطلب من طرف أن يكون مشرعاً دائماً، ويُسمح له بالتعب والاحتياج."
     },
     "manipura": {
       "psychology": "",
@@ -107,6 +110,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

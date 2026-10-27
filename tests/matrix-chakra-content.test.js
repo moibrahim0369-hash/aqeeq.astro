@@ -9,7 +9,7 @@ const aspects = ['physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
 for (let id = 1; id <= 22; id += 1) {
   const entry = JSON.parse(fs.readFileSync(path.join(dataDir, `arcana-${String(id).padStart(2, '0')}.json`), 'utf8'));
   assert.equal(entry.id, id, `Arcana ID for chakra text ${id}`);
-  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha']) {
+  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha', 'anahata']) {
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.status, 'partial-review');
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.authorship, 'aqeeq-original');
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.referenceRuleStatus, 'unverified');
@@ -21,7 +21,7 @@ for (let id = 1; id <= 22; id += 1) {
       assert.ok(entry.chakras[chakraKey][key].trim().length >= 45, `${chakraKey} ${key} has a developed draft for Arcana ${id}`);
     }
   }
-  for (const chakraKey of ['anahata', 'manipura', 'svadhisthana', 'muladhara']) {
+  for (const chakraKey of ['manipura', 'svadhisthana', 'muladhara']) {
     for (const key of aspects) assert.equal(entry.chakras?.[chakraKey]?.[key] || '', '', `${chakraKey} remains unfilled for Arcana ${id}`);
   }
 }

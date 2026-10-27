@@ -52,7 +52,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تمنح الشمس المودة وضوحاً وفرحاً مشتركاً، وتدعو كل طرف إلى إظهار التقدير دون احتكار الضوء.",
+      "energyPsychology": "تنتعش العلاقة بالاحتفال المتبادل واللعب والكرم، مع توزيع الانتباه على احتياجات الجميع.",
+      "emotionsPsychology": "يستقر القلب عندما يكون الفرح صادقاً ولا يُستخدم لإخفاء خلاف يحتاج أن يُسمع."
     },
     "manipura": {
       "psychology": "",
@@ -108,6 +111,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }

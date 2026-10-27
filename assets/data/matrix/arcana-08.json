@@ -46,7 +46,10 @@
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تقوم المودة العادلة على تبادل المسؤولية والاعتراف بما يقدمه كل طرف، مع وضوح في الاتفاقات والحقوق.",
+      "energyPsychology": "تستقر طاقة العلاقة حين تتوزع الأعباء والقرارات بإنصاف، لا عبر حساب خفي لكل تضحية.",
+      "emotionsPsychology": "يصبح العتاب قابلاً للإصلاح عندما يصف الفعل وأثره، لا عندما يحاكم قيمة الشخص أو ينكر حسناته."
     },
     "manipura": {
       "psychology": "",
@@ -103,6 +106,14 @@
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
         "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       }
     }
   }
