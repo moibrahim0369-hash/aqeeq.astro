@@ -81,7 +81,7 @@
   var cv = document.createElement('canvas'); cv.id = 'cosmos-bg'; cv.setAttribute('aria-hidden', 'true');
   var anchor = document.getElementById('sky-bg'); (anchor ? anchor.parentNode : document.body).insertBefore(cv, anchor || document.body.firstChild);
   var ctx = cv.getContext('2d'), W = 0, H = 0, DPR = 1;
-  function size() { DPR = Math.min(window.devicePixelRatio || 1, 1.5); W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+  function size() { DPR = 1; W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
   size(); addEventListener('resize', function () { size(); if (reduce) paint(performance.now()); });
 
   var rg = rng(20261027), TAU = Math.PI * 2;
@@ -106,13 +106,13 @@
     });
   }
   var nebs = [
-    { s: nebulaSprite(5, ['120,70,220', '70,60,190']), ax: .30, ay: .26, A: .06, B: .04, px: 170, py: 210, ph: .4, k: 1.25, a: .24 },
-    { s: nebulaSprite(9, ['30,170,190', '40,120,200']), ax: .78, ay: .52, A: .05, B: .05, px: 190, py: 150, ph: 2.2, k: 1.1, a: .2 },
-    { s: nebulaSprite(13, ['210,70,130', '170,60,160']), ax: .22, ay: .78, A: .05, B: .04, px: 150, py: 230, ph: 3.9, k: 1.15, a: .17 },
-    { s: nebulaSprite(17, ['60,90,230', '90,60,200']), ax: .70, ay: .90, A: .06, B: .03, px: 210, py: 170, ph: 5.3, k: 1.0, a: .2 }
+    { s: nebulaSprite(5, ['120,70,220', '70,60,190']), ax: .30, ay: .26, A: .06, B: .04, px: 170, py: 210, ph: .4, k: 1.25, a: .13 },
+    { s: nebulaSprite(9, ['30,170,190', '40,120,200']), ax: .78, ay: .52, A: .05, B: .05, px: 190, py: 150, ph: 2.2, k: 1.1, a: .11 },
+    { s: nebulaSprite(13, ['210,70,130', '170,60,160']), ax: .22, ay: .78, A: .05, B: .04, px: 150, py: 230, ph: 3.9, k: 1.15, a: .10 },
+    { s: nebulaSprite(17, ['60,90,230', '90,60,200']), ax: .70, ay: .90, A: .06, B: .03, px: 210, py: 170, ph: 5.3, k: 1.0, a: .11 }
   ];
   var far = [], farSprites = [spiralGalaxy(71, '170,180,255', false), ellipticalGalaxy(73), spiralGalaxy(79, '255,200,170', true)];
-  for (var fi = 0; fi < 8; fi++) far.push({ s: farSprites[fi % 3], x: rg(), y: rg(), vx: (rg() - .5) * .004, vy: (rg() - .5) * .002, sz: .045 + rg() * .05, a: .2 + rg() * .22, tilt: .35 + rg() * .6, rot: rg() * 6, rs: (rg() - .5) * .02 });
+  for (var fi = 0; fi < 8; fi++) far.push({ s: farSprites[fi % 3], x: rg(), y: rg(), vx: (rg() - .5) * .004, vy: (rg() - .5) * .002, sz: .045 + rg() * .05, a: .14 + rg() * .16, tilt: .35 + rg() * .6, rot: rg() * 6, rs: (rg() - .5) * .02 });
   /* الكواكب: مدارات بيضاوية حوالين الشاشة كلها، الكوكب في النص الأسفل أقرب وأكبر شوية */
   var pl = PLANETS.map(function (p, i) { return { p: p, s: planetSprite(p), rx: .30 + i * .037, ry: .27 + i * .034, tilt: -.5 + i * .17, ph: rg() * TAU, per: p.per }; });
   var lastT = performance.now();
@@ -133,7 +133,7 @@
     gal.forEach(function (o) {
       var x = (o.ax + o.A * Math.cos(t / o.px * TAU + o.ph)) * W, y = (o.ay + o.B * Math.sin(t / o.py * TAU + o.ph * 1.3)) * H;
       var d = .5 + .5 * Math.sin(t / (o.px * 1.7) * TAU + o.ph);           /* نبضة عمق خفيفة */
-      var D = m * (mob ? .40 : .24) * o.k * (.85 + .25 * d), al = .30 + .30 * d;
+      var D = m * (mob ? .40 : .24) * o.k * (.85 + .25 * d), al = .20 + .24 * d;
       if (!reduce) o.rot += o.rs * (now - lastT) / 1000;
       ctx.save(); ctx.globalAlpha = al; ctx.translate(x, y); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
     });
@@ -151,7 +151,8 @@
     });
     ctx.globalAlpha = 1; lastT = now;
   }
-  function loop(now) { paint(now); if (!document.hidden) requestAnimationFrame(loop); }
+  var lastDraw = 0;
+  function loop(now) { if (!window.__aqScroll && now - lastDraw >= 33) { lastDraw = now; paint(now); } else if (window.__aqScroll) { lastT = now; } if (!document.hidden) requestAnimationFrame(loop); }
   if (reduce) paint(performance.now());
   else { requestAnimationFrame(loop); document.addEventListener('visibilitychange', function () { if (!document.hidden) { lastT = performance.now(); requestAnimationFrame(loop); } }); }
 
@@ -183,8 +184,8 @@
   var host = null, current = -1;
   var TINTS = ['229,138,98', '155,191,138', '143,184,232', '138,143,224'];   /* نار / تراب / هواء / ماء */
   function ensureHost() {
-    if (host) return host; var panel = document.getElementById('panel'); if (!panel) return null;
-    host = document.createElement('section'); host.className = 'const-stage'; host.setAttribute('aria-label', 'كوكبة البرج المختار'); panel.parentNode.insertBefore(host, panel); return host;
+    if (host) return host; var sec = document.getElementById('signs'); if (!sec) return null;
+    host = document.createElement('div'); host.className = 'const-bg'; host.setAttribute('aria-hidden', 'true'); sec.insertBefore(host, sec.firstChild); return host;
   }
   var RULERS = [['mars', 'المريخ'], ['venus', 'الزهرة'], ['mercury', 'عطارد'], ['moon', 'القمر'], ['sun', 'الشمس'], ['mercury', 'عطارد'], ['venus', 'الزهرة'], ['pluto', 'بلوتو'], ['jupiter', 'المشتري'], ['saturn', 'زحل'], ['uranus', 'أورانوس'], ['neptune', 'نبتون']];
   var STARNAMES = { 0: { 0: 'Hamal' }, 1: { 0: 'Aldebaran', 1: 'Elnath' }, 2: { 0: 'Castor', 1: 'Pollux' }, 3: {}, 4: { 0: 'Regulus', 2: 'Algieba', 7: 'Denebola' }, 5: { 0: 'Spica' }, 6: { 0: 'Zubenelgenubi', 1: 'Zubeneschamali' }, 7: { 4: 'Antares', 13: 'Shaula' }, 8: { 2: 'Kaus Australis', 5: 'Nunki' }, 9: { 5: 'Deneb Algedi' }, 10: { 0: 'Sadalsuud', 1: 'Sadalmelik' }, 11: {} };
@@ -212,7 +213,7 @@
     var tint = TINTS[i % 4], sr = rng(100 + i), dust = '';
     for (var di = 0; di < 70; di++) dust += '<circle cx="' + (sr() * 100).toFixed(1) + '" cy="' + (sr() * 100).toFixed(1) + '" r="' + (.12 + sr() * .35).toFixed(2) + '" fill="rgba(255,255,255,' + (.25 + sr() * .55).toFixed(2) + ')"/>';
     h.style.setProperty('--tint', tint);
-    h.innerHTML = '<svg class="cs-dust" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">' + dust + '</svg><div class="cb-float"><svg xmlns="' + NS + '" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="presentation">' + defs + lines + stars + '<text x="50" y="96" class="cb-name">كوكبة ' + c.n + ' · ' + c.e + '</text></svg></div>' +
+    h.innerHTML = '<svg class="cs-dust" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + dust + '</svg><div class="cb-float"><svg xmlns="' + NS + '" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" role="presentation">' + defs + lines + stars + '<text x="50" y="96" class="cb-name">كوكبة ' + c.n + ' · ' + c.e + '</text></svg></div>' +
       '<div class="cb-orbit"><img class="cb-ruler" alt="" src="' + img + '" data-ruler="' + rl[0] + '"></div>';
     caption();
   }
