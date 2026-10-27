@@ -78,3 +78,5 @@
 .cp-gender-meta{margin:.35rem 0;color:#b1b7c3;font-size:.78rem;line-height:1.6}
 .q-gender{max-width:20rem;margin:.65rem auto}
 .q-gender select{width:100%;min-height:42px}
+
+.aq-wheel-highlight{fill:rgba(217,178,124,.22);stroke:rgba(217,178,124,.7);stroke-width:1;pointer-events:none}
