@@ -19,6 +19,9 @@ assert.ok(webhook.includes('obj.pending !== true'), 'pending callbacks are rejec
 assert.ok(webhook.includes('obj.error_occured !== true'), 'failed callbacks are rejected');
 assert.ok(webhook.includes('obj.is_refunded !== true'), 'refunded callbacks are rejected');
 assert.ok(webhook.includes('fulfill_paid_order'), 'verified event uses atomic fulfillment');
+assert.ok(webhook.includes('provider_event_id: `${eventId}:not_paid`'), 'non-paid callbacks use a distinct idempotency key');
+assert.ok(webhook.includes('p_event_id: `${eventId}:paid`'), 'a later successful callback is not suppressed by an earlier non-paid callback');
+assert.ok(webhook.includes('Repeated successful callbacks still share one stable idempotency key.'), 'repeated successful callbacks remain idempotent');
 
 // Amount/currency validation and idempotency in the fulfillment SQL.
 assert.ok(migration.includes('v_order.amount_cents <> p_amount_cents'), 'amount mismatch is rejected');
