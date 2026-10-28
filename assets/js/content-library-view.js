@@ -24,9 +24,17 @@
       heading.textContent = entry.payload.title || '';
       article.appendChild(heading);
       if (entry.domain === 'tarot') {
-        const interpretation = entry.payload.upright && entry.payload.upright.interpretation;
+        const upright = entry.payload.upright || {};
+        if (Array.isArray(upright.keywords) && upright.keywords.length) {
+          const keywords = target.ownerDocument.createElement('p');
+          keywords.setAttribute('data-content-field', 'keywords');
+          keywords.textContent = upright.keywords.filter(value => typeof value === 'string' && value.trim()).join(' · ');
+          if (keywords.textContent) article.appendChild(keywords);
+        }
+        const interpretation = upright.interpretation;
         if (typeof interpretation === 'string' && interpretation.trim()) {
           const body = target.ownerDocument.createElement('p');
+          body.setAttribute('data-content-field', 'interpretation');
           body.textContent = interpretation;
           article.appendChild(body);
         }
