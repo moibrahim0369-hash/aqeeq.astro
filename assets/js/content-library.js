@@ -27,11 +27,11 @@
     if (entry.domain === 'tarot' && (!nonBlank(entry.payload?.title) || !isObject(entry.payload?.upright))) errors.push('tarot payload requires title and an upright object');
     if (entry.domain === 'astrology' && (!nonBlank(entry.payload?.title) || !nonBlank(entry.payload?.body))) errors.push('astrology payload requires title and body');
     if (entry.domain === 'psychology' && (!nonBlank(entry.payload?.title) || !nonBlank(entry.payload?.body))) errors.push('psychology payload requires title and body');
-    if (entry.workflow?.status === 'approved' || entry.workflow?.status === 'published') {
+    if (entry.workflow?.status === 'approved' || entry.workflow?.status === 'published' || entry.workflow?.status === 'withdrawn') {
       if (entry.review?.status !== 'approved') errors.push('approved/published entry requires review.status=approved');
       if (!nonBlank(entry.review?.reviewedBy) || !nonBlank(entry.review?.reviewedAt)) errors.push('approved/published entry requires reviewer and review timestamp');
     }
-    if (entry.workflow?.status === 'published' && !nonBlank(entry.workflow?.publishedAt)) errors.push('published entry requires publishedAt');
+    if ((entry.workflow?.status === 'published' || entry.workflow?.status === 'withdrawn') && !nonBlank(entry.workflow?.publishedAt)) errors.push('published/withdrawn entry requires publishedAt');
     return { valid: errors.length === 0, errors };
   }
   function isPublic(entry) {
