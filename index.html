@@ -3511,9 +3511,12 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
   'use strict';
   var target = document.getElementById('tarot-library-content');
   if (!target || !window.AqeeqContentLibrary || !window.AqeeqContentLibraryView) return;
-  var loader = window.AqeeqContentLibrary.createLoader({ version: 3 });
-  window.AqeeqContentLibraryView.mount({ target: target, loader: loader, path: 'tarot/tarot-library-pilot.json' })
-    .catch(function () { target.replaceChildren(); target.hidden = true; });
+  window.AqeeqTarotLibraryMount = function (version) {
+    var loader = window.AqeeqContentLibrary.createLoader({ version: version || 3 });
+    return window.AqeeqContentLibraryView.mount({ target: target, loader: loader, path: 'tarot/tarot-library-pilot.json' })
+      .catch(function () { target.replaceChildren(); target.hidden = true; return null; });
+  };
+  window.AqeeqTarotLibraryMount(3);
 })();
 </script>
 <script src="auth.js" type="module"></script>
