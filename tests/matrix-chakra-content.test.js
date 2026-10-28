@@ -71,7 +71,7 @@ async function readCards() {
   assert.equal(publishedVishuddha.fields.emotionsPsychology, 'نص المشاعر الرمزي المنشور.');
 
   const cards = await readCards();
-  assert.deepEqual(cards.map(card => card.aspect), ['physics', 'energy', 'emotions']);
+  assert.deepEqual(Array.from(cards, card => card.aspect), ['physics', 'energy', 'emotions']);
   assert.deepEqual(Object.keys(cards[0].fields), ['physicsPsychology']);
   assert.deepEqual(Object.keys(cards[1].fields), ['energyPsychology']);
   assert.deepEqual(Object.keys(cards[2].fields), ['emotionsPsychology']);
