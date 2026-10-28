@@ -104,7 +104,7 @@ Deno.serve(async (req: Request) => {
       if (!["draft", "rejected"].includes(versionRow.status)) problem(409, "لا يمكن إرسال الإصدار للمراجعة من حالته الحالية.");
       const { error } = await admin.from("tarot_content_versions").update({ status: "in_review", reviewed_by: actorId, reviewed_at: new Date().toISOString() }).eq("id", versionId);
       if (error) problem(503, "تعذر إرسال الإصدار للمراجعة.");
-      await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "needs_changes", notes: clean(body.notes, 3000) });
+      await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "submitted", notes: clean(body.notes, 3000) });
       return reply(req, { versionId, status: "in_review" });
     }
 
