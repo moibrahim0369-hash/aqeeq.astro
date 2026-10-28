@@ -15,7 +15,7 @@ for (let id = 1; id <= 22; id += 1) {
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.referenceRuleStatus, 'unverified');
     assert.equal(entry.meta?.chakraContent?.[chakraKey]?.bodySymbolStatus, 'omitted-no-verified-rule');
   }
-  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha', 'anahata']) {
+  for (const chakraKey of ['sahasrara', 'ajna', 'vishuddha', 'anahata', 'manipura']) {
     for (const key of aspects) {
       assert.equal(typeof entry.chakras?.[chakraKey]?.[key], 'string', `${chakraKey} ${key} for Arcana ${id}`);
       assert.ok(entry.chakras[chakraKey][key].trim().length >= 45, `${chakraKey} ${key} has a developed draft for Arcana ${id}`);
@@ -50,6 +50,14 @@ async function readWithStatuses(statuses, chakraKey) {
   vm.runInNewContext(loaderSource, context);
   return context.window.AqeeqMatrix.chakraText(7, chakraKey);
 }
+async function readCards() {
+  const core = { arcana: Array.from({ length: 22 }, (_, index) => ({ id: index + 1, name: { ar: 'أركانا ' + (index + 1) } })), chakras: [] };
+  const fields = { psychology: 'نص عام للمراجعة.', physicsPsychology: 'نص الجسد الرمزي المنشور.', energyPsychology: 'نص الطاقة الرمزي المنشور.', emotionsPsychology: 'نص المشاعر الرمزي المنشور.' };
+  const record = { id: 7, meta: { chakraContent: { vishuddha: { status: 'published' } } }, chakras: { vishuddha: fields } };
+  const context = { window: {}, fetch: async url => ({ ok: true, json: async () => url.includes('core.json') ? core : record }) };
+  vm.runInNewContext(loaderSource, context);
+  return context.window.AqeeqMatrix.chakraReading('vishuddha', { physics: 7, energy: 7, emotions: 7 });
+}
 (async () => {
   const statuses = { sahasrara: 'published', ajna: 'partial-review', vishuddha: 'partial-review', anahata: 'partial-review', manipura: 'partial-review' };
   const hiddenVishuddha = await readWithStatuses(statuses, 'vishuddha');
@@ -62,9 +70,15 @@ async function readWithStatuses(statuses, chakraKey) {
   assert.equal(publishedVishuddha.fields.energyPsychology, 'نص الطاقة الرمزي المنشور.');
   assert.equal(publishedVishuddha.fields.emotionsPsychology, 'نص المشاعر الرمزي المنشور.');
 
+  const cards = await readCards();
+  assert.deepEqual(cards.map(card => card.aspect), ['physics', 'energy', 'emotions']);
+  assert.deepEqual(Object.keys(cards[0].fields), ['physicsPsychology']);
+  assert.deepEqual(Object.keys(cards[1].fields), ['energyPsychology']);
+  assert.deepEqual(Object.keys(cards[2].fields), ['emotionsPsychology']);
+
   const hiddenManipura = await readWithStatuses(statuses, 'manipura');
   assert.equal(hiddenManipura.empty, true, 'Manipura draft remains hidden while unpublished');
   const publishedManipura = await readWithStatuses({ ...statuses, manipura: 'published' }, 'manipura');
   assert.equal(publishedManipura.empty, false, 'Manipura loads only after its own explicit publication');
-  console.log('Matrix chakra contract passed: all five reviewed chakra drafts contain the three required aspects; publication remains independently gated per chakra.');
+  console.log('Matrix chakra contract passed: all five reviewed chakra drafts contain the three required aspects; publication is independently gated and each UI card receives only its own aspect.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
