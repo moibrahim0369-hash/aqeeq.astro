@@ -30,7 +30,7 @@ const waitForFreshFile = () => new Promise(resolve => setTimeout(resolve, 1200))
       return target && target.hidden === true;
     });
     assert.equal(await page.locator('#tarot-library-content article').count(), 0, 'draft must not render');
-    assert.ok(contentRequests.some(url => url.includes('tarot-library-pilot.json?v=2')), 'real tarot content path must be requested');
+    assert.ok(contentRequests.some(url => url.includes('tarot-library-pilot.json?v=3')), 'real tarot content path must be requested');
 
     // Flip only the temporary local fixture state to exercise the actual page binding.
     const published = {
