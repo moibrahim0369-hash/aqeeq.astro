@@ -76,7 +76,12 @@ Deno.serve(async (req: Request) => {
     if (!question) fail(400, "اكتب سؤالك الأول.");
     if (typeof body.question !== "string" || body.question.length > MAX_QUESTION_CHARS) fail(400, "السؤال أطول من المسموح.");
     const gender = ["masculine", "feminine", "neutral"].includes(String(body.gender)) ? String(body.gender) : "neutral";
-    const requestedCards = Array.isArray(body.cardIds) ? body.cardIds.filter((id: unknown) => typeof id === "string").slice(0, 5) as string[] : [];
+    const selectedCardIds = Array.isArray(body.cardIds) ? body.cardIds.filter((id: unknown) => typeof id === "string").slice(0, 5) as string[] : [];
+    const spread = Array.isArray(body.spread) ? body.spread.slice(0, 10).map((item: any) => ({
+      position: text(item?.position, 80),
+      cardId: text(item?.cardId, 100),
+    })).filter((item: any) => item.position && item.cardId) : [];
+    const requestedCards = [...new Set([...selectedCardIds, ...spread.map((item: any) => item.cardId)])].slice(0, 10);
     const { count, error: countError } = await admin.from("tarot_assistant_requests")
       .select("id", { count: "exact", head: true }).eq("user_id", userId)
       .gte("created_at", new Date(Date.now() - 86400000).toISOString());
@@ -117,6 +122,7 @@ Deno.serve(async (req: Request) => {
       version: row.version,
     }));
     const genderGuide = gender === "masculine" ? "خاطب المستخدم بصيغة المذكر." : gender === "feminine" ? "خاطبي المستخدم بصيغة المؤنث." : "استخدم صياغة محايدة قدر الإمكان.";
+    const spreadGuide = spread.length ? "سياق التوزيعة ومواقع الأوراق: " + JSON.stringify(spread) + ". اربط كل ورقة بموضعها، ولا تفترض معنى موضع غير مذكور." : "لا يوجد سياق توزيعة بمواقع محددة.";
     const systemPrompt = `أنت مساعد التاروت في عقيق أسترو. أجب بالعربية المصرية الواضحة والعميقة. ${genderGuide}
 استخدم فقط قاعدة المعرفة المرفقة في المعاني المرجعية. افصل بوضوح بين: (1) ما يقوله المرجع الموجود، (2) قراءة تحليلية احتمالية من تركيب المعاني.
 لا تخترع أسماء كتب أو اقتباسات أو مراجع. اذكر المصدر فقط إذا كان موجودًا في قائمة المصادر المرفقة، واربطه بمعرّف المصدر أو عنوانه المتاح. إذا كانت المعرفة لا تكفي، قل ذلك صراحة ولا تملأ الفراغ بالتخمين.
@@ -128,7 +134,7 @@ Deno.serve(async (req: Request) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: systemPrompt }] },
-        contents: [{ role: "user", parts: [{ text: `السؤال: ${question}\n\nالمعرفة المسترجعة (JSON):\n${JSON.stringify(knowledge)}\n\nالمراجع المتاحة (JSON):\n${JSON.stringify(sources)}` }] }],
+        contents: [{ role: "user", parts: [{ text: `السؤال: ${question}\n${spreadGuide}\n\nالمعرفة المسترجعة (JSON):\n${JSON.stringify(knowledge)}\n\nالمراجع المتاحة (JSON):\n${JSON.stringify(sources)}` }] }],
         generationConfig: { temperature: 0.45, maxOutputTokens: 1400 },
       }),
     });
