@@ -32,7 +32,8 @@ create table if not exists public.tarot_sources (
   status text not null default 'raw' check (status in ('raw','in_review','approved','archived')),
   created_by uuid references auth.users(id) on delete set null,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  check (status <> 'approved' or source_url is not null or citation is not null)
 );
 
 create table if not exists public.tarot_materials (
@@ -137,6 +138,8 @@ revoke all on public.tarot_cards, public.tarot_sources, public.tarot_materials,
 grant select on public.tarot_cards, public.tarot_content_versions to anon, authenticated;
 grant select, insert, update on public.tarot_cards, public.tarot_sources,
   public.tarot_materials, public.tarot_content_versions, public.tarot_reviews to authenticated;
+grant all on public.tarot_cards, public.tarot_sources, public.tarot_materials,
+  public.tarot_content_versions, public.tarot_reviews, public.tarot_assistant_requests to service_role;
 
 create policy tarot_cards_read_published_or_editor
   on public.tarot_cards for select to anon, authenticated
