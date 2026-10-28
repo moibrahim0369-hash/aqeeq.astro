@@ -1,5 +1,5 @@
 const assert = require("node:assert/strict");
-const { rankTarotKnowledge, normalize } = require("../assets/js/tarot-retrieval.js");
+const { rankTarotKnowledge, normalize, filterTarotCatalog, toggleProgressList } = require("../assets/js/tarot-retrieval.js");
 const data = require("../assets/data/tarot/study-cards.json");
 assert.equal(data.cards.length, 78, "Knowledge catalog must contain exactly 78 cards");
 assert.equal(new Set(data.cards.map((card) => card.id)).size, 78, "All 78 card IDs must be unique");
@@ -22,6 +22,11 @@ for (const card of data.cards) {
   assert.notEqual(card.status, "published", "Generated starter content must not be marked published without human review");
 }
 assert.equal(normalize("الكاهِن العُليا"), "الكاهن العليا");
+const catalog = data.cards.map((card) => [card.id, card.number, card.nameAr, card.nameEn, card.arcana === "major" ? "major" : card.suit]);
+assert.ok(filterTarotCatalog(catalog, "القمر", "major").some((item) => item[0] === "major-18-moon"), "Arabic search and Major filter should work");
+assert.equal(filterTarotCatalog(catalog, "", "wands").length, 14, "Suit filter should return 14 cards");
+assert.deepEqual(toggleProgressList([], "major-01-magician"), ["major-01-magician"], "Progress helper should add a card");
+assert.deepEqual(toggleProgressList(["major-01-magician"], "major-01-magician"), [], "Progress helper should remove a completed card");
 const results = rankTarotKnowledge(data.cards, "القمر والغموض والقلق من المجهول", {limit:5});
 assert.ok(results.length > 0, "Retrieval should return matching knowledge");
 assert.ok(results.some((item) => item.card.id === "major-18-moon"), "Moon should rank for uncertainty/fear queries");
