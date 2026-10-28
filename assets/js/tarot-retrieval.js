@@ -4,7 +4,7 @@
  if(root) root.AqeqTarotRetrieval=api;
 })(typeof globalThis!=="undefined"?globalThis:this,function(){
  "use strict";
- function normalize(value){return String(value??"").toLocaleLowerCase("ar").normalize("NFKC").replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/[^\p{L}\p{N}]+/gu," ").trim();}
+ function normalize(value){return String(value??"").toLocaleLowerCase("ar").normalize("NFKC").replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/[\u064B-\u065F\u0670\u0640]/g,"").replace(/[^\p{L}\p{N}]+/gu," ").trim();}
  function tokens(value){return normalize(value).split(/\s+/u).filter(token=>token.length>1);}
  function searchable(card){
   return normalize([
