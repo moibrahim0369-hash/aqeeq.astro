@@ -29,11 +29,17 @@ function fail(status: number, message: string): never {
 function text(value: unknown, max: number) {
   return typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, max) : "";
 }
+function normalize(value: string) {
+  return value.toLocaleLowerCase("ar").normalize("NFKC")
+    .replace(/[أإآ]/g, "ا").replace(/ى/g, "ي")
+    .replace(/[\u064B-\u065F\u0670\u0640]/g, "")
+    .replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+}
 function tokens(value: string) {
-  return new Set(value.toLocaleLowerCase("ar").split(/[^\p{L}\p{N}]+/u).filter((part) => part.length > 2));
+  return new Set(normalize(value).split(/\s+/u).filter((part) => part.length > 2));
 }
 function scoreRow(row: any, queryTokens: Set<string>) {
-  const searchable = JSON.stringify([row.tarot_cards?.name_ar, row.tarot_cards?.name_en, row.reference_content, row.aqeq_content]).toLocaleLowerCase("ar");
+  const searchable = normalize(JSON.stringify([row.tarot_cards?.name_ar, row.tarot_cards?.name_en, row.reference_content, row.aqeq_content]));
   let score = 0;
   for (const token of queryTokens) if (searchable.includes(token)) score += token.length > 5 ? 3 : 1;
   return score;
