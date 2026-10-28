@@ -54,8 +54,6 @@ Deno.serve(async (req: Request) => {
   if (req.method !== "POST") return reply(req, { error: "الطريقة غير مدعومة." }, 405);
   const token = (req.headers.get("Authorization") ?? "").replace(/^Bearer\s+/i, "").trim();
   if (!token) return reply(req, { error: "سجّل الدخول لاستخدام مساعد التاروت." }, 401);
-  if (!GEMINI_API_KEY) return reply(req, { error: "خدمة النموذج غير مهيأة على الخادم بعد." }, 503);
-
   const userClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     auth: { persistSession: false, autoRefreshToken: false },
     global: { headers: { Authorization: `Bearer ${token}` } },
@@ -67,6 +65,7 @@ Deno.serve(async (req: Request) => {
   try {
     const { data: authData, error: authError } = await userClient.auth.getUser(token);
     if (authError || !authData.user) fail(401, "جلسة الدخول غير صالحة. سجّل الدخول من جديد.");
+    if (!GEMINI_API_KEY) return reply(req, { error: "خدمة النموذج غير مهيأة على الخادم بعد." }, 503);
     const userId = authData.user.id;
     const raw = await req.text();
     if (raw.length > 10000) fail(413, "حجم الطلب أكبر من المسموح.");
