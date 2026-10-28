@@ -44,7 +44,7 @@ Deno.serve(async (req: Request) => {
     const { data: auth, error: authError } = await userClient.auth.getUser(token);
     if (authError || !auth.user) problem(401, "جلسة الدخول غير صالحة.");
     const role = auth.user.app_metadata?.role;
-    if (!["admin", "editor"].includes(role)) problem(403, "العملية متاحة للمحررين المصرح لهم فقط.");
+    if (!["admin", "editor", "writer", "reviewer"].includes(role)) problem(403, "العملية متاحة لأدوار الموسوعة المصرح لها فقط.");
     const actorId = auth.user.id;
     const raw = await req.text();
     if (raw.length > 220000) problem(413, "حجم المادة أكبر من المسموح.");
@@ -53,11 +53,15 @@ Deno.serve(async (req: Request) => {
     const action = clean(body.action, 40);
 
     if (action === "list_queue") {
-      const [sourcesResult, materialsResult, versionsResult] = await Promise.all([
-        admin.from("tarot_sources").select("id,title,source_url,status,created_at").in("status", ["raw","in_review","approved"]).order("created_at", { ascending: false }).limit(50),
-        admin.from("tarot_materials").select("id,title,card_id,source_id,status,created_at").in("status", ["raw","organized","drafted"]).order("created_at", { ascending: false }).limit(50),
-        admin.from("tarot_content_versions").select("id,card_id,version,status,source_ids,material_ids,created_at,tarot_cards!inner(name_ar,name_en)").in("status", ["draft","in_review","approved"]).order("created_at", { ascending: false }).limit(50),
-      ]);
+      let sourceQuery = admin.from("tarot_sources").select("id,title,source_url,status,created_at,created_by").in("status", ["raw","in_review","approved"]).order("created_at", { ascending: false }).limit(50);
+      let materialQuery = admin.from("tarot_materials").select("id,title,card_id,source_id,status,created_at,created_by").in("status", ["raw","organized","drafted"]).order("created_at", { ascending: false }).limit(50);
+      let versionQuery = admin.from("tarot_content_versions").select("id,card_id,version,status,source_ids,material_ids,created_at,created_by,tarot_cards!inner(name_ar,name_en)").in("status", ["draft","in_review","approved"]).order("created_at", { ascending: false }).limit(50);
+      if (role === "writer") {
+        sourceQuery = sourceQuery.eq("created_by", actorId);
+        materialQuery = materialQuery.eq("created_by", actorId);
+        versionQuery = versionQuery.eq("created_by", actorId);
+      }
+      const [sourcesResult, materialsResult, versionsResult] = await Promise.all([sourceQuery, materialQuery, versionQuery]);
       if (sourcesResult.error || materialsResult.error || versionsResult.error) problem(503, "تعذر تحميل قائمة المراجعة.");
       return reply(req, { sources: sourcesResult.data ?? [], materials: materialsResult.data ?? [], versions: versionsResult.data ?? [] });
     }
@@ -197,7 +201,8 @@ Deno.serve(async (req: Request) => {
     }
 
     if (action === "approve" || action === "publish") {
-      if (role !== "admin") problem(403, "الاعتماد والنشر متاحان للمدير فقط.");
+      if (action === "approve" && !["reviewer", "admin"].includes(role)) problem(403, "اعتماد المحتوى متاح للمراجع أو المدير فقط.");
+      if (action === "publish" && role !== "admin") problem(403, "نشر المحتوى متاح للمدير فقط.");
       if (action === "approve") {
         if (versionRow.status !== "in_review") problem(409, "لا يمكن اعتماد إصدار لم يصل إلى مرحلة المراجعة.");
         if (!versionRow.source_ids?.length) problem(422, "لا يمكن اعتماد محتوى بلا مراجع موثقة.");
@@ -231,7 +236,7 @@ Deno.serve(async (req: Request) => {
     }
 
     if (action === "reject") {
-      if (role !== "admin") problem(403, "رفض الإصدار متاح للمدير فقط.");
+      if (!["reviewer", "admin"].includes(role)) problem(403, "رفض الإصدار متاح للمراجع أو المدير فقط.");
       const { error } = await admin.from("tarot_content_versions").update({ status: "rejected" }).eq("id", versionId);
       if (error) problem(503, "تعذر رفض الإصدار.");
       const { error: auditError } = await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "rejected", notes: clean(body.notes, 3000) });
