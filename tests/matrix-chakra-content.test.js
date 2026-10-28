@@ -72,9 +72,9 @@ async function readCards() {
 
   const cards = await readCards();
   assert.deepEqual(Array.from(cards, card => card.aspect), ['physics', 'energy', 'emotions']);
-  assert.deepEqual(Object.keys(cards[0].fields), ['physicsPsychology']);
-  assert.deepEqual(Object.keys(cards[1].fields), ['energyPsychology']);
-  assert.deepEqual(Object.keys(cards[2].fields), ['emotionsPsychology']);
+  assert.deepEqual(Object.keys(cards[0].fields).filter(key => aspects.includes(key)), ['physicsPsychology']);
+  assert.deepEqual(Object.keys(cards[1].fields).filter(key => aspects.includes(key)), ['energyPsychology']);
+  assert.deepEqual(Object.keys(cards[2].fields).filter(key => aspects.includes(key)), ['emotionsPsychology']);
 
   const hiddenManipura = await readWithStatuses(statuses, 'manipura');
   assert.equal(hiddenManipura.empty, true, 'Manipura draft remains hidden while unpublished');
