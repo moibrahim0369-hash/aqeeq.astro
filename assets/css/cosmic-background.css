@@ -5,33 +5,24 @@
   background:radial-gradient(ellipse at 50% 46%,rgba(var(--tint),.20),transparent 62%),radial-gradient(ellipse at 15% 10%,rgba(110,70,210,.2),transparent 50%),radial-gradient(ellipse at 90% 92%,rgba(40,110,200,.16),transparent 55%)}
 #signs>.wrap{position:relative;z-index:1}
 .cs-dust{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85}
-.cb-float{grid-area:1/1;z-index:1;width:100%;height:100%;display:grid;place-items:center;animation:cbFloat 18s ease-in-out infinite alternate;transform-origin:50% 50%}
-.const-bg .cb-float svg{display:block;width:min(100vw,660px);height:min(80vh,660px);overflow:visible;animation:cbIn 1s ease both}
+.cb-float{grid-area:1/1;z-index:1;width:100%;height:100%;display:grid;place-items:center;transform-origin:50% 50%;animation:none!important}
+.const-bg .cb-float svg{display:block;width:min(100vw,660px);height:min(80vh,660px);overflow:visible;animation:none!important}
 /* لوحات الأبراج زجاجية: شفافة بما يكفي لظهور الكوكبة، وكثيفة بما يكفي لوضوح الكلام */
 #signs .picker button:not([aria-pressed=true]){background:linear-gradient(160deg,rgba(26,18,52,.52),rgba(10,7,24,.46))!important;border-color:rgba(217,178,124,.28)!important}
 #signs .arch{background:linear-gradient(165deg,rgba(24,16,48,.66),rgba(9,6,22,.62))!important;border:1px solid rgba(217,178,124,.26)!important;box-shadow:0 8px 28px rgba(0,0,0,.35)}
 #signs .arch .fc,#signs .arch .sx,#signs .arch .sx-card,#signs .arch .sec-body{background:rgba(10,7,24,.38)!important}
-.cb-line{stroke:rgba(236,205,150,.5);stroke-width:.28;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:cbDraw 1.1s ease forwards;animation-delay:var(--d,0s)}
-.cb-run{stroke:#fff3d2;stroke-width:.6;stroke-linecap:round;stroke-dasharray:7 93;stroke-dashoffset:100;opacity:.95;animation:cbRun 3.8s linear infinite;animation-delay:calc(1.2s + var(--d,0s))}
-.cb-glow{fill:url(#cbGlow);opacity:0;animation:cbGlowIn .8s ease forwards,cbPulse 3.4s ease-in-out infinite;animation-delay:var(--d,0s),calc(var(--d,0s) + .9s)}
-.cb-star{fill:#fffaf0;opacity:0;animation:cbStar .6s ease forwards,cbTw 3.4s ease-in-out infinite;animation-delay:var(--d,0s),calc(var(--d,0s) + .9s)}
-.cb-spike{stroke:rgba(255,240,205,.75);stroke-width:.14;stroke-linecap:round;animation:cbPulse 3.4s ease-in-out infinite}
+.cb-line{stroke:rgba(236,205,150,.5);stroke-width:.28;stroke-linecap:round;stroke-dasharray:none;stroke-dashoffset:0;animation:none!important}
+.cb-run{stroke:#fff3d2;stroke-width:.6;stroke-linecap:round;stroke-dasharray:none;stroke-dashoffset:0;opacity:0;animation:none!important;display:none}
+.cb-glow{fill:url(#cbGlow);opacity:0;animation:none!important}
+.cb-star{fill:#fffaf0;opacity:1;animation:none!important}
+.cb-spike{stroke:rgba(255,240,205,.75);stroke-width:.14;stroke-linecap:round;animation:none!important;opacity:.9}
 .cb-halo{fill:rgba(190,205,255,.2)}
 .cb-name{fill:rgba(236,210,155,.85);font:600 3.2px "IBM Plex Sans Arabic",system-ui,sans-serif;text-anchor:middle;letter-spacing:.12px}
 .cb-sname{fill:rgba(232,215,180,.72);font:500 2.1px system-ui,sans-serif;letter-spacing:.1px}
 /* الكوكب الحاكم بيدور حوالين الكوكبة */
-.cb-orbit{position:absolute;z-index:2;left:50%;top:48%;width:0;height:0;animation:cbSpin 44s linear infinite}
-.cb-ruler{position:absolute;left:min(36vw,210px);top:-26px;width:52px;height:52px;filter:drop-shadow(0 0 10px rgba(255,226,170,.55));animation:cbSpinBack 44s linear infinite}
-@keyframes cbIn{from{opacity:0;transform:scale(.96)}to{opacity:.92;transform:none}}
-@keyframes cbDraw{to{stroke-dashoffset:0}}
-@keyframes cbRun{from{stroke-dashoffset:100}to{stroke-dashoffset:-100}}
-@keyframes cbStar{to{opacity:1}}
-@keyframes cbGlowIn{to{opacity:1}}
-@keyframes cbTw{0%,100%{opacity:1}50%{opacity:.7}}
-@keyframes cbPulse{0%,100%{opacity:.95}50%{opacity:.45}}
-@keyframes cbFloat{from{transform:translate3d(-6px,-4px,0) rotate(-1.2deg)}to{transform:translate3d(6px,5px,0) rotate(1.2deg)}}
-@keyframes cbSpin{to{transform:rotate(360deg)}}
-@keyframes cbSpinBack{to{transform:rotate(-360deg)}}
+.cb-orbit{position:absolute;z-index:2;left:50%;top:48%;width:0;height:0;animation:none!important}
+.cb-ruler{position:absolute;left:min(36vw,210px);top:-26px;width:52px;height:52px;filter:drop-shadow(0 0 10px rgba(255,226,170,.55));animation:none!important}
+/* Animations disabled for stable display */
 @media (prefers-reduced-motion:reduce){.cb-line{animation:none;stroke-dashoffset:0}.cb-run{display:none}.cb-star,.cb-glow{animation:none;opacity:1}.const-bg svg,.cb-float,.cb-orbit,.cb-ruler,.cb-spike{animation:none}}
 .const-cap{margin:.2rem 0 .6rem;color:#d9b27c;font-size:.82rem;letter-spacing:.02em;opacity:.9}
 
