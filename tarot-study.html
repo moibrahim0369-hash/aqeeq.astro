@@ -59,18 +59,21 @@
         </section>
         <section class="tarot-tool">
           <h3>اسأل مساعد المكتبة</h3>
-          <p class="tarot-muted">اكتب السؤال لتكوين أمر توجيهي أولي. الاتصال الفعلي بالنموذج سيُضاف بعد تجهيز الاسترجاع من قاعدة المعرفة وخدمة خلفية آمنة.</p>
+          <p class="tarot-muted">اكتب سؤالك للحصول على قراءة من المساعد الخلفي. الخدمة تستخدم المحتوى المنشور والمراجع فقط، ولن تعرض المسودات على أنها معرفة معتمدة.</p>
           <label for="tarot-question">سؤالك</label>
-          <textarea id="tarot-question" placeholder="مثال: إزاي أفرق بين الساحر البنّاء والساحر اللي بيستخدم الكلام بدل التنفيذ؟"></textarea>
-          <button class="tarot-button primary" id="tarot-generate-prompt" type="button">تجهيز أمر السؤال</button>
-          <div class="tarot-output" id="tarot-prompt-output" aria-live="polite">الأمر التوجيهي هيظهر هنا.</div>
-          <p class="tarot-muted" id="tarot-prompt-status">لسه مفيش اتصال بنموذج ذكاء اصطناعي في هذه المرحلة.</p>
+          <textarea id="tarot-question" maxlength="1200" placeholder="مثال: إزاي أفهم التناقض بين الرغبة في القرب والخوف من فقدان الاستقلال؟"></textarea>
+          <label for="tarot-gender">صيغة الخطاب</label>
+          <select id="tarot-gender"><option value="neutral">محايد</option><option value="masculine">مذكر</option><option value="feminine">مؤنث</option></select>
+          <button class="tarot-button primary" id="tarot-generate-prompt" type="button">اسأل مساعد المكتبة</button>
+          <div class="tarot-output" id="tarot-prompt-output" aria-live="polite">إجابة المساعد هتظهر هنا بعد الاتصال بالخدمة الآمنة.</div>
+          <p class="tarot-muted" id="tarot-prompt-status">المساعد يحتاج جلسة دخول صالحة، ونشر ترحيل قاعدة المعرفة، وضبط سر GEMINI_API_KEY على الخادم. لن تظهر أي مسودة غير منشورة في الاسترجاع.</p>
         </section>
       </div>
     </div>
   </section>
   <p class="tarot-footer" id="tarot-progress">جارٍ تحميل تقدم المذاكرة…</p>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/tarot-study.js" defer></script>
 </body>
 </html>
