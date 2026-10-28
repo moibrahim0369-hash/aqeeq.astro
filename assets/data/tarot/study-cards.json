@@ -375,7 +375,7 @@
           "title": "The Pictorial Key to the Tarot: I. The Magician",
           "author": "Arthur Edward Waite",
           "year": 1911,
-          "sourceType": "primary_text",
+          "sourceType": "book",
           "url": "https://en.wikisource.org/wiki/Page:The_Pictorial_Key_to_the_Tarot.pdf/85",
           "section": "Part II, Section 2, I. The Magician",
           "supports": [
@@ -385,21 +385,23 @@
             "four suit emblems",
             "flowers"
           ],
-          "note": "مصدر أولي تاريخي لوصف وايت الرمزي؛ تم تلخيص الأفكار دون نقل نصه."
+          "note": "مصدر أولي تاريخي لوصف وايت الرمزي؛ تم تلخيص الأفكار دون نقل نصه.",
+          "sourceRole": "primary_text"
         },
         {
           "id": "waite-1911-divinatory-magician",
           "title": "The Pictorial Key to the Tarot: The Magician, divinatory meanings",
           "author": "Arthur Edward Waite",
           "year": 1911,
-          "sourceType": "primary_text",
+          "sourceType": "book",
           "url": "https://en.wikisource.org/wiki/Page:The_Pictorial_Key_to_the_Tarot.pdf/296",
           "section": "Part III, Section 3, The Greater Arcana and their Divinatory Meanings, card 1",
           "supports": [
             "traditional upright meanings",
             "historical reversed meanings"
           ],
-          "note": "يعرض قائمة وايت التاريخية، وهي تختلف عن تفسيرات معاصرة شائعة."
+          "note": "يعرض قائمة وايت التاريخية، وهي تختلف عن تفسيرات معاصرة شائعة.",
+          "sourceRole": "primary_text"
         },
         {
           "id": "biddy-magician",
@@ -414,14 +416,15 @@
             "modern reversed themes",
             "modern RWS symbol reading"
           ],
-          "note": "مصدر ثانوي معاصر للمقارنة، وليس مرجعًا أكاديميًا أو إجماعًا لكل المدارس."
+          "note": "مصدر ثانوي معاصر للمقارنة، وليس مرجعًا أكاديميًا أو إجماعًا لكل المدارس.",
+          "sourceRole": "modern_secondary"
         },
         {
           "id": "va-tarot-history",
           "title": "A history of tarot cards",
           "author": "Victoria and Albert Museum",
-          "year": 2026,
-          "sourceType": "museum_article",
+          "year": null,
+          "sourceType": "article",
           "url": "https://www.vam.ac.uk/articles/tarot-cards",
           "section": "What is tarot?; History of tarot",
           "supports": [
@@ -429,7 +432,9 @@
             "deck context",
             "four suit associations"
           ],
-          "note": "مرجع متحفي للسياق التاريخي العام؛ لا يُستخدم لإثبات قراءة نفسية."
+          "note": "مرجع متحفي للسياق التاريخي العام؛ لا يُستخدم لإثبات قراءة نفسية.",
+          "sourceRole": "museum_history",
+          "updatedOn": "2026-07-16"
         }
       ],
       "status": "in_review",
