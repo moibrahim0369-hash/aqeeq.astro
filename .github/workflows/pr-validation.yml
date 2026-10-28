@@ -53,6 +53,8 @@ jobs:
         run: node tests/matrix-chakra-content.test.js
       - name: Content library lifecycle contract
         run: node tests/content-library-lifecycle.test.js
+      - name: Content library public UI lifecycle E2E
+        run: node tests/content-library-preview.e2e.js
       - name: Validate content batch examples
         run: |
           node scripts/validate-content-batch.js docs/content-examples
