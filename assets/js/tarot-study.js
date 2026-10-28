@@ -187,7 +187,8 @@ async function generatePrompt() {
  try {
   const {data:sessionData,error:sessionError}=await supabaseClient.auth.getSession();
   if(sessionError||!sessionData?.session?.access_token) throw new Error("سجّل الدخول من الموقع الأول لاستخدام المساعد.");
-  const {data,error}=await supabaseClient.functions.invoke("tarot-assistant",{body:{question,gender:$("#tarot-gender")?.value||"neutral",cardIds:card?[card.id]:[]}});
+  const groundedQuestion=card?"الورقة المختارة: "+card.nameAr+" ("+card.nameEn+"). سؤال المستخدم: "+question:question;
+  const {data,error}=await supabaseClient.functions.invoke("tarot-assistant",{body:{question:groundedQuestion,gender:$("#tarot-gender")?.value||"neutral",cardIds:card?.status==="published"?[card.id]:[]}});
   if(error) throw error;
   if(data?.error) throw new Error(data.error);
   $("#tarot-prompt-output").textContent=data.answer||"الخدمة رجعت من غير إجابة.";
