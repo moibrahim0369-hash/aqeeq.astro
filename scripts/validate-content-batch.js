@@ -4,7 +4,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const Library = require('../assets/js/content-library.js');
 
-const args = process.argv.slice(2);\nconst releaseMode = args[0] === '--release';\nconst rootArg = releaseMode ? args[1] : args[0];\nconst root = path.resolve(rootArg || 'assets/data/content');
+const args = process.argv.slice(2);
+const releaseMode = args[0] === '--release';
+const rootArg = releaseMode ? args[1] : args[0];
+const root = path.resolve(rootArg || 'assets/data/content');
 const errors = [];
 const seen = new Set();
 let checked = 0;
