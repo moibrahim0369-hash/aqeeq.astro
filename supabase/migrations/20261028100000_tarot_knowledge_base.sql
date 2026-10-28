@@ -142,6 +142,12 @@ grant select, insert, update on public.tarot_cards, public.tarot_sources,
 grant all on public.tarot_cards, public.tarot_sources, public.tarot_materials,
   public.tarot_content_versions, public.tarot_reviews, public.tarot_assistant_requests to service_role;
 
+-- All editorial writes go through tarot-editor, which validates the caller's role,
+-- ownership and state transitions before using the service role. Authenticated
+-- clients may read only what RLS allows, but cannot bypass those checks with direct writes.
+revoke insert, update on public.tarot_cards, public.tarot_sources, public.tarot_materials,
+  public.tarot_content_versions, public.tarot_reviews from anon, authenticated;
+
 create policy tarot_cards_read_published_or_editor
   on public.tarot_cards for select to anon, authenticated
   using (status = 'published' or (select public.is_tarot_editor()));
