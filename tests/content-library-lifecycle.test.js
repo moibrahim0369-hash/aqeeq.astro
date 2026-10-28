@@ -7,6 +7,10 @@ const sample = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'assets', '
 assert.equal(Library.validateEntry(sample).valid, true);
 assert.equal(Library.isPublic(sample), false);
 assert.equal(Library.resolve(sample), null);
+const inReview={...sample,workflow:{status:'in-review',publishedAt:null}};
+assert.equal(Library.validateEntry(inReview).valid,true);
+assert.equal(Library.isPublic(inReview),false);
+assert.equal(Library.resolve(inReview),null);
 assert.equal(Library.validateEntry({...sample,provenance:{authorship:'only'}}).valid,false);
 assert.equal(Library.validateEntry({...sample,workflow:{status:'live'}}).valid,false);
 const approved={...sample,workflow:{status:'approved',publishedAt:null},review:{status:'approved',reviewedBy:'qa-reviewer',reviewedAt:'2026-10-28T00:00:00Z'}};
