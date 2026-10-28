@@ -53,3 +53,13 @@ jobs:
         run: node tests/matrix-chakra-content.test.js
       - name: Content library lifecycle contract
         run: node tests/content-library-lifecycle.test.js
+      - name: Validate content batch examples
+        run: |
+          node scripts/validate-content-batch.js docs/content-examples
+          node scripts/validate-content-batch.js assets/data/content
+      - name: Preview asset staging excludes repository internals
+        run: |
+          sh scripts/prepare-preview-assets.sh
+          test ! -e .preview-assets/.git
+          test ! -e .preview-assets/.wrangler
+          test ! -e .preview-assets/node_modules
