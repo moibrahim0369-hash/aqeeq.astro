@@ -52,6 +52,16 @@ Deno.serve(async (req: Request) => {
     try { body = JSON.parse(raw); } catch { problem(400, "صيغة الطلب غير صحيحة."); }
     const action = clean(body.action, 40);
 
+    if (action === "list_queue") {
+      const [sourcesResult, materialsResult, versionsResult] = await Promise.all([
+        admin.from("tarot_sources").select("id,title,source_url,status,created_at").in("status", ["raw","in_review","approved"]).order("created_at", { ascending: false }).limit(50),
+        admin.from("tarot_materials").select("id,title,card_id,source_id,status,created_at").in("status", ["raw","organized","drafted"]).order("created_at", { ascending: false }).limit(50),
+        admin.from("tarot_content_versions").select("id,card_id,version,status,source_ids,created_at,tarot_cards!inner(name_ar,name_en)").in("status", ["draft","in_review","approved"]).order("created_at", { ascending: false }).limit(50),
+      ]);
+      if (sourcesResult.error || materialsResult.error || versionsResult.error) problem(503, "تعذر تحميل قائمة المراجعة.");
+      return reply(req, { sources: sourcesResult.data ?? [], materials: materialsResult.data ?? [], versions: versionsResult.data ?? [] });
+    }
+
     if (action === "ingest_raw") {
       const title = clean(body.title, 180);
       const rawText = typeof body.rawText === "string" ? body.rawText.trim() : "";
