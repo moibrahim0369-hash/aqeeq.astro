@@ -26,3 +26,13 @@ jobs:
         run: node tests/swiss-house-engine-comparison.test.js
       - name: Paymob and report-delivery contract
         run: node tests/paymob-delivery-contract.test.js
+      - name: Tarot study data contract
+        run: node tests/tarot-study.test.js
+      - name: Tarot content quality audit
+        run: node tests/tarot-content-quality-audit.test.js
+      - name: Tarot content import contract
+        run: node tests/tarot-content-import-contract.test.js
+      - name: Tarot retrieval ranking
+        run: node tests/tarot-retrieval.test.js
+      - name: Tarot security contracts
+        run: node tests/tarot-security-contract.test.js

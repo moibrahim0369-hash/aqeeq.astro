@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0d0a12">
+  <meta name="robots" content="noindex,nofollow">
+  <title>مختبر التاروت | عقيق أسترو</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tarot-study.css">
+</head>
+<body class="tarot-study-page">
+<main class="tarot-shell">
+  <header class="tarot-topbar">
+    <a class="tarot-brand" href="index.html">عقيق أسترو ✦</a>
+    <a class="tarot-home-link" href="index.html">العودة للموقع</a>
+  </header>
+  <section class="tarot-hero">
+    <span class="tarot-eyebrow">AQEQ ASTRO · STUDY LAB</span>
+    <h1>مختبر التاروت</h1>
+    <p>مساحة لدراسة الأوراق، وتنظيم المراجع، وفهم المعاني التقليدية والتحليلات النفسية، مع التمييز بين المحتوى المعتمد والمسودات التي ما زالت قيد البناء.</p>
+  </section>
+  <section class="tarot-layout" aria-label="مكتبة التاروت">
+    <aside class="tarot-panel">
+      <div class="tarot-panel-head">
+        <h2>فهرس الأوراق</h2>
+        <div class="tarot-muted" id="tarot-catalog-count">جارٍ تحميل الفهرس…</div>
+        <input class="tarot-search" id="tarot-search" type="search" placeholder="ابحث باسم الكارت أو رقمه…" aria-label="ابحث في الكروت">
+        <div class="tarot-filters" aria-label="تصفية الفهرس">
+          <button class="tarot-chip" type="button" data-filter="all" aria-pressed="true">الكل</button>
+          <button class="tarot-chip" type="button" data-filter="major" aria-pressed="false">الأركانا الكبرى</button>
+          <button class="tarot-chip" type="button" data-filter="wands" aria-pressed="false">الصولجانات</button>
+          <button class="tarot-chip" type="button" data-filter="cups" aria-pressed="false">الكؤوس</button>
+          <button class="tarot-chip" type="button" data-filter="swords" aria-pressed="false">السيوف</button>
+          <button class="tarot-chip" type="button" data-filter="pentacles" aria-pressed="false">الخماسيات</button>
+        </div>
+      </div>
+      <div class="tarot-card-list" id="tarot-catalog"></div>
+    </aside>
+    <div>
+      <article class="tarot-panel" id="tarot-detail" aria-label="تفاصيل الكارت">
+        <div class="tarot-detail"><p class="tarot-muted">جارٍ تحميل محتوى الكارت…</p></div>
+      </article>
+      <div class="tarot-study-tools">
+        <section class="tarot-tool">
+          <h3>دفتر المراجع والمسودات</h3>
+          <p class="tarot-muted">احفظ مادة خام ومصدرها في قاعدة المعرفة. يتطلب ذلك جلسة دخول وصلاحية محرر؛ المحتوى الخام لا يظهر للمستخدمين العاديين.</p>
+          <label for="tarot-draft-title">عنوان المادة</label>
+          <input id="tarot-draft-title" type="text" maxlength="180" placeholder="مثال: الساحر في العلاقات">
+          <label for="tarot-draft-source-name">اسم المصدر</label>
+          <input id="tarot-draft-source-name" type="text" maxlength="180" placeholder="اسم الكتاب أو المقال أو الملاحظة">
+          <label for="tarot-draft-source-url">رابط المصدر (اختياري)</label>
+          <input id="tarot-draft-source-url" type="url" maxlength="1000" placeholder="https://...">
+          <label for="tarot-draft-source">النص الخام</label>
+          <textarea id="tarot-draft-source" placeholder="الصق النص هنا مع الاحتفاظ بنسختك الأصلية…"></textarea>
+          <label for="tarot-normalized-notes">ملاحظات منظمة تربط المادة بالورقة</label>
+          <textarea id="tarot-normalized-notes" placeholder="أهم الفكرة والرموز والأسئلة التي تحتاج مراجعة…"></textarea>
+          <button class="tarot-button" id="tarot-organize-material" type="button">تنظيم المادة وربطها بالورقة المختارة</button>
+          <button class="tarot-button primary" id="tarot-save-note" type="button">حفظ المادة الخام</button>
+          <button class="tarot-button" id="tarot-approve-source" type="button">اعتماد المصدر (للمدير)</button>
+          <p class="tarot-muted" id="tarot-source-id" aria-live="polite">لم يتم حفظ مصدر على الخادم في الجلسة الحالية.</p>
+          <p class="tarot-muted" id="tarot-draft-status" aria-live="polite">تنبيه: الحفظ المحلي ليس تخزينًا آمنًا على الخادم، ولا يصلح لإدارة محتوى خاص متعدد الأجهزة.</p>
+        </section>
+        <section class="tarot-tool">
+          <h3>تحرير ومراجعة المحتوى</h3>
+          <p class="tarot-muted">اكتب المرجع ومعنى عقيق أسترو في حقول منفصلة. لا يتم الاعتماد أو النشر إلا بعد صلاحيات الخادم واستيفاء المراجع.</p>
+          <label for="tarot-reference-content">المعنى المرجعي / الملاحظات من المصدر</label>
+          <textarea id="tarot-reference-content" placeholder="ملخصك المرجعي بصياغتك، مع حفظ المصدر الأصلي منفصلًا."></textarea>
+          <label for="tarot-aqeq-content">تفسير عقيق أسترو الأصلي</label>
+          <textarea id="tarot-aqeq-content" placeholder="التحليل النفسي والسلوكي الأصلي، مع أمثلة واقعية وأسئلة تأمل."></textarea>
+          <label for="tarot-editor-notes">ملخص التغيير</label>
+          <input id="tarot-editor-notes" type="text" maxlength="500" placeholder="إيه اللي اتضاف أو اتراجع؟">
+          <button class="tarot-button primary" id="tarot-create-version" type="button">إنشاء مسودة إصدار</button>
+          <button class="tarot-button" id="tarot-update-draft" type="button">تحديث المسودة المختارة</button>
+          <button class="tarot-button" id="tarot-submit-review" type="button">إرسال للمراجعة</button>
+          <button class="tarot-button" id="tarot-approve-version" type="button">اعتماد الإصدار (للمدير)</button>
+          <button class="tarot-button" id="tarot-publish-version" type="button">نشر الإصدار (للمدير)</button>
+          <p class="tarot-muted" id="tarot-editor-status" aria-live="polite">الإجراءات التحريرية تحتاج إلى حساب محرر أو مدير مخصص في app_metadata على الخادم.</p>
+          <button class="tarot-button" id="tarot-load-queue" type="button">تحميل قائمة المراجعة</button>
+          <div class="tarot-output" id="tarot-editor-queue" aria-live="polite">المواد الخام والمسودات والمراجعات ستظهر هنا بعد تسجيل الدخول كفريق تحرير.</div>
+        </section>
+        <section class="tarot-tool">
+          <h3>اسأل مساعد المكتبة</h3>
+          <p class="tarot-muted">اكتب سؤالك للحصول على قراءة من المساعد الخلفي. الخدمة تستخدم المحتوى المنشور والمراجع فقط، ولن تعرض المسودات على أنها معرفة معتمدة.</p>
+          <label for="tarot-question">سؤالك</label>
+          <textarea id="tarot-question" maxlength="1200" placeholder="مثال: إزاي أفهم التناقض بين الرغبة في القرب والخوف من فقدان الاستقلال؟"></textarea>
+          <label for="tarot-gender">صيغة الخطاب</label>
+          <select id="tarot-gender"><option value="neutral">محايد</option><option value="masculine">مذكر</option><option value="feminine">مؤنث</option></select>
+          <button class="tarot-button primary" id="tarot-generate-prompt" type="button">اسأل مساعد المكتبة</button>
+          <div class="tarot-output" id="tarot-prompt-output" aria-live="polite">إجابة المساعد هتظهر هنا بعد الاتصال بالخدمة الآمنة.</div>
+          <p class="tarot-muted" id="tarot-prompt-status">المساعد يحتاج جلسة دخول صالحة، ونشر ترحيل قاعدة المعرفة، وضبط سر GEMINI_API_KEY على الخادم. لن تظهر أي مسودة غير منشورة في الاسترجاع.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+  <p class="tarot-footer" id="tarot-progress">جارٍ تحميل تقدم المذاكرة…</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4"></script>
+<script src="assets/js/tarot-retrieval.js"></script>
+<script src="assets/js/tarot-study.js" defer></script>
+</body>
+</html>
