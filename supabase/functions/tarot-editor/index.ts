@@ -67,6 +67,7 @@ Deno.serve(async (req: Request) => {
     }
 
     if (action === "ingest_raw") {
+      if (!["writer", "editor", "admin"].includes(role)) problem(403, "إدخال المواد الخام متاح للكاتب أو المدير فقط.");
       const title = clean(body.title, 180);
       const rawText = typeof body.rawText === "string" ? body.rawText.trim() : "";
       const sourceTitle = clean(body.sourceTitle, 180) || "ملاحظة داخلية غير موثقة";
@@ -103,6 +104,7 @@ Deno.serve(async (req: Request) => {
     }
 
     if (action === "organize_material") {
+      if (!["writer", "editor", "admin"].includes(role)) problem(403, "تنظيم المواد متاح للكاتب أو المدير فقط.");
       const materialId = clean(body.materialId, 80);
       const cardId = clean(body.cardId, 100);
       const normalizedNotes = clean(body.normalizedNotes, 12000);
@@ -121,6 +123,7 @@ Deno.serve(async (req: Request) => {
     }
 
     if (action === "create_draft") {
+      if (!["writer", "editor", "admin"].includes(role)) problem(403, "إنشاء المسودات متاح للكاتب أو المدير فقط.");
       const cardId = clean(body.cardId, 100);
       const referenceContent = isObject(body.referenceContent) ? body.referenceContent : {};
       const aqeqContent = isObject(body.aqeqContent) ? body.aqeqContent : {};
@@ -170,6 +173,7 @@ Deno.serve(async (req: Request) => {
     }
 
     if (action === "update_draft") {
+      if (!["writer", "editor", "admin"].includes(role)) problem(403, "تعديل المسودات متاح للكاتب أو المدير فقط.");
       if (!["draft", "rejected"].includes(versionRow.status)) problem(409, "يمكن تعديل المسودة قبل المراجعة أو بعد إعادتها للتعديل فقط.");
       const referenceContent = isObject(body.referenceContent) ? body.referenceContent : {};
       const aqeqContent = isObject(body.aqeqContent) ? body.aqeqContent : {};
@@ -192,6 +196,7 @@ Deno.serve(async (req: Request) => {
     }
 
     if (action === "submit_review") {
+      if (!["writer", "editor", "admin"].includes(role)) problem(403, "إرسال المسودة للمراجعة متاح للكاتب أو المدير فقط.");
       if (!["draft", "rejected"].includes(versionRow.status)) problem(409, "لا يمكن إرسال الإصدار للمراجعة من حالته الحالية.");
       const { error } = await admin.from("tarot_content_versions").update({ status: "in_review", reviewed_by: actorId, reviewed_at: new Date().toISOString() }).eq("id", versionId);
       if (error) problem(503, "تعذر إرسال الإصدار للمراجعة.");
