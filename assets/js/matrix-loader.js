@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '6';                       // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '7';                       // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -39,9 +39,15 @@
   }
 
   /* قراءة شاكرة كاملة: ثلاث قيم (الجسد/الطاقة/المشاعر) → ثلاث بطاقات. */
+  const ASPECT_FIELD = Object.freeze({ physics: 'physicsPsychology', energy: 'energyPsychology', emotions: 'emotionsPsychology' });
   function chakraReading(chakraKey, values) {
     return Promise.all([['physics', values.physics], ['energy', values.energy], ['emotions', values.emotions]]
-      .map(([aspect, id]) => chakraText(id, chakraKey).then(r => Object.assign({ aspect }, r))));
+      .map(([aspect, id]) => chakraText(id, chakraKey).then(r => {
+        const ownField = ASPECT_FIELD[aspect];
+        const fields = Object.fromEntries(Object.entries(r.fields).filter(([key]) =>
+          !Object.values(ASPECT_FIELD).includes(key) || key === ownField));
+        return Object.assign({}, r, { aspect, fields, empty: Object.keys(fields).length === 0 });
+      })));
   }
 
   /* تلميح تحميل مسبق (بيتجاهل الأخطاء) */
