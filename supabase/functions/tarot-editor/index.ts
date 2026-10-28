@@ -56,7 +56,7 @@ Deno.serve(async (req: Request) => {
       const [sourcesResult, materialsResult, versionsResult] = await Promise.all([
         admin.from("tarot_sources").select("id,title,source_url,status,created_at").in("status", ["raw","in_review","approved"]).order("created_at", { ascending: false }).limit(50),
         admin.from("tarot_materials").select("id,title,card_id,source_id,status,created_at").in("status", ["raw","organized","drafted"]).order("created_at", { ascending: false }).limit(50),
-        admin.from("tarot_content_versions").select("id,card_id,version,status,source_ids,created_at,tarot_cards!inner(name_ar,name_en)").in("status", ["draft","in_review","approved"]).order("created_at", { ascending: false }).limit(50),
+        admin.from("tarot_content_versions").select("id,card_id,version,status,source_ids,material_ids,created_at,tarot_cards!inner(name_ar,name_en)").in("status", ["draft","in_review","approved"]).order("created_at", { ascending: false }).limit(50),
       ]);
       if (sourcesResult.error || materialsResult.error || versionsResult.error) problem(503, "تعذر تحميل قائمة المراجعة.");
       return reply(req, { sources: sourcesResult.data ?? [], materials: materialsResult.data ?? [], versions: versionsResult.data ?? [] });
@@ -118,15 +118,22 @@ Deno.serve(async (req: Request) => {
       const referenceContent = isObject(body.referenceContent) ? body.referenceContent : {};
       const aqeqContent = isObject(body.aqeqContent) ? body.aqeqContent : {};
       const sourceIds = Array.isArray(body.sourceIds) ? body.sourceIds.filter((id) => typeof id === "string").slice(0, 30) as string[] : [];
+      const materialIds = Array.isArray(body.materialIds) ? body.materialIds.filter((id) => typeof id === "string").slice(0, 30) as string[] : [];
       if (!cardId) problem(400, "معرّف الورقة مطلوب.");
       if (!Object.keys(referenceContent).length || !Object.keys(aqeqContent).length) problem(400, "افصل المحتوى المرجعي عن تفسير عقيق أسترو.");
       const { data: card } = await admin.from("tarot_cards").select("id").eq("id", cardId).maybeSingle();
       if (!card) problem(404, "الورقة غير موجودة في فهرس قاعدة المعرفة.");
+      if (materialIds.length) {
+        const { data: materials } = await admin.from("tarot_materials").select("id,card_id,status").in("id", materialIds);
+        if (!materials || materials.length !== materialIds.length || materials.some((item: any) => item.card_id !== cardId || !["organized","drafted"].includes(item.status))) {
+          problem(422, "نظّم المواد الخام واربطها بالورقة المختارة قبل إضافتها إلى المسودة.");
+        }
+      }
       const { data: latest } = await admin.from("tarot_content_versions").select("version").eq("card_id", cardId).order("version", { ascending: false }).limit(1).maybeSingle();
       const version = (latest?.version ?? 0) + 1;
       const { data, error } = await admin.from("tarot_content_versions").insert({
         card_id: cardId, version, reference_content: referenceContent, aqeq_content: aqeqContent,
-        source_ids: sourceIds, status: "draft", provenance: sourceIds.length ? "mixed" : "aqeq_original",
+        source_ids: sourceIds, material_ids: materialIds, status: "draft", provenance: sourceIds.length ? "mixed" : "aqeq_original",
         created_by: actorId, change_summary: clean(body.changeSummary, 500),
       }).select("id,card_id,version,status,created_at").single();
       if (error || !data) problem(503, "تعذر إنشاء إصدار المسودة.");
@@ -148,7 +155,7 @@ Deno.serve(async (req: Request) => {
     const versionId = clean(body.versionId, 80);
     if (!versionId) problem(400, "معرّف الإصدار مطلوب لهذه العملية.");
     const { data: versionRow, error: versionError } = await admin.from("tarot_content_versions")
-      .select("id,card_id,version,status,source_ids,approved_by,approved_at,reference_content,aqeq_content,change_summary").eq("id", versionId).maybeSingle();
+      .select("id,card_id,version,status,source_ids,material_ids,approved_by,approved_at,reference_content,aqeq_content,change_summary").eq("id", versionId).maybeSingle();
     if (versionError || !versionRow) problem(404, "الإصدار غير موجود.");
 
     if (action === "get_version") {
@@ -160,9 +167,16 @@ Deno.serve(async (req: Request) => {
       const referenceContent = isObject(body.referenceContent) ? body.referenceContent : {};
       const aqeqContent = isObject(body.aqeqContent) ? body.aqeqContent : {};
       const sourceIds = Array.isArray(body.sourceIds) ? body.sourceIds.filter((id) => typeof id === "string").slice(0, 30) as string[] : [];
+      const materialIds = Array.isArray(body.materialIds) ? body.materialIds.filter((id) => typeof id === "string").slice(0, 30) as string[] : [];
       if (!Object.keys(referenceContent).length || !Object.keys(aqeqContent).length) problem(400, "افصل المحتوى المرجعي عن تفسير عقيق أسترو.");
+      if (materialIds.length) {
+        const { data: materials } = await admin.from("tarot_materials").select("id,card_id,status").in("id", materialIds);
+        if (!materials || materials.length !== materialIds.length || materials.some((item: any) => item.card_id !== versionRow.card_id || !["organized","drafted"].includes(item.status))) {
+          problem(422, "نظّم المواد الخام واربطها بالورقة المختارة قبل إضافتها إلى المسودة.");
+        }
+      }
       const { data, error } = await admin.from("tarot_content_versions").update({
-        reference_content: referenceContent, aqeq_content: aqeqContent, source_ids: sourceIds,
+        reference_content: referenceContent, aqeq_content: aqeqContent, source_ids: sourceIds, material_ids: materialIds,
         provenance: sourceIds.length ? "mixed" : "aqeq_original", status: "draft",
         change_summary: clean(body.changeSummary, 500),
       }).eq("id", versionId).select("id,card_id,version,status,created_at").single();
