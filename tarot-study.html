@@ -54,8 +54,11 @@
           <input id="tarot-draft-source-name" type="text" maxlength="180" placeholder="اسم الكتاب أو المقال أو الملاحظة">
           <label for="tarot-draft-source-url">رابط المصدر (اختياري)</label>
           <input id="tarot-draft-source-url" type="url" maxlength="1000" placeholder="https://...">
-          <label for="tarot-draft-source">النص الأصلي</label>
+          <label for="tarot-draft-source">النص الخام</label>
           <textarea id="tarot-draft-source" placeholder="الصق النص هنا مع الاحتفاظ بنسختك الأصلية…"></textarea>
+          <label for="tarot-normalized-notes">ملاحظات منظمة تربط المادة بالورقة</label>
+          <textarea id="tarot-normalized-notes" placeholder="أهم الفكرة والرموز والأسئلة التي تحتاج مراجعة…"></textarea>
+          <button class="tarot-button" id="tarot-organize-material" type="button">تنظيم المادة وربطها بالورقة المختارة</button>
           <button class="tarot-button primary" id="tarot-save-note" type="button">حفظ المادة الخام</button>
           <button class="tarot-button" id="tarot-approve-source" type="button">اعتماد المصدر (للمدير)</button>
           <p class="tarot-muted" id="tarot-source-id" aria-live="polite">لم يتم حفظ مصدر على الخادم في الجلسة الحالية.</p>
@@ -71,6 +74,7 @@
           <label for="tarot-editor-notes">ملخص التغيير</label>
           <input id="tarot-editor-notes" type="text" maxlength="500" placeholder="إيه اللي اتضاف أو اتراجع؟">
           <button class="tarot-button primary" id="tarot-create-version" type="button">إنشاء مسودة إصدار</button>
+          <button class="tarot-button" id="tarot-update-draft" type="button">تحديث المسودة المختارة</button>
           <button class="tarot-button" id="tarot-submit-review" type="button">إرسال للمراجعة</button>
           <button class="tarot-button" id="tarot-approve-version" type="button">اعتماد الإصدار (للمدير)</button>
           <button class="tarot-button" id="tarot-publish-version" type="button">نشر الإصدار (للمدير)</button>
