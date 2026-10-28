@@ -52,3 +52,15 @@ The Waite text is treated as a historical primary source; Biddy Tarot is a moder
 - These are code-level guardrails only. No live assistant request, Supabase RLS integration test, role-permission test against a deployed function, or browser-device test was possible from the current branch-only setup.
 - The static tests can enforce structure and citation traceability; they cannot prove that a symbolic interpretation is correct or replace human review.
 - The remaining 77 cards need card-by-card research and writing. Do not bulk-promote the current starter text to approved.
+
+## Follow-up content batch (2026-10-28)
+
+The catalog-wide gap counts above remain applicable: the Magician is still the only card with documented source records, and the other 77 cards still require individual research. This batch did not fill missing fields with generic prose.
+
+- Expanded The Magician's original Aqeq relationship interpretation with distinct dating, commitment, and separation contexts, each with upright/reversed guidance. Added a dedicated `relationship-stages` section. These remain `in_review`.
+- Added `assets/data/tarot/tarot-import-batch.schema.json` and `assets/data/tarot/tarot-import-batch.template.json`, plus `docs/TAROT_CONTENT_IMPORT_WORKFLOW.md`. The intake contract preserves the exact source text, source identity and attribution, proposed block provenance, target card ID, merged-version pointer, and append-only review history. Intake defaults to `received`; it never approves or publishes content.
+- Added `tests/tarot-content-import-contract.test.js` to check the import contract and Magician's relationship-stage coverage; it is run by PR validation.
+- Corrected the existing `tarot-assistant` retrieval path to retain a spread card's supplied upright/reversed orientation and position in retrieved context, include position terms in ranking, and return an explicit insufficient-knowledge response when no selected card is supplied and no published knowledge matches. A missing orientation is recorded as `unknown`, not guessed. The static contract checks pass, but this is not a live Supabase/Gemini test.
+- No new user-supplied ChatGPT/Gemini pack was available in this batch, so none was imported. The blank template's empty `rawText` is a placeholder only, not a source record.
+- No card was approved or published. No Supabase migration, database write, function deployment, or production change was performed.
+
