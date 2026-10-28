@@ -131,8 +131,8 @@ Deno.serve(async (req: Request) => {
       const { data: card } = await admin.from("tarot_cards").select("id").eq("id", cardId).maybeSingle();
       if (!card) problem(404, "الورقة غير موجودة في فهرس قاعدة المعرفة.");
       if (materialIds.length) {
-        const { data: materials } = await admin.from("tarot_materials").select("id,card_id,status").in("id", materialIds);
-        if (!materials || materials.length !== materialIds.length || materials.some((item: any) => item.card_id !== cardId || !["organized","drafted"].includes(item.status))) {
+        const { data: materials } = await admin.from("tarot_materials").select("id,card_id,status,created_by").in("id", materialIds);
+        if (!materials || materials.length !== materialIds.length || materials.some((item: any) => item.card_id !== cardId || !["organized","drafted"].includes(item.status) || (role === "writer" && item.created_by !== actorId))) {
           problem(422, "نظّم المواد الخام واربطها بالورقة المختارة قبل إضافتها إلى المسودة.");
         }
       }
@@ -177,8 +177,8 @@ Deno.serve(async (req: Request) => {
       const materialIds = Array.isArray(body.materialIds) ? body.materialIds.filter((id) => typeof id === "string").slice(0, 30) as string[] : [];
       if (!Object.keys(referenceContent).length || !Object.keys(aqeqContent).length) problem(400, "افصل المحتوى المرجعي عن تفسير عقيق أسترو.");
       if (materialIds.length) {
-        const { data: materials } = await admin.from("tarot_materials").select("id,card_id,status").in("id", materialIds);
-        if (!materials || materials.length !== materialIds.length || materials.some((item: any) => item.card_id !== versionRow.card_id || !["organized","drafted"].includes(item.status))) {
+        const { data: materials } = await admin.from("tarot_materials").select("id,card_id,status,created_by").in("id", materialIds);
+        if (!materials || materials.length !== materialIds.length || materials.some((item: any) => item.card_id !== versionRow.card_id || !["organized","drafted"].includes(item.status) || (role === "writer" && item.created_by !== actorId))) {
           problem(422, "نظّم المواد الخام واربطها بالورقة المختارة قبل إضافتها إلى المسودة.");
         }
       }
