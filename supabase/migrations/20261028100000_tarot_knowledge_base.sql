@@ -149,24 +149,28 @@ create policy tarot_cards_editor_insert
   on public.tarot_cards for insert to authenticated
   with check (
     (select public.is_tarot_admin())
-    or ((select public.is_tarot_editor()) and created_by = (select auth.uid()) and status in ('raw','draft','in_review'))
+    or ((select public.is_tarot_writer()) and created_by = (select auth.uid()) and status in ('raw','draft','in_review'))
   );
 create policy tarot_cards_editor_update
   on public.tarot_cards for update to authenticated
-  using ((select public.is_tarot_editor()) and (status not in ('approved','published','archived') or (select public.is_tarot_admin())))
+  using ((select public.is_tarot_writer()) and (status not in ('approved','published','archived') or (select public.is_tarot_admin())))
   with check (
-    (select public.is_tarot_editor())
+    (select public.is_tarot_writer())
     and (status not in ('approved','published','archived') or (select public.is_tarot_admin()))
   );
 
 create policy tarot_sources_editor_read
   on public.tarot_sources for select to authenticated
-  using ((select public.is_tarot_editor()));
+  using (
+    (select public.is_tarot_reviewer())
+    or (auth.jwt() -> 'app_metadata' ->> 'role' = 'editor')
+    or created_by = (select auth.uid())
+  );
 create policy tarot_sources_editor_insert
   on public.tarot_sources for insert to authenticated
   with check (
     (select public.is_tarot_admin())
-    or ((select public.is_tarot_editor()) and created_by = (select auth.uid()) and status in ('raw','in_review'))
+    or ((select public.is_tarot_writer()) and created_by = (select auth.uid()) and status in ('raw','in_review'))
   );
 create policy tarot_sources_admin_update
   on public.tarot_sources for update to authenticated
@@ -175,23 +179,38 @@ create policy tarot_sources_admin_update
 
 create policy tarot_materials_editor_read
   on public.tarot_materials for select to authenticated
-  using ((select public.is_tarot_editor()));
+  using (
+    (select public.is_tarot_reviewer())
+    or (auth.jwt() -> 'app_metadata' ->> 'role' = 'editor')
+    or created_by = (select auth.uid())
+  );
 create policy tarot_materials_editor_insert
   on public.tarot_materials for insert to authenticated
-  with check ((select public.is_tarot_editor()) and created_by = (select auth.uid()));
+  with check ((select public.is_tarot_writer()) and created_by = (select auth.uid()));
 create policy tarot_materials_editor_update
   on public.tarot_materials for update to authenticated
-  using ((select public.is_tarot_editor()))
-  with check ((select public.is_tarot_editor()));
+  using (
+    (select public.is_tarot_writer())
+    and (created_by = (select auth.uid()) or auth.jwt() -> 'app_metadata' ->> 'role' in ('editor','admin'))
+  )
+  with check (
+    (select public.is_tarot_writer())
+    and (created_by = (select auth.uid()) or auth.jwt() -> 'app_metadata' ->> 'role' in ('editor','admin'))
+  );
 
 create policy tarot_versions_read_published_or_editor
   on public.tarot_content_versions for select to anon, authenticated
-  using (status = 'published' or (select public.is_tarot_editor()));
+  using (
+    status = 'published'
+    or (select public.is_tarot_reviewer())
+    or auth.jwt() -> 'app_metadata' ->> 'role' = 'editor'
+    or created_by = (select auth.uid())
+  );
 create policy tarot_versions_editor_insert
   on public.tarot_content_versions for insert to authenticated
   with check (
     (select public.is_tarot_admin())
-    or ((select public.is_tarot_editor()) and created_by = (select auth.uid()) and status in ('raw','draft','in_review','rejected'))
+    or ((select public.is_tarot_writer()) and created_by = (select auth.uid()) and status in ('raw','draft','in_review','rejected'))
   );
 create policy tarot_versions_editor_update
   on public.tarot_content_versions for update to authenticated
@@ -208,13 +227,22 @@ create policy tarot_versions_editor_update
 
 create policy tarot_reviews_editor_read
   on public.tarot_reviews for select to authenticated
-  using ((select public.is_tarot_editor()));
+  using (
+    (select public.is_tarot_reviewer())
+    or auth.jwt() -> 'app_metadata' ->> 'role' = 'editor'
+    or exists (
+      select 1 from public.tarot_content_versions v
+      where v.id = version_id and v.created_by = (select auth.uid())
+    )
+  );
 create policy tarot_reviews_editor_insert
   on public.tarot_reviews for insert to authenticated
   with check (
-    (select public.is_tarot_editor())
-    and reviewer_id = (select auth.uid())
-    and (decision in ('submitted','needs_changes') or (decision in ('approved','rejected') and (select public.is_tarot_reviewer())))
+    reviewer_id = (select auth.uid())
+    and (
+      ((select public.is_tarot_writer()) and decision in ('submitted','needs_changes'))
+      or ((select public.is_tarot_reviewer()) and decision in ('approved','rejected'))
+    )
   );
 
 -- Request history is deliberately server-only. Edge Functions use the service role
