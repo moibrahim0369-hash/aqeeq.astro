@@ -23,7 +23,7 @@ for (const [suitId,suitAr,suitEn] of suits) for (const [rankId,rankAr,rankEn] of
  const value = rankId === "ace" ? 1 : rankId === "page" ? 11 : rankId === "knight" ? 12 : rankId === "queen" ? 13 : rankId === "king" ? 14 : ["two","three","four","five","six","seven","eight","nine","ten"].indexOf(rankId) + 2;
  catalog.push([suitId+"-"+rankId,value,rankAr+" من "+suitAr,rankEn+" of "+suitEn,suitId]);
 }
-const state = {data:null,selectedId:"major-01-magician",activeSection:"core",filter:"all",query:"",lastSourceId:null,lastVersionId:null};
+const state = {data:null,selectedId:"major-01-magician",activeSection:"core",filter:"all",query:"",lastSourceId:null,lastVersionId:null,lastMaterialId:null};
 const $ = (selector) => document.querySelector(selector);
 const esc = (value="") => String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const getCard = id => state.data?.cards?.find(card => card.id === id);
@@ -60,6 +60,8 @@ function bindEvents() {
  $("#tarot-save-note").addEventListener("click",saveRawMaterial);
  $("#tarot-approve-source").addEventListener("click",approveSource);
  $("#tarot-create-version").addEventListener("click",createVersion);
+ $("#tarot-update-draft").addEventListener("click",updateDraft);
+ $("#tarot-organize-material").addEventListener("click",organizeMaterial);
  $("#tarot-submit-review").addEventListener("click",submitReview);
  $("#tarot-approve-version").addEventListener("click",approveVersion);
  $("#tarot-publish-version").addEventListener("click",publishVersion);
@@ -147,6 +149,24 @@ async function createVersion() {
   editorStatus("اتعملت مسودة إصدار رقم "+data.version.version+" ومعرّفها "+data.version.id+". الحالة: draft.");
  } catch(error) {editorStatus(error?.message||"تعذر إنشاء المسودة.");}
 }
+async function organizeMaterial() {
+ if(!state.lastMaterialId){editorStatus("اختار مادة من قائمة التحرير أو احفظ مادة خام أولًا.");return;}
+ try {
+  const data=await editorAction("organize_material",{materialId:state.lastMaterialId,cardId:state.selectedId,normalizedNotes:$("#tarot-normalized-notes").value.trim()});
+  editorStatus("تم تنظيم المادة "+data.material.id+" وربطها بالورقة "+data.material.card_id+".");
+  await loadEditorialQueue();
+ } catch(error){editorStatus(error?.message||"تعذر تنظيم المادة.");}
+}
+async function updateDraft() {
+ if(!state.lastVersionId){editorStatus("اختار إصدارًا من قائمة التحرير أولًا.");return;}
+ const reference=$("#tarot-reference-content").value.trim(),original=$("#tarot-aqeq-content").value.trim();
+ if(!reference||!original){editorStatus("املأ المعنى المرجعي وتفسير عقيق أسترو كلٌّ في حقله.");return;}
+ try {
+  const data=await editorAction("update_draft",{versionId:state.lastVersionId,referenceContent:{summary:reference},aqeqContent:{analysis:original},sourceIds:state.lastSourceId?[state.lastSourceId]:[],changeSummary:$("#tarot-editor-notes").value.trim()});
+  editorStatus("تم تحديث المسودة "+data.version.id+" بالإصدار "+data.version.version+".");
+  await loadEditorialQueue();
+ } catch(error){editorStatus(error?.message||"تعذر تحديث المسودة.");}
+}
 async function submitReview() {
  if(!state.lastVersionId){editorStatus("أنشئ مسودة إصدار أولًا.");return;}
  try {const data=await editorAction("submit_review",{versionId:state.lastVersionId});editorStatus("الإصدار "+data.versionId+" اتبعت للمراجعة.");}
@@ -167,16 +187,38 @@ async function loadEditorialQueue() {
  try {
   const data=await editorAction("list_queue");
   const sourceRows=(data.sources||[]).map(item=>'<button class="tarot-button" type="button" data-queue-source="'+esc(item.id)+'">مصدر: '+esc(item.title)+' · '+esc(item.status)+'</button>').join("");
-  const materialRows=(data.materials||[]).map(item=>'<div class="tarot-section-card"><strong>'+esc(item.title)+'</strong><p>المادة: '+esc(item.id)+' · الورقة: '+esc(item.card_id||"غير مرتبطة")+' · '+esc(item.status)+'</p></div>').join("");
+  const materialRows=(data.materials||[]).map(item=>'<button class="tarot-button" type="button" data-queue-material="'+esc(item.id)+'">مادة: '+esc(item.title)+' · '+esc(item.status)+'</button>').join("");
   const versionRows=(data.versions||[]).map(item=>'<button class="tarot-button" type="button" data-queue-version="'+esc(item.id)+'">'+esc(item.tarot_cards?.name_ar||item.card_id)+' · إصدار '+item.version+' · '+esc(item.status)+'</button>').join("");
   target.innerHTML='<h4>المصادر</h4>'+(sourceRows||'<p>لا توجد مصادر في قائمة الانتظار.</p>')+'<h4>المواد الخام</h4>'+(materialRows||'<p>لا توجد مواد خام.</p>')+'<h4>إصدارات المحتوى</h4>'+(versionRows||'<p>لا توجد إصدارات تنتظر الإجراء.</p>');
  } catch(error) {target.textContent=error?.message||"تعذر تحميل قائمة التحرير. تحقق من الصلاحية وإعدادات الخادم.";}
 }
-function selectQueueItem(event) {
+async function selectQueueItem(event) {
  const source=event.target.closest("[data-queue-source]");
- const version=event.target.closest("[data-queue-version]");
+ const materialButton=event.target.closest("[data-queue-material]");
+ const versionButton=event.target.closest("[data-queue-version]");
  if(source){state.lastSourceId=source.dataset.queueSource;$("#tarot-source-id").textContent="تم اختيار المصدر "+state.lastSourceId;editorStatus("تم اختيار مصدر من قائمة التحرير.");}
- if(version){state.lastVersionId=version.dataset.queueVersion;editorStatus("تم اختيار الإصدار "+state.lastVersionId+" لتنفيذ الإجراء التالي.");}
+ if(materialButton){
+  try {
+   const data=await editorAction("get_material",{materialId:materialButton.dataset.queueMaterial});
+   const material=data.material;state.lastMaterialId=material.id;state.lastSourceId=material.source_id||null;
+   $("#tarot-draft-title").value=material.title||"";$("#tarot-draft-source").value=material.raw_text||"";
+   $("#tarot-normalized-notes").value=material.normalized_notes||"";$("#tarot-draft-source-name").value=data.source?.title||"";
+   $("#tarot-draft-source-url").value=data.source?.source_url||"";
+   $("#tarot-source-id").textContent="المصدر المختار: "+(state.lastSourceId||"لا يوجد")+" · المادة: "+state.lastMaterialId;
+   if(material.card_id)state.selectedId=material.card_id;renderCatalog();renderDetail();
+   editorStatus("تم تحميل المادة الخام. عدّل الملاحظات ثم اضغط تنظيم المادة وربطها بالورقة.");
+  } catch(error){editorStatus(error?.message||"تعذر تحميل المادة.");}
+ }
+ if(versionButton){
+  try {
+   const data=await editorAction("get_version",{versionId:versionButton.dataset.queueVersion});
+   const version=data.version;state.lastVersionId=version.id;state.lastSourceId=version.source_ids?.[0]||null;state.selectedId=version.card_id;
+   $("#tarot-reference-content").value=version.reference_content?.summary||JSON.stringify(version.reference_content||{},null,2);
+   $("#tarot-aqeq-content").value=version.aqeq_content?.analysis||JSON.stringify(version.aqeq_content||{},null,2);
+   $("#tarot-editor-notes").value=version.change_summary||"";
+   renderCatalog();renderDetail();editorStatus("تم تحميل الإصدار "+version.version+" بحالة "+version.status+" لتعديله أو استكمال مراجعته.");
+  } catch(error){editorStatus(error?.message||"تعذر تحميل الإصدار.");}
+ }
 }
 async function generatePrompt() {
  const question=$("#tarot-question").value.trim(),card=getCard(state.selectedId);
