@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aqeeq-astro.invalid/schemas/tarot-import-batch.schema.json",
+  "title": "Aqeq Astro Tarot Content Import Batch",
+  "description": "A provenance-preserving intake format. Intake never approves or publishes content.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchId", "createdAt", "items"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "batchId": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "batchNote": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/item" }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "kind", "title", "author", "url", "section", "rawText", "capturedAt"],
+      "properties": {
+        "sourceId": { "type": "string" },
+        "kind": { "enum": ["chatgpt", "gemini", "book", "website", "article", "video", "user_provided", "other"] },
+        "title": { "type": "string" },
+        "author": { "type": ["string", "null"] },
+        "url": { "type": ["string", "null"], "format": "uri" },
+        "section": { "type": ["string", "null"] },
+        "rawText": { "type": "string", "description": "Verbatim captured source material; never replace with a merged summary." },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "modelOrEdition": { "type": ["string", "null"] },
+        "promptOrPageContext": { "type": ["string", "null"] },
+        "rightsNote": { "type": ["string", "null"] }
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["blockId", "layer", "area", "text"],
+      "properties": {
+        "blockId": { "type": "string" },
+        "layer": { "enum": ["reference", "aqeq_original", "editorial_note"] },
+        "area": {
+          "enum": ["core", "symbols", "traditional_upright", "traditional_reversed", "school_differences", "love", "dating", "commitment", "separation", "work", "money", "study", "decisions", "psychological", "shadow", "growth", "reflection", "spread_position", "combinations", "examples", "practical_steps", "limits", "other"]
+        },
+        "text": { "type": "string" },
+        "sourceIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "position": { "type": ["string", "null"] },
+        "orientation": { "enum": ["upright", "reversed", "both", "not_applicable"] },
+        "researchNote": { "type": ["string", "null"] }
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["targetCardId", "contributions", "review"],
+      "properties": {
+        "targetCardId": { "type": "string", "minLength": 1 },
+        "contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["contributionId", "source", "proposedBlocks", "receivedAt"],
+            "properties": {
+              "contributionId": { "type": "string", "minLength": 1 },
+              "source": { "$ref": "#/$defs/source" },
+              "proposedBlocks": { "type": "array", "items": { "$ref": "#/$defs/block" } },
+              "receivedAt": { "type": "string", "format": "date-time" },
+              "mergedIntoVersion": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reviewer", "decisionNote", "history"],
+          "properties": {
+            "status": { "enum": ["received", "in_review", "needs_sources", "needs_revision", "approved", "published", "rejected"] },
+            "reviewer": { "type": ["string", "null"] },
+            "decisionNote": { "type": "string" },
+            "history": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["at", "actor", "action", "note"],
+                "properties": {
+                  "at": { "type": "string", "format": "date-time" },
+                  "actor": { "type": "string" },
+                  "action": { "enum": ["received", "compared", "merged", "requested_sources", "requested_revision", "approved", "published", "rejected"] },
+                  "note": { "type": "string" },
+                  "version": { "type": ["string", "null"] }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
