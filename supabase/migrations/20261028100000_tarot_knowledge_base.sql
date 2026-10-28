@@ -221,12 +221,18 @@ create policy tarot_versions_editor_insert
 create policy tarot_versions_editor_update
   on public.tarot_content_versions for update to authenticated
   using (
-    (select public.is_tarot_editor())
+    (
+      ((select public.is_tarot_writer()) and (created_by = (select auth.uid()) or auth.jwt() -> 'app_metadata' ->> 'role' in ('editor','admin')))
+      or ((select public.is_tarot_reviewer()) and status = 'in_review')
+    )
     and (status <> 'published' or (select public.is_tarot_admin()))
     and (status <> 'approved' or (select public.is_tarot_reviewer()))
   )
   with check (
-    (select public.is_tarot_editor())
+    (
+      ((select public.is_tarot_writer()) and (created_by = (select auth.uid()) or auth.jwt() -> 'app_metadata' ->> 'role' in ('editor','admin')))
+      or ((select public.is_tarot_reviewer()) and status in ('in_review','approved','rejected'))
+    )
     and (status <> 'published' or (select public.is_tarot_admin()))
     and (status <> 'approved' or (select public.is_tarot_reviewer()))
   );
