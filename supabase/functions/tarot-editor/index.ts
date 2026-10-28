@@ -127,7 +127,11 @@ Deno.serve(async (req: Request) => {
       if (!["draft", "rejected"].includes(versionRow.status)) problem(409, "لا يمكن إرسال الإصدار للمراجعة من حالته الحالية.");
       const { error } = await admin.from("tarot_content_versions").update({ status: "in_review", reviewed_by: actorId, reviewed_at: new Date().toISOString() }).eq("id", versionId);
       if (error) problem(503, "تعذر إرسال الإصدار للمراجعة.");
-      await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "submitted", notes: clean(body.notes, 3000) });
+      const { error: auditError } = await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "submitted", notes: clean(body.notes, 3000) });
+      if (auditError) {
+        await admin.from("tarot_content_versions").update({ status: versionRow.status, reviewed_by: null, reviewed_at: null }).eq("id", versionId);
+        problem(503, "تعذر حفظ سجل المراجعة؛ أُعيد الإصدار إلى حالته السابقة.");
+      }
       return reply(req, { versionId, status: "in_review" });
     }
 
@@ -143,14 +147,25 @@ Deno.serve(async (req: Request) => {
         const now = new Date().toISOString();
         const { error } = await admin.from("tarot_content_versions").update({ status: "approved", approved_by: actorId, approved_at: now, reviewed_by: actorId, reviewed_at: now }).eq("id", versionId);
         if (error) problem(503, "تعذر اعتماد الإصدار.");
-        await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "approved", notes: clean(body.notes, 3000) });
+        const { error: auditError } = await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "approved", notes: clean(body.notes, 3000) });
+        if (auditError) {
+          await admin.from("tarot_content_versions").update({ status: "in_review", approved_by: null, approved_at: null }).eq("id", versionId);
+          problem(503, "تعذر حفظ سجل الاعتماد؛ أُعيد الإصدار للمراجعة.");
+        }
         return reply(req, { versionId, status: "approved" });
       }
       if (versionRow.status !== "approved" || !versionRow.approved_by || !versionRow.approved_at) problem(409, "لا يمكن نشر محتوى غير معتمد.");
+      const { data: publishSources } = await admin.from("tarot_sources").select("id,status").in("id", versionRow.source_ids ?? []);
+      if (!publishSources || publishSources.length !== versionRow.source_ids?.length || publishSources.some((source: any) => source.status !== "approved")) {
+        problem(422, "كل المصادر يجب أن تظل معتمدة وقت النشر.");
+      }
       const { error: publishError } = await admin.from("tarot_content_versions").update({ status: "published", published_at: new Date().toISOString() }).eq("id", versionId);
       if (publishError) problem(503, "تعذر نشر الإصدار.");
       const { error: cardError } = await admin.from("tarot_cards").update({ status: "published", updated_by: actorId, updated_at: new Date().toISOString() }).eq("id", versionRow.card_id);
-      if (cardError) problem(503, "تم نشر الإصدار لكن تعذر تحديث حالة الورقة؛ راجع سجل الإدارة.");
+      if (cardError) {
+        await admin.from("tarot_content_versions").update({ status: "approved", published_at: null }).eq("id", versionId);
+        problem(503, "تعذر تحديث حالة الورقة؛ أُعيد الإصدار إلى حالة الاعتماد.");
+      }
       return reply(req, { versionId, cardId: versionRow.card_id, status: "published" });
     }
 
@@ -158,7 +173,11 @@ Deno.serve(async (req: Request) => {
       if (role !== "admin") problem(403, "رفض الإصدار متاح للمدير فقط.");
       const { error } = await admin.from("tarot_content_versions").update({ status: "rejected" }).eq("id", versionId);
       if (error) problem(503, "تعذر رفض الإصدار.");
-      await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "rejected", notes: clean(body.notes, 3000) });
+      const { error: auditError } = await admin.from("tarot_reviews").insert({ version_id: versionId, reviewer_id: actorId, decision: "rejected", notes: clean(body.notes, 3000) });
+      if (auditError) {
+        await admin.from("tarot_content_versions").update({ status: versionRow.status }).eq("id", versionId);
+        problem(503, "تعذر حفظ سجل الرفض؛ أُعيد الإصدار إلى حالته السابقة.");
+      }
       return reply(req, { versionId, status: "rejected" });
     }
 
