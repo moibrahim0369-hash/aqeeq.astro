@@ -78,7 +78,7 @@ create table if not exists public.tarot_reviews (
   id uuid primary key default gen_random_uuid(),
   version_id uuid not null references public.tarot_content_versions(id) on delete cascade,
   reviewer_id uuid not null references auth.users(id) on delete cascade,
-  decision text not null check (decision in ('needs_changes','approved','rejected')),
+  decision text not null check (decision in ('submitted','needs_changes','approved','rejected')),
   notes text not null default '',
   created_at timestamptz not null default now()
 );
@@ -155,10 +155,10 @@ create policy tarot_sources_editor_read
 create policy tarot_sources_editor_insert
   on public.tarot_sources for insert to authenticated
   with check ((select public.is_tarot_editor()) and created_by = (select auth.uid()));
-create policy tarot_sources_editor_update
+create policy tarot_sources_admin_update
   on public.tarot_sources for update to authenticated
-  using ((select public.is_tarot_editor()))
-  with check ((select public.is_tarot_editor()));
+  using ((select public.is_tarot_admin()))
+  with check ((select public.is_tarot_admin()));
 
 create policy tarot_materials_editor_read
   on public.tarot_materials for select to authenticated
@@ -191,3 +191,86 @@ create policy tarot_reviews_editor_insert
 
 -- Request history is deliberately server-only. Edge Functions use the service role
 -- after validating the caller's JWT and applying per-user limits.
+
+-- Seed the complete 78-card catalog without marking any content approved or published.
+insert into public.tarot_cards (id, number, arcana, suit, rank, name_ar, name_en, status, metadata)
+values
+('major-00-fool',0,'major','الأحمق','The Fool','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-01-magician',1,'major','الساحر','The Magician','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-02-high-priestess',2,'major','الكاهنة العليا','The High Priestess','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-03-empress',3,'major','الإمبراطورة','The Empress','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-04-emperor',4,'major','الإمبراطور','The Emperor','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-05-hierophant',5,'major','الكاهن الأعظم','The Hierophant','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-06-lovers',6,'major','العشاق','The Lovers','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-07-chariot',7,'major','العربة','The Chariot','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-08-strength',8,'major','القوة','Strength','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-09-hermit',9,'major','الناسك','The Hermit','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-10-wheel',10,'major','عجلة الحظ','Wheel of Fortune','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-11-justice',11,'major','العدالة','Justice','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-12-hanged-man',12,'major','الرجل المعلّق','The Hanged Man','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-13-death',13,'major','الموت','Death','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-14-temperance',14,'major','الاعتدال','Temperance','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-15-devil',15,'major','الشيطان','The Devil','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-16-tower',16,'major','البرج','The Tower','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-17-star',17,'major','النجمة','The Star','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-18-moon',18,'major','القمر','The Moon','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-19-sun',19,'major','الشمس','The Sun','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-20-judgement',20,'major','الحُكم','Judgement','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('major-21-world',21,'major','العالم','The World','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-ace',1,'minor','wands','ace','آس من الصولجانات','Ace of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-two',2,'minor','wands','two','اثنان من الصولجانات','Two of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-three',3,'minor','wands','three','ثلاثة من الصولجانات','Three of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-four',4,'minor','wands','four','أربعة من الصولجانات','Four of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-five',5,'minor','wands','five','خمسة من الصولجانات','Five of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-six',6,'minor','wands','six','ستة من الصولجانات','Six of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-seven',7,'minor','wands','seven','سبعة من الصولجانات','Seven of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-eight',8,'minor','wands','eight','ثمانية من الصولجانات','Eight of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-nine',9,'minor','wands','nine','تسعة من الصولجانات','Nine of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-ten',10,'minor','wands','ten','عشرة من الصولجانات','Ten of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-page',11,'minor','wands','page','الصفحة من الصولجانات','Page of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-knight',12,'minor','wands','knight','الفارس من الصولجانات','Knight of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-queen',13,'minor','wands','queen','الملكة من الصولجانات','Queen of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('wands-king',14,'minor','wands','king','الملك من الصولجانات','King of Wands','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-ace',1,'minor','cups','ace','آس من الكؤوس','Ace of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-two',2,'minor','cups','two','اثنان من الكؤوس','Two of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-three',3,'minor','cups','three','ثلاثة من الكؤوس','Three of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-four',4,'minor','cups','four','أربعة من الكؤوس','Four of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-five',5,'minor','cups','five','خمسة من الكؤوس','Five of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-six',6,'minor','cups','six','ستة من الكؤوس','Six of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-seven',7,'minor','cups','seven','سبعة من الكؤوس','Seven of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-eight',8,'minor','cups','eight','ثمانية من الكؤوس','Eight of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-nine',9,'minor','cups','nine','تسعة من الكؤوس','Nine of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-ten',10,'minor','cups','ten','عشرة من الكؤوس','Ten of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-page',11,'minor','cups','page','الصفحة من الكؤوس','Page of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-knight',12,'minor','cups','knight','الفارس من الكؤوس','Knight of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-queen',13,'minor','cups','queen','الملكة من الكؤوس','Queen of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('cups-king',14,'minor','cups','king','الملك من الكؤوس','King of Cups','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-ace',1,'minor','swords','ace','آس من السيوف','Ace of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-two',2,'minor','swords','two','اثنان من السيوف','Two of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-three',3,'minor','swords','three','ثلاثة من السيوف','Three of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-four',4,'minor','swords','four','أربعة من السيوف','Four of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-five',5,'minor','swords','five','خمسة من السيوف','Five of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-six',6,'minor','swords','six','ستة من السيوف','Six of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-seven',7,'minor','swords','seven','سبعة من السيوف','Seven of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-eight',8,'minor','swords','eight','ثمانية من السيوف','Eight of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-nine',9,'minor','swords','nine','تسعة من السيوف','Nine of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-ten',10,'minor','swords','ten','عشرة من السيوف','Ten of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-page',11,'minor','swords','page','الصفحة من السيوف','Page of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-knight',12,'minor','swords','knight','الفارس من السيوف','Knight of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-queen',13,'minor','swords','queen','الملكة من السيوف','Queen of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('swords-king',14,'minor','swords','king','الملك من السيوف','King of Swords','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-ace',1,'minor','pentacles','ace','آس من الخماسيات','Ace of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-two',2,'minor','pentacles','two','اثنان من الخماسيات','Two of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-three',3,'minor','pentacles','three','ثلاثة من الخماسيات','Three of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-four',4,'minor','pentacles','four','أربعة من الخماسيات','Four of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-five',5,'minor','pentacles','five','خمسة من الخماسيات','Five of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-six',6,'minor','pentacles','six','ستة من الخماسيات','Six of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-seven',7,'minor','pentacles','seven','سبعة من الخماسيات','Seven of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-eight',8,'minor','pentacles','eight','ثمانية من الخماسيات','Eight of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-nine',9,'minor','pentacles','nine','تسعة من الخماسيات','Nine of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-ten',10,'minor','pentacles','ten','عشرة من الخماسيات','Ten of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-page',11,'minor','pentacles','page','الصفحة من الخماسيات','Page of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-knight',12,'minor','pentacles','knight','الفارس من الخماسيات','Knight of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-queen',13,'minor','pentacles','queen','الملكة من الخماسيات','Queen of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review')),
+('pentacles-king',14,'minor','pentacles','king','الملك من الخماسيات','King of Pentacles','in_review',jsonb_build_object('seed','aqeq-tarot-v2-draft','editorialStatus','in_review'))
+on conflict (id) do nothing;
