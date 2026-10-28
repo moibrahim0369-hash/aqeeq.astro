@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "batchId": "replace-with-unique-batch-id",
+  "createdAt": "2026-10-28T00:00:00Z",
+  "batchNote": "Intake only. Do not overwrite existing card text or mark any content approved.",
+  "items": [
+    {
+      "targetCardId": "major-01-magician",
+      "contributions": [
+        {
+          "contributionId": "replace-with-unique-contribution-id",
+          "source": {
+            "sourceId": "replace-with-unique-source-id",
+            "kind": "gemini",
+            "title": "",
+            "author": null,
+            "url": null,
+            "section": null,
+            "rawText": "",
+            "capturedAt": "2026-10-28T00:00:00Z",
+            "modelOrEdition": null,
+            "promptOrPageContext": null,
+            "rightsNote": null
+          },
+          "proposedBlocks": [],
+          "receivedAt": "2026-10-28T00:00:00Z",
+          "mergedIntoVersion": null
+        }
+      ],
+      "review": {
+        "status": "received",
+        "reviewer": null,
+        "decisionNote": "",
+        "history": [
+          {
+            "at": "2026-10-28T00:00:00Z",
+            "actor": "intake",
+            "action": "received",
+            "note": "Imported as an unreviewed contribution; source text preserved verbatim.",
+            "version": null
+          }
+        ]
+      }
+    }
+  ]
+}
