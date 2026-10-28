@@ -38,10 +38,20 @@ function normalize(value: string) {
 function tokens(value: string) {
   return new Set(normalize(value).split(/\s+/u).filter((part) => part.length > 2));
 }
-function scoreRow(row: any, queryTokens: Set<string>) {
-  const searchable = normalize(JSON.stringify([row.tarot_cards?.name_ar, row.tarot_cards?.name_en, row.reference_content, row.aqeq_content]));
+function scoreRow(row: any, queryTokens: Set<string>, spread: Array<{ position: string; cardId: string; orientation: string }>) {
+  const searchable = normalize(JSON.stringify([
+    row.card_id, row.tarot_cards?.name_ar, row.tarot_cards?.name_en,
+    row.tarot_cards?.arcana, row.tarot_cards?.suit, row.tarot_cards?.rank,
+    row.reference_content, row.aqeq_content,
+  ]));
   let score = 0;
   for (const token of queryTokens) if (searchable.includes(token)) score += token.length > 5 ? 3 : 1;
+  const cardPositions = spread.filter((item) => item.cardId === row.card_id);
+  if (cardPositions.length) score += 4;
+  for (const item of cardPositions) {
+    const positionTokens = tokens(item.position);
+    for (const token of positionTokens) if (searchable.includes(token)) score += 2;
+  }
   return score;
 }
 async function sha256(value: string) {
@@ -79,6 +89,7 @@ Deno.serve(async (req: Request) => {
     const spread = Array.isArray(body.spread) ? body.spread.slice(0, 10).map((item: any) => ({
       position: text(item?.position, 80),
       cardId: text(item?.cardId, 100),
+      orientation: ["upright", "reversed"].includes(String(item?.orientation)) ? String(item.orientation) : "unknown",
     })).filter((item: any) => item.position && item.cardId) : [];
     const requestedCards = [...new Set([...selectedCardIds, ...spread.map((item: any) => item.cardId)])].slice(0, 10);
     const { count, error: countError } = await admin.from("tarot_assistant_requests")
@@ -101,9 +112,13 @@ Deno.serve(async (req: Request) => {
     const { data: rows, error: knowledgeError } = await query;
     if (knowledgeError) fail(503, "تعذر استرجاع المعرفة المنشورة.");
     if (!rows?.length) fail(409, "مفيش محتوى تاروت منشور ومراجع متاح للسؤال ده لسه.");
-    const queryTokens = tokens(question);
-    const ranked = rows.map((row: any) => ({ row, score: scoreRow(row, queryTokens) }))
-      .sort((a: any, b: any) => b.score - a.score).slice(0, 6).map((item: any) => item.row);
+    const queryTokens = tokens([question, ...spread.map((item: any) => item.position)].join(" "));
+    const rankedScores = rows.map((row: any) => ({ row, score: scoreRow(row, queryTokens, spread) }))
+      .sort((a: any, b: any) => b.score - a.score);
+    if (!requestedCards.length && (!rankedScores.length || rankedScores[0].score <= 0)) {
+      fail(409, "المعرفة المنشورة المتاحة مش كفاية لربط السؤال بمعنى محدد. وضّح اسم البطاقة أو موضعها، أو انتظر مراجعة محتوى مناسب للسؤال.");
+    }
+    const ranked = rankedScores.slice(0, 6).map((item: any) => item.row);
     const sourceIds = [...new Set(ranked.flatMap((row: any) => row.source_ids ?? []))];
     let sources: any[] = [];
     if (sourceIds.length) {
@@ -119,9 +134,12 @@ Deno.serve(async (req: Request) => {
       aqeqOriginalInterpretation: row.aqeq_content,
       sourceIds: row.source_ids ?? [],
       version: row.version,
+      spreadContext: spread.filter((item: any) => item.cardId === row.card_id).map((item: any) => ({
+        position: item.position, orientation: item.orientation,
+      })),
     }));
     const genderGuide = gender === "masculine" ? "خاطب المستخدم بصيغة المذكر." : gender === "feminine" ? "خاطبي المستخدم بصيغة المؤنث." : "استخدم صياغة محايدة قدر الإمكان.";
-    const spreadGuide = spread.length ? "سياق التوزيعة ومواقع الأوراق: " + JSON.stringify(spread) + ". اربط كل ورقة بموضعها، ولا تفترض معنى موضع غير مذكور." : "لا يوجد سياق توزيعة بمواقع محددة.";
+    const spreadGuide = spread.length ? "سياق التوزيعة ومواقع الأوراق واتجاهها: " + JSON.stringify(spread) + ". اربط كل ورقة بموضعها واتجاهها إن كان معروفًا؛ orientation=unknown يعني أن الوضع المستقيم/المقلوب غير محدد، فلا تخترعه." : "لا يوجد سياق توزيعة بمواقع محددة أو اتجاهات مؤكدة.";
     const systemPrompt = `أنت مساعد التاروت في عقيق أسترو. أجب بالعربية المصرية الواضحة والعميقة. ${genderGuide}
 استخدم فقط قاعدة المعرفة المرفقة في المعاني المرجعية. افصل بوضوح بين: (1) ما يقوله المرجع الموجود، (2) قراءة تحليلية احتمالية من تركيب المعاني.
 لا تخترع أسماء كتب أو اقتباسات أو مراجع. اذكر المصدر فقط إذا كان موجودًا في قائمة المصادر المرفقة، واربطه بمعرّف المصدر أو عنوانه المتاح. إذا كانت المعرفة لا تكفي، قل ذلك صراحة ولا تملأ الفراغ بالتخمين.
