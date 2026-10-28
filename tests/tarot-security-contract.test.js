@@ -19,6 +19,8 @@ assert.match(assistant, /\.eq\("status", "published"\)/);
 assert.match(assistant, /\.eq\("tarot_cards\.status", "published"\)/);
 assert.match(assistant, /MAX_REQUESTS_PER_DAY/);
 assert.doesNotMatch(publicJs, /GEMINI_API_KEY|SUPABASE_SERVICE_ROLE_KEY|AIza[\w-]{20,}/);
+assert.match(publicJs, /loadPublishedLibrary/);
+assert.match(publicJs, /card.status!==\"published\"&&!state.isEditor/);
 assert.match(editor, /app_metadata\?\.role/);
 assert.match(editor, /role !== "admin"/);
 assert.match(editor, /action === "approve_source"/);
