@@ -22,7 +22,7 @@ for (const card of data.cards) {
   assert.notEqual(card.status, "published", "Generated starter content must not be marked published without human review");
 }
 assert.equal(normalize("الكاهِن العُليا"), "الكاهن العليا");
-const results = rankTarotKnowledge(data.cards, "الخوف من المجهول والقلق والتخمين", {limit:5});
+const results = rankTarotKnowledge(data.cards, "القمر والغموض والقلق من المجهول", {limit:5});
 assert.ok(results.length > 0, "Retrieval should return matching knowledge");
 assert.ok(results.some((item) => item.card.id === "major-18-moon"), "Moon should rank for uncertainty/fear queries");
 const work = rankTarotKnowledge(data.cards, "العمل والموارد والميزانية", {limit:5});
