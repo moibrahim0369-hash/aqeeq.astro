@@ -29,7 +29,7 @@
 3. Add `GEMINI_API_KEY` as an Edge Function secret and set `GEMINI_MODEL` / `TAROT_MAX_REQUESTS_PER_DAY` as appropriate.
 4. Assign `app_metadata.role` using a trusted server/admin path, never from client-side profile editing.
 5. Deploy `tarot-assistant` and `tarot-editor` with JWT verification enabled.
-6. Test as anonymous, normal authenticated user, editor, and admin before exposing the page from main navigation.
+6. Test as anonymous, normal authenticated user, editor, and admin. The navigation link is included in this PR branch, but it will not reach production unless the PR is approved and merged.
 
 ## Editorial acceptance rules
 
