@@ -48,6 +48,7 @@ The Waite text is treated as a historical primary source; Biddy Tarot is a moder
 
 - The Magician remains `in_review`, not approved or published.
 - Source records in the JSON document the research trail but are not yet inserted into the live Supabase `tarot_sources` table; no database was modified.
-- No live assistant request, Supabase RLS integration test, role-permission test against a deployed function, or browser-device test was possible from the current branch-only setup.
+- The branch now defines writer, reviewer, and admin capabilities in RLS helper functions and Edge Function gates. Writers' queue/material/draft reads are owner-scoped; reviewers can approve/reject; only admins can approve sources and publish. Existing `editor` role remains a legacy writer-like role.
+- These are code-level guardrails only. No live assistant request, Supabase RLS integration test, role-permission test against a deployed function, or browser-device test was possible from the current branch-only setup.
 - The static tests can enforce structure and citation traceability; they cannot prove that a symbolic interpretation is correct or replace human review.
 - The remaining 77 cards need card-by-card research and writing. Do not bulk-promote the current starter text to approved.
