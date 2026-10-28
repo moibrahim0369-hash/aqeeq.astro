@@ -53,12 +53,14 @@ jobs:
         run: node tests/matrix-chakra-content.test.js
       - name: Content library lifecycle contract
         run: node tests/content-library-lifecycle.test.js
-      - name: Content library public UI lifecycle E2E
+      - name: Content library renderer lifecycle E2E
         run: node tests/content-library-preview.e2e.js
+      - name: Real tarot page content lifecycle E2E
+        run: node tests/content-library-page.e2e.js
       - name: Validate content batch examples
         run: |
           node scripts/validate-content-batch.js docs/content-examples
-          node scripts/validate-content-batch.js assets/data/content
+          node scripts/validate-content-batch.js --release assets/data/content
       - name: Preview asset staging excludes repository internals
         run: |
           sh scripts/prepare-preview-assets.sh
