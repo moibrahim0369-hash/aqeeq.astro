@@ -93,9 +93,9 @@ Deno.serve(async (req: Request) => {
       const materialId = clean(body.materialId, 80);
       if (!materialId) problem(400, "معرّف المادة مطلوب.");
       const { data: material, error } = await admin.from("tarot_materials")
-        .select("id,title,raw_text,normalized_notes,card_id,source_id,status,created_at")
+        .select("id,title,raw_text,normalized_notes,card_id,source_id,status,created_at,created_by")
         .eq("id", materialId).maybeSingle();
-      if (error || !material) problem(404, "المادة الخام غير موجودة.");
+      if (error || !material || (role === "writer" && material.created_by !== actorId)) problem(404, "المادة الخام غير موجودة.");
       const { data: source } = material.source_id
         ? await admin.from("tarot_sources").select("id,title,source_url,citation,status").eq("id", material.source_id).maybeSingle()
         : { data: null };
@@ -107,6 +107,9 @@ Deno.serve(async (req: Request) => {
       const cardId = clean(body.cardId, 100);
       const normalizedNotes = clean(body.normalizedNotes, 12000);
       if (!materialId || !cardId) problem(400, "معرّف المادة والورقة مطلوبان.");
+      const { data: material, error: materialReadError } = await admin.from("tarot_materials").select("id,created_by,status").eq("id", materialId).maybeSingle();
+      if (materialReadError || !material || (role === "writer" && material.created_by !== actorId)) problem(404, "المادة الخام غير موجودة.");
+      if (!["raw","organized"].includes(material.status)) problem(409, "لا يمكن إعادة تنظيم مادة في حالتها الحالية.");
       const { data: card } = await admin.from("tarot_cards").select("id").eq("id", cardId).maybeSingle();
       if (!card) problem(404, "الورقة غير موجودة في فهرس قاعدة المعرفة.");
       const { data, error } = await admin.from("tarot_materials").update({
@@ -159,8 +162,8 @@ Deno.serve(async (req: Request) => {
     const versionId = clean(body.versionId, 80);
     if (!versionId) problem(400, "معرّف الإصدار مطلوب لهذه العملية.");
     const { data: versionRow, error: versionError } = await admin.from("tarot_content_versions")
-      .select("id,card_id,version,status,source_ids,material_ids,approved_by,approved_at,reference_content,aqeq_content,change_summary").eq("id", versionId).maybeSingle();
-    if (versionError || !versionRow) problem(404, "الإصدار غير موجود.");
+      .select("id,card_id,version,status,source_ids,material_ids,approved_by,approved_at,reference_content,aqeq_content,change_summary,created_by").eq("id", versionId).maybeSingle();
+    if (versionError || !versionRow || (role === "writer" && versionRow.created_by !== actorId)) problem(404, "الإصدار غير موجود.");
 
     if (action === "get_version") {
       return reply(req, { version: versionRow });
