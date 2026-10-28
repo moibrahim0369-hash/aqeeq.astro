@@ -1,45 +1,49 @@
-# مختبر التاروت | Aqeq Astro
+# Tarot Study Lab: implementation status
 
-## الحالة الحالية
+## What is implemented in this branch
 
-هذه مرحلة تأسيس أولى، وليست موسوعة مكتملة أو نظام ذكاء اصطناعي متصلًا بعد. الصفحة المستقلة `tarot-study.html` تعرض فهرسًا من 78 بطاقة، وتعرض محتوى نموذجيًا مبدئيًا لكارت الساحر. بقية الكروت تظهر بوضوح بحالة «قيد الإعداد» ولا تُعرض لها معانٍ مولدة على أنها مرجع معتمد.
+- A standalone Arabic RTL study page at `tarot-study.html`.
+- A 78-card Rider-Waite-Smith catalog: 22 Major Arcana and 56 Minor Arcana across four suits.
+- Structured starter content in `assets/data/tarot/study-cards.json`, with reference meanings separated from Aqeq Astro original interpretation, constructive/challenging expressions, practical reflection prompts, and editorial status.
+- All starter content remains `in_review`. Sources are currently empty in the starter JSON, so it must not be represented as independently source-verified or published.
+- Deterministic local retrieval in `assets/js/tarot-retrieval.js`.
+- An authenticated `tarot-assistant` Edge Function that searches only published versions and cards, applies per-user daily limits, sends context to Gemini using a server-side secret, and returns only source records found in the database.
+- A role-gated `tarot-editor` Edge Function for raw material capture, draft version creation, submission to review, source approval, content approval, publication, and review-queue retrieval.
+- A non-destructive SQL migration for cards, sources, raw materials, version history, review events, request usage, RLS, and a seeded 78-card catalog.
+- Node contract tests for the card catalog, retrieval, and security boundaries.
 
-## الملفات
+## Roles and security assumptions
 
-- `tarot-study.html`: واجهة مختبر الدراسة.
-- `assets/css/tarot-study.css`: تنسيق متجاوب متوافق مع الهوية الداكنة.
-- `assets/js/tarot-study.js`: فهرس الأوراق، البحث، التصفية، عرض الأقسام، تقدم المذاكرة، حفظ مسودات محلية وتجهيز prompt أولي.
-- `assets/data/tarot/study-cards.json`: نموذج البيانات ومحتوى الساحر.
-- `tests/tarot-study.test.js`: فحوص بنية بيانات الكروت والأقسام.
-- `docs/TAROT_STUDY_LAB.md`: هذه الوثيقة.
+- The server reads editor roles only from verified Supabase Auth `app_metadata.role`, with values `editor` or `admin`. Do not use user-editable `user_metadata` for authorization.
+- Editors can add raw material, create drafts, and submit versions for review.
+- Admins can approve source records, approve versions, and publish approved versions.
+- The assistant requires an authenticated user and retrieves only rows with both version and card status `published`.
+- Gemini API credentials belong in the Edge Function secret `GEMINI_API_KEY`; never place that secret in browser JavaScript.
+- The Supabase publishable key in the browser is public by design and is not a service-role key.
+- The database migration and Edge Functions are source code only in this PR. They have **not** been applied or deployed to the connected project.
 
-## حدود المرحلة
+## Before enabling the server workflow
 
-- حفظ المسودات والتقدم يتم في `localStorage` داخل المتصفح فقط. هذا ليس تخزينًا خادميًا ولا يوفر مزامنة بين الأجهزة أو حماية للمحتوى الخاص.
-- مربع السؤال يجهز prompt أوليًا فقط. لم يتم توصيله بنموذج API، ولا توجد ادعاءات بأن الإجابة تُولّد داخل الموقع حاليًا.
-- لم تتم إضافة جداول قاعدة بيانات أو سياسات RLS في هذه المرحلة. يجب مراجعة نموذج صلاحيات المدير قبل تخزين المراجع والمسودات على الخادم.
-- صفحة المختبر مستقلة ولم تُدمج بعد في التنقل داخل الصفحة الرئيسية الكبيرة، لتجنب تعديل الصفحة الحالية قبل اختيار نقطة الربط المناسبة.
-- محتوى الساحر نموذج تأسيسي، وليس ادعاءً باكتمال موسوعة الأوراق الـ78.
+1. Review the migration against the live schema, then apply it through the approved migration process.
+2. Configure the signed-in site to share the same Supabase Auth session with this standalone page. The page uses the project's public publishable key.
+3. Add `GEMINI_API_KEY` as an Edge Function secret and set `GEMINI_MODEL` / `TAROT_MAX_REQUESTS_PER_DAY` as appropriate.
+4. Assign `app_metadata.role` using a trusted server/admin path, never from client-side profile editing.
+5. Deploy `tarot-assistant` and `tarot-editor` with JWT verification enabled.
+6. Test as anonymous, normal authenticated user, editor, and admin before exposing the page from main navigation.
 
-## المرحلة التالية
+## Editorial acceptance rules
 
-1. مراجعة آلية أدوار المدير الحالية وتحديد صلاحية موثوقة لإدارة المحتوى.
-2. إضافة مخطط قاعدة معرفة للمصادر ومقاطع النصوص والأقسام والإصدارات والمسودات وحالة الاعتماد مع RLS.
-3. إنشاء واجهة استيراد خادمية تحتفظ بالنص الأصلي وسجل التنقيح.
-4. إضافة Edge Function منفصلة للمساعد، مع تحقق المصادقة وحدود الاستخدام والتحقق من المدخلات ومفتاح النموذج في أسرار الخادم.
-5. تنفيذ RAG وإظهار المصادر المسترجعة وحفظ المخرجات كمسودات بدل نشرها تلقائيًا.
-6. إضافة اختبارات للبحث والصلاحيات والمحتوى المكرر ومسارات الأخطاء.
-7. دمج رابط المختبر في تنقل الموقع بعد مراجعة الصفحة الرئيسية.
-8. إدخال بقية الكروت على دفعات ومراجعتها قبل اعتمادها.
+- Raw source material remains separate from reference summaries and Aqeq Astro's original interpretation.
+- An approved/published content version must have at least one source ID, an admin approval record, and approved source records.
+- Do not mark starter content approved or published just because it has been generated or seeded.
+- Tarot is framed as symbolic reflection, not diagnosis, evidence of another person's private feelings, or a guaranteed prediction.
 
-## التحقق اليدوي
+## Tests
 
-افتح `tarot-study.html` عبر خادم HTTP/HTTPS أو GitHub Pages، ثم اختبر:
+The PR workflow runs:
 
-- البحث عن «الساحر» و«The Magician» والرقم 1.
-- تصفية الأركانا الكبرى ومجموعات الأركانا الصغرى.
-- التنقل بين أقسام كارت الساحر.
-- حفظ التقدم وإلغاء حفظه.
-- حفظ مسودة محلية ثم تحديث الصفحة.
-- اختيار كارت غير مكتمل والتأكد من ظهور حالته بوضوح.
-- تجهيز prompt لسؤال، والتأكد من عدم الادعاء بأن النموذج متصل.
+- `node tests/tarot-study.test.js`
+- `node tests/tarot-retrieval.test.js`
+- `node tests/tarot-security-contract.test.js`
+
+These are contract tests, not live Supabase RLS integration tests or live Gemini end-to-end tests. Those require the migration and Edge Functions to be deployed in a non-production test environment with the required secret configured.
