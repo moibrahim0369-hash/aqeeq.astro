@@ -18,6 +18,8 @@ const waitForFreshFile = () => new Promise(resolve => setTimeout(resolve, 1200))
     const page = await browser.newPage();
     const errors = [];
     const contentRequests = [];
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });
     page.on('pageerror', error => errors.push(error.message));
     page.on('request', request => {
       if (request.url().includes('/assets/data/content/tarot/tarot-library-pilot.json')) contentRequests.push(request.url());
