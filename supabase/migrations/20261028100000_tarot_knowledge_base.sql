@@ -105,25 +105,25 @@ create index if not exists tarot_assistant_user_created_idx
 create index if not exists tarot_reviews_version_created_idx
   on public.tarot_reviews(version_id, created_at desc);
 
+create or replace function public.is_tarot_writer()
+returns boolean
+language sql stable security invoker set search_path = ''
+as $ select coalesce(auth.jwt() -> 'app_metadata' ->> 'role' in ('writer','editor','admin'), false); $;
+
+create or replace function public.is_tarot_reviewer()
+returns boolean
+language sql stable security invoker set search_path = ''
+as $ select coalesce(auth.jwt() -> 'app_metadata' ->> 'role' in ('reviewer','admin'), false); $;
+
 create or replace function public.is_tarot_editor()
 returns boolean
-language sql
-stable
-security invoker
-set search_path = ''
-as $$
-  select coalesce(auth.jwt() -> 'app_metadata' ->> 'role' in ('admin','editor'), false);
-$$;
+language sql stable security invoker set search_path = ''
+as $ select coalesce(auth.jwt() -> 'app_metadata' ->> 'role' in ('admin','editor','writer','reviewer'), false); $;
 
 create or replace function public.is_tarot_admin()
 returns boolean
-language sql
-stable
-security invoker
-set search_path = ''
-as $$
-  select coalesce(auth.jwt() -> 'app_metadata' ->> 'role' = 'admin', false);
-$$;
+language sql stable security invoker set search_path = ''
+as $ select coalesce(auth.jwt() -> 'app_metadata' ->> 'role' = 'admin', false); $;
 
 alter table public.tarot_cards enable row level security;
 alter table public.tarot_sources enable row level security;
@@ -195,10 +195,15 @@ create policy tarot_versions_editor_insert
   );
 create policy tarot_versions_editor_update
   on public.tarot_content_versions for update to authenticated
-  using ((select public.is_tarot_editor()) and (status not in ('approved','published') or (select public.is_tarot_admin())))
+  using (
+    (select public.is_tarot_editor())
+    and (status <> 'published' or (select public.is_tarot_admin()))
+    and (status <> 'approved' or (select public.is_tarot_reviewer()))
+  )
   with check (
     (select public.is_tarot_editor())
-    and (status not in ('approved','published') or (select public.is_tarot_admin()))
+    and (status <> 'published' or (select public.is_tarot_admin()))
+    and (status <> 'approved' or (select public.is_tarot_reviewer()))
   );
 
 create policy tarot_reviews_editor_read
@@ -209,7 +214,7 @@ create policy tarot_reviews_editor_insert
   with check (
     (select public.is_tarot_editor())
     and reviewer_id = (select auth.uid())
-    and (decision in ('submitted','needs_changes') or (select public.is_tarot_admin()))
+    and (decision in ('submitted','needs_changes') or (decision in ('approved','rejected') and (select public.is_tarot_reviewer())))
   );
 
 -- Request history is deliberately server-only. Edge Functions use the service role
