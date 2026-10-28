@@ -6,7 +6,7 @@ const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
 const GEMINI_MODEL = Deno.env.get("GEMINI_MODEL") ?? "gemini-2.5-flash";
 const MAX_QUESTION_CHARS = 1200;
-const MAX_REQUESTS_PER_DAY = Number(Deno.env.get("TAROT_MAX_REQUESTS_PER_DAY") ?? "20");
+const MAX_REQUESTS_PER_DAY = Math.max(1, Math.min(100, Number(Deno.env.get("TAROT_MAX_REQUESTS_PER_DAY") ?? "20") || 20));
 const ALLOWED_ORIGINS = (Deno.env.get("TAROT_ALLOWED_ORIGINS") ?? "https://moibrahim0369-hash.github.io,http://localhost:3000,http://127.0.0.1:5500")
   .split(",").map((value) => value.trim()).filter(Boolean);
 
