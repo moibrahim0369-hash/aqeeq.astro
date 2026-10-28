@@ -85,6 +85,34 @@ Deno.serve(async (req: Request) => {
       return reply(req, { material, sourceId: source.id });
     }
 
+    if (action === "get_material") {
+      const materialId = clean(body.materialId, 80);
+      if (!materialId) problem(400, "معرّف المادة مطلوب.");
+      const { data: material, error } = await admin.from("tarot_materials")
+        .select("id,title,raw_text,normalized_notes,card_id,source_id,status,created_at")
+        .eq("id", materialId).maybeSingle();
+      if (error || !material) problem(404, "المادة الخام غير موجودة.");
+      const { data: source } = material.source_id
+        ? await admin.from("tarot_sources").select("id,title,source_url,citation,status").eq("id", material.source_id).maybeSingle()
+        : { data: null };
+      return reply(req, { material, source });
+    }
+
+    if (action === "organize_material") {
+      const materialId = clean(body.materialId, 80);
+      const cardId = clean(body.cardId, 100);
+      const normalizedNotes = clean(body.normalizedNotes, 12000);
+      if (!materialId || !cardId) problem(400, "معرّف المادة والورقة مطلوبان.");
+      const { data: card } = await admin.from("tarot_cards").select("id").eq("id", cardId).maybeSingle();
+      if (!card) problem(404, "الورقة غير موجودة في فهرس قاعدة المعرفة.");
+      const { data, error } = await admin.from("tarot_materials").update({
+        card_id: cardId, normalized_notes: normalizedNotes || null, status: "organized",
+        updated_by: actorId, updated_at: new Date().toISOString(),
+      }).eq("id", materialId).select("id,card_id,status,updated_at").single();
+      if (error || !data) problem(503, "تعذر تنظيم المادة وربطها بالورقة.");
+      return reply(req, { material: data });
+    }
+
     if (action === "create_draft") {
       const cardId = clean(body.cardId, 100);
       const referenceContent = isObject(body.referenceContent) ? body.referenceContent : {};
@@ -122,6 +150,25 @@ Deno.serve(async (req: Request) => {
     const { data: versionRow, error: versionError } = await admin.from("tarot_content_versions")
       .select("id,card_id,version,status,source_ids,approved_by,approved_at").eq("id", versionId).maybeSingle();
     if (versionError || !versionRow) problem(404, "الإصدار غير موجود.");
+
+    if (action === "get_version") {
+      return reply(req, { version: versionRow });
+    }
+
+    if (action === "update_draft") {
+      if (!["draft", "rejected"].includes(versionRow.status)) problem(409, "يمكن تعديل المسودة قبل المراجعة أو بعد إعادتها للتعديل فقط.");
+      const referenceContent = isObject(body.referenceContent) ? body.referenceContent : {};
+      const aqeqContent = isObject(body.aqeqContent) ? body.aqeqContent : {};
+      const sourceIds = Array.isArray(body.sourceIds) ? body.sourceIds.filter((id) => typeof id === "string").slice(0, 30) as string[] : [];
+      if (!Object.keys(referenceContent).length || !Object.keys(aqeqContent).length) problem(400, "افصل المحتوى المرجعي عن تفسير عقيق أسترو.");
+      const { data, error } = await admin.from("tarot_content_versions").update({
+        reference_content: referenceContent, aqeq_content: aqeqContent, source_ids: sourceIds,
+        provenance: sourceIds.length ? "mixed" : "aqeq_original", status: "draft",
+        change_summary: clean(body.changeSummary, 500),
+      }).eq("id", versionId).select("id,card_id,version,status,created_at").single();
+      if (error || !data) problem(503, "تعذر تحديث المسودة.");
+      return reply(req, { version: data });
+    }
 
     if (action === "submit_review") {
       if (!["draft", "rejected"].includes(versionRow.status)) problem(409, "لا يمكن إرسال الإصدار للمراجعة من حالته الحالية.");
