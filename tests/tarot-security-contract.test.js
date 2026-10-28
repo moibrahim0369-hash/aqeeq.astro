@@ -30,7 +30,7 @@ assert.ok(migration.includes("function public.is_tarot_writer()"));
 assert.ok(migration.includes("function public.is_tarot_reviewer()"));
 assert.ok(migration.includes("revoke insert, update on public.tarot_cards, public.tarot_sources, public.tarot_materials"));
 assert.ok(migration.includes("or created_by = (select auth.uid())"), "Writers may read their own source/material records");
-assert.ok(migration.includes("decision in ('approved','rejected') and (select public.is_tarot_reviewer())"));
+assert.ok(migration.includes("(select public.is_tarot_reviewer()) and decision in ('approved','rejected')"));
 assert.ok(migration.includes("public.is_tarot_reviewer()"));
 assert.ok(editor.includes('"admin", "editor", "writer", "reviewer"'));
 assert.ok(editor.includes('role === "writer" && material.created_by !== actorId'));
