@@ -19,7 +19,7 @@ const withdrawn = { ...published, workflow: { status: 'withdrawn', publishedAt: 
     await page.route('**/assets/data/content/matrix/qa-lifecycle-sample.json?*', route =>
       route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(published) }));
     await page.goto('http://127.0.0.1:8765/tests/fixtures/content-library-preview.html');
-    await page.waitForFunction(() => window.contentFixtureReady);
+    await page.evaluate(() => window.contentFixtureReady);
     assert.equal(await page.locator('#content').isVisible(), true);
     assert.equal(await page.locator('#content h2').textContent(), 'نموذج اختبار دورة المحتوى');
     assert.equal(await page.locator('#content p').textContent(), 'نص تجريبي غير منشور لاختبار دورة المراجعة والاعتماد.');
