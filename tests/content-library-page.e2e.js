@@ -10,6 +10,7 @@ const originalText = fs.readFileSync(fixturePath, 'utf8');
 const original = JSON.parse(originalText);
 const publishedAt = '2026-10-28T00:01:00Z';
 const reviewedAt = '2026-10-28T00:00:00Z';
+const waitForFreshFile = () => new Promise(resolve => setTimeout(resolve, 1200));
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
