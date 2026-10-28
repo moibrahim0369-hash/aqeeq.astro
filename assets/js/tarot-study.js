@@ -70,7 +70,7 @@ function bindEvents() {
  $("#tarot-generate-prompt").addEventListener("click",generatePrompt);
 }
 function renderCatalog() {
- const filtered=catalog.filter(([id,num,ar,en,group])=>{
+ const filtered=window.AqeqTarotRetrieval?.filterTarotCatalog(catalog,state.query,state.filter)||catalog.filter(([id,num,ar,en,group])=>{
   const groupMatch=state.filter==="all"||(state.filter==="major"?group==="major":group===state.filter);
   return groupMatch&&(ar+" "+en+" "+num).toLocaleLowerCase("ar").includes(state.query);
  });
@@ -104,8 +104,9 @@ function quickSummary(card) {
  return '<div class="tarot-section-card"><h3>المعنى المعتدل</h3><p>'+esc(card.upright?.summary||"لم يُضف بعد.")+'</p></div><div class="tarot-section-card"><h3>المعنى المعكوس</h3><p>'+esc(card.upright?.reversedSummary||"لم يُضف بعد.")+'</p></div>'+Object.entries(card.fields||{}).map(([name,field])=>'<div class="tarot-section-card"><h3>'+esc(({love:"العلاقات",work:"العمل",money:"المال",shadow:"الظل",personalGrowth:"النمو الشخصي"})[name]||name)+'</h3><p><strong>المتوازن:</strong> '+esc(field.upright||"")+'</p><p><strong>الظل:</strong> '+esc(field.reversed||"")+'</p></div>').join("");
 }
 function toggleProgress(id) {
- const progress=new Set(getProgress());if(progress.has(id))progress.delete(id);else progress.add(id);
- localStorage.setItem(PROGRESS_KEY,JSON.stringify([...progress]));renderCatalog();renderDetail();updateProgress();
+ const current=getProgress();
+ const next=window.AqeqTarotRetrieval?.toggleProgressList(current,id)||(()=>{const progress=new Set(current);if(progress.has(id))progress.delete(id);else progress.add(id);return [...progress];})();
+ localStorage.setItem(PROGRESS_KEY,JSON.stringify(next));renderCatalog();renderDetail();updateProgress();
 }
 function updateProgress(){ $("#tarot-progress").textContent="ذاكرت "+getProgress().length+" كارت من "+catalog.length+" كارت في الفهرس"; }
 async function editorAction(action,extra={}) {
@@ -162,7 +163,7 @@ async function updateDraft() {
  const reference=$("#tarot-reference-content").value.trim(),original=$("#tarot-aqeq-content").value.trim();
  if(!reference||!original){editorStatus("املأ المعنى المرجعي وتفسير عقيق أسترو كلٌّ في حقله.");return;}
  try {
-  const data=await editorAction("update_draft",{versionId:state.lastVersionId,referenceContent:{summary:reference},aqeqContent:{analysis:original},sourceIds:state.lastSourceId?[state.lastSourceId]:[],changeSummary:$("#tarot-editor-notes").value.trim()});
+  const data=await editorAction("update_draft",{versionId:state.lastVersionId,referenceContent:{summary:reference},aqeqContent:{analysis:original},sourceIds:state.lastSourceId?[state.lastSourceId]:[],materialIds:state.lastMaterialId?[state.lastMaterialId]:[],changeSummary:$("#tarot-editor-notes").value.trim()});
   editorStatus("تم تحديث المسودة "+data.version.id+" بالإصدار "+data.version.version+".");
   await loadEditorialQueue();
  } catch(error){editorStatus(error?.message||"تعذر تحديث المسودة.");}
