@@ -23,7 +23,7 @@ for (const [suitId,suitAr,suitEn] of suits) for (const [rankId,rankAr,rankEn] of
  const value = rankId === "ace" ? 1 : rankId === "page" ? 11 : rankId === "knight" ? 12 : rankId === "queen" ? 13 : rankId === "king" ? 14 : ["two","three","four","five","six","seven","eight","nine","ten"].indexOf(rankId) + 2;
  catalog.push([suitId+"-"+rankId,value,rankAr+" من "+suitAr,rankEn+" of "+suitEn,suitId]);
 }
-const state = {data:null,selectedId:"major-01-magician",activeSection:"core",filter:"all",query:"",lastSourceId:null,lastVersionId:null,lastMaterialId:null};
+const state = {data:null,selectedId:"major-01-magician",activeSection:"core",filter:"all",query:"",lastSourceId:null,lastVersionId:null,lastMaterialId:null,isEditor:false};
 const $ = (selector) => document.querySelector(selector);
 const esc = (value="") => String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const getCard = id => state.data?.cards?.find(card => card.id === id);
@@ -34,11 +34,43 @@ async function init() {
   const response = await fetch(DATA_URL,{cache:"no-store"});
   if (!response.ok) throw new Error("تعذر تحميل بيانات الموسوعة.");
   state.data = await response.json();
-  if (window.supabase?.createClient) supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  if (window.supabase?.createClient) {
+   supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+   const {data:sessionData}=await supabaseClient.auth.getSession();
+   if(sessionData?.session){
+    const {data:userData}=await supabaseClient.auth.getUser();
+    state.isEditor=["admin","editor"].includes(userData?.user?.app_metadata?.role);
+   }
+   await loadPublishedLibrary();
+  }
   bindEvents(); renderCatalog(); renderDetail(); updateProgress();
  } catch(error) {
   $("#tarot-detail").innerHTML = '<div class="tarot-notice" role="alert">'+esc(error.message)+' راجع ملف بيانات التاروت ثم حدّث الصفحة.</div>';
  }
+}
+async function loadPublishedLibrary() {
+ if(!supabaseClient||!state.data)return;
+ try {
+  const {data,error}=await supabaseClient.from("tarot_cards")
+   .select("id,number,arcana,suit,rank,name_ar,name_en,status,tarot_content_versions!inner(id,version,reference_content,aqeq_content,source_ids,status)")
+   .eq("status","published").eq("tarot_content_versions.status","published").limit(100);
+  if(error||!Array.isArray(data))return;
+  const published=new Map();
+  for(const row of data){
+   const versions=(row.tarot_content_versions||[]).filter(version=>version.status==="published").sort((a,b)=>b.version-a.version);
+   const version=versions[0];if(!version)continue;
+   const reference=version.reference_content||{},original=version.aqeq_content||{};
+   const sections=Array.isArray(original.sections)?original.sections:[
+    {id:"reference",title:"المعنى المرجعي",content:reference.summary||"لم يُضف ملخص مرجعي.",status:"published",provenance:"reference"},
+    {id:"analysis",title:"تفسير عقيق أسترو",content:original.analysis||original.core||"لم يُضف تفسير بعد.",status:"published",provenance:"aqeq_original"}
+   ];
+   published.set(row.id,{id:row.id,number:row.number,arcana:row.arcana,suit:row.suit,rank:row.rank,nameAr:row.name_ar,nameEn:row.name_en,
+    aliases:[row.name_ar,row.name_en],status:"published",traditionalReference:reference,aqeqInterpretation:original,
+    sections,keywords:original.keywords||{upright:[],reversed:[]},upright:original.upright||{summary:reference.summary||"",reversedSummary:""},
+    fields:original.fields||{},sources:version.source_ids||[],editorialNotes:"محتوى منشور بعد المراجعة التحريرية.",version:version.version});
+  }
+  state.data.cards=state.data.cards.map(card=>published.get(card.id)||card);
+ } catch { /* fail closed: never promote local draft content to published */ }
 }
 function bindEvents() {
  $("#tarot-search").addEventListener("input",event=>{state.query=event.target.value.trim().toLocaleLowerCase("ar");renderCatalog();});
@@ -83,6 +115,9 @@ function renderCatalog() {
 }
 function renderDetail() {
  const card=getCard(state.selectedId);
+ if(card&&card.status!=="published"&&!state.isEditor){
+  $("#tarot-detail").innerHTML='<div class="tarot-detail"><div class="tarot-detail-top"><div><span class="tarot-eyebrow">قيد المراجعة</span><h2>'+esc(card.nameAr)+'</h2><div class="tarot-subtitle">'+esc(card.nameEn)+'</div></div><span class="tarot-status">غير منشور</span></div><p class="tarot-muted">المحتوى التفصيلي للورقة لسه تحت المراجعة. هنظهر هنا النسخة المنشورة فقط بعد توثيق المراجع واعتمادها من فريق التحرير.</p></div>';return;
+ }
  if(!card) {
   const item=catalog.find(([id])=>id===state.selectedId);
   $("#tarot-detail").innerHTML='<div class="tarot-detail"><div class="tarot-detail-top"><div><span class="tarot-eyebrow">قيد الإعداد</span><h2>'+esc(item?.[2]||"كارت تاروت")+'</h2><div class="tarot-subtitle">'+esc(item?.[3]||"")+'</div></div><span class="tarot-status">لم يُعتمد محتواه بعد</span></div><p class="tarot-muted">الكارت موجود في الفهرس، لكن محتواه الموسوعي لم يُكتب أو يُراجع بعد. لن نعرض معاني مولّدة على أنها مرجع معتمد.</p><div class="tarot-notice">أضف النصوص والمراجع، ثم أنشئ التحليل وراجعه قبل اعتماده.</div></div>';return;
