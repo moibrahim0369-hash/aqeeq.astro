@@ -144,7 +144,7 @@ async function createVersion() {
  const reference=$("#tarot-reference-content").value.trim(),original=$("#tarot-aqeq-content").value.trim();
  if(!reference||!original){editorStatus("املأ المعنى المرجعي وتفسير عقيق أسترو كلٌّ في حقله.");return;}
  try {
-  const data=await editorAction("create_draft",{cardId:state.selectedId,referenceContent:{summary:reference},aqeqContent:{analysis:original},sourceIds:state.lastSourceId?[state.lastSourceId]:[],changeSummary:$("#tarot-editor-notes").value.trim()});
+  const data=await editorAction("create_draft",{cardId:state.selectedId,referenceContent:{summary:reference},aqeqContent:{analysis:original},sourceIds:state.lastSourceId?[state.lastSourceId]:[],materialIds:state.lastMaterialId?[state.lastMaterialId]:[],changeSummary:$("#tarot-editor-notes").value.trim()});
   state.lastVersionId=data.version.id;
   editorStatus("اتعملت مسودة إصدار رقم "+data.version.version+" ومعرّفها "+data.version.id+". الحالة: draft.");
  } catch(error) {editorStatus(error?.message||"تعذر إنشاء المسودة.");}
@@ -212,7 +212,7 @@ async function selectQueueItem(event) {
  if(versionButton){
   try {
    const data=await editorAction("get_version",{versionId:versionButton.dataset.queueVersion});
-   const version=data.version;state.lastVersionId=version.id;state.lastSourceId=version.source_ids?.[0]||null;state.selectedId=version.card_id;
+   const version=data.version;state.lastVersionId=version.id;state.lastSourceId=version.source_ids?.[0]||null;state.lastMaterialId=version.material_ids?.[0]||null;state.selectedId=version.card_id;
    $("#tarot-reference-content").value=version.reference_content?.summary||JSON.stringify(version.reference_content||{},null,2);
    $("#tarot-aqeq-content").value=version.aqeq_content?.analysis||JSON.stringify(version.aqeq_content||{},null,2);
    $("#tarot-editor-notes").value=version.change_summary||"";
