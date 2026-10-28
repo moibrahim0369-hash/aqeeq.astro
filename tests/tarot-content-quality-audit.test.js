@@ -9,6 +9,7 @@ assert.equal(magician.status, "in_review", "Research-backed starter content must
 assert.ok(magician.sources.length >= 3, "The Magician must carry multiple traceable source records");
 for (const source of magician.sources) {
   assert.ok(source.id && source.title && source.url && /^https:\/\//.test(source.url), "Each source needs an ID, title and HTTPS URL");
+  assert.ok(["book", "article", "website", "course", "personal_note", "other"].includes(source.sourceType), "Source types must map to database enum");
   assert.ok(source.section && source.supports?.length && source.note, "Each source must explain what it supports");
 }
 const sourceIds = new Set(magician.sources.map((source) => source.id));
