@@ -25,4 +25,13 @@ assert.match(editor, /app_metadata\?\.role/);
 assert.match(editor, /role !== "admin"/);
 assert.match(editor, /action === "approve_source"/);
 assert.match(editor, /action === "publish"/);
+assert.match(migration, /function public\\.is_tarot_writer/);
+assert.match(migration, /function public\\.is_tarot_reviewer/);
+assert.match(migration, /is_tarot_reviewer\\(\\)/);
+assert.match(editor, /"writer", "reviewer"/);
+assert.match(editor, /role === "writer" && material\\.created_by !== actorId/);
+assert.match(editor, /role === "writer" && versionRow\\.created_by !== actorId/);
+assert.match(editor, /action === "approve" && !\\["reviewer", "admin"\\]\\.includes\\(role\\)/);
+assert.match(editor, /action === "publish" && role !== "admin"/);
+
 console.log("Tarot security contracts passed: RLS, role gates, published-only retrieval, server secret boundary.");
