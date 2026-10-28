@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const Library = require('../assets/js/content-library.js');
 
-const root = path.resolve(process.argv[2] || 'assets/data/content');
+const args = process.argv.slice(2);\nconst releaseMode = args[0] === '--release';\nconst rootArg = releaseMode ? args[1] : args[0];\nconst root = path.resolve(rootArg || 'assets/data/content');
 const errors = [];
 const seen = new Set();
 let checked = 0;
@@ -37,5 +37,5 @@ if (errors.length) {
   for (const error of errors) console.error('- ' + error);
   process.exitCode = 1;
 } else {
-  console.log('Content validation passed: ' + checked + ' JSON file(s), unique domain/id pairs, valid schema, draft/review-only workflow.');
+  console.log('Content validation passed: ' + checked + ' JSON file(s), unique domain/id pairs, valid schema, ' + (releaseMode ? 'reviewed release workflow.' : 'draft/review-only workflow.'));
 }
