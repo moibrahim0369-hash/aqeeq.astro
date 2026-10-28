@@ -15,6 +15,7 @@ assert.ok(migration.includes("decision in ('approved','rejected') and (select pu
 assert.match(migration, /status <> 'approved' or source_url is not null or citation is not null/);
 assert.match(assistant, /auth\.getUser\(token\)/);
 assert.match(assistant, /GEMINI_API_KEY = Deno\.env\.get/);
+assert.ok(assistant.indexOf("auth.getUser(token)") < assistant.indexOf("if (!GEMINI_API_KEY) return reply"), "Authenticate before revealing model configuration state");
 assert.match(assistant, /\.eq\("status", "published"\)/);
 assert.match(assistant, /\.eq\("tarot_cards\.status", "published"\)/);
 assert.match(assistant, /MAX_REQUESTS_PER_DAY/);
