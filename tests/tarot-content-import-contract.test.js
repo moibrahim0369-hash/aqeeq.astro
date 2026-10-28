@@ -39,5 +39,8 @@ assert.ok(magician.fields.love.dating?.upright && magician.fields.love.dating?.r
 assert.ok(magician.fields.love.commitment?.upright && magician.fields.love.commitment?.reversed, "Magician should distinguish commitment upright/reversed");
 assert.ok(magician.fields.love.separation?.upright && magician.fields.love.separation?.reversed, "Magician should distinguish separation upright/reversed");
 assert.ok(magician.sections.some((section) => section.id === "relationship-stages" && section.status === "in_review"));
+assert.ok(magician.fields.study?.upright && magician.fields.study?.reversed, "Magician should include card-specific study guidance");
+assert.ok(magician.fields.psychological?.upright && magician.fields.psychological?.reversed, "Psychological framing must remain explicitly non-diagnostic");
+assert.ok(magician.sections.some((section) => section.id === "study-and-psychological-context" && section.status === "in_review"));
 
 console.log("Tarot content import contract passed: source preservation, provenance layers, version mapping, review history, and Magician relationship contexts.");
