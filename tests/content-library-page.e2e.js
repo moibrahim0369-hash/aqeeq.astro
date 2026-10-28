@@ -42,7 +42,7 @@ const waitForFreshFile = () => new Promise(resolve => setTimeout(resolve, 1200))
     };
     fs.writeFileSync(fixturePath, JSON.stringify(published, null, 2) + '\n');
     await waitForFreshFile();
-    await page.reload({ waitUntil: 'networkidle' });
+    await page.evaluate(() => window.AqeeqTarotLibraryMount(Date.now()));
     await page.waitForFunction(() => document.querySelector('#tarot-library-content')?.hidden === false);
     assert.equal(await page.locator('#tarot-library-content h2').textContent(), original.payload.title);
     assert.equal(await page.locator('#tarot-library-content [data-content-field="keywords"]').textContent(), original.payload.upright.keywords.join(' · '));
@@ -51,7 +51,7 @@ const waitForFreshFile = () => new Promise(resolve => setTimeout(resolve, 1200))
     const withdrawn = { ...published, workflow: { status: 'withdrawn', publishedAt } };
     fs.writeFileSync(fixturePath, JSON.stringify(withdrawn, null, 2) + '\n');
     await waitForFreshFile();
-    await page.reload({ waitUntil: 'networkidle' });
+    await page.evaluate(() => window.AqeeqTarotLibraryMount(Date.now()));
     await page.waitForFunction(() => document.querySelector('#tarot-library-content')?.hidden === true);
     assert.equal(await page.locator('#tarot-library-content article').count(), 0, 'withdrawn entry must be removed from the real page DOM');
     assert.deepEqual(errors, []);
