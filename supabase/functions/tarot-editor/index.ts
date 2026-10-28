@@ -56,6 +56,7 @@ Deno.serve(async (req: Request) => {
       const title = clean(body.title, 180);
       const rawText = typeof body.rawText === "string" ? body.rawText.trim() : "";
       const sourceTitle = clean(body.sourceTitle, 180) || "ملاحظة داخلية غير موثقة";
+      const sourceUrl = clean(body.sourceUrl, 1000);
       const cardId = clean(body.cardId, 100) || null;
       if (!title || !rawText) problem(400, "عنوان المادة والنص الخام مطلوبان.");
       if (rawText.length > 200000) problem(413, "النص الخام أطول من المسموح.");
@@ -64,7 +65,7 @@ Deno.serve(async (req: Request) => {
         if (!card) problem(404, "الورقة غير موجودة في فهرس قاعدة المعرفة. طبّق ترحيل الموسوعة أولًا.");
       }
       const { data: source, error: sourceError } = await admin.from("tarot_sources").insert({
-        title: sourceTitle, source_type: "personal_note", status: "raw", created_by: actorId,
+        title: sourceTitle, source_type: sourceUrl ? "website" : "personal_note", source_url: sourceUrl || null, citation: clean(body.citation, 2000) || null, status: "raw", created_by: actorId,
       }).select("id").single();
       if (sourceError || !source) problem(503, "تعذر حفظ سجل المصدر.");
       const { data: material, error } = await admin.from("tarot_materials").insert({
@@ -92,6 +93,18 @@ Deno.serve(async (req: Request) => {
       }).select("id,card_id,version,status,created_at").single();
       if (error || !data) problem(503, "تعذر إنشاء إصدار المسودة.");
       return reply(req, { version: data });
+    }
+
+    if (action === "approve_source") {
+      if (role !== "admin") problem(403, "اعتماد المصدر متاح للمدير فقط.");
+      const sourceId = clean(body.sourceId, 80);
+      if (!sourceId) problem(400, "معرّف المصدر مطلوب.");
+      const { data: source, error: sourceReadError } = await admin.from("tarot_sources").select("id,source_url,citation,status").eq("id", sourceId).maybeSingle();
+      if (sourceReadError || !source) problem(404, "المصدر غير موجود.");
+      if (!source.source_url && !source.citation) problem(422, "أضف رابطًا أو توثيقًا ببليوغرافيًا قبل اعتماد المصدر.");
+      const { error } = await admin.from("tarot_sources").update({ status: "approved", updated_at: new Date().toISOString() }).eq("id", sourceId);
+      if (error) problem(503, "تعذر اعتماد المصدر.");
+      return reply(req, { sourceId, status: "approved" });
     }
 
     const versionId = clean(body.versionId, 80);
