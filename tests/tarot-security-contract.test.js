@@ -33,10 +33,10 @@ assert.ok(editor.includes('role === "writer" && material.created_by !== actorId'
 assert.ok(editor.includes('role === "writer" && versionRow.created_by !== actorId'));
 assert.ok(editor.includes('action === "approve" && !["reviewer", "admin"].includes(role)'));
 assert.ok(editor.includes('action === "publish" && role !== "admin"'));
-assert.ok(editor.includes('action === "ingest_raw" {\n      if (!["writer", "editor", "admin"].includes(role))'));
-assert.ok(editor.includes('action === "organize_material" {\n      if (!["writer", "editor", "admin"].includes(role))'));
-assert.ok(editor.includes('action === "create_draft" {\n      if (!["writer", "editor", "admin"].includes(role))'));
-assert.ok(editor.includes('action === "update_draft" {\n      if (!["writer", "editor", "admin"].includes(role))'));
-assert.ok(editor.includes('action === "submit_review" {\n      if (!["writer", "editor", "admin"].includes(role)'));
+assert.ok(editor.includes('action === "ingest_raw") {\n      if (!["writer", "editor", "admin"].includes(role))'));
+assert.ok(editor.includes('action === "organize_material") {\n      if (!["writer", "editor", "admin"].includes(role))'));
+assert.ok(editor.includes('action === "create_draft") {\n      if (!["writer", "editor", "admin"].includes(role))'));
+assert.ok(editor.includes('action === "update_draft") {\n      if (!["writer", "editor", "admin"].includes(role))'));
+assert.ok(editor.includes('action === "submit_review") {\n      if (!["writer", "editor", "admin"].includes(role)'));
 
 console.log("Tarot security contracts passed: RLS, role gates, published-only retrieval, server secret boundary.");
