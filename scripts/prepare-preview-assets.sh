@@ -11,6 +11,13 @@ find "$ROOT" -mindepth 1 -maxdepth 1 \
   ! -name '.wrangler' \
   ! -name 'node_modules' \
   ! -name '.preview-assets' \
+  ! -name '.github' \
+  ! -name 'tests' \
+  ! -name 'docs' \
+  ! -name 'scripts' \
+  ! -name 'wrangler.preview.jsonc' \
+  ! -name 'wrangler.preview.app.jsonc' \
+  ! -name 'wrangler.preview.astro.jsonc' \
   ! -name '.gitignore' \
   -exec cp -R {} "$STAGE/" \;
 if find "$STAGE" -path '*/.git/*' -print -quit | grep -q .; then
