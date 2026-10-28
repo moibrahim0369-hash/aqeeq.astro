@@ -11,7 +11,7 @@ assert.match(migration, /enable row level security/);
 assert.ok(migration.includes("create policy tarot_materials_editor_read") && migration.includes("or created_by = (select auth.uid())"), "Raw material reads must be owner-scoped or reviewer/editor-authorized");
 assert.match(migration, /tarot_sources_admin_update[\s\S]*is_tarot_admin/);
 assert.ok(migration.includes("status <> 'published' or (select public.is_tarot_admin())"), "Only admins may publish a content version");
-assert.ok(migration.includes("decision in ('approved','rejected') and (select public.is_tarot_reviewer())"), "Only reviewers/admins can write approval/rejection review events");
+assert.ok(migration.includes("(select public.is_tarot_reviewer()) and decision in ('approved','rejected')"), "Only reviewers/admins can write approval/rejection review events");
 assert.match(migration, /status <> 'approved' or source_url is not null or citation is not null/);
 assert.match(assistant, /auth\.getUser\(token\)/);
 assert.match(assistant, /GEMINI_API_KEY = Deno\.env\.get/);
