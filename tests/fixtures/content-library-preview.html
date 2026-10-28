@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Content library QA fixture</title></head>
+<body>
+  <main><h1>Content library QA fixture</h1><section id="content" hidden aria-live="polite"></section></main>
+  <script src="../../assets/js/content-library.js"></script>
+  <script src="../../assets/js/content-library-view.js"></script>
+  <script>
+    window.contentFixtureReady = window.AqeeqContentLibraryView.mount({
+      target: document.getElementById('content'),
+      loader: window.AqeeqContentLibrary.createLoader({basePath: '/assets/data/content/', version: 'qa-1'}),
+      path: 'matrix/qa-lifecycle-sample.json'
+    }).then(entry => ({visible: !document.getElementById('content').hidden, id: entry && entry.id}));
+  </script>
+</body>
+</html>

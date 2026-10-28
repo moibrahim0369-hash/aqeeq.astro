@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "matrix.lifecycle.sample",
+  "domain": "matrix",
+  "contentVersion": 1,
+  "workflow": {
+    "status": "draft",
+    "publishedAt": null
+  },
+  "review": {
+    "status": "not-reviewed",
+    "reviewedBy": null,
+    "reviewedAt": null,
+    "notes": "Non-sensitive workflow fixture; not final editorial content."
+  },
+  "provenance": {
+    "authorship": "aqeeq-test-fixture",
+    "sourceType": "test-fixture",
+    "sourceUrl": null,
+    "sourceLocator": null,
+    "schoolId": "unassigned"
+  },
+  "payload": {
+    "title": "نموذج اختبار دورة المحتوى",
+    "body": "نص تجريبي غير منشور لاختبار دورة المراجعة والاعتماد."
+  }
+}

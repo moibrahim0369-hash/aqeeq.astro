@@ -111,7 +111,7 @@
     return `<svg class="aqm-svg" viewBox="0 0 320 320" role="group" aria-label="مصفوفة رمزية من ثمانية محاور"> <polygon class="aqm-octagon" points="${polygon}"/> <path class="aqm-star" d="M160 31L251 251L69 69L289 160L31 160L251 69L69 251L160 31M31 160L160 289L289 160M69 69L251 251M251 69L69 251"/>${line('north','south','aqm-axis')}${line('east','west','aqm-axis')}${line('northEast','southWest','aqm-diagonal')}${line('northWest','southEast','aqm-diagonal')}${nodes}</svg>`;
   }
   const BODY_SYMBOLISM={sahasrara:'الرأس',ajna:'الجبهة والعينان',vishuddha:'الحلق والصوت',anahata:'الصدر والتنفس',manipura:'أعلى البطن',svadhisthana:'الحوض',muladhara:'الساقان والقدمان'};
-  const DEEP_LABELS={psychology:'المعنى النفسي',shadowTrap:'فخ الظل',bodySymbol:'أثر جسدي رمزي',practice:'ممارسة'};
+  const DEEP_LABELS={psychology:'المعنى النفسي',shadowTrap:'فخ الظل',bodySymbol:'أثر جسدي رمزي',practice:'ممارسة',physicsPsychology:'قراءة الجسد الرمزية',energyPsychology:'قراءة الطاقة الرمزية',emotionsPsychology:'قراءة المشاعر الرمزية'};
   const ASPECTS={physics:'الجسد',energy:'الطاقة',emotions:'المشاعر'};
   function deepSkeleton(){const w=document.createElement('div');w.className='aqm-skel';w.setAttribute('role','status');w.setAttribute('aria-label','جاري تحميل التفسير');for(let i=0;i<3;i++){const l=document.createElement('span');l.className='aqm-skel-line';w.append(l);}return w;}
   function mountChakraDeep(box,row){

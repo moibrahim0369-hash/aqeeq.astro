@@ -1,0 +1,4 @@
+// Dedicated configuration for non-production Cloudflare Workers Builds previews only.
+{
+  "previews": {}
+}

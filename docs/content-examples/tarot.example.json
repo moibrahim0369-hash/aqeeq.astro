@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "tarot.example.draft",
+  "domain": "tarot",
+  "contentVersion": 1,
+  "workflow": {
+    "status": "draft",
+    "publishedAt": null
+  },
+  "review": {
+    "status": "not-reviewed",
+    "reviewedBy": null,
+    "reviewedAt": null,
+    "notes": "Example only; not a tarot interpretation."
+  },
+  "provenance": {
+    "authorship": "example-only",
+    "sourceType": "example-fixture",
+    "sourceUrl": null,
+    "sourceLocator": null,
+    "deckId": "unassigned",
+    "traditionId": "unassigned"
+  },
+  "payload": {
+    "title": "عنوان تجريبي لبطاقة التاروت",
+    "upright": {
+      "keywords": [
+        "مثال فقط"
+      ],
+      "interpretation": "نص توضيحي فقط. ليس تفسيرًا نهائيًا أو منسوبًا لمدرسة."
+    },
+    "reversed": {
+      "keywords": [],
+      "interpretation": ""
+    }
+  }
+}

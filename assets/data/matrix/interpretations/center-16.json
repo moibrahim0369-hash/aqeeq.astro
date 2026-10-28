@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-16.draft-01",
+  "arcanaNumber": 16,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-16.json",
+    "headline": "التحرر من البنى القديمة",
+    "strengthSeed": "كشف ما يحتاج إلى إصلاح يظهر في الاستعداد لمراجعة افتراض قديم عندما تناقضه الوقائع. في العمل، يدعم الاعتراف بفشل عملية قبل أن يتسع أثرها. وفي العلاقات، قد يحرر الكلام الصريح مساحة لبناء اتفاق واقعي بدلاً من حماية واجهة هشة.",
+    "challengeSeed": "هدم بلا خطة قد يكون رد فعل يخلط بين الجزء المختل وكل ما حوله. مثال ذلك الاستقالة أو القطيعة دون فهم المشكلة الأساسية، ثم اكتشاف تكرارها في سياق جديد. وفي الاتجاه الآخر، إنكار الإشارات الواضحة يطيل عمر البنية المتصدعة."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "ينظم المركز مواجهة الحقيقة عندما لا تعود البنية القديمة صالحة. البرج يرمز إلى الانكشاف والاضطراب، لا إلى أن كل أزمة خير أو أن الهدم هو الحل الوحيد.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "الاعتراف المبكر بخلل في اتفاق أو نظام، والقدرة على إعادة البناء على أساس أوضح."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "إنكار الإشارات حتى تتفاقم، أو هدم أجزاء صالحة تحت ضغط الصدمة."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "مواجهة الخلل تمنع حماية وهم لم يعد قائماً.",
+        "poleB": "صدمة الانكشاف قد تدفع إلى هدم ما زال صالحاً.",
+        "integration": "تتضح الموازنة في هذا الموضع عبر جمع الوقائع وفصل الجزء المختل عن الباقي قبل قرار الإصلاح أو الإنهاء. ويُراجع أثر ذلك بسؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "الاستقالة فور خلاف مع مدير قبل فحص ما إذا كان الخلل في الدور أو في نظام الفريق.",
+        "possiblePattern": "في هذا الموقف، قد يظهر النمط في صورة إنكار الإشارات حتى تتفاقم، أو هدم أجزاء صالحة تحت ضغط الصدمة؛ عندها يُختبر إن كان المورد المذكور في القراءة ما زال يخدم الغاية.",
+        "experiment": "ملاحظة قابلة للتطبيق: جمع الوقائع وفصل الجزء المختل عن الباقي قبل قرار الإصلاح أو الإنهاء. ثم مراجعة هذا السؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "reflectionQuestions": [
+      "أي جزء لا يعمل، وما الذي ما زال صالحاً ويستحق الحماية؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "جمع الوقائع وفصل الجزء المختل عن الباقي قبل قرار الإصلاح أو الإنهاء.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}
