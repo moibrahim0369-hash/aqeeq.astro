@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "matrix.example.draft",
+  "domain": "matrix",
+  "contentVersion": 1,
+  "workflow": {
+    "status": "draft",
+    "publishedAt": null
+  },
+  "review": {
+    "status": "not-reviewed",
+    "reviewedBy": null,
+    "reviewedAt": null,
+    "notes": "Example only; replace before editorial use."
+  },
+  "provenance": {
+    "authorship": "example-only",
+    "sourceType": "example-fixture",
+    "sourceUrl": null,
+    "sourceLocator": null,
+    "schoolId": "unassigned",
+    "methodVersion": null
+  },
+  "payload": {
+    "title": "عنوان تجريبي للمصفوفة",
+    "body": "نص توضيحي فقط. استبدله بتفسير موثق ومراجع قبل الاعتماد."
+  }
+}
