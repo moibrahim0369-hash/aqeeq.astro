@@ -1,4 +1,4 @@
+// Dedicated configuration for non-production Cloudflare Workers Builds previews only.
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
   "previews": {}
 }
