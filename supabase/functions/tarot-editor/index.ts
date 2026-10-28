@@ -148,7 +148,7 @@ Deno.serve(async (req: Request) => {
     const versionId = clean(body.versionId, 80);
     if (!versionId) problem(400, "معرّف الإصدار مطلوب لهذه العملية.");
     const { data: versionRow, error: versionError } = await admin.from("tarot_content_versions")
-      .select("id,card_id,version,status,source_ids,approved_by,approved_at").eq("id", versionId).maybeSingle();
+      .select("id,card_id,version,status,source_ids,approved_by,approved_at,reference_content,aqeq_content,change_summary").eq("id", versionId).maybeSingle();
     if (versionError || !versionRow) problem(404, "الإصدار غير موجود.");
 
     if (action === "get_version") {
