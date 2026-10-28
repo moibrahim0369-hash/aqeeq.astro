@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0d0a12">
+  <meta name="robots" content="noindex,nofollow">
+  <title>مختبر التاروت | عقيق أسترو</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tarot-study.css">
+</head>
+<body class="tarot-study-page">
+<main class="tarot-shell">
+  <header class="tarot-topbar">
+    <a class="tarot-brand" href="index.html">عقيق أسترو ✦</a>
+    <a class="tarot-home-link" href="index.html">العودة للموقع</a>
+  </header>
+  <section class="tarot-hero">
+    <span class="tarot-eyebrow">AQEQ ASTRO · STUDY LAB</span>
+    <h1>مختبر التاروت</h1>
+    <p>مساحة لدراسة الأوراق، وتنظيم المراجع، وفهم المعاني التقليدية والتحليلات النفسية، مع التمييز بين المحتوى المعتمد والمسودات التي ما زالت قيد البناء.</p>
+  </section>
+  <section class="tarot-layout" aria-label="مكتبة التاروت">
+    <aside class="tarot-panel">
+      <div class="tarot-panel-head">
+        <h2>فهرس الأوراق</h2>
+        <div class="tarot-muted" id="tarot-catalog-count">جارٍ تحميل الفهرس…</div>
+        <input class="tarot-search" id="tarot-search" type="search" placeholder="ابحث باسم الكارت أو رقمه…" aria-label="ابحث في الكروت">
+        <div class="tarot-filters" aria-label="تصفية الفهرس">
+          <button class="tarot-chip" type="button" data-filter="all" aria-pressed="true">الكل</button>
+          <button class="tarot-chip" type="button" data-filter="major" aria-pressed="false">الأركانا الكبرى</button>
+          <button class="tarot-chip" type="button" data-filter="wands" aria-pressed="false">الصولجانات</button>
+          <button class="tarot-chip" type="button" data-filter="cups" aria-pressed="false">الكؤوس</button>
+          <button class="tarot-chip" type="button" data-filter="swords" aria-pressed="false">السيوف</button>
+          <button class="tarot-chip" type="button" data-filter="pentacles" aria-pressed="false">الخماسيات</button>
+        </div>
+      </div>
+      <div class="tarot-card-list" id="tarot-catalog"></div>
+    </aside>
+    <div>
+      <article class="tarot-panel" id="tarot-detail" aria-label="تفاصيل الكارت">
+        <div class="tarot-detail"><p class="tarot-muted">جارٍ تحميل محتوى الكارت…</p></div>
+      </article>
+      <div class="tarot-study-tools">
+        <section class="tarot-tool">
+          <h3>دفتر المراجع والمسودات</h3>
+          <p class="tarot-muted">أضف نصًا خامًا أو مادة مستخرجة من OCR لتحتفظ بها كمسودة محلية أثناء بناء نظام الاستيراد الإداري.</p>
+          <label for="tarot-draft-title">عنوان المادة</label>
+          <input id="tarot-draft-title" type="text" maxlength="180" placeholder="مثال: الساحر في العلاقات">
+          <label for="tarot-draft-source-name">اسم المصدر (اختياري)</label>
+          <input id="tarot-draft-source-name" type="text" maxlength="180" placeholder="اسم الكتاب أو الملاحظة">
+          <label for="tarot-draft-source">النص الأصلي</label>
+          <textarea id="tarot-draft-source" placeholder="الصق النص هنا مع الاحتفاظ بنسختك الأصلية…"></textarea>
+          <button class="tarot-button primary" id="tarot-save-note" type="button">حفظ مسودة على هذا الجهاز</button>
+          <p class="tarot-muted" id="tarot-draft-status" aria-live="polite">تنبيه: الحفظ المحلي ليس تخزينًا آمنًا على الخادم، ولا يصلح لإدارة محتوى خاص متعدد الأجهزة.</p>
+        </section>
+        <section class="tarot-tool">
+          <h3>اسأل مساعد المكتبة</h3>
+          <p class="tarot-muted">اكتب السؤال لتكوين أمر توجيهي أولي. الاتصال الفعلي بالنموذج سيُضاف بعد تجهيز الاسترجاع من قاعدة المعرفة وخدمة خلفية آمنة.</p>
+          <label for="tarot-question">سؤالك</label>
+          <textarea id="tarot-question" placeholder="مثال: إزاي أفرق بين الساحر البنّاء والساحر اللي بيستخدم الكلام بدل التنفيذ؟"></textarea>
+          <button class="tarot-button primary" id="tarot-generate-prompt" type="button">تجهيز أمر السؤال</button>
+          <div class="tarot-output" id="tarot-prompt-output" aria-live="polite">الأمر التوجيهي هيظهر هنا.</div>
+          <p class="tarot-muted" id="tarot-prompt-status">لسه مفيش اتصال بنموذج ذكاء اصطناعي في هذه المرحلة.</p>
+        </section>
+      </div>
+    </div>
+  </section>
+  <p class="tarot-footer" id="tarot-progress">جارٍ تحميل تقدم المذاكرة…</p>
+</main>
+<script src="assets/js/tarot-study.js" defer></script>
+</body>
+</html>
