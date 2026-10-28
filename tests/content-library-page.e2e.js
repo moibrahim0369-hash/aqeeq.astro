@@ -39,6 +39,7 @@ const waitForFreshFile = () => new Promise(resolve => setTimeout(resolve, 1200))
       review: { status: 'approved', reviewedBy: 'qa-reviewer', reviewedAt }
     };
     fs.writeFileSync(fixturePath, JSON.stringify(published, null, 2) + '\n');
+    await waitForFreshFile();
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForFunction(() => document.querySelector('#tarot-library-content')?.hidden === false);
     assert.equal(await page.locator('#tarot-library-content h2').textContent(), original.payload.title);
@@ -47,6 +48,7 @@ const waitForFreshFile = () => new Promise(resolve => setTimeout(resolve, 1200))
 
     const withdrawn = { ...published, workflow: { status: 'withdrawn', publishedAt } };
     fs.writeFileSync(fixturePath, JSON.stringify(withdrawn, null, 2) + '\n');
+    await waitForFreshFile();
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForFunction(() => document.querySelector('#tarot-library-content')?.hidden === true);
     assert.equal(await page.locator('#tarot-library-content article').count(), 0, 'withdrawn entry must be removed from the real page DOM');
