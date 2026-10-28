@@ -63,6 +63,8 @@ function bindEvents() {
  $("#tarot-submit-review").addEventListener("click",submitReview);
  $("#tarot-approve-version").addEventListener("click",approveVersion);
  $("#tarot-publish-version").addEventListener("click",publishVersion);
+ $("#tarot-load-queue").addEventListener("click",loadEditorialQueue);
+ $("#tarot-editor-queue").addEventListener("click",selectQueueItem);
  $("#tarot-generate-prompt").addEventListener("click",generatePrompt);
 }
 function renderCatalog() {
@@ -159,6 +161,22 @@ async function publishVersion() {
  if(!state.lastVersionId){editorStatus("أنشئ مسودة إصدار أولًا.");return;}
  try {const data=await editorAction("publish",{versionId:state.lastVersionId});editorStatus("تم نشر الإصدار "+data.versionId+" للورقة "+data.cardId+".");}
  catch(error){editorStatus(error?.message||"تعذر نشر الإصدار.");}
+}
+async function loadEditorialQueue() {
+ const target=$("#tarot-editor-queue");target.textContent="جارٍ تحميل قائمة التحرير…";
+ try {
+  const data=await editorAction("list_queue");
+  const sourceRows=(data.sources||[]).map(item=>'<button class="tarot-button" type="button" data-queue-source="'+esc(item.id)+'">مصدر: '+esc(item.title)+' · '+esc(item.status)+'</button>').join("");
+  const materialRows=(data.materials||[]).map(item=>'<div class="tarot-section-card"><strong>'+esc(item.title)+'</strong><p>المادة: '+esc(item.id)+' · الورقة: '+esc(item.card_id||"غير مرتبطة")+' · '+esc(item.status)+'</p></div>').join("");
+  const versionRows=(data.versions||[]).map(item=>'<button class="tarot-button" type="button" data-queue-version="'+esc(item.id)+'">'+esc(item.tarot_cards?.name_ar||item.card_id)+' · إصدار '+item.version+' · '+esc(item.status)+'</button>').join("");
+  target.innerHTML='<h4>المصادر</h4>'+(sourceRows||'<p>لا توجد مصادر في قائمة الانتظار.</p>')+'<h4>المواد الخام</h4>'+(materialRows||'<p>لا توجد مواد خام.</p>')+'<h4>إصدارات المحتوى</h4>'+(versionRows||'<p>لا توجد إصدارات تنتظر الإجراء.</p>');
+ } catch(error) {target.textContent=error?.message||"تعذر تحميل قائمة التحرير. تحقق من الصلاحية وإعدادات الخادم.";}
+}
+function selectQueueItem(event) {
+ const source=event.target.closest("[data-queue-source]");
+ const version=event.target.closest("[data-queue-version]");
+ if(source){state.lastSourceId=source.dataset.queueSource;$("#tarot-source-id").textContent="تم اختيار المصدر "+state.lastSourceId;editorStatus("تم اختيار مصدر من قائمة التحرير.");}
+ if(version){state.lastVersionId=version.dataset.queueVersion;editorStatus("تم اختيار الإصدار "+state.lastVersionId+" لتنفيذ الإجراء التالي.");}
 }
 async function generatePrompt() {
  const question=$("#tarot-question").value.trim(),card=getCard(state.selectedId);
