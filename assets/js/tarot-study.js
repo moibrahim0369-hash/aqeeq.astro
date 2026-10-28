@@ -1,4 +1,7 @@
 const DATA_URL = "assets/data/tarot/study-cards.json";
+const SUPABASE_URL = "https://trcveoewbxqzhhvzawxy.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_48pQKHVWg0AXYDRlcNH-HQ_iRyfDMdC";
+let supabaseClient = null;
 const DRAFT_KEY = "aqeq-tarot-study-local-drafts-v1";
 const PROGRESS_KEY = "aqeq-tarot-study-progress-v1";
 const catalog = [
@@ -31,6 +34,7 @@ async function init() {
   const response = await fetch(DATA_URL,{cache:"no-store"});
   if (!response.ok) throw new Error("تعذر تحميل بيانات الموسوعة.");
   state.data = await response.json();
+  if (window.supabase?.createClient) supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
   bindEvents(); renderCatalog(); renderDetail(); updateProgress();
  } catch(error) {
   $("#tarot-detail").innerHTML = '<div class="tarot-notice" role="alert">'+esc(error.message)+' راجع ملف بيانات التاروت ثم حدّث الصفحة.</div>';
@@ -63,8 +67,9 @@ function renderCatalog() {
  });
  $("#tarot-catalog-count").textContent=filtered.length+" كارت في الفهرس";
  $("#tarot-catalog").innerHTML=filtered.map(([id,num,ar,en])=>{
-  const complete=Boolean(getCard(id));
-  return '<button type="button" class="tarot-card-item" data-card-id="'+esc(id)+'" aria-current="'+(id===state.selectedId)+'"><span class="tarot-card-number">'+num+'</span><span><span class="tarot-card-title">'+esc(ar)+'</span><span class="tarot-card-subtitle">'+esc(en)+'</span></span><span class="tarot-status">'+(complete?"نموذج معتمد":"قيد الإعداد")+'</span></button>';
+  const card=getCard(id);
+  const status=card?.status==="published"?"منشور":card?.status==="approved"?"معتمد":"قيد المراجعة";
+  return '<button type="button" class="tarot-card-item" data-card-id="'+esc(id)+'" aria-current="'+(id===state.selectedId)+'"><span class="tarot-card-number">'+num+'</span><span><span class="tarot-card-title">'+esc(ar)+'</span><span class="tarot-card-subtitle">'+esc(en)+'</span></span><span class="tarot-status">'+status+'</span></button>';
  }).join("")||'<p class="tarot-muted">مفيش نتائج مطابقة للبحث.</p>';
 }
 function renderDetail() {
@@ -78,11 +83,15 @@ function renderDetail() {
  const saved=getProgress().includes(card.id);
  const keywords=[...(card.keywords?.upright||[]),...(card.keywords?.reversed||[]).slice(0,3)];
  const tabs=sections.map(section=>'<button type="button" class="tarot-tab" role="tab" aria-selected="'+(state.activeSection===section.id)+'" data-section-id="'+esc(section.id)+'">'+esc(section.title)+'</button>').join("");
- const content=state.activeSection==="quick"?quickSummary(card):(active?'<h3>'+esc(active.title)+'</h3><p>'+esc(active.content)+'</p><span class="tarot-status">'+(active.status==="approved"?"محتوى معتمد":"مسودة")+'</span>':"");
- $("#tarot-detail").innerHTML='<div class="tarot-detail"><div class="tarot-detail-top"><div><span class="tarot-eyebrow">الأركانا الكبرى · '+card.number+'</span><h2>'+esc(card.nameAr)+'</h2><div class="tarot-subtitle">'+esc(card.nameEn)+'</div></div><button type="button" class="tarot-button" data-save-progress="'+esc(card.id)+'">'+(saved?"✓ تمت المذاكرة":"حفظ كتقدم دراسي")+'</button></div><div class="tarot-keywords">'+keywords.map(word=>'<span class="tarot-keyword">'+esc(word)+'</span>').join("")+'</div><div class="tarot-notice">الربط الرمزي: '+esc(card.traditionalAstrology?.correspondence||"لم يحدد بعد")+'. '+esc(card.notes||"")+'</div><div class="tarot-tabs" role="tablist" aria-label="أقسام الكارت">'+tabs+'<button type="button" class="tarot-tab" role="tab" aria-selected="'+(state.activeSection==="quick")+'" data-section-id="quick">ملخص القراءة</button></div><section class="tarot-section" aria-live="polite">'+content+'</section></div>';
+ const content=state.activeSection==="quick"?quickSummary(card):(active?'<h3>'+esc(active.title)+'</h3><p>'+esc(active.content)+'</p><span class="tarot-status">'+statusLabel(active.status)+'</span>':"");
+ const category=card.arcana==="major"?"الأركانا الكبرى":("الأركانا الصغرى · "+(card.suit||""));
+ const reference=card.traditionalReference?.summary||"لم يُضف ملخص مرجعي بعد.";
+ const original=card.aqeqInterpretation?.core||"لم تُضف قراءة عقيق الأصلية بعد.";
+ $("#tarot-detail").innerHTML='<div class="tarot-detail"><div class="tarot-detail-top"><div><span class="tarot-eyebrow">'+esc(category)+' · '+card.number+'</span><h2>'+esc(card.nameAr)+'</h2><div class="tarot-subtitle">'+esc(card.nameEn)+'</div></div><button type="button" class="tarot-button" data-save-progress="'+esc(card.id)+'">'+(saved?"✓ تمت المذاكرة":"حفظ كتقدم دراسي")+'</button></div><div class="tarot-keywords">'+keywords.map(word=>'<span class="tarot-keyword">'+esc(word)+'</span>').join("")+'</div><div class="tarot-notice"><strong>المعنى المرجعي:</strong> '+esc(reference)+'<br><strong>قراءة عقيق أسترو الأصلية:</strong> '+esc(original)+'<br><strong>الحالة التحريرية:</strong> '+statusLabel(card.status)+'. '+esc(card.editorialNotes||"")+'</div><div class="tarot-tabs" role="tablist" aria-label="أقسام الكارت">'+tabs+'<button type="button" class="tarot-tab" role="tab" aria-selected="'+(state.activeSection==="quick")+'" data-section-id="quick">ملخص القراءة</button></div><section class="tarot-section" aria-live="polite">'+content+'</section></div>';
 }
+function statusLabel(status){return ({raw:"مادة خام",draft:"مسودة",in_review:"قيد المراجعة",approved:"معتمد",published:"منشور",archived:"مؤرشف"})[status]||"قيد المراجعة";}
 function quickSummary(card) {
- return '<div class="tarot-section-card"><h3>المعنى المعتدل</h3><p>'+esc(card.upright?.summary||"لم يُضف بعد.")+'</p></div><div class="tarot-section-card"><h3>المعنى المعكوس</h3><p>'+esc(card.upright?.reversedSummary||"لم يُضف بعد.")+'</p></div>'+Object.entries(card.fields||{}).map(([name,field])=>'<div class="tarot-section-card"><h3>'+esc(({love:"العلاقات",work:"العمل",money:"المال",shadow:"الظل"})[name]||name)+'</h3><p><strong>المتوازن:</strong> '+esc(field.upright||"")+'</p><p><strong>الظل:</strong> '+esc(field.reversed||"")+'</p></div>').join("");
+ return '<div class="tarot-section-card"><h3>المعنى المعتدل</h3><p>'+esc(card.upright?.summary||"لم يُضف بعد.")+'</p></div><div class="tarot-section-card"><h3>المعنى المعكوس</h3><p>'+esc(card.upright?.reversedSummary||"لم يُضف بعد.")+'</p></div>'+Object.entries(card.fields||{}).map(([name,field])=>'<div class="tarot-section-card"><h3>'+esc(({love:"العلاقات",work:"العمل",money:"المال",shadow:"الظل",personalGrowth:"النمو الشخصي"})[name]||name)+'</h3><p><strong>المتوازن:</strong> '+esc(field.upright||"")+'</p><p><strong>الظل:</strong> '+esc(field.reversed||"")+'</p></div>').join("");
 }
 function toggleProgress(id) {
  const progress=new Set(getProgress());if(progress.has(id))progress.delete(id);else progress.add(id);
@@ -98,11 +107,24 @@ function saveLocalDraft() {
  $("#tarot-draft-status").textContent="اتحفظت المسودة على الجهاز ده فقط. مش مرفوعة للسيرفر ومش متاحة من أجهزة تانية.";
  $("#tarot-draft-title").value="";$("#tarot-draft-source-name").value="";$("#tarot-draft-source").value="";
 }
-function generatePrompt() {
+async function generatePrompt() {
  const question=$("#tarot-question").value.trim(),card=getCard(state.selectedId);
  if(!question){$("#tarot-prompt-output").textContent="اكتب سؤالك الأول.";return;}
- const context=card?"الكارت: "+card.nameAr+" ("+card.nameEn+"). أقسام المعرفة: "+(card.sections||[]).map(section=>section.title).join("، ")+".":"الكارت المختار محتواه لم يُعتمد بعد.";
- $("#tarot-prompt-output").textContent="أنت مساعد تعليمي داخل عقيق أسترو. أجب بالمصري الواضح، وافصل بين المعنى التقليدي والتحليل الاستنتاجي، ولا تقدّم الاحتمالات كحقائق مؤكدة. "+context+"\nسؤال المتعلم: "+question+"\nاكتب إجابة منظمة، واذكر ما يحتاج إلى مرجع إضافي بدل اختلاق مصدر.";
- $("#tarot-prompt-status").textContent="ده أمر توجيهي جاهز للتجربة فقط. توليد الإجابة داخل الموقع يحتاج ربط API آمن في المرحلة التالية.";
+ if(!supabaseClient){$("#tarot-prompt-status").textContent="تعذر تهيئة عميل Supabase. تأكد من تحميل مكتبة العميل.";return;}
+ const button=$("#tarot-generate-prompt");button.disabled=true;button.textContent="جاري استرجاع المعرفة وإنشاء القراءة…";
+ $("#tarot-prompt-status").textContent="بنحاول الاتصال بالخدمة الآمنة. لازم تكون مسجل الدخول، ويكون ترحيل الموسوعة وخدمة النموذج منشورين على الخادم.";
+ try {
+  const {data:sessionData,error:sessionError}=await supabaseClient.auth.getSession();
+  if(sessionError||!sessionData?.session?.access_token) throw new Error("سجّل الدخول من الموقع الأول لاستخدام المساعد.");
+  const {data,error}=await supabaseClient.functions.invoke("tarot-assistant",{body:{question,gender:$("#tarot-gender")?.value||"neutral",cardIds:card?[card.id]:[]}});
+  if(error) throw error;
+  if(data?.error) throw new Error(data.error);
+  $("#tarot-prompt-output").textContent=data.answer||"الخدمة رجعت من غير إجابة.";
+  const sources=(data.sources||[]).map(source=>source.title+(source.author?" · "+source.author:"")).join("، ");
+  $("#tarot-prompt-status").textContent="قراءة مولّدة باستخدام "+(data.model||"النموذج")+". "+(sources?"المراجع المسترجعة: "+sources:"لم تُرفق مراجع منشورة بهذه القراءة.")+" تظل القراءة تأملية وليست حقيقة مؤكدة.";
+ } catch(error) {
+  $("#tarot-prompt-output").textContent="";
+  $("#tarot-prompt-status").textContent=error?.message||"الخدمة غير متاحة الآن. تأكد من إعدادات الخادم ثم حاول لاحقًا.";
+ } finally {button.disabled=false;button.textContent="اسأل مساعد المكتبة";}
 }
 init();
