@@ -46,4 +46,4 @@ The PR workflow runs:
 - `node tests/tarot-retrieval.test.js`
 - `node tests/tarot-security-contract.test.js`
 
-These are contract tests, not live Supabase RLS integration tests or live Gemini end-to-end tests. Those require the migration and Edge Functions to be deployed in a non-production test environment with the required secret configured.
+The starter JSON currently contains original in-review text on the Git branch so editors can work with it. If this repository is public, those text values are readable from the repository asset even though the UI hides them from regular visitors. Database RLS cannot protect content committed to a public file; move private editorial drafts to the database and remove them from public assets/history before treating that content as confidential. These are contract tests, not live Supabase RLS integration tests or live Gemini end-to-end tests. Those require the migration and Edge Functions to be deployed in a non-production test environment with the required secret configured.
