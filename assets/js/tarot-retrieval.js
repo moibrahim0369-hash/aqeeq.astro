@@ -15,6 +15,19 @@
    ...Object.values(card.fields||{}).flatMap(field=>[field.upright,field.reversed])
   ].filter(Boolean).join(" "));
  }
+ function filterTarotCatalog(catalog,query="",filter="all"){
+  const q=normalize(query);
+  return (Array.isArray(catalog)?catalog:[]).filter(item=>{
+   const group=item[4];
+   const groupMatch=filter==="all"||(filter==="major"?group==="major":group===filter);
+   return groupMatch&&normalize([item[2],item[3],item[1]].join(" ")).includes(q);
+  });
+ }
+ function toggleProgressList(current,id){
+  const next=new Set(Array.isArray(current)?current:[]);
+  if(next.has(id))next.delete(id);else next.add(id);
+  return [...next];
+ }
  function rankTarotKnowledge(cards,question,{limit=5,cardIds=[]}={}){
   const wanted=new Set(cardIds);
   const queryTokens=[...new Set(tokens(question))];
@@ -29,5 +42,5 @@
    return {card,score};
   }).filter(item=>item.score>0).sort((a,b)=>b.score-a.score||String(a.card.id).localeCompare(String(b.card.id))).slice(0,Math.max(0,limit));
  }
- return {normalize,tokens,rankTarotKnowledge};
+ return {normalize,tokens,filterTarotCatalog,toggleProgressList,rankTarotKnowledge};
 });
