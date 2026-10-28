@@ -59,6 +59,7 @@ create table if not exists public.tarot_content_versions (
   reference_content jsonb not null default '{}'::jsonb,
   aqeq_content jsonb not null default '{}'::jsonb,
   source_ids uuid[] not null default '{}'::uuid[],
+  material_ids uuid[] not null default '{}'::uuid[],
   provenance text not null default 'aqeq_original' check (provenance in ('reference','aqeq_original','mixed')),
   status text not null default 'draft' check (status in ('raw','draft','in_review','approved','published','rejected','archived')),
   change_summary text,
