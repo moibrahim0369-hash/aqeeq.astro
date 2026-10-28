@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "tarot.library.pilot",
+  "domain": "tarot",
+  "contentVersion": 1,
+  "workflow": {
+    "status": "draft",
+    "publishedAt": null
+  },
+  "review": {
+    "status": "not-reviewed",
+    "reviewedBy": null,
+    "reviewedAt": null,
+    "notes": "عنصر تجريبي لاختبار مسار النشر، وليس تفسيرًا معتمدًا."
+  },
+  "provenance": {
+    "authorship": "aqeeq-editorial-draft",
+    "sourceType": "original-draft",
+    "sourceUrl": null,
+    "sourceLocator": null,
+    "deckId": "aqeeq-reflective-pilot",
+    "traditionId": "reflective"
+  },
+  "payload": {
+    "title": "نموذج بطاقة تاروت غير منشور",
+    "upright": {
+      "keywords": [
+        "نموذج اختبار",
+        "غير منشور"
+      ],
+      "interpretation": "هذا نص تجريبي للتحقق من مسار المكتبة فقط. لا يمثل تفسيرًا نهائيًا ولا يُعرض قبل المراجعة والاعتماد."
+    }
+  }
+}
