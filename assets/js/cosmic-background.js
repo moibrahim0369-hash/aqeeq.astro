@@ -80,18 +80,18 @@
   /* ---------- الكانفس ---------- */
   var cv = document.createElement('canvas'); cv.id = 'cosmos-bg'; cv.setAttribute('aria-hidden', 'true');
   var anchor = document.getElementById('sky-bg'); (anchor ? anchor.parentNode : document.body).insertBefore(cv, anchor || document.body.firstChild);
-  var ctx = cv.getContext('2d'), W = 0, H = 0, DPR = 1;
-  function size() { DPR = 1; W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+  var ctx = cv.getContext('2d'), W = 0, H = 0, DPR = window.devicePixelRatio || 1;
+  function size() { W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
   size(); addEventListener('resize', function () { size(); if (reduce) paint(performance.now()); });
 
   var rg = rng(20261027), TAU = Math.PI * 2;
-  /* مجرات رئيسية: كل واحدة في منطقة خاصة بها (بعيدة عن الباقي) وبتتحرك بحركة ليساجو بطيئة */
+  /* مجرات رئيسية: حركة مستقرة بدون تشويه */
   var gal = [
-    { s: spiralGalaxy(11, '140,160,255', false), ax: .20, ay: .13, A: .07, B: .035, px: 83, py: 109, ph: .3, tilt: .6, rot: .3, rs: .020, k: 1 },
-    { s: spiralGalaxy(23, '190,150,255', true), ax: .82, ay: .31, A: .06, B: .04, px: 97, py: 131, ph: 2.1, tilt: .78, rot: -.6, rs: -.016, k: .92 },
-    { s: ellipticalGalaxy(37), ax: .30, ay: .56, A: .07, B: .03, px: 113, py: 89, ph: 4.0, tilt: .72, rot: .9, rs: .010, k: .85 },
-    { s: spiralGalaxy(59, '255,170,140', false), ax: .80, ay: .76, A: .06, B: .035, px: 101, py: 143, ph: 1.2, tilt: .66, rot: -1.1, rs: -.018, k: .95 },
-    { s: spiralGalaxy(41, '120,190,255', false), ax: .16, ay: .90, A: .05, B: .03, px: 127, py: 97, ph: 5.1, tilt: .45, rot: 1.4, rs: .022, k: .8 }
+    { s: spiralGalaxy(11, '140,160,255', false), ax: .20, ay: .13, A: .04, B: .02, px: 83, py: 109, ph: .3, tilt: .6, rot: .3, rs: .010, k: 1, speed: .3 },
+    { s: spiralGalaxy(23, '190,150,255', true), ax: .82, ay: .31, A: .035, B: .02, px: 97, py: 131, ph: 2.1, tilt: .78, rot: -.6, rs: -.008, k: .92, speed: .25 },
+    { s: ellipticalGalaxy(37), ax: .30, ay: .56, A: .04, B: .015, px: 113, py: 89, ph: 4.0, tilt: .72, rot: .9, rs: .005, k: .85, speed: .2 },
+    { s: spiralGalaxy(59, '255,170,140', false), ax: .80, ay: .76, A: .035, B: .018, px: 101, py: 143, ph: 1.2, tilt: .66, rot: -1.1, rs: -.009, k: .95, speed: .22 },
+    { s: spiralGalaxy(41, '120,190,255', false), ax: .16, ay: .90, A: .03, B: .015, px: 127, py: 97, ph: 5.1, tilt: .45, rot: 1.4, rs: .011, k: .8, speed: .18 }
   ];
   /* مجرات بعيدة صغيرة جداً: عمق إضافي، بتنجرف ببطء */
   /* سُدم ملوّنة ناعمة: عمق ولون للسماء (بنفسجي، تيل، أحمر وردي، أزرق عميق) */
