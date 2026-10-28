@@ -28,3 +28,5 @@ jobs:
         run: node tests/paymob-delivery-contract.test.js
       - name: Tarot study data contract
         run: node tests/tarot-study.test.js
+      - name: Tarot retrieval ranking
+        run: node tests/tarot-retrieval.test.js
