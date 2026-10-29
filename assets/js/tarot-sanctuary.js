@@ -68,6 +68,11 @@
 
   // Initialize UI
   function initSanctuary() {
+    window.AqeeqTarotDeck = tarotData;
+    window.openTarotCardModal = openCardModal;
+    window.getTarotElementClass = getElementClass;
+    document.dispatchEvent(new CustomEvent('aqeeq:tarot-loaded', { detail: { cards: tarotData } }));
+
     renderCardsGrid(tarotData);
     setupEventListeners();
     
