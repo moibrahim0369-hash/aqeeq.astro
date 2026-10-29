@@ -77,21 +77,32 @@
   }
   var R0 = function (p) { return p.ring ? 220 * .24 : 220 * .36; };
 
-  /* ---------- الكانفس ---------- */
+  /* ---------- الكانفس + خلفية سماء ثابتة ---------- */
   var cv = document.createElement('canvas'); cv.id = 'cosmos-bg'; cv.setAttribute('aria-hidden', 'true');
   var anchor = document.getElementById('sky-bg'); (anchor ? anchor.parentNode : document.body).insertBefore(cv, anchor || document.body.firstChild);
-  var ctx = cv.getContext('2d'), W = 0, H = 0, DPR = 1;
-  function size() { DPR = 1; W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+  var ctx = cv.getContext('2d'), W = 0, H = 0, DPR = window.devicePixelRatio || 1;
+
+  /* سماء أساسية: لون عميق محترم ثابت */
+  var skyGradient = null;
+  function createSkyGradient() {
+    skyGradient = ctx.createLinearGradient(0, 0, 0, H);
+    skyGradient.addColorStop(0, '#0a0415');     /* أسود/بنفسجي عميق */
+    skyGradient.addColorStop(0.4, '#0e0a1f');   /* بنفسجي داكن */
+    skyGradient.addColorStop(0.7, '#0d0820');   /* أسود متوسط */
+    skyGradient.addColorStop(1, '#050205');     /* أسود في الأسفل */
+  }
+
+  function size() { W = innerWidth; H = innerHeight; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); createSkyGradient(); }
   size(); addEventListener('resize', function () { size(); if (reduce) paint(performance.now()); });
 
   var rg = rng(20261027), TAU = Math.PI * 2;
-  /* مجرات رئيسية: كل واحدة في منطقة خاصة بها (بعيدة عن الباقي) وبتتحرك بحركة ليساجو بطيئة */
+  /* مجرات رئيسية: ثابتة بدون حركة فوضوية (تنبض فقط) */
   var gal = [
-    { s: spiralGalaxy(11, '140,160,255', false), ax: .20, ay: .13, A: .07, B: .035, px: 83, py: 109, ph: .3, tilt: .6, rot: .3, rs: .020, k: 1 },
-    { s: spiralGalaxy(23, '190,150,255', true), ax: .82, ay: .31, A: .06, B: .04, px: 97, py: 131, ph: 2.1, tilt: .78, rot: -.6, rs: -.016, k: .92 },
-    { s: ellipticalGalaxy(37), ax: .30, ay: .56, A: .07, B: .03, px: 113, py: 89, ph: 4.0, tilt: .72, rot: .9, rs: .010, k: .85 },
-    { s: spiralGalaxy(59, '255,170,140', false), ax: .80, ay: .76, A: .06, B: .035, px: 101, py: 143, ph: 1.2, tilt: .66, rot: -1.1, rs: -.018, k: .95 },
-    { s: spiralGalaxy(41, '120,190,255', false), ax: .16, ay: .90, A: .05, B: .03, px: 127, py: 97, ph: 5.1, tilt: .45, rot: 1.4, rs: .022, k: .8 }
+    { s: spiralGalaxy(11, '140,160,255', false), ax: .20, ay: .13, A: .0, B: .0, px: 83, py: 109, ph: .3, tilt: .6, rot: .3, rs: .0, k: 1, speed: .3 },
+    { s: spiralGalaxy(23, '190,150,255', true), ax: .82, ay: .31, A: .0, B: .0, px: 97, py: 131, ph: 2.1, tilt: .78, rot: -.6, rs: .0, k: .92, speed: .25 },
+    { s: ellipticalGalaxy(37), ax: .30, ay: .56, A: .0, B: .0, px: 113, py: 89, ph: 4.0, tilt: .72, rot: .9, rs: .0, k: .85, speed: .2 },
+    { s: spiralGalaxy(59, '255,170,140', false), ax: .80, ay: .76, A: .0, B: .0, px: 101, py: 143, ph: 1.2, tilt: .66, rot: -1.1, rs: .0, k: .95, speed: .22 },
+    { s: spiralGalaxy(41, '120,190,255', false), ax: .16, ay: .90, A: .0, B: .0, px: 127, py: 97, ph: 5.1, tilt: .45, rot: 1.4, rs: .0, k: .8, speed: .18 }
   ];
   /* مجرات بعيدة صغيرة جداً: عمق إضافي، بتنجرف ببطء */
   /* سُدم ملوّنة ناعمة: عمق ولون للسماء (بنفسجي، تيل، أحمر وردي، أزرق عميق) */
@@ -107,45 +118,38 @@
   }
   var NEBSEED = [5, 9, 13, 17];
   var nebs = [
-    { s: nebulaSprite(5, ['120,70,220', '70,60,190']), ax: .30, ay: .26, A: .06, B: .04, px: 170, py: 210, ph: .4, k: 1.25, a: .13 },
-    { s: nebulaSprite(9, ['30,170,190', '40,120,200']), ax: .78, ay: .52, A: .05, B: .05, px: 190, py: 150, ph: 2.2, k: 1.1, a: .11 },
-    { s: nebulaSprite(13, ['210,70,130', '170,60,160']), ax: .22, ay: .78, A: .05, B: .04, px: 150, py: 230, ph: 3.9, k: 1.15, a: .10 },
-    { s: nebulaSprite(17, ['60,90,230', '90,60,200']), ax: .70, ay: .90, A: .06, B: .03, px: 210, py: 170, ph: 5.3, k: 1.0, a: .11 }
+    { s: nebulaSprite(5, ['120,70,220', '70,60,190']), ax: .30, ay: .26, A: .0, B: .0, px: 170, py: 210, ph: .4, k: 1.25, a: .08 },
+    { s: nebulaSprite(9, ['30,170,190', '40,120,200']), ax: .78, ay: .52, A: .0, B: .0, px: 190, py: 150, ph: 2.2, k: 1.1, a: .07 },
+    { s: nebulaSprite(13, ['210,70,130', '170,60,160']), ax: .22, ay: .78, A: .0, B: .0, px: 150, py: 230, ph: 3.9, k: 1.15, a: .06 },
+    { s: nebulaSprite(17, ['60,90,230', '90,60,200']), ax: .70, ay: .90, A: .0, B: .0, px: 210, py: 170, ph: 5.3, k: 1.0, a: .07 }
   ];
   /* ألوان السُدم حسب القسم: كل قسم له سماء بلون مختلف */
   function hsl(h, sat, l) { h = ((h % 360) + 360) % 360 / 360; var a = sat * Math.min(l, 1 - l); function f(n) { var k = (n + h * 12) % 12; return Math.round(255 * (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)))); } return f(0) + ',' + f(8) + ',' + f(4); }
   var THEMES = { matrix: 275, lifepath: 175, chart: 215, 'astro-maps': 200, sky: 230, signs: 300, compat: 335, 'life-path-synastry': 345, services: 38, courses: 150, videos: 8, faq: 220, about: 262, manifest: 160, wishes: 30, chat: 195, ask: 245, account: 190, fortune: 48, 'dream-library': 250, 'tarot-lab': 312, 'symbol-library': 20, 'energy-compatibility': 135 };
+  /* لا توجد تأثيرات ديناميكية - السماء موحدة دائماً */
   var tintEl = document.createElement('div'); tintEl.id = 'sky-tint'; tintEl.setAttribute('aria-hidden', 'true'); cv.insertAdjacentElement('afterend', tintEl);
-  var themeKey = '';
-  function applyTheme() {
-    var id = (location.hash || '').slice(1), h = THEMES[id], key = h == null ? '' : id;
-    if (key === themeKey) return; themeKey = key;
-    if (h == null) { tintEl.style.background = ''; nebs.forEach(function (o, i) { o.s = o.s0; }); return; }
-    var c1 = hsl(h, .6, .22), c2 = hsl(h + 45, .55, .18);
-    tintEl.style.background = 'radial-gradient(900px 620px at 85% 4%,rgba(' + c1 + ',.6),transparent 62%),radial-gradient(800px 600px at 8% 96%,rgba(' + c2 + ',.5),transparent 60%)';
-    var offs = [0, 40, -40, 80];
-    nebs.forEach(function (o, i) { o.s = nebulaSprite(NEBSEED[i] + 3, [hsl(h + offs[i], .7, .55), hsl(h + offs[i] + 28, .65, .5)]); });
-  }
-  nebs.forEach(function (o) { o.s0 = o.s; });
-  window.addEventListener('hashchange', applyTheme); applyTheme();
+  tintEl.style.background = 'none'; /* لا توجد تأثيرات تدرج */
   var far = [], farSprites = [spiralGalaxy(71, '170,180,255', false), ellipticalGalaxy(73), spiralGalaxy(79, '255,200,170', true)];
   for (var fi = 0; fi < 8; fi++) far.push({ s: farSprites[fi % 3], x: rg(), y: rg(), vx: (rg() - .5) * .004, vy: (rg() - .5) * .002, sz: .03 + rg() * .035, a: .08 + rg() * .10, tilt: .35 + rg() * .6, rot: rg() * 6, rs: (rg() - .5) * .02 });
   /* الكواكب: مدارات بيضاوية حوالين الشاشة كلها، الكوكب في النص الأسفل أقرب وأكبر شوية */
   var pl = PLANETS.map(function (p, i) { return { p: p, s: planetSprite(p), rx: .30 + i * .037, ry: .27 + i * .034, tilt: -.5 + i * .17, ph: rg() * TAU, per: p.per }; });
   var lastT = performance.now();
   function paint(now) {
-    ctx.clearRect(0, 0, W, H);
+    /* السماء الأساسية: لون موحد عميق (بدون وميض) */
+    ctx.fillStyle = skyGradient || '#0a0415';
+    ctx.fillRect(0, 0, W, H);
+
     var t = now / 1000, m = Math.min(W, H), mob = W < 700;
     ctx.save(); ctx.globalCompositeOperation = 'screen';
     nebs.forEach(function (o) {
       var x = (o.ax + o.A * Math.cos(t / o.px * TAU + o.ph)) * W, y = (o.ay + o.B * Math.sin(t / o.py * TAU + o.ph)) * H, D = Math.max(W, H) * o.k * (mob ? .8 : .62);
-      ctx.globalAlpha = o.a; ctx.drawImage(o.s, x - D / 2, y - D / 2, D, D);
+      ctx.globalAlpha = o.a * 1.2; ctx.drawImage(o.s, x - D / 2, y - D / 2, D, D);
     });
     ctx.restore();
     far.forEach(function (o) {
       if (!reduce) { o.x += o.vx * (now - lastT) / 1000; o.y += o.vy * (now - lastT) / 1000; if (o.x < -.05) o.x = 1.05; if (o.x > 1.05) o.x = -.05; if (o.y < -.05) o.y = 1.05; if (o.y > 1.05) o.y = -.05; o.rot += o.rs * (now - lastT) / 1000; }
-      var D = m * o.sz * (mob ? 1.3 : 1);
-      ctx.save(); ctx.globalAlpha = o.a; ctx.translate(o.x * W, o.y * H); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
+      var D = m * o.sz * (mob ? 1.5 : 1.3); /* مجرات بعيدة أكبر */
+      ctx.save(); ctx.globalAlpha = o.a * 1.4; ctx.translate(o.x * W, o.y * H); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
     });
     gal.forEach(function (o) {
       var x = (o.ax + o.A * Math.cos(t / o.px * TAU + o.ph)) * W, y = (o.ay + o.B * Math.sin(t / o.py * TAU + o.ph * 1.3)) * H;
@@ -155,30 +159,33 @@
       ctx.save(); ctx.globalAlpha = al; ctx.translate(x, y); ctx.rotate(o.rot); ctx.scale(1, o.tilt); ctx.drawImage(o.s, -D / 2, -D / 2, D, D); ctx.restore();
     });
     var cx = W / 2, cy = H / 2, list = [];
-    pl.forEach(function (o) {
-      var th = o.ph + t / o.per * TAU, lx = o.rx * W * Math.cos(th), ly = o.ry * H * Math.sin(th), c = Math.cos(o.tilt), sn = Math.sin(o.tilt);
+    /* الكواكب في مواقع ثابتة جميلة (موزعة حول الشاشة) */
+    pl.forEach(function (o, i) {
+      var th = o.ph, lx = o.rx * W * Math.cos(th), ly = o.ry * H * Math.sin(th), c = Math.cos(o.tilt), sn = Math.sin(o.tilt);
       var x = cx + lx * c - ly * sn, y = cy + lx * sn + ly * c, near = .5 + .5 * Math.sin(th);
       list.push({ o: o, x: x, y: y, near: near });
     });
-    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(217,178,124,.05)';
+    /* مدارات الكواكب: خطوط ذهبية ناعمة محترفة */
+    ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(217,178,124,.12)';
     pl.forEach(function (o) { ctx.save(); ctx.translate(cx, cy); ctx.rotate(o.tilt); ctx.beginPath(); ctx.ellipse(0, 0, o.rx * W, o.ry * H, 0, 0, TAU); ctx.stroke(); ctx.restore(); });
     list.sort(function (a, b) { return a.near - b.near; }).forEach(function (q) {
-      var rad = m * .013 * q.o.p.r * (.7 + .5 * q.near) * (mob ? 1.15 : 1), sc = rad / R0(q.o.p), w = 220 * sc;
-      ctx.globalAlpha = .45 + .4 * q.near; ctx.drawImage(q.o.s, q.x - w / 2, q.y - w / 2, w, w);
+      /* كواكب أكبر وأوضح */
+      var rad = m * .018 * q.o.p.r * (.8 + .4 * q.near) * (mob ? 1.3 : 1.2), sc = rad / R0(q.o.p), w = 220 * sc;
+      ctx.globalAlpha = .6 + .3 * q.near; ctx.drawImage(q.o.s, q.x - w / 2, q.y - w / 2, w, w);
     });
     drawMeteors(now);
     ctx.globalAlpha = 1; lastT = now;
   }
-  /* نيزك كل 5–13 ثانية، كل واحد باتجاه وطول ولون وسرعة مختلفة */
-  var meteors = [], nextMeteor = performance.now() + 3500 + Math.random() * 3000, MCOL = ['255,255,255', '255,236,200', '190,220,255', '200,255,236', '255,208,184'];
+  /* نيزك كل 8–16 ثانية (أبطأ وأقل فوضى)، كل واحد باتجاه وطول ولون وسرعة مختلفة */
+  var meteors = [], nextMeteor = performance.now() + 6000 + Math.random() * 5000, MCOL = ['255,255,255', '255,236,200', '190,220,255', '200,255,236', '255,208,184'];
   function spawnMeteor() {
-    var mob = W < 700, ang = (18 + Math.random() * 52) * Math.PI / 180, dir = Math.random() < .5 ? 1 : -1, sp = (.5 + Math.random() * .9) * Math.max(W, H);
-    meteors.push({ x: dir > 0 ? Math.random() * W * .7 : W * (.3 + Math.random() * .7), y: Math.random() * H * .5, vx: Math.cos(ang) * dir * sp, vy: Math.sin(ang) * sp, len: (mob ? 70 : 110) + Math.random() * (mob ? 90 : 170), w: .7 + Math.random() * 1.3, col: MCOL[(Math.random() * MCOL.length) | 0], t: 0, max: .6 + Math.random() * .9, glow: Math.random() < .3 });
+    var mob = W < 700, ang = (18 + Math.random() * 52) * Math.PI / 180, dir = Math.random() < .5 ? 1 : -1, sp = (.4 + Math.random() * .7) * Math.max(W, H);
+    meteors.push({ x: dir > 0 ? Math.random() * W * .7 : W * (.3 + Math.random() * .7), y: Math.random() * H * .5, vx: Math.cos(ang) * dir * sp, vy: Math.sin(ang) * sp, len: (mob ? 60 : 100) + Math.random() * (mob ? 80 : 150), w: .8 + Math.random() * 1.2, col: MCOL[(Math.random() * MCOL.length) | 0], t: 0, max: .7 + Math.random() * 1.0, glow: Math.random() < .25 });
   }
   function drawMeteors(now) {
     if (reduce) return;
     var dt = Math.min(.1, (now - lastT) / 1000);
-    if (now >= nextMeteor) { spawnMeteor(); nextMeteor = now + 5000 + Math.random() * 8000; }
+    if (now >= nextMeteor) { spawnMeteor(); nextMeteor = now + 8000 + Math.random() * 8000; }
     for (var i = meteors.length - 1; i >= 0; i--) {
       var m = meteors[i]; m.t += dt; m.x += m.vx * dt; m.y += m.vy * dt;
       var k = m.t / m.max; if (k >= 1 || m.x < -300 || m.x > W + 300 || m.y > H + 300) { meteors.splice(i, 1); continue; }
