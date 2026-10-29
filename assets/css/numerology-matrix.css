@@ -58,6 +58,12 @@
 .aqm-life-path-copy.is-light{border-color:rgba(212,175,55,.2)}
 .aqm-life-path-copy.is-shadow{border-color:rgba(192,57,43,.24)}
 .aqm-life-path-copy.is-body{grid-column:1/-1}
+.aqm-cheat-sheet{margin-bottom:1.1rem;padding:.9rem;border:1px solid rgba(212,175,55,.2);border-radius:14px;background:rgba(212,175,55,.04)}
+.aqm-cheat-sheet h4{margin:0 0 .65rem;color:#f0dfb3;font-size:.95rem}
+.aqm-cheat-table{width:100%;border-collapse:collapse;font-size:.84rem;text-align:right}
+.aqm-cheat-table th{background:rgba(212,175,55,.12);color:#edd9a5;padding:.55rem .75rem;border-bottom:1px solid rgba(212,175,55,.25)}
+.aqm-cheat-table td{padding:.55rem .75rem;border-bottom:1px solid rgba(255,255,255,.06);color:#cfd3dd;line-height:1.7}
+.aqm-cheat-table td b{color:#ecd497}
 .aqm-life-path-copy small{display:block;margin-top:.65rem;color:#aab2c4;font-size:.75rem;line-height:1.7}
 .aqm-life-path-blueprint{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1)}
 .aqm-life-path-blueprint ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:.7rem 0 0;padding:0;list-style:none;counter-reset:life-path-step}
@@ -66,71 +72,46 @@
 .aqm-life-path-blueprint li b{color:#f0d6a0;font-weight:650}
 @media(max-width:640px){.aqm-life-path-columns{grid-template-columns:1fr}.aqm-life-path-copy.is-body{grid-column:auto}.aqm-life-path-blueprint ol{grid-template-columns:1fr}.aqm-life-path-profile{margin:.9rem 0;padding:1rem;border-radius:16px}}
 
-/* النص التفصيلي للشاكرة (بيتحمّل عند الطلب) */
-.aqm-chakra-deep{margin-top:.75rem}
-.aqm-deep-block{margin:.6rem 0;padding:.7rem .85rem;border:1px solid rgba(214,174,94,.22);border-radius:14px;background:rgba(255,255,255,.03)}
-.aqm-deep-block h5{margin:0 0 .35rem;color:#f1e5c4;font-size:.9rem}
-.aqm-deep-block p{margin:.3rem 0;color:#d7dbe8;font-size:.82rem;line-height:1.9}
-.aqm-deep-pending,.aqm-deep-error{margin:.4rem 0;color:#aeb6ca;font-size:.8rem}
-.aqm-deep-retry{border:1px solid #ead8a3;background:transparent;color:#ead8a3;border-radius:999px;padding:.2rem .8rem;font:inherit;cursor:pointer;min-height:36px}
-.aqm-skel{display:grid;gap:.5rem;padding:.3rem 0}
-.aqm-skel-line{display:block;height:.8rem;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.06),rgba(214,174,94,.18),rgba(255,255,255,.06));background-size:200% 100%;animation:aqm-shimmer 1.3s linear infinite}
-.aqm-skel-line:nth-child(2){width:82%}.aqm-skel-line:nth-child(3){width:58%}
-@keyframes aqm-shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
-@media (prefers-reduced-motion:reduce){.aqm-skel-line{animation:none}}
 
-.aqm-t-en{font-weight:700}.aqm-t-ar{font-size:.62em;font-weight:400;opacity:.78;margin-inline-start:.35em;white-space:normal}
-.aqm-gloss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}.aqm-gloss{padding:.85rem;text-align:start}.aqm-gloss h4{margin:.3rem 0}.aqm-gloss p{margin:.3rem 0;font-size:.86rem;line-height:1.7}
+/* ==========================================================================
+   Destiny Matrix 14 Sections & Interactive Drawer Styling - عقيق أسترو
+   ========================================================================== */
+.aqm-section-nav{display:flex;flex-wrap:wrap;gap:.45rem;margin:1.25rem 0 .95rem;padding:0;list-style:none}
+.aqm-nav-pill{padding:.4rem .85rem;border:1px solid rgba(212,175,55,.25);border-radius:999px;background:rgba(255,255,255,.03);color:#e2d6b5;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s ease;touch-action:manipulation}
+.aqm-nav-pill:hover,.aqm-nav-pill.is-active{background:rgba(212,175,55,.18);border-color:#d4af37;color:#fff;box-shadow:0 0 12px rgba(212,175,55,.25)}
 
-.aqm-report-index{margin:1rem 0;padding:.9rem 1rem;border:1px solid rgba(212,175,55,.22);border-radius:16px;background:rgba(255,255,255,.025)}
-.aqm-report-index h3{margin:.1rem 0 .65rem;color:#f0dfb3;font-size:1rem}
-.aqm-report-links{display:flex;gap:.5rem;flex-wrap:wrap}
-.aqm-report-links a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:.45rem .8rem;border:1px solid rgba(212,175,55,.24);border-radius:999px;background:rgba(255,255,255,.035);color:#e5d29d;text-decoration:none;font-size:.86rem;font-weight:650;touch-action:manipulation}
-.aqm-report-links a:hover{background:rgba(192,57,43,.18);border-color:rgba(212,175,55,.5)}
-.aqm-report-links a:focus-visible,.aqm-report-index a:focus-visible{outline:2px solid #D4AF37;outline-offset:2px}
-.aqm-report-index p,.aqm-source-note p{margin:.65rem 0 0;color:#aeb6ca;font-size:.78rem;line-height:1.75}
-.aqm-source-note{margin:1rem 0;padding:.85rem 1rem;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.025)}
-.aqm-source-note summary{min-height:36px;display:flex;align-items:center;cursor:pointer;color:#ead9a8;font-weight:700}
-#aqm-section-map,#aqm-section-core,#aqm-section-points,#aqm-section-chakras,#aqm-section-ancestral,#aqm-section-purposes,#aqm-section-point-details{scroll-margin-block:1rem}
-@media print{
-  .aqm-report-index,.aqs-story-open,.aqm-tooltip{display:none!important}
-  .aqm-shell{max-width:none!important;margin:0!important;padding:0!important;overflow:visible!important;border:0!important;border-radius:0!important;background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .aqm-shell .aqm-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;gap:8mm!important}
-  .aqm-shell .aqm-card,.aqm-shell .aqm-deep-section,.aqm-shell .aqm-details,.aqm-shell .aqm-source-note{break-inside:avoid;background:#fff!important;color:#111!important;border-color:#aaa!important;box-shadow:none!important;backdrop-filter:none!important}
-  .aqm-shell :is(h2,h3,h4,h5,p,b,small,td,th,summary,span){color:#111!important}
-  .aqm-shell .aqm-pillar-number{color:#333!important;border-color:#777!important}
-  .aqm-shell .aqm-svg{max-width:120mm!important}
-  .aqm-shell .aqm-node circle{fill:#fff!important;stroke:#555!important}
-  .aqm-shell .aqm-node text{fill:#111!important}
-  .aqm-shell .aqm-octagon{fill:#fff!important;stroke:#555!important}
-  .aqm-shell .aqm-star,.aqm-shell .aqm-line{stroke:#555!important}
-  .aqm-shell .aqm-table-scroll{overflow:visible!important}
-  .aqm-shell .aqm-details:not([open])>:not(summary){display:block!important}
-  .aqm-shell .aqm-chakra-detail[hidden]{display:none!important}
-}
+.aqm-destiny-section{margin:1.15rem 0;padding:clamp(1rem,2.8vw,1.6rem);border:1px solid rgba(212,175,55,.2);border-radius:18px;background:linear-gradient(150deg,rgba(16,19,29,.85),rgba(11,13,19,.92));backdrop-filter:blur(12px)}
+.aqm-destiny-section h3{margin:.3rem 0 .85rem;color:#f3dda0;font-size:clamp(1.15rem,2.8vw,1.5rem);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.aqm-destiny-badge{display:inline-block;padding:.2rem .55rem;border-radius:8px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.3);color:#f0dfb3;font-size:.78rem;font-weight:700}
 
+/* Karmic Tail Cards */
+.aqm-karmic-card{border-color:rgba(192,57,43,.38);background:linear-gradient(155deg,rgba(25,14,18,.88),rgba(12,10,14,.95))}
+.aqm-karmic-code{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:12px;background:rgba(192,57,43,.2);border:1px solid rgba(192,57,43,.45);color:#ffb5a7;font-size:1.1rem;font-weight:800;letter-spacing:.05em}
+.aqm-karmic-tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1rem 0}
+.aqm-track-box{padding:.9rem;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.35)}
+.aqm-track-box h5{margin:0 0 .45rem;color:#e8c988;font-size:.88rem}
+.aqm-track-box p{margin:0;color:#c9cdd8;font-size:.85rem;line-height:1.8}
+.aqm-confrontation{margin:1rem 0;padding:1rem 1.2rem;border-right:4px solid #c0392b;border-radius:0 12px 12px 0;background:rgba(192,57,43,.08);color:#f5d0c5;font-size:.9rem;line-height:1.85;font-weight:600}
 
-/* Source-aware Matrix report roadmap */
-.aqm-roadmap{scroll-margin-block:1rem}
-.aqm-roadmap-notice{padding:.8rem 1rem;border-inline-start:3px solid #D4AF37;border-radius:10px;background:rgba(212,175,55,.07);color:#e4d7b5;line-height:1.8}
-.aqm-roadmap-details{margin:.8rem 0;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.025)}
-.aqm-roadmap-details>summary{min-height:44px;padding:.65rem .9rem;display:flex;align-items:center;cursor:pointer;color:#ead9a8;font-weight:700}
-.aqm-roadmap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;padding:.8rem}
-.aqm-roadmap-item{min-width:0;padding:.9rem}
-.aqm-roadmap-item-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem}
-.aqm-roadmap-item h4{margin:0;color:#f0dfb3;line-height:1.5}
-.aqm-roadmap-item p{margin:.65rem 0 0;color:#c0c7d6;font-size:.85rem;line-height:1.75;overflow-wrap:anywhere}
-.aqm-roadmap-item code{white-space:normal;overflow-wrap:anywhere;color:#dfc980}
-.aqm-status-badge{flex:0 0 auto;padding:.25rem .55rem;border:1px solid rgba(212,175,55,.25);border-radius:999px;color:#e4d7b5;font-size:.7rem;line-height:1.4}
-.aqm-term-ledger ul{margin:0;padding:.5rem 1.8rem 1rem}
-.aqm-term-ledger li{padding:.45rem 0;color:#e4d7b5}
-.aqm-term-ledger li span{display:block;color:#aeb6ca;font-size:.8rem;line-height:1.6}
-@media(max-width:640px){.aqm-roadmap-grid{grid-template-columns:minmax(0,1fr);padding:.55rem}.aqm-roadmap-item-head{flex-direction:column}.aqm-status-badge{white-space:normal}}
-@media print{
-  .aqm-roadmap-details:not([open])>:not(summary){display:block!important}
-  .aqm-roadmap-details>summary{display:none!important}
-  .aqm-roadmap-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  .aqm-roadmap-item{break-inside:avoid}
-  .aqm-roadmap-notice,.aqm-roadmap-item p,.aqm-term-ledger li span{color:#222!important}
-  .aqm-roadmap-item h4,.aqm-roadmap-details summary,.aqm-term-ledger li{color:#111!important}
+/* Age Map Cards */
+.aqm-age-badge-group{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin:.6rem 0 1rem}
+.aqm-age-pill{padding:.35rem .85rem;border-radius:20px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.35);color:#f7e3af;font-size:.86rem;font-weight:700}
+.aqm-age-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;margin-top:1rem}
+.aqm-age-node{padding:.65rem;border-radius:10px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);text-align:center}
+.aqm-age-node.is-current{border-color:#d4af37;background:rgba(212,175,55,.12);box-shadow:0 0 10px rgba(212,175,55,.2)}
+.aqm-age-node b{display:block;color:#f0dfb3;font-size:1.15rem}
+.aqm-age-node small{color:#9aa2b5;font-size:.72rem}
+
+/* Arcana Position Details & Accordion */
+.aqm-pos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.85rem;margin-top:.9rem}
+.aqm-pos-item{padding:.9rem;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(15,18,26,.6)}
+.aqm-pos-item h5{margin:0 0 .4rem;color:#edd9a5;font-size:.88rem;display:flex;align-items:center;justify-content:space-between}
+.aqm-pos-item p{margin:0;color:#c9cdd8;font-size:.84rem;line-height:1.8}
+.aqm-pos-item.is-highlight{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.04)}
+
+@media(max-width:640px){
+  .aqm-karmic-tracks{grid-template-columns:1fr}
+  .aqm-section-nav{overflow-x:auto;padding-bottom:.3rem;flex-wrap:nowrap}
+  .aqm-nav-pill{flex-shrink:0}
+  .aqm-age-grid{grid-template-columns:repeat(2,1fr)}
 }
