@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "البداية والإرادة",
   "core": {
-    "psychology": "",
-    "gift": "مبادرة وابتكار",
-    "shadowTrap": "اندفاع أو تشتت",
-    "growth": ""
+    "psychology": "يرمز الساحر إلى لحظة انتقال الفكرة من الإمكان إلى الفعل. في القراءة التأملية، الدافع هنا هو اختبار القدرة عبر المبادرة وصناعة الأثر، لا انتظار الإذن. قوته في جمع أدوات متفرقة وتحويلها إلى بداية قابلة للرؤية؛ وتوتره أن قيمة الذات قد ترتبط بسرعة الإنجاز، فيصبح التوقف شبيهاً بالعجز. يظهر ذلك في إطلاق مشروع أو فتح حوار بثقة، ثم فقدان الاهتمام حين تتحول البداية إلى متابعة يومية.",
+    "gift": "المبادرة والابتكار هنا ليسا كثرة أفكار فقط؛ بل ملاحظة مورد متاح واستعماله لصنع خطوة أولى. في العمل يظهر ذلك عند تبسيط مشكلة معقدة أو شرح فكرة بلغة مقنعة. وفي العلاقة، يمنح الحضور قدرة على فتح باب الحديث والمصالحة، شرط أن يرافق الإقناع إنصات حقيقي.",
+    "shadowTrap": "حين تنقلب المبادرة إلى استعجال، تبدأ أشياء كثيرة ولا ينضج منها ما يكفي. وقد يتحول حسن استخدام الكلام إلى محاولة توجيه المشهد قبل فهم احتياجات الآخرين. مثال ذلك تقديم حل جاهز في اجتماع قبل أن يشرح الفريق سبب تعثره، أو إطلاق وعد متحمس يصعب الوفاء به لاحقاً.",
+    "growth": "خطوة تأملية: تحديد نتيجة واحدة مرئية قبل البداية، ثم اختبارها بتجربة محدودة وتسجيل ما أثبته الواقع قبل فتح فكرة جديدة."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر الرسالة في تحويل المبادرة إلى شيء نافع يختبره الواقع، لا في الاكتفاء بإعلان فكرة كبيرة.",
+      "energyPsychology": "يرتبط صفاء الاتجاه بجمع الأدوات المتاحة وتوجيهها نحو غاية واحدة بدلاً من فتح بدايات متنافسة.",
+      "emotionsPsychology": "يتجدد الإحساس بالمعنى حين يلقى الحماس استجابة واقعية، ويبهت حين يصبح الاعتراف الخارجي مقياس القيمة."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر الرؤية الفكرية في صياغة الفكرة بوضوح ثم اختبارها بالفعل؛ حدس الساحر هنا يكتسب قيمته حين يرافقه تحقق.",
+      "energyPsychology": "تنتظم الطاقة الذهنية حين تُجمع الأدوات والملاحظات في مسار واحد، بدلاً من تشتيتها على بدايات كثيرة.",
+      "emotionsPsychology": "يهدأ الداخل عندما تتوافق النية المعلنة مع الخطوة المنفذة، ويضطرب حين تُستخدم الكلمات لإخفاء تردد لم يُسمَّ."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتحول الفكرة إلى عبارة مفهومة وخطوة يمكن اختبارها؛ قوة الساحر في وصل الكلام بالفعل، لا في الإقناع المنفصل عن التنفيذ.",
+      "energyPsychology": "تنتظم طاقة التعبير حين تُوجَّه المهارة إلى رسالة محددة، بدلاً من استعمال البلاغة لفتح مسارات أكثر مما يمكن حمله.",
+      "emotionsPsychology": "يخف التوتر بين النية والصوت عندما يُقال المطلوب بوضوح، لا عندما تُخفى الحيرة خلف ثقة مصطنعة."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر العناية في أن تُقال المودة وتُمارس معاً؛ لا تكفي براعة البداية إذا غاب الإصغاء لما يحتاجه الطرف الآخر.",
+      "energyPsychology": "تتجه طاقة القلب نحو علاقة متبادلة، مع حفظ مساحة للفرد كي لا يصبح القرب ذوباناً في الآخر.",
+      "emotionsPsychology": "ينمو الاطمئنان حين يُطلب التقدير بوضوح، لا حين تتحول المحبة إلى انتظار صامت لاعتراف لا يعرف الطرف الآخر بغيابه."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يحوّل الساحر الإمكان إلى أثر ملموس؛ في الضفيرة الشمسية تظهر قوته حين يستخدم الأدوات المتاحة ليصنع نتيجة، لا ليجمعها لإثبات التفوق.",
+      "energyPsychology": "تتجه طاقة الإرادة إلى مبادرة واحدة قابلة للقياس؛ ويضعفها فتح مشاريع كثيرة كي يظل الإعجاب حاضرًا.",
+      "emotionsPsychology": "يستقر الشعور بالقيمة عندما يأتي الاعتراف من جودة الفعل، لا من الحاجة إلى إقناع الجميع بالقدرة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

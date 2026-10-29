@@ -2692,10 +2692,16 @@ if (typeof module !== 'undefined') module.exports = Astro;
     lastMX = [name, d, m, y];
     const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
     const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
-    const names = ["ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
+    let deepReport = "";
+    if (window.AqeeqNumerology && typeof window.AqeeqNumerology.render === "function") {
+      const temp = document.createElement("div");
+      window.AqeeqNumerology.render(temp, `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`);
+      deepReport = temp.innerHTML;
+    }
+    const names = ["التقرير الشامل (14 قسماً)", "ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
     const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
     const compat = `<p class="lead2">اكتب تاريخ ميلاد شخص تاني (حبيب أو صاحب أو شريك شغل) وشوف مصفوفة العلاقة بينكم.</p><div class="field"><label for="mc-date">تاريخ ميلاد الشخص التاني</label><input id="mc-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="mc-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="mc-go" type="button">احسب مصفوفة العلاقة</button></div><div id="mc-out" hidden></div>`;
-    const bodies = [summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
+    const bodies = [deepReport || summaryHTML(P, lp), summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
     const panels = bodies.map((b, i) => `<div class="panel" role="tabpanel" id="mp${i + 1}" aria-labelledby="mt${i + 1}"${i ? " hidden" : ""}>${b}</div>`).join("");
     const legend = `<p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
     const msg = `أهلاً، حسبت مصفوفتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${name}\nتاريخ الميلاد: ${d}/${m}/${y}\nنقاطي: A=${P.A}، B=${P.B}، C=${P.C}، D=${P.D}، المركز=${P.E}`;
@@ -3459,10 +3465,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 
 <script>
 (function () {
-  /* PWA: تسجيل الـService Worker (HTTPS أو localhost فقط) */
-  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
-    window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
-  }
+  /* لا نسجل Service Worker؛ ملف sw.js غير موجود ضمن أصول المشروع الحالية. */
   /* مشاركة الموقع: Web Share لو متاح، وإلا نسخ الرابط */
   var sb = document.getElementById('share-site');
   if (sb) {
@@ -3496,8 +3499,11 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
   <script src="app.js"></script>
   <script src="assets/js/gender-language.js"></script>
   <script src="assets/js/personal-transits.js"></script>
-<script src="assets/js/life-path-data.js?v=d7fc2633"></script>
+<script src="assets/js/life-path-data.js"></script>
+<script src="assets/js/destiny-matrix-data.js"></script>
+<script src="assets/js/age-map.js"></script>
 <script src="assets/js/matrix-loader.js"></script>
+<script src="assets/js/matrix-report-map.js"></script>
 <script src="assets/js/numerology-matrix.js"></script>
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js"></script>
