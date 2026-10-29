@@ -323,6 +323,7 @@ function calculateGenerationalLines(birthDate) {
     const balanceCoord = [400, 400];
     const soulSynthesis = [300, 275];
 
+    // Major 25 Nodes: KEEP 'north' FIRST so playwright clicking .aqm-node clicks north and expects 'الجوهر · يوم الميلاد'
     const majorNodes = [
       { id: 'north', coord: north, r: 18, val: B, cls: 'aqm-chakra-sahasrara', target: '#sec-core', label: 'الجوهر · يوم الميلاد' },
       { id: 'center', coord: center, r: 24, val: E, cls: 'aqm-chakra-manipura is-center', target: '#sec-core', label: 'المركز وراحة الروح' },
@@ -354,40 +355,95 @@ function calculateGenerationalLines(birthDate) {
     const ageMap = AGE_MAP_API.calculateAgeMap ? AGE_MAP_API.calculateAgeMap(matrix.anchors, matrix.generationalCorners) : {};
     const ageInfo = AGE_MAP_API.getCurrentAgeEnergy ? AGE_MAP_API.getCurrentAgeEnergy(dateValue) : { milestone: 0 };
 
+    // Authentic 80-year perimeter nodes
     const perimeterAges = [
       { age: 0, coord: [75, 300], arc: A },
+      { age: 5, coord: [100, 210], arc: R(A + F) },
       { age: 10, coord: [141, 141], arc: F },
+      { age: 15, coord: [210, 100], arc: R(F + B) },
       { age: 20, coord: [300, 75], arc: B },
+      { age: 25, coord: [390, 100], arc: R(B + G) },
       { age: 30, coord: [459, 141], arc: G },
+      { age: 35, coord: [500, 210], arc: R(G + C) },
       { age: 40, coord: [525, 300], arc: C },
+      { age: 45, coord: [500, 390], arc: R(C + H) },
       { age: 50, coord: [459, 459], arc: H },
+      { age: 55, coord: [390, 500], arc: R(H + D) },
       { age: 60, coord: [300, 525], arc: D },
-      { age: 70, coord: [141, 459], arc: I }
+      { age: 65, coord: [210, 500], arc: R(D + I) },
+      { age: 70, coord: [141, 459], arc: I },
+      { age: 75, coord: [100, 390], arc: R(I + A) }
     ];
 
-    return '<svg class="aqm-svg" viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="النجمة الثمانية لمصفوفة القدر">' +
+    // Radial tick lines for compass astrolabe look
+    const ticks = [];
+    for (let deg = 0; deg < 360; deg += 9) {
+      const rad = (deg * Math.PI) / 180;
+      const x1 = 300 + 280 * Math.cos(rad);
+      const y1 = 300 + 280 * Math.sin(rad);
+      const isMajor = deg % 45 === 0;
+      const rInner = isMajor ? 268 : 274;
+      const x2 = 300 + rInner * Math.cos(rad);
+      const y2 = 300 + rInner * Math.sin(rad);
+      ticks.push('<line x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" stroke="rgba(212,175,55,' + (isMajor ? '0.45' : '0.15') + ')" stroke-width="' + (isMajor ? '1.5' : '0.8') + '"/>');
+    }
+
+    return '<svg class="aqm-svg" viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="النجمة الثمانية الأصلية لمصفوفة القدر">' +
       '<defs>' +
-      '<filter id="aqm-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>' +
-      '<linearGradient id="aqm-grad-love" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff758c"/><stop offset="100%" stop-color="#ff7eb3"/></linearGradient>' +
-      '<linearGradient id="aqm-grad-money" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f6d365"/><stop offset="100%" stop-color="#fda085"/></linearGradient>' +
+      '<radialGradient id="aqm-radial-bg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#181d2c" stop-opacity="0.9"/><stop offset="85%" stop-color="#0b0d13" stop-opacity="0.98"/><stop offset="100%" stop-color="#050608" stop-opacity="1"/></radialGradient>' +
+      '<filter id="aqm-glow" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="3.5" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>' +
+      '<filter id="aqm-sun-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6" result="blur"/><feComposite in="SourceGraphic" in2="blur" operator="over"/></filter>' +
+      '<linearGradient id="aqm-grad-love" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff758c"/><stop offset="100%" stop-color="#ff4d6d"/></linearGradient>' +
+      '<linearGradient id="aqm-grad-money" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f6d365"/><stop offset="100%" stop-color="#2ecc71"/></linearGradient>' +
+      '<linearGradient id="aqm-grad-channel" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff4d6d"/><stop offset="50%" stop-color="#f1c40f"/><stop offset="100%" stop-color="#2ecc71"/></linearGradient>' +
       '</defs>' +
+
+      // Background plate
+      '<rect width="600" height="600" rx="24" fill="url(#aqm-radial-bg)"/>' +
+
+      // Concentric circles
       '<circle cx="300" cy="300" r="285" class="aqm-rim-outer"/>' +
       '<circle cx="300" cy="300" r="225" class="aqm-rim-middle"/>' +
       '<circle cx="300" cy="300" r="165" class="aqm-rim-inner"/>' +
+      '<circle cx="300" cy="300" r="75" class="aqm-rim-core" stroke="rgba(212,175,55,0.18)" fill="none" stroke-dasharray="3 3"/>' +
+
+      // Compass astrolabe ticks
+      ticks.join('') +
+
+      // Polygons (Personal Diamond & Ancestral Square)
       '<polygon points="300,75 525,300 300,525 75,300" class="aqm-square-straight"/>' +
       '<polygon points="459,141 459,459 141,459 141,141" class="aqm-square-diagonal"/>' +
+
+      // Center decorative star rays
+      '<path d="M300,165 L300,435 M165,300 L435,300 M205,205 L395,395 M395,205 L205,395" stroke="rgba(212,175,55,0.08)" stroke-width="1"/>' +
+
+      // Axes
       '<line x1="75" y1="300" x2="525" y2="300" class="aqm-axis-personal"/>' +
       '<line x1="300" y1="75" x2="300" y2="525" class="aqm-axis-spiritual"/>' +
       '<line x1="141" y1="141" x2="459" y2="459" class="aqm-axis-male"/>' +
       '<line x1="459" y1="141" x2="141" y2="459" class="aqm-axis-female"/>' +
       '<line x1="380" y1="420" x2="420" y2="380" class="aqm-axis-channel"/>' +
+
+      // Lineage Labels on chart
+      '<text x="125" y="125" fill="rgba(52,152,219,0.75)" font-size="9" font-weight="700">♂ الأب</text>' +
+      '<text x="475" y="125" fill="rgba(233,30,99,0.75)" font-size="9" font-weight="700">♀ الأم</text>' +
+
+      // Channel glyph icons
+      '<text x="365" y="445" class="aqm-channel-glyph" font-size="12">💖</text>' +
+      '<text x="440" y="370" class="aqm-channel-glyph" font-size="12">💰</text>' +
+      '<text x="415" y="415" class="aqm-channel-glyph" font-size="11">⚖️</text>' +
+
+      // Perimeter age nodes
       perimeterAges.map(pt => {
         const isCurrent = Number(pt.age) === Number(ageInfo.milestone);
+        const isDecade = pt.age % 10 === 0;
         return '<g class="aqm-age-node-dot ' + (isCurrent ? 'is-current' : '') + '" data-age="' + pt.age + '" data-target="#sec-age">' +
-          '<circle cx="' + pt.coord[0] + '" cy="' + pt.coord[1] + '" r="' + (isCurrent ? 7 : 4) + '"/>' +
-          '<text x="' + pt.coord[0] + '" y="' + (pt.coord[1] > 300 ? pt.coord[1] + 16 : pt.coord[1] - 12) + '" class="aqm-age-text">' + pt.age + 'y</text>' +
+          '<circle cx="' + pt.coord[0] + '" cy="' + pt.coord[1] + '" r="' + (isCurrent ? 8 : (isDecade ? 5 : 3)) + '"/>' +
+          (isDecade ? '<text x="' + pt.coord[0] + '" y="' + (pt.coord[1] > 300 ? pt.coord[1] + 16 : pt.coord[1] - 12) + '" class="aqm-age-text">' + pt.age + 'y</text>' : '') +
           '</g>';
       }).join('') +
+
+      // Major nodes
       majorNodes.map(nd => {
         return '<g class="aqm-node ' + nd.cls + '" data-node="' + nd.id + '" data-val="' + nd.val + '" data-target="' + nd.target + '" role="button" tabindex="0" aria-label="' + escapeHTML(nd.label) + ' · أركانا ' + nd.val + '">' +
           '<circle cx="' + nd.coord[0] + '" cy="' + nd.coord[1] + '" r="' + nd.r + '"/>' +
@@ -440,8 +496,8 @@ function calculateGenerationalLines(birthDate) {
 
     // Taboos Box (Sexuality, Magic, Addiction)
     const taboosBox = arcCenter.taboos ? (
-      '<div class="aqm-taboo-box" style="margin-top:1rem;padding:1rem;background:rgba(213,180,92,0.06);border:1px solid rgba(213,180,92,0.2);border-radius:12px;">' +
-      '<h4 style="margin:0 0 .6rem 0;color:#d5b45c;font-size:1.05rem;"><span>أبعاد الظل والغرائز المحرمة (طاقة ' + E + ')</span></h4>' +
+      '<div class="aqm-taboo-box" style="margin-top:1rem;padding:1.15rem;background:linear-gradient(135deg,rgba(35,16,24,.45),rgba(20,12,28,.65));border:1px solid rgba(220,100,140,.35);border-radius:14px;">' +
+      '<h4 style="margin:0 0 .75rem 0;color:#ff9ebb;font-size:1.08rem;"><span>أبعاد الظل والغرائز المحرمة (طاقة ' + E + ')</span></h4>' +
       '<p><b>الديناميكية الحميمية والجنسية:</b> ' + escapeHTML(arcCenter.taboos.sexuality) + '</p>' +
       '<p><b>قوى الباطن والحدس والتجسيد:</b> ' + escapeHTML(arcCenter.taboos.magic) + '</p>' +
       '<p><b>فخاخ الإدمان والهروب والظلال:</b> ' + escapeHTML(arcCenter.taboos.addiction) + '</p>' +
@@ -612,8 +668,10 @@ function calculateGenerationalLines(birthDate) {
     const axes = calculateDestinyAxes(dateValue);
     const num = matrix.nodes;
 
+    const tailCode = matrix.karmicTail.base + '-' + matrix.karmicTail.mid + '-' + matrix.karmicTail.inner;
+
     host.innerHTML = '<section class="aqm-shell" dir="rtl" aria-label="مصفوفة القدر المرجعية">' +
-      '<header class="aqm-header"><span class="aqm-kicker">مصفوفة القدر · الهندسة الطاقية · ' + escapeHTML(dateValue) + '</span><h2>مصفوفة القدر (Destiny Matrix)</h2><p>التقرير القياسي وفق هندسة الأركانا الـ 22 والمحاور المصيرية بنظام matrix-destiny.com المرجعي.</p></header>' +
+      '<header class="aqm-header"><span class="aqm-kicker">مصفوفة القدر · الهندسة الطاقية المقدسة · ' + escapeHTML(dateValue) + '</span><h2>مصفوفة القدر (Destiny Matrix)</h2><p>التقرير القياسي الموسع وفق نظام matrix-destiny.com المرجعي بهندسة الأركانا الـ 22 السلافية الأصلية.</p></header>' +
 
       // Top Interactive Octagram & Readings
       '<div class="aqm-grid">' +
@@ -625,6 +683,7 @@ function calculateGenerationalLines(birthDate) {
       '<div class="aqm-interpretations">' +
       '<article class="aqm-card" id="aqm-section-core" tabindex="-1"><span class="aqm-kicker">جوهر الروح · رقم ' + num.center + '</span><h3>نواة وراحة الروح</h3><div class="aqm-reading"><b>' + num.center + ' · ' + escapeHTML(ARCANA[num.center - 1]?.[0] || '') + '</b><p>' + escapeHTML(ARCANA[num.center - 1]?.[1] || '') + '</p></div><div class="aqm-reading is-shadow"><b>مساحة التوازن واليقظة</b><p>' + escapeHTML(ARCANA[num.center - 1]?.[2] || '') + '</p></div></article>' +
       '<article class="aqm-card"><span class="aqm-kicker">القناع الاجتماعي · رقم ' + num.west + '</span><h3>طاقة يوم الميلاد والانطباع الأول</h3><div class="aqm-reading"><b>' + num.west + ' · ' + escapeHTML(ARCANA[num.west - 1]?.[0] || '') + '</b><p>' + escapeHTML(ARCANA[num.west - 1]?.[1] || '') + '</p></div><div class="aqm-reading is-shadow"><b>جانب للتأمل الواعي</b><p>' + escapeHTML(ARCANA[num.west - 1]?.[2] || '') + '</p></div></article>' +
+      '<article class="aqm-card"><span class="aqm-kicker">الذيل الكارمي · شفرة ' + escapeHTML(tailCode) + '</span><h3>قاعدة الروح والدروس الكارمية</h3><div class="aqm-reading"><b>الدروس غير المحلولة: ' + escapeHTML(tailCode) + '</b><p>العقدة الكارمية التأسيسية التي تتطلب الوعي والتفريغ السوماتيكي لفك الحلقات المكررة.</p></div></article>' +
       '</div>' +
       '</div>' +
 

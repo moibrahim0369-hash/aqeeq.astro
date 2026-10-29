@@ -441,3 +441,234 @@
   .aqm-roadmap-notice,.aqm-roadmap-item p,.aqm-term-ledger li span{color:#222!important}
   .aqm-roadmap-item h4,.aqm-roadmap-details summary,.aqm-term-ledger li{color:#111!important}
 }
+
+
+/* ==========================================================================
+   Authentic Slavic Destiny Matrix (Ladini Chart) SVG & Modern Dark UX
+   ========================================================================== */
+.aqm-rim-outer { fill: rgba(11, 14, 22, 0.94); stroke: rgba(212, 175, 55, 0.45); stroke-width: 1.6px; filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.8)); }
+.aqm-rim-middle { fill: none; stroke: rgba(212, 175, 55, 0.22); stroke-width: 1.1px; stroke-dasharray: 4 4; }
+.aqm-rim-inner { fill: none; stroke: rgba(212, 175, 55, 0.16); stroke-width: 1px; }
+.aqm-rim-core { fill: none; stroke: rgba(212, 175, 55, 0.25); stroke-width: 1.2px; stroke-dasharray: 3 3; }
+
+.aqm-square-straight {
+  fill: rgba(212, 175, 55, 0.035);
+  stroke: #d4af37;
+  stroke-width: 2.4px;
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
+}
+.aqm-square-diagonal {
+  fill: rgba(192, 57, 43, 0.025);
+  stroke: rgba(235, 77, 75, 0.7);
+  stroke-width: 1.8px;
+  stroke-dasharray: 6 4;
+}
+
+.aqm-axis-personal { stroke: rgba(212, 175, 55, 0.6); stroke-width: 1.6px; }
+.aqm-axis-spiritual { stroke: rgba(155, 89, 182, 0.65); stroke-width: 1.6px; }
+.aqm-axis-male { stroke: rgba(52, 152, 219, 0.5); stroke-width: 1.4px; }
+.aqm-axis-female { stroke: rgba(233, 30, 99, 0.5); stroke-width: 1.4px; }
+.aqm-axis-channel { stroke: url(#aqm-grad-channel); stroke-width: 2.6px; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(241, 196, 15, 0.5)); }
+
+.aqm-channel-glyph { pointer-events: none; user-select: none; }
+
+/* Enhanced Node Styling */
+.aqm-node { cursor: pointer; outline: none; }
+.aqm-node circle { transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), stroke 0.2s ease, filter 0.2s ease; }
+.aqm-node:hover circle, .aqm-node:focus-visible circle, .aqm-node.is-active circle {
+  transform: scale(1.15);
+  transform-origin: center;
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.95)) !important;
+}
+.aqm-node text {
+  fill: #ffffff;
+  text-anchor: middle;
+  font-size: 13.5px;
+  font-weight: 800;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Solar Core Manipura Center */
+.aqm-chakra-manipura.is-center circle {
+  fill: #3b2807;
+  stroke: #f59e0b;
+  stroke-width: 2.8px;
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.85));
+}
+.aqm-chakra-manipura.is-center text {
+  fill: #fffbeb;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+/* Ancestral Midpoints */
+.aqm-chakra-ancestral circle { fill: #1c2333; stroke: #64748b; stroke-width: 2px; }
+.aqm-chakra-ancestral-mid circle { fill: #131722; stroke: rgba(148, 163, 184, 0.6); stroke-width: 1.5px; }
+
+/* Age Perimeter */
+.aqm-age-node-dot { cursor: pointer; outline: none; }
+.aqm-age-node-dot circle {
+  fill: #0f131d;
+  stroke: rgba(212, 175, 55, 0.5);
+  stroke-width: 1.2px;
+  transition: all 0.2s ease;
+}
+.aqm-age-node-dot:hover circle {
+  fill: #d4af37;
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 10px #d4af37);
+}
+.aqm-age-node-dot.is-current circle {
+  fill: #f59e0b;
+  stroke: #ffffff;
+  stroke-width: 2.4px;
+  filter: drop-shadow(0 0 14px #f59e0b);
+  animation: aqmAgePulse 1.8s ease-in-out infinite;
+}
+.aqm-age-text {
+  fill: #d5b45c;
+  font-size: 9px;
+  font-weight: 700;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* Section Navigation Pills */
+.aqm-section-nav {
+  display: flex;
+  gap: 0.55rem;
+  overflow-x: auto;
+  padding: 0.6rem 0;
+  margin: 1.2rem 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.aqm-section-nav::-webkit-scrollbar { display: none; }
+.aqm-nav-pill {
+  flex: 0 0 auto;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #d8d3c5;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  touch-action: manipulation;
+}
+.aqm-nav-pill:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #ffffff;
+}
+.aqm-nav-pill.is-active {
+  background: linear-gradient(135deg, #c0392b, #d4af37);
+  border-color: #d4af37;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+}
+
+/* Sections Containers */
+.aqm-destiny-section {
+  margin: 1.4rem 0;
+  padding: clamp(1rem, 2.8vw, 1.6rem);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(20, 24, 35, 0.75), rgba(11, 14, 22, 0.85));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.aqm-sec-header {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+}
+.aqm-sec-header h3 {
+  margin: 0.3rem 0;
+  color: #f5e6bf;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.aqm-destiny-badge {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.1);
+  color: #f7e1a0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Deep Taboos Box */
+.aqm-taboo-box {
+  margin: 1.15rem 0;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, rgba(45, 18, 30, 0.5), rgba(22, 12, 32, 0.75));
+  border: 1px solid rgba(255, 77, 109, 0.32);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.aqm-taboo-box h4 {
+  margin: 0 0 0.8rem;
+  color: #ff9ebb;
+  font-size: 1.08rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.aqm-taboo-box p {
+  margin: 0.5rem 0;
+  color: #f0dfe5;
+  font-size: 0.88rem;
+  line-height: 1.85;
+}
+.aqm-taboo-box p b {
+  color: #ffb8cc;
+  font-weight: 700;
+}
+
+/* Somatic Box */
+.aqm-somatic-box {
+  margin: 1.15rem 0;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, rgba(16, 38, 28, 0.5), rgba(10, 24, 18, 0.75));
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.aqm-somatic-box h4 {
+  margin: 0 0 0.75rem;
+  color: #7bed9f;
+  font-size: 1.05rem;
+}
+.aqm-somatic-box p {
+  margin: 0.45rem 0;
+  color: #d1fae5;
+  font-size: 0.88rem;
+  line-height: 1.85;
+}
+.aqm-somatic-box p b {
+  color: #a3e635;
+}
+
+/* Paradox Box */
+.aqm-paradox-box {
+  margin: 1.15rem 0;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, rgba(42, 28, 12, 0.45), rgba(24, 16, 8, 0.7));
+  border: 1px solid rgba(245, 158, 11, 0.32);
+  border-radius: 16px;
+}
+.aqm-paradox-box p {
+  margin: 0.4rem 0 0;
+  color: #fde68a;
+  font-size: 0.9rem;
+  line-height: 1.85;
+}
