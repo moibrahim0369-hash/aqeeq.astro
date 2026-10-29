@@ -241,6 +241,9 @@
     if (!modalOverlay || !card) return;
     activeModalCard = card;
 
+    const tabsNav = document.querySelector('.modal-tabs');
+    if (tabsNav) tabsNav.style.display = '';
+
     modalTitle.textContent = `${card.name_ar} (${card.name_en})`;
     
     const elClass = getElementClass(card.element);
@@ -257,10 +260,37 @@
     document.body.style.overflow = 'hidden';
   }
 
+  window.openReferenceModal = function (key) {
+    if (!modalOverlay) return;
+    const refData = window.AqeeqTarotReferences && window.AqeeqTarotReferences[key];
+    if (!refData) return;
+
+    modalTitle.textContent = refData.title;
+    modalMetaPills.innerHTML = `
+      <span class="card-tag">الموسوعة المرجعية الكبرى</span>
+      <span class="card-tag">عقيق أسترو (Aqeeq Astro)</span>
+    `;
+
+    const tabsNav = document.querySelector('.modal-tabs');
+    if (tabsNav) tabsNav.style.display = 'none';
+
+    modalBody.innerHTML = `
+      <div class="card-fulltext">
+        <h3 style="color: var(--tarot-gold); margin-bottom: 20px; font-family: var(--display, 'Amiri', serif);">${refData.title}</h3>
+        ${formatMarkdown(refData.markdown)}
+      </div>
+    `;
+
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
   function closeModal() {
     if (!modalOverlay) return;
     modalOverlay.classList.remove('open');
     document.body.style.overflow = '';
+    const tabsNav = document.querySelector('.modal-tabs');
+    if (tabsNav) tabsNav.style.display = '';
   }
 
   function switchModalTab(tabKey) {
