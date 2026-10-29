@@ -467,6 +467,8 @@
     const arcYear = getArc(C);
     const arcCenter = getArc(E);
     const arcKarma = getArc(D);
+    const arcMoney = getArc(matrix.channels.money);
+    const arcLove = getArc(matrix.channels.love);
     const tailData = getTail(matrix.karmicTail.base, matrix.karmicTail.mid, matrix.karmicTail.inner);
 
     // حساب خريطة سنوات العمر
@@ -475,11 +477,39 @@
     const currentYearEnergy = ageMap[ageInfo.milestone] || arcDay.number;
     const ageTheme = AGE_MAP_API.getAgeInterpretation ? AGE_MAP_API.getAgeInterpretation(currentYearEnergy) : { title: '', theme: '' };
 
-    // Cheat Sheet للأركانا المركزية
+    // Cheat Sheet للأركانا المركزية مع محفز الهروب اليومي
     const centerCheatRows = Array.isArray(arcCenter.cheatSheet) && arcCenter.cheatSheet.length ? (
-      '<div class="aqm-cheat-sheet"><h4>المقارنة البصرية السريعة لجوهر مصفوفتك (طاقة ' + E + ')</h4><div class="aqm-table-scroll"><table class="aqm-cheat-table"><thead><tr><th>المجال</th><th>النور (+)</th><th>الظل (-)</th></tr></thead><tbody>' +
-      arcCenter.cheatSheet.map(r => '<tr><td><b>' + escapeHTML(r.area) + '</b></td><td>' + escapeHTML(r.balanced) + '</td><td>' + escapeHTML(r.shadow) + '</td></tr>').join('') +
+      '<div class="aqm-cheat-sheet"><h4>المقارنة البصرية السريعة لجوهر مصفوفتك (طاقة ' + E + ')</h4><div class="aqm-table-scroll"><table class="aqm-cheat-table"><thead><tr><th>المجال</th><th>النور (+)</th><th>الظل (-)</th><th>محفز الهروب اليومي</th></tr></thead><tbody>' +
+      arcCenter.cheatSheet.map(r => '<tr><td><b>' + escapeHTML(r.area) + '</b></td><td>' + escapeHTML(r.balanced) + '</td><td>' + escapeHTML(r.shadow) + '</td><td><small style="color:#d5b45c;">' + escapeHTML(r.dailyTrigger || 'تجنب المسؤولية المباشرة عند الضغط') + '</small></td></tr>').join('') +
       '</tbody></table></div></div>'
+    ) : '';
+
+    // المفارقة النفسية والتوتر الوجودي
+    const paradoxBox = arcCenter.paradox ? (
+      '<div class="aqm-paradox-box"><span class="aqm-kicker">المفارقة النفسية والتوتر الوجودي لجوهرك (طاقة ' + E + ')</span><p><b>التشريح النفسي:</b> ' + escapeHTML(arcCenter.paradox) + '</p></div>'
+    ) : '';
+
+    // البصمة السوماتيكية والجسدية
+    const somaticBox = (arcCenter.psychosomatics || arcCenter.somaticRelease) ? (
+      '<div class="aqm-somatic-box"><h4><span>البصمة الجسدية والسوماتيكية (طاقة ' + E + ')</span></h4><p><b>العلامات الجسدية وأعراض الظل:</b> ' + escapeHTML(arcCenter.psychosomatics) + '</p>' +
+      (arcCenter.somaticRelease ? '<p><b>مفتاح التفريغ السوماتيكي:</b> ' + escapeHTML(arcCenter.somaticRelease) + '</p>' : '') +
+      '</div>'
+    ) : '';
+
+    // أسئلة التأمل والنمو
+    const reflectiveBox = (Array.isArray(arcCenter.reflectiveQuestions) && arcCenter.reflectiveQuestions.length) ? (
+      '<div class="aqm-reflective-box"><h4>أسئلة التأمل واليقظة الذاتية</h4><ul class="aqm-questions-list">' +
+      arcCenter.reflectiveQuestions.map(q => '<li>' + escapeHTML(q) + '</li>').join('') +
+      '</ul>' +
+      (arcCenter.growthStep ? '<p class="aqm-growth-step"><b>خطوة النمو الواعية:</b> ' + escapeHTML(arcCenter.growthStep) + '</p>' : '') +
+      '</div>'
+    ) : '';
+
+    // بروتوكول التحول السلوكي
+    const protocolBox = (Array.isArray(arcCenter.transformationProtocol) && arcCenter.transformationProtocol.length) ? (
+      '<div class="aqm-protocol-box"><h4>بروتوكول التحول السلوكي المباشر</h4><ol class="aqm-steps-list">' +
+      arcCenter.transformationProtocol.map(s => '<li>' + escapeHTML(s) + '</li>').join('') +
+      '</ol></div>'
     ) : '';
 
     // صفوف جدول الشاكرات السبع
@@ -513,7 +543,10 @@
             <h3>الجوهر والمركز (القناع الاجتماعي ونواة الروح) <span class="aqm-destiny-badge">الرقم ${A} و ${E}</span></h3>
           </div>
           <p>تميّز مصفوفة القدر بين <b>القناع الخارجي</b> (طاقة يوم الميلاد ${A}) الذي يراك به الناس، وبين <b>نواة الروح وراحة القلب</b> (طاقة المركز ${E}) حيث يسكن سلامك الداخلي الحقيقي.</p>
+          
+          ${paradoxBox}
           ${centerCheatRows}
+
           <div class="aqm-pos-grid">
             <article class="aqm-pos-item is-highlight">
               <h5><span>القناع الاجتماعي والانطباع الأول · رقم ${A}</span><small>يوم الميلاد</small></h5>
@@ -532,10 +565,15 @@
               <p><b>${escapeHTML(arcYear.title)}:</b> ${escapeHTML(arcYear.positions?.money || arcYear.archetype)}</p>
             </article>
           </div>
+
           <div class="aqm-life-path-columns" style="margin-top: .85rem;">
             <div class="aqm-life-path-copy is-light"><h4>تجلي النواة في النور (+)</h4><p>${escapeHTML(arcCenter.light)}</p></div>
             <div class="aqm-life-path-copy is-shadow"><h4>فخ الظل في المركز (-)</h4><p>${escapeHTML(arcCenter.shadow)}</p></div>
           </div>
+
+          ${somaticBox}
+          ${reflectiveBox}
+          ${protocolBox}
         </section>
 
         <!-- 2. الذيل الكارمي (Karmic Tail) -->
@@ -548,11 +586,11 @@
           <div class="aqm-pos-grid">
             <article class="aqm-pos-item">
               <h5><span>قاعدة الذيل الكارمي (Base)</span><small>رقم ${matrix.karmicTail.base}</small></h5>
-              <p>${escapeHTML(arcKarma.archetype)}</p>
+              <p>${escapeHTML(arcKarma.positions?.karmicTail || arcKarma.archetype)}</p>
             </article>
             <article class="aqm-pos-item">
               <h5><span>جذر الطفولة والبرمجة الأولى</span><small>أصل العقدة</small></h5>
-              <p>${escapeHTML(tailData.childhoodRoots || 'شعور مبكر بالحاجة لإثبات الذات أو الخوف من الفقدان والرفض.')}</p>
+              <p>${escapeHTML(tailData.childhoodRoots || arcKarma.childhoodRoots || 'شعور مبكر بالحاجة لإثبات الذات أو الخوف من الفقدان والرفض.')}</p>
             </article>
           </div>
           <div class="aqm-karmic-tracks">
@@ -605,17 +643,17 @@
           <p>يتشكل تدفق المال من التوازن بين مدخل المادة (${C}) والمركز (${E}). المال في مصفوفة القدر هو طاقة نتيجة تتبع النزاهة والإتقان.</p>
           <div class="aqm-pos-grid">
             <article class="aqm-pos-item is-highlight">
-              <h5><span>مدخل المال والوظيفة</span><small>طاقة ${matrix.channels.money}</small></h5>
-              <p>${escapeHTML(getArc(matrix.channels.money).positions?.money || getArc(matrix.channels.money).archetype)}</p>
+              <h5><span>مدخل المال والوظيفة</span><small>طاقة ${matrix.channels.money} (${escapeHTML(arcMoney.title || '')})</small></h5>
+              <p>${escapeHTML(arcMoney.positions?.money || arcMoney.archetype)}</p>
             </article>
             <article class="aqm-pos-item">
               <h5><span>أكبر عائق أمام تدفق الرزق (-)</span><small>فخ التسريب</small></h5>
-              <p>الخوف من الشُح، التردد في تسعير المهارة بقيمتها الحقيقية، أو محاولة جمع المال من مسارات لا تشبه قيمك الصادقة.</p>
+              <p>${escapeHTML(arcMoney.shadow || 'الخوف من الشُح، التردد في تسعير المهارة بقيمتها الحقيقية، أو محاولة جمع المال من مسارات لا تشبه قيمك الصادقة.')}</p>
             </article>
           </div>
           <div class="aqm-life-path-columns" style="margin-top:.85rem;">
-            <div class="aqm-life-path-copy is-light"><h4>مفتاح فتح الوفرة (+)</h4><p>تقديم نفع حقيقي ملموس، الانضباط في إدارة الموارد، والاستثمار في تطوير المهارات النوعية دون استعجال.</p></div>
-            <div class="aqm-life-path-copy is-shadow"><h4>فخ الإهدار والتشتت (-)</h4><p>التوسع المالي غير المحسوب، الدخول في صراعات نفوذ، أو استنزاف الدخل في التزامات استعراضية.</p></div>
+            <div class="aqm-life-path-copy is-light"><h4>مفتاح فتح الوفرة (+)</h4><p>${escapeHTML(arcMoney.light || 'تقديم نفع حقيقي ملموس، الانضباط في إدارة الموارد، والاستثمار في تطوير المهارات النوعية دون استعجال.')}</p></div>
+            <div class="aqm-life-path-copy is-shadow"><h4>فخ الإهدار والتشتت (-)</h4><p>${escapeHTML(arcMoney.shadow || 'التوسع المالي غير المحسوب، الدخول في صراعات نفوذ، أو استنزاف الدخل في التزامات استعراضية.')}</p></div>
           </div>
         </section>
 
@@ -628,17 +666,17 @@
           <p>يكشف خط الحب عن الصفات النفسية الحقيقية التي يحتاجها قلبك للشعور بالأمان والاكتمال، والتحدي الرئيسي الذي يختبر نضج الشراكة.</p>
           <div class="aqm-pos-grid">
             <article class="aqm-pos-item is-highlight">
-              <h5><span>طبيعة شريك الروح المتوافق</span><small>طاقة ${matrix.channels.love}</small></h5>
-              <p>${escapeHTML(getArc(matrix.channels.love).positions?.relationship || getArc(matrix.channels.love).archetype)}</p>
+              <h5><span>طبيعة شريك الروح المتوافق</span><small>طاقة ${matrix.channels.love} (${escapeHTML(arcLove.title || '')})</small></h5>
+              <p>${escapeHTML(arcLove.positions?.relationship || arcLove.archetype)}</p>
             </article>
             <article class="aqm-pos-item">
               <h5><span>نقطة التوازن والكيمياء الحميمية</span><small>طاقة ${matrix.channels.balance}</small></h5>
-              <p>تزدهر العلاقة عندما تكون الشراكة قائمة على الصراحة المتبادلة دون ابتزاز عاطفي أو رغبة في السيطرة.</p>
+              <p>تزدهر العلاقة عندما تكون الشراكة قائمة على الصراحة المتبادلة والاحترام دون ابتزاز عاطفي أو رغبة في السيطرة.</p>
             </article>
           </div>
           <div class="aqm-life-path-columns" style="margin-top:.85rem;">
-            <div class="aqm-life-path-copy is-light"><h4>سر استمرار التناغم (+)</h4><p>الاحترام المتبادل للمساحات الفردية، التواصل الهادئ وقت الخلاف، والدعم الصادق لتحقيق أهداف الطرفين.</p></div>
-            <div class="aqm-life-path-copy is-shadow"><h4>النمط المهدد للارتباط (-)</h4><p>إسقاط صدمات الماضي على الشريك، الصمت العقابي، أو توقع الكمال المطلق دون قبول الطبيعة البشرية.</p></div>
+            <div class="aqm-life-path-copy is-light"><h4>سر استمرار التناغم (+)</h4><p>${escapeHTML(arcLove.light || 'الاحترام المتبادل للمساحات الفردية، التواصل الهادئ وقت الخلاف، والدعم الصادق لتحقيق أهداف الطرفين.')}</p></div>
+            <div class="aqm-life-path-copy is-shadow"><h4>النمط المهدد للارتباط (-)</h4><p>${escapeHTML(arcLove.shadow || 'إسقاط صدمات الماضي على الشريك، الصمت العقابي، أو توقع الكمال المطلق دون قبول الطبيعة البشرية.')}</p></div>
           </div>
         </section>
 
