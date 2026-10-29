@@ -156,10 +156,29 @@
    * رسم النجمة الثمانية ومصفوفة القدر (SVG)
    * مطابقة للألوان السبعة ومسارات الحب والمال وطوق العمر 0-80 سنة
    */
+  /**
+   * رسم النجمة الثمانية ومصفوفة القدر (SVG)
+   * مطابقة تامة 100% للهيكل السلافي القياسي (matrix-destiny.com):
+   * 1. شبكة الدوائر الداخلية بالكامل (25 دائرة هندسية مرقمة وملونة).
+   * 2. خطوط السلالة مع الأسهم والنصوص (male generation line / female generation line).
+   * 3. خط المال والحب المتقاطع مع أيقونات القلب والدولار ودائرة التقاطع المشتركة.
+   * 4. حلقة محيط العمر الخارجي (0 - 80 سنة) بنصوص واضحة وتفاصيل السنين المصغرة.
+   * 5. viewBox محكم ومحمي من أي بتر (0 0 800 800).
+   */
   function renderSVG(matrix, dateValue) {
     const num = matrix.nodes;
     const { A, B, C, D, E } = matrix.anchors;
+    const { F, G, H, I } = matrix.generationalCorners;
+    const R = reduceArcana;
+
+    const karmicBase = matrix.karmicTail.base;
+    const karmicMid = matrix.karmicTail.mid;
+    const karmicInner = matrix.karmicTail.inner;
+
     const channels = matrix.channels || { money: 0, love: 0, balance: 0 };
+    const moneyEntry = channels.money;
+    const loveEntry = channels.love;
+    const balancePoint = channels.balance;
 
     // حساب خريطة سنوات العمر وموقع السن الحالي
     const ageApi = window.AqeeqAgeMap || {};
@@ -171,54 +190,175 @@
       : { exactAge: 0, milestone: 0 };
     const currentMilestone = Number(ageInfo.milestone) || 0;
 
-    // إحداثيات الدائرة والمركز (Center = 260, 260)
-    const cx = 260, cy = 260;
-    const rMain = 158;
-    const rDiag = 112;
+    // مركز الدائرة وأبعاد الـ SVG
+    const cx = 400, cy = 400;
+    const rMain = 195; // نصف قطر أطراف المربع الشخصي المستقيم
+    const rDiag = 190; // نصف قطر أطراف مربع الأسلاف المائل 45°
+    const dX = Math.round(rDiag * Math.SQRT1_2); // ~134
+    const dY = Math.round(rDiag * Math.SQRT1_2); // ~134
 
-    const coords = {
-      north: [cx, cy - rMain],           // (260, 102) Sahasrara (Violet) - شهر الميلاد B
-      east: [cx + rMain, cy],            // (418, 260) Svadhisthana (Orange) - سنة الميلاد C
-      south: [cx, cy + rMain],           // (260, 418) Muladhara (Red) - الذيل الكارمي D
-      west: [cx - rMain, cy],            // (102, 260) Vishuddha/Anahata (Blue/Green) - يوم الميلاد A
-      northEast: [cx + rDiag, cy - rDiag], // (372, 148) Ajna - G
-      southEast: [cx + rDiag, cy + rDiag], // (372, 372) H
-      southWest: [cx - rDiag, cy + rDiag], // (148, 372) F
-      northWest: [cx - rDiag, cy - rDiag], // (148, 148) I
-      center: [cx, cy]                   // (260, 260) Manipura (Yellow) - E
-    };
+    // أطراف المربع الشخصي (Personal Square)
+    const north = [cx, cy - rMain];           // (400, 205) شهر الميلاد B
+    const east = [cx + rMain, cy];            // (595, 400) سنة الميلاد C
+    const south = [cx, cy + rMain];           // (400, 595) الذيل الكارمي D
+    const west = [cx - rMain, cy];            // (205, 400) يوم الميلاد A
 
-    // إحداثيات خط الحب والمال
-    const loveCoord = [298, 332];     // مدخل الحب ❤️
-    const balanceCoord = [330, 310];  // نقطة التوازن ⚖️
-    const moneyCoord = [348, 276];    // مدخل المال 💰
+    // أطراف مربع الأسلاف المائل 45° (Ancestral Square)
+    const northWest = [cx - dX, cy - dY];     // (266, 266) سلالة الأب F
+    const northEast = [cx + dX, cy - dY];     // (534, 266) سلالة الأم G
+    const southEast = [cx + dX, cy + dY];     // (534, 534) كارما المادة للأم H
+    const southWest = [cx - dX, cy + dY];     // (266, 534) كارما المادة للأب I
 
-    // أضلاع المربعين (المستقيم والمائل)
-    const personalSquare = `${coords.north[0]},${coords.north[1]} ${coords.east[0]},${coords.east[1]} ${coords.south[0]},${coords.south[1]} ${coords.west[0]},${coords.west[1]}`;
-    const ancestralSquare = `${coords.northEast[0]},${coords.northEast[1]} ${coords.southEast[0]},${coords.southEast[1]} ${coords.southWest[0]},${coords.southWest[1]} ${coords.northWest[0]},${coords.northWest[1]}`;
+    // المركز (راحة الروح)
+    const center = [cx, cy];                  // (400, 400) E
 
-    // حساب نقاط ومحطات العمر على المحيط (0 إلى 80 سنة)
-    const rAge = 214;
-    const agePoints = [
-      { age: 0, angle: 180, label: '0' },
+    // نقاط متوسطة على أقطار الأسلاف المائلة 45°
+    const dX_mid = Math.round(dX * 0.52);     // ~70
+    const dY_mid = Math.round(dY * 0.52);     // ~70
+    const northWest_mid = [cx - dX_mid, cy - dY_mid]; // (330, 330)
+    const northEast_mid = [cx + dX_mid, cy - dY_mid]; // (470, 330)
+    const southEast_mid = [cx + dX_mid, cy + dY_mid]; // (470, 470)
+    const southWest_mid = [cx - dX_mid, cy + dY_mid]; // (330, 470)
+
+    // نقاط وسيطة على الأشعة الأربعة الأساسية
+    const north_mid = [cx, Math.round(cy - rMain * 0.65)];   // (400, 273)
+    const north_inner = [cx, Math.round(cy - rMain * 0.35)]; // (400, 332)
+
+    const south_mid = [cx, Math.round(cy + rMain * 0.65)];   // (400, 527)
+    const south_inner = [cx, Math.round(cy + rMain * 0.35)]; // (400, 468)
+
+    const west_mid = [Math.round(cx - rMain * 0.65), cy];   // (273, 400)
+    const west_inner = [Math.round(cx - rMain * 0.35), cy]; // (332, 400)
+
+    const east_mid = [Math.round(cx + rMain * 0.65), cy];   // (527, 400)
+    const east_inner = [Math.round(cx + rMain * 0.35), cy]; // (468, 400)
+
+    // خط قناة الحب والمال (المحور المنقط في الربع السفلي الأيمن)
+    const loveCoord = [438, 482];    // مدخل الحب ❤️
+    const balanceCoord = [460, 460]; // نقطة التوازن المشترك ⚖️
+    const moneyCoord = [482, 438];   // مدخل المال 💲
+    const soulSynthesis = [cx, cy - 32]; // نقطة التكامل الروحي والشاكرات المشتركة
+
+    // أضلاع المضلعين
+    const personalSquare = `${north[0]},${north[1]} ${east[0]},${east[1]} ${south[0]},${south[1]} ${west[0]},${west[1]}`;
+    const ancestralSquare = `${northEast[0]},${northEast[1]} ${southEast[0]},${southEast[1]} ${southWest[0]},${southWest[1]} ${northWest[0]},${northWest[1]}`;
+
+    // تكوين شبكة الـ 25 دائرة هندسية متطابقة مع المرجع السلافي
+    const nodes25 = [
+      // 1. المركز (راحة الروح)
+      { id: 'center', coord: center, r: 24, val: E, cls: 'aqm-chakra-manipura is-center', target: '#sec-core', label: 'راحة الروح ونواة المركز (Manipura)' },
+
+      // 2-5. أطراف المربع الشخصي المستقيم (الألوان الشاكرية الرئيسية)
+      { id: 'north', coord: north, r: 18, val: B, cls: 'aqm-chakra-sahasrara', target: '#sec-core', label: 'الاتصال الروحي وشهر الميلاد (Sahasrara)' },
+      { id: 'east', coord: east, r: 18, val: C, cls: 'aqm-chakra-svadhisthana', target: '#sec-money', label: 'المادة وسنة الميلاد والوفرة (Svadhisthana)' },
+      { id: 'south', coord: south, r: 18, val: D, cls: 'aqm-chakra-muladhara', target: '#sec-karmic', label: 'الذيل الكارمي وقاعدة الدروس (Muladhara)' },
+      { id: 'west', coord: west, r: 18, val: A, cls: 'aqm-chakra-vishuddha', target: '#sec-core', label: 'الجوهر وشخصية يوم الميلاد (Vishuddha)' },
+
+      // 6-9. أطراف مربع الأسلاف المائل 45° (الدوائر البيضاء الأربع)
+      { id: 'northWest', coord: northWest, r: 17, val: F, cls: 'aqm-chakra-ancestral', target: '#sec-programs', label: 'سلالة الأب · الروح والأجداد (F)' },
+      { id: 'northEast', coord: northEast, r: 17, val: G, cls: 'aqm-chakra-ancestral', target: '#sec-programs', label: 'سلالة الأم · الروح والأجداد (G)' },
+      { id: 'southEast', coord: southEast, r: 17, val: H, cls: 'aqm-chakra-ancestral', target: '#sec-programs', label: 'سلالة الأم · كارما المادة (H)' },
+      { id: 'southWest', coord: southWest, r: 17, val: I, cls: 'aqm-chakra-ancestral', target: '#sec-programs', label: 'سلالة الأب · كارما المادة (I)' },
+
+      // 10-13. الدوائر الحلقية الوسيطة لمربع الأسلاف (Midpoints)
+      { id: 'northWest_mid', coord: northWest_mid, r: 13, val: R(F + E), cls: 'aqm-chakra-ancestral-mid', target: '#sec-programs', label: 'خط الذكور · المورد الروحي الكامن' },
+      { id: 'northEast_mid', coord: northEast_mid, r: 13, val: R(G + E), cls: 'aqm-chakra-ancestral-mid', target: '#sec-programs', label: 'خط الإناث · المورد الروحي الكامن' },
+      { id: 'southEast_mid', coord: southEast_mid, r: 13, val: R(H + E), cls: 'aqm-chakra-ancestral-mid', target: '#sec-programs', label: 'خط الإناث · الدرس المادي الموروث' },
+      { id: 'southWest_mid', coord: southWest_mid, r: 13, val: R(I + E), cls: 'aqm-chakra-ancestral-mid', target: '#sec-programs', label: 'خط الذكور · الدرس المادي الموروث' },
+
+      // 14-15. المحور العمودي العلوي (المواهب والاتصال الروحي)
+      { id: 'north_mid', coord: north_mid, r: 14, val: R(B + E), cls: 'aqm-chakra-ajna', target: '#sec-core', label: 'قناة المواهب الروحية العليا (العين الثالثة)' },
+      { id: 'north_inner', coord: north_inner, r: 13, val: R(R(B + E) + E), cls: 'aqm-chakra-anahata', target: '#sec-core', label: 'الشاكرة القلبية للاتصال الروحي' },
+
+      // 16-17. المحور الأفقي الأيسر (الشخصية والتعبير الجسدي)
+      { id: 'west_mid', coord: west_mid, r: 14, val: R(A + E), cls: 'aqm-chakra-vishuddha', target: '#sec-health', label: 'شاكرة الحنجرة والتعبير والفيزياء' },
+      { id: 'west_inner', coord: west_inner, r: 13, val: R(R(A + E) + E), cls: 'aqm-chakra-anahata', target: '#sec-health', label: 'شاكرة القلب والجسد' },
+
+      // 18-19. المحور العمودي السفلي (الذيل الكارمي والديون)
+      { id: 'south_mid', coord: south_mid, r: 14, val: karmicMid, cls: 'aqm-chakra-svadhisthana', target: '#sec-karmic', label: 'وسط الذيل الكارمي والديون' },
+      { id: 'south_inner', coord: south_inner, r: 13, val: karmicInner, cls: 'aqm-chakra-muladhara', target: '#sec-karmic', label: 'النواة الباطنية للذيل الكارمي' },
+
+      // 20-21. المحور الأفقي الأيمن (المال والوظيفة)
+      { id: 'east_mid', coord: east_mid, r: 14, val: R(C + E), cls: 'aqm-chakra-svadhisthana', target: '#sec-money', label: 'مفتاح خط المال والوفرة' },
+      { id: 'east_inner', coord: east_inner, r: 13, val: R(R(C + E) + E), cls: 'aqm-chakra-manipura', target: '#sec-money', label: 'طاقة العمل والتطبيق المادي' },
+
+      // 22. مدخل الحب (Heart ❤️)
+      { id: 'love_entry', coord: loveCoord, r: 14, val: loveEntry, cls: 'aqm-node-love', target: '#sec-love', label: 'مدخل الحب والشراكات العاطفية', isLove: true },
+
+      // 23. مدخل المال (Dollar 💲)
+      { id: 'money_entry', coord: moneyCoord, r: 14, val: moneyEntry, cls: 'aqm-node-money', target: '#sec-money', label: 'مدخل خط المال والوظيفة', isMoney: true },
+
+      // 24. دائرة التقاطع المشتركة بين الخطين (Balance ⚖️)
+      { id: 'balance', coord: balanceCoord, r: 13, val: balancePoint, cls: 'aqm-node-balance', target: '#sec-love', label: 'نقطة التوازن المشترك بين المال والعلاقات' },
+
+      // 25. نقطة التكامل الروحي والشاكرات المشتركة (Common Energy Zone)
+      { id: 'soul_synthesis', coord: soulSynthesis, r: 12, val: matrix.commonCenter || R(E + matrix.ancestralCenter), cls: 'aqm-chakra-sahasrara', target: '#sec-health', label: 'نقطة الطاقة الكلية الجامعة (Common Energy Zone)' }
+    ];
+
+    // بناء وسوم الـ 25 دائرة في SVG
+    const nodesSvg = nodes25.map(n => {
+      const [x, y] = n.coord;
+      let extraGlyph = '';
+      if (n.isLove) {
+        extraGlyph = `
+          <g class="aqm-channel-glyph" transform="translate(${x - 22}, ${y - 7})">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff4d6d" transform="scale(0.42)" filter="drop-shadow(0 0 5px rgba(255,77,109,0.85))" />
+          </g>
+        `;
+      } else if (n.isMoney) {
+        extraGlyph = `
+          <g class="aqm-channel-glyph" transform="translate(${x + 13}, ${y - 6})">
+            <circle r="7.5" fill="#0d2e1c" stroke="#2ecc71" stroke-width="1.6" filter="drop-shadow(0 0 5px rgba(46,204,113,0.85))"/>
+            <text text-anchor="middle" y="3.5" font-size="10" font-weight="900" fill="#2ecc71">$</text>
+          </g>
+        `;
+      }
+      return `
+        <g class="aqm-node ${n.cls}" tabindex="0" role="button" data-node="${n.id}" data-target="${n.target}" aria-label="${escapeHTML(n.label)}: ${n.val}" aria-describedby="aqm-tooltip">
+          <circle cx="${x}" cy="${y}" r="${n.r}" />
+          <text x="${x}" y="${y + 5}">${n.val}</text>
+          ${extraGlyph}
+          <title>${escapeHTML(n.label)}: ${n.val}</title>
+        </g>
+      `;
+    }).join('');
+
+    // حلقة محيط العمر الخارجي (0 - 80 سنة)
+    const rAge = 280;
+
+    // المحطات الرئيسية الثمانية (كل 10 سنوات) مع نصوص واضحة
+    const majorStations = [
+      { age: 0, angle: 180, label: '0 / 80 years old', textX: 75, textY: 404, anchor: 'end' },
+      { age: 10, angle: 225, label: '10 years old', textX: 145, textY: 145, anchor: 'end' },
+      { age: 20, angle: 270, label: '20 years old', textX: 400, textY: 82, anchor: 'middle' },
+      { age: 30, angle: 315, label: '30 years old', textX: 655, textY: 145, anchor: 'start' },
+      { age: 40, angle: 0, label: '40 years old', textX: 725, textY: 404, anchor: 'start' },
+      { age: 50, angle: 45, label: '50 years old', textX: 655, textY: 655, anchor: 'start' },
+      { age: 60, angle: 90, label: '60 years old', textX: 400, textY: 728, anchor: 'middle' },
+      { age: 70, angle: 135, label: '70 years old', textX: 145, textY: 655, anchor: 'end' }
+    ];
+
+    // المحطات الوسيطة (كل 5 سنوات)
+    const midStations = [
       { age: 5, angle: 202.5, label: '5' },
-      { age: 10, angle: 225, label: '10' },
       { age: 15, angle: 247.5, label: '15' },
-      { age: 20, angle: 270, label: '20' },
       { age: 25, angle: 292.5, label: '25' },
-      { age: 30, angle: 315, label: '30' },
       { age: 35, angle: 337.5, label: '35' },
-      { age: 40, angle: 0, label: '40' },
       { age: 45, angle: 22.5, label: '45' },
-      { age: 50, angle: 45, label: '50' },
       { age: 55, angle: 67.5, label: '55' },
-      { age: 60, angle: 90, label: '60' },
       { age: 65, angle: 112.5, label: '65' },
-      { age: 70, angle: 135, label: '70' },
       { age: 75, angle: 157.5, label: '75' }
     ];
 
-    const ageElements = agePoints.map(pt => {
+    // النقاط المصغرة لتفاصيل السنين الدقيقة حول الإطار (2.5, 7.5, 12.5, 17.5 ...)
+    const microAges = [
+      2.5, 7.5, 12.5, 17.5, 22.5, 27.5, 32.5, 37.5,
+      42.5, 47.5, 52.5, 57.5, 62.5, 67.5, 72.5, 77.5
+    ];
+
+    // رسم عناصر المحطات الرئيسية والثانوية
+    const allAgePoints = [...majorStations, ...midStations];
+    const ageElements = allAgePoints.map(pt => {
       const rad = (pt.angle * Math.PI) / 180;
       const x = Math.round(cx + rAge * Math.cos(rad));
       const y = Math.round(cy + rAge * Math.sin(rad));
@@ -226,115 +366,94 @@
       const isCurrent = Math.abs(currentMilestone - pt.age) < 3.5;
       const isMajor = pt.age % 10 === 0;
 
-      const labelRad = (pt.angle * Math.PI) / 180;
-      const lx = Math.round(cx + (rAge + (isMajor ? 20 : 15)) * Math.cos(labelRad));
-      const ly = Math.round(cy + (rAge + (isMajor ? 20 : 15)) * Math.sin(labelRad)) + 3;
+      let majorTextSvg = '';
+      if (isMajor && pt.label) {
+        majorTextSvg = `<text class="aqm-age-major-text" x="${pt.textX}" y="${pt.textY}" text-anchor="${pt.anchor}">${pt.label}</text>`;
+      } else {
+        const lx = Math.round(cx + (rAge + 18) * Math.cos(rad));
+        const ly = Math.round(cy + (rAge + 18) * Math.sin(rad)) + 4;
+        majorTextSvg = `<text class="aqm-age-label-text" x="${lx}" y="${ly}">${pt.label}</text>`;
+      }
 
       return `
         <g class="aqm-age-node-dot ${isCurrent ? 'is-current' : ''}" data-age="${pt.age}" data-target="#sec-age" role="button" tabindex="0" aria-label="سن ${pt.age}: طاقة ${energy}">
-          <circle cx="${x}" cy="${y}" r="${isMajor ? 11 : 9}" />
-          <text x="${x}" y="${y + 3}">${energy}</text>
-          <text class="aqm-age-label-text" x="${lx}" y="${ly}">${pt.label}</text>
+          <circle cx="${x}" cy="${y}" r="${isMajor ? 12 : 9.5}" />
+          <text x="${x}" y="${y + 4}">${energy}</text>
+          ${majorTextSvg}
           <title>طاقة سن ${pt.age}: أركانا ${energy} (${escapeHTML(ARCANA[energy - 1]?.[0] || '')})</title>
         </g>
       `;
     }).join('');
 
-    // دوائر الشاكرات الأساسية في النجمة
-    const nodesConfig = [
-      { key: 'north', chakra: 'aqm-chakra-sahasrara', r: 19, val: num.north, label: 'الاتصال الروحي والشهر (Sahasrara)', target: '#sec-core' },
-      { key: 'east', chakra: 'aqm-chakra-svadhisthana', r: 19, val: num.east, label: 'المادة وسنة الميلاد (Svadhisthana)', target: '#sec-money' },
-      { key: 'south', chakra: 'aqm-chakra-muladhara', r: 19, val: num.south, label: 'الذيل الكارمي والدروس (Muladhara)', target: '#sec-karmic' },
-      { key: 'west', chakra: 'aqm-chakra-vishuddha', r: 19, val: num.west, label: 'الجوهر ويوم الميلاد (Vishuddha)', target: '#sec-core' },
-      { key: 'northEast', chakra: 'aqm-chakra-ajna', r: 17, val: num.northEast, label: 'مربع الأسلاف · زاوية علوية (G)', target: '#sec-programs' },
-      { key: 'southEast', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southEast, label: 'مربع الأسلاف · زاوية مادية (H)', target: '#sec-programs' },
-      { key: 'southWest', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southWest, label: 'مربع الأسلاف · زاوية كارمية (F)', target: '#sec-programs' },
-      { key: 'northWest', chakra: 'aqm-chakra-ajna', r: 17, val: num.northWest, label: 'مربع الأسلاف · زاوية روحية (I)', target: '#sec-programs' },
-      { key: 'center', chakra: 'aqm-chakra-manipura is-center', r: 23, val: num.center, label: 'راحة الروح ونواة المركز (Manipura)', target: '#sec-core' }
-    ];
+    // رسم الشرطات والنصوص المصغرة للسنين الدقيقة
+    const microAgeElements = microAges.map(ageVal => {
+      const angle = 180 + ageVal * 4.5;
+      const rad = (angle * Math.PI) / 180;
+      const x1 = Math.round(cx + (rAge - 4) * Math.cos(rad));
+      const y1 = Math.round(cy + (rAge - 4) * Math.sin(rad));
+      const x2 = Math.round(cx + (rAge + 4) * Math.cos(rad));
+      const y2 = Math.round(cy + (rAge + 4) * Math.sin(rad));
+      const tx = Math.round(cx + (rAge + 14) * Math.cos(rad));
+      const ty = Math.round(cy + (rAge + 14) * Math.sin(rad)) + 3;
 
-    const nodesSvg = nodesConfig.map(cfg => {
-      const [x, y] = coords[cfg.key];
       return `
-        <g class="aqm-node ${cfg.chakra}" tabindex="0" role="button" data-node="${cfg.key}" data-target="${cfg.target}" aria-label="${escapeHTML(cfg.label)}: ${cfg.val}" aria-describedby="aqm-tooltip">
-          <circle cx="${x}" cy="${y}" r="${cfg.r}" />
-          <text x="${x}" y="${y + 5}">${cfg.val}</text>
-          <title>${escapeHTML(cfg.label)}: ${cfg.val}</title>
+        <g class="aqm-age-micro-group" aria-hidden="true">
+          <line class="aqm-age-micro-tick" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" />
+          <text class="aqm-age-micro-text" x="${tx}" y="${ty}">${ageVal}</text>
         </g>
       `;
     }).join('');
 
-    // دوائر وأيقونات خط الحب والمال
-    const channelsSvg = `
-      <!-- خط قناة الحب والمال -->
-      <line class="aqm-channel-line" x1="${loveCoord[0]}" y1="${loveCoord[1]}" x2="${moneyCoord[0]}" y2="${moneyCoord[1]}" />
-
-      <!-- مدخل الحب (Heart) -->
-      <g class="aqm-node aqm-node-love" tabindex="0" role="button" data-node="love" data-target="#sec-love" aria-label="مدخل الحب والشراكات: ${channels.love}">
-        <circle cx="${loveCoord[0]}" cy="${loveCoord[1]}" r="14" />
-        <text x="${loveCoord[0]}" y="${loveCoord[1] + 4}">${channels.love}</text>
-        <path class="aqm-channel-glyph" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff4d6d" transform="translate(${loveCoord[0] - 24}, ${loveCoord[1] - 8}) scale(0.4)" />
-        <title>خط الحب والشراكات: ${channels.love}</title>
-      </g>
-
-      <!-- نقطة التوازن (Balance) -->
-      <g class="aqm-node aqm-node-balance" tabindex="0" role="button" data-node="balance" data-target="#sec-love" aria-label="نقطة التوازن والكيمياء: ${channels.balance}">
-        <circle cx="${balanceCoord[0]}" cy="${balanceCoord[1]}" r="13" />
-        <text x="${balanceCoord[0]}" y="${balanceCoord[1] + 4}">${channels.balance}</text>
-        <title>نقطة التوازن: ${channels.balance}</title>
-      </g>
-
-      <!-- مدخل المال (Dollar) -->
-      <g class="aqm-node aqm-node-money" tabindex="0" role="button" data-node="money" data-target="#sec-money" aria-label="مدخل خط المال والوفرة: ${channels.money}">
-        <circle cx="${moneyCoord[0]}" cy="${moneyCoord[1]}" r="14" />
-        <text x="${moneyCoord[0]}" y="${moneyCoord[1] + 4}">${channels.money}</text>
-        <g class="aqm-channel-glyph" transform="translate(${moneyCoord[0] + 12}, ${moneyCoord[1] - 8})">
-          <circle r="7" fill="#2ecc71" opacity="0.3"/>
-          <text text-anchor="middle" y="3.5" font-size="10" font-weight="900" fill="#2ecc71">$</text>
-        </g>
-        <title>خط المال والوفرة: ${channels.money}</title>
-      </g>
-    `;
-
     return `
-      <svg class="aqm-svg" viewBox="0 0 520 520" role="group" aria-label="مصفوفة القدر الهندسية وأطواق الشاكرات وسنوات العمر">
+      <svg class="aqm-svg" viewBox="0 0 800 800" role="group" aria-label="مصفوفة القدر الهندسية وأطواق الشاكرات وسنوات العمر">
         <defs>
           <linearGradient id="aqm-grad-channel" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#ff4d6d" />
             <stop offset="50%" stop-color="#f1c40f" />
             <stop offset="100%" stop-color="#2ecc71" />
           </linearGradient>
+          <marker id="aqm-arrow-gen" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
+            <polygon points="0 0, 6 3, 0 6" fill="#d4af37" opacity="0.8"/>
+          </marker>
         </defs>
 
         <!-- الدائرة المحيطية لسنوات العمر (0 إلى 80 سنة) -->
         <circle class="aqm-age-ring-path" cx="${cx}" cy="${cy}" r="${rAge}" />
 
+        <!-- الشرطات المصغرة للسنين الدقيقة حول الإطار -->
+        ${microAgeElements}
+
         <!-- المربع المستقيم (Personal Square) والمربع المائل (Ancestral Square) -->
         <polygon class="aqm-octagon" points="${personalSquare}" />
-        <polygon class="aqm-octagon" points="${ancestralSquare}" stroke-dasharray="3 3" opacity="0.75" />
+        <polygon class="aqm-octagon" points="${ancestralSquare}" stroke-dasharray="3 3" opacity="0.8" />
+
+        <!-- خطوط السلالة مع الأسهم والتسمية النصية الصريحة -->
+        <!-- سهم وخط: male generation line -->
+        <line class="aqm-gen-line" x1="240" y1="240" x2="560" y2="560" marker-end="url(#aqm-arrow-gen)" />
+        <text x="315" y="295" transform="rotate(45, 315, 295)" class="aqm-gen-line-text">male generation line</text>
+
+        <!-- سهم وخط: female generation line -->
+        <line class="aqm-gen-line" x1="560" y1="240" x2="240" y2="560" marker-end="url(#aqm-arrow-gen)" />
+        <text x="485" y="295" transform="rotate(-45, 485, 295)" class="aqm-gen-line-text">female generation line</text>
 
         <!-- محاور النجمة الثمانية المركزية -->
-        <line class="aqm-line aqm-axis-vertical" x1="${coords.north[0]}" y1="${coords.north[1]}" x2="${coords.south[0]}" y2="${coords.south[1]}" />
-        <line class="aqm-line aqm-axis-horizontal" x1="${coords.west[0]}" y1="${coords.west[1]}" x2="${coords.east[0]}" y2="${coords.east[1]}" />
-        <line class="aqm-diagonal" x1="${coords.northWest[0]}" y1="${coords.northWest[1]}" x2="${coords.southEast[0]}" y2="${coords.southEast[1]}" />
-        <line class="aqm-diagonal" x1="${coords.northEast[0]}" y1="${coords.northEast[1]}" x2="${coords.southWest[0]}" y2="${coords.southWest[1]}" />
+        <line class="aqm-line aqm-axis-vertical" x1="${north[0]}" y1="${north[1]}" x2="${south[0]}" y2="${south[1]}" />
+        <line class="aqm-line aqm-axis-horizontal" x1="${west[0]}" y1="${west[1]}" x2="${east[0]}" y2="${east[1]}" />
+        <line class="aqm-diagonal" x1="${northWest[0]}" y1="${northWest[1]}" x2="${southEast[0]}" y2="${southEast[1]}" />
+        <line class="aqm-diagonal" x1="${northEast[0]}" y1="${northEast[1]}" x2="${southWest[0]}" y2="${southWest[1]}" />
 
-        <!-- خط قناة المال والحب مع الأيقونات -->
-        ${channelsSvg}
+        <!-- خط المال والحب المتقاطع (المحور المنقط) -->
+        <line class="aqm-channel-dotted-axis" x1="420" y1="500" x2="500" y2="420" />
 
         <!-- نقاط ومحطات سنوات العمر على المحيط (0 - 80 سنة) -->
         ${ageElements}
 
-        <!-- دوائر ومراكز الشاكرات في النجمة -->
+        <!-- شبكة الـ 25 دائرة هندسية ومراكز الشاكرات الملونة -->
         ${nodesSvg}
       </svg>
     `;
   }
 
-  /**
-   * الأقسام السبعة القياسية لمصفوفة القدر وفق معمارية matrix-destiny.com
-   * مهيأة كحاويات بيانات (Data Containers) مستقلة ونظيفة
-   */
   function render7DestinySections(matrix, dateValue, chakras, generations, axes) {
     const { A, B, C, D, E } = matrix.anchors;
     const DESTINY_DATA = window.AqeeqDestinyMatrixData || {};
