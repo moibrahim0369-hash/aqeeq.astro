@@ -14,41 +14,56 @@
   ],
   "headline": "الحدس والمشاعر",
   "core": {
-    "psychology": "",
-    "gift": "خيال وتعاطف مع التحقق",
-    "shadowTrap": "ضبابية أو إسقاط",
-    "growth": ""
+    "psychology": "يرمز القمر إلى عالم الانطباعات والمخاوف والخيال حين تختلط الإشارات بالاستنتاجات. الدافع البحث عن الأمان داخل ما لم يتضح بعد. قوته في الحساسية للجو النفسي والقدرة على تخيل احتمالات متعددة؛ وتوتره أن يملأ الغموض بسردية تبدو يقينية.",
+    "gift": "الخيال والتعاطف يظهران في فهم المشاعر غير المنطوقة ورؤية أكثر من تفسير للمشهد. في الإبداع، يفتح ذلك صوراً ومعاني جديدة. وفي العلاقة، يساعد على ملاحظة القلق قبل أن يصير اتهاماً، إذا فُصل الشعور عن الدليل.",
+    "shadowTrap": "الضبابية أو الإسقاط يظهران عندما تُعامل المخاوف كوقائع أو يُنسب للآخر قصد لم يصرح به. مثال ذلك قراءة رسالة مقتضبة كرفض قاطع، ثم الرد على ذلك الرفض المتخيل. الحساسية لا تعني أن كل استنتاج دقيق.",
+    "growth": "خطوة تأملية: تسمية الشعور أولاً ثم كتابة ما هو معلوم وما هو متوقع، وطلب توضيح من المصدر قبل بناء قصة كاملة."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تُبنى الغاية عبر الإصغاء للخيال والمشاعر دون مساواتها بالدليل.",
+      "energyPsychology": "تحتاج الطاقة إلى تمييز ما تعرفه مباشرة عما أضافه القلق إلى الصورة.",
+      "emotionsPsychology": "يمنح الاعتراف بالغموض طمأنينة أكثر من اختراع يقين سريع."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تلتقط القمرية الصور والانطباعات الغامضة، وتحتاج إلى فصل ما شوهد فعلاً عما أضافه الخوف أو التوقع.",
+      "energyPsychology": "تتذبذب الطاقة الذهنية عندما تتزاحم الاحتمالات؛ وتستعيد اتزانها عبر الإضاءة والتحقق لا عبر يقين متسرع.",
+      "emotionsPsychology": "تُعامل المشاعر كإشارات جديرة بالإصغاء، لا كبرهان منفرد على ما ينويه الآخرون."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تسمح القمرية بوصف الانطباع كما هو، وتوضح أين ينتهي ما عُرف وأين يبدأ ما لا يزال ظناً.",
+      "energyPsychology": "تحتاج طاقة التعبير إلى وقت لفرز الإشارات المتداخلة؛ فالاستعجال في إعلان المعنى يزيد سوء الفهم.",
+      "emotionsPsychology": "يُسمع الشعور بوضوح حين يُقدَّم كتجربة شخصية لا كحقيقة مفروضة عن نوايا الغير."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تحتاج القمرية إلى التمييز بين حدس القلب والخوف من الماضي؛ تسأل عن الوقائع بدلاً من ملء الفراغ بتخمينات.",
+      "energyPsychology": "تتوازن الطاقة مع وضوح الاتفاقات والتأكد من الفهم، خصوصاً عندما تثير الإشارات الملتبسة قلقاً.",
+      "emotionsPsychology": "يجد الشعور مساحة آمنة حين يُعترف بالغيرة أو الحيرة كخبرة داخلية، لا كدليل على نية الآخر."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتعلم القمرية التمييز بين حدس القيادة وخوف الفشل؛ القرار القوي لا يحتاج إنكار الغموض.",
+      "energyPsychology": "تحتاج الطاقة إلى وقائع واختبار صغير قبل الالتزام الكبير، خصوصًا عندما تتضخم المخاوف في الخيال.",
+      "emotionsPsychology": "يخف القلق حين يُسمح بتسمية عدم اليقين بدل تغطيته بثقة مصطنعة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -68,7 +83,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

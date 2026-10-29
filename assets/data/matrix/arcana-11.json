@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "القوة والاتزان",
   "core": {
-    "psychology": "",
-    "gift": "شجاعة هادئة وضبط للنفس",
-    "shadowTrap": "كبت أو إنهاك",
-    "growth": ""
+    "psychology": "ترمز القوة إلى علاقة واعية مع الشدة: احتواء الدافع بدل كسره أو تركه يقود وحده. قوتها في الصبر والشجاعة الهادئة وحفظ الكرامة عند الاستفزاز. تناقضها أن ضبط النفس قد يُفهم على أنه إخفاء كامل للحاجة، حتى تنفجر الطاقة أو تتحول إلى إنهاك صامت.",
+    "gift": "تظهر الشجاعة الهادئة في القدرة على وضع حد دون إذلال، وفي البقاء حاضرًا أثناء محادثة صعبة. في العمل، تمنح ثباتاً أمام الضغط وحماية الفريق من رد فعل متسرع. وفي العلاقة، تدعم المصارحة الحازمة حين تُسمى المشاعر قبل أن تتراكم.",
+    "shadowTrap": "الكبت أو الإنهاك ينشآن عندما يتحول الصبر إلى احتمال دائم، أو حين تُعامل الحاجة إلى المساعدة كضعف. مثال ذلك الاستمرار في مسؤولية مرهقة وإظهار الهدوء، ثم الانفجار في موقف صغير. القوة هنا لا تعني غياب الحدود، بل القدرة على التعبير عنها.",
+    "growth": "خطوة تأملية: تسمية الانفعال والحد معاً في موقف واحد، وطلب دعم محدد قبل أن يتحول الصبر إلى إنهاك أو انفجار."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الرسالة في استخدام القوة لحماية ما له قيمة دون قسوة أو استنزاف.",
+      "energyPsychology": "تُحفظ الطاقة عبر شجاعة هادئة تعترف بالحدود قبل بلوغ الإنهاك.",
+      "emotionsPsychology": "يصبح الشعور بالأمان أعمق حين يُسمح بالهشاشة وطلب الدعم، لا حين يُكبت كل انفعال."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "ترى القوة الشجاعة التي تضبط الاندفاع بلطف، لا التي تنكر وجوده أو تتعامل معه كعدو.",
+      "energyPsychology": "تستمر الطاقة حين يُستخدم الإصرار بقدر، وتتحول إلى استنزاف إذا كان إثبات القدرة هو الغاية.",
+      "emotionsPsychology": "تسمح الرحمة بفهم الانفعال دون الخضوع له؛ فيصبح احتواؤه أوضح من قمعه."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تجعل القوة الشجاعة هادئة ومباشرة؛ تقول ما يلزم دون ترهيب أو تضخيم للانفعال.",
+      "energyPsychology": "تتدفق طاقة التعبير مع تنفس متزن وإصغاء متبادل، لا مع رفع الصوت لإثبات الحضور.",
+      "emotionsPsychology": "تمنح تسمية الغضب أو الخوف بلغة محترمة انفعالاً قابلاً للفهم بدلاً من أن يتحول إلى اندفاع."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تُظهر القوة شجاعة البقاء في حوار صعب من دون إذلال أو استعراض؛ اللطف هنا يحتاج حدوداً لا استسلاماً.",
+      "energyPsychology": "تتجدد الحيوية عبر الثقة والحنان المتبادل، مع توزيع مسؤولية تهدئة الخلاف بين الطرفين.",
+      "emotionsPsychology": "يمكن الاعتراف بالغضب والخوف من دون جعل أحدهما ذنباً دائماً؛ تسمية الشعور تفتح مجالاً للفهم."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تستخدم القوة الانفعال كوقود منضبط، فتثبت حدودها دون إذلال من يقف أمامها أو تحويل الشجاعة إلى استعراض.",
+      "energyPsychology": "تتدفق الحيوية في الفعل المتدرج وتحمل المواجهة، وتستنزفها معركة مستمرة لإثبات من الأقوى.",
+      "emotionsPsychology": "يصبح الغضب قابلًا للاستخدام عندما يكشف حدًا تم تجاوزه بدل أن يحدد قيمة العلاقة كلها."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,54 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار. تسمية الأركانا 8 و11 متعارضة بين فهرس الدورة والصفحات الفردية؛ هذه الصياغة تتبع قاموس عقيق المحلي إلى حين اختيار إصدار مرجعي.",
+    "arcanaMappingStatus": "source-conflict",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

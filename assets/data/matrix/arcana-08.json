@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "العدل والتوازن",
   "core": {
-    "psychology": "",
-    "gift": "إنصاف واتزان",
-    "shadowTrap": "قسوة في الحكم",
-    "growth": ""
+    "psychology": "ترمز العدالة إلى موازنة الفعل بنتيجته، وإلى الحاجة لأن تكون القواعد مفهومة ومتبادلة. دافعها هو استعادة التناسب والإنصاف، وقوتها في رؤية أثر القرار على الأطراف. توترها يظهر حين يختلط الإنصاف بالمثالية أو يتحول الحكم إلى هوية ثابتة: من أخطأ مرة يُختزل كله في خطئه.",
+    "gift": "الإنصاف والاتزان يتجليان في سماع الوقائع من أكثر من جهة، وتحديد معيار واحد قبل إصدار الحكم. في العمل، تدعم هذه الطاقة مراجعة العقود والمسؤوليات وتوزيع التقدير. وفي العلاقات، تمنع تراكم الدين العاطفي حين تُناقش التوقعات بوضوح.",
+    "shadowTrap": "قسوة الحكم تظهر في محاسبة الذات والآخرين بلا سياق أو في إطالة المرافعة بحثاً عن براءة كاملة. مثال ذلك استدعاء أخطاء قديمة في كل خلاف جديد، فيصبح الحوار محكمة لا مساحة إصلاح. الحذر من التحيز لا يعني إنكار الألم، بل فصل الواقعة عن الإدانة الشاملة.",
+    "growth": "خطوة تأملية: فصل الواقعة عن القاعدة والنتيجة قبل الحكم، ثم اختيار إجراء يصلح الأثر ويمنع التكرار دون اختزال الشخص في خطئه."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تُقرأ الغاية هنا عبر أثر القرار على الأطراف ومدى اتساقه مع معيار إنصاف معلن.",
+      "energyPsychology": "تستعيد الطاقة توازنها حين تُفصل الوقائع عن الأحكام وتُراجع النتائج بإنصاف.",
+      "emotionsPsychology": "يخف التوتر عندما لا تتحول الأخطاء إلى إدانة شاملة للذات أو للآخر."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تفصل العدالة بين الوقائع والتأويل، ثم تراجع الحكم وفق أثره؛ فالدقة هنا تتطلب إنصاف الذات والآخر معاً.",
+      "energyPsychology": "تتوازن الطاقة الذهنية مع معيار واضح ومتسق، وتُستنزف حين يتحول التحليل إلى محكمة لا تسمح بالخطأ.",
+      "emotionsPsychology": "تخف مشاعر الذنب عندما تقود إلى إصلاح محدد، لا إلى إدانة شاملة للشخص."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تصوغ العدالة الكلام على أساس الوقائع والإنصاف، وتفرّق بين المساءلة وإهانة الشخص.",
+      "energyPsychology": "تنتظم طاقة الحوار حين يُسمع كل طرف بقدر متوازن، وتنهكها محاكمة لا تبحث عن فهم أو إصلاح.",
+      "emotionsPsychology": "يصبح الاعتذار أو تصحيح العبارة ممكناً عندما لا يُعامل الخطأ كحكم نهائي على قيمة صاحبه."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تقوم المودة العادلة على تبادل المسؤولية والاعتراف بما يقدمه كل طرف، مع وضوح في الاتفاقات والحقوق.",
+      "energyPsychology": "تستقر طاقة العلاقة حين تتوزع الأعباء والقرارات بإنصاف، لا عبر حساب خفي لكل تضحية.",
+      "emotionsPsychology": "يصبح العتاب قابلاً للإصلاح عندما يصف الفعل وأثره، لا عندما يحاكم قيمة الشخص أو ينكر حسناته."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تستمد العدالة قوتها من قرار يمكن تبريره أمام الأطراف المتأثرة، لا من انتصار شخصي في لحظة نزاع.",
+      "energyPsychology": "تتوازن الطاقة عندما تتوزع المسؤولية والموارد بإنصاف، ويستنزفها حساب المكاسب الخفي بعد كل تعاون.",
+      "emotionsPsychology": "يهدأ الشعور بالذنب حين تُفصل المسؤولية الفعلية عن جلد الذات أو تحميل الآخرين ما لا يخصهم."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,54 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار. تسمية الأركانا 8 و11 متعارضة بين فهرس الدورة والصفحات الفردية؛ هذه الصياغة تتبع قاموس عقيق المحلي إلى حين اختيار إصدار مرجعي.",
+    "arcanaMappingStatus": "source-conflict",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

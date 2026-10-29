@@ -15,41 +15,56 @@
   ],
   "headline": "البدايات المفتوحة",
   "core": {
-    "psychology": "",
-    "gift": "فضول وتجربة",
-    "shadowTrap": "مخاطرة دون تقدير",
-    "growth": ""
+    "psychology": "يرمز المجنون إلى عتبة بداية مفتوحة وفضول يسبق اكتمال الخريطة، لا إلى غياب العقل. الدافع تجربة الممكن وتخفيف ثقل التعريفات القديمة. قوته في الخفة والابتكار والاستعداد للتعلم من الطريق؛ وتوتره أن الحرية قد تنفصل عن المسؤولية أو أن الحذر يحولها إلى خوف من كل بداية.",
+    "gift": "الفضول والتجربة يظهران في الاقتراب من مجال جديد دون ادعاء إتقانه، وفي رؤية بدائل خارج المسار المعتاد. في العمل، يدعم النماذج الأولية والأفكار الجريئة. وفي العلاقات، يمنح مساحة للعفوية واللعب ما دامت الوعود والحدود واضحة.",
+    "shadowTrap": "المخاطرة دون تقدير تظهر حين يُتخذ قرار مكلف لمجرد الرغبة في الهروب من الملل، أو حين تُعامل الالتزامات كقيود لا أثر لها على الآخرين. مثال ذلك ترك اتفاق مالي بلا إبلاغ، أو بدء رحلة بلا تقدير الموارد المتاحة.",
+    "growth": "خطوة تأملية: تحديد تجربة جديدة صغيرة ذات تكلفة ومدة معلومتين، مع توضيح الالتزام لمن يتأثر بها قبل بدء الطريق."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الغاية في فضول يختبر الممكن ويحترم عواقب البداية.",
+      "energyPsychology": "تتجدد الطاقة عبر تجارب صغيرة تفتح معرفة جديدة دون تبديد الموارد.",
+      "emotionsPsychology": "ينشأ الأمان من حرية واعية لا من الهرب من كل التزام."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يحافظ الأحمق على فضول يفتح احتمالات جديدة، وتصبح رؤيته ناضجة حين ترافق الحرية ملاحظة العواقب.",
+      "energyPsychology": "تتغذى الطاقة من التجربة والاستكشاف، وتحتاج نقطة عودة تمنع الحركة من التحول إلى تشتت دائم.",
+      "emotionsPsychology": "تسمح الخفة ببداية صادقة، مع بقاء الحدود والالتزامات جزءاً من الأمان لا نقيضاً له."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تجرب طاقة الأحمق نبرة جديدة أو بداية حوار بخفة، مع استعداد لتحمل أثر الكلمات بعد صدورها.",
+      "energyPsychology": "تتجدد الطاقة التعبيرية من العفوية واللعب، وتبقى متوازنة حين ترافقها مسؤولية الإصغاء والمتابعة.",
+      "emotionsPsychology": "تسمح الخفة بالاقتراب من موضوع حساس، دون استخدام المزاح للهروب من شعور يحتاج تسمية."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تجلب خفة الأحمق عفوية إلى المودة، وتحتاج أن تصحبها أمانة في الوعود واحترام لمشاعر الطرف الآخر.",
+      "energyPsychology": "تتجدد الحيوية بالتجربة والمرح، مع العودة إلى الحوار عندما يصبح المزاح ستاراً لموضوع حساس.",
+      "emotionsPsychology": "يطمئن القلب حين يستطيع التعبير ببساطة، كما يستطيع الاعتراف بأن المزاح جرح أو أن القرب يحتاج جدية."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يبدأ الأحمق من دون ضمانات كاملة، ويختبر قوته حين يلتزم بحد أدنى من المسؤولية بعد لحظة الحماس.",
+      "energyPsychology": "تتجدد الطاقة بالفضول والمخاطرة المحسوبة، وتضيع عندما يصبح التغيير وسيلة لتفادي أي نتيجة ثابتة.",
+      "emotionsPsychology": "يطمئن الداخل عندما تُفهم الحرية كقدرة على الاختيار وتحمل الأثر، لا كغياب لكل التزام."
     },
     "svadhisthana": {
       "psychology": "",
@@ -69,7 +84,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }
