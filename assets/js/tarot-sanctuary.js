@@ -210,6 +210,7 @@
                           (activeFilter === 'wands' && card.suit === 'wands') ||
                           (activeFilter === 'cups' && card.suit === 'cups') ||
                           (activeFilter === 'swords' && card.suit === 'swords') ||
+                          (activeFilter === 'pentacles' && card.suit === 'pentacles') ||
                           (activeFilter === 'fire' && card.element.includes('نار')) ||
                           (activeFilter === 'water' && card.element.includes('ماء')) ||
                           (activeFilter === 'air' && card.element.includes('هواء')) ||
