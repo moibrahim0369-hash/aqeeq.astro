@@ -1,0 +1,332 @@
+{
+  "metadata": {
+    "title": "Matrix Calculations Reference | أمثلة الحسابات المعيارية",
+    "method": "Natalia Ladini (22 Arcana)",
+    "version": "1.0.0",
+    "date": "2026-10-29",
+    "purpose": "أمثلة اختبار معيارية للتحقق من صحة حسابات مصفوفة القدر"
+  },
+  "test_cases": [
+    {
+      "id": "test_001",
+      "name": "محمد إبراهيم (25/9/1999)",
+      "description": "مثال واقعي: يوم 25، شهر 9، سنة 1999",
+      "input": {
+        "date": "1999-09-25",
+        "day": 25,
+        "month": 9,
+        "year": 1999
+      },
+      "calculations": {
+        "step_1_reduce_inputs": {
+          "A": { "raw": 25, "process": "2+5=7", "result": 7, "meaning": "يوم الميلاد (North)" },
+          "B": { "raw": 9, "process": "9≤22", "result": 9, "meaning": "شهر الميلاد (East)" },
+          "C": { "raw": "1+9+9+9=28", "process": "2+8=10", "result": 10, "meaning": "سنة الميلاد (South)" }
+        },
+        "step_2_secondary": {
+          "D": { "raw": "7+9+10=26", "process": "2+6=8", "result": 8, "meaning": "التكامل (West)" },
+          "E": { "raw": "7+9+10+8=34", "process": "3+4=7", "result": 7, "meaning": "المركز (Center)" }
+        },
+        "step_3_corners": {
+          "F": { "raw": "7+9=16", "process": "16≤22", "result": 16, "meaning": "NorthEast (الموهبة)" },
+          "G": { "raw": "9+10=19", "process": "19≤22", "result": 19, "meaning": "SouthEast (العلاقات)" },
+          "H": { "raw": "10+8=18", "process": "18≤22", "result": 18, "meaning": "SouthWest (الوفرة)" },
+          "I": { "raw": "8+7=15", "process": "15≤22", "result": 15, "meaning": "NorthWest (العاطفة)" }
+        }
+      },
+      "expected_output": {
+        "nodes": {
+          "north": 7,
+          "northEast": 16,
+          "east": 9,
+          "southEast": 19,
+          "south": 10,
+          "southWest": 18,
+          "west": 8,
+          "northWest": 15,
+          "center": 7
+        },
+        "anchors": {
+          "A": 7,
+          "B": 9,
+          "C": 10,
+          "D": 8,
+          "E": 7
+        },
+        "generationalCorners": {
+          "F": 16,
+          "G": 19,
+          "H": 18,
+          "I": 15
+        },
+        "lines": {
+          "money": [16, 7, 18],
+          "love": [15, 7, 19]
+        }
+      },
+      "verification": {
+        "status": "✅ تم",
+        "notes": "يطابق الكود الحالي بدقة تامة"
+      }
+    },
+    {
+      "id": "test_002",
+      "name": "تاريخ بـ Master Numbers (22/11/1922)",
+      "description": "حالة حدية: يوم 22، شهر 11 (كلاهما يُحفظ في 22 Arcana)",
+      "input": {
+        "date": "1922-11-22",
+        "day": 22,
+        "month": 11,
+        "year": 1922
+      },
+      "calculations": {
+        "step_1_reduce_inputs": {
+          "A": { "raw": 22, "process": "22≤22 (محفوظ)", "result": 22, "meaning": "يوم الميلاد" },
+          "B": { "raw": 11, "process": "11≤22", "result": 11, "meaning": "شهر الميلاد" },
+          "C": { "raw": "1+9+2+2=14", "process": "14≤22", "result": 14, "meaning": "سنة الميلاد" }
+        },
+        "step_2_secondary": {
+          "D": { "raw": "22+11+14=47", "process": "4+7=11", "result": 11, "meaning": "التكامل" },
+          "E": { "raw": "22+11+14+11=58", "process": "5+8=13", "result": 13, "meaning": "المركز" }
+        },
+        "step_3_corners": {
+          "F": { "raw": "22+11=33", "process": "3+3=6", "result": 6, "meaning": "NorthEast" },
+          "G": { "raw": "11+14=25", "process": "2+5=7", "result": 7, "meaning": "SouthEast" },
+          "H": { "raw": "14+11=25", "process": "2+5=7", "result": 7, "meaning": "SouthWest" },
+          "I": { "raw": "11+22=33", "process": "3+3=6", "result": 6, "meaning": "NorthWest" }
+        }
+      },
+      "expected_output": {
+        "nodes": {
+          "north": 22,
+          "northEast": 6,
+          "east": 11,
+          "southEast": 7,
+          "south": 14,
+          "southWest": 7,
+          "west": 11,
+          "northWest": 6,
+          "center": 13
+        }
+      },
+      "verification": {
+        "status": "✅ تم",
+        "notes": "الرقم 22 يُحفظ (لا اختزال)، والـ 33 تُختزل إلى 6 (3+3)"
+      }
+    },
+    {
+      "id": "test_003",
+      "name": "حالة الاختزال المتكرر (1/1/1999)",
+      "description": "جمع متكرر: السنة تُختزل عبر خطوات متعددة",
+      "input": {
+        "date": "1999-01-01",
+        "day": 1,
+        "month": 1,
+        "year": 1999
+      },
+      "calculations": {
+        "step_1_reduce_inputs": {
+          "A": { "raw": 1, "process": "1≤22", "result": 1 },
+          "B": { "raw": 1, "process": "1≤22", "result": 1 },
+          "C": { "raw": "1+9+9+9=28", "process": "2+8=10", "result": 10 }
+        },
+        "step_2_secondary": {
+          "D": { "raw": "1+1+10=12", "process": "12≤22", "result": 12 },
+          "E": { "raw": "1+1+10+12=24", "process": "2+4=6", "result": 6 }
+        }
+      },
+      "expected_output": {
+        "nodes": {
+          "north": 1,
+          "east": 1,
+          "south": 10,
+          "west": 12,
+          "center": 6
+        }
+      },
+      "verification": {
+        "status": "✅ تم",
+        "notes": "E = 24 يُختزل إلى 6 (الخطوة الثانية)"
+      }
+    },
+    {
+      "id": "test_004",
+      "name": "الحد الأدنى (1/1/1000)",
+      "description": "أصغر الأرقام: اليوم 1، الشهر 1",
+      "input": {
+        "date": "1000-01-01",
+        "day": 1,
+        "month": 1,
+        "year": 1000
+      },
+      "calculations": {
+        "step_1_reduce_inputs": {
+          "A": { "result": 1 },
+          "B": { "result": 1 },
+          "C": { "raw": "1+0+0+0=1", "result": 1 }
+        },
+        "step_2_secondary": {
+          "D": { "raw": "1+1+1=3", "result": 3 },
+          "E": { "raw": "1+1+1+3=6", "result": 6 }
+        }
+      },
+      "expected_output": {
+        "nodes": {
+          "north": 1,
+          "east": 1,
+          "south": 1,
+          "west": 3,
+          "center": 6
+        }
+      },
+      "verification": {
+        "status": "✅ تم",
+        "notes": "جميع الأرقام ≤ 22 (لا اختزال إضافي)"
+      }
+    },
+    {
+      "id": "test_005",
+      "name": "الحد الأقصى (31/12/2099)",
+      "description": "أكبر الأرقام المتاحة في نطاق صالح",
+      "input": {
+        "date": "2099-12-31",
+        "day": 31,
+        "month": 12,
+        "year": 2099
+      },
+      "calculations": {
+        "step_1_reduce_inputs": {
+          "A": { "raw": 31, "process": "3+1=4", "result": 4 },
+          "B": { "raw": 12, "process": "1+2=3", "result": 3 },
+          "C": { "raw": "2+0+9+9=20", "result": 20 }
+        },
+        "step_2_secondary": {
+          "D": { "raw": "4+3+20=27", "process": "2+7=9", "result": 9 },
+          "E": { "raw": "4+3+20+9=36", "process": "3+6=9", "result": 9 }
+        }
+      },
+      "expected_output": {
+        "nodes": {
+          "north": 4,
+          "east": 3,
+          "south": 20,
+          "west": 9,
+          "center": 9
+        }
+      },
+      "verification": {
+        "status": "✅ تم",
+        "notes": "جميع الاختزالات صحيحة (27→9، 36→9)"
+      }
+    },
+    {
+      "id": "test_006",
+      "name": "الحالة الخاصة: النتيجة صفر → 22",
+      "description": "حالة افتراضية: إذا كانت النتيجة صفر، تُرجع 22",
+      "input": {
+        "description": "هذه حالة نظرية (لا تحدث في التواريخ الحقيقية)"
+      },
+      "calculations": {
+        "reduction_rule": {
+          "input": 0,
+          "process": "n === 0 ? 22 : n",
+          "result": 22
+        }
+      },
+      "verification": {
+        "status": "✅ مدرج في الكود",
+        "notes": "حالة أمان: return n || 22"
+      }
+    },
+    {
+      "id": "test_007",
+      "name": "Generational Lines (25/9/1999)",
+      "description": "اختبار حساب الخطوط الجيلية من البيانات السابقة",
+      "input": {
+        "date": "1999-09-25",
+        "matrix": { "F": 16, "G": 19, "H": 18, "I": 15 }
+      },
+      "calculations": {
+        "paternal_line": {
+          "points": [16, 7, 18],
+          "combined": { "raw": "16+18=34", "process": "3+4=7", "result": 7 }
+        },
+        "maternal_line": {
+          "points": [19, 7, 15],
+          "combined": { "raw": "19+15=34", "process": "3+4=7", "result": 7 }
+        }
+      },
+      "expected_output": {
+        "paternal": 7,
+        "maternal": 7
+      },
+      "verification": {
+        "status": "✅ تم",
+        "notes": "كلا الخطين لهما نفس القيمة (7)"
+      }
+    },
+    {
+      "id": "test_008",
+      "name": "Error Handling: Invalid Date",
+      "description": "اختبار معالجة التواريخ غير الصالحة",
+      "input": {
+        "invalid_dates": [
+          "1999-13-25 (شهر غير صالح)",
+          "1999-02-30 (يوم غير صالح في فبراير)",
+          "1999/09/25 (صيغة خاطئة)",
+          "not-a-date"
+        ]
+      },
+      "expected_behavior": "رفع TypeError أو RangeError مع رسالة واضحة",
+      "verification": {
+        "status": "✅ مدرج في الكود",
+        "notes": "normalizeBirthDate يتحقق من الصيغة والصحة"
+      }
+    }
+  ],
+  "reduction_examples": [
+    { "input": 1, "output": 1, "process": "1≤22" },
+    { "input": 10, "output": 10, "process": "10≤22" },
+    { "input": 22, "output": 22, "process": "22≤22 (محفوظ)" },
+    { "input": 23, "output": 5, "process": "23→2+3=5" },
+    { "input": 25, "output": 7, "process": "25→2+5=7" },
+    { "input": 33, "output": 6, "process": "33→3+3=6" },
+    { "input": 38, "output": 11, "process": "38→3+8=11" },
+    { "input": 47, "output": 11, "process": "47→4+7=11" },
+    { "input": 65, "output": 11, "process": "65→6+5=11" },
+    { "input": 100, "output": 1, "process": "100→1+0+0=1" },
+    { "input": 299, "output": 20, "process": "299→2+9+9=20" },
+    { "input": 999, "output": 9, "process": "999→9+9+9=27→2+7=9" },
+    { "input": 1999, "output": 10, "process": "1999→1+9+9+9=28→2+8=10" }
+  ],
+  "quality_assurance": {
+    "digit_sum_tests": [
+      { "input": 7, "expected": 7 },
+      { "input": 25, "expected": 7 },
+      { "input": 1999, "expected": 28 },
+      { "input": 999, "expected": 27 }
+    ],
+    "boundary_tests": [
+      { "name": "Minimum", "input": 1, "expected": 1 },
+      { "name": "Maximum (22)", "input": 22, "expected": 22 },
+      { "name": "Just over (23)", "input": 23, "expected": 5 },
+      { "name": "Double digit", "input": 99, "expected": 9 },
+      { "name": "Triple digit", "input": 999, "expected": 9 }
+    ]
+  },
+  "notes": {
+    "important": [
+      "جميع الأرقام > 22 يجب أن تُختزل بجمع الخانات",
+      "الرقم 22 لا يُختزل (حالة خاصة محفوظة)",
+      "إذا كانت النتيجة 0، أرجع 22",
+      "لا يوجد 'Master Numbers' بالمعنى الفيثاغوري (11, 22, 33)",
+      "كل التواريخ تُفترض صحيحة (تحقق من الصحة قبل الاختزال)"
+    ],
+    "future_extensions": [
+      "اختبارات الأداء (Performance Benchmarks)",
+      "اختبارات التوافق مع متصفحات قديمة",
+      "اختبارات الذاكرة (Memory profiling)",
+      "اختبارات التزامن (Concurrency tests)"
+    ]
+  }
+}
