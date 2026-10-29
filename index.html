@@ -2698,7 +2698,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       window.AqeeqNumerology.render(temp, `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`);
       deepReport = temp.innerHTML;
     }
-    const names = ["التقرير الشامل (14 قسماً)", "ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
+    const names = ["التقرير المرجعي (7 أقسام)", "ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
     const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
     const compat = `<p class="lead2">اكتب تاريخ ميلاد شخص تاني (حبيب أو صاحب أو شريك شغل) وشوف مصفوفة العلاقة بينكم.</p><div class="field"><label for="mc-date">تاريخ ميلاد الشخص التاني</label><input id="mc-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="mc-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="mc-go" type="button">احسب مصفوفة العلاقة</button></div><div id="mc-out" hidden></div>`;
     const bodies = [deepReport || summaryHTML(P, lp), summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
