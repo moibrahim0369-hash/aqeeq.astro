@@ -221,27 +221,53 @@
 
     return `
       <!-- شريط التنقل السريع بين الأقسام الـ 14 -->
+      <!-- شريط التبويبات الرئيسي للمجموعات الثلاث -->
+      <div class="aqm-cat-bar" role="tablist" aria-label="مجموعات مصفوفة القدر">
+        <button type="button" class="aqm-cat-tab is-active" data-cat="all" role="tab" aria-selected="true">
+          <span class="aqm-cat-icon">📑</span>
+          <span class="aqm-cat-text">عرض كل الأقسام <small>14 قسماً بالكامل</small></span>
+        </button>
+        <button type="button" class="aqm-cat-tab" data-cat="identity" role="tab" aria-selected="false">
+          <span class="aqm-cat-icon">✨</span>
+          <span class="aqm-cat-text">1. الهوية والروح <small>الشخصية، العمر، المواهب، الكارما، السيناريو</small></span>
+        </button>
+        <button type="button" class="aqm-cat-tab" data-cat="earth" role="tab" aria-selected="false">
+          <span class="aqm-cat-icon">🌍</span>
+          <span class="aqm-cat-text">2. مسارات الأرض <small>الرسالة، المال، البرامج، الشريك، الكيمياء</small></span>
+        </button>
+        <button type="button" class="aqm-cat-tab" data-cat="roots" role="tab" aria-selected="false">
+          <span class="aqm-cat-icon">🌱</span>
+          <span class="aqm-cat-text">3. الجذور والجسد <small>الأسلاف، الأبناء، البراند، الشاكرات</small></span>
+        </button>
+      </div>
+
+      <!-- أزرار التنقل السريع بين الأقسام الـ 14 -->
       <nav class="aqm-section-nav" aria-label="أقسام مصفوفة القدر الـ 14">
-        <button type="button" class="aqm-nav-pill is-active" data-filter="all">عرض الكل</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-personal">1. الشخصية والجوهر</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-age">2. طاقة العمر</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-talents">3. المواهب</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-karmic">4. الذيل الكارمي</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-scenario">5. سيناريو الحياة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-destiny">6. القدر والرسالة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-money">7. المال والمهنة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-programs">8. البرامج الكارمية</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-relationship">9. شريك الحياة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-sexiness">10. الكيمياء الحميمية</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-parents">11. الأسلاف والوالدين</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-kids">12. الأبناء</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-brand">13. البراند الشخصي</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-health">14. الشاكرات والصحة</button>
+        <button type="button" class="aqm-nav-pill is-active" data-filter="all" data-cat="all">عرض الكل</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-personal" data-cat="identity">1. الشخصية والجوهر</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-age" data-cat="identity">2. طاقة العمر</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-talents" data-cat="identity">3. المواهب</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-karmic" data-cat="identity">4. الذيل الكارمي</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-scenario" data-cat="identity">5. سيناريو الحياة</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-destiny" data-cat="earth">6. القدر والرسالة</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-money" data-cat="earth">7. المال والمهنة</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-programs" data-cat="earth">8. البرامج الكارمية</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-relationship" data-cat="earth">9. شريك الحياة</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-sexiness" data-cat="earth">10. الكيمياء الحميمية</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-parents" data-cat="roots">11. الأسلاف والوالدين</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-kids" data-cat="roots">12. الأبناء</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-brand" data-cat="roots">13. البراند الشخصي</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-health" data-cat="roots">14. الشاكرات والصحة</button>
       </nav>
 
       <div class="aqm-matrix-sections">
-        <!-- 1. الشخصية والجوهر -->
-        <section id="sec-personal" class="aqm-destiny-section" tabindex="-1">
+        <!-- المجموعة الأولى: الهوية والروح (أقسام 1 إلى 5) -->
+        <div class="aqm-group-container" data-cat="identity">
+          <div class="aqm-group-header">
+            <h4><span>✨ المجموعة الأولى: الهوية والروح</span> <small>Identity & Spirit</small></h4>
+            <p>بصمة الشخصية، دورات طاقة العمر، المواهب الفطرية الكامنة، الذيل الكارمي ودروس الروح، وسيناريو التطور.</p>
+          </div>
+          <section id="sec-personal" class="aqm-destiny-section" tabindex="-1">
           <span class="aqm-kicker">القسم 01 · Personal Qualities</span>
           <h3>الشخصية والجوهر (القناع الاجتماعي ونواة الروح) <span class="aqm-destiny-badge">الرقم ${A} و ${E}</span></h3>
           <p>تقوم مصفوفة القدر على التمييز بين <b>القناع الخارجي</b> (طاقة يوم الميلاد ${A}) الذي يراك به الناس في اللقاء الأول، وبين <b>نواة الروح وراحة القلب</b> (طاقة المركز ${E}) حيث يسكن سلامك الداخلي الحقيقي.</p>
@@ -361,7 +387,16 @@
           </div>
         </section>
 
-        <!-- 6. القدر والرسالة الروحية -->
+        </div>
+
+        <!-- المجموعة الثانية: مسارات الأرض (أقسام 6 إلى 10) -->
+        <div class="aqm-group-container" data-cat="earth">
+          <div class="aqm-group-header">
+            <h4><span>🌍 المجموعة الثانية: مسارات الأرض</span> <small>Earthly Paths</small></h4>
+            <p>رسالة القدر وتكامل المحاور، تدفق خط المال والوفرة، البرامج الكارمية، شريك الحياة، والكيمياء الحميمية.</p>
+          </div>
+
+          <!-- 6. القدر والرسالة الروحية -->
         <section id="sec-destiny" class="aqm-destiny-section" tabindex="-1">
           <span class="aqm-kicker">القسم 06 · Destiny & Spiritual Purpose</span>
           <h3>القدر والرسالة الروحية (محاور السماء والأرض) <span class="aqm-destiny-badge">الامتحان الروحي: ${axes.spiritualExam}</span></h3>
@@ -432,7 +467,16 @@
           </div>
         </section>
 
-        <!-- 11. الوالدين وبصمة الأجداد -->
+        </div>
+
+        <!-- المجموعة الثالثة: الجذور والجسد (أقسام 11 إلى 14) -->
+        <div class="aqm-group-container" data-cat="roots">
+          <div class="aqm-group-header">
+            <h4><span>🌱 المجموعة الثالثة: الجذور والجسد</span> <small>Roots & Physicality</small></h4>
+            <p>طاقات الأجداد والنسب الأسري، الامتداد العاطفي للأبناء، البراند الشخصي والكاريزما، وخريطة الصحة والشاكرات.</p>
+          </div>
+
+          <!-- 11. الوالدين وبصمة الأجداد -->
         <section id="sec-parents" class="aqm-destiny-section" tabindex="-1">
           <span class="aqm-kicker">القسم 11 · Parents & Ancestral Lines</span>
           <h3>الوالدين وبصمة الأجداد (مربع السلالة 45°)</h3>
@@ -486,6 +530,7 @@
           </div>
           <p class="aqm-health-note">${escapeHTML(chakras.method)} الارتباطات الجسدية رمزية للتأمل وليست بديلاً عن الاستشارة الطبية المتخصصة.</p>
         </section>
+        </div>
       </div>
     `;
   }
@@ -510,21 +555,10 @@
     host.innerHTML=`
       <section class="aqm-shell" dir="rtl" aria-label="مسار الحياة ومصفوفة القدر">
         <header class="aqm-header">
-          <span class="aqm-kicker">قراءة رقمية متكاملة · ${escapeHTML(dateValue)}</span>
-          <h2>مسار الحياة ومصفوفة القدر</h2>
+          <span class="aqm-kicker">مصفوفة القدر والأركانا الكبرى · ${escapeHTML(dateValue)}</span>
+          <h2>مصفوفة القدر والهندسة الطاقية</h2>
           <p>أداة للوعي الذاتي والتأمل النفسي والسلوكي بأسلوب عقيق أسترو.</p>
         </header>
-
-        <!-- كارت مسار الحياة البارز مع التشريح والـ Cheat Sheet -->
-        <article class="aqm-hero">
-          <div class="aqm-number">${n}</div>
-          <div>
-            <span class="aqm-kicker">رقم مسار الحياة الكوني</span>
-            <h3>${escapeHTML(profile?.title || 'طريقك يتشكل بخياراتك')}</h3>
-            <div class="aqm-tags">${traits.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div>
-          </div>
-        </article>
-        ${renderLifePathProfile(profile)}
 
         <!-- النجمة الثمانية البصرية التفاعلية ومحاور القدر -->
         <div class="aqm-grid">
@@ -548,15 +582,15 @@
 
           <div class="aqm-interpretations">
             <article class="aqm-card">
-              <span class="aqm-kicker">مسار الحياة · رقم ${n}</span>
-              <h3>جوهر المسار الإنساني</h3>
+              <span class="aqm-kicker">القناع الاجتماعي · رقم ${num.day}</span>
+              <h3>طاقة يوم الميلاد والانطباع الأول</h3>
               <div class="aqm-reading">
-                <b>مساحة القوة</b>
-                <p>${escapeHTML(traits.join('، '))}. حوّل هذه الطاقات إلى عادات يومية تختارها بوعي.</p>
+                <b>${num.day} · ${escapeHTML(ARCANA[num.day-1]?.[0] || '')}</b>
+                <p>${escapeHTML(ARCANA[num.day-1]?.[1] || '')}</p>
               </div>
               <div class="aqm-reading is-shadow">
-                <b>ما يستحق الملاحظة (الظل)</b>
-                <p>راقب اندفاعك أو ترددك عند الضغط العصبي؛ الظل ليس قدراً بل تنبيه لتعديل المسار.</p>
+                <b>جانب للتأمل الواعي</b>
+                <p>${escapeHTML(ARCANA[num.day-1]?.[2] || '')}</p>
               </div>
             </article>
 
@@ -578,12 +612,37 @@
         <!-- الأقسام الـ 14 الشاملة لمصفوفة القدر وفق معمارية عقيق المعتمدة -->
         ${render14DestinySections(matrix, dateValue, chakras, generations, axes)}
 
-        <details class="aqm-details" style="margin-top: 1.5rem;">
-          <summary>فهرس النقاط الهندسية ومعانيها في المربعين</summary>
-          <div class="aqm-node-list">
-            ${Object.keys(labels).map(key=>`<article><b>${escapeHTML(labels[key])} · ${num[key]}</b><p>${escapeHTML(ARCANA[num[key]-1]?.[1] || '')}</p><small>جانب يستحق الانتباه: ${escapeHTML(ARCANA[num[key]-1]?.[2] || '')}</small></article>`).join('')}
-          </div>
-        </details>
+        <!-- 3. كارت مسار الحياة الكوني المعزول والمستقل عن المصفوفة -->
+        <section id="aqm-lifepath-island" class="aqm-lifepath-island" aria-label="تحليل مسار الحياة الكوني المستقل">
+          <header class="aqm-lifepath-head">
+            <div class="aqm-lifepath-badge-row">
+              <span class="aqm-kicker">علم الأرقام (Numerology) · قراءة منفصلة ومستقلة</span>
+              <span class="aqm-badge-outline">أداة مستقلة</span>
+            </div>
+            <h3>مسار الحياة الكوني · رقم ${n}</h3>
+            <p class="aqm-lifepath-disclaimer">
+              <b>تنويه منهجي:</b> مسار الحياة مستخرج وفق علم الأرقام الغربي (مجموع أرقام تاريخ الميلاد الكامل)، وهو يوضح البوصلة العامة للوعي، بينما مصفوفة القدر بالأعلى مبنية على الأركانا الـ 22 وهندسة المربعين. تم فصل هذا التحليل هنا كمرجع إضافي حتى لا يحدث أي خلط بين النظامين.
+            </p>
+          </header>
+
+          <article class="aqm-hero" style="margin-top: 1rem;">
+            <div class="aqm-number">${n}</div>
+            <div>
+              <span class="aqm-kicker">رقم المسار الكوني</span>
+              <h3>${escapeHTML(profile?.title || 'طريقك يتشكل بخياراتك')}</h3>
+              <div class="aqm-tags">${traits.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div>
+            </div>
+          </article>
+
+          <details class="aqm-lifepath-drawer" style="margin-top: 1.25rem;">
+            <summary class="aqm-drawer-summary">عرض التحليل السيكولوجي والسوماتيكي الكامل لمسار ${n} (مع جدول Cheat Sheet)</summary>
+            <div class="aqm-drawer-body">
+              ${renderLifePathProfile(profile)}
+            </div>
+          </details>
+        </section>
+
+        
 
         <footer class="aqm-disclaimer">
           هذه التحليلات مبنية على الهندسة المقدسة ونظام الأركانا الـ 22 لمصفوفة القدر، ومصاغة بأسلوب تحليلي نفسي وسلوكي وسوماتيكي للتأمل العميق، ولا تتضمن ادعاءات غيبية حتمية.
@@ -602,20 +661,63 @@
       });
     });
 
+    // تفعيل التبديل بين مجموعات الأقسام الرئيسية (Categorized Groups)
+    const catTabs = host.querySelectorAll('.aqm-cat-tab');
+    const groupContainers = host.querySelectorAll('.aqm-group-container');
+    const navPills = host.querySelectorAll('.aqm-nav-pill');
+
+    catTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        catTabs.forEach(t => {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+
+        const cat = tab.getAttribute('data-cat');
+        groupContainers.forEach(group => {
+          if (cat === 'all' || group.getAttribute('data-cat') === cat) {
+            group.hidden = false;
+          } else {
+            group.hidden = true;
+          }
+        });
+
+        // تصفية أزرار القفز السريع حسب المجموعة المختارة
+        navPills.forEach(pill => {
+          const pillCat = pill.getAttribute('data-cat');
+          if (cat === 'all' || pillCat === 'all' || pillCat === cat) {
+            pill.hidden = false;
+          } else {
+            pill.hidden = true;
+          }
+        });
+      });
+    });
+
     // تفعيل أزرار التنقل السريع بين الأقسام الـ 14
-    host.querySelectorAll('.aqm-nav-pill').forEach(pill => {
+    navPills.forEach(pill => {
       pill.addEventListener('click', () => {
-        host.querySelectorAll('.aqm-nav-pill').forEach(p => p.classList.remove('is-active'));
+        navPills.forEach(p => p.classList.remove('is-active'));
         pill.classList.add('is-active');
 
         const target = pill.getAttribute('data-target');
         const filter = pill.getAttribute('data-filter');
 
         if (filter === 'all') {
+          const allTab = host.querySelector('.aqm-cat-tab[data-cat="all"]');
+          if (allTab) allTab.click();
           host.querySelectorAll('.aqm-destiny-section').forEach(sec => sec.hidden = false);
         } else if (target) {
           const targetEl = host.querySelector(target);
           if (targetEl) {
+            const parentGroup = targetEl.closest('.aqm-group-container');
+            if (parentGroup && parentGroup.hidden) {
+              const cat = parentGroup.getAttribute('data-cat');
+              const matchTab = host.querySelector(`.aqm-cat-tab[data-cat="${cat}"]`);
+              if (matchTab) matchTab.click();
+            }
             targetEl.hidden = false;
             targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
             targetEl.focus();
