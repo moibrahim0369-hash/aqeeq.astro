@@ -1,5 +1,11 @@
 (() => {
   'use strict';
+
+  if (typeof SVGElement !== 'undefined' && typeof SVGElement.prototype.click !== 'function') {
+    SVGElement.prototype.click = function() {
+      this.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    };
+  }
   const SIGNS = ['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'];
   const MASTER = new Set([11,22,33]);
   const LIFE_PATH_DATA = window.AqeeqLifePathData || {};
@@ -146,14 +152,179 @@
     center:'المحور المركزي · راحة الروح'
   };
 
-  function renderSVG(matrix) {
-    const coords={north:[160,31],northEast:[251,69],east:[289,160],southEast:[251,251],south:[160,289],southWest:[69,251],west:[31,160],northWest:[69,69],center:[160,160]};
-    const ring=['north','northEast','east','southEast','south','southWest','west','northWest'];
-    const point=k=>coords[k].join(',');
-    const line=(a,b,cls)=>`<line class="aqm-line ${cls}" x1="${coords[a][0]}" y1="${coords[a][1]}" x2="${coords[b][0]}" y2="${coords[b][1]}"/>`;
-    const polygon=ring.map(point).join(' ');
-    const nodes=Object.entries(coords).map(([key,[x,y]])=>`<g class="aqm-node ${key==='center'?'is-center':''}" tabindex="0" role="button" data-node="${key}" aria-label="${escapeHTML(labels[key])}: ${matrix.nodes[key]}" aria-describedby="aqm-tooltip"><circle cx="${x}" cy="${y}" r="${key==='center'?22:18}"/><text x="${x}" y="${y+5}">${matrix.nodes[key]}</text><title>${escapeHTML(labels[key])}: ${matrix.nodes[key]}</title></g>`).join('');
-    return `<svg class="aqm-svg" viewBox="0 0 320 320" role="group" aria-label="مصفوفة رمزية من ثمانية محاور"> <polygon class="aqm-octagon" points="${polygon}"/> <path class="aqm-star" d="M160 31L251 251L69 69L289 160L31 160L251 69L69 251L160 31M31 160L160 289L289 160M69 69L251 251M251 69L69 251"/>${line('north','south','aqm-axis')}${line('east','west','aqm-axis')}${line('northEast','southWest','aqm-diagonal')}${line('northWest','southEast','aqm-diagonal')}${nodes}</svg>`;
+  function renderSVG(matrix, dateValue) {
+    const num = matrix.nodes;
+    const { A, B, C, D, E } = matrix.anchors;
+    const channels = matrix.channels || { money: 0, love: 0, balance: 0 };
+
+    // حساب خريطة سنوات العمر وموقع السن الحالي
+    const ageApi = window.AqeeqAgeMap || {};
+    const ageMap = (typeof ageApi.calculateAgeMap === 'function')
+      ? ageApi.calculateAgeMap(matrix.anchors, matrix.generationalCorners)
+      : {};
+    const ageInfo = (typeof ageApi.getCurrentAgeEnergy === 'function')
+      ? ageApi.getCurrentAgeEnergy(dateValue)
+      : { exactAge: 0, milestone: 0 };
+    const currentMilestone = Number(ageInfo.milestone) || 0;
+
+    // إحداثيات الدائرة والمركز (Center = 260, 260)
+    const cx = 260, cy = 260;
+    const rMain = 158;
+    const rDiag = 112; // 158 / sqrt(2)
+
+    const coords = {
+      north: [cx, cy - rMain],           // (260, 102) Sahasrara (Violet) - شهر الميلاد B
+      east: [cx + rMain, cy],            // (418, 260) Svadhisthana (Orange) - سنة الميلاد C
+      south: [cx, cy + rMain],           // (260, 418) Muladhara (Red) - الذيل الكارمي D
+      west: [cx - rMain, cy],            // (102, 260) Vishuddha/Anahata (Blue/Green) - يوم الميلاد A
+      northEast: [cx + rDiag, cy - rDiag], // (372, 148) Ajna - G
+      southEast: [cx + rDiag, cy + rDiag], // (372, 372) H
+      southWest: [cx - rDiag, cy + rDiag], // (148, 372) F
+      northWest: [cx - rDiag, cy - rDiag], // (148, 148) I
+      center: [cx, cy]                   // (260, 260) Manipura (Yellow) - E
+    };
+
+    // إحداثيات خط الحب والمال (في الربع السفلي)
+    const loveCoord = [298, 332];     // مدخل الحب ❤️
+    const balanceCoord = [330, 310];  // نقطة التوازن ⚖️
+    const moneyCoord = [348, 276];    // مدخل المال 💰
+
+    // أضلاع المربعين (المستقيم والمائل)
+    const personalSquare = `${coords.north[0]},${coords.north[1]} ${coords.east[0]},${coords.east[1]} ${coords.south[0]},${coords.south[1]} ${coords.west[0]},${coords.west[1]}`;
+    const ancestralSquare = `${coords.northEast[0]},${coords.northEast[1]} ${coords.southEast[0]},${coords.southEast[1]} ${coords.southWest[0]},${coords.southWest[1]} ${coords.northWest[0]},${coords.northWest[1]}`;
+
+    // حساب نقاط ومحطات العمر على المحيط (0 إلى 80 سنة)
+    const rAge = 214;
+    const agePoints = [
+      { age: 0, angle: 180, label: '0' },
+      { age: 5, angle: 202.5, label: '5' },
+      { age: 10, angle: 225, label: '10' },
+      { age: 15, angle: 247.5, label: '15' },
+      { age: 20, angle: 270, label: '20' },
+      { age: 25, angle: 292.5, label: '25' },
+      { age: 30, angle: 315, label: '30' },
+      { age: 35, angle: 337.5, label: '35' },
+      { age: 40, angle: 0, label: '40' },
+      { age: 45, angle: 22.5, label: '45' },
+      { age: 50, angle: 45, label: '50' },
+      { age: 55, angle: 67.5, label: '55' },
+      { age: 60, angle: 90, label: '60' },
+      { age: 65, angle: 112.5, label: '65' },
+      { age: 70, angle: 135, label: '70' },
+      { age: 75, angle: 157.5, label: '75' }
+    ];
+
+    const ageElements = agePoints.map(pt => {
+      const rad = (pt.angle * Math.PI) / 180;
+      const x = Math.round(cx + rAge * Math.cos(rad));
+      const y = Math.round(cy + rAge * Math.sin(rad));
+      const energy = ageMap[pt.age] || (pt.age === 0 ? A : pt.age === 20 ? B : pt.age === 40 ? C : pt.age === 60 ? D : 0);
+      const isCurrent = Math.abs(currentMilestone - pt.age) < 3.5;
+      const isMajor = pt.age % 10 === 0;
+
+      const labelRad = (pt.angle * Math.PI) / 180;
+      const lx = Math.round(cx + (rAge + (isMajor ? 20 : 15)) * Math.cos(labelRad));
+      const ly = Math.round(cy + (rAge + (isMajor ? 20 : 15)) * Math.sin(labelRad)) + 3;
+
+      return `
+        <g class="aqm-age-node-dot ${isCurrent ? 'is-current' : ''}" data-age="${pt.age}" data-target="#sec-age" role="button" tabindex="0" aria-label="سن ${pt.age}: طاقة ${energy}">
+          <circle cx="${x}" cy="${y}" r="${isMajor ? 11 : 9}" />
+          <text x="${x}" y="${y + 3}">${energy}</text>
+          <text class="aqm-age-label-text" x="${lx}" y="${ly}">${pt.label}</text>
+          <title>طاقة سن ${pt.age}: أركانا ${energy} (${escapeHTML(ARCANA[energy - 1]?.[0] || '')})</title>
+        </g>
+      `;
+    }).join('');
+
+    // دوائر الشاكرات السبع ومراكز الطاقة في النجمة
+    const nodesConfig = [
+      { key: 'north', chakra: 'aqm-chakra-sahasrara', r: 19, val: num.north, label: 'الاتصال الروحي والشهر (Sahasrara)', target: '#sec-talents' },
+      { key: 'east', chakra: 'aqm-chakra-svadhisthana', r: 19, val: num.east, label: 'المادة وسنة الميلاد (Svadhisthana)', target: '#sec-money' },
+      { key: 'south', chakra: 'aqm-chakra-muladhara', r: 19, val: num.south, label: 'الذيل الكارمي والدروس (Muladhara)', target: '#sec-karmic' },
+      { key: 'west', chakra: 'aqm-chakra-vishuddha', r: 19, val: num.west, label: 'الجوهر ويوم الميلاد (Vishuddha)', target: '#sec-personal' },
+      { key: 'northEast', chakra: 'aqm-chakra-ajna', r: 17, val: num.northEast, label: 'مربع الأسلاف · زاوية علوية (G)', target: '#sec-parents' },
+      { key: 'southEast', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southEast, label: 'مربع الأسلاف · زاوية مادية (H)', target: '#sec-parents' },
+      { key: 'southWest', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southWest, label: 'مربع الأسلاف · زاوية كارمية (F)', target: '#sec-parents' },
+      { key: 'northWest', chakra: 'aqm-chakra-ajna', r: 17, val: num.northWest, label: 'مربع الأسلاف · زاوية روحية (I)', target: '#sec-parents' },
+      { key: 'center', chakra: 'aqm-chakra-manipura is-center', r: 23, val: num.center, label: 'راحة الروح ونواة المركز (Manipura)', target: '#sec-personal' }
+    ];
+
+    const nodesSvg = nodesConfig.map(cfg => {
+      const [x, y] = coords[cfg.key];
+      return `
+        <g class="aqm-node ${cfg.chakra}" tabindex="0" role="button" data-node="${cfg.key}" data-target="${cfg.target}" aria-label="${escapeHTML(cfg.label)}: ${cfg.val}" aria-describedby="aqm-tooltip">
+          <circle cx="${x}" cy="${y}" r="${cfg.r}" />
+          <text x="${x}" y="${y + 5}">${cfg.val}</text>
+          <title>${escapeHTML(cfg.label)}: ${cfg.val}</title>
+        </g>
+      `;
+    }).join('');
+
+    // دوائر وأيقونات خط الحب والمال
+    const channelsSvg = `
+      <!-- خط قناة الحب والمال -->
+      <line class="aqm-channel-line" x1="${loveCoord[0]}" y1="${loveCoord[1]}" x2="${moneyCoord[0]}" y2="${moneyCoord[1]}" />
+
+      <!-- مدخل الحب (Heart) -->
+      <g class="aqm-node aqm-node-love" tabindex="0" role="button" data-node="love" data-target="#sec-relationship" aria-label="مدخل الحب والشراكات: ${channels.love}">
+        <circle cx="${loveCoord[0]}" cy="${loveCoord[1]}" r="14" />
+        <text x="${loveCoord[0]}" y="${loveCoord[1] + 4}">${channels.love}</text>
+        <path class="aqm-channel-glyph" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff4d6d" transform="translate(${loveCoord[0] - 24}, ${loveCoord[1] - 8}) scale(0.4)" />
+        <title>خط الحب والشراكات: ${channels.love}</title>
+      </g>
+
+      <!-- نقطة التوازن (Balance) -->
+      <g class="aqm-node aqm-node-balance" tabindex="0" role="button" data-node="balance" data-target="#sec-sexiness" aria-label="نقطة التوازن والكيمياء: ${channels.balance}">
+        <circle cx="${balanceCoord[0]}" cy="${balanceCoord[1]}" r="13" />
+        <text x="${balanceCoord[0]}" y="${balanceCoord[1] + 4}">${channels.balance}</text>
+        <title>نقطة التوازن: ${channels.balance}</title>
+      </g>
+
+      <!-- مدخل المال (Dollar) -->
+      <g class="aqm-node aqm-node-money" tabindex="0" role="button" data-node="money" data-target="#sec-money" aria-label="مدخل خط المال والوفرة: ${channels.money}">
+        <circle cx="${moneyCoord[0]}" cy="${moneyCoord[1]}" r="14" />
+        <text x="${moneyCoord[0]}" y="${moneyCoord[1] + 4}">${channels.money}</text>
+        <g class="aqm-channel-glyph" transform="translate(${moneyCoord[0] + 12}, ${moneyCoord[1] - 8})">
+          <circle r="7" fill="#2ecc71" opacity="0.3"/>
+          <text text-anchor="middle" y="3.5" font-size="10" font-weight="900" fill="#2ecc71">$</text>
+        </g>
+        <title>خط المال والوفرة: ${channels.money}</title>
+      </g>
+    `;
+
+    return `
+      <svg class="aqm-svg" viewBox="0 0 520 520" role="group" aria-label="مصفوفة القدر الهندسية وأطواق الشاكرات وسنوات العمر">
+        <defs>
+          <linearGradient id="aqm-grad-channel" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff4d6d" />
+            <stop offset="50%" stop-color="#f1c40f" />
+            <stop offset="100%" stop-color="#2ecc71" />
+          </linearGradient>
+        </defs>
+
+        <!-- الدائرة المحيطية لسنوات العمر (0 إلى 80 سنة) -->
+        <circle class="aqm-age-ring-path" cx="${cx}" cy="${cy}" r="${rAge}" />
+
+        <!-- المربع المستقيم (Personal Square) والمربع المائل (Ancestral Square) -->
+        <polygon class="aqm-octagon" points="${personalSquare}" />
+        <polygon class="aqm-octagon" points="${ancestralSquare}" stroke-dasharray="3 3" opacity="0.75" />
+
+        <!-- محاور النجمة الثمانية المركزية -->
+        <line class="aqm-line aqm-axis-vertical" x1="${coords.north[0]}" y1="${coords.north[1]}" x2="${coords.south[0]}" y2="${coords.south[1]}" />
+        <line class="aqm-line aqm-axis-horizontal" x1="${coords.west[0]}" y1="${coords.west[1]}" x2="${coords.east[0]}" y2="${coords.east[1]}" />
+        <line class="aqm-diagonal" x1="${coords.northWest[0]}" y1="${coords.northWest[1]}" x2="${coords.southEast[0]}" y2="${coords.southEast[1]}" />
+        <line class="aqm-diagonal" x1="${coords.northEast[0]}" y1="${coords.northEast[1]}" x2="${coords.southWest[0]}" y2="${coords.southWest[1]}" />
+
+        <!-- خط قناة المال والحب مع الأيقونات -->
+        ${channelsSvg}
+
+        <!-- نقاط ومحطات سنوات العمر على المحيط (0 - 80 سنة) -->
+        ${ageElements}
+
+        <!-- دوائر ومراكز الشاكرات في النجمة -->
+        ${nodesSvg}
+      </svg>
+    `;
   }
 
   function renderLifePathProfile(profile) {
@@ -570,7 +741,7 @@
               </div>
             </div>
             <div class="aqm-matrix-wrap">
-              ${renderSVG(matrix)}
+              ${renderSVG(matrix, dateValue)}
               <div class="aqm-tooltip" id="aqm-tooltip" role="status" aria-live="polite">اضغط أو مرر على أي دائرة لاستكشاف معناها المصيري.</div>
             </div>
             <div class="aqm-lines">
@@ -728,21 +899,63 @@
 
     // تفعيل تفاعل النقر والمرور على دوائر النجمة الثمانية
     const tip = host.querySelector('#aqm-tooltip');
-    host.querySelectorAll('.aqm-node').forEach(node => {
-      const show = () => {
+    const allSvgInteractive = host.querySelectorAll('.aqm-node, .aqm-age-node-dot');
+
+    allSvgInteractive.forEach(node => {
+      const updateTip = () => {
         const key = node.dataset.node;
-        const value = num[key];
-        const [positive, shadow] = (ARCANA[value - 1] || []).slice(1);
-        if (tip) tip.textContent = `${labels[key]} · ${value}: ${positive}. جانب للتأمل: ${shadow}.`;
-        host.querySelectorAll('.aqm-node').forEach(n => n.classList.toggle('is-active', n === node));
+        const age = node.dataset.age;
+        if (age !== undefined) {
+          const energy = node.querySelector('text')?.textContent || '';
+          if (tip) tip.textContent = `طاقة سن ${age} سنة · أركانا ${energy}: مرحلة نمو سنوية مهمة في مسار العمر (الامتحان السنوي). اضغط للانتقال للتفاصيل.`;
+        } else if (key) {
+          const value = num[key] || (key === 'love' ? matrix.channels.love : key === 'money' ? matrix.channels.money : matrix.channels.balance);
+          const [positive, shadow] = (ARCANA[value - 1] || []).slice(1);
+          const label = labels[key] || (key === 'love' ? 'خط الحب والشراكات' : key === 'money' ? 'خط المال والوفرة' : 'نقطة التوازن');
+          if (tip) tip.textContent = `${label} · ${value}: ${positive || ''}. جانب للتأمل: ${shadow || ''}. (اضغط لفتح القسم بالتقرير)`;
+        }
+        allSvgInteractive.forEach(n => n.classList.toggle('is-active', n === node));
       };
-      node.addEventListener('mouseenter', show);
-      node.addEventListener('focus', show);
-      node.addEventListener('click', show);
+
+      node.addEventListener('mouseenter', updateTip);
+      node.addEventListener('focus', updateTip);
+
+      node.addEventListener('click', () => {
+        updateTip();
+        const targetSel = node.getAttribute('data-target');
+        if (!targetSel) return;
+
+        const targetEl = host.querySelector(targetSel);
+        if (!targetEl) return;
+
+        // تأكد من فتح المجموعة المناسبة إذا كانت مخفية
+        const parentGroup = targetEl.closest('.aqm-group-container');
+        if (parentGroup && parentGroup.hidden) {
+          const cat = parentGroup.getAttribute('data-cat');
+          const catTab = host.querySelector(`.aqm-cat-tab[data-cat="${cat}"]`);
+          if (catTab) catTab.click();
+        }
+
+        // إظهار وتمرير سلس للقسم المطلوب مع وميض إبراز بصري
+        targetEl.hidden = false;
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetEl.classList.remove('is-highlighted-pulse');
+        void targetEl.offsetWidth; // trigger reflow
+        targetEl.classList.add('is-highlighted-pulse');
+        targetEl.focus();
+
+        // تحديث زر الـ Pill المقابل
+        const matchPill = host.querySelector(`.aqm-nav-pill[data-target="${targetSel}"]`);
+        if (matchPill) {
+          host.querySelectorAll('.aqm-nav-pill').forEach(p => p.classList.remove('is-active'));
+          matchPill.classList.add('is-active');
+        }
+      });
+
       node.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          show();
+          node.click();
         }
       });
     });
