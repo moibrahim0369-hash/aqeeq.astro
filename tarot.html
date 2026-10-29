@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>محراب التاروت التفاعلي وموسوعة الـ 78 كارت | عقيق أسترو</title>
-  <meta name="description" content="محراب التاروت التفاعلي والموسوعة التعليمية الشاملة لبطاقات التاروت الـ 78 بنظام التحليل النفسي والأركانا الكبرى بأسلوب عقيق أسترو.">
+  <meta name="description" content="محراب التاروت التفاعلي والموسوعة التعليمية الشاملة لبطاقات التاروت بنظام التحليل النفسي والأركانا الكبرى وعائلة العصي بأسلوب عقيق أسترو.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%278%27 fill=%27%2312082A%27/%3E%3Cpath d=%27M20 6A14 14 0 0 0 20 34A17 17 0 0 1 20 6Z%27 fill=%27%23D6AE5E%27/%3E%3C/svg%3E">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
     <div class="tarot-header">
       <div class="tarot-badge">
         <span>✦</span>
-        <span>الدفعة الأولى: الأركانا الكبرى (22 كارت)</span>
+        <span id="totalCountDisplay">36 بطاقة مفعلة (الأركانا الكبرى + عائلة العصي)</span>
       </div>
       <h1 class="tarot-title">محراب التاروت التفاعلي</h1>
       <p class="tarot-subtitle">
@@ -96,7 +96,7 @@
     <section class="tarot-library-section">
       <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 15px;">
         <div>
-          <h2 style="font-size: 1.8rem; color: var(--tarot-gold); font-family: var(--display, 'Amiri', serif); margin-bottom: 6px;">موسوعة الأركانا الكبرى (22 كارت كاملة)</h2>
+          <h2 style="font-size: 1.8rem; color: var(--tarot-gold); font-family: var(--display, 'Amiri', serif); margin-bottom: 6px;">موسوعة التاروت النفسية</h2>
           <p style="color: var(--tarot-text-muted); font-size: 0.95rem;">مرجع تدريبي وتعليمي موثق بنسبة 100% بدون اختزال أو تلخيص.</p>
         </div>
       </div>
@@ -109,7 +109,9 @@
         </div>
 
         <div class="filter-chips">
-          <button class="filter-chip active" data-filter="all">جميع البطاقات (22)</button>
+          <button class="filter-chip active" data-filter="all">جميع البطاقات (36)</button>
+          <button class="filter-chip" data-filter="major">الأركانا الكبرى (22)</button>
+          <button class="filter-chip" data-filter="wands">عائلة العصي (14) 🪵</button>
           <button class="filter-chip" data-filter="fire">عنصر النار 🔥</button>
           <button class="filter-chip" data-filter="water">عنصر الماء 💧</button>
           <button class="filter-chip" data-filter="air">عنصر الهواء 💨</button>

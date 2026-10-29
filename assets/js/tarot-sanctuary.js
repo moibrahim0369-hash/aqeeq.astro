@@ -29,6 +29,7 @@
   const modalBody = document.getElementById('modalBody');
   const modalTabs = document.querySelectorAll('.modal-tab-btn');
   const inspectCurrentBtn = document.getElementById('inspectCurrentBtn');
+  const totalCountEl = document.getElementById('totalCountDisplay');
 
   // Element class mapping
   function getElementClass(el) {
@@ -43,18 +44,24 @@
   // Load JSON Data
   async function loadTarotData() {
     try {
-      // Determine correct relative path
       const basePath = window.location.pathname.includes('/library/') ? '../' : './';
-      const response = await fetch(basePath + 'assets/data/tarot/major-arcana.json');
-      if (!response.ok) throw new Error('Network response was not ok');
-      const json = await response.json();
+      // Try unified library first
+      let res = await fetch(basePath + 'assets/data/tarot/tarot-library.json');
+      if (!res.ok) {
+        res = await fetch(basePath + 'assets/data/tarot/major-arcana.json');
+      }
+      if (!res.ok) throw new Error('Network response was not ok');
+      const json = await res.json();
       tarotData = json.cards || [];
       console.log(`[Tarot Sanctuary] Loaded ${tarotData.length} cards successfully.`);
       
+      if (totalCountEl) {
+        totalCountEl.textContent = `${tarotData.length} بطاقة مفعلة`;
+      }
+
       initSanctuary();
     } catch (err) {
       console.error('[Tarot Sanctuary] Error loading data:', err);
-      // Fallback message
       if (cardMeaning) cardMeaning.textContent = 'تعذر تحميل قاعدة بيانات التاروت مؤقتًا. يرجى إعادة المحاولة.';
     }
   }
@@ -74,7 +81,7 @@
     currentCard = card;
     if (!card) return;
 
-    if (cardArcana) cardArcana.textContent = card.arcana_title || `الأركانا الكبرى - ${card.number}`;
+    if (cardArcana) cardArcana.textContent = card.arcana_title || (card.category === 'major' ? `الأركانا الكبرى - ${card.number}` : `${card.suit_ar} - ${card.number}`);
     if (cardName) cardName.textContent = card.name_ar;
     if (cardNameEn) cardNameEn.textContent = card.name_en;
     if (cardAstro) cardAstro.textContent = card.astrological_link || '';
@@ -110,7 +117,6 @@
   window.drawNewCard = function () {
     if (!tarotData || tarotData.length === 0) return;
 
-    // If currently flipped, flip back first with suspense delay
     if (isFlipped) {
       cardContainer.classList.remove('flipped');
       isFlipped = false;
@@ -123,7 +129,6 @@
   };
 
   function pickAndReveal() {
-    // Pick a card different from current
     let nextIndex;
     do {
       nextIndex = Math.floor(Math.random() * tarotData.length);
@@ -132,7 +137,6 @@
     const nextCard = tarotData[nextIndex];
     setDrawnCard(nextCard, false);
 
-    // Pulse animation
     cardContainer.style.transform = 'scale(0.96)';
     setTimeout(() => {
       cardContainer.style.transform = '';
@@ -166,10 +170,12 @@
         ? card.core_concept.substring(0, 130) + '...'
         : (card.keywords && card.keywords.general ? card.keywords.general.slice(0, 5).join(' • ') : '');
 
+      const badgeCategory = card.category === 'major' ? `أركانا كبرى #${card.number}` : `${card.suit_ar || 'العصي'} #${card.number}`;
+
       item.innerHTML = `
         <div>
           <div class="item-top">
-            <span class="item-number">#${card.number}</span>
+            <span class="item-number">${badgeCategory}</span>
             <span class="item-astro">${card.astrological_link || ''}</span>
           </div>
           <h3 class="item-name">${card.name_ar}</h3>
@@ -199,7 +205,9 @@
     const query = (searchInput ? searchInput.value : '').trim().toLowerCase();
 
     const filtered = tarotData.filter(card => {
-      const matchFilter = (activeFilter === 'all') || 
+      const matchFilter = (activeFilter === 'all') ||
+                          (activeFilter === 'major' && card.category === 'major') ||
+                          (activeFilter === 'wands' && card.suit === 'wands') ||
                           (activeFilter === 'fire' && card.element.includes('نار')) ||
                           (activeFilter === 'water' && card.element.includes('ماء')) ||
                           (activeFilter === 'air' && card.element.includes('هواء')) ||
@@ -233,13 +241,13 @@
     modalTitle.textContent = `${card.name_ar} (${card.name_en})`;
     
     const elClass = getElementClass(card.element);
+    const catTitle = card.category === 'major' ? `الأركانا الكبرى - الرقم ${card.number}` : `${card.suit_ar} - الكارت ${card.number}`;
     modalMetaPills.innerHTML = `
-      <span class="card-tag">الأركانا الكبرى - الرقم ${card.number}</span>
+      <span class="card-tag">${catTitle}</span>
       <span class="card-tag ${elClass}">عنصر ${card.element}</span>
       <span class="card-tag">${card.astrological_link || ''}</span>
     `;
 
-    // Reset to overview tab
     switchModalTab('overview');
 
     modalOverlay.classList.add('open');
@@ -440,7 +448,6 @@ ${escapeHtml(card.full_markdown || '')}
     }
   }
 
-  // Auto-init on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadTarotData);
   } else {
