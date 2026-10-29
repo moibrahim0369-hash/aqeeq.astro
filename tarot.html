@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محراب التاروت التفاعلي وموسوعة الـ 78 كارت | عقيق أسترو</title>
+  <meta name="description" content="محراب التاروت التفاعلي والموسوعة التعليمية الشاملة لبطاقات التاروت الـ 78 بنظام التحليل النفسي والأركانا الكبرى بأسلوب عقيق أسترو.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%278%27 fill=%27%2312082A%27/%3E%3Cpath d=%27M20 6A14 14 0 0 0 20 34A17 17 0 0 1 20 6Z%27 fill=%27%23D6AE5E%27/%3E%3C/svg%3E">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
+  <link rel="stylesheet" href="assets/css/tarot-sanctuary.css">
+</head>
+<body style="background: radial-gradient(circle at center, #18122c, #09070f); min-height: 100vh; margin: 0; padding: 0;">
+
+  <!-- Simple Cosmic Top Nav -->
+  <header style="background: rgba(13, 10, 18, 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding: 16px 24px; position: sticky; top: 0; z-index: 100;">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: var(--tarot-gold);">
+        <span style="font-size: 1.4rem;">✦</span>
+        <span style="font-family: var(--display, 'Amiri', serif); font-size: 1.3rem; font-weight: bold; color: #fff;">عقيق أسترو</span>
+      </a>
+      <nav style="display: flex; gap: 18px; align-items: center;">
+        <a href="index.html#home" style="color: var(--tarot-text-muted); text-decoration: none; font-size: 0.95rem;">الرئيسية</a>
+        <a href="index.html#matrix" style="color: var(--tarot-text-muted); text-decoration: none; font-size: 0.95rem;">مصفوفة القدر</a>
+        <a href="index.html#natal" style="color: var(--tarot-text-muted); text-decoration: none; font-size: 0.95rem;">الخريطة الفلكية</a>
+        <a href="tarot.html" style="color: var(--tarot-gold); font-weight: 600; text-decoration: none; font-size: 0.95rem; border-bottom: 1px solid var(--tarot-gold); padding-bottom: 2px;">محراب التاروت</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tarot-sanctuary-wrap">
+    
+    <!-- Hero / Header -->
+    <div class="tarot-header">
+      <div class="tarot-badge">
+        <span>✦</span>
+        <span>الدفعة الأولى: الأركانا الكبرى (22 كارت)</span>
+      </div>
+      <h1 class="tarot-title">محراب التاروت التفاعلي</h1>
+      <p class="tarot-subtitle">
+        مساحة استبصارية عميقة تدمج الرمزية الكلاسيكية بالتشريح النفسي الأصلي، ديناميكيات التعلق، وظلال النفس البشرية وفق أسلوب ومنهجية منصة «عقيق أسترو».
+      </p>
+    </div>
+
+    <!-- 3D Draw Arena (User Template Exact Implementation) -->
+    <section class="tarot-arena" aria-label="سحب بطاقة اليوم التفاعلية">
+      <div class="card-container" id="tarotCard" onclick="flipCard()" role="button" tabindex="0" aria-label="بطاقة التاروت - اضغط للكشف والقلب">
+        <div class="card-inner">
+          
+          <!-- الظهر المغلق -->
+          <div class="card-face card-back">
+            <div class="cosmic-seal">✦</div>
+            <h3 style="font-size: 1.25rem; margin-bottom: 8px; color: var(--tarot-gold-light); font-family: var(--display, 'Amiri', serif);">محراب الكشف</h3>
+            <p class="card-back-hint">اضغط على البطاقة لقلبها وقراءة الرسالة</p>
+          </div>
+
+          <!-- الوجه المفتوح -->
+          <div class="card-face card-front">
+            <div class="card-top-info">
+              <span class="card-arcana-num" id="cardArcana">الأركانا الكبرى</span>
+              <span class="card-glyph" id="cardAstro">♈</span>
+            </div>
+
+            <div class="card-body-info">
+              <h2 class="card-title" id="cardName">اسم الكارت</h2>
+              <div class="card-title-en" id="cardNameEn">Card English Name</div>
+              <p class="card-desc" id="cardMeaning">هنا يظهر التشريح النفسي والدلالة الفلكية للكارت...</p>
+            </div>
+
+            <div class="card-bottom-tags">
+              <span class="card-tag" id="cardElement">عنصر النار</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="tarot-actions">
+        <button class="draw-btn" onclick="drawNewCard()">
+          <span>🔮</span>
+          <span>اسحب بطاقة جديدة</span>
+        </button>
+        <button class="inspect-btn" id="inspectCurrentBtn">
+          <span>📖</span>
+          <span>التشريح والدراسة الكاملة للكارت</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Library / Reference Explorer -->
+    <section class="tarot-library-section">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 15px;">
+        <div>
+          <h2 style="font-size: 1.8rem; color: var(--tarot-gold); font-family: var(--display, 'Amiri', serif); margin-bottom: 6px;">موسوعة الأركانا الكبرى (22 كارت كاملة)</h2>
+          <p style="color: var(--tarot-text-muted); font-size: 0.95rem;">مرجع تدريبي وتعليمي موثق بنسبة 100% بدون اختزال أو تلخيص.</p>
+        </div>
+      </div>
+
+      <!-- Search and Filter Controls -->
+      <div class="library-controls">
+        <div class="search-bar-wrap">
+          <input type="text" id="tarotSearchInput" class="search-input" placeholder="ابحث بالاسم العربي، الإنجليزي، الرقم، أو الكلمات المفتاحية..." autocomplete="off">
+          <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="filter-chips">
+          <button class="filter-chip active" data-filter="all">جميع البطاقات (22)</button>
+          <button class="filter-chip" data-filter="fire">عنصر النار 🔥</button>
+          <button class="filter-chip" data-filter="water">عنصر الماء 💧</button>
+          <button class="filter-chip" data-filter="air">عنصر الهواء 💨</button>
+          <button class="filter-chip" data-filter="earth">عنصر التراب 🌿</button>
+        </div>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="tarot-cards-grid" id="tarotCardsGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Deep Inspection Modal -->
+  <div class="tarot-modal-overlay" id="tarotModalOverlay" role="dialog" aria-modal="true">
+    <div class="tarot-modal">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2 id="modalTitle">اسم الكارت</h2>
+          <div class="modal-meta-pills" id="modalMetaPills"></div>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="إغلاق النافذة">✕</button>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" data-tab="overview">نظرة عامة والمعاني</button>
+        <button class="modal-tab-btn" data-tab="psychology">التشريح النفسي والظل</button>
+        <button class="modal-tab-btn" data-tab="practical">أبعاد الحياة الواقعية</button>
+        <button class="modal-tab-btn" data-tab="symbols">الرموز والفلك</button>
+        <button class="modal-tab-btn" data-tab="inquiry">الاستبصار والتأمل</button>
+        <button class="modal-tab-btn" data-tab="aqeeq">منهجية عقيق والخلاصة</button>
+        <button class="modal-tab-btn" data-tab="fulltext">المخطوطة الأصلية الكاملة</button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="modal-body" id="modalBody">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer style="border-top: 1px solid rgba(212, 175, 55, 0.15); padding: 40px 20px; text-align: center; color: var(--tarot-text-muted); font-size: 0.9rem; background: #0b0814;">
+    <p>© 2026 عقيق أسترو (Aqeeq Astro) · منصة المعرفة والوعي النفسي والفلكي.</p>
+  </footer>
+
+  <script src="assets/js/tarot-sanctuary.js"></script>
+</body>
+</html>
