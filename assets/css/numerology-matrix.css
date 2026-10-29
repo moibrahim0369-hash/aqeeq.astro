@@ -74,11 +74,40 @@
 
 
 /* ==========================================================================
-   Destiny Matrix 14 Sections & Interactive Drawer Styling - عقيق أسترو
+   Destiny Matrix 14 Sections & Categorized Groups (UI/UX) - عقيق أسترو
    ========================================================================== */
-.aqm-section-nav{display:flex;flex-wrap:wrap;gap:.45rem;margin:1.25rem 0 .95rem;padding:0;list-style:none}
+.aqm-cat-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.65rem;margin:1.4rem 0 1rem}
+.aqm-cat-tab{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border:1px solid rgba(212,175,55,.22);border-radius:14px;background:rgba(20,24,35,.7);color:#d9d3c1;cursor:pointer;text-align:start;transition:all .22s ease;touch-action:manipulation}
+.aqm-cat-tab:hover{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.45);color:#fff}
+.aqm-cat-tab.is-active{background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(20,24,35,.92));border-color:#d4af37;color:#fff;box-shadow:0 4px 18px rgba(212,175,55,.22)}
+.aqm-cat-icon{font-size:1.35rem;line-height:1}
+.aqm-cat-text{display:flex;flex-direction:column;gap:.15rem;font-size:.9rem;font-weight:700}
+.aqm-cat-text small{font-size:.72rem;font-weight:400;color:#a6adb9;line-height:1.3}
+.aqm-cat-tab.is-active .aqm-cat-text small{color:#f5e6bf}
+
+.aqm-group-container{margin:1.6rem 0}
+.aqm-group-container[hidden]{display:none!important}
+.aqm-group-header{padding:.9rem 1.15rem;margin-bottom:.9rem;border-radius:14px;border:1px solid rgba(212,175,55,.25);background:linear-gradient(90deg,rgba(212,175,55,.1),transparent);display:flex;flex-direction:column;gap:.3rem}
+.aqm-group-header h4{margin:0;color:#f3dda0;font-size:1.15rem;display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}
+.aqm-group-header h4 small{font-size:.74rem;color:#b9bfcb;font-weight:400;letter-spacing:.04em}
+.aqm-group-header p{margin:0;color:#c0c6d4;font-size:.84rem;line-height:1.7}
+
+.aqm-section-nav{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0 .95rem;padding:0;list-style:none}
 .aqm-nav-pill{padding:.4rem .85rem;border:1px solid rgba(212,175,55,.25);border-radius:999px;background:rgba(255,255,255,.03);color:#e2d6b5;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s ease;touch-action:manipulation}
 .aqm-nav-pill:hover,.aqm-nav-pill.is-active{background:rgba(212,175,55,.18);border-color:#d4af37;color:#fff;box-shadow:0 0 12px rgba(212,175,55,.25)}
+.aqm-nav-pill[hidden]{display:none!important}
+
+/* Standalone Life Path Island (Isolated from Matrix) */
+.aqm-lifepath-island{margin:2.5rem 0 1.25rem;padding:clamp(1.1rem,2.8vw,1.75rem);border:1px dashed rgba(212,175,55,.32);border-radius:20px;background:linear-gradient(160deg,rgba(18,22,34,.75),rgba(11,13,20,.88));backdrop-filter:blur(10px)}
+.aqm-lifepath-head{border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:1rem;margin-bottom:1rem}
+.aqm-lifepath-badge-row{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.4rem}
+.aqm-badge-outline{display:inline-block;padding:.18rem .55rem;border:1px solid rgba(212,175,55,.4);border-radius:6px;color:#f0dfb3;font-size:.72rem;font-weight:700}
+.aqm-lifepath-head h3{margin:.3rem 0 .4rem;color:#f3dda0;font-size:1.35rem}
+.aqm-lifepath-disclaimer{margin:0;color:#9ea5b5;font-size:.84rem;line-height:1.8}
+.aqm-drawer-summary{padding:.85rem 1.15rem;border-radius:12px;border:1px solid rgba(212,175,55,.28);background:rgba(212,175,55,.08);color:#edd8a5;font-size:.88rem;font-weight:700;cursor:pointer;list-style:none;transition:background .2s ease;user-select:none}
+.aqm-drawer-summary:hover{background:rgba(212,175,55,.15)}
+.aqm-drawer-body{margin-top:1.15rem;animation:aqmFadeIn .3s ease}
+@keyframes aqmFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 .aqm-destiny-section{margin:1.15rem 0;padding:clamp(1rem,2.8vw,1.6rem);border:1px solid rgba(212,175,55,.2);border-radius:18px;background:linear-gradient(150deg,rgba(16,19,29,.85),rgba(11,13,19,.92));backdrop-filter:blur(12px)}
 .aqm-destiny-section h3{margin:.3rem 0 .85rem;color:#f3dda0;font-size:clamp(1.15rem,2.8vw,1.5rem);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
@@ -109,9 +138,10 @@
 .aqm-pos-item p{margin:0;color:#c9cdd8;font-size:.84rem;line-height:1.8}
 .aqm-pos-item.is-highlight{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.04)}
 
-@media(max-width:640px){
+@media(max-width:768px){
+  .aqm-cat-bar{grid-template-columns:1fr}
   .aqm-karmic-tracks{grid-template-columns:1fr}
-  .aqm-section-nav{overflow-x:auto;padding-bottom:.3rem;flex-wrap:nowrap}
+  .aqm-section-nav{overflow-x:auto;padding-bottom:.4rem;flex-wrap:nowrap}
   .aqm-nav-pill{flex-shrink:0}
   .aqm-age-grid{grid-template-columns:repeat(2,1fr)}
 }
