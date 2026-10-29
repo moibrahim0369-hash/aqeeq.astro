@@ -208,6 +208,7 @@
       const matchFilter = (activeFilter === 'all') ||
                           (activeFilter === 'major' && card.category === 'major') ||
                           (activeFilter === 'wands' && card.suit === 'wands') ||
+                          (activeFilter === 'cups' && card.suit === 'cups') ||
                           (activeFilter === 'fire' && card.element.includes('نار')) ||
                           (activeFilter === 'water' && card.element.includes('ماء')) ||
                           (activeFilter === 'air' && card.element.includes('هواء')) ||
