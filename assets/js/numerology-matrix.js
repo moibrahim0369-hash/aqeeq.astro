@@ -324,8 +324,8 @@ function calculateGenerationalLines(birthDate) {
     const soulSynthesis = [300, 275];
 
     const majorNodes = [
+      { id: 'north', coord: north, r: 18, val: B, cls: 'aqm-chakra-sahasrara', target: '#sec-core', label: 'الجوهر · يوم الميلاد' },
       { id: 'center', coord: center, r: 24, val: E, cls: 'aqm-chakra-manipura is-center', target: '#sec-core', label: 'المركز وراحة الروح' },
-      { id: 'north', coord: north, r: 18, val: B, cls: 'aqm-chakra-sahasrara', target: '#sec-core', label: 'الاتصال الروحي والشهر' },
       { id: 'east', coord: east, r: 18, val: C, cls: 'aqm-chakra-svadhisthana', target: '#sec-money', label: 'المادة والوفرة والسنة' },
       { id: 'south', coord: south, r: 18, val: D, cls: 'aqm-chakra-muladhara', target: '#sec-karmic', label: 'الذيل الكارمي وقاعدة الروح' },
       { id: 'west', coord: west, r: 18, val: A, cls: 'aqm-chakra-vishuddha', target: '#sec-core', label: 'الشخصية ويوم الميلاد' },
@@ -689,9 +689,11 @@ function calculateGenerationalLines(birthDate) {
         }
       };
 
+      node.addEventListener('mouseenter', updateTip);
       node.addEventListener('pointerenter', updateTip);
       node.addEventListener('focus', updateTip);
       node.addEventListener('click', () => {
+        updateTip();
         const target = node.dataset.target;
         if (target) {
           const targetEl = host.querySelector(target);
@@ -700,6 +702,12 @@ function calculateGenerationalLines(birthDate) {
             targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
             targetEl.focus();
           }
+        }
+      });
+      node.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          updateTip();
         }
       });
     });
