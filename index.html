@@ -2692,23 +2692,21 @@ if (typeof module !== 'undefined') module.exports = Astro;
     lastMX = [name, d, m, y];
     const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
     const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
-    let deepReport = "";
-    if (window.AqeeqNumerology && typeof window.AqeeqNumerology.render === "function") {
-      const temp = document.createElement("div");
-      window.AqeeqNumerology.render(temp, `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`);
-      deepReport = temp.innerHTML;
-    }
+    const hasDeep = !!(window.AqeeqNumerology && typeof window.AqeeqNumerology.render === "function");
     const names = ["التقرير المرجعي (7 أقسام)", "ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
     const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
     const compat = `<p class="lead2">اكتب تاريخ ميلاد شخص تاني (حبيب أو صاحب أو شريك شغل) وشوف مصفوفة العلاقة بينكم.</p><div class="field"><label for="mc-date">تاريخ ميلاد الشخص التاني</label><input id="mc-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="mc-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="mc-go" type="button">احسب مصفوفة العلاقة</button></div><div id="mc-out" hidden></div>`;
-    const bodies = [deepReport || summaryHTML(P, lp), summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
+    const bodies = [hasDeep ? "" : summaryHTML(P, lp), summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
     const panels = bodies.map((b, i) => `<div class="panel" role="tabpanel" id="mp${i + 1}" aria-labelledby="mt${i + 1}"${i ? " hidden" : ""}>${b}</div>`).join("");
-    const legend = `<p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
-    const msg = `أهلاً، حسبت مصفوفتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${name}\nتاريخ الميلاد: ${d}/${m}/${y}\nنقاطي: A=${P.A}، B=${P.B}، C=${P.C}، D=${P.D}، المركز=${P.E}`;
-    const cta = "";
+    const topWheel = hasDeep ? "" : `<div class="wheel-wrap">${matrixSVG(P, cur)}</div><p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
     const root = $("#mresult");
-    root.innerHTML = head + `<div class="wheel-wrap">${matrixSVG(P, cur)}</div>` + legend + tabs + panels + cta + CONTACT_LINE;
+    root.innerHTML = head + topWheel + tabs + panels + CONTACT_LINE;
     wireTabs(root); bindContact(root);
+
+    const mp1 = $("#mp1", root);
+    if (mp1 && hasDeep) {
+      window.AqeeqNumerology.render(mp1, `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`);
+    }
     const lpFill = $("#lp-date"); if (lpFill && !lpFill.value) lpFill.value = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
     if (tabIdx) { const tt = $$("[role=tab]", root)[tabIdx]; if (tt) tt.click(); }
     
