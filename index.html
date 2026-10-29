@@ -2606,76 +2606,245 @@ if (typeof module !== 'undefined') module.exports = Astro;
   }
   const mxs = (t, p) => `<article class="rd"><h4>${t}</h4><p>${p}</p></article>`;
 
+  function getDMD(n) {
+    if (window.AqeeqDestinyMatrixData && typeof window.AqeeqDestinyMatrixData.getArcana === 'function') {
+      return window.AqeeqDestinyMatrixData.getArcana(n);
+    }
+    const a = ARC(n) || {};
+    return {
+      number: n,
+      title: a.n || ('أركانا ' + n),
+      archetype: a.real || '',
+      paradox: a.psy || '',
+      light: a.core || '',
+      shadow: a.shadow || '',
+      somaticRelease: a.release || '',
+      psychosomatics: '',
+      positions: {},
+      transformationProtocol: [],
+      reflectiveQuestions: [],
+      taboos: {}
+    };
+  }
+
+  function getTailDMD(c1, c2, c3) {
+    if (window.AqeeqDestinyMatrixData && typeof window.AqeeqDestinyMatrixData.getKarmicTail === 'function') {
+      return window.AqeeqDestinyMatrixData.getKarmicTail(c1, c2, c3);
+    }
+    return {
+      code: c1 + '-' + c2 + '-' + c3,
+      title: 'الذيل الكارمي (' + c1 + '-' + c2 + '-' + c3 + ')',
+      paradox: '',
+      childhoodRoots: '',
+      tracks: {},
+      psychosomatics: '',
+      transformationProtocol: [],
+      closingConfrontation: ''
+    };
+  }
+
   function summaryHTML(P, lp) {
-    const a = ARC(P.A), b = ARC(P.B), dd = ARC(P.D), e = ARC(P.E), sky = ARC(P.sky), earth = ARC(P.earth), self = ARC(P.self), yr = ARC(P.year);
-    let o = `<div class="bond-cat"><strong>ملخص مصفوفتك</strong><p>طبعك الأصلي: ${a.n}. بتتجه ناحية: ${b.n}. والدرس الي بيتكرر معاك: ${dd.n}. وجوهرك الداخلي: ${e.n}.</p></div>`;
-    o += mxs("أقوى ما فيك", `${a.core}. ${a.real}`);
-    o += mxs("الي بيتعبك", `${dd.shadow}. ${dd.psy || dd.real}`);
-    o += mxs("اتجاهك", `${b.core}. ${b.real}`);
-    o += mxs("خطوة تبدأ بيها دلوقتي", e.release);
-    o += `<h4 class="ph">رسالتك في الحياة</h4>`;
-    o += mxs(`السما: ${sky.n}`, `ده الجانب الروحي، وبيقول إيه الي بتتعلمه من جوه. ${sky.spirit || sky.core + "."}`);
-    o += mxs(`الأرض: ${earth.n}`, `ده الجانب المادي، وبيقول إيه الي بتبنيه في الواقع. ${earth.real}`);
-    o += mxs(`هدفك الشخصي: ${self.n}`, `${self.core}. ${self.release}`);
-    o += `<h4 class="ph">طاقة رقمك وسنتك</h4>`;
-    o += mxs("مسار الحياة", LP_TXT[lp] + ` <a href="#lifepath" data-open-lp>شوف مسار حياتك بالتفصيل</a>`);
-    o += mxs(`طاقة سنتك الحالية: ${yr.n}`, `${yr.core}. ${yr.real} ${yr.release}`);
-    return o + MX_NOTE;
-  }
-  function pointsHTML(P) {
-    let o = `<p class="lead2">اضغط على أي نقطة تفتح تفاصيلها: معناها، وإزاي بتظهر في الواقع، والجانب الي محتاج انتباه، وخطوة عملية.</p>`;
-    o += "ABCDEFGHI".split("").map(k => roleCard(k, P, MX_ROLE)).join("");
-    o += `<h4 class="ph">النقاط الداخلية</h4><p class="sub">كل نقطة داخلية بتوضح إزاي مجال النقطة الخارجية بيتفعل من جوهرك، وبتتحسب بجمع النقطة مع المركز.</p>`;
-    o += ["A", "B", "C", "D", "F", "G", "H", "I"].map(k => { const a = ARC(P[k + "2"]); return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${MX_SHORT[k]} من جوه: ${a.n} <span class="hs">رقم ${P[k + "2"]}</span></summary><div class="mxb"><p>${a.core}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`; }).join("");
-    return o + MX_NOTE;
-  }
-  function stagesHTML(P, age) {
-    const ac = age % 80, i = Math.floor(ac / 10), half = (ac % 10) < 5 ? 0 : 1;
-    const st = k => ({ s: ARC(P[OUTER[k]]), m: ARC(P.mid[k]), e: ARC(P[OUTER[(k + 1) % 8]]) });
-    const c = st(i), nx = st((i + 1) % 8), dom = half === 0 ? c.s : c.m;
-    let o = `<p class="lead2">عمرك دلوقتي ${age} سنة${age >= 80 ? " (بعد الـ٨٠ الدورة بتبدأ من الأول)" : ""}. المصفوفة بتقسم العمر لمراحل كل واحدة ١٠ سنين، وكل مرحلة ليها طاقة بداية ومنتصف ونهاية.</p>`;
-    o += `<div class="bond-cat"><strong>مرحلتك الحالية: ${MX_STAGE[i]}</strong><p>من عمر ${i * 10} لعمر ${i * 10 + 10}. بدايتها ${c.s.n}، ومنتصفها ${c.m.n}، ونهايتها ${c.e.n}. ${half === 0 ? `إنت في النص الأول، وطاقة ${c.s.n} هي الأقوى حواليك وبتتحول تدريجيًا ناحية ${c.m.n}.` : `إنت في النص التاني، وطاقة ${c.m.n} بتتحول ناحية ${c.e.n}.`}</p></div>`;
-    o += mxs("الي بيحصل حواليك", `${dom.core}. ${dom.real}`);
-    o += mxs("نفسيًا", dom.psy);
-    o += mxs("انتبه من", `${dom.shadow}.`);
-    o += mxs("خطوة تبدأ بيها", dom.release);
-    o += mxs(`المرحلة الجاية: ${MX_STAGE[(i + 1) % 8]}`, `طاقتها الأساسية ${nx.m.n}. ${nx.m.core}.`);
-    o += `<h4 class="ph">كل مراحل عمرك</h4>`;
-    o += MX_STAGE.map((t, k) => { const s = st(k); return `<details class="acc mxd"><summary>${t} <span class="hs">من ${k * 10} لـ${k * 10 + 10}${k === i ? "، إنت هنا" : ""}</span></summary><div class="mxb"><p class="sub">البداية: ${s.s.n}، المنتصف: ${s.m.n}، النهاية: ${s.e.n}.</p><p>${s.m.core}.</p><p class="sub">انتبه من: ${s.m.shadow}.</p></div></details>`; }).join("");
-    return o + `<p class="note">الدايرة الكبيرة في الرسم بتبين المرحلة الي إنت فيها بخط ذهبي. الدواير الصغيرة على الإطار هي نقط المنتصف (الأعمار ٥، ١٥، ٢٥...).</p>` + MX_NOTE;
-  }
-  function karmaHTML(P, lp) {
-    const lives = [["الحياة الأقرب ليك (الذيل الكارمي)", "D"], ["حياة أبعد", "I"], ["حياة أقدم", "H"]];
-    const D = ARC(P.D), C = ARC(P.C);
-    let o = `<p class="sub">دي قراءة رمزية بتطلع من أرقام تاريخ ميلادك. مش دليل على حياة فعلية، لكنها مرآة لأنماط ممكن تكون بتكررها دلوقتي.</p>`;
-    o += lives.map(([t, k]) => `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> ${t}: ${ARC(P[k]).n}</h4><p>${ARC(P[k]).past}</p></article>`).join("");
-    o += `<h4 class="ph">الدرس المتكرر (الذيل الكارمي)</h4>`;
-    o += mxs(`${D.n}`, `${D.psy}`);
-    o += mxs("وفي الواقع بيتجسد في", D.real);
-    o += mxs("تمرين تحرير", D.release);
-    o += `<h4 class="ph">الي ورثته من العيلة</h4>`;
-    o += mxs(`${C.n}`, `ورثت من الأهل طاقة ${C.n}: ${C.core}. وممكن تكون بتكررها من غير ما تحس في: ${C.shadow}.`);
-    o += mxs("خطوة تكسر بيها النمط", C.release);
-    return o + MX_NOTE;
-  }
-  function compatHTML(P1, P2) {
-    const R = {};
-    ["A", "B", "C", "D", "E", "G", "H"].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
-    let o = `<p class="lead2">اتحسبت بجمع نقط المصفوفتين نقطة نقطة، فبتعرف طاقة العلاقة نفسها مش طاقة كل واحد لوحده.</p>`;
-    o += `<div class="bond-cat"><strong>قلب العلاقة: ${ARC(R.E).n}</strong><p>${ARC(R.E).core}.</p></div>`;
-    o += ["A", "B", "H", "G", "D", "C"].map(k => roleCard(k, R, MX_REL)).join("");
-    const same = "ABCDEFGHI".split("").filter(k => P1[k] === P2[k]);
-    o += `<h4 class="ph">التشابه والتكامل</h4>`;
-    o += mxs("نقاط متطابقة", same.length ? `الأرقام متطابقة في: ${same.map(k => `${MX_SHORT[k]} (${ARC(P1[k]).n})`).join("، ")}. التطابق ده بيخلي الاتنين يتصرفوا بنفس الأسلوب في المجال ده، وده بيقرّب وساعات بيزوّد الصدام.` : "مفيش تطابق مباشر بين نقطة ونقطة. كل واحد فيكم جاي بأسلوب مختلف، وده بيكمّل مش بيكرر.");
-    const cross = [];
-    if (P1.D === P2.B) cross.push("الدرس المتكرر عندك هو هدف الشخص التاني، فهو ممكن يساعدك تتعلمه");
-    if (P2.D === P1.B) cross.push("الدرس المتكرر عنده هو هدفك، فإنت ممكن تساعده يتعلمه");
-    if (P1.D === P2.D) cross.push("الذيل الكارمي واحد بينكم، يعني بتتعلموا نفس الدرس مع بعض");
-    o += mxs("روابط بين النقطتين", cross.length ? cross.join(". ") + "." : "مفيش ربط مباشر بين الدروس والأهداف، والعلاقة بتتحدد أكتر بالوعي والاختيار.");
+    const a = getDMD(P.A);
+    const b = getDMD(P.B);
+    const c = getDMD(P.C);
+    const dd = getDMD(P.D);
+    const e = getDMD(P.E);
+    const sky = getDMD(P.sky);
+    const earth = getDMD(P.earth);
+    const self = getDMD(P.self);
+    const yr = getDMD(P.year);
+    const kMid = redArc(P.D + P.E);
+    const kInner = redArc(P.D + kMid);
+    const tail = getTailDMD(P.D, kMid, kInner);
+
+    let o = '<div class="bond-cat"><strong>ملخص مصفوفتك الشامل والتحليلي</strong>' +
+      '<p><b>طبعك وانطباعك الخارجي:</b> ' + esc(a.title) + '.<br>' +
+      '<b>اتصالك الروحي ورسالتك:</b> ' + esc(b.title) + '.<br>' +
+      '<b>جوهرك وراحة قلبك (المركز):</b> ' + esc(e.title) + '.<br>' +
+      '<b>الدرس الكارمي المتكرر:</b> ' + esc(tail.title) + '.</p></div>';
+
+    o += mxs('المفارقة النفسية والتوتر الوجودي لجوهرك', e.paradox || (e.title + ': ' + e.archetype));
+    o += mxs('أقوى ما فيك في النور (+)', a.title + ': ' + (a.light || a.archetype));
+    o += mxs('الفخ الذي يعطلك في الظل (-)', e.title + ': ' + (e.shadow || e.archetype));
+    o += mxs('البصمة الجسدية والسوماتيكية لراحتك', e.psychosomatics || e.somaticRelease || 'التنفس العميق وتفريغ الشحن الذهني بالرياضة.');
+    if (e.somaticRelease) o += mxs('مفتاح التفريغ السوماتيكي', e.somaticRelease);
+
+    o += '<h4 class="ph">رسالتك في الحياة ومحاور الاتصال</h4>';
+    o += mxs('محور السماء الروحي: ' + sky.title, 'ما تتعلمه روحياً في الباطن: ' + (sky.archetype || sky.light));
+    o += mxs('محور الأرض المادي: ' + earth.title, 'ما تبنيه وتجسده في الواقع الملموس: ' + (earth.positions?.money || earth.light));
+    o += mxs('الهدف الشخصي المتكامل: ' + self.title, self.archetype + '. مفتاح التحول: ' + (self.growthStep || self.somaticRelease || self.light));
+
+    o += '<h4 class="ph">طاقة رقمك وسنتك الحالية</h4>';
+    o += mxs('مسار الحياة', (LP_TXT[lp] || ('مسار رقم ' + lp)) + ' <a href="#lifepath" data-open-lp>شوف مسار حياتك بالتفصيل</a>');
+    o += mxs('طاقة سنتك الحالية: ' + yr.title, (yr.headline || yr.archetype) + '. الخطوة الواعية: ' + (yr.growthStep || yr.somaticRelease || yr.light));
+
     return o + MX_NOTE;
   }
 
-  let lastMX = null, lastLP = null;
+  function pointsHTML(P) {
+    let o = '<p class="lead2">اضغط على أي نقطة تفتح تشريحها الكامل: معناها، ظهورها في الواقع، فخ الظل، البصمة الجسدية، والخطوة العملية المباشرة.</p>';
+    const outerKeys = 'ABCDEFGHI'.split('');
+    o += outerKeys.map(k => {
+      const num = P[k];
+      const d = getDMD(num);
+      const role = MX_ROLE[k] || { t: k, sub: 'نقطة في المصفوفة' };
+      return '<details class="acc mxd"><summary><span class="sg" aria-hidden="true">' + k + '</span> ' + esc(role.t) + ': ' + esc(d.title) + ' <span class="hs">طاقة ' + num + '</span></summary>' +
+        '<div class="mxb">' +
+        '<p class="sub"><b>الدور في الخريطة:</b> ' + esc(role.sub) + '</p>' +
+        '<p><b>التشريح والظهور الواقعي:</b> ' + esc(d.archetype || d.light) + '</p>' +
+        (d.paradox ? '<p><b>المفارقة النفسية:</b> ' + esc(d.paradox) + '</p>' : '') +
+        '<p style="color:#e06c75;"><b>فخ الظل (-):</b> ' + esc(d.shadow) + '</p>' +
+        '<p style="color:#98c379;"><b>طاقة النور (+):</b> ' + esc(d.light) + '</p>' +
+        (d.psychosomatics ? '<p><b>العلامة الجسدية والسوماتيكية:</b> ' + esc(d.psychosomatics) + '</p>' : '') +
+        '<p class="sub"><b>الخطوة العملية المباشرة:</b> ' + esc(d.growthStep || d.somaticRelease || 'الملاحظة الواعية للنمط اليومي.') + '</p>' +
+        '</div></details>';
+    }).join('');
+
+    o += '<h4 class="ph">النقاط الداخلية (تفعيل الجوهر في المجالات)</h4><p class="sub">توضح كل نقطة داخلية كيف يتصل مجالك الخارجي بمركز روحك (E)، وتُحسب بجمع النقطة مع المركز.</p>';
+    o += ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I'].map(k => {
+      const num = P[k + '2'];
+      const d = getDMD(num);
+      return '<details class="acc mxd"><summary><span class="sg" aria-hidden="true">' + k + '</span> ' + esc(MX_SHORT[k] || k) + ' من جوه: ' + esc(d.title) + ' <span class="hs">رقم ' + num + '</span></summary>' +
+        '<div class="mxb">' +
+        '<p><b>المعنى الباطني:</b> ' + esc(d.archetype || d.light) + '</p>' +
+        '<p style="color:#e06c75;"><b>فخ الظل الداخلي:</b> ' + esc(d.shadow) + '</p>' +
+        '<p class="sub"><b>خطوة التوازن:</b> ' + esc(d.growthStep || d.somaticRelease || d.light) + '</p>' +
+        '</div></details>';
+    }).join('');
+
+    return o + MX_NOTE;
+  }
+
+  function stagesHTML(P, age) {
+    const ac = age % 80;
+    const i = Math.floor(ac / 10);
+    const half = (ac % 10) < 5 ? 0 : 1;
+    const st = k => ({
+      s: getDMD(P[OUTER[k]]),
+      m: getDMD(P.mid[k]),
+      e: getDMD(P[OUTER[(k + 1) % 8]])
+    });
+    const c = st(i);
+    const dom = half === 0 ? c.s : c.m;
+
+    let o = '<p class="lead2">عمرك دلوقتي ' + age + ' سنة' + (age >= 80 ? ' (بعد الـ٨٠ تبدأ الدورة من جديد)' : '') + '. تقسم مصفوفة القدر العمر إلى 8 مراحل كل مرحلة 10 سنوات، لكل مرحلة طاقة بداية ومنتصف ونهاية:</p>';
+    
+    o += '<div class="bond-cat"><strong>مرحلتك الحالية: ' + esc(MX_STAGE[i] || ('سنوات ' + (i * 10) + ' إلى ' + (i * 10 + 10))) + '</strong>' +
+      '<p>من عمر ' + (i * 10) + ' لعمر ' + (i * 10 + 10) + '.<br>' +
+      'بدايتها: ' + esc(c.s.title) + ' · منتصفها: ' + esc(c.m.title) + ' · نهايتها: ' + esc(c.e.title) + '.<br>' +
+      (half === 0 ? 'أنت في النصف الأول من المرحلة، وتسيطر عليك طاقة ' + esc(c.s.title) + ' وتتحول نحو ' + esc(c.m.title) + '.' : 'أنت في النصف الثاني، وتتحول طاقة ' + esc(c.m.title) + ' نحو ' + esc(c.e.title) + '.') + '</p></div>';
+
+    o += mxs('ما يواجهك في واقعك اليوم', dom.archetype || dom.light);
+    o += mxs('التشريح النفسي والتوتر الداخلي', dom.paradox || dom.archetype);
+    o += mxs('فخ الظل الذي يجب تجنبه (-)', dom.shadow);
+    o += mxs('البصمة الجسدية والسوماتيكية', dom.psychosomatics || 'مراقبة التنفس ومستوى التوتر في الجسم.');
+    o += mxs('الخطوة العملية للعبور بنجاح (+)', dom.growthStep || dom.somaticRelease || dom.light);
+
+    o += '<h4 class="ph">جميع مراحل العمر الثمانية (0 إلى 80 سنة)</h4>';
+    o += [0, 1, 2, 3, 4, 5, 6, 7].map(idx => {
+      const stage = st(idx);
+      const isCur = idx === i;
+      return '<details class="acc mxd"' + (isCur ? ' open' : '') + '><summary><span class="sg" aria-hidden="true">' + (idx * 10) + 'y</span> ' + esc(MX_STAGE[idx] || ('مرحلة ' + (idx * 10) + '-' + (idx * 10 + 10))) + (isCur ? ' <b style="color:#d5b45c;">[مرحلتك الآن]</b>' : '') + '</summary>' +
+        '<div class="mxb">' +
+        '<p><b>البداية (' + (idx * 10) + ' سنة):</b> ' + esc(stage.s.title) + '</p>' +
+        '<p><b>المنتصف (' + (idx * 10 + 5) + ' سنة):</b> ' + esc(stage.m.title) + '</p>' +
+        '<p><b>النهاية (' + (idx * 10 + 10) + ' سنة):</b> ' + esc(stage.e.title) + '</p>' +
+        '<p><b>توجيه المرحلة:</b> ' + esc(stage.s.light) + '</p>' +
+        '</div></details>';
+    }).join('');
+
+    return o + MX_NOTE;
+  }
+
+  function karmaHTML(P, lp) {
+    const kMid = redArc(P.D + P.E);
+    const kInner = redArc(P.D + kMid);
+    const tail = getTailDMD(P.D, kMid, kInner);
+    const dBase = getDMD(P.D);
+    const cMat = getDMD(P.C);
+
+    let o = '<p class="lead2">الذيل الكارمي هو العقدة الروحية الأعمق في اللاوعي؛ يمثل الدروس غير المكتملة وأنماط الطفولة التي تتكرر تلقائياً حتى يتم تفكيكها بوعي.</p>';
+
+    o += '<div class="bond-cat"><strong style="font-size:1.15rem;color:#d5b45c;">' + esc(tail.title) + ' (شفرة ' + esc(tail.code) + ')</strong>' +
+      '<p><b>الجرح المؤسس والتوتر الكارمي:</b> ' + esc(tail.paradox) + '</p>' +
+      '<p><b>جذور الطفولة والصدمة التأسيسية:</b> ' + esc(tail.childhoodRoots) + '</p></div>';
+
+    if (tail.tracks && (tail.tracks.trackOne || tail.tracks.trackTwo)) {
+      o += '<div class="aqm-karmic-tracks" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.85rem 0;">' +
+        '<div style="background:rgba(224,108,117,0.08);border:1px solid rgba(224,108,117,0.25);border-radius:10px;padding:.85rem;">' +
+        '<h5 style="color:#e06c75;margin:0 0 .4rem 0;">المسار الأول (الظل النشط)</h5><p style="font-size:.9rem;line-height:1.5;">' + esc(tail.tracks.trackOne || '') + '</p></div>' +
+        '<div style="background:rgba(97,175,239,0.08);border:1px solid rgba(97,175,239,0.25);border-radius:10px;padding:.85rem;">' +
+        '<h5 style="color:#61afef;margin:0 0 .4rem 0;">المسار الثاني (الكبت والانسحاب)</h5><p style="font-size:.9rem;line-height:1.5;">' + esc(tail.tracks.trackTwo || '') + '</p></div>' +
+        '</div>';
+    }
+
+    if (tail.psychosomatics) {
+      o += mxs('الأعراض السوماتيكية واحتقانات الجسد للذيل', tail.psychosomatics);
+    }
+
+    if (Array.isArray(tail.transformationProtocol) && tail.transformationProtocol.length) {
+      o += '<div style="background:rgba(152,195,121,0.08);border:1px solid rgba(152,195,121,0.25);border-radius:10px;padding:.85rem;margin:.85rem 0;">' +
+        '<h4 style="color:#98c379;margin:0 0 .5rem 0;">بروتوكول تفكيك العقدة الكارمية</h4><ol style="margin:0;padding-right:1.2rem;line-height:1.6;">' +
+        tail.transformationProtocol.map(s => '<li>' + esc(s) + '</li>').join('') +
+        '</ol></div>';
+    }
+
+    if (tail.closingConfrontation) {
+      o += mxs('المواجهة الختامية', tail.closingConfrontation);
+    }
+
+    o += '<h4 class="ph">إرث العائلة والأسلاف الموروث</h4>';
+    o += mxs('طاقة الأهل المادية: ' + cMat.title, 'ما ورثته من العائلة يظهر في: ' + cMat.archetype + '. احذر من تكرار الظل الأسري: ' + cMat.shadow + '. خطوة كسر النمط: ' + (cMat.growthStep || cMat.somaticRelease || cMat.light));
+
+    return o + MX_NOTE;
+  }
+
+  function compatHTML(P1, P2) {
+    const R = {};
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
+    const e = getDMD(R.E);
+    const a = getDMD(R.A);
+    const b = getDMD(R.B);
+    const d = getDMD(R.D);
+    const moneyChannel = redArc(R.C + R.E);
+    const loveChannel = redArc(R.D + R.E);
+    const arcLove = getDMD(loveChannel);
+    const arcMoney = getDMD(moneyChannel);
+
+    let o = '<p class="lead2">تُحسب مصفوفة العلاقة بجمع نقاط المصفوفتين هندسياً نقطة بنقطة؛ فتكشف عن كيمياء العلاقة نفسها ككيان طاقي ثالث مستقل عن رغبات الفردين:</p>';
+
+    o += '<div class="bond-cat"><strong style="font-size:1.15rem;color:#d5b45c;">قلب وغاية العلاقة: ' + esc(e.title) + ' (طاقة ' + R.E + ')</strong>' +
+      '<p><b>الرسالة الروحية المشتركة:</b> ' + esc(e.archetype || e.light) + '</p>' +
+      '<p><b>سر انسجام العلاقة واستمرارها:</b> ' + esc(e.light) + '</p>' +
+      '<p style="color:#e06c75;"><b>الفخ الذي يهدد الشراكة بالانفصال:</b> ' + esc(e.shadow) + '</p></div>';
+
+    o += '<div class="aqm-pos-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.85rem 0;">' +
+      '<article class="aqm-pos-item" style="padding:.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;">' +
+      '<h5><span>خط الحب والتواصل الحميم</span><small>طاقة ' + loveChannel + '</small></h5>' +
+      '<p>' + esc(arcLove.positions?.relationship || arcLove.archetype) + '</p>' +
+      (arcLove.taboos?.sexuality ? '<p style="color:#ff758c;font-size:.85rem;"><b>الكيمياء الحميمية:</b> ' + esc(arcLove.taboos.sexuality) + '</p>' : '') +
+      '</article>' +
+      '<article class="aqm-pos-item" style="padding:.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;">' +
+      '<h5><span>خط المال والمشاريع المشتركة</span><small>طاقة ' + moneyChannel + '</small></h5>' +
+      '<p>' + esc(arcMoney.positions?.money || arcMoney.archetype) + '</p>' +
+      '</article>' +
+      '</div>';
+
+    const same = 'ABCDEFGHI'.split('').filter(k => P1[k] === P2[k]);
+    o += '<h4 class="ph">التشابه والتناغم الطاقي</h4>';
+    o += mxs('نقاط التطابق بينكما', same.length ? 'أنتم متطابقون في: ' + same.map(k => (MX_SHORT[k] || k) + ' (' + getDMD(P1[k]).title + ')').join('، ') + '. التطابق يعزز التفاهم السريع، لكنه يتطلب وعياً لتفادي تضارب الأنا في نفس المجال.' : 'لا توجد نقاط متطابقة متطرفة؛ كل طرف يكمل نقص الآخر ويدعمه من زاوية مختلفة.');
+
+    const cross = [];
+    if (P1.D === P2.B) cross.push('الدرس الكارمي عندك هو بوابة الاتصال الروحي عند الشريك، مما يجعله معلماً طبيعياً لك في هذا الدرس');
+    if (P2.D === P1.B) cross.push('الدرس الكارمي عنده هو بوابة الاتصال الروحي عندك، فأنت تساعده على تجاوز عقدته بحكمتك');
+    if (P1.D === P2.D) cross.push('تتشاركان نفس الذيل الكارمي؛ دخلتما هذه العلاقة لفك نفس العقدة معاً وتطهير الكارما سوياً');
+    if (P1.E === P2.E) cross.push('تتشاركان نفس طاقة المركز والجوهر؛ راحة قلبكما وتناغمكما الباطني نابع من نفس النواة الروحية');
+
+    o += mxs('الروابط والاتصالات المصيرية', cross.length ? cross.join('. ') + '.' : 'العلاقة تقوم على الاختيار والوعي وبناء التفاهم المشترك خطوة بخطوة دون قيود كارمية ثقيلة.');
+
+    return o + MX_NOTE;
+  }
+let lastMX = null, lastLP = null;
   const mform = $("#mform");
   mform.addEventListener("submit", e => {
     e.preventDefault();
