@@ -152,6 +152,10 @@
     center:'المحور المركزي · راحة الروح'
   };
 
+  /**
+   * رسم النجمة الثمانية ومصفوفة القدر (SVG)
+   * مطابقة للألوان السبعة ومسارات الحب والمال وطوق العمر 0-80 سنة
+   */
   function renderSVG(matrix, dateValue) {
     const num = matrix.nodes;
     const { A, B, C, D, E } = matrix.anchors;
@@ -170,7 +174,7 @@
     // إحداثيات الدائرة والمركز (Center = 260, 260)
     const cx = 260, cy = 260;
     const rMain = 158;
-    const rDiag = 112; // 158 / sqrt(2)
+    const rDiag = 112;
 
     const coords = {
       north: [cx, cy - rMain],           // (260, 102) Sahasrara (Violet) - شهر الميلاد B
@@ -184,7 +188,7 @@
       center: [cx, cy]                   // (260, 260) Manipura (Yellow) - E
     };
 
-    // إحداثيات خط الحب والمال (في الربع السفلي)
+    // إحداثيات خط الحب والمال
     const loveCoord = [298, 332];     // مدخل الحب ❤️
     const balanceCoord = [330, 310];  // نقطة التوازن ⚖️
     const moneyCoord = [348, 276];    // مدخل المال 💰
@@ -236,17 +240,17 @@
       `;
     }).join('');
 
-    // دوائر الشاكرات السبع ومراكز الطاقة في النجمة
+    // دوائر الشاكرات الأساسية في النجمة
     const nodesConfig = [
-      { key: 'north', chakra: 'aqm-chakra-sahasrara', r: 19, val: num.north, label: 'الاتصال الروحي والشهر (Sahasrara)', target: '#sec-talents' },
+      { key: 'north', chakra: 'aqm-chakra-sahasrara', r: 19, val: num.north, label: 'الاتصال الروحي والشهر (Sahasrara)', target: '#sec-core' },
       { key: 'east', chakra: 'aqm-chakra-svadhisthana', r: 19, val: num.east, label: 'المادة وسنة الميلاد (Svadhisthana)', target: '#sec-money' },
       { key: 'south', chakra: 'aqm-chakra-muladhara', r: 19, val: num.south, label: 'الذيل الكارمي والدروس (Muladhara)', target: '#sec-karmic' },
-      { key: 'west', chakra: 'aqm-chakra-vishuddha', r: 19, val: num.west, label: 'الجوهر ويوم الميلاد (Vishuddha)', target: '#sec-personal' },
-      { key: 'northEast', chakra: 'aqm-chakra-ajna', r: 17, val: num.northEast, label: 'مربع الأسلاف · زاوية علوية (G)', target: '#sec-parents' },
-      { key: 'southEast', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southEast, label: 'مربع الأسلاف · زاوية مادية (H)', target: '#sec-parents' },
-      { key: 'southWest', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southWest, label: 'مربع الأسلاف · زاوية كارمية (F)', target: '#sec-parents' },
-      { key: 'northWest', chakra: 'aqm-chakra-ajna', r: 17, val: num.northWest, label: 'مربع الأسلاف · زاوية روحية (I)', target: '#sec-parents' },
-      { key: 'center', chakra: 'aqm-chakra-manipura is-center', r: 23, val: num.center, label: 'راحة الروح ونواة المركز (Manipura)', target: '#sec-personal' }
+      { key: 'west', chakra: 'aqm-chakra-vishuddha', r: 19, val: num.west, label: 'الجوهر ويوم الميلاد (Vishuddha)', target: '#sec-core' },
+      { key: 'northEast', chakra: 'aqm-chakra-ajna', r: 17, val: num.northEast, label: 'مربع الأسلاف · زاوية علوية (G)', target: '#sec-programs' },
+      { key: 'southEast', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southEast, label: 'مربع الأسلاف · زاوية مادية (H)', target: '#sec-programs' },
+      { key: 'southWest', chakra: 'aqm-chakra-muladhara', r: 17, val: num.southWest, label: 'مربع الأسلاف · زاوية كارمية (F)', target: '#sec-programs' },
+      { key: 'northWest', chakra: 'aqm-chakra-ajna', r: 17, val: num.northWest, label: 'مربع الأسلاف · زاوية روحية (I)', target: '#sec-programs' },
+      { key: 'center', chakra: 'aqm-chakra-manipura is-center', r: 23, val: num.center, label: 'راحة الروح ونواة المركز (Manipura)', target: '#sec-core' }
     ];
 
     const nodesSvg = nodesConfig.map(cfg => {
@@ -266,7 +270,7 @@
       <line class="aqm-channel-line" x1="${loveCoord[0]}" y1="${loveCoord[1]}" x2="${moneyCoord[0]}" y2="${moneyCoord[1]}" />
 
       <!-- مدخل الحب (Heart) -->
-      <g class="aqm-node aqm-node-love" tabindex="0" role="button" data-node="love" data-target="#sec-relationship" aria-label="مدخل الحب والشراكات: ${channels.love}">
+      <g class="aqm-node aqm-node-love" tabindex="0" role="button" data-node="love" data-target="#sec-love" aria-label="مدخل الحب والشراكات: ${channels.love}">
         <circle cx="${loveCoord[0]}" cy="${loveCoord[1]}" r="14" />
         <text x="${loveCoord[0]}" y="${loveCoord[1] + 4}">${channels.love}</text>
         <path class="aqm-channel-glyph" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#ff4d6d" transform="translate(${loveCoord[0] - 24}, ${loveCoord[1] - 8}) scale(0.4)" />
@@ -274,7 +278,7 @@
       </g>
 
       <!-- نقطة التوازن (Balance) -->
-      <g class="aqm-node aqm-node-balance" tabindex="0" role="button" data-node="balance" data-target="#sec-sexiness" aria-label="نقطة التوازن والكيمياء: ${channels.balance}">
+      <g class="aqm-node aqm-node-balance" tabindex="0" role="button" data-node="balance" data-target="#sec-love" aria-label="نقطة التوازن والكيمياء: ${channels.balance}">
         <circle cx="${balanceCoord[0]}" cy="${balanceCoord[1]}" r="13" />
         <text x="${balanceCoord[0]}" y="${balanceCoord[1] + 4}">${channels.balance}</text>
         <title>نقطة التوازن: ${channels.balance}</title>
@@ -327,36 +331,15 @@
     `;
   }
 
-  function renderLifePathProfile(profile) {
-    if (!profile) return '';
-    const steps = (profile.blueprint || []).map(step =>
-      '<li><b>' + escapeHTML(step.challenge) + '</b><span>' + escapeHTML(step.solution) + '</span></li>'
-    ).join('');
-    const cheatSheet = Array.isArray(profile.cheatSheet) && profile.cheatSheet.length ? (
-      '<div class="aqm-cheat-sheet">' +
-        '<h4>ملخص المقارنة البصرية السريعة (Cheat Sheet)</h4>' +
-        '<div class="aqm-table-scroll"><table class="aqm-cheat-table">' +
-          '<thead><tr><th>المجال</th><th>التعبير المتوازن (النور)</th><th>النمط الذي يحتاج مراجعة (الظل)</th></tr></thead>' +
-          '<tbody>' + profile.cheatSheet.map(row => '<tr><td><b>' + escapeHTML(row.area) + '</b></td><td>' + escapeHTML(row.balanced) + '</td><td>' + escapeHTML(row.shadow) + '</td></tr>').join('') + '</tbody>' +
-        '</table></div>' +
-      '</div>'
-    ) : '';
-    return '<section class="aqm-life-path-profile" aria-label="التفسير التفصيلي لمسار الحياة">' +
-      '<div class="aqm-life-path-heading"><span class="aqm-kicker">مسار ' + profile.number + ' · قراءة رمزية</span><h3>' + escapeHTML(profile.title) + '</h3></div>' +
-      cheatSheet +
-      '<div class="aqm-life-path-columns">' +
-        '<article class="aqm-life-path-copy"><h4>الجوهر والبرمجة الأولى</h4><p>' + escapeHTML(profile.core) + '</p></article>' +
-        '<article class="aqm-life-path-copy is-light"><h4>مساحة النور</h4><p>' + escapeHTML(profile.light) + '</p></article>' +
-        '<article class="aqm-life-path-copy is-shadow"><h4>مساحة الظل</h4><p>' + escapeHTML(profile.shadow) + '</p></article>' +
-        '<article class="aqm-life-path-copy is-body"><h4>البصمة النفسية-الجسدية · وصف رمزي</h4><p>' + escapeHTML(profile.psychosomatic) + '</p><small>هذه صياغة رمزية للتأمل وليست تشخيصاً أو علاقة سببية طبية. الأعراض الصحية تُقيّم مع مختص.</small></article>' +
-      '</div><div class="aqm-life-path-blueprint"><h4>بروتوكول التحول السلوكي</h4><ol>' + steps + '</ol></div></section>';
-  }
-
   /**
-   * بناء الأقسام الـ 14 الشاملة لمصفوفة القدر وفق معمارية matrix-destiny.com وهيكل عقيق أسترو
+   * الأقسام السبعة القياسية لمصفوفة القدر وفق معمارية matrix-destiny.com
+   * مهيأة كحاويات بيانات (Data Containers) مستقلة ونظيفة
    */
-  function render14DestinySections(matrix, dateValue, chakras, generations, axes) {
+  function render7DestinySections(matrix, dateValue, chakras, generations, axes) {
     const { A, B, C, D, E } = matrix.anchors;
+    const DESTINY_DATA = window.AqeeqDestinyMatrixData || {};
+    const AGE_MAP_API = window.AqeeqAgeMap || {};
+
     const getArc = DESTINY_DATA.getArcana || (n => ({ title: `أركانا ${n}`, archetype: '', light: '', shadow: '', psychosomatics: '', cheatSheet: [], positions: {}, transformationProtocol: [] }));
     const getTail = DESTINY_DATA.getKarmicTail || ((c1, c2, c3) => ({ code: `${c1}-${c2}-${c3}`, title: `الذيل الكارمي (${c1}-${c2}-${c3})`, paradox: '', childhoodRoots: '', tracks: {}, psychosomatics: '', transformationProtocol: [], closingConfrontation: '' }));
 
@@ -364,6 +347,7 @@
     const arcMonth = getArc(B);
     const arcYear = getArc(C);
     const arcCenter = getArc(E);
+    const arcKarma = getArc(D);
     const tailData = getTail(matrix.karmicTail.base, matrix.karmicTail.mid, matrix.karmicTail.inner);
 
     // حساب خريطة سنوات العمر
@@ -379,7 +363,7 @@
       '</tbody></table></div></div>'
     ) : '';
 
-    // صفوف جدول الشاكرات
+    // صفوف جدول الشاكرات السبع
     const chakraRows = chakras.rows.map((row, index) =>
       '<tr><th scope="row"><button type="button" class="aqm-chakra-toggle" data-chakra-toggle="' + row.key + '" aria-expanded="false" aria-controls="aqm-chakra-detail-' + row.key + '"><span class="aqm-chakra-order">' + (index + 1) + '</span><span>' + escapeHTML(row.name) + '<small>' + escapeHTML(row.sanskrit) + '</small></span><span aria-hidden="true">＋</span></button></th><td>' + row.physics + '</td><td>' + row.energy + '</td><td>' + row.emotions + '</td></tr><tr id="aqm-chakra-detail-' + row.key + '" class="aqm-chakra-detail" hidden><td colspan="4"><div class="aqm-chakra-copy"><p><b>المعنى الروحي والسلوكي · طاقة ' + row.energy + ' (' + escapeHTML(ARCANA[row.energy - 1]?.[0] || '') + '):</b> ' + escapeHTML(row.focus) + '. ' + escapeHTML(ARCANA[row.energy - 1]?.[1] || '') + '</p><p><b>ارتباط جسدي رمزي:</b> ' + escapeHTML(row.area) + '. صياغة رمزية للتأمل وليست تشخيصاً طبياً.</p><p><b>مفتاح التوازن:</b> ' + escapeHTML(row.balance) + '</p></div></td></tr>'
     ).join('');
@@ -391,125 +375,67 @@
       '</div><p>طاقة طرفَي الخط: <b>' + line.combined + '</b>. مفتاح رمزي لتأمل الأنماط الأسرية الموروثة وكسر قيودها بوعي.</p></article>';
 
     return `
-      <!-- شريط التنقل السريع بين الأقسام الـ 14 -->
-      <!-- شريط التبويبات الرئيسي للمجموعات الثلاث -->
-      <div class="aqm-cat-bar" role="tablist" aria-label="مجموعات مصفوفة القدر">
-        <button type="button" class="aqm-cat-tab is-active" data-cat="all" role="tab" aria-selected="true">
-          <span class="aqm-cat-icon">📑</span>
-          <span class="aqm-cat-text">عرض كل الأقسام <small>14 قسماً بالكامل</small></span>
-        </button>
-        <button type="button" class="aqm-cat-tab" data-cat="identity" role="tab" aria-selected="false">
-          <span class="aqm-cat-icon">✨</span>
-          <span class="aqm-cat-text">1. الهوية والروح <small>الشخصية، العمر، المواهب، الكارما، السيناريو</small></span>
-        </button>
-        <button type="button" class="aqm-cat-tab" data-cat="earth" role="tab" aria-selected="false">
-          <span class="aqm-cat-icon">🌍</span>
-          <span class="aqm-cat-text">2. مسارات الأرض <small>الرسالة، المال، البرامج، الشريك، الكيمياء</small></span>
-        </button>
-        <button type="button" class="aqm-cat-tab" data-cat="roots" role="tab" aria-selected="false">
-          <span class="aqm-cat-icon">🌱</span>
-          <span class="aqm-cat-text">3. الجذور والجسد <small>الأسلاف، الأبناء، البراند، الشاكرات</small></span>
-        </button>
-      </div>
-
-      <!-- أزرار التنقل السريع بين الأقسام الـ 14 -->
-      <nav class="aqm-section-nav" aria-label="أقسام مصفوفة القدر الـ 14">
-        <button type="button" class="aqm-nav-pill is-active" data-filter="all" data-cat="all">عرض الكل</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-personal" data-cat="identity">1. الشخصية والجوهر</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-age" data-cat="identity">2. طاقة العمر</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-talents" data-cat="identity">3. المواهب</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-karmic" data-cat="identity">4. الذيل الكارمي</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-scenario" data-cat="identity">5. سيناريو الحياة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-destiny" data-cat="earth">6. القدر والرسالة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-money" data-cat="earth">7. المال والمهنة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-programs" data-cat="earth">8. البرامج الكارمية</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-relationship" data-cat="earth">9. شريك الحياة</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-sexiness" data-cat="earth">10. الكيمياء الحميمية</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-parents" data-cat="roots">11. الأسلاف والوالدين</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-kids" data-cat="roots">12. الأبناء</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-brand" data-cat="roots">13. البراند الشخصي</button>
-        <button type="button" class="aqm-nav-pill" data-target="#sec-health" data-cat="roots">14. الشاكرات والصحة</button>
+      <!-- شريط التنقل المرجعي للأقسام السبعة القياسية -->
+      <nav class="aqm-section-nav" aria-label="أقسام مصفوفة القدر المرجعية">
+        <button type="button" class="aqm-nav-pill is-active" data-target="#sec-core">1. الجوهر والمركز</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-karmic">2. الذيل الكارمي</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-age">3. طاقة العمر والسنوات</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-money">4. خط المال والوظيفة</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-love">5. خط العلاقات والشريك</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-programs">6. البرامج والأسلاف</button>
+        <button type="button" class="aqm-nav-pill" data-target="#sec-health">7. خريطة الشاكرات والصحة</button>
       </nav>
 
       <div class="aqm-matrix-sections">
-        <!-- المجموعة الأولى: الهوية والروح (أقسام 1 إلى 5) -->
-        <div class="aqm-group-container" data-cat="identity">
-          <div class="aqm-group-header">
-            <h4><span>✨ المجموعة الأولى: الهوية والروح</span> <small>Identity & Spirit</small></h4>
-            <p>بصمة الشخصية، دورات طاقة العمر، المواهب الفطرية الكامنة، الذيل الكارمي ودروس الروح، وسيناريو التطور.</p>
+        <!-- 1. الجوهر والمركز (Core Personality) -->
+        <section id="sec-core" class="aqm-destiny-section" tabindex="-1">
+          <div class="aqm-sec-header">
+            <span class="aqm-kicker">القسم 01 · Core Personality</span>
+            <h3>الجوهر والمركز (القناع الاجتماعي ونواة الروح) <span class="aqm-destiny-badge">الرقم ${A} و ${E}</span></h3>
           </div>
-          <section id="sec-personal" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 01 · Personal Qualities</span>
-          <h3>الشخصية والجوهر (القناع الاجتماعي ونواة الروح) <span class="aqm-destiny-badge">الرقم ${A} و ${E}</span></h3>
-          <p>تقوم مصفوفة القدر على التمييز بين <b>القناع الخارجي</b> (طاقة يوم الميلاد ${A}) الذي يراك به الناس في اللقاء الأول، وبين <b>نواة الروح وراحة القلب</b> (طاقة المركز ${E}) حيث يسكن سلامك الداخلي الحقيقي.</p>
+          <p>تميّز مصفوفة القدر بين <b>القناع الخارجي</b> (طاقة يوم الميلاد ${A}) الذي يراك به الناس، وبين <b>نواة الروح وراحة القلب</b> (طاقة المركز ${E}) حيث يسكن سلامك الداخلي الحقيقي.</p>
           ${centerCheatRows}
           <div class="aqm-pos-grid">
             <article class="aqm-pos-item is-highlight">
-              <h5><span>طاقة الانطباع الاجتماعي · رقم ${A}</span><small>يوم الميلاد</small></h5>
+              <h5><span>القناع الاجتماعي والانطباع الأول · رقم ${A}</span><small>يوم الميلاد</small></h5>
               <p><b>${escapeHTML(arcDay.title)}:</b> ${escapeHTML(arcDay.positions?.personality || arcDay.archetype)}</p>
             </article>
             <article class="aqm-pos-item is-highlight">
-              <h5><span>طاقة راحة الروح والمركز · رقم ${E}</span><small>نواة المصفوفة</small></h5>
+              <h5><span>نواة الروح وراحة القلب · رقم ${E}</span><small>مركز المصفوفة</small></h5>
               <p><b>${escapeHTML(arcCenter.title)}:</b> ${escapeHTML(arcCenter.positions?.center || arcCenter.archetype)}</p>
+            </article>
+            <article class="aqm-pos-item">
+              <h5><span>الاتصال الروحي ومصدر الإلهام · رقم ${B}</span><small>شهر الميلاد</small></h5>
+              <p><b>${escapeHTML(arcMonth.title)}:</b> ${escapeHTML(arcMonth.positions?.spirit || arcMonth.archetype)}</p>
+            </article>
+            <article class="aqm-pos-item">
+              <h5><span>مدخل المادة والمهام الدنيوية · رقم ${C}</span><small>سنة الميلاد</small></h5>
+              <p><b>${escapeHTML(arcYear.title)}:</b> ${escapeHTML(arcYear.positions?.money || arcYear.archetype)}</p>
             </article>
           </div>
           <div class="aqm-life-path-columns" style="margin-top: .85rem;">
             <div class="aqm-life-path-copy is-light"><h4>تجلي النواة في النور (+)</h4><p>${escapeHTML(arcCenter.light)}</p></div>
-            <div class="aqm-life-path-copy is-shadow"><h4>فخ النواة في الظل (-)</h4><p>${escapeHTML(arcCenter.shadow)}</p></div>
+            <div class="aqm-life-path-copy is-shadow"><h4>فخ الظل في المركز (-)</h4><p>${escapeHTML(arcCenter.shadow)}</p></div>
           </div>
         </section>
 
-        <!-- 2. طاقة العمر وخريطة دورات القدر -->
-        <section id="sec-age" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 02 · Year's Forecast & Age Map</span>
-          <h3>طاقة عمرك الحالي وخريطة دورات القدر <span class="aqm-destiny-badge">عمرك: ${ageInfo.exactAge} سنة</span></h3>
-          <div class="aqm-age-badge-group">
-            <span class="aqm-age-pill">العمر الحالي: <b>${ageInfo.exactAge} سنة</b></span>
-            <span class="aqm-age-pill">الطاقة الحاكمة للمرحلة: <b>أركانا ${currentYearEnergy}</b></span>
-            <span class="aqm-age-pill">${escapeHTML(ageInfo.quadrant)}</span>
-          </div>
-          <article class="aqm-card" style="margin: .8rem 0; padding: .95rem; border-color: rgba(212,175,55,.3);">
-            <h4 style="margin:0 0 .4rem; color:#f0dfb3;">${escapeHTML(ageTheme.title)}</h4>
-            <p style="margin:0; color:#cfd3dd; font-size:.88rem; line-height:1.8;">${escapeHTML(ageTheme.theme)}</p>
-          </article>
-          <h5 style="margin:1rem 0 .4rem; color:#e8cf91;">توزيع طاقات محيط الدائرة (من سن 0 إلى 80 سنة):</h5>
-          <div class="aqm-age-grid">
-            <div class="aqm-age-node ${ageInfo.milestone===0?'is-current':''}"><b>0 / 80 سنة</b><span>طاقة ${ageMap[0]||A}</span><small>اليسار · الولادة</small></div>
-            <div class="aqm-age-node ${ageInfo.milestone===10?'is-current':''}"><b>10 سنوات</b><span>طاقة ${ageMap[10]||'-'}</span><small>الركن العلوي الأيسر</small></div>
-            <div class="aqm-age-node ${ageInfo.milestone===20?'is-current':''}"><b>20 سنة</b><span>طاقة ${ageMap[20]||B}</span><small>الأعلى · الروح</small></div>
-            <div class="aqm-age-node ${ageInfo.milestone===30?'is-current':''}"><b>30 سنة</b><span>طاقة ${ageMap[30]||'-'}</span><small>الركن العلوي الأيمن</small></div>
-            <div class="aqm-age-node ${ageInfo.milestone===40?'is-current':''}"><b>40 سنة</b><span>طاقة ${ageMap[40]||C}</span><small>اليمين · المادة</small></div>
-            <div class="aqm-age-node ${ageInfo.milestone===50?'is-current':''}"><b>50 سنة</b><span>طاقة ${ageMap[50]||'-'}</span><small>الركن السفلي الأيمن</small></div>
-            <div class="aqm-age-node ${ageInfo.milestone===60?'is-current':''}"><b>60 سنة</b><span>طاقة ${ageMap[60]||D}</span><small>الأسفل · الكارما</small></div>
-            <div class="aqm-age-node ${ageInfo.milestone===70?'is-current':''}"><b>70 سنة</b><span>طاقة ${ageMap[70]||'-'}</span><small>الركن السفلي الأيسر</small></div>
-          </div>
-        </section>
-
-        <!-- 3. المواهب والقدرات -->
-        <section id="sec-talents" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 03 · Talents & Potentials</span>
-          <h3>المواهب والقدرات الكامنة (مثلث الرأس والاتصال الروحي) <span class="aqm-destiny-badge">الرقم ${B}</span></h3>
-          <p>طاقة شهر الميلاد ${B} تمثل صلتك بالإلهام وعالم الأفكار. هذه هي الهبة الفطرية التي ولدت بها ولا تحتاج إلى مجهود شاق لتفعيلها، بل تتغذى بالإتقان والتأمل الصامت.</p>
-          <article class="aqm-card" style="padding:.95rem;">
-            <h4 style="margin:0 0 .45rem; color:#f0dfb3;">${escapeHTML(arcMonth.title)}</h4>
-            <p style="margin:0 0 .65rem; color:#cfd3dd; font-size:.88rem; line-height:1.8;">${escapeHTML(arcMonth.positions?.spirit || arcMonth.archetype)}</p>
-            <p style="margin:0; color:#ecd497; font-size:.85rem;"><b>طريق تفعيل الموهبة:</b> ${escapeHTML(arcMonth.light)}</p>
-          </article>
-        </section>
-
-        <!-- 4. الذيل الكارمي والحياة السابقة -->
+        <!-- 2. الذيل الكارمي (Karmic Tail) -->
         <section id="sec-karmic" class="aqm-destiny-section aqm-karmic-card" tabindex="-1">
-          <span class="aqm-kicker">القسم 04 · Previous Life & Karmic Tail</span>
-          <h3>الذيل الكارمي والحياة السابقة <span class="aqm-karmic-code">كود: ${matrix.karmicTail.code}</span></h3>
-          <h4 style="margin:.3rem 0 .8rem; color:#ffb5a7;">${escapeHTML(tailData.title)}</h4>
-          <p>هذه الثلاثية السفلية هي "البئر العميق" ونقطة السقوط التلقائي اللاواعية التي تكررها منذ الطفولة. فك شفرتها ينقل كل طاقات مصفوفتك من القاع إلى النور.</p>
-          
-          <div class="aqm-track-box" style="margin:.8rem 0; border-color:rgba(192,57,43,.4);">
-            <h5>الصراع الباطني وجذور الطفولة</h5>
-            <p><b>التناقض الأساسي:</b> ${escapeHTML(tailData.paradox)}</p>
-            <p style="margin-top:.5rem;"><b>الجذور الأسرية:</b> ${escapeHTML(tailData.childhoodRoots)}</p>
+          <div class="aqm-sec-header">
+            <span class="aqm-kicker">القسم 02 · Karmic Tail</span>
+            <h3>الذيل الكارمي والدروس الروحية <span class="aqm-karmic-code">${tailData.code}</span></h3>
           </div>
-
+          <p>الذيل الكارمي هو الشفرة التأسيسية لتحدياتك غير المحلولة من الماضي؛ يدخل حياتك بنمط لاواعي مكرر حتى تتفكك العقدة وتتحول إلى أعلى درجات الحكمة.</p>
+          <div class="aqm-pos-grid">
+            <article class="aqm-pos-item">
+              <h5><span>قاعدة الذيل الكارمي (Base)</span><small>رقم ${matrix.karmicTail.base}</small></h5>
+              <p>${escapeHTML(arcKarma.archetype)}</p>
+            </article>
+            <article class="aqm-pos-item">
+              <h5><span>جذر الطفولة والبرمجة الأولى</span><small>أصل العقدة</small></h5>
+              <p>${escapeHTML(tailData.childhoodRoots || 'شعور مبكر بالحاجة لإثبات الذات أو الخوف من الفقدان والرفض.')}</p>
+            </article>
+          </div>
           <div class="aqm-karmic-tracks">
             <div class="aqm-track-box">
               <h5>المسار الأول (الهروب / الانجراف)</h5>
@@ -520,176 +446,111 @@
               <p>${escapeHTML(tailData.tracks?.trackTwo || 'إسقاط الأقنعة وكسر حلقة التخريب الذاتي بالانضباط والنزاهة الصريحة.')}</p>
             </div>
           </div>
-
-          <div class="aqm-life-path-blueprint" style="margin-top:.8rem; border-color:rgba(192,57,43,.3);">
-            <h4 style="color:#ffb5a7;">بروتوكول تفكيك العقدة الكارمية</h4>
-            <ol>
-              ${(tailData.transformationProtocol || []).map(step => '<li><span>' + escapeHTML(step) + '</span></li>').join('')}
-            </ol>
-          </div>
-
           <div class="aqm-confrontation">
-            <b>المواجهة الصريحة من عقيق:</b> ${escapeHTML(tailData.closingConfrontation || 'كل ما كان يوماً نقطة ضعفك الدفينة سيصبح أعظم مصادر قوتك عندما تفك شفرته بوعي شجاع.')}
+            <b>المواجهة الصريحة:</b> ${escapeHTML(tailData.closingConfrontation || 'كل ما كان يوماً نقطة ضعفك الدفينة سيصبح أعظم مصادر قوتك عندما تفك شفرته بوعي شجاع.')}
           </div>
         </section>
 
-        <!-- 5. سيناريو الحياة وتطور الفصول -->
-        <section id="sec-scenario" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 05 · Scenario of Life</span>
-          <h3>سيناريو وتطور مراحل الحياة (فصول العمر الأربعة)</h3>
-          <p>تتحرك طاقات الإنسان في دورة كبرى حول محاور المربع، لتمر بأربع محطات نضج وجودية:</p>
-          <div class="aqm-pos-grid">
-            <article class="aqm-pos-item">
-              <h5><span>المرحلة الأولى (0 - 20 سنة)</span><small>التكوين واكتشاف الذات</small></h5>
-              <p>تنشط بين يوم الميلاد (طاقة ${A}) والروح (طاقة ${B})؛ صياغة الهوية والانفصال التدريجي عن البيئة الأولى وتجربة المهارات الفردية.</p>
-            </article>
-            <article class="aqm-pos-item">
-              <h5><span>المرحلة الثانية (20 - 40 سنة)</span><small>بناء الأثر والمادة</small></h5>
-              <p>تنشط بين الروح (طاقة ${B}) وسنة الميلاد (طاقة ${C})؛ ذروة النشاط العملي والاجتماعي، بناء الثروة والمسؤولية، والبحث عن الاستقرار الأسري.</p>
-            </article>
-            <article class="aqm-pos-item">
-              <h5><span>المرحلة الثالثة (40 - 60 سنة)</span><small>الامتحان وسداد الديون</small></h5>
-              <p>تنشط نحو الذيل الكارمي (طاقة ${D})؛ مرحلة النضج الحاسم وسداد الالتزامات الكارمية، وإعادة تقييم الإنجازات بما يخدم سلام الروح.</p>
-            </article>
-            <article class="aqm-pos-item">
-              <h5><span>المرحلة الرابعة (60 - 80 سنة)</span><small>الحكمة والاندماج</small></h5>
-              <p>العودة لاكتمال الدورة نحو نقطة البداية؛ نقل الخبرة للأجيال القادمة والتصالح التام مع الجذور والكون.</p>
-            </article>
+        <!-- 3. طاقة العمر والسنوات (Age periods) -->
+        <section id="sec-age" class="aqm-destiny-section" tabindex="-1">
+          <div class="aqm-sec-header">
+            <span class="aqm-kicker">القسم 03 · Age periods & Annual Exam</span>
+            <h3>طاقة دورات العمر والامتحان السنوي <span class="aqm-destiny-badge">السن الحالي: ${ageInfo.exactAge} سنة</span></h3>
+          </div>
+          <div class="aqm-age-badge-group">
+            <span class="aqm-age-pill">طاقة سنتك الحالية: أركانا ${currentYearEnergy}</span>
+            <span class="aqm-age-pill">المحطة الكبرى: سن ${ageInfo.milestone}</span>
+          </div>
+          <article class="aqm-card" style="padding:.95rem; margin-top:.75rem;">
+            <span class="aqm-kicker">عنوان الامتحان الوجودي لسنتك الحالية</span>
+            <h4 style="margin:.3rem 0; color:#f5dfa8;">${escapeHTML(ageTheme.title || ('سنة الأركانا ' + currentYearEnergy))}</h4>
+            <p style="margin:0; color:#cfd3dd; font-size:.86rem; line-height:1.8;">${escapeHTML(ageTheme.theme || 'سنة تتطلب التركيز على تنظيم الأولويات ومواجهة الاختبارات بالمرونة وضبط النفس.')}</p>
+          </article>
+          <div class="aqm-age-grid">
+            ${Object.entries(ageMap).filter(([a]) => Number(a) % 10 === 0).map(([age, arc]) => `
+              <div class="aqm-age-node ${Number(age) === Number(ageInfo.milestone) ? 'is-current' : ''}">
+                <small>سن ${age} سنة</small>
+                <b>طاقة ${arc}</b>
+                <small>${escapeHTML(ARCANA[arc - 1]?.[0] || '')}</small>
+              </div>
+            `).join('')}
           </div>
         </section>
 
-        </div>
-
-        <!-- المجموعة الثانية: مسارات الأرض (أقسام 6 إلى 10) -->
-        <div class="aqm-group-container" data-cat="earth">
-          <div class="aqm-group-header">
-            <h4><span>🌍 المجموعة الثانية: مسارات الأرض</span> <small>Earthly Paths</small></h4>
-            <p>رسالة القدر وتكامل المحاور، تدفق خط المال والوفرة، البرامج الكارمية، شريك الحياة، والكيمياء الحميمية.</p>
-          </div>
-
-          <!-- 6. القدر والرسالة الروحية -->
-        <section id="sec-destiny" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 06 · Destiny & Spiritual Purpose</span>
-          <h3>القدر والرسالة الروحية (محاور السماء والأرض) <span class="aqm-destiny-badge">الامتحان الروحي: ${axes.spiritualExam}</span></h3>
-          <div class="aqm-pillars">
-            <article class="aqm-card aqm-pillar"><span class="aqm-pillar-number">${axes.soulSearching}</span><h4>البحث الذاتي (النية)</h4><p>حاصل دمج السماء والأرض: يحدد بوصلتك الداخلية حتى سن الأربعين.</p></article>
-            <article class="aqm-card aqm-pillar"><span class="aqm-pillar-number">${axes.socialization}</span><h4>الاندماج الاجتماعي</h4><p>حاصل دمج خطوط الذكور والإناث: يحدد دورك وأثرك في المجتمع بعد الأربعين.</p></article>
-            <article class="aqm-card aqm-pillar"><span class="aqm-pillar-number">${axes.spiritualExam}</span><h4>الطاقة الحاكمة (الامتحان الروحي)</h4><p>محصلة المسار الفردي والمجتمعي معاً: الامتحان الوجودي الذي ينضج وعيك.</p></article>
-          </div>
-        </section>
-
-        <!-- 7. المال والوفرة والمهنة -->
+        <!-- 4. خط المال والوظيفة (Money Line) -->
         <section id="sec-money" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 07 · Money & Career Line</span>
-          <h3>خط المال والوفرة والمهنة الأنسب <span class="aqm-destiny-badge">مدخل المال: ${matrix.channels.money}</span></h3>
-          <p>في مصفوفة القدر، المال ليس رقماً مجرداً بالبنك، بل هو <b>طاقة تدفق تتغذى بالوضوح</b> وتنسد بالشح أو الخوف من الفقر. طاقة سنة ميلادك (${C}) ومدخل خط المال (${matrix.channels.money}) يحددان طبيعة رزقك.</p>
+          <div class="aqm-sec-header">
+            <span class="aqm-kicker">القسم 04 · Money Line & Career</span>
+            <h3>خط المال والوفرة وتوجيه المهنة <span class="aqm-destiny-badge">مدخل الوفرة: ${matrix.channels.money}</span></h3>
+          </div>
+          <p>يتشكل تدفق المال من التوازن بين مدخل المادة (${C}) والمركز (${E}). المال في مصفوفة القدر هو طاقة نتيجة تتبع النزاهة والإتقان.</p>
           <div class="aqm-pos-grid">
             <article class="aqm-pos-item is-highlight">
-              <h5><span>بوابة كسب الرزق · طاقة ${C}</span><small>المادة وسنة الميلاد</small></h5>
-              <p><b>${escapeHTML(arcYear.title)}:</b> ${escapeHTML(arcYear.positions?.money || arcYear.archetype)}</p>
+              <h5><span>مدخل المال والوظيفة</span><small>طاقة ${matrix.channels.money}</small></h5>
+              <p>${escapeHTML(getArc(matrix.channels.money).positions?.money || getArc(matrix.channels.money).archetype)}</p>
             </article>
             <article class="aqm-pos-item">
-              <h5><span>ما يعطل المال في الظل (-)</span><small>معطلات الرزق</small></h5>
-              <p>${escapeHTML(arcYear.shadow)}</p>
+              <h5><span>أكبر عائق أمام تدفق الرزق (-)</span><small>فخ التسريب</small></h5>
+              <p>الخوف من الشُح، التردد في تسعير المهارة بقيمتها الحقيقية، أو محاولة جمع المال من مسارات لا تشبه قيمك الصادقة.</p>
             </article>
+          </div>
+          <div class="aqm-life-path-columns" style="margin-top:.85rem;">
+            <div class="aqm-life-path-copy is-light"><h4>مفتاح فتح الوفرة (+)</h4><p>تقديم نفع حقيقي ملموس، الانضباط في إدارة الموارد، والاستثمار في تطوير المهارات النوعية دون استعجال.</p></div>
+            <div class="aqm-life-path-copy is-shadow"><h4>فخ الإهدار والتشتت (-)</h4><p>التوسع المالي غير المحسوب، الدخول في صراعات نفوذ، أو استنزاف الدخل في التزامات استعراضية.</p></div>
           </div>
         </section>
 
-        <!-- 8. برامج المصفوفة الكارمية -->
-        <section id="sec-programs" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 08 · Programs</span>
-          <h3>برامج المصفوفة الكارمية (البرمجيات الحاكمة)</h3>
-          <p>تتكون مصفوفتك من برامج طاقية مركبة تتفاعل مع بعضها:</p>
+        <!-- 5. خط العلاقات والشريك (Love Line) -->
+        <section id="sec-love" class="aqm-destiny-section" tabindex="-1">
+          <div class="aqm-sec-header">
+            <span class="aqm-kicker">القسم 05 · Love Line & Relationships</span>
+            <h3>خط العلاقات وشريك الحياة <span class="aqm-destiny-badge">مدخل الحب: ${matrix.channels.love}</span></h3>
+          </div>
+          <p>يكشف خط الحب عن الصفات النفسية الحقيقية التي يحتاجها قلبك للشعور بالأمان والاكتمال، والتحدي الرئيسي الذي يختبر نضج الشراكة.</p>
           <div class="aqm-pos-grid">
-            <article class="aqm-pos-item">
-              <h5><span>برنامج الذيل الأساسي</span><small>${matrix.karmicTail.code}</small></h5>
-              <p><b>${escapeHTML(tailData.title)}:</b> البرمجة الدفاعية اللاواعية وطريقة التعامل مع الأزمات.</p>
+            <article class="aqm-pos-item is-highlight">
+              <h5><span>طبيعة شريك الروح المتوافق</span><small>طاقة ${matrix.channels.love}</small></h5>
+              <p>${escapeHTML(getArc(matrix.channels.love).positions?.relationship || getArc(matrix.channels.love).archetype)}</p>
             </article>
             <article class="aqm-pos-item">
-              <h5><span>برنامج السلالة الذكورية</span><small>${generations.male.combined}</small></h5>
-              <p>طاقة الفعل، الإنجاز، المسؤولية المالية، والحماية المنقولة عبر خط الآباء.</p>
+              <h5><span>نقطة التوازن والكيمياء الحميمية</span><small>طاقة ${matrix.channels.balance}</small></h5>
+              <p>تزدهر العلاقة عندما تكون الشراكة قائمة على الصراحة المتبادلة دون ابتزاز عاطفي أو رغبة في السيطرة.</p>
             </article>
-            <article class="aqm-pos-item">
-              <h5><span>برنامج السلالة الأنثوية</span><small>${generations.female.combined}</small></h5>
-              <p>طاقة الاستحقاق، المشاعر، العلاقات، والخصوبة المنقولة عبر خط الأمهات.</p>
-            </article>
+          </div>
+          <div class="aqm-life-path-columns" style="margin-top:.85rem;">
+            <div class="aqm-life-path-copy is-light"><h4>سر استمرار التناغم (+)</h4><p>الاحترام المتبادل للمساحات الفردية، التواصل الهادئ وقت الخلاف، والدعم الصادق لتحقيق أهداف الطرفين.</p></div>
+            <div class="aqm-life-path-copy is-shadow"><h4>النمط المهدد للارتباط (-)</h4><p>إسقاط صدمات الماضي على الشريك، الصمت العقابي، أو توقع الكمال المطلق دون قبول الطبيعة البشرية.</p></div>
           </div>
         </section>
 
-        <!-- 9. العلاقات وشريك الحياة -->
-        <section id="sec-relationship" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 09 · Relationship & Love Line</span>
-          <h3>العلاقات وشريك الحياة المقدر <span class="aqm-destiny-badge">مدخل الحب: ${matrix.channels.love}</span></h3>
-          <p>خط العلاقات في مصفوفة القدر يشرح نوع الشريك الذي تنجذب إليه لاواعياً، وعقدة الصدام المتكررة، وشرط التناغم لاستمرار المودة.</p>
-          <article class="aqm-card" style="padding:.95rem; margin:.75rem 0;">
-            <h4 style="margin:0 0 .4rem; color:#f0dfb3;">طبيعة الشريك والدرس العاطفي (طاقة ${matrix.channels.love})</h4>
-            <p style="margin:0; color:#cfd3dd; font-size:.88rem; line-height:1.8;">${escapeHTML(getArc(matrix.channels.love).positions?.relationship || getArc(matrix.channels.love).archetype)}</p>
-          </article>
-        </section>
-
-        <!-- 10. الكيمياء الحسية والحميمية -->
-        <section id="sec-sexiness" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 10 · Sexiness & Intimacy</span>
-          <h3>الكيمياء الحسية والعلاقة الحميمية (شاكرا العجز Svadhisthana)</h3>
-          <p>ترتبط كيمياء الفراش والشغف الحسي بطاقة شاكرا العجز ونواة المركز. الوضوح الحميمي وإسقاط الأحكام المسبقة يحرران طاقة الجاذبية المغناطيسية دون ابتزاز أو تملك.</p>
-          <div class="aqm-life-path-columns">
-            <div class="aqm-life-path-copy is-light"><h4>مفتاح التناغم الحميمي (+)</h4><p>شغف دافئ، تواصل جسدي شفاف، قبول لغة الجسد دون خجل، وفصل الجنس عن المساومة العاطفية.</p></div>
-            <div class="aqm-life-path-copy is-shadow"><h4>فخ الظل في الفراش (-)</h4><p>تحويل الحميمية إلى أداة ضغط أو عقاب، الصمت والبرود عند الخلاف، أو البحث عن تعويض خارجي في الظلال.</p></div>
+        <!-- 6. البرامج الكارمية والآباء والأبناء (Programs & Family) -->
+        <section id="sec-programs" class="aqm-destiny-section" tabindex="-1">
+          <div class="aqm-sec-header">
+            <span class="aqm-kicker">القسم 06 · Programs, Parents & Kids</span>
+            <h3>البرامج الكارمية ومربع الأسلاف والأبناء <span class="aqm-destiny-badge">السلالة 45°</span></h3>
           </div>
-        </section>
-
-        </div>
-
-        <!-- المجموعة الثالثة: الجذور والجسد (أقسام 11 إلى 14) -->
-        <div class="aqm-group-container" data-cat="roots">
-          <div class="aqm-group-header">
-            <h4><span>🌱 المجموعة الثالثة: الجذور والجسد</span> <small>Roots & Physicality</small></h4>
-            <p>طاقات الأجداد والنسب الأسري، الامتداد العاطفي للأبناء، البراند الشخصي والكاريزما، وخريطة الصحة والشاكرات.</p>
-          </div>
-
-          <!-- 11. الوالدين وبصمة الأجداد -->
-        <section id="sec-parents" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 11 · Parents & Ancestral Lines</span>
-          <h3>الوالدين وبصمة الأجداد (مربع السلالة 45°)</h3>
-          <p>يمثل مربع الأجداد الـ DNA الطاقي الممتد عبر 7 أجيال. التأمل في هذه الخطوط يكشف ما يستحق استمراره وما يجب تحريره:</p>
+          <p>يمثل مربع الأجداد الـ DNA الطاقي الممتد عبر الأجيال. التأمل في هذه الخطوط يكشف الأنماط الأسرية الموروثة وما يستحق تحريره لضمان راحة الأبناء:</p>
           <div class="aqm-lineage-grid" style="margin-top:.85rem;">
             ${lineageCard(generations.male, 'is-male')}
             ${lineageCard(generations.female, 'is-female')}
           </div>
-        </section>
-
-        <!-- 12. الأبناء والجيل القادم -->
-        <section id="sec-kids" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 12 · Kids & Legacy</span>
-          <h3>الأبناء وتمرير الطاقات (الجيل القادم)</h3>
-          <p>الأبناء يلتقطون ظلال الوالدين غير المعالجة؛ عندما تحرر ذيلك الكارمي، تمنح أبناءك حرية أن يعيشوا قدرهم الخاص دون أن يرثوا عقدك القديمة.</p>
-          <article class="aqm-card" style="padding:.95rem;">
-            <p style="margin:0; color:#cfd3dd; font-size:.88rem; line-height:1.8;"><b>الوصية التربوية لمصفوفتك:</b> لا تفرض مخاوفك من الفقر أو الفشل على أبنائك، وامنحهم أمان التجربة والخطأ دون لوم قاسٍ.</p>
+          <div class="aqm-pillars" style="margin-top: 1rem;">
+            <article class="aqm-card aqm-pillar"><span class="aqm-pillar-number">${axes.soulSearching}</span><h4>البحث الذاتي</h4><p>حاصل دمج السماء والأرض: بوصلتك الداخلية حتى سن الأربعين.</p></article>
+            <article class="aqm-card aqm-pillar"><span class="aqm-pillar-number">${axes.socialization}</span><h4>الاندماج الاجتماعي</h4><p>حاصل دمج خطوط الذكور والإناث: أثرك ومكانتك بعد الأربعين.</p></article>
+            <article class="aqm-card aqm-pillar"><span class="aqm-pillar-number">${axes.spiritualExam}</span><h4>الامتحان الروحي</h4><p>محصلة المسار الفردي والمجتمعي معاً: نضج الوعي الوجودي.</p></article>
+          </div>
+          <article class="aqm-card" style="padding:.95rem; margin-top:.85rem;">
+            <p style="margin:0; color:#cfd3dd; font-size:.88rem; line-height:1.8;"><b>الوصية التربوية لمصفوفتك:</b> الأبناء يلتقطون ظلال الوالدين غير المعالجة؛ عندما تحرر ذيلك الكارمي، تمنح أبناءك حرية أن يعيشوا قدرهم الخاص دون أن يرثوا عقدك القديمة.</p>
           </article>
         </section>
 
-        <!-- 13. البراند الشخصي والهوية -->
-        <section id="sec-brand" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 13 · Personal Brand</span>
-          <h3>الهوية والبراند الشخصي (كيف يراك العالم؟)</h3>
-          <p>المعادلة الذهبية لكاريزمتك أمام الجمهور هي التناغم التام بين طاقتك الاجتماعية (${A}) ونواتك الصادقة (${E}):</p>
-          <div class="aqm-pos-grid">
-            <article class="aqm-pos-item">
-              <h5><span>طابعك البصري وحضورك</span><small>طاقة ${A}</small></h5>
-              <p>${escapeHTML(arcDay.psychosomatics || arcDay.archetype)}</p>
-            </article>
-            <article class="aqm-pos-item">
-              <h5><span>رسالتك ومصداقيتك</span><small>طاقة ${E}</small></h5>
-              <p>تزدهر جاذبيتك عندما تتكلم بصوتك الحقيقي وتتحرر من محاولة إرضاء الجميع على حساب مبادئك.</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- 14. خريطة الشاكرات والصحة -->
+        <!-- 7. خريطة الشاكرات والصحة (Health Table) -->
         <section id="sec-health" class="aqm-destiny-section" tabindex="-1">
-          <span class="aqm-kicker">القسم 14 · Health Card & Chakras</span>
-          <h3>خريطة الشاكرات والجسد (Physics / Energy / Emotions)</h3>
-          <p>خريطة رمزية تكشف كيفية توزيع الطاقات على مراكز الجسم الحيوية السبعة:</p>
+          <div class="aqm-sec-header">
+            <span class="aqm-kicker">القسم 07 · Health Table & 7 Chakras</span>
+            <h3>خريطة الشاكرات والصحة (Physics / Energy / Emotions)</h3>
+          </div>
+          <p>توزيع طاقات الأركانا على مراكز الجسم الحيوية السبعة وفق نظام مصفوفة القدر:</p>
           <div class="aqm-table-scroll">
             <table class="aqm-chakra-table">
               <thead><tr><th scope="col">الشاكرا · Chakra</th><th scope="col">الجسد<br><small>Physics</small></th><th scope="col">الطاقة<br><small>Energy</small></th><th scope="col">المشاعر<br><small>Emotions</small></th></tr></thead>
@@ -701,7 +562,6 @@
           </div>
           <p class="aqm-health-note">${escapeHTML(chakras.method)} الارتباطات الجسدية رمزية للتأمل وليست بديلاً عن الاستشارة الطبية المتخصصة.</p>
         </section>
-        </div>
       </div>
     `;
   }
@@ -713,22 +573,19 @@
       dateValue = t;
     }
     if (!host) host = document.createElement('div');
-    const life=calculateLifePath(dateValue);
-    const matrix=calculateDestinyMatrix(dateValue);
-    const chakras=calculateChakraHealthCard(dateValue);
-    const generations=calculateGenerationalLines(dateValue);
-    const axes=calculateDestinyAxes(dateValue);
-    const n=life.number;
-    const traits=lifeTraits(n);
-    const num=matrix.nodes;
-    const profile=LIFE_PATH_DATA[n];
 
-    host.innerHTML=`
-      <section class="aqm-shell" dir="rtl" aria-label="مسار الحياة ومصفوفة القدر">
+    const matrix = calculateDestinyMatrix(dateValue);
+    const chakras = calculateChakraHealthCard(dateValue);
+    const generations = calculateGenerationalLines(dateValue);
+    const axes = calculateDestinyAxes(dateValue);
+    const num = matrix.nodes;
+
+    host.innerHTML = `
+      <section class="aqm-shell" dir="rtl" aria-label="مصفوفة القدر المرجعية">
         <header class="aqm-header">
-          <span class="aqm-kicker">مصفوفة القدر والأركانا الكبرى · ${escapeHTML(dateValue)}</span>
-          <h2>مصفوفة القدر والهندسة الطاقية</h2>
-          <p>أداة للوعي الذاتي والتأمل النفسي والسلوكي بأسلوب عقيق أسترو.</p>
+          <span class="aqm-kicker">مصفوفة القدر · الهندسة الطاقية · ${escapeHTML(dateValue)}</span>
+          <h2>مصفوفة القدر (Destiny Matrix)</h2>
+          <p>التقرير القياسي وفق هندسة الأركانا الـ 22 والمحاور المصيرية بنظام matrix-destiny.com المرجعي.</p>
         </header>
 
         <!-- النجمة الثمانية البصرية التفاعلية ومحاور القدر -->
@@ -742,7 +599,7 @@
             </div>
             <div class="aqm-matrix-wrap">
               ${renderSVG(matrix, dateValue)}
-              <div class="aqm-tooltip" id="aqm-tooltip" role="status" aria-live="polite">اضغط أو مرر على أي دائرة لاستكشاف معناها المصيري.</div>
+              <div class="aqm-tooltip" id="aqm-tooltip" role="status" aria-live="polite">اضغط أو مرر على أي دائرة لاستكشاف معناها والانتقال لقسمها.</div>
             </div>
             <div class="aqm-lines">
               <p><b>خط الوفرة والمال:</b> مدخل ${matrix.channels.money} ← المركز ${num.center} ← المادة ${num.south}</p>
@@ -753,19 +610,6 @@
 
           <div class="aqm-interpretations">
             <article class="aqm-card">
-              <span class="aqm-kicker">القناع الاجتماعي · رقم ${num.day}</span>
-              <h3>طاقة يوم الميلاد والانطباع الأول</h3>
-              <div class="aqm-reading">
-                <b>${num.day} · ${escapeHTML(ARCANA[num.day-1]?.[0] || '')}</b>
-                <p>${escapeHTML(ARCANA[num.day-1]?.[1] || '')}</p>
-              </div>
-              <div class="aqm-reading is-shadow">
-                <b>جانب للتأمل الواعي</b>
-                <p>${escapeHTML(ARCANA[num.day-1]?.[2] || '')}</p>
-              </div>
-            </article>
-
-            <article class="aqm-card">
               <span class="aqm-kicker">جوهر الروح · رقم ${num.center}</span>
               <h3>نواة وراحة الروح</h3>
               <div class="aqm-reading">
@@ -773,47 +617,28 @@
                 <p>${escapeHTML(ARCANA[num.center-1]?.[1] || '')}</p>
               </div>
               <div class="aqm-reading is-shadow">
-                <b>مساحة التوازن</b>
+                <b>مساحة التوازن واليقظة</b>
                 <p>${escapeHTML(ARCANA[num.center-1]?.[2] || '')}</p>
+              </div>
+            </article>
+
+            <article class="aqm-card">
+              <span class="aqm-kicker">القناع الاجتماعي · رقم ${num.west}</span>
+              <h3>طاقة يوم الميلاد والانطباع الأول</h3>
+              <div class="aqm-reading">
+                <b>${num.west} · ${escapeHTML(ARCANA[num.west-1]?.[0] || '')}</b>
+                <p>${escapeHTML(ARCANA[num.west-1]?.[1] || '')}</p>
+              </div>
+              <div class="aqm-reading is-shadow">
+                <b>جانب للتأمل الواعي</b>
+                <p>${escapeHTML(ARCANA[num.west-1]?.[2] || '')}</p>
               </div>
             </article>
           </div>
         </div>
 
-        <!-- الأقسام الـ 14 الشاملة لمصفوفة القدر وفق معمارية عقيق المعتمدة -->
-        ${render14DestinySections(matrix, dateValue, chakras, generations, axes)}
-
-        <!-- 3. كارت مسار الحياة الكوني المعزول والمستقل عن المصفوفة -->
-        <section id="aqm-lifepath-island" class="aqm-lifepath-island" aria-label="تحليل مسار الحياة الكوني المستقل">
-          <header class="aqm-lifepath-head">
-            <div class="aqm-lifepath-badge-row">
-              <span class="aqm-kicker">علم الأرقام (Numerology) · قراءة منفصلة ومستقلة</span>
-              <span class="aqm-badge-outline">أداة مستقلة</span>
-            </div>
-            <h3>مسار الحياة الكوني · رقم ${n}</h3>
-            <p class="aqm-lifepath-disclaimer">
-              <b>تنويه منهجي:</b> مسار الحياة مستخرج وفق علم الأرقام الغربي (مجموع أرقام تاريخ الميلاد الكامل)، وهو يوضح البوصلة العامة للوعي، بينما مصفوفة القدر بالأعلى مبنية على الأركانا الـ 22 وهندسة المربعين. تم فصل هذا التحليل هنا كمرجع إضافي حتى لا يحدث أي خلط بين النظامين.
-            </p>
-          </header>
-
-          <article class="aqm-hero" style="margin-top: 1rem;">
-            <div class="aqm-number">${n}</div>
-            <div>
-              <span class="aqm-kicker">رقم المسار الكوني</span>
-              <h3>${escapeHTML(profile?.title || 'طريقك يتشكل بخياراتك')}</h3>
-              <div class="aqm-tags">${traits.map(t=>`<span>${escapeHTML(t)}</span>`).join('')}</div>
-            </div>
-          </article>
-
-          <details class="aqm-lifepath-drawer" style="margin-top: 1.25rem;">
-            <summary class="aqm-drawer-summary">عرض التحليل السيكولوجي والسوماتيكي الكامل لمسار ${n} (مع جدول Cheat Sheet)</summary>
-            <div class="aqm-drawer-body">
-              ${renderLifePathProfile(profile)}
-            </div>
-          </details>
-        </section>
-
-        
+        <!-- الأقسام السبعة القياسية لمصفوفة القدر -->
+        ${render7DestinySections(matrix, dateValue, chakras, generations, axes)}
 
         <footer class="aqm-disclaimer">
           هذه التحليلات مبنية على الهندسة المقدسة ونظام الأركانا الـ 22 لمصفوفة القدر، ومصاغة بأسلوب تحليلي نفسي وسلوكي وسوماتيكي للتأمل العميق، ولا تتضمن ادعاءات غيبية حتمية.
@@ -832,63 +657,17 @@
       });
     });
 
-    // تفعيل التبديل بين مجموعات الأقسام الرئيسية (Categorized Groups)
-    const catTabs = host.querySelectorAll('.aqm-cat-tab');
-    const groupContainers = host.querySelectorAll('.aqm-group-container');
+    // تفعيل أزرار التنقل السريع بين الأقسام السبعة
     const navPills = host.querySelectorAll('.aqm-nav-pill');
-
-    catTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        catTabs.forEach(t => {
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('is-active');
-        tab.setAttribute('aria-selected', 'true');
-
-        const cat = tab.getAttribute('data-cat');
-        groupContainers.forEach(group => {
-          if (cat === 'all' || group.getAttribute('data-cat') === cat) {
-            group.hidden = false;
-          } else {
-            group.hidden = true;
-          }
-        });
-
-        // تصفية أزرار القفز السريع حسب المجموعة المختارة
-        navPills.forEach(pill => {
-          const pillCat = pill.getAttribute('data-cat');
-          if (cat === 'all' || pillCat === 'all' || pillCat === cat) {
-            pill.hidden = false;
-          } else {
-            pill.hidden = true;
-          }
-        });
-      });
-    });
-
-    // تفعيل أزرار التنقل السريع بين الأقسام الـ 14
     navPills.forEach(pill => {
       pill.addEventListener('click', () => {
         navPills.forEach(p => p.classList.remove('is-active'));
         pill.classList.add('is-active');
 
         const target = pill.getAttribute('data-target');
-        const filter = pill.getAttribute('data-filter');
-
-        if (filter === 'all') {
-          const allTab = host.querySelector('.aqm-cat-tab[data-cat="all"]');
-          if (allTab) allTab.click();
-          host.querySelectorAll('.aqm-destiny-section').forEach(sec => sec.hidden = false);
-        } else if (target) {
+        if (target) {
           const targetEl = host.querySelector(target);
           if (targetEl) {
-            const parentGroup = targetEl.closest('.aqm-group-container');
-            if (parentGroup && parentGroup.hidden) {
-              const cat = parentGroup.getAttribute('data-cat');
-              const matchTab = host.querySelector(`.aqm-cat-tab[data-cat="${cat}"]`);
-              if (matchTab) matchTab.click();
-            }
             targetEl.hidden = false;
             targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
             targetEl.focus();
@@ -897,7 +676,7 @@
       });
     });
 
-    // تفعيل تفاعل النقر والمرور على دوائر النجمة الثمانية
+    // تفعيل تفاعل النقر والمرور على دوائر النجمة الثمانية ونقاط العمر مع القفز التلقائي
     const tip = host.querySelector('#aqm-tooltip');
     const allSvgInteractive = host.querySelectorAll('.aqm-node, .aqm-age-node-dot');
 
@@ -907,12 +686,12 @@
         const age = node.dataset.age;
         if (age !== undefined) {
           const energy = node.querySelector('text')?.textContent || '';
-          if (tip) tip.textContent = `طاقة سن ${age} سنة · أركانا ${energy}: مرحلة نمو سنوية مهمة في مسار العمر (الامتحان السنوي). اضغط للانتقال للتفاصيل.`;
+          if (tip) tip.textContent = `طاقة سن ${age} سنة · أركانا ${energy}: مرحلة نمو سنوية مهمة في مسار العمر (الامتحان السنوي). اضغط للانتقال للقسم.`;
         } else if (key) {
           const value = num[key] || (key === 'love' ? matrix.channels.love : key === 'money' ? matrix.channels.money : matrix.channels.balance);
           const [positive, shadow] = (ARCANA[value - 1] || []).slice(1);
           const label = labels[key] || (key === 'love' ? 'خط الحب والشراكات' : key === 'money' ? 'خط المال والوفرة' : 'نقطة التوازن');
-          if (tip) tip.textContent = `${label} · ${value}: ${positive || ''}. جانب للتأمل: ${shadow || ''}. (اضغط لفتح القسم بالتقرير)`;
+          if (tip) tip.textContent = `${label} · ${value}: ${positive || ''}. جانب للتأمل: ${shadow || ''}. (اضغط للانتقال للقسم بالتقرير)`;
         }
         allSvgInteractive.forEach(n => n.classList.toggle('is-active', n === node));
       };
@@ -928,15 +707,6 @@
         const targetEl = host.querySelector(targetSel);
         if (!targetEl) return;
 
-        // تأكد من فتح المجموعة المناسبة إذا كانت مخفية
-        const parentGroup = targetEl.closest('.aqm-group-container');
-        if (parentGroup && parentGroup.hidden) {
-          const cat = parentGroup.getAttribute('data-cat');
-          const catTab = host.querySelector(`.aqm-cat-tab[data-cat="${cat}"]`);
-          if (catTab) catTab.click();
-        }
-
-        // إظهار وتمرير سلس للقسم المطلوب مع وميض إبراز بصري
         targetEl.hidden = false;
         targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         targetEl.classList.remove('is-highlighted-pulse');
@@ -944,7 +714,6 @@
         targetEl.classList.add('is-highlighted-pulse');
         targetEl.focus();
 
-        // تحديث زر الـ Pill المقابل
         const matchPill = host.querySelector(`.aqm-nav-pill[data-target="${targetSel}"]`);
         if (matchPill) {
           host.querySelectorAll('.aqm-nav-pill').forEach(p => p.classList.remove('is-active'));
@@ -980,7 +749,7 @@
     const matrixBtn = document.createElement('button');
     [
       [chartBtn, 'chart', 'الخريطة والعبور'],
-      [matrixBtn, 'numbers', 'الأرقام ومصفوفة القدر']
+      [matrixBtn, 'numbers', 'مصفوفة القدر']
     ].forEach(([btn, id, label], i) => {
       btn.type = 'button';
       btn.id = `aqm-tab-${id}`;
@@ -1056,78 +825,4 @@
 
   window.addEventListener('DOMContentLoaded', mount);
   mount();
-})();
-
-
-
-
-/* Story Share Card: client-side 9:16 PNG generation */
-(() => {
-  'use strict';
-  const W=1080,H=1920,ACCOUNT='@mohamed.ibrahim.astro';
-  const query=(root,selector)=>root.querySelector(selector);
-  function path(ctx,x,y,w,h,r){
-    ctx.beginPath();
-    ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
-    ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y+h,x,y,r);ctx.closePath();
-  }
-  function text(ctx,value,y,font,color,max=900){
-    ctx.font=font;ctx.fillStyle=color;ctx.textAlign='center';ctx.textBaseline='middle';ctx.direction='rtl';ctx.fillText(String(value),W/2,y,max);
-  }
-  function createCanvas(d){
-    const c=document.createElement('canvas');c.width=W;c.height=H;
-    const x=c.getContext('2d',{alpha:false}),g=x.createLinearGradient(0,0,W,H);
-    g.addColorStop(0,'#080a10');g.addColorStop(.52,'#15131b');g.addColorStop(1,'#0b1019');x.fillStyle=g;x.fillRect(0,0,W,H);
-    [[130,420,500,'rgba(192,57,43,.25)'],[980,1340,470,'rgba(212,175,55,.13)']].forEach(a=>{const q=x.createRadialGradient(a[0],a[1],0,a[0],a[1],a[2]);q.addColorStop(0,a[3]);q.addColorStop(1,'rgba(10,12,18,0)');x.fillStyle=q;x.fillRect(a[0]-a[2],a[1]-a[2],2*a[2],2*a[2]);});
-    path(x,66,92,948,1736,44);x.fillStyle='rgba(16,19,29,.84)';x.fill();x.strokeStyle='rgba(226,204,143,.4)';x.lineWidth=2;x.stroke();
-    x.strokeStyle='rgba(212,175,55,.15)';[300,385,470].forEach(r=>{x.beginPath();x.arc(540,590,r,0,Math.PI*2);x.stroke();});
-    for(let i=0;i<36;i++){x.fillStyle=i%5?'rgba(237,231,218,.32)':'rgba(212,175,55,.65)';x.beginPath();x.arc(85+(i*193%910),145+(i*317%1480),i%5?2:3,0,Math.PI*2);x.fill();}
-    text(x,'عقيق أسترو',210,'700 70px "Reem Kufi", "Noto Naskh Arabic", serif','#f2dfad');
-    text(x,'AKEEK ASTRO  ·  خريطة رمزية للتأمل',278,'500 25px Arial,sans-serif','#b9a979');
-    x.strokeStyle='rgba(212,175,55,.48)';x.beginPath();x.moveTo(245,335);x.lineTo(835,335);x.stroke();
-    text(x,'تاريخ الميلاد  ·  '+d.date,394,'500 34px "Noto Naskh Arabic",serif','#d1d3db');
-    path(x,180,490,720,355,38);const h=x.createLinearGradient(180,490,900,845);h.addColorStop(0,'rgba(212,175,55,.2)');h.addColorStop(1,'rgba(192,57,43,.2)');x.fillStyle=h;x.fill();x.strokeStyle='rgba(212,175,55,.64)';x.stroke();
-    text(x,'مسار الحياة',558,'600 34px "Noto Naskh Arabic",serif','#d9c58f');text(x,d.life.number,680,'700 118px Arial,sans-serif','#f5df9a');
-    text(x,d.traits,778,'600 29px "Noto Naskh Arabic",serif','#f3e8ce',690);
-    text(x,'أركان القدر',965,'700 43px "Noto Naskh Arabic",serif','#f0dfb3');
-    [['الجوهر',d.matrix.anchors.A],['طاقة الروح',d.matrix.anchors.B],['الكارما الأساسية',d.matrix.anchors.C]].forEach((v,i)=>{const a=170+i*370;path(x,a,1030,330,208,28);x.fillStyle='rgba(255,255,255,.045)';x.fill();x.strokeStyle='rgba(212,175,55,.25)';x.stroke();x.textAlign='center';x.direction='rtl';x.textBaseline='middle';x.font='500 27px "Noto Naskh Arabic",serif';x.fillStyle='#c9c4b8';x.fillText(v[0],a+165,1090,294);x.font='700 68px Arial,sans-serif';x.fillStyle='#f0d78e';x.fillText(String(v[1]),a+165,1170);});
-    text(x,'محصلة الشاكرات',1374,'700 43px "Noto Naskh Arabic",serif','#f0dfb3');text(x,'Common Energy-Zone',1432,'500 24px Arial,sans-serif','#aeb6ca');
-    [['الجسد',d.chakras.total.physics],['الطاقة',d.chakras.total.energy],['المشاعر',d.chakras.total.emotions]].forEach((v,i)=>{const a=270+i*270;x.beginPath();x.arc(a,1570,82,0,Math.PI*2);x.fillStyle='rgba(192,57,43,.16)';x.fill();x.strokeStyle='rgba(212,175,55,.46)';x.stroke();x.textAlign='center';x.direction='rtl';x.textBaseline='middle';x.font='700 48px Arial,sans-serif';x.fillStyle='#f3dda0';x.fillText(String(v[1]),a,1555);x.font='500 25px "Noto Naskh Arabic",serif';x.fillStyle='#d3d0c7';x.fillText(v[0],a,1610);});
-    x.strokeStyle='rgba(212,175,55,.34)';x.beginPath();x.moveTo(220,1680);x.lineTo(860,1680);x.stroke();
-    text(x,'اكتشف شفراتك أنت أيضاً',1712,'600 28px "Noto Naskh Arabic",serif','#eee1c1');
-    text(x,'moibrahim0369-hash.github.io/aqeeq.astro',1764,'500 19px Arial,sans-serif','#d6bb71',860);
-    text(x,ACCOUNT,1804,'500 20px Arial,sans-serif','#c6c9d1');
-    return c;
-  }
-  function read(shell){
-    const api=window.AqeeqNumerology,k=query(shell,'.aqm-header .aqm-kicker'),m=k&&k.textContent.match(/\d{4}-\d{2}-\d{2}/);
-    if(!api||!m)throw new Error('Missing numerology results');
-    const date=m[0],traits=query(shell,'.aqm-tags')?.innerText||'';
-    return {date,life:api.calculateLifePath(date),matrix:api.calculateDestinyMatrix(date),chakras:api.calculateChakraHealthCard(date),traits:traits.replace(/\s+/g,' · ').trim()};
-  }
-  function modal(){
-    let d=document.getElementById('aqs-story-dialog');if(d)return d;
-    d=document.createElement('dialog');d.id='aqs-story-dialog';d.className='aqs-story-dialog';d.setAttribute('aria-labelledby','aqs-story-title');
-    d.innerHTML='<div class="aqs-story-modal"><header><div><p class="aqs-story-kicker">بطاقة جاهزة للمشاركة</p><h2 id="aqs-story-title">قصتك في صورة</h2></div><button class="aqs-story-close" type="button" aria-label="إغلاق المعاينة">×</button></header><div class="aqs-story-preview"><div class="aqs-story-loading" role="status">جارٍ تجهيز البطاقة…</div><img alt="معاينة بطاقة قصة عقيق أسترو" hidden></div><p class="aqs-story-error" role="alert" hidden></p><footer><button class="aqs-story-download" type="button">تحميل الصورة</button><button class="aqs-story-share" type="button">مشاركة</button></footer><p class="aqs-story-private">الصورة تُنشأ على جهازك ولا يتم إرسال بيانات الميلاد إلى خادم.</p></div>';
-    document.body.append(d);d.querySelector('.aqs-story-close').addEventListener('click',()=>d.close());d.addEventListener('click',e=>{if(e.target===d)d.close();});return d;
-  }
-  function download(canvas,date){canvas.toBlob(b=>{if(!b)return;const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='aqeeq-astro-'+date+'.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);},'image/png');}
-  function mount(shell){
-    if(shell.dataset.aqsReady==='true'||!query(shell,'.aqm-hero'))return;shell.dataset.aqsReady='true';
-    const b=document.createElement('button');b.className='aqs-story-open';b.type='button';b.innerHTML='<span aria-hidden="true">📸</span> استخراج بطاقة القصة <small>Story Card · 9:16</small>';
-    query(shell,'.aqm-header')?.insertAdjacentElement('afterend',b);
-    b.addEventListener('click',async()=>{
-      const d=modal(),img=d.querySelector('img'),loading=d.querySelector('.aqs-story-loading'),err=d.querySelector('.aqs-story-error');err.hidden=true;img.hidden=true;loading.hidden=false;
-      d.showModal?d.showModal():d.setAttribute('open','');
-      try{
-        const data=read(shell);await document.fonts?.ready;const canvas=createCanvas(data),url=canvas.toDataURL('image/png');
-        const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw new Error('PNG encoding failed');
-        const file=new File([blob],'aqeeq-astro-'+data.date+'.png',{type:'image/png'});img.src=url;img.hidden=false;loading.hidden=true;
-        d.querySelector('.aqs-story-download').onclick=()=>download(canvas,data.date);
-        d.querySelector('.aqs-story-share').onclick=async()=>{try{if(navigator.share&&navigator.canShare?.({files:[file]})){const p=navigator.share({files:[file],title:'بطاقة عقيق أسترو',text:'اكتشف شفراتك في عقيق أسترو'});await p;}else download(canvas,data.date);}catch(e){if(e.name!=='AbortError')download(canvas,data.date);}};
-      }catch(e){loading.hidden=true;err.textContent='تعذر تجهيز البطاقة الآن. حدّث النتيجة وحاول مرة أخرى.';err.hidden=false;}
-    });
-  }
-  const scan=()=>document.querySelectorAll('.aqm-shell').forEach(mount);
-  new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});scan();
 })();
