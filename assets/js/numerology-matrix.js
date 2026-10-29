@@ -1,39 +1,52 @@
 (() => {
   'use strict';
+
+  // ==================== تحذير: هذا الملف يستخدم Unified Adapter ====================
+  // المصدر الموحد لكل حسابات مصفوفة القدر:
+  // - matrix-method-adapter.js
+  // انظر MATRIX_METHOD_SPECIFICATION.md و MATRIX_SYSTEM_STATUS.md
+  // ==============================================================================
+
   const SIGNS = ['الحمل','الثور','الجوزاء','السرطان','الأسد','العذراء','الميزان','العقرب','القوس','الجدي','الدلو','الحوت'];
-  const MASTER = new Set([11,22,33]);
   const LIFE_PATH_DATA = window.AqeeqLifePathData || {};
   const ARCANA = [
     ['البداية والإرادة','مبادرة وابتكار','اندفاع أو تشتت'],['المعرفة والحدس','إنصات ووعي داخلي','كتمان أو تردد'],['النمو والرعاية','إبداع واحتواء','إفراط في السيطرة'],['النظام والمسؤولية','ثبات وتنظيم','جمود أو تشدد'],['التعلم والقيم','حكمة ومشاركة خبرة','وعظ أو تعلق بالقواعد'],['الاختيار والانسجام','تقارب ووضوح قيم','إرضاء الآخرين'],['الحركة والتقدم','شجاعة وتوجيه للطاقة','استعجال أو صراع'],['العدل والتوازن','إنصاف واتزان','قسوة في الحكم'],['التأمل والخبرة','صبر واستقلال','عزلة أو انغلاق'],['الدورات والفرص','مرونة واستعداد للتغيير','انتظار الحظ'],['القوة والاتزان','شجاعة هادئة وضبط للنفس','كبت أو إنهاك'],['تغيير المنظور','تأنٍ ورؤية مختلفة','تعليق القرار'],['التحول والتجدد','ترك ما انتهى','مقاومة التغيير'],['الاعتدال والمواءمة','توازن وتدرج','تأجيل الاحتياجات'],['الاختيار الواعي','ملاحظة التعلق واستعادة الحرية','تعلق أو إفراط'],['التحرر من البنى القديمة','كشف ما يحتاج إلى إصلاح','هدم بلا خطة'],['الأمل والإلهام','ثقة هادئة ورؤية بعيدة','مثالية أو تشتت'],['الحدس والمشاعر','خيال وتعاطف مع التحقق','ضبابية أو إسقاط'],['الوضوح والحيوية','تعبير ودفء','استنزاف أو مبالغة'],['المراجعة والنداء الداخلي','تعلم من الماضي','لوم الذات'],['الاكتمال والاندماج','إغلاق مرحلة واتساع الأفق','تشتت قبل الإغلاق'],['البدايات المفتوحة','فضول وتجربة','مخاطرة دون تقدير']
   ];
-  const normDate = value => {
-    if (value instanceof Date && !Number.isNaN(value.getTime())) return {year:value.getFullYear(),month:value.getMonth()+1,day:value.getDate()};
-    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
-    if (!match) throw new TypeError('تاريخ الميلاد مطلوب بصيغة YYYY-MM-DD');
-    const [,y,m,d] = match.map(Number);
-    const check = new Date(Date.UTC(y,m-1,d));
-    if (check.getUTCFullYear()!==y || check.getUTCMonth()!==m-1 || check.getUTCDate()!==d) throw new RangeError('تاريخ الميلاد غير صالح');
-    return {year:y,month:m,day:d};
+
+  // ==================== الحصول على Adapter الموحد ====================
+  const getAdapter = () => {
+    if (!window.AqeeqMatrixMethodAdapter) {
+      throw new Error('⚠️ matrix-method-adapter.js غير محمل! يجب تحميل المكتبة قبل numerology-matrix.js');
+    }
+    return window.AqeeqMatrixMethodAdapter;
   };
-  function digitSum(value) { return String(Math.abs(Math.trunc(value))).split('').reduce((sum,digit)=>sum+Number(digit),0); }
-  function reduceLifePath(value) { let n=Math.abs(Math.trunc(value)); while(n>9&&!MASTER.has(n)) n=digitSum(n); return n; }
-  function calculateLifePath(birthDate) {
-    const {year,month,day}=normDate(birthDate);
-    const components=[reduceLifePath(day),reduceLifePath(month),reduceLifePath(digitSum(year))];
-    return {number:reduceLifePath(components.reduce((a,b)=>a+b,0)),components};
+
+  // ==================== التوافقية العكسية ====================
+  // الدوال الآتية محفوظة من أجل التوافقية، لكنها تستدعي الـ Adapter الآن
+
+  function normDate(value) {
+    return getAdapter().normalizeBirthDate(value);
   }
-  function reduceArcana(value) { let n=Math.abs(Math.trunc(value)); while(n>22) n=digitSum(n); return n || 22; }
+
+  function digitSum(value) {
+    return getAdapter().digitSum(value);
+  }
+
+  function reduceArcana(value) {
+    return getAdapter().reduceArcana(value);
+  }
+
   function calculateDestinyMatrix(birthDate) {
+    return getAdapter().calculateDestinyMatrix(birthDate);
+  }
+
+  function calculateLifePath(birthDate) {
+    // ملاحظة: Life Path (1-9) منفصل — سيُنقل لـ life-path-numerology.js
     const {year,month,day}=normDate(birthDate);
-    // A=day, B=month, C=year; D=A+B+C; E=A+B+C+D. R preserves 1..22.
-    const A=reduceArcana(day), B=reduceArcana(month), C=reduceArcana(digitSum(year));
-    const D=reduceArcana(A+B+C), E=reduceArcana(A+B+C+D);
-    const F=reduceArcana(A+B), G=reduceArcana(B+C), H=reduceArcana(C+D), I=reduceArcana(D+A);
-    const ancestralCenter=reduceArcana(F+G+H+I), commonCenter=reduceArcana(E+ancestralCenter);
-    const nodes={north:A,east:B,south:C,west:D,northEast:F,southEast:G,southWest:H,northWest:I,center:E};
-    return {nodes,anchors:{A,B,C,D,E},generationalCorners:{F,G,H,I},ancestralCenter,commonCenter,
-      lines:{money:['northEast','center','southWest'],love:['northWest','center','southEast']},
-      formula:'A=اليوم، B=الشهر، C=مجموع أرقام السنة؛ D=R(A+B+C)، E=R(A+B+C+D). زوايا مربع الأسلاف F=R(A+B)، G=R(B+C)، H=R(C+D)، I=R(D+A). كل R تختزل بجمع الأرقام عند تجاوز 22.'};
+    const digitSum_impl = (v) => String(Math.abs(Math.trunc(v))).split('').reduce((s,d)=>s+Number(d),0);
+    const reduceLifePath = (v) => { let n=Math.abs(Math.trunc(v)); while(n>9&&![11,22,33].includes(n)) n=digitSum_impl(n); return n; };
+    const components=[reduceLifePath(day),reduceLifePath(month),reduceLifePath(digitSum_impl(year))];
+    return {number:reduceLifePath(components.reduce((a,b)=>a+b,0)),components};
   }
   function calculateChakraHealthCard(birthDate) {
     const {A,B,C,D,E}=calculateDestinyMatrix(birthDate).anchors, R=reduceArcana;
