@@ -696,3 +696,59 @@
     padding: 20px;
   }
 }
+
+/* Reference Guides Section */
+.tarot-references-section {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+.ref-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+.ref-card {
+  background: var(--tarot-card-bg);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ref-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--tarot-gold);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+}
+.ref-card h3 {
+  font-size: 1.15rem;
+  color: var(--tarot-gold);
+  margin-bottom: 10px;
+  font-family: var(--display, 'Amiri', serif);
+}
+.ref-card p {
+  font-size: 0.9rem;
+  color: var(--tarot-text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.ref-card-btn {
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid var(--tarot-gold);
+  color: var(--tarot-gold-light);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.ref-card:hover .ref-card-btn {
+  background: var(--tarot-gold);
+  color: #0d0a14;
+}

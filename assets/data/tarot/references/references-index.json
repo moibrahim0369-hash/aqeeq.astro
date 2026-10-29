@@ -1,0 +1,46 @@
+{
+  "count": 8,
+  "updated_at": "2026-10-29T20:22:10.401Z",
+  "references": [
+    {
+      "file": "05-tarot-combinations-encyclopedia.md",
+      "title": "موسوعة توليفات كروت التاروت (Tarot Combinations Master Encyclopedia)",
+      "size_kb": 18.1
+    },
+    {
+      "file": "06-tarot-spreads-and-question-design.md",
+      "title": "دليل فتحات التاروت وصياغة الأسئلة (Spreads & Question Design Master Reference)",
+      "size_kb": 11.6
+    },
+    {
+      "file": "01-tarot-astrology-correspondences.md",
+      "title": "الربط الفلكي بالتاروت (Tarot Astrology Correspondences)",
+      "size_kb": 7
+    },
+    {
+      "file": "04-tarot-court-cards-encyclopedia.md",
+      "title": "موسوعة كروت البلاط الملكية (Tarot Court Cards Encyclopedia)",
+      "size_kb": 16.8
+    },
+    {
+      "file": "03-tarot-numbers-and-elements.md",
+      "title": "الأرقام والعناصر في التاروت (Tarot Numbers & Elements Master Reference)",
+      "size_kb": 18.3
+    },
+    {
+      "file": "07-tarot-psychological-interpretation.md",
+      "title": "التفسير النفسي وسيكولوجيا التاروت (Tarot Psychological Interpretation Master Reference)",
+      "size_kb": 11.7
+    },
+    {
+      "file": "08-tarot-sourcebook-audit.md",
+      "title": "سجل تدقيق ومصادر التاروت (Tarot Sourcebook, Audit & Correction Register)",
+      "size_kb": 14.7
+    },
+    {
+      "file": "02-tarot-astrology-prompt-and-reference.md",
+      "title": "مرجع الربط الفلكي والأبراج بالتاروت (Tarot Astrology Master Reference & Prompt)",
+      "size_kb": 20.1
+    }
+  ]
+}
