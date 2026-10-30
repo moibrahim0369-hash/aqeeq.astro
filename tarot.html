@@ -28,6 +28,7 @@
         <a href="index.html#matrix" class="cosmic-nav-link">مصفوفة القدر</a>
         <a href="tarot.html" class="cosmic-nav-link active">استشارة وقراءات التاروت 🎴</a>
         <a href="workbench.html" class="cosmic-nav-pill">محراب التعليم 🏛️</a>
+        <a href="#tarotReferences" class="cosmic-nav-link">المراجع الكبرى</a>
       </nav>
     </div>
   </header>
@@ -105,10 +106,128 @@
       <!-- Rendered dynamically by consultation-tarot.js -->
     </section>
 
+    <!-- Master Academic Reference Guides Section -->
+    <section class="tarot-references-section" id="tarotReferences">
+      <div class="tarot-header" style="margin-bottom: 30px;">
+        <div class="tarot-badge">
+          <span>📜</span>
+          <span>الموسوعة المرجعية وأدلة القراءة المتقدمة</span>
+        </div>
+        <h2 class="tarot-title" style="font-size: 2.1rem;">المراجع والمنهجيات الكبرى</h2>
+        <p class="tarot-subtitle">
+          أدلة دراسية أكاديمية تأسيسية موثقة مستخلصة من أمهات مراجع التاروت العالمية (Rachel Pollack, Mary K. Greer, Golden Dawn, Carl Jung, Pythagoras). انقر على أي دليل لفتحه في قارئ المخطوطات الموسوعي الكامل.
+        </p>
+      </div>
+
+      <div class="ref-cards-grid">
+        <!-- Guide 1 -->
+        <article class="ref-card" onclick="openReferenceModal('spreads-questions')">
+          <div>
+            <div class="ref-tag">المنهجية وتصميم الأسئلة</div>
+            <h3>دليل الفتحات وصياغة الأسئلة المفتوحة</h3>
+            <p>
+              كيف تصيغ أسئلة تمكينية تكشف الجوهر النفسي بدلاً من أسئلة التكهن السطحية، مع تفكيك ميكانيزمات أشهر الفرشات الكلاسيكية وأخلاقيات القراءة.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Rachel Pollack (78 Degrees of Wisdom) · Mary K. Greer</div>
+        </article>
+
+        <!-- Guide 2 -->
+        <article class="ref-card" onclick="openReferenceModal('elemental-dignities')">
+          <div>
+            <div class="ref-tag">الكيمياء الخفية والكرامات</div>
+            <h3>موسوعة التوليفات والعناصر والكرامات العنصرية</h3>
+            <p>
+              قواعد تفاعل العناصر الأربعة (نار، ماء، هواء، تراب) لنظام الفجر الذهبي (Golden Dawn): التوافق والعداوة والحياد، وكيف يغير تجاور الكروت دلالاتها.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Golden Dawn Elemental Dignities · Mathers · Crowley</div>
+        </article>
+
+        <!-- Guide 3 -->
+        <article class="ref-card" onclick="openReferenceModal('court-cards')">
+          <div>
+            <div class="ref-tag">الشخصيات وأنماط السلوك</div>
+            <h3>موسوعة كروت البلاط الملكية (Court Cards)</h3>
+            <p>
+              التشريح الكامل للـ 16 شخصية ملكية: تفكيك العناصر الفرعية المزدوجة (نار الماء، تراب الهواء...) ومطابقتها مع الأنماط السلوكية في الواقع والعلاقات.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Mary K. Greer &amp; Tom Little · Jungian Personality Types</div>
+        </article>
+
+        <!-- Guide 4 -->
+        <article class="ref-card" onclick="openReferenceModal('astrological-attributions')">
+          <div>
+            <div class="ref-tag">الفلك والهرمسية</div>
+            <h3>الربط الفلكي الكامل: البروج، الكواكب، والعشريات</h3>
+            <p>
+              التوزيع الفلكي الدقيق لكروت التاروت الـ 78: الأركانا الكبرى والـ 12 برجاً والكواكب السبعة، والأركانا الصغرى وعشريات الدائرة الفلكية الـ 36.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Golden Dawn Astrological Attributions · Corrine Kenner</div>
+        </article>
+
+        <!-- Guide 5 -->
+        <article class="ref-card" onclick="openReferenceModal('numerology-minor-arcana')">
+          <div>
+            <div class="ref-tag">الفلسفة الفيثاغورسية والأرقام</div>
+            <h3>الأرقام والعناصر الرمزية (من 1 إلى 10)</h3>
+            <p>
+              الدورة التطورية للأرقام في الأركانا الصغرى: من بداية الشرارة والواحد (Ace) وحتى الاكتمال والتجسيد النهائي في العشرة عبر العناصر الأربعة.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Pythagorean Numerology in Tarot · Paul Foster Case</div>
+        </article>
+
+        <!-- Guide 6 -->
+        <article class="ref-card" onclick="openReferenceModal('jungian-tarot-shadow')">
+          <div>
+            <div class="ref-tag">علم النفس التحليلي</div>
+            <h3>سيكولوجيا التاروت واستكشاف الظل (Shadow Work)</h3>
+            <p>
+              التاروت كمرآة للعقل اللاواعي في مدرسة كارل يونغ: النماذج الأصلية (Archetypes)، الأنيما والأنيموس، ميكانيزم الإسقاط، وتفكيك الظل النفسي.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Carl G. Jung · Sallie Nichols (Jung and Tarot) · Marie-Louise von Franz</div>
+        </article>
+      </div>
+    </section>
   </main>
 
-  <!-- Scripts -->
-  <script src="assets/js/consultation-tarot.js"></script>
+  <!-- Master Encyclopedia Reference Modal / Drawer -->
+  <div class="tarot-modal-overlay ref-reader-overlay" id="tarotReferenceReaderModal" role="dialog" aria-modal="true">
+    <div class="tarot-modal ref-reader-container">
+      <div class="modal-header ref-reader-header">
+        <div>
+          <div class="ref-badge-top">الموسوعة المرجعية الأكاديمية الكبرى · عقيق أسترو</div>
+          <h2 id="refReaderTitle" style="color: var(--tarot-gold); font-size: 1.55rem; font-family: var(--display, 'Amiri', serif); margin: 4px 0 6px;">عنوان المخطوطة</h2>
+          <div class="modal-meta-pills" id="refReaderAuthorities"></div>
+        </div>
+        <div class="ref-header-actions">
+          <button class="ref-action-btn ref-copy-btn" id="refCopyGuideBtn" title="نسخ محتوى الدليل بالكامل">
+            <span>📋</span>
+            <span>نسخ النص</span>
+          </button>
+          <button class="modal-close-btn" id="refReaderCloseBtn" aria-label="إغلاق النافذة">✕</button>
+        </div>
+      </div>
 
+      <!-- Table of Contents Bar -->
+      <div class="ref-reader-toc-bar" id="refReaderTocBar">
+        <!-- Rendered dynamically by tarot-reader-modal.js -->
+      </div>
+
+      <!-- Manuscript Full Content Body -->
+      <div class="modal-body ref-reader-body" id="refReaderBody">
+        <!-- Rendered dynamically by tarot-reader-modal.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/tarot-references-data.js"></script>
+  <script src="assets/js/tarot-reader-modal.js"></script>
+  <script src="assets/js/consultation-tarot.js"></script>
 </body>
 </html>
