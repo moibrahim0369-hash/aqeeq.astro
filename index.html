@@ -129,7 +129,7 @@
 <button class="btn" type="submit">احسب مصفوفتي</button>
 <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
 </form>
-<div aria-live="polite" class="result" hidden="" id="mresult"></div>
+<div aria-live="polite" class="result" hidden="" id="mresult" data-view-result="matrix"></div>
 </div>
 </section>
 <section class="sec" id="lifepath">
@@ -158,7 +158,7 @@
 <button class="btn" type="submit">اعرف مسار حياتي</button>
 <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
 </form>
-<div aria-live="polite" class="result" hidden="" id="lpresult"></div>
+<div aria-live="polite" class="result" hidden="" id="lpresult" data-view-result="lifepath"></div>
 </div>
 </section>
 <section class="sec" id="chart">
@@ -192,7 +192,7 @@
 <button class="btn" type="submit">احسب خريطتي</button>
 <p class="privacy">الحساب بيتم على جهازك. بيانات ميلادك مابتتبعتش لأي سيرفر.</p>
 </form>
-<div aria-live="polite" class="result" hidden="" id="result"></div>
+<div aria-live="polite" class="result" hidden="" id="result" data-view-result="chart"></div>
 </div>
 </section>
 <section class="sec" id="astro-maps"><div class="wrap">
@@ -1534,6 +1534,69 @@ if (typeof module !== 'undefined') module.exports = Astro;
   window.AqeeqChartContext = { getNatal: () => LAST };
   $("#cform").addEventListener("submit", e => { e.preventDefault(); calc(); });
 
+  function isolateResultView(activeView) {
+    const allResultIds = ['result', 'mresult', 'matrix-result', 'lpresult', 'lifepath-result', 'syn-result', 'cp-out', 'eam-result'];
+    const activeMap = {
+      chart: ['result'],
+      matrix: ['mresult', 'matrix-result'],
+      lifepath: ['lpresult', 'lifepath-result'],
+      synastry: ['syn-result'],
+      compat: ['cp-out'],
+      astromaps: ['eam-result']
+    };
+    const activeIds = activeMap[activeView] || [];
+
+    allResultIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (activeIds.includes(id)) {
+        el.hidden = false;
+        el.style.display = 'block';
+      } else {
+        el.hidden = true;
+        el.style.display = 'none';
+      }
+    });
+  }
+  window.isolateResultView = isolateResultView;
+
+  function onHashChangeRoute() {
+    const hash = (window.location.hash || '').replace('#', '');
+    if (hash === 'chart') {
+      isolateResultView('chart');
+    } else if (hash === 'matrix') {
+      isolateResultView('matrix');
+    } else if (hash === 'lifepath') {
+      isolateResultView('lifepath');
+    } else if (hash === 'compat') {
+      isolateResultView('compat');
+    } else if (hash === 'astro-maps') {
+      isolateResultView('astromaps');
+    } else if (hash === 'home' || !hash) {
+      isolateResultView('home');
+      const lpForm = document.getElementById('lpform');
+      const lpStart = document.getElementById('lp-start');
+      if (lpForm) lpForm.hidden = true;
+      if (lpStart) lpStart.hidden = false;
+    }
+  }
+  window.addEventListener('hashchange', onHashChangeRoute);
+  window.addEventListener('DOMContentLoaded', onHashChangeRoute);
+
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.btn-return-home');
+    if (btn) {
+      e.preventDefault();
+      isolateResultView('home');
+      const lpForm = document.getElementById('lpform');
+      const lpStart = document.getElementById('lp-start');
+      if (lpForm) lpForm.hidden = true;
+      if (lpStart) lpStart.hidden = false;
+      window.location.hash = '#home';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
   function fail(msg) { const el = $("#ferr"); el.textContent = msg; el.hidden = false; }
 
   function calc() {
@@ -1575,7 +1638,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
         chartData: { bodies: ch.bodies.map(b => ({ key: b.key, lon: b.lon, speed: b.speed, retro: b.retro, sign: b.sign, house: b.house })), asc: ch.asc, mc: ch.mc, cusps: ch.cusps, hs: ch.hs, lat: ch.lat, lon: ch.lon, known: ch.known }
       }));
     } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
-    renderResult(LAST);
+    renderResult(LAST); if (typeof isolateResultView === "function") isolateResultView("chart");
     const r = $("#result"); r.hidden = false;
     window.AqeeqGender?.apply(r, LAST.gender);
     window.AqeeqCopyMap?.attach(r, LAST.name ? "خريطة الميلاد · " + LAST.name : "خريطة الميلاد");
@@ -1932,7 +1995,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const titleName = S.name ? `خريطة ${esc(S.name)}` : "خريطتك";
 
     const big = (label, lon, g) => `<div class="b3"><span class="b3g" aria-hidden="true">${gl(g)}</span><span class="b3l">${label}</span><strong>${SIGNS[fmt(lon).s].n}</strong>${num(fmt(lon).txt)}</div>`;
-    let h = `<div class="res-head"><h3>${titleName}</h3><p>${when}، ${esc(S.placeName)}</p></div>
+    const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+    let h = returnHomeBtn + `<div class="res-head"><h3>${titleName}</h3><p>${when}، ${esc(S.placeName)}</p></div>
       <div class="big3">${big("الشمس", sun.lon, "☉")}${big("القمر", moon.lon, "☽")}${ch.known ? big("الطالع", ch.asc, "↑") : `<div class="b3 dim"><span class="b3g" aria-hidden="true">↑</span><span class="b3l">الطالع</span><strong>مش متاح</strong><span class="b3n">محتاج وقت الميلاد</span></div>`}</div>
       <div class="wheel-wrap">${wheelSVG(ch, asp)}</div>
       <div class="wd-panel" id="wd-panel" aria-live="polite" hidden></div>
@@ -1993,7 +2057,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     h += `<div class="panel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden>${pt}</div>`;
 
     /* 3) النهاردة */
-    h += `<div class="panel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>${todayHTML(ch)}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>${todayHTML(ch)}<div id="aqeek-personal-transits"></div></div>`;
 
     /* 4) الجداول */
     const hsName = ch.hs === "placidus" ? "Placidus" : "Whole Sign";
@@ -2010,7 +2074,6 @@ if (typeof module !== 'undefined') module.exports = Astro;
     h += ``;
 
     const root = $("#result");
-    h += '<div id="aqeek-personal-transits"></div>';
     root.innerHTML = h;
     bindContact(root); wirePattern(root, S); wireWheel(root, S);
     const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
@@ -2860,6 +2923,7 @@ let lastMX = null, lastLP = null;
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    if (typeof isolateResultView === "function") isolateResultView("matrix");
     renderMatrix($("#m-name").value.trim(), d, m, y);
     const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
   });
@@ -2875,7 +2939,8 @@ let lastMX = null, lastLP = null;
     const panels = bodies.map((b, i) => `<div class="panel" role="tabpanel" id="mp${i + 1}" aria-labelledby="mt${i + 1}"${i ? " hidden" : ""}>${b}</div>`).join("");
     const topWheel = hasDeep ? "" : `<div class="wheel-wrap">${matrixSVG(P, cur)}</div><p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
     const root = $("#mresult");
-    root.innerHTML = head + topWheel + tabs + panels + CONTACT_LINE;
+    const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+    root.innerHTML = returnHomeBtn + head + topWheel + tabs + panels + CONTACT_LINE;
     wireTabs(root); bindContact(root);
 
     const mp1 = $("#mp1", root);
@@ -3119,7 +3184,8 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     lastLP = [name, d, m, y];
     const lp = lifePath(d, m, y), base = LP_BASE[lp] || lp, F = LP_FREE[base];
     const root = $("#lpresult");
-    root.innerHTML = `<button class="btn ghost sm lp-back-start" type="button" id="lp-back-start">← الرجوع لمسار الحياة</button><div class="res-head"><div class="numbadge" aria-hidden="true">${lp}</div><h3>${name ? esc(name) + ": " : ""}${F.t}${LP_BASE[lp] ? " (رقم رئيسي " + lp + ")" : ""}</h3><p class="tg2">${F.tag}</p><p>${d}/${m}/${y}</p></div>` + dailyHTML(lp) + `<div class="panel" style="margin-top:22px">${lpHTML(lp)}</div>` + MX_NOTE;
+    const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+    root.innerHTML = returnHomeBtn + `<button class="btn ghost sm lp-back-start" type="button" id="lp-back-start">← الرجوع لمسار الحياة</button><div class="res-head"><div class="numbadge" aria-hidden="true">${lp}</div><h3>${name ? esc(name) + ": " : ""}${F.t}${LP_BASE[lp] ? " (رقم رئيسي " + lp + ")" : ""}</h3><p class="tg2">${F.tag}</p><p>${d}/${m}/${y}</p></div>` + dailyHTML(lp) + `<div class="panel" style="margin-top:22px">${lpHTML(lp)}</div>` + MX_NOTE;
     if ((LP_BASE[lp] || lp) === 1) {
       root.querySelectorAll("[data-lp-section]").forEach((el, i) => {
         const item = LP1_REVISED_SOURCE[i] || LP1_SOURCE_SECTIONS[i];
@@ -3194,6 +3260,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    if (typeof isolateResultView === "function") isolateResultView("lifepath");
     renderLP($("#lp-name").value.trim(), d, m, y);
     window.AqeeqGender?.apply($("#lpresult"), gender);
     window.AqeeqCopyMap?.attach($("#lpresult"), "مسار الحياة · " + $("#lp-name").value.trim());
