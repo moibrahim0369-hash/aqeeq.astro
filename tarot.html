@@ -447,6 +447,38 @@
     </div>
   </div>
 
+  <!-- Specialized Academic Encyclopedia Reader Modal -->
+  <div class="tarot-modal-overlay ref-reader-overlay" id="tarotReferenceReaderModal" role="dialog" aria-modal="true" style="display: none;">
+    <div class="tarot-modal ref-reader-container">
+      <div class="modal-header ref-reader-header">
+        <div class="modal-title-group">
+          <div class="ref-reader-badge">الموسوعة المرجعية الكبرى · عقيق أسترو</div>
+          <h2 id="refReaderTitle" style="color: var(--tarot-gold); font-size: 1.55rem; font-family: var(--display, 'Amiri', serif); margin: 6px 0;">عنوان الدليل</h2>
+          <div class="modal-meta-pills" id="refReaderAuthorities">
+            <!-- Authorities pills -->
+          </div>
+        </div>
+        <div class="ref-header-actions">
+          <button class="ref-action-btn ref-copy-btn" id="refCopyGuideBtn" title="نسخ محتوى الدليل بالكامل">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span>نسخ الدليل</span>
+          </button>
+          <button class="modal-close-btn" id="refReaderCloseBtn" aria-label="إغلاق النافذة">✕</button>
+        </div>
+      </div>
+
+      <!-- Quick TOC Navigation Bar -->
+      <div class="ref-reader-toc-bar" id="refReaderTocBar">
+        <!-- Quick pills to jump to sections -->
+      </div>
+
+      <!-- Reader Body -->
+      <div class="modal-body ref-reader-body" id="refReaderBody">
+        <!-- Full unabridged structured content with headers and markdown tables -->
+      </div>
+    </div>
+  </div>
+
   <footer style="border-top: 1px solid rgba(212, 175, 55, 0.15); padding: 40px 20px; text-align: center; color: var(--tarot-text-muted); font-size: 0.9rem; background: #0b0814;">
     <p>© 2026 عقيق أسترو (Aqeeq Astro) · منصة المعرفة والوعي النفسي والفلكي.</p>
   </footer>
@@ -454,5 +486,6 @@
   <script src="assets/js/tarot-references-data.js"></script>
   <script src="assets/js/tarot-sanctuary.js"></script>
   <script src="assets/js/workbench-studio.js"></script>
+  <script src="assets/js/tarot-reader-modal.js"></script>
 </body>
 </html>

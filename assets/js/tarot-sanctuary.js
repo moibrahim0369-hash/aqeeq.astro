@@ -266,28 +266,11 @@
   }
 
   window.openReferenceModal = function (key) {
-    if (!modalOverlay) return;
-    const refData = window.AqeeqTarotReferences && window.AqeeqTarotReferences[key];
-    if (!refData) return;
-
-    modalTitle.textContent = refData.title;
-    modalMetaPills.innerHTML = `
-      <span class="card-tag">الموسوعة المرجعية الكبرى</span>
-      <span class="card-tag">عقيق أسترو (Aqeeq Astro)</span>
-    `;
-
-    const tabsNav = document.querySelector('.modal-tabs');
-    if (tabsNav) tabsNav.style.display = 'none';
-
-    modalBody.innerHTML = `
-      <div class="card-fulltext">
-        <h3 style="color: var(--tarot-gold); margin-bottom: 20px; font-family: var(--display, 'Amiri', serif);">${refData.title}</h3>
-        ${formatMarkdown(refData.markdown)}
-      </div>
-    `;
-
-    modalOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    // Delegated to specialized reader in tarot-reader-modal.js
+    if (typeof window.openTarotReferenceReader === 'function') {
+      window.openTarotReferenceReader(key);
+      return;
+    }
   };
 
   function closeModal() {
