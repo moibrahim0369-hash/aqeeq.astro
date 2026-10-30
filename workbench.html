@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محراب التعليم واستوديو التسكين الأكاديمي | عقيق أسترو</title>
+  <meta name="description" content="محراب ومختبر التسكين الأكاديمي الشامل للتاروت، تسكين الفرشات يدوياً، ميزان العناصر الأربعة، وموسوعة الـ 78 كارت المعتمدة.">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=Amiri:wght@400;700&family=Cairo:wght@700;800&family=Noto+Naskh+Arabic:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
+  <link rel="stylesheet" href="assets/css/cosmic-background.css">
+  <link rel="stylesheet" href="assets/css/tarot-sanctuary.css">
+</head>
+<body style="background: radial-gradient(circle at center, #18122c, #09070f); min-height: 100vh; margin: 0; padding: 0;">
+
+  <!-- Simple Cosmic Top Nav -->
+  <header class="cosmic-top-header">
+    <div class="cosmic-header-inner">
+      <a href="index.html" class="cosmic-brand-link">
+        <span class="cosmic-brand-icon">✦</span>
+        <span class="cosmic-brand-title">عقيق أسترو</span>
+      </a>
+      <nav class="cosmic-top-nav">
+        <a href="index.html#home" class="cosmic-nav-link">الرئيسية</a>
+        <a href="index.html#matrix" class="cosmic-nav-link">مصفوفة القدر</a>
+        <a href="tarot.html" class="cosmic-nav-link">استشارة وقراءات التاروت 🎴</a>
+        <a href="workbench.html" class="cosmic-nav-link active">محراب التعليم 🏛️</a>
+        <a href="#tarotLibrary" class="cosmic-nav-link">الموسوعة (78)</a>
+        <a href="#tarotReferences" class="cosmic-nav-link">المراجع الكبرى</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tarot-sanctuary-wrap">
+    
+    <!-- Hero / Header -->
+    <div class="tarot-header">
+      <div class="tarot-badge">
+        <span>🏛️</span>
+        <span id="totalCountDisplay">الموسوعة المكتملة: 78 بطاقة مفعلة بالكامل (الأركانا الكبرى 22 + الأركانا الصغرى 56)</span>
+      </div>
+      <h1 class="tarot-title">محراب التعليم واستوديو التسكين</h1>
+      <p class="tarot-subtitle">
+        مساحة متقدمة لدارسي وممارسي التاروت: تسكين البطاقات يدوياً من قراءاتك الحقيقية، احتساب ميزان العناصر الأربعة وهيمنة الأركانا، مع التوليف التفسيري والموسوعة الأكاديمية الكاملة.
+      </p>
+    </div>
+
+    <!-- Tarot Reader Workbench & Educational Studio -->
+    <section class="tarot-workbench-section" id="tarotWorkbench" aria-label="محراب ومختبر القراءات التعليمي">
+      <div class="workbench-header-wrap">
+        <div class="workbench-title-box">
+          <div class="tarot-badge" style="margin-bottom: 8px;">
+            <span>🎴</span>
+            <span>استوديو القراءات والتسكين اليدوي (Tarot Reader Workbench)</span>
+          </div>
+          <h2 class="workbench-main-title">مختبر تسكين الفرشات والتوليف التركيبي</h2>
+          <p class="workbench-desc">
+            قم بإعداد وتسكين بطاقاتك المسحوبة يدوياً، لتوليد تقرير تركيبي فوري يحلل تفاعل الطاقات وميزان العناصر الأربعة وفق فلسفة منصة عقيق.
+          </p>
+        </div>
+        <div>
+          <button type="button" class="workbench-btn-secondary" id="resetWorkbenchBtn" title="إعادة ضبط الفرشة وخانات البطاقات">
+            <span>↺</span>
+            <span>إعادة ضبط المساحة</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Spread Configuration Bar -->
+      <div class="workbench-config-bar">
+        <div class="workbench-form-group">
+          <label for="workbenchReadingType">
+            <span>🎯</span>
+            <span>سياق وعدسة القراءة:</span>
+          </label>
+          <select id="workbenchReadingType" class="workbench-select">
+            <option value="motives" selected>تفكيك النوايا وما وراء السلوك (Shadow & Motives) 👁️</option>
+            <option value="momentum">المسار الحركي والقرارات (Momentum & Trajectory) 🧭</option>
+            <option value="psyche">التشريح النفسي والتوازن الذاتي (Psyche & Alignment) 🧠</option>
+          </select>
+        </div>
+
+        <div class="workbench-form-group">
+          <label for="workbenchSpreadType">
+            <span>📐</span>
+            <span>هيكل وحجم الفرشة:</span>
+          </label>
+          <select id="workbenchSpreadType" class="workbench-select">
+            <option value="three-time" selected>مثلث الزمن (3 بطاقات: ماضٍ · حاضر · مستقبل)</option>
+            <option value="three-guide">ثالوث التوجيه (3 بطاقات: الموقف · العقبة · الإرشاد)</option>
+            <option value="five-cross">صليب التحول السريع (5 بطاقات: الجوهر والتحدي والمآل)</option>
+            <option value="seven-horseshoe">حدوة الحصان الاستبصارية (7 بطاقات: التحليل الشامل للمسار)</option>
+            <option value="nine-matrix">المصفوفة الاستراتيجية 3×3 (9 بطاقات: الجذور والواقع والمآل)</option>
+            <option value="custom">فرشة حرة مخصصة (Custom: اختيار حر لعدد الكروت)</option>
+          </select>
+        </div>
+
+        <div class="workbench-form-group" id="customCountGroup" style="display: none; max-width: 130px; min-width: 110px;">
+          <label for="workbenchCustomCount">
+            <span>🔢</span>
+            <span>عدد الكروت:</span>
+          </label>
+          <input type="number" id="workbenchCustomCount" class="workbench-input" min="1" max="10" value="4">
+        </div>
+
+        <div>
+          <button type="button" id="buildSpreadBtn" class="workbench-btn-primary">
+            <span>✨</span>
+            <span>تجهيز مساحة الفرشة</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Status Banner -->
+      <div class="workbench-status-banner" id="workbenchStatusBanner">
+        <div class="workbench-status-info">
+          <span>📐 الفرشة الحالية: </span>
+          <span class="spread-title" id="currentSpreadNameDisplay">مثلث الزمن (3 بطاقات)</span>
+          <span style="color: var(--tarot-text-muted); margin: 0 8px;">|</span>
+          <span>السياق: </span>
+          <span id="currentReadingTypeDisplay" style="color: var(--tarot-gold-light);">تفكيك النوايا وما وراء السلوك 👁️</span>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--tarot-text-muted);">
+          <span>اختر أو ابحث عن كل بطاقة في موضعها أدناه</span>
+        </div>
+      </div>
+
+      <!-- Interactive Card Slots Grid -->
+      <div class="workbench-slots-grid" id="workbenchSlotsGrid">
+        <!-- Rendered dynamically by workbench-studio.js -->
+      </div>
+
+      <!-- Workbench Synthesis Panel Trigger -->
+      <div style="text-align: center; margin-top: 10px; margin-bottom: 25px;">
+        <button type="button" id="generateSynthesisBtn" class="workbench-btn-primary" style="font-size: 1.05rem; padding: 14px 32px;">
+          <span>🔮</span>
+          <span>توليد التقرير التركيبي وقراءة ميزان العناصر</span>
+        </button>
+      </div>
+
+      <!-- Synthesis Report Panel (Initially Hidden) -->
+      <div class="workbench-synthesis-panel" id="workbenchSynthesisPanel">
+        <div class="synthesis-header">
+          <div class="synthesis-title-wrap">
+            <span class="synthesis-badge">تقرير التوليف المتقدم</span>
+            <h3 style="margin: 0; font-size: 1.35rem; color: var(--tarot-gold-light); font-family: var(--display, 'Amiri', serif);">خلاصة القراءة التركيبية وميزان الطاقة</h3>
+            <p id="synthesisMetaSubtitle">تحليل تركيبي شامل للبطاقات المسكنة في الفرشة وميزان الطاقة الحاكمة.</p>
+          </div>
+          <div>
+            <span class="card-tag" id="synthesisCardsCountTag">0 / 3 بطاقات مسكنة</span>
+          </div>
+        </div>
+
+        <!-- Metrics Grid (Elements & Arcana Gauge) -->
+        <div class="synthesis-metrics-grid">
+          
+          <!-- Elemental Dominance Card -->
+          <div class="metric-card">
+            <h4>
+              <span>🔥💧💨🌿</span>
+              <span>ميزان هيمنة العناصر الأربعة</span>
+            </h4>
+            <div class="elemental-bars-list">
+              <div class="element-meter">
+                <div class="element-meter-header">
+                  <span>عنصر النار 🔥 (الإرادة، الشغف، الفعل)</span>
+                  <span id="firePctText">0%</span>
+                </div>
+                <div class="element-meter-track">
+                  <div class="element-meter-fill element-fill-fire" id="fireMeterFill" style="width: 0%;"></div>
+                </div>
+              </div>
+              
+              <div class="element-meter">
+                <div class="element-meter-header">
+                  <span>عنصر الماء 💧 (المشاعر، الحدس، العلاقات)</span>
+                  <span id="waterPctText">0%</span>
+                </div>
+                <div class="element-meter-track">
+                  <div class="element-meter-fill element-fill-water" id="waterMeterFill" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="element-meter">
+                <div class="element-meter-header">
+                  <span>عنصر الهواء 💨 (العقل، المنطق، القرارات)</span>
+                  <span id="airPctText">0%</span>
+                </div>
+                <div class="element-meter-track">
+                  <div class="element-meter-fill element-fill-air" id="airMeterFill" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="element-meter">
+                <div class="element-meter-header">
+                  <span>عنصر التراب 🌿 (التجسيد، المال، الاستقرار)</span>
+                  <span id="earthPctText">0%</span>
+                </div>
+                <div class="element-meter-track">
+                  <div class="element-meter-fill element-fill-earth" id="earthMeterFill" style="width: 0%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="elemental-summary-text" id="elementalInterpretationText">
+              سكن البطاقات واضغط على زر توليد التقرير لعرض قراءة التناغم والكرامات العنصرية.
+            </div>
+          </div>
+
+          <!-- Arcana Dominance Gauge Card -->
+          <div class="metric-card">
+            <h4>
+              <span>⚡🛠️</span>
+              <span>مؤشر هيمنة الأركانا (القدري vs اليومي)</span>
+            </h4>
+            <div class="arcana-gauge-wrap">
+              <div class="arcana-gauge-bar">
+                <div class="gauge-seg-major" id="majorGaugeSeg" style="width: 50%;">كبرى: 50%</div>
+                <div class="gauge-seg-minor" id="minorGaugeSeg" style="width: 50%;">صغرى: 50%</div>
+              </div>
+              <div class="arcana-legend">
+                <span id="majorCountLabel">الأركانا الكبرى: 0</span>
+                <span id="minorCountLabel">الأركانا الصغرى: 0</span>
+              </div>
+            </div>
+            <div class="arcana-gauge-text" id="arcanaRatioInterpretation">
+              توازن الأركانا يوضح ما إذا كان الموقف محكوماً بتحولات قدرية روحية كبرى (Major) أو بخيارات وتفاصيل عملية يومية تحت سيطرتك (Minor).
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Synthesized Narrative -->
+        <div class="synthesis-narrative-section">
+          <h4>
+            <span>📜</span>
+            <span>السردية التركيبية الشاملة للفرشة</span>
+          </h4>
+          <div class="synthesis-narrative-content" id="synthesisNarrativeBody">
+            سكن الكروت في خاناتها بالأعلى ليتم نسج السردية التحليلية المتصلة هنا.
+          </div>
+          <div class="synthesis-timeline-steps" id="synthesisTimelineSteps">
+            <!-- Rendered by workbench-studio.js -->
+          </div>
+        </div>
+
+        <!-- Overarching Inquiry Question -->
+        <div class="synthesis-inquiry-box">
+          <div class="inquiry-icon">❓</div>
+          <div class="inquiry-content">
+            <div class="inquiry-title">سؤال الاستبصار والتأمل الحاكم للفرشة</div>
+            <p id="synthesisInquiryQuestion">«ما هو المعنى الحقيقي الذي تطلبه مني هذه القراءة الآن للارتقاء بوعيي وسلوكي؟»</p>
+          </div>
+        </div>
+
+        <!-- Bottom Actions (Copy, Print, Collapse) -->
+        <div class="synthesis-bottom-actions">
+          <button type="button" class="workbench-btn-secondary" id="copySynthesisReportBtn">
+            <span>📋</span>
+            <span>نسخ التقرير التركيبي</span>
+          </button>
+          <button type="button" class="workbench-btn-secondary" id="printSynthesisReportBtn">
+            <span>🖨️</span>
+            <span>طباعة / حفظ كـ PDF</span>
+          </button>
+          <button type="button" class="workbench-btn-secondary" id="collapseSynthesisBtn" style="color: var(--tarot-text-muted);">
+            <span>▲</span>
+            <span>طي لوحة التقرير</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tarot 78 Cards Library / Encyclopedia Section -->
+    <section class="tarot-library-section" id="tarotLibrary">
+      <div class="tarot-header" style="margin-bottom: 25px;">
+        <div class="tarot-badge">
+          <span>📚</span>
+          <span>الموسوعة الشاملة</span>
+        </div>
+        <h2 class="tarot-title" style="font-size: 2.1rem;">مكتبة بطاقات التاروت الـ 78</h2>
+        <p class="tarot-subtitle">
+          تصفح وابحث في الدليل المرجعي الأكاديمي الشامل: الأركانا الكبرى (22) وعوالم الأركانا الصغرى الأربعة (56) بدقة الرمزية، الارتباط الفلكي، والتشريح النفسي.
+        </p>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="tarot-search-bar">
+        <input type="text" id="tarotSearchInput" class="search-input" placeholder="ابحث بالاسم العربي، الإنجليزي، البرج الفلكي، أو الكلمة المفتاحية..." autocomplete="off">
+      </div>
+
+      <div class="tarot-filter-chips">
+        <button class="chip active" data-filter="all">الكل (78)</button>
+        <button class="chip" data-filter="major">الأركانا الكبرى (22)</button>
+        <button class="chip" data-filter="wands">العصي - نار 🔥 (14)</button>
+        <button class="chip" data-filter="cups">الكؤوس - ماء 💧 (14)</button>
+        <button class="chip" data-filter="swords">السيوف - هواء 💨 (14)</button>
+        <button class="chip" data-filter="pentacles">الخماسي - تراب 🌿 (14)</button>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="tarot-cards-grid" id="tarotCardsGrid">
+        <!-- Rendered dynamically by workbench-library.js -->
+      </div>
+    </section>
+
+    <!-- Master Academic Reference Guides Section -->
+    <section class="tarot-references-section" id="tarotReferences">
+      <div class="tarot-header" style="margin-bottom: 30px;">
+        <div class="tarot-badge">
+          <span>📜</span>
+          <span>الموسوعة المرجعية وأدلة القراءة المتقدمة</span>
+        </div>
+        <h2 class="tarot-title" style="font-size: 2.1rem;">المراجع والمنهجيات الكبرى</h2>
+        <p class="tarot-subtitle">
+          أدلة دراسية أكاديمية تأسيسية موثقة مستخلصة من أمهات مراجع التاروت العالمية (Rachel Pollack, Mary K. Greer, Golden Dawn, Carl Jung, Pythagoras). انقر على أي دليل لفتحه في قارئ المخطوطات الموسوعي الكامل.
+        </p>
+      </div>
+
+      <div class="ref-cards-grid">
+        <!-- Guide 1 -->
+        <article class="ref-card" onclick="openReferenceModal('spreads-questions')">
+          <div>
+            <div class="ref-tag">المنهجية وتصميم الأسئلة</div>
+            <h3>دليل الفتحات وصياغة الأسئلة المفتوحة</h3>
+            <p>
+              كيف تصيغ أسئلة تمكينية تكشف الجوهر النفسي بدلاً من أسئلة التكهن السطحية، مع تفكيك ميكانيزمات أشهر الفرشات الكلاسيكية وأخلاقيات القراءة.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Rachel Pollack (78 Degrees of Wisdom) · Mary K. Greer</div>
+        </article>
+
+        <!-- Guide 2 -->
+        <article class="ref-card" onclick="openReferenceModal('elemental-dignities')">
+          <div>
+            <div class="ref-tag">الكيمياء الخفية والكرامات</div>
+            <h3>موسوعة التوليفات والعناصر والكرامات العنصرية</h3>
+            <p>
+              قواعد تفاعل العناصر الأربعة (نار، ماء، هواء، تراب) لنظام الفجر الذهبي (Golden Dawn): التوافق والعداوة والحياد، وكيف يغير تجاور الكروت دلالاتها.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Golden Dawn Elemental Dignities · Mathers · Crowley</div>
+        </article>
+
+        <!-- Guide 3 -->
+        <article class="ref-card" onclick="openReferenceModal('court-cards')">
+          <div>
+            <div class="ref-tag">الشخصيات وأنماط السلوك</div>
+            <h3>موسوعة كروت البلاط الملكية (Court Cards)</h3>
+            <p>
+              التشريح الكامل للـ 16 شخصية ملكية: تفكيك العناصر الفرعية المزدوجة (نار الماء، تراب الهواء...) ومطابقتها مع الأنماط السلوكية في الواقع والعلاقات.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Mary K. Greer &amp; Tom Little · Jungian Personality Types</div>
+        </article>
+
+        <!-- Guide 4 -->
+        <article class="ref-card" onclick="openReferenceModal('astrological-attributions')">
+          <div>
+            <div class="ref-tag">الفلك والهرمسية</div>
+            <h3>الربط الفلكي الكامل: البروج، الكواكب، والعشريات</h3>
+            <p>
+              التوزيع الفلكي الدقيق لكروت التاروت الـ 78: الأركانا الكبرى والـ 12 برجاً والكواكب السبعة، والأركانا الصغرى وعشريات الدائرة الفلكية الـ 36.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Golden Dawn Astrological Attributions · Corrine Kenner</div>
+        </article>
+
+        <!-- Guide 5 -->
+        <article class="ref-card" onclick="openReferenceModal('numerology-minor-arcana')">
+          <div>
+            <div class="ref-tag">الفلسفة الفيثاغورسية والأرقام</div>
+            <h3>الأرقام والعناصر الرمزية (من 1 إلى 10)</h3>
+            <p>
+              الدورة التطورية للأرقام في الأركانا الصغرى: من بداية الشرارة والواحد (Ace) وحتى الاكتمال والتجسيد النهائي في العشرة عبر العناصر الأربعة.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Pythagorean Numerology in Tarot · Paul Foster Case</div>
+        </article>
+
+        <!-- Guide 6 -->
+        <article class="ref-card" onclick="openReferenceModal('jungian-tarot-shadow')">
+          <div>
+            <div class="ref-tag">علم النفس التحليلي</div>
+            <h3>سيكولوجيا التاروت واستكشاف الظل (Shadow Work)</h3>
+            <p>
+              التاروت كمرآة للعقل اللاواعي في مدرسة كارل يونغ: النماذج الأصلية (Archetypes)، الأنيما والأنيموس، ميكانيزم الإسقاط، وتفكيك الظل النفسي.
+            </p>
+          </div>
+          <div class="ref-author">المراجع: Carl G. Jung · Sallie Nichols (Jung and Tarot) · Marie-Louise von Franz</div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Card Detail Modal (5 Tabs) -->
+  <div class="tarot-modal-overlay" id="tarotModalOverlay" role="dialog" aria-modal="true">
+    <div class="tarot-modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalTitle">اسم الكارت</h2>
+          <div class="modal-meta-pills" id="modalMetaPills"></div>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="إغلاق النافذة">✕</button>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="overview">المعنى العام</button>
+        <button class="modal-tab" data-tab="psychology">التشريح النفسي والظل</button>
+        <button class="modal-tab" data-tab="domains">العلاقات والمال</button>
+        <button class="modal-tab" data-tab="symbols">الرموز والفلك</button>
+        <button class="modal-tab" data-tab="action">التوجيه السلوكي والتأمل</button>
+      </div>
+
+      <div class="modal-body" id="modalBody">
+        <!-- Rendered dynamically by workbench-library.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Master Encyclopedia Reference Modal / Drawer -->
+  <div class="tarot-modal-overlay ref-reader-overlay" id="tarotReferenceReaderModal" role="dialog" aria-modal="true">
+    <div class="tarot-modal ref-reader-container">
+      <div class="modal-header ref-reader-header">
+        <div>
+          <div class="ref-badge-top">الموسوعة المرجعية الأكاديمية الكبرى · عقيق أسترو</div>
+          <h2 id="refReaderTitle" style="color: var(--tarot-gold); font-size: 1.55rem; font-family: var(--display, 'Amiri', serif); margin: 4px 0 6px;">عنوان المخطوطة</h2>
+          <div class="modal-meta-pills" id="refReaderAuthorities"></div>
+        </div>
+        <div class="ref-header-actions">
+          <button class="ref-action-btn ref-copy-btn" id="refCopyGuideBtn" title="نسخ محتوى الدليل بالكامل">
+            <span>📋</span>
+            <span>نسخ النص</span>
+          </button>
+          <button class="modal-close-btn" id="refReaderCloseBtn" aria-label="إغلاق النافذة">✕</button>
+        </div>
+      </div>
+
+      <!-- Table of Contents Bar -->
+      <div class="ref-reader-toc-bar" id="refReaderTocBar">
+        <!-- Rendered dynamically by tarot-reader-modal.js -->
+      </div>
+
+      <!-- Manuscript Full Content Body -->
+      <div class="modal-body ref-reader-body" id="refReaderBody">
+        <!-- Rendered dynamically by tarot-reader-modal.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/tarot-references-data.js"></script>
+  <script src="assets/js/workbench-library.js"></script>
+  <script src="assets/js/workbench-studio.js"></script>
+  <script src="assets/js/tarot-reader-modal.js"></script>
+
+</body>
+</html>
