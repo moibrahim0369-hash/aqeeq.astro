@@ -257,6 +257,7 @@
       <span class="card-tag">${catTitle}</span>
       <span class="card-tag ${elClass}">عنصر ${card.element}</span>
       <span class="card-tag">${card.astrological_link || ''}</span>
+      ${card.archetype ? `<span class="card-tag" style="background: rgba(168, 85, 247, 0.2); border-color: rgba(168, 85, 247, 0.4); color: #e9d5ff;">الأركيتايب: ${card.archetype}</span>` : ''}
     `;
 
     switchModalTab('overview');
@@ -328,6 +329,12 @@
         html = `
           <h3>التشريح النفسي، ديناميكيات التعلق، والظل الأصلي</h3>
           <p>${card.deep_psychology && card.deep_psychology.text ? card.deep_psychology.text.replace(/\n/g, '<br>') : 'التحليل النفسي الأصلي موثق في التقرير الكامل.'}</p>
+          ${card.deep_psychology && card.deep_psychology.shadow ? `
+            <div style="background: rgba(255, 107, 74, 0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255, 107, 74, 0.25); margin-top: 20px;">
+              <h4 style="color: #ff9179; margin-bottom: 8px;">🌑 تشريح طاقة الظل (Shadow Aspect)</h4>
+              <p style="font-size: 0.95rem; line-height: 1.8;">${card.deep_psychology.shadow.replace(/\n/g, '<br>')}</p>
+            </div>
+          ` : ''}
         `;
         break;
 
