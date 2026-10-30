@@ -1907,3 +1907,333 @@
     font-size: 1.25rem;
   }
 }
+
+
+/* ==========================================================================
+   Cosmic Top Header & Navigation
+   ========================================================================== */
+.cosmic-top-header {
+  background: rgba(13, 10, 18, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cosmic-header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.cosmic-brand-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--tarot-gold);
+  flex-shrink: 0;
+}
+
+.cosmic-brand-icon {
+  font-size: 1.4rem;
+}
+
+.cosmic-brand-title {
+  font-family: var(--display, 'Amiri', serif);
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.cosmic-top-nav {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cosmic-nav-link {
+  color: var(--tarot-text-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.cosmic-nav-link:hover {
+  color: var(--tarot-gold-light);
+}
+
+.cosmic-nav-link.active {
+  color: var(--tarot-gold);
+  font-weight: 700;
+  border-bottom: 2px solid var(--tarot-gold);
+  padding-bottom: 2px;
+}
+
+.cosmic-nav-pill {
+  color: var(--tarot-gold-light);
+  text-decoration: none;
+  font-size: 0.88rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cosmic-nav-pill:hover {
+  background: rgba(212, 175, 55, 0.22);
+}
+
+
+/* ==========================================================================
+   Workbench Slot & Synthesis Step RTL/LTR Enhancements
+   ========================================================================== */
+.slot-role-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.slot-role-en-sub {
+  font-size: 0.76rem;
+  color: var(--tarot-text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  direction: ltr;
+  text-align: right;
+  padding: 0 4px;
+  letter-spacing: 0.2px;
+}
+
+.step-position-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+  margin-bottom: 4px;
+}
+
+.step-pos-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.step-pos-ar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--tarot-gold-light);
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.step-bullet {
+  font-size: 0.82rem;
+}
+
+.step-pos-en {
+  font-size: 0.78rem;
+  color: var(--tarot-text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.3px;
+  padding-right: 20px;
+  text-align: right;
+  direction: ltr;
+}
+
+.step-card-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-card-name-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.step-card-name-ar {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.step-card-name-en {
+  font-size: 0.76rem;
+  color: var(--tarot-text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  direction: ltr;
+}
+
+.card-tag-upright {
+  background: rgba(212, 175, 55, 0.15) !important;
+  border: 1px solid var(--tarot-gold) !important;
+  color: var(--tarot-gold-light) !important;
+  font-size: 0.78rem !important;
+  padding: 3px 8px !important;
+}
+
+.card-tag-reversed {
+  background: rgba(255, 107, 74, 0.2) !important;
+  border: 1px solid #ff6b4a !important;
+  color: #ff9e88 !important;
+  font-size: 0.78rem !important;
+  padding: 3px 8px !important;
+}
+
+
+/* ==========================================================================
+   Comprehensive Mobile Overhaul (max-width: 768px)
+   Anti-Zoom, Smooth Touch Scroller, Compact Workbench, Vertical Synthesis
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* 1. Form Controls Anti-Zoom (16px minimum on iOS Safari & Android) */
+  select,
+  input,
+  .workbench-select,
+  .workbench-input,
+  .slot-card-select,
+  .slot-role-input,
+  .search-box input {
+    font-size: 16px !important;
+  }
+
+  /* 2. Smooth Touch-Scrollable Top Navbar */
+  .cosmic-top-header {
+    padding: 10px 14px;
+  }
+  .cosmic-header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .cosmic-brand-link {
+    justify-content: center;
+  }
+  .cosmic-top-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 10px;
+    padding: 4px 2px 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  .cosmic-top-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+  .cosmic-nav-link,
+  .cosmic-nav-pill {
+    flex-shrink: 0;
+  }
+
+  /* 3. Compact Workbench Slot Card & Controls */
+  .workbench-slot-card {
+    padding: 14px 14px !important;
+    border-radius: 14px !important;
+  }
+  .slot-header {
+    margin-bottom: 10px !important;
+    gap: 8px !important;
+  }
+  .slot-num-badge {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.8rem !important;
+  }
+  .slot-role-input {
+    padding: 6px 10px !important;
+  }
+  .slot-role-en-sub {
+    font-size: 0.72rem !important;
+  }
+  .slot-select-wrap {
+    margin-bottom: 8px !important;
+  }
+  .slot-orient-group {
+    margin-bottom: 10px !important;
+    gap: 6px !important;
+  }
+  .slot-orient-btn {
+    padding: 6px 8px !important;
+    font-size: 0.78rem !important;
+  }
+  .slot-preview-box {
+    min-height: 95px !important;
+    padding: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .slot-preview-glyph {
+    font-size: 1.8rem !important;
+    margin-bottom: 4px !important;
+  }
+  .slot-preview-name-ar {
+    font-size: 1.05rem !important;
+  }
+  .slot-preview-name-en {
+    font-size: 0.75rem !important;
+  }
+  .slot-insight-box {
+    padding: 10px 12px !important;
+    max-height: 160px;
+    overflow-y: auto;
+  }
+  .slot-inspect-btn {
+    padding: 8px 12px !important;
+    font-size: 0.85rem !important;
+  }
+  .workbench-config-bar {
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+
+  /* 4. Restructured Vertical Synthesis Result Cards */
+  .synthesis-timeline-step {
+    padding: 12px 14px !important;
+  }
+  .step-position-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+  }
+  .step-pos-title-group {
+    width: 100%;
+  }
+  .step-pos-en {
+    padding-right: 0 !important;
+    text-align: right !important;
+  }
+  .step-card-badge-row {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: rgba(212, 175, 55, 0.06);
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+  .step-card-name-group {
+    align-items: flex-start !important;
+  }
+  .step-card-text {
+    font-size: 0.88rem !important;
+    line-height: 1.65 !important;
+  }
+}
