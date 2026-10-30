@@ -1563,7 +1563,18 @@ if (typeof module !== 'undefined') module.exports = Astro;
   function onHashChangeRoute() {
     const hash = (window.location.hash || '').replace('#', '');
     if (hash === 'chart') {
-      isolateResultView('chart');
+      const result = document.getElementById('result');
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      if (LAST && result && result.innerHTML) {
+        isolateResultView('chart');
+        if (cf) { cf.hidden = true; cf.style.display = 'none'; }
+        if (chartIntro) { chartIntro.hidden = true; chartIntro.style.display = 'none'; }
+      } else {
+        if (cf) { cf.hidden = false; cf.style.display = ''; }
+        if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+        if (result) { result.hidden = true; result.style.display = 'none'; }
+      }
     } else if (hash === 'matrix') {
       isolateResultView('matrix');
     } else if (hash === 'lifepath') {
@@ -1578,6 +1589,10 @@ if (typeof module !== 'undefined') module.exports = Astro;
       const lpStart = document.getElementById('lp-start');
       if (lpForm) lpForm.hidden = true;
       if (lpStart) lpStart.hidden = false;
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      if (cf) { cf.hidden = false; cf.style.display = ''; }
+      if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
     }
   }
   window.addEventListener('hashchange', onHashChangeRoute);
@@ -1592,8 +1607,31 @@ if (typeof module !== 'undefined') module.exports = Astro;
       const lpStart = document.getElementById('lp-start');
       if (lpForm) lpForm.hidden = true;
       if (lpStart) lpStart.hidden = false;
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      if (cf) { cf.hidden = false; cf.style.display = ''; }
+      if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
       window.location.hash = '#home';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  document.addEventListener('click', function(e) {
+    const editBtn = e.target.closest('.btn-edit-chart');
+    if (editBtn) {
+      e.preventDefault();
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      const result = document.getElementById('result');
+      if (cf) { cf.hidden = false; cf.style.display = 'block'; }
+      if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const chartSec = document.getElementById('chart');
+      if (chartSec) {
+        chartSec.scrollIntoView({ behavior: 'smooth' });
+      }
+      const nameInput = document.getElementById('f-name');
+      if (nameInput) nameInput.focus();
     }
   });
 
@@ -1639,10 +1677,11 @@ if (typeof module !== 'undefined') module.exports = Astro;
       }));
     } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
     renderResult(LAST); if (typeof isolateResultView === "function") isolateResultView("chart");
-    const r = $("#result"); r.hidden = false;
+    const r = $("#result"); r.hidden = false; r.style.display = "block";
+    const cf = $("#cform"); if (cf) { cf.hidden = true; cf.style.display = "none"; }
+    const chartIntro = document.querySelector("#chart .center"); if (chartIntro) { chartIntro.hidden = true; chartIntro.style.display = "none"; }
     window.AqeeqGender?.apply(r, LAST.gender);
-    window.AqeeqCopyMap?.attach(r, LAST.name ? "خريطة الميلاد · " + LAST.name : "خريطة الميلاد");
-    r.scrollIntoView();
+    r.scrollIntoView({ behavior: "smooth" });
   }
 
   /* ---------- خريطة التوافق الفلكي بين شخصين ---------- */
@@ -1991,13 +2030,37 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const sun = body(ch, "sun"), moon = body(ch, "moon");
     const risingS = ch.known ? Math.floor(ch.asc / 30) : null;
     const pad = n => String(n).padStart(2, "0");
-    const when = `${S.d}/${S.m}/${S.y}${S.known ? ` الساعة ${pad(S.hh)}:${pad(S.mm)}` : ""}`;
-    const titleName = S.name ? `خريطة ${esc(S.name)}` : "خريطتك";
+    const titleName = S.name ? `خريطة ${esc(S.name)}` : "خريطتك الفلكية";
+
+    let timeStr = "وقت غير محدد";
+    if (S.known) {
+      const period = S.hh >= 12 ? "م" : "ص";
+      let h12 = S.hh % 12;
+      if (h12 === 0) h12 = 12;
+      timeStr = `${pad(h12)}:${pad(S.mm)} ${period}`;
+    }
 
     const big = (label, lon, g) => `<div class="b3"><span class="b3g" aria-hidden="true">${gl(g)}</span><span class="b3l">${label}</span><strong>${SIGNS[fmt(lon).s].n}</strong>${num(fmt(lon).txt)}</div>`;
     const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
-    let h = returnHomeBtn + `<div class="res-head"><h3>${titleName}</h3><p>${when}، ${esc(S.placeName)}</p></div>
-      <div class="big3">${big("الشمس", sun.lon, "☉")}${big("القمر", moon.lon, "☽")}${ch.known ? big("الطالع", ch.asc, "↑") : `<div class="b3 dim"><span class="b3g" aria-hidden="true">↑</span><span class="b3l">الطالع</span><strong>مش متاح</strong><span class="b3n">محتاج وقت الميلاد</span></div>`}</div>
+    const summaryCard = `<div class="chart-summary-card">
+      <div class="chart-summary-info">
+        <div class="chart-summary-badge">خريطة ميلاد فلكية</div>
+        <h3 class="chart-summary-title">${titleName}</h3>
+        <p class="chart-summary-meta">
+          <span>📅 ${pad(S.d)}/${pad(S.m)}/${S.y}</span>
+          <span class="meta-sep">•</span>
+          <span>⏰ ${timeStr}</span>
+          <span class="meta-sep">•</span>
+          <span>📍 ${esc(S.placeName)}</span>
+        </p>
+      </div>
+      <div class="chart-summary-actions">
+        <button type="button" class="btn-edit-chart" id="btn-edit-chart"><span class="edit-icon">✏️</span> تعديل البيانات / خريطة جديدة</button>
+      </div>
+    </div>`;
+
+    let h = returnHomeBtn + summaryCard +
+      `<div class="big3">${big("الشمس", sun.lon, "☉")}${big("القمر", moon.lon, "☽")}${ch.known ? big("الطالع", ch.asc, "↑") : `<div class="b3 dim"><span class="b3g" aria-hidden="true">↑</span><span class="b3l">الطالع</span><strong>مش متاح</strong><span class="b3n">محتاج وقت الميلاد</span></div>`}</div>
       <div class="wheel-wrap">${wheelSVG(ch, asp)}</div>
       <div class="wd-panel" id="wd-panel" aria-live="polite" hidden></div>
       ${ch.known ? "" : `<p class="note">من غير وقت الميلاد مش هنقدر نحسب الطالع والبيوت، والقمر ممكن يفرق لحد ٦ درجات.</p>`}
@@ -2005,15 +2068,12 @@ if (typeof module !== 'undefined') module.exports = Astro;
       ${ch.hs === "whole-fallback" ? `<p class="note">المكان ده بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فاستخدمنا نظام البيوت الكاملة (Whole Sign).</p>` : ""}`;
 
     h += `<div class="tabs" role="tablist" aria-label="أقسام الخريطة">
-      <button class="tab" role="tab" aria-selected="true" aria-controls="tp0" id="tb0">نمطك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp6" id="tb6" tabindex="-1">روابطك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp1" id="tb1" tabindex="-1">تفاصيل الكواكب</button>
+      <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">تفاصيل الكواكب</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="tp5" id="tb5" tabindex="-1">مجالات حياتك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">نمطك ونصايحك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">النهاردة ليك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp4" id="tb4" tabindex="-1">الجداول</button></div>`;
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp4" id="tb4" tabindex="-1">الجداول</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">النهاردة ليك</button></div>`;
 
-    /* 1) القراءة */
+    /* 1) تفاصيل الكواكب */
     let rd = "";
     if (ch.known) rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">↑</span> الطالع في ${SIGNS[risingS].n} ${num(fmt(ch.asc).txt)}</h4><p>${RISING_TXT[risingS]}</p>
       ${(() => { const rk = SIGNS[risingS].ruler, rb = body(ch, rk); return `<p class="sub">حاكم طالعك هو ${PLANETS[rk].n}، وموجود في برج ${SIGNS[rb.sign].n} وفي البيت ${HOUSES[rb.house - 1].n}. ده بيوجّه طاقتك ناحية ${HOUSES[rb.house - 1].area}.</p>`; })()}</article>`;
@@ -2028,9 +2088,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☊")}</span> العقدة الشمالية في ${SIGNS[nf.s].n} ${num(nf.txt)}</h4>
       <p>اتجاه نموك هو ${SIGNS[nf.s].strength}، ${SIGNS[nf.s].growth}. العقدة الجنوبية في ${SIGNS[south].n}: بتميل ترجع لمنطقة راحة قديمة هي ${SIGNS[south].strength}، فاستخدمها كدعم مش كمكان تقعد فيه.</p>
       ${ch.known ? `<p class="sub">في البيت ${HOUSES[nd.house - 1].n}: اتجاه نموك بيمر عن طريق ${HOUSES[nd.house - 1].area}.</p>` : ""}</article>`;
-    h += `<div class="panel" role="tabpanel" id="tp0" aria-labelledby="tb0">${patternHTML(S)}</div>`;
-    h += `<div class="panel" role="tabpanel" id="tp6" aria-labelledby="tb6" hidden><p class="lead2">اعرف التناغم بينك وبين شخص تاني: حبيب أو صاحب أو شريك شغل. اكتب تاريخ ميلاده وشوف.</p><div class="field"><label for="b-date">تاريخ ميلاد الشخص التاني</label><input id="b-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="b-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="b-go" type="button">اعرف التناغم</button></div><div id="b-out" hidden></div></div>`;
-    h += `<div class="panel" role="tabpanel" id="tp1" aria-labelledby="tb1" hidden>${rd}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp1" aria-labelledby="tb1">${rd}</div>`;
     h += `<div class="panel" role="tabpanel" id="tp5" aria-labelledby="tb5" hidden>${areasHTML(ch)}</div>`;
 
     /* 2) النمط والنصايح */
@@ -2054,12 +2112,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
       <h4 class="ph">نقاط قوتك</h4><ul class="lst">${strengths.map(t => `<li>${t}</li>`).join("")}</ul>
       <h4 class="ph">محتاجة انتباه</h4><ul class="lst">${watch.map(t => `<li>${t}</li>`).join("")}</ul>
       <h4 class="ph">نصايح ليك</h4><ul class="lst">${adv.map(t => `<li>${t}</li>`).join("")}</ul>`;
-    h += `<div class="panel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden>${pt}</div>`;
 
-    /* 3) النهاردة */
-    h += `<div class="panel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>${todayHTML(ch)}<div id="aqeek-personal-transits"></div></div>`;
-
-    /* 4) الجداول */
+    /* 3) الجداول */
     const hsName = ch.hs === "placidus" ? "Placidus" : "Whole Sign";
     let tb = `<h4 class="ph">الكواكب</h4><div class="tbl">${ch.bodies.map(b => { const f = fmt(b.lon); return `<div class="tr"><span class="c1"><span class="sg" aria-hidden="true">${gl(PLANETS[b.key].g)}</span> ${PLANETS[b.key].n}</span><span class="c2">${gl(SIGNS[f.s].g)} ${SIGNS[f.s].n} ${num(f.txt)}</span><span class="c3">${ch.known ? "بيت " + b.house : ""}${b.retro ? ' <i class="rxb">راجع</i>' : ""}</span></div>`; }).join("")}</div>`;
     if (ch.known) {
@@ -2069,17 +2123,29 @@ if (typeof module !== 'undefined') module.exports = Astro;
     tb += `<h4 class="ph">الزوايا بين الكواكب</h4>${asp.length ? asp.slice(0, 16).map(a => { const f = fmt(a.orb); return `<article class="rd asp"><h4>${PLANETS[a.a] ? gl(PLANETS[a.a].g) : glyphOf(a.a)} ${nmOf(a.a)} ${a.asp.n} ${PLANETS[a.b] ? gl(PLANETS[a.b].g) : glyphOf(a.b)} ${nmOf(a.b)} <span class="orb">فرق ${num(f.txt)}</span></h4><p>${themeOf(a.a)}، مع ${themeOf(a.b)}: ${a.asp.nat}.</p></article>`; }).join("") : "<p>مفيش زوايا قريبة بشكل واضح.</p>"}`;
     h += `<div class="panel" role="tabpanel" id="tp4" aria-labelledby="tb4" hidden>${tb}</div>`;
 
-    /* دعوة للحجز */
-    const summary = `أهلاً، حسبت خريطتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${S.name}\nتاريخ الميلاد: ${when}\nمكان الميلاد: ${S.placeName}\nالشمس: ${SIGNS[sunS].n}\nالقمر: ${SIGNS[moonS].n}${ch.known ? `\nالطالع: ${SIGNS[risingS].n}` : ""}`;
-    h += ``;
+    /* 4) النهاردة ليك */
+    h += `<div class="panel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>${todayHTML(ch)}<div id="aqeek-personal-transits"></div></div>`;
+
+    /* الأقسام الإضافية المحفوظة في الـ DOM */
+    h += `<div class="panel" role="tabpanel" id="tp0" aria-labelledby="tb0" hidden style="display:none!important">${patternHTML(S)}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp6" aria-labelledby="tb6" hidden style="display:none!important"><p class="lead2">اعرف التناغم بينك وبين شخص تاني: حبيب أو صاحب أو شريك شغل. اكتب تاريخ ميلاده وشوف.</p><div class="field"><label for="b-date">تاريخ ميلاد الشخص التاني</label><input id="b-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="b-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="b-go" type="button">اعرف التناغم</button></div><div id="b-out" hidden></div></div>`;
+    h += `<div class="panel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden style="display:none!important">${pt}</div>`;
 
     const root = $("#result");
     root.innerHTML = h;
     bindContact(root); wirePattern(root, S); wireWheel(root, S);
     const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
-    tabs.forEach((t, i) => t.addEventListener("click", () => tabs.forEach((x, j) => {
-      x.setAttribute("aria-selected", i === j ? "true" : "false"); x.tabIndex = i === j ? 0 : -1; panels[j].hidden = i !== j;
-    })));
+    tabs.forEach(t => t.addEventListener("click", () => {
+      const targetId = t.getAttribute("aria-controls");
+      tabs.forEach(x => {
+        const isTarget = x === t;
+        x.setAttribute("aria-selected", isTarget ? "true" : "false");
+        x.tabIndex = isTarget ? 0 : -1;
+      });
+      panels.forEach(p => {
+        p.hidden = p.id !== targetId;
+      });
+    }));
   }
 
   /* ---------- النهاردة ليك (عبور شخصي) ---------- */
