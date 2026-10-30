@@ -853,22 +853,7 @@ function calculateGenerationalLines(birthDate) {
 
   window.AqeeqNumerology = api;
 
-  const mount = () => {
-    if (typeof document === 'undefined') return;
-    const root = document.querySelector('#result');
-    if (root) initResult(root);
-  };
-
-  if (typeof MutationObserver !== 'undefined' && typeof document !== 'undefined') {
-    new MutationObserver(() => {
-      const root = document.querySelector('#result');
-      if (root && root.dataset.aqmReady === 'true' && !root.querySelector('.aqm-shell')) delete root.dataset.aqmReady;
-      mount();
-    }).observe(document.documentElement, { childList: true, subtree: true });
-  }
-
-  if (typeof window !== 'undefined') {
-    window.addEventListener('DOMContentLoaded', mount);
-    mount();
-  }
+  // View Isolation: numerology matrix renders strictly into #mresult upon explicit calculation,
+  // never hijacking or polluting the natal chart result (#result).
+  const mount = () => {};
 })();
