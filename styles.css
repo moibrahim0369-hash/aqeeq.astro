@@ -451,21 +451,241 @@ h1,h2,h3,h4{font-family:var(--ui);font-weight:700;letter-spacing:0}
 .qt .big{color:var(--text);font-family:var(--ui);font-weight:700}
 .qt .k,.qt .nb,.qt .sg2{color:var(--brass)}
 
-/* home: rows with hairlines, not identical cards */
-.home{width:min(1100px,100% - 40px);margin:0 auto;padding:4px 0 150px;display:grid}
-@media(min-width:900px){.home{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:64px}}
-.cat-h{grid-column:1/-1;font-family:var(--display);font-size:1.9rem;color:var(--brass-hi);margin:44px 0 4px;padding-bottom:10px;border-bottom:1px solid var(--line);display:block}
-.cat-h .cat-i{display:none}
-.cat-h::after{display:none}
-.card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:18px 2px;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none;background:none;border-radius:0;box-shadow:none;transition:background .2s;animation:none}
-.card:hover{transform:none;background:rgba(111,91,214,.08);border-color:var(--line)}
-.card .ic{width:40px;height:40px;display:grid;place-items:center;border:0;background:none;box-shadow:none;color:var(--brass);font-family:inherit;font-size:1rem}
-.card .ic svg{width:24px;height:24px}
-.card .ct{display:grid;gap:2px;text-align:start}
-.card .ct b{font-size:1.1rem;font-weight:700;line-height:1.5}
-.card .ct small{color:var(--mute);font-size:.92rem;line-height:1.6}
-.pills{display:none}
-.chev{color:var(--mute);font-size:1.5rem;line-height:1;padding-inline:4px}
+/* ===== هندسة كروت وشبكة الصفحة الرئيسية (Cosmic Grid & Glassmorphism) ===== */
+.home {
+  width: min(1140px, 100% - 32px);
+  margin: 0 auto;
+  padding: 16px 0 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.grp {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  scroll-margin-top: 84px;
+}
+
+@media (min-width: 900px) {
+  #cat-discover.grp {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  #cat-relations.grp,
+  #cat-forecast.grp {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #cat-library.grp {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+  }
+}
+
+.cat-h {
+  grid-column: 1 / -1;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--brass-hi);
+  margin: 12px 0 2px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.14);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-h .cat-i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--brass);
+}
+
+.cat-h .cat-i svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* الكروت الزجاجية الكونية */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background: rgba(14, 23, 47, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  border-radius: 16px;
+  padding: 20px 14px 16px;
+  min-height: 168px;
+  box-sizing: border-box;
+  max-width: 100%;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.card:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.15);
+  background: rgba(18, 30, 60, 0.75);
+}
+
+.card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--brass-hi);
+  outline-offset: 2px;
+}
+
+/* تمييز كارت مصفوفة القدر والشاكرات في المقدمة */
+.card[href="#matrix"] {
+  border-color: rgba(214, 174, 94, 0.38);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 16px rgba(214, 174, 94, 0.14);
+  background: radial-gradient(circle at 50% 0%, rgba(214, 174, 94, 0.09), rgba(14, 23, 47, 0.75) 75%);
+}
+
+.card[href="#matrix"]:hover {
+  border-color: rgba(214, 174, 94, 0.65);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(214, 174, 94, 0.28);
+}
+
+/* الأيقونة المركزية في أعلى الكارت */
+.card .ic {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(12, 18, 38, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #F7DE94 !important;
+  font-size: 1.3rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card:hover .ic {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.card .ic svg {
+  width: 24px;
+  height: 24px;
+  stroke: #F7DE94;
+  stroke-width: 1.8;
+}
+
+.card .ic.gold {
+  border-color: rgba(214, 174, 94, 0.38) !important;
+  box-shadow: 0 0 14px rgba(214, 174, 94, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.card:hover .ic.gold {
+  box-shadow: 0 0 20px rgba(214, 174, 94, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.card .ic.rose {
+  color: #f472b6 !important;
+  border-color: rgba(244, 114, 182, 0.38) !important;
+  box-shadow: 0 0 14px rgba(244, 114, 182, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.card .ic.rose svg {
+  stroke: #f472b6;
+}
+
+.card:hover .ic.rose {
+  box-shadow: 0 0 20px rgba(244, 114, 182, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* نصوص وعناوين الكارت */
+.card .ct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 4px;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.card .ct::before,
+.card .ct b::after {
+  display: none !important;
+}
+
+.card .ct b {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #FFF3D1;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0;
+}
+
+.card .ct small {
+  color: #B8C2D8;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 4px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .chev {
+  display: none !important;
+}
+
+.card .pills {
+  margin-top: 6px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.card .pill {
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.14);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.24);
+}
+
+.card .pill.free {
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.24);
+}
 
 /* primary entries: three plain rows */
 .primary{grid-column:1/-1;display:grid;margin-top:8px;border-top:1px solid var(--line)}
@@ -612,10 +832,46 @@ button:focus-visible,a:focus-visible,[data-kind]:focus-visible{outline:2px solid
   .sec{padding:52px 0}
   .sec h2{font-size:1.6rem;margin-bottom:10px}
   .intro{font-size:.98rem;line-height:1.85;margin-bottom:24px}
-  .card{gap:12px;padding:15px 2px}
-  .card .ic{width:36px;height:36px}
-  .card .ct b{font-size:1.02rem}
-  .card .ct small{font-size:.88rem;line-height:1.7}
+  .grp {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+  .cat-h {
+    font-size: 1.15rem;
+    margin: 4px 0 2px;
+    padding-bottom: 6px;
+  }
+  .card {
+    padding: 14px 8px 12px !important;
+    min-height: 155px !important;
+    border-radius: 14px !important;
+  }
+  .card .ic {
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 44px !important;
+    margin-bottom: 8px !important;
+    font-size: 1.15rem !important;
+  }
+  .card .ic svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .card .ct b {
+    font-size: 0.92rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 2px !important;
+  }
+  .card .ct small {
+    font-size: 0.74rem !important;
+    line-height: 1.4 !important;
+    margin-top: 2px !important;
+    -webkit-line-clamp: 2 !important;
+  }
+  .card .pill {
+    font-size: 0.65rem !important;
+    padding: 1px 6px !important;
+  }
   .arch{padding:20px 16px}
   .sec-icons{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
   .sec-ico{min-height:76px;padding:8px 4px}
@@ -688,13 +944,7 @@ svg text.hn{fill:#F4EAD0;paint-order:stroke;stroke:#07091C;stroke-width:2.5px}
 #sky-layer .ring i{border-color:rgba(214,174,94,.10)}
 .amb-planet{background:radial-gradient(circle at 32% 28%,#a79be6 0,#3d2c86 42%,#140c35 78%,#07041a 100%)}
 .amb-planet::after{border-color:rgba(214,174,94,.28);border-width:1.5px}
-/* ===== براويز للعناوين والنصوص بجانب الأيقونات ===== */
-.card .ct{position:relative;background:linear-gradient(180deg,rgba(20,11,50,.78),rgba(10,6,30,.66));border:1px solid rgba(214,174,94,.3);border-radius:14px;padding:12px 16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 8px 22px rgba(3,4,16,.5);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
-.card .ct::before{content:"";position:absolute;inset:4px;border-radius:10px;border:1px solid rgba(214,174,94,.12);pointer-events:none}
-.card .ct b{color:#FFF3D1;letter-spacing:.01em}
-.card .ct b::after{content:"";display:block;width:44px;height:1px;margin-top:6px;background:linear-gradient(90deg,#D6AE5E,rgba(214,174,94,0))}
-.card .ct small{color:#E4DAF2}
-.card:hover .ct{border-color:rgba(214,174,94,.55)}
+/* [Unified Card Typography Applied] */
 /* إصلاح: الأقسام المفتوحة كشيت لازم تبقى معتمة عشان ما يظهرش المحتوى اللي ورا */
 section.sec:target,section.sec.alt:target{background:radial-gradient(900px 600px at 80% 0%,rgba(30,58,138,.35),transparent 60%),var(--ink)!important}
 /* Aqeq Astro: تحسينات الحركة وقراءة موسوعة الأبراج */
