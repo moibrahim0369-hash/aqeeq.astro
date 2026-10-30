@@ -997,3 +997,30 @@ a,button,summary,.wg,.card,.btn,.bnav a,.svc-ic,.tool-ic,[role="button"]{-webkit
 .cp-form button[aria-busy="true"]{opacity:.72;cursor:wait}
 @keyframes cp-status-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.cp-status::before{animation:none}}
+
+
+/* ==========================================================================
+   Clean Hide: Notebooks, Reflection Cards, and Symbol Libraries
+   (دفتر التجلي، دفتر الأمنيات، دليل رموز الأحلام، بطاقة تأمل التاروت، أطلس الرموز)
+   ========================================================================== */
+#manifest,
+#wishes,
+#dream-library,
+#tarot-lab,
+#symbol-library,
+a.card[href="#manifest"],
+a.card[href="#wishes"],
+a.card[href="#dream-library"],
+a.card[href="#tarot-lab"],
+a.card[href="#symbol-library"] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
