@@ -17,19 +17,19 @@
 <body style="background: radial-gradient(circle at center, #18122c, #09070f); min-height: 100vh; margin: 0; padding: 0;">
 
   <!-- Simple Cosmic Top Nav -->
-  <header style="background: rgba(13, 10, 18, 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding: 16px 24px; position: sticky; top: 0; z-index: 100;">
-    <div style="max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-      <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px; color: var(--tarot-gold);">
-        <span style="font-size: 1.4rem;">✦</span>
-        <span style="font-family: var(--display, 'Amiri', serif); font-size: 1.3rem; font-weight: bold; color: #fff;">عقيق أسترو</span>
+  <header class="cosmic-top-header">
+    <div class="cosmic-header-inner">
+      <a href="index.html" class="cosmic-brand-link">
+        <span class="cosmic-brand-icon">✦</span>
+        <span class="cosmic-brand-title">عقيق أسترو</span>
       </a>
-      <nav style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
-        <a href="index.html#home" style="color: var(--tarot-text-muted); text-decoration: none; font-size: 0.92rem;">الرئيسية</a>
-        <a href="index.html#matrix" style="color: var(--tarot-text-muted); text-decoration: none; font-size: 0.92rem;">مصفوفة القدر</a>
-        <a href="tarot.html" style="color: var(--tarot-gold); font-weight: 700; text-decoration: none; font-size: 0.92rem; border-bottom: 2px solid var(--tarot-gold); padding-bottom: 2px;">محراب التاروت</a>
-        <a href="#tarotWorkbench" style="color: var(--tarot-gold-light); text-decoration: none; font-size: 0.88rem; padding: 4px 10px; border-radius: 20px; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.3);">مختبر القراءات 🎴</a>
-        <a href="#tarotLibrary" style="color: var(--tarot-text-muted); text-decoration: none; font-size: 0.88rem;">الموسوعة (78)</a>
-        <a href="#tarotReferences" style="color: var(--tarot-text-muted); text-decoration: none; font-size: 0.88rem;">المراجع الكبرى</a>
+      <nav class="cosmic-top-nav">
+        <a href="index.html#home" class="cosmic-nav-link">الرئيسية</a>
+        <a href="index.html#matrix" class="cosmic-nav-link">مصفوفة القدر</a>
+        <a href="tarot.html" class="cosmic-nav-link active">محراب التاروت</a>
+        <a href="#tarotWorkbench" class="cosmic-nav-pill">مختبر القراءات 🎴</a>
+        <a href="#tarotLibrary" class="cosmic-nav-link">الموسوعة (78)</a>
+        <a href="#tarotReferences" class="cosmic-nav-link">المراجع الكبرى</a>
       </nav>
     </div>
   </header>
@@ -126,9 +126,9 @@
             <span>نوع وسياق القراءة:</span>
           </label>
           <select id="workbenchReadingType" class="workbench-select">
-            <option value="love">قراءة عاطفية وعلاقات وشراكات ❤️</option>
-            <option value="career">قراءة مهنية ومشاريع ومسار مالي 💼</option>
-            <option value="psychology" selected>قراءة عامة وتشريح نفسي وتحليل الظل 🧠</option>
+            <option value="motives" selected>تفكيك النوايا وما وراء السلوك (Shadow & Motives) 👁️</option>
+            <option value="momentum">المسار الحركي والقرارات (Momentum & Trajectory) 🧭</option>
+            <option value="psyche">التشريح النفسي والتوازن الذاتي (Psyche & Alignment) 🧠</option>
           </select>
         </div>
 
@@ -170,7 +170,7 @@
           <span class="spread-title" id="currentSpreadNameDisplay">مثلث الزمن (3 بطاقات)</span>
           <span style="color: var(--tarot-text-muted); margin: 0 8px;">|</span>
           <span>السياق: </span>
-          <span id="currentReadingTypeDisplay" style="color: var(--tarot-gold-light);">قراءة عامة وتشريح نفسي 🧠</span>
+          <span id="currentReadingTypeDisplay" style="color: var(--tarot-gold-light);">تفكيك النوايا وما وراء السلوك 👁️</span>
         </div>
         <div style="font-size: 0.85rem; color: var(--tarot-text-muted);">
           <span>اختر أو ابحث عن كل بطاقة في موضعها أدناه</span>

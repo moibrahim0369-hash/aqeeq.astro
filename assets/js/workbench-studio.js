@@ -121,8 +121,30 @@
 
   // State
   let tarotDeck = [];
+  // Parse slot role into Arabic title and LTR English subtitle
+  function parseSlotRole(role, defaultIdx = 0) {
+    if (!role || typeof role !== 'string') {
+      return { ar: `الموضع ${defaultIdx + 1}`, en: '' };
+    }
+    const trimmed = role.trim();
+    const parenMatch = trimmed.match(/^(.*?)\s*\((.*?)\)$/);
+    if (parenMatch) {
+      const candidateEn = parenMatch[2].trim();
+      if (/[a-zA-Z]/.test(candidateEn)) {
+        return {
+          ar: parenMatch[1].trim(),
+          en: candidateEn
+        };
+      }
+    }
+    return {
+      ar: trimmed,
+      en: ''
+    };
+  }
+
   let spreadState = {
-    readingType: 'psychology',
+    readingType: 'motives',
     templateKey: 'three-time',
     slots: []
   };
@@ -184,7 +206,7 @@
     if (buildSpreadBtn) {
       buildSpreadBtn.addEventListener('click', () => {
         const templateKey = spreadTypeSelect ? spreadTypeSelect.value : 'three-time';
-        const readingType = readingTypeSelect ? readingTypeSelect.value : 'psychology';
+        const readingType = readingTypeSelect ? readingTypeSelect.value : 'motives';
         let count = 3;
         if (templateKey === 'custom' && customCountInput) {
           count = parseInt(customCountInput.value, 10) || 4;
@@ -339,36 +361,68 @@
     let insightLabel = '';
     let rawText = '';
 
-    if (readingType === 'love') {
-      insightLabel = isReversed ? '⚠️ تنبيه الظل في العلاقات والشراكة' : '❤️ ديناميكية الحب والشراكة';
+    const type = readingType || 'motives';
+
+    if (type === 'motives' || type === 'love') {
+      insightLabel = isReversed
+        ? '👁️ تنبيه الظل وتفكيك النوايا المعطلة'
+        : '👁️ الدوافع الخفية والصدق مع الذات';
+
       if (isReversed) {
         rawText = (card.core_meaning && card.core_meaning.reversed) ? card.core_meaning.reversed : '';
-        if (!rawText || rawText.length < 20) {
-          rawText = card.practical_domains ? card.practical_domains.love_relationships : '';
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.deep_psychology && card.deep_psychology.shadow) ? card.deep_psychology.shadow : '';
+        }
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.practical_domains && card.practical_domains.love_relationships) ? card.practical_domains.love_relationships : '';
         }
       } else {
-        rawText = card.practical_domains ? card.practical_domains.love_relationships : '';
+        rawText = (card.deep_psychology && card.deep_psychology.shadow) ? card.deep_psychology.shadow : '';
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.practical_domains && card.practical_domains.love_relationships) ? card.practical_domains.love_relationships : '';
+        }
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.deep_psychology && card.deep_psychology.text) ? card.deep_psychology.text : '';
+        }
       }
-    } else if (readingType === 'career') {
-      insightLabel = isReversed ? '⚠️ تنبيه المسار المهني والمالي' : '💼 مؤشرات العمل والمشاريع والمال';
+    } else if (type === 'momentum' || type === 'career') {
+      insightLabel = isReversed
+        ? '🧭 كوابح المسار وعوائق الحركة والقرارات'
+        : '🧭 اتجاه الحركة والقرارات الحاسمة';
+
       if (isReversed) {
         rawText = (card.core_meaning && card.core_meaning.reversed) ? card.core_meaning.reversed : '';
-        if (!rawText || rawText.length < 20) {
-          rawText = card.practical_domains ? (card.practical_domains.career_projects + '\n\n' + card.practical_domains.money_abundance) : '';
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.practical_domains && card.practical_domains.career_projects) ? (card.practical_domains.career_projects + '\n\n' + (card.practical_domains.money_abundance || '')) : '';
         }
       } else {
-        rawText = card.practical_domains ? (card.practical_domains.career_projects + '\n\n' + card.practical_domains.money_abundance) : '';
+        rawText = (card.practical_domains && card.practical_domains.career_projects) ? (card.practical_domains.career_projects + '\n\n' + (card.practical_domains.money_abundance || '')) : '';
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.empowerment_action) ? card.empowerment_action : '';
+        }
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.core_meaning && card.core_meaning.upright) ? card.core_meaning.upright : '';
+        }
       }
-    } else {
-      insightLabel = isReversed ? '🔄 الوجه المقلوب واختبار الظل النفسي' : '🧠 التشريح النفسي والجوهر العميق';
+    } else { // psyche or psychology
+      insightLabel = isReversed
+        ? '🧠 التصدع النفسي واختبار الاتزان الداخلي'
+        : '🧠 التشريح النفسي ومحور الاتزان';
+
       if (isReversed) {
         rawText = (card.core_meaning && card.core_meaning.reversed) ? card.core_meaning.reversed : '';
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.practical_domains && card.practical_domains.health_psychosomatics) ? card.practical_domains.health_psychosomatics : '';
+        }
       } else {
-        rawText = card.deep_psychology ? card.deep_psychology.text : (card.core_meaning ? card.core_meaning.overview : '');
+        rawText = (card.deep_psychology && card.deep_psychology.text) ? card.deep_psychology.text : '';
+        if (!rawText || rawText.length < 30) {
+          rawText = (card.core_meaning && card.core_meaning.overview) ? card.core_meaning.overview : '';
+        }
       }
     }
 
-    if (!rawText || rawText.length < 15) {
+    if (!rawText || rawText.length < 20) {
       rawText = card.core_concept || (card.core_meaning ? card.core_meaning.overview : '');
     }
 
@@ -395,11 +449,16 @@
       slotEl.className = `workbench-slot-card ${hasCard ? 'has-card' : ''} ${isReversed ? 'is-slot-reversed' : ''}`;
       slotEl.id = `workbenchSlot_${idx}`;
 
+      const roleParts = parseSlotRole(slot.role, idx);
+
       // 1. Header
       let headerHtml = `
         <div class="slot-header">
           <span class="slot-num-badge">#${idx + 1}</span>
-          <input type="text" class="slot-role-input" value="${slot.role}" data-slot="${idx}" placeholder="عنوان وغرض الموضع..." title="انقر لتعديل عنوان الموضع">
+          <div class="slot-role-wrap">
+            <input type="text" class="slot-role-input" value="${roleParts.ar}" data-orig-en="${roleParts.en}" data-slot="${idx}" placeholder="عنوان وغرض الموضع..." title="انقر لتعديل عنوان الموضع">
+            ${roleParts.en ? `<div class="slot-role-en-sub" dir="ltr">${roleParts.en}</div>` : ''}
+          </div>
           ${hasCard ? `<button type="button" class="slot-clear-btn" data-slot="${idx}" title="تفريغ هذا الموضع">✕</button>` : ''}
         </div>
       `;
@@ -437,7 +496,7 @@
           <div class="slot-preview-box ${isReversed ? 'is-reversed' : ''}">
             <div class="slot-preview-glyph">${glyph}</div>
             <div class="slot-preview-name-ar">${card.name_ar}</div>
-            <div class="slot-preview-name-en">${card.name_en}</div>
+            <div class="slot-preview-name-en" dir="ltr">${card.name_en}</div>
             <div class="slot-preview-tags">
               <span class="card-tag ${elClass}">عنصر ${card.element}</span>
               <span class="card-tag">${arcanaLabel}</span>
@@ -496,8 +555,10 @@
     document.querySelectorAll('.slot-role-input').forEach(input => {
       input.addEventListener('change', (e) => {
         const idx = parseInt(e.target.getAttribute('data-slot'), 10);
+        const origEn = e.target.getAttribute('data-orig-en');
         if (spreadState.slots[idx]) {
-          spreadState.slots[idx].role = e.target.value.trim() || `الموضع ${idx + 1}`;
+          const val = e.target.value.trim() || `الموضع ${idx + 1}`;
+          spreadState.slots[idx].role = origEn ? `${val} (${origEn})` : val;
         }
       });
     });
@@ -642,7 +703,16 @@
     if (arcanaRatioInterpretation) arcanaRatioInterpretation.innerHTML = ratioText;
 
     // 4. Synthesized Narrative & Timeline
-    let narrativeText = `تُظهر هذه القراءة (${spreadState.readingType === 'love' ? 'العاطفية' : (spreadState.readingType === 'career' ? 'المهنية والمالية' : 'النفسية الشاملة')}) صورة متكاملة تتضافر فيها طاقات ${total} بطاقات.\n\n`;
+    const lensDescriptions = {
+      motives: 'تفكيك النوايا وما وراء السلوك والظلال الخفية',
+      momentum: 'المسار الحركي والقرارات الاستراتيجية والواقع العملي',
+      psyche: 'التشريح النفسي الشامل والتوازن الذاتي',
+      love: 'تفكيك النوايا وما وراء السلوك والظلال الخفية',
+      career: 'المسار الحركي والقرارات الاستراتيجية والواقع العملي',
+      psychology: 'التشريح النفسي الشامل والتوازن الذاتي'
+    };
+    const activeLens = lensDescriptions[spreadState.readingType] || 'التشريح النفسي والرمزي';
+    let narrativeText = `تُظهر هذه القراءة المنظورة عبر عدسة (${activeLens}) صورة متكاملة تتضافر فيها طاقات ${total} بطاقات.\n\n`;
     if (reversedCount > 0) {
       narrativeText += `يظهر في الفرشة ${reversedCount} كارت في الوضع المقلوب، مما يشير إلى وجود طاقات معطلة، أو آليات دفاعية وظلال نفسية داخلية تحتاج إلى التبصر وعدم الاستعجال.\n\n`;
     }
@@ -651,15 +721,25 @@
       synthesisTimelineSteps.innerHTML = '';
       cardsInSpread.forEach(({ slot, card, isReversed }) => {
         const insight = extractSlotInsight(card, spreadState.readingType, isReversed, slot.role);
+        const roleParts = parseSlotRole(slot.role, slot.index);
         const stepEl = document.createElement('div');
         stepEl.className = 'synthesis-timeline-step';
         stepEl.innerHTML = `
-          <div class="step-position-title">
-            <span>🔹</span>
-            <span>${slot.role}</span>
-            <span style="color: var(--tarot-text-muted);">←</span>
-            <span class="step-card-name">${card.name_ar} (${card.name_en})</span>
-            <span class="card-tag" style="font-size: 0.75rem;">${isReversed ? 'مقلوب 🔄' : 'معتدل ⬆️'}</span>
+          <div class="step-position-header">
+            <div class="step-pos-title-group">
+              <div class="step-pos-ar">
+                <span class="step-bullet">🔹</span>
+                <span class="step-pos-ar-text">${roleParts.ar}</span>
+              </div>
+              ${roleParts.en ? `<div class="step-pos-en" dir="ltr">${roleParts.en}</div>` : ''}
+            </div>
+            <div class="step-card-badge-row">
+              <div class="step-card-name-group">
+                <span class="step-card-name-ar">${card.name_ar}</span>
+                <span class="step-card-name-en" dir="ltr">${card.name_en}</span>
+              </div>
+              <span class="card-tag ${isReversed ? 'card-tag-reversed' : 'card-tag-upright'}">${isReversed ? 'مقلوب 🔄' : 'معتدل ⬆️'}</span>
+            </div>
           </div>
           <div class="step-card-text">${insight ? insight.text : card.core_concept}</div>
         `;
