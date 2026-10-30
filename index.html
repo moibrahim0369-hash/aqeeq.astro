@@ -1430,14 +1430,23 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const base = ch.known ? ch.asc : 0;
     const th = lon => (180 + (lon - base)) * Math.PI / 180;
     const pt = (lon, r) => { const a = th(lon); return [(cx + r * Math.cos(a)).toFixed(1), (cy - r * Math.sin(a)).toFixed(1)]; };
-    let o = `<svg class="cw" viewBox="0 0 520 520" role="img" aria-label="العجلة الفلكية: الأبراج والبيوت ومواضع الكواكب"><title>خريطة الميلاد: الأبراج والبيوت ومواضع الكواكب</title>`;
+    let o = `<svg class="cw" viewBox="0 0 520 520" role="img" aria-label="العجلة الفلكية: الأبراج والبيوت ومواضع الكواكب">
+      <defs>
+        <radialGradient id="cw-center-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#0a0f1d"/>
+          <stop offset="100%" stop-color="#050811"/>
+        </radialGradient>
+      </defs>
+      <title>خريطة الميلاد: الأبراج والبيوت ومواضع الكواكب</title>`;
     for (let i = 0; i < 12; i++) {
       const [x0, y0] = pt(i * 30, R1), [x1, y1] = pt(i * 30 + 30, R1), [x2, y2] = pt(i * 30 + 30, R2), [x3, y3] = pt(i * 30, R2);
       o += `<path class="sec e${SIGNS[i].el}" d="M${x0} ${y0}A${R1} ${R1} 0 0 0 ${x1} ${y1}L${x2} ${y2}A${R2} ${R2} 0 0 1 ${x3} ${y3}Z"/>`;
       const [gx, gy] = pt(i * 30 + 15, (R1 + R2) / 2);
       o += `<text class="cg" data-kind="sign" data-i="${i}" x="${gx}" y="${gy}">${gl(SIGNS[i].g)}</text>`;
     }
-    o += `<circle class="rg" cx="${cx}" cy="${cy}" r="${R2}"/><circle class="rg" cx="${cx}" cy="${cy}" r="${R3}"/>`;
+    o += `<circle class="rg" cx="${cx}" cy="${cy}" r="${R2}"/>`;
+    o += `<circle class="cw-center" cx="${cx}" cy="${cy}" r="${R3}" fill="url(#cw-center-grad)"/>`;
+    o += `<circle class="rg" cx="${cx}" cy="${cy}" r="${R3}"/>`;
     if (ch.known) {
       ch.cusps.forEach((c, i) => {
         const [xa, ya] = pt(c, R2), [xb, yb] = pt(c, R3);
