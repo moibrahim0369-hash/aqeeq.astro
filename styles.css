@@ -1024,3 +1024,39 @@ a.card[href="#symbol-library"] {
   visibility: hidden !important;
   pointer-events: none !important;
 }
+
+
+/* ==========================================================================
+   Clean UI Feature Toggle (Hidden Elements)
+   (اسأل عن علاقتك، تحليل المحادثات، إلهام اليوم، الخدمات والجلسات، الكورسات،
+    الفيديوهات، الأسئلة الشائعة، استشارة التاروت، محراب التعليم الأكاديمي)
+   ========================================================================== */
+.hidden-feature,
+#ask,
+#chat,
+#fortune,
+#services,
+#courses,
+#videos,
+#faq,
+a.card[href="#ask"],
+a.card[href="#chat"],
+a.card[href="#fortune"],
+a.card[href="#services"],
+a.card[href="#courses"],
+a.card[href="#videos"],
+a.card[href="#faq"],
+a.card[href="tarot.html"],
+a.card[href="workbench.html"],
+a[href="#services"] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
