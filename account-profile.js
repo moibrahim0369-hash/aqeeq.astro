@@ -45,6 +45,8 @@ import { supabase } from './supabase-client.js';
   `;
 
   header.insertAdjacentElement('afterend', panel);
+  panel.hidden = true;
+  actions.hidden = true;
   const form = panel.querySelector('#profile-completion-form');
   const saveButton = panel.querySelector('#profile-save-button');
   const message = panel.querySelector('#profile-form-message');
