@@ -789,11 +789,31 @@ function calculateGenerationalLines(birthDate) {
     reduceLifePath,
     render,
     initResult,
-    reportSections: REPORT_SECTIONS
+    reportSections: REPORT_SECTIONS,
+    ARCANA,
+    TITLES
   };
 
   const root = typeof window !== 'undefined' ? window : globalThis;
   root.AqeeqNumerology = api;
+  root.NumerologyMatrix = api;
+  root.numerologyMatrix = api;
+  root.calculateDestinyMatrix = calculateDestinyMatrix;
+  root.calculateChakraHealthCard = calculateChakraHealthCard;
+  root.calculateGenerationalLines = calculateGenerationalLines;
+  root.calculateDestinyAxes = calculateDestinyAxes;
+  root.reduceArcana = reduceArcana;
+  root.reduceLifePath = reduceLifePath;
+  root.ARCANA = ARCANA;
+  root.CHAKRAS = [
+    { key: 'sahasrara', name: 'التاج', sanskrit: 'Sahasrara' },
+    { key: 'ajna', name: 'العين الثالثة', sanskrit: 'Ajna' },
+    { key: 'vishuddha', name: 'الحلق', sanskrit: 'Vishuddha' },
+    { key: 'anahata', name: 'القلب', sanskrit: 'Anahata' },
+    { key: 'manipura', name: 'الضفيرة الشمسية', sanskrit: 'Manipura' },
+    { key: 'svadhisthana', name: 'العجز', sanskrit: 'Svadhisthana' },
+    { key: 'muladhara', name: 'الجذر', sanskrit: 'Muladhara' }
+  ];
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = api;
   }
