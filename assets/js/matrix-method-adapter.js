@@ -4,8 +4,7 @@
  * نقطة الربط الموحدة لكل حسابات مصفوفة القدر.
  * تطبيق Natalia Ladini (22 Arcana) بدقة رياضية.
  *
- * هذا الملف هو المصدر الوحيد لقاعدة الاختزال والمعادلات.
- * لا يجب تكرار هذه المعادلات في أماكن أخرى.
+ * هذا الملف هو المصدر الموحد لقاعدة الاختزال والمعادلات.
  */
 
 (() => {
@@ -32,12 +31,21 @@
    */
   function reduceArcana(value) {
     let n = Math.abs(Math.trunc(value));
-    // حلقة الاختزال: ما دام > 22، اجمع الخانات
     while (n > 22) {
       n = digitSum(n);
     }
-    // حالة خاصة: إذا كان 0، أرجع 22
     return n || 22;
+  }
+
+  /**
+   * اختزال مسار الحياة (1 إلى 9 مع استثناء الأرقام الرئيسية 11, 22, 33)
+   */
+  function reduceLifePath(value) {
+    let n = Math.abs(Math.trunc(value));
+    while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+      n = digitSum(n);
+    }
+    return n;
   }
 
   /**
@@ -45,7 +53,6 @@
    * يقبل: Date، YYYY-MM-DD، أو كائن {year, month, day}
    */
   function normalizeBirthDate(value) {
-    // حالة 1: Date object
     if (value instanceof Date && !Number.isNaN(value.getTime())) {
       return {
         year: value.getFullYear(),
@@ -54,15 +61,20 @@
       };
     }
 
-    // حالة 2: String بصيغة YYYY-MM-DD
-    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
+    if (typeof value === 'object' && value !== null && value.year && value.month && value.day) {
+      return {
+        year: Number(value.year),
+        month: Number(value.month),
+        day: Number(value.day)
+      };
+    }
+
+    const match = /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/.exec(String(value || '').trim());
     if (!match) {
       throw new TypeError('تاريخ الميلاد مطلوب بصيغة YYYY-MM-DD أو Date object');
     }
 
     const [, y, m, d] = match.map(Number);
-
-    // التحقق من صحة التاريخ
     const check = new Date(Date.UTC(y, m - 1, d));
     if (
       check.getUTCFullYear() !== y ||
@@ -79,63 +91,55 @@
 
   /**
    * حساب مصفوفة القدر الكاملة (9 مواضع)
-   *
-   * المدخلات:
-   *   - birthDate: تاريخ الميلاد (YYYY-MM-DD أو Date)
-   *
-   * المخرجات:
-   *   - nodes: المواضع التسعة مع قيمها
-   *   - anchors: الأرقام الأساسية (A, B, C, D, E)
-   *   - generationalCorners: الزوايا الجيلية (F, G, H, I)
-   *   - lines: خطوط المال والعلاقات
-   *   - method: وصف المعادلة
    */
   function calculateDestinyMatrix(birthDate) {
     const { year, month, day } = normalizeBirthDate(birthDate);
 
     // المرحلة الأولى: اختزال المدخلات الأساسية
-    const A = reduceArcana(day);           // الجوهر (يوم الميلاد)
-    const B = reduceArcana(month);         // الاتصال الروحي (شهر الميلاد)
-    const C = reduceArcana(digitSum(year)); // الذيل الكرمي (مجموع السنة)
+    const A = reduceArcana(day);            // الجوهر (يوم الميلاد)
+    const B = reduceArcana(month);          // الاتصال الروحي (شهر الميلاد)
+    const C = reduceArcana(digitSum(year));  // الذيل الكرمي (مجموع السنة)
 
     // المرحلة الثانية: الحسابات الثانوية
-    const D = reduceArcana(A + B + C);        // التكامل
-    const E = reduceArcana(A + B + C + D);    // المركز
+    const D = reduceArcana(A + B + C);         // التكامل
+    const E = reduceArcana(A + B + C + D);     // المركز
 
     // المرحلة الثالثة: الزوايا الجيلية
-    const F = reduceArcana(A + B);            // الشمال الشرقي (الموهبة)
-    const G = reduceArcana(B + C);            // الجنوب الشرقي (العلاقات)
-    const H = reduceArcana(C + D);            // الجنوب الغربي (الوفرة)
-    const I = reduceArcana(D + A);            // الشمال الغربي (العاطفة)
+    const F = reduceArcana(A + B);             // الشمال الشرقي (الموهبة)
+    const G = reduceArcana(B + C);             // الجنوب الشرقي (العلاقات)
+    const H = reduceArcana(C + D);             // الجنوب الغربي (الوفرة)
+    const I = reduceArcana(D + A);             // الشمال الغربي (العاطفة)
 
-    // الترتيب النهائي
+    // الترتيب المتوافق مع الفهارس والمحاور
     const nodes = {
-      north: A,       // 0°
-      northEast: F,   // 45°
-      east: B,        // 90°
-      southEast: G,   // 135°
-      south: C,       // 180°
-      southWest: H,   // 225°
-      west: D,        // 270°
-      northWest: I,   // 315°
-      center: E       // المركز
+      north: A,
+      east: B,
+      south: C,
+      west: D,
+      northEast: F,
+      southEast: G,
+      southWest: H,
+      northWest: I,
+      center: E
     };
 
     // الخطوط الرمزية
     const lines = {
-      money: [F, E, H],    // الشمال الشرقي ← المركز ← الجنوب الغربي
-      love: [I, E, G]      // الشمال الغربي ← المركز ← الجنوب الشرقي
+      money: [F, E, H],
+      love: [I, E, G]
     };
+
+    const ancestralCenter = reduceArcana(reduceArcana(F + H) + reduceArcana(G + I));
+    const commonCenter = reduceArcana(ancestralCenter + E);
 
     return {
       nodes,
       anchors: { A, B, C, D, E },
       generationalCorners: { F, G, H, I },
       lines,
-      method: `A=${A} (يوم)، B=${B} (شهر)، C=${C} (سنة)
-D=R(${A}+${B}+${C})=${D} (تكامل)
-E=R(${A}+${B}+${C}+${D})=${E} (مركز)
-F=R(${A}+${B})=${F}، G=R(${B}+${C})=${G}، H=R(${C}+${D})=${H}، I=R(${D}+${A})=${I}`
+      ancestralCenter,
+      commonCenter,
+      method: `A=${A} (يوم)، B=${B} (شهر)، C=${C} (سنة)\nD=R(${A}+${B}+${C})=${D} (تكامل)\nE=R(${A}+${B}+${C}+${D})=${E} (مركز)\nF=R(${A}+${B})=${F}، G=R(${B}+${C})=${G}، H=R(${C}+${D})=${H}، I=R(${D}+${A})=${I}`
     };
   }
 
@@ -147,17 +151,30 @@ F=R(${A}+${B})=${F}، G=R(${B}+${C})=${G}، H=R(${C}+${D})=${H}، I=R(${D}+${A})
     const { F, G, H, I } = matrix.generationalCorners;
     const E = matrix.anchors.E;
 
+    const maleComb = reduceArcana(F + H);
+    const femaleComb = reduceArcana(G + I);
+
+    const paternal = {
+      name: 'Paternal Line · خط الذكور (الأب)',
+      points: [F, E, H],
+      summary: [F, H, maleComb],
+      combined: maleComb
+    };
+
+    const maternal = {
+      name: 'Maternal Line · خط الإناث (الأم)',
+      points: [G, E, I],
+      summary: [G, I, femaleComb],
+      combined: femaleComb
+    };
+
     return {
-      paternal: {
-        name: 'خط الأب (الذكور)',
-        points: [F, E, H],
-        combined: reduceArcana(F + H)
-      },
-      maternal: {
-        name: 'خط الأم (الإناث)',
-        points: [G, E, I],
-        combined: reduceArcana(G + I)
-      }
+      paternal,
+      maternal,
+      male: paternal,
+      female: maternal,
+      ancestralCenter: matrix.ancestralCenter,
+      commonCenter: matrix.commonCenter
     };
   }
 
@@ -173,222 +190,78 @@ F=R(${A}+${B})=${F}، G=R(${B}+${C})=${G}، H=R(${C}+${D})=${H}، I=R(${D}+${A})
     const earthLine = [A, C, reduceArcana(A + C)];
 
     const soulSearching = reduceArcana(skyLine[2] + earthLine[2]);
-    const socialization = reduceArcana(lines.paternal.combined + lines.maternal.combined);
+    const socialization = reduceArcana(lines.male.combined + lines.female.combined);
     const spiritualExam = reduceArcana(soulSearching + socialization);
+    const planetary = reduceArcana(socialization + spiritualExam);
 
     return {
       sky: skyLine,
       earth: earthLine,
       soulSearching,
-      paternal: lines.paternal.combined,
-      maternal: lines.maternal.combined,
       socialization,
       spiritualExam,
-      planetary: reduceArcana(socialization + spiritualExam)
+      governingEnergy: spiritualExam,
+      planetary,
+      male: lines.male.combined,
+      female: lines.female.combined,
+      paternal: lines.paternal.combined,
+      maternal: lines.maternal.combined
     };
+  }
+
+  /**
+   * حساب شامل للمصفوفة ومسار الحياة معاً
+   */
+  function calculate(birthDate) {
+    const norm = normalizeBirthDate(birthDate);
+    const res = calculateDestinyMatrix(norm);
+    const lpNumber = reduceLifePath(norm.day + norm.month + digitSum(norm.year));
+    res.lifePath = { number: lpNumber };
+    return res;
   }
 
   // ==================== المعلومات المرجعية ====================
 
-  /**
-   * معلومات الـ 22 Arcana
-   * كل أركانا لها ثلاث طبقات: الإيجابية، والحيادية (الضعيفة)
-   */
   const ARCANA_DATA = [
-    // 1. السحر (The Magician)
-    {
-      id: 1,
-      name: 'السحر',
-      en: 'The Magician',
-      positive: 'المبادرة والاستقلال والقيادة',
-      shadow: 'الاندفاع أو التشتت'
-    },
-    // 2. البابية (The High Priestess)
-    {
-      id: 2,
-      name: 'البابية',
-      en: 'The High Priestess',
-      positive: 'المعرفة والحدس والإنصات',
-      shadow: 'الكتمان أو التردد'
-    },
-    // 3. الإمبراطورة (The Empress)
-    {
-      id: 3,
-      name: 'الإمبراطورة',
-      en: 'The Empress',
-      positive: 'النمو والرعاية والاحتواء',
-      shadow: 'الإفراط في السيطرة'
-    },
-    // 4. الإمبراطور (The Emperor)
-    {
-      id: 4,
-      name: 'الإمبراطور',
-      en: 'The Emperor',
-      positive: 'النظام والمسؤولية والتنظيم',
-      shadow: 'الجمود أو التشدد'
-    },
-    // 5. الحبر (The Hierophant)
-    {
-      id: 5,
-      name: 'الحبر',
-      en: 'The Hierophant',
-      positive: 'التعلم والقيم والحكمة',
-      shadow: 'الوعظ أو التعلق بالقواعد'
-    },
-    // 6. العاشقان (The Lovers)
-    {
-      id: 6,
-      name: 'العاشقان',
-      en: 'The Lovers',
-      positive: 'الاختيار والانسجام والتقارب',
-      shadow: 'إرضاء الآخرين'
-    },
-    // 7. المركبة (The Chariot)
-    {
-      id: 7,
-      name: 'المركبة',
-      en: 'The Chariot',
-      positive: 'الحركة والتقدم والشجاعة',
-      shadow: 'الاستعجال أو الصراع'
-    },
-    // 8. القوة (Strength)
-    {
-      id: 8,
-      name: 'القوة',
-      en: 'Strength',
-      positive: 'العدل والتوازن والإنصاف',
-      shadow: 'القسوة في الحكم'
-    },
-    // 9. الناسك (The Hermit)
-    {
-      id: 9,
-      name: 'الناسك',
-      en: 'The Hermit',
-      positive: 'التأمل والخبرة والصبر',
-      shadow: 'العزلة أو الانغلاق'
-    },
-    // 10. عجلة الثروة (Wheel of Fortune)
-    {
-      id: 10,
-      name: 'عجلة الثروة',
-      en: 'Wheel of Fortune',
-      positive: 'الدورات والفرص والمرونة',
-      shadow: 'الانتظار السلبي للحظ'
-    },
-    // 11. العدل (Justice)
-    {
-      id: 11,
-      name: 'العدل',
-      en: 'Justice',
-      positive: 'القوة والاتزان والضبط',
-      shadow: 'الكبت أو الإنهاك'
-    },
-    // 12. المشنوق (The Hanged Man)
-    {
-      id: 12,
-      name: 'المشنوق',
-      en: 'The Hanged Man',
-      positive: 'تغيير المنظور والتأني',
-      shadow: 'تعليق القرار'
-    },
-    // 13. الموت (Death)
-    {
-      id: 13,
-      name: 'الموت',
-      en: 'Death',
-      positive: 'التحول والتجدد وترك القديم',
-      shadow: 'مقاومة التغيير'
-    },
-    // 14. الاعتدال (Temperance)
-    {
-      id: 14,
-      name: 'الاعتدال',
-      en: 'Temperance',
-      positive: 'التوازن والمواءمة والتدرج',
-      shadow: 'تأجيل الاحتياجات'
-    },
-    // 15. الشيطان (The Devil)
-    {
-      id: 15,
-      name: 'الشيطان',
-      en: 'The Devil',
-      positive: 'الاختيار الواعي والملاحظة',
-      shadow: 'التعلق أو الإفراط'
-    },
-    // 16. البرج (The Tower)
-    {
-      id: 16,
-      name: 'البرج',
-      en: 'The Tower',
-      positive: 'التحرر من البنى القديمة والكشف',
-      shadow: 'الهدم بلا خطة'
-    },
-    // 17. النجمة (The Star)
-    {
-      id: 17,
-      name: 'النجمة',
-      en: 'The Star',
-      positive: 'الأمل والإلهام والثقة',
-      shadow: 'المثالية أو التشتت'
-    },
-    // 18. القمر (The Moon)
-    {
-      id: 18,
-      name: 'القمر',
-      en: 'The Moon',
-      positive: 'الحدس والخيال والتعاطف',
-      shadow: 'الضبابية أو الإسقاط'
-    },
-    // 19. الشمس (The Sun)
-    {
-      id: 19,
-      name: 'الشمس',
-      en: 'The Sun',
-      positive: 'الوضوح والحيوية والدفء',
-      shadow: 'الاستنزاف أو المبالغة'
-    },
-    // 20. النداء (Judgement)
-    {
-      id: 20,
-      name: 'النداء',
-      en: 'Judgement',
-      positive: 'المراجعة والتعلم من الماضي',
-      shadow: 'لوم الذات'
-    },
-    // 21. العالم (The World)
-    {
-      id: 21,
-      name: 'العالم',
-      en: 'The World',
-      positive: 'الاكتمال والاندماج والاتساع',
-      shadow: 'التشتت قبل الإغلاق'
-    },
-    // 22. المجنون (The Fool)
-    {
-      id: 22,
-      name: 'المجنون',
-      en: 'The Fool',
-      positive: 'البدايات المفتوحة والفضول',
-      shadow: 'المخاطرة بدون تقدير'
-    }
+    { id: 1, name: 'الساحر', en: 'The Magician', positive: 'البداية والإرادة والمبادرة والابتكار', shadow: 'الاندفاع أو التشتت' },
+    { id: 2, name: 'الكاهنة العظمى', en: 'The High Priestess', positive: 'المعرفة والحدس والإنصات والوعي الداخلي', shadow: 'الكتمان أو التردد' },
+    { id: 3, name: 'الإمبراطورة', en: 'The Empress', positive: 'النمو والرعاية والإبداع والوفرة', shadow: 'الإفراط في السيطرة' },
+    { id: 4, name: 'الإمبراطور', en: 'The Emperor', positive: 'النظام والمسؤولية والثبات والتنظيم', shadow: 'الجمود أو التشدد' },
+    { id: 5, name: 'الكاهن الأعظم', en: 'The Hierophant', positive: 'التعلم والقيم والحكمة ومشاركة الخبرة', shadow: 'الوعظ أو التعلق بالقواعد' },
+    { id: 6, name: 'العشاق', en: 'The Lovers', positive: 'الاختيار والانسجام والتقارب ووضوح القيم', shadow: 'إرضاء الآخرين على حساب الذات' },
+    { id: 7, name: 'العربة', en: 'The Chariot', positive: 'الحركة والتقدم والشجاعة وتوجيه الطاقة', shadow: 'الاستعجال أو الصراع' },
+    { id: 8, name: 'القوة', en: 'Strength', positive: 'العدل والإنصاف والاتزان والوضوح', shadow: 'القسوة في الحكم أو التردد' },
+    { id: 9, name: 'الناسك', en: 'The Hermit', positive: 'التأمل والخبرة والصبر والاستقلال', shadow: 'العزلة أو الانغلاق' },
+    { id: 10, name: 'عجلة الحظ', en: 'Wheel of Fortune', positive: 'الدورات والفرص والمرونة والاستعداد للتغيير', shadow: 'الانتظار السلبي للحظ' },
+    { id: 11, name: 'العدالة', en: 'Justice', positive: 'القوة الهادئة والشجاعة وضبط النفس', shadow: 'الكبت أو الإنهاك' },
+    { id: 12, name: 'المشنوق', en: 'The Hanged Man', positive: 'تغيير المنظور والتأني والرؤية المختلفة', shadow: 'تعليق القرار أو التضحية غير المتوازنة' },
+    { id: 13, name: 'الموت', en: 'Death', positive: 'التحول والتجدد وترك ما انتهى', shadow: 'مقاومة التغيير' },
+    { id: 14, name: 'الاعتدال', en: 'Temperance', positive: 'التوازن والمواءمة والتدرج', shadow: 'تأجيل الاحتياجات' },
+    { id: 15, name: 'الشيطان', en: 'The Devil', positive: 'الاختيار الواعي واستعادة الحرية الداخلية', shadow: 'التعلق أو الإفراط' },
+    { id: 16, name: 'البرج', en: 'The Tower', positive: 'التحرر من البنى القديمة وكشف الحقيقة', shadow: 'الهدم بلا خطة' },
+    { id: 17, name: 'النجمة', en: 'The Star', positive: 'الأمل والإلهام والرؤية البعيدة والثقة', shadow: 'المثالية المفرطة أو التشتت' },
+    { id: 18, name: 'القمر', en: 'The Moon', positive: 'الحدس والمشاعر والخيال والعمق النفسي', shadow: 'الضبابية أو الإسقاط' },
+    { id: 19, name: 'الشمس', en: 'The Sun', positive: 'الوضوح والحيوية والتعبير والدفء والنجاح', shadow: 'الاستنزاف أو المبالغة' },
+    { id: 20, name: 'البعث', en: 'Judgement', positive: 'المراجعة والنداء الداخلي والتعلم من الماضي', shadow: 'لوم الذات أو التردد' },
+    { id: 21, name: 'العالم', en: 'The World', positive: 'الاكتمال والاندماج وإغلاق المراحل والاتساع', shadow: 'التشتت قبل الإغلاق' },
+    { id: 22, name: 'الأحمق', en: 'The Fool', positive: 'البدايات المفتوحة والفضول والحرية والتجربة', shadow: 'المخاطرة غير المدروسة' }
   ];
 
-  /**
-   * الحصول على معلومات أركانا
-   */
   function getArcanaInfo(arcanaNumber) {
-    const arcana = ARCANA_DATA.find(a => a.id === arcanaNumber);
+    const id = Number(arcanaNumber);
+    const arcana = ARCANA_DATA.find(a => a.id === id);
     if (!arcana) {
       throw new RangeError(`رقم الأركانا يجب أن يكون من 1 إلى 22، حصلت على: ${arcanaNumber}`);
     }
     return arcana;
   }
 
-  // ==================== التصدير ====================
+  // ==================== التصدير الموحد ====================
 
-  window.AqeeqMatrixMethodAdapter = {
-    // الدوال الأساسية
+  const adapterApi = {
+    // المعادلات
     reduceArcana,
+    reduceLifePath,
     digitSum,
     normalizeBirthDate,
 
@@ -396,29 +269,36 @@ F=R(${A}+${B})=${F}، G=R(${B}+${C})=${G}، H=R(${C}+${D})=${H}، I=R(${D}+${A})
     calculateDestinyMatrix,
     calculateGenerationalLines,
     calculateDestinyAxes,
+    calculate,
 
     // المعلومات
     getArcanaInfo,
+    getArcana: getArcanaInfo,
     ARCANA_DATA,
 
-    // الإصدار والمعلومات
-    version: '1.0.0',
+    // ميتاداتا
+    version: '1.1.0',
     method: 'Natalia Ladini (22 Arcana)',
-    lastUpdated: '2026-10-29',
+    lastUpdated: '2026-10-31',
+    isLoaded: true,
 
-    // اختبار سريع
     test() {
       const result = this.calculateDestinyMatrix('1999-09-25');
-      console.log('✅ Matrix Method Adapter loaded successfully');
-      console.log('📊 Test calculation for 25/9/1999:', result.nodes);
       return result;
     }
   };
 
-  // تهيئة عند التحميل
-  if (document.readyState === 'loading') {
+  const root = typeof window !== 'undefined' ? window : globalThis;
+  root.AqeeqMatrixMethodAdapter = adapterApi;
+  root.MatrixMethodAdapter = adapterApi;
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = adapterApi;
+  }
+
+  if (typeof document !== 'undefined' && document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      if (window.AqeeqMatrixMethodAdapter) {
+      if (root.AqeeqMatrixMethodAdapter) {
         console.log('🔧 Matrix Method Adapter initialized');
       }
     });
