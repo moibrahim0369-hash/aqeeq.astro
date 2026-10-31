@@ -51,7 +51,9 @@ const { chromium } = require('playwright');
       }
 
       await page.evaluate(() => {
-        window.scrollTo(0, document.documentElement.scrollHeight);
+        document.documentElement.style.scrollBehavior = 'auto';
+        document.body.style.scrollBehavior = 'auto';
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
         return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       });
       const footerCopy = page.locator('.foot .copy');
