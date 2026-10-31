@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 const script = readFileSync(new URL('../account-profile.js', import.meta.url), 'utf8');
-const migration = readFileSync(new URL('../supabase/migrations/20261031070400_account_profile_completion.sql', import.meta.url), 'utf8');
+const migration = readFileSync(new URL('../supabase/migrations/20261031050940_account_profile_completion.sql', import.meta.url), 'utf8');
 
 for (const id of [
   'profile-first-name', 'profile-last-name', 'profile-birth-date',
