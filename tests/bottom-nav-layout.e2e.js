@@ -23,11 +23,11 @@ const { chromium } = require('playwright');
         'Bottom navigation must sit above the viewport bottom');
 
       const links = nav.locator('a');
-      assert.equal(await links.count(), 4, 'All four existing navigation destinations must remain');
+      assert.equal(await links.count(), 3, 'All three existing navigation destinations must remain');
       for (let index = 0; index < await links.count(); index += 1) {
         const link = links.nth(index);
         const icon = link.locator('svg');
-        const label = link.locator('span');
+        const label = link.locator('.bnav-label');
         assert.ok(await icon.isVisible(), 'Each navigation item must retain its icon');
         assert.ok(await label.isVisible(), 'Each navigation item must retain its label');
         const iconBox = await icon.boundingBox();
