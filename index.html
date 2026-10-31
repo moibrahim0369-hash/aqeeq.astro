@@ -45,9 +45,10 @@
 <link rel="stylesheet" href="assets/css/personal-transits.css">
 <link rel="stylesheet" href="assets/css/numerology-matrix.css">
 <link rel="stylesheet" href="assets/css/astro-wheel.css">
-<link rel="stylesheet" href="assets/css/extended-astro-charts.css">
-<link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
-<link rel="stylesheet" href="assets/css/cosmic-background.css">
+  <link rel="stylesheet" href="assets/css/extended-astro-charts.css">
+  <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
+  <link rel="stylesheet" href="assets/css/cosmic-background.css">
+  <link rel="stylesheet" href="redesign.css">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 <style>
 #manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a.card[href="tarot.html"],a.card[href="workbench.html"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
@@ -71,11 +72,21 @@
 <div aria-hidden="true" class="sun" id="sun"></div>
 <div class="hero-grid">
 <div class="hero-copy">
-<div class="brand-row"><span aria-hidden="true" class="brand-moon"><svg viewbox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></span><h1 class="brandmark"><span data-brand=""></span></h1></div>
-<h2 class="hero-title">رحلتك لفهم نفسك… تبدأ من هنا</h2>
-<p class="hero-sub">اكتشف أنماطك، افهم علاقاتك، وشوف حياتك من زاوية جديدة.</p>
-<form class="quick" id="qform" novalidate="">
-<label for="q-date">اكتب تاريخ ميلادك وشوف بطاقتك دلوقتي</label>
+	<div class="brand-row"><span aria-hidden="true" class="brand-moon"><svg viewbox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></span><h1 class="brandmark"><span data-brand=""></span></h1></div>
+	<h2 class="hero-title">رحلتك لفهم نفسك… تبدأ من هنا</h2>
+	<p class="hero-sub">مساحة هادئة تساعدك على فهم أنماطك وعلاقاتك والمرحلة التي تمر بها، من خلال قراءة فلكية وتأملية شخصية.</p>
+	<div class="journey-panel" aria-labelledby="journey-title">
+	<p class="journey-kicker">ابدأ من السؤال الذي يشغلك</p>
+	<h3 class="journey-title" id="journey-title">ما الذي تريد فهمه اليوم؟</h3>
+	<div class="journey-grid">
+	<a class="journey-choice" href="#matrix"><strong>أريد فهم نفسي</strong><small>الشخصية، الأنماط، ونقاط القوة</small></a>
+	<a class="journey-choice" href="#compat"><strong>أريد فهم علاقتي</strong><small>الانجذاب، الاختلاف، وطريقة التواصل</small></a>
+	<a class="journey-choice" href="#sky"><strong>أمر بمرحلة تغيير</strong><small>ما الذي يتحرك في حياتي الآن؟</small></a>
+	<a class="journey-choice" href="#chart"><strong>أريد قراءة خريطتي</strong><small>الكواكب، البيوت، والطالع</small></a>
+	</div>
+	</div>
+	<form class="quick" id="qform" novalidate="">
+	<label for="q-date">لديك تاريخ ميلادك؟ ابدأ ببطاقة سريعة</label>
 <div class="field q-gender"><label for="q-gender">صيغة التقرير (اختياري)</label><select id="q-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
 <div class="qrow"><input id="q-date" max="2100-12-31" min="1900-01-01" type="date"/><button class="btn" type="submit">اكشف بطاقتي</button></div>
 <p class="ferr" hidden="" id="qerr" role="alert"></p>
