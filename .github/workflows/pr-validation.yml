@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [main, feature/matrix-titles-chart-wheels, fix/pr25-ci-nodes-matrix, feature/matrix-report-hierarchy, docs/matrix-destiny-reference-audit]
   push:
-    branches: [feat/arab-atlas-payment-delivery]
+    branches: [feat/arab-atlas-payment-delivery, feat/account-profile-completion]
 permissions:
   contents: read
 jobs:
