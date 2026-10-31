@@ -4,7 +4,14 @@ const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 
 (async () => {
-  const browser = await chromium.launch({ headless: true });
+  const fs = require('node:fs');
+  const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+  const executablePath = process.env.PLAYWRIGHT_CHROME_EXECUTABLE_PATH ||
+    (fs.existsSync(chromePath) ? chromePath : undefined);
+  const browser = await chromium.launch({
+    headless: true,
+    ...(executablePath ? { executablePath } : {})
+  });
   try {
     for (const viewport of [
       { width: 320, height: 740 },
