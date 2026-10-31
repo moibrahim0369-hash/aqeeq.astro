@@ -39,6 +39,8 @@ jobs:
           done
           cat /tmp/aqeeq-http.log
           exit 1
+      - name: Floating bottom navigation and card alignment E2E
+        run: node tests/bottom-nav-layout.e2e.js
       - name: Extended chart wheels E2E
         run: node tests/extended-wheels.e2e.js
       - name: Matrix interpretation model contract
