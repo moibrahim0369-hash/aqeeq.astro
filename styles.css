@@ -1281,11 +1281,12 @@ body { padding-bottom: calc(var(--aq-nav-h) + env(safe-area-inset-bottom) + 12px
 /* Floating Glass Bottom Navigation Bar Dock */
 .bnav {
   position: fixed !important;
-  bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+  bottom: calc(16px + env(safe-area-inset-bottom)) !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
-  z-index: 90 !important;
-  width: min(390px, calc(100% - 32px)) !important;
+  z-index: 1000 !important;
+  width: calc(100% - 32px) !important;
+  max-width: 420px !important;
   box-sizing: border-box !important;
   min-height: 56px !important;
   display: flex !important;
@@ -2168,10 +2169,10 @@ a[href="#services"] {
 
 /* Reserve document and anchor-scroll space for the floating navigation. */
 html {
-  scroll-padding-bottom: calc(var(--aq-floating-nav-height) + 56px + env(safe-area-inset-bottom));
+  scroll-padding-bottom: calc(90px + env(safe-area-inset-bottom));
 }
 body {
-  padding-bottom: calc(var(--aq-floating-nav-height) + 56px + env(safe-area-inset-bottom));
+  padding-bottom: calc(90px + env(safe-area-inset-bottom));
 }
 
 /* Compact floating dock, centered on every viewport instead of edge-to-edge. */
@@ -2181,8 +2182,9 @@ body {
   right: auto;
   inset-inline: auto;
   bottom: calc(16px + env(safe-area-inset-bottom));
-  z-index: 65;
-  width: min(680px, calc(100% - 28px));
+  z-index: 1000;
+  width: calc(100% - 32px);
+  max-width: 420px;
   min-height: var(--aq-floating-nav-height);
   box-sizing: border-box;
   display: grid;
@@ -2238,7 +2240,7 @@ body {
 
 /* Footer controls and legal text stay above the floating dock. */
 .foot {
-  padding-bottom: calc(var(--aq-floating-nav-height) + 56px + env(safe-area-inset-bottom));
+  padding-bottom: calc(90px + env(safe-area-inset-bottom));
 }
 .foot-act {
   justify-content: center;
@@ -2284,7 +2286,7 @@ a.card .ic svg,
 }
 @media (max-width: 380px) {
   .bnav {
-    width: calc(100% - 20px);
+    width: calc(100% - 32px);
     min-height: 66px;
     gap: 2px;
     padding-inline: 6px;
@@ -2304,10 +2306,10 @@ a.card .ic svg,
 }
 @media (min-width: 900px) {
   body {
-    padding-bottom: calc(var(--aq-floating-nav-height) + 64px);
+    padding-bottom: 90px;
   }
   .foot {
-    padding-bottom: calc(var(--aq-floating-nav-height) + 64px);
+    padding-bottom: 90px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
