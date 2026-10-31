@@ -31,7 +31,7 @@ h1,h2,h3,.sec h2,.res-head h3,.qt h3,.tool h3,.qt .big,.hero h1,.hero h1.brandma
 
 /* الألوان الثابتة القديمة */
 .top,.top{background:rgba(13,10,18,.86);border-bottom:1px solid rgba(217,178,124,.16)}
-.btn,.tab[aria-selected="true"],.chip[aria-pressed="true"],.sign[aria-pressed="true"]{color:var(--ink)}
+.btn,.chip[aria-pressed="true"],.sign[aria-pressed="true"]{color:var(--ink)}
 .chip[aria-pressed="true"] .sg,.chip[aria-pressed="true"] .cs,.sign[aria-pressed="true"] .sg{color:var(--ink)}
 .rd,.tr{border-color:rgba(217,178,124,.14)}
 .cw .sec.e3{fill:rgba(60,45,69,.55)}
