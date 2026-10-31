@@ -1311,6 +1311,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
   const VS = "\uFE0E";
   const norm = Astro.norm, d180 = Astro.d180;
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const pad = n => String(n).padStart(2, "0");
   const waLink = t => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t)}`;
   const openWA = a => { a.target = "_blank"; a.rel = "noopener"; };
   const gl = g => g + VS;
@@ -1569,6 +1570,30 @@ if (typeof module !== 'undefined') module.exports = Astro;
   }
   window.isolateResultView = isolateResultView;
 
+  function restoreAllForms() {
+    const cf = document.getElementById('cform');
+    const chartIntro = document.querySelector('#chart .center');
+    if (cf) { cf.hidden = false; cf.style.display = ''; }
+    if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+
+    const mf = document.getElementById('mform');
+    const matrixIntro = document.querySelector('#matrix .center');
+    if (mf) { mf.hidden = false; mf.style.display = ''; }
+    if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+
+    const lpf = document.getElementById('lpform');
+    const lpStart = document.getElementById('lp-start');
+    const lpIntro = document.querySelector('#lifepath .center');
+    if (lpf) { lpf.hidden = true; lpf.style.display = 'none'; }
+    if (lpStart) { lpStart.hidden = false; lpStart.style.display = ''; }
+    if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+
+    const cpf = document.getElementById('cp-form');
+    const cpIntro = document.querySelector('#energy-compatibility .center');
+    if (cpf) { cpf.hidden = false; cpf.style.display = ''; }
+    if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+  }
+
   function onHashChangeRoute() {
     const hash = (window.location.hash || '').replace('#', '');
     if (hash === 'chart') {
@@ -1594,14 +1619,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
       isolateResultView('astromaps');
     } else if (hash === 'home' || !hash) {
       isolateResultView('home');
-      const lpForm = document.getElementById('lpform');
-      const lpStart = document.getElementById('lp-start');
-      if (lpForm) lpForm.hidden = true;
-      if (lpStart) lpStart.hidden = false;
-      const cf = document.getElementById('cform');
-      const chartIntro = document.querySelector('#chart .center');
-      if (cf) { cf.hidden = false; cf.style.display = ''; }
-      if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+      restoreAllForms();
     }
   }
   window.addEventListener('hashchange', onHashChangeRoute);
@@ -1612,22 +1630,14 @@ if (typeof module !== 'undefined') module.exports = Astro;
     if (btn) {
       e.preventDefault();
       isolateResultView('home');
-      const lpForm = document.getElementById('lpform');
-      const lpStart = document.getElementById('lp-start');
-      if (lpForm) lpForm.hidden = true;
-      if (lpStart) lpStart.hidden = false;
-      const cf = document.getElementById('cform');
-      const chartIntro = document.querySelector('#chart .center');
-      if (cf) { cf.hidden = false; cf.style.display = ''; }
-      if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+      restoreAllForms();
       window.location.hash = '#home';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
-  });
 
-  document.addEventListener('click', function(e) {
-    const editBtn = e.target.closest('.btn-edit-chart');
-    if (editBtn) {
+    const editChart = e.target.closest('.btn-edit-chart');
+    if (editChart) {
       e.preventDefault();
       const cf = document.getElementById('cform');
       const chartIntro = document.querySelector('#chart .center');
@@ -1636,11 +1646,60 @@ if (typeof module !== 'undefined') module.exports = Astro;
       if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
       if (result) { result.hidden = true; result.style.display = 'none'; }
       const chartSec = document.getElementById('chart');
-      if (chartSec) {
-        chartSec.scrollIntoView({ behavior: 'smooth' });
-      }
+      if (chartSec) chartSec.scrollIntoView({ behavior: 'smooth' });
       const nameInput = document.getElementById('f-name');
       if (nameInput) nameInput.focus();
+      return;
+    }
+
+    const editMatrix = e.target.closest('.btn-edit-matrix');
+    if (editMatrix) {
+      e.preventDefault();
+      const mf = document.getElementById('mform');
+      const matrixIntro = document.querySelector('#matrix .center');
+      const result = document.getElementById('mresult');
+      if (mf) { mf.hidden = false; mf.style.display = 'block'; }
+      if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const matrixSec = document.getElementById('matrix');
+      if (matrixSec) matrixSec.scrollIntoView({ behavior: 'smooth' });
+      const dateInput = document.getElementById('m-date');
+      if (dateInput) dateInput.focus();
+      return;
+    }
+
+    const editLP = e.target.closest('.btn-edit-lp, #lp-back-start');
+    if (editLP) {
+      e.preventDefault();
+      const lpf = document.getElementById('lpform');
+      const lpStart = document.getElementById('lp-start');
+      const lpIntro = document.querySelector('#lifepath .center');
+      const result = document.getElementById('lpresult');
+      if (lpf) { lpf.hidden = false; lpf.style.display = 'block'; }
+      if (lpStart) { lpStart.hidden = true; lpStart.style.display = 'none'; }
+      if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const lpSec = document.getElementById('lifepath');
+      if (lpSec) lpSec.scrollIntoView({ behavior: 'smooth' });
+      const dateInput = document.getElementById('lp-date');
+      if (dateInput) dateInput.focus();
+      return;
+    }
+
+    const editCP = e.target.closest('.btn-edit-cp');
+    if (editCP) {
+      e.preventDefault();
+      const cpf = document.getElementById('cp-form');
+      const cpIntro = document.querySelector('#energy-compatibility .center');
+      const out = document.getElementById('cp-out');
+      if (cpf) { cpf.hidden = false; cpf.style.display = 'block'; }
+      if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+      if (out) { out.hidden = true; out.style.display = 'none'; }
+      const cpSec = document.getElementById('energy-compatibility');
+      if (cpSec) cpSec.scrollIntoView({ behavior: 'smooth' });
+      const input1 = document.getElementById('cp1-date');
+      if (input1) input1.focus();
+      return;
     }
   });
 
@@ -1891,7 +1950,22 @@ if (typeof module !== 'undefined') module.exports = Astro;
         ? `<p class="cp-note">فيه مكان بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فالبيوت (لو ظهرت) محسوبة بنظام Whole Sign.</p>` : "";
       const unknownNote = [P1, P2].some(p => !p.known)
         ? `<p class="cp-note">فيه وقت ميلاد غير معروف، والقمر بيتحرك حوالي 13 درجة في اليوم، فالاتصالات اللي فيها القمر تقريبية.</p>` : "";
-      return `<div class="cp-res">
+      const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+      const summaryCard = `<div class="chart-summary-card">
+        <div class="chart-summary-info">
+          <div class="chart-summary-badge">توافق الخريطتين الفلكي</div>
+          <h3 class="chart-summary-title">${esc(P1.name)} × ${esc(P2.name)}</h3>
+          <p class="chart-summary-meta">
+            <span>👤 ${esc(P1.name)}: 📅 ${P1.date} · 📍 ${esc(P1.placeName)}</span>
+            <span class="meta-sep">•</span>
+            <span>👤 ${esc(P2.name)}: 📅 ${P2.date} · 📍 ${esc(P2.placeName)}</span>
+          </p>
+        </div>
+        <div class="chart-summary-actions">
+          <button type="button" class="btn-edit-cp" id="btn-edit-cp"><span class="edit-icon">✏️</span> تعديل البيانات / توافق جديد</button>
+        </div>
+      </div>`;
+      return returnHomeBtn + summaryCard + `<div class="cp-res">
         <header class="cp-result-head"><div><span class="cp-result-kicker">قراءة توافق رمزية</span><h3>${esc(P1.name)} <span aria-hidden="true">×</span> ${esc(P2.name)}</h3><p class="cp-meta">${P1.date} · ${P1.placeName} <span aria-hidden="true">|</span> ${P2.date} · ${P2.placeName}</p><p class="cp-gender-meta">صيغة المخاطبة: الطرف الأول ${P1.gender === "female" ? "أنثى" : "ذكر"} · الطرف الثاني ${P2.gender === "female" ? "أنثى" : "ذكر"}</p></div><span class="cp-result-mark" aria-hidden="true">☉</span></header>
         ${unknownNote}${fallbackNote}
         <section class="cp-overview">
@@ -1937,9 +2011,13 @@ if (typeof module !== 'undefined') module.exports = Astro;
         out.innerHTML = render(P1, P2, synastry);
         if (P1.gender === P2.gender) window.AqeeqGender?.apply(out, P1.gender);
         window.AqeeqAstroWheel?.renderSynastryWheel(document.querySelector("#cp-bi-wheel"), P1.ch, P2.ch, synastry.asps);
-        window.AqeeqCopyMap?.attach(out, "خريطة التوافق Synastry & Composite · " + P1.name + " و" + P2.name);
         window.AqeeqAstroWheel?.renderCompositeWheel(document.querySelector("#cp-composite-wheel"), synastry.composite);
         out.hidden = false;
+        out.style.display = "block";
+        form.hidden = true;
+        form.style.display = "none";
+        const cpIntro = document.querySelector("#energy-compatibility .center");
+        if (cpIntro) { cpIntro.hidden = true; cpIntro.style.display = "none"; }
         status.dataset.state = "done";
         status.textContent = "اكتمل حساب الخريطتين والـ Composite.";
         out.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2038,7 +2116,6 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const ch = S.ch, asp = natalAspects(ch), pats = findPatterns(ch);
     const sun = body(ch, "sun"), moon = body(ch, "moon");
     const risingS = ch.known ? Math.floor(ch.asc / 30) : null;
-    const pad = n => String(n).padStart(2, "0");
     const titleName = S.name ? `خريطة ${esc(S.name)}` : "خريطتك الفلكية";
 
     let timeStr = "وقت غير محدد";
@@ -2163,30 +2240,14 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const nb = k => now.bodies.find(b => b.key === k);
     const dateTxt = new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
     const mn = nb("moon"), mf = fmt(mn.lon);
-    let o = `<p class="sub">${dateTxt}</p>`;
-    o += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> القمر النهاردة في ${SIGNS[mf.s].n}</h4><p>${MOON_TODAY[SIGNS[mf.s].el]}</p>`;
-    if (ch.known) { const h = Astro.houseOf(mn.lon, ch.cusps); o += `<p class="sub">القمر بيعدي دلوقتي على البيت ${HOUSES[h - 1].n} عندك، فمشاعرك واهتمامك أقرب لـ${HOUSES[h - 1].area}.</p>`; }
-    o += `</article>`;
-    const targets = ["sun", "moon", "mercury", "venus", "mars"].map(k => ({ key: k, lon: body(ch, k).lon }));
-    if (ch.known) targets.push({ key: "asc", lon: ch.asc }, { key: "mc", lon: ch.mc });
-    const order = ["pluto", "neptune", "uranus", "saturn", "jupiter", "mars", "venus", "mercury", "sun"];
-    const hits = [];
-    order.forEach((tk, wi) => {
-      const tb = nb(tk);
-      targets.forEach(n => {
-        const diff = Math.abs(d180(tb.lon - n.lon));
-        for (const A of ASPECTS) { const orb = Math.abs(diff - A.ang); if (orb <= 2) { hits.push({ tk, n: n.key, A, orb, w: wi }); break; } }
-      });
-    });
-    hits.sort((a, b) => a.w - b.w || a.orb - b.orb);
-    o += `<h4 class="ph">عبور الكواكب على خريطتك</h4>`;
-    o += hits.length ? hits.slice(0, 6).map(x => `<article class="rd"><h4>${gl(PLANETS[x.tk].g)} ${PLANETS[x.tk].n} ${x.A.n} ${PLANETS[x.n] ? gl(PLANETS[x.n].g) : glyphOf(x.n)} ${nmOf(x.n)} <span class="orb">فرق ${num(fmt(x.orb).txt)}</span></h4><p>${PLANETS[x.tk].theme} بتتقابل مع ${themeOf(x.n)} عندك: ${x.A.tr}.</p></article>`).join("") : `<p>مفيش عبور قوي النهاردة على الكواكب الشخصية في خريطتك. يوم هادي نسبيًا، فاستغله في روتينك.</p>`;
-    if (ch.known) {
-      o += `<h4 class="ph">الكواكب البطيئة في بيوتك</h4>`;
-      o += ["jupiter", "saturn", "uranus", "neptune", "pluto"].map(k => { const b = nb(k), h = Astro.houseOf(b.lon, ch.cusps), f = fmt(b.lon); return `<article class="rd"><h4>${gl(PLANETS[k].g)} ${PLANETS[k].n} في ${SIGNS[f.s].n}، بيتك ${HOUSES[h - 1].n}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4><p>${deepHouse(k, h, "transit")}</p></article>`; }).join("");
-    }
+    let o = `<div class="today-cosmic-overview"><span class="today-date-badge">${dateTxt}</span>`;
+    o += `<article class="rd today-moon-focus"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> طقس القمر اليوم: ${SIGNS[mf.s].n}</h4><p>${MOON_TODAY[SIGNS[mf.s].el]}</p>`;
+    if (ch.known) { const h = Astro.houseOf(mn.lon, ch.cusps); o += `<p class="sub">عبور القمر ينشط البيت ${HOUSES[h - 1].n} عندك، فمشاعرك واهتمامك اليوم تتجه نحو ${HOUSES[h - 1].area}.</p>`; }
+    o += `</article></div>`;
     const retros = now.bodies.filter(b => b.retro);
-    if (retros.length) o += `<h4 class="ph">كواكب راجعة دلوقتي</h4>` + retros.map(b => `<p class="sub">${retroText(b.key)}</p>`).join("");
+    if (retros.length) {
+      o += `<div class="today-retro-wrap"><h4 class="ph">حركة التراجع في السماء الآن</h4>` + retros.map(b => `<p class="sub">${retroText(b.key)}</p>`).join("") + `</div>`;
+    }
     return o;
   }
 
@@ -3000,12 +3061,30 @@ let lastMX = null, lastLP = null;
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
     if (typeof isolateResultView === "function") isolateResultView("matrix");
     renderMatrix($("#m-name").value.trim(), d, m, y);
-    const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
+    const r = $("#mresult"); r.hidden = false; r.style.display = "block";
+    const mf = $("#mform"); if (mf) { mf.hidden = true; mf.style.display = "none"; }
+    const matrixIntro = document.querySelector("#matrix .center"); if (matrixIntro) { matrixIntro.hidden = true; matrixIntro.style.display = "none"; }
+    r.scrollIntoView({ behavior: "smooth" });
   });
   function renderMatrix(name, d, m, y, tabIdx) {
     lastMX = [name, d, m, y];
     const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
-    const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
+    const titleName = name ? "مصفوفة " + esc(name) : "مصفوفتك الكونية";
+    const summaryCard = `<div class="chart-summary-card">
+      <div class="chart-summary-info">
+        <div class="chart-summary-badge">مصفوفة القدر والشاكرات</div>
+        <h3 class="chart-summary-title">${titleName}</h3>
+        <p class="chart-summary-meta">
+          <span>📅 ${pad(d)}/${pad(m)}/${y}</span>
+          <span class="meta-sep">•</span>
+          <span>⚡ طاقة المركز: ${P.E}</span>
+        </p>
+      </div>
+      <div class="chart-summary-actions">
+        <button type="button" class="btn-edit-matrix" id="btn-edit-matrix"><span class="edit-icon">✏️</span> تعديل البيانات / مصفوفة جديدة</button>
+      </div>
+    </div>`;
+    const head = summaryCard;
     const hasDeep = !!(window.AqeeqNumerology && typeof window.AqeeqNumerology.render === "function");
     const names = ["التقرير المرجعي (7 أقسام)", "ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
     const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
@@ -3260,7 +3339,23 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     const lp = lifePath(d, m, y), base = LP_BASE[lp] || lp, F = LP_FREE[base];
     const root = $("#lpresult");
     const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
-    root.innerHTML = returnHomeBtn + `<button class="btn ghost sm lp-back-start" type="button" id="lp-back-start">← الرجوع لمسار الحياة</button><div class="res-head"><div class="numbadge" aria-hidden="true">${lp}</div><h3>${name ? esc(name) + ": " : ""}${F.t}${LP_BASE[lp] ? " (رقم رئيسي " + lp + ")" : ""}</h3><p class="tg2">${F.tag}</p><p>${d}/${m}/${y}</p></div>` + dailyHTML(lp) + `<div class="panel" style="margin-top:22px">${lpHTML(lp)}</div>` + MX_NOTE;
+    const titleName = name ? `مسار ${esc(name)}: ${esc(F.t)}` : `مسارك: ${esc(F.t)}`;
+    const masterBadge = LP_BASE[lp] ? ` (رقم رئيسي ${lp})` : "";
+    const summaryCard = `<div class="chart-summary-card">
+      <div class="chart-summary-info">
+        <div class="chart-summary-badge">مسار الحياة والأرقام • رقم ${lp}</div>
+        <h3 class="chart-summary-title">${titleName}${masterBadge}</h3>
+        <p class="chart-summary-meta">
+          <span>📅 ${pad(d)}/${pad(m)}/${y}</span>
+          <span class="meta-sep">•</span>
+          <span>✨ ${esc(F.tag)}</span>
+        </p>
+      </div>
+      <div class="chart-summary-actions">
+        <button type="button" class="btn-edit-lp" id="btn-edit-lp"><span class="edit-icon">✏️</span> تعديل البيانات / مسار جديد</button>
+      </div>
+    </div>`;
+    root.innerHTML = returnHomeBtn + summaryCard + `<div class="res-head"><div class="numbadge" aria-hidden="true">${lp}</div><h3>${name ? esc(name) + ": " : ""}${F.t}${LP_BASE[lp] ? " (رقم رئيسي " + lp + ")" : ""}</h3><p class="tg2">${F.tag}</p></div>` + dailyHTML(lp) + `<div class="panel" style="margin-top:22px">${lpHTML(lp)}</div>` + MX_NOTE;
     if ((LP_BASE[lp] || lp) === 1) {
       root.querySelectorAll("[data-lp-section]").forEach((el, i) => {
         const item = LP1_REVISED_SOURCE[i] || LP1_SOURCE_SECTIONS[i];
@@ -3338,9 +3433,12 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     if (typeof isolateResultView === "function") isolateResultView("lifepath");
     renderLP($("#lp-name").value.trim(), d, m, y);
     window.AqeeqGender?.apply($("#lpresult"), gender);
-    window.AqeeqCopyMap?.attach($("#lpresult"), "مسار الحياة · " + $("#lp-name").value.trim());
-    $("#lpform").hidden = true; $("#lp-start").hidden = true;
-    $("#lpresult").scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    const lpf = $("#lpform"); if (lpf) { lpf.hidden = true; lpf.style.display = "none"; }
+    const lps = $("#lp-start"); if (lps) { lps.hidden = true; lps.style.display = "none"; }
+    const lpIntro = document.querySelector("#lifepath .center");
+    if (lpIntro) { lpIntro.hidden = true; lpIntro.style.display = "none"; }
+    const lpr = $("#lpresult");
+    if (lpr) { lpr.hidden = false; lpr.style.display = "block"; lpr.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); }
   });
 
 
@@ -3742,7 +3840,10 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     resize();draw();window.addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(raf);}else{cancelAnimationFrame(raf);draw();}});
   }
   var resultIds=['result','mresult','lpresult','cp-out','chat-out','ask-out'];
-  function addTools(el){if(!el||el.hidden||el.querySelector('.aq-tools'))return;var bar=document.createElement('div');bar.className='aq-tools aq-print';bar.innerHTML='<button class="btn ghost sm" type="button" data-aq-print>اطبع / احفظ PDF</button><button class="btn ghost sm" type="button" data-aq-top>رجوع لبداية النتيجة ↑</button>';el.insertBefore(bar,el.firstChild);}
+  function addTools(el){
+    // Suppress PDF/Print button as requested across all result screens
+    return;
+  }
   resultIds.forEach(function(id){var el=document.getElementById(id);if(!el)return;new MutationObserver(function(){if(!el.hidden&&el.innerHTML.trim())addTools(el);}).observe(el,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});if(!el.hidden&&el.innerHTML.trim())addTools(el);});
   document.addEventListener('click',function(e){var p=e.target.closest('[data-aq-print]'),t=e.target.closest('[data-aq-top]');if(p){window.print();}if(t){var el=t.closest('.result');if(el)el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}});
   document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(){var id=a.getAttribute('href').slice(1),el=document.getElementById(id);if(el){el.classList.add('aq-skyline');window.setTimeout(function(){el.classList.remove('aq-skyline');},1800);}});});
