@@ -50,7 +50,10 @@ const { chromium } = require('playwright');
         assert.equal(iconMarginBottom, 0, 'Tool-card icon must not be pushed down by a bottom margin');
       }
 
-      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await page.evaluate(() => {
+        window.scrollTo(0, document.documentElement.scrollHeight);
+        return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
       const footerCopy = page.locator('.foot .copy');
       if (await footerCopy.count()) {
         const footerIsClear = await page.evaluate(() => {
