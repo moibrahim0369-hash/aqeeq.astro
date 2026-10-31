@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>معاينة مصفوفة القدر المطوّرة — 14 قسماً ورسم SVG تفاعلي</title>
+  <meta name="color-scheme" content="dark"/>
+  <link href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%278%27 fill=%27%2312082A%27/%3E%3Cpath d=%27M20 6A14 14 0 0 0 20 34A17 17 0 0 1 20 6Z%27 fill=%27%23D6AE5E%27/%3E%3C/svg%3E" rel="icon"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/numerology-matrix.css">
+  <link rel="stylesheet" href="assets/css/matrix-enhanced.css">
+  <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
+  <style>
+    :root {
+      --gold-primary: #D4AF37;
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --bg-dark: #07090e;
+      --card-bg: rgba(18, 22, 34, 0.75);
+      --card-border: rgba(212, 175, 55, 0.18);
+    }
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(30, 24, 54, 0.6) 0%, transparent 70%),
+        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+      color: #e5e9f0;
+      font-family: 'IBM Plex Sans Arabic', 'Alexandria', sans-serif;
+      margin: 0;
+      padding: 0 16px 100px;
+      direction: rtl;
+    }
+    .preview-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-top: 24px;
+    }
+    .preview-badge-banner {
+      background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(192,57,43,0.08));
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+    .preview-badge-banner h1 {
+      margin: 0 0 6px;
+      font-size: 1.25rem;
+      color: #f4e7c1;
+      font-family: 'Cairo', sans-serif;
+    }
+    .preview-badge-banner p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #aeb6ca;
+      line-height: 1.5;
+    }
+    .preview-form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .preview-form-card h2 {
+      margin: 0 0 16px;
+      font-size: 1.05rem;
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-field label {
+      font-size: 0.82rem;
+      color: #aeb6ca;
+      font-weight: 500;
+    }
+    .form-field input {
+      background: rgba(10, 12, 18, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-field input:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+    .btn-calc {
+      background: linear-gradient(135deg, #D4AF37, #AA820A);
+      color: #0b0d13;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+      white-space: nowrap;
+    }
+    .btn-calc:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-calc:active {
+      transform: translateY(0);
+    }
+    #mresult {
+      transition: opacity 0.3s ease;
+    }
+    .mx-result-header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 16px;
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 14px;
+    }
+    .mx-result-name {
+      margin: 0 0 4px;
+      font-size: 1.3rem;
+      color: #f6ecd2;
+      font-family: 'Cairo', sans-serif;
+    }
+    .mx-result-date {
+      margin: 0 0 12px;
+      font-size: 0.88rem;
+      color: #aeb6ca;
+    }
+    .mx-result-nums {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .mx-result-nums span {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 0.82rem;
+      color: #d4d8e4;
+      font-weight: 600;
+    }
+    .mx-result-nums span.mx-center-num {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: rgba(212, 175, 55, 0.4);
+      color: #f4e7c1;
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-container">
+    
+    <div class="preview-badge-banner">
+      <h1>🔮 معاينة مصفوفة القدر المطوّرة</h1>
+      <p>واجهة تفاعلية مستقلة بـ 14 قسماً ورسم SVG بدقة عالية (480×480) مع روابط الربط اللحظي وتحميل الشاكرات العميق.</p>
+    </div>
+
+    <div class="preview-form-card">
+      <h2><span>✨</span> بيانات الحساب</h2>
+      <form id="mform" onsubmit="return false;">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="m-name">الاسم (اختياري)</label>
+            <input id="m-name" type="text" placeholder="اكتب اسمك..." value="أحمد"/>
+          </div>
+          <div class="form-field">
+            <label for="m-date">تاريخ الميلاد</label>
+            <input id="m-date" type="date" required value="1999-09-25"/>
+          </div>
+          <button class="btn-calc" id="btn-calc-matrix" type="submit">احسب مصفوفتك</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="mresult"></div>
+
+  </div>
+
+  <script src="assets/js/numerology-matrix.js"></script>
+  <script src="assets/js/matrix-method-adapter.js"></script>
+
+  <script>
+    // Core Helpers
+    const $ = (s, p = document) => p.querySelector(s);
+    const $$ = (s, p = document) => [...p.querySelectorAll(s)];
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const digSum = n => String(n).split("").reduce((s, c) => s + +c, 0);
+    const redArc = n => { while (n > 22) n = digSum(n); return n; };
+
+    const OUTER = ["A", "F", "B", "G", "C", "H", "D", "I"];
+    const MX_STAGE = ["الطفولة وتشكّل الطبع", "المراهقة وبداية الهوية", "الانطلاقة وبناء الطريق", "الاستقرار والاختبارات", "المراجعة وإعادة الترتيب", "النضج والثمار", "الحكمة والتبسيط", "الإرث والسلام"];
+    const MX_NOTE = '<p class="note" style="margin-top:1.5rem;font-size:0.8rem;color:#8e96a8;text-align:center;line-height:1.6">مصفوفة القدر نظام رمزي للتأمل والوعي بالذات وفهم مسارات الطاقة، وليست تنبؤاً قاطعاً بالمستقبل.</p>';
+    const CONTACT_LINE = "";
+    const MX_SHORT = { A: "شخصيتك", B: "رسالتك", C: "الميراث", D: "الذيل", F: "مواهبك", G: "المال", H: "الحب", I: "الاختبار", E: "الجوهر" };
+    
+    const MX_ROLE = {
+    A: { n: "شخصيتك وموهبتك الأساسية", intro: "ده الطبع الي اتولدت بيه وبتتحرك بيه من غير مجهود", real: "ومعناه عمليًا في شغلك وتصرفاتك اليومية:" },
+    B: { n: "هدفك ورسالتك", intro: "ده الاتجاه الي حياتك بتشدك ناحيته", real: "هتلاقيه في اختياراتك ومواقف بتتكرر معاك:" },
+    C: { n: "الي ورثته من العيلة والماضي", intro: "ده الي وصلك من الأهل والبيئة وبيأثر في ردود أفعالك", real: "وبيتجسد غالبًا في بيتك وعلاقتك بأهلك:" },
+    D: { n: "الذيل الكارمي (الدرس المتكرر)", intro: "ده الدرس الي بيتكرر معاك لحد ما تتعلمه", real: "وبيتكرر في مواقف وناس بتحسها مألوفة:" },
+    E: { n: "جوهرك ومنطقة راحتك", intro: "ده قلبك الحقيقي والمكان الي بترجعله لما تتعب", real: "وبتحس بيه لما تبقى على طبيعتك:" },
+    F: { n: "شغلك وتعبيرك عن نفسك", intro: "ده اللون الي بيظهر في شغلك وإبداعك", real: "وفي الشغل بيتجسد في:" },
+    G: { n: "الفلوس والفرص", intro: "ده الي بيشكل علاقتك بالفلوس والفرص", real: "وفي الفلوس بيظهر في:" },
+    H: { n: "الحب والعلاقات", intro: "ده الي بيتحكم في طريقة حبك وعلاقاتك", real: "وفي الحب بيظهر في:" },
+    I: { n: "نقطة الاختبار الي بتكبرك", intro: "ده الموضوع الي حياتك بتختبرك فيه عشان تنضج", real: "وبيظهر في مواقف بتختبرك:" }
+  };
+
+    const LP_TXT = {
+  1: "رقم ١: الاستقلال والبدايات والقيادة، ودرسك إنك تعتمد على نفسك من غير عند.",
+  2: "رقم ٢: التعاون والحساسية والسلام، ودرسك إنك تثق في نفسك وماتعيشش لإرضاء الناس.",
+  3: "رقم ٣: التعبير والإبداع والبهجة، ودرسك إنك تتكلم بصدق وماتشتتش موهبتك.",
+  4: "رقم ٤: البناء والانضباط والاستقرار، ودرسك إنك تبقى مرن وماتتجمدش.",
+  5: "رقم ٥: الحرية والتغيير والمغامرة، ودرسك الالتزام من غير ما تحس بقيد.",
+  6: "رقم ٦: الحب والمسؤولية والعيلة، ودرسك إنك تهتم بنفسك زي ما بتهتم بالناس.",
+  7: "رقم ٧: التحليل والبحث والروحانية، ودرسك إنك تثق وتفتح قلبك.",
+  8: "رقم ٨: القوة والمال والإنجاز، ودرسك التوازن بين المادة والقيم.",
+  9: "رقم ٩: الإنسانية والتسامح والنهايات، ودرسك إنك تسيب الماضي وتدي من غير ما تنتظر.",
+  11: "رقم ١١ (رقم رئيسي): حدس عالي وحساسية وإلهام، ودرسك إنك تثبت أعصابك وتحول الإلهام لفعل.",
+  22: "رقم ٢٢ (رقم رئيسي): بنّاء الأحلام الكبيرة على الأرض، ودرسك إنك تتحمل الضغط من غير ما تنهار.",
+  33: "رقم ٣٣ (رقم رئيسي): معلّم العطاء والشفاء، ودرسك إنك تحمي نفسك وإنت بتدي."
+};
+
+    function matrixCalc(d, m, y) {
+      const A = redArc(d), B = redArc(m), C = redArc(y), D = redArc(A + B + C), E = redArc(A + B + C + D);
+      const P = { A, B, C, D, E, F: redArc(A + B), G: redArc(B + C), H: redArc(C + D), I: redArc(D + A) };
+      ["A", "B", "C", "D", "F", "G", "H", "I"].forEach(k => { P[k + "2"] = redArc(P[k] + E); });
+      P.mid = OUTER.map((k, i) => redArc(P[k] + P[OUTER[(i + 1) % 8]]));
+      P.sky = redArc(B + D); P.earth = redArc(A + C); P.self = redArc(P.sky + P.earth);
+      P.year = redArc(A + B + redArc(digSum(new Date().getFullYear())));
+      return P;
+    }
+
+    function lifePath(d, m, y) {
+      let n = digSum(d) + digSum(m) + digSum(y);
+      while (n > 9 && ![11, 22, 33].includes(n)) n = digSum(n);
+      return n;
+    }
+
+    function ageNow(d, m, y) {
+      const t = new Date(); let a = t.getFullYear() - y;
+      if (t.getMonth() + 1 < m || (t.getMonth() + 1 === m && t.getDate() < d)) a--;
+      return a;
+    }
+
+    const ARCANA = [
+ {
+  "n": "الساحر",
+  "en": "The Magician",
+  "core": "الإرادة والمهارة، وإن البداية بإيدك",
+  "shadow": "الكلام الأكتر من الفعل أو التلاعب بالناس",
+  "real": "عندك أدوات تبدأ بيها: مهارة أو فرصة أو فكرة. وقت تتحرك وتعرض نفسك بدل ما تستنى حد يديك إذن.",
+  "release": "اكتب حاجة بتأجلها بحجة إنك مش جاهز، وابدأ فيها ١٠ دقايق النهاردة من غير ما تحكم على النتيجة."
+ },
+ {
+  "n": "الكاهنة العليا",
+  "en": "The High Priestess",
+  "core": "الحدس والأسرار والمعرفة الصامتة",
+  "shadow": "الانغلاق وكتمان المشاعر",
+  "real": "في حاجة لسه مش ظاهرة. استنى قبل ما تاخد قرار، وراقب الي بيتقال بين السطور.",
+  "release": "قبل النوم اسأل نفسك سؤال واحد، واكتب أول إجابة تيجي من غير ما تراجعها."
+ },
+ {
+  "n": "الإمبراطورة",
+  "en": "The Empress",
+  "core": "الحنان والخصوبة والوفرة",
+  "shadow": "التدليل الزايد أو التعلق",
+  "real": "فترة نمو وراحة، ممكن تظهر في مشروع بيكبر أو علاقة بتدفا. اهتم بجسمك وبيتك.",
+  "release": "اعمل حاجة لجسمك النهاردة من غير ذنب: حمام دافي، أكلة بتحبها، أو مشوار في مكان أخضر."
+ },
+ {
+  "n": "الإمبراطور",
+  "en": "The Emperor",
+  "core": "الاستقرار والتنظيم والحدود",
+  "shadow": "التحكم والعند",
+  "real": "وقت تحط نظام وحدود: ميزانية أو جدول أو قرار حاسم قدام شخص. الي بيتبني بقواعد بيعيش.",
+  "release": "اكتب ٣ حدود لازم تحطها الأسبوع ده، وقول واحد منهم لشخص بهدوء."
+ },
+ {
+  "n": "الكاهن الأعظم",
+  "en": "The Hierophant",
+  "core": "التعلم والإرشاد والأصول",
+  "shadow": "الجمود والتقليد الأعمى",
+  "real": "وقت تسأل حد خبير أو تاخد كورس أو تلتزم بمنهج. الحاجة هتمشي بالأصول مش بالاختصارات.",
+  "release": "اسأل نفسك: أنهي قاعدة من الي اتربيت عليها لسه بتخدمني، وأنهي واحدة لازم أفكها؟"
+ },
+ {
+  "n": "العاشقان",
+  "en": "The Lovers",
+  "core": "الاختيار والعلاقة والانسجام",
+  "shadow": "التردد أو علاقة على حساب نفسك",
+  "real": "قرار حب أو شراكة قدامك. اختار بقلبك وعقلك مع بعض، وماتختارش من الخوف من الوحدة.",
+  "release": "اكتب ٣ قيم مش ممكن تتنازل عنها في أي علاقة."
+ },
+ {
+  "n": "العربة",
+  "en": "The Chariot",
+  "core": "الانتصار بالإرادة والتحرك",
+  "shadow": "العناد والاندفاع",
+  "real": "وقت تتحرك: سفر أو نقلة أو تحدي. ركز على اتجاه واحد وسيطر على الي بيشدك يمين وشمال.",
+  "release": "حدد هدف واحد للشهر ده، وقسّمه لخطوة صغيرة تعملها كل يوم."
+ },
+ {
+  "n": "العدالة",
+  "en": "Justice",
+  "core": "الحق والميزان والمسؤولية عن الاختيار",
+  "shadow": "الحكم القاسي أو لوم الغير",
+  "real": "موقف أو أوراق أو قرار بيرجع لك بنتيجة اختياراتك. اقرا قبل ما توقّع واتصرف بعدل.",
+  "release": "اكتب موقف بتلوم فيه حد، وبعده اكتب الجزء الي إنت مسؤول عنه فيه."
+ },
+ {
+  "n": "الناسك",
+  "en": "The Hermit",
+  "core": "العزلة والبحث الداخلي والحكمة",
+  "shadow": "الانعزال والوحدة",
+  "real": "وقت تقلل الضجة وتفكر لوحدك. ابعد عن الناس الي بتستنزفك وركز في هدفك.",
+  "release": "اقعد ٢٠ دقيقة من غير موبايل النهاردة، وسجل أي فكرة بتيجي."
+ },
+ {
+  "n": "عجلة الحظ",
+  "en": "Wheel of Fortune",
+  "core": "التغيير والدورات والفرصة",
+  "shadow": "مقاومة الدورة أو الاستسلام للحظ",
+  "real": "حاجة بتتغير، غالبًا مش بإيدك. الفرصة بتيجي لمن يكون جاهز، فجهز نفسك.",
+  "release": "اكتب ٣ حاجات اتغيرت في حياتك السنة دي، وإيه الي اتعلمته من كل واحدة."
+ },
+ {
+  "n": "القوة",
+  "en": "Strength",
+  "core": "الشجاعة الهادية والسيطرة بحنان",
+  "shadow": "كبت الغضب أو الضعف",
+  "real": "موقف بيطلب صبر وثبات مش صوت عالي. قوتك في الهدوء.",
+  "release": "لما تغضب النهاردة خد ٣ أنفاس عميقة قبل الرد، وبعدها قول الي محتاجه بصراحة."
+ },
+ {
+  "n": "المشنوق",
+  "en": "The Hanged Man",
+  "core": "التسليم والنظرة المختلفة",
+  "shadow": "التضحية بلا داعي أو الجمود",
+  "real": "الموضوع واقف ومش هيتحرك بالضغط. مرحلة انتظار لازم تتقبلها وتشوف الحاجة من زاوية تانية.",
+  "release": "قول لنفسك: أنا بسيب النتيجة، وابدأ بحاجة صغيرة مختلفة النهاردة."
+ },
+ {
+  "n": "الموت",
+  "en": "Death",
+  "core": "النهاية والبداية والتحول الجذري",
+  "shadow": "التعلق بالماضي",
+  "real": "حاجة بتنتهي: وظيفة أو علاقة أو مرحلة. مش لازم تكون نهاية سيئة، هي فتح لمكان جديد.",
+  "release": "اكتب خطاب وداع لشيء انتهى، وبعدها اقطعه أو احرقه بأمان."
+ },
+ {
+  "n": "الاعتدال",
+  "en": "Temperance",
+  "core": "التوازن والصبر والشفاء",
+  "shadow": "التطرف أو التسرع",
+  "real": "الحل في الوسط: مواعيد منتظمة، وخلط بين الشغل والراحة، وخطوة بخطوة.",
+  "release": "رتب يومك بحيث يبقى فيه وقت للشغل ووقت للجسم ووقت للروح، ٣ أوقات ثابتة."
+ },
+ {
+  "n": "الشيطان",
+  "en": "The Devil",
+  "core": "التعلق والرغبة والقيود الي بنختارها",
+  "shadow": "الإدمان والتحكم",
+  "real": "علاقة أو عادة بتشدك وإنت عارف إنها مش في صالحك. المفتاح في إيدك مش في إيد حد.",
+  "release": "اكتب عادة أو علاقة مرهقة، واختار خطوة صغيرة تبعدك عنها النهاردة."
+ },
+ {
+  "n": "البرج",
+  "en": "The Tower",
+  "core": "الانهيار المفاجئ وكشف الحقيقة",
+  "shadow": "الصدمة والإنكار",
+  "real": "حاجة مبنية على أساس ضعيف بتتهز. مؤلم لكنه بيكشف الحقيقة قبل ما تتأخر.",
+  "release": "اسأل نفسك: إيه الحقيقة الي كنت بتتجنب أشوفها؟ واكتبها بصراحة."
+ },
+ {
+  "n": "النجمة",
+  "en": "The Star",
+  "core": "الأمل والشفاء والإلهام",
+  "shadow": "فقدان الإيمان",
+  "real": "بعد فترة صعبة بتبدأ ترتاح. أحلامك ممكنة، ابدأ بخطوات صغيرة.",
+  "release": "اطلع بالليل أو بص للسما ٥ دقايق وقول: أنا أستحق الراحة."
+ },
+ {
+  "n": "القمر",
+  "en": "The Moon",
+  "core": "الخيال والحدس والخوف الغامض",
+  "shadow": "الأوهام والقلق",
+  "real": "الصورة مش واضحة. ماتاخدش قرارات كبيرة وإنت قلقان، وتأكد من المعلومات.",
+  "release": "اكتب حلم أو إحساس غريب، وبعدين اسأل: إيه الحاجة الحقيقية الي بتخوفني؟"
+ },
+ {
+  "n": "الشمس",
+  "en": "The Sun",
+  "core": "الفرح والنجاح والوضوح",
+  "shadow": "الغرور أو الإرهاق من العطاء",
+  "real": "نتيجة إيجابية ووضوح، علاقة أو مشروع بيدفا. استمتع من غير ذنب.",
+  "release": "اقعد ١٠ دقايق في الشمس وفكر في حاجة واحدة بتشكر عليها."
+ },
+ {
+  "n": "الحكم",
+  "en": "Judgement",
+  "core": "النداء والتجديد والمحاسبة",
+  "shadow": "الندم أو جلد الذات",
+  "real": "وقت قرار مصيري: تبدأ فصل جديد بعد ما تراجع الماضي. حاجة مؤجلة بتطلب ردّك.",
+  "release": "اكتب رسالة سماح لنفسك عن غلطة قديمة، واقراها بصوت عالي."
+ },
+ {
+  "n": "العالم",
+  "en": "The World",
+  "core": "الاكتمال والإنجاز والتكامل",
+  "shadow": "الخوف من الخاتمة",
+  "real": "مرحلة بتكتمل: شهادة أو مشروع أو رحلة. افرح بإنجازك وبعدين اختار الخطوة الجاية.",
+  "release": "اكتب ٣ إنجازات عملتها السنة دي، وكافئ نفسك."
+ },
+ {
+  "n": "المجنون",
+  "en": "The Fool",
+  "core": "البداية الجديدة والثقة والقفزة",
+  "shadow": "الاندفاع من غير حساب",
+  "real": "مرحلة جديدة: سفر أو مشروع أو قرار جريء. خد خطوة، بس احسبها.",
+  "release": "اعمل حاجة صغيرة مختلفة النهاردة: طريق جديد أو أكلة جديدة أو قرار بسيط بتأجله."
+ }
+];
+
+    const ARC = n => (n >= 1 && n <= 22 ? ARCANA[n - 1] : { n: "رقم " + n, core: "", real: "", shadow: "", release: "" });
+
+    // مصفوفة القدر — رسم SVG المُحسَّن مع روابط قابلة للنقر
+  // ============================================================
+  function matrixSVG(P, cur) {
+    // الألوان الموحدة
+    const GOLD = "#D4AF37", RED = "#C0392B";
+    // حجم viewBox أكبر للإتاحة والوضوح
+    const vb = "0 0 480 480";
+    // مواضع النقاط في الـ viewBox الجديدة (480×480)
+    const POS = {
+      A: [60, 240], B: [240, 60], C: [420, 240], D: [240, 420], E: [240, 240],
+      F: [60, 60], G: [420, 60], H: [420, 420], I: [60, 420]
+    };
+    // نقاط منتصف الخطوط الداخلية (بين النقاط الخارجية والمركز)
+    const INNER = {
+      A2: [150, 240], B2: [240, 150], C2: [330, 240], D2: [240, 330],
+      F2: [150, 150], G2: [330, 150], H2: [330, 330], I2: [150, 330]
+    };
+    // نقاط الوسط بين النقاط المجاورة على المحيط
+    const MID_POINTS = [
+      [60, 150], [150, 60], [330, 60], [420, 150],
+      [420, 330], [330, 420], [150, 420], [60, 330]
+    ];
+
+    let o = `<svg class="mx-diagram" viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مصفوفة القدر">`;
+    o += `<defs>
+      <filter id="glow-gold"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glow-red"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <radialGradient id="ctr-grad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#4a2e0a"/><stop offset="100%" stop-color="#1a1206"/></radialGradient>
+      <radialGradient id="outer-grad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#1e1008"/><stop offset="100%" stop-color="#0d0b06"/></radialGradient>
+    </defs>`;
+
+    // خلفية داكنة
+    o += `<rect width="480" height="480" fill="#0a0c12" rx="16"/>`;
+
+    // ===== الخطوط الهيكلية =====
+    // المربع الخارجي
+    o += `<rect x="60" y="60" width="360" height="360" fill="none" stroke="${GOLD}" stroke-opacity=".35" stroke-width="1.5"/>`;
+    // المعين (الشكل الماسي)
+    o += `<polygon points="240,60 420,240 240,420 60,240" fill="rgba(192,57,43,.08)" stroke="${RED}" stroke-opacity=".55" stroke-width="1.8"/>`;
+
+    // خط المال (محور أفقي A-E-C) — ذهبي
+    o += `<line x1="60" y1="240" x2="420" y2="240" stroke="${GOLD}" stroke-width="2" stroke-opacity=".6"/>`;
+    // خط الحب (محور رأسي B-E-D) — أحمر ذهبي
+    o += `<line x1="240" y1="60" x2="240" y2="420" stroke="${RED}" stroke-width="2" stroke-opacity=".55"/>`;
+
+    // الأقطار (خط الذيل الكارمي F-E-H والعكس G-E-I)
+    o += `<line x1="60" y1="60" x2="420" y2="420" stroke="rgba(255,255,255,.18)" stroke-width="1.3" stroke-dasharray="5 4"/>`;
+    o += `<line x1="420" y1="60" x2="60" y2="420" stroke="rgba(255,255,255,.18)" stroke-width="1.3" stroke-dasharray="5 4"/>`;
+
+    // خطوط الربط من المحيط إلى المركز (خفيفة)
+    const outerKeys = ["A","B","C","D","F","G","H","I"];
+    outerKeys.forEach(k => {
+      const [px, py] = POS[k];
+      o += `<line x1="${px}" y1="${py}" x2="240" y2="240" stroke="rgba(212,175,55,.12)" stroke-width="1"/>`;
+    });
+
+    // تسميات محاور
+    o += `<text x="240" y="30" text-anchor="middle" fill="${GOLD}" font-size="11" opacity=".7" font-family="inherit">خط الحب</text>`;
+    o += `<text x="240" y="462" text-anchor="middle" fill="${GOLD}" font-size="11" opacity=".7" font-family="inherit">الذيل الكارمي (D)</text>`;
+    o += `<text x="10" y="244" text-anchor="middle" fill="${GOLD}" font-size="11" opacity=".7" font-family="inherit" transform="rotate(-90,10,244)">خط المال</text>`;
+
+    // ===== نقاط الوسط بين المحيط (mid) =====
+    MID_POINTS.forEach(([mx, my], i) => {
+      const val = P.mid[i];
+      o += `<g class="mx-node mx-mid-node" data-section="talents" tabindex="0" role="button" aria-label="رقم ${val}" style="cursor:pointer">
+        <circle cx="${mx}" cy="${my}" r="18" fill="#131722" stroke="${GOLD}" stroke-opacity=".35" stroke-width="1.2"/>
+        <text x="${mx}" y="${my}" text-anchor="middle" dominant-baseline="central" fill="#c8b87a" font-size="12" font-weight="700" pointer-events="none">${val}</text>
+      </g>`;
+    });
+
+    // ===== النقاط الداخلية (A2..I2) =====
+    const innerMap = {
+      A2: "money", B2: "mission", C2: "money", D2: "karmic",
+      F2: "parents", G2: "parents", H2: "relationships", I2: "karmic"
+    };
+    Object.entries(INNER).forEach(([key, [ix, iy]]) => {
+      const val = P[key], section = innerMap[key] || "personal";
+      o += `<g class="mx-node mx-inner-node" data-section="${section}" tabindex="0" role="button" aria-label="رقم ${val} النقطة الداخلية" style="cursor:pointer">
+        <circle cx="${ix}" cy="${iy}" r="20" fill="#0e1018" stroke="${GOLD}" stroke-opacity=".45" stroke-width="1.5"/>
+        <text x="${ix}" y="${iy}" text-anchor="middle" dominant-baseline="central" fill="#d4b86a" font-size="13" font-weight="700" pointer-events="none">${val}</text>
+      </g>`;
+    });
+
+    // ===== النقاط الرئيسية الخارجية =====
+    const outerSectionMap = {
+      A: "personal", B: "mission", C: "programs", D: "karmic",
+      F: "talents", G: "money", H: "relationships", I: "karmic"
+    };
+    const outerLabels = {
+      A: "شخصيتك", B: "رسالتك", C: "الميراث", D: "الذيل",
+      F: "مواهبك", G: "المال", H: "الحب", I: "الاختبار"
+    };
+    const outerAges = [0, 10, 20, 30, 40, 50, 60, 70]; // OUTER order: A F B G C H D I
+    const OUTER_ORDER = ["A","F","B","G","C","H","D","I"];
+
+    OUTER_ORDER.forEach((k, idx) => {
+      const [px, py] = POS[k];
+      const val = P[k];
+      const section = outerSectionMap[k];
+      const lbl = outerLabels[k];
+      const age = outerAges[idx];
+      // تحديد اتجاه النص
+      const textDir = px < 200 ? "end" : px > 200 ? "start" : "middle";
+      const lx = px < 200 ? px - 38 : px > 200 ? px + 38 : px;
+      const ly = py < 200 ? py - 38 : py > 200 ? py + 38 : py;
+
+      // المرحلة النشطة
+      const isActive = cur != null && OUTER_ORDER[cur] === k;
+
+      o += `<g class="mx-node mx-outer-node${isActive ? " mx-active" : ""}" data-section="${section}" tabindex="0" role="button" aria-label="${lbl} - رقم ${val}" style="cursor:pointer">
+        <circle cx="${px}" cy="${py}" r="30" fill="${isActive ? "rgba(192,57,43,.4)" : "url(#outer-grad)"}" stroke="${isActive ? GOLD : RED}" stroke-width="${isActive ? "2.5" : "1.8"}" filter="${isActive ? "url(#glow-red)" : "none"}"/>
+        <text x="${px}" y="${py}" text-anchor="middle" dominant-baseline="central" fill="#f2e4b3" font-size="16" font-weight="800" pointer-events="none">${val}</text>
+      </g>`;
+      // تسمية صغيرة خارج الدائرة
+      o += `<text x="${lx}" y="${ly}" text-anchor="${textDir}" fill="#9ea8be" font-size="10" opacity=".9" pointer-events="none">${lbl}</text>`;
+    });
+
+    // ===== نقطة المركز E =====
+    o += `<g class="mx-node mx-center-node" data-section="personal" tabindex="0" role="button" aria-label="المركز - جوهرك - رقم ${P.E}" style="cursor:pointer">
+      <circle cx="240" cy="240" r="40" fill="url(#ctr-grad)" stroke="${GOLD}" stroke-width="2.5" filter="url(#glow-gold)"/>
+      <text x="240" y="233" text-anchor="middle" fill="${GOLD}" font-size="20" font-weight="900" pointer-events="none">${P.E}</text>
+      <text x="240" y="252" text-anchor="middle" fill="#c8a84a" font-size="9" pointer-events="none">الجوهر</text>
+    </g>`;
+
+    // مؤشر السنة الحالية (مرحلة عمرية نشطة)
+    if (cur != null) {
+      const k1 = OUTER_ORDER[cur], k2 = OUTER_ORDER[(cur+1)%8];
+      const [ax, ay] = POS[k1], [bx, by] = POS[k2];
+      o += `<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="${GOLD}" stroke-width="3" stroke-opacity=".8" stroke-linecap="round"/>`;
+    }
+
+    o += `</svg>`;
+    return o;
+  }
+
+  function roleCard(k, P, R) {
+    const a = ARC(P[k]), r = R[k];
+    return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${r.n}: ${a.n} <span class="hs">رقم ${P[k]}</span></summary><div class="mxb"><p>${r.intro}. ${a.core}.</p><p class="sub">${r.real} ${a.real}</p>${a.psy ? `<p class="sub">نفسيًا: ${a.psy}</p>` : ""}<p class="sub">انتبه من: ${a.shadow}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`;
+  }
+  const mxs = (t, p) => `<article class="rd"><h4>${t}</h4><p>${p}</p></article>`;
+
+  function summaryHTML(P, lp) {
+    const a = ARC(P.A), b = ARC(P.B), dd = ARC(P.D), e = ARC(P.E), sky = ARC(P.sky), earth = ARC(P.earth), self = ARC(P.self), yr = ARC(P.year);
+    let o = `<div class="bond-cat"><strong>ملخص مصفوفتك</strong><p>طبعك الأصلي: ${a.n}. بتتجه ناحية: ${b.n}. والدرس الي بيتكرر معاك: ${dd.n}. وجوهرك الداخلي: ${e.n}.</p></div>`;
+    o += mxs("أقوى ما فيك", `${a.core}. ${a.real}`);
+    o += mxs("الي بيتعبك", `${dd.shadow}. ${dd.psy || dd.real}`);
+    o += mxs("اتجاهك", `${b.core}. ${b.real}`);
+    o += mxs("خطوة تبدأ بيها دلوقتي", e.release);
+    o += `<h4 class="ph">رسالتك في الحياة</h4>`;
+    o += mxs(`السما: ${sky.n}`, `ده الجانب الروحي، وبيقول إيه الي بتتعلمه من جوه. ${sky.spirit || sky.core + "."}`);
+    o += mxs(`الأرض: ${earth.n}`, `ده الجانب المادي، وبيقول إيه الي بتبنيه في الواقع. ${earth.real}`);
+    o += mxs(`هدفك الشخصي: ${self.n}`, `${self.core}. ${self.release}`);
+    o += `<h4 class="ph">طاقة رقمك وسنتك</h4>`;
+    o += mxs("مسار الحياة", LP_TXT[lp] + ` <a href="#lifepath" data-open-lp>شوف مسار حياتك بالتفصيل</a>`);
+    o += mxs(`طاقة سنتك الحالية: ${yr.n}`, `${yr.core}. ${yr.real} ${yr.release}`);
+    return o + MX_NOTE;
+  }
+  function pointsHTML(P) {
+    let o = `<p class="lead2">اضغط على أي نقطة تفتح تفاصيلها: معناها، وإزاي بتظهر في الواقع، والجانب الي محتاج انتباه، وخطوة عملية.</p>`;
+    o += "ABCDEFGHI".split("").map(k => roleCard(k, P, MX_ROLE)).join("");
+    o += `<h4 class="ph">النقاط الداخلية</h4><p class="sub">كل نقطة داخلية بتوضح إزاي مجال النقطة الخارجية بيتفعل من جوهرك، وبتتحسب بجمع النقطة مع المركز.</p>`;
+    o += ["A", "B", "C", "D", "F", "G", "H", "I"].map(k => { const a = ARC(P[k + "2"]); return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${MX_SHORT[k]} من جوه: ${a.n} <span class="hs">رقم ${P[k + "2"]}</span></summary><div class="mxb"><p>${a.core}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`; }).join("");
+    return o + MX_NOTE;
+  }
+  function stagesHTML(P, age) {
+    const ac = age % 80, i = Math.floor(ac / 10), half = (ac % 10) < 5 ? 0 : 1;
+    const st = k => ({ s: ARC(P[OUTER[k]]), m: ARC(P.mid[k]), e: ARC(P[OUTER[(k + 1) % 8]]) });
+    const c = st(i), nx = st((i + 1) % 8), dom = half === 0 ? c.s : c.m;
+    let o = `<p class="lead2">عمرك دلوقتي ${age} سنة${age >= 80 ? " (بعد الـ٨٠ الدورة بتبدأ من الأول)" : ""}. المصفوفة بتقسم العمر لمراحل كل واحدة ١٠ سنين، وكل مرحلة ليها طاقة بداية ومنتصف ونهاية.</p>`;
+    o += `<div class="bond-cat"><strong>مرحلتك الحالية: ${MX_STAGE[i]}</strong><p>من عمر ${i * 10} لعمر ${i * 10 + 10}. بدايتها ${c.s.n}، ومنتصفها ${c.m.n}، ونهايتها ${c.e.n}. ${half === 0 ? `إنت في النص الأول، وطاقة ${c.s.n} هي الأقوى حواليك وبتتحول تدريجيًا ناحية ${c.m.n}.` : `إنت في النص التاني، وطاقة ${c.m.n} بتتحول ناحية ${c.e.n}.`}</p></div>`;
+    o += mxs("الي بيحصل حواليك", `${dom.core}. ${dom.real}`);
+    o += mxs("نفسيًا", dom.psy);
+    o += mxs("انتبه من", `${dom.shadow}.`);
+    o += mxs("خطوة تبدأ بيها", dom.release);
+    o += mxs(`المرحلة الجاية: ${MX_STAGE[(i + 1) % 8]}`, `طاقتها الأساسية ${nx.m.n}. ${nx.m.core}.`);
+    o += `<h4 class="ph">كل مراحل عمرك</h4>`;
+    o += MX_STAGE.map((t, k) => { const s = st(k); return `<details class="acc mxd"><summary>${t} <span class="hs">من ${k * 10} لـ${k * 10 + 10}${k === i ? "، إنت هنا" : ""}</span></summary><div class="mxb"><p class="sub">البداية: ${s.s.n}، المنتصف: ${s.m.n}، النهاية: ${s.e.n}.</p><p>${s.m.core}.</p><p class="sub">انتبه من: ${s.m.shadow}.</p></div></details>`; }).join("");
+    return o + `<p class="note">الدايرة الكبيرة في الرسم بتبين المرحلة الي إنت فيها بخط ذهبي. الدواير الصغيرة على الإطار هي نقط المنتصف (الأعمار ٥، ١٥، ٢٥...).</p>` + MX_NOTE;
+  }
+  function karmaHTML(P, lp) {
+    const lives = [["الحياة الأقرب ليك (الذيل الكارمي)", "D"], ["حياة أبعد", "I"], ["حياة أقدم", "H"]];
+    const D = ARC(P.D), C = ARC(P.C);
+    let o = `<p class="sub">دي قراءة رمزية بتطلع من أرقام تاريخ ميلادك. مش دليل على حياة فعلية، لكنها مرآة لأنماط ممكن تكون بتكررها دلوقتي.</p>`;
+    o += lives.map(([t, k]) => `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> ${t}: ${ARC(P[k]).n}</h4><p>${ARC(P[k]).past}</p></article>`).join("");
+    o += `<h4 class="ph">الدرس المتكرر (الذيل الكارمي)</h4>`;
+    o += mxs(`${D.n}`, `${D.psy}`);
+    o += mxs("وفي الواقع بيتجسد في", D.real);
+    o += mxs("تمرين تحرير", D.release);
+    o += `<h4 class="ph">الي ورثته من العيلة</h4>`;
+    o += mxs(`${C.n}`, `ورثت من الأهل طاقة ${C.n}: ${C.core}. وممكن تكون بتكررها من غير ما تحس في: ${C.shadow}.`);
+    o += mxs("خطوة تكسر بيها النمط", C.release);
+    return o + MX_NOTE;
+  }
+  function compatHTML(P1, P2) {
+    const R = {};
+    ["A", "B", "C", "D", "E", "G", "H"].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
+    let o = `<p class="lead2">اتحسبت بجمع نقط المصفوفتين نقطة نقطة، فبتعرف طاقة العلاقة نفسها مش طاقة كل واحد لوحده.</p>`;
+    o += `<div class="bond-cat"><strong>قلب العلاقة: ${ARC(R.E).n}</strong><p>${ARC(R.E).core}.</p></div>`;
+    o += ["A", "B", "H", "G", "D", "C"].map(k => roleCard(k, R, MX_REL)).join("");
+    const same = "ABCDEFGHI".split("").filter(k => P1[k] === P2[k]);
+    o += `<h4 class="ph">التشابه والتكامل</h4>`;
+    o += mxs("نقاط متطابقة", same.length ? `الأرقام متطابقة في: ${same.map(k => `${MX_SHORT[k]} (${ARC(P1[k]).n})`).join("، ")}. التطابق ده بيخلي الاتنين يتصرفوا بنفس الأسلوب في المجال ده، وده بيقرّب وساعات بيزوّد الصدام.` : "مفيش تطابق مباشر بين نقطة ونقطة. كل واحد فيكم جاي بأسلوب مختلف، وده بيكمّل مش بيكرر.");
+    const cross = [];
+    if (P1.D === P2.B) cross.push("الدرس المتكرر عندك هو هدف الشخص التاني، فهو ممكن يساعدك تتعلمه");
+    if (P2.D === P1.B) cross.push("الدرس المتكرر عنده هو هدفك، فإنت ممكن تساعده يتعلمه");
+    if (P1.D === P2.D) cross.push("الذيل الكارمي واحد بينكم، يعني بتتعلموا نفس الدرس مع بعض");
+    o += mxs("روابط بين النقطتين", cross.length ? cross.join(". ") + "." : "مفيش ربط مباشر بين الدروس والأهداف، والعلاقة بتتحدد أكتر بالوعي والاختيار.");
+    return o + MX_NOTE;
+  }
+
+  // ================================================================
+  // تحميل ملفات الأرقام من JSON
+  // ================================================================
+  const _arcanaCache = {};
+  async function loadArcana(n) {
+    if (_arcanaCache[n]) return _arcanaCache[n];
+    try {
+      const r = await fetch(`assets/data/matrix/arcana-${String(n).padStart(2,"0")}.json`);
+      if (!r.ok) return null;
+      const data = await r.json();
+      _arcanaCache[n] = data;
+      return data;
+    } catch { return null; }
+  }
+
+  // عرض محتوى أرقانا من JSON
+  function arcanaSection(data, posKey) {
+    if (!data) return `<p class="mx-acc-loading">تعذّر تحميل المحتوى</p>`;
+    const pos = data.positions?.[posKey];
+    if (!pos) {
+      // عرض المعلومات الأساسية فقط
+      return `
+        <div class="mx-acc-body">
+          <p class="mx-acc-opening">${data.openingShock || ""}</p>
+          <div class="mx-acc-paradox">
+            <div class="mx-paradox-light">🌟 ${data.coreParadox?.lightAspect || ""}</div>
+            <div class="mx-paradox-shadow">⚡ ${data.coreParadox?.shadowAspect || ""}</div>
+          </div>
+        </div>`;
+    }
+    let html = `<div class="mx-acc-body">`;
+    if (data.openingShock) html += `<p class="mx-acc-opening">${data.openingShock}</p>`;
+    if (pos.psychology || pos.label) html += `<div class="mx-acc-block mx-block-gold"><h5>${pos.label || "النفسية"}</h5><p>${pos.psychology || pos.purpose || pos.positive || ""}</p>${pos.gift ? `<p class="mx-gift">🎁 ${pos.gift}</p>` : ""}${pos.shadowTrap ? `<p class="mx-shadow">⚡ ${pos.shadowTrap}</p>` : ""}</div>`;
+    if (pos.positive && !pos.psychology) html += `<div class="mx-acc-block mx-block-gold"><h5>الإيجابي</h5><p>${pos.positive}</p></div>`;
+    if (pos.negative) html += `<div class="mx-acc-block mx-block-red"><h5>التحديات</h5><p>${pos.negative}</p></div>`;
+    if (pos.unlock) html += `<div class="mx-acc-block mx-block-teal"><h5>مفتاح التفعيل</h5><p>${pos.unlock}</p></div>`;
+    if (pos.patterns?.length) html += `<div class="mx-acc-block mx-block-red"><h5>أنماط متكررة</h5>${pos.patterns.map(p => `<p class="mx-pattern">▸ ${p}</p>`).join("")}</div>`;
+    if (pos.pastLife) html += `<div class="mx-acc-block"><h5>من حياة سابقة</h5><p>${pos.pastLife}</p></div>`;
+    if (pos.childhood) html += `<div class="mx-acc-block"><h5>أثر الطفولة</h5><p>${pos.childhood}</p></div>`;
+    if (pos.presentFalls) html += `<div class="mx-acc-block mx-block-red"><h5>الأنماط الحالية</h5><p>${pos.presentFalls}</p></div>`;
+    if (pos.purpose) html += `<div class="mx-acc-block mx-block-teal"><h5>الهدف الكوني</h5><p>${pos.purpose}</p></div>`;
+    if (pos.cosmicTest) html += `<div class="mx-acc-block"><h5>الاختبار</h5><p>${pos.cosmicTest}</p></div>`;
+    if (data.transformationProtocol?.length) html += `<div class="mx-acc-block mx-block-steps"><h5>خطوات التحول</h5><ol>${data.transformationProtocol.map(s => `<li>${s}</li>`).join("")}</ol></div>`;
+    if (data.closingStatement) html += `<p class="mx-closing">"${data.closingStatement}"</p>`;
+    html += `</div>`;
+    return html;
+  }
+
+  // بناء مقطع أكوردية واحد
+  function buildAccordion(id, icon, title, numbersHtml, contentHtml, open = false) {
+    return `
+    <div class="mx-accordion" id="mx-sec-${id}">
+      <button class="mx-acc-header" aria-expanded="${open}" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='true'?'false':'true'); this.nextElementSibling.hidden = this.getAttribute('aria-expanded')==='false'">
+        <span class="mx-acc-icon">${icon}</span>
+        <span class="mx-acc-title">${title}</span>
+        <span class="mx-acc-nums">${numbersHtml}</span>
+        <span class="mx-acc-arrow">▼</span>
+      </button>
+      <div class="mx-acc-panel" ${open ? "" : "hidden"}>
+        ${contentHtml}
+      </div>
+    </div>`;
+  }
+
+  // شارة رقم
+  function numBadge(n, color = "gold") {
+    return `<span class="mx-num-badge mx-num-${color}">${n}</span>`;
+  }
+
+  // جدول الشاكرات
+  function chakraTable(P) {
+    const chakras = [
+      { name: "ساهاسرارا (التاج)", ar: "الروحانية والتنوير", key: "B", color: "#9b59b6" },
+      { name: "أجنا (الجبهة)", ar: "الحدس والرؤية", key: "E", color: "#3498db" },
+      { name: "فيشودها (الحلق)", ar: "التعبير والتواصل", key: "F", color: "#1abc9c" },
+      { name: "أناهاتا (القلب)", ar: "الحب والعطاء", key: "H", color: "#2ecc71" },
+      { name: "مانيبورا (الضفيرة)", ar: "القوة والإرادة", key: "G", color: "#f39c12" },
+      { name: "سفادهيستهانا (الساكرال)", ar: "الإبداع والمشاعر", key: "D", color: "#e67e22" },
+      { name: "مولاداهارا (الجذر)", ar: "الأمان والأرض", key: "A", color: "#e74c3c" }
+    ];
+    const physMap = {1:"الرأس والجهاز العصبي",2:"العيون والجيوب",3:"الحلق والغدة الدرقية",4:"القلب والرئتان",5:"المعدة والكبد",6:"الجهاز التناسلي والكليتان",7:"العمود الفقري والعظام"};
+    const emoMap = {1:"الوحدة والانفصال",2:"الوهم والخوف",3:"العجز والتعبير",4:"الحزن والرفض",5:"الغضب وضعف الإرادة",6:"الذنب والملذات",7:"الخوف وعدم الأمان"};
+    const energyMap = {1:"الوعي الأعلى",2:"الحكمة والبصيرة",3:"الصدق والكلمة",4:"الرحمة والتعاطف",5:"الثقة والشخصية",6:"المتعة الحياتية",7:"الانتماء والجذور"};
+
+    let rows = chakras.map((c, i) => {
+      const n = P[c.key];
+      const arcInfo = ARC(n);
+      return `<tr>
+        <td><span class="chakra-dot" style="background:${c.color}"></span> ${c.name}<br><small>${c.ar}</small></td>
+        <td>${numBadge(n)}</td>
+        <td>${physMap[i+1]}</td>
+        <td>${energyMap[i+1]}</td>
+        <td>${emoMap[i+1]}</td>
+      </tr>`;
+    }).join("");
+
+    return `
+    <div class="mx-chakra-wrap">
+      <p class="mx-acc-lead">نقاط مصفوفتك تتوافق مع مراكز الطاقة في جسمك. كل رقم في موضعه يكشف طبيعة تلك الطاقة.</p>
+      <div class="mx-table-scroll">
+        <table class="mx-chakra-table">
+          <thead>
+            <tr>
+              <th>الشاكرا</th>
+              <th>الرقم</th>
+              <th>الجسد</th>
+              <th>الطاقة</th>
+              <th>العواطف</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>`;
+  }
+
+  // التوقعات السنوية
+  function yearSection(P) {
+    const yr = ARC(P.year);
+    const curYear = new Date().getFullYear();
+    return `
+    <div class="mx-acc-body">
+      <p class="mx-acc-lead">طاقة سنة ${curYear} بالنسبة لك تتمثل في الأرقانا رقم ${P.year}</p>
+      <div class="mx-acc-block mx-block-gold">
+        <h5>طاقة السنة: ${yr.n}</h5>
+        <p>${yr.core}</p>
+      </div>
+      <div class="mx-acc-block">
+        <h5>التجسيد العملي</h5>
+        <p>${yr.real}</p>
+      </div>
+      <div class="mx-acc-block mx-block-teal">
+        <h5>خطوة تبدأ بيها</h5>
+        <p>${yr.release}</p>
+      </div>
+    </div>`;
+  }
+
+  // التوافق مع شخص
+  function compatSection(P) {
+    return `
+    <div class="mx-acc-body">
+      <p class="mx-acc-lead">اكتب تاريخ ميلاد شخص تاني وشوف طاقة العلاقة بينكم</p>
+      <div class="field" style="margin:.75rem 0">
+        <label for="mc-date">تاريخ ميلاد الشخص التاني</label>
+        <input id="mc-date" type="date" min="1900-01-01" max="2100-12-31">
+      </div>
+      <p class="ferr" id="mc-err" role="alert" hidden></p>
+      <div class="cta-row"><button class="btn" id="mc-go" type="button">احسب مصفوفة العلاقة</button></div>
+      <div id="mc-out" hidden></div>
+    </div>`;
+  }
+
+  // ================================================================
+  // renderMatrix — العرض الرئيسي بـ 14 قسم
+  // ================================================================
+  let lastMX = null, lastLP = null;
+  const mform = $("#mform");
+  mform.addEventListener("submit", e => {
+    e.preventDefault();
+    const err = $("#merr"); err.hidden = true;
+    const v = $("#m-date").value;
+    if (!v) { err.textContent = "اكتب تاريخ الميلاد."; err.hidden = false; return; }
+    const [y, m, d] = v.split("-").map(Number);
+    if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
+    if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    renderMatrix($("#m-name").value.trim(), d, m, y);
+    const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
+  });
+
+  function renderMatrix(name, d, m, y, tabIdx) {
+    lastMX = [name, d, m, y];
+    const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
+    const root = $("#mresult");
+
+    // ===== الهيدر =====
+    const head = `
+    <div class="mx-result-header">
+      <h3 class="mx-result-name">${name ? esc(name) : "مصفوفتك"}</h3>
+      <p class="mx-result-date">${d}/${m}/${y} · مسار الحياة ${lp}</p>
+      <div class="mx-result-nums">
+        <span title="الشخصية">A: ${P.A}</span>
+        <span title="الهدف">B: ${P.B}</span>
+        <span title="الكارما">C: ${P.C}</span>
+        <span title="الذيل">D: ${P.D}</span>
+        <span title="الجوهر" class="mx-center-num">E: ${P.E}</span>
+      </div>
+    </div>`;
+
+    // ===== الخريطة SVG =====
+    const svgWrap = `
+    <div class="mx-diagram-wrap">
+      ${matrixSVG(P, cur)}
+      <p class="mx-diagram-legend">
+        <span class="mx-legend-item"><span class="mx-legend-line mx-legend-gold"></span> خط المال (A←E→C)</span>
+        <span class="mx-legend-item"><span class="mx-legend-line mx-legend-red"></span> خط الحب (B←E→D)</span>
+        <span class="mx-legend-item"><span class="mx-legend-line mx-legend-dash"></span> خط الذيل الكارمي</span>
+      </p>
+    </div>`;
+
+    // ===== مقاطع الأكوردية الـ 14 =====
+    // المحتوى الأساسي من ARCANA المضمّن (سريع، فوري)
+    const E = ARC(P.E), A = ARC(P.A), B = ARC(P.B), D_arc = ARC(P.D);
+    const G = ARC(P.G), H = ARC(P.H), F = ARC(P.F), I = ARC(P.I);
+    const C_arc = ARC(P.C);
+
+    const sections = `
+    <div class="mx-sections" id="mx-sections">
+
+      ${buildAccordion("personal", "🌟", "الشخصية والصفات", numBadge(P.A)+" "+numBadge(P.E), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">شخصيتك الأصيلة (A=${P.A}) ووجوهرك الداخلي (E=${P.E})</p>
+          <div class="mx-acc-block mx-block-gold"><h5>${A.n} · رقم ${P.A}</h5><p>${A.core}</p><p>${A.real}</p></div>
+          <div class="mx-acc-block"><h5>الجوهر: ${E.n} · رقم ${P.E}</h5><p>${E.core}</p><p>${E.real}</p></div>
+          <div class="mx-acc-block mx-block-red"><h5>انتبه من</h5><p>${A.shadow}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>خطوة عملية</h5><p>${E.release}</p></div>
+          <div id="mx-personal-deep" class="mx-deep-loader" data-nums="${P.A},${P.E}"><p class="mx-acc-loading">⏳ جاري تحميل التحليل العميق...</p></div>
+        </div>`, true)}
+
+      ${buildAccordion("karmic", "🌀", "الذيل الكارمي · الحياة السابقة", numBadge(P.D)+" "+numBadge(P.I), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">أنماط من حيوات سابقة وطفولتك تؤثر على حياتك الآن</p>
+          <div class="mx-acc-block mx-block-red"><h5>الذيل الكارمي الرئيسي: ${D_arc.n} · رقم ${P.D}</h5><p>${D_arc.core}</p><p>${D_arc.real}</p></div>
+          <div class="mx-acc-block mx-block-red"><h5>انتبه من هذا النمط</h5><p>${D_arc.shadow}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>تمرين التحرر</h5><p>${D_arc.release}</p></div>
+          <div id="mx-karmic-deep" class="mx-deep-loader" data-nums="${P.D}"><p class="mx-acc-loading">⏳ جاري تحميل التحليل العميق...</p></div>
+        </div>`)}
+
+      ${buildAccordion("scenario", "🗺️", "مشهد الحياة · رحلتك", numBadge(P.A)+" "+numBadge(P.B)+" "+numBadge(P.E), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">القصة الكبرى في حياتك: من أين بدأت، وإلى أين تتجه</p>
+          <div class="mx-acc-block"><h5>نقطة الانطلاق: ${A.n}</h5><p>${A.core}</p></div>
+          <div class="mx-acc-block mx-block-gold"><h5>الاتجاه: ${B.n}</h5><p>${ARC(P.B).core}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>الجوهر في المنتصف: ${E.n}</h5><p>${E.core}. ${E.real}</p></div>
+          <div class="mx-acc-block"><h5>مراحل عمرك الحالية</h5><p>عمرك ${age} سنة — في مرحلة ${MX_STAGE[cur]}. بدايتها ${ARC(P[OUTER[cur]]).n} ونهايتها ${ARC(P[OUTER[(cur+1)%8]]).n}.</p></div>
+        </div>`)}
+
+      ${buildAccordion("talents", "✨", "المواهب والقدرات", numBadge(P.F)+" "+numBadge(P.G), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">ما وُهبته طبيعياً وكيف تُعبّر عن نفسك في الشغل والإبداع</p>
+          <div class="mx-acc-block mx-block-gold"><h5>موهبتك الأساسية: ${F.n} · رقم ${P.F}</h5><p>${F.core}</p><p>${F.real}</p></div>
+          <div class="mx-acc-block"><h5>في الفرص والتعبير: ${G.n} · رقم ${P.G}</h5><p>${G.core}</p><p>${G.real}</p></div>
+          <div id="mx-talents-deep" class="mx-deep-loader" data-nums="${P.F}"><p class="mx-acc-loading">⏳ جاري تحميل التحليل العميق...</p></div>
+        </div>`)}
+
+      ${buildAccordion("mission", "🎯", "الرسالة والهدف الكوني", numBadge(P.B)+" "+numBadge(P.sky||"")+" "+numBadge(P.earth||""), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">لماذا أنت هنا؟ ما الذي جئت لتُحققه في هذه الحياة</p>
+          <div class="mx-acc-block mx-block-gold"><h5>الهدف الأساسي: ${B.n} · رقم ${P.B}</h5><p>${ARC(P.B).core}</p><p>${ARC(P.B).real}</p></div>
+          ${P.sky ? `<div class="mx-acc-block"><h5>السماء (الروحي): ${ARC(P.sky).n} · رقم ${P.sky}</h5><p>${ARC(P.sky).core}</p></div>` : ""}
+          ${P.earth ? `<div class="mx-acc-block"><h5>الأرض (المادي): ${ARC(P.earth).n} · رقم ${P.earth}</h5><p>${ARC(P.earth).core}</p></div>` : ""}
+          <div id="mx-mission-deep" class="mx-deep-loader" data-nums="${P.B}"><p class="mx-acc-loading">⏳ جاري تحميل التحليل العميق...</p></div>
+        </div>`)}
+
+      ${buildAccordion("money", "💰", "المال والوفرة", numBadge(P.G)+" "+numBadge(P.A), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">علاقتك بالمال والوفرة وكيف تستقطب الرزق إلى حياتك</p>
+          <div class="mx-acc-block mx-block-gold"><h5>طاقة المال: ${G.n} · رقم ${P.G}</h5><p>${G.core}</p><p>${G.real}</p></div>
+          <div class="mx-acc-block"><h5>شخصيتك المالية: ${A.n}</h5><p>${A.real}</p></div>
+          <div class="mx-acc-block mx-block-red"><h5>تحديات مالية</h5><p>${G.shadow}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>فتح باب الرزق</h5><p>${G.release}</p></div>
+          <div id="mx-money-deep" class="mx-deep-loader" data-nums="${P.G}"><p class="mx-acc-loading">⏳ جاري تحميل التحليل العميق...</p></div>
+        </div>`)}
+
+      ${buildAccordion("programs", "🔄", "البرامج الكارمية", numBadge(P.C)+" "+numBadge(P.I), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">الأنماط الموروثة من الأهل والبيئة التي تؤثر على قراراتك دون وعي</p>
+          <div class="mx-acc-block mx-block-red"><h5>الميراث: ${C_arc.n} · رقم ${P.C}</h5><p>${C_arc.core}</p><p>${C_arc.real}</p></div>
+          <div class="mx-acc-block"><h5>الاختبار: ${ARC(P.I).n} · رقم ${P.I}</h5><p>${ARC(P.I).core}</p></div>
+          <div class="mx-acc-block mx-block-red"><h5>انتبه من</h5><p>${C_arc.shadow}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>كيف تكسر البرنامج</h5><p>${C_arc.release}</p></div>
+        </div>`)}
+
+      ${buildAccordion("attraction", "💫", "الجاذبية والكاريزما", numBadge(P.H)+" "+numBadge(P.F), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">ما الذي يجذب الآخرين إليك وكيف تؤثر بهم</p>
+          <div class="mx-acc-block mx-block-gold"><h5>جاذبيتك: ${H.n} · رقم ${P.H}</h5><p>${H.core}</p><p>${H.real}</p></div>
+          <div class="mx-acc-block"><h5>في التعبير والتواجد: ${F.n}</h5><p>${F.core}</p></div>
+          <div id="mx-attraction-deep" class="mx-deep-loader" data-nums="${P.H}"><p class="mx-acc-loading">⏳ جاري تحميل التحليل العميق...</p></div>
+        </div>`)}
+
+      ${buildAccordion("parents", "👪", "خطوط الأب والأم", numBadge(P.F)+" "+numBadge(P.I)+" "+numBadge(P.C), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">تأثير الأب والأم على شخصيتك وما ورثته منهما</p>
+          <div class="mx-acc-block"><h5>خط الأب (F): ${F.n} · رقم ${P.F}</h5><p>${F.core}</p></div>
+          <div class="mx-acc-block"><h5>خط الأم (I): ${ARC(P.I).n} · رقم ${P.I}</h5><p>${ARC(P.I).core}</p></div>
+          <div class="mx-acc-block mx-block-red"><h5>الميراث العائلي (C): ${C_arc.n} · رقم ${P.C}</h5><p>${C_arc.shadow}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>التحرر من الأنماط</h5><p>${C_arc.release}</p></div>
+        </div>`)}
+
+      ${buildAccordion("children", "🌱", "الأطفال والنسل", numBadge(P.G)+" "+numBadge(P.D), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">طاقتك كوالد/والدة وما تنقله لمن يأتي بعدك</p>
+          <div class="mx-acc-block"><h5>ما تُعطيه: ${G.n} · رقم ${P.G}</h5><p>${G.core}</p><p>${G.real}</p></div>
+          <div class="mx-acc-block mx-block-red"><h5>ما قد تورّثه كارمياً: ${D_arc.n}</h5><p>${D_arc.shadow}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>كيف تكسر الحلقة</h5><p>${D_arc.release}</p></div>
+        </div>`)}
+
+      ${buildAccordion("relationships", "❤️", "العلاقات والشريك", numBadge(P.H)+" "+numBadge(P.D), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">أنماطك العاطفية وطبيعة علاقاتك وما تبحث عنه في شريك حياتك</p>
+          <div class="mx-acc-block mx-block-gold"><h5>في الحب: ${H.n} · رقم ${P.H}</h5><p>${H.core}</p><p>${H.real}</p></div>
+          <div class="mx-acc-block mx-block-red"><h5>الأنماط المتكررة: ${D_arc.n}</h5><p>${D_arc.shadow}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>ما يكسر الحلقة</h5><p>${H.release}</p></div>
+          <div id="mx-relationships-deep" class="mx-deep-loader" data-nums="${P.H}"><p class="mx-acc-loading">⏳ جاري تحميل التحليل العميق...</p></div>
+        </div>`)}
+
+      ${buildAccordion("guidance", "🧭", "الإرشادات الحياتية", numBadge(P.E)+" "+numBadge(P.self||""), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">توجيهات عملية لحياة متوازنة وفق طاقة مصفوفتك</p>
+          <div class="mx-acc-block mx-block-gold"><h5>من جوهرك: ${E.n}</h5><p>${E.core}</p></div>
+          ${P.self ? `<div class="mx-acc-block"><h5>هدفك الشخصي: ${ARC(P.self).n} · رقم ${P.self}</h5><p>${ARC(P.self).core}</p><p>${ARC(P.self).release}</p></div>` : ""}
+          <div class="mx-acc-block mx-block-teal"><h5>خطوة ابدأ بيها</h5><p>${E.release}</p></div>
+          <div class="mx-acc-block"><h5>عادات الوعي اليومي</h5><p>راقب الأنماط المتكررة في حياتك. كل نمط هو رسالة من مصفوفتك.</p></div>
+        </div>`)}
+
+      ${buildAccordion("year", "📅", "توقعات السنة الحالية", numBadge(P.year)+" "+numBadge(lp, "red"), `${yearSection(P)}`)}
+
+      ${buildAccordion("brand", "🏷️", "علامتك الشخصية", numBadge(P.A)+" "+numBadge(P.E), `
+        <div class="mx-acc-body">
+          <p class="mx-acc-lead">هويتك الجوهرية وكيف تُقدم نفسك للعالم بطريقة أصيلة</p>
+          <div class="mx-acc-block mx-block-gold"><h5>طبيعتك الأصيلة: ${A.n}</h5><p>${A.core}</p><p>${A.real}</p></div>
+          <div class="mx-acc-block"><h5>جوهرك الحقيقي: ${E.n}</h5><p>${E.core}</p></div>
+          <div class="mx-acc-block mx-block-teal"><h5>رسالتك للعالم</h5><p>امزج بين ${A.n} و${E.n} في كل ما تُبدعه وتقدمه. هذا هو صوتك الحقيقي.</p></div>
+        </div>`)}
+
+      ${buildAccordion("health", "🌿", "الصحة والشاكرات", numBadge(P.A)+" "+numBadge(P.B)+" "+numBadge(P.E), chakraTable(P))}
+
+      <div class="mx-compat-section">
+        <h4 class="mx-compat-title">⚡ التوافق مع شخص</h4>
+        ${compatSection(P)}
+      </div>
+
+    </div>`;
+
+    root.innerHTML = head + svgWrap + sections + MX_NOTE + CONTACT_LINE;
+
+    // ربط النقر على SVG
+    root.querySelectorAll(".mx-node").forEach(node => {
+      const sec = node.dataset.section;
+      if (!sec) return;
+      const handler = () => {
+        const target = root.querySelector(`#mx-sec-${sec}`);
+        if (!target) return;
+        const btn = target.querySelector(".mx-acc-header");
+        if (btn && btn.getAttribute("aria-expanded") === "false") btn.click();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+      node.addEventListener("click", handler);
+      node.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); } });
+    });
+
+    // ربط التوافق
+    const mcGo = root.querySelector("#mc-go");
+    if (mcGo) mcGo.addEventListener("click", () => {
+      const er = root.querySelector("#mc-err"), out = root.querySelector("#mc-out"); er.hidden = true;
+      const v = root.querySelector("#mc-date").value;
+      if (!v) { er.textContent = "اكتب تاريخ ميلاد الشخص التاني."; er.hidden = false; return; }
+      const [y2, m2, d2] = v.split("-").map(Number);
+      if (y2 < 1900 || y2 > 2100) { er.textContent = "التاريخ لازم يكون بين 1900 و 2100."; er.hidden = false; return; }
+      if (new Date(y2, m2 - 1, d2) > new Date()) { er.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; er.hidden = false; return; }
+      out.innerHTML = compatHTML(P, matrixCalc(d2, m2, y2)); out.hidden = false;
+    });
+
+    // تحميل التحليل العميق من arcana JSON بشكل غير متزامن
+    const deepLoaders = [
+      { id: "#mx-personal-deep", nums: [P.A], posKey: "center" },
+      { id: "#mx-karmic-deep", nums: [P.D], posKey: "karmicTail" },
+      { id: "#mx-money-deep", nums: [P.G], posKey: "money" },
+      { id: "#mx-relationships-deep", nums: [P.H], posKey: "relationships" },
+      { id: "#mx-talents-deep", nums: [P.F], posKey: "center" },
+      { id: "#mx-mission-deep", nums: [P.B], posKey: "mission" },
+      { id: "#mx-attraction-deep", nums: [P.H], posKey: "relationships" }
+    ];
+    deepLoaders.forEach(async ({ id, nums, posKey }) => {
+      const el = root.querySelector(id);
+      if (!el) return;
+      const n = nums[0];
+      const data = await loadArcana(n);
+      if (el && el.isConnected) el.innerHTML = arcanaSection(data, posKey);
+    });
+
+    const lpFill = $("#lp-date");
+    if (lpFill && !lpFill.value) lpFill.value = `${y}-${String(m).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+  }
+  
+
+    // Auto-calculate on initial page load
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = $("#mform");
+      const runCalc = () => {
+        const name = $("#m-name").value.trim();
+        const dateVal = $("#m-date").value;
+        if (!dateVal) return;
+        const [y, m, d] = dateVal.split("-").map(Number);
+        if (d && m && y) {
+          renderMatrix(name, d, m, y);
+        }
+      };
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        runCalc();
+      });
+
+      // Run default calculation
+      runCalc();
+    });
+  </script>
+</body>
+</html>
