@@ -48,3 +48,27 @@ input,select,textarea{background:rgba(255,255,255,.045);border:1px solid var(--a
 @media(max-width:899px){.hd{height:64px;width:min(100% - 28px,1180px)}.hero{padding:52px 0 34px}.hero-grid{width:min(100% - 28px,1180px);grid-template-columns:1fr;gap:34px}.hero-copy{order:1;text-align:center}.wheel-box{order:2}.brand-row{justify-content:center}.hero-title,.hero-sub{text-align:center}.hero-sub{margin-inline:auto}.journey-panel{text-align:right;margin-inline:auto}.wheel{width:min(88vw,390px)}.home{width:min(100% - 28px,1180px)}}
 @media(max-width:600px){.journey-grid,.grp{grid-template-columns:1fr}.qrow{display:grid;grid-template-columns:1fr}.qrow .btn{width:100%}.quick{margin-top:18px}.hero h1.brandmark{font-size:clamp(2.7rem,15vw,4.1rem)}.hero-title{font-size:1.45rem}.card{min-height:112px;padding:16px}.card .ic{width:44px;height:44px;flex-basis:44px}.cat-h{font-size:1rem}.sec:target>.wrap{width:min(100% - 28px,760px)}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}}
+
+/* Aqeq Astro v2 — decisive homepage correction.
+   These selectors intentionally outrank the legacy cosmic-grid rules. */
+:root{--aq-bg:#0b0e18;--aq-surface:#151a2b;--aq-surface-2:#1b2238;--aq-line:rgba(238,231,211,.13);--aq-line-strong:rgba(238,231,211,.28)}
+body{background:linear-gradient(180deg,#0b0e18 0%,#101426 48%,#0b0e18 100%)!important}
+#aqeq-stars,#sky-layer,#mw,#sky-bg{opacity:.12!important}
+.hero{background:linear-gradient(180deg,rgba(11,14,24,.12),rgba(11,14,24,.7))!important;min-height:620px!important}
+.hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr)!important;gap:54px!important}
+.wheel{width:min(100%,410px)!important;filter:drop-shadow(0 16px 42px rgba(181,164,232,.13))!important}
+.hero-copy{max-width:640px}.hero h1.brandmark{letter-spacing:-.03em}.hero-sub{max-width:31rem!important}
+.journey-panel{max-width:620px!important;background:rgba(21,26,43,.92)!important;border-color:rgba(181,164,232,.24)!important;box-shadow:0 20px 55px rgba(0,0,0,.25)!important}
+.home{width:min(1120px,100% - 48px)!important;padding:38px 0 140px!important;gap:54px!important}
+/* Two-card rhythm on desktop; one calm vertical stream on phones. */
+#cat-discover.grp,#cat-relations.grp,#cat-forecast.grp{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important;margin:0!important}
+#cat-discover.grp .cat-h,#cat-relations.grp .cat-h,#cat-forecast.grp .cat-h{grid-column:1/-1!important;padding:0 0 15px!important;margin-bottom:2px!important;border-bottom:1px solid var(--aq-line)!important;font-size:1.02rem!important;color:var(--aq-muted)!important;letter-spacing:.01em}
+#cat-discover.grp .card,#cat-relations.grp .card,#cat-forecast.grp .card{min-height:118px!important;padding:19px 20px!important;border:1px solid rgba(238,231,211,.12)!important;border-radius:18px!important;background:linear-gradient(145deg,#171d31,#111625)!important;box-shadow:0 10px 26px rgba(0,0,0,.13)!important}
+#cat-discover.grp .card:hover,#cat-relations.grp .card:hover,#cat-forecast.grp .card:hover{background:linear-gradient(145deg,#1d2640,#151b2d)!important;border-color:rgba(227,201,139,.42)!important;box-shadow:0 16px 34px rgba(0,0,0,.2)!important}
+#cat-discover.grp .card .ic,#cat-relations.grp .card .ic,#cat-forecast.grp .card .ic{width:44px!important;height:44px!important;flex-basis:44px!important;border-radius:13px!important;background:rgba(227,201,139,.07)!important;border-color:rgba(227,201,139,.25)!important}
+#cat-discover.grp .card .ct b,#cat-relations.grp .card .ct b,#cat-forecast.grp .card .ct b{font-size:.98rem!important;color:var(--aq-ink)!important}
+#cat-discover.grp .card .ct small,#cat-relations.grp .card .ct small,#cat-forecast.grp .card .ct small{font-size:.78rem!important;color:var(--aq-muted)!important;line-height:1.6!important}
+#cat-discover.grp .card .chev,#cat-relations.grp .card .chev,#cat-forecast.grp .card .chev{font-size:1.25rem!important;color:rgba(227,201,139,.65)!important}
+.qres{background:transparent!important}.qres .wrap{width:min(1120px,100% - 48px)!important}
+@media(max-width:899px){.hero-grid{grid-template-columns:1fr!important;gap:28px!important}.hero-copy{max-width:680px;margin:auto}.wheel{width:min(84vw,360px)!important}.home{width:min(100% - 28px,1120px)!important;padding-top:28px!important}.qres .wrap{width:min(100% - 28px,1120px)!important}}
+@media(max-width:600px){#cat-discover.grp,#cat-relations.grp,#cat-forecast.grp{grid-template-columns:1fr!important;gap:11px!important}.home{gap:42px!important}.hero{min-height:0!important}.journey-panel{padding:17px!important}.hero h1.brandmark{font-size:clamp(2.55rem,14vw,4rem)!important}}
