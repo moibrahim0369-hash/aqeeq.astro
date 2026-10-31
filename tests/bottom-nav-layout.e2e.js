@@ -6,7 +6,13 @@ const { chromium } = require('playwright');
 (async () => {
   const browser = await chromium.launch({ headless: true });
   try {
-    for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 900 }]) {
+    for (const viewport of [
+      { width: 320, height: 740 },
+      { width: 360, height: 800 },
+      { width: 390, height: 844 },
+      { width: 430, height: 932 },
+      { width: 1280, height: 900 }
+    ]) {
       const page = await browser.newPage({ viewport });
       const pageErrors = [];
       page.on('pageerror', error => pageErrors.push(error.message));
@@ -17,6 +23,21 @@ const { chromium } = require('playwright');
       const navBox = await nav.boundingBox();
       assert.ok(navBox, 'Bottom navigation must have a rendered box');
       assert.ok(navBox.width < viewport.width, 'Bottom navigation must float with side margins');
+      assert.ok(navBox.width <= 420, 'Bottom navigation must not exceed 420px');
+      assert.ok(Math.abs(navBox.width - Math.min(viewport.width - 32, 420)) <= 1,
+        'Bottom navigation must use 16px side margins up to its 420px maximum');
+      const navStyles = await nav.evaluate(element => ({
+        position: getComputedStyle(element).position,
+        zIndex: getComputedStyle(element).zIndex
+      }));
+      assert.equal(navStyles.position, 'fixed', 'Bottom navigation must remain fixed');
+      assert.equal(navStyles.zIndex, '1000', 'Bottom navigation must use the required stacking order');
+      const pageStyles = await page.evaluate(() => ({
+        scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior,
+        bodyPaddingBottom: Number.parseFloat(getComputedStyle(document.body).paddingBottom)
+      }));
+      assert.equal(pageStyles.scrollBehavior, 'smooth', 'Page scrolling must remain smooth');
+      assert.ok(pageStyles.bodyPaddingBottom >= 90, 'Page must reserve at least 90px below its content');
       assert.ok(Math.abs((navBox.x + navBox.width / 2) - viewport.width / 2) <= 1,
         'Bottom navigation must be horizontally centered');
       assert.ok(viewport.height - (navBox.y + navBox.height) >= 10,
