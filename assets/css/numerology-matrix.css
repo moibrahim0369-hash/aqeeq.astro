@@ -9,7 +9,83 @@
 .aqm-hero{display:flex;align-items:center;gap:1rem;padding:1.1rem;border:1px solid rgba(212,175,55,.35);border-radius:18px;background:linear-gradient(120deg,rgba(212,175,55,.13),rgba(192,57,43,.12));margin-bottom:1rem}
 .aqm-number{display:grid;place-items:center;flex:0 0 76px;height:76px;border-radius:50%;border:1px solid var(--aqm-gold);color:#f4dfa0;font-size:2.2rem;font-weight:800;box-shadow:0 0 25px rgba(212,175,55,.12)}.aqm-hero h3{margin:.2rem 0 .5rem}.aqm-tags{display:flex;gap:.4rem;flex-wrap:wrap}.aqm-tags span{padding:.28rem .6rem;border:1px solid rgba(212,175,55,.25);border-radius:99px;color:#ead9a8;font-size:.78rem}
 .aqm-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:1rem}.aqm-card{min-width:0;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.045);backdrop-filter:blur(12px);padding:1rem}.aqm-card h3{margin:.35rem 0 .8rem;color:#f3e8cf}.aqm-card-head{display:flex;justify-content:space-between;align-items:start}
-.aqm-matrix-wrap{max-width:360px;margin:0 auto}.aqm-svg{display:block;width:100%;height:auto;overflow:visible;touch-action:manipulation}.aqm-octagon{fill:rgba(192,57,43,.055);stroke:rgba(212,175,55,.5);stroke-width:1.3}.aqm-star{fill:none;stroke:rgba(192,57,43,.58);stroke-width:1.3}.aqm-line{stroke:rgba(212,175,55,.55);stroke-width:1.4}.aqm-diagonal{stroke:rgba(255,255,255,.16);stroke-width:1;stroke-dasharray:4 4}.aqm-node{cursor:pointer}.aqm-node circle{fill:#171923;stroke:#c0392b;stroke-width:1.5;transition:fill .18s,stroke .18s,filter .18s}.aqm-node text{fill:#f7e8b7;text-anchor:middle;font-size:13px;font-weight:800;pointer-events:none}.aqm-node.is-center circle{fill:#322817;stroke:#D4AF37;stroke-width:2}.aqm-node.is-active circle,.aqm-node:hover circle{fill:#842c25;stroke:#f1cd62;filter:drop-shadow(0 0 7px rgba(212,175,55,.65))}.aqm-tooltip{min-height:3.2rem;padding:.65rem .8rem;border-radius:12px;background:rgba(255,255,255,.055);color:#e7dfcc;font-size:.82rem;line-height:1.65;text-align:center}.aqm-lines{margin-top:.65rem;padding:.35rem .75rem;border-inline-start:2px solid #D4AF37}.aqm-lines p{margin:.3rem 0;color:#c7cad3;font-size:.82rem}.aqm-lines b{color:#ead39a}.aqm-method{margin:.6rem 0 0;font-size:.72rem}
+/* ==========================================================================
+   Matrix Octagram Visual Enhancements (Reverse Engineered from matrix-destiny.com)
+   ========================================================================== */
+.aqm-matrix-wrap{max-width:440px;margin:0 auto;position:relative}
+.aqm-svg{display:block;width:100%;height:auto;overflow:visible;touch-action:manipulation}
+.aqm-octagon{fill:rgba(18,22,34,.75);stroke:rgba(212,175,55,.45);stroke-width:1.5;filter:drop-shadow(0 0 14px rgba(0,0,0,.6))}
+.aqm-star{fill:none;stroke:rgba(212,175,55,.6);stroke-width:1.6}
+.aqm-line{stroke:rgba(212,175,55,.35);stroke-width:1.4;transition:stroke .2s ease,stroke-width .2s ease}
+.aqm-line.is-highlighted{stroke:#d4af37;stroke-width:2.5;filter:drop-shadow(0 0 6px #d4af37)}
+.aqm-diagonal{stroke:rgba(255,255,255,.14);stroke-width:1.2;stroke-dasharray:4 4}
+.aqm-channel-line{stroke:url(#aqm-grad-channel);stroke-width:2.4;stroke-linecap:round}
+
+/* Chakra Node Styles */
+.aqm-node{cursor:pointer;outline:none}
+.aqm-node circle{transition:all .22s cubic-bezier(.25,.8,.25,1)}
+.aqm-node:hover circle,.aqm-node:focus-visible circle,.aqm-node.is-active circle{transform:scale(1.12);transform-origin:center;filter:drop-shadow(0 0 10px rgba(212,175,55,.9))!important}
+.aqm-node text{fill:#fff;text-anchor:middle;font-size:13.5px;font-weight:800;pointer-events:none}
+
+.aqm-chakra-sahasrara circle{fill:#2b1b4d;stroke:#9b59b6;stroke-width:2.4px;filter:drop-shadow(0 0 6px rgba(155,89,182,.65))}
+.aqm-chakra-sahasrara text{fill:#f5e6ff}
+
+.aqm-chakra-ajna circle{fill:#151e36;stroke:#3867d6;stroke-width:2.2px;filter:drop-shadow(0 0 6px rgba(56,103,214,.55))}
+.aqm-chakra-ajna text{fill:#dbe4ff}
+
+.aqm-chakra-vishuddha circle{fill:#0b2633;stroke:#00a8ff;stroke-width:2.2px;filter:drop-shadow(0 0 6px rgba(0,168,255,.6))}
+.aqm-chakra-vishuddha text{fill:#e0f7ff}
+
+.aqm-chakra-anahata circle{fill:#102c1c;stroke:#20bf6b;stroke-width:2.2px;filter:drop-shadow(0 0 6px rgba(32,191,107,.6))}
+.aqm-chakra-anahata text{fill:#e3fcec}
+
+.aqm-chakra-manipura circle{fill:#302507;stroke:#f1c40f;stroke-width:2.6px;filter:drop-shadow(0 0 10px rgba(241,196,15,.7))}
+.aqm-chakra-manipura text{fill:#fff8db}
+
+.aqm-chakra-svadhisthana circle{fill:#331c0d;stroke:#fa8231;stroke-width:2.2px;filter:drop-shadow(0 0 6px rgba(250,130,49,.6))}
+.aqm-chakra-svadhisthana text{fill:#ffeedb}
+
+.aqm-chakra-muladhara circle{fill:#331215;stroke:#eb3b5a;stroke-width:2.4px;filter:drop-shadow(0 0 8px rgba(235,59,90,.65))}
+.aqm-chakra-muladhara text{fill:#ffe3e7}
+
+/* Specific Channel Nodes & Icons */
+.aqm-node-love circle{fill:#381226;stroke:#ff4d6d;stroke-width:2.2px;filter:drop-shadow(0 0 7px rgba(255,77,109,.65))}
+.aqm-node-love text{fill:#ffe0e6;font-size:12px}
+
+.aqm-node-money circle{fill:#0d2e1c;stroke:#2ecc71;stroke-width:2.2px;filter:drop-shadow(0 0 7px rgba(46,204,113,.65))}
+.aqm-node-money text{fill:#d4f8e3;font-size:12px}
+
+.aqm-node-balance circle{fill:#2d2611;stroke:#f1c40f;stroke-width:2.2px;filter:drop-shadow(0 0 7px rgba(241,196,15,.65))}
+.aqm-node-balance text{fill:#fff6d6;font-size:12px}
+
+.aqm-channel-glyph{pointer-events:none}
+
+/* Outer Age Ring on Perimeter */
+.aqm-age-ring-path{fill:none;stroke:rgba(212,175,55,.18);stroke-width:1.2px;stroke-dasharray:3 4}
+.aqm-age-node-dot{cursor:pointer;outline:none}
+.aqm-age-node-dot circle{fill:#121520;stroke:rgba(212,175,55,.45);stroke-width:1.2px;transition:all .18s ease}
+.aqm-age-node-dot:hover circle,.aqm-age-node-dot.is-active circle{fill:#d4af37;stroke:#fff;filter:drop-shadow(0 0 8px #d4af37)}
+.aqm-age-node-dot.is-current circle{fill:#d4af37;stroke:#fff;stroke-width:2.2px;filter:drop-shadow(0 0 12px #d4af37);animation:aqmAgePulse 1.8s ease-in-out infinite}
+.aqm-age-node-dot text{fill:#ded8c7;font-size:8.5px;font-weight:700;text-anchor:middle;pointer-events:none}
+.aqm-age-node-dot.is-current text{fill:#0b0d13;font-weight:900}
+.aqm-age-label-text{fill:#8f98a8;font-size:8px;font-weight:600;text-anchor:middle;pointer-events:none}
+
+@keyframes aqmAgePulse{
+  0%,100%{transform:scale(1);transform-origin:center}
+  50%{transform:scale(1.18);transform-origin:center}
+}
+
+/* Flash highlight animation for target section */
+.aqm-destiny-section.is-highlighted-pulse{
+  animation:aqmPulseGlow 2.2s ease;
+}
+@keyframes aqmPulseGlow{
+  0%{box-shadow:0 0 0 rgba(212,175,55,0);border-color:rgba(212,175,55,.2)}
+  25%{box-shadow:0 0 28px rgba(212,175,55,.75);border-color:#d4af37;background:rgba(212,175,55,.08)}
+  100%{box-shadow:0 0 0 rgba(212,175,55,0);border-color:rgba(212,175,55,.2)}
+}
+
+.aqm-lines{margin-top:.65rem;padding:.35rem .75rem;border-inline-start:2px solid #D4AF37}.aqm-lines p{margin:.3rem 0;color:#c7cad3;font-size:.82rem}.aqm-lines b{color:#ead39a}.aqm-method{margin:.6rem 0 0;font-size:.72rem}
 .aqm-interpretations{display:grid;gap:1rem;align-content:start}.aqm-reading{padding:.75rem;border-radius:12px;background:rgba(212,175,55,.07);margin:.55rem 0}.aqm-reading b{color:#e8d29a}.aqm-reading p{margin:.35rem 0 0;color:#d0d2d9;font-size:.87rem;line-height:1.8}.aqm-reading.is-shadow{background:rgba(192,57,43,.08)}.aqm-reading.is-shadow b{color:#e39a8c}.aqm-details{margin-top:1rem;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:.8rem 1rem;background:rgba(255,255,255,.025)}.aqm-details summary{cursor:pointer;color:#e7d6a5;font-weight:700;min-height:32px}.aqm-node-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:.75rem}.aqm-node-list article{padding:.7rem;border-radius:12px;background:rgba(255,255,255,.045);min-width:0}.aqm-node-list b{color:#ecd89e;font-size:.82rem}.aqm-node-list p,.aqm-node-list small{display:block;color:#c2c6d0;line-height:1.7;margin:.3rem 0;font-size:.78rem}.aqm-disclaimer{border-top:1px solid rgba(255,255,255,.08);margin:1rem 0 0;padding-top:.75rem;font-size:.72rem}
 @media(max-width:720px){.aqm-grid{grid-template-columns:1fr}.aqm-chart-card{order:0}.aqm-interpretations{order:1}.aqm-svg{max-width:330px;margin:auto}.aqm-node-list{grid-template-columns:repeat(2,minmax(0,1fr))}.aqm-hero{align-items:flex-start}.aqm-tabs{top:4px}.aqm-tabs button{min-width:0;font-size:.86rem}}
 @media(max-width:380px){.aqm-shell{padding:.75rem;border-radius:16px}.aqm-tabs{gap:.35rem}.aqm-tabs button{padding:.45rem .35rem;font-size:.77rem}.aqm-number{flex-basis:62px;height:62px;font-size:1.8rem}.aqm-node-list{grid-template-columns:1fr}}
@@ -58,6 +134,12 @@
 .aqm-life-path-copy.is-light{border-color:rgba(212,175,55,.2)}
 .aqm-life-path-copy.is-shadow{border-color:rgba(192,57,43,.24)}
 .aqm-life-path-copy.is-body{grid-column:1/-1}
+.aqm-cheat-sheet{margin-bottom:1.1rem;padding:.9rem;border:1px solid rgba(212,175,55,.2);border-radius:14px;background:rgba(212,175,55,.04)}
+.aqm-cheat-sheet h4{margin:0 0 .65rem;color:#f0dfb3;font-size:.95rem}
+.aqm-cheat-table{width:100%;border-collapse:collapse;font-size:.84rem;text-align:right}
+.aqm-cheat-table th{background:rgba(212,175,55,.12);color:#edd9a5;padding:.55rem .75rem;border-bottom:1px solid rgba(212,175,55,.25)}
+.aqm-cheat-table td{padding:.55rem .75rem;border-bottom:1px solid rgba(255,255,255,.06);color:#cfd3dd;line-height:1.7}
+.aqm-cheat-table td b{color:#ecd497}
 .aqm-life-path-copy small{display:block;margin-top:.65rem;color:#aab2c4;font-size:.75rem;line-height:1.7}
 .aqm-life-path-blueprint{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1)}
 .aqm-life-path-blueprint ol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin:.7rem 0 0;padding:0;list-style:none;counter-reset:life-path-step}
@@ -66,18 +148,243 @@
 .aqm-life-path-blueprint li b{color:#f0d6a0;font-weight:650}
 @media(max-width:640px){.aqm-life-path-columns{grid-template-columns:1fr}.aqm-life-path-copy.is-body{grid-column:auto}.aqm-life-path-blueprint ol{grid-template-columns:1fr}.aqm-life-path-profile{margin:.9rem 0;padding:1rem;border-radius:16px}}
 
-/* النص التفصيلي للشاكرة (بيتحمّل عند الطلب) */
-.aqm-chakra-deep{margin-top:.75rem}
-.aqm-deep-block{margin:.6rem 0;padding:.7rem .85rem;border:1px solid rgba(214,174,94,.22);border-radius:14px;background:rgba(255,255,255,.03)}
-.aqm-deep-block h5{margin:0 0 .35rem;color:#f1e5c4;font-size:.9rem}
-.aqm-deep-block p{margin:.3rem 0;color:#d7dbe8;font-size:.82rem;line-height:1.9}
-.aqm-deep-pending,.aqm-deep-error{margin:.4rem 0;color:#aeb6ca;font-size:.8rem}
-.aqm-deep-retry{border:1px solid #ead8a3;background:transparent;color:#ead8a3;border-radius:999px;padding:.2rem .8rem;font:inherit;cursor:pointer;min-height:36px}
-.aqm-skel{display:grid;gap:.5rem;padding:.3rem 0}
-.aqm-skel-line{display:block;height:.8rem;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,.06),rgba(214,174,94,.18),rgba(255,255,255,.06));background-size:200% 100%;animation:aqm-shimmer 1.3s linear infinite}
-.aqm-skel-line:nth-child(2){width:82%}.aqm-skel-line:nth-child(3){width:58%}
-@keyframes aqm-shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
-@media (prefers-reduced-motion:reduce){.aqm-skel-line{animation:none}}
+
+/* ==========================================================================
+   Destiny Matrix 14 Sections & Categorized Groups (UI/UX) - عقيق أسترو
+   ========================================================================== */
+.aqm-cat-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.65rem;margin:1.4rem 0 1rem}
+.aqm-cat-tab{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;border:1px solid rgba(212,175,55,.22);border-radius:14px;background:rgba(20,24,35,.7);color:#d9d3c1;cursor:pointer;text-align:start;transition:all .22s ease;touch-action:manipulation}
+.aqm-cat-tab:hover{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.45);color:#fff}
+.aqm-cat-tab.is-active{background:linear-gradient(135deg,rgba(212,175,55,.22),rgba(20,24,35,.92));border-color:#d4af37;color:#fff;box-shadow:0 4px 18px rgba(212,175,55,.22)}
+.aqm-cat-icon{font-size:1.35rem;line-height:1}
+.aqm-cat-text{display:flex;flex-direction:column;gap:.15rem;font-size:.9rem;font-weight:700}
+.aqm-cat-text small{font-size:.72rem;font-weight:400;color:#a6adb9;line-height:1.3}
+.aqm-cat-tab.is-active .aqm-cat-text small{color:#f5e6bf}
+
+.aqm-group-container{margin:1.6rem 0}
+.aqm-group-container[hidden]{display:none!important}
+.aqm-group-header{padding:.9rem 1.15rem;margin-bottom:.9rem;border-radius:14px;border:1px solid rgba(212,175,55,.25);background:linear-gradient(90deg,rgba(212,175,55,.1),transparent);display:flex;flex-direction:column;gap:.3rem}
+.aqm-group-header h4{margin:0;color:#f3dda0;font-size:1.15rem;display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}
+.aqm-group-header h4 small{font-size:.74rem;color:#b9bfcb;font-weight:400;letter-spacing:.04em}
+.aqm-group-header p{margin:0;color:#c0c6d4;font-size:.84rem;line-height:1.7}
+
+.aqm-section-nav{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0 .95rem;padding:0;list-style:none}
+.aqm-nav-pill{padding:.4rem .85rem;border:1px solid rgba(212,175,55,.25);border-radius:999px;background:rgba(255,255,255,.03);color:#e2d6b5;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s ease;touch-action:manipulation}
+.aqm-nav-pill:hover,.aqm-nav-pill.is-active{background:rgba(212,175,55,.18);border-color:#d4af37;color:#fff;box-shadow:0 0 12px rgba(212,175,55,.25)}
+.aqm-nav-pill[hidden]{display:none!important}
+
+/* Standalone Life Path Island (Isolated from Matrix) */
+.aqm-lifepath-island{margin:2.5rem 0 1.25rem;padding:clamp(1.1rem,2.8vw,1.75rem);border:1px dashed rgba(212,175,55,.32);border-radius:20px;background:linear-gradient(160deg,rgba(18,22,34,.75),rgba(11,13,20,.88));backdrop-filter:blur(10px)}
+.aqm-lifepath-head{border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:1rem;margin-bottom:1rem}
+.aqm-lifepath-badge-row{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap;margin-bottom:.4rem}
+.aqm-badge-outline{display:inline-block;padding:.18rem .55rem;border:1px solid rgba(212,175,55,.4);border-radius:6px;color:#f0dfb3;font-size:.72rem;font-weight:700}
+.aqm-lifepath-head h3{margin:.3rem 0 .4rem;color:#f3dda0;font-size:1.35rem}
+.aqm-lifepath-disclaimer{margin:0;color:#9ea5b5;font-size:.84rem;line-height:1.8}
+.aqm-drawer-summary{padding:.85rem 1.15rem;border-radius:12px;border:1px solid rgba(212,175,55,.28);background:rgba(212,175,55,.08);color:#edd8a5;font-size:.88rem;font-weight:700;cursor:pointer;list-style:none;transition:background .2s ease;user-select:none}
+.aqm-drawer-summary:hover{background:rgba(212,175,55,.15)}
+.aqm-drawer-body{margin-top:1.15rem;animation:aqmFadeIn .3s ease}
+@keyframes aqmFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.aqm-destiny-section{margin:1.15rem 0;padding:clamp(1rem,2.8vw,1.6rem);border:1px solid rgba(212,175,55,.2);border-radius:18px;background:linear-gradient(150deg,rgba(16,19,29,.85),rgba(11,13,19,.92));backdrop-filter:blur(12px)}
+.aqm-destiny-section h3{margin:.3rem 0 .85rem;color:#f3dda0;font-size:clamp(1.15rem,2.8vw,1.5rem);display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.aqm-destiny-badge{display:inline-block;padding:.2rem .55rem;border-radius:8px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.3);color:#f0dfb3;font-size:.78rem;font-weight:700}
+
+/* Karmic Tail Cards */
+.aqm-karmic-card{border-color:rgba(192,57,43,.38);background:linear-gradient(155deg,rgba(25,14,18,.88),rgba(12,10,14,.95))}
+.aqm-karmic-code{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .9rem;border-radius:12px;background:rgba(192,57,43,.2);border:1px solid rgba(192,57,43,.45);color:#ffb5a7;font-size:1.1rem;font-weight:800;letter-spacing:.05em}
+.aqm-karmic-tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1rem 0}
+.aqm-track-box{padding:.9rem;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.35)}
+.aqm-track-box h5{margin:0 0 .45rem;color:#e8c988;font-size:.88rem}
+.aqm-track-box p{margin:0;color:#c9cdd8;font-size:.85rem;line-height:1.8}
+.aqm-confrontation{margin:1rem 0;padding:1rem 1.2rem;border-right:4px solid #c0392b;border-radius:0 12px 12px 0;background:rgba(192,57,43,.08);color:#f5d0c5;font-size:.9rem;line-height:1.85;font-weight:600}
+
+/* Age Map Cards */
+.aqm-age-badge-group{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;margin:.6rem 0 1rem}
+.aqm-age-pill{padding:.35rem .85rem;border-radius:20px;background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.35);color:#f7e3af;font-size:.86rem;font-weight:700}
+.aqm-age-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem;margin-top:1rem}
+.aqm-age-node{padding:.65rem;border-radius:10px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.02);text-align:center}
+.aqm-age-node.is-current{border-color:#d4af37;background:rgba(212,175,55,.12);box-shadow:0 0 10px rgba(212,175,55,.2)}
+.aqm-age-node b{display:block;color:#f0dfb3;font-size:1.15rem}
+.aqm-age-node small{color:#9aa2b5;font-size:.72rem}
+
+/* Arcana Position Details & Accordion */
+.aqm-pos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.85rem;margin-top:.9rem}
+.aqm-pos-item{padding:.9rem;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(15,18,26,.6)}
+.aqm-pos-item h5{margin:0 0 .4rem;color:#edd9a5;font-size:.88rem;display:flex;align-items:center;justify-content:space-between}
+.aqm-pos-item p{margin:0;color:#c9cdd8;font-size:.84rem;line-height:1.8}
+.aqm-pos-item.is-highlight{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.04)}
+
+@media(max-width:768px){
+  .aqm-cat-bar{grid-template-columns:1fr}
+  .aqm-karmic-tracks{grid-template-columns:1fr}
+  .aqm-section-nav{overflow-x:auto;padding-bottom:.4rem;flex-wrap:nowrap}
+  .aqm-nav-pill{flex-shrink:0}
+  .aqm-age-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+
+/* Ancestral Circles (4 corners & 4 midpoints) */
+.aqm-chakra-ancestral circle {
+  fill: #ffffff;
+  stroke: #2c3e50;
+  stroke-width: 2.4px;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.35));
+}
+.aqm-chakra-ancestral text {
+  fill: #1e272e;
+  font-weight: 900;
+  font-size: 13.5px;
+}
+.aqm-chakra-ancestral-mid circle {
+  fill: #f8f9fa;
+  stroke: #7f8c8d;
+  stroke-width: 1.8px;
+  filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+}
+.aqm-chakra-ancestral-mid text {
+  fill: #2c3e50;
+  font-weight: 800;
+  font-size: 11.5px;
+}
+
+/* Generational Lines (Male & Female) */
+.aqm-gen-line {
+  stroke: rgba(212, 175, 55, 0.45);
+  stroke-width: 1.6px;
+  stroke-dasharray: 4 4;
+}
+.aqm-gen-line-text {
+  fill: #aab4c5;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.9));
+}
+
+/* Crossed Love and Money Channel Axis */
+.aqm-channel-dotted-axis {
+  stroke: #d4af37;
+  stroke-width: 2px;
+  stroke-dasharray: 4 4;
+  opacity: 0.85;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.55));
+}
+
+/* Outer Age Ring Major Texts & Micro Years */
+.aqm-age-major-text {
+  fill: #f0dfb2;
+  font-size: 11.5px;
+  font-weight: 800;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.9));
+}
+.aqm-age-micro-tick {
+  stroke: rgba(212, 175, 55, 0.45);
+  stroke-width: 1.2px;
+}
+.aqm-age-micro-text {
+  fill: #7d889b;
+  font-size: 7.5px;
+  font-weight: 600;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+
+/* Deep Arcana Synthesis UI Components */
+.aqm-paradox-box {
+  margin: 0.95rem 0;
+  padding: 1rem 1.15rem;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(192, 57, 43, 0.08));
+  border-right: 3px solid #d4af37;
+  border-radius: 12px;
+}
+.aqm-paradox-box p {
+  margin: 0.35rem 0 0;
+  color: #f0dba6;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.aqm-somatic-box {
+  margin: 1rem 0;
+  padding: 1.1rem;
+  background: rgba(18, 22, 34, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 14px;
+}
+.aqm-somatic-box h4 {
+  margin: 0 0 0.5rem;
+  color: #e5b95a;
+  font-size: 0.96rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.aqm-somatic-box p {
+  margin: 0.4rem 0;
+  color: #cfd5e2;
+  font-size: 0.86rem;
+  line-height: 1.8;
+}
+
+.aqm-reflective-box {
+  margin: 1rem 0;
+  padding: 1.1rem;
+  background: linear-gradient(140deg, rgba(20, 27, 45, 0.75), rgba(13, 17, 26, 0.85));
+  border: 1px solid rgba(56, 103, 214, 0.25);
+  border-radius: 14px;
+}
+.aqm-reflective-box h4 {
+  margin: 0 0 0.6rem;
+  color: #a5b4fc;
+  font-size: 0.96rem;
+}
+.aqm-questions-list {
+  margin: 0.4rem 0 0.8rem;
+  padding-right: 1.25rem;
+  color: #e2e8f0;
+  font-size: 0.88rem;
+  line-height: 1.85;
+}
+.aqm-questions-list li {
+  margin-bottom: 0.4rem;
+}
+.aqm-growth-step {
+  margin: 0.6rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  font-size: 0.87rem;
+  line-height: 1.8;
+}
+
+.aqm-protocol-box {
+  margin: 1rem 0;
+  padding: 1.1rem;
+  background: linear-gradient(140deg, rgba(16, 44, 28, 0.4), rgba(12, 22, 17, 0.5));
+  border: 1px solid rgba(46, 204, 113, 0.25);
+  border-radius: 14px;
+}
+.aqm-protocol-box h4 {
+  margin: 0 0 0.6rem;
+  color: #6ee7b7;
+  font-size: 0.96rem;
+}
+.aqm-steps-list {
+  margin: 0.4rem 0 0;
+  padding-right: 1.25rem;
+  color: #d1fae5;
+  font-size: 0.88rem;
+  line-height: 1.85;
+}
+.aqm-steps-list li {
+  margin-bottom: 0.4rem;
+}
+
 
 .aqm-t-en{font-weight:700}.aqm-t-ar{font-size:.62em;font-weight:400;opacity:.78;margin-inline-start:.35em;white-space:normal}
 .aqm-gloss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}.aqm-gloss{padding:.85rem;text-align:start}.aqm-gloss h4{margin:.3rem 0}.aqm-gloss p{margin:.3rem 0;font-size:.86rem;line-height:1.7}
@@ -92,23 +399,6 @@
 .aqm-source-note{margin:1rem 0;padding:.85rem 1rem;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(255,255,255,.025)}
 .aqm-source-note summary{min-height:36px;display:flex;align-items:center;cursor:pointer;color:#ead9a8;font-weight:700}
 #aqm-section-map,#aqm-section-core,#aqm-section-points,#aqm-section-chakras,#aqm-section-ancestral,#aqm-section-purposes,#aqm-section-point-details{scroll-margin-block:1rem}
-@media print{
-  .aqm-report-index,.aqs-story-open,.aqm-tooltip{display:none!important}
-  .aqm-shell{max-width:none!important;margin:0!important;padding:0!important;overflow:visible!important;border:0!important;border-radius:0!important;background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .aqm-shell .aqm-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;gap:8mm!important}
-  .aqm-shell .aqm-card,.aqm-shell .aqm-deep-section,.aqm-shell .aqm-details,.aqm-shell .aqm-source-note{break-inside:avoid;background:#fff!important;color:#111!important;border-color:#aaa!important;box-shadow:none!important;backdrop-filter:none!important}
-  .aqm-shell :is(h2,h3,h4,h5,p,b,small,td,th,summary,span){color:#111!important}
-  .aqm-shell .aqm-pillar-number{color:#333!important;border-color:#777!important}
-  .aqm-shell .aqm-svg{max-width:120mm!important}
-  .aqm-shell .aqm-node circle{fill:#fff!important;stroke:#555!important}
-  .aqm-shell .aqm-node text{fill:#111!important}
-  .aqm-shell .aqm-octagon{fill:#fff!important;stroke:#555!important}
-  .aqm-shell .aqm-star,.aqm-shell .aqm-line{stroke:#555!important}
-  .aqm-shell .aqm-table-scroll{overflow:visible!important}
-  .aqm-shell .aqm-details:not([open])>:not(summary){display:block!important}
-  .aqm-shell .aqm-chakra-detail[hidden]{display:none!important}
-}
-
 
 /* Source-aware Matrix report roadmap */
 .aqm-roadmap{scroll-margin-block:1rem}
@@ -126,11 +416,259 @@
 .aqm-term-ledger li{padding:.45rem 0;color:#e4d7b5}
 .aqm-term-ledger li span{display:block;color:#aeb6ca;font-size:.8rem;line-height:1.6}
 @media(max-width:640px){.aqm-roadmap-grid{grid-template-columns:minmax(0,1fr);padding:.55rem}.aqm-roadmap-item-head{flex-direction:column}.aqm-status-badge{white-space:normal}}
+
 @media print{
+  .aqm-report-index,.aqs-story-open,.aqm-tooltip{display:none!important}
+  .aqm-shell{max-width:none!important;margin:0!important;padding:0!important;overflow:visible!important;border:0!important;border-radius:0!important;background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;display:block!important}
+  .aqm-shell .aqm-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)!important;gap:8mm!important}
+  .aqm-shell .aqm-card,.aqm-shell .aqm-deep-section,.aqm-shell .aqm-details,.aqm-shell .aqm-source-note{break-inside:avoid;background:#fff!important;color:#111!important;border-color:#aaa!important;box-shadow:none!important;backdrop-filter:none!important}
+  .aqm-shell :is(h2,h3,h4,h5,p,b,small,td,th,summary,span){color:#111!important}
+  .aqm-shell .aqm-pillar-number{color:#333!important;border-color:#777!important}
+  .aqm-shell .aqm-svg{max-width:120mm!important;display:block!important}
+  .aqm-shell .aqm-node circle{fill:#fff!important;stroke:#555!important}
+  .aqm-shell .aqm-node text{fill:#111!important}
+  .aqm-shell .aqm-octagon{fill:#fff!important;stroke:#555!important}
+  .aqm-shell .aqm-star,.aqm-shell .aqm-line{stroke:#555!important}
+  .aqm-shell .aqm-table-scroll{overflow:visible!important}
+  .aqm-shell .aqm-details:not([open])>:not(summary){display:block!important}
+  .aqm-shell .aqm-chakra-detail[hidden]{display:none!important}
+  .aqm-roadmap{display:block!important}
+  .aqm-roadmap-details{display:block!important}
   .aqm-roadmap-details:not([open])>:not(summary){display:block!important}
   .aqm-roadmap-details>summary{display:none!important}
-  .aqm-roadmap-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .aqm-roadmap-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
   .aqm-roadmap-item{break-inside:avoid}
   .aqm-roadmap-notice,.aqm-roadmap-item p,.aqm-term-ledger li span{color:#222!important}
   .aqm-roadmap-item h4,.aqm-roadmap-details summary,.aqm-term-ledger li{color:#111!important}
+}
+
+
+/* ==========================================================================
+   Authentic Slavic Destiny Matrix (Ladini Chart) SVG & Modern Dark UX
+   ========================================================================== */
+.aqm-rim-outer { fill: rgba(11, 14, 22, 0.94); stroke: rgba(212, 175, 55, 0.45); stroke-width: 1.6px; filter: drop-shadow(0 0 16px rgba(0, 0, 0, 0.8)); }
+.aqm-rim-middle { fill: none; stroke: rgba(212, 175, 55, 0.22); stroke-width: 1.1px; stroke-dasharray: 4 4; }
+.aqm-rim-inner { fill: none; stroke: rgba(212, 175, 55, 0.16); stroke-width: 1px; }
+.aqm-rim-core { fill: none; stroke: rgba(212, 175, 55, 0.25); stroke-width: 1.2px; stroke-dasharray: 3 3; }
+
+.aqm-square-straight {
+  fill: rgba(212, 175, 55, 0.035);
+  stroke: #d4af37;
+  stroke-width: 2.4px;
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
+}
+.aqm-square-diagonal {
+  fill: rgba(192, 57, 43, 0.025);
+  stroke: rgba(235, 77, 75, 0.7);
+  stroke-width: 1.8px;
+  stroke-dasharray: 6 4;
+}
+
+.aqm-axis-personal { stroke: rgba(212, 175, 55, 0.6); stroke-width: 1.6px; }
+.aqm-axis-spiritual { stroke: rgba(155, 89, 182, 0.65); stroke-width: 1.6px; }
+.aqm-axis-male { stroke: rgba(52, 152, 219, 0.5); stroke-width: 1.4px; }
+.aqm-axis-female { stroke: rgba(233, 30, 99, 0.5); stroke-width: 1.4px; }
+.aqm-axis-channel { stroke: url(#aqm-grad-channel); stroke-width: 2.6px; stroke-linecap: round; filter: drop-shadow(0 0 6px rgba(241, 196, 15, 0.5)); }
+
+.aqm-channel-glyph { pointer-events: none; user-select: none; }
+
+/* Enhanced Node Styling */
+.aqm-node { cursor: pointer; outline: none; }
+.aqm-node circle { transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), stroke 0.2s ease, filter 0.2s ease; }
+.aqm-node:hover circle, .aqm-node:focus-visible circle, .aqm-node.is-active circle {
+  transform: scale(1.15);
+  transform-origin: center;
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.95)) !important;
+}
+.aqm-node text {
+  fill: #ffffff;
+  text-anchor: middle;
+  font-size: 13.5px;
+  font-weight: 800;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Solar Core Manipura Center */
+.aqm-chakra-manipura.is-center circle {
+  fill: #3b2807;
+  stroke: #f59e0b;
+  stroke-width: 2.8px;
+  filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.85));
+}
+.aqm-chakra-manipura.is-center text {
+  fill: #fffbeb;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+/* Ancestral Midpoints */
+.aqm-chakra-ancestral circle { fill: #1c2333; stroke: #64748b; stroke-width: 2px; }
+.aqm-chakra-ancestral-mid circle { fill: #131722; stroke: rgba(148, 163, 184, 0.6); stroke-width: 1.5px; }
+
+/* Age Perimeter */
+.aqm-age-node-dot { cursor: pointer; outline: none; }
+.aqm-age-node-dot circle {
+  fill: #0f131d;
+  stroke: rgba(212, 175, 55, 0.5);
+  stroke-width: 1.2px;
+  transition: all 0.2s ease;
+}
+.aqm-age-node-dot:hover circle {
+  fill: #d4af37;
+  stroke: #ffffff;
+  filter: drop-shadow(0 0 10px #d4af37);
+}
+.aqm-age-node-dot.is-current circle {
+  fill: #f59e0b;
+  stroke: #ffffff;
+  stroke-width: 2.4px;
+  filter: drop-shadow(0 0 14px #f59e0b);
+  animation: aqmAgePulse 1.8s ease-in-out infinite;
+}
+.aqm-age-text {
+  fill: #d5b45c;
+  font-size: 9px;
+  font-weight: 700;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* Section Navigation Pills */
+.aqm-section-nav {
+  display: flex;
+  gap: 0.55rem;
+  overflow-x: auto;
+  padding: 0.6rem 0;
+  margin: 1.2rem 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.aqm-section-nav::-webkit-scrollbar { display: none; }
+.aqm-nav-pill {
+  flex: 0 0 auto;
+  padding: 0.55rem 1.05rem;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #d8d3c5;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  touch-action: manipulation;
+}
+.aqm-nav-pill:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #ffffff;
+}
+.aqm-nav-pill.is-active {
+  background: linear-gradient(135deg, #c0392b, #d4af37);
+  border-color: #d4af37;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+}
+
+/* Sections Containers */
+.aqm-destiny-section {
+  margin: 1.4rem 0;
+  padding: clamp(1rem, 2.8vw, 1.6rem);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(20, 24, 35, 0.75), rgba(11, 14, 22, 0.85));
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.aqm-sec-header {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+}
+.aqm-sec-header h3 {
+  margin: 0.3rem 0;
+  color: #f5e6bf;
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.aqm-destiny-badge {
+  padding: 0.25rem 0.65rem;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.1);
+  color: #f7e1a0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Deep Taboos Box */
+.aqm-taboo-box {
+  margin: 1.15rem 0;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, rgba(45, 18, 30, 0.5), rgba(22, 12, 32, 0.75));
+  border: 1px solid rgba(255, 77, 109, 0.32);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.aqm-taboo-box h4 {
+  margin: 0 0 0.8rem;
+  color: #ff9ebb;
+  font-size: 1.08rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.aqm-taboo-box p {
+  margin: 0.5rem 0;
+  color: #f0dfe5;
+  font-size: 0.88rem;
+  line-height: 1.85;
+}
+.aqm-taboo-box p b {
+  color: #ffb8cc;
+  font-weight: 700;
+}
+
+/* Somatic Box */
+.aqm-somatic-box {
+  margin: 1.15rem 0;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, rgba(16, 38, 28, 0.5), rgba(10, 24, 18, 0.75));
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.aqm-somatic-box h4 {
+  margin: 0 0 0.75rem;
+  color: #7bed9f;
+  font-size: 1.05rem;
+}
+.aqm-somatic-box p {
+  margin: 0.45rem 0;
+  color: #d1fae5;
+  font-size: 0.88rem;
+  line-height: 1.85;
+}
+.aqm-somatic-box p b {
+  color: #a3e635;
+}
+
+/* Paradox Box */
+.aqm-paradox-box {
+  margin: 1.15rem 0;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, rgba(42, 28, 12, 0.45), rgba(24, 16, 8, 0.7));
+  border: 1px solid rgba(245, 158, 11, 0.32);
+  border-radius: 16px;
+}
+.aqm-paradox-box p {
+  margin: 0.4rem 0 0;
+  color: #fde68a;
+  font-size: 0.9rem;
+  line-height: 1.85;
 }

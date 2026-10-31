@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-21.draft-01",
+  "arcanaNumber": 21,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-21.json",
+    "headline": "الاكتمال والاندماج",
+    "strengthSeed": "إغلاق المرحلة يظهر في تسليم العمل، الاعتراف بما تعلمته، وفتح الباب للمرحلة التالية دون التقليل من السابقة. في العمل، يدعم التنسيق بين جماعات أو تخصصات. وفي العلاقة، يساعد على رؤية الشراكة ضمن سياق الحياة الأوسع لا كمصدر وحيد للهوية.",
+    "challengeSeed": "التشتت قبل الإغلاق يظهر حين تُترك الدورات مفتوحة خوفاً من خسارة احتمال آخر، أو يُستعجل إعلان الاكتمال لتجنب التفاصيل الأخيرة. مثال ذلك بدء مشروع جديد قبل إنهاء التزامات المشروع السابق، فيتراكم شعور غير مرئي بالانقطاع."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يجعل المركز اكتمال الدورات وربط الأجزاء في صورة أوسع محوراً للتجربة. العالم يدعو إلى إغلاق ملموس مع إبقاء الأفق مفتوحاً لما بعده.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "التنسيق بين أطراف أو تخصصات وإنهاء العمل بما يسمح للآخرين بالاستفادة منه."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "التنقل بين احتمالات كثيرة أو إعلان الاكتمال قبل الوفاء بالتفاصيل الأخيرة."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "رؤية الصورة الكاملة تسهل إغلاق الدورات.",
+        "poleB": "اتساع الأفق قد يفتح أبواباً أكثر مما يُغلق.",
+        "integration": "تتضح الموازنة في هذا الموضع عبر إغلاق التزام واحد بتوثيق أو تسليم واضح ثم اختيار خطوة المرحلة الحالية. ويُراجع أثر ذلك بسؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "بدء مشروع جديد قبل تسليم التزامات المشروع السابق، فتظل الحلقات مفتوحة.",
+        "possiblePattern": "في هذا الموقف، قد يظهر النمط عندما التنقل بين احتمالات كثيرة أو إعلان الاكتمال قبل الوفاء بالتفاصيل الأخيرة.؛ عندها يُختبر إن كان المورد المذكور في القراءة ما زال يخدم الغاية.",
+        "experiment": "ملاحظة قابلة للتطبيق: إغلاق التزام واحد بتوثيق أو تسليم واضح ثم اختيار خطوة المرحلة الحالية. ثم مراجعة هذا السؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "reflectionQuestions": [
+      "أي حلقة تحتاج إلى تسليم أو إغلاق قبل الانتقال إلى التالية؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "إغلاق التزام واحد بتوثيق أو تسليم واضح ثم اختيار خطوة المرحلة الحالية.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}
