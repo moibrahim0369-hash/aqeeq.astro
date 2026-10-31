@@ -698,7 +698,7 @@ h1,h2,h3,h4{font-family:var(--ui);font-weight:700;letter-spacing:0}
 
 @media (min-width: 900px) {
   #cat-discover.grp {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   #cat-relations.grp,
   #cat-forecast.grp {
@@ -2186,7 +2186,7 @@ body {
   min-height: var(--aq-floating-nav-height);
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   justify-items: stretch;
   justify-content: center;
