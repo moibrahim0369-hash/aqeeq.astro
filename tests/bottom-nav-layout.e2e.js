@@ -49,9 +49,13 @@ const { chromium } = require('playwright');
       await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
       const footerCopy = page.locator('.foot .copy');
       if (await footerCopy.count()) {
-        const copyBox = await footerCopy.boundingBox();
-        const dockBox = await nav.boundingBox();
-        assert.ok(copyBox.bottom <= dockBox.y,
+        const footerIsClear = await page.evaluate(() => {
+          const copy = document.querySelector('.foot .copy');
+          const dock = document.querySelector('nav.bnav');
+          if (!copy || !dock) return true;
+          return copy.getBoundingClientRect().bottom <= dock.getBoundingClientRect().top;
+        });
+        assert.ok(footerIsClear,
           'Footer copyright text must not be covered by the floating navigation');
       }
 
