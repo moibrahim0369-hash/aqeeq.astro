@@ -82,3 +82,115 @@
 .aqm-t-en{font-weight:700}.aqm-t-ar{font-size:.62em;font-weight:400;opacity:.78;margin-inline-start:.35em;white-space:normal}
 .aqm-gloss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}.aqm-gloss{padding:.85rem;text-align:start}.aqm-gloss h4{margin:.3rem 0}.aqm-gloss p{margin:.3rem 0;font-size:.86rem;line-height:1.7}
 .aqm-gloss .aqm-t-ar{display:block;margin:.15rem 0 .1rem;margin-inline-start:0}
+
+/* ====================================================
+   DESTINY MATRIX — NEW REDESIGN CSS (2026)
+   ==================================================== */
+
+/* ---- Result Header ---- */
+.mx-result-header{text-align:center;padding:1.2rem 1rem 1rem;border-bottom:1px solid rgba(212,175,55,.18);margin-bottom:1.2rem}
+.mx-result-name{margin:0 0 .3rem;color:#f4e7c1;font-size:1.5rem;font-weight:800}
+.mx-result-date{color:#aeb6ca;font-size:.82rem;margin:.2rem 0 .85rem}
+.mx-result-nums{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:.5rem}
+.mx-center-num{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .75rem;border:1px solid rgba(212,175,55,.5);border-radius:99px;background:rgba(212,175,55,.08);color:#f1d98e;font-size:.83rem;font-weight:700}
+.mx-center-num b{font-size:1rem}
+
+/* ---- Diagram Wrap + Legend ---- */
+.mx-diagram-wrap{max-width:520px;margin:0 auto 1.2rem;text-align:center}
+.mx-diagram{display:block;width:100%;height:auto;overflow:visible;touch-action:manipulation}
+.mx-diagram-legend{display:flex;flex-wrap:wrap;gap:.65rem .9rem;justify-content:center;margin-top:.6rem}
+.mx-legend-item{display:flex;align-items:center;gap:.35rem;font-size:.78rem;color:#aeb6ca}
+.mx-legend-line{display:inline-block;width:28px;height:3px;border-radius:2px}
+.mx-legend-gold{background:#D4AF37}
+.mx-legend-red{background:#C0392B}
+.mx-legend-dash{background:repeating-linear-gradient(90deg,rgba(255,255,255,.4) 0,rgba(255,255,255,.4) 5px,transparent 5px,transparent 9px);height:2px}
+
+/* ---- SVG Nodes (for hover interactions) ---- */
+.mx-diagram circle{transition:filter .18s,stroke .18s}
+.mx-diagram text{pointer-events:none}
+
+/* ---- Sections Container ---- */
+.mx-sections{display:grid;gap:.6rem;margin-top:1rem}
+
+/* ---- Accordion ---- */
+.mx-accordion{border:1px solid rgba(255,255,255,.1);border-radius:16px;background:rgba(255,255,255,.03);overflow:hidden;transition:border-color .2s}
+.mx-accordion:has(.mx-acc-header[aria-expanded=true]){border-color:rgba(212,175,55,.35)}
+.mx-acc-header{display:flex;align-items:center;gap:.6rem;width:100%;min-height:54px;padding:.65rem .9rem;border:0;background:transparent;color:#f2ede4;font:inherit;font-size:.92rem;font-weight:700;text-align:right;cursor:pointer;touch-action:manipulation;transition:background .18s}
+.mx-acc-header:hover{background:rgba(212,175,55,.06)}
+.mx-acc-icon{font-size:1.1rem;flex-shrink:0}
+.mx-acc-title{flex:1;text-align:right}
+.mx-acc-nums{display:flex;gap:.3rem;flex-wrap:wrap;margin-inline-start:auto}
+.mx-acc-arrow{font-size:.75rem;color:#D4AF37;flex-shrink:0;transition:transform .25s;display:inline-block}
+.mx-acc-header[aria-expanded=true] .mx-acc-arrow{transform:rotate(180deg)}
+.mx-acc-panel{border-top:1px solid rgba(255,255,255,.07)}
+.mx-acc-panel[hidden]{display:none}
+.mx-acc-body{padding:.85rem .9rem 1rem}
+
+/* ---- Number Badges ---- */
+.mx-num-badge{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 .4rem;border-radius:99px;font-size:.78rem;font-weight:800;line-height:1}
+.mx-num-gold{border:1px solid rgba(212,175,55,.6);background:rgba(212,175,55,.12);color:#f0d87a}
+.mx-num-red{border:1px solid rgba(192,57,43,.6);background:rgba(192,57,43,.12);color:#f0a090}
+
+/* ---- Content Blocks ---- */
+.mx-acc-lead{color:#c9cdd8;font-size:.88rem;line-height:1.85;margin:.2rem 0 .85rem}
+.mx-acc-opening{padding:.8rem;border-inline-start:3px solid #D4AF37;background:rgba(212,175,55,.06);border-radius:0 12px 12px 0;color:#ede0be;font-size:.86rem;line-height:1.9;margin-bottom:.85rem;font-style:italic}
+.mx-acc-block{margin:.75rem 0;padding:.8rem 1rem;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.03)}
+.mx-acc-block h4{margin:0 0 .55rem;font-size:.85rem;letter-spacing:.02em}
+.mx-acc-block p,.mx-acc-block li{color:#c4c9d5;font-size:.84rem;line-height:1.85;margin:.3rem 0}
+.mx-acc-block ul,.mx-acc-block ol{padding-inline-start:1.2rem}
+.mx-block-gold{border-color:rgba(212,175,55,.3);background:rgba(212,175,55,.07)}
+.mx-block-gold h4{color:#f0d87a}
+.mx-block-red{border-color:rgba(192,57,43,.3);background:rgba(192,57,43,.07)}
+.mx-block-red h4{color:#f0a090}
+.mx-block-teal{border-color:rgba(32,178,170,.3);background:rgba(32,178,170,.06)}
+.mx-block-teal h4{color:#7ee8e2}
+.mx-block-steps{counter-reset:step}
+.mx-block-steps li{list-style:none;padding-inline-start:.5rem;position:relative}
+.mx-block-steps li::before{content:counter(step);counter-increment:step;position:absolute;inset-inline-end:100%;margin-inline-end:.4rem;display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:50%;background:rgba(212,175,55,.2);color:#f0d87a;font-size:.68rem;font-weight:800;top:.1rem}
+
+/* ---- Gift / Shadow / Pattern ---- */
+.mx-gift{display:flex;gap:.5rem;align-items:flex-start;padding:.6rem .8rem;border-radius:11px;background:rgba(212,175,55,.07);margin:.45rem 0}
+.mx-gift::before{content:"✦";color:#D4AF37;flex-shrink:0;font-size:.8rem;margin-top:.1rem}
+.mx-shadow{display:flex;gap:.5rem;align-items:flex-start;padding:.6rem .8rem;border-radius:11px;background:rgba(192,57,43,.07);margin:.45rem 0}
+.mx-shadow::before{content:"◈";color:#C0392B;flex-shrink:0;font-size:.8rem;margin-top:.1rem}
+.mx-pattern{display:flex;gap:.5rem;align-items:flex-start;padding:.6rem .8rem;border-radius:11px;background:rgba(90,70,160,.08);margin:.45rem 0}
+.mx-pattern::before{content:"↻";color:#a08ae8;flex-shrink:0;font-size:.8rem;margin-top:.1rem}
+.mx-gift p,.mx-shadow p,.mx-pattern p{color:#d0d3db;font-size:.84rem;line-height:1.8;margin:0}
+
+/* ---- Closing / Paradox ---- */
+.mx-closing{margin-top:1rem;padding:.85rem 1rem;border-radius:14px;background:linear-gradient(120deg,rgba(212,175,55,.1),rgba(192,57,43,.07));border:1px solid rgba(212,175,55,.25);color:#ece2c4;font-size:.86rem;line-height:1.9;text-align:center;font-style:italic}
+.mx-paradox-light{color:#f0d87a;font-weight:700}
+.mx-paradox-shadow{color:#f0a090;font-weight:700}
+
+/* ---- Deep Loader (async spinner) ---- */
+.mx-deep-loader{min-height:80px;display:flex;align-items:center;justify-content:center}
+.mx-acc-loading{display:flex;align-items:center;gap:.6rem;color:#aeb6ca;font-size:.82rem}
+.mx-acc-loading::before{content:"";display:block;width:20px;height:20px;border:2px solid rgba(212,175,55,.2);border-top-color:#D4AF37;border-radius:50%;animation:mx-spin .8s linear infinite;flex-shrink:0}
+@keyframes mx-spin{to{transform:rotate(360deg)}}
+
+/* ---- Chakra Table ---- */
+.mx-chakra-wrap{margin-top:.5rem}
+.mx-table-scroll{overflow-x:auto;border:1px solid rgba(255,255,255,.1);border-radius:14px;-webkit-overflow-scrolling:touch}
+.mx-chakra-table{width:100%;min-width:480px;border-collapse:collapse;font-size:.83rem;background:rgba(255,255,255,.02);text-align:center}
+.mx-chakra-table th,.mx-chakra-table td{padding:.6rem .5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.mx-chakra-table thead th{color:#d7c58e;font-size:.75rem;background:rgba(212,175,55,.07)}
+.mx-chakra-table tbody td{color:#f3e7c9}
+.mx-chakra-table tbody tr:last-child td{border-bottom:0}
+.chakra-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:.4rem;vertical-align:middle}
+
+/* ---- Compatibility Section ---- */
+.mx-compat-section{margin-top:1.2rem;padding:1rem;border:1px solid rgba(212,175,55,.22);border-radius:16px;background:rgba(212,175,55,.05)}
+.mx-compat-title{color:#f4e7c1;font-size:1rem;font-weight:700;margin:0 0 .75rem}
+
+/* ---- Responsive ---- */
+@media(max-width:520px){
+  .mx-acc-header{font-size:.86rem;padding:.55rem .7rem;min-height:50px}
+  .mx-acc-body{padding:.7rem .75rem .9rem}
+  .mx-acc-block{padding:.65rem .75rem}
+  .mx-diagram-wrap{max-width:100%}
+  .mx-chakra-table{min-width:400px;font-size:.76rem}
+}
+@media(max-width:380px){
+  .mx-acc-nums{display:none}
+  .mx-acc-header{gap:.4rem}
+}

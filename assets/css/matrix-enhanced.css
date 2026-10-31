@@ -1,0 +1,812 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   عقيق أسترو — مصفوفة القدر (تصميم محسّن)
+   Enhanced Matrix of Destiny UI
+   ─ التاريخ: 2026-10-29
+   ─ المعيار: Natalia Ladini (22 Arcana)
+   ─ الأسلوب: Modern, Professional, RTL-Optimized
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── الألوان الأساسية ─── */
+  --aqm-dark: #0a0c14;
+  --aqm-dark-alt: #0f1219;
+  --aqm-dark-light: #16192c;
+
+  --aqm-gold: #d4af37;
+  --aqm-gold-light: #e8d4a8;
+  --aqm-gold-muted: #8b7d4f;
+
+  --aqm-accent-red: #c03b2b;
+  --aqm-accent-blue: #2b6d8f;
+  --aqm-accent-green: #2b8f4f;
+
+  --aqm-text-primary: #f0f0f0;
+  --aqm-text-secondary: #c9c4b8;
+  --aqm-text-muted: #8b8680;
+
+  /* ─── المسافات ─── */
+  --aqm-spacing-xs: 4px;
+  --aqm-spacing-sm: 8px;
+  --aqm-spacing-md: 16px;
+  --aqm-spacing-lg: 24px;
+  --aqm-spacing-xl: 32px;
+  --aqm-spacing-2xl: 48px;
+
+  /* ─── Typography ─── */
+  --aqm-font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Arabic", sans-serif;
+  --aqm-font-serif: "Noto Naskh Arabic", "Amiri", serif;
+  --aqm-font-mono: "Courier New", monospace;
+
+  /* ─── الظلال والفلترة ─── */
+  --aqm-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --aqm-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --aqm-shadow-lg: 0 8px 32px rgba(212, 175, 55, 0.15);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   1. إعادة تعيين عام
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: var(--aqm-spacing-md);
+  background: linear-gradient(135deg, var(--aqm-dark) 0%, var(--aqm-dark-light) 100%);
+  color: var(--aqm-text-primary);
+  font-family: var(--aqm-font-primary);
+  line-height: 1.6;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   2. الحاوية الرئيسية
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-shell {
+  max-width: 1400px;
+  margin: 0 auto;
+  direction: rtl;
+  text-align: right;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   3. الرأس
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-header {
+  text-align: center;
+  margin-bottom: var(--aqm-spacing-2xl);
+  padding-bottom: var(--aqm-spacing-xl);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.aqm-header .aqm-kicker {
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--aqm-gold);
+  margin-bottom: var(--aqm-spacing-sm);
+}
+
+.aqm-header h2 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-family: var(--aqm-font-serif);
+  font-weight: 700;
+  color: var(--aqm-gold-light);
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.1);
+}
+
+.aqm-header p {
+  margin: var(--aqm-spacing-md) 0 0 0;
+  font-size: 0.95rem;
+  color: var(--aqm-text-muted);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   4. البطاقات (Cards) — النمط الموحد
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-card {
+  background: rgba(16, 19, 29, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  padding: var(--aqm-spacing-lg);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.aqm-card:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(16, 19, 29, 0.8);
+  box-shadow: var(--aqm-shadow-lg);
+}
+
+.aqm-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--aqm-spacing-lg);
+  padding-bottom: var(--aqm-spacing-md);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.aqm-card-head h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--aqm-gold-light);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   5. الشبكة الرئيسية
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--aqm-spacing-xl);
+  margin-bottom: var(--aqm-spacing-2xl);
+}
+
+@media (max-width: 1200px) {
+  .aqm-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aqm-chart-card {
+  grid-column: 1 / -1;
+}
+
+.aqm-interpretations {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aqm-spacing-md);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   6. SVG والمصفوفة
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-matrix-wrap {
+  position: relative;
+  margin: var(--aqm-spacing-lg) 0;
+  padding: var(--aqm-spacing-lg);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aqm-svg {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.1));
+}
+
+.aqm-octagon {
+  fill: none;
+  stroke: rgba(212, 175, 55, 0.3);
+  stroke-width: 1.5;
+}
+
+.aqm-octagon:hover {
+  stroke: rgba(212, 175, 55, 0.5);
+}
+
+.aqm-star {
+  fill: none;
+  stroke: rgba(212, 175, 55, 0.15);
+  stroke-width: 1;
+}
+
+.aqm-axis {
+  stroke: rgba(212, 175, 55, 0.2);
+  stroke-width: 1.5;
+  stroke-dasharray: 4, 4;
+}
+
+.aqm-diagonal {
+  stroke: rgba(212, 175, 55, 0.1);
+  stroke-width: 1;
+}
+
+.aqm-node {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.aqm-node circle {
+  fill: rgba(212, 175, 55, 0.1);
+  stroke: rgba(212, 175, 55, 0.4);
+  stroke-width: 2;
+  transition: all 0.2s ease;
+}
+
+.aqm-node text {
+  fill: var(--aqm-gold-light);
+  font-weight: 600;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.aqm-node:hover circle,
+.aqm-node:focus circle,
+.aqm-node.is-active circle {
+  fill: rgba(212, 175, 55, 0.25);
+  stroke: var(--aqm-gold);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.3));
+}
+
+.aqm-node.is-center circle {
+  r: 22;
+  fill: rgba(192, 57, 43, 0.15);
+  stroke: rgba(192, 57, 43, 0.5);
+}
+
+.aqm-node.is-center:hover circle,
+.aqm-node.is-center.is-active circle {
+  fill: rgba(192, 57, 43, 0.3);
+  stroke: rgba(192, 57, 43, 0.8);
+}
+
+/* ─── Tooltip ─── */
+
+.aqm-tooltip {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(16, 19, 29, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  padding: var(--aqm-spacing-md);
+  min-width: 250px;
+  max-width: 90%;
+  font-size: 0.85rem;
+  color: var(--aqm-text-secondary);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   7. جدول الشاكرات
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-table-scroll {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  margin: var(--aqm-spacing-lg) 0;
+}
+
+.aqm-chakra-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--aqm-font-serif);
+}
+
+.aqm-chakra-table thead {
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+}
+
+.aqm-chakra-table th {
+  padding: var(--aqm-spacing-md);
+  text-align: center;
+  color: var(--aqm-gold-light);
+  font-weight: 600;
+}
+
+.aqm-chakra-table th:first-child {
+  text-align: right;
+  padding-right: var(--aqm-spacing-xl);
+}
+
+.aqm-chakra-table td {
+  padding: var(--aqm-spacing-md);
+  text-align: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  color: var(--aqm-text-secondary);
+}
+
+.aqm-chakra-table tr:hover {
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.aqm-chakra-table tbody tr:last-child {
+  border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+}
+
+.aqm-chakra-total {
+  background: rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  color: var(--aqm-gold-light);
+}
+
+/* ─── Chakra Toggle ─── */
+
+.aqm-chakra-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--aqm-spacing-md);
+  text-align: right;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.aqm-chakra-toggle:hover,
+.aqm-chakra-toggle:focus {
+  color: var(--aqm-gold-light);
+}
+
+.aqm-chakra-order {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: 50%;
+  font-weight: 600;
+  color: var(--aqm-gold);
+  flex-shrink: 0;
+}
+
+.aqm-chakra-toggle small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--aqm-text-muted);
+  margin-top: var(--aqm-spacing-xs);
+}
+
+.aqm-chakra-detail {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.aqm-chakra-copy {
+  padding: var(--aqm-spacing-lg);
+}
+
+.aqm-chakra-copy p {
+  margin: var(--aqm-spacing-md) 0;
+  line-height: 1.7;
+  color: var(--aqm-text-secondary);
+}
+
+.aqm-chakra-copy b {
+  color: var(--aqm-gold-light);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   8. الأقسام العميقة
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-deep-section {
+  margin-bottom: var(--aqm-spacing-2xl);
+  padding: var(--aqm-spacing-xl);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.aqm-section-heading {
+  margin-bottom: var(--aqm-spacing-xl);
+  padding-bottom: var(--aqm-spacing-lg);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.aqm-section-heading .aqm-kicker {
+  display: block;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--aqm-gold);
+  margin-bottom: var(--aqm-spacing-sm);
+}
+
+.aqm-section-heading h3 {
+  margin: var(--aqm-spacing-sm) 0 0 0;
+  font-size: 1.6rem;
+  color: var(--aqm-gold-light);
+}
+
+.aqm-section-heading p {
+  margin: var(--aqm-spacing-md) 0 0 0;
+  color: var(--aqm-text-muted);
+}
+
+/* ─── Lineage ─── */
+
+.aqm-lineage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--aqm-spacing-lg);
+  margin: var(--aqm-spacing-lg) 0;
+}
+
+@media (max-width: 768px) {
+  .aqm-lineage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aqm-lineage-card {
+  padding: var(--aqm-spacing-lg);
+  background: rgba(16, 19, 29, 0.5);
+  border-left: 4px solid var(--aqm-gold);
+}
+
+.aqm-lineage-card.is-female {
+  border-left-color: rgba(192, 57, 43, 0.6);
+}
+
+.aqm-ancestral-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--aqm-spacing-md);
+  margin: var(--aqm-spacing-md) 0;
+  font-size: 1.1rem;
+}
+
+.aqm-ancestral-numbers span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aqm-ancestral-numbers b {
+  font-size: 1.4rem;
+  color: var(--aqm-gold-light);
+}
+
+.aqm-ancestral-numbers small {
+  font-size: 0.75rem;
+  color: var(--aqm-text-muted);
+  margin-top: var(--aqm-spacing-xs);
+}
+
+/* ─── Pillars ─── */
+
+.aqm-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--aqm-spacing-lg);
+  margin: var(--aqm-spacing-lg) 0;
+}
+
+.aqm-pillar {
+  display: flex;
+  flex-direction: column;
+  padding: var(--aqm-spacing-lg);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.aqm-pillar:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.aqm-pillar-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--aqm-gold-light);
+  margin-bottom: var(--aqm-spacing-md);
+}
+
+.aqm-pillar h4 {
+  margin: var(--aqm-spacing-md) 0;
+  font-size: 1.1rem;
+  color: var(--aqm-gold-light);
+}
+
+.aqm-pillar p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--aqm-text-secondary);
+  line-height: 1.6;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   9. مسرد النقاط
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-gloss-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--aqm-spacing-lg);
+  margin: var(--aqm-spacing-lg) 0;
+}
+
+.aqm-gloss {
+  padding: var(--aqm-spacing-lg);
+}
+
+.aqm-gloss h4 {
+  margin: var(--aqm-spacing-md) 0;
+  font-size: 1.1rem;
+}
+
+.aqm-gloss p {
+  margin: var(--aqm-spacing-sm) 0;
+  font-size: 0.9rem;
+}
+
+.aqm-gloss b {
+  color: var(--aqm-gold-light);
+}
+
+.aqm-gloss i {
+  color: var(--aqm-text-muted);
+  font-size: 0.85rem;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   10. التفاصيل (Details / Collapsible)
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-details {
+  margin: var(--aqm-spacing-xl) 0;
+  padding: var(--aqm-spacing-lg);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 8px;
+}
+
+.aqm-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--aqm-gold-light);
+  padding: var(--aqm-spacing-md);
+  margin: calc(-1 * var(--aqm-spacing-lg));
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.aqm-details summary:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--aqm-gold);
+}
+
+.aqm-node-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--aqm-spacing-md);
+  margin-top: var(--aqm-spacing-lg);
+}
+
+.aqm-node-list article {
+  padding: var(--aqm-spacing-md);
+  background: rgba(16, 19, 29, 0.5);
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.aqm-node-list article:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.aqm-node-list b {
+  color: var(--aqm-gold-light);
+  display: block;
+  margin-bottom: var(--aqm-spacing-sm);
+}
+
+.aqm-node-list p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--aqm-text-secondary);
+}
+
+.aqm-node-list small {
+  display: block;
+  margin-top: var(--aqm-spacing-sm);
+  font-size: 0.8rem;
+  color: var(--aqm-text-muted);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   11. التحذيرات والملاحظات
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-health-note,
+.aqm-method,
+.aqm-disclaimer {
+  font-size: 0.85rem;
+  color: var(--aqm-text-muted);
+  line-height: 1.6;
+  padding: var(--aqm-spacing-md);
+  background: rgba(192, 57, 43, 0.1);
+  border-left: 3px solid rgba(192, 57, 43, 0.3);
+  border-radius: 4px;
+  margin: var(--aqm-spacing-lg) 0;
+}
+
+.aqm-disclaimer {
+  margin-top: var(--aqm-spacing-2xl);
+  background: rgba(192, 57, 43, 0.05);
+  border-left-color: rgba(192, 57, 43, 0.2);
+  text-align: center;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   12. الخطوط والقراءات
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-lines {
+  margin: var(--aqm-spacing-lg) 0;
+  padding: var(--aqm-spacing-lg);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.aqm-lines p {
+  margin: var(--aqm-spacing-sm) 0;
+  font-size: 0.95rem;
+}
+
+.aqm-reading {
+  margin: var(--aqm-spacing-md) 0;
+}
+
+.aqm-reading b {
+  color: var(--aqm-gold-light);
+  display: block;
+  margin-bottom: var(--aqm-spacing-sm);
+}
+
+.aqm-reading p {
+  margin: 0;
+  color: var(--aqm-text-secondary);
+  font-size: 0.95rem;
+}
+
+.aqm-reading.is-shadow {
+  padding: var(--aqm-spacing-md);
+  background: rgba(192, 57, 43, 0.1);
+  border-radius: 4px;
+  margin-top: var(--aqm-spacing-lg);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   13. Typography عام
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-t-en {
+  display: inline;
+  font-weight: 600;
+  color: var(--aqm-gold);
+}
+
+.aqm-t-ar {
+  display: inline;
+  margin-left: var(--aqm-spacing-sm);
+  font-family: var(--aqm-font-serif);
+  color: var(--aqm-text-secondary);
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   14. Axis Notes
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+.aqm-axis-notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--aqm-spacing-md);
+  margin-top: var(--aqm-spacing-lg);
+  padding: var(--aqm-spacing-lg);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--aqm-text-secondary);
+}
+
+.aqm-axis-notes span {
+  display: block;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   15. Responsive
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  :root {
+    --aqm-spacing-xl: 24px;
+    --aqm-spacing-2xl: 32px;
+  }
+
+  .aqm-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .aqm-grid {
+    gap: var(--aqm-spacing-lg);
+  }
+
+  .aqm-svg {
+    max-width: 320px;
+  }
+
+  .aqm-gloss-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aqm-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: var(--aqm-spacing-sm);
+  }
+
+  .aqm-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .aqm-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aqm-deep-section {
+    padding: var(--aqm-spacing-md);
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════════════════
+   16. Dark Mode Override (اختياري)
+   ═════════════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --aqm-dark: #0a0c14;
+    --aqm-dark-light: #16192c;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --aqm-dark: #f5f5f5;
+    --aqm-dark-light: #efefef;
+    --aqm-text-primary: #1a1a1a;
+    --aqm-text-secondary: #333;
+    --aqm-text-muted: #666;
+  }
+
+  .aqm-octagon {
+    stroke: rgba(212, 175, 55, 0.5);
+  }
+
+  .aqm-card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+}
