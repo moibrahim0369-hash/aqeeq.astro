@@ -105,35 +105,259 @@ details.adv .field{margin-top:12px}
 .res-head{text-align:center;margin-bottom:22px}
 .res-head h3{font-family:var(--display);font-size:1.7rem;font-weight:700;line-height:1.5}
 .res-head p{color:var(--mist)}
-.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:26px}
-.b3{display:grid;justify-items:center;align-content:start;gap:0;padding:16px 6px;border:1px solid var(--gold-dim);border-radius:16px;background:var(--deep);text-align:center;line-height:1.6}
-.b3g{font-family:var(--sym);font-size:2rem;color:var(--gold);line-height:1.3}
-.b3l{color:var(--mist);font-size:.88rem}
-.b3 strong{font-family:var(--display);font-size:1.15rem;font-weight:600}
-.b3.dim{opacity:.7}
-.b3n{font-size:.8rem;color:var(--mist)}
-.wheel-wrap{max-width:520px;margin:0 auto 12px}
-.cw{width:100%;height:auto;display:block}
-.cw .sec{stroke:var(--gold-dim);stroke-width:.8}
-.cw .sec.e0{fill:rgba(214,174,94,.14)}
-.cw .sec.e1{fill:rgba(143,115,56,.16)}
-.cw .sec.e2{fill:rgba(185,173,216,.12)}
-.cw .sec.e3{fill:rgba(58,33,112,.5)}
-.cw .cg{font-family:var(--sym);font-size:22px;fill:var(--gold);text-anchor:middle;dominant-baseline:central}
-.cw .rg{fill:none;stroke:var(--gold-dim);stroke-width:1}
-.cw .hl{stroke:rgba(143,115,56,.7);stroke-width:.8}
-.cw .hl.ax{stroke:var(--gold);stroke-width:1.6}
-.cw .hn{font-family:var(--display);font-size:13px;fill:var(--mist);text-anchor:middle;dominant-baseline:central}
-.cw .as{stroke-width:1;fill:none}
-.cw .as.soft{stroke:rgba(214,174,94,.55)}
-.cw .as.hard{stroke:rgba(217,120,140,.65)}
-.cw .tk{stroke:var(--gold);stroke-width:1.2}
-.cw .pg text{font-family:var(--sym);font-size:25px;fill:var(--moon);text-anchor:middle;dominant-baseline:central}
-.cw .pg text.rx{font-size:12px;fill:var(--rose)}
+/* ===== كروت الثلاثة الكبار (The Big Three Luxury Dark Glassmorphism) ===== */
+.big3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 auto 24px;
+  max-width: 640px;
+}
+.b3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 16px 8px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  text-align: center;
+  line-height: 1.5;
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+.b3:hover {
+  transform: translateY(-2px);
+  border-color: rgba(214, 174, 94, 0.55);
+  box-shadow: 0 10px 36px 0 rgba(0, 0, 0, 0.45), 0 0 16px rgba(214, 174, 94, 0.22);
+}
+.b3g {
+  font-family: var(--sym, serif);
+  font-size: 2.1rem;
+  color: #F7DE94;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(214, 174, 94, 0.16) 0%, transparent 72%);
+  margin-bottom: 2px;
+  text-shadow: 0 0 12px rgba(247, 222, 148, 0.45);
+}
+.b3l {
+  color: var(--mist, #94a3b8);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.b3 strong {
+  font-family: var(--display, serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.b3 .num, .b3 span:last-child {
+  font-size: 0.86rem;
+  color: #cbd5e1;
+}
+.b3.dim {
+  opacity: 0.72;
+}
+.b3n {
+  font-size: 0.8rem;
+  color: var(--mist, #94a3b8);
+}
+
+/* ===== دائرة الأبراج والاتصالات (Luxury Celestial Wheel & SVG Canvas) ===== */
+.wheel-wrap {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.cw {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 32px rgba(0, 0, 0, 0.6));
+}
+.cw .cw-center {
+  fill: url(#cw-center-grad);
+  stroke: rgba(214, 174, 94, 0.35);
+  stroke-width: 1;
+}
+.cw .sec {
+  stroke: rgba(214, 174, 94, 0.32);
+  stroke-width: 0.9;
+}
+.cw .sec.e0 { fill: rgba(239, 68, 68, 0.12); }
+.cw .sec.e1 { fill: rgba(214, 174, 94, 0.13); }
+.cw .sec.e2 { fill: rgba(56, 189, 248, 0.11); }
+.cw .sec.e3 { fill: rgba(99, 102, 241, 0.16); }
+.cw .cg {
+  font-family: var(--sym, serif);
+  font-size: 22px;
+  fill: #FDE68A;
+  text-anchor: middle;
+  dominant-baseline: central;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.85));
+  cursor: pointer;
+}
+.cw .rg {
+  fill: none;
+  stroke: rgba(214, 174, 94, 0.45);
+  stroke-width: 1.1;
+}
+.cw .hl {
+  stroke: rgba(143, 115, 56, 0.65);
+  stroke-width: 0.85;
+}
+.cw .hl.ax {
+  stroke: #F7DE94;
+  stroke-width: 1.6;
+  filter: drop-shadow(0 0 3px rgba(247, 222, 148, 0.45));
+}
+.cw .hn {
+  font-family: var(--display, serif);
+  font-size: 13px;
+  fill: #F1F5F9;
+  text-anchor: middle;
+  dominant-baseline: central;
+  cursor: pointer;
+}
+.cw .as {
+  stroke-width: 1.25;
+  fill: none;
+  stroke-linecap: round;
+  transition: opacity 0.2s ease, stroke-width 0.2s ease;
+}
+.cw .as.soft {
+  stroke: #38bdf8;
+  opacity: 0.88;
+  filter: drop-shadow(0 0 2.5px rgba(56, 189, 248, 0.6));
+}
+.cw .as.hard {
+  stroke: #fbbf24;
+  opacity: 0.88;
+  filter: drop-shadow(0 0 2.5px rgba(251, 191, 36, 0.6));
+}
+.cw .tk {
+  stroke: #F7DE94;
+  stroke-width: 1.2;
+}
+.cw .pg text {
+  font-family: var(--sym, serif);
+  font-size: 25px;
+  fill: #FFFFFF;
+  text-anchor: middle;
+  dominant-baseline: central;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.95));
+  cursor: pointer;
+}
+.cw .pg text.rx {
+  font-size: 12px;
+  fill: #F87171;
+  font-weight: bold;
+}
 .note{color:var(--mist);font-size:.92rem;text-align:center;margin:6px 0 0}
-.tabs{display:flex;gap:8px;overflow-x:auto;margin:26px 0 20px;padding-bottom:6px;scrollbar-width:thin}
-.tab{flex:none;font-family:var(--display);font-size:.95rem;padding:9px 18px;border-radius:999px;border:1px solid var(--amethyst);background:transparent;color:var(--mist);cursor:pointer}
-.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#1a0f33}
+
+/* ===== شريط التبويبات الفلكية الحديث (Pill-shaped Segmented Bar) ===== */
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 5px;
+  margin: 28px auto 22px;
+  max-width: fit-content;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+.tab {
+  flex: none;
+  font-family: var(--ui, sans-serif);
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--mist, #94a3b8);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.tab:hover {
+  color: #F8FAFC;
+  background: rgba(255, 255, 255, 0.05);
+}
+.tab[aria-selected="true"] {
+  background: linear-gradient(135deg, rgba(214, 174, 94, 0.28) 0%, rgba(214, 174, 94, 0.12) 100%) !important;
+  border: 1px solid rgba(214, 174, 94, 0.55) !important;
+  color: #FFFDF5 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 14px rgba(214, 174, 94, 0.25) !important;
+  text-shadow: 0 0 8px rgba(247, 222, 148, 0.35);
+}
+
+@media (max-width: 480px) {
+  .wheel-wrap {
+    max-width: min(94vw, 360px);
+    padding: 0;
+  }
+  .cw {
+    max-width: min(94vw, 360px);
+  }
+  .big3 {
+    gap: 8px;
+  }
+  .b3 {
+    padding: 14px 6px;
+    border-radius: 14px;
+  }
+  .b3g {
+    font-size: 1.8rem;
+    width: 38px;
+    height: 38px;
+  }
+  .b3 strong {
+    font-size: 1.05rem;
+  }
+  .tabs {
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+    padding: 4px;
+  }
+  .tab {
+    padding: 7px 12px;
+    font-size: 0.86rem;
+  }
+}
 .rd{padding:16px 0;border-top:1px solid rgba(58,33,112,.9)}
 .rd:first-child{border-top:0}
 .rd h4{font-family:var(--display);font-weight:600;font-size:1.08rem;line-height:1.7;margin-bottom:2px}
@@ -451,21 +675,241 @@ h1,h2,h3,h4{font-family:var(--ui);font-weight:700;letter-spacing:0}
 .qt .big{color:var(--text);font-family:var(--ui);font-weight:700}
 .qt .k,.qt .nb,.qt .sg2{color:var(--brass)}
 
-/* home: rows with hairlines, not identical cards */
-.home{width:min(1100px,100% - 40px);margin:0 auto;padding:4px 0 150px;display:grid}
-@media(min-width:900px){.home{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:64px}}
-.cat-h{grid-column:1/-1;font-family:var(--display);font-size:1.9rem;color:var(--brass-hi);margin:44px 0 4px;padding-bottom:10px;border-bottom:1px solid var(--line);display:block}
-.cat-h .cat-i{display:none}
-.cat-h::after{display:none}
-.card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:18px 2px;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none;background:none;border-radius:0;box-shadow:none;transition:background .2s;animation:none}
-.card:hover{transform:none;background:rgba(111,91,214,.08);border-color:var(--line)}
-.card .ic{width:40px;height:40px;display:grid;place-items:center;border:0;background:none;box-shadow:none;color:var(--brass);font-family:inherit;font-size:1rem}
-.card .ic svg{width:24px;height:24px}
-.card .ct{display:grid;gap:2px;text-align:start}
-.card .ct b{font-size:1.1rem;font-weight:700;line-height:1.5}
-.card .ct small{color:var(--mute);font-size:.92rem;line-height:1.6}
-.pills{display:none}
-.chev{color:var(--mute);font-size:1.5rem;line-height:1;padding-inline:4px}
+/* ===== هندسة كروت وشبكة الصفحة الرئيسية (Cosmic Grid & Glassmorphism) ===== */
+.home {
+  width: min(1140px, 100% - 32px);
+  margin: 0 auto;
+  padding: 16px 0 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.grp {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  scroll-margin-top: 84px;
+}
+
+@media (min-width: 900px) {
+  #cat-discover.grp {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  #cat-relations.grp,
+  #cat-forecast.grp {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #cat-library.grp {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+  }
+}
+
+.cat-h {
+  grid-column: 1 / -1;
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--brass-hi);
+  margin: 12px 0 2px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.14);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-h .cat-i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--brass);
+}
+
+.cat-h .cat-i svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* الكروت الزجاجية الكونية */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  background: rgba(14, 23, 47, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  border-radius: 16px;
+  padding: 20px 14px 16px;
+  min-height: 168px;
+  box-sizing: border-box;
+  max-width: 100%;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.card:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.15);
+  background: rgba(18, 30, 60, 0.75);
+}
+
+.card:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--brass-hi);
+  outline-offset: 2px;
+}
+
+/* تمييز كارت مصفوفة القدر والشاكرات في المقدمة */
+.card[href="#matrix"] {
+  border-color: rgba(214, 174, 94, 0.38);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), 0 0 16px rgba(214, 174, 94, 0.14);
+  background: radial-gradient(circle at 50% 0%, rgba(214, 174, 94, 0.09), rgba(14, 23, 47, 0.75) 75%);
+}
+
+.card[href="#matrix"]:hover {
+  border-color: rgba(214, 174, 94, 0.65);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(214, 174, 94, 0.28);
+}
+
+/* الأيقونة المركزية في أعلى الكارت */
+.card .ic {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(12, 18, 38, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #F7DE94 !important;
+  font-size: 1.3rem;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card:hover .ic {
+  transform: scale(1.08);
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.card .ic svg {
+  width: 24px;
+  height: 24px;
+  stroke: #F7DE94;
+  stroke-width: 1.8;
+}
+
+.card .ic.gold {
+  border-color: rgba(214, 174, 94, 0.38) !important;
+  box-shadow: 0 0 14px rgba(214, 174, 94, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.card:hover .ic.gold {
+  box-shadow: 0 0 20px rgba(214, 174, 94, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.card .ic.rose {
+  color: #f472b6 !important;
+  border-color: rgba(244, 114, 182, 0.38) !important;
+  box-shadow: 0 0 14px rgba(244, 114, 182, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.card .ic.rose svg {
+  stroke: #f472b6;
+}
+
+.card:hover .ic.rose {
+  box-shadow: 0 0 20px rgba(244, 114, 182, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+/* نصوص وعناوين الكارت */
+.card .ct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  gap: 4px;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.card .ct::before,
+.card .ct b::after {
+  display: none !important;
+}
+
+.card .ct b {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #FFF3D1;
+  line-height: 1.35;
+  margin: 0;
+  padding: 0;
+}
+
+.card .ct small {
+  color: #B8C2D8;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 4px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .chev {
+  display: none !important;
+}
+
+.card .pills {
+  margin-top: 6px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.card .pill {
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.14);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.24);
+}
+
+.card .pill.free {
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.24);
+}
 
 /* primary entries: three plain rows */
 .primary{grid-column:1/-1;display:grid;margin-top:8px;border-top:1px solid var(--line)}
@@ -612,10 +1056,46 @@ button:focus-visible,a:focus-visible,[data-kind]:focus-visible{outline:2px solid
   .sec{padding:52px 0}
   .sec h2{font-size:1.6rem;margin-bottom:10px}
   .intro{font-size:.98rem;line-height:1.85;margin-bottom:24px}
-  .card{gap:12px;padding:15px 2px}
-  .card .ic{width:36px;height:36px}
-  .card .ct b{font-size:1.02rem}
-  .card .ct small{font-size:.88rem;line-height:1.7}
+  .grp {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+  .cat-h {
+    font-size: 1.15rem;
+    margin: 4px 0 2px;
+    padding-bottom: 6px;
+  }
+  .card {
+    padding: 14px 8px 12px !important;
+    min-height: 155px !important;
+    border-radius: 14px !important;
+  }
+  .card .ic {
+    width: 44px !important;
+    height: 44px !important;
+    flex: 0 0 44px !important;
+    margin-bottom: 8px !important;
+    font-size: 1.15rem !important;
+  }
+  .card .ic svg {
+    width: 22px !important;
+    height: 22px !important;
+  }
+  .card .ct b {
+    font-size: 0.92rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 2px !important;
+  }
+  .card .ct small {
+    font-size: 0.74rem !important;
+    line-height: 1.4 !important;
+    margin-top: 2px !important;
+    -webkit-line-clamp: 2 !important;
+  }
+  .card .pill {
+    font-size: 0.65rem !important;
+    padding: 1px 6px !important;
+  }
   .arch{padding:20px 16px}
   .sec-icons{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
   .sec-ico{min-height:76px;padding:8px 4px}
@@ -688,13 +1168,7 @@ svg text.hn{fill:#F4EAD0;paint-order:stroke;stroke:#07091C;stroke-width:2.5px}
 #sky-layer .ring i{border-color:rgba(214,174,94,.10)}
 .amb-planet{background:radial-gradient(circle at 32% 28%,#a79be6 0,#3d2c86 42%,#140c35 78%,#07041a 100%)}
 .amb-planet::after{border-color:rgba(214,174,94,.28);border-width:1.5px}
-/* ===== براويز للعناوين والنصوص بجانب الأيقونات ===== */
-.card .ct{position:relative;background:linear-gradient(180deg,rgba(20,11,50,.78),rgba(10,6,30,.66));border:1px solid rgba(214,174,94,.3);border-radius:14px;padding:12px 16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 8px 22px rgba(3,4,16,.5);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
-.card .ct::before{content:"";position:absolute;inset:4px;border-radius:10px;border:1px solid rgba(214,174,94,.12);pointer-events:none}
-.card .ct b{color:#FFF3D1;letter-spacing:.01em}
-.card .ct b::after{content:"";display:block;width:44px;height:1px;margin-top:6px;background:linear-gradient(90deg,#D6AE5E,rgba(214,174,94,0))}
-.card .ct small{color:#E4DAF2}
-.card:hover .ct{border-color:rgba(214,174,94,.55)}
+/* [Unified Card Typography Applied] */
 /* إصلاح: الأقسام المفتوحة كشيت لازم تبقى معتمة عشان ما يظهرش المحتوى اللي ورا */
 section.sec:target,section.sec.alt:target{background:radial-gradient(900px 600px at 80% 0%,rgba(30,58,138,.35),transparent 60%),var(--ink)!important}
 /* Aqeq Astro: تحسينات الحركة وقراءة موسوعة الأبراج */
@@ -804,37 +1278,74 @@ textarea{font:inherit;line-height:1.8;color:var(--moon);background:var(--deep);b
 :root { --aq-nav-h: 72px; }
 html { scroll-padding-bottom: calc(var(--aq-nav-h) + 20px); }
 body { padding-bottom: calc(var(--aq-nav-h) + env(safe-area-inset-bottom) + 12px); }
+/* Floating Glass Bottom Navigation Bar Dock */
 .bnav {
-  box-sizing: border-box;
-  min-height: var(--aq-nav-h);
-  padding: 8px clamp(8px, 2vw, 24px) calc(8px + env(safe-area-inset-bottom));
-  display: grid;
-  /* Four actual destinations: no phantom fifth column */
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  align-items: center;
-  justify-content: center;
-  gap: clamp(6px, 1.5vw, 16px);
-  width: 100%;
-  background: rgba(18, 16, 39, .96);
-  border-top: 1px solid var(--line, rgba(214,174,94,.28));
-  box-shadow: 0 -8px 28px rgba(0,0,0,.18);
+  position: fixed !important;
+  bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 1000 !important;
+  width: calc(100% - 32px) !important;
+  max-width: 420px !important;
+  box-sizing: border-box !important;
+  min-height: 56px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  padding: 5px 8px !important;
+  border-radius: 999px !important;
+  background: rgba(14, 18, 32, 0.85) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(214, 174, 94, 0.35) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 20px rgba(214, 174, 94, 0.12) !important;
+  transition: all .25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
+
 .bnav a {
-  box-sizing: border-box;
-  width: 100%;
-  min-width: 0;
-  max-width: 180px;
-  justify-self: stretch;
-  padding: 7px 4px 5px;
-  gap: 5px;
-  line-height: 1.3;
-  text-align: center;
-  white-space: nowrap;
-  overflow: visible;
-  text-overflow: clip;
-  font-size: clamp(11px, 1.1vw, 13px);
+  flex: 1 !important;
+  max-width: 110px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  padding: 6px 10px !important;
+  border-radius: 999px !important;
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-family: var(--ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.2px !important;
+  transition: all .2s ease !important;
+  min-height: 44px !important;
+  line-height: 1.2 !important;
 }
-.bnav a svg { width: clamp(19px, 2vw, 23px); height: clamp(19px, 2vw, 23px); flex: none; }
+
+.bnav a .bnav-icon svg, .bnav a svg {
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 1.8 !important;
+  transition: all .2s ease !important;
+  flex: none !important;
+}
+
+.bnav a:hover {
+  color: #f1f5f9 !important;
+}
+
+.bnav a.on {
+  color: #fef08a !important;
+  background: rgba(214, 174, 94, 0.16) !important;
+  box-shadow: 0 0 12px rgba(214, 174, 94, 0.25) inset !important;
+}
+
+.bnav a.on .bnav-icon svg, .bnav a.on svg {
+  color: #fef08a !important;
+  filter: drop-shadow(0 0 6px rgba(234, 179, 8, 0.5)) !important;
+  stroke: #fef08a !important;
+}
 .foot {
   box-sizing: border-box;
   width: min(1100px, calc(100% - 32px));
@@ -848,14 +1359,14 @@ body { padding-bottom: calc(var(--aq-nav-h) + env(safe-area-inset-bottom) + 12px
 @media (min-width: 900px) {
   :root { --aq-nav-h: 68px; }
   body { padding-bottom: calc(var(--aq-nav-h) + 18px); }
-  .bnav { padding-inline: max(18px, calc((100vw - 640px) / 2)); }
-  .bnav a { max-width: 140px; font-size: 13px; }
+  /* .bnav wide override removed */
+  /* .bnav wide a override removed */
   .foot { padding-bottom: calc(var(--aq-nav-h) + 30px); }
 }
 @media (max-width: 380px) {
   :root { --aq-nav-h: 66px; }
-  .bnav { gap: 3px; padding-inline: 8px; }
-  .bnav a { font-size: 10px; padding-inline: 2px; }
+  /* .bnav narrow override removed */
+  /* .bnav narrow a override removed */
   .bnav a svg { width: 18px; height: 18px; }
   .foot { width: calc(100% - 24px); font-size: .88rem; }
 }
@@ -997,3 +1508,826 @@ a,button,summary,.wg,.card,.btn,.bnav a,.svc-ic,.tool-ic,[role="button"]{-webkit
 .cp-form button[aria-busy="true"]{opacity:.72;cursor:wait}
 @keyframes cp-status-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.cp-status::before{animation:none}}
+
+
+/* ==========================================================================
+   Clean Hide: Notebooks, Reflection Cards, and Symbol Libraries
+   (دفتر التجلي، دفتر الأمنيات، دليل رموز الأحلام، بطاقة تأمل التاروت، أطلس الرموز)
+   ========================================================================== */
+#manifest,
+#wishes,
+#dream-library,
+#tarot-lab,
+#symbol-library,
+a.card[href="#manifest"],
+a.card[href="#wishes"],
+a.card[href="#dream-library"],
+a.card[href="#tarot-lab"],
+a.card[href="#symbol-library"] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+/* ==========================================================================
+   Clean UI Feature Toggle (Hidden Elements)
+   (اسأل عن علاقتك، تحليل المحادثات، إلهام اليوم، الخدمات والجلسات، الكورسات،
+    الفيديوهات، الأسئلة الشائعة، استشارة التاروت، محراب التعليم الأكاديمي)
+   ========================================================================== */
+.hidden-feature,
+#ask,
+#chat,
+#fortune,
+#services,
+#courses,
+#videos,
+#faq,
+a.card[href="#ask"],
+a.card[href="#chat"],
+a.card[href="#fortune"],
+a.card[href="#services"],
+a.card[href="#courses"],
+a.card[href="#videos"],
+a.card[href="#faq"],
+a.card[href="tarot.html"],
+a.card[href="workbench.html"],
+a[href="#services"] {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  border: none !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ===== View Isolation & Return to Home Button ===== */
+.result-top-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 20px;
+  width: 100%;
+}
+
+.btn-return-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #F7DE94 !important;
+  background: rgba(14, 23, 47, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(214, 174, 94, 0.42);
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-return-home:hover {
+  background: rgba(24, 38, 76, 0.9);
+  border-color: rgba(214, 174, 94, 0.8);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), 0 0 14px rgba(214, 174, 94, 0.3);
+  transform: translateY(-2px);
+  color: #FFF3D1 !important;
+}
+
+.btn-return-home:active {
+  transform: translateY(0);
+}
+
+.btn-return-home span {
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.btn-return-home:hover span {
+  transform: translateX(4px);
+}
+
+.result[hidden],
+#result[hidden],
+#mresult[hidden],
+#lpresult[hidden],
+#syn-result[hidden],
+#cp-out[hidden],
+#eam-result[hidden] {
+  display: none !important;
+}
+
+
+/* إخفاء أزرار النسخ المكررة */
+.aq-copy-map-btn {
+  display: none !important;
+}
+
+/* ===== كارت ملخص خريطة الميلاد وزر تعديل البيانات ===== */
+.chart-summary-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: rgba(14, 23, 47, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 20px;
+  padding: 22px 24px;
+  margin: 14px 0 24px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-summary-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(214, 174, 94, 0.8), rgba(56, 189, 248, 0.8), transparent);
+}
+
+.chart-summary-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--gold, #d6ae5e);
+  background: rgba(214, 174, 94, 0.12);
+  border: 1px solid rgba(214, 174, 94, 0.32);
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.chart-summary-title {
+  font-family: var(--display, serif);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.3;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.chart-summary-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  color: var(--mist, #cbd5e1);
+  font-size: 0.94rem;
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+
+.chart-summary-meta .meta-sep {
+  color: rgba(214, 174, 94, 0.6);
+  font-size: 0.85rem;
+}
+
+.chart-summary-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-edit-chart,
+.btn-edit-matrix,
+.btn-edit-lp,
+.btn-edit-cp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--ui, sans-serif);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #F7DE94;
+  background: rgba(26, 38, 74, 0.85);
+  border: 1px solid rgba(214, 174, 94, 0.4);
+  border-radius: 999px;
+  padding: 9px 22px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-edit-chart:hover,
+.btn-edit-matrix:hover,
+.btn-edit-lp:hover,
+.btn-edit-cp:hover {
+  background: rgba(40, 58, 110, 0.95);
+  border-color: rgba(214, 174, 94, 0.85);
+  color: #FFF6DF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), 0 0 14px rgba(214, 174, 94, 0.28);
+}
+
+.btn-edit-chart:active,
+.btn-edit-matrix:active,
+.btn-edit-lp:active,
+.btn-edit-cp:active {
+  transform: translateY(0);
+}
+
+.btn-edit-chart .edit-icon,
+.btn-edit-matrix .edit-icon,
+.btn-edit-lp .edit-icon,
+.btn-edit-cp .edit-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .chart-summary-card {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: right;
+    padding: 22px 28px;
+  }
+  .chart-summary-info {
+    align-items: flex-start;
+    text-align: right;
+  }
+  .chart-summary-meta {
+    justify-content: flex-start;
+  }
+  .chart-summary-actions {
+    flex-shrink: 0;
+  }
+}
+
+/* ===== Suppression of Copy & PDF Buttons Clutter ===== */
+.aq-tools,
+.aq-print,
+[data-aq-print],
+.aq-copy-map-btn,
+#btn-copy-chart-full,
+.lp-back-start {
+  display: none !important;
+}
+
+/* ===== Ultra-Premium Consistency: Destiny Matrix & Life Path ===== */
+.numbadge {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(214, 174, 94, 0.45);
+  background: radial-gradient(circle at 50% 35%, rgba(44, 23, 102, 0.75), rgba(11, 13, 19, 0.95));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: var(--display, serif);
+  font-size: 2.9rem;
+  font-weight: 700;
+  color: #F7DE94;
+  box-shadow: 0 0 32px rgba(214, 174, 94, 0.28), 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.numbadge:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 42px rgba(214, 174, 94, 0.4), 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+#mresult .res-head,
+#lpresult .res-head {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 20px;
+  padding: 24px;
+  margin: 16px 0 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+#mresult .res-head h3,
+#lpresult .res-head h3 {
+  font-family: var(--display, serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #FFFDF5;
+  margin: 0 0 8px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.lp-card,
+.daily-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.045) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.22s ease, transform 0.22s ease;
+}
+
+.lp-card:hover,
+.daily-card:hover {
+  border-color: rgba(212, 175, 55, 0.45);
+  transform: translateY(-2px);
+}
+
+.aqm-shell {
+  border: 1px solid rgba(212, 175, 55, 0.28) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Today cosmic card focus */
+.today-cosmic-overview {
+  margin-bottom: 16px;
+}
+.today-date-badge {
+  display: inline-block;
+  font-size: 0.88rem;
+  color: var(--gold, #d6ae5e);
+  background: rgba(214, 174, 94, 0.12);
+  border: 1px solid rgba(214, 174, 94, 0.3);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.today-moon-focus {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+}
+.today-retro-wrap {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px dashed rgba(212, 175, 55, 0.2);
+}
+
+
+/* Luxury Account Modal & Celestial Profile */
+#account.sec:target {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 24px 16px 90px !important;
+  background: radial-gradient(circle at 50% 20%, rgba(30, 41, 74, 0.5) 0%, rgba(6, 9, 18, 0.94) 80%) !important;
+}
+
+.acct-wrap {
+  width: min(480px, 100%) !important;
+  padding-top: 0 !important;
+  margin: 0 auto !important;
+}
+
+.acct-card-shell {
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+  background: radial-gradient(120% 120% at 50% 0%, rgba(22, 28, 48, 0.95) 0%, rgba(10, 13, 24, 0.98) 100%);
+  border: 1px solid rgba(214, 174, 94, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(214, 174, 94, 0.12), 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  padding: 32px 28px;
+  color: #f8fafc;
+  box-sizing: border-box;
+}
+
+.acct-brand-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.acct-brand-seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(214, 174, 94, 0.22), rgba(14, 18, 32, 0.8));
+  border: 1px solid rgba(214, 174, 94, 0.45);
+  color: #f7de94;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 16px rgba(214, 174, 94, 0.22);
+}
+
+.acct-brand-header h2, .acct-brand-header h3 {
+  margin: 0 0 6px !important;
+  font-family: var(--display, 'Amiri', serif) !important;
+  font-size: 1.65rem !important;
+  font-weight: 700 !important;
+  color: #fffdf5 !important;
+}
+
+.acct-subtitle {
+  margin: 0 !important;
+  font-size: 0.88rem !important;
+  color: #94a3b8 !important;
+  line-height: 1.5 !important;
+}
+
+/* Official Google Sign-In Button */
+.btn-google {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 12px 20px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  color: #fffdf5 !important;
+  font-family: var(--ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
+  font-size: 0.96rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all .2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+  margin-bottom: 18px !important;
+}
+
+.btn-google:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(214, 174, 94, 0.5) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 12px rgba(214, 174, 94, 0.2) !important;
+}
+
+.btn-google .google-icon {
+  flex-shrink: 0;
+}
+
+/* Divider */
+.acct-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 18px 0;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.acct-divider::before, .acct-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.acct-divider span {
+  padding: 0 12px;
+}
+
+/* Form refinement */
+.acct-form-refined {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.acct-form-refined .field label {
+  display: block;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.acct-form-refined .field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 16px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(214, 174, 94, 0.25);
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.acct-form-refined .field input:focus {
+  border-color: #d6ae5e;
+  box-shadow: 0 0 0 3px rgba(214, 174, 94, 0.2);
+}
+
+/* Submit & Action Buttons */
+.acct-submit-btn, .acct-primary-btn {
+  width: 100% !important;
+  padding: 12px 20px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #d4af37, #aa7c11) !important;
+  color: #0b0d13 !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  border: none !important;
+  box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4) !important;
+  cursor: pointer !important;
+  transition: all .2s ease !important;
+  margin-top: 6px !important;
+}
+
+.acct-submit-btn:hover, .acct-primary-btn:hover {
+  filter: brightness(1.1) !important;
+  transform: translateY(-1px) !important;
+}
+
+.acct-forgot-btn, .acct-signout-btn {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #94a3b8 !important;
+  border-radius: 999px !important;
+  padding: 9px 18px !important;
+  font-size: 0.88rem !important;
+  margin-top: 4px !important;
+}
+
+.acct-forgot-btn:hover, .acct-signout-btn:hover {
+  color: #e2e8f0 !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* User Card */
+.acct-user-card {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border: 1px solid rgba(214, 174, 94, 0.28) !important;
+  border-radius: 18px !important;
+  padding: 20px !important;
+}
+
+.acct-user-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  text-align: right;
+}
+
+.acct-avatar-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(214, 174, 94, 0.15);
+  border: 1px solid rgba(214, 174, 94, 0.35);
+  color: #f7de94;
+  flex-shrink: 0;
+}
+
+.acct-user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.acct-status-label {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.acct-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.acct-wa-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  color: #25d366 !important;
+  border-color: rgba(37, 211, 102, 0.35) !important;
+}
+
+/* Meta Glyphs & SVG Icons */
+.meta-glyph {
+  display: inline-block;
+  color: var(--gold, #d6ae5e);
+  font-size: 0.95em;
+  margin-inline-end: 2px;
+}
+
+.edit-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-inline-end: 4px;
+}
+
+
+/* ===== UI repair: floating bottom navigation + centered tool icons ===== */
+:root {
+  --aq-floating-nav-height: 72px;
+}
+
+/* Reserve document and anchor-scroll space for the floating navigation. */
+html {
+  scroll-padding-bottom: calc(90px + env(safe-area-inset-bottom));
+}
+body {
+  padding-bottom: calc(90px + env(safe-area-inset-bottom));
+}
+
+/* Compact floating dock, centered on every viewport instead of edge-to-edge. */
+.bnav {
+  position: fixed;
+  left: 50%;
+  right: auto;
+  inset-inline: auto;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 1000;
+  width: calc(100% - 32px);
+  max-width: 420px;
+  min-height: var(--aq-floating-nav-height);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: center;
+  justify-items: stretch;
+  justify-content: center;
+  gap: clamp(4px, 1.4vw, 12px);
+  padding: 7px clamp(8px, 2vw, 16px);
+  border: 1px solid rgba(230, 203, 144, .34);
+  border-radius: 22px;
+  background: rgba(15, 13, 35, .94);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .38), 0 2px 12px rgba(111, 91, 214, .12);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  transform: translateX(-50%);
+}
+.bnav a {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  min-height: 56px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-self: stretch;
+  gap: 4px;
+  padding: 5px 3px;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.25;
+  font-size: clamp(10px, 1.6vw, 12px);
+}
+.bnav a svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  margin: 0 auto;
+  align-self: center;
+}
+.bnav a span {
+  display: block;
+  max-width: 100%;
+  line-height: 1.3;
+}
+.bnav a:active {
+  transform: scale(.96);
+}
+
+/* Footer controls and legal text stay above the floating dock. */
+.foot {
+  padding-bottom: calc(90px + env(safe-area-inset-bottom));
+}
+.foot-act {
+  justify-content: center;
+  gap: 10px;
+  margin: 18px auto 14px;
+}
+.foot .copy {
+  margin-inline: auto;
+  overflow-wrap: anywhere;
+}
+
+/* Keep every tool-card icon centered against the full card content height. */
+.card,
+a.card {
+  align-items: center;
+  justify-content: center;
+}
+.card .ic,
+a.card .ic,
+.tool-card .ic,
+.tool .ic,
+.pcard .ic {
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  margin: 0 !important;
+  line-height: 1;
+  vertical-align: middle;
+}
+.card .ic svg,
+a.card .ic svg,
+.tool-card .ic svg,
+.tool .ic svg,
+.pcard .ic svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+}
+@media (max-width: 380px) {
+  .bnav {
+    width: calc(100% - 32px);
+    min-height: 66px;
+    gap: 2px;
+    padding-inline: 6px;
+    border-radius: 19px;
+  }
+  .bnav a {
+    min-height: 52px;
+    gap: 3px;
+    padding-inline: 1px;
+    font-size: 10px;
+  }
+  .bnav a svg {
+    width: 20px;
+    height: 20px;
+    flex-basis: 20px;
+  }
+}
+@media (min-width: 900px) {
+  body {
+    padding-bottom: 90px;
+  }
+  .foot {
+    padding-bottom: 90px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bnav a {
+    transition: none !important;
+  }
+}
+
+/* Three destinations are present in the current main navigation markup. */
+.bnav-icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  line-height: 1;
+}
+.bnav-label {
+  display: block;
+  line-height: 1.3;
+  text-align: center;
+}

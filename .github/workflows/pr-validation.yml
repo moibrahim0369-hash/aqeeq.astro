@@ -1,14 +1,14 @@
 name: PR validation
 on:
   pull_request:
-    branches: [main]
+    branches: [main, feature/matrix-titles-chart-wheels, fix/pr25-ci-nodes-matrix, feature/matrix-report-hierarchy, docs/matrix-destiny-reference-audit]
   push:
     branches: [feat/arab-atlas-payment-delivery]
 permissions:
   contents: read
 jobs:
   contract-and-house-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,3 +26,30 @@ jobs:
         run: node tests/swiss-house-engine-comparison.test.js
       - name: Paymob and report-delivery contract
         run: node tests/paymob-delivery-contract.test.js
+      - name: Install Playwright
+        run: |
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local static server
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/aqeeq-http.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8765/index.html > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/aqeeq-http.log
+          exit 1
+      - name: Floating bottom navigation and card alignment E2E
+        run: node tests/bottom-nav-layout.e2e.js
+      - name: Extended chart wheels E2E
+        run: node tests/extended-wheels.e2e.js
+      - name: Matrix interpretation model contract
+        run: node tests/matrix-interpretation-engine.test.js
+      - name: Matrix section inventory contract
+        run: node tests/matrix-report-map.test.js
+      - name: Matrix glossary desktop and mobile E2E
+        run: node tests/matrix-titles.e2e.js
+      - name: Matrix core interpretation data contract
+        run: node tests/matrix-content-core.test.js
+      - name: Matrix chakra interpretation content contract
+        run: node tests/matrix-chakra-content.test.js

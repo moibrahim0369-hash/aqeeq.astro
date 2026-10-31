@@ -37,16 +37,6 @@
   function mountCopy(host,title){
     if(!host)return;
     host.querySelector('.aq-copy-map-btn')?.remove();
-    const b=document.createElement('button');b.type='button';b.className='aq-copy-map-btn';b.textContent='نسخ بيانات الخريطة بالكامل';
-    b.addEventListener('click',async()=>{
-      const clone=host.cloneNode(true);clone.querySelectorAll('.aq-copy-map-btn,button').forEach(x=>x.remove());if(host.id==='result')clone.querySelector('#aqeek-personal-transits')?.remove();
-      const svgTitles=[...clone.querySelectorAll('svg title')].map(x=>x.textContent.trim()).filter(Boolean);
-      const text=title+'\n\n'+clone.textContent.replace(/\s+/g,' ').trim()+(svgTitles.length?'\n\nتفاصيل العجلة: '+svgTitles.join(' · '):'');
-      try{await navigator.clipboard.writeText(text);b.textContent='تم نسخ بيانات الخريطة';}
-      catch(_){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.append(area);area.select();try{document.execCommand('copy');b.textContent='تم نسخ بيانات الخريطة';}catch(__){b.textContent='تعذر النسخ؛ حدد النص يدوياً.';}area.remove();}
-      setTimeout(()=>b.textContent='نسخ بيانات الخريطة بالكامل',2200);
-    });
-    host.append(b);
   }
   window.AqeeqCopyMap={attach:mountCopy};
 
