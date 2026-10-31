@@ -16,7 +16,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Account profile completion contract\n        run: |\n          node --input-type=module --check < account-profile.js\n          node tests/account-profile-contract.test.js\n      - name: Atlas regression
+      - name: Account profile completion contract
+        run: |
+          node --input-type=module --check < account-profile.js
+          node tests/account-profile-contract.test.js\n      - name: Atlas regression
         run: node tests/arab-atlas.test.js
       - name: House-system structural checks
         run: node tests/house-systems.test.js
