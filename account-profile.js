@@ -91,7 +91,7 @@ import { supabase } from './supabase-client.js';
     if (error) throw error;
     profile = data || null;
 
-    const nameParts = String(profile?.full_name || user.user_metadata?.full_name || '').trim().split(/\\s+/).filter(Boolean);
+    const nameParts = String(profile?.full_name || user.user_metadata?.full_name || '').trim().split(/\s+/).filter(Boolean);
     panel.querySelector('#profile-first-name').value = profile?.first_name || nameParts[0] || '';
     panel.querySelector('#profile-last-name').value = profile?.last_name || nameParts.slice(1).join(' ');
     panel.querySelector('#profile-birth-date').value = profile?.birth_date || '';
