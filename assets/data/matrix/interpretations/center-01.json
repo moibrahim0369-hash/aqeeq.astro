@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-01.draft-01",
+  "arcanaNumber": 1,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-01.json",
+    "headline": "البداية والإرادة",
+    "strengthSeed": "المبادرة والابتكار هنا ليسا كثرة أفكار فقط؛ بل ملاحظة مورد متاح واستعماله لصنع خطوة أولى. في العمل يظهر ذلك عند تبسيط مشكلة معقدة أو شرح فكرة بلغة مقنعة. وفي العلاقة، يمنح الحضور قدرة على فتح باب الحديث والمصالحة، شرط أن يرافق الإقناع إنصات حقيقي.",
+    "challengeSeed": "حين تنقلب المبادرة إلى استعجال، تبدأ أشياء كثيرة ولا ينضج منها ما يكفي. وقد يتحول حسن استخدام الكلام إلى محاولة توجيه المشهد قبل فهم احتياجات الآخرين. مثال ذلك تقديم حل جاهز في اجتماع قبل أن يشرح الفريق سبب تعثره، أو إطلاق وعد متحمس يصعب الوفاء به لاحقاً."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يركّز المركز على لحظة البدء وتحويل الفكرة إلى فعل. حين تظهر طاقة الساحر هنا، يصبح السؤال المحوري: هل المبادرة مرتبطة بهدف واضح أم أن البدء نفسه صار وسيلة لإثبات القيمة؟",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "التقاط الموارد وصوغ بداية مقنعة؛ في فريق جديد يمكن تحويل اقتراح مبهم إلى تجربة أولى."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "التشتت بين بدايات كثيرة أو استعمال الإقناع لتجاوز نقص المعلومات."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "المبادرة تمنح الفكرة حضوراً ملموساً بسرعة.",
+        "poleB": "السرعة قد تجعل البدء دليلاً على القيمة وتترك الاستمرار بلا طاقة.",
+        "integration": "تتضح الموازنة في هذا الموضع عبر صياغة فرضية واحدة وتجربة صغيرة؛ معيارها معرفة جديدة لا انطباع بالإبهار. ويُراجع أثر ذلك بسؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "إطلاق مشروع قبل التحقق من حاجة مستخدميه، ثم اكتشاف أن الحماس سبق فهم المشكلة.",
+        "possiblePattern": "في هذا الموقف، قد يظهر النمط عندما التشتت بين بدايات كثيرة أو استعمال الإقناع لتجاوز نقص المعلومات.؛ عندها يُختبر إن كان المورد المذكور في القراءة ما زال يخدم الغاية.",
+        "experiment": "ملاحظة قابلة للتطبيق: صياغة فرضية واحدة وتجربة صغيرة؛ معيارها معرفة جديدة لا انطباع بالإبهار. ثم مراجعة هذا السؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الذي أريد اختباره بالفعل قبل أن أطلب التزام الآخرين؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "صياغة فرضية واحدة وتجربة صغيرة؛ معيارها معرفة جديدة لا انطباع بالإبهار.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}
