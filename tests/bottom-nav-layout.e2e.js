@@ -1,0 +1,68 @@
+'use strict';
+
+const assert = require('node:assert/strict');
+const { chromium } = require('playwright');
+
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  try {
+    for (const viewport of [{ width: 390, height: 844 }, { width: 1280, height: 900 }]) {
+      const page = await browser.newPage({ viewport });
+      const pageErrors = [];
+      page.on('pageerror', error => pageErrors.push(error.message));
+      await page.goto('http://127.0.0.1:8765/index.html', { waitUntil: 'domcontentloaded' });
+
+      const nav = page.locator('nav.bnav');
+      await nav.waitFor({ state: 'visible' });
+      const navBox = await nav.boundingBox();
+      assert.ok(navBox, 'Bottom navigation must have a rendered box');
+      assert.ok(navBox.width < viewport.width, 'Bottom navigation must float with side margins');
+      assert.ok(Math.abs((navBox.x + navBox.width / 2) - viewport.width / 2) <= 1,
+        'Bottom navigation must be horizontally centered');
+      assert.ok(viewport.height - (navBox.y + navBox.height) >= 10,
+        'Bottom navigation must sit above the viewport bottom');
+
+      const links = nav.locator('a');
+      assert.equal(await links.count(), 4, 'All four existing navigation destinations must remain');
+      for (let index = 0; index < await links.count(); index += 1) {
+        const link = links.nth(index);
+        const icon = link.locator('svg');
+        const label = link.locator('span');
+        assert.ok(await icon.isVisible(), 'Each navigation item must retain its icon');
+        assert.ok(await label.isVisible(), 'Each navigation item must retain its label');
+        const iconBox = await icon.boundingBox();
+        const labelBox = await label.boundingBox();
+        assert.ok(Math.abs((iconBox.x + iconBox.width / 2) - (labelBox.x + labelBox.width / 2)) <= 1,
+          'Navigation icon and label must share a center line');
+      }
+
+      const firstCard = page.locator('a.card:visible').first();
+      if (await firstCard.count()) {
+        await firstCard.scrollIntoViewIfNeeded();
+        const cardBox = await firstCard.boundingBox();
+        const iconBox = await firstCard.locator('.ic').boundingBox();
+        assert.ok(cardBox && iconBox, 'Tool card and icon must be rendered');
+        assert.ok(Math.abs((cardBox.y + cardBox.height / 2) - (iconBox.y + iconBox.height / 2)) <= 2,
+          'Tool-card icon must be vertically centered');
+      }
+
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      const footerCopy = page.locator('.foot .copy');
+      if (await footerCopy.count()) {
+        const copyBox = await footerCopy.boundingBox();
+        const dockBox = await nav.boundingBox();
+        assert.ok(copyBox.bottom <= dockBox.y,
+          'Footer copyright text must not be covered by the floating navigation');
+      }
+
+      assert.deepEqual(pageErrors, [], 'Page must not emit uncaught JavaScript errors');
+      await page.close();
+    }
+    console.log('Bottom navigation and tool-card alignment E2E passed at 390px and 1280px.');
+  } finally {
+    await browser.close();
+  }
+})().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});
