@@ -291,6 +291,7 @@
   const root = typeof window !== 'undefined' ? window : globalThis;
   root.AqeeqMatrixMethodAdapter = adapterApi;
   root.MatrixMethodAdapter = adapterApi;
+  root.matrixMethodAdapter = adapterApi;
 
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = adapterApi;

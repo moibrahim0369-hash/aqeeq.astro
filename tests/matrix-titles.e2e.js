@@ -1,8 +1,11 @@
+const fs = require('fs');
 const { chromium } = require('playwright');
 const BASE = 'http://127.0.0.1:8765';
 let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log((c ? 'PASS ' : 'FAIL ') + m); };
 (async () => {
-  const b = await chromium.launch(); const p = await b.newPage(); const errs = [];
+  const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+  const executablePath = process.env.PLAYWRIGHT_CHROME_EXECUTABLE_PATH || (fs.existsSync(chromePath) ? chromePath : undefined);
+  const b = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) }); const p = await b.newPage(); const errs = [];
   p.on('pageerror', (e) => errs.push(e.message));
   p.on('console', (m) => { if (m.type() === 'error' && !m.text().startsWith('Failed to load resource:')) errs.push(m.text()); });
   await p.route('**/*', (r) => (r.request().url().startsWith(BASE) ? r.continue() : r.abort()));
