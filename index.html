@@ -2112,12 +2112,14 @@ if (typeof module !== 'undefined') module.exports = Astro;
   /* ---------- عجلة الهيرو وتوقعات الأبراج ---------- */
   const NS = "http://www.w3.org/2000/svg";
   const ticks = $("#ticks");
-  for (let k = 0; k < 72; k++) {
+  if (ticks) {
+    for (let k = 0; k < 72; k++) {
     const a = k * 5 * Math.PI / 180, r1 = k % 6 === 0 ? 172 : 177, r2 = 186;
     const l = document.createElementNS(NS, "line");
     l.setAttribute("x1", (200 + Math.cos(a) * r1).toFixed(2)); l.setAttribute("y1", (200 + Math.sin(a) * r1).toFixed(2));
     l.setAttribute("x2", (200 + Math.cos(a) * r2).toFixed(2)); l.setAttribute("y2", (200 + Math.sin(a) * r2).toFixed(2));
     ticks.appendChild(l);
+    }
   }
   /* بنك قراءات عبور حقيقية: كل قراءة نص حقيقي اتكتب بإيد صاحب الموقع، والنظام بيختارها
      بس لما يتأكد حسابيًا إن العبور ده شغال فعلاً دلوقتي. المفتاح: "كوكب|rx أو dir|رقم_البرج_العابر". */
@@ -3913,6 +3915,9 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
   <script src="assets/js/personal-transits.js"></script>
 <script src="assets/js/life-path-data.js?v=d7fc2633"></script>
 <script src="assets/js/matrix-loader.js"></script>
+<script src="assets/js/matrix-report-map.js"></script>
+<script src="assets/js/matrix-method-adapter.js"></script><!-- Unified adapter (must load before numerology-matrix.js) -->
+<script src="assets/js/numerology-matrix.js"></script>
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js"></script>
 <script src="auth.js" type="module"></script>
