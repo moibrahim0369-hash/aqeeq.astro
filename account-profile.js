@@ -65,7 +65,7 @@ import { supabase } from './supabase-client.js';
   };
   const setBusy = busy => {
     saveButton.disabled = busy;
-    saveButton.textContent = busy ? 'جارٍ الحفظ…' : 'حفظ واستكمال الحساب';
+    saveButton.textContent = busy ? 'جارٍ الحفظ…' : (isComplete(profile) ? 'حفظ التعديلات' : 'حفظ واستكمال الحساب');
   };
   const isComplete = row => Boolean(
     row?.first_name?.trim()
@@ -91,8 +91,9 @@ import { supabase } from './supabase-client.js';
     if (error) throw error;
     profile = data || null;
 
-    panel.querySelector('#profile-first-name').value = profile?.first_name || '';
-    panel.querySelector('#profile-last-name').value = profile?.last_name || '';
+    const nameParts = String(profile?.full_name || user.user_metadata?.full_name || '').trim().split(/\\s+/).filter(Boolean);
+    panel.querySelector('#profile-first-name').value = profile?.first_name || nameParts[0] || '';
+    panel.querySelector('#profile-last-name').value = profile?.last_name || nameParts.slice(1).join(' ');
     panel.querySelector('#profile-birth-date').value = profile?.birth_date || '';
     timeInput.value = profile?.birth_time ? String(profile.birth_time).slice(0, 5) : '';
     unknownTime.checked = profile?.birth_time_unknown === true;
