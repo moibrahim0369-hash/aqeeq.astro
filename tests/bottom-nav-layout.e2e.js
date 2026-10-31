@@ -42,8 +42,12 @@ const { chromium } = require('playwright');
         const cardBox = await firstCard.boundingBox();
         const iconBox = await firstCard.locator('.ic').boundingBox();
         assert.ok(cardBox && iconBox, 'Tool card and icon must be rendered');
-        assert.ok(Math.abs((cardBox.y + cardBox.height / 2) - (iconBox.y + iconBox.height / 2)) <= 2,
-          'Tool-card icon must be vertically centered');
+        assert.ok(Math.abs((cardBox.x + cardBox.width / 2) - (iconBox.x + iconBox.width / 2)) <= 2,
+          'Tool-card icon must be horizontally centered');
+        const iconMarginBottom = await firstCard.locator('.ic').evaluate(element =>
+          Number.parseFloat(getComputedStyle(element).marginBottom)
+        );
+        assert.equal(iconMarginBottom, 0, 'Tool-card icon must not be pushed down by a bottom margin');
       }
 
       await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
