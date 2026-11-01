@@ -48,6 +48,8 @@
 <link rel="stylesheet" href="assets/css/extended-astro-charts.css">
 <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
 <link rel="stylesheet" href="assets/css/cosmic-background.css">
+  <link rel="stylesheet" href="redesign.css?v=2">
+  <link rel="stylesheet" href="results-redesign.css?v=2">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 </head>
 <body>
@@ -70,7 +72,17 @@
 <div class="hero-copy">
 <div class="brand-row"><span aria-hidden="true" class="brand-moon"><svg viewbox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></span><h1 class="brandmark"><span data-brand=""></span></h1></div>
 <h2 class="hero-title">رحلتك لفهم نفسك… تبدأ من هنا</h2>
-<p class="hero-sub">اكتشف أنماطك، افهم علاقاتك، وشوف حياتك من زاوية جديدة.</p>
+<p class="hero-sub">مساحة هادئة تساعدك على فهم أنماطك وعلاقاتك والمرحلة التي تمر بها، من خلال قراءة فلكية وتأملية شخصية.</p>
+	<div class="journey-panel" aria-labelledby="journey-title">
+	<p class="journey-kicker">ابدأ من السؤال الذي يشغلك</p>
+	<h3 class="journey-title" id="journey-title">ما الذي تريد فهمه اليوم؟</h3>
+	<div class="journey-grid">
+	<a class="journey-choice" href="#matrix"><strong>أريد فهم نفسي</strong><small>الشخصية، الأنماط، ونقاط القوة</small></a>
+	<a class="journey-choice" href="#compat"><strong>أريد فهم علاقتي</strong><small>الانجذاب، الاختلاف، وطريقة التواصل</small></a>
+	<a class="journey-choice" href="#sky"><strong>أمر بمرحلة تغيير</strong><small>ما الذي يتحرك في حياتي الآن؟</small></a>
+	<a class="journey-choice" href="#chart"><strong>أريد قراءة خريطتي</strong><small>الكواكب، البيوت، والطالع</small></a>
+	</div>
+	</div>
 <form class="quick" id="qform" novalidate="">
 <label for="q-date">اكتب تاريخ ميلادك وشوف بطاقتك دلوقتي</label>
 <div class="field q-gender"><label for="q-gender">صيغة التقرير (اختياري)</label><select id="q-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
@@ -112,7 +124,7 @@
 <button class="btn" type="submit">احسب مصفوفتي</button>
 <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
 </form>
-<div aria-live="polite" class="result" hidden="" id="mresult"></div>
+<div aria-live="polite" class="result" hidden="" id="mresult" data-view-result="matrix"></div>
 </div>
 </section>
 <section class="sec" id="lifepath">
@@ -141,7 +153,7 @@
 <button class="btn" type="submit">اعرف مسار حياتي</button>
 <p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
 </form>
-<div aria-live="polite" class="result" hidden="" id="lpresult"></div>
+<div aria-live="polite" class="result" hidden="" id="lpresult" data-view-result="lifepath"></div>
 </div>
 </section>
 <section class="sec" id="chart">
@@ -175,7 +187,7 @@
 <button class="btn" type="submit">احسب خريطتي</button>
 <p class="privacy">الحساب بيتم على جهازك. بيانات ميلادك مابتتبعتش لأي سيرفر.</p>
 </form>
-<div aria-live="polite" class="result" hidden="" id="result"></div>
+<div aria-live="polite" class="result" hidden="" id="result" data-view-result="chart"></div>
 </div>
 </section>
 <section class="sec" id="astro-maps"><div class="wrap">
@@ -320,6 +332,18 @@
 <p class="acct-ok" hidden="" id="acct-link-msg" role="status"></p>
 
 <div hidden="" id="acct-guest">
+    <button class="btn btn-google" id="acct-google" type="button" aria-label="المتابعة باستخدام Google">
+      <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+      </svg>
+      <span>المتابعة باستخدام Google</span>
+    </button>
+
+    <div class="acct-divider"><span>أو عبر البريد الإلكتروني</span></div>
+
 <div aria-label="دخول أو حساب جديد" class="acct-tabs" role="tablist">
 <button aria-selected="true" data-mode="signin" role="tab" type="button">دخول</button>
 <button aria-selected="false" data-mode="signup" role="tab" type="button">حساب جديد</button>
@@ -1485,6 +1509,199 @@ if (typeof module !== 'undefined') module.exports = Astro;
   window.AqeeqChartContext = { getNatal: () => LAST };
   $("#cform").addEventListener("submit", e => { e.preventDefault(); calc(); });
 
+  function isolateResultView(activeView) {
+    const allResultIds = ['result', 'mresult', 'matrix-result', 'lpresult', 'lifepath-result', 'syn-result', 'cp-out', 'eam-result'];
+    const activeMap = {
+      chart: ['result'],
+      matrix: ['mresult', 'matrix-result'],
+      lifepath: ['lpresult', 'lifepath-result'],
+      synastry: ['syn-result'],
+      compat: ['cp-out'],
+      astromaps: ['eam-result']
+    };
+    const activeIds = activeMap[activeView] || [];
+
+    allResultIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (activeIds.includes(id)) {
+        el.hidden = false;
+        el.style.display = 'block';
+      } else {
+        el.hidden = true;
+        el.style.display = 'none';
+      }
+    });
+  }
+  window.isolateResultView = isolateResultView;
+
+  function restoreAllForms() {
+    const cf = document.getElementById('cform');
+    const chartIntro = document.querySelector('#chart .center');
+    if (cf) { cf.hidden = false; cf.style.display = ''; }
+    if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+
+    const mf = document.getElementById('mform');
+    const matrixIntro = document.querySelector('#matrix .center');
+    if (mf) { mf.hidden = false; mf.style.display = ''; }
+    if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+
+    const lpf = document.getElementById('lpform');
+    const lpStart = document.getElementById('lp-start');
+    const lpIntro = document.querySelector('#lifepath .center');
+    if (lpf) { lpf.hidden = true; lpf.style.display = 'none'; }
+    if (lpStart) { lpStart.hidden = false; lpStart.style.display = ''; }
+    if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+
+    const cpf = document.getElementById('cp-form');
+    const cpIntro = document.querySelector('#energy-compatibility .center');
+    if (cpf) { cpf.hidden = false; cpf.style.display = ''; }
+    if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+  }
+
+  function onHashChangeRoute() {
+    const hash = (window.location.hash || '').replace('#', '');
+    if (hash === 'chart') {
+      const result = document.getElementById('result');
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      if (LAST && result && result.innerHTML && result.innerHTML.trim()) {
+        isolateResultView('chart');
+        if (cf) { cf.hidden = true; cf.style.display = 'none'; }
+        if (chartIntro) { chartIntro.hidden = true; chartIntro.style.display = 'none'; }
+      } else {
+        if (cf) { cf.hidden = false; cf.style.display = ''; }
+        if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+        if (result) { result.hidden = true; result.style.display = 'none'; }
+      }
+    } else if (hash === 'matrix') {
+      const mresult = document.getElementById('mresult');
+      const mf = document.getElementById('mform');
+      const matrixIntro = document.querySelector('#matrix .center');
+      if (lastMX && mresult && mresult.innerHTML && mresult.innerHTML.trim()) {
+        isolateResultView('matrix');
+        if (mf) { mf.hidden = true; mf.style.display = 'none'; }
+        if (matrixIntro) { matrixIntro.hidden = true; matrixIntro.style.display = 'none'; }
+      } else {
+        if (mf) { mf.hidden = false; mf.style.display = ''; }
+        if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+        if (mresult) { mresult.hidden = true; mresult.style.display = 'none'; }
+      }
+    } else if (hash === 'lifepath') {
+      const lpresult = document.getElementById('lpresult');
+      const lpf = document.getElementById('lpform');
+      const lpStart = document.getElementById('lp-start');
+      const lpIntro = document.querySelector('#lifepath .center');
+      if (lastLP && lpresult && lpresult.innerHTML && lpresult.innerHTML.trim()) {
+        isolateResultView('lifepath');
+        if (lpf) { lpf.hidden = true; lpf.style.display = 'none'; }
+        if (lpStart) { lpStart.hidden = true; lpStart.style.display = 'none'; }
+        if (lpIntro) { lpIntro.hidden = true; lpIntro.style.display = 'none'; }
+      } else {
+        if (lpf) { lpf.hidden = true; lpf.style.display = 'none'; }
+        if (lpStart) { lpStart.hidden = false; lpStart.style.display = ''; }
+        if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+        if (lpresult) { lpresult.hidden = true; lpresult.style.display = 'none'; }
+      }
+    } else if (hash === 'compat') {
+      const cpOut = document.getElementById('cp-out');
+      const cpf = document.getElementById('cp-form');
+      const cpIntro = document.querySelector('#energy-compatibility .center');
+      if (cpOut && cpOut.innerHTML && cpOut.innerHTML.trim() && !cpOut.hidden) {
+        isolateResultView('compat');
+        if (cpf) { cpf.hidden = true; cpf.style.display = 'none'; }
+        if (cpIntro) { cpIntro.hidden = true; cpIntro.style.display = 'none'; }
+      } else {
+        if (cpf) { cpf.hidden = false; cpf.style.display = ''; }
+        if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+        if (cpOut) { cpOut.hidden = true; cpOut.style.display = 'none'; }
+      }
+    } else if (hash === 'astro-maps') {
+      isolateResultView('astromaps');
+    } else if (hash === 'home' || !hash) {
+      isolateResultView('home');
+      restoreAllForms();
+    }
+  }
+  window.addEventListener('hashchange', onHashChangeRoute);
+  window.addEventListener('DOMContentLoaded', onHashChangeRoute);
+
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.btn-return-home');
+    if (btn) {
+      e.preventDefault();
+      isolateResultView('home');
+      restoreAllForms();
+      window.location.hash = '#home';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const editChart = e.target.closest('.btn-edit-chart');
+    if (editChart) {
+      e.preventDefault();
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      const result = document.getElementById('result');
+      if (cf) { cf.hidden = false; cf.style.display = 'block'; }
+      if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const chartSec = document.getElementById('chart');
+      if (chartSec) chartSec.scrollIntoView({ behavior: 'smooth' });
+      const nameInput = document.getElementById('f-name');
+      if (nameInput) nameInput.focus();
+      return;
+    }
+
+    const editMatrix = e.target.closest('.btn-edit-matrix');
+    if (editMatrix) {
+      e.preventDefault();
+      const mf = document.getElementById('mform');
+      const matrixIntro = document.querySelector('#matrix .center');
+      const result = document.getElementById('mresult');
+      if (mf) { mf.hidden = false; mf.style.display = 'block'; }
+      if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const matrixSec = document.getElementById('matrix');
+      if (matrixSec) matrixSec.scrollIntoView({ behavior: 'smooth' });
+      const dateInput = document.getElementById('m-date');
+      if (dateInput) dateInput.focus();
+      return;
+    }
+
+    const editLP = e.target.closest('.btn-edit-lp, #lp-back-start');
+    if (editLP) {
+      e.preventDefault();
+      const lpf = document.getElementById('lpform');
+      const lpStart = document.getElementById('lp-start');
+      const lpIntro = document.querySelector('#lifepath .center');
+      const result = document.getElementById('lpresult');
+      if (lpf) { lpf.hidden = false; lpf.style.display = 'block'; }
+      if (lpStart) { lpStart.hidden = true; lpStart.style.display = 'none'; }
+      if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const lpSec = document.getElementById('lifepath');
+      if (lpSec) lpSec.scrollIntoView({ behavior: 'smooth' });
+      const dateInput = document.getElementById('lp-date');
+      if (dateInput) dateInput.focus();
+      return;
+    }
+
+    const editCP = e.target.closest('.btn-edit-cp');
+    if (editCP) {
+      e.preventDefault();
+      const cpf = document.getElementById('cp-form');
+      const cpIntro = document.querySelector('#energy-compatibility .center');
+      const out = document.getElementById('cp-out');
+      if (cpf) { cpf.hidden = false; cpf.style.display = 'block'; }
+      if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+      if (out) { out.hidden = true; out.style.display = 'none'; }
+      const cpSec = document.getElementById('energy-compatibility');
+      if (cpSec) cpSec.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+  });
+
   function fail(msg) { const el = $("#ferr"); el.textContent = msg; el.hidden = false; }
 
   function calc() {
@@ -1526,11 +1743,13 @@ if (typeof module !== 'undefined') module.exports = Astro;
         chartData: { bodies: ch.bodies.map(b => ({ key: b.key, lon: b.lon, speed: b.speed, retro: b.retro, sign: b.sign, house: b.house })), asc: ch.asc, mc: ch.mc, cusps: ch.cusps, hs: ch.hs, lat: ch.lat, lon: ch.lon, known: ch.known }
       }));
     } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
-    renderResult(LAST);
-    const r = $("#result"); r.hidden = false;
+    renderResult(LAST); if (typeof isolateResultView === "function") isolateResultView("chart");
+    const r = $("#result"); r.hidden = false; r.style.display = "block";
+    const cf = $("#cform"); if (cf) { cf.hidden = true; cf.style.display = "none"; }
+    const chartIntro = document.querySelector("#chart .center"); if (chartIntro) { chartIntro.hidden = true; chartIntro.style.display = "none"; }
     window.AqeeqGender?.apply(r, LAST.gender);
     window.AqeeqCopyMap?.attach(r, LAST.name ? "خريطة الميلاد · " + LAST.name : "خريطة الميلاد");
-    r.scrollIntoView();
+    r.scrollIntoView({ behavior: "smooth" });
   }
 
   /* ---------- خريطة التوافق الفلكي بين شخصين ---------- */
@@ -2913,8 +3132,12 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    if (typeof isolateResultView === "function") isolateResultView("matrix");
     renderMatrix($("#m-name").value.trim(), d, m, y);
-    const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
+    const r = $("#mresult"); r.hidden = false; r.style.display = "block";
+    const mf = $("#mform"); if (mf) { mf.hidden = true; mf.style.display = "none"; }
+    const matrixIntro = document.querySelector("#matrix .center"); if (matrixIntro) { matrixIntro.hidden = true; matrixIntro.style.display = "none"; }
+    r.scrollIntoView({ behavior: "smooth" });
   });
 
   function renderMatrix(name, d, m, y, tabIdx) {
@@ -3431,11 +3654,16 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    if (typeof isolateResultView === "function") isolateResultView("lifepath");
     renderLP($("#lp-name").value.trim(), d, m, y);
     window.AqeeqGender?.apply($("#lpresult"), gender);
     window.AqeeqCopyMap?.attach($("#lpresult"), "مسار الحياة · " + $("#lp-name").value.trim());
-    $("#lpform").hidden = true; $("#lp-start").hidden = true;
-    $("#lpresult").scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    const lpf = $("#lpform"); if (lpf) { lpf.hidden = true; lpf.style.display = "none"; }
+    const lps = $("#lp-start"); if (lps) { lps.hidden = true; lps.style.display = "none"; }
+    const lpIntro = document.querySelector("#lifepath .center");
+    if (lpIntro) { lpIntro.hidden = true; lpIntro.style.display = "none"; }
+    const lpr = $("#lpresult");
+    if (lpr) { lpr.hidden = false; lpr.style.display = "block"; lpr.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); }
   });
 
 
