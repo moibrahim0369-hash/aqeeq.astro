@@ -997,3 +997,178 @@ a,button,summary,.wg,.card,.btn,.bnav a,.svc-ic,.tool-ic,[role="button"]{-webkit
 .cp-form button[aria-busy="true"]{opacity:.72;cursor:wait}
 @keyframes cp-status-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.cp-status::before{animation:none}}
+
+/* ==========================================================================
+   AQEEQ ASTRO — FINAL DESIGN SYSTEM HARMONY & INTEGRATION
+   Enforces cohesive luxury visual language across all 8 application sections:
+   - Warm ivory backgrounds & highlights
+   - Deep burgundy for headings, primary actions, and emphasis
+   - Muted champagne gold for borders, glyphs, and accents
+   - Clear readable charcoal & moon text
+   - Safe responsive layout down to 320px (no horizontal overflow)
+   ========================================================================== */
+
+/* 1. Account & Profile Harmony */
+#account {
+  background: radial-gradient(ellipse at 80% 10%, rgba(120,47,59,.18), transparent 50%),
+              radial-gradient(ellipse at 20% 90%, rgba(198,165,107,.12), transparent 50%),
+              linear-gradient(180deg, #12082A 0%, #170d33 100%);
+}
+#account h2 {
+  color: var(--moon, #EFE6D2);
+  text-shadow: 0 2px 12px rgba(120,47,59,.3);
+}
+.acct-tabs button {
+  border: 1px solid rgba(198,165,107,.45);
+  color: var(--mist, #B9ADD8);
+  transition: all .25s ease;
+}
+.acct-tabs button[aria-selected="true"] {
+  background: linear-gradient(135deg, rgba(120,47,59,.32), rgba(198,165,107,.18));
+  border-color: #c5a059;
+  color: #efe6d2;
+  box-shadow: 0 2px 10px rgba(120,47,59,.2);
+}
+#acct-form {
+  background: rgba(25, 14, 52, 0.65);
+  border: 1px solid rgba(198, 165, 107, 0.28);
+  border-radius: 20px;
+  padding: clamp(20px, 4vw, 32px);
+  box-shadow: 0 8px 32px rgba(10, 4, 25, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+#acct-form .btn {
+  background: linear-gradient(135deg, #782f3b, #5a1e28);
+  border-color: #c5a059;
+  color: #fdfbf7;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(120,47,59,.35);
+}
+#acct-form .btn:hover {
+  background: linear-gradient(135deg, #8d3846, #6b2430);
+  border-color: #d6ae5e;
+}
+#acct-google {
+  border: 1.5px solid rgba(198,165,107,.4);
+  background: rgba(250, 247, 240, 0.05);
+  color: #efe6d2;
+  font-family: var(--display);
+}
+#acct-google:hover {
+  background: rgba(198,165,107,.12);
+  border-color: #c5a059;
+}
+
+/* 2. Tarot Chamber Harmony */
+#tarot-lab {
+  background: radial-gradient(ellipse at 50% 20%, rgba(120,47,59,.16), transparent 60%),
+              radial-gradient(ellipse at 85% 85%, rgba(198,165,107,.1), transparent 60%),
+              linear-gradient(180deg, #100624 0%, #150a30 100%);
+}
+.tarot-draw {
+  border: 1px solid rgba(198,165,107,.35) !important;
+  border-radius: 24px;
+  background: radial-gradient(ellipse at 15% 15%, rgba(120,47,59,.15), transparent 45%), rgba(19, 12, 38, 0.88) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.tarot-card {
+  border: 1.5px solid rgba(198,165,107,.65) !important;
+  box-shadow: inset 0 0 0 4px rgba(198,165,107,.06), 0 16px 40px rgba(0,0,0,.35) !important;
+}
+.tarot-card .card-glyph {
+  color: #d6ae5e !important;
+  text-shadow: 0 0 20px rgba(214,174,94,.45);
+}
+.tarot-copy .prompt {
+  border-inline-start: 3px solid #c5a059 !important;
+  background: rgba(250,247,240,.06) !important;
+  color: #efe6d2 !important;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+#tarot-draw {
+  background: linear-gradient(135deg, #782f3b, #5a1e28) !important;
+  border-color: #c5a059 !important;
+  color: #fdfbf7 !important;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(120,47,59,.3);
+}
+#tarot-draw:hover {
+  background: linear-gradient(135deg, #8d3846, #6b2430) !important;
+  border-color: #d6ae5e !important;
+}
+
+/* 3. Global Card & Typography Harmony */
+.sec h2 {
+  color: var(--moon, #EFE6D2);
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  color: #c5a059 !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+/* 4. Ultra-Narrow Screen Polish (<350px / iPhone SE / 320px) */
+@media (max-width: 350px) {
+  .wrap {
+    width: calc(100% - 20px) !important;
+  }
+  .sec {
+    padding: 40px 0 !important;
+  }
+  .hero h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.35 !important;
+  }
+  .lead {
+    font-size: 0.95rem !important;
+  }
+  .btn {
+    padding: 10px 18px !important;
+    font-size: 0.9rem !important;
+    width: 100% !important;
+  }
+  .cta-row {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .tarot-draw {
+    grid-template-columns: 1fr !important;
+    padding: 14px !important;
+  }
+  .bnav {
+    padding-inline: 4px !important;
+    gap: 2px !important;
+  }
+  .bnav a {
+    font-size: 0.72rem !important;
+    padding: 4px 2px !important;
+  }
+  .bnav a svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .syn-attraction-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .obs-chips {
+    gap: 6px !important;
+  }
+}
+
+/* Safeguards for horizontal overflow on small devices */
+.sec, .sec:target {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+@media (max-width: 650px) {
+  .syn-form {
+    grid-template-columns: 1fr !important;
+  }
+  .syn-result-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
