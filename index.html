@@ -2528,7 +2528,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
 
   /* ============ مصفوفة القدر: النسخة المفصلة ============ */
   const digSum = n => String(n).split("").reduce((s, c) => s + +c, 0);
-  const redArc = n => { while (n > 22) n = digSum(n); return n; };
+  const redArc = n => { let v = Math.abs(Math.trunc(n)); while (v > 22) v = digSum(v); return v || 22; };
   const ARC = n => ARCANA[n - 1];
   const OUTER = ["A", "F", "B", "G", "C", "H", "D", "I"];
   const MX_POS = { A: [60, 200], F: [60, 60], B: [200, 60], G: [340, 60], C: [340, 200], H: [340, 340], D: [200, 340], I: [60, 340], E: [200, 200] };
@@ -2689,6 +2689,12 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
   });
   function renderMatrix(name, d, m, y, tabIdx) {
+    if (window.AqeeqMatrixUI && window.AqeeqMatrixUI.renderMatrixReport) {
+      const iso = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+      const gender = $("#m-gender") ? $("#m-gender").value : "";
+      window.AqeeqMatrixUI.renderMatrixReport(iso, name, gender);
+      return;
+    }
     lastMX = [name, d, m, y];
     const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
     const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
@@ -3497,6 +3503,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
   <script src="assets/js/gender-language.js"></script>
   <script src="assets/js/personal-transits.js"></script>
 <script src="assets/js/life-path-data.js?v=d7fc2633"></script>
+<script src="assets/js/matrix-method-adapter.js"></script>
 <script src="assets/js/matrix-loader.js"></script>
 <script src="assets/js/numerology-matrix.js"></script>
 <script src="assets/js/astro-wheel.js"></script>
