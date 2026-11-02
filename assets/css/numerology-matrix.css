@@ -172,7 +172,7 @@
 
 .aqm-svg {
   width: 100%;
-  max-width: 640px;
+  max-width: 560px;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -869,16 +869,6 @@
 .aqm-node-bg {
   filter: drop-shadow(0 2px 6px rgba(107, 38, 61, 0.12));
 }
-.aqm-node-center .aqm-node-bg {
-  animation: aqm-center-pulse 4.5s ease-in-out infinite;
-}
-@keyframes aqm-center-pulse {
-  0%, 100% { filter: drop-shadow(0 0 0 rgba(197, 164, 109, 0)); }
-  50%      { filter: drop-shadow(0 0 7px rgba(197, 164, 109, 0.5)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .aqm-node-center .aqm-node-bg { animation: none; }
-}
 
 /* المحور الرأسي للشاكرات (تحت الرسمة) */
 .aqm-chakra-axis {
@@ -922,4 +912,13 @@
 @media (max-width: 600px) {
   .aqm-chakra-row { grid-template-columns: 12px minmax(0, 1fr); }
   .aqm-chakra-vals { grid-column: 2; white-space: normal; }
+}
+
+/* لوحة مرجعية ثابتة: لا تأثيرات تفاعلية على عُقد الـ SVG */
+.aqm-svg .aqm-node,
+.aqm-svg .aqm-node:hover {
+  cursor: default;
+  transform: none;
+  filter: none;
+  transition: none;
 }
