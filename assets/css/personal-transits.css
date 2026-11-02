@@ -5,3 +5,22 @@
 @media(max-width:720px){.aqt-head{align-items:flex-start;flex-direction:column}.aqt-layout{grid-template-columns:1fr}.aqt-weather{order:2}.aqt-wheelbox{max-width:430px}.aqt-time{gap:5px}.aqt-time button{flex:1;min-width:70px;padding:8px 7px}.aqt-shell{border-radius:16px}}
 @media(prefers-reduced-motion:reduce){.aqt-score em,.aqt-line{transition:none}}
 
+
+
+/* Personal sky and transit responsive layout */
+.aqt-shell,.aqt-layout,.aqt-weather,.aqt-cards,.aqt-matrix{min-width:0;max-width:100%}
+.aqt-layout{grid-template-columns:minmax(0,1.5fr) minmax(min(100%,230px),.8fr)}
+.aqt-wheelbox{min-width:0;max-width:100%}
+.aqt-wheelbox svg,.aqt-wheelbox canvas{display:block;width:100%;height:auto;max-width:100%}
+.aqt-matrix{overflow:hidden}
+.aqt-scroll{max-width:100%;overflow:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:720px){
+ .aqt-shell{padding:14px 12px;border-radius:16px}
+ .aqt-layout{grid-template-columns:minmax(0,1fr)}
+ .aqt-head{align-items:stretch;gap:10px}
+ .aqt-wheelbox{width:100%;max-width:420px;margin-inline:auto}
+ .aqt-time{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .aqt-time button{min-width:0;padding:8px 5px}
+ .aqt-weather,.aqt-card{padding:13px}
+ .aqt-matrix table{min-width:640px}
+}

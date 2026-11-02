@@ -2618,3 +2618,24 @@
     justify-content: center;
   }
 }
+
+
+/* Tarot sanctuary responsive reading and spread layout */
+.tarot-sanctuary,.tarot-container,.consult-workbench{width:100%;max-width:100%;min-width:0}
+.tarot-sanctuary *,.tarot-container *,.consult-workbench *{min-width:0}
+.tarot-card img,.tarot-card-image img{max-width:100%;height:auto;object-fit:contain}
+.consult-cards-arena{max-width:100%;flex-wrap:wrap}
+.consult-result-card,.consult-transition-cta{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:768px){
+ .consult-config-bar{display:grid;grid-template-columns:minmax(0,1fr);width:100%;gap:12px;padding:14px}
+ .consult-cards-arena{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));justify-items:center;gap:14px;min-height:0}
+ .consult-cards-arena.multi-card-mode{grid-template-columns:minmax(0,1fr);justify-items:center}
+ .consult-slot-header{align-items:stretch}
+ .consult-card-identity{width:100%;min-width:0}
+ .consult-result-card{padding:16px 14px}
+ .consult-transition-cta{padding:16px}
+}
+@media(max-width:380px){
+ .consult-inquiry-text{font-size:.96rem}
+ .consult-result-card{padding:13px 11px}
+}
