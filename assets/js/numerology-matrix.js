@@ -63,7 +63,10 @@
     const canvas = document.createElement('canvas');
     canvas.width = W; canvas.height = H;
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#FAF7F0'; ctx.fillRect(0, 0, W, H);
+    // خلفية كريمية دافئة بتدرج رأسي
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
+    bgGrad.addColorStop(0, '#FDFBF7'); bgGrad.addColorStop(1, '#F5EFEB');
+    ctx.fillStyle = bgGrad; ctx.fillRect(0, 0, W, H);
     ctx.textAlign = 'center'; ctx.direction = 'rtl';
     ctx.fillStyle = '#6B263D'; ctx.font = '700 64px serif';
     ctx.fillText('عقيق أسترو', W / 2, 150);
@@ -75,9 +78,32 @@
 
     const clone = svgEl.cloneNode(true);
     clone.setAttribute('width', '900'); clone.setAttribute('height', '900');
+    // النسخة المصدّرة فقط: خلفية الرسم شفافة لتظهر العلامة المائية، وتسميات الأعمار أرقام هادئة بدون كلمة "سنة"
+    clone.querySelector('.aqm-svg-bg')?.remove();
+    // الصورة المرسومة لا تستقبل CSS الصفحة: نثبّت لون الرقم وحجمه ومحاذاته داخل النسخة المصدّرة مباشرة
+    clone.querySelectorAll('.aqm-node-text').forEach(t => {
+      t.style.fill = t.getAttribute('fill') || '#1A1A1A';
+      t.style.fontSize = (t.getAttribute('font-size') || '22') + 'px';
+      t.style.fontWeight = '800';
+      t.style.textAnchor = 'middle';
+      t.style.dominantBaseline = 'central';
+    });
+    clone.querySelectorAll('.aqm-svg-age-label').forEach(t => {
+      t.textContent = t.textContent.replace(/\s*سنة\s*/g, '').replace(/\s+/g, '').trim();
+      t.style.fill = '#8A7A70';
+      t.style.fontWeight = '600';
+    });
     const svgStr = new XMLSerializer().serializeToString(clone);
     const img = new Image();
     img.onload = () => {
+      // علامة مائية خافتة جداً خلف الرسم الهندسي (لا تؤثر على قراءة الأرقام)
+      ctx.save();
+      ctx.translate(W / 2, 870); ctx.rotate(-30 * Math.PI / 180);
+      ctx.fillStyle = 'rgba(142, 40, 0, 0.03)'; ctx.font = '900 150px serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('عقيق أسترو', 0, 0);
+      ctx.restore();
+      ctx.textBaseline = 'alphabetic';
       ctx.drawImage(img, (W - 900) / 2, 420, 900, 900);
       const caps = [
         ['الجوهر', P.anchors.A],
@@ -86,19 +112,26 @@
         ['خط المال', P.channels.moneyPoint],
         ['خط الحب', P.channels.heartPoint]
       ];
-      const capW = 190, gap = 18, startX = (W - (capW * caps.length + gap * (caps.length - 1))) / 2;
+      const capW = 190, capH = 168, gap = 18, startX = (W - (capW * caps.length + gap * (caps.length - 1))) / 2;
       caps.forEach((c, i) => {
-        const x = startX + i * (capW + gap), y = 1460;
-        ctx.fillStyle = '#FFFFFF'; ctx.strokeStyle = '#C5A46D'; ctx.lineWidth = 3;
-        ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, capW, 190, 28) : ctx.rect(x, y, capW, 190);
-        ctx.fill(); ctx.stroke();
-        ctx.fillStyle = '#74685F'; ctx.font = '400 28px serif';
-        ctx.fillText(c[0], x + capW / 2, y + 60);
-        ctx.fillStyle = '#6B263D'; ctx.font = '700 64px serif';
-        ctx.fillText(String(c[1]), x + capW / 2, y + 135);
+        const x = startX + i * (capW + gap), y = 1450;
+        // بطاقة زجاجية: تعبئة بيضاء شبه شفافة وحد ناعم وظل خفيف
+        ctx.save();
+        ctx.shadowColor = 'rgba(92, 44, 34, 0.10)'; ctx.shadowBlur = 22; ctx.shadowOffsetY = 6;
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+        ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, capW, capH, 30) : ctx.rect(x, y, capW, capH);
+        ctx.fill();
+        ctx.restore();
+        ctx.strokeStyle = 'rgba(215, 196, 182, 0.85)'; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, capW, capH, 30) : ctx.rect(x, y, capW, capH);
+        ctx.stroke();
+        ctx.fillStyle = '#7D6B63'; ctx.font = '700 28px serif';
+        ctx.fillText(c[0], x + capW / 2, y + 52);
+        ctx.fillStyle = '#4A1E17'; ctx.font = '800 78px serif';
+        ctx.fillText(String(c[1]), x + capW / 2, y + 134);
       });
       ctx.fillStyle = '#74685F'; ctx.font = '400 28px serif';
-      ctx.fillText('مصفوفة القدر · للتأمل والوعي الذاتي', W / 2, 1800);
+      ctx.fillText('مصفوفة القدر · للتأمل والوعي الذاتي', W / 2, 1720);
       URL.revokeObjectURL(img.src);
       canvas.toBlob(blob => {
         if (!blob) return;
