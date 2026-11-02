@@ -53,7 +53,7 @@
   }
 
   // ألوان الشاكرات المعتمدة (من أعلى لأسفل)
-  const CHAKRA_COLORS = { sahasrara: '#7B4FA0', ajna: '#3F4FA8', vishuddha: '#4C8DB3', anahata: '#4F9A6B', manipura: '#D9B44A', svadhisthana: '#D98A4A', muladhara: '#B5443E' };
+  const CHAKRA_COLORS = { sahasrara: '#8E6E85', ajna: '#4E7988', vishuddha: '#7EA0B7', anahata: '#5A7E64', manipura: '#E6C280', svadhisthana: '#C06C54', muladhara: '#8B263E' };
 
   // ==================== 0b. تصدير بطاقة القصة (PNG 9:16) ====================
   function exportStoryCard(host, P, name, dateStr) {
@@ -202,18 +202,12 @@
           svg.aqm-svg .aqm-node-center .aqm-node-bg { fill: #FFFFFF; stroke: #6B263D; stroke-width: 2.6; }
           svg.aqm-svg .aqm-node-center .aqm-node-ring { fill: none; stroke: #C5A46D; stroke-width: 1.2; }
           svg.aqm-svg .aqm-node-center .aqm-node-text { fill: #6B263D; font-size: 30px; font-weight: 800; }
-          svg.aqm-svg .aqm-node.is-flash .aqm-node-bg { animation: aqm-gold-flash 1.4s ease-out 1; }
-          @keyframes aqm-gold-flash {
-            0%   { filter: drop-shadow(0 0 0 rgba(197, 164, 109, 0)); }
-            35%  { filter: drop-shadow(0 0 10px rgba(197, 164, 109, 0.85)); }
-            100% { filter: drop-shadow(0 0 0 rgba(197, 164, 109, 0)); }
-          }
         </style>
         <defs>
           <radialGradient id="aqm-halo" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#FFF3D6" stop-opacity="0.95" />
-            <stop offset="60%" stop-color="#F3DFB0" stop-opacity="0.45" />
-            <stop offset="100%" stop-color="#F3DFB0" stop-opacity="0" />
+            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.55" />
+            <stop offset="55%" stop-color="#E6C280" stop-opacity="0.35" />
+            <stop offset="100%" stop-color="#E6C280" stop-opacity="0" />
           </radialGradient>
           <marker id="aqm-arr-father" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10 Z" fill="#C5A46D" />
@@ -880,7 +874,7 @@
 
         <!-- حاوية الرسم الهندسي (SVG Octagram) -->
         <div class="aqm-canvas-wrap">
-          <p style="margin:0 0 16px;color:var(--aqm-text-muted);font-size:0.85rem;">اضغط على أي عقدة أو رقم للانتقال مباشرة إلى تحليله في الأكورديون أدناه</p>
+          <p style="margin:0 0 16px;color:var(--aqm-text-muted);font-size:0.85rem;">خريطة مصفوفة القدر (توزيع مسارات الطاقة والأركانا)</p>
           ${generateMatrixSVG(P)}
           <ol class="aqm-chakra-axis" aria-label="المحور الرأسي للشاكرات">
             ${Object.entries(P.chakras.rows).map(([key, r]) => `
@@ -928,70 +922,7 @@
       firstAcc.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
     }
 
-    // ربط النقر والتمرير فوق عُقد الـ SVG
-    const tooltip = host.querySelector('#aqm-tooltip');
-    const nodes = host.querySelectorAll('.aqm-node');
-    nodes.forEach(node => {
-      const secId = node.dataset.section;
-      const title = node.dataset.title || '';
-      const arc = node.dataset.arcana || '';
-      const arcInfo = arc ? engine.getArcanaInfo(Number(arc)) : null;
-      const label = `${title} (${arc}${arcInfo ? ' · ' + arcInfo.name : ''})`;
-
-      // Tooltip على الـ Hover
-      const showTooltip = e => {
-        if (!tooltip) return;
-        tooltip.textContent = label;
-        tooltip.classList.add('visible');
-        const wrapRect = host.querySelector('.aqm-canvas-wrap').getBoundingClientRect();
-        const nodeRect = node.getBoundingClientRect();
-        const left = nodeRect.left - wrapRect.left + (nodeRect.width / 2);
-        const top = nodeRect.top - wrapRect.top - 36;
-        tooltip.style.left = `${left}px`;
-        tooltip.style.top = `${top}px`;
-        tooltip.style.transform = 'translateX(-50%)';
-      };
-
-      const hideTooltip = () => {
-        if (tooltip) tooltip.classList.remove('visible');
-      };
-
-      node.addEventListener('mouseenter', showTooltip);
-      node.addEventListener('focus', showTooltip);
-      node.addEventListener('mouseleave', hideTooltip);
-      node.addEventListener('blur', hideTooltip);
-
-      // النقر يفتح الأكورديون المعني وينتقل إليه
-      const onClick = () => {
-        hideTooltip();
-        if (!secId) return;
-        // وميض ذهبي على العقدة المضغوطة
-        node.classList.remove('is-flash');
-        void node.getBoundingClientRect(); // restart the animation
-        node.classList.add('is-flash');
-        setTimeout(() => node.classList.remove('is-flash'), 1500);
-        const targetAcc = host.querySelector(`#aqm-sec-${secId}`);
-        if (targetAcc) {
-          targetAcc.classList.remove('aqm-item-highlight');
-          void targetAcc.offsetWidth; // trigger reflow
-          targetAcc.classList.add('aqm-item-highlight');
-          setTimeout(() => targetAcc.classList.remove('aqm-item-highlight'), 2500);
-          if (!targetAcc.classList.contains('open')) {
-            targetAcc.classList.add('open', 'is-active');
-            targetAcc.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
-          }
-          targetAcc.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      };
-
-      node.addEventListener('click', onClick);
-      node.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onClick();
-        }
-      });
-    });
+    // الخريطة لوحة مرجعية ثابتة: لا توجد أحداث نقر أو تمرير على عُقد الـ SVG
 
     // ربط زر الطباعة / PDF
     host.querySelector('#aqm-btn-print')?.addEventListener('click', () => {
@@ -1007,6 +938,11 @@
     host.querySelector('#aqm-btn-edit')?.addEventListener('click', () => {
       const mf = document.getElementById('mform');
       if (!mf) return;
+      for (let el = mf; el; el = el.parentElement) {
+        if (el.hidden) el.hidden = false;
+        if (el.style && el.style.display === 'none') el.style.display = '';
+        if (el.classList && el.classList.contains('hidden')) el.classList.remove('hidden');
+      }
       const nameIn = document.getElementById('m-name');
       const dateIn = document.getElementById('m-date');
       if (nameIn) nameIn.value = name || '';
