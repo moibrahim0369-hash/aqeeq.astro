@@ -956,6 +956,21 @@
       firstAcc.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
     }
 
+    // ربط عُقد النجمة بالأكورديون: النقر على العقدة يفتح الكارت المقابل له (data-section = id القسم) ويميّزه ثم يمرّره للأعلى
+    const allAcc = host.querySelectorAll('.aqm-acc-item');
+    host.querySelectorAll('.aqm-svg .aqm-node').forEach(node => {
+      node.addEventListener('click', () => {
+        const item = host.querySelector(`#aqm-sec-${node.getAttribute('data-section')}`);
+        if (!item) return;
+        host.querySelectorAll('.aqm-svg .aqm-node.is-active').forEach(n => n.classList.remove('is-active'));
+        allAcc.forEach(a => a.classList.remove('is-active'));
+        node.classList.add('is-active');
+        item.classList.add('open', 'is-active');
+        item.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
+        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
     // الخريطة لوحة مرجعية ثابتة: لا توجد أحداث نقر أو تمرير على عُقد الـ SVG
 
     // ربط زر الطباعة / PDF
