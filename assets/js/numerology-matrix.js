@@ -116,6 +116,11 @@
     const { anchors, corners, channels, intermediate, ageMap, generational } = P;
     const { A, B, C, D, E } = anchors;
     const { F, G, H, I } = corners;
+    // الجمع الاختزالي 22 من المحرك نفسه (لا تغيير في منطق الحساب): تُستخدم فقط لرسم النقاط الأفقية اليسرى
+    const reduce22 = n => (window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter).reduceArcana(n);
+    const hP1 = reduce22(A + E);
+    const hP2 = reduce22(hP1 + E);
+    const hP3 = reduce22(hP1 + A);
     const { heartPoint, moneyPoint, balancePoint } = channels;
 
     // الإحداثيات الهندسية المعتمدة (المركز 400, 400) — لا تتغير
@@ -262,6 +267,10 @@
         ${nodeG('aqm-node-ancestral', 'father_line', 'خط الأب — الجمع الكلي عند تقاطع المحور المائل', generational.father.combined, [265, 265], 19)}
         ${nodeG('aqm-node-ancestral', 'mother_line', 'خط الأم — الجمع الكلي عند تقاطع المحور المائل', generational.mother.combined, [265, 535], 19)}
         ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 20)}
+        <!-- النقاط الأفقية اليسرى من المركز: reduce22(A+E)، reduce22(p1+E)، reduce22(p1+A) -->
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية (A+E) — الشاكرا البترولية', hP1, [200, 400], 19)}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية (p1+A) — الشاكرا السماوية', hP3, [265, 400], 19)}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية (p1+E) — الشاكرا الزمردية', hP2, [330, 400], 19)}
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
