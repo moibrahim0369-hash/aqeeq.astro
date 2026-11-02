@@ -209,7 +209,7 @@
     let ageLabels = '';
     for (let y = 0; y < 80; y += 10) {
       const p = polar(312, ageDeg(y));
-      ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-label">${y === 0 ? '0 / 80' : y} سنة</text>`;
+      ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-label">${y === 0 ? '0/80' : y}</text>`;
     }
 
     // أسهم خطوط الأسلاف (خط الأب: F → H، خط الأم: G → I)
