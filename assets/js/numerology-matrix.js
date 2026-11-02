@@ -127,6 +127,8 @@
     const mP1 = reduce22(C + E);
     const mP2 = reduce22(mP1 + C);
     const tB = reduce22(B + intermediate.B2);
+    const tTop3 = reduce22(generational.ancestralCenter + intermediate.B2); // 14 + 16 = 30 → 3
+    const tLove20 = reduce22(intermediate.D2 + intermediate.D3); // 15 + 5 = 20
     const T = { purple: '#8E6E85', petrol: '#4E7988', sky: '#7EA0B7', green: '#5A7E64', solar: '#E6C280', orange: '#C06C54', wine: '#8B263E', white: '#FFFFFF' };
     const DARK = [T.purple, T.petrol, T.green, T.orange, T.wine];
     const { heartPoint, moneyPoint, balancePoint } = channels;
@@ -292,6 +294,8 @@
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol)}
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky)}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(14+16)', tTop3, [400, 330], 19, '', T.green)}
+        ${nodeG('aqm-node-love', 'love_line', 'خط الحب — reduce22(15+5)', tLove20, [460, 552], 19, '', T.white)}
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" style="fill:#E6C280" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
