@@ -1,81 +1,130 @@
-/* السمة الداكنة الفاخرة — طبقة ألوان وخطوط فوق الموقع الحالي.
-   لا تغيّر أي markup أو سلوك أو حركة: كل الأنيميشن والعجلة والنجوم والتفاعلات تعمل كما هي.
-   تُحمَّل أخيراً؛ لإلغائها احذف سطر الـ <link> فقط. */
+/* ==========================================================================
+   AQEEQ ASTRO — IVORY CELESTIAL EDITORIAL LUXURY
+   Primary Palette:
+     Warm Ivory:      #FAF7F0
+     Soft Cream:      #F4EFE5
+     Champagne Gold:  #C6A56B
+     Muted Gold:      #B89960
+     Deep Burgundy:   #782F3B
+     Dusty Rose:      #D9B7B0
+     Warm Sand:       #E7D7C2
+     Soft Taupe:      #A99A89
+     Ink Brown:       #38312D
+     Muted Text:      #81766D
+     Pale Sky Blue:   #DCEAF0
+   ========================================================================== */
 
-:root{
-  --night:#0d0a12;--deep:#16111b;--amethyst:#3c2d45;
-  --gold:#d9b27c;--gold-hi:#e6c590;--gold-dim:#8f7a55;
-  --moon:#efe6d8;--mist:#b8ab9a;--rose:#d9788c;
-  --ember:#b5523b;--ink:#1a1118;--line:rgba(217,178,124,.22);
-  --display:"Amiri","Noto Naskh Arabic",serif;
-  --body:"IBM Plex Sans Arabic","Noto Naskh Arabic","Segoe UI",sans-serif;
-  --ui:"IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
+:root {
+  /* Core Ivory Celestial Editorial Palette */
+  --ivory: #FAF7F0;
+  --cream: #F4EFE5;
+  --champagne: #C6A56B;
+  --muted-gold: #B89960;
+  --burgundy: #782F3B;
+  --dusty-rose: #D9B7B0;
+  --warm-sand: #E7D7C2;
+  --soft-taupe: #A99A89;
+  --ink-brown: #38312D;
+  --muted-text: #81766D;
+  --sky-blue: #DCEAF0;
+
+  /* Semantic Aliases */
+  --bg: #FAF7F0;
+  --surface: #FFFFFF;
+  --surface-cream: #F4EFE5;
+  --ink: #38312D;
+  --ink-faint: #81766D;
+  --accent: #C6A56B;
+  --accent-burgundy: #782F3B;
+  --soft-gold: #F4EFE5;
+  --glass: rgba(250, 247, 240, 0.9);
+  --border: rgba(56, 49, 45, 0.11);
+  --border-gold: rgba(198, 165, 107, 0.38);
+
+  /* Typography */
+  --serif: 'Amiri', 'Cormorant Garamond', Georgia, serif;
+  --sans: 'IBM Plex Sans Arabic', 'Alexandria', -apple-system, BlinkMacSystemFont, sans-serif;
+  --en-serif: 'Cormorant Garamond', 'Amiri', Georgia, serif;
+  --mono: 'IBM Plex Mono', monospace;
+
+  /* Legacy Variable Bridge (ensures all modules inherit light ivory editorial colors) */
+  --night: #FAF7F0;
+  --canvas: #FAF7F0;
+  --deep: #FFFFFF;
+  --deep-card: #FFFFFF;
+  --deep-hover: #F4EFE5;
+  --gold: #C6A56B;
+  --gold-hi: #782F3B;
+  --gold-dim: #B89960;
+  --gold-bg: rgba(198, 165, 107, 0.1);
+  --gold-border: rgba(198, 165, 107, 0.36);
+  --gold-glow: rgba(198, 165, 107, 0.14);
+  --moon: #38312D;
+  --text-primary: #38312D;
+  --text: #38312D;
+  --mist: #81766D;
+  --text-secondary: #81766D;
+  --mute: #A99A89;
+  --text-muted: #81766D;
+  --line: rgba(56, 49, 45, 0.11);
+  --panel: #FFFFFF;
+  --success: #3E6B52;
+  --error: #9E333E;
+
+  --display: var(--serif);
+  --body: var(--sans);
+  --ui: var(--sans);
+  --num: var(--mono);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-/* تبديل اللون المميز: ?accent=ember|rose|sage (يُحفظ في المتصفح) */
-:root[data-accent="ember"]{--gold:#e08a63;--gold-hi:#f0a984;--gold-dim:#9a5a40}
-:root[data-accent="rose"]{--gold:#d99aa6;--gold-hi:#ecb7c1;--gold-dim:#8f5f69}
-:root[data-accent="sage"]{--gold:#8fc5b4;--gold-hi:#add8c9;--gold-dim:#58806f}
 
-html{background:var(--night)}
-body{font-weight:400;line-height:1.95}
-body::before{background:
-  radial-gradient(900px 600px at 50% -12%,rgba(181,82,59,.24),transparent 70%),
-  radial-gradient(700px 520px at -5% 62%,rgba(60,45,69,.4),transparent 70%),
-  linear-gradient(180deg,#09070d,#0d0a12 55%,#09070d)}
+html {
+  background-color: var(--ivory);
+  color: var(--ink-brown);
+  font-family: var(--sans);
+  direction: rtl;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* الخطوط: Plex Sans Arabic للنص والواجهة، وAmiri للعناوين. (الموقع كان على Alexandria بقاعدة body *)
-   الرموز الفلكية تبقى على --sym لأن قواعدها أكثر تحديداً. */
-:root{--display:"Amiri","Noto Naskh Arabic",serif;--ui:"IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif}
-body,body *{font-family:var(--body)}
-h1,h2,h3,.sec h2,.res-head h3,.qt h3,.tool h3,.qt .big,.hero h1,.hero h1.brandmark,.brand .bn,.aqm-header h2{font-family:var(--display);font-weight:700}
+body {
+  background-color: var(--ivory);
+  color: var(--ink-brown);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.75;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
 
-/* الألوان الثابتة القديمة */
-.top,.top{background:rgba(13,10,18,.86);border-bottom:1px solid rgba(217,178,124,.16)}
-.btn,.tab[aria-selected="true"],.chip[aria-pressed="true"],.sign[aria-pressed="true"]{color:var(--ink)}
-.chip[aria-pressed="true"] .sg,.chip[aria-pressed="true"] .cs,.sign[aria-pressed="true"] .sg{color:var(--ink)}
-.rd,.tr{border-color:rgba(217,178,124,.14)}
-.cw .sec.e3{fill:rgba(60,45,69,.55)}
-.dd div{background:rgba(60,45,69,.5)}
-.hero::before{background:repeating-radial-gradient(circle at 50% 50%,transparent 0 22px,rgba(217,178,124,.07) 22px 23px,rgba(181,82,59,.13) 23px 46px)}
-.hero h1.brandmark{text-shadow:0 0 42px rgba(217,178,124,.3)}
-.quick{border-color:rgba(217,178,124,.3);background:linear-gradient(160deg,rgba(32,22,38,.82),rgba(13,10,18,.92));box-shadow:0 18px 50px rgba(0,0,0,.45)}
-.qt,.tool{border-color:rgba(217,178,124,.2);background:linear-gradient(165deg,#1b1521,#120d17)}
-.qt:hover,.tool:hover{border-color:var(--gold)}
-.cta-box,.book{background:linear-gradient(135deg,#2a141a 0%,var(--deep) 62%)}
-.arch{background:linear-gradient(180deg,#2a141a 0%,var(--deep) 60%)}
-.numbadge{background:radial-gradient(circle at 50% 35%,#2a141a,var(--deep))}
-.sec.alt{background:linear-gradient(180deg,rgba(9,7,13,0),rgba(22,17,27,.6) 14%,rgba(22,17,27,.6) 86%,rgba(9,7,13,0))}
-.cp-form .cp-person{background:linear-gradient(160deg,rgba(32,22,38,.6),rgba(13,10,18,.75))}
-.sign-detail .sx-card{background:linear-gradient(135deg,rgba(60,45,69,.3),rgba(13,10,18,.5))}
-.sec-ico[aria-pressed=true]{background:linear-gradient(145deg,rgba(217,178,124,.16),rgba(60,45,69,.4))}
-.aq-report-card{background:rgba(60,45,69,.22)}
-.lp-section{background:linear-gradient(135deg,rgba(60,45,69,.22),rgba(255,255,255,.025))}
-#aqeq-stars{opacity:.55}
+body::before {
+  display: none !important;
+}
 
-/* المصفوفة والعبور: نفس الذهب والخلفية */
-#aqm-tab-numbers,.aqm-shell{--aqm-gold:#d9b27c}
-.aqm-shell{background:linear-gradient(145deg,#0d0a12,#16111b)}
-.aqm-tabs{background:#16111b;border-color:rgba(217,178,124,.2)}
+#aqeq-stars,
+#sky-layer,
+#mw,
+#sky-bg,
+.sun {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
 
-/* المتغيرات الثانية في الموقع (طبقة v8) وخلفية السماء */
-:root{--ink:#0d0a12;--panel:#16111b;--line:rgba(217,178,124,.2);--text:#efe6d8;--mute:#b8ab9a;--brass:#d9b27c;--brass-hi:#e6c590;--violet:#b5523b;--glass:rgba(22,17,27,.78);--glow:rgba(181,82,59,.2)}
-html,body{background:radial-gradient(1100px 620px at 78% -8%,rgba(181,82,59,.22) 0%,rgba(181,82,59,0) 62%),radial-gradient(900px 560px at 8% 32%,rgba(60,45,69,.4) 0%,rgba(60,45,69,0) 60%),linear-gradient(180deg,#0d0a12 0%,#09070d 60%,#0d0a12 100%)!important;background-attachment:fixed}
-.hero .hero-sub{color:var(--moon)}
+h1, h2, h3, h4,
+.hero h1, .brand .bn,
+.sec-head h2, .res-head h3, .aqm-header h2 {
+  font-family: var(--serif) !important;
+  color: var(--ink-brown);
+}
 
-/* الطبقة المحيطة المتحركة (مجرة/كوكب/سديم/مدار): نفس الحركة بألوان دافئة */
-.card:hover{transform:none;background:rgba(181,82,59,.08);border-color:var(--line)}
-.pcard:hover{transform:none;box-shadow:none;background:rgba(181,82,59,.08)}
-.amb-galaxy{width:min(120vw,820px);aspect-ratio:1;top:-18%;inset-inline-end:-30%;border-radius:50%;background:radial-gradient(circle,rgba(240,208,138,.55) 0%,rgba(181,82,59,.25) 18%,transparent 40%),conic-gradient(from 0deg,transparent 0 10deg,rgba(181,82,59,.35) 30deg,transparent 60deg 180deg,rgba(214,174,94,.3) 200deg,transparent 240deg);filter:blur(10px);animation:ambSpin 260s linear infinite}
-.amb-planet{width:min(70vw,360px);aspect-ratio:1;bottom:-8%;inset-inline-start:-14%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b0705f,#3a1f28 60%,#120a10 100%);box-shadow:inset -18px -10px 40px rgba(0,0,0,.6),0 0 60px rgba(181,82,59,.25);animation:ambSpin 200s linear infinite}
-.amb-nebula{inset:-10% -10%;background:radial-gradient(ellipse at 20% 30%,rgba(181,82,59,.35),transparent 45%),radial-gradient(ellipse at 80% 70%,rgba(214,174,94,.18),transparent 50%);animation:ambBreathe 18s ease-in-out infinite alternate}
-.amb-orbit{width:min(110vw,600px);aspect-ratio:1;top:50%;inset-inline-start:50%;translate:-50% -50%;border-radius:50%;border:1px solid rgba(214,174,94,.18);box-shadow:0 0 0 70px transparent,0 0 0 71px rgba(214,174,94,.1),0 0 0 150px transparent,0 0 0 151px rgba(181,82,59,.12);animation:ambSpin 320s linear infinite}
-.mercury-sign-card{margin:0 0 18px;padding:22px 18px;border:1px solid var(--brass,#C9A36A);border-radius:16px;background:linear-gradient(145deg,rgba(181,82,59,.18),var(--panel,#16111b) 68%);box-shadow:0 12px 30px rgba(0,0,0,.18);text-align:start}
-.card .ic{background:radial-gradient(circle at 30% 20%,#4a2a2c 0%,#2a1a22 55%,#17101a 100%);border:1px solid rgba(217,178,124,.32);box-shadow:0 0 0 1px rgba(13,10,18,.6) inset,0 0 18px rgba(181,82,59,.3)}
-
-/* بقايا الأزرق/البنفسجي */
-.hero-title{color:var(--gold-hi)}
-.notice-soft{color:#b8ab9a}
-.symbol-card{background:rgba(22,17,27,.85)}
-input,select,textarea{background-color:#1a1420;border-color:rgba(217,178,124,.3)}
-input:focus,select:focus,textarea:focus{border-color:var(--gold)}
-.bnav{background:#0d0a12}
+p, span, label, input, button, select, textarea {
+  font-family: var(--sans);
+}

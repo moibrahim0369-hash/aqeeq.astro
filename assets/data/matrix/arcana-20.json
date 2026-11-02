@@ -14,41 +14,56 @@
   ],
   "headline": "المراجعة والنداء الداخلي",
   "core": {
-    "psychology": "",
-    "gift": "تعلم من الماضي",
-    "shadowTrap": "لوم الذات",
-    "growth": ""
+    "psychology": "يرمز النداء، المسمى الحكم في التاروت، إلى مراجعة الماضي والإنصات لما يستدعي استجابة جديدة؛ لا إلى حكم نهائي على قيمة الإنسان. الدافع هو جمع الخبرة في معنى ومسؤولية. قوته في التعلم وإعادة فتح مسار مؤجل، وتوتره بين التوبة الناضجة ولوم الذات الذي لا ينتج إصلاحاً.",
+    "gift": "تعلم الماضي يظهر في القدرة على الاعتراف بنمط سابق من دون إنكار أثره أو اختزال النفس فيه. في العمل، يدعم نقل الدروس بين المراحل وتصحيح أخطاء متكررة. وفي العلاقات، يتيح اعتذاراً محدداً يتبعه سلوك مختلف، لا مجرد تبرير أو جلد ذات.",
+    "shadowTrap": "لوم الذات يظهر حين تُعاد المحاكمة بلا نهاية، أو يُطلب الغفران لإسكات النقاش قبل إصلاح الأثر. مثال ذلك تكرار «أنا سيئ» بدلاً من سؤال المتضرر عما يحتاجه الآن. الاستدعاء للمراجعة ليس دعوة للعار، بل للجواب العملي.",
+    "growth": "خطوة تأملية: استخراج درس واحد من تجربة سابقة وتحديد سلوك متغير وأثر يحتاج إلى إصلاح، مع جعل الإصلاح عملياً لا عقاباً ذاتياً."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتكشف الغاية في مراجعة الخبرة وتحويل الندم إلى استجابة مسؤولة.",
+      "energyPsychology": "تستعيد الطاقة قوتها عندما يصير الماضي معلومة للتعلم لا محكمة متكررة.",
+      "emotionsPsychology": "يخف ثقل الذنب عندما يتبعه إصلاح ملموس وحدود جديدة."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يراجع الحساب الماضي بحثاً عن الدرس والمسؤولية، ويفصل بين ما يمكن إصلاحه وما لا يفيد لوم الذات عليه.",
+      "energyPsychology": "تستعيد الطاقة وجهتها حين تتحول الخبرة إلى موقف جديد، لا إلى إعادة محاكمة للقرار القديم.",
+      "emotionsPsychology": "يخف ثقل الندم عندما يصاحبه اعتذار أو إصلاح مناسب، ثم السماح للنفس بالمضي دون إنكار ما حدث."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يدعو الحساب إلى قول ما حدث وتحمل الجزء الشخصي منه، ثم تسمية ما يلزم لإصلاح الثقة.",
+      "energyPsychology": "تتحول الطاقة إلى حوار مثمر عندما ينتقل الماضي من اللوم المتكرر إلى مراجعة ومسؤولية واضحة.",
+      "emotionsPsychology": "تخف وطأة الندم حين يُترجم إلى اعتذار محدد، مع عدم مطالبة الطرف الآخر بمسامحة فورية."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تفتح المحاكمة باب المصالحة أو المراجعة الصادقة؛ الاعتراف بالمسؤولية لا يعني إنكار ما تعرّض له الشخص.",
+      "energyPsychology": "تتجه طاقة العلاقة إلى إصلاح ممكن: قول الحقيقة، سماع أثرها، ثم اختيار ما إذا كان الاستمرار مناسباً.",
+      "emotionsPsychology": "يخف ثقل الماضي حين يطلب المرء ما يحتاجه بوضوح، ويترك للآخر حرية الاستجابة دون فرض الغفران."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تستدعي المحاكمة مراجعة صادقة للقرارات والنتائج؛ القوة في تحويل الاعتراف إلى اختيار جديد لا إلى إدانة للماضي.",
+      "energyPsychology": "تتجمع الطاقة في إصلاح ما يمكن إصلاحه وإغلاق ما انتهى، بدل تبديدها في تكرار الدفاع عن النفس.",
+      "emotionsPsychology": "يتحرر الشعور بالذنب عندما يتحول إلى مسؤولية محددة، لا إلى عقوبة داخلية بلا نهاية."
     },
     "svadhisthana": {
       "psychology": "",
@@ -68,7 +83,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

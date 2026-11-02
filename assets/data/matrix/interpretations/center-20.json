@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-20.draft-01",
+  "arcanaNumber": 20,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-20.json",
+    "headline": "المراجعة والنداء الداخلي",
+    "strengthSeed": "تعلم الماضي يظهر في القدرة على الاعتراف بنمط سابق من دون إنكار أثره أو اختزال النفس فيه. في العمل، يدعم نقل الدروس بين المراحل وتصحيح أخطاء متكررة. وفي العلاقات، يتيح اعتذاراً محدداً يتبعه سلوك مختلف، لا مجرد تبرير أو جلد ذات.",
+    "challengeSeed": "لوم الذات يظهر حين تُعاد المحاكمة بلا نهاية، أو يُطلب الغفران لإسكات النقاش قبل إصلاح الأثر. مثال ذلك تكرار «أنا سيئ» بدلاً من سؤال المتضرر عما يحتاجه الآن. الاستدعاء للمراجعة ليس دعوة للعار، بل للجواب العملي."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "ينظم المركز العلاقة بالماضي والاستجابة لما تعلمته التجربة. النداء ليس حكماً نهائياً على قيمة الإنسان؛ بل مراجعة لما يتطلب اعترافاً أو إصلاحاً أو بداية جديدة.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "استخلاص درس من تجربة سابقة وتحويل الاعتذار إلى سلوك يتغير."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "العيش في لوم متكرر أو استعمال الاعتذار لإغلاق النقاش دون إصلاح أثره."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "مراجعة الماضي تحول الخبرة إلى جواب جديد.",
+        "poleB": "الندم قد يكرر المحاكمة دون إصلاح أثرها.",
+        "integration": "تتضح الموازنة في هذا الموضع عبر تحديد تغيير قابل للملاحظة وإصلاح مناسب للأثر الذي وقع. ويُراجع أثر ذلك بسؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "تكرار عبارة الندم بعد خلاف بينما يستمر السلوك نفسه الذي أحدثه.",
+        "possiblePattern": "في هذا الموقف، قد يظهر النمط عندما العيش في لوم متكرر أو استعمال الاعتذار لإغلاق النقاش دون إصلاح أثره.؛ عندها يُختبر إن كان المورد المذكور في القراءة ما زال يخدم الغاية.",
+        "experiment": "ملاحظة قابلة للتطبيق: تحديد تغيير قابل للملاحظة وإصلاح مناسب للأثر الذي وقع. ثم مراجعة هذا السؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الفعل المحدد الذي سيختلف بعد هذا الدرس، ومن تأثر بما حدث؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "تحديد تغيير قابل للملاحظة وإصلاح مناسب للأثر الذي وقع.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

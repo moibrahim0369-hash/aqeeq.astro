@@ -14,41 +14,56 @@
   ],
   "headline": "الأمل والإلهام",
   "core": {
-    "psychology": "",
-    "gift": "ثقة هادئة ورؤية بعيدة",
-    "shadowTrap": "مثالية أو تشتت",
-    "growth": ""
+    "psychology": "ترمز النجمة إلى أمل يتغذى من معنى ورؤية بعيدة، لا إلى ضمان لنتيجة. الدافع إعادة الاتصال بما يستحق العناية بعد خيبة أو إنهاك. قوتها في الإلهام وتوسيع الأفق؛ وتوترها أن الصورة المثالية قد تصبح بديلاً عن خطوات الواقع أو عن قبول الإيقاع البطيء.",
+    "gift": "الثقة الهادئة والرؤية البعيدة تظهران في القدرة على تخيل احتمال أفضل ومشاركة أمل لا ينكر الصعوبات. في العمل، تدعم الإبداع والمشاريع ذات الرسالة. وفي العلاقات، تمنح مساحة للتعافي حين يقترن الأمل بسلوك متبادل يمكن ملاحظته.",
+    "shadowTrap": "المثالية أو التشتت يظهران حين تُحمّل فكرة واحدة مهمة إنقاذ الحياة كلها، أو حين تتوزع الطاقة بين أحلام كثيرة بلا تماس مع الواقع. مثال ذلك رفض فرصة مناسبة لأنها لا تطابق الصورة الكاملة، أو تجاهل سلوك مؤذٍ أملاً في نسخة مستقبلية من الشخص.",
+    "growth": "خطوة تأملية: اختيار علامة تقدم واحدة يمكن ملاحظتها خلال أسبوع، مع الاحتفاظ بحق تعديل الرؤية عندما تظهر معلومات جديدة."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتضح الرسالة في إبقاء أفق الأمل متصلاً بخطوات يلاحظها الواقع.",
+      "energyPsychology": "تتجدد الحيوية عبر رؤية بعيدة لا تلغي احتياجات الحاضر.",
+      "emotionsPsychology": "يستقر الشعور حين لا يُطلب من الأمل أن يضمن النتيجة."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "ترى النجمة أفقاً ممكناً وتحافظ على صلته بما هو حاضر، حتى لا يتحول الأمل إلى وعد بنتيجة مضمونة.",
+      "energyPsychology": "تستمد القدرة على التركيز من الإلهام عندما يجد قناة واقعية، لا حين يبقى تصوراً بعيداً عن التجربة.",
+      "emotionsPsychology": "يمنح الرجاء مساحة للتعافي الرمزي، مع احترام الحزن والاحتياج بدلاً من مطالبة النفس بالتفاؤل الدائم."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تشارك النجمة رؤية ملهمة بصيغة واقعية؛ تجعل الأمل قابلاً للتواصل دون تقديمه كضمان.",
+      "energyPsychology": "تتجدد الطاقة التعبيرية حين تصل الرسالة إلى جمهور أو مشروع يقدرها، مع فسحة للمراجعة والتعلم.",
+      "emotionsPsychology": "تمنح المشاركة الصادقة شعوراً بالانتماء، دون إلزام النفس بأن تكون مصدر التفاؤل الدائم للآخرين."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تغذي النجمة قلباً يشارك الأمل والرعاية، لكنها لا تجعل أحداً مسؤولاً عن إنقاذ الآخر أو ضمان سعادته.",
+      "energyPsychology": "تتجدد الطاقة العاطفية من صدق اللطف والمساندة، مع احترام أن التعافي والاختيار يخصان كل شخص.",
+      "emotionsPsychology": "يصبح القرب أكثر طمأنينة عندما لا يُطلب من طرف أن يكون مشرعاً دائماً، ويُسمح له بالتعب والاحتياج."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تمنح النجمة الطموح اتجاهًا يتجاوز التصفيق؛ قوتها في مشاركة أمل قابل للعمل مع قبول أن نتائجه لا تُضمن.",
+      "energyPsychology": "تتجدد الحيوية من رؤية طويلة ونقطة إسهام واضحة، وتضعف حين يصبح الإلهام بديلًا عن الاحتكاك بالواقع.",
+      "emotionsPsychology": "يستقر الشعور بالاستحقاق عندما لا يعتمد على عدد من يصفق للرؤية."
     },
     "svadhisthana": {
       "psychology": "",
@@ -68,7 +83,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

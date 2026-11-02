@@ -717,3 +717,66 @@
     gap: 8px;
   }
 }
+
+
+/* ============================================================================
+   AQEEQ ASTRO — ENRICHED 15-SECTION CONTENT & ACCORDION STYLING
+   ============================================================================ */
+.aqm-rich-card, .aqm-kt-box, .aqm-prog-box, .aqm-child-box, .aqm-rx-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 10px;
+}
+
+.aqm-purposes-grid, .aqm-anc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.aqm-pillar {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.aqm-pillar h4 {
+  margin: 0 0 6px 0;
+  color: var(--burgundy, #782F3B);
+  font-size: 0.95rem;
+}
+
+.aqm-pillar-num {
+  font-family: var(--serif, 'Cinzel', serif);
+  font-size: 1.5rem;
+  color: var(--gold, #d4af37);
+  font-weight: 700;
+  margin: 4px 0 8px 0;
+}
+
+.aqm-age-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.aqm-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  font-size: 0.8rem;
+  color: var(--gold, #d4af37);
+}
+
+.aqm-rx-list {
+  padding-right: 20px;
+  margin: 8px 0;
+  line-height: 1.6;
+}
