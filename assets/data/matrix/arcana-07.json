@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "الحركة والتقدم",
   "core": {
-    "psychology": "",
-    "gift": "شجاعة وتوجيه للطاقة",
-    "shadowTrap": "استعجال أو صراع",
-    "growth": ""
+    "psychology": "ترمز العربة إلى توجيه قوى متباينة نحو وجهة واحدة. الدافع هو استعادة الحركة عند التعارض أو التعطيل، والقوة في الحسم وتحمل الضغط. تناقضها أن السيطرة على المسار قد تصبح أهم من فحص الوجهة؛ عندها يواصل الشخص التقدم ليبرهن على قدرته، لا لأن الهدف ما زال مناسباً.",
+    "gift": "الشجاعة وتوجيه الطاقة يظهران في اتخاذ موقف عند المماطلة، وفي جمع فريق حول غاية محددة. في العمل، تبرز القدرة على قيادة الانتقال من النقاش إلى التنفيذ. وفي العلاقة، تعني حماية اتجاه مشترك من التدخلات، دون تحويل كل اختلاف إلى سباق على من يقود.",
+    "shadowTrap": "الاستعجال أو الصراع يظهران حين تُعامل المقاومة كإهانة، أو حين يُدفع الآخرون إلى سرعة لا تناسبهم. مثال ذلك حسم قرار سفر أو تغيير وظيفي قبل مناقشة أثره المالي والعائلي. الحركة تمنح زخماً، لكنها لا تثبت وحدها صحة الطريق.",
+    "growth": "خطوة تأملية: تحديد الوجهة والأشخاص المتأثرين قبل القرار، ثم تسجيل نقطة مراجعة تسمح بتغيير الاتجاه عند ظهور معلومة جديدة."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الرسالة في شجاعة توجيه الحركة إلى وجهة معلومة بدل إثبات القدرة على السرعة.",
+      "energyPsychology": "يتماسك التركيز حين تتعاون الدوافع المختلفة على هدف مشترك.",
+      "emotionsPsychology": "يظهر الأمان الداخلي عند وجود اتجاه قابل للمراجعة، لا عند السيطرة على كل تفصيل."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تجمع العربة الإشارات المتعارضة وتختار اتجاهاً، وتظل رؤيتها أدق حين تميز القيادة عن محاولة التحكم بكل تفصيل.",
+      "energyPsychology": "تشتد القدرة على التركيز مع هدف مفهوم؛ ويصبح الدفع مرهقاً إذا كان هدفه إثبات القوة لا الوصول إلى غاية.",
+      "emotionsPsychology": "يأتي الهدوء من الثقة بالاتجاه والقدرة على التعديل، لا من ضمان أن الطريق سيبقى خالياً من المفاجآت."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تكتسب العربة صوتاً مقنعاً عندما تتطابق وجهتها مع كلماتها، وعندما تترك للآخرين مساحة لعرض الطريق البديل.",
+      "energyPsychology": "تتجه الطاقة نحو عبارة مركزة وقرار قابل للتنفيذ؛ ويستنزفها تحويل الحوار إلى سباق لإثبات القيادة.",
+      "emotionsPsychology": "يعبر الهدوء عن نفسه بقدرة على قول «أحتاج إلى تعديل المسار» دون اعتبار التراجع هزيمة."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تحمي العربة رابطاً مشتركاً حين تجعل الهدف حواراً بين طرفين، لا أمراً يصدره قائد واحد باسم المستقبل.",
+      "energyPsychology": "تتجه الطاقة نحو بناء حياة مشتركة مع ترك القرار قابلاً للتفاوض، خصوصاً عندما تتغير الظروف أو تتباين السرعة.",
+      "emotionsPsychology": "يخف الصراع عندما يُسمع الاعتراض بوصفه معلومة عن حاجة، لا مقاومة يجب التغلب عليها."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تدفع العربة نحو إنجاز محدد، لكن الضفيرة الشمسية تذكّرها بأن السيطرة على السرعة ليست دليلًا على صلاح الوجهة.",
+      "energyPsychology": "تزداد الحيوية عندما تتعاون الدوافع المتعارضة على مسار واحد، وتنهكها المنافسة التي تجعل كل اعتراض تحديًا للهيبة.",
+      "emotionsPsychology": "يصبح التراجع الذكي ممكنًا عندما لا يُفهم تعديل الخطة كخسارة للكرامة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

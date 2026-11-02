@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "التحول والتجدد",
   "core": {
-    "psychology": "",
-    "gift": "ترك ما انتهى",
-    "shadowTrap": "مقاومة التغيير",
-    "growth": ""
+    "psychology": "يرمز التحول، المسمى الموت في التاروت، إلى نهاية شكل لم يعد قابلاً للاستمرار وفسح مجال لتكوين آخر؛ لا إلى موت حرفي أو نبوءة. دافعه رؤية ما انتهى بصدق. قوته في إغلاق دورة وتحرير الانتباه؛ وتوتره أن التغيير قد يُفرض بقسوة أو يُقاوم خوفاً من فقدان الهوية.",
+    "gift": "ترك ما انتهى يظهر في إنهاء دور أو عادة أو اتفاق لم يعد يحقق غايته، مع الاحتفاظ بما تعلمته التجربة. في العمل، يساعد على إعادة بناء مشروع بدل إصلاحه بلا نهاية. وفي العلاقة، يتيح الاعتراف بتبدل الاحتياجات قبل تحول المسافة إلى أذى متبادل.",
+    "shadowTrap": "مقاومة التغيير قد تبقي الشخص متعلقاً بصورة قديمة، بينما الاندفاع إلى الهدم قد يمحو ما كان يمكن إصلاحه. مثال ذلك إنهاء شراكة في لحظة غضب أو البقاء في عمل منهك لأن الهوية ارتبطت به. كلاهما يختصر الحزن بدلاً من فهمه.",
+    "growth": "خطوة تأملية: تسمية ما انتهى وما يستحق الاستمرار، ثم وضع حد واضح للدورة القديمة وتجربة الشكل الجديد على نطاق صغير."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر الرسالة في القدرة على إنهاء شكل انتهى وإفساح المجال لنمو مختلف.",
+      "energyPsychology": "تتحرر الحيوية حين لا تُستهلك في محاولة إحياء ما لم يعد صالحاً.",
+      "emotionsPsychology": "تحتاج المشاعر إلى الاعتراف بالخسارة قبل أن تتسع مساحة البداية الجديدة."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "ترى طاقة التحول ما انتهى وما بقي قابلاً للحياة، وتمنع الرؤية الدقيقة الخلط بين الإغلاق والهدم الشامل.",
+      "energyPsychology": "تتحرر القدرة على التركيز عندما لا تُستهلك في إعادة إحياء صيغة لم تعد تعمل.",
+      "emotionsPsychology": "تفسح تسمية الفقد مساحة لمشاعر جديدة؛ فالحزن هنا جزء من فهم التحول لا عائق أمامه."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تغلق طاقة التحول محادثة أو دوراً استنفد معناه، وتترك مساحة لعبارة صادقة تمهد لمرحلة مختلفة.",
+      "energyPsychology": "تتحرر القدرة على التعبير عندما لا تعود الكلمات محاولة لإبقاء علاقة أو صيغة انتهت.",
+      "emotionsPsychology": "يساعد الاعتراف بالحزن على قول وداع واضح، من غير وعد زائف بأن الفقد لا يؤلم."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تقبل المحبة تغير شكلها عند انتهاء مرحلة، وتمنح الوداع الصادق حقه بدلاً من إبقاء رابط لم يعد قائماً.",
+      "energyPsychology": "تتحرر الطاقة العاطفية عندما يُعترف بالتغيير ويُسمح بالحزن، ثم يُعاد تعريف ما يمكن أن يبقى.",
+      "emotionsPsychology": "لا يلغي الختام قيمة ما عُيش؛ قول الحقيقة عن النهاية يحترم الطرفين أكثر من وعود لم تعد صادقة."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تنهي طاقة التحول دورًا أو مشروعًا لم يعد يمثلها؛ القوة هنا في تحرير الموارد لا في إبقاء صورة قديمة حية.",
+      "energyPsychology": "تتجدد الحيوية بعد قطع ما يستنزفها، وتحتاج إلى مساحة فارغة قبل ملء الحياة بهدف جديد.",
+      "emotionsPsychology": "يخف الخوف عندما يُسمّى الفقد بوضوح ولا يُترجم فورًا إلى اندفاع يثبت أن كل شيء بخير."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

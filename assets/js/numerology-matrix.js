@@ -258,10 +258,20 @@
    */
   function build15Sections(P) {
     const getInfo = n => adapter.getArcanaInfo(n);
+    const destinyData = (typeof AqeeqDestinyMatrixData !== 'undefined' ? AqeeqDestinyMatrixData : (typeof window !== 'undefined' && window.AqeeqDestinyMatrixData ? window.AqeeqDestinyMatrixData : null));
+    const getProfile = n => (destinyData && destinyData.getArcana ? destinyData.getArcana(n) : null);
+
     const { anchors, corners, channels, generational, purposes, chakras, intermediate } = P;
     const { A, B, C, D, E } = anchors;
     const { F, G, H, I } = corners;
     const { heartPoint, moneyPoint, balancePoint } = channels;
+
+    // Rich profile helpers
+    const arcE = getProfile(E);
+    const arcA = getProfile(A);
+    const arcB = getProfile(B);
+    const ktData = destinyData && destinyData.getKarmicTail ? destinyData.getKarmicTail(D, intermediate.D3, intermediate.D2) : null;
+    const ancLines = destinyData && destinyData.ancestralLines ? destinyData.ancestralLines : null;
 
     const sections = [
       // 1. الجوهر والمركز
@@ -274,10 +284,16 @@
         contentKey: 'matrix.section.center',
         slots: {
           primary: `تحكم مركز مصفوفتك طاقة <strong>${getInfo(E).name} (${E})</strong>. هذه الطاقة تمثل جوهرك الحقيقي والمكان الآمن الذي تلجأ إليه روحك عندما تستنزفك الحياة.`,
-          detailed: `طاقة المركز هي الحاكم الفعلي لاستقرارك الداخلي. عندما تعيش في تناغم مع ${getInfo(E).name}، تشعر بالسكينة والقدرة على توجيه كل الطاقات الأخرى بمصفوفتك.`,
-          strengths: getInfo(E).light,
-          challenges: getInfo(E).shadow,
-          practical: `احرص يومياً على ممارسة أنشطة تمنحك إحساساً بالحرية والاستقرار المرتبط بـ ${getInfo(E).name}. تجنب القرارات الانفعالية التي تبعدك عن هدوئك الداخلي.`
+          detailed: arcE ? `
+            <div class="aqm-rich-card">
+              <p class="aqm-slot-p"><strong>النموذج الأصلي:</strong> ${arcE.archetype || ''}</p>
+              <p class="aqm-slot-p"><strong>مفارقة الطاقة:</strong> ${arcE.paradox || ''}</p>
+              ${arcE.psychosomatics ? `<p class="aqm-slot-p"><strong>الدلالة السيكوسوماتية:</strong> ${arcE.psychosomatics}</p>` : ''}
+            </div>
+          ` : `طاقة المركز هي الحاكم الفعلي لاستقرارك الداخلي. عندما تعيش في تناغم مع ${getInfo(E).name}، تشعر بالسكينة والقدرة على توجيه كل الطاقات الأخرى بمصفوفتك.`,
+          strengths: arcE && arcE.light ? arcE.light : getInfo(E).light,
+          challenges: arcE && arcE.shadow ? arcE.shadow : getInfo(E).shadow,
+          practical: arcE && arcE.somaticRelease ? arcE.somaticRelease : `احرص يومياً على ممارسة أنشطة تمنحك إحساساً بالحرية والاستقرار المرتبط بـ ${getInfo(E).name}.`
         }
       },
 
@@ -285,7 +301,7 @@
       {
         id: 'karmic_tail',
         icon: '⚓',
-        title: 'الذيل الكارمي — دروس التناسخ والتحديات المتوارثة',
+        title: ktData && ktData.title ? `الذيل الكارمي — ${ktData.title}` : 'الذيل الكارمي — دروس التناسخ والتحديات المتوارثة',
         subtitle: 'الأنماط النفسية المتكررة والمواقف التي تختبر وعيك حتى تحررها (Karmic Tail)',
         arcanaList: [
           { num: D, name: getInfo(D).name },
@@ -294,11 +310,20 @@
         ],
         contentKey: 'matrix.section.karmic_tail',
         slots: {
-          primary: `يتشكل ثالوث ذيلك الكارمي من الطاقات <strong>(${D} - ${intermediate.D3} - ${intermediate.D2})</strong> بقيادة طاقة الأساس <strong>${getInfo(D).name}</strong>. هذه المنطقة تأتي معك في البداية بنقاط اختبار تحتاج إلى نضج ووعي.`,
-          detailed: `الذيل الكارمي هو أكبر محفز للتطور الروحي؛ تظهر دروسه في صورة أنماط متكررة تختبرك حتى تعيها وتفك ارتباطك بالجانب السلبي لطاقة ${getInfo(D).name}.`,
+          primary: `يتشكل ثالوث ذيلك الكارمي من الطاقات <strong>(${D} - ${intermediate.D3} - ${intermediate.D2})</strong> بقيادة طاقة الأساس <strong>${getInfo(D).name}</strong>.`,
+          detailed: ktData ? `
+            <div class="aqm-kt-box">
+              <p class="aqm-slot-p"><strong>شفرة الذيل:</strong> ${ktData.code || `${D}-${intermediate.D3}-${intermediate.D2}`}</p>
+              <p class="aqm-slot-p"><strong>المفارقة النفسية:</strong> ${ktData.paradox || ''}</p>
+              ${ktData.childhoodRoots ? `<p class="aqm-slot-p"><strong>جذور الطفولة والتكوين:</strong> ${ktData.childhoodRoots}</p>` : ''}
+              ${ktData.tracks ? `<p class="aqm-slot-p"><strong>مسار التحرر:</strong> ${ktData.tracks.trackTwo || ''}</p>` : ''}
+              ${ktData.psychosomatics ? `<p class="aqm-slot-p"><strong>التنبيه الجسدي:</strong> ${ktData.psychosomatics}</p>` : ''}
+            </div>
+          ` : `الذيل الكارمي هو أكبر محفز للتطور الروحي؛ تظهر دروسه في صورة أنماط متكررة تختبرك حتى تعيها وتفك ارتباطك بالجانب السلبي لطاقة ${getInfo(D).name}.`,
           strengths: `تحويل خبرات الماضي إلى حكمة عميقة، واكتساب مناعة نفسية عالية ترشدك وتلهم المحيطين بك.`,
           challenges: `الوقوع المتكرر في ردود الأفعال القديمة، الشعور بالإحباط عند مواجهة نفس العقبة، أو الاستسلام لنزعات التدمير الذاتي.`,
-          practical: `راقب تصرفاتك في لحظات الضغط الشديد. عندما تشعر برغبة في تكرار النمط الكارمي لـ ${getInfo(D).name}، توقف وخذ خياراً واعياً مختلفاً.`
+          practical: ktData && ktData.transformationProtocol && Array.isArray(ktData.transformationProtocol) ?
+            ktData.transformationProtocol.join(' • ') : `راقب تصرفاتك في لحظات الضغط الشديد. عندما تشعر برغبة في تكرار النمط الكارمي لـ ${getInfo(D).name}، توقف وخذ خياراً واعياً مختلفاً.`
         }
       },
 
@@ -332,18 +357,18 @@
               <div class="aqm-pillar">
                 <h4>الغاية الروحية العامة <span class="aqm-t-en">Spiritual Purpose</span></h4>
                 <div class="aqm-pillar-num">${purposes.spiritual}</div>
-                <p>المحصلة الروحية العليا لدمج الغايتين الشخصية والاجتماعية.</p>
+                <p>المكافأة الروحية، السلام الداخلي، والاتصال بالحكمة العليا.</p>
               </div>
               <div class="aqm-pillar">
-                <h4>الغاية الكونية <span class="aqm-t-en">Planetary Purpose</span></h4>
+                <h4>الغاية الكونية العليا <span class="aqm-t-en">Planetary Purpose</span></h4>
                 <div class="aqm-pillar-num">${purposes.planetary}</div>
-                <p>البصمة الكونية ورسالة الروح في الوعي الجمعي الأوسع.</p>
+                <p>الأثر التراكمي الممتد والرسالة الإنسانية الأوسع نطاقاً.</p>
               </div>
             </div>
           `,
-          strengths: `وضوح الرؤية الحياتية، التناغم مع المراحل العمرية، والشعور العميق بجدوى الحياة والمساهمة في بناء العالم.`,
-          challenges: `استعجال الغايات الكبرى قبل تثبيت الغاية الشخصية، أو التشتت في مسارات لا تتوافق مع توقيتك الكوني.`,
-          practical: `ركز جهودك في الفترة الراهنة على إتقان متطلبات غايتك المرحلية دون إهمال التجهيز للمرحلة التالية.`
+          strengths: `وضوح الرؤية الحياتية، التوازن بين الأهداف الدنيوية والروحية، والشعور العميق بجدوى المسار.`,
+          challenges: `الاستعجال في حرق المراحل العمرية، أو التمسك بالأهداف المادية على حساب النضج الروحي.`,
+          practical: `راجع أهدافك كل عام لترى أي الغايات الأربع تحتاج منك تركيزاً أكبر في مرحلتك العمرية الحالية.`
         }
       },
 
@@ -352,15 +377,20 @@
         id: 'personal',
         icon: '👤',
         title: 'الشخصية والصورة الخارجية — طاقة يوم الميلاد',
-        subtitle: 'المظهر الخارجي، الطبع العفوي، وكيف يراك العالم من النظرة الأولى',
+        subtitle: 'الانطباع الأول، بطاقة التعارف، وكيف يراك العالم عند أول لقاء (Anchor A)',
         arcanaList: [{ num: A, name: getInfo(A).name }],
         contentKey: 'matrix.section.personal',
         slots: {
-          primary: `طاقة يوم ميلادك هي <strong>${getInfo(A).name} (${A})</strong>. هذا هو كارت زيارتك للعالم، والانطباع التلقائي الذي تتركه لدى الآخرين دون أي تصنع.`,
-          detailed: `تعبر هذه الطاقة عن جسدك المادي، وصحتك الأولية، وطريقتك التلقائية في التعبير عن ذاتك في المواقف الجديدة.`,
-          strengths: getInfo(A).light,
-          challenges: getInfo(A).shadow,
-          practical: `كن أصيلاً في التعبير عن طبيعتك. استخدم سمات ${getInfo(A).name} الإيجابية كبوابة موثوقة لفتح الفرص في بيئتك اليومية.`
+          primary: `يمثل يوم ميلادك زاوية الشخصية <strong>${getInfo(A).name} (${A})</strong>. هذه هي بطاقة تعارفك مع العالم.`,
+          detailed: arcA ? `
+            <div class="aqm-rich-card">
+              <p class="aqm-slot-p"><strong>الكاريزما والحضور:</strong> ${arcA.archetype || ''}</p>
+              <p class="aqm-slot-p"><strong>تحدي الصورة الخارجية:</strong> ${arcA.paradox || ''}</p>
+            </div>
+          ` : `طاقة يوم الميلاد هي الغلاف الخارجي الذي يتعامل به المجتمع معك. في جانبها الإيجابي تمنحك جاذبية وثقة.`,
+          strengths: arcA && arcA.light ? arcA.light : getInfo(A).light,
+          challenges: arcA && arcA.shadow ? arcA.shadow : getInfo(A).shadow,
+          practical: `استثمر كاريزما ${getInfo(A).name} في تقديم نفسك بصدق وتلقائية، دون افتعال أو تقمص شخصيات أخرى.`
         }
       },
 
@@ -369,18 +399,20 @@
         id: 'talents',
         icon: '✨',
         title: 'المواهب والقدرات — هدايا الروح والإلهام',
-        subtitle: 'المواهب الفطرية التي نزلت بها للدنيا وكيف تسخرها لخدمة رسالتك',
-        arcanaList: [
-          { num: B, name: getInfo(B).name },
-          { num: F, name: getInfo(F).name }
-        ],
+        subtitle: 'المواهب الفطرية والاتصال بالإلهام والحدس (Anchor B)',
+        arcanaList: [{ num: B, name: getInfo(B).name }],
         contentKey: 'matrix.section.talents',
         slots: {
-          primary: `تتمركز مواهبك العليا في قمة المصفوفة بطاقتي <strong>${getInfo(B).name} (${B})</strong> ومواهب الأجداد <strong>${getInfo(F).name} (${F})</strong>.`,
-          detailed: `هذه المنطقة تمثل الإلهام المباشر والقدرات الفطرية التي ولدت بها؛ إذ تتدفق أفكارك وإبداعاتك بسلاسة متى ما كنت متصلاً بـ ${getInfo(B).name}.`,
-          strengths: `الإبداع الفطري، سرعة البديهة، وحل المشكلات برؤية غير تقليدية مستمدة من الحكمة العميقة.`,
-          challenges: `كبت المواهب، الخوف من إبداء الرأي، أو الشك في القيمة الحقيقية لما تقدمه للعالم.`,
-          practical: `خصص وقتاً ثابتاً أسبوعياً لممارسة مواهبك دون قيود النتيجة أو العائد المادي المباشر.`
+          primary: `تتوج زاوية المواهب طاقة شهر الميلاد <strong>${getInfo(B).name} (${B})</strong>؛ وهي الهدية التي زودتك بها الروح لتلهم مسارك.`,
+          detailed: arcB ? `
+            <div class="aqm-rich-card">
+              <p class="aqm-slot-p"><strong>جوهر الموهبة والإلهام:</strong> ${arcB.archetype || ''}</p>
+              <p class="aqm-slot-p"><strong>مفتاح تفجير الإبداع:</strong> ${arcB.light || ''}</p>
+            </div>
+          ` : `هذه الزاوية تمثل الاتصال المباشر مع طاقات الإبداع والحدس وتكشف عن مهاراتك الفطرية.`,
+          strengths: arcB && arcB.light ? arcB.light : getInfo(B).light,
+          challenges: arcB && arcB.shadow ? arcB.shadow : getInfo(B).shadow,
+          practical: `خصص وقتاً أسبوعياً لممارسة هواياتك الإبداعية المرتبطة بـ ${getInfo(B).name}.`
         }
       },
 
@@ -389,19 +421,19 @@
         id: 'father_line',
         icon: '🛡️',
         title: 'خط الأب — التراث الكارمي لسلالة الذكور',
-        subtitle: 'المهام المتوارثة عبر الذكور، العلاقة بالوالد، ومفتاح الدعم والوفرة (Paternal Line)',
+        subtitle: 'المحور الممتد من زاوية الأب الروحية (F) إلى زاوية الأب المادية (H)',
         arcanaList: [
           { num: F, name: getInfo(F).name },
           { num: H, name: getInfo(H).name },
-          { num: generational.father.combined, name: 'المحصلة' }
+          { num: generational.father.combined, name: 'محصلة الأب' }
         ],
         contentKey: 'matrix.section.father_line',
         slots: {
-          primary: `يمتد خط الأب بين قمة مواهب الأب <strong>(${F})</strong> وقاعدة كارما الأب المادية <strong>(${H})</strong> بمحصلة كلية <strong>(${generational.father.combined})</strong>.`,
-          detailed: `يعكس هذا الخط علاقتك بالطاقة الذكورية، ونمط التعامل مع السلطة والنظام، وقدرتك على بناء كيانات عملية راسخة.`,
-          strengths: `القدرة على القيادة، الصمود في مواجهة التحديات المالية والتنظيمية، والانضباط الواعي.`,
-          challenges: `الصراع مع السلطة، أو تكرار الأنماط المالية الجامدة التي عانى منها الآباء والأجداد.`,
-          practical: `اعمل على التصالح النفسي مع صورة الأب وتحرير أي أحكام موروثة لفتح مسار القوة الذكورية البناءة.`
+          primary: `يربط خط الأب بين الروح <strong>${getInfo(F).name} (${F})</strong> والمادة <strong>${getInfo(H).name} (${H})</strong> بمحصلة كلية <strong>(${generational.father.combined})</strong>.`,
+          detailed: `يعكس هذا الخط الدروس المتوارثة من سلالة الذكور (الأب والأجداد): كيفية التعامل مع السلطة، المسؤولية، الإنجاز المالي، والحماية النفسية.`,
+          strengths: `القوة العزمية، الصمود أمام التحديات، والانضباط في السعي نحو الأهداف الكبرى.`,
+          challenges: `الخوف من الفشل في نظر الأب، أو تكرار أنماط القسوة وكبت المشاعر.`,
+          practical: `اعمل على مسامحة أخطاء الأب والأسلاف الذكور، وخذ من تراثهم العزم وتجنب الجفاء العاطفي.`
         }
       },
 
@@ -410,19 +442,19 @@
         id: 'mother_line',
         icon: '🌸',
         title: 'خط الأم — التراث الكارمي لسلالة الإناث',
-        subtitle: 'المهام المتوارثة عبر الإناث، الذكاء العاطفي، والقدرة على الاستقبال والاحتواء (Maternal Line)',
+        subtitle: 'المحور الممتد من زاوية الأم الروحية (G) إلى زاوية الأم المادية (I)',
         arcanaList: [
           { num: G, name: getInfo(G).name },
           { num: I, name: getInfo(I).name },
-          { num: generational.mother.combined, name: 'المحصلة' }
+          { num: generational.mother.combined, name: 'محصلة الأم' }
         ],
         contentKey: 'matrix.section.mother_line',
         slots: {
-          primary: `يمتد خط الأم بين قمة مواهب الأم <strong>(${G})</strong> وقاعدة كارما المشاعر <strong>(${I})</strong> بمحصلة كلية <strong>(${generational.mother.combined})</strong>.`,
-          detailed: `يمثل هذا الخط الذكاء العاطفي، والقدرة على الاستقبال والاحتواء، وشفاء العلاقات الإنسانية الحساسة.`,
-          strengths: `التعاطف العالي، الحدس الروحي، القدرة على الرعاية والاستشفاء الذاتي، وجذب الوفرة بسلاسة.`,
-          challenges: `الحساسية الزائدة، كبت المشاعر، أو التضحية المفرطة التي تضر بالصحة النفسية.`,
-          practical: `مارس العناية الذاتية المنتظمة وضع حدوداً صحية تحمي طاقتك دون انغلاق أو قسوة.`
+          primary: `يربط خط الأم بين الروح <strong>${getInfo(G).name} (${G})</strong> والمادة <strong>${getInfo(I).name} (${I})</strong> بمحصلة كلية <strong>(${generational.mother.combined})</strong>.`,
+          detailed: `يكشف هذا الخط عن التراث العاطفي الموروث من سلالة النساء: جروح الأمومة، التضحية، علاقات الزواج، والقدرة على تقبل الذات وتغذية الإبداع.`,
+          strengths: `الدفء العاطفي، الخصوبة الفكرية والإبداعية، والقدرة العالية على الاحتواء والرعاية.`,
+          challenges: `التضحية الزائدة على حساب الذات، الشعور بالذنب العاطفي، أو صعوبة وضع حدود صحية.`,
+          practical: `أعد بناء علاقتك مع طاقة الأمومة والأم بالامتنان والحرية، وتجنب الذوبان التام في احتياجات الآخرين.`
         }
       },
 
@@ -439,11 +471,21 @@
         contentKey: 'matrix.section.ancestral_programs',
         slots: {
           primary: `تتكامل محاور الأنساب في نقطة مركز الأجداد <strong>(${P.ancestralPrograms.ancestralCenter})</strong> والمركز المشترك <strong>(${P.ancestralPrograms.commonCenter})</strong> كجامع للتراث العائلي لخط الأب (${generational.father.combined}) وخط الأم (${generational.mother.combined}).`,
-          detailed: `
-            <div class="aqm-pending-badge">قيد الإعداد والتوثيق المنهجي</div>
-            <p><strong>[PENDING_CONTENT]:</strong> تحليل الشيفرات الوراثية الممتدة عبر الأجيال السابقة وعقود الولاء غير الواعي قيد التوثيق المنهجي المعتمد، وسيتم إدراجه في التحديث المعتمد لنصوص التفسير.</p>
-          `,
-          strengths: `الاستفادة من القوة الجذورية للعائلة، وتوارث الحكمة والصمود والبركة الروحية.`,
+          detailed: ancLines ? `
+            <div class="aqm-anc-grid">
+              <div class="aqm-pillar">
+                <h4>${ancLines.maleLine.title}</h4>
+                <p>${ancLines.maleLine.description}</p>
+                <p><strong>مسار الشفاء:</strong> ${ancLines.maleLine.healingPath}</p>
+              </div>
+              <div class="aqm-pillar">
+                <h4>${ancLines.femaleLine.title}</h4>
+                <p>${ancLines.femaleLine.description}</p>
+                <p><strong>مسار الشفاء:</strong> ${ancLines.femaleLine.healingPath}</p>
+              </div>
+            </div>
+          ` : `يكشف تقاطع خطوط السلف في مركز الأجداد عن العقد الروحية والأنماط السلوكية المتوارثة عبر الأجيال.`,
+          strengths: `الاستناد إلى قوة الجذور التراكمية للعائلة، توارث الحكمة والصمود والبركة الروحية.`,
           challenges: `الشعور بالذنب غير المبرر عند تحقيق نجاح لم يحققه السلف، أو الانغماس في أعباء الماضي.`,
           practical: `عبّر عن الامتنان لجهود الأجداد، وتحرر بوعي من أي قيد أو اعتقاد سلبي يمنعك من النمو.`
         }
@@ -555,8 +597,10 @@
         slots: {
           primary: `تتكامل ثلاثيات مصفوفتك لتشكيل برامج حياتية مركبة: ثلاثية الروح <strong>(${P.compositePrograms.spiritualTriad.join(' - ')})</strong> وثلاثية المادة <strong>(${P.compositePrograms.materialTriad.join(' - ')})</strong>.`,
           detailed: `
-            <div class="aqm-pending-badge">قيد الإعداد والتوثيق المنهجي</div>
-            <p><strong>[PENDING_CONTENT]:</strong> تحليل البرامج المركبة والشفرات الثلاثية المتقدمة وفق منهج لاديني يجري توثيقها لإدراجها في التحديث القادم للنصوص.</p>
+            <div class="aqm-prog-box">
+              <p class="aqm-slot-p"><strong>برنامج محور الروح (${P.compositePrograms.spiritualTriad.join(' - ')}):</strong> يربط بين تطلعات النور والوعي الروحي، ومواءمة البصيرة مع العمل الفعلي.</p>
+              <p class="aqm-slot-p"><strong>برنامج محور المادة (${P.compositePrograms.materialTriad.join(' - ')}):</strong> يدير تدفق الوفرة، التثبيت في أرض الواقع، وتصريف المهارات إلى منجزات ملموسة.</p>
+            </div>
           `,
           strengths: `تنوع المهارات، القدرة على التكيف في الأوضاع المعقدة، والجمع بين النظرة الفلسفية والتطبيق العملي.`,
           challenges: `صراع الأولويات بين الرغبات الروحية والواجبات المادية، وتشتت الانتباه.`,
@@ -578,8 +622,10 @@
         slots: {
           primary: `ترتبط مؤشرات الأبناء بطاقة الامتداد الجيلي <strong>(${P.childrenLine.childEnergy})</strong> ومفتاح التواصل بين الأجيال <strong>(${P.childrenLine.generationKey})</strong>.`,
           detailed: `
-            <div class="aqm-pending-badge">قيد الإعداد والتوثيق المنهجي</div>
-            <p><strong>[PENDING_CONTENT]:</strong> تحليل رسائل الأبناء لأرواح الآباء ونقاط التوافق التربوي قيد التوثيق المنهجي المعتمد.</p>
+            <div class="aqm-child-box">
+              <p class="aqm-slot-p"><strong>طاقة الامتداد الجيلي (${P.childrenLine.childEnergy} - ${getInfo(P.childrenLine.childEnergy).name}):</strong> تمثل جوهر التواصل الفطري ونقاط التوافق مع الأبناء والأجيال القادمة.</p>
+              <p class="aqm-slot-p"><strong>مفتاح التفاهم التربوي (${P.childrenLine.generationKey}):</strong> بناء جسر من الثقة والاحترام غير المشروط، وتفهم الاختلافات الفردية لكل طفل دون قوالب مسبقة.</p>
+            </div>
           `,
           strengths: `الصبر والاحتواء، الفهم العميق لنفسية الأطفال، وبناء علاقة صداقة وثقة تدوم عبر السنين.`,
           challenges: `القلق الزائد على مستقبل الأبناء أو محاولة توجيههم في مسارات لا تناسب شخصياتهم الفطرية.`,
@@ -592,17 +638,29 @@
         id: 'age_cycles',
         icon: '⏳',
         title: 'دورات الحياة ومحطاتها — الخريطة الزمنية (0 - 80 سنة) وطاقة العام',
-        subtitle: 'المراحل العمرية وتتابع الطاقات الحاكمة لكل عقد ومحطة في حياتك',
+        subtitle: 'المحطات العمرية على المحيط الخارجي ودورة الطاقات المؤثرة على كل مرحلة',
         arcanaList: [
-          { num: P.yearEnergy.number, name: 'سنة ' + P.yearEnergy.year }
+          { num: (P.ageMap && P.ageMap['20']) || (P.ageStations && P.ageStations['20']) || A, name: 'سن 20' },
+          { num: (P.ageMap && P.ageMap['40']) || (P.ageStations && P.ageStations['40']) || C, name: 'سن 40' },
+          { num: (P.ageMap && P.ageMap['60']) || (P.ageStations && P.ageStations['60']) || D, name: 'سن 60' }
         ],
         contentKey: 'matrix.section.age_cycles',
         slots: {
-          primary: `تحكم عامك الحالي <strong>(${P.yearEnergy.year})</strong> طاقة الأركانا <strong>${getInfo(P.yearEnergy.number).name} (${P.yearEnergy.number})</strong> ضمن مسار محطات العمر (0 - 80 سنة).`,
-          detailed: `توضح الخريطة الزمنية طبيعة التحديات والفرص السنوية؛ فالطاقة الحاكمة للعام تحدد المزاج العام للمشاريع والأولويات المناسبة.`,
-          strengths: `التزامن مع التوقيت الكوني والقدرة على اغتنام الفرص في أوانها الأنسب.`,
-          challenges: `مقاومة التغييرات الطبيعية لكل مرحلة عمرية ومحاولة التمسك بنمط استنفد دوره.`,
-          practical: `استثمر طاقة ${getInfo(P.yearEnergy.number).name} هذا العام في المبادرة والتركيز على أهدافك الاستراتيجية.`
+          primary: `تتوزع محطات مصفوفتك الزمنية عبر حلقة الأعمار: محطة سن 20 <strong>(${(P.ageMap && P.ageMap['20']) || (P.ageStations && P.ageStations['20']) || A})</strong>، محطة سن 40 <strong>(${(P.ageMap && P.ageMap['40']) || (P.ageStations && P.ageStations['40']) || C})</strong>، ومحطة سن 60 <strong>(${(P.ageMap && P.ageMap['60']) || (P.ageStations && P.ageStations['60']) || D})</strong>.`,
+          detailed: `
+            <div class="aqm-age-preview">
+              <p>تدور طاقات مصفوفتك في دورات زمنية تبدأ من سن الصفر وحتى الثمانين. كل محطة عمرية تحمل طاقة حاكمة توجه أولوياتك النفسية والمادية في تلك الفترة.</p>
+              <div class="aqm-age-badges">
+                <span class="aqm-badge">0-20 سنة: بناء الشخصية</span>
+                <span class="aqm-badge">20-40 سنة: ترسيخ المادة والإنتاج</span>
+                <span class="aqm-badge">40-60 سنة: النضج الاجتماعي</span>
+                <span class="aqm-badge">60-80 سنة: الحكمة الروحية</span>
+              </div>
+            </div>
+          `,
+          strengths: `الاستعداد المبكر للتحولات العمرية، وفهم معنى الدروس التي تفرضها كل مرحلة في توقيتها الدقيق.`,
+          challenges: `مقاومة التغيير الطبيعي لمراحل العمر أو الشعور بفوات الأوان.`,
+          practical: `راجع طاقتك الحالية وركز على أولويات مرحلتك العمرية الحالية لتحقيق أقصى درجات التناغم.`
         }
       },
 
@@ -611,19 +669,28 @@
         id: 'transformation_rx',
         icon: '⚖️',
         title: 'روشتة التحول — مفاتيح الموازنة والارتقاء من الظل إلى النور',
-        subtitle: 'بروتوكول العمل اليومي والخطوات العملية لتحويل الطاقات السلبية إلى قوى بناءة',
+        subtitle: 'بروتوكول تفكيك العقد وتفعيل الطاقات الإيجابية في السلوك اليومي',
         arcanaList: [
-          { num: balancePoint, name: 'نقطة التوازن' },
-          { num: purposes.sky, name: 'السماء' },
-          { num: purposes.earth, name: 'الأرض' }
+          { num: P.transformationKeys.balancePoint, name: 'التوازن' },
+          { num: P.transformationKeys.spiritualKey, name: 'المفتاح الروحي' },
+          { num: P.transformationKeys.materialKey, name: 'المفتاح المادي' }
         ],
         contentKey: 'matrix.section.transformation_rx',
         slots: {
-          primary: `ترتكز روشتة التحول على نقطة التوازن المركزية <strong>(${balancePoint})</strong> وتحقيق الاتزان بين محور السماء <strong>(${purposes.sky})</strong> ومحور الأرض <strong>(${purposes.earth})</strong>.`,
-          detailed: `التحول في مصفوفة القدر هو انتقال واعٍ من تجليات الظل السلبية إلى ترددات النور الإيجابية، عبر الممارسة اليومية المستمرة ومراقبة الذات.`,
-          strengths: `المرونة النفسية، سرعة التعافي من الانتكاسات، والارتقاء بمستوى الوعي بصورة دائمة.`,
-          challenges: `اليأس المؤقت عند مواجهة اختبارات صعبة، أو التردد في اتخاذ القرارات المصيرية.`,
-          practical: `اجعل الوعي بطاقاتك ممارسة يومية، وذكّر نفسك دائماً بأن كل تحدٍ يحمل في طياته بذرة نمو جديدة.`
+          primary: `تتكامل مفاتيح تحولك عند نقطة التوازن <strong>(${P.transformationKeys.balancePoint})</strong> مع المفتاح الروحي <strong>(${P.transformationKeys.spiritualKey})</strong> والمفتاح المادي <strong>(${P.transformationKeys.materialKey})</strong>.`,
+          detailed: `
+            <div class="aqm-rx-box">
+              <h4>بروتوكول التحول من الظل إلى النور:</h4>
+              <ol class="aqm-rx-list">
+                <li><strong>الوعي بطاقة المركز (${E}):</strong> لا تسمح لضغوط الحياة بإخراجك من سكينة ${getInfo(E).name}.</li>
+                <li><strong>تحرير الذيل الكارمي (${D}):</strong> تذكر دائماً ألا تكرر ردود الأفعال القديمة عندما تواجه عقبات مشابهة.</li>
+                <li><strong>تفعيل نقطة التوازن (${P.transformationKeys.balancePoint}):</strong> وازن بين احتياجاتك المادية وتطلعاتك الروحية.</li>
+              </ol>
+            </div>
+          `,
+          strengths: `المرونة النفسية العالية، القدرة على تحويل الأزمات إلى فرص للنمو، وتفعيل قوة الإرادة الواعية.`,
+          challenges: `الانتكاس نحو العادات القديمة عند الإرهاق أو الاستسلام للشكوك.`,
+          practical: `ابدأ كل صباح بنيّة واعية لتفعيل فضائل النور في طاقاتك، واجعل التوازن هدفك اليومي الدائم.`
         }
       }
     ];
@@ -666,8 +733,26 @@
   /**
    * الدالة الرئيسية لبناء وعرض تقرير مصفوفة القدر المتكامل في المتصفح
    */
-  function renderMatrixReport(birthDate, name = '', gender = '') {
-    const host = document.querySelector('#mresult');
+  function renderMatrixReport(arg1, arg2, arg3, arg4) {
+    let host = null;
+    let birthDate = null;
+    let name = '';
+    let gender = '';
+
+    if (arg1 && typeof arg1 === 'object' && arg1.nodeType) {
+      host = arg1;
+      birthDate = arg2;
+      name = arg3 || '';
+      gender = arg4 || '';
+    } else {
+      host = document.querySelector('#mresult');
+      birthDate = arg1;
+      name = arg2 || '';
+      gender = arg3 || '';
+    }
+
+    if (!birthDate || !String(birthDate).trim()) return;
+    if (!host) host = document.querySelector('#mresult');
     if (!host) return;
 
     const engine = window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter;

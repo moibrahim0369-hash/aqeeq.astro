@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "النمو والرعاية",
   "core": {
-    "psychology": "",
-    "gift": "إبداع واحتواء",
-    "shadowTrap": "إفراط في السيطرة",
-    "growth": ""
+    "psychology": "ترمز الإمبراطورة إلى النمو الذي يحتاج رعاية وحدوداً معاً. دافعها هو جعل الحياة أكثر خصوبة وجمالاً وقابلية للازدهار؛ وتظهر قوتها في ملاحظة ما يحتاج إلى تغذية، سواء كان فكرة أو علاقة أو مشروعاً. التناقض أن الرعاية قد تمتزج بالرغبة في ضبط شروط النمو، فيصعب ترك الآخرين يختارون إيقاعهم.",
+    "gift": "الإبداع والاحتواء يظهران في تحويل المكان أو الفريق إلى بيئة تسمح بالإنتاج، وفي ملاحظة الاحتياج قبل أن يتحول إلى أزمة. يمكن أن تتجلى الموهبة في التصميم أو التعليم أو إدارة الموارد أو بناء مشروع له قيمة محسوسة. في العلاقة، تمنح الرعاية دفئاً حين تقترن باحترام استقلال الطرف الآخر.",
+    "shadowTrap": "حين يصبح العطاء وسيلة لضمان القرب، تتضخم المسؤولية ويُتوقع من الآخرين أن يبادلوا الرعاية بالطريقة نفسها. مثال ذلك تولي كل تفاصيل مناسبة عائلية ثم الشعور بالاستياء لأن أحداً لم يلاحظ حجم الجهد. التحكم هنا يرتدي ثوب الاهتمام، لكنه يضيّق مساحة المشاركة.",
+    "growth": "خطوة تأملية: تقاسم الرعاية بمسؤولية محددة، مع مساحة حقيقية للطرف الآخر كي يختار طريقته ويتحمل أثر اختياره."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتضح الرسالة في رعاية فكرة أو بيئة حتى تنمو ويصبح أثرها ملموساً للآخرين.",
+      "energyPsychology": "تتجمع الحيوية حول ما يستحق العناية فعلاً، لا حول كل مطلب يطلب الحضور.",
+      "emotionsPsychology": "يقوى الشعور بالمعنى مع العطاء المتبادل، ويثقل حين يصبح الحب مشروطاً بكمية الرعاية."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "ترى الإمبراطورة إمكان النمو في الفكرة أو العلاقة، وتميز بين ما يحتاج رعاية وما يحتاج أن يُترك ليتشكل بطريقته.",
+      "energyPsychology": "تتجه القدرة الذهنية نحو التصور والبناء، وتبقى أكثر صفاءً حين لا تتحول كل فرصة إلى مسؤولية شخصية.",
+      "emotionsPsychology": "تزداد الطمأنينة مع الرعاية المتبادلة، ويظهر الانقباض الرمزي حين يصبح العطاء شرطاً لاستحقاق القرب."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يخرج الإبداع إلى شكل ملموس عبر سرد أو صورة أو رعاية مشتركة، من غير أن يتحول الاهتمام إلى وصاية على صوت الآخرين.",
+      "energyPsychology": "تتجدد الطاقة حين تجد الأفكار قناة إبداعية، وتُصان من التشتت بين كل ما يبدو جميلاً أو محتاجاً للعناية.",
+      "emotionsPsychology": "تزداد حرارة العلاقة عندما يكون التقدير متبادلاً؛ فالكلام الحنون لا يعوّض احتياجاً لم يُطلب بصدق."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تعبّر الإمبراطورة عن المودة بالرعاية والإبداع، وتبقى العلاقة صحية عندما تتبادل الأطراف العطاء ولا تختزل في دور الرعاية وحده.",
+      "energyPsychology": "تتدفق طاقة القرب عبر الاهتمام الملموس والبهجة المشتركة، مع تجنب تحويل الرعاية إلى طريقة لضمان الحب.",
+      "emotionsPsychology": "يستقر الشعور عندما تُستقبل المودة كما تُمنح، وعندما يُسمح بالاحتياج دون خجل من الاعتماد المتبادل."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الإمبراطورة في قدرة على إنماء مشروع أو علاقة بالموارد والرعاية، مع الانتباه إلى أن العطاء لا يلغي حدود الملكية.",
+      "energyPsychology": "تتجدد الحيوية عبر الإبداع والوفرة الحسية، لكنها تتشتت عندما تتحول كل فرصة جميلة إلى التزام جديد.",
+      "emotionsPsychology": "يتوازن الشعور بالاستحقاق حين تُقبل المتعة دون استخدامها كتعويض عن احتياج لم يُسمَّ."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

@@ -1,0 +1,3501 @@
+/**
+ * ============================================================================
+ * AQEEQ ASTRO — IVORY CELESTIAL EDITORIAL LUXURY
+ * Master Design System & Multi-World Visual Architecture
+ * ============================================================================
+ * Primary Palette:
+ *   Warm Ivory:      #FAF7F0
+ *   Soft Cream:      #F4EFE5
+ *   Champagne Gold:  #C6A56B
+ *   Muted Gold:      #B89960
+ *   Deep Burgundy:   #782F3B
+ *   Dusty Rose:      #D9B7B0
+ *   Warm Sand:       #E7D7C2
+ *   Soft Taupe:      #A99A89
+ *   Ink Brown:       #38312D
+ *   Muted Text:      #81766D
+ *   Pale Sky Blue:   #DCEAF0
+ * ============================================================================
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+:root {
+  /* Core Ivory Celestial Editorial Palette (Official Master Brief Tokens) */
+  --ivory: #F5F0E6 !important;
+  --cream: #EFE8DA !important;
+  --champagne: #C5A46D !important;
+  --muted-gold: #A88750 !important;
+  --burgundy: #6B263D !important;
+  --burgundy-deep: #521A2D !important;
+  --dusty-rose: #C89B9E !important;
+  --warm-sand: #E4D7C3 !important;
+  --soft-taupe: #9E8F7E !important;
+  --ink-brown: #2D2522 !important;
+  --muted-text: #74685F !important;
+  --sky-blue: #52738A !important;
+  --sky-blue-soft: #E5EEF3 !important;
+
+  /* Semantic Tokens */
+  --bg: #F5F0E6 !important;
+  --surface: #FFFFFF !important;
+  --ink: #2D2522 !important;
+  --ink-faint: #74685F !important;
+  --accent: #C5A46D !important;
+  --soft-gold: #EFE8DA !important;
+  --glass: rgba(245, 240, 230, 0.92) !important;
+  --border: rgba(45, 37, 34, 0.11) !important;
+  --border-gold: rgba(197, 164, 109, 0.44) !important;
+  --border-burgundy: rgba(107, 38, 61, 0.28) !important;
+
+  /* Typography System (2+1 Font Rule) */
+  --serif: 'Amiri', 'Cormorant Garamond', Georgia, serif !important;
+  --sans: 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif !important;
+  --mono: 'IBM Plex Mono', monospace !important;
+
+  /* AQEEQ Platform Tokens */
+  --aq-bg-ink: #F5F0E6;
+  --aq-bg-midnight: #FFFFFF;
+  --aq-bg-elevated: #EFE8DA;
+  --aq-bg-subtle: #F9F6F0;
+  --aq-bg-glass: rgba(245, 240, 230, 0.92);
+
+  --aq-text-ivory: #2D2522;
+  --aq-text-silver: #564B44;
+  --aq-text-muted: #74685F;
+
+  --aq-accent-gold: #C5A46D;
+  --aq-accent-gold-light: #A88750;
+  --aq-accent-gold-soft: rgba(197, 164, 109, 0.13);
+  --aq-accent-gold-border: rgba(197, 164, 109, 0.42);
+
+  --aq-burgundy: #6B263D;
+  --aq-burgundy-soft: rgba(107, 38, 61, 0.08);
+  --aq-rose: #C89B9E;
+  --aq-sand: #E4D7C3;
+  --aq-sky: #E5EEF3;
+
+  --aq-success: #3B6E52;
+  --aq-warning: #A88750;
+  --aq-danger: #9B333E;
+  --aq-info: #4A6F8A;
+
+  --aq-border-hairline: rgba(45, 37, 34, 0.11);
+  --aq-border-elevated: rgba(197, 164, 109, 0.38);
+  --aq-border-strong: rgba(45, 37, 34, 0.85);
+
+  --aq-font-serif: var(--serif);
+  --aq-font-sans: var(--sans);
+  --aq-font-mono: var(--mono);
+
+  --aq-radius-xs: 4px;
+  --aq-radius-sm: 6px;
+  --aq-radius-md: 10px;
+  --aq-radius-lg: 14px;
+  --aq-shadow-subtle: 0 12px 32px rgba(45, 37, 34, 0.045);
+  --aq-shadow-elevated: 0 20px 48px rgba(45, 37, 34, 0.085);
+  --aq-max-width: 1240px;
+
+  /* Legacy Variable Bridge */
+  --bg1: #F5F0E6 !important;
+  --bg2: #EFE8DA !important;
+  --card: #FFFFFF !important;
+  --card2: #EFE8DA !important;
+  --fg: #2D2522 !important;
+  --muted: #74685F !important;
+  --gold: #C5A46D !important;
+  --gold2: #A88750 !important;
+  --line: rgba(45, 37, 34, 0.11) !important;
+  --night: #F5F0E6 !important;
+  --deep: #FFFFFF !important;
+  --amethyst: rgba(197, 164, 109, 0.2) !important;
+  --moon: #2D2522 !important;
+  --mist: #74685F !important;
+
+  /* Tarot Module Variable Remap */
+  --tarot-bg: #F5F0E6 !important;
+  --tarot-deep: #EFE8DA !important;
+  --tarot-card-bg: #FFFFFF !important;
+  --tarot-bg-deep: #F5F0E6 !important;
+  --tarot-bg-card: #FFFFFF !important;
+  --tarot-bg-elevated: #EFE8DA !important;
+  --tarot-gold: #A88750 !important;
+  --tarot-gold-light: #6B263D !important;
+  --tarot-gold-glow: rgba(197, 164, 109, 0.3) !important;
+  --tarot-gold-dim: rgba(197, 164, 109, 0.16) !important;
+  --tarot-text: #2D2522 !important;
+  --tarot-text-main: #2D2522 !important;
+  --tarot-text-muted: #74685F !important;
+  --tarot-border: rgba(197, 164, 109, 0.38) !important;
+}
+
+/* ============================================================================
+   1. GLOBAL CANVAS & EDITORIAL ATMOSPHERE
+   ============================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--ivory) !important;
+  color: var(--ink-brown) !important;
+  font-family: var(--sans) !important;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0 0 calc(78px + env(safe-area-inset-bottom, 0px)) 0;
+  background-color: var(--ivory) !important;
+  color: var(--ink-brown) !important;
+  font-family: var(--sans) !important;
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(197, 164, 109, 0.09), transparent 46%),
+    radial-gradient(circle at 84% 86%, rgba(107, 38, 61, 0.045), transparent 46%) !important;
+}
+
+body::before {
+  display: none !important;
+}
+
+#aqeq-stars,
+#sky-layer,
+#mw,
+#sky-bg,
+.sun {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+/* Living Celestial Background Canvas (#cosmos-bg) */
+#cosmos-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+header.top,
+.aq-observatory-ribbon,
+main,
+section.sec,
+footer.foot {
+  position: relative;
+  z-index: 1;
+}
+
+.pills,
+.pill.free,
+.card .chev {
+  display: none !important;
+}
+
+/* Tabular numerals for astronomical degrees & numbers */
+.num,
+.aq-tabular,
+table td,
+.aqm-number,
+.aqm-pillar-number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+   2. MAIN NAVIGATION (header.top & nav.bnav)
+   ============================================================================ */
+header.top,
+header.top.top-nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 120 !important;
+  padding: 14px 40px !important;
+  height: auto !important;
+  min-height: 70px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  background: rgba(250, 247, 240, 0.93) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(198, 165, 107, 0.32) !important;
+  box-shadow: 0 4px 20px rgba(56, 49, 45, 0.03) !important;
+}
+
+header.top .wrap {
+  max-width: var(--aq-max-width) !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 28px !important;
+}
+
+@media (max-width: 960px) {
+  header.top,
+  header.top.top-nav {
+    padding: 12px 20px !important;
+    min-height: 60px !important;
+  }
+}
+
+/* Zone 1: Brand Wordmark */
+header.top .brand {
+  font-family: var(--serif) !important;
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+  color: var(--burgundy) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+}
+
+header.top .brand .aq-brand-emblem {
+  width: 26px;
+  height: 26px;
+  color: var(--champagne);
+  flex-shrink: 0;
+}
+
+header.top .brand .bn {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+  font-size: 1.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+header.top .brand .aq-brand-sub {
+  display: none !important;
+}
+
+/* Zone 2: Horizontal Navigation Links (8 Sections) */
+header.top .tnav,
+header.top .nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 22px !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+}
+
+header.top .tnav::-webkit-scrollbar {
+  display: none !important;
+}
+
+header.top .tnav a {
+  text-decoration: none !important;
+  color: var(--muted-text) !important;
+  font-family: var(--sans) !important;
+  font-size: 0.86rem !important;
+  font-weight: 500 !important;
+  padding: 6px 2px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  transition: color 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  position: relative !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+header.top .tnav a:hover {
+  color: var(--ink-brown) !important;
+}
+
+header.top .tnav a.aq-nav-active {
+  color: var(--burgundy) !important;
+  font-weight: 600 !important;
+}
+
+header.top .tnav a.aq-nav-active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  inset-inline: 0;
+  height: 1.5px;
+  background: var(--champagne);
+}
+
+.aq-saved-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--cream);
+  border: 1px solid var(--border-gold);
+  color: var(--burgundy);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+/* Zone 3: Language Action */
+.aq-lang-switch {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  font-family: var(--sans) !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  color: var(--ink-brown) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+.aq-lang-switch:hover {
+  border-color: var(--burgundy) !important;
+  color: var(--burgundy) !important;
+  background: #FFFFFF !important;
+}
+
+@media (max-width: 960px) {
+  header.top .tnav {
+    display: none !important;
+  }
+}
+
+/* ============================================================================
+   3. MOBILE BOTTOM NAVIGATION BAR (nav.bnav) — <= 15% Viewport Cap
+   ============================================================================ */
+nav.bnav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 130 !important;
+  height: 58px !important;
+  background: rgba(250, 247, 240, 0.96) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border-top: 1px solid rgba(198, 165, 107, 0.35) !important;
+  border-radius: 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+  align-items: center !important;
+  padding: 0 2px !important;
+  box-shadow: 0 -6px 20px rgba(56, 49, 45, 0.05) !important;
+}
+
+@media (min-width: 961px) {
+  nav.bnav {
+    display: none !important;
+  }
+  body {
+    padding-bottom: 0 !important;
+  }
+}
+
+nav.bnav a {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2px !important;
+  height: 100% !important;
+  color: var(--muted-text) !important;
+  text-decoration: none !important;
+  font-size: 0.6rem !important;
+  font-weight: 500 !important;
+  position: relative !important;
+  white-space: nowrap !important;
+}
+
+nav.bnav a svg {
+  width: 17px !important;
+  height: 17px !important;
+  stroke-width: 1.65 !important;
+}
+
+nav.bnav a.on {
+  color: var(--burgundy) !important;
+  font-weight: 700 !important;
+}
+
+nav.bnav a.on svg {
+  color: var(--burgundy) !important;
+}
+
+nav.bnav a.on::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 2px;
+  background: var(--champagne);
+}
+
+/* ============================================================================
+   4. HOMEPAGE: IVORY CELESTIAL EDITORIAL LUXURY (section.hero#home)
+   ============================================================================ */
+.wrap {
+  max-width: var(--aq-max-width) !important;
+  margin: 0 auto !important;
+  padding: 0 28px !important;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 0 18px !important;
+  }
+}
+
+section.hero#home {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: var(--ivory) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* 4.1 HERO SECTION SPLIT */
+.aq-editorial-hero-band {
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 56px 0 68px;
+}
+
+@media (max-width: 768px) {
+  .aq-editorial-hero-band {
+    padding: 36px 0 48px;
+  }
+}
+
+.aq-hero-split {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 56px;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .aq-hero-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.aq-hero-copy-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+}
+
+.aq-editorial-overline {
+  font-family: 'Cormorant Garamond', var(--serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-gold);
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.aq-editorial-overline::after {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: var(--champagne);
+}
+
+section.hero h1.hero-title {
+  font-family: var(--serif) !important;
+  font-size: clamp(2.15rem, 3.6vw, 3.35rem) !important;
+  line-height: 1.28 !important;
+  font-weight: 700 !important;
+  color: var(--ink-brown) !important;
+  margin: 0 0 20px 0 !important;
+  text-wrap: balance;
+  max-width: 19ch !important;
+}
+
+section.hero .hero-sub {
+  font-size: 1.08rem !important;
+  line-height: 1.85 !important;
+  color: var(--muted-text) !important;
+  margin: 0 0 28px 0 !important;
+  max-width: 56ch !important;
+}
+
+.aq-hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.aq-btn-burgundy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 28px;
+  background: var(--burgundy);
+  color: #FAF7F0;
+  border: 1px solid var(--burgundy);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.aq-btn-burgundy:hover {
+  background: #61232E;
+  border-color: #61232E;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.aq-btn-ivory-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 26px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink-brown);
+  border: 1px solid var(--champagne);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 0.94rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.aq-btn-ivory-outline:hover {
+  background: #FFFFFF;
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+
+/* Quick Birth Blueprint Card inside Hero (#qform) */
+.aq-hero-discovery-card {
+  width: 100%;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 10px !important;
+  padding: 24px 26px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+.aq-qform-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.aq-qform-title-row strong {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--burgundy);
+}
+
+.aq-qform-title-row span {
+  font-size: 0.78rem;
+  color: var(--muted-text);
+}
+
+section.hero form.quick#qform {
+  display: block !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.form-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr auto !important;
+  gap: 16px !important;
+  align-items: end !important;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.aq-qform-field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+.aq-qform-field label {
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  color: var(--muted-text) !important;
+}
+
+#qform input,
+#qform select {
+  width: 100% !important;
+  min-height: 44px !important;
+  padding: 9px 12px !important;
+  background: var(--ivory) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  font-family: var(--sans) !important;
+  font-size: 0.92rem !important;
+  color: var(--ink-brown) !important;
+  color-scheme: light !important;
+  transition: border-color 0.2s ease !important;
+}
+
+#qform input:focus,
+#qform select:focus {
+  outline: none !important;
+  border-color: var(--champagne) !important;
+  background: #FFFFFF !important;
+}
+
+#qform .btn-submit {
+  min-height: 44px !important;
+  padding: 10px 22px !important;
+  background: var(--ink-brown) !important;
+  color: #FAF7F0 !important;
+  border: 1px solid var(--ink-brown) !important;
+  border-radius: 6px !important;
+  font-family: var(--sans) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+#qform .btn-submit:hover {
+  background: var(--burgundy) !important;
+  border-color: var(--burgundy) !important;
+}
+
+/* Illustrated Astronomical Zodiac Wheel Column */
+.aq-hero-wheel-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.aq-celestial-wheel-frame {
+  width: min(86vw, 440px);
+  height: min(86vw, 440px);
+  border-radius: 50%;
+  padding: 18px;
+  background: radial-gradient(circle, #FFFFFF 0%, var(--cream) 72%, rgba(231, 215, 194, 0.55) 100%);
+  border: 1px solid var(--champagne);
+  box-shadow: 0 24px 60px rgba(56, 49, 45, 0.07), inset 0 0 0 8px rgba(250, 247, 240, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.aq-celestial-wheel-frame::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1px dashed rgba(198, 165, 107, 0.55);
+  pointer-events: none;
+}
+
+.aq-celestial-wheel-frame .wheel-wrap {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.aq-celestial-wheel-frame svg.wheel {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+.aq-celestial-wheel-frame svg.wheel .ln {
+  stroke: rgba(198, 165, 107, 0.55) !important;
+}
+
+.aq-celestial-wheel-frame svg.wheel .ln.strong {
+  stroke: var(--champagne) !important;
+  stroke-width: 1.25 !important;
+}
+
+.aq-celestial-wheel-frame svg.wheel .ln.faint {
+  stroke: rgba(120, 47, 59, 0.22) !important;
+}
+
+.aq-celestial-wheel-frame svg.wheel .moon {
+  fill: var(--burgundy) !important;
+  opacity: 0.88;
+}
+
+.aq-celestial-wheel-frame svg.wheel .wg text {
+  fill: var(--ink-brown) !important;
+  font-size: 22px !important;
+  transition: fill 0.2s ease !important;
+}
+
+.aq-celestial-wheel-frame svg.wheel .wg:hover text {
+  fill: var(--burgundy) !important;
+}
+
+.aq-wheel-caption {
+  margin: 16px 0 0 0 !important;
+  font-size: 0.82rem !important;
+  color: var(--muted-text) !important;
+  text-align: center !important;
+}
+
+/* ============================================================================
+   4.2 HOMEPAGE EDITORIAL CONTENT SECTIONS (A through F)
+   ============================================================================ */
+.aq-home-section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.aq-home-section.aq-bg-cream {
+  background: var(--cream);
+}
+
+.aq-home-section.aq-bg-ivory {
+  background: var(--ivory);
+}
+
+.aq-home-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 36px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(198, 165, 107, 0.35);
+}
+
+.aq-home-section-head .aq-kicker-en {
+  display: block;
+  font-family: 'Cormorant Garamond', var(--serif);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-gold);
+  margin-bottom: 6px;
+}
+
+.aq-home-section-head h2 {
+  font-family: var(--serif) !important;
+  font-size: clamp(1.75rem, 2.8vw, 2.35rem) !important;
+  font-weight: 700 !important;
+  color: var(--ink-brown) !important;
+  margin: 0 !important;
+}
+
+.aq-home-section-head p {
+  margin: 6px 0 0 0;
+  font-size: 0.96rem;
+  color: var(--muted-text);
+  max-width: 60ch;
+}
+
+/* SECTION A: YOUR COSMIC IDENTITY */
+.aq-cosmic-identity-banner {
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: var(--aq-shadow-subtle);
+  display: grid;
+  grid-template-columns: 1.1fr 2fr auto;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .aq-cosmic-identity-banner {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+}
+
+.aq-cid-intro span {
+  display: block;
+  font-family: 'Cormorant Garamond', var(--serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-gold);
+  margin-bottom: 4px;
+}
+
+.aq-cid-intro h3 {
+  font-family: var(--serif) !important;
+  font-size: 1.5rem !important;
+  color: var(--burgundy) !important;
+  margin: 0 0 6px 0 !important;
+}
+
+.aq-cid-intro p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted-text);
+  line-height: 1.65;
+}
+
+.aq-cid-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 640px) {
+  .aq-cid-pillars {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aq-cid-pillar {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink-brown);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.aq-cid-pillar:hover {
+  border-color: var(--champagne);
+  background: var(--cream);
+}
+
+.aq-cid-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid var(--border-gold);
+  color: var(--burgundy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.aq-cid-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.aq-cid-meta small {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--muted-text);
+}
+
+.aq-cid-meta strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink-brown);
+}
+
+/* SECTION B: EXPLORE YOUR SYSTEMS (5 Distinct Worlds) */
+.aq-worlds-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.aq-world-card {
+  grid-column: span 4;
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 28px 26px;
+  text-decoration: none;
+  color: var(--ink-brown);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--aq-shadow-subtle);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aq-world-card.aq-world-wide {
+  grid-column: span 6;
+}
+
+@media (max-width: 1024px) {
+  .aq-world-card,
+  .aq-world-card.aq-world-wide {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 680px) {
+  .aq-world-card,
+  .aq-world-card.aq-world-wide {
+    grid-column: span 12;
+  }
+}
+
+.aq-world-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--burgundy);
+  box-shadow: var(--aq-shadow-elevated);
+}
+
+.aq-world-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.aq-world-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-gold);
+  background: var(--cream);
+  color: var(--burgundy);
+}
+
+.aq-world-card[data-world="lifepath"] .aq-world-icon-circle {
+  background: rgba(231, 215, 194, 0.55);
+  color: #6B5335;
+}
+
+.aq-world-card[data-world="matrix"] .aq-world-icon-circle {
+  background: rgba(198, 165, 107, 0.16);
+  color: var(--burgundy);
+}
+
+.aq-world-card[data-world="compat"] .aq-world-icon-circle {
+  background: rgba(217, 183, 176, 0.35);
+  color: var(--burgundy);
+}
+
+.aq-world-card[data-world="tarot"] .aq-world-icon-circle {
+  background: rgba(120, 47, 59, 0.09);
+  color: var(--burgundy);
+}
+
+.aq-world-icon-circle svg {
+  width: 26px;
+  height: 26px;
+  stroke-width: 1.5;
+}
+
+.aq-world-en-tag {
+  font-family: 'Cormorant Garamond', var(--serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-gold);
+}
+
+.aq-world-card h3 {
+  font-family: var(--serif) !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--ink-brown) !important;
+  margin: 0 0 10px 0 !important;
+}
+
+.aq-world-card p {
+  font-size: 0.92rem !important;
+  line-height: 1.75 !important;
+  color: var(--muted-text) !important;
+  margin: 0 0 22px 0 !important;
+}
+
+.aq-world-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+/* SECTION C: THE SKY TODAY (Celestial Observatory Preview) */
+.aq-sky-today-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, rgba(220, 234, 240, 0.38) 100%);
+  border: 1px solid rgba(198, 165, 107, 0.42);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+.aq-sky-today-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .aq-sky-today-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .aq-sky-today-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aq-sky-metric-box {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.aq-sky-metric-box .aq-sky-label {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--muted-text);
+  margin-bottom: 6px;
+}
+
+.aq-sky-metric-box strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--ink-brown);
+}
+
+.aq-sky-planets-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aq-sky-Bodies-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 0.84rem;
+  color: var(--ink-brown);
+}
+
+.aq-sky-body-item,
+.aq-sky-planet-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--ivory);
+  border: 1px solid var(--border-gold);
+  color: var(--ink-brown);
+  font-size: 0.84rem;
+}
+
+.aq-sky-body-item b,
+.aq-sky-planet-pill b {
+  color: var(--burgundy);
+  font-weight: 700;
+}
+
+/* SECTION D: PERSONAL INSIGHTS */
+.aq-personal-insights-wrap {
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+/* SECTION E: EDITORIAL DISCOVERIES (Magazine Articles) */
+.aq-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .aq-editorial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aq-editorial-article-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aq-editorial-article-card:hover {
+  border-color: var(--champagne);
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+.aq-article-meta {
+  font-size: 0.76rem;
+  color: var(--muted-gold);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.aq-editorial-article-card h3 {
+  font-family: var(--serif) !important;
+  font-size: 1.38rem !important;
+  line-height: 1.35 !important;
+  color: var(--ink-brown) !important;
+  margin: 0 0 12px 0 !important;
+}
+
+.aq-editorial-article-card p {
+  font-size: 0.9rem !important;
+  line-height: 1.75 !important;
+  color: var(--muted-text) !important;
+  margin: 0 0 18px 0 !important;
+}
+
+.aq-editorial-article-card details {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.aq-editorial-article-card summary {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  cursor: pointer;
+  list-style: none;
+}
+
+.aq-editorial-article-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.aq-editorial-article-card details .aq-article-body {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  line-height: 1.85;
+  color: var(--ink-brown);
+}
+
+/* SECTION F: PREMIUM INVITATION */
+.aq-premium-invitation {
+  background: linear-gradient(135deg, #FAF7F0 0%, #F4EFE5 55%, rgba(217, 183, 176, 0.25) 100%);
+  border: 1px solid var(--champagne);
+  border-radius: 12px;
+  padding: 40px 44px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+@media (max-width: 720px) {
+  .aq-premium-invitation {
+    padding: 28px 22px;
+  }
+}
+
+.aq-premium-copy {
+  max-width: 640px;
+}
+
+.aq-premium-copy h3 {
+  font-family: var(--serif) !important;
+  font-size: 1.85rem !important;
+  color: var(--burgundy) !important;
+  margin: 6px 0 10px 0 !important;
+}
+
+.aq-premium-copy p {
+  margin: 0;
+  font-size: 0.96rem;
+  color: var(--muted-text);
+  line-height: 1.8;
+}
+
+/* ============================================================================
+   5. QUICK BLUEPRINT RESULTS (#quick.qres)
+   ============================================================================ */
+section.qres#quick[hidden] {
+  display: none !important;
+}
+
+section.qres#quick:not([hidden]) {
+  display: block !important;
+  padding: 48px 0 !important;
+  background: var(--cream) !important;
+  border-bottom: 1px solid var(--border-gold) !important;
+}
+
+.aq-qres-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+section.qres#quick #qtitle {
+  font-family: var(--serif) !important;
+  font-size: 1.85rem !important;
+  font-weight: 700 !important;
+  color: var(--burgundy) !important;
+  margin: 0 !important;
+}
+
+section.qres#quick .qnote {
+  font-size: 0.92rem !important;
+  color: var(--muted-text) !important;
+  margin: 0 !important;
+}
+
+section.qres#quick .qgrid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 22px !important;
+}
+
+@media (max-width: 900px) {
+  section.qres#quick .qgrid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+section.qres#quick article.qt {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 26px !important;
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+section.qres#quick article.qt .k {
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  color: var(--muted-gold) !important;
+}
+
+section.qres#quick article.qt .nb,
+section.qres#quick article.qt .sg2 {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 38px !important;
+  height: 38px !important;
+  padding: 0 8px !important;
+  border-radius: 50% !important;
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+}
+
+section.qres#quick article.qt h3.big {
+  font-family: var(--serif) !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: var(--ink-brown) !important;
+  margin: 10px 0 8px 0 !important;
+}
+
+section.qres#quick article.qt p {
+  font-size: 0.9rem !important;
+  line-height: 1.7 !important;
+  color: var(--muted-text) !important;
+  margin: 0 0 20px 0 !important;
+  flex: 1 !important;
+}
+
+section.qres#quick article.qt button[data-qopen] {
+  width: 100% !important;
+  padding: 12px 18px !important;
+  background: var(--burgundy) !important;
+  border: 1px solid var(--burgundy) !important;
+  color: #FAF7F0 !important;
+  border-radius: 6px !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+section.qres#quick article.qt button[data-qopen]:hover {
+  background: var(--ink-brown) !important;
+  border-color: var(--ink-brown) !important;
+}
+
+/* ============================================================================
+   6. INNER SECTIONS & DISTINCT PAGE PERSONALITIES
+   ============================================================================ */
+section.sec,
+section.sec.alt {
+  padding: 64px 0 88px !important;
+  background: var(--ivory) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Distinct Page Personality Backgrounds & Accents */
+section#sky {
+  background: linear-gradient(180deg, #FAF7F0 0%, rgba(220, 234, 240, 0.32) 50%, #FAF7F0 100%) !important;
+}
+
+section#chart {
+  background: linear-gradient(180deg, #FAF7F0 0%, #F4EFE5 100%) !important;
+}
+
+section#matrix {
+  background: radial-gradient(circle at 50% 0%, rgba(198, 165, 107, 0.1), transparent 55%), #FAF7F0 !important;
+}
+
+section#lifepath {
+  background: linear-gradient(180deg, #FAF7F0 0%, rgba(231, 215, 194, 0.35) 100%) !important;
+}
+
+section#compat,
+section#life-path-synastry {
+  background: linear-gradient(180deg, #FAF7F0 0%, rgba(217, 183, 176, 0.22) 100%) !important;
+}
+
+section#tarot-chamber {
+  background: linear-gradient(180deg, #F4EFE5 0%, #FAF7F0 100%) !important;
+}
+
+section#account {
+  background: var(--cream) !important;
+}
+
+section.sec > .wrap > a.sheet-x {
+  display: none !important;
+}
+
+.aq-section-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.aq-back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-brown);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border-gold);
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.aq-back-home-btn:hover {
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+
+.aq-section-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.aq-section-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  color: var(--muted-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.aq-section-pill:hover {
+  color: var(--burgundy);
+  border-color: var(--champagne);
+}
+
+.aq-section-pill.active {
+  background: var(--burgundy);
+  color: #FAF7F0;
+  border-color: var(--burgundy);
+}
+
+section.sec .center,
+.aq-tarot-chamber-header,
+.tarot-header {
+  text-align: start !important;
+  max-width: 820px !important;
+  margin: 0 0 36px 0 !important;
+}
+
+section.sec .eyebrow,
+.tarot-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: 'Cormorant Garamond', var(--serif) !important;
+  font-size: 0.84rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: var(--muted-gold) !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+section.sec h2,
+.tarot-title,
+.workbench-main-title {
+  font-family: var(--serif) !important;
+  font-size: clamp(2rem, 3.4vw, 2.75rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.22 !important;
+  color: var(--burgundy) !important;
+  margin: 0 0 12px 0 !important;
+  text-shadow: none !important;
+}
+
+section.sec p.intro,
+.tarot-subtitle,
+.workbench-desc {
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+  color: var(--muted-text) !important;
+  margin: 0 !important;
+  max-width: 68ch !important;
+}
+
+/* ============================================================================
+   7. FORMS, INPUTS, SELECTS & BUTTONS
+   ============================================================================ */
+form.cform,
+.consult-config-bar,
+.workbench-config-bar,
+.syn-form {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 12px !important;
+  padding: 36px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+  margin: 0 0 36px 0 !important;
+  max-width: 860px !important;
+}
+
+@media (max-width: 640px) {
+  form.cform,
+  .consult-config-bar,
+  .workbench-config-bar,
+  .syn-form {
+    padding: 24px 18px !important;
+  }
+}
+
+.field label,
+.workbench-form-group label {
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: var(--ink-brown) !important;
+  margin-bottom: 6px !important;
+}
+
+form.cform input:not([type="checkbox"]):not([type="radio"]),
+form.cform select,
+form.cform textarea,
+.syn-form input,
+.syn-form select,
+.workbench-select,
+.workbench-input,
+.search-input,
+#sky-date {
+  width: 100% !important;
+  min-height: 46px !important;
+  padding: 10px 14px !important;
+  background: var(--ivory) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--ink-brown) !important;
+  font-family: var(--sans) !important;
+  font-size: 0.95rem !important;
+  box-shadow: none !important;
+  color-scheme: light !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+form.cform input:focus,
+form.cform select:focus,
+form.cform textarea:focus,
+.syn-form input:focus,
+.syn-form select:focus {
+  outline: none !important;
+  border-color: var(--champagne) !important;
+  background: #FFFFFF !important;
+}
+
+.btn,
+.workbench-btn-primary,
+.acct-submit-btn,
+.acct-primary-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  min-height: 48px !important;
+  padding: 13px 32px !important;
+  background: var(--burgundy) !important;
+  color: #FAF7F0 !important;
+  border: 1px solid var(--burgundy) !important;
+  border-radius: 8px !important;
+  font-family: var(--sans) !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.18s ease !important;
+}
+
+.btn:hover,
+.workbench-btn-primary:hover,
+.acct-submit-btn:hover {
+  background: var(--ink-brown) !important;
+  border-color: var(--ink-brown) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn.ghost,
+.workbench-btn-secondary {
+  background: #FFFFFF !important;
+  color: var(--ink-brown) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.btn.ghost:hover,
+.workbench-btn-secondary:hover {
+  background: var(--cream) !important;
+  border-color: var(--burgundy) !important;
+  color: var(--burgundy) !important;
+}
+
+.aq-autofill-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 22px;
+  background: var(--cream);
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  color: var(--ink-brown);
+}
+
+.aq-autofill-btn {
+  padding: 7px 14px;
+  background: var(--burgundy);
+  border: 1px solid var(--burgundy);
+  border-radius: 6px;
+  color: #FAF7F0;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.aq-autofill-btn:hover {
+  background: var(--ink-brown);
+  border-color: var(--ink-brown);
+}
+
+/* ============================================================================
+   8. THE SKY / السماء (#sky) — THE CELESTIAL OBSERVATORY
+   ============================================================================ */
+.sky-ctl {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+.sky-moon,
+.sky-panel,
+.sky-asp {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 12px !important;
+  padding: 28px !important;
+  margin-bottom: 22px !important;
+  color: var(--ink-brown) !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+#sky .chips button,
+#picker button {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--ink-brown) !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+#sky .chips button.on,
+#sky .chips button:hover,
+#picker button.on,
+#picker button:hover {
+  background: var(--burgundy) !important;
+  border-color: var(--burgundy) !important;
+  color: #FAF7F0 !important;
+}
+
+.aq-observatory-subgrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+  .aq-observatory-subgrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aq-obs-feature-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+.aq-obs-feature-box h3 {
+  font-family: var(--serif) !important;
+  font-size: 1.35rem !important;
+  color: var(--burgundy) !important;
+  margin: 0 0 8px 0 !important;
+}
+
+.aq-obs-feature-box p {
+  font-size: 0.9rem;
+  color: var(--muted-text);
+  line-height: 1.75;
+  margin: 0 0 14px 0;
+}
+
+/* ============================================================================
+   9. NATAL CHART RESULTS (#result) — THE PERSONAL CELESTIAL ATLAS
+   ============================================================================ */
+.result {
+  max-width: 1020px !important;
+  margin: 36px 0 0 0 !important;
+}
+
+.res-head h3 {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+.res-head p {
+  color: var(--muted-text) !important;
+}
+
+.big3 .b3 {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+  color: var(--ink-brown) !important;
+  padding: 22px 16px !important;
+}
+
+.big3 .b3:hover {
+  border-color: var(--burgundy) !important;
+}
+
+.big3 .b3g {
+  color: var(--burgundy) !important;
+  background: var(--cream) !important;
+  text-shadow: none !important;
+}
+
+.big3 .b3l {
+  color: var(--muted-text) !important;
+}
+
+.big3 .b3 strong {
+  color: var(--ink-brown) !important;
+  font-family: var(--serif) !important;
+}
+
+.wheel-card,
+.wpanel,
+.aspects-box,
+.chart-summary-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+  color: var(--ink-brown) !important;
+}
+
+.wtab {
+  background: var(--ivory) !important;
+  color: var(--muted-text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+}
+
+.wtab.on {
+  background: var(--burgundy) !important;
+  color: #FAF7F0 !important;
+  border-color: var(--burgundy) !important;
+}
+
+.aq-reading-action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  margin-bottom: 24px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 10px;
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+.aq-reading-badge {
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--burgundy);
+}
+
+.aq-save-reading-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  border: 1px solid var(--burgundy);
+  background: var(--burgundy);
+  color: #FAF7F0;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.aq-save-reading-btn:hover {
+  background: var(--ink-brown);
+  border-color: var(--ink-brown);
+}
+
+.aq-save-reading-btn.is-saved {
+  border-color: var(--aq-success);
+  background: var(--aq-success);
+  color: #FFFFFF;
+}
+
+.aq-chapter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px;
+  margin: 24px 0;
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 10px;
+}
+
+.aq-chapter-chip {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--ivory);
+  color: var(--muted-text);
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.aq-chapter-chip:hover {
+  color: var(--burgundy);
+  border-color: var(--champagne);
+}
+
+.aq-chapter-chip.active {
+  background: var(--burgundy);
+  color: #FAF7F0;
+  border-color: var(--burgundy);
+}
+
+article.rd,
+.matrix-card,
+.lp-sec,
+.syn-card,
+.consult-result-card,
+.lp-start-card {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 12px !important;
+  padding: 32px !important;
+  margin-bottom: 20px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+  color: var(--ink-brown) !important;
+}
+
+article.rd h3,
+.matrix-card h3,
+.lp-sec h3 {
+  font-family: var(--serif) !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: var(--burgundy) !important;
+  margin: 0 0 14px 0 !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+article.rd p,
+.matrix-card p,
+.lp-sec p,
+.consult-voice-text {
+  font-size: 0.98rem !important;
+  line-height: 1.85 !important;
+  color: var(--ink-brown) !important;
+  max-width: 72ch !important;
+}
+
+/* ============================================================================
+   10. DESTINY MATRIX (#matrix) — LIGHT IVORY GEOMETRY OVERRIDES
+   ============================================================================ */
+.aqm-shell {
+  background: #FFFFFF !important;
+  color: var(--ink-brown) !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+.aqm-header h2,
+.aqm-hero h3,
+.aqm-card h3,
+.aqm-section-heading h3,
+.aqm-group-header h4,
+.aqm-destiny-section h3,
+.aqm-lifepath-head h3,
+.aqm-life-path-heading h3 {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+.aqm-header p,
+.aqm-method,
+.aqm-disclaimer,
+.aqm-section-heading p,
+.aqm-health-note,
+.aqm-group-header p,
+.aqm-lifepath-disclaimer {
+  color: var(--muted-text) !important;
+}
+
+.aqm-tabs {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 10px !important;
+}
+
+.aqm-tabs button {
+  color: var(--muted-text) !important;
+}
+
+.aqm-tabs button[aria-selected="true"] {
+  background: var(--burgundy) !important;
+  color: #FAF7F0 !important;
+  border-color: var(--burgundy) !important;
+}
+
+.aqm-hero {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.aqm-number {
+  background: #FFFFFF !important;
+  border: 1.5px solid var(--champagne) !important;
+  color: var(--burgundy) !important;
+  box-shadow: none !important;
+}
+
+.aqm-tags span,
+.aqm-destiny-badge,
+.aqm-age-pill,
+.aqm-badge-outline {
+  background: var(--ivory) !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--burgundy) !important;
+}
+
+.aqm-card,
+.aqm-deep-section,
+.aqm-destiny-section,
+.aqm-lifepath-island,
+.aqm-life-path-profile,
+.aqm-life-path-copy,
+.aqm-pos-item,
+.aqm-track-box,
+.aqm-age-node,
+.aqm-node-list article,
+.aqm-details {
+  background: var(--ivory) !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--ink-brown) !important;
+  box-shadow: none !important;
+}
+
+.aqm-octagon {
+  fill: #FAF7F0 !important;
+  stroke: var(--champagne) !important;
+  filter: drop-shadow(0 8px 20px rgba(56, 49, 45, 0.08)) !important;
+}
+
+.aqm-diagonal {
+  stroke: rgba(56, 49, 45, 0.2) !important;
+}
+
+.aqm-age-node-dot circle {
+  fill: #FFFFFF !important;
+  stroke: var(--champagne) !important;
+}
+
+.aqm-age-node-dot text {
+  fill: var(--ink-brown) !important;
+}
+
+.aqm-reading,
+.aqm-chakra-copy,
+.aqm-cheat-sheet {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border) !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqm-reading b,
+.aqm-lines b,
+.aqm-node-list b,
+.aqm-chakra-copy b,
+.aqm-pos-item h5,
+.aqm-track-box h5,
+.aqm-pillar h4,
+.aqm-life-path-copy h4,
+.aqm-age-node b {
+  color: var(--burgundy) !important;
+}
+
+.aqm-reading p,
+.aqm-lines p,
+.aqm-node-list p,
+.aqm-node-list small,
+.aqm-chakra-copy p,
+.aqm-pos-item p,
+.aqm-track-box p,
+.aqm-lineage-card p,
+.aqm-pillar p,
+.aqm-life-path-copy p,
+.aqm-cheat-table td {
+  color: var(--ink-brown) !important;
+  border-bottom-color: var(--border) !important;
+}
+
+.aqm-cheat-sheet h4,
+.aqm-cheat-table td b,
+#lpresult .aqm-cheat-table td b {
+  color: var(--burgundy) !important;
+  font-weight: 700 !important;
+}
+
+.aqm-chakra-table {
+  background: #FFFFFF !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqm-chakra-table thead th,
+.aqm-cheat-table th {
+  background: var(--cream) !important;
+  color: var(--burgundy) !important;
+  border-bottom: 1px solid var(--border-gold) !important;
+}
+
+.aqm-chakra-table tbody td,
+.aqm-chakra-toggle {
+  color: var(--ink-brown) !important;
+}
+
+.aqm-cat-tab {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqm-cat-tab.is-active {
+  background: var(--burgundy) !important;
+  border-color: var(--burgundy) !important;
+  color: #FAF7F0 !important;
+}
+
+.aqm-cat-tab.is-active .aqm-cat-text small {
+  color: var(--cream) !important;
+}
+
+.aqm-nav-pill {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqm-nav-pill.is-active,
+.aqm-nav-pill:hover {
+  background: var(--burgundy) !important;
+  border-color: var(--burgundy) !important;
+  color: #FAF7F0 !important;
+}
+
+/* ============================================================================
+   11. COMPATIBILITY (#compat) & EXTENDED CHARTS (#astro-maps) — LIGHT OVERRIDES
+   ============================================================================ */
+.cp-res,
+.eam-result,
+.eam-control {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--ink-brown) !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+.cp-result-head h3,
+.cp-section-heading h4,
+.eam-result-head h3,
+.eam-card h4,
+.eam-event h4 {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+.cp-overview-copy,
+.cp-indicators article,
+.cp-res .sx,
+.cp-composite-chip,
+.eam-result .eam-card,
+.eam-pillar,
+.eam-event {
+  background: var(--ivory) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--ink-brown) !important;
+}
+
+.cp-overview-copy p,
+.cp-indicators span,
+.cp-accordion>summary,
+.cp-accordion-body ul,
+.cp-composite-chip span,
+.eam-table,
+.eam-aspects,
+.eam-prose {
+  color: var(--ink-brown) !important;
+}
+
+.cp-indicators strong,
+.cp-composite-chip strong,
+.eam-pillar strong,
+.eam-prose b {
+  color: var(--burgundy) !important;
+}
+
+.cp-wheel-host {
+  background: radial-gradient(circle, #FFFFFF 0%, var(--cream) 80%) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.aq-wheel-center {
+  fill: #FAF7F0 !important;
+  stroke: var(--champagne) !important;
+}
+
+.aq-wheel-center-title,
+.aq-wheel-sign,
+.aq-wheel-angle-label {
+  fill: var(--burgundy) !important;
+  filter: none !important;
+}
+
+.aq-wheel-planet-dot {
+  fill: #FFFFFF !important;
+  stroke: var(--champagne) !important;
+}
+
+.aq-wheel-planet-glyph {
+  fill: var(--ink-brown) !important;
+}
+
+.aq-wheel-degree {
+  fill: var(--muted-text) !important;
+  stroke: #FFFFFF !important;
+}
+
+/* ============================================================================
+   12. TAROT CHAMBER (#tarot-chamber) — COLLECTIBLE ARTISTIC LIGHT THEME
+   ============================================================================ */
+.workbench-status-banner {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 10px !important;
+  padding: 14px 20px !important;
+  color: var(--ink-brown) !important;
+  margin-bottom: 24px !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.workbench-status-banner .spread-title {
+  color: var(--burgundy) !important;
+  font-weight: 700 !important;
+}
+
+.consult-role-pill {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+.consult-role-pill .role-ar {
+  color: var(--burgundy) !important;
+}
+
+.consult-role-pill .role-en {
+  color: var(--muted-text) !important;
+}
+
+/* Collectible Ivory & Burgundy Tarot Cards */
+.card-inner {
+  box-shadow: 0 16px 36px rgba(56, 49, 45, 0.12) !important;
+}
+
+.card-back {
+  background: linear-gradient(145deg, #FAF7F0 0%, #F4EFE5 100%) !important;
+  color: var(--burgundy) !important;
+  border: 2px solid var(--champagne) !important;
+  box-shadow: inset 0 0 0 6px #FFFFFF, inset 0 0 0 7px rgba(198, 165, 107, 0.45) !important;
+}
+
+.card-back .cosmic-seal {
+  border-color: var(--champagne) !important;
+  color: var(--burgundy) !important;
+  background: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(198, 165, 107, 0.2) !important;
+}
+
+.card-back-hint {
+  color: var(--muted-text) !important;
+}
+
+.card-front {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF7F0 100%) !important;
+  border: 2px solid var(--champagne) !important;
+  color: var(--ink-brown) !important;
+}
+
+.card-title {
+  color: var(--burgundy) !important;
+}
+
+.card-desc {
+  color: var(--ink-brown) !important;
+}
+
+.consult-report-title,
+.consult-card-names .name-ar {
+  color: var(--burgundy) !important;
+}
+
+.consult-slot-ar {
+  color: var(--ink-brown) !important;
+}
+
+.consult-slot-num {
+  background: var(--cream) !important;
+  border-color: var(--champagne) !important;
+  color: var(--burgundy) !important;
+}
+
+.consult-voice-box {
+  background: var(--ivory) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.consult-voice-header .voice-title {
+  color: var(--burgundy) !important;
+}
+
+.consult-inquiry-box {
+  background: rgba(217, 183, 176, 0.18) !important;
+  border: 1px solid rgba(120, 47, 59, 0.25) !important;
+}
+
+.consult-inquiry-header .inquiry-title {
+  color: var(--burgundy) !important;
+}
+
+.consult-inquiry-text {
+  color: var(--ink-brown) !important;
+}
+
+.consult-action-box {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.consult-action-header .action-title {
+  color: var(--burgundy) !important;
+}
+
+.consult-action-text {
+  color: var(--ink-brown) !important;
+}
+
+.consult-transition-cta {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.consult-transition-cta h4 {
+  color: var(--burgundy) !important;
+}
+
+/* ============================================================================
+   13. ACCOUNT & PERSONAL DOSSIER (#account)
+   ============================================================================ */
+.acct-card-shell {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 14px !important;
+  padding: 40px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+  color: var(--ink-brown) !important;
+}
+
+@media (max-width: 640px) {
+  .acct-card-shell {
+    padding: 24px 18px !important;
+  }
+}
+
+.acct-brand-seal {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--burgundy) !important;
+  margin-bottom: 14px !important;
+}
+
+.acct-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: var(--cream);
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border-gold);
+  margin: 18px 0 24px;
+}
+
+.acct-tabs button {
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--muted-text);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.acct-tabs button[aria-selected="true"] {
+  background: var(--burgundy);
+  color: #FAF7F0;
+}
+
+.btn-google {
+  width: 100% !important;
+  background: #FFFFFF !important;
+  color: var(--ink-brown) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.btn-google:hover {
+  background: var(--cream) !important;
+  border-color: var(--burgundy) !important;
+}
+
+.profile-completion {
+  background: var(--ivory) !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 12px !important;
+  padding: 28px !important;
+  margin: 24px 0 !important;
+}
+
+.profile-completion h3,
+.profile-section-title h4 {
+  font-family: var(--serif) !important;
+  color: var(--burgundy) !important;
+}
+
+.aq-identity-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid var(--border-gold);
+  border-radius: 10px;
+  background: var(--ivory);
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+@media (max-width: 820px) {
+  .aq-identity-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .aq-identity-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aq-id-metric {
+  padding: 18px 20px;
+  border-inline-end: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aq-id-metric:last-child {
+  border-inline-end: 0;
+}
+
+.aq-id-metric-label {
+  font-size: 0.74rem;
+  color: var(--muted-text);
+}
+
+.aq-id-metric-val {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--burgundy);
+}
+
+.aq-dash-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+
+@media (max-width: 820px) {
+  .aq-dash-shortcuts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.aq-dash-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-gold);
+  background: var(--ivory);
+  color: var(--ink-brown);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.aq-dash-shortcut svg {
+  width: 18px;
+  height: 18px;
+  color: var(--burgundy);
+  flex-shrink: 0;
+}
+
+.aq-dash-shortcut:hover {
+  border-color: var(--burgundy);
+  background: var(--cream);
+}
+
+.aq-library-panel {
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  background: var(--ivory);
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.aq-library-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--burgundy);
+  margin: 0;
+}
+
+.aq-lib-search {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--ink-brown);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  margin: 14px 0 12px;
+}
+
+.aq-lib-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.aq-lib-filter-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  color: var(--muted-text);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.aq-lib-filter-btn.active {
+  background: var(--burgundy);
+  color: #FAF7F0;
+  border-color: var(--burgundy);
+}
+
+.aq-lib-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.aq-lib-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border-gold);
+  background: #FFFFFF;
+}
+
+.aq-lib-card-title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--burgundy);
+  margin: 6px 0;
+}
+
+.aq-lib-card-sub {
+  font-size: 0.84rem;
+  color: var(--muted-text);
+  margin: 0 0 16px 0;
+}
+
+.aq-lib-open-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--burgundy);
+  background: var(--burgundy);
+  color: #FAF7F0;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.aq-lib-open-btn:hover {
+  background: var(--ink-brown);
+  border-color: var(--ink-brown);
+}
+
+/* ============================================================================
+   14. FOOTER & TOAST NOTIFICATIONS
+   ============================================================================ */
+footer.foot {
+  background: var(--cream) !important;
+  border-top: 1px solid var(--border-gold) !important;
+  padding: 48px 0 40px !important;
+  color: var(--muted-text) !important;
+}
+
+.aq-toast {
+  position: fixed;
+  bottom: 76px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  z-index: 250;
+  background: var(--ink-brown);
+  color: #FAF7F0;
+  border: 1px solid var(--champagne);
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  box-shadow: var(--aq-shadow-elevated);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.aq-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ============================================================================
+   15. IVORY DESTINY MATRIX OCTAGRAM SVG NODES & CHANNELS
+   ============================================================================ */
+.aqm-svg {
+  background: transparent !important;
+  border-radius: 20px !important;
+  box-shadow: 0 12px 32px rgba(56, 49, 45, 0.08) !important;
+}
+
+.aqm-node {
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+
+.aqm-node circle {
+  fill: #FFFDF9 !important;
+  stroke: #B89960 !important;
+  stroke-width: 1.8px !important;
+  filter: url(#aqm-glow);
+}
+
+.aqm-node text {
+  fill: var(--ink-brown) !important;
+  font-family: var(--sans) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  pointer-events: none;
+}
+
+.aqm-node.is-center circle {
+  fill: var(--burgundy) !important;
+  stroke: #C6A56B !important;
+  stroke-width: 2.6px !important;
+  filter: url(#aqm-sun-glow);
+}
+
+.aqm-node.is-center text {
+  fill: #FAF7F0 !important;
+  font-size: 16px !important;
+}
+
+.aqm-node.is-cardinal circle {
+  fill: #FAF7F0 !important;
+  stroke: var(--burgundy) !important;
+  stroke-width: 2.2px !important;
+}
+
+.aqm-node.is-cardinal text {
+  fill: var(--burgundy) !important;
+  font-size: 14px !important;
+}
+
+.aqm-node.is-ancestral circle {
+  fill: #F4EFE5 !important;
+  stroke: var(--ink-brown) !important;
+  stroke-width: 1.8px !important;
+}
+
+.aqm-node.is-ancestral text {
+  fill: var(--ink-brown) !important;
+  font-size: 13px !important;
+}
+
+.aqm-node.is-love circle {
+  fill: #FAF0F1 !important;
+  stroke: var(--burgundy) !important;
+  stroke-width: 2px !important;
+}
+
+.aqm-node.is-love text {
+  fill: var(--burgundy) !important;
+}
+
+.aqm-node.is-money circle {
+  fill: #F2F6F3 !important;
+  stroke: #4E6E58 !important;
+  stroke-width: 2px !important;
+}
+
+.aqm-node.is-money text {
+  fill: #2E4B38 !important;
+}
+
+.aqm-node.is-karmic circle {
+  fill: #F4EFE5 !important;
+  stroke: #782F3B !important;
+  stroke-dasharray: 2 2;
+}
+
+.aqm-node.is-active circle,
+.aqm-node:hover circle {
+  stroke: var(--burgundy) !important;
+  stroke-width: 2.8px !important;
+}
+
+.aqm-age-node-dot.is-current circle {
+  fill: var(--burgundy) !important;
+  stroke: #C6A56B !important;
+  stroke-width: 2px !important;
+}
+
+.aqm-age-text {
+  fill: var(--muted-text) !important;
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  text-anchor: middle;
+}
+
+/* ============================================================================
+   16. HOMEPAGE DOSSIER COMPARISON & LIFE PATH PINNACLES / NAME READINGS
+   ============================================================================ */
+.aq-dossier-comparison-wrap {
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+.aq-tier-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 22px 0 18px;
+}
+
+@media (max-width: 768px) {
+  .aq-tier-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aq-tier-card {
+  background: #FAF7F0;
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.aq-tier-card.is-featured {
+  background: #FFFFFF;
+  border: 1.5px solid var(--burgundy);
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+.aq-tier-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background: var(--cream);
+  border: 1px solid var(--border-gold);
+  color: var(--ink-brown);
+  font-size: 0.76rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.aq-tier-badge.is-burgundy {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: #FAF7F0;
+}
+
+.aq-tier-card h4 {
+  font-family: var(--serif) !important;
+  font-size: 1.3rem !important;
+  color: var(--burgundy) !important;
+  margin: 0 0 12px 0 !important;
+}
+
+.aq-tier-card ul {
+  margin: 0;
+  padding-inline-start: 18px;
+  color: var(--ink-brown);
+  font-size: 0.92rem;
+  line-height: 1.85;
+}
+
+.aq-lp-mode-switcher {
+  margin-bottom: 20px !important;
+}
+
+.lp-start-card.is-active {
+  border-color: var(--burgundy) !important;
+  background: #FAF7F0 !important;
+}
+
+/* Life Path Number Badge & Daily Energy Card — Ivory & Gold Unification */
+#lpresult .numbadge,
+.numbadge {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF7F0 100%) !important;
+  border: 2px solid var(--champagne) !important;
+  color: var(--burgundy) !important;
+  box-shadow: 0 10px 28px rgba(197, 160, 89, 0.18), inset 0 0 0 4px #FAF7F0, inset 0 0 0 5px rgba(197, 160, 89, 0.35) !important;
+}
+
+#lpresult .daily,
+.daily {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FAF7F0 100%) !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+  color: var(--ink-brown) !important;
+}
+
+#lpresult .daily h4,
+.daily h4 {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+#lpresult .dd div,
+.dd div {
+  background: var(--ivory) !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 10px !important;
+  color: var(--ink-brown) !important;
+}
+
+#lpresult .dd small,
+.dd small {
+  color: var(--muted-text) !important;
+}
+
+#lpresult .dd b,
+.dd b {
+  color: var(--burgundy) !important;
+}
+
+/* Pinnacles & Challenges + Name Readings — Ivory & Gold Unification */
+.pc-section,
+.pc-card,
+.nr-card,
+.nr-section,
+.aqeq-pc-card,
+.aqeq-pc-debts,
+.aqeq-name-group,
+.aqeq-extra-card,
+.aqeq-personal-year {
+  background: #FFFFFF !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 12px !important;
+  color: var(--ink-brown) !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+.aqeq-reading-card,
+.aqeq-personal-year-section,
+.aqeq-pc-empty,
+.aqeq-name-status {
+  background: var(--ivory) !important;
+  border: 1px solid var(--border-gold) !important;
+  border-radius: 10px !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqeq-name-error {
+  background: #FDF4F5 !important;
+  border-color: rgba(120, 47, 59, 0.35) !important;
+  color: var(--burgundy) !important;
+}
+
+.aqeq-pc-wrap,
+.aqeq-name-readings,
+.aqeq-extra-numbers {
+  color: var(--ink-brown) !important;
+  border-top-color: var(--border-gold) !important;
+}
+
+.aqeq-pc-debt,
+.aqeq-extra-deep-section {
+  border-top: 1px solid var(--border) !important;
+}
+
+.pc-section h3,
+.pc-card h4,
+.nr-card h4,
+.nr-section h3,
+.aqeq-pc-heading h3,
+.aqeq-pc-card h4,
+.aqeq-pc-copy h5,
+.aqeq-name-heading h3,
+.aqeq-extra-heading h3,
+.aqeq-name-group header h4,
+.aqeq-reading-card h5,
+.aqeq-extra-card h4,
+.aqeq-extra-card h5,
+.aqeq-personal-year h4,
+.aqeq-personal-year h5,
+.aqeq-personal-year-section h5,
+.aqeq-extra-deep-section h5 {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+.aqeq-name-kicker,
+.aqeq-pc-eyebrow,
+.aqeq-extra-eyebrow {
+  color: var(--muted-gold) !important;
+  font-weight: 700 !important;
+}
+
+.aqeq-pc-heading p,
+.aqeq-pc-note,
+.aqeq-name-heading p,
+.aqeq-extra-heading p,
+.aqeq-name-group header p,
+.aqeq-extra-source-subtitle,
+.aqeq-extra-note {
+  color: var(--muted-text) !important;
+}
+
+.aqeq-pc-copy,
+.aqeq-pc-copy p,
+.aqeq-reading-content,
+.aqeq-reading-content p,
+.aqeq-reading-content li,
+.aqeq-extra-copy,
+.aqeq-extra-copy p,
+.aqeq-extra-deep-section p,
+.aqeq-extra-reflection {
+  color: var(--ink-brown) !important;
+}
+
+.aqeq-pc-copy strong,
+.aqeq-reading-content strong,
+.aqeq-extra-copy strong {
+  color: var(--burgundy) !important;
+  font-weight: 700 !important;
+}
+
+.aqeq-pc-number,
+.aqeq-name-number,
+.aqeq-extra-number {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--burgundy) !important;
+}
+
+.aqeq-pc-period,
+.aqeq-card-index {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqeq-extra-reflection {
+  background: var(--cream) !important;
+  border-inline-start: 3px solid var(--champagne) !important;
+}
+
+/* ============================================================================
+   18. MULTI-LAYER HERO ASTROLOGICAL WHEEL & LIVING ORBITS
+   ============================================================================ */
+.wheel {
+  overflow: visible !important;
+  filter: drop-shadow(0 16px 36px rgba(107, 38, 61, 0.08)) !important;
+}
+
+.wheel .spin-a {
+  transform-box: view-box;
+  transform-origin: 200px 200px;
+  animation: aqWheelRotateCW 180s linear infinite !important;
+}
+
+.wheel .spin-b {
+  transform-box: view-box;
+  transform-origin: 200px 200px;
+  animation: aqWheelRotateCCW 240s linear infinite !important;
+}
+
+.wheel .pw-orbit-layer {
+  transform-box: view-box;
+  transform-origin: 200px 200px;
+  animation: aqWheelRotateCW 320s linear infinite !important;
+}
+
+.wheel .pw-sun-focal {
+  transform-box: view-box;
+  transform-origin: 200px 200px;
+  animation: aqSunPulseRotate 95s linear infinite !important;
+}
+
+@keyframes aqWheelRotateCW {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes aqWheelRotateCCW {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes aqSunPulseRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.03); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheel .spin-a,
+  .wheel .spin-b,
+  .wheel .pw-orbit-layer,
+  .wheel .pw-sun-focal {
+    animation: none !important;
+  }
+}
+
+/* ============================================================================
+   19. DESTINY MATRIX — UNIFIED IVORY CELESTIAL EDITORIAL OVERRIDES
+   ============================================================================ */
+.aqm-paradox-box,
+.aqm-somatic-box,
+.aqm-reflective-box,
+.aqm-protocol-box,
+.aqm-taboo-box,
+.aqm-karmic-box,
+.aqm-track-item,
+.aqm-age-banner,
+.aqm-confrontation-box,
+.aqm-roadmap-notice,
+.aqm-roadmap-details {
+  background: var(--surface) !important;
+  color: var(--ink-brown) !important;
+  border: 1px solid var(--border-gold) !important;
+  box-shadow: var(--aq-shadow-subtle) !important;
+}
+
+.aqm-paradox-box {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF5EC 100%) !important;
+  border-inline-start: 3px solid var(--burgundy) !important;
+}
+
+.aqm-paradox-box strong,
+.aqm-somatic-box strong,
+.aqm-protocol-box strong,
+.aqm-taboo-box strong,
+.aqm-karmic-box strong,
+.aqm-track-item strong {
+  color: var(--burgundy) !important;
+  font-weight: 700 !important;
+}
+
+.aqm-paradox-box p,
+.aqm-somatic-box p,
+.aqm-protocol-box p,
+.aqm-taboo-box p,
+.aqm-karmic-box p,
+.aqm-track-item p {
+  color: var(--ink-brown) !important;
+}
+
+.aqm-reflective-box {
+  background: var(--cream) !important;
+  color: var(--burgundy) !important;
+  border: 1px dashed var(--champagne) !important;
+  font-family: var(--serif) !important;
+}
+
+.aqm-protocol-box {
+  background: #F6FAF7 !important;
+  border-color: rgba(59, 110, 82, 0.28) !important;
+  border-inline-start: 3px solid var(--aq-success) !important;
+}
+
+.aqm-protocol-box strong {
+  color: var(--aq-success) !important;
+}
+
+.aqm-taboo-box {
+  background: #FCF6F6 !important;
+  border-color: rgba(155, 51, 62, 0.28) !important;
+  border-inline-start: 3px solid var(--aq-danger) !important;
+}
+
+.aqm-taboo-box strong {
+  color: var(--aq-danger) !important;
+}
+
+.aqm-karmic-box {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F2E8 100%) !important;
+  border-inline-start: 3px solid var(--champagne) !important;
+}
+
+.aqm-age-banner {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F5F0E6 100%) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+.aqm-age-badge span {
+  color: var(--muted-text) !important;
+}
+
+.aqm-age-badge strong {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+.aqm-age-copy h4 {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+.aqm-age-copy p {
+  color: var(--ink-brown) !important;
+}
+
+.aqm-confrontation-box {
+  background: linear-gradient(135deg, #FCF8F5 0%, #FFFFFF 100%) !important;
+  border: 1px solid var(--border-burgundy) !important;
+  border-inline-start: 4px solid var(--burgundy) !important;
+}
+
+.aqm-confrontation-header span {
+  color: var(--burgundy) !important;
+}
+
+.aqm-confrontation-header h4 {
+  color: var(--burgundy) !important;
+  font-family: var(--serif) !important;
+}
+
+.aqm-confrontation-box p {
+  color: var(--ink-brown) !important;
+}
+
+.aqm-confrontation-question {
+  background: var(--cream) !important;
+  border: 1px solid var(--border-gold) !important;
+  color: var(--burgundy) !important;
+}
+
+.aqm-source-note {
+  color: var(--muted-text) !important;
+}
+
+.aqm-roadmap-notice {
+  background: var(--cream) !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqm-roadmap-details summary {
+  color: var(--burgundy) !important;
+}
+
+.aqm-roadmap-list li {
+  border-bottom-color: var(--border) !important;
+  color: var(--ink-brown) !important;
+}
+
+.aqm-roadmap-list strong {
+  color: var(--burgundy) !important;
+}
+
+/* ============================================================================
+   20. PERSONAL ACCOUNT ("YOU" EXPERIENCE) — PROFILE SUMMARY & ONBOARDING
+   ============================================================================ */
+.profile-completion {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-gold);
+  text-align: right;
+}
+
+.profile-onboarding-banner {
+  background: linear-gradient(135deg, #FAF6EE 0%, #FFFFFF 100%);
+  border: 1px solid var(--border-gold);
+  border-inline-start: 3px solid var(--burgundy);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+
+.profile-onboarding-banner h4 {
+  margin: 0 0 6px;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--burgundy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-onboarding-banner p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink-brown);
+  line-height: 1.7;
+}
+
+.profile-summary-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FAF6EE 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--aq-shadow-subtle);
+}
+
+.profile-summary-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-summary-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-avatar-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1.5px solid var(--champagne);
+  color: var(--burgundy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.profile-avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-summary-Titles h3 {
+  margin: 0 0 2px;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  color: var(--burgundy);
+}
+
+.profile-summary-Titles p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--muted-text);
+}
+
+.profile-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.profile-summary-item {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.profile-summary-item span {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--muted-text);
+  margin-bottom: 2px;
+}
+
+.profile-summary-item strong {
+  font-size: 0.92rem;
+  color: var(--ink-brown);
+  font-weight: 600;
+}
+
+.profile-quick-launch {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-gold);
+}
+
+.profile-quick-launch-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--burgundy);
+  margin-bottom: 10px;
+}
+
+.profile-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.profile-quick-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border-radius: 8px;
+  background: var(--cream);
+  border: 1px solid var(--border-gold);
+  color: var(--burgundy) !important;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.profile-quick-pill:hover {
+  background: var(--burgundy);
+  color: #FFFFFF !important;
+  border-color: var(--burgundy);
+}
+
+.profile-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.profile-form-grid .field-full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+  .profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-photo-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  background: var(--cream);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.profile-photo-preview {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--champagne);
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.profile-photo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-photo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  color: var(--burgundy);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.profile-photo-hint {
+  font-size: 0.76rem;
+  color: var(--muted-text);
+}
+
+.profile-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 0.84rem;
+  color: var(--ink-brown);
+  cursor: pointer;
+}
+
+.profile-checkbox-row input[type="checkbox"] {
+  width: 17px !important;
+  height: 17px !important;
+  accent-color: var(--burgundy);
+  margin: 0;
+}
+
+.profile-privacy-note {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(197, 164, 109, 0.1);
+  border: 1px solid rgba(197, 164, 109, 0.28);
+  font-size: 0.8rem;
+  color: var(--muted-text);
+  line-height: 1.6;
+}
+
+

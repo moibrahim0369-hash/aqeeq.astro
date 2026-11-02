@@ -14,41 +14,56 @@
   ],
   "headline": "الاكتمال والاندماج",
   "core": {
-    "psychology": "",
-    "gift": "إغلاق مرحلة واتساع الأفق",
-    "shadowTrap": "تشتت قبل الإغلاق",
-    "growth": ""
+    "psychology": "يرمز العالم إلى اكتمال دورة واندماج خبراتها في أفق أوسع. الدافع أن يجد الشخص مكانه بين أجزاء متعددة من الحياة، وأن يرى صورة تتجاوز الجزء العاجل. القوة في الربط والإغلاق والقدرة على العمل عبر الحدود؛ والتوتر أن يتحول الاتساع إلى صعوبة في اختيار موضع واحد للتركيز.",
+    "gift": "إغلاق المرحلة يظهر في تسليم العمل، الاعتراف بما تعلمته، وفتح الباب للمرحلة التالية دون التقليل من السابقة. في العمل، يدعم التنسيق بين جماعات أو تخصصات. وفي العلاقة، يساعد على رؤية الشراكة ضمن سياق الحياة الأوسع لا كمصدر وحيد للهوية.",
+    "shadowTrap": "التشتت قبل الإغلاق يظهر حين تُترك الدورات مفتوحة خوفاً من خسارة احتمال آخر، أو يُستعجل إعلان الاكتمال لتجنب التفاصيل الأخيرة. مثال ذلك بدء مشروع جديد قبل إنهاء التزامات المشروع السابق، فيتراكم شعور غير مرئي بالانقطاع.",
+    "growth": "خطوة تأملية: إغلاق حلقة واحدة بتسليم أو محادثة أو توثيق، ثم اختيار نقطة حضور واضحة للمرحلة الحالية."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر الرسالة في إغلاق الدورات وربط الخبرات ضمن أثر أوسع.",
+      "energyPsychology": "تتجمع الطاقة حين يكتمل العمل بتسليم واضح قبل فتح آفاق أخرى.",
+      "emotionsPsychology": "يمنح الإنهاء الهادئ شعوراً بالاتساع؛ أما الحلقات المعلّقة فتشتت الانتباه."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "ترى العالَم الصورة كاملة وتربط الأجزاء ضمن سياق أوسع، مع الانتباه إلى ما قد يضيع من التفاصيل.",
+      "energyPsychology": "تكتمل الطاقة عندما تُغلق دورة بوعي ثم تُفتح مساحة لما يلي، بدلاً من حمل كل مشروع إلى الأبد.",
+      "emotionsPsychology": "ينمو الإحساس بالاكتمال من قبول التناقضات والخبرات المتنوعة، لا من انتظار نهاية مثالية."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تلخص طاقة العالم تجربة معقدة في رسالة تجمع أطرافها، وتعرف متى تتوقف عن إضافة شروح لا تغير المعنى.",
+      "energyPsychology": "تكتمل طاقة الصوت عند مشاركة الخلاصة وإغلاق الحلقة، لا عند الاستمرار في تبرير كل تفصيل.",
+      "emotionsPsychology": "ينشأ الارتياح من حوار يعترف بالتعدد؛ فلا يحتاج القرب إلى اختصار الاختلاف في رأي واحد."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يستوعب العالم اختلاف الخلفيات داخل رابط واحد، ويجعل الانتماء أوسع من التشابه الكامل.",
+      "energyPsychology": "تتوازن الطاقة حين يدعم الطرفان نمو كل منهما وصلاته بالعالم، لا حين يصبحان دائرة مغلقة.",
+      "emotionsPsychology": "ينمو الأمان العاطفي عندما لا يُعامل اختلاف اللغة أو الثقافة أو الأصدقاء كتهديد تلقائي للقرب."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تربط طاقة العالم الإنجاز بقدرة على جمع خبرات ودوائر مختلفة في نتيجة واحدة مكتملة.",
+      "energyPsychology": "تتوازن الحيوية عندما يتسع الطموح للعالم دون أن يذيب صاحبَه في مطالب كل جماعة أو قضية.",
+      "emotionsPsychology": "ينمو الرضا حين تُقبل النهاية كاكتمال لمرحلة، لا كدعوة لفتح سباق جديد فورًا."
     },
     "svadhisthana": {
       "psychology": "",
@@ -68,7 +83,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }
