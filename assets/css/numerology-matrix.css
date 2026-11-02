@@ -937,16 +937,9 @@
   stroke: var(--aqm-wine) !important;
   stroke-width: 3px !important;
 }
-/* قراءة أوضح للأرقام على الموبايل (أرقام الأركانا داخل الدوائر) */
-@media (max-width: 600px) {
-  .aqm-node-corner .aqm-node-text { font-size: 21px; }
-}
 /* العُقد وحدها تستقبل النقر (لربطها بالأكورديون) */
 .aqm-svg .aqm-node,
 .aqm-svg .aqm-node * { pointer-events: auto; }
-
-/* أرقام العُقد: خط ثقيل وواضح (الألوان الداكنة بنص أبيض مُعيَّن من JS) */
-.aqm-svg .aqm-node-text { font-weight: 700 !important; }
 
 /* سطر الشاكرات في رؤوس الأكورديون: كبسولات متساوية الارتفاع ومحاذاة عمودياً وأفقياً */
 .aqm-acc-badges { align-items: center; gap: 6px; }
@@ -963,4 +956,36 @@
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1;
+}
+
+/* ==========================================================================
+   وضوح الأرقام داخل العُقد (تباين وحجم)
+   ========================================================================== */
+.aqm-svg .aqm-node-text {
+  font-weight: 800 !important;
+  fill: #1A1A1A !important;
+  dominant-baseline: central;
+}
+.aqm-svg .aqm-node-text.is-dark { fill: #FFFFFF !important; }
+.aqm-svg .aqm-node-center .aqm-node-text { font-size: 46px; }
+.aqm-svg .aqm-node-corner .aqm-node-text { font-size: 34px; }
+.aqm-svg .aqm-node-ancestral .aqm-node-text { font-size: 30px; }
+.aqm-svg .aqm-node-love .aqm-node-text,
+.aqm-svg .aqm-node-money .aqm-node-text,
+.aqm-svg .aqm-node-balance .aqm-node-text,
+.aqm-svg .aqm-node-chakra .aqm-node-text { font-size: 24px; }
+
+/* ==========================================================================
+   عمق البطاقات: خلفية بيضاء وظل هوائي ودرجة ذهبية خفيفة
+   ========================================================================== */
+.aqm-canvas-wrap {
+  background: #FFFFFF;
+  border-radius: 14px;
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  box-shadow: 0 4px 20px -2px rgba(90, 42, 60, 0.08);
+  padding: 16px;
+}
+.aqm-acc-item {
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  box-shadow: 0 4px 20px -2px rgba(90, 42, 60, 0.08);
 }
