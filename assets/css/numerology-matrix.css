@@ -15,12 +15,12 @@
 :root {
   --aqm-bg-main: #FAF7F0;
   --aqm-bg-sec: #F4EFE5;
-  --aqm-gold-base: #C6A56B;
+  --aqm-gold-base: #C5A46D;
   --aqm-gold-soft: #B89960;
   --aqm-gold-border: rgba(198, 165, 107, 0.35);
   --aqm-gold-glow: rgba(198, 165, 107, 0.15);
-  --aqm-wine: #782F3B;
-  --aqm-wine-soft: rgba(120, 47, 59, 0.08);
+  --aqm-wine: #6B263D;
+  --aqm-wine-soft: rgba(107, 38, 61, 0.08);
   --aqm-rose: #D9B7B0;
   --aqm-rose-soft: rgba(217, 183, 176, 0.15);
   --aqm-text-dark: #38312D;
@@ -29,9 +29,9 @@
   --aqm-sand-soft: rgba(231, 215, 194, 0.3);
   --aqm-radius-sm: 8px;
   --aqm-radius-md: 14px;
-  --aqm-radius-lg: 20px;
-  --aqm-shadow-soft: 0 4px 20px rgba(56, 49, 45, 0.06);
-  --aqm-shadow-card: 0 8px 30px rgba(56, 49, 45, 0.08);
+  --aqm-radius-lg: 14px;
+  --aqm-shadow-soft: 0 4px 20px rgba(107, 38, 61, 0.04);
+  --aqm-shadow-card: 0 4px 20px rgba(107, 38, 61, 0.04);
 }
 
 /* Base Container */
@@ -451,7 +451,7 @@
 
 .aqm-acc-chevron {
   font-size: 1.1rem;
-  color: var(--aqm-gold-soft);
+  color: var(--aqm-wine);
   transition: transform 0.25s ease;
 }
 
