@@ -932,7 +932,6 @@
 .aqm-svg .aqm-node,
 .aqm-svg .aqm-node:hover {
   cursor: pointer;
-  filter: none;
   transition: none;
 }
 
@@ -1009,3 +1008,8 @@
 .aqm-acc-badges .aqm-badge-arcana.aqm-tone-2 { background: linear-gradient(135deg, #E9EEF6, #D6DFEC); border-color: #B7C5DB; color: #2D3D5B; }
 .aqm-acc-badges .aqm-badge-arcana.aqm-tone-3 { background: linear-gradient(135deg, #F8F3EA, #EDE3D2); border-color: #D8C9B1; color: #5A4A3C; }
 .aqm-acc-badges .aqm-badge-arcana { font-size: 13px; font-weight: 700; text-align: center; }
+
+/* ظلال خفيفة على العُقد الحقيقية وتوهج ذهبي ناعم للمركز (filter فقط — بلا transform للحفاظ على الإحداثيات) */
+.aqm-svg .aqm-node { filter: drop-shadow(0 2px 3px rgba(60, 20, 10, 0.2)); }
+.aqm-svg .aqm-node.aqm-node-center { filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5)); }
+.aqm-svg .aqm-node circle.aqm-node-bg { filter: none !important; }
