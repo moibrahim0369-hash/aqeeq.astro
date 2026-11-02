@@ -505,7 +505,7 @@
 .aqm-slot-p {
   margin: 0;
   font-size: 15px;
-  line-height: 1.75;
+  line-height: 1.8;
   color: #241D1A;
 }
 
@@ -1013,3 +1013,21 @@
 .aqm-svg .aqm-node { filter: drop-shadow(0 2px 3px rgba(60, 20, 10, 0.2)); }
 .aqm-svg .aqm-node.aqm-node-center { filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5)); }
 .aqm-svg .aqm-node circle.aqm-node-bg { filter: none !important; }
+
+/* ==========================================================================
+   اللمسة النهائية للأكورديون: خط Cairo، أيقونات نحاسية، كبسولات مجسمة، صندوق قراءة أبيض
+   ========================================================================== */
+.aqm-acc-item,
+.aqm-acc-item * { font-family: 'Cairo', sans-serif !important; }
+
+.aqm-acc-icon { color: #B87333; }
+.aqm-acc-icon svg,
+.aqm-acc-icon .aqm-ico { filter: drop-shadow(0 2px 3px rgba(74, 18, 26, 0.2)); }
+
+.aqm-acc-badges .aqm-badge-arcana { box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07); }
+
+.aqm-acc-body {
+  background: #FFFFFF;
+  border-top: 1px solid rgba(197, 160, 89, 0.25);
+}
+.aqm-acc-body .aqm-slot-p { line-height: 1.8; color: #241D1A; }
