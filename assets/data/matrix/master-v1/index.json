@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "master-v1",
+  "title": "Aqeeq Astro Destiny Matrix Master Content V1",
+  "numberingPolicy": {
+    "arcana08": "العدالة",
+    "arcana11": "القوة",
+    "authority": "assets/data/matrix/core.json والمحرك المحلي"
+  },
+  "arcana": [
+    {
+      "id": 1,
+      "title": "الأركانا 1 — الساحر — The Magician\r",
+      "file": "arcana/arcana-01.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 2,
+      "title": "الأركانا 2 — الكاهنة العظمى — The High Priestess\r",
+      "file": "arcana/arcana-02.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 3,
+      "title": "الأركانا 3 — الإمبراطورة — The Empress\r",
+      "file": "arcana/arcana-03.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 4,
+      "title": "الأركانا 4 — الإمبراطور — The Emperor\r",
+      "file": "arcana/arcana-04.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 5,
+      "title": "الأركانا 5 — الكاهن الأعظم — The Hierophant\r",
+      "file": "arcana/arcana-05.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 6,
+      "title": "الأركانا 6 — العشاق — The Lovers\r",
+      "file": "arcana/arcana-06.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 7,
+      "title": "الأركانا 7 — العربة — The Chariot\r",
+      "file": "arcana/arcana-07.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 8,
+      "title": "الأركانا 8 — العدالة — Justice\r",
+      "file": "arcana/arcana-08.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 9,
+      "title": "الأركانا 9 — الناسك — The Hermit\r",
+      "file": "arcana/arcana-09.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 10,
+      "title": "الأركانا 10 — عجلة الحظ — Wheel of Fortune\r",
+      "file": "arcana/arcana-10.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 11,
+      "title": "الأركانا 11 — القوة — Strength\r",
+      "file": "arcana/arcana-11.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 12,
+      "title": "الأركانا 12 — المعلّق — The Hanged Man\r",
+      "file": "arcana/arcana-12.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 13,
+      "title": "الأركانا 13 — الموت والتحول — Death\r",
+      "file": "arcana/arcana-13.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 14,
+      "title": "الأركانا 14 — الاعتدال — Temperance\r",
+      "file": "arcana/arcana-14.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 15,
+      "title": "الأركانا 15 — الشيطان — The Devil\r",
+      "file": "arcana/arcana-15.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 16,
+      "title": "الأركانا 16 — البرج — The Tower\r",
+      "file": "arcana/arcana-16.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 17,
+      "title": "الأركانا 17 — النجم — The Star\r",
+      "file": "arcana/arcana-17.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 18,
+      "title": "الأركانا 18 — القمر — The Moon\r",
+      "file": "arcana/arcana-18.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 19,
+      "title": "الأركانا 19 — الشمس — The Sun\r",
+      "file": "arcana/arcana-19.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 20,
+      "title": "الأركانا 20 — الحكم — Judgement\r",
+      "file": "arcana/arcana-20.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 21,
+      "title": "الأركانا 21 — العالم — The World\r",
+      "file": "arcana/arcana-21.json",
+      "sourceCount": 0
+    },
+    {
+      "id": 22,
+      "title": "الأركانا 22 — الأحمق — The Fool\r",
+      "file": "arcana/arcana-22.json",
+      "sourceCount": 0
+    }
+  ],
+  "karmicTails": "karmic-tails.json",
+  "siteMap": "SITE_CONTENT_INDEX.md",
+  "reviewLog": "DUPLICATES_CONFLICTS_GAPS.md"
+}
