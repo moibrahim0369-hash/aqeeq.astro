@@ -2708,8 +2708,8 @@ footer.foot {
   transition: transform 0.18s ease;
 }
 
+/* لا نضع fill هنا: القيمة تأتي من SVG نفسه (لون الباليتة الترابية لكل عقدة) */
 .aqm-node circle {
-  fill: #FFFDF9 !important;
   stroke: #B89960 !important;
   stroke-width: 1.8px !important;
   filter: url(#aqm-glow);
