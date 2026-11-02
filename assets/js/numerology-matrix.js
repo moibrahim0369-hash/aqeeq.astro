@@ -319,7 +319,7 @@
    */
   function buildAccordionItem(item) {
     const { id, icon, title, subtitle, arcanaList, contentKey, slots } = item;
-    const badgesHtml = arcanaList.map(a => `<span class="aqm-badge-arcana">${a.num} · ${a.name}</span>`).join(' ');
+    const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}">${a.num} · ${a.name}</span>`).join(' ');
     // Pending Content: any of the five slots empty means the section is not complete textually
     const isPending = !slots || Object.values(slots).some(v => !String(v || '').trim());
     const pendingHtml = isPending ? `<span class="aqm-pending-badge" data-pending="true">Pending Content</span>` : '';
