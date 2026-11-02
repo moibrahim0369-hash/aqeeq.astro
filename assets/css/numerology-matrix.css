@@ -462,7 +462,7 @@
 
 /* Accordion Body */
 .aqm-acc-body {
-  padding: 20px;
+  padding: 16px;
   background: var(--aqm-bg-main);
   border-top: 1px solid var(--aqm-gold-border);
   display: none;
@@ -493,10 +493,10 @@
 }
 
 .aqm-slot-title {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--aqm-wine);
-  margin: 0 0 8px;
+  color: #6B1D2F;
+  margin: 0 0 10px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -504,23 +504,23 @@
 
 .aqm-slot-p {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--aqm-text-dark);
+  font-size: 15px;
+  line-height: 1.75;
+  color: #241D1A;
 }
 
 .aqm-slot-strengths {
   border-right: 3px solid #4a7c59;
 }
 .aqm-slot-strengths .aqm-slot-title {
-  color: #2e5b3b;
+  color: #6B1D2F;
 }
 
 .aqm-slot-challenges {
   border-right: 3px solid #c0392b;
 }
 .aqm-slot-challenges .aqm-slot-title {
-  color: #962d22;
+  color: #6B1D2F;
 }
 
 .aqm-slot-practical {
@@ -556,6 +556,19 @@
   background: var(--aqm-bg-sec);
   color: var(--aqm-text-dark);
   font-weight: 700;
+}
+
+/* أرقام جدول الشاكرات: خط أوضح وبني صريح ومحاذاة منتظمة */
+.aqm-chakra-table td {
+  color: #3D2A20;
+  font-size: 0.95rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.aqm-chakra-table td:not(:first-child),
+.aqm-chakra-table th:not(:first-child) {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
 }
 
 .aqm-chakra-badge {
@@ -989,3 +1002,10 @@
   border: 1px solid rgba(197, 160, 89, 0.25);
   box-shadow: 0 4px 20px -2px rgba(90, 42, 60, 0.08);
 }
+
+/* كبسولات الأرقام في رؤوس الكروت: تدرجات هادئة متناغمة مع الأركانا */
+.aqm-acc-badges .aqm-badge-arcana.aqm-tone-0 { background: linear-gradient(135deg, #F6E9EE, #EBD3DC); border-color: #D6AFBC; color: #6B1D2F; }
+.aqm-acc-badges .aqm-badge-arcana.aqm-tone-1 { background: linear-gradient(135deg, #FBF3E2, #F2E2BC); border-color: #DEC78F; color: #6E5319; }
+.aqm-acc-badges .aqm-badge-arcana.aqm-tone-2 { background: linear-gradient(135deg, #E9EEF6, #D6DFEC); border-color: #B7C5DB; color: #2D3D5B; }
+.aqm-acc-badges .aqm-badge-arcana.aqm-tone-3 { background: linear-gradient(135deg, #F8F3EA, #EDE3D2); border-color: #D8C9B1; color: #5A4A3C; }
+.aqm-acc-badges .aqm-badge-arcana { font-size: 13px; font-weight: 700; text-align: center; }
