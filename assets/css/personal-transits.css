@@ -9,7 +9,7 @@
 
 /* Personal sky and transit responsive layout */
 .aqt-shell,.aqt-layout,.aqt-weather,.aqt-cards,.aqt-matrix{min-width:0;max-width:100%}
-.aqt-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.aqt-layout{grid-template-columns:minmax(0,1.5fr) minmax(min(100%,230px),.8fr)}
 .aqt-wheelbox{min-width:0;max-width:100%}
 .aqt-wheelbox svg,.aqt-wheelbox canvas{display:block;width:100%;height:auto;max-width:100%}
 .aqt-matrix{overflow:hidden}
