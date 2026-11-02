@@ -290,7 +290,7 @@
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(p+E)', nE2, [530, 400], 19, '', T.white)}
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+E)', mP1, [570, 400], 19, '', T.orange)}
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(m1+C)', mP2, [610, 400], 19, '', T.white)}
-        <text x="570" y="352" class="aqm-svg-money-sign" fill="#5A7E64">$</text>
+        <text x="570" y="344" class="aqm-svg-money-sign" fill="#5A7E64">$</text>
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol)}
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky)}
