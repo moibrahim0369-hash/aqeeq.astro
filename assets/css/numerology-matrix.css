@@ -798,3 +798,51 @@
  .aqm-rich-card,.aqm-kt-box,.aqm-prog-box,.aqm-child-box,.aqm-rx-box{padding:13px}
  .aqm-purposes-grid,.aqm-anc-grid{grid-template-columns:minmax(0,1fr)}
 }
+
+/* ==========================================================================
+   Celestial final polish: ivory surface, no dark fills, badges, mobile wrap
+   ========================================================================== */
+
+/* الخلفية عاجية دافئة داخل عنصر المصفوفة (بدون أي خلفية داكنة) */
+#mresult:has(.aqm-shell) {
+  background: #FAF7F0;
+  border-radius: var(--aqm-radius-md);
+}
+
+.aqm-shell {
+  background: #FAF7F0;
+  padding-bottom: 90px; /* لا يغطي شريط التنقل السفلي على المحتوى */
+}
+
+/* الشارات لا تنكسر حروفها رأسياً */
+.aqm-badge-arcana,
+.aqm-meta-pill,
+.aqm-pill,
+.aqm-badge {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* حاوية شارات هيدر الأكورديون */
+.aqm-acc-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .aqm-acc-badges {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 52%;
+  }
+  .aqm-acc-badges .aqm-badge-arcana {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+  }
+  .aqm-shell {
+    padding-bottom: 90px;
+  }
+}
