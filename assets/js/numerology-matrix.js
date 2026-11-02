@@ -23,8 +23,97 @@
   /**
    * توليد رسم SVG النجمة الثمانية متناسق الإحداثيات (viewBox 0 0 800 800)
    */
+  // ==================== 0. أيقونات خطية موحدة (Monoline 1.7) بدل الإيموجي ====================
+  const SVG_OPEN = '<svg class="aqm-ico" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+  const ICON_SVG = {
+    center: SVG_OPEN + '<path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8z"/></svg>',
+    karmic_tail: SVG_OPEN + '<circle cx="12" cy="5" r="2"/><path d="M12 7v13M8 11h8M6 16a6 6 0 0 0 12 0"/></svg>',
+    purposes: SVG_OPEN + '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
+    personal: SVG_OPEN + '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
+    talents: SVG_OPEN + '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>',
+    father_line: SVG_OPEN + '<path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/></svg>',
+    mother_line: SVG_OPEN + '<circle cx="12" cy="12" r="3"/><circle cx="12" cy="7" r="2.5"/><circle cx="17" cy="12" r="2.5"/><circle cx="12" cy="17" r="2.5"/><circle cx="7" cy="12" r="2.5"/></svg>',
+    ancestral_programs: SVG_OPEN + '<path d="M3 9l9-5 9 5M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/></svg>',
+    love_line: SVG_OPEN + '<path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.6 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg>',
+    money_line: SVG_OPEN + '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M14.5 9.5c0-1-1-1.5-2.5-1.5s-2.5.6-2.5 1.6 1 1.4 2.5 1.7 2.5.7 2.5 1.7-1 1.6-2.5 1.6-2.5-.6-2.5-1.6"/></svg>',
+    chakras: SVG_OPEN + '<circle cx="12" cy="5" r="2"/><path d="M12 7v4M7 13c1.5 2.5 8.5 2.5 10 0M9 17h6"/></svg>',
+    composite_programs: SVG_OPEN + '<circle cx="12" cy="11" r="7"/><path d="M9 20h6M10 22h4"/></svg>',
+    children_line: SVG_OPEN + '<path d="M12 21v-9M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg>',
+    age_cycles: SVG_OPEN + '<path d="M7 3h10M7 21h10M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9s8 4 8 9"/></svg>',
+    transformation_rx: SVG_OPEN + '<path d="M12 4v16M6 20h12M5 7h14M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></svg>'
+  };
+
+  // مسار الحياة: نفس منهج الجمع الكلي (index.html) مع الإبقاء على 11 و22 و33
+  function lifePathOf(dateStr) {
+    const [y, m, d] = String(dateStr).split('-').map(Number);
+    const ds = n => String(n).split('').reduce((a, c) => a + Number(c), 0);
+    let n = ds(d) + ds(m) + ds(y);
+    while (n > 9 && ![11, 22, 33].includes(n)) n = ds(n);
+    return n;
+  }
+
+  // ألوان الشاكرات المعتمدة (من أعلى لأسفل)
+  const CHAKRA_COLORS = { sahasrara: '#7B4FA0', ajna: '#3F4FA8', vishuddha: '#4C8DB3', anahata: '#4F9A6B', manipura: '#D9B44A', svadhisthana: '#D98A4A', muladhara: '#B5443E' };
+
+  // ==================== 0b. تصدير بطاقة القصة (PNG 9:16) ====================
+  function exportStoryCard(host, P, name, dateStr) {
+    const svgEl = host.querySelector('.aqm-svg');
+    if (!svgEl) return;
+    const W = 1080, H = 1920;
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#FAF7F0'; ctx.fillRect(0, 0, W, H);
+    ctx.textAlign = 'center'; ctx.direction = 'rtl';
+    ctx.fillStyle = '#6B263D'; ctx.font = '700 64px serif';
+    ctx.fillText('عقيق أسترو', W / 2, 150);
+    ctx.fillStyle = '#C5A46D'; ctx.fillRect(W / 2 - 120, 185, 240, 3);
+    ctx.fillStyle = '#2D2522'; ctx.font = '700 58px serif';
+    ctx.fillText(name || 'مستخدم عقيق أسترو', W / 2, 290);
+    ctx.fillStyle = '#74685F'; ctx.font = '400 38px serif';
+    ctx.fillText('تاريخ الميلاد: ' + dateStr + '   ·   الطاقة الحاكمة: ' + P.anchors.E, W / 2, 350);
+
+    const clone = svgEl.cloneNode(true);
+    clone.setAttribute('width', '900'); clone.setAttribute('height', '900');
+    const svgStr = new XMLSerializer().serializeToString(clone);
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, (W - 900) / 2, 420, 900, 900);
+      const caps = [
+        ['الجوهر', P.anchors.A],
+        ['مسار الحياة', lifePathOf(dateStr)],
+        ['الذيل الكارمي', P.anchors.D],
+        ['خط المال', P.channels.moneyPoint],
+        ['خط الحب', P.channels.heartPoint]
+      ];
+      const capW = 190, gap = 18, startX = (W - (capW * caps.length + gap * (caps.length - 1))) / 2;
+      caps.forEach((c, i) => {
+        const x = startX + i * (capW + gap), y = 1460;
+        ctx.fillStyle = '#FFFFFF'; ctx.strokeStyle = '#C5A46D'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, capW, 190, 28) : ctx.rect(x, y, capW, 190);
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#74685F'; ctx.font = '400 28px serif';
+        ctx.fillText(c[0], x + capW / 2, y + 60);
+        ctx.fillStyle = '#6B263D'; ctx.font = '700 64px serif';
+        ctx.fillText(String(c[1]), x + capW / 2, y + 135);
+      });
+      ctx.fillStyle = '#74685F'; ctx.font = '400 28px serif';
+      ctx.fillText('مصفوفة القدر · للتأمل والوعي الذاتي', W / 2, 1800);
+      URL.revokeObjectURL(img.src);
+      canvas.toBlob(blob => {
+        if (!blob) return;
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'aqeeq-destiny-story.png';
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+      }, 'image/png');
+    };
+    img.src = URL.createObjectURL(new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' }));
+  }
+
   function generateMatrixSVG(P) {
-    const { anchors, corners, channels, intermediate, ageMap } = P;
+    const { anchors, corners, channels, intermediate, ageMap, generational } = P;
     const { A, B, C, D, E } = anchors;
     const { F, G, H, I } = corners;
     const { heartPoint, moneyPoint, balancePoint } = channels;
@@ -176,6 +265,8 @@
         ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم السفلى (كارما المشاعر)', I, pos.southWest, 23)}
         ${nodeG('aqm-node-love', 'love_line', 'مدخل الحب والعلاقات (Heart Point)', heartPoint, pos.heart, 21)}
         ${nodeG('aqm-node-money', 'money_line', 'مدخل المال والوفرة (Money Point)', moneyPoint, pos.money, 21)}
+        ${nodeG('aqm-node-ancestral', 'father_line', 'خط الأب — الجمع الكلي عند تقاطع المحور المائل', generational.father.combined, [265, 265], 19)}
+        ${nodeG('aqm-node-ancestral', 'mother_line', 'خط الأم — الجمع الكلي عند تقاطع المحور المائل', generational.mother.combined, [265, 535], 19)}
         ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 20)}
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" />
@@ -204,7 +295,7 @@
       <div class="aqm-acc-item${isPending ? ' is-pending' : ''}" id="aqm-sec-${id}" data-section-id="${id}" data-content-key="${contentKey}" data-pending="${isPending}">
         <button class="aqm-acc-header" type="button" aria-expanded="false" aria-controls="aqm-body-${id}">
           <div class="aqm-acc-header-left">
-            <span class="aqm-acc-icon" aria-hidden="true">${icon}</span>
+            <span class="aqm-acc-icon" aria-hidden="true">${ICON_SVG[id] || ''}</span>
             <div class="aqm-acc-title-group">
               <h3 class="aqm-acc-title">${title}</h3>
               <p class="aqm-acc-subtitle">${subtitle}</p>
@@ -221,31 +312,31 @@
           <div class="aqm-content-grid">
             <!-- النص الأساسي -->
             <div class="aqm-slot aqm-slot-primary" data-slot="primary">
-              <h4 class="aqm-slot-title">✦ النص الأساسي</h4>
+              <h4 class="aqm-slot-title">النص الأساسي</h4>
               <p class="aqm-slot-p">${slots.primary}</p>
             </div>
 
             <!-- التفسير التفصيلي والعميق -->
             <div class="aqm-slot aqm-slot-detailed" data-slot="detailed">
-              <h4 class="aqm-slot-title">📖 التفسير التفصيلي والعميق</h4>
+              <h4 class="aqm-slot-title">التفسير التفصيلي والعميق</h4>
               <p class="aqm-slot-p">${slots.detailed}</p>
             </div>
 
             <!-- نقاط القوة والتجلي الإيجابي -->
             <div class="aqm-slot aqm-slot-strengths" data-slot="strengths">
-              <h4 class="aqm-slot-title">✨ نقاط القوة والتجلي الإيجابي (النور)</h4>
+              <h4 class="aqm-slot-title">نقاط القوة والتجلي الإيجابي (النور)</h4>
               <p class="aqm-slot-p">${slots.strengths}</p>
             </div>
 
             <!-- التحديات والجانب الظلي -->
             <div class="aqm-slot aqm-slot-challenges" data-slot="challenges">
-              <h4 class="aqm-slot-title">⚠️ التحديات والجانب الظلي (الظل)</h4>
+              <h4 class="aqm-slot-title">التحديات والجانب الظلي (الظل)</h4>
               <p class="aqm-slot-p">${slots.challenges}</p>
             </div>
 
             <!-- التطبيق العملي وخطوات التوازن -->
             <div class="aqm-slot aqm-slot-practical" data-slot="practical">
-              <h4 class="aqm-slot-title">🌱 خطوات التوازن والتطبيق اليومي</h4>
+              <h4 class="aqm-slot-title">خطوات التوازن والتطبيق اليومي</h4>
               <p class="aqm-slot-p">${slots.practical}</p>
             </div>
           </div>
@@ -560,9 +651,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  ${Object.values(chakras.rows).map(r => `
+                  ${Object.entries(chakras.rows).map(([k, r]) => `
                     <tr>
-                      <td>${r.symbol} ${r.name}</td>
+                      <td><span class="aqm-chakra-dot" style="display:inline-block;vertical-align:middle;margin-inline-end:8px;background:${CHAKRA_COLORS[k] || '#C5A46D'}"></span>${r.name}</td>
                       <td><span class="aqm-chakra-badge">${r.physics}</span></td>
                       <td><span class="aqm-chakra-badge">${r.energy}</span></td>
                       <td><span class="aqm-chakra-badge">${r.emotions}</span></td>
@@ -775,14 +866,15 @@
           <span class="aqm-kicker">مصفوفة القدر · Natalia Ladini System</span>
           <h2 id="aqm-report-title">${displayName}</h2>
           <div class="aqm-meta-info">
-            <span class="aqm-meta-pill">📅 الميلاد: ${dateStr}</span>
-            <span class="aqm-meta-pill">👑 المركز: ${getInfo(P.anchors.E).name} (${P.anchors.E})</span>
-            <span class="aqm-meta-pill">👤 الجوهر: ${getInfo(P.anchors.A).name} (${P.anchors.A})</span>
-            <span class="aqm-meta-pill">⚡ سنة ${P.yearEnergy.year}: طاقة ${P.yearEnergy.number}</span>
+            <span class="aqm-meta-pill">الميلاد: ${dateStr}</span>
+            <span class="aqm-meta-pill">المركز: ${getInfo(P.anchors.E).name} (${P.anchors.E})</span>
+            <span class="aqm-meta-pill">الجوهر: ${getInfo(P.anchors.A).name} (${P.anchors.A})</span>
+            <span class="aqm-meta-pill">سنة ${P.yearEnergy.year}: طاقة ${P.yearEnergy.number}</span>
           </div>
           <div class="aqm-actions">
-            <button class="aqm-btn" type="button" id="aqm-btn-print">🖨️ حفظ كـ PDF / طباعة</button>
-            <button class="aqm-btn aqm-btn-primary" type="button" id="aqm-btn-story">📸 استخراج بطاقة القصة</button>
+            <button class="aqm-btn" type="button" id="aqm-btn-edit">تعديل البيانات</button>
+            <button class="aqm-btn" type="button" id="aqm-btn-print">حفظ كـ PDF / طباعة</button>
+            <button class="aqm-btn aqm-btn-primary" type="button" id="aqm-btn-story">استخراج بطاقة القصة</button>
           </div>
         </header>
 
@@ -790,6 +882,10 @@
         <div class="aqm-canvas-wrap">
           <p style="margin:0 0 16px;color:var(--aqm-text-muted);font-size:0.85rem;">اضغط على أي عقدة أو رقم للانتقال مباشرة إلى تحليله في الأكورديون أدناه</p>
           ${generateMatrixSVG(P)}
+          <ol class="aqm-chakra-axis" aria-label="المحور الرأسي للشاكرات">
+            ${Object.entries(P.chakras.rows).map(([key, r]) => `
+              <li class="aqm-chakra-row"><span class="aqm-chakra-dot" style="background:${CHAKRA_COLORS[key] || '#C5A46D'}"></span><span class="aqm-chakra-name">${r.name}</span><span class="aqm-chakra-vals">الفيزياء ${r.physics} · الطاقة ${r.energy} · المشاعر ${r.emotions}</span></li>`).join('')}
+          </ol>
         </div>
 
         <!-- نظام الأكورديون الـ 15 المتكامل -->
@@ -905,6 +1001,24 @@
         item.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
       });
       window.print();
+    });
+
+    // تعديل البيانات: يعيد فتح نموذج الإدخال مع القيم الحالية دون تحديث الصفحة
+    host.querySelector('#aqm-btn-edit')?.addEventListener('click', () => {
+      const mf = document.getElementById('mform');
+      if (!mf) return;
+      const nameIn = document.getElementById('m-name');
+      const dateIn = document.getElementById('m-date');
+      if (nameIn) nameIn.value = name || '';
+      if (dateIn) dateIn.value = dateStr;
+      mf.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      (dateIn || nameIn)?.focus();
+    });
+
+    // بطاقة القصة: PNG 9:16 تُولَّد من الـ SVG الحالي
+    host.querySelector('#aqm-btn-story')?.addEventListener('click', () => {
+      try { exportStoryCard(host, P, displayName === 'مستخدم عقيق أسترو' ? '' : displayName, dateStr); }
+      catch (err) { console.error(err); }
     });
 
     // التمرير إلى النتيجة
