@@ -3,18 +3,17 @@
  * AQEEQ ASTRO — IVORY CELESTIAL EDITORIAL LUXURY
  * Master Design System & Multi-World Visual Architecture
  * ============================================================================
- * Primary Palette:
- *   Warm Ivory:      #FAF7F0
- *   Soft Cream:      #F4EFE5
- *   Champagne Gold:  #C6A56B
- *   Muted Gold:      #B89960
- *   Deep Burgundy:   #782F3B
- *   Dusty Rose:      #D9B7B0
- *   Warm Sand:       #E7D7C2
- *   Soft Taupe:      #A99A89
- *   Ink Brown:       #38312D
- *   Muted Text:      #81766D
- *   Pale Sky Blue:   #DCEAF0
+ * Official Palette (Design Tokens, see :root):
+ *   Primary Background (Warm Ivory):        #F5F0E6
+ *   Brand Primary (Deep Burgundy):          #6B263D
+ *   Accent Gold (Muted Champagne Gold):     #C5A46D
+ *   Card Surfaces (Pure Warm White):        #FFFFFF
+ *   Observatory Accent (Celestial Blue):    #52738A
+ *   Observatory Light (Pale Sky Blue):      #E5EEF3
+ *   Relationships Accent (Dusty Rose):      #C89B9E
+ *   Text Primary (Warm Charcoal):           #2D2522
+ *   Text Muted (Warm Gray Brown):           #74685F
+ *   Matrix Secondary Surfaces:              #FAF7F0 and #F4EFE5
  * ============================================================================
  */
 
@@ -56,9 +55,13 @@
   /* AQEEQ Platform Tokens */
   --aq-bg-ink: #F5F0E6;
   --aq-bg-midnight: #FFFFFF;
-  --aq-bg-elevated: #EFE8DA;
-  --aq-bg-subtle: #F9F6F0;
+  --aq-bg-elevated: #F4EFE5;
+  --aq-bg-subtle: #FAF7F0;
   --aq-bg-glass: rgba(245, 240, 230, 0.92);
+
+  /* Matrix Secondary Surfaces (official) */
+  --matrix-surface-1: #FAF7F0;
+  --matrix-surface-2: #F4EFE5;
 
   --aq-text-ivory: #2D2522;
   --aq-text-silver: #564B44;
