@@ -276,7 +276,7 @@
         navigator.clipboard.writeText(textToCopy).then(() => {
           const originalText = copyBtn.innerHTML;
           copyBtn.innerHTML = `
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.7"><polyline points="20 6 9 17 4 12"></polyline></svg>
             <span style="color: #22c55e;">تم النسخ!</span>
           `;
           showToast('تم نسخ محتوى الدليل المرجعي بالكامل إلى الحافظة!');

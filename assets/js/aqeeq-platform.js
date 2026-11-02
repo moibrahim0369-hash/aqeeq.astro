@@ -644,23 +644,23 @@
       <!-- Quick Launch Observatory Shortcuts -->
       <div class="aq-dash-shortcuts" aria-label="الوصول السريع للأدوات">
         <a href="#chart" class="aq-dash-shortcut">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>
           <span>خريطة الميلاد</span>
         </a>
         <a href="#lifepath" class="aq-dash-shortcut">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19l16-14M4 5h6v6M14 13h6v6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19l16-14M4 5h6v6M14 13h6v6"/></svg>
           <span>مسار الحياة</span>
         </a>
         <a href="#matrix" class="aq-dash-shortcut">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 22 12 12 22 2 12"/><rect x="6" y="6" width="12" height="12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polygon points="12 2 22 12 12 22 2 12"/><rect x="6" y="6" width="12" height="12"/></svg>
           <span>مصفوفة القدر</span>
         </a>
         <a href="#compat" class="aq-dash-shortcut">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
           <span>التوافق والعلاقات</span>
         </a>
         <a href="#tarot-chamber" class="aq-dash-shortcut">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8l2 4-2 4-2-4z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8l2 4-2 4-2-4z"/></svg>
           <span>محراب التاروت</span>
         </a>
       </div>
@@ -669,7 +669,7 @@
       <div class="aq-library-panel">
         <div class="aq-library-header">
           <h3 class="aq-library-title">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: var(--aq-accent-gold);"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="color: var(--aq-accent-gold);"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
             <span>مكتبة قراءاتي وتقاريري المحفوظة</span>
           </h3>
           <span style="font-size: 0.78rem; color: var(--aq-text-muted);">تحفظ تلقائيًا وتستعاد بضغطة واحدة</span>

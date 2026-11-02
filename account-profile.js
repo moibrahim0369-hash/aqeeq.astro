@@ -106,7 +106,7 @@
             '</div>' +
           '</div>' +
           '<button type="button" class="btn ghost sm" id="profile-edit-btn">' +
-            '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>' +
+            '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>' +
             '<span>تعديل البيانات الشخصية</span>' +
           '</button>' +
         '</div>' +
@@ -139,7 +139,7 @@
       '<div id="profile-form-wrapper">' +
         '<div class="profile-onboarding-banner" id="profile-onboarding-banner">' +
           '<h4>' +
-            '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>' +
             '<span id="profile-banner-title">استكمال بياناتك الفلكية والشخصية</span>' +
           '</h4>' +
           '<p id="profile-banner-desc">لماذا نطلب بيانات ميلادك؟ يُستخدم <b>تاريخ الميلاد</b> لحساب برجك الشمسي ومسار حياتك ومصفوفة القدر، بينما يُستخدم <b>وقت ومكان الميلاد</b> لتحديد البرج الطالع والبيوت الاثني عشر في خريطة الميلاد (ويمكنك اختيار «لا أعرف وقت ميلادي بدقة» في أي وقت).</p>' +
@@ -151,7 +151,7 @@
             '<div class="profile-avatar-circle" id="profile-avatar-fallback">ع</div>' +
             '<div class="profile-photo-actions">' +
               '<label for="profile-avatar-file" class="profile-photo-btn">' +
-                '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>' +
+                '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>' +
                 '<span>اختيار صورة شخصية (اختياري)</span>' +
               '</label>' +
               '<input id="profile-avatar-file" type="file" accept="image/*" hidden />' +
