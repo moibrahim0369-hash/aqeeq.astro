@@ -199,20 +199,21 @@
         <style>
           svg.aqm-svg .aqm-svg-bg { fill: #FAF7F0; }
           svg.aqm-svg .aqm-svg-dial-ring { fill: none; stroke: #C5A46D; stroke-width: 1.2; }
-          svg.aqm-svg .aqm-svg-dial-ring.is-outer { stroke-width: 1.8; }
+          svg.aqm-svg .aqm-svg-dial-ring.is-outer { stroke-width: 2.6; }
           svg.aqm-svg .aqm-svg-tick { stroke: #C5A46D; stroke-width: 1; }
           svg.aqm-svg .aqm-svg-tick.is-major { stroke: #6B263D; stroke-width: 1.4; }
           svg.aqm-svg .aqm-svg-guide { fill: none; stroke: rgba(197, 164, 109, 0.22); stroke-width: 1.2; stroke-dasharray: 4, 6; }
-          svg.aqm-svg .aqm-svg-personal-square { fill: none; stroke: #6B263D; stroke-width: 1.2; stroke-opacity: 0.8; }
-          svg.aqm-svg .aqm-svg-ancestral-square { fill: none; stroke: #C5A46D; stroke-width: 1.2; stroke-dasharray: 6, 4; }
-          svg.aqm-svg .aqm-svg-axis { stroke: rgba(107, 38, 61, 0.35); stroke-width: 1.2; }
-          svg.aqm-svg .aqm-svg-father { stroke: #C5A46D; stroke-width: 1.2; }
-          svg.aqm-svg .aqm-svg-mother { stroke: #6B263D; stroke-width: 1.2; }
+          svg.aqm-svg .aqm-svg-personal-square { fill: none; stroke: #6B263D; stroke-width: 2.4; stroke-opacity: 1; }
+          svg.aqm-svg .aqm-svg-ancestral-square { fill: none; stroke: #C5A46D; stroke-width: 1.8; stroke-dasharray: 6, 4; }
+          svg.aqm-svg .aqm-svg-axis { stroke: rgba(107, 38, 61, 0.6); stroke-width: 2; }
+          svg.aqm-svg .aqm-svg-father { stroke: #C5A46D; stroke-width: 2.4; }
+          svg.aqm-svg .aqm-svg-mother { stroke: #6B263D; stroke-width: 2.4; }
           svg.aqm-svg .aqm-svg-love-channel { stroke: #C89B9E; stroke-width: 2; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
           svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; stroke-width: 2; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
-          svg.aqm-svg .aqm-svg-age-label { fill: #74685F; font-size: 12px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+          svg.aqm-svg .aqm-svg-age-label { fill: #5E4A52; font-size: 13px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
           svg.aqm-svg .aqm-svg-money-sign { fill: #5E7D52; font-size: 18px; font-weight: 700; }
           svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.5; }
+          svg.aqm-svg .aqm-node-text { font-weight: 700; }
           svg.aqm-svg .aqm-node-text { fill: #6B263D; font-weight: 800; }
           svg.aqm-svg .aqm-node-love .aqm-node-bg { stroke: #C89B9E; }
           svg.aqm-svg .aqm-node-money .aqm-node-bg { stroke: #C5A46D; }
