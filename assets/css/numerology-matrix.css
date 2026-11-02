@@ -176,7 +176,7 @@
   height: auto;
   display: block;
   margin: 0 auto;
-  pointer-events: none;
+  pointer-events: none; /* الحاوية والخطوط لا تستقبل النقر */
 }
 
 /* SVG Line & Geometry Elements */
@@ -223,7 +223,6 @@
 }
 
 .aqm-node:hover {
-  transform: scale(1.12);
   filter: drop-shadow(0 4px 10px rgba(120, 47, 59, 0.25));
 }
 
@@ -919,12 +918,29 @@
    ملاحظة: لا نضع transform هنا لأن CSS transform يلغي transform="translate(x,y)" الخاص بالعقدة فتتجمع كلها في الزاوية */
 .aqm-svg .aqm-node,
 .aqm-svg .aqm-node:hover {
-  cursor: default;
+  cursor: pointer;
   filter: none;
   transition: none;
 }
-.aqm-svg .aqm-node:hover { transform: inherit; }
 
 /* الانتقال إلى #matrix يتوقف أسفل الهيدر الثابت (ارتفاعه ~85px) حتى لا يُخفي زر "العودة للرئيسية" */
 #matrix { scroll-margin-top: 96px; }
 #matrix.sec:target, #matrix:target { padding-top: 112px !important; }
+
+/* ربط العُقد بالأكورديون: تمييز العقدة والكارت النشط، وتوقف التمرير أسفل الهيدر الثابت */
+.aqm-acc-item { scroll-margin-top: 110px; }
+.aqm-acc-item.is-active {
+  border-color: var(--aqm-gold-base);
+  box-shadow: 0 0 0 3px rgba(197, 164, 109, 0.25);
+}
+.aqm-svg .aqm-node.is-active circle.aqm-node-bg {
+  stroke: var(--aqm-wine) !important;
+  stroke-width: 3px !important;
+}
+/* قراءة أوضح للأرقام على الموبايل (أرقام الأركانا داخل الدوائر) */
+@media (max-width: 600px) {
+  .aqm-node-corner .aqm-node-text { font-size: 21px; }
+}
+/* العُقد وحدها تستقبل النقر (لربطها بالأكورديون) */
+.aqm-svg .aqm-node,
+.aqm-svg .aqm-node * { pointer-events: auto; }
