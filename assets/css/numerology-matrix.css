@@ -915,11 +915,12 @@
   .aqm-chakra-vals { grid-column: 2; white-space: normal; }
 }
 
-/* لوحة مرجعية ثابتة: لا تأثيرات تفاعلية على عُقد الـ SVG */
+/* لوحة مرجعية ثابتة: لا تأثيرات تفاعلية على عُقد الـ SVG.
+   ملاحظة: لا نضع transform هنا لأن CSS transform يلغي transform="translate(x,y)" الخاص بالعقدة فتتجمع كلها في الزاوية */
 .aqm-svg .aqm-node,
 .aqm-svg .aqm-node:hover {
   cursor: default;
-  transform: none;
   filter: none;
   transition: none;
 }
+.aqm-svg .aqm-node:hover { transform: inherit; }
