@@ -2818,3 +2818,103 @@ html, body {
     height: 18px !important;
   }
 }
+
+
+/* ==========================================================================
+   AQEEQ ASTRO — RESPONSIVE EXPERIENCE REFINEMENT v1
+   Shared layout corrections for phones, tablets and desktop.
+   No calculation, content or authentication logic is changed.
+   ========================================================================== */
+html{width:100%;max-width:100%;overflow-x:clip;scroll-padding-top:90px}
+body{width:100%;max-width:100%;overflow-x:clip}
+img,svg,canvas,video,iframe{max-width:100%}
+button,input,select,textarea{max-width:100%;font:inherit}
+.wrap{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+main,section,header,footer{min-width:0}
+section{scroll-margin-top:90px}
+p,li,h1,h2,h3,h4,label,a,button{overflow-wrap:anywhere}
+button,a,.btn{touch-action:manipulation}
+.panel,.card,.result,.res-head,.cta-box,.asp-list li,.wd-panel{min-width:0}
+.panel,.card{max-width:100%}
+.grid,.cards,.features,.feature-grid,.tools-grid,.transit-grid,.planet-grid{min-width:0}
+input,select,textarea{min-width:0}
+table{width:100%;max-width:100%;border-collapse:collapse}
+.table-wrap,.tbl-wrap,.overflow-x{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+pre,code{max-width:100%;overflow-wrap:anywhere;white-space:pre-wrap}
+
+/* Tablet and compact desktop */
+@media (min-width:700px) and (max-width:1099px){
+  .wrap{width:calc(100% - 56px)}
+  .sec{padding:56px 0}
+  .panel,.card{padding:clamp(18px,2.4vw,28px)}
+  .nav{gap:clamp(10px,1.6vw,20px)}
+}
+
+/* Phone: one deliberate column, readable controls, no squeezed cards */
+@media (max-width:699px){
+  html{scroll-padding-top:76px}
+  body{font-size:16px;line-height:1.8}
+  .wrap{width:calc(100% - 28px)}
+  .sec{padding:42px 0}
+  .hero{padding:28px 0 42px}
+  .hero .wrap{gap:20px}
+  .hero h1{font-size:clamp(1.8rem,8vw,2.5rem);line-height:1.45;max-width:18ch}
+  .lead,.intro{font-size:.98rem;line-height:1.9}
+  .cta-row{width:100%;gap:10px;margin-top:18px}
+  .cta-row .btn{flex:1 1 145px;min-width:0}
+  .btn{min-height:46px;padding:12px 18px;font-size:.95rem}
+  .btn.sm{min-height:42px;padding:10px 14px}
+  .top{position:sticky;top:0}
+  .hd{grid-template-columns:1fr auto;gap:6px 10px;padding:8px 0}
+  .brand{font-size:1.08rem}
+  .nav{grid-column:1/-1;gap:16px;padding:8px 2px 10px;font-size:.88rem}
+  .sec h2{font-size:clamp(1.45rem,6vw,1.9rem)}
+  .two,.big3,.cards,.features,.feature-grid,.tools-grid,.transit-grid,.planet-grid{
+    grid-template-columns:minmax(0,1fr)!important
+  }
+  .big3{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px}
+  .b3{padding:12px 5px;min-width:0}
+  .b3g{width:34px;height:34px;font-size:1.55rem}
+  .b3 strong{font-size:.95rem}
+  .b3l,.b3 .num,.b3 span:last-child{font-size:.76rem}
+  .wheel{width:min(88vw,360px)}
+  .wheel-wrap,.cw{max-width:min(90vw,360px)}
+  .tabs{width:100%;max-width:100%;justify-content:flex-start}
+  .tab{padding:8px 12px;font-size:.84rem}
+  .cform{gap:14px}
+  .field{min-width:0}
+  input,select{min-height:48px;font-size:16px}
+  .cform .btn{width:100%;min-width:0}
+  .result{margin-top:28px}
+  .res-head h3{font-size:1.4rem}
+  .panel,.card,.cta-box,.wd-panel{padding:16px!important;border-radius:16px}
+  .rd{padding:13px 0}
+  .rd h4{font-size:1rem}
+  .tr{grid-template-columns:minmax(0,1fr);gap:4px;padding:12px 0}
+  .tr .c3{text-align:start}
+  .sky-ctl{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch}
+  .sky-ctl .field{min-width:0;width:100%}
+  .asp-list li{padding:10px;line-height:1.75}
+  .bar{grid-template-columns:58px minmax(0,1fr) 22px;gap:8px}
+  .cta-box{margin-top:24px}
+  .cta-box .btn{width:100%}
+  .ph{font-size:1.05rem}
+}
+
+/* Small phones */
+@media (max-width:380px){
+  .wrap{width:calc(100% - 22px)}
+  .brand{font-size:1rem}
+  .nav{gap:12px;font-size:.82rem}
+  .big3{gap:5px}
+  .b3{padding:10px 3px}
+  .b3 strong{font-size:.88rem}
+  .btn{padding-inline:13px}
+}
+
+/* Wide desktop: keep reading surfaces centered and prevent ultra-wide stretching */
+@media (min-width:1100px){
+  .wrap{width:min(1200px,calc(100% - 80px))}
+  .sec{padding-block:76px}
+  .panel,.card{max-width:100%}
+}
