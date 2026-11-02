@@ -924,3 +924,6 @@
   transition: none;
 }
 .aqm-svg .aqm-node:hover { transform: inherit; }
+
+/* هامش علوي لقسم المصفوفة حتى لا تتداخل الأزرار العلوية مع شريط التنقل */
+#matrix { padding-top: 28px !important; }
