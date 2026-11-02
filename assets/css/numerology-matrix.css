@@ -967,13 +967,13 @@
   dominant-baseline: central;
 }
 .aqm-svg .aqm-node-text.is-dark { fill: #FFFFFF !important; }
-.aqm-svg .aqm-node-center .aqm-node-text { font-size: 46px; }
-.aqm-svg .aqm-node-corner .aqm-node-text { font-size: 34px; }
-.aqm-svg .aqm-node-ancestral .aqm-node-text { font-size: 30px; }
+.aqm-svg .aqm-node-center .aqm-node-text { font-size: 42px; }
+.aqm-svg .aqm-node-corner .aqm-node-text { font-size: 30px; }
+.aqm-svg .aqm-node-ancestral .aqm-node-text { font-size: 27px; }
 .aqm-svg .aqm-node-love .aqm-node-text,
 .aqm-svg .aqm-node-money .aqm-node-text,
 .aqm-svg .aqm-node-balance .aqm-node-text,
-.aqm-svg .aqm-node-chakra .aqm-node-text { font-size: 24px; }
+.aqm-svg .aqm-node-chakra .aqm-node-text { font-size: 22px; }
 
 /* ==========================================================================
    عمق البطاقات: خلفية بيضاء وظل هوائي ودرجة ذهبية خفيفة
