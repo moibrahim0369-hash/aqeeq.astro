@@ -222,9 +222,12 @@
   function buildAccordionItem(item) {
     const { id, icon, title, subtitle, arcanaList, contentKey, slots } = item;
     const badgesHtml = arcanaList.map(a => `<span class="aqm-badge-arcana">${a.num} · ${a.name}</span>`).join(' ');
+    // Pending Content: any of the five slots empty means the section is not complete textually
+    const isPending = !slots || Object.values(slots).some(v => !String(v || '').trim());
+    const pendingHtml = isPending ? `<span class="aqm-pending-badge" data-pending="true">Pending Content</span>` : '';
 
     return `
-      <div class="aqm-acc-item" id="aqm-sec-${id}" data-section-id="${id}" data-content-key="${contentKey}">
+      <div class="aqm-acc-item${isPending ? ' is-pending' : ''}" id="aqm-sec-${id}" data-section-id="${id}" data-content-key="${contentKey}" data-pending="${isPending}">
         <button class="aqm-acc-header" type="button" aria-expanded="false" aria-controls="aqm-body-${id}">
           <div class="aqm-acc-header-left">
             <span class="aqm-acc-icon" aria-hidden="true">${icon}</span>
@@ -234,6 +237,7 @@
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
+            ${pendingHtml}
             ${badgesHtml}
             <span class="aqm-acc-chevron" aria-hidden="true">›</span>
           </div>
@@ -892,6 +896,11 @@
       const onClick = () => {
         hideTooltip();
         if (!secId) return;
+        // وميض ذهبي على العقدة المضغوطة
+        node.classList.remove('is-flash');
+        void node.getBoundingClientRect(); // restart the animation
+        node.classList.add('is-flash');
+        setTimeout(() => node.classList.remove('is-flash'), 1500);
         const targetAcc = host.querySelector(`#aqm-sec-${secId}`);
         if (targetAcc) {
           targetAcc.classList.remove('aqm-item-highlight');
