@@ -121,10 +121,14 @@
     const hP1 = reduce22(A + E);
     const hP2 = reduce22(hP1 + E);
     const hP3 = reduce22(hP1 + A);
-    // خط المال (يمين المركز نحو C): m1 = reduce22(C+E)، m2 = reduce22(m1+C)، m3 = reduce22(m1+E)
+    // مسار المال الأيمن من المركز E نحو C: 14 = reduce22(E+E)، 21 = reduce22(14+E)، ثم m1 و m2 (ومن محرك الحساب: B2 و D2 و D3)
+    const nE1 = reduce22(E + E);
+    const nE2 = reduce22(nE1 + E);
     const mP1 = reduce22(C + E);
     const mP2 = reduce22(mP1 + C);
-    const mP3 = reduce22(mP1 + E);
+    const tB = reduce22(B + intermediate.B2);
+    const T = { purple: '#8E6E85', petrol: '#4E7988', sky: '#7EA0B7', green: '#5A7E64', solar: '#E6C280', orange: '#C06C54', wine: '#8B263E', white: '#FFFFFF' };
+    const DARK = [T.purple, T.petrol, T.green, T.orange, T.wine];
     const { heartPoint, moneyPoint, balancePoint } = channels;
 
     // الإحداثيات الهندسية المعتمدة (المركز 400, 400) — لا تتغير
@@ -177,12 +181,16 @@
     const [fatherA, fatherB] = shorten(pos.northWest, pos.southEast, 26);
     const [motherA, motherB] = shorten(pos.northEast, pos.southWest, 26);
 
-    const nodeG = (cls, section, title, arc, p, r, inner) => `
+    const nodeG = (cls, section, title, arc, p, r, inner, fill) => {
+      const st = fill ? ` style="fill:${fill}"` : '';
+      const tc = fill ? ` style="fill:${DARK.includes(fill) ? '#FFFFFF' : '#3B2F2A'}"` : '';
+      return `
         <g class="aqm-node ${cls}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
-          <circle cx="0" cy="0" r="${r}" class="aqm-node-bg" />
+          <circle cx="0" cy="0" r="${r}" class="aqm-node-bg"${st} />
           ${inner || ''}
-          <text x="0" y="0" class="aqm-node-text">${arc}</text>
+          <text x="0" y="0" class="aqm-node-text"${tc}>${arc}</text>
         </g>`;
+    };
 
     return `
       <svg class="aqm-svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم مصفوفة القدر الهندسية">
@@ -256,12 +264,12 @@
         <circle cx="400" cy="400" r="72" fill="url(#aqm-halo)" />
 
         <!-- العُقد التفاعلية (المعرّفات مطابقة لأقسام الأكورديون) -->
-        ${nodeG('aqm-node-corner', 'personal', 'طاقة الشخصية والجوهر (اليوم)', A, pos.west, 26)}
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح والمواهب (الشهر)', B, pos.north, 26)}
-        ${nodeG('aqm-node-corner', 'money_line', 'طاقة المادة والصحة (السنة)', C, pos.east, 26)}
-        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي الأساسي (Past Karma)', D, pos.south, 26)}
-        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (نقطة وسطى D3)', intermediate.D3, pos.D3, 19)}
-        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (مدخل القلب D2)', intermediate.D2, pos.D2, 19)}
+        ${nodeG('aqm-node-corner', 'personal', 'طاقة الشخصية والجوهر (اليوم)', A, pos.west, 26, null, '#8E6E85')}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح والمواهب (الشهر)', B, pos.north, 26, null, '#8E6E85')}
+        ${nodeG('aqm-node-corner', 'money_line', 'طاقة المادة والصحة (السنة)', C, pos.east, 26, null, '#8B263E')}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي الأساسي (Past Karma)', D, pos.south, 26, null, '#8B263E')}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (نقطة وسطى D3)', intermediate.D3, pos.D3, 19, null, '#FFFFFF')}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (مدخل القلب D2)', intermediate.D2, pos.D2, 19, null, '#C06C54')}
         ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب العليا (مواهب الأب)', F, pos.northWest, 23)}
         ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم العليا (مواهب الأم)', G, pos.northEast, 23)}
         ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب السفلى (كارما المادة)', H, pos.southEast, 23)}
@@ -271,17 +279,21 @@
         ${nodeG('aqm-node-ancestral', 'father_line', 'خط الأب — الجمع الكلي عند تقاطع المحور المائل', generational.father.combined, [265, 265], 19)}
         ${nodeG('aqm-node-ancestral', 'mother_line', 'خط الأم — الجمع الكلي عند تقاطع المحور المائل', generational.mother.combined, [265, 535], 19)}
         ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 20)}
-        <!-- نقاط خط المال على اليمين بين المركز E والطرف C: m1، m3، m2 -->
-        ${nodeG('aqm-node-money', 'money_line', 'نقطة مال (C+E) — الاختزال الأول', mP1, [510, 400], 19)}
-        ${nodeG('aqm-node-money', 'money_line', 'نقطة مال (m1+E) — الاختزال الثالث', mP3, [560, 400], 19)}
-        ${nodeG('aqm-node-money', 'money_line', 'نقطة مال (m1+C) — الاختزال الثاني', mP2, [610, 400], 19)}
-        <text x="560" y="372" class="aqm-svg-money-sign" fill="#5A7E64">$</text>
-        <!-- النقاط الأفقية اليسرى من المركز: reduce22(A+E)، reduce22(p1+E)، reduce22(p1+A) -->
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية (A+E) — الشاكرا البترولية', hP1, [200, 400], 19)}
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية (p1+A) — الشاكرا السماوية', hP3, [265, 400], 19)}
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية (p1+E) — الشاكرا الزمردية', hP2, [330, 400], 19)}
+        <!-- المحور الأفقي الأيسر من A إلى E: 21 ← 14 ← 21 -->
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [200, 400], 19, '', T.petrol)}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(A+E)', hP1, [265, 400], 19, '', T.sky)}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+E)', hP2, [330, 400], 19, '', T.green)}
+        <!-- المحور الأيمن من E إلى C: 14 ← 21 ← 17 ← 9 -->
+        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(E+E)', nE1, [490, 400], 19, '', T.white)}
+        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(p+E)', nE2, [530, 400], 19, '', T.white)}
+        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+E)', mP1, [570, 400], 19, '', T.orange)}
+        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(m1+C)', mP2, [610, 400], 19, '', T.white)}
+        <text x="570" y="352" class="aqm-svg-money-sign" fill="#5A7E64">$</text>
+        <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol)}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky)}
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
-          <circle cx="0" cy="0" r="44" class="aqm-node-bg" />
+          <circle cx="0" cy="0" r="44" class="aqm-node-bg" style="fill:#E6C280" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
           <text x="0" y="0" class="aqm-node-text">${E}</text>
         </g>
