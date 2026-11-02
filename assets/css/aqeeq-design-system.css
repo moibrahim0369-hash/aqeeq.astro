@@ -429,7 +429,7 @@ nav.bnav a {
 nav.bnav a svg {
   width: 17px !important;
   height: 17px !important;
-  stroke-width: 1.65 !important;
+  stroke-width: 1.7 !important;
 }
 
 nav.bnav a.on {
@@ -1043,7 +1043,7 @@ section.hero form.quick#qform {
 .aq-world-icon-circle svg {
   width: 26px;
   height: 26px;
-  stroke-width: 1.5;
+  stroke-width: 1.7;
 }
 
 .aq-world-en-tag {
