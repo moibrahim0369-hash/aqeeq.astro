@@ -29,52 +29,90 @@
     const { F, G, H, I } = corners;
     const { heartPoint, moneyPoint, balancePoint } = channels;
 
-    // الإحداثيات الهندسية المعتمدة (المركز 400, 400)
-    // المربع الشخصي (Personal Diamond):
-    // Left (A / Day / 0 yo): (130, 400)
-    // Top (B / Month / 20 yo): (400, 130)
-    // Right (C / Year / 40 yo): (670, 400)
-    // Bottom (D / Karmic Tail / 60 yo): (400, 670)
+    // الإحداثيات الهندسية المعتمدة (المركز 400, 400) — لا تتغير
     const pos = {
       center: [400, 400],
-      west: [130, 400],    // A
-      north: [400, 130],   // B
-      east: [670, 400],    // C
-      south: [400, 670],   // D
-      northWest: [210, 210], // F (Top-Left / Paternal)
-      northEast: [590, 210], // G (Top-Right / Maternal)
-      southEast: [590, 590], // H (Bottom-Right / Material Karma)
-      southWest: [210, 590], // I (Bottom-Left / Spiritual Karma)
-      // نقاط المحاور الداخلية
+      west: [130, 400],      // A — 0 سنة
+      north: [400, 130],     // B — 20 سنة
+      east: [670, 400],      // C — 40 سنة
+      south: [400, 670],     // D — 60 سنة
+      northWest: [210, 210], // F — 10 سنين
+      northEast: [590, 210], // G — 30 سنة
+      southEast: [590, 590], // H — 50 سنة
+      southWest: [210, 590], // I — 70 سنة
       A2: [265, 400],
       B2: [400, 265],
       C2: [535, 400],
       D2: [400, 535],
       D3: [400, 602],
-      // نقاط قنوات الحب والمال
       heart: [445, 490],
       money: [490, 445],
       balance: [515, 515]
     };
 
+    const r2 = n => Math.round(n * 100) / 100;
+    const polar = (radius, deg) => [400 + radius * Math.cos(deg * Math.PI / 180), 400 + radius * Math.sin(deg * Math.PI / 180)];
+    // العمر 0 عند الغرب ويتقدم مع اتجاه عقارب الساعة حتى 80 سنة
+    const ageDeg = age => 180 + (age / 80) * 360;
+    // تقصير الخط بمقدار d من طرفيه حتى لا يغطي العُقد
+    const shorten = (p, q, d) => {
+      const dx = q[0] - p[0], dy = q[1] - p[1], len = Math.hypot(dx, dy);
+      const ux = dx / len, uy = dy / len;
+      return [[p[0] + ux * d, p[1] + uy * d], [q[0] - ux * d, q[1] - uy * d]];
+    };
+
+    // مسطرة القياس الفلكية: 80 تدريجة (سنة لكل تدريجة) وأرقام كل 10 سنين
+    let ticks = '';
+    for (let y = 0; y < 80; y++) {
+      const d = ageDeg(y);
+      const major = y % 10 === 0;
+      const a = polar(major ? 330 : 344, d), b = polar(356, d);
+      ticks += `<line x1="${r2(a[0])}" y1="${r2(a[1])}" x2="${r2(b[0])}" y2="${r2(b[1])}" class="aqm-svg-tick${major ? ' is-major' : ''}" />`;
+    }
+    let ageLabels = '';
+    for (let y = 0; y < 80; y += 10) {
+      const p = polar(312, ageDeg(y));
+      ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-label">${y === 0 ? '0 / 80' : y} سنة</text>`;
+    }
+
+    // أسهم خطوط الأسلاف (خط الأب: F → H، خط الأم: G → I)
+    const [fatherA, fatherB] = shorten(pos.northWest, pos.southEast, 26);
+    const [motherA, motherB] = shorten(pos.northEast, pos.southWest, 26);
+
+    const nodeG = (cls, section, title, arc, p, r, inner) => `
+        <g class="aqm-node ${cls}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
+          <circle cx="0" cy="0" r="${r}" class="aqm-node-bg" />
+          ${inner || ''}
+          <text x="0" y="0" class="aqm-node-text">${arc}</text>
+        </g>`;
+
     return `
       <svg class="aqm-svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم مصفوفة القدر الهندسية">
         <style>
-          svg.aqm-svg .aqm-svg-guide { stroke: rgba(197, 164, 109, 0.18); }
-          svg.aqm-svg .aqm-svg-personal-square { stroke: #C5A46D; }
-          svg.aqm-svg .aqm-svg-ancestral-square { stroke: #C5A46D; stroke-opacity: 0.7; }
-          svg.aqm-svg .aqm-svg-axis { stroke: rgba(197, 164, 109, 0.45); }
-          svg.aqm-svg .aqm-svg-love-channel { stroke: #C89B9E; }
-          svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; }
-          svg.aqm-svg .aqm-svg-age-label { fill: #74685F; }
-          svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; }
+          svg.aqm-svg .aqm-svg-bg { fill: #FAF7F0; }
+          svg.aqm-svg .aqm-svg-dial-ring { fill: none; stroke: #C5A46D; stroke-width: 1.2; }
+          svg.aqm-svg .aqm-svg-dial-ring.is-outer { stroke-width: 1.8; }
+          svg.aqm-svg .aqm-svg-tick { stroke: #C5A46D; stroke-width: 1; }
+          svg.aqm-svg .aqm-svg-tick.is-major { stroke: #6B263D; stroke-width: 1.4; }
+          svg.aqm-svg .aqm-svg-guide { fill: none; stroke: rgba(197, 164, 109, 0.22); stroke-width: 1.2; stroke-dasharray: 4, 6; }
+          svg.aqm-svg .aqm-svg-personal-square { fill: none; stroke: #6B263D; stroke-width: 1.2; stroke-opacity: 0.8; }
+          svg.aqm-svg .aqm-svg-ancestral-square { fill: none; stroke: #C5A46D; stroke-width: 1.2; stroke-dasharray: 6, 4; }
+          svg.aqm-svg .aqm-svg-axis { stroke: rgba(107, 38, 61, 0.35); stroke-width: 1.2; }
+          svg.aqm-svg .aqm-svg-father { stroke: #C5A46D; stroke-width: 1.2; }
+          svg.aqm-svg .aqm-svg-mother { stroke: #6B263D; stroke-width: 1.2; }
+          svg.aqm-svg .aqm-svg-love-channel { stroke: #C89B9E; stroke-width: 2; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
+          svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; stroke-width: 2; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
+          svg.aqm-svg .aqm-svg-age-label { fill: #74685F; font-size: 12px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+          svg.aqm-svg .aqm-svg-money-sign { fill: #5E7D52; font-size: 18px; font-weight: 700; }
+          svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.5; }
           svg.aqm-svg .aqm-node-text { fill: #6B263D; font-weight: 800; }
-          svg.aqm-svg .aqm-node-center .aqm-node-bg { fill: #FFFFFF; stroke: #6B263D; stroke-width: 3; }
-          svg.aqm-svg .aqm-node-center .aqm-node-ring { stroke: #C5A46D; }
-          svg.aqm-svg .aqm-node-center .aqm-node-text { fill: #6B263D; font-size: 30px; }
           svg.aqm-svg .aqm-node-love .aqm-node-bg { stroke: #C89B9E; }
+          svg.aqm-svg .aqm-node-money .aqm-node-bg { stroke: #C5A46D; }
           svg.aqm-svg .aqm-node-balance .aqm-node-bg { fill: #E7D7C2; }
           svg.aqm-svg .aqm-node-balance .aqm-node-text { fill: #2D2522; }
+          svg.aqm-svg .aqm-node-center .aqm-node-bg { fill: #FFFFFF; stroke: #6B263D; stroke-width: 2.6; }
+          svg.aqm-svg .aqm-node-center .aqm-node-ring { fill: none; stroke: #C5A46D; stroke-width: 1.2; }
+          svg.aqm-svg .aqm-node-center .aqm-node-text { fill: #6B263D; font-size: 30px; font-weight: 800; }
           svg.aqm-svg .aqm-node.is-flash .aqm-node-bg { animation: aqm-gold-flash 1.4s ease-out 1; }
           @keyframes aqm-gold-flash {
             0%   { filter: drop-shadow(0 0 0 rgba(197, 164, 109, 0)); }
@@ -83,127 +121,62 @@
           }
         </style>
         <defs>
-          <filter id="aqm-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#C6A56B" flood-opacity="0.25"/>
-          </filter>
+          <radialGradient id="aqm-halo" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFF3D6" stop-opacity="0.95" />
+            <stop offset="60%" stop-color="#F3DFB0" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#F3DFB0" stop-opacity="0" />
+          </radialGradient>
+          <marker id="aqm-arr-father" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#C5A46D" />
+          </marker>
+          <marker id="aqm-arr-mother" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 Z" fill="#6B263D" />
+          </marker>
         </defs>
 
-        <!-- دوائر إرشادية خفيفة -->
-        <circle cx="400" cy="400" r="340" class="aqm-svg-guide" />
+        <!-- الخلفية العاجية والإطار الدائري المزدوج -->
+        <rect x="0" y="0" width="800" height="800" rx="28" class="aqm-svg-bg" />
+        <circle cx="400" cy="400" r="372" class="aqm-svg-dial-ring is-outer" />
+        <circle cx="400" cy="400" r="356" class="aqm-svg-dial-ring" />
+        ${ticks}
+        ${ageLabels}
         <circle cx="400" cy="400" r="270" class="aqm-svg-guide" />
 
-        <!-- المربع الشخصي (Personal Straight Diamond: A -> B -> C -> D) -->
+        <!-- المربع الشخصي والأسلاف والمحاور -->
         <polygon points="${pos.west[0]},${pos.west[1]} ${pos.north[0]},${pos.north[1]} ${pos.east[0]},${pos.east[1]} ${pos.south[0]},${pos.south[1]}" class="aqm-svg-personal-square" />
-
-        <!-- مربع الأسلاف المائل (Ancestral Diagonal Square: F -> G -> H -> I) -->
         <polygon points="${pos.northWest[0]},${pos.northWest[1]} ${pos.northEast[0]},${pos.northEast[1]} ${pos.southEast[0]},${pos.southEast[1]} ${pos.southWest[0]},${pos.southWest[1]}" class="aqm-svg-ancestral-square" />
-
-        <!-- محاور السماء والأرض (Vertical & Horizontal Axes) -->
         <line x1="${pos.west[0]}" y1="${pos.west[1]}" x2="${pos.east[0]}" y2="${pos.east[1]}" class="aqm-svg-axis" />
         <line x1="${pos.north[0]}" y1="${pos.north[1]}" x2="${pos.south[0]}" y2="${pos.south[1]}" class="aqm-svg-axis" />
+        <line x1="${fatherA[0]}" y1="${fatherA[1]}" x2="${fatherB[0]}" y2="${fatherB[1]}" class="aqm-svg-father" marker-end="url(#aqm-arr-father)" />
+        <line x1="${motherA[0]}" y1="${motherA[1]}" x2="${motherB[0]}" y2="${motherB[1]}" class="aqm-svg-mother" marker-end="url(#aqm-arr-mother)" />
 
-        <!-- أقطار الأسلاف (Paternal & Maternal Diagonals) -->
-        <line x1="${pos.northWest[0]}" y1="${pos.northWest[1]}" x2="${pos.southEast[0]}" y2="${pos.southEast[1]}" class="aqm-svg-axis" />
-        <line x1="${pos.northEast[0]}" y1="${pos.northEast[1]}" x2="${pos.southWest[0]}" y2="${pos.southWest[1]}" class="aqm-svg-axis" />
-
-        <!-- خط الحب (Love Channel Line in Dusty Rose) -->
+        <!-- مسارات الحب والمال -->
         <line x1="${pos.center[0]}" y1="${pos.center[1]}" x2="${pos.heart[0]}" y2="${pos.heart[1]}" class="aqm-svg-love-channel" />
         <line x1="${pos.heart[0]}" y1="${pos.heart[1]}" x2="${pos.balance[0]}" y2="${pos.balance[1]}" class="aqm-svg-love-channel" />
-
-        <!-- خط المال (Money Channel Line in Champagne Gold) -->
         <line x1="${pos.center[0]}" y1="${pos.center[1]}" x2="${pos.money[0]}" y2="${pos.money[1]}" class="aqm-svg-money-channel" />
         <line x1="${pos.money[0]}" y1="${pos.money[1]}" x2="${pos.balance[0]}" y2="${pos.balance[1]}" class="aqm-svg-money-channel" />
-
-        <!-- تسميات محطات الأعمار على المحيط (Perimeter Age Stations) -->
-        <text x="75" y="405" class="aqm-svg-age-label">0 سنة</text>
-        <text x="170" y="170" class="aqm-svg-age-label">10 سنين</text>
-        <text x="400" y="75" class="aqm-svg-age-label">20 سنة</text>
-        <text x="630" y="170" class="aqm-svg-age-label">30 سنة</text>
-        <text x="725" y="405" class="aqm-svg-age-label">40 سنة</text>
-        <text x="630" y="630" class="aqm-svg-age-label">50 سنة</text>
-        <text x="400" y="725" class="aqm-svg-age-label">60 سنة</text>
-        <text x="170" y="630" class="aqm-svg-age-label">70 سنة</text>
-
-        <!-- العقد التفاعلية: زوايا المربع الشخصي -->
-        <!-- A: الشخصية (0 سنة) -->
-        <g class="aqm-node aqm-node-corner" data-section="personal" data-title="طاقة الشخصية والجوهر (اليوم)" data-arcana="${A}" transform="translate(${pos.west[0]}, ${pos.west[1]})">
-          <circle cx="0" cy="0" r="26" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${A}</text>
+        <g class="aqm-svg-heart-icon" transform="translate(${pos.heart[0] - 30}, ${pos.heart[1] - 34}) scale(0.7)">
+          <path d="M12 21 C12 21 3 14.5 3 8.5 C3 5.4 5.4 3 8.2 3 C9.8 3 11.2 3.9 12 5.2 C12.8 3.9 14.2 3 15.8 3 C18.6 3 21 5.4 21 8.5 C21 14.5 12 21 12 21 Z" fill="#B5443E" />
         </g>
+        <text x="${pos.money[0] + 26}" y="${pos.money[1] - 22}" class="aqm-svg-money-sign">$</text>
 
-        <!-- B: المواهب والروح (20 سنة) -->
-        <g class="aqm-node aqm-node-corner" data-section="talents" data-title="طاقة الروح والمواهب (الشهر)" data-arcana="${B}" transform="translate(${pos.north[0]}, ${pos.north[1]})">
-          <circle cx="0" cy="0" r="26" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${B}</text>
-        </g>
+        <!-- المركز الجوهري E بهالة شمسية -->
+        <circle cx="400" cy="400" r="72" fill="url(#aqm-halo)" />
 
-        <!-- C: المادة والصحة (40 سنة) -->
-        <g class="aqm-node aqm-node-corner" data-section="money_line" data-title="طاقة المادة والصحة (السنة)" data-arcana="${C}" transform="translate(${pos.east[0]}, ${pos.east[1]})">
-          <circle cx="0" cy="0" r="26" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${C}</text>
-        </g>
-
-        <!-- D: الذيل الكارمي الأساسي (60 سنة) -->
-        <g class="aqm-node aqm-node-corner" data-section="karmic_tail" data-title="الذيل الكارمي الأساسي (Past Karma)" data-arcana="${D}" transform="translate(${pos.south[0]}, ${pos.south[1]})">
-          <circle cx="0" cy="0" r="26" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${D}</text>
-        </g>
-
-        <!-- نقاط ثالوث الذيل الكارمي الوسيطة -->
-        <g class="aqm-node aqm-node-corner" data-section="karmic_tail" data-title="الذيل الكارمي (نقطة وسطى D3)" data-arcana="${intermediate.D3}" transform="translate(${pos.D3[0]}, ${pos.D3[1]})">
-          <circle cx="0" cy="0" r="19" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text" style="font-size:14px">${intermediate.D3}</text>
-        </g>
-        <g class="aqm-node aqm-node-corner" data-section="karmic_tail" data-title="الذيل الكارمي (مدخل القلب D2)" data-arcana="${intermediate.D2}" transform="translate(${pos.D2[0]}, ${pos.D2[1]})">
-          <circle cx="0" cy="0" r="19" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text" style="font-size:14px">${intermediate.D2}</text>
-        </g>
-
-        <!-- زوايا الأسلاف (Ancestral Corners) -->
-        <!-- F: سلالة الأب العليا (10 سنين) -->
-        <g class="aqm-node aqm-node-ancestral" data-section="father_line" data-title="سلالة الأب العليا (مواهب الأب)" data-arcana="${F}" transform="translate(${pos.northWest[0]}, ${pos.northWest[1]})">
-          <circle cx="0" cy="0" r="23" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${F}</text>
-        </g>
-
-        <!-- G: سلالة الأم العليا (30 سنة) -->
-        <g class="aqm-node aqm-node-ancestral" data-section="mother_line" data-title="سلالة الأم العليا (مواهب الأم)" data-arcana="${G}" transform="translate(${pos.northEast[0]}, ${pos.northEast[1]})">
-          <circle cx="0" cy="0" r="23" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${G}</text>
-        </g>
-
-        <!-- H: سلالة الأب السفلى (50 سنة) -->
-        <g class="aqm-node aqm-node-ancestral" data-section="father_line" data-title="سلالة الأب السفلى (كارما المادة)" data-arcana="${H}" transform="translate(${pos.southEast[0]}, ${pos.southEast[1]})">
-          <circle cx="0" cy="0" r="23" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${H}</text>
-        </g>
-
-        <!-- I: سلالة الأم السفلى (70 سنة) -->
-        <g class="aqm-node aqm-node-ancestral" data-section="mother_line" data-title="سلالة الأم السفلى (كارما المشاعر)" data-arcana="${I}" transform="translate(${pos.southWest[0]}, ${pos.southWest[1]})">
-          <circle cx="0" cy="0" r="23" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${I}</text>
-        </g>
-
-        <!-- قنوات الحب والمال التفاعلية -->
-        <!-- نقطة القلب (Heart Point) -->
-        <g class="aqm-node aqm-node-love" data-section="love_line" data-title="مدخل الحب والعلاقات (Heart Point)" data-arcana="${heartPoint}" transform="translate(${pos.heart[0]}, ${pos.heart[1]})">
-          <circle cx="0" cy="0" r="21" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${heartPoint}</text>
-        </g>
-
-        <!-- نقطة المال (Money Point) -->
-        <g class="aqm-node aqm-node-money" data-section="money_line" data-title="مدخل المال والوفرة (Money Point)" data-arcana="${moneyPoint}" transform="translate(${pos.money[0]}, ${pos.money[1]})">
-          <circle cx="0" cy="0" r="21" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${moneyPoint}</text>
-        </g>
-
-        <!-- نقطة التوازن (Balance Point) -->
-        <g class="aqm-node aqm-node-balance" data-section="love_line" data-title="نقطة التوازن بين الحب والمال (Balance)" data-arcana="${balancePoint}" transform="translate(${pos.balance[0]}, ${pos.balance[1]})">
-          <circle cx="0" cy="0" r="20" class="aqm-node-bg" />
-          <text x="0" y="0" class="aqm-node-text">${balancePoint}</text>
-        </g>
-
-        <!-- المركز الأكبر الفاخر (Center E: Soul Comfort) -->
+        <!-- العُقد التفاعلية (المعرّفات مطابقة لأقسام الأكورديون) -->
+        ${nodeG('aqm-node-corner', 'personal', 'طاقة الشخصية والجوهر (اليوم)', A, pos.west, 26)}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح والمواهب (الشهر)', B, pos.north, 26)}
+        ${nodeG('aqm-node-corner', 'money_line', 'طاقة المادة والصحة (السنة)', C, pos.east, 26)}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي الأساسي (Past Karma)', D, pos.south, 26)}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (نقطة وسطى D3)', intermediate.D3, pos.D3, 19)}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (مدخل القلب D2)', intermediate.D2, pos.D2, 19)}
+        ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب العليا (مواهب الأب)', F, pos.northWest, 23)}
+        ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم العليا (مواهب الأم)', G, pos.northEast, 23)}
+        ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب السفلى (كارما المادة)', H, pos.southEast, 23)}
+        ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم السفلى (كارما المشاعر)', I, pos.southWest, 23)}
+        ${nodeG('aqm-node-love', 'love_line', 'مدخل الحب والعلاقات (Heart Point)', heartPoint, pos.heart, 21)}
+        ${nodeG('aqm-node-money', 'money_line', 'مدخل المال والوفرة (Money Point)', moneyPoint, pos.money, 21)}
+        ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 20)}
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
@@ -213,6 +186,7 @@
       <div id="aqm-tooltip" role="tooltip"></div>
     `;
   }
+
 
   // ==================== 2. بنية الأكورديون الـ 12 وحقن النصوص ====================
 
@@ -236,7 +210,7 @@
               <p class="aqm-acc-subtitle">${subtitle}</p>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:10px;">
+          <div class="aqm-acc-badges">
             ${pendingHtml}
             ${badgesHtml}
             <span class="aqm-acc-chevron" aria-hidden="true">›</span>
@@ -699,12 +673,12 @@
         subtitle: 'بروتوكول تفكيك العقد وتفعيل الطاقات الإيجابية في السلوك اليومي',
         arcanaList: [
           { num: P.transformationKeys.balancePoint, name: 'التوازن' },
-          { num: P.transformationKeys.spiritualKey, name: 'المفتاح الروحي' },
-          { num: P.transformationKeys.materialKey, name: 'المفتاح المادي' }
+          { num: P.transformationKeys.skyAxis, name: 'المفتاح الروحي' },
+          { num: P.transformationKeys.earthAxis, name: 'المفتاح المادي' }
         ],
         contentKey: 'matrix.section.transformation_rx',
         slots: {
-          primary: `تتكامل مفاتيح تحولك عند نقطة التوازن <strong>(${P.transformationKeys.balancePoint})</strong> مع المفتاح الروحي <strong>(${P.transformationKeys.spiritualKey})</strong> والمفتاح المادي <strong>(${P.transformationKeys.materialKey})</strong>.`,
+          primary: `تتكامل مفاتيح تحولك عند نقطة التوازن <strong>(${P.transformationKeys.balancePoint})</strong> مع المفتاح الروحي <strong>(${P.transformationKeys.skyAxis})</strong> والمفتاح المادي <strong>(${P.transformationKeys.earthAxis})</strong>.`,
           detailed: `
             <div class="aqm-rx-box">
               <h4>بروتوكول التحول من الظل إلى النور:</h4>
@@ -814,7 +788,6 @@
 
         <!-- حاوية الرسم الهندسي (SVG Octagram) -->
         <div class="aqm-canvas-wrap">
-          <h4 style="margin:0 0 12px;color:var(--aqm-wine);font-size:1.1rem;font-weight:700;">النجمة الثمانية لمصفوفة القدر</h4>
           <p style="margin:0 0 16px;color:var(--aqm-text-muted);font-size:0.85rem;">اضغط على أي عقدة أو رقم للانتقال مباشرة إلى تحليله في الأكورديون أدناه</p>
           ${generateMatrixSVG(P)}
         </div>
@@ -908,10 +881,10 @@
           targetAcc.classList.add('aqm-item-highlight');
           setTimeout(() => targetAcc.classList.remove('aqm-item-highlight'), 2500);
           if (!targetAcc.classList.contains('open')) {
-            targetAcc.classList.add('open');
+            targetAcc.classList.add('open', 'is-active');
             targetAcc.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
           }
-          targetAcc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetAcc.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       };
 
