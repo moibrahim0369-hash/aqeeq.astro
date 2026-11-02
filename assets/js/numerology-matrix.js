@@ -185,12 +185,12 @@
 
     const nodeG = (cls, section, title, arc, p, r, inner, fill) => {
       const st = fill ? ` style="fill:${fill}"` : '';
-      const tc = fill ? ` style="fill:${DARK.includes(fill) ? '#FFFFFF' : '#3B2F2A'}"` : '';
+      const tc = fill && DARK.includes(fill) ? ' is-dark' : '';
       return `
         <g class="aqm-node ${cls}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
           <circle cx="0" cy="0" r="${r}" class="aqm-node-bg"${st} />
           ${inner || ''}
-          <text x="0" y="0" class="aqm-node-text"${tc}>${arc}</text>
+          <text x="0" y="0" class="aqm-node-text${tc}">${arc}</text>
         </g>`;
     };
 
