@@ -944,3 +944,23 @@
 /* العُقد وحدها تستقبل النقر (لربطها بالأكورديون) */
 .aqm-svg .aqm-node,
 .aqm-svg .aqm-node * { pointer-events: auto; }
+
+/* أرقام العُقد: خط ثقيل وواضح (الألوان الداكنة بنص أبيض مُعيَّن من JS) */
+.aqm-svg .aqm-node-text { font-weight: 700 !important; }
+
+/* سطر الشاكرات في رؤوس الأكورديون: كبسولات متساوية الارتفاع ومحاذاة عمودياً وأفقياً */
+.aqm-acc-badges { align-items: center; gap: 6px; }
+.aqm-acc-badges .aqm-badge-arcana {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--aqm-gold-border);
+  background: #fff;
+  color: var(--aqm-text-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+}
