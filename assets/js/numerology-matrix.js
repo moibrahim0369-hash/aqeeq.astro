@@ -58,7 +58,30 @@
     };
 
     return `
-      <svg class="aqm-svg" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم مصفوفة القدر الهندسية">
+      <svg class="aqm-svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم مصفوفة القدر الهندسية">
+        <style>
+          svg.aqm-svg .aqm-svg-guide { stroke: rgba(197, 164, 109, 0.18); }
+          svg.aqm-svg .aqm-svg-personal-square { stroke: #C5A46D; }
+          svg.aqm-svg .aqm-svg-ancestral-square { stroke: #C5A46D; stroke-opacity: 0.7; }
+          svg.aqm-svg .aqm-svg-axis { stroke: rgba(197, 164, 109, 0.45); }
+          svg.aqm-svg .aqm-svg-love-channel { stroke: #C89B9E; }
+          svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; }
+          svg.aqm-svg .aqm-svg-age-label { fill: #74685F; }
+          svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; }
+          svg.aqm-svg .aqm-node-text { fill: #6B263D; font-weight: 800; }
+          svg.aqm-svg .aqm-node-center .aqm-node-bg { fill: #FFFFFF; stroke: #6B263D; stroke-width: 3; }
+          svg.aqm-svg .aqm-node-center .aqm-node-ring { stroke: #C5A46D; }
+          svg.aqm-svg .aqm-node-center .aqm-node-text { fill: #6B263D; font-size: 30px; }
+          svg.aqm-svg .aqm-node-love .aqm-node-bg { stroke: #C89B9E; }
+          svg.aqm-svg .aqm-node-balance .aqm-node-bg { fill: #E7D7C2; }
+          svg.aqm-svg .aqm-node-balance .aqm-node-text { fill: #2D2522; }
+          svg.aqm-svg .aqm-node.is-flash .aqm-node-bg { animation: aqm-gold-flash 1.4s ease-out 1; }
+          @keyframes aqm-gold-flash {
+            0%   { filter: drop-shadow(0 0 0 rgba(197, 164, 109, 0)); }
+            35%  { filter: drop-shadow(0 0 10px rgba(197, 164, 109, 0.85)); }
+            100% { filter: drop-shadow(0 0 0 rgba(197, 164, 109, 0)); }
+          }
+        </style>
         <defs>
           <filter id="aqm-glow" x="-20%" y="-20%" width="140%" height="140%">
             <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#C6A56B" flood-opacity="0.25"/>
@@ -182,8 +205,8 @@
 
         <!-- المركز الأكبر الفاخر (Center E: Soul Comfort) -->
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
-          <circle cx="0" cy="0" r="38" class="aqm-node-bg" />
-          <circle cx="0" cy="0" r="32" class="aqm-node-ring" />
+          <circle cx="0" cy="0" r="44" class="aqm-node-bg" />
+          <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
           <text x="0" y="0" class="aqm-node-text">${E}</text>
         </g>
       </svg>
