@@ -2719,8 +2719,7 @@ footer.foot {
   fill: var(--ink-brown) !important;
   font-family: var(--sans) !important;
   font-weight: 700 !important;
-  font-size: 12px !important;
-  pointer-events: none;
+  pointer-events: none; /* حجم الرقم يأتي من خاصية font-size على وسم text داخل SVG */
 }
 
 .aqm-node.is-center circle {
