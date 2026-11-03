@@ -153,6 +153,15 @@
     return { left: axis(A), top: axis(B), right: axis(C), bottom: axis(D) };
   }
 
+  /* نقاط الخطوط المائلة (الأجداد): لكل ركن F,G,H,I نقطتان بين الركن والمركز.
+     inner (جهة المركز) = reduce(الركن + مركز الأجداد) · outer (جهة الركن) = reduce(الركن + inner).
+     تحقّق على تاريخين مرجعيين (1999-09-25 و1998-01-07). */
+  function diagonalPoints(P, reduce) {
+    const anc = P.generational.ancestralCenter;
+    const pt = X => { const inner = reduce(X + anc); return { inner, outer: reduce(X + inner) }; };
+    return { F: pt(P.corners.F), G: pt(P.corners.G), H: pt(P.corners.H), I: pt(P.corners.I) };
+  }
+
   function generateMatrixSVG(P) {
     const { anchors, corners, channels, intermediate, ageMap, generational } = P;
     const { A, B, C, D, E } = anchors;
@@ -161,6 +170,7 @@
     const reduce22 = n => (window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter).reduceArcana(n);
     // نقاط المحاور بالمعادلة القياسية الموحّدة: X2 = X+E، الخارجية = X+X2، الداخلية = X2+E
     const ax = axisPoints(P, reduce22);
+    const dg = diagonalPoints(P, reduce22);
     const hP3 = ax.left.outer, hP1 = ax.left.mid, hP2 = ax.left.inner;
     const tB = ax.top.outer, tTop3 = ax.top.inner;
     const mP1 = ax.right.mid, mP2 = ax.right.outer;   // الداخلية اليمنى = نقطة المال (تُرسم في موضعها الخاص)
@@ -291,8 +301,8 @@
         <line x1="${pos.north[0]}" y1="${pos.north[1]}" x2="${pos.south[0]}" y2="${pos.south[1]}" class="aqm-svg-axis" />
         <line x1="${fatherA[0]}" y1="${fatherA[1]}" x2="${fatherB[0]}" y2="${fatherB[1]}" class="aqm-svg-father" marker-end="url(#aqm-arr-father)" />
         <line x1="${motherA[0]}" y1="${motherA[1]}" x2="${motherB[0]}" y2="${motherB[1]}" class="aqm-svg-mother" marker-end="url(#aqm-arr-mother)" />
-        <text x="332" y="318" transform="rotate(45 332 318)" text-anchor="middle" font-size="11" font-weight="700" fill="#8E6E85" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">male generation line</text>
-        <text x="468" y="318" transform="rotate(-45 468 318)" text-anchor="middle" font-size="11" font-weight="700" fill="#B5443E" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">female generation line</text>
+        <text x="303" y="261" transform="rotate(45 303 261)" text-anchor="middle" font-size="10" font-weight="700" fill="#8E6E85" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">male generation line</text>
+        <text x="539" y="261" transform="rotate(-45 539 261)" text-anchor="middle" font-size="10" font-weight="700" fill="#B5443E" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">female generation line</text>
 
         <!-- مسارات الحب والمال -->
         <line x1="${pos.center[0]}" y1="${pos.center[1]}" x2="${pos.heart[0]}" y2="${pos.heart[1]}" class="aqm-svg-love-channel" />
@@ -320,8 +330,11 @@
         ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم السفلى (كارما المشاعر)', I, pos.southWest, 23)}
         ${nodeG('aqm-node-love', 'love_line', 'مدخل الحب والعلاقات (Heart Point)', heartPoint, pos.heart, 21)}
         ${nodeG('aqm-node-money', 'money_line', 'مدخل المال والوفرة (Money Point)', moneyPoint, pos.money, 21)}
-        ${nodeG('aqm-node-ancestral', 'father_line', 'خط الأب — الجمع الكلي عند تقاطع المحور المائل', generational.father.combined, [265, 265], 19)}
-        ${nodeG('aqm-node-ancestral', 'mother_line', 'خط الأم — الجمع الكلي عند تقاطع المحور المائل', generational.mother.combined, [265, 535], 19)}
+        ${[['F', 'father_line', -1, -1], ['G', 'mother_line', 1, -1], ['H', 'father_line', 1, 1], ['I', 'mother_line', -1, 1]].map(([k, sec, sx, sy]) => {
+          const at = d => [r2(400 + sx * d / Math.SQRT2), r2(400 + sy * d / Math.SQRT2)];
+          return nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الخارجية: reduce22(' + k + '+الداخلية)', dg[k].outer, at(212), 17)
+               + nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الداخلية: reduce22(' + k + '+مركز الأجداد)', dg[k].inner, at(122), 17);
+        }).join('')}
         ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 20)}
         <!-- المحور الأفقي الأيسر من A إلى E: 21 ← 14 ← 21 -->
         ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [200, 400], 19, '', T.petrol)}
@@ -1135,6 +1148,7 @@
 
   const root = typeof window !== 'undefined' ? window : globalThis;
   api.axisPoints = axisPoints;
+  api.diagonalPoints = diagonalPoints;
   root.AqeeqMatrixUI = api;
   root.AqeeqNumerology = Object.assign(root.AqeeqNumerology || {}, api);
 
