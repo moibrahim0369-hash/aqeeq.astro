@@ -1049,3 +1049,36 @@
     margin-top: 2px;
   }
 }
+
+/* ==========================================================================
+   تأطير وإبراز: الخريطة وجدول الشاكرات والصناديق الرمزية (داخل #matrix فقط)
+   ========================================================================== */
+#matrix .aqm-canvas-wrap {
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(43, 24, 16, 0.08), 0 2px 6px rgba(43, 24, 16, 0.04);
+  border: 1px solid rgba(197, 164, 109, 0.25);
+}
+#matrix .aqm-chakra-table-wrap {
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 164, 109, 0.3);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(43, 24, 16, 0.04);
+}
+#matrix .aqm-chakra-row {
+  border: 0;
+  border-bottom: 1px dashed rgba(197, 164, 109, 0.2);
+  border-radius: 0;
+  padding: 10px 8px;
+}
+#matrix .aqm-chakra-row:last-child { border-bottom: none; }
+#matrix .aqm-kt-box,
+#matrix .aqm-prog-box,
+#matrix .aqm-child-box,
+#matrix .aqm-rx-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(197, 164, 109, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
