@@ -1082,3 +1082,34 @@
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
+
+/* ==========================================================================
+   الشاكرات: حاوية دافئة + بطاقة مستقلة لكل شاكرا (داخل #matrix فقط)
+   ملاحظة: الصفوف داخل .aqm-chakra-axis (وليس .aqm-chakra-table-wrap) فتُطبَّق الحاوية على الاثنين.
+   نُبقي grid الأصلي للصف حتى يعمل التفاف القيم على الموبايل.
+   ========================================================================== */
+#matrix .aqm-chakra-table-wrap,
+#matrix .aqm-chakra-axis {
+  background: #F9F6F0 !important;
+  border: 1px solid rgba(197, 164, 109, 0.35) !important;
+  border-radius: 18px !important;
+  padding: 14px 12px !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+#matrix .aqm-chakra-row {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(197, 164, 109, 0.18) !important;
+  border-radius: 10px !important;
+  margin-bottom: 0 !important;
+  padding: 10px 14px !important;
+  align-items: center !important;
+  box-shadow: 0 2px 5px rgba(45, 37, 34, 0.03) !important;
+}
+#matrix .aqm-chakra-name { color: #2D2522 !important; font-family: inherit !important; }
+#matrix .aqm-chakra-vals { color: #5E524C !important; font-family: inherit !important; }
+#matrix .aqm-chakra-row .aqm-chakra-dot {
+  width: 9px !important;
+  height: 9px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+}
