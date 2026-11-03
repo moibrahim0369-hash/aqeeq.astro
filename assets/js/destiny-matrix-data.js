@@ -1896,6 +1896,17 @@
   /**
    * دالة مساعدة للبحث عن الذيل الكارمي بناءً على أرقام الثلاثية
    */
+  /* ربط الثلاثيات التي ينتجها المحرك ولا نص مباشر لها بالذيل المعتمد المقابل (من تحديد صاحب المشروع). */
+  const KARMIC_TAIL_REDIRECTS = {
+    '3-9-12': '3-12-15',
+    '6-6-18': '6-12-18',
+    '6-15-18': '6-15-21',
+    '5-6-17': '5-6-18',
+    '8-11-15': '7-8-15',
+    '10-16-21': '8-13-21',
+    '3-10-13': '7-15-22'
+  };
+
   function getKarmicTail(c1, c2, c3) {
     const code = `${c1}-${c2}-${c3}`;
     const reverseCode = `${c3}-${c2}-${c1}`;
@@ -1903,6 +1914,16 @@
     // بحث مباشر
     if (KARMIC_TAILS[code]) return KARMIC_TAILS[code];
     if (KARMIC_TAILS[reverseCode]) return KARMIC_TAILS[reverseCode];
+
+    // خريطة الربط: ثلاثيات ينتجها المحرك (D, D3, D2) وليس لها نص مباشر → الذيل المعتمد المقابل من الـ 26 شفرة.
+    // المفتاح: الأرقام الثلاثة مرتبة تصاعدياً.
+    const sortedKey = [Number(c1), Number(c2), Number(c3)].sort((a, b) => a - b).join('-');
+    const redirected = KARMIC_TAIL_REDIRECTS[sortedKey];
+    if (redirected) {
+      // الهدف يُحدَّد بالأرقام مجردة من الترتيب (مثلاً 6-12-18 هو المخزّن تحت المفتاح 18-6-12)
+      const targetKey = Object.keys(KARMIC_TAILS).find(k => k.split('-').map(Number).sort((a, b) => a - b).join('-') === redirected);
+      if (targetKey) return Object.assign({}, KARMIC_TAILS[targetKey], { mappedFrom: code });
+    }
 
     // بحث بالأرقام المكونة
     const setTarget = new Set([Number(c1), Number(c2), Number(c3)]);
