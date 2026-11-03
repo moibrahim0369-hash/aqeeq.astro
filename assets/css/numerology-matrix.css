@@ -248,7 +248,6 @@
 
 .aqm-node-center .aqm-node-text {
   fill: var(--aqm-wine);
-  font-size: 26px;
   font-weight: 800;
 }
 
@@ -260,7 +259,6 @@
 
 .aqm-node-corner .aqm-node-text {
   fill: var(--aqm-text-dark);
-  font-size: 19px;
   font-weight: 800;
 }
 
@@ -273,7 +271,6 @@
 
 .aqm-node-ancestral .aqm-node-text {
   fill: var(--aqm-text-dark);
-  font-size: 17px;
   font-weight: 700;
 }
 
@@ -286,7 +283,6 @@
 
 .aqm-node-love .aqm-node-text {
   fill: var(--aqm-wine);
-  font-size: 17px;
   font-weight: 800;
 }
 
@@ -299,7 +295,6 @@
 
 .aqm-node-money .aqm-node-text {
   fill: #8c6827;
-  font-size: 17px;
   font-weight: 800;
 }
 
@@ -312,7 +307,6 @@
 
 .aqm-node-balance .aqm-node-text {
   fill: var(--aqm-text-dark);
-  font-size: 16px;
   font-weight: 800;
 }
 
@@ -979,13 +973,6 @@
   dominant-baseline: central;
 }
 .aqm-svg .aqm-node-text.is-dark { fill: #FFFFFF !important; }
-.aqm-svg .aqm-node-center .aqm-node-text { font-size: 42px; }
-.aqm-svg .aqm-node-corner .aqm-node-text { font-size: 30px; }
-.aqm-svg .aqm-node-ancestral .aqm-node-text { font-size: 27px; }
-.aqm-svg .aqm-node-love .aqm-node-text,
-.aqm-svg .aqm-node-money .aqm-node-text,
-.aqm-svg .aqm-node-balance .aqm-node-text,
-.aqm-svg .aqm-node-chakra .aqm-node-text { font-size: 22px; }
 
 /* ==========================================================================
    عمق البطاقات: خلفية بيضاء وظل هوائي ودرجة ذهبية خفيفة
@@ -1031,3 +1018,34 @@
   border-top: 1px solid rgba(197, 160, 89, 0.25);
 }
 .aqm-acc-body .aqm-slot-p { line-height: 1.8; color: #241D1A; }
+
+/* شريط عنوان الأكورديون: السهم عنصر مستقل بعرض ثابت وهامش أمان، فلا يتداخل مع الكبسولات أو النص */
+.aqm-acc-header { gap: 10px; }
+.aqm-acc-header-left { flex: 1 1 0; min-width: 0; }
+.aqm-acc-badges { flex: 0 1 auto; }
+.aqm-acc-chevron {
+  flex: 0 0 28px;
+  width: 28px;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: 6px;
+  line-height: 1;
+}
+
+/* العقد الرئيسية (A و B و C و D): رقم أكبر قليلاً وأبيض ناصع على الدوائر الداكنة */
+
+/* موبايل: الصف الأول = الأيقونة والعنوان والسهم، والكبسولات في صف مستقل بعرض كامل (لا تضغط العنوان ولا السهم) */
+.aqm-acc-header .aqm-acc-chevron { min-width: 28px; margin-inline-start: 12px; }
+@media (max-width: 600px) {
+  .aqm-acc-header { flex-wrap: wrap; }
+  .aqm-acc-header .aqm-acc-chevron { order: 2; }
+  .aqm-acc-header .aqm-acc-badges {
+    order: 3;
+    flex: 1 0 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+    margin-top: 2px;
+  }
+}

@@ -221,13 +221,13 @@
       const dark = !!fill && DARK.includes(fill);
       const tc = dark ? ' is-dark' : '';
       // حجم الرقم يتناسب مع قطر الدائرة (نحو 60% من القطر عرضاً): يُكتب كخاصية على وسم <text> نفسه
-      const fs = r >= 26 ? 30 : r >= 23 ? 27 : 22;
+      const fs = r >= 26 ? 34 : r >= 23 ? 27 : 22;
       const txtFill = dark ? '#ffffff' : '#1A1A1A';
       return `
-        <g class="aqm-node ${cls}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
+        <g class="aqm-node ${cls}${r >= 26 ? ' aqm-node-primary' : ''}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
           <circle cx="0" cy="0" r="${r}" class="aqm-node-bg"${st} />
           ${inner || ''}
-          <text x="0" y="0" class="aqm-node-text${tc}" font-size="${fs}" font-weight="bold" fill="${txtFill}">${arc}</text>
+          <text x="0" y="0" class="aqm-node-text${tc}" font-size="${fs}" font-weight="bold" fill="${txtFill}" text-anchor="middle" dominant-baseline="central">${arc}</text>
         </g>`;
     };
 
@@ -337,7 +337,7 @@
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" style="fill:#E6C280" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
-          <text x="0" y="0" class="aqm-node-text" font-size="42" font-weight="bold" fill="#1A1A1A">${E}</text>
+          <text x="0" y="0" class="aqm-node-text" font-size="42" font-weight="bold" fill="#1A1A1A" text-anchor="middle" dominant-baseline="central">${E}</text>
         </g>
       </svg>
       <div id="aqm-tooltip" role="tooltip"></div>
@@ -370,8 +370,8 @@
           <div class="aqm-acc-badges">
             ${pendingHtml}
             ${badgesHtml}
-            <span class="aqm-acc-chevron" aria-hidden="true">›</span>
           </div>
+          <span class="aqm-acc-chevron" aria-hidden="true">›</span>
         </button>
 
         <div class="aqm-acc-body" id="aqm-body-${id}">
