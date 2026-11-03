@@ -145,23 +145,25 @@
     img.src = URL.createObjectURL(new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' }));
   }
 
+  /* نقاط المحاور الأربعة (ثلاث نقاط لكل محور بين الطرف X والمركز E) بالمعادلة القياسية الموحّدة:
+     mid = reduce(X+E) · outer = reduce(X+mid) · inner = reduce(mid+E). دالة نقية قابلة للاختبار. */
+  function axisPoints(P, reduce) {
+    const { A, B, C, D, E } = P.anchors;
+    const axis = X => { const mid = reduce(X + E); return { mid, outer: reduce(X + mid), inner: reduce(mid + E) }; };
+    return { left: axis(A), top: axis(B), right: axis(C), bottom: axis(D) };
+  }
+
   function generateMatrixSVG(P) {
     const { anchors, corners, channels, intermediate, ageMap, generational } = P;
     const { A, B, C, D, E } = anchors;
     const { F, G, H, I } = corners;
     // الجمع الاختزالي 22 من المحرك نفسه (لا تغيير في منطق الحساب): تُستخدم فقط لرسم النقاط الأفقية اليسرى
     const reduce22 = n => (window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter).reduceArcana(n);
-    const hP1 = reduce22(A + E);
-    const hP2 = reduce22(hP1 + E);
-    const hP3 = reduce22(hP1 + A);
-    // مسار المال الأيمن من المركز E نحو C: 14 = reduce22(E+E)، 21 = reduce22(14+E)، ثم m1 و m2 (ومن محرك الحساب: B2 و D2 و D3)
-    const nE1 = reduce22(E + E);
-    const nE2 = reduce22(nE1 + E);
-    const mP1 = reduce22(C + E);
-    const mP2 = reduce22(mP1 + C);
-    const tB = reduce22(B + intermediate.B2);
-    const tTop3 = reduce22(generational.ancestralCenter + intermediate.B2); // 14 + 16 = 30 → 3
-    const tLove20 = reduce22(intermediate.D2 + intermediate.D3); // 15 + 5 = 20
+    // نقاط المحاور بالمعادلة القياسية الموحّدة: X2 = X+E، الخارجية = X+X2، الداخلية = X2+E
+    const ax = axisPoints(P, reduce22);
+    const hP3 = ax.left.outer, hP1 = ax.left.mid, hP2 = ax.left.inner;
+    const tB = ax.top.outer, tTop3 = ax.top.inner;
+    const mP1 = ax.right.mid, mP2 = ax.right.outer;   // الداخلية اليمنى = نقطة المال (تُرسم في موضعها الخاص)
     const T = { purple: '#8E6E85', petrol: '#4E7988', sky: '#7EA0B7', green: '#5A7E64', solar: '#E6C280', orange: '#C06C54', wine: '#8B263E', white: '#FFFFFF' };
     const DARK = [T.purple, T.petrol, T.green, T.orange, T.wine];
     const { heartPoint, moneyPoint, balancePoint } = channels;
@@ -323,17 +325,14 @@
         ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [200, 400], 19, '', T.petrol)}
         ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(A+E)', hP1, [265, 400], 19, '', T.sky)}
         ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+E)', hP2, [330, 400], 19, '', T.green)}
-        <!-- المحور الأيمن من E إلى C: 14 ← 21 ← 17 ← 9 -->
-        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(E+E)', nE1, [490, 400], 19, '', T.white)}
-        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(p+E)', nE2, [530, 400], 19, '', T.white)}
-        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+E)', mP1, [570, 400], 19, '', T.orange)}
-        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(m1+C)', mP2, [610, 400], 19, '', T.white)}
-        <text x="570" y="344" class="aqm-svg-money-sign" fill="#5A7E64">$</text>
+        <!-- المحور الأيمن من E إلى C: C2 = reduce(C+E) ثم reduce(C+C2) (والنقطة الداخلية هي نقطة المال) -->
+        ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange)}
+        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white)}
+        <text x="535" y="344" class="aqm-svg-money-sign" fill="#5A7E64">$</text>
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol)}
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky)}
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(14+16)', tTop3, [400, 330], 19, '', T.green)}
-        ${nodeG('aqm-node-love', 'love_line', 'خط الحب — reduce22(15+5)', tLove20, [460, 552], 19, '', T.white)}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B2+E)', tTop3, [400, 330], 19, '', T.green)}
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" style="fill:#E6C280" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
@@ -1134,6 +1133,7 @@
   };
 
   const root = typeof window !== 'undefined' ? window : globalThis;
+  api.axisPoints = axisPoints;
   root.AqeeqMatrixUI = api;
   root.AqeeqNumerology = Object.assign(root.AqeeqNumerology || {}, api);
 
