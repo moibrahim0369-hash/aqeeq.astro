@@ -428,6 +428,9 @@
     const arcA = getProfile(A);
     const arcB = getProfile(B);
     const ktData = destinyData && destinyData.getKarmicTail ? destinyData.getKarmicTail(D, intermediate.D3, intermediate.D2) : null;
+    // أرقام الذيل المعتمدة للعرض: عند ربط ثلاثية بذيل معتمد (mappedFrom) نعرض أرقام شفرته هو في كل مكان بالأكورديون
+    const tailMapped = !!(ktData && ktData.mappedFrom && ktData.code);
+    const tailNums = tailMapped ? ktData.code.split('-').map(Number) : [D, intermediate.D3, intermediate.D2];
     const ancLines = destinyData && destinyData.ancestralLines ? destinyData.ancestralLines : null;
 
     const sections = [
@@ -462,17 +465,13 @@
         icon: '⚓',
         title: ktData && ktData.title ? `الذيل الكارمي — ${ktData.title}` : 'الذيل الكارمي — دروس التناسخ والتحديات المتوارثة',
         subtitle: 'الأنماط النفسية المتكررة والمواقف التي تختبر وعيك حتى تحررها (Karmic Tail)',
-        arcanaList: [
-          { num: D, name: getInfo(D).name },
-          { num: intermediate.D3, name: getInfo(intermediate.D3).name },
-          { num: intermediate.D2, name: getInfo(intermediate.D2).name }
-        ],
+        arcanaList: tailNums.map(n => ({ num: n, name: getInfo(n).name })),
         contentKey: 'matrix.section.karmic_tail',
         slots: {
-          primary: `يتشكل ثالوث ذيلك الكارمي من الطاقات <strong>(${D} - ${intermediate.D3} - ${intermediate.D2})</strong> بقيادة طاقة الأساس <strong>${getInfo(D).name}</strong>.`,
+          primary: `يتشكل ثالوث ذيلك الكارمي من الطاقات <strong>(${tailNums.join(' - ')})</strong>${tailMapped ? '.' : ` بقيادة طاقة الأساس <strong>${getInfo(D).name}</strong>.`}`,
           detailed: ktData ? `
             <div class="aqm-kt-box">
-              <p class="aqm-slot-p"><strong>شفرة الذيل:</strong> ${ktData.code || `${D}-${intermediate.D3}-${intermediate.D2}`}</p>
+              <p class="aqm-slot-p"><strong>شفرة الذيل:</strong> ${ktData.code || tailNums.join('-')}</p>
               <p class="aqm-slot-p"><strong>المفارقة النفسية:</strong> ${ktData.paradox || ''}</p>
               ${ktData.childhoodRoots ? `<p class="aqm-slot-p"><strong>جذور الطفولة والتكوين:</strong> ${ktData.childhoodRoots}</p>` : ''}
               ${ktData.tracks ? `<p class="aqm-slot-p"><strong>مسار التحرر:</strong> ${ktData.tracks.trackTwo || ''}</p>` : ''}
