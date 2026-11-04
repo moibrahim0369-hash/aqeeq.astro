@@ -1269,3 +1269,129 @@
   .aqm-kt-box .aqm-slot-p { margin-bottom: 14px; line-height: 2.05; }
   .aqm-kt-protocol li { margin-bottom: 12px; }
 }
+
+/* ===== نافذة التفسير الموسع (Bottom Sheet على الهاتف) ===== */
+.aqm-master-output { display: none; }
+html.aqm-xr-open { overflow: hidden; }
+.aqm-xr-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: flex-end; justify-content: center; }
+.aqm-xr-modal[hidden] { display: none; }
+.aqm-xr-backdrop { position: absolute; inset: 0; background: rgba(45, 37, 34, .45); }
+.aqm-xr-sheet {
+  position: relative; width: 100%; max-width: 720px; max-height: 88vh; max-height: 88dvh;
+  display: flex; flex-direction: column; outline: none;
+  background: #FBF8F1; border-radius: 18px 18px 0 0; border: 1px solid #E6D9BE;
+  box-shadow: 0 -8px 30px rgba(45, 37, 34, .18);
+}
+.aqm-xr-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 52px 18px 24px; }
+.aqm-xr-close {
+  position: absolute; top: 8px; left: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid #E0D2B4; background: #fff; color: #6B263D; font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+.aqm-xr-close:focus-visible { outline: 2px solid #B89758; outline-offset: 2px; }
+@media (min-width: 768px) {
+  .aqm-xr-modal { align-items: center; }
+  .aqm-xr-sheet { border-radius: 18px; max-height: 84vh; box-shadow: 0 16px 50px rgba(45, 37, 34, .25); }
+  .aqm-xr-scroll { padding: 56px 28px 28px; }
+}
+.aqm-master-hint { margin: 0 0 8px; font-size: .85rem; color: #74685F; }
+
+/* ==========================================================================
+   الهوية الملكية — عاجي دافئ + ذهب خافت + نبيذي (طبقة أخيرة تتغلب على ما قبلها)
+   ========================================================================== */
+:root {
+  --aqm-ivory: #FAF7F2;
+  --aqm-ivory-card: #FFFEFA;
+  --aqm-ivory-deep: #F4EEE2;
+  --aqm-line: rgba(197, 160, 89, .5);
+  --aqm-line-soft: rgba(197, 160, 89, .28);
+  --aqm-title: #4A1521;
+  --aqm-body: #2D2D2D;
+}
+#mresult:has(.aqm-shell) { background: var(--aqm-ivory); }
+.aqm-shell {
+  background: var(--aqm-ivory) !important;
+  color: var(--aqm-body) !important;
+  border: 1px solid var(--aqm-line);
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  padding: 28px 18px 96px;
+  line-height: 1.9;
+}
+/* طبقة العلامة المائية الثابتة: مبلّطة خلف المحتوى فتظهر في أي لقطة شاشة */
+.aqm-shell::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Ctext x='150' y='100' transform='rotate(-24 150 100)' text-anchor='middle' font-family='Amiri,Cairo,serif' font-size='19' font-weight='700' fill='%23B89758' fill-opacity='0.13'%3Eعقيق أسترو · Aqeq Astro%3C/text%3E%3C/svg%3E");
+  background-size: 300px 200px; background-repeat: repeat;
+}
+.aqm-shell > * { position: relative; z-index: 1; }
+.aqm-shell > .aqm-brand-sticky { position: sticky; z-index: 5; }
+
+/* بصمة المنصة الواضحة أسفل الترويسة وفي أسفل الشاشة دائماً */
+.aqm-brand-stamp {
+  margin: 4px auto 22px; padding: 8px 18px; width: fit-content; max-width: 100%;
+  font-family: 'Amiri', 'Cairo', serif; font-size: 1.05rem; font-weight: 700; letter-spacing: .03em;
+  color: #8A6A2F; background: rgba(197, 160, 89, .12); border: 1px solid var(--aqm-line); border-radius: 999px;
+}
+.aqm-brand-sticky {
+  bottom: 76px; margin: 24px auto 0; width: fit-content; padding: 5px 16px; border-radius: 999px;
+  font-family: 'Amiri', 'Cairo', serif; font-size: .92rem; font-weight: 700; color: #8A6A2F;
+  background: rgba(250, 247, 242, .82); border: 1px solid var(--aqm-line); pointer-events: none;
+}
+@media (min-width: 900px) { .aqm-brand-sticky { bottom: 12px; } }
+
+/* العناوين: خط أميري + نبيذي داكن */
+.aqm-shell h2, .aqm-shell h3, .aqm-shell h4, .aqm-shell h5,
+.aqm-acc-title, .aqm-xr-head h4, .aqm-xr-sec h5 {
+  font-family: 'Amiri', 'Cairo', serif !important; color: var(--aqm-title) !important; font-weight: 700; line-height: 1.5;
+}
+.aqm-shell h2 { font-size: 1.9rem; }
+.aqm-acc-title { font-size: 1.2rem; }
+.aqm-acc-subtitle, .aqm-kicker { color: #6B263D !important; opacity: 1; }
+
+/* النصوص: فحمي واضح بدل الرمادي */
+.aqm-shell p, .aqm-shell li, .aqm-slot-p, .aqm-acc-body, .aqm-xr-scroll p, .aqm-xr-scroll li {
+  color: var(--aqm-body) !important; font-size: 1rem; line-height: 1.95;
+}
+.aqm-shell [style*="--aqm-text-muted"], .aqm-canvas-wrap > p, .aqm-shell footer p { color: #444 !important; }
+.aqm-slot-p strong, .aqm-xr-scroll strong { color: var(--aqm-title); }
+
+/* الكروت: عاجي أفتح + حافة ذهبية راقية + تباعد واسع */
+.aqm-acc-item {
+  background: var(--aqm-ivory-card) !important; border: 1px solid var(--aqm-line) !important;
+  border-radius: 16px; margin: 0 0 22px; box-shadow: 0 6px 22px rgba(74, 21, 33, .05);
+}
+.aqm-acc-header { background: linear-gradient(180deg, #FFFEFA, #F8F2E6) !important; padding: 20px 18px; gap: 14px; }
+.aqm-acc-body { background: var(--aqm-ivory-card) !important; padding: 22px 18px 26px; border-top: 1px solid var(--aqm-line-soft); }
+.aqm-accordion-container { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+.aqm-canvas-wrap { background: var(--aqm-ivory-card); border: 1px solid var(--aqm-line); border-radius: 16px; padding: 20px 12px; margin-bottom: 28px; }
+.aqm-content-grid > * { margin-bottom: 22px; }
+.aqm-slot-p + .aqm-slot-p, .aqm-sec-entry + .aqm-sec-entry { margin-top: 14px; }
+.aqm-sec-entry { padding-bottom: 14px; }
+.aqm-sec-entry + .aqm-sec-entry { padding-top: 18px; border-top: 1px dashed var(--aqm-line-soft); }
+
+/* الكبسولات والشارات: تباين متناسق */
+.aqm-meta-pill, .aqm-badge-arcana { color: var(--aqm-title) !important; background: rgba(197, 160, 89, .14) !important; border: 1px solid var(--aqm-line) !important; font-weight: 700; }
+.aqm-master-open { color: var(--aqm-title); background: var(--aqm-ivory-card); border: 1px solid var(--aqm-line); font-weight: 700; }
+.aqm-master-hint { color: #444; }
+.aqm-btn { border-color: var(--aqm-line); color: var(--aqm-title); background: var(--aqm-ivory-card); font-family: inherit; font-weight: 700; }
+
+/* فاصل أنيق بين الأقسام الكبرى */
+.aqm-accordion-container .aqm-acc-item + .aqm-acc-item::before { content: none; }
+.aqm-glossary-divider, .aqm-shell footer { border-top: 1px solid var(--aqm-line-soft); padding-top: 22px; }
+
+/* النافذة المنبثقة بنفس الهوية */
+.aqm-xr-sheet { background: var(--aqm-ivory); border-color: var(--aqm-line); }
+.aqm-xr-scroll { padding-bottom: 32px; }
+.aqm-xr-sec { margin-bottom: 22px; }
+
+@media (max-width: 600px) {
+  .aqm-shell { padding: 22px 12px 96px; }
+  .aqm-acc-header { padding: 18px 14px; }
+  .aqm-acc-body { padding: 20px 14px 24px; }
+}
+#matrix .aqm-shell, #mresult .aqm-shell { background: var(--aqm-ivory) !important; color: var(--aqm-body) !important; border-color: var(--aqm-line) !important; }
+.aqm-brand-sticky { font-size: .8rem; padding: 3px 12px; background: rgba(250, 247, 242, .7); bottom: 80px; }
+.aqm-meta-info { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.aqm-actions { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.aqm-meta-pill { font-size: .88rem; padding: 5px 12px; }
+.aqm-shell { padding-bottom: 130px !important; }
+.aqm-shell footer { margin-bottom: 24px; }
