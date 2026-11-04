@@ -172,12 +172,12 @@
 
     // 6. خطوط المال والعلاقات وقناة الوفرة (Love & Money Channel):
     // في منهج ناتاليا لاديني: الخط الممتد في الربع السفلي الأيمن:
-    // - مدخل العلاقات (نقطة القلب Heart Point):
-    const heartPoint = reduceArcana(E + D2);
-    // - مدخل المال (نقطة الدولار Money Point):
-    const moneyPoint = reduceArcana(E + C2);
-    // - نقطة التوازن والالتقاء بين الحب والمال (Balance & Intersection Point):
-    const balancePoint = reduceArcana(heartPoint + moneyPoint);
+    // نقطة الالتقاء بين مدخل القلب (تحت المركز D2) ومدخل المال (C2):
+    const balancePoint = reduceArcana(D2 + C2);
+    // - مدخل العلاقات (نقطة القلب Heart Point) = reduce(الالتقاء + D2):
+    const heartPoint = reduceArcana(balancePoint + D2);
+    // - مدخل المال (نقطة الدولار Money Point) = reduce(الالتقاء + C2):
+    const moneyPoint = reduceArcana(balancePoint + C2);
 
     // 7. غايات ومهام الحياة (The 4 Life Purposes / Tasks):
     // السماء والأرض:

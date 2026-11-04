@@ -195,9 +195,9 @@
       C2: [535, 400],
       D2: [400, 535],
       D3: [400, 602],
-      heart: [440, 492],
-      money: [492, 440],
-      balance: [518, 518]
+      heart: [426.5, 494],
+      money: [494, 426.5],
+      balance: [453, 453]
     };
 
     const r2 = n => Math.round(n * 100) / 100;
@@ -307,14 +307,12 @@
         <text x="539" y="261" transform="rotate(-45 539 261)" text-anchor="middle" font-size="10" font-weight="700" fill="#B5443E" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">female generation line</text>
 
         <!-- مسارات الحب والمال -->
-        <line x1="${pos.center[0]}" y1="${pos.center[1]}" x2="${pos.heart[0]}" y2="${pos.heart[1]}" class="aqm-svg-love-channel" />
-        <line x1="${pos.heart[0]}" y1="${pos.heart[1]}" x2="${pos.balance[0]}" y2="${pos.balance[1]}" class="aqm-svg-love-channel" />
-        <line x1="${pos.center[0]}" y1="${pos.center[1]}" x2="${pos.money[0]}" y2="${pos.money[1]}" class="aqm-svg-money-channel" />
-        <line x1="${pos.money[0]}" y1="${pos.money[1]}" x2="${pos.balance[0]}" y2="${pos.balance[1]}" class="aqm-svg-money-channel" />
-        <g class="aqm-svg-heart-icon" transform="translate(${pos.heart[0] - 30}, ${pos.heart[1] - 34}) scale(0.7)">
+        <polyline points="${pos.C2[0]},${pos.C2[1]} ${pos.money[0]},${pos.money[1]} ${pos.balance[0]},${pos.balance[1]}" class="aqm-svg-money-channel" fill="none" />
+        <polyline points="${pos.balance[0]},${pos.balance[1]} ${pos.heart[0]},${pos.heart[1]} ${pos.D2[0]},${pos.D2[1]}" class="aqm-svg-love-channel" fill="none" />
+        <g class="aqm-svg-heart-icon" transform="translate(${pos.heart[0] - 46}, ${pos.heart[1] - 8}) scale(0.7)">
           <path d="M12 21 C12 21 3 14.5 3 8.5 C3 5.4 5.4 3 8.2 3 C9.8 3 11.2 3.9 12 5.2 C12.8 3.9 14.2 3 15.8 3 C18.6 3 21 5.4 21 8.5 C21 14.5 12 21 12 21 Z" fill="#B5443E" />
         </g>
-        <text x="${pos.money[0] + 26}" y="${pos.money[1] - 22}" class="aqm-svg-money-sign">$</text>
+        <text x="${pos.money[0] + 22}" y="${pos.money[1] + 22}" class="aqm-svg-money-sign">$</text>
 
         <!-- المركز الجوهري E بهالة شمسية -->
 
@@ -344,7 +342,6 @@
         <!-- المحور الأيمن من E إلى C: C2 = reduce(C+E) ثم reduce(C+C2) (والنقطة الداخلية هي نقطة المال) -->
         ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange)}
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white)}
-        <text x="535" y="344" class="aqm-svg-money-sign" fill="#5A7E64">$</text>
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol)}
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky)}
