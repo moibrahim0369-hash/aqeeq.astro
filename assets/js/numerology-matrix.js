@@ -80,6 +80,7 @@
     clone.setAttribute('width', '900'); clone.setAttribute('height', '900');
     // النسخة المصدّرة فقط: خلفية الرسم شفافة لتظهر العلامة المائية، وتسميات الأعمار أرقام هادئة بدون كلمة "سنة"
     clone.querySelector('.aqm-svg-bg')?.remove();
+    clone.querySelector('.aqm-svg-watermark')?.remove(); // بطاقة التصدير لها علامتها المائية الخاصة
     // الصورة المرسومة لا تستقبل CSS الصفحة: نثبّت لون الرقم وحجمه ومحاذاته داخل النسخة المصدّرة مباشرة
     clone.querySelectorAll('.aqm-node-text').forEach(t => {
       t.style.fill = t.getAttribute('fill') || '#1A1A1A';
@@ -174,7 +175,7 @@
     const hP3 = ax.left.outer, hP1 = ax.left.mid, hP2 = ax.left.inner;
     const tB = ax.top.outer, tTop3 = ax.top.inner;
     const mP1 = ax.right.mid, mP2 = ax.right.outer;   // الداخلية اليمنى = نقطة المال (تُرسم في موضعها الخاص)
-    const T = { purple: '#8E6E85', petrol: '#4E7988', sky: '#7EA0B7', green: '#5A7E64', solar: '#E6C280', orange: '#C06C54', wine: '#8B263E', white: '#FFFFFF' };
+    const T = { purple: '#8E6E85', petrol: '#4E7988', sky: '#7EA0B7', green: '#5A7E64', solar: '#E6C280', lgreen: '#B7D3AE', orange: '#C06C54', wine: '#8B263E', white: '#FFFFFF' };
     const DARK = [T.purple, T.petrol, T.green, T.orange, T.wine];
     const { heartPoint, moneyPoint, balancePoint } = channels;
 
@@ -194,9 +195,9 @@
       C2: [535, 400],
       D2: [400, 535],
       D3: [400, 602],
-      heart: [445, 490],
-      money: [490, 445],
-      balance: [515, 515]
+      heart: [440, 492],
+      money: [492, 440],
+      balance: [518, 518]
     };
 
     const r2 = n => Math.round(n * 100) / 100;
@@ -221,7 +222,10 @@
     let ageLabels = '';
     for (let y = 0; y < 80; y += 5) {
       const p = polar(312, ageDeg(y));
-      ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-label">${y === 0 ? '0/80' : y}</text>`;
+      const pe = polar(312, ageDeg(y) + 5.2), py = polar(312, ageDeg(y) - 5.2);
+      const en = ageMap && ageMap[y];
+      ageLabels += `<text x="${r2(py[0])}" y="${r2(py[1])}" class="aqm-svg-age-label">${y === 0 ? '0/80' : y}</text>`;
+      if (en) ageLabels += `<text x="${r2(pe[0])}" y="${r2(pe[1])}" class="aqm-svg-age-energy" data-age="${y}">${en}</text>`;
     }
 
     // أسهم خطوط الأسلاف (خط الأب: F → H، خط الأم: G → I)
@@ -238,7 +242,6 @@
       return `
         <g class="aqm-node ${cls}${r >= 26 ? ' aqm-node-primary' : ''}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
           <circle cx="0" cy="0" r="${r}" class="aqm-node-bg"${st} />
-          <circle cx="0" cy="0" r="${r - 1}" class="aqm-node-sheen" fill="url(#aqm-sheen)" />
           ${inner || ''}
           <text x="0" y="0" class="aqm-node-text${tc}" font-size="${fs}" font-weight="bold" fill="${txtFill}" text-anchor="middle" dominant-baseline="central">${arc}</text>
         </g>`;
@@ -261,9 +264,10 @@
           svg.aqm-svg .aqm-svg-love-channel { stroke: #C89B9E; stroke-width: 1.5; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
           svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; stroke-width: 1.5; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
           svg.aqm-svg .aqm-svg-age-label { fill: #5E4A52; font-size: 13px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+          svg.aqm-svg .aqm-svg-age-energy { fill: #8B263E; font-size: 15px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+          svg.aqm-svg .aqm-svg-watermark { fill: #8A7A60; opacity: 0.15; font-size: 22px; font-weight: 700; text-anchor: end; letter-spacing: .5px; pointer-events: none; }
           svg.aqm-svg .aqm-svg-money-sign { fill: #5E7D52; font-size: 18px; font-weight: 700; }
-          svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.8; }
-          svg.aqm-svg .aqm-node-sheen { fill: url(#aqm-sheen); stroke: none; pointer-events: none; }
+          svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.5; }
           svg.aqm-svg .aqm-node-text { font-weight: 700; }
           svg.aqm-svg .aqm-node-text { fill: #6B263D; font-weight: 800; }
           svg.aqm-svg .aqm-node-love .aqm-node-bg { stroke: #C89B9E; }
@@ -275,16 +279,6 @@
           svg.aqm-svg .aqm-node-center .aqm-node-text { fill: #6B263D; font-size: 30px; font-weight: 800; }
         </style>
         <defs>
-          <radialGradient id="aqm-sheen" cx="35%" cy="28%" r="75%">
-            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.55" />
-            <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0.06" />
-            <stop offset="100%" stop-color="#000000" stop-opacity="0.08" />
-          </radialGradient>
-          <radialGradient id="aqm-halo" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.55" />
-            <stop offset="55%" stop-color="#E6C280" stop-opacity="0.35" />
-            <stop offset="100%" stop-color="#E6C280" stop-opacity="0" />
-          </radialGradient>
           <marker id="aqm-arr-father" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
             <path d="M0 0 L10 5 L0 10 Z" fill="#8E6E85" />
           </marker>
@@ -297,6 +291,7 @@
         <rect x="0" y="0" width="800" height="800" rx="28" class="aqm-svg-bg" fill="#FAF7F0" />
         <circle cx="400" cy="400" r="372" class="aqm-svg-dial-ring is-outer" fill="none" stroke="#C5A46D" />
         <circle cx="400" cy="400" r="356" class="aqm-svg-dial-ring" fill="none" stroke="#C5A46D" />
+        <text x="778" y="786" class="aqm-svg-watermark" fill="#8A7A60" fill-opacity="0.15" text-anchor="end" font-size="22" font-weight="700" direction="ltr">عقيق أسترو · Aqeq Astro</text>
         ${ticks}
         ${ageLabels}
         <circle cx="400" cy="400" r="270" class="aqm-svg-guide" fill="none" stroke="#C5A46D" stroke-opacity="0.25" />
@@ -322,7 +317,6 @@
         <text x="${pos.money[0] + 26}" y="${pos.money[1] - 22}" class="aqm-svg-money-sign">$</text>
 
         <!-- المركز الجوهري E بهالة شمسية -->
-        <circle cx="400" cy="400" r="72" fill="url(#aqm-halo)" />
 
         <!-- العُقد التفاعلية (المعرّفات مطابقة لأقسام الأكورديون) -->
         ${nodeG('aqm-node-corner', 'personal', 'طاقة الشخصية والجوهر (اليوم)', A, pos.west, 26, null, '#8E6E85')}
@@ -335,17 +329,18 @@
         ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم العليا (مواهب الأم)', G, pos.northEast, 23)}
         ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب السفلى (كارما المادة)', H, pos.southEast, 23)}
         ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم السفلى (كارما المشاعر)', I, pos.southWest, 23)}
-        ${nodeG('aqm-node-love', 'love_line', 'مدخل الحب والعلاقات (Heart Point)', heartPoint, pos.heart, 21)}
-        ${nodeG('aqm-node-money', 'money_line', 'مدخل المال والوفرة (Money Point)', moneyPoint, pos.money, 21)}
+        ${nodeG('aqm-node-love', 'love_line', 'مدخل الحب والعلاقات (Heart Point)', heartPoint, pos.heart, 18)}
+        ${nodeG('aqm-node-money', 'money_line', 'مدخل المال والوفرة (Money Point)', moneyPoint, pos.money, 18)}
         ${[['F', 'father_line', -1, -1], ['G', 'mother_line', 1, -1], ['H', 'father_line', 1, 1], ['I', 'mother_line', -1, 1]].map(([k, sec, sx, sy]) => {
           const at = d => [r2(400 + sx * d / Math.SQRT2), r2(400 + sy * d / Math.SQRT2)];
           return nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الخارجية: reduce22(' + k + '+الداخلية)', dg[k].outer, at(212), 17)
                + nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الداخلية: reduce22(' + k + '+مركز الأجداد)', dg[k].inner, at(122), 17);
         }).join('')}
-        ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 20)}
-        <!-- المحور الأفقي الأيسر من A إلى E: 21 ← 14 ← 21 -->
+        ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 18)}
+        <!-- المحور الأفقي الأيسر من A إلى E: النقاط الثلاث (الخارجية والوسطى والداخلية الخضراء) -->
         ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [200, 400], 19, '', T.petrol)}
         ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(A+E)', hP1, [265, 400], 19, '', T.sky)}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية داخلية — reduce22(الوسطى+E)', hP2, [326, 400], 19, '', T.lgreen)}
         <!-- المحور الأيمن من E إلى C: C2 = reduce(C+E) ثم reduce(C+C2) (والنقطة الداخلية هي نقطة المال) -->
         ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange)}
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white)}
@@ -353,6 +348,7 @@
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol)}
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky)}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح الداخلية — reduce22(B2+E)', tTop3, [400, 326], 19, '', T.lgreen)}
         <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" style="fill:#E6C280" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
