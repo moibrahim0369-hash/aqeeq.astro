@@ -489,9 +489,7 @@
             <p style="margin:0;color:var(--muted-text);font-size:0.92rem;line-height:1.75;max-width:60ch;">عند حساب خريطة ميلادك، مصفوفة القدر، مسار الحياة، أو التوافق، اضغط على زر «حفظ في مكتبتي» لتظهر قراءاتك المحفوظة هنا للرجوع إليها في أي وقت.</p>
           </div>
           <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="#chart" class="aq-section-pill">احسب خريطة الميلاد</a>
-            <a href="#matrix" class="aq-section-pill">مصفوفة القدر</a>
-            <a href="#lifepath" class="aq-section-pill">مسار الحياة</a>
+            <a href="#account" class="aq-section-pill">إدارة مكتبتي وحسابي</a>
           </div>
         </div>
       `;
