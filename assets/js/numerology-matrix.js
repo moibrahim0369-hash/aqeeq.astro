@@ -569,38 +569,19 @@
 
   /* ===== التفسير الموسع: بيتبني من sections/*.json المراجَعة (مش من Master V1 الخام) =====
      كل قسم بيعرض كل حقول deep + genderDynamic (لو المستخدم اختار ذكر/أنثى). */
-  const XR_SECTIONS = [
-    { name: 'center', title: 'الجوهر والمركز', fields: [['t', 'الهوية', 'identity'], ['t', 'السلوك التلقائي', 'behavior'], ['l', 'فخ الظل', 'shadow'], ['t', 'مفتاح التوازن', 'balanceKey']] },
-    { name: 'talents', title: 'المواهب والقدرات', fields: [['t', 'قناة الاتصال', 'channel'], ['t', 'الموهبة', 'gift'], ['t', 'الفخ', 'trap'], ['t', 'خطوة عملية', 'practice']] },
-    { name: 'love_line', title: 'خط العلاقات والحب', fields: [['t', 'الانجذاب', 'attraction'], ['l', 'أنماط الظل', 'shadowPatterns'], ['t', 'مفتاح التناغم', 'harmonyKey']] },
-    { name: 'money_line', title: 'خط المال والعمل', fields: [['t', 'بوابة التدفق', 'inflow'], ['j', 'المجالات الأنسب', 'sectors'], ['l', 'عوائق التدفق', 'blocks'], ['t', 'القاعدة الذهبية', 'goldenRule']] },
-    { name: 'father_line', title: 'خط الأب', fields: [['t', 'المحور', 'theme'], ['t', 'الإمكانية', 'potential'], ['t', 'التحدي', 'challenge'], ['l', 'أسئلة للتأمل', 'questions'], ['t', 'خطوة عملية', 'practice']] },
-    { name: 'mother_line', title: 'خط الأم', fields: [['t', 'المحور', 'theme'], ['t', 'الإمكانية', 'potential'], ['t', 'التحدي', 'challenge'], ['l', 'أسئلة للتأمل', 'questions'], ['t', 'خطوة عملية', 'practice']] },
-    { name: 'ancestral_programs', title: 'برامج الأسلاف', fields: [['t', 'الجذر والموروث', 'roots'], ['l', 'أنماط السقوط التلقائي', 'fallPatterns'], ['t', 'مسار التحرر', 'path']] },
-    { name: 'purposes', title: 'الغاية والرسالة', fields: [['t', 'الرسالة', 'mission'], ['t', 'امتحان النضج', 'maturityTest']] },
-    { name: 'children_line', title: 'خط الأبناء', fields: [['t', 'الأسرة والتربية', 'family']] },
-    { name: 'transformation_rx', title: 'روشتة التحول', fields: [['l', 'خطوات التحول', 'protocol'], ['l', 'أسئلة للتأمل', 'reflectiveQuestions']] }
-  ];
-
-  function xrSectionHtml(def, entry, gender) {
-    const g = gender === 'male' || gender === 'female' ? gender : '';
-    const rows = def.fields.map(([kind, label, key]) => sectionVal(kind, label, entry.deep && entry.deep[key])).join('');
-    const gd = g && entry.genderDynamic && entry.genderDynamic[g]
-      ? `<p class="aqm-slot-p aqm-gender-dynamic"><strong>بصيغتك:</strong> ${escapeHtml(entry.genderDynamic[g])}</p>` : '';
-    const draft = entry.meta && entry.meta.status === 'draft' ? '<p class="aqm-slot-p aqm-draft-note">نص تأملي قيد المراجعة.</p>' : '';
-    const lead = entry.summary ? `<p class="aqm-slot-p aqm-sec-lead">${escapeHtml(entry.summary)}</p>` : '';
-    return `<section class="aqm-xr-sec"><h5>${escapeHtml(def.title)}</h5>${lead}${rows}${gd}${draft}</section>`;
-  }
-
+  /* بطاقة مختصرة للطاقة المحددة فقط: الجوهر + نقاط القوة + الظل (بدون خطوط الأب والأسلاف والروشتة). */
   function expandedArcanaHtml(id, gender) {
     const loader = window.AqeeqMatrix;
-    return Promise.all(XR_SECTIONS.map(def =>
-      loader.sectionEntry(def.name, id).then(e => (e ? { def, e } : null)).catch(() => null)
-    )).then(list => {
-      const found = list.filter(Boolean);
-      if (!found.length) return '<p class="aqm-slot-p aqm-pending-note">لا يوجد نص موسع لهذه الأركانا بعد.</p>';
-      const a = found[0].e.arcana || {};
-      return `<article class="aqm-xr" dir="rtl"><header class="aqm-xr-head"><span class="aqm-xr-kicker">التفسير الموسع</span><h4>الأركانا ${id} · ${escapeHtml(a.ar || '')}${a.en ? ` <small>${escapeHtml(a.en)}</small>` : ''}</h4></header>${found.map(({ def, e }) => xrSectionHtml(def, e, gender)).join('')}</article>`;
+    const get = name => loader.sectionEntry(name, id).catch(() => null);
+    return Promise.all([get('center'), get('talents')]).then(([c, t]) => {
+      if (!c && !t) return '<p class="aqm-slot-p aqm-pending-note">لا يوجد نص لهذه الأركانا بعد.</p>';
+      const a = (c || t).arcana || {};
+      const cd = (c && c.deep) || {}, td = (t && t.deep) || {};
+      const core = (c && c.summary ? `<p class="aqm-slot-p aqm-sec-lead">${escapeHtml(c.summary)}</p>` : '') + sectionVal('t', '', cd.identity);
+      const strengths = sectionVal('t', '', cd.behavior) + sectionVal('t', 'الموهبة', td.gift);
+      const shadow = sectionVal('l', '', cd.shadow);
+      const block = (title, html) => html ? `<section class="aqm-xr-sec"><h5>${title}</h5>${html}</section>` : '';
+      return `<article class="aqm-xr aqm-xr-compact" dir="rtl"><header class="aqm-xr-head"><h4>الأركانا ${id} · ${escapeHtml(a.ar || '')}${a.en ? ` <small>${escapeHtml(a.en)}</small>` : ''}</h4></header>${block('الجوهر', core)}${block('نقاط القوة', strengths)}${block('الظل', shadow)}</article>`;
     });
   }
 
@@ -1307,7 +1288,6 @@
         <footer style="margin-top:32px;text-align:center;font-size:0.82rem;color:var(--aqm-text-muted);line-height:1.7;">
           <p>مصفوفة القدر نظام رمزي للتأمل واستكشاف الذات مبني على منهج ناتاليا لاديني (22 أركانا). عقيق أسترو يقدم القراءات كأداة للوعي والتمكين الذاتي وليست للتنبؤ القاطع أو المشورة الطبية.</p>
         </footer>
-        <div class="aqm-brand-sticky" role="note" aria-hidden="true">عقيق أسترو · Aqeq Astro</div>
       </section>
     `;
 
