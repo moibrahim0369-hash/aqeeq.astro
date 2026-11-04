@@ -1461,8 +1461,12 @@
 
     const html = `
       <section class="aqm-shell" aria-labelledby="aqm-report-title">
-        <nav class="aqm-crumbs" aria-label="مسار الصفحة"><a href="#home">الرئيسية</a><span aria-hidden="true">›</span><span>اكتشف ذاتك</span><span aria-hidden="true">›</span><span aria-current="page">مصفوفة القدر</span></nav>
+        <nav class="aqm-crumbs" aria-label="مسار الصفحة"><a href="#home">الرئيسية</a><span aria-hidden="true">/</span><span>أدوات التحليل</span><span aria-hidden="true">/</span><span aria-current="page">مصفوفة القدر</span></nav>
         <!-- الكارت العلوي الفاخر (Summary Card) -->
+        <div class="aqm-page-title">
+          <h1>مصفوفة القدر</h1>
+          <p>خريطة رمزية لفهم أنماطك الداخلية وطاقاتك الأساسية</p>
+        </div>
         <header class="aqm-header">
           <span class="aqm-kicker">مصفوفة القدر · Natalia Ladini System</span>
           <h2 id="aqm-report-title">${displayName}</h2>
