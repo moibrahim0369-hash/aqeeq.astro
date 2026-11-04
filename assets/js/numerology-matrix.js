@@ -1440,9 +1440,21 @@
     const getInfo = n => engine.getArcanaInfo(n);
     const dateStr = `${P.birthDate.year}-${String(P.birthDate.month).padStart(2, '0')}-${String(P.birthDate.day).padStart(2, '0')}`;
     const displayName = name ? name.trim() : 'مستخدم عقيق أسترو';
+    // ملخص التصميم: قراءة فقط من نتيجة المحرك؛ أي قيمة ناقصة تظهر «—» بدل رقم مخترع.
+    const pick = (fn) => { try { const v = fn(); return (v === undefined || v === null || v === '' || Number.isNaN(v)) ? null : v; } catch (e) { return null; } };
+    const arc = (n) => { const v = pick(() => n); if (v === null) return '—'; const i = pick(() => getInfo(v).name); return i ? `${i} (${v})` : String(v); };
+    const summaryRows = [
+      ['الطاقة الأساسية', arc(pick(() => P.anchors.A))],
+      ['الرقم المركزي', arc(pick(() => P.anchors.E))],
+      ['أبرز موهبة', arc(pick(() => P.anchors.B))],
+      ['خط العلاقات', arc(pick(() => P.channels.heartPoint))],
+      ['خط المال', arc(pick(() => P.channels.moneyPoint))]
+    ];
+    const summaryHtml = summaryRows.map(([k, v]) => `<li class="aqm-sum-row${v === '—' ? ' is-empty' : ''}"><span class="aqm-sum-k">${k}</span><span class="aqm-sum-v">${v}</span></li>`).join('');
 
     const html = `
       <section class="aqm-shell" aria-labelledby="aqm-report-title">
+        <nav class="aqm-crumbs" aria-label="مسار الصفحة"><a href="#home">الرئيسية</a><span aria-hidden="true">›</span><span>اكتشف ذاتك</span><span aria-hidden="true">›</span><span aria-current="page">مصفوفة القدر</span></nav>
         <!-- الكارت العلوي الفاخر (Summary Card) -->
         <header class="aqm-header">
           <span class="aqm-kicker">مصفوفة القدر · Natalia Ladini System</span>
@@ -1461,18 +1473,35 @@
         </header>
         <div class="aqm-brand-stamp" role="note">✦ عقيق أسترو · Aqeq Astro ✦</div>
 
+        ${summaryRows.some(r => r[1] === '—') ? '<p class="aqm-notice" role="status">بعض القيم غير متاحة حاليًا، وتظهر «—» بدل أي رقم غير محسوب.</p>' : ''}
+        <div class="aqm-tabs" role="tablist" aria-label="أقسام الصفحة">
+          <a class="aqm-tab is-active" role="tab" aria-selected="true" href="#aqm-map">الخريطة</a>
+          <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-chakras">الشاكرات</a>
+          <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-readings">التفسيرات</a>
+        </div>
+        <div class="aqm-workspace">
         <!-- حاوية الرسم الهندسي (SVG Octagram) -->
-        <div class="aqm-canvas-wrap">
+        <div class="aqm-canvas-wrap" id="aqm-map">
+          <div class="aqm-zoom" role="group" aria-label="التحكم في العرض">
+            <button type="button" class="aqm-zoom-btn" data-aqm-zoom="in" aria-label="تكبير">+</button>
+            <button type="button" class="aqm-zoom-btn" data-aqm-zoom="out" aria-label="تصغير">−</button>
+            <button type="button" class="aqm-zoom-btn" data-aqm-zoom="reset" aria-label="إعادة الضبط">⟲</button>
+          </div>
           <p style="margin:0 0 16px;color:var(--aqm-text-muted);font-size:0.85rem;">خريطة مصفوفة القدر (توزيع مسارات الطاقة والأركانا)</p>
           ${generateMatrixSVG(P)}
-          <ol class="aqm-chakra-axis" aria-label="المحور الرأسي للشاكرات">
+          <ol class="aqm-chakra-axis" id="aqm-chakras" aria-label="المحور الرأسي للشاكرات">
             ${Object.entries(P.chakras.rows).map(([key, r]) => `
               <li class="aqm-chakra-row"><span class="aqm-chakra-dot" style="background:${CHAKRA_COLORS[key] || '#C5A46D'}"></span><span class="aqm-chakra-name">${r.name}</span><span class="aqm-chakra-vals">الفيزياء ${r.physics} · الطاقة ${r.energy} · المشاعر ${r.emotions}</span></li>`).join('')}
           </ol>
         </div>
+        <aside class="aqm-summary" aria-labelledby="aqm-sum-title">
+          <h3 id="aqm-sum-title">الخلاصة</h3>
+          <ul class="aqm-sum-list">${summaryHtml}</ul>
+        </aside>
+        </div>
 
         <!-- نظام الأكورديون الـ 15 المتكامل -->
-        <div class="aqm-accordion-container">
+        <div class="aqm-accordion-container" id="aqm-readings">
           ${build12Sections(P)}
         </div>
 
@@ -1543,6 +1572,19 @@
     });
 
     // الخريطة لوحة مرجعية ثابتة: لا توجد أحداث نقر أو تمرير على عُقد الـ SVG
+
+    // التحكم في التكبير: عرض فقط (تحويل CSS على الرسم) دون أي حساب
+    (function () {
+      const svg = host.querySelector('.aqm-canvas-wrap .aqm-svg');
+      if (!svg) return;
+      let z = 1;
+      const apply = () => { svg.style.transform = z === 1 ? '' : `scale(${z})`; svg.style.transformOrigin = 'center top'; };
+      host.querySelectorAll('[data-aqm-zoom]').forEach(b => b.addEventListener('click', () => {
+        const m = b.getAttribute('data-aqm-zoom');
+        z = m === 'in' ? Math.min(1.6, z + 0.2) : m === 'out' ? Math.max(0.8, z - 0.2) : 1;
+        z = Math.round(z * 10) / 10; apply();
+      }));
+    })();
 
     // ربط زر الطباعة / PDF
     host.querySelector('#aqm-btn-print')?.addEventListener('click', () => {
