@@ -1452,7 +1452,8 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 
 /* هواتف صغيرة جداً: تقليل الحشو المتداخل وإبقاء كلمات الجدول سليمة (التمرير يبقى داخل إطار الجدول فقط) */
 .aqm-chakra-table th, .aqm-chakra-table td { overflow-wrap: normal; word-break: normal; }
-.aqm-chakra-table { min-width: 300px; }
+.aqm-chakra-table { min-width: 0; }
+@media (max-width: 359px) { .aqm-chakra-table { min-width: 280px; } }
 .aqm-chakra-table-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
 @media (max-width: 400px) {
   .aqm-shell { padding-inline: 8px; }
