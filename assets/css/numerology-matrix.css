@@ -1663,3 +1663,23 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
   #matrix .aqm-dash > .aqm-canvas-wrap { order: 5; }
   #matrix .aqm-dash-side .aqm-summary { order: 6; }
 }
+
+/* ===== extras: percentages, rail art, learn art ===== */
+#matrix .aqm-pct { display: flex; align-items: center; gap: 12px; direction: rtl; }
+#matrix .aqm-pct-v { font-weight: 700; color: var(--mx-burgundy); font-size: .95rem; min-width: 42px; }
+#matrix .aqm-pct-bar { flex: 1; height: 8px; border-radius: 999px; background: #EFE8DC; overflow: hidden; }
+#matrix .aqm-pct-bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #8a4a5e, #642B3C); transition: width var(--motion-slow, .6s) var(--ease-standard, ease); }
+#matrix .aqm-rail-quote { position: relative; overflow: hidden; min-height: 300px; padding: 26px 18px 90px; }
+#matrix .aqm-rail-emblem { justify-self: center; }
+#matrix .aqm-rail-rule { display: block; width: 36px; height: 1px; background: var(--mx-gold); margin: 0 auto; }
+#matrix .aqm-rail-peaks { position: absolute; inset-inline: 0; bottom: 0; height: 90px; background: linear-gradient(135deg, transparent 49%, rgba(255,255,255,.08) 50%) 0 100%/90px 60px repeat-x, linear-gradient(225deg, transparent 49%, rgba(0,0,0,.28) 50%) 30px 100%/120px 80px repeat-x; opacity: .9; }
+#matrix .aqm-rail-nav a { display: flex; align-items: center; gap: 12px; }
+#matrix .aqm-rail-nav a svg { flex: 0 0 auto; color: var(--mx-burgundy); }
+#matrix .aqm-rail-nav a.is-active svg { color: #fff; }
+#matrix .aqm-rail-foot { text-align: center; color: var(--mx-muted); font-size: .85rem; padding: 6px 4px; }
+#matrix .aqm-rail-foot p { margin: 0 0 6px; }
+#matrix .aqm-rail-foot span { letter-spacing: .2em; font-size: .72rem; }
+#matrix .aqm-learn { grid-template-columns: 1.4fr 130px 1fr; }
+#matrix .aqm-learn-art { justify-self: center; opacity: .9; }
+@media (max-width: 1000px) { #matrix .aqm-learn { grid-template-columns: 1fr; } #matrix .aqm-learn-art { display: none; } }
+@media (prefers-reduced-motion: reduce) { #matrix .aqm-pct-bar i { transition: none; } }
