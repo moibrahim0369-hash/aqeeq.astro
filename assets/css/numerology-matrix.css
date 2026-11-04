@@ -1256,3 +1256,16 @@
   .aqm-xr-head, .aqm-xr-sec { padding: 14px 14px 16px; }
   .aqm-xr-sec h5 { font-size: 1rem; }
 }
+
+/* صندوق الذيل الكارمي: مسافات قراءة مريحة بين الفقرات (الأثر، التناقض، الجذور، التنبيه) */
+.aqm-kt-box .aqm-slot-p { margin: 0 0 12px; line-height: 2; }
+.aqm-kt-box .aqm-slot-p:last-child { margin-bottom: 0; }
+.aqm-kt-box .aqm-slot-p strong { color: #5E3A2E; }
+.aqm-kt-box .aqm-kt-note { font-size: .85rem; opacity: .8; }
+.aqm-kt-protocol { margin: 0; padding-inline-start: 1.3rem; line-height: 2; }
+.aqm-kt-protocol li { margin-bottom: 10px; }
+@media (max-width: 600px) {
+  .aqm-kt-box { padding: 14px 12px; }
+  .aqm-kt-box .aqm-slot-p { margin-bottom: 14px; line-height: 2.05; }
+  .aqm-kt-protocol li { margin-bottom: 12px; }
+}
