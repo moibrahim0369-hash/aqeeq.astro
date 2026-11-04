@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9dccb"/><stop offset=".5" stop-color="#c9b49a"/><stop offset="1" stop-color="#8d7258"/></linearGradient>
+<filter id="t"><feTurbulence type="fractalNoise" baseFrequency=".02 .05" numOctaves="4" seed="3"/><feColorMatrix values="0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .2 0 0 0 .5 -.1"/></filter></defs>
+<path d="M400 0V600H120C150 520 90 470 140 400S110 300 170 250 150 150 210 110 300 40 400 0Z" fill="url(#g)"/>
+<path d="M400 0V600H120C150 520 90 470 140 400S110 300 170 250 150 150 210 110 300 40 400 0Z" filter="url(#t)" opacity=".8"/>
+<path d="M210 110C260 190 230 250 290 330S270 480 330 600" stroke="#6f5640" stroke-opacity=".35" stroke-width="3" fill="none"/>
+<path d="M170 250C230 290 250 340 240 420" stroke="#fff" stroke-opacity=".3" stroke-width="4" fill="none"/>
+</svg>
