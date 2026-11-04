@@ -331,7 +331,7 @@
           <p>${card.deep_psychology && card.deep_psychology.text ? card.deep_psychology.text.replace(/\n/g, '<br>') : 'التحليل النفسي الأصلي موثق في التقرير الكامل.'}</p>
           ${card.deep_psychology && card.deep_psychology.shadow ? `
             <div style="background: rgba(255, 107, 74, 0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255, 107, 74, 0.25); margin-top: 20px;">
-              <h4 style="color: #ff9179; margin-bottom: 8px;">🌑 تشريح طاقة الظل (Shadow Aspect)</h4>
+              <h4 style="color: #ff9179; margin-bottom: 8px;"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14.500A8 8 0 1 1 9.500 5 6.500 6.500 0 0 0 19 14.500z"/></svg> تشريح طاقة الظل (Shadow Aspect)</h4>
               <p style="font-size: 0.95rem; line-height: 1.8;">${card.deep_psychology.shadow.replace(/\n/g, '<br>')}</p>
             </div>
           ` : ''}
@@ -343,22 +343,22 @@
           <h3>أبعاد الحياة الواقعية</h3>
           
           <div style="margin-bottom: 24px;">
-            <h4 style="color: #ff99aa; margin-bottom: 8px;">❤️ الحب والعلاقات والشراكات</h4>
+            <h4 style="color: #ff99aa; margin-bottom: 8px;"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.500-7 10-7 10z"/></svg> الحب والعلاقات والشراكات</h4>
             <p>${card.practical_domains && card.practical_domains.love_relationships ? card.practical_domains.love_relationships.replace(/\n/g, '<br>') : 'راجع المخطوطة الأصلية.'}</p>
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h4 style="color: var(--tarot-gold); margin-bottom: 8px;">💼 العمل والمهنة والدراسة والمشاريع</h4>
+            <h4 style="color: var(--tarot-gold); margin-bottom: 8px;"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.500" y="7.500" width="17" height="12" rx="2"/><path d="M9 7.500V6a1.500 1.500 0 0 1 1.500-1.500h3A1.500 1.500 0 0 1 15 6v1.500M3.500 13h17"/></svg> العمل والمهنة والدراسة والمشاريع</h4>
             <p>${card.practical_domains && card.practical_domains.career_projects ? card.practical_domains.career_projects.replace(/\n/g, '<br>') : 'راجع المخطوطة الأصلية.'}</p>
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h4 style="color: #7ad1ff; margin-bottom: 8px;">💰 المال والوفرة والقرارات المادية</h4>
+            <h4 style="color: #7ad1ff; margin-bottom: 8px;"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><path d="M14.500 9.500c-.5-1-1.500-1.500-2.500-1.500-1.500 0-2.500.8-2.500 2s1 1.700 2.500 2 2.500.8 2.500 2-1 2-2.500 2c-1 0-2-.5-2.500-1.500M12 6.500V8M12 16v1.500"/></svg> المال والوفرة والقرارات المادية</h4>
             <p>${card.practical_domains && card.practical_domains.money_abundance ? card.practical_domains.money_abundance.replace(/\n/g, '<br>') : 'راجع المخطوطة الأصلية.'}</p>
           </div>
 
           <div style="margin-bottom: 24px;">
-            <h4 style="color: #a9dca9; margin-bottom: 8px;">🌿 الجسد، الجهاز العصبي، والتأثير السيكوسوماتي</h4>
+            <h4 style="color: #a9dca9; margin-bottom: 8px;"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19C5 10 10 5 20 4c0 10-5 15-14 15z"/><path d="M5 19c3-5 6-8 10-10"/></svg> الجسد، الجهاز العصبي، والتأثير السيكوسوماتي</h4>
             <p>${card.practical_domains && card.practical_domains.health_psychosomatics ? card.practical_domains.health_psychosomatics.replace(/\n/g, '<br>') : 'راجع المخطوطة الأصلية.'}</p>
           </div>
         `;
