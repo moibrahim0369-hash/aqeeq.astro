@@ -494,6 +494,7 @@
       if (!def) return null;
       const parts = entries.map(en => {
         const v = sectionEntryVal(en, def[0]);
+        if (typeof v === 'string' && en.summary && v.trim() === String(en.summary).trim()) return ''; // لا نكرر نص الملخص الظاهر في النص الأساسي
         const html = sectionVal(Array.isArray(v) ? 'l' : 't', '', v);
         return html ? head(en) + html : '';
       }).filter(Boolean);
@@ -603,45 +604,58 @@
     });
   }
 
-  function tailsLibraryHtml(data, gender) {
-    const g = gender === 'male' || gender === 'female' ? gender : '';
-    const items = data.tails.map(t => {
-      const v = (g && t.genderVariants && t.genderVariants[g]) || {};
-      return `<details class="aqm-xr-tail"><summary><strong>${escapeHtml(t.code)}</strong> · ${escapeHtml(t.title.ar)} — ${escapeHtml(t.title.subtitle)}</summary>
-        ${sectionVal('t', 'العمق النفسي', t.psychologicalDepth)}${sectionVal('t', 'التناقض', v.paradox || t.paradox)}${sectionVal('t', 'جذور الطفولة', v.childhoodRoots || t.childhoodRoots)}${sectionVal('t', 'التنبيه الجسدي الرمزي', t.symbolicBodyNote)}${sectionVal('l', 'بروتوكول التحرر', t.protocol)}
-      </details>`;
-    }).join('');
-    return `<article class="aqm-xr" dir="rtl"><header class="aqm-xr-head"><span class="aqm-xr-kicker">مكتبة الذيول الكارمية</span><h4>${data.tails.length} ذيلاً كارمياً</h4></header>${items}</article>`;
+  /* التفسير الموسع يُعرض في نافذة واحدة مستقلة (Bottom Sheet على الهاتف / نافذة وسطية على الشاشة الكبيرة):
+     لا حقن بطاقات داخل جسم الصفحة، ولا تراكم أو تكرار عند الضغط المتكرر. */
+  let xrModal = null, xrLastTrigger = null, xrToken = 0;
+  function ensureXrModal() {
+    if (xrModal) return xrModal;
+    const m = document.createElement('div');
+    m.className = 'aqm-xr-modal';
+    m.hidden = true;
+    m.innerHTML = '<div class="aqm-xr-backdrop" data-xr-close="true"></div>'
+      + '<div class="aqm-xr-sheet" role="dialog" aria-modal="true" aria-label="التفسير الموسع" tabindex="-1" dir="rtl">'
+      + '<button type="button" class="aqm-xr-close" data-xr-close="true" aria-label="إغلاق">×</button>'
+      + '<div class="aqm-xr-scroll" aria-live="polite"></div></div>';
+    m.addEventListener('click', ev => { if (ev.target.closest('[data-xr-close]')) closeXrModal(); });
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !m.hidden) closeXrModal(); });
+    document.body.appendChild(m);
+    xrModal = m;
+    return m;
+  }
+  function closeXrModal() {
+    if (!xrModal || xrModal.hidden) return;
+    xrToken++;
+    xrModal.hidden = true;
+    document.documentElement.classList.remove('aqm-xr-open');
+    if (xrLastTrigger && document.contains(xrLastTrigger)) { try { xrLastTrigger.focus(); } catch (e) {} }
+    xrLastTrigger = null;
+  }
+  function openXrModal(btn, gender) {
+    const loader = window.AqeeqMatrix;
+    if (!loader) return;
+    const m = ensureXrModal();
+    const box = m.querySelector('.aqm-xr-scroll');
+    const token = ++xrToken;
+    xrLastTrigger = btn;
+    box.innerHTML = '<p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p>';
+    box.scrollTop = 0;
+    m.hidden = false;
+    document.documentElement.classList.add('aqm-xr-open');
+    m.querySelector('.aqm-xr-sheet').focus();
+    expandedArcanaHtml(Number(btn.dataset.aqmMasterArcana), gender).then(html => {
+      if (token === xrToken) box.innerHTML = html;
+    }).catch(() => {
+      if (token === xrToken) box.innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
+    });
   }
 
-  /* زر «التفسير الموسع» وزر مكتبة الذيول: كليك واحد يفتح المحتوى جوه البطاقة، وكليك تاني يقفله. */
   function bindExpandedReadings(host) {
     if (!host || host.dataset.aqmXrBound === 'true') return;
     host.dataset.aqmXrBound = 'true';
     host.addEventListener('click', ev => {
       const btn = ev.target.closest && ev.target.closest('.aqm-master-open');
       if (!btn || !host.contains(btn)) return;
-      const lib = btn.closest('.aqm-master-library');
-      const out = lib && lib.querySelector('.aqm-master-output');
-      const loader = window.AqeeqMatrix;
-      if (!out || !loader) return;
-      if (btn.getAttribute('aria-expanded') === 'true') {
-        btn.setAttribute('aria-expanded', 'false');
-        out.innerHTML = '';
-        return;
-      }
-      lib.querySelectorAll('.aqm-master-open').forEach(b => b.setAttribute('aria-expanded', String(b === btn)));
-      out.innerHTML = '<p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p>';
-      const gender = host.dataset.aqmGender || '';
-      const task = btn.dataset.aqmMasterTail
-        ? loader.karmicTails().then(d => tailsLibraryHtml(d, gender))
-        : expandedArcanaHtml(Number(btn.dataset.aqmMasterArcana), gender);
-      task.then(html => {
-        if (btn.getAttribute('aria-expanded') === 'true') out.innerHTML = html;
-      }).catch(() => {
-        out.innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
-        btn.setAttribute('aria-expanded', 'false');
-      });
+      openXrModal(btn, host.dataset.aqmGender || '');
     });
   }
 
@@ -654,17 +668,10 @@
       <button type="button" class="aqm-master-open" data-aqm-master-arcana="${a.num}" aria-expanded="false">
         <span aria-hidden="true">✦</span> التفسير الموسع: ${a.num} · ${escapeHtml(a.name)}
       </button>`).join('');
-    const tailButton = item.id === 'karmic_tail'
-      ? '<button type="button" class="aqm-master-open aqm-master-tail-open" data-aqm-master-tail="true" aria-expanded="false">⚓ مكتبة الذيول الكارمية والتركيبات الكاملة</button>'
-      : '';
     return `
       <section class="aqm-master-library" aria-label="التفسير الموسع للأركانا">
-        <div class="aqm-master-library-intro">
-          <h4>المكتبة الموسعة للطاقات الظاهرة في هذا الموضع</h4>
-          <p>اضغط على أي طاقة لقراءة تفسيرها الموسع المراجَع (الجوهر والمواهب والعلاقات والمال والأسلاف وغيرها). التحميل يتم عند الطلب ولا يغير حساب المصفوفة.</p>
-        </div>
-        <div class="aqm-master-actions">${buttons}${tailButton}</div>
-        <div class="aqm-master-output" aria-live="polite"></div>
+        <p class="aqm-master-hint">التفسير الموسع — اضغط على طاقة لقراءتها في نافذة مستقلة:</p>
+        <div class="aqm-master-actions">${buttons}</div>
       </section>`;
   }
 
@@ -1273,6 +1280,7 @@
             <button class="aqm-btn aqm-btn-primary" type="button" id="aqm-btn-story">استخراج بطاقة القصة</button>
           </div>
         </header>
+        <div class="aqm-brand-stamp" role="note">✦ عقيق أسترو · Aqeq Astro ✦</div>
 
         <!-- حاوية الرسم الهندسي (SVG Octagram) -->
         <div class="aqm-canvas-wrap">
@@ -1299,6 +1307,7 @@
         <footer style="margin-top:32px;text-align:center;font-size:0.82rem;color:var(--aqm-text-muted);line-height:1.7;">
           <p>مصفوفة القدر نظام رمزي للتأمل واستكشاف الذات مبني على منهج ناتاليا لاديني (22 أركانا). عقيق أسترو يقدم القراءات كأداة للوعي والتمكين الذاتي وليست للتنبؤ القاطع أو المشورة الطبية.</p>
         </footer>
+        <div class="aqm-brand-sticky" role="note" aria-hidden="true">عقيق أسترو · Aqeq Astro</div>
       </section>
     `;
 
