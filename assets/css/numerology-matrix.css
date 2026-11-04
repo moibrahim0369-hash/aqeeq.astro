@@ -1258,15 +1258,15 @@
 }
 
 /* صندوق الذيل الكارمي: مسافات قراءة مريحة بين الفقرات (الأثر، التناقض، الجذور، التنبيه) */
-.aqm-kt-box .aqm-slot-p { margin: 0 0 12px; line-height: 2; }
+.aqm-kt-box .aqm-slot-p { margin: 0 0 12px; line-height: 1.9; }
 .aqm-kt-box .aqm-slot-p:last-child { margin-bottom: 0; }
 .aqm-kt-box .aqm-slot-p strong { color: #5E3A2E; }
 .aqm-kt-box .aqm-kt-note { font-size: .85rem; opacity: .8; }
-.aqm-kt-protocol { margin: 0; padding-inline-start: 1.3rem; line-height: 2; }
+.aqm-kt-protocol { margin: 0; padding-inline-start: 1.3rem; line-height: 1.9; }
 .aqm-kt-protocol li { margin-bottom: 10px; }
 @media (max-width: 600px) {
   .aqm-kt-box { padding: 14px 12px; }
-  .aqm-kt-box .aqm-slot-p { margin-bottom: 14px; line-height: 2.05; }
+  .aqm-kt-box .aqm-slot-p { margin-bottom: 14px; line-height: 1.9; }
   .aqm-kt-protocol li { margin-bottom: 12px; }
 }
 
@@ -1362,10 +1362,8 @@ html.aqm-xr-open { overflow: hidden; }
 .aqm-sec-entry + .aqm-sec-entry { padding-top: 18px; border-top: 1px dashed var(--aqm-line-soft); }
 
 /* الكبسولات والشارات: تباين متناسق */
-.aqm-meta-pill, .aqm-badge-arcana { color: var(--aqm-title) !important; background: rgba(197, 160, 89, .14) !important; border: 1px solid var(--aqm-line) !important; font-weight: 700; }
 .aqm-master-open { color: var(--aqm-title); background: var(--aqm-ivory-card); border: 1px solid var(--aqm-line); font-weight: 700; }
 .aqm-master-hint { color: #444; }
-.aqm-btn { border-color: var(--aqm-line); color: var(--aqm-title); background: var(--aqm-ivory-card); font-family: inherit; font-weight: 700; }
 
 /* فاصل أنيق بين الأقسام الكبرى */
 .aqm-accordion-container .aqm-acc-item + .aqm-acc-item::before { content: none; }
@@ -1388,15 +1386,65 @@ html.aqm-xr-open { overflow: hidden; }
 .aqm-shell { padding-bottom: 130px !important; }
 .aqm-shell footer { margin-bottom: 24px; }
 
-/* ===== الزجاج الفاخر (Glassmorphism) للكبسولات والأيقونات والأزرار ===== */
-.aqm-meta-pill, .aqm-badge-arcana, .aqm-master-open, .aqm-btn:not(.aqm-btn-primary), .aqm-acc-icon, .aqm-brand-stamp {
-  background: linear-gradient(135deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.34) 55%, rgba(231,205,150,.30) 100%) !important;
-  border: 1px solid rgba(255,255,255,.85) !important;
-  outline: 1px solid rgba(197,160,89,.45); outline-offset: -2px;
-  -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%);
-  box-shadow: 0 4px 14px rgba(74,21,33,.10), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(197,160,89,.25);
-}
-.aqm-acc-icon { color: var(--aqm-title); }
-.aqm-btn-primary { background: linear-gradient(135deg, rgba(120,47,59,.92), rgba(74,21,33,.92)) !important; color: #FFF8EA !important; border: 1px solid rgba(255,255,255,.55) !important; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 6px 16px rgba(74,21,33,.28), inset 0 1px 0 rgba(255,255,255,.35); }
-.aqm-master-open:hover, .aqm-btn:hover { box-shadow: 0 6px 18px rgba(184,151,88,.32), inset 0 1px 0 #fff; }
 .aqm-xr-compact .aqm-xr-sec { margin-bottom: 16px; }
+
+/* ==========================================================================
+   مراجعة الطباعة والتنسيق (RTL) — إصلاحات موضعية فقط، بدون تغيير الهوية أو المحتوى
+   ========================================================================== */
+.aqm-shell, .aqm-shell *, .aqm-xr-modal, .aqm-xr-modal * { box-sizing: border-box; }
+.aqm-shell, .aqm-xr-scroll { direction: rtl; text-align: right; max-width: 100%; }
+.aqm-shell p, .aqm-shell li, .aqm-shell h2, .aqm-shell h3, .aqm-shell h4, .aqm-shell h5, .aqm-shell span, .aqm-shell strong,
+.aqm-xr-scroll p, .aqm-xr-scroll li, .aqm-xr-scroll h4, .aqm-xr-scroll h5 {
+  min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal;
+}
+/* الأرقام والكلمات اللاتينية داخل النص العربي لا تقلب الأقواس ولا تلتصق بما حولها */
+.aqm-badge-arcana, .aqm-badge, .aqm-meta-pill, .aqm-chakra-vals, .aqm-chakra-badge, .aqm-chakra-name,
+.aqm-acc-title, .aqm-acc-subtitle, .aqm-xr-head small, .aqm-kicker, .aqm-brand-stamp, .aqm-slot-p strong { unicode-bidi: isolate; }
+
+/* سلم الأحجام: عنوان القسم 18–20 / فرعي 15–17 / أساسي 15 / ثانوي 13 */
+.aqm-acc-title { font-size: 1.15rem; line-height: 1.6; }
+.aqm-xr-head h4 { font-size: 1.125rem; line-height: 1.6; }
+.aqm-shell h4, .aqm-xr-sec h5, .aqm-shell h5 { font-size: 1rem; line-height: 1.7; margin: 0 0 10px; }
+.aqm-shell p, .aqm-shell li, .aqm-slot-p, .aqm-xr-scroll p, .aqm-xr-scroll li { font-size: .9375rem; line-height: 1.85; }
+.aqm-acc-subtitle, .aqm-master-hint, .aqm-canvas-wrap > p, .aqm-shell footer p, .aqm-draft-note { font-size: .8125rem; line-height: 1.7; }
+.aqm-meta-pill, .aqm-badge-arcana, .aqm-badge, .aqm-chakra-vals, .aqm-kicker { font-size: .8125rem; line-height: 1.6; }
+.aqm-slot-p { margin: 0 0 10px; }
+.aqm-slot-list { margin: 6px 0 10px; padding-inline-start: 20px; padding-inline-end: 0; }
+.aqm-slot-list li { margin-bottom: 6px; }
+
+/* الشارات والنصوص الطويلة تلتف بدل أن تُقص أو تخرج عن الحاوية */
+.aqm-badge-arcana, .aqm-badge { white-space: normal; max-width: 100%; text-align: center; }
+.aqm-acc-badges { flex-wrap: wrap; min-width: 0; }
+.aqm-acc-header-left, .aqm-acc-title-group { min-width: 0; }
+.aqm-chakra-name { white-space: normal; overflow: visible; text-overflow: clip; }
+.aqm-chakra-vals { white-space: normal; }
+.aqm-chakra-row { min-width: 0; }
+.aqm-chakra-table th, .aqm-chakra-table td { white-space: normal; overflow-wrap: anywhere; }
+
+/* توحيد الحشو الداخلي للبطاقات الفرعية */
+.aqm-kt-box, .aqm-prog-box, .aqm-child-box, .aqm-rx-box, .aqm-xr-sec { padding: 16px; }
+.aqm-acc-body { padding: 20px 16px 24px; }
+
+/* النافذة: مساحة مستقلة للعنوان، تمرير داخلي فقط، زر إغلاق لا يغطي المحتوى */
+html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
+.aqm-xr-sheet { min-height: 0; }
+.aqm-xr-scroll { flex: 1 1 auto; min-height: 0; padding: 60px 16px calc(32px + env(safe-area-inset-bottom, 0px)); }
+.aqm-xr-head { margin-bottom: 14px; }
+
+@media (max-width: 480px) {
+  .aqm-chakra-table th, .aqm-chakra-table td { padding: 8px 6px; font-size: .8125rem; }
+  .aqm-chakra-table-wrap, .aqm-chakra-axis { padding: 10px 8px !important; }
+  .aqm-acc-header { padding: 16px 12px; }
+}
+
+/* هواتف صغيرة جداً: تقليل الحشو المتداخل وإبقاء كلمات الجدول سليمة (التمرير يبقى داخل إطار الجدول فقط) */
+.aqm-chakra-table th, .aqm-chakra-table td { overflow-wrap: normal; word-break: normal; }
+.aqm-chakra-table { min-width: 0; }
+@media (max-width: 359px) { .aqm-chakra-table { min-width: 280px; } }
+.aqm-chakra-table-wrap { overflow-x: auto; max-width: 100%; -webkit-overflow-scrolling: touch; }
+@media (max-width: 400px) {
+  .aqm-shell { padding-inline: 8px; }
+  .aqm-acc-body { padding: 16px 10px 20px; }
+  .aqm-kt-box, .aqm-prog-box, .aqm-child-box, .aqm-rx-box { padding: 12px; }
+  .aqm-chakra-table-wrap { padding: 8px 6px !important; }
+}
