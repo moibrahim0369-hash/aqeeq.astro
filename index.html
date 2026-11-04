@@ -49,7 +49,7 @@
 <link rel="stylesheet" href="assets/css/cosmic-background.css">
 <link rel="stylesheet" href="assets/css/tarot-sanctuary.css">
 <link rel="stylesheet" href="assets/css/aqeeq-design-system.css?v=3.8">
-<link rel="stylesheet" href="assets/css/home-v2.css?v=20261104a">
+<link rel="stylesheet" href="assets/css/home-v2.css?v=20261104b">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 <style>
 #manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
@@ -92,13 +92,17 @@
       <a href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز"><span data-i18n-ar="مكتبة الرموز" data-i18n-en="Symbols Library">مكتبة الرموز</span></a>
     </nav>
     <div class="hd-act aq-header-tools aqh-tools">
+      <button type="button" class="aqh-burger" id="aqh-burger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="aqh-menu"><span></span><span></span><span></span></button>
       <a class="aqh-join" href="#account"><span data-i18n-ar="انضم الآن" data-i18n-en="Join now">انضم الآن</span></a>
-      <a class="aqh-icon" href="#dream-library" data-soon="البحث في الرموز قيد التجهيز" aria-label="بحث"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
-      <a class="aqh-icon" href="#account" aria-label="حسابي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1-4 4-6 7.5-6s6.500 2 7.5 6"/></svg></a>
+      <button type="button" class="aqh-icon" data-aqh-search aria-label="بحث في الموقع" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button>
+      <a class="aqh-icon aqh-icon-account" href="#account" aria-label="حسابي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1-4 4-6 7.5-6s6.500 2 7.5 6"/></svg></a>
       <button type="button" class="aq-lang-switch" id="aq-lang-toggle" title="تغيير اتجاه ولغة الواجهة">AR / EN</button>
       <a aria-label="انستجرام" class="ig-top" href="#home" id="ig-top" hidden style="display:none;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" fill="currentColor" r="1"></circle></svg></a>
     </div>
   </div>
+<nav class="aqh-menu" id="aqh-menu" aria-label="قائمة الموقع" hidden>
+    <a href="#home">الرئيسية</a><a href="#chart">الخريطة الفلكية</a><a href="#lifepath">مسار الحياة</a><a href="#matrix">مصفوفة القدر</a><a href="#compat">التوافق</a><a href="#tarot-chamber">التاروت</a><a href="#sky">السماء</a><a href="#aqh-articles">المقالات</a><a href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز">مكتبة الرموز</a><a href="#account">حسابي</a>
+  </nav>
 </header>
 
 
@@ -110,12 +114,12 @@
   <div class="aqh-hero">
     <img class="aqh-rock" src="assets/images/home/rock.svg" alt="" aria-hidden="true" decoding="async">
     <div class="aqh-wrap aqh-hero-grid">
-      <div class="aqh-hero-copy aqh-reveal" id="home-intro">
+      <div class="aqh-hero-copy" id="home-intro">
         <span class="aqh-rule" aria-hidden="true"></span>
-        <p class="aqh-eyebrow" data-i18n-ar="أكثر من توقعات .. رحلة إلى ذاتك" data-i18n-en="More than predictions .. a journey to yourself">أكثر من توقعات .. رحلة إلى ذاتك</p>
-        <h1 class="hero-title aqh-title" data-i18n-ar="اكتشف خريطتك الداخلية" data-i18n-en="Discover Your Inner Map">اكتشف خريطتك الداخلية</h1>
-        <p class="lead intro-p hero-sub aqh-lead" data-i18n-ar="في AQEQ ASTRO نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر." data-i18n-en="At AQEQ ASTRO we believe astrology is not just knowing the future, but a deep tool to understand yourself, uncover your potential, and live in greater harmony.">في <span dir="ltr">AQEQ ASTRO</span> نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر.</p>
-        <div class="aq-hero-cta-row aqh-cta-row">
+        <p class="aqh-eyebrow aqh-seq" style="--seq:0ms;--dur:400ms" data-i18n-ar="أكثر من توقعات .. رحلة إلى ذاتك" data-i18n-en="More than predictions .. a journey to yourself">أكثر من توقعات .. رحلة إلى ذاتك</p>
+        <h1 class="hero-title aqh-title aqh-seq" style="--seq:100ms;--dur:600ms" data-i18n-ar="اكتشف خريطتك الداخلية" data-i18n-en="Discover Your Inner Map">اكتشف خريطتك الداخلية</h1>
+        <p class="lead intro-p hero-sub aqh-lead aqh-seq" style="--seq:180ms;--dur:500ms" data-i18n-ar="في AQEQ ASTRO نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر." data-i18n-en="At AQEQ ASTRO we believe astrology is not just knowing the future, but a deep tool to understand yourself, uncover your potential, and live in greater harmony.">في <span dir="ltr">AQEQ ASTRO</span> نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر.</p>
+        <div class="aq-hero-cta-row aqh-cta-row aqh-seq" style="--seq:260ms;--dur:450ms">
           <a href="#chart" class="aq-btn-burgundy aqh-cta" data-i18n-ar="ابدأ رحلتك" data-i18n-en="Begin Your Journey"><span>ابدأ رحلتك</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
         </div>
         <ul class="aqh-values" aria-label="ما تمنحه الرحلة">
@@ -126,7 +130,7 @@
       </div>
 
       <!-- الخريطة الفلكية الحقيقية (نفس عناصر الكود الحالي: #ticks و#glyphs تُملأ من السكربت وتفتح قراءة البرج) -->
-      <div class="aqh-hero-wheel aqh-reveal" id="home-chart-identity-wheel">
+      <div class="aqh-hero-wheel aqh-chart-seq" id="home-chart-identity-wheel">
         <div class="aq-hero-wheel-col wheel-box aqh-wheel-box">
           <div class="aq-celestial-wheel-frame aqh-wheel-frame">
             <div class="wheel-wrap aqh-wheel-wrap">
@@ -190,30 +194,38 @@
   <!-- 5. طاقة اليوم + 6. المقالات المختارة -->
   <div class="aqh-wrap aqh-lower">
     <div class="aqh-lower-grid">
-      <article class="aqh-energy aqh-reveal" id="aqh-energy" aria-labelledby="aqh-energy-h">
+      <article class="aqh-energy aqh-reveal" id="aqh-energy" aria-labelledby="aqh-energy-h" data-state="loading">
         <div class="aqh-energy-photo" aria-hidden="true"><img src="assets/images/home/sunrise.svg" alt="" loading="lazy" decoding="async"><span>طاقة جديدة<br>لبدايات أعمق</span></div>
         <div class="aqh-energy-body">
           <span class="aqh-energy-sun" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="16" cy="16" r="5.5"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M25 7l-3 3M10 22l-3 3"/></svg></span>
           <h2 id="aqh-energy-h">طاقة اليوم</h2>
           <time class="aqh-energy-date" id="aqh-today" datetime=""></time>
-          <p class="aqh-energy-text">يوم مناسب للتأمّل وإعادة ترتيب الأولويات. خذ وقتًا لنفسك، فالوضوح الداخلي اليوم يقودك إلى وضوح أكبر.</p>
-          <div class="aqh-sky-chips" id="aq-observatory-ribbon" aria-label="رصد اليوم">
-            <span><small>الشمس</small><strong id="aq-obs-sun">☉ جارٍ الرصد...</strong></span>
-            <span><small>القمر</small><strong id="aq-obs-moon">☽ جارٍ الرصد...</strong></span>
-            <span><small>الإيقاع الرقمي</small><strong id="aq-obs-daynum">الرقم الكوني اليوم</strong></span>
-            <span><small>البوصلة اليومية</small><strong id="aq-obs-focus">تأمل واتزان</strong></span>
+          <div class="aqh-energy-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div>
+          <div class="aqh-energy-err" role="alert" hidden><p>تعذر تحديث طاقة اليوم. حاول مرة أخرى.</p><button type="button" class="aqh-outline-btn" data-energy-retry><span>إعادة المحاولة</span></button></div>
+          <div class="aqh-energy-data" aria-live="polite">
+            <p class="aqh-energy-main" id="aqh-energy-main"></p>
+            <p class="aqh-energy-state" id="aqh-energy-state"></p>
+            <div class="aqh-sky-chips" id="aq-observatory-ribbon" aria-label="رصد اليوم">
+              <span><small>الشمس</small><strong id="aq-obs-sun">☉ جارٍ الرصد...</strong></span>
+              <span><small>القمر</small><strong id="aq-obs-moon">☽ جارٍ الرصد...</strong></span>
+              <span><small>الإيقاع الرقمي</small><strong id="aq-obs-daynum">الرقم الكوني اليوم</strong></span>
+              <span><small>البوصلة اليومية</small><strong id="aq-obs-focus">تأمل واتزان</strong></span>
+            </div>
+            <div class="aqh-sky-planets" id="aq-home-sky-planets"><span>اضغط على «استكشف السماء» لاستعراض درجات الكواكب واتصالات اليوم.</span></div>
           </div>
-          <div class="aqh-sky-planets" id="aq-home-sky-planets"><span>اضغط على «اقرأ التوقع الكامل» لاستعراض درجات الكواكب واتصالات اليوم.</span></div>
-          <a class="aqh-outline-btn" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>اقرأ التوقع الكامل</span></a>
+          <a class="aqh-outline-btn" href="#sky"><span>استكشف السماء</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
         </div>
       </article>
 
       <section class="aqh-articles" id="aqh-articles" aria-labelledby="aqh-articles-h">
-        <div class="aqh-articles-head aqh-reveal"><h2 id="aqh-articles-h">مقالات مختارة</h2><a class="aqh-all" href="#aqh-articles" data-open-article="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>عرض جميع المقالات</span></a></div>
-        <div class="aqh-articles-grid aqh-stagger">
-          <article class="aqh-article aqh-reveal"><img src="assets/images/home/leaves.svg" alt="" loading="lazy" decoding="async"><div><time>مصفوفة القدر · 5 دقائق قراءة</time><h3>هندسة الـ ٢٢ أركانا: معنى الطاقة المركزية والمحاور</h3><p>تعتمد مصفوفة القدر على تحويل تاريخ الميلاد إلى ثماني زوايا هندسية متناظرة تلتقي في نقطة الراحة المركزية.</p></div><button type="button" class="aqh-go" data-open-article="1" aria-label="اقرأ المقال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button></article>
-          <article class="aqh-article aqh-reveal"><img src="assets/images/home/dusk-figure.svg" alt="" loading="lazy" decoding="async"><div><time>مسار الحياة والتاروت · 4 دقائق قراءة</time><h3>الدورات الزمنية والقمم الأربع في علم الأرقام البيثاغوري</h3><p>لا يسير الإنسان في خط واحد طوال عمره؛ بل ينتقل عبر أربع قمم زمنية كبرى تحمل كلٌّ منها درسًا محوريًا.</p></div><button type="button" class="aqh-go" data-open-article="2" aria-label="اقرأ المقال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button></article>
-          <article class="aqh-article aqh-reveal"><img src="assets/images/home/canyon.svg" alt="" loading="lazy" decoding="async"><div><time>فلك الخريطة الشخصية · 4 دقائق قراءة</time><h3>كيف تقرأ الثالوث الأساسي: الشمس والقمر والطالع؟</h3><p>تمثل الشمس جوهر الوعي والإرادة، بينما يكشف القمر عالمك الشعوري الداخلي واحتياجاتك العميقة للأمان.</p></div><button type="button" class="aqh-go" data-open-article="0" aria-label="اقرأ المقال"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button></article>
+        <div class="aqh-articles-head aqh-reveal"><h2 id="aqh-articles-h">مقالات مختارة</h2><a class="aqh-all" href="#aqh-articles" id="aqh-all-articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>عرض جميع المقالات</span></a></div>
+        <div class="aqh-carousel" data-state="loading">
+          <button type="button" class="aqh-car-btn aqh-car-prev" aria-label="المقالات السابقة" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+          <div class="aqh-track" id="aqh-track" tabindex="0" role="region" aria-label="مقالات مختارة — مرّر أفقيًا">
+            <div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div>
+          </div>
+          <button type="button" class="aqh-car-btn aqh-car-next" aria-label="المقالات التالية" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+          <div class="aqh-car-msg" role="status" hidden></div>
         </div>
       </section>
     </div>
@@ -273,19 +285,8 @@
     </div>
   </div>
 
-  <!-- نوافذ المقالات (النص الكامل كما كان في الصفحة السابقة) -->
-  <dialog class="aqh-article-dialog" id="aqh-article-0" aria-labelledby="aqh-article-0-h"><form method="dialog"><button class="aqh-dialog-close" aria-label="إغلاق">×</button></form><div class="aqh-article-meta">فلك الخريطة الشخصية · 4 دقائق قراءة</div><h3 id="aqh-article-0-h">كيف تقرأ الثالوث الأساسي: الشمس والقمر والطالع؟</h3><p class="aqh-article-lead">تمثل الشمس جوهر الوعي والإرادة، بينما يكشف القمر عالمك الشعوري الداخلي واحتياجاتك العميقة للأمان، ويرسم الطالع (Ascendant) البوابة التي تطلّ بها على العالم وتبدأ منها البيوت الاثنا عشر.</p><div class="aq-article-body">
-              <p>في الفلك الكلاسيكي والحديث، لا تكتمل قراءة الشخصية بالاعتماد على البرج الشمسي وحده. فبينما تشير الشمس إلى مسار التحقق الذاتي، يحدد وقت الميلاد الدقيق درجة الطالع وتوزيع البيوت الفلكية، مما يفسر اختلاف التجارب الحياتية بين شخصين وُلدا في اليوم ذاته.</p>
-              <p><a href="#chart" style="color:var(--burgundy);font-weight:600;">احسب خريطة ميلادك الكاملة من هنا ←</a></p>
-            </div></dialog>
-  <dialog class="aqh-article-dialog" id="aqh-article-1" aria-labelledby="aqh-article-1-h"><form method="dialog"><button class="aqh-dialog-close" aria-label="إغلاق">×</button></form><div class="aqh-article-meta">مصفوفة القدر · 5 دقائق قراءة</div><h3 id="aqh-article-1-h">هندسة الـ ٢٢ أركانا: معنى الطاقة المركزية والمحاور</h3><p class="aqh-article-lead">تعتمد مصفوفة القدر على تحويل تاريخ الميلاد إلى ثماني زوايا هندسية متناظرة تلتقي في نقطة الراحة المركزية، لتكشف توازن الفرد بين طاقته الذاتية وامتداده في العلاقات والعمل.</p><div class="aq-article-body">
-              <p>يمثل المربع القطري في المصفوفة الصفات الشخصية المعلنة، بينما يمثل المربع المستقيم البصمة الموروثة والعمق الروحي. وعبر قراءة الأرقام من ١ إلى ٢٢، يستطيع القارئ ملاحظة أنماط التكرار في قراراته المهنية والعاطفية وتحويل التحديات إلى نقاط توازن.</p>
-              <p><a href="#matrix" style="color:var(--burgundy);font-weight:600;">استكشف مصفوفة قدرك من هنا ←</a></p>
-            </div></dialog>
-  <dialog class="aqh-article-dialog" id="aqh-article-2" aria-labelledby="aqh-article-2-h"><form method="dialog"><button class="aqh-dialog-close" aria-label="إغلاق">×</button></form><div class="aqh-article-meta">مسار الحياة والتاروت · 4 دقائق قراءة</div><h3 id="aqh-article-2-h">الدورات الزمنية والقمم الأربع في علم الأرقام البيثاغوري</h3><p class="aqh-article-lead">لا يسير الإنسان في خط واحد طوال عمره؛ بل ينتقل عبر أربع قمم زمنية كبرى (Pinnacles) تحمل كلٌّ منها درسًا محوريًا وإيقاعًا خاصًا للنمو والنضج.</p><div class="aq-article-body">
-              <p>بينما يظل رقم مسار الحياة ثابتًا كبوصلة كبرى، تتبدل القمم الزمنية لتفتح فصولًا متجددة من التركيز على البناء، أو العلاقات، أو الحكمة والقيادة. يساعدك وعي هذه الفصول على فهم توقيت القرارات الكبرى بهدوء واتزان.</p>
-              <p><a href="#lifepath" style="color:var(--burgundy);font-weight:600;">اعرف رقم مسار حياتك وقممك الزمنية ←</a></p>
-            </div></dialog>
+  <!-- طبقات التفاعل (اللوحة الجانبية / نوافذ المقالات / البحث) تُبنى من assets/js/home-v2.js -->
+  <div id="aqh-layers"></div>
 </section>
 
 
@@ -4482,7 +4483,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="account-profile.js" type="module"></script>
 <script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
-<script src="assets/js/home-v2.js?v=20261104a" defer></script>
+<script src="assets/js/home-v2.js?v=20261104b" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
