@@ -48,7 +48,7 @@
 <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
 <link rel="stylesheet" href="assets/css/cosmic-background.css">
 <link rel="stylesheet" href="assets/css/tarot-sanctuary.css">
-<link rel="stylesheet" href="assets/css/aqeeq-design-system.css?v=3.6">
+<link rel="stylesheet" href="assets/css/aqeeq-design-system.css?v=3.8">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 <style>
 #manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
@@ -113,7 +113,7 @@
   <!-- 1. EDITORIAL HERO SECTION -->
   <div class="aq-editorial-hero-band">
     <div class="wrap">
-      <div class="aq-hero-split">
+      <div class="aq-hero-split aq-hero-split--single">
         <!-- Hero Copy & Quick Birth Entry -->
         <div class="aq-hero-copy-col" id="home-intro">
           <span class="aq-editorial-overline" dir="ltr">AQEEQ ASTRO · CELESTIAL &amp; SYMBOLIC EDITION</span>
@@ -155,6 +155,14 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: THE CELESTIAL WHEEL + YOUR COSMIC IDENTITY (مدمجان) -->
+  <div class="aq-home-section aq-bg-ivory" id="home-chart-identity">
+    <div class="wrap">
+      <div class="aq-chart-identity-grid">
         <!-- Illustrated Interactive Astronomical Zodiac Wheel -->
         <div class="aq-hero-wheel-col wheel-box">
           <div class="aq-celestial-wheel-frame">
@@ -177,13 +185,6 @@
           </div>
           <p class="aq-wheel-caption wheel-hint" data-i18n-ar="انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته" data-i18n-en="Select any zodiac sign on the celestial wheel to view its reading">انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته</p>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION A: YOUR COSMIC IDENTITY (هويتك الكونية) -->
-  <div class="aq-home-section aq-bg-ivory">
-    <div class="wrap">
       <div class="aq-cosmic-identity-banner" aria-label="هويتك الكونية الشخصية">
         <div class="aq-cid-intro">
           <span dir="ltr">YOUR COSMIC IDENTITY</span>
@@ -191,37 +192,26 @@
           <p id="aq-home-cid-status">ملخص فوري لبصمتك الفلكية والرقمية المحسوبة من تاريخ ميلادك الحالي.</p>
         </div>
         <div class="aq-cid-pillars">
-          <a href="#chart" class="aq-cid-pillar">
-            <span class="aq-cid-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>
-            </span>
+          <div class="aq-cid-pillar">
             <span class="aq-cid-meta">
               <small>البرج الشمسي</small>
               <strong id="aq-home-cid-sun">♈ برج الحمل</strong>
             </span>
-          </a>
-          <a href="#lifepath" class="aq-cid-pillar">
-            <span class="aq-cid-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M8 12h8"/></svg>
-            </span>
+          </div>
+          <div class="aq-cid-pillar">
             <span class="aq-cid-meta">
               <small>مسار الحياة</small>
               <strong id="aq-home-cid-lp">الرقم الأساسي</strong>
             </span>
-          </a>
-          <a href="#matrix" class="aq-cid-pillar">
-            <span class="aq-cid-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><polygon points="12 2 22 12 12 22 2 12"/><rect x="6.5" y="6.5" width="11" height="11"/></svg>
-            </span>
+          </div>
+          <div class="aq-cid-pillar">
             <span class="aq-cid-meta">
               <small>مصفوفة القدر</small>
               <strong id="aq-home-cid-matrix">الأركانا الحاكمة</strong>
             </span>
-          </a>
+          </div>
         </div>
-        <div>
-          <a href="#account" class="aq-btn-ivory-outline" data-i18n-ar="ملفي الشخصي" data-i18n-en="My Dossier">ملفي الشخصي</a>
-        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -242,13 +232,6 @@
         <a href="#chart" class="aq-world-card card" data-world="chart">
           <div>
             <div class="aq-world-card-top">
-              <span class="aq-world-icon-circle" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor">
-                  <circle cx="16" cy="16" r="13"></circle>
-                  <circle cx="16" cy="16" r="6"></circle>
-                  <path d="M16 3v26M3 16h26M6.8 6.8l18.4 18.4M25.2 6.8L6.8 25.2" stroke-opacity="0.45"></path>
-                </svg>
-              </span>
               <span class="aq-world-en-tag" dir="ltr">CELESTIAL ATLAS</span>
             </div>
             <h3 data-i18n-ar="خريطة الميلاد" data-i18n-en="Natal Chart">خريطة الميلاد</h3>
@@ -261,14 +244,6 @@
         <a href="#lifepath" class="aq-world-card card" data-world="lifepath">
           <div>
             <div class="aq-world-card-top">
-              <span class="aq-world-icon-circle" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor">
-                  <circle cx="16" cy="16" r="12"></circle>
-                  <path d="M10 22c3-8 9-4 12-12"></path>
-                  <circle cx="10" cy="22" r="2.2" fill="currentColor"></circle>
-                  <circle cx="22" cy="10" r="2.2" fill="currentColor"></circle>
-                </svg>
-              </span>
               <span class="aq-world-en-tag" dir="ltr">PERSONAL JOURNEY</span>
             </div>
             <h3 data-i18n-ar="مسار الحياة" data-i18n-en="Life Path">مسار الحياة</h3>
@@ -281,13 +256,6 @@
         <a href="#matrix" class="aq-world-card card" data-world="matrix">
           <div>
             <div class="aq-world-card-top">
-              <span class="aq-world-icon-circle" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor">
-                  <polygon points="16 3 29 16 16 29 3 16"></polygon>
-                  <rect x="7.5" y="7.5" width="17" height="17"></rect>
-                  <circle cx="16" cy="16" r="3"></circle>
-                </svg>
-              </span>
               <span class="aq-world-en-tag" dir="ltr">GEOMETRY OF DESTINY</span>
             </div>
             <h3 data-i18n-ar="مصفوفة القدر" data-i18n-en="Destiny Matrix">مصفوفة القدر</h3>
@@ -300,12 +268,6 @@
         <a href="#compat" class="aq-world-card aq-world-wide card" data-world="compat">
           <div>
             <div class="aq-world-card-top">
-              <span class="aq-world-icon-circle" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor">
-                  <circle cx="12.5" cy="16" r="8"></circle>
-                  <circle cx="19.5" cy="16" r="8"></circle>
-                </svg>
-              </span>
               <span class="aq-world-en-tag" dir="ltr">THE ART OF CONNECTION</span>
             </div>
             <h3 data-i18n-ar="التوافق ودراسة العلاقات" data-i18n-en="Compatibility &amp; Synastry">التوافق ودراسة العلاقات</h3>
@@ -318,12 +280,6 @@
         <a href="#tarot-chamber" class="aq-world-card aq-world-wide card" data-world="tarot">
           <div>
             <div class="aq-world-card-top">
-              <span class="aq-world-icon-circle" aria-hidden="true">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor">
-                  <rect x="7" y="4" width="18" height="24" rx="2.5"></rect>
-                  <polygon points="16 10 20 16 16 22 12 16"></polygon>
-                </svg>
-              </span>
               <span class="aq-world-en-tag" dir="ltr">THE TAROT CHAMBER</span>
             </div>
             <h3 data-i18n-ar="محراب التاروت" data-i18n-en="The Tarot Chamber">محراب التاروت</h3>
@@ -392,7 +348,6 @@
           <h2 data-i18n-ar="رؤى وقراءات شخصية" data-i18n-en="Personal Insights">رؤى وقراءات شخصية</h2>
           <p data-i18n-ar="قراءاتك وتقاريرك التي قمت بحسابها وحفظها في أرشيفك الخاص للرجوع إليها في أي وقت." data-i18n-en="Your calculated reports and saved readings stored in your personal dossier.">قراءاتك وتقاريرك التي قمت بحسابها وحفظها في أرشيفك الخاص للرجوع إليها في أي وقت.</p>
         </div>
-        <a href="#account" class="aq-btn-ivory-outline">إدارة مكتبتي وحسابي</a>
       </div>
       <div class="aq-personal-insights-wrap" id="aq-home-personal-insights">
         <p style="margin:0;color:var(--muted-text);">احسب خريطة ميلادك أو مصفوفة قدرك أو مسار حياتك لحفظ قراءاتك الشخصية وعرضها هنا مباشرة.</p>
@@ -468,6 +423,8 @@
           <span class="aq-kicker-en" dir="ltr">PERSONAL DOSSIER &amp; COMPLETE REPORT</span>
           <h3 data-i18n-ar="دعوة للتقرير الشخصي والملف الفلكي المتكامل" data-i18n-en="Personal Dossier &amp; Complete Report Invitation">دعوة للتقرير الشخصي والملف الفلكي المتكامل</h3>
           <p data-i18n-ar="تتيح لك منصة عقيق أسترو استكشاف جميع الحاسبات الفلكية والرقمية مجانًا وبصورة فورية، مع إمكانية إنشاء ملفك الشخصي لحفظ قراءاتك ومزامنة بيانات ميلادك عبر جميع الأدوات." data-i18n-en="Aqeeq Astro lets you explore all astrological and numerological calculators instantly for free, or create your personal dossier to save readings and auto-fill birth data across every tool.">تتيح لك منصة عقيق أسترو استكشاف جميع الحاسبات الفلكية والرقمية مجانًا وبصورة فورية، مع إمكانية إنشاء ملفك الشخصي لحفظ قراءاتك ومزامنة بيانات ميلادك عبر جميع الأدوات.</p>
+          <details class="aq-tier-details">
+            <summary>ما الذي يتاح مجانًا وما الذي يضيفه الحساب؟</summary>
           <div class="aq-tier-comparison-grid">
             <div class="aq-tier-card">
               <span class="aq-tier-badge">متاح فوريًا للجميع</span>
@@ -490,6 +447,7 @@
               </ul>
             </div>
           </div>
+          </details>
         </div>
         <div class="aq-premium-actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
           <a href="#account" class="aq-btn-burgundy">افتح حسابي وملفي الشخصي</a>
