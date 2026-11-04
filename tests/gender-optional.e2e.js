@@ -12,6 +12,9 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
 
   const chart = async (gender) => {
     await p.goto(BASE + '/index.html#chart'); await p.waitForTimeout(500);
+    // بعد أول حساب يحفظ الموقع البيانات ويطوي النموذج: نعيد إظهاره قبل التعبئة
+    await p.waitForTimeout(500);
+    if (await p.isVisible('#btn-edit-chart')) { await p.click('#btn-edit-chart'); await p.waitForTimeout(300); }
     await p.fill('#f-name', 'x'); await p.fill('#f-date', '1999-09-25'); await p.fill('#f-time', '12:00');
     await p.selectOption('#f-gender', gender);
     await p.evaluate(() => { const s = document.querySelector('#f-city'); const o = [...s.options].find((x) => x.textContent.includes('القاهرة')); s.value = o.value; s.dispatchEvent(new Event('change', { bubbles: true })); });

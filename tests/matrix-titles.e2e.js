@@ -13,15 +13,18 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
     gloss: document.querySelectorAll('.aqm-gloss').length,
     en: [...document.querySelectorAll('.aqm-gloss .aqm-t-en')].map((x) => x.textContent),
     ar: document.querySelectorAll('.aqm-gloss .aqm-t-ar').length,
-    purposes: [...document.querySelectorAll('.aqm-pillar h4 .aqm-t-en')].map((x) => x.textContent),
+    purposes: (() => { const sec = document.querySelector('#aqm-sec-purposes'); return sec ? { title: sec.querySelector('.aqm-acc-title').textContent.trim(), badges: sec.querySelectorAll('.aqm-badge-arcana').length } : null; })(),
     err: (document.querySelector('#merr:not([hidden])') || {}).textContent || '',
     tail: !!document.body.textContent.match(/Karmic Tail/), anc: !!document.body.textContent.match(/Ancestral Lines/),
   }));
   ok(r.gloss === 9 && r.ar === 9, 'glossary has 9 points each with small Arabic title: ' + JSON.stringify(r.en));
-  ok(r.purposes.length === 4 && r.purposes.includes('Planetary Purpose'), 'four purposes shown: ' + r.purposes);
+  // قسم «المهمة والغاية» موجود بعنوانه وشارة أركانا واحدة على الأقل (النص التفصيلي من مكتبة المحتوى)
+  ok(!!r.purposes && /الغاية|المهمة/.test(r.purposes.title) && r.purposes.badges >= 1, 'purposes section present with arcana badge: ' + JSON.stringify(r.purposes));
   ok(r.tail && r.anc && !r.err, 'Karmic Tail + Ancestral Lines titles present');
-  await p.click('.aqm-node'); await p.waitForTimeout(200);
-  ok((await p.textContent('#aqm-tooltip')).includes('('), 'tooltip shows academic + plain title');
+  // الخريطة مرجع ثابت: الضغط على عقدة يفتح لوحة تفسير الموضع بعنوان (أكاديمي + مبسّط)
+  await p.evaluate(() => document.querySelector('.aqm-node').dispatchEvent(new MouseEvent('click', { bubbles: true }))); await p.waitForTimeout(600);
+  const sheet = await p.textContent('.aqm-xr-sheet .aqm-xr');
+  ok(/\(.+\)/.test(sheet) && sheet.includes('الأركانا'), 'node click opens position sheet with academic + plain title: ' + sheet.trim().slice(0, 60));
   ok(errs.length === 0, 'no JS errors ' + errs.join(';'));
   await b.close(); console.log(`\n${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);
 })();
