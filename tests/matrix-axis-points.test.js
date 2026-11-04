@@ -37,8 +37,11 @@ for (const [date, exp] of Object.entries(cases)) {
   assert.strictEqual(ax.right.mid, P.intermediate.C2);
   assert.strictEqual(ax.bottom.mid, P.intermediate.D2);
   assert.strictEqual(ax.bottom.outer, P.intermediate.D3);
-  assert.strictEqual(ax.right.inner, P.channels.moneyPoint);
-  assert.strictEqual(ax.bottom.inner, P.channels.heartPoint);
+  // قنوات الحب والمال: الالتقاء = reduce(D2+C2)، القلب = reduce(الالتقاء+D2)، المال = reduce(الالتقاء+C2)
+  const rr = AqeeqMatrixMethodAdapter.reduceArcana;
+  assert.strictEqual(P.channels.balancePoint, rr(P.intermediate.D2 + P.intermediate.C2));
+  assert.strictEqual(P.channels.heartPoint, rr(P.channels.balancePoint + P.intermediate.D2));
+  assert.strictEqual(P.channels.moneyPoint, rr(P.channels.balancePoint + P.intermediate.C2));
   // كل القيم داخل 1..22
   for (const side of Object.values(ax)) for (const v of Object.values(side)) assert.ok(v >= 1 && v <= 22);
 }
