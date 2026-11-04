@@ -1457,17 +1457,27 @@
       ['خط العلاقات', arc(pick(() => P.channels.heartPoint))],
       ['خط المال', arc(pick(() => P.channels.moneyPoint))]
     ];
+    const infoOf = (n) => { const v = pick(() => n); if (v === null) return null; return pick(() => getInfo(v)); };
+    const sumCard = (label, n) => { const i = infoOf(n); const num = pick(() => n);
+      return `<li class="aqm-sum-card${num === null ? ' is-empty' : ''}"><span class="aqm-sum-num">${num === null ? '—' : num}</span><div class="aqm-sum-body"><span class="aqm-sum-label">${label}</span><strong class="aqm-sum-name">${i && i.name ? i.name : '—'}</strong><span class="aqm-sum-arch">${i && i.archetype ? i.archetype : ''}</span></div><p class="aqm-sum-light">${i && i.light ? i.light : ''}</p></li>`; };
+    const sumCardsHtml = [['الطاقة الأساسية', pick(() => P.anchors.A)], ['الرقم المركزي', pick(() => P.anchors.E)], ['أبرز موهبة', pick(() => P.anchors.B)]].map(([l, n]) => sumCard(l, n)).join('');
+    const chainHtml = (arr) => (Array.isArray(arr) && arr.length ? arr : [null, null, null]).map(n => `<span class="aqm-chain-n${n == null ? ' is-empty' : ''}">${n == null ? '—' : n}</span>`).join('<i class="aqm-chain-l" aria-hidden="true"></i>');
+    const lineCard = (icon, title, arr, endNum) => { const i = infoOf(endNum); return `<article class="aqm-line-card"><header><span class="aqm-line-ic" aria-hidden="true">${icon}</span><h3>${title}</h3></header><p class="aqm-line-sub">${i && i.name ? i.name : '—'}</p><div class="aqm-chain" dir="ltr">${chainHtml(arr)}</div><p class="aqm-line-desc">${i && i.archetype ? i.archetype : ''}</p></article>`; };
+    const linesHtml = lineCard('☀', 'الطاقة الأساسية', pick(() => [P.anchors.A, P.anchors.B, P.anchors.C]), pick(() => P.anchors.A))
+      + lineCard('♡', 'خط العلاقات', pick(() => P.loveLine.path), pick(() => P.channels.heartPoint))
+      + lineCard('◎', 'خط المال', pick(() => P.moneyLine.path), pick(() => P.channels.moneyPoint));
     const summaryHtml = summaryRows.map(([k, v]) => `<li class="aqm-sum-row${v === '—' ? ' is-empty' : ''}"><span class="aqm-sum-k">${k}</span><span class="aqm-sum-v">${v}</span></li>`).join('');
 
     const html = `
       <section class="aqm-shell" aria-labelledby="aqm-report-title">
-        <nav class="aqm-crumbs" aria-label="مسار الصفحة"><a href="#home">الرئيسية</a><span aria-hidden="true">/</span><span>أدوات التحليل</span><span aria-hidden="true">/</span><span aria-current="page">مصفوفة القدر</span></nav>
-        <!-- الكارت العلوي الفاخر (Summary Card) -->
-        <div class="aqm-page-title">
+        <div class="aqm-dash">
+          <div class="aqm-dash-side">
+            <nav class="aqm-crumbs" aria-label="مسار الصفحة"><a href="#home">الرئيسية</a><span aria-hidden="true">/</span><span>أدوات التحليل</span><span aria-hidden="true">/</span><span aria-current="page">مصفوفة القدر</span></nav>
+            <div class="aqm-page-title">
           <h1>مصفوفة القدر</h1>
           <p>خريطة رمزية لفهم أنماطك الداخلية وطاقاتك الأساسية</p>
         </div>
-        <header class="aqm-header">
+            <header class="aqm-header">
           <span class="aqm-kicker">مصفوفة القدر · Natalia Ladini System</span>
           <h2 id="aqm-report-title">${displayName}</h2>
           <div class="aqm-meta-info">
@@ -1482,16 +1492,13 @@
             <button class="aqm-btn aqm-btn-primary" type="button" id="aqm-btn-story">استخراج بطاقة القصة</button>
           </div>
         </header>
-        <div class="aqm-brand-stamp" role="note">✦ عقيق أسترو · Aqeq Astro ✦</div>
-
-        ${summaryRows.some(r => r[1] === '—') ? '<p class="aqm-notice" role="status">بعض القيم غير متاحة حاليًا، وتظهر «—» بدل أي رقم غير محسوب.</p>' : ''}
-        <div class="aqm-tabs" role="tablist" aria-label="أقسام الصفحة">
-          <a class="aqm-tab is-active" role="tab" aria-selected="true" href="#aqm-map">الخريطة</a>
-          <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-chakras">الشاكرات</a>
-          <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-readings">التفسيرات</a>
-        </div>
-        <div class="aqm-workspace">
-        <!-- حاوية الرسم الهندسي (SVG Octagram) -->
+            ${summaryRows.some(r => r[1] === '—') ? '<p class="aqm-notice" role="status">بعض القيم غير متاحة حاليًا، وتظهر «—» بدل أي رقم غير محسوب.</p>' : ''}
+            <aside class="aqm-summary" aria-labelledby="aqm-sum-title">
+              <h3 id="aqm-sum-title">الخلاصة</h3>
+              <ul class="aqm-sum-list">${sumCardsHtml}</ul>
+            </aside>
+          </div>
+          <!-- حاوية الرسم الهندسي (SVG Octagram) -->
         <div class="aqm-canvas-wrap" id="aqm-map">
           <div class="aqm-zoom" role="group" aria-label="التحكم في العرض">
             <button type="button" class="aqm-zoom-btn" data-aqm-zoom="in" aria-label="تكبير">+</button>
@@ -1505,10 +1512,26 @@
               <li class="aqm-chakra-row"><span class="aqm-chakra-dot" style="background:${CHAKRA_COLORS[key] || '#C5A46D'}"></span><span class="aqm-chakra-name">${r.name}</span><span class="aqm-chakra-vals">الفيزياء ${r.physics} · الطاقة ${r.energy} · المشاعر ${r.emotions}</span></li>`).join('')}
           </ol>
         </div>
-        <aside class="aqm-summary" aria-labelledby="aqm-sum-title">
-          <h3 id="aqm-sum-title">الخلاصة</h3>
-          <ul class="aqm-sum-list">${summaryHtml}</ul>
-        </aside>
+
+        </div>
+        <section class="aqm-lines" aria-label="الخطوط الرئيسية">${linesHtml}</section>
+        <section class="aqm-learn" aria-labelledby="aqm-learn-title">
+          <div class="aqm-learn-main">
+            <h3 id="aqm-learn-title">كيف نقرأ المصفوفة؟</h3>
+            <p>المصفوفة هي خريطة رمزية تعتمد على 22 طاقة، تعكس أنماطك الداخلية ومسارك في الحياة. من خلال تحليل مواقع الأرقام والعلاقات بينها، تكتشف نقاط القوة، مجالات النمو، والدروس الأساسية التي تحملها رحلتك.</p>
+            <a class="aqm-btn" href="#aqm-readings">اكتشف المزيد</a>
+          </div>
+          <ol class="aqm-learn-steps">
+            <li>كل رقم يحمل طاقة ومعنى خاص</li>
+            <li>مواقع الأرقام تكشف مجالات الحياة المختلفة</li>
+            <li>العلاقات بين الأرقام توضح ديناميكيات الداخلية</li>
+            <li>المصفوفة تقدم رؤية شاملة لمسارك وتطورك</li>
+          </ol>
+        </section>
+        <div class="aqm-tabs" role="tablist" aria-label="أقسام الصفحة">
+          <a class="aqm-tab is-active" role="tab" aria-selected="true" href="#aqm-map">الخريطة</a>
+          <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-chakras">الشاكرات</a>
+          <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-readings">التفسيرات</a>
         </div>
 
         <!-- نظام الأكورديون الـ 15 المتكامل -->
