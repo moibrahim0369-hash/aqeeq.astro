@@ -1639,3 +1639,27 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 #matrix .aqm-dash-side .aqm-summary h3 { color: #fff !important; }
 #matrix .aqm-dash-side .aqm-summary .aqm-sum-name { color: #fff !important; }
 #matrix .aqm-dash-side .aqm-summary .aqm-sum-label { color: var(--mx-gold) !important; }
+
+/* ===== rail + mobile order ===== */
+#matrix .aqm-rail { display: none; }
+@media (min-width: 1280px) {
+  #matrix .aqm-dash { grid-template-columns: minmax(340px, .95fr) minmax(0, 1.2fr) 220px; }
+  #matrix .aqm-rail { display: grid; gap: 14px; align-content: start; }
+}
+#matrix .aqm-rail-quote { border-radius: 24px; padding: 26px 18px; min-height: 190px; color: #fff; text-align: center; display: grid; place-content: center; gap: 14px; background: linear-gradient(180deg, #7a3a50 0%, #4a1f2d 70%, #351B28 100%); }
+#matrix .aqm-rail-quote p { margin: 0; font-family: 'Noto Serif Arabic', serif; font-size: 1.05rem; line-height: 1.9; color: #fff !important; }
+#matrix .aqm-rail-mark { color: var(--mx-gold); font-size: 1.4rem; }
+#matrix .aqm-rail-nav { background: #fff; border: 1px solid var(--mx-border); border-radius: 22px; padding: 10px; display: grid; gap: 4px; }
+#matrix .aqm-rail-nav a { padding: 12px 14px; border-radius: 12px; color: var(--mx-charcoal); text-decoration: none; font-size: .95rem; transition: background var(--motion-fast, .18s) ease, color var(--motion-fast, .18s) ease; }
+#matrix .aqm-rail-nav a:hover { background: var(--mx-cream); color: var(--mx-burgundy); }
+#matrix .aqm-rail-nav a.is-active { background: var(--mx-burgundy); color: #fff; }
+#matrix .aqm-rail-nav a:focus-visible { outline: 2px solid var(--mx-gold); outline-offset: 2px; }
+@media (max-width: 1000px) {
+  #matrix .aqm-dash-side { display: contents; }
+  #matrix .aqm-dash-side .aqm-crumbs { order: 1; }
+  #matrix .aqm-dash-side .aqm-page-title { order: 2; }
+  #matrix .aqm-dash-side .aqm-header { order: 3; }
+  #matrix .aqm-dash-side .aqm-notice { order: 4; }
+  #matrix .aqm-dash > .aqm-canvas-wrap { order: 5; }
+  #matrix .aqm-dash-side .aqm-summary { order: 6; }
+}
