@@ -1,0 +1,368 @@
+{
+ "numbers": {
+  "1": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "2": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "3": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "4": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "5": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "6": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "7": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "8": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "9": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "10": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "11": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "12": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "13": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "14": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "15": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "16": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "17": {
+   "positions": [],
+   "reference": true
+  },
+  "18": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "19": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "20": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "21": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": true
+  },
+  "22": {
+   "positions": [
+    "core",
+    "love",
+    "mission",
+    "money",
+    "tail_entry"
+   ],
+   "reference": false
+  }
+ },
+ "tails": [
+  {
+   "ordinal": 1,
+   "code": "18-6-5"
+  },
+  {
+   "ordinal": 2,
+   "code": "18-9-9"
+  },
+  {
+   "ordinal": 3,
+   "code": "9-9-18"
+  },
+  {
+   "ordinal": 4,
+   "code": "15-20-5"
+  },
+  {
+   "ordinal": 5,
+   "code": "15-5-8"
+  },
+  {
+   "ordinal": 6,
+   "code": "15-8-11"
+  },
+  {
+   "ordinal": 7,
+   "code": "21-4-10"
+  },
+  {
+   "ordinal": 8,
+   "code": "21-10-7"
+  },
+  {
+   "ordinal": 9,
+   "code": "12-19-7"
+  },
+  {
+   "ordinal": 10,
+   "code": "12-16-4"
+  },
+  {
+   "ordinal": 11,
+   "code": "6-17-11"
+  },
+  {
+   "ordinal": 12,
+   "code": "6-20-14"
+  },
+  {
+   "ordinal": 13,
+   "code": "6-14-8"
+  },
+  {
+   "ordinal": 14,
+   "code": "9-12-3"
+  },
+  {
+   "ordinal": 15,
+   "code": "3-12-9"
+  },
+  {
+   "ordinal": 16,
+   "code": "3-7-22"
+  },
+  {
+   "ordinal": 17,
+   "code": "9-15-6"
+  },
+  {
+   "ordinal": 18,
+   "code": "12-6-18"
+  },
+  {
+   "ordinal": 19,
+   "code": "18-3-12"
+  },
+  {
+   "ordinal": 20,
+   "code": "6-8-20"
+  },
+  {
+   "ordinal": 21,
+   "code": "21-7-13"
+  },
+  {
+   "ordinal": 22,
+   "code": "15-7-22"
+  },
+  {
+   "ordinal": 23,
+   "code": "18-6-12"
+  },
+  {
+   "ordinal": 24,
+   "code": "9-21-12"
+  },
+  {
+   "ordinal": 25,
+   "code": "15-21-6"
+  },
+  {
+   "ordinal": 26,
+   "code": "12-21-9"
+  }
+ ],
+ "positionsWithoutSource": [
+  "father_top (F)",
+  "mother_top (G)",
+  "father_bottom (H)",
+  "mother_bottom (I)",
+  "talents (B)",
+  "personal (A)",
+  "balance",
+  "purposes-personal/spiritual/planetary",
+  "children_line",
+  "transformation_rx"
+ ],
+ "missing": [
+  {
+   "number": 17,
+   "item": "position:core",
+   "reason": "لا يوجد ملف مواضع Gemini لهذا الرقم"
+  },
+  {
+   "number": 17,
+   "item": "position:money",
+   "reason": "لا يوجد ملف مواضع Gemini لهذا الرقم"
+  },
+  {
+   "number": 17,
+   "item": "position:love",
+   "reason": "لا يوجد ملف مواضع Gemini لهذا الرقم"
+  },
+  {
+   "number": 17,
+   "item": "position:tail_entry",
+   "reason": "لا يوجد ملف مواضع Gemini لهذا الرقم"
+  },
+  {
+   "number": 17,
+   "item": "position:mission",
+   "reason": "لا يوجد ملف مواضع Gemini لهذا الرقم"
+  },
+  {
+   "number": 22,
+   "item": "reference",
+   "reason": "لا يوجد ملف المرجع التشريحي لهذا الرقم"
+  }
+ ]
+}

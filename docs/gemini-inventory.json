@@ -1,0 +1,1049 @@
+[
+ {
+  "file": "c5dd9a10e3d7.md",
+  "original": "01-الذيل-18-6-5-الساحر-المظلم",
+  "type": "tails",
+  "chars": 5556,
+  "words_total": 865,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 733,
+  "words_chatter": 132,
+  "chatter_sample": [
+   "01-الذيل-18-6-5-الساحر-المظلم",
+   ".md02-الذيل-18-9-9-الناسك-المنبوذ.md"
+  ]
+ },
+ {
+  "file": "825a5923ee02.md",
+  "original": "كده خلصنا المرحلة الأولى بالكامل؛ الـ 22 أركانا اتبنوا ملف بملف من 1 لـ 22 بنفس العمق النفسي والجسدي، وبنفس الهيكلة البرمجية",
+  "type": "engine-or-instructions",
+  "chars": 1347,
+  "words_total": 211,
+  "duplicate_of": null,
+  "words_content": 211,
+  "words_chatter": 0,
+  "note": "ملف محركات/تعليمات برمجية؛ ليس تفسيرًا"
+ },
+ {
+  "file": "f97b57c99bf6.md",
+  "original": "قواعد ومعادلات مصفوفة القدر البرمجية بالكامل، مشروحة هندسياً ومكتوبة بكود جاهز للاستخدام المباشر في منصة «عقيق أسترو» (سواء كنت تبنيها بـ React، Node",
+  "type": "engine-or-instructions",
+  "chars": 6372,
+  "words_total": 740,
+  "duplicate_of": null,
+  "words_content": 740,
+  "words_chatter": 0,
+  "note": "ملف محركات/تعليمات برمجية؛ ليس تفسيرًا"
+ },
+ {
+  "file": "b0d0c52b844d.md",
+  "original": "اسم الملف التاسع عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8822,
+  "words_total": 1378,
+  "duplicate_of": null,
+  "number": 19,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1336,
+  "words_chatter": 42,
+  "chatter_sample": [
+   "اسم الملف التاسع عشر في مجلد destiny-matrix-positions/:",
+   "19-مواضع-طاقة-الشمس.md"
+  ]
+ },
+ {
+  "file": "bcef7a6fc8a5.md",
+  "original": "اسم الملف التاسع في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 7907,
+  "words_total": 1220,
+  "duplicate_of": null,
+  "number": 9,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1181,
+  "words_chatter": 39,
+  "chatter_sample": [
+   "اسم الملف التاسع في مجلد destiny-matrix-positions/:",
+   "09-مواضع-طاقة-الناسك.md"
+  ]
+ },
+ {
+  "file": "c45901880339.md",
+  "original": "اسم الملف الثالث عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8274,
+  "words_total": 1300,
+  "duplicate_of": null,
+  "number": 13,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1261,
+  "words_chatter": 39,
+  "chatter_sample": [
+   "اسم الملف الثالث عشر في مجلد destiny-matrix-positions/:",
+   "13-مواضع-طاقة-الموت-والتحول.md"
+  ]
+ },
+ {
+  "file": "6dd55404ed2d.md",
+  "original": "اسم الملف الثالث في المجلد الجديد destiny-matrix-positions- (أو مواضع-المصفوفة-)-(1)",
+  "type": "positions",
+  "chars": 7454,
+  "words_total": 1121,
+  "duplicate_of": null,
+  "number": 3,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1085,
+  "words_chatter": 36,
+  "chatter_sample": [
+   "اسم الملف الثالث في المجلد الجديد destiny-matrix-positions/ (أو مواضع-المصفوفة/)",
+   "03-مواضع-طاقة-الإمبراطورة.md"
+  ]
+ },
+ {
+  "file": "f6bee7440392.md",
+  "original": "اسم الملف الثالث في المجلد الجديد destiny-matrix-positions- (أو مواضع-المصفوفة-)-",
+  "type": "positions",
+  "chars": 7454,
+  "words_total": 1121,
+  "duplicate_of": "6dd55404ed2d.md",
+  "number": 3,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1085,
+  "words_chatter": 36,
+  "chatter_sample": [
+   "اسم الملف الثالث في المجلد الجديد destiny-matrix-positions/ (أو مواضع-المصفوفة/)",
+   "03-مواضع-طاقة-الإمبراطورة.md"
+  ],
+  "note": "نسخة مكررة حرفيًا من ملف آخر؛ لم تُنقل مرتين"
+ },
+ {
+  "file": "669d16b7116f.md",
+  "original": "اسم الملف الثامن عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 9066,
+  "words_total": 1396,
+  "duplicate_of": null,
+  "number": 18,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1355,
+  "words_chatter": 41,
+  "chatter_sample": [
+   "اسم الملف الثامن عشر في مجلد destiny-matrix-positions/:",
+   "18-مواضع-طاقة-القمر.md"
+  ]
+ },
+ {
+  "file": "1dfdc5df812d.md",
+  "original": "اسم الملف الثامن في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8065,
+  "words_total": 1250,
+  "duplicate_of": null,
+  "number": 8,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1213,
+  "words_chatter": 37,
+  "chatter_sample": [
+   "اسم الملف الثامن في مجلد destiny-matrix-positions/:",
+   "08-مواضع-طاقة-العدالة.md"
+  ]
+ },
+ {
+  "file": "d48596930b32.md",
+  "original": "اسم الملف الثاني عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8296,
+  "words_total": 1286,
+  "duplicate_of": null,
+  "number": 12,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1247,
+  "words_chatter": 39,
+  "chatter_sample": [
+   "اسم الملف الثاني عشر في مجلد destiny-matrix-positions/:",
+   "12-مواضع-طاقة-المعلق.md"
+  ]
+ },
+ {
+  "file": "4d2ef212009b.md",
+  "original": "اسم الملف الثاني في المجلد الجديد destiny-matrix-positions- (أو مواضع-المصفوفة-)-",
+  "type": "positions",
+  "chars": 7051,
+  "words_total": 1084,
+  "duplicate_of": null,
+  "number": 2,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1051,
+  "words_chatter": 33,
+  "chatter_sample": [
+   "اسم الملف الثاني في المجلد الجديد destiny-matrix-positions/ (أو مواضع-المصفوفة/)",
+   "02-مواضع-طاقة-الكاهنة.md"
+  ]
+ },
+ {
+  "file": "bed7c1e6e60d.md",
+  "original": "اسم الملف الثاني والعشرين في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8706,
+  "words_total": 1360,
+  "duplicate_of": null,
+  "number": 22,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1333,
+  "words_chatter": 27,
+  "chatter_sample": [
+   "اسم الملف الثاني والعشرين في مجلد destiny-matrix-positions/:",
+   "22-مواضع-طاقة-الأحمق-والحرية.md"
+  ]
+ },
+ {
+  "file": "eea2e966ab56.md",
+  "original": "اسم الملف الحادي عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8335,
+  "words_total": 1275,
+  "duplicate_of": null,
+  "number": 11,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1235,
+  "words_chatter": 40,
+  "chatter_sample": [
+   "اسم الملف الحادي عشر في مجلد destiny-matrix-positions/:",
+   "11-مواضع-طاقة-القوة.md"
+  ]
+ },
+ {
+  "file": "0fce7d43c6eb.md",
+  "original": "اسم الملف الحادي والعشرين في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8697,
+  "words_total": 1324,
+  "duplicate_of": null,
+  "number": 21,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1281,
+  "words_chatter": 43,
+  "chatter_sample": [
+   "اسم الملف الحادي والعشرين في مجلد destiny-matrix-positions/:",
+   "21-مواضع-طاقة-العالم.md"
+  ]
+ },
+ {
+  "file": "620a6d5b5221.md",
+  "original": "اسم الملف الخامس عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 9023,
+  "words_total": 1360,
+  "duplicate_of": null,
+  "number": 15,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1319,
+  "words_chatter": 41,
+  "chatter_sample": [
+   "اسم الملف الخامس عشر في مجلد destiny-matrix-positions/:",
+   "15-مواضع-طاقة-الشيطان.md"
+  ]
+ },
+ {
+  "file": "95662c194b4e.md",
+  "original": "اسم الملف الخامس في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 7832,
+  "words_total": 1207,
+  "duplicate_of": null,
+  "number": 5,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1164,
+  "words_chatter": 43,
+  "chatter_sample": [
+   "اسم الملف الخامس في مجلد destiny-matrix-positions/:",
+   "05-مواضع-طاقة-الكاهن-الأعظم.md"
+  ]
+ },
+ {
+  "file": "fe80d6d4f524.md",
+  "original": "اسم الملف الرابع عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8209,
+  "words_total": 1260,
+  "duplicate_of": null,
+  "number": 14,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1228,
+  "words_chatter": 32,
+  "chatter_sample": [
+   "اسم الملف الرابع عشر في مجلد destiny-matrix-positions/:",
+   "14-مواضع-طاقة-الاعتدال.md"
+  ]
+ },
+ {
+  "file": "b691de743af4.md",
+  "original": "اسم الملف الرابع في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 7208,
+  "words_total": 1115,
+  "duplicate_of": null,
+  "number": 4,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1081,
+  "words_chatter": 34,
+  "chatter_sample": [
+   "اسم الملف الرابع في مجلد destiny-matrix-positions/:",
+   "04-مواضع-طاقة-الإمبراطور.md"
+  ]
+ },
+ {
+  "file": "3666e2552453.md",
+  "original": "اسم الملف السابع في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8024,
+  "words_total": 1232,
+  "duplicate_of": null,
+  "number": 7,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1197,
+  "words_chatter": 35,
+  "chatter_sample": [
+   "اسم الملف السابع في مجلد destiny-matrix-positions/:",
+   "07-مواضع-طاقة-العربة.md"
+  ]
+ },
+ {
+  "file": "b5cb834ae9c9.md",
+  "original": "اسم الملف السادس عشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8487,
+  "words_total": 1312,
+  "duplicate_of": null,
+  "number": 16,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1274,
+  "words_chatter": 38,
+  "chatter_sample": [
+   "اسم الملف السادس عشر في مجلد destiny-matrix-positions/:",
+   "16-مواضع-طاقة-البرج.md"
+  ]
+ },
+ {
+  "file": "2ded81011328.md",
+  "original": "اسم الملف السادس في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8047,
+  "words_total": 1261,
+  "duplicate_of": null,
+  "number": 6,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1221,
+  "words_chatter": 40,
+  "chatter_sample": [
+   "اسم الملف السادس في مجلد destiny-matrix-positions/:",
+   "06-مواضع-طاقة-العشاق.md"
+  ]
+ },
+ {
+  "file": "3746f2796db0.md",
+  "original": "اسم الملف العاشر في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8422,
+  "words_total": 1310,
+  "duplicate_of": null,
+  "number": 10,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1270,
+  "words_chatter": 40,
+  "chatter_sample": [
+   "اسم الملف العاشر في مجلد destiny-matrix-positions/:",
+   "10-مواضع-طاقة-عجلة-الحظ.md"
+  ]
+ },
+ {
+  "file": "674495b69a81.md",
+  "original": "اسم الملف العشرين في مجلد destiny-matrix-positions--",
+  "type": "positions",
+  "chars": 8640,
+  "words_total": 1335,
+  "duplicate_of": null,
+  "number": 20,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 1296,
+  "words_chatter": 39,
+  "chatter_sample": [
+   "اسم الملف العشرين في مجلد destiny-matrix-positions/:",
+   "20-مواضع-طاقة-الحكم-والقيامة.md"
+  ]
+ },
+ {
+  "file": "c5bd890e3364.md",
+  "original": "اسم الملف- 03-الذيل-9-9-18-حبس-المعرفة",
+  "type": "tails",
+  "chars": 5805,
+  "words_total": 936,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 933,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 04-الذيل-15-20-5-المتمرد-السلالي.md"
+  ]
+ },
+ {
+  "file": "8a7ff0f8169e.md",
+  "original": "اسم الملف- 05-الذيل-15-5-8-خيانة-القيم",
+  "type": "tails",
+  "chars": 5742,
+  "words_total": 924,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 921,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 06-الذيل-15-8-11-الشهوة-والقوة-العمياء.md"
+  ]
+ },
+ {
+  "file": "b08ef50fe190.md",
+  "original": "اسم الملف- 07-الذيل-21-4-10-القمع-والمنفى",
+  "type": "tails",
+  "chars": 5446,
+  "words_total": 879,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 876,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 08-الذيل-21-10-7-المقاتل-التائه.md"
+  ]
+ },
+ {
+  "file": "613a07171f16.md",
+  "original": "اسم الملف- 09-الذيل-12-19-7-المحارب-المحروق",
+  "type": "tails",
+  "chars": 6074,
+  "words_total": 982,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 979,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 10-الذيل-12-16-4-انهيار-السلطة.md"
+  ]
+ },
+ {
+  "file": "3462ab94aee7.md",
+  "original": "اسم الملف- 11-الذيل-6-17-11-الموهبة-المدفونة",
+  "type": "tails",
+  "chars": 6011,
+  "words_total": 958,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 955,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 12-الذيل-6-20-14-ضحية-المحاكمات.md"
+  ]
+ },
+ {
+  "file": "4c19cecc5757.md",
+  "original": "اسم الملف- 13-الذيل-6-14-8-العشق-الممنوع",
+  "type": "tails",
+  "chars": 5457,
+  "words_total": 870,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 867,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 14-الذيل-9-12-3-المرأة-المظلومة.md"
+  ]
+ },
+ {
+  "file": "ba3381f2e01d.md",
+  "original": "اسم الملف- 15-الذيل-3-12-9-عقدة-الأم-المستبدة",
+  "type": "tails",
+  "chars": 5541,
+  "words_total": 875,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 872,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 16-الذيل-3-7-22-السجين-المقيد.md"
+  ]
+ },
+ {
+  "file": "299195c00ad2.md",
+  "original": "اسم الملف- 17-الذيل-9-15-6-شهوة-الملذات-الخفية",
+  "type": "tails",
+  "chars": 5665,
+  "words_total": 899,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 896,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 18-الذيل-12-6-18-الضحية-العاطفية.md"
+  ]
+ },
+ {
+  "file": "276bba4c6b2e.md",
+  "original": "اسم الملف- 19-الذيل-18-3-12-السحر-والخديعة-الأنثوية",
+  "type": "tails",
+  "chars": 5427,
+  "words_total": 854,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 851,
+  "words_chatter": 3,
+  "chatter_sample": [
+   "اسم الملف: 20-الذيل-6-8-20-المظالم-العائلية.md"
+  ]
+ },
+ {
+  "file": "31611bf60c78.md",
+  "original": "اسم الملف- 21-الذيل-21-7-13-صدمات-الهلاك-الجماعي",
+  "type": "tails",
+  "chars": 6328,
+  "words_total": 990,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 974,
+  "words_chatter": 16,
+  "chatter_sample": [
+   "اسم الملف: 22-الذيل-15-7-22-الانفلات-والإدمان.md",
+   "الملفان جاهزان للحفظ المباشر. وبمجرد كتابة «كمل»، ننطلق نحو الزوج التالي:"
+  ]
+ },
+ {
+  "file": "7aa554b4d3a5.md",
+  "original": "اسم الملف- 23-الذيل-18-6-12-الحب-المعذب-والأوهام",
+  "type": "tails",
+  "chars": 6571,
+  "words_total": 1049,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 1022,
+  "words_chatter": 27,
+  "chatter_sample": [
+   "اسم الملف: 24-الذيل-9-21-12-التضحية-بالوطن-والأرض.md",
+   "الملفان جاهزان للنقل والحفظ المباشر."
+  ]
+ },
+ {
+  "file": "84ecddd1ad4f.md",
+  "original": "اسم الملف- 25-الذيل-15-21-6-إغواء-المال-والشهرة",
+  "type": "tails",
+  "chars": 6501,
+  "words_total": 1033,
+  "duplicate_of": null,
+  "tails": 2,
+  "words_content": 1017,
+  "words_chatter": 16,
+  "chatter_sample": [
+   "اسم الملف: 26-الذيل-12-21-9-الرسول-المنعزل.md",
+   "بهذا نكون قد أتممنا الـ 26 ذيلاً كارمياً مركباً بالكامل داخل مجلد destiny-matrix"
+  ]
+ },
+ {
+  "file": "a8e1c7001fec.md",
+  "original": "الباب التأسيسي الأول- ما هي مصفوفة القدر؟ (الأصول، الماهية، والفلسفة)",
+  "type": "foundation",
+  "chars": 103499,
+  "words_total": 15775,
+  "duplicate_of": null,
+  "words_content": 15775,
+  "words_chatter": 0,
+  "note": "نص تعليمي تأسيسي غير مرتبط بموضع في الخريطة؛ خارج نطاق هذه المرحلة"
+ },
+ {
+  "file": "ec51d9f9bcfc.md",
+  "original": "حسابات-سنوات-العمر.js",
+  "type": "engine-or-instructions",
+  "chars": 2852,
+  "words_total": 302,
+  "duplicate_of": null,
+  "words_content": 302,
+  "words_chatter": 0,
+  "note": "ملف محركات/تعليمات برمجية؛ ليس تفسيرًا"
+ },
+ {
+  "file": "3a983db1c933.md",
+  "original": "خطوة ممتازة محركات الحسابات",
+  "type": "engine-or-instructions",
+  "chars": 4889,
+  "words_total": 421,
+  "duplicate_of": null,
+  "words_content": 421,
+  "words_chatter": 0,
+  "note": "ملف محركات/تعليمات برمجية؛ ليس تفسيرًا"
+ },
+ {
+  "file": "4c9cb680901d.md",
+  "original": "رقم ١",
+  "type": "reference",
+  "chars": 12241,
+  "words_total": 1814,
+  "duplicate_of": null,
+  "number": 1,
+  "words_content": 1722,
+  "words_chatter": 92,
+  "chatter_sample": [
+   "تماماً يا محمد. إحنا هنقفل المرجع ده قفلة نهائية تليق بمنصة عقيق أسترو: هندمج ال",
+   "الملف مكتوب بصيغة ماركداون نظيفة ومباشرة وجاهز للحفظ والرفع على قاعدة بيانات الم"
+  ]
+ },
+ {
+  "file": "1b38d1d627ea.md",
+  "original": "طاقة 1 (الساحر - The Magician)_",
+  "type": "positions",
+  "chars": 7140,
+  "words_total": 1079,
+  "duplicate_of": null,
+  "number": 1,
+  "units": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "words_content": 985,
+  "words_chatter": 94,
+  "chatter_sample": [
+   "عاش يا محمد! بكده الأساس المتين اتبنى، والـ 22 أركانا بقوا متسيفين عندك ومحميين.",
+   "دلوقتي ندخل فوراً في المرحلة التانية: ملفات محولات المواضع المخصصة (Position Eng"
+  ]
+ },
+ {
+  "file": "b4add898ff5e.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 10 (عجلة الحظ - Wheel of Fortune)",
+  "type": "reference",
+  "chars": 14143,
+  "words_total": 2151,
+  "duplicate_of": null,
+  "number": 10,
+  "words_content": 2151,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "15f9f61f374c.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 12 (المعلّق - The Hanged Man)(1)",
+  "type": "reference",
+  "chars": 13701,
+  "words_total": 2083,
+  "duplicate_of": null,
+  "number": 12,
+  "words_content": 2059,
+  "words_chatter": 24,
+  "chatter_sample": [
+   "الملف أصبح مكتملاً وموثقاً بالكامل، مطابقاً للمعايير والعمق النفسي المطلوب.",
+   "جاهز للمحطة القادمة: الدفعة الرابعة والبداية مع طاقة 13 (الموت والتحول الجذري - "
+  ]
+ },
+ {
+  "file": "5ad4573b5066.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 12 (المعلّق - The Hanged Man)",
+  "type": "reference",
+  "chars": 13701,
+  "words_total": 2083,
+  "duplicate_of": "15f9f61f374c.md",
+  "number": 12,
+  "words_content": 2059,
+  "words_chatter": 24,
+  "chatter_sample": [
+   "الملف أصبح مكتملاً وموثقاً بالكامل، مطابقاً للمعايير والعمق النفسي المطلوب.",
+   "جاهز للمحطة القادمة: الدفعة الرابعة والبداية مع طاقة 13 (الموت والتحول الجذري - "
+  ],
+  "note": "نسخة مكررة حرفيًا من ملف آخر؛ لم تُنقل مرتين"
+ },
+ {
+  "file": "a87d1a7a0b5b.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 13 (الموت والتحول - Death & Transformation)",
+  "type": "reference",
+  "chars": 13811,
+  "words_total": 2078,
+  "duplicate_of": null,
+  "number": 13,
+  "words_content": 2078,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "2a63b77935a6.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 14 (الاعتدال - Temperance)",
+  "type": "reference",
+  "chars": 13421,
+  "words_total": 2005,
+  "duplicate_of": null,
+  "number": 14,
+  "words_content": 2005,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "04920b1fb8a1.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 15 (الشيطان - The Devil)",
+  "type": "reference",
+  "chars": 13692,
+  "words_total": 2022,
+  "duplicate_of": null,
+  "number": 15,
+  "words_content": 2022,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "03c33315e1f8.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 16 (البرج - The Tower)",
+  "type": "reference",
+  "chars": 13927,
+  "words_total": 2083,
+  "duplicate_of": null,
+  "number": 16,
+  "words_content": 2065,
+  "words_chatter": 18,
+  "chatter_sample": [
+   "الملف أصبح مكتملاً بنسبة 100% وجاهزاً للحفظ والنسخ كملف مستقل.",
+   "جاهز للمحطة التالية: طاقة 17 (النجم - The Star)؟"
+  ]
+ },
+ {
+  "file": "286757a03af8.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 17 (النجم - The Star)",
+  "type": "reference",
+  "chars": 14697,
+  "words_total": 2211,
+  "duplicate_of": null,
+  "number": 17,
+  "words_content": 2190,
+  "words_chatter": 21,
+  "chatter_sample": [
+   "الملف أصبح مكتمل الأركان ومعداً بدقة 100% ليُحفظ داخل فولدر المكتبة كـ 17-the-st",
+   "جاهز للمحطة التالية: طاقة 18 (القمر - The Moon)؟"
+  ]
+ },
+ {
+  "file": "12ba0473effa.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 18 (القمر - The Moon)",
+  "type": "reference",
+  "chars": 14377,
+  "words_total": 2172,
+  "duplicate_of": null,
+  "number": 18,
+  "words_content": 2151,
+  "words_chatter": 21,
+  "chatter_sample": [
+   "بذلك يكتمل ملف طاقة 18 (القمر) كمرجع مستقل جاهز للحفظ المباشر باسم 18-the-moon.m",
+   "جاهز للمحطة القادمة: طاقة 19 (الشمس - The Sun)؟"
+  ]
+ },
+ {
+  "file": "b982c9da5bc1.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 19 (الشمس - The Sun)",
+  "type": "reference",
+  "chars": 14199,
+  "words_total": 2154,
+  "duplicate_of": null,
+  "number": 19,
+  "words_content": 2129,
+  "words_chatter": 25,
+  "chatter_sample": [
+   "بذلك يكتمل ملف طاقة 19 (الشمس) بنسبة 100% ليُحفظ داخل فولدر المكتبة كـ 19-the-su",
+   "جاهز للمحطة التالية: طاقة 20 (يوم القيامة / البعث والنداء الروحي - Judgement)؟"
+  ]
+ },
+ {
+  "file": "3ec703dee8a3.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 2 (الكاهنة العظمى - The High Priestess)",
+  "type": "reference",
+  "chars": 12837,
+  "words_total": 1908,
+  "duplicate_of": null,
+  "number": 2,
+  "words_content": 1908,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "fd66ace4830b.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 20 (يوم القيامة - البعث - Judgement)",
+  "type": "reference",
+  "chars": 14846,
+  "words_total": 2241,
+  "duplicate_of": null,
+  "number": 20,
+  "words_content": 2208,
+  "words_chatter": 33,
+  "chatter_sample": [
+   "بذلك يكتمل ملف طاقة 20 (يوم القيامة والبعث) بدقة وتفصيل كاملين ليُحفظ في المكتبة",
+   "المحطة التالية في مسارنا هي قبل الأخيرة: طاقة 21 (العالم - The World)."
+  ]
+ },
+ {
+  "file": "8c471ac71e61.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 21 (العالم - The World)",
+  "type": "reference",
+  "chars": 14419,
+  "words_total": 2152,
+  "duplicate_of": null,
+  "number": 21,
+  "words_content": 2102,
+  "words_chatter": 50,
+  "chatter_sample": [
+   "بذلك يكتمل ملف طاقة 21 (العالم) بنسبة 100% ليُحفظ داخل فولدر المكتبة كـ 21-the-w",
+   "تبقى لنا المحطة الأخيرة لغلق دائرة الأركانا الكبرى الـ 22 بالكامل: طاقة 22 (الأح"
+  ]
+ },
+ {
+  "file": "2f079c3705e6.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 3 (الإمبراطورة - The Empress)",
+  "type": "reference",
+  "chars": 12775,
+  "words_total": 1874,
+  "duplicate_of": null,
+  "number": 3,
+  "words_content": 1874,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "db448b33eed8.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 4 (الإمبراطور - The Emperor)",
+  "type": "reference",
+  "chars": 13180,
+  "words_total": 1986,
+  "duplicate_of": null,
+  "number": 4,
+  "words_content": 1969,
+  "words_chatter": 17,
+  "chatter_sample": [
+   "بذلك تكون الدفعة الأولى (من 1 إلى 4) قد اكتملت بنسبة 100% وفق البنية الهيكلية ال"
+  ]
+ },
+ {
+  "file": "78dda8838a82.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 5 (الكاهن الأعظم - The Hierophant)",
+  "type": "reference",
+  "chars": 13322,
+  "words_total": 1945,
+  "duplicate_of": null,
+  "number": 5,
+  "words_content": 1945,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "5cc77bd4ffd5.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 6 (العشاق - The Lovers)",
+  "type": "reference",
+  "chars": 14302,
+  "words_total": 2171,
+  "duplicate_of": null,
+  "number": 6,
+  "words_content": 2171,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "f656d87b2122.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 7 (العربة - The Chariot)",
+  "type": "reference",
+  "chars": 13106,
+  "words_total": 1975,
+  "duplicate_of": null,
+  "number": 7,
+  "words_content": 1975,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "1205c75b9278.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 8 (العدالة - Justice)",
+  "type": "reference",
+  "chars": 13409,
+  "words_total": 2019,
+  "duplicate_of": null,
+  "number": 8,
+  "words_content": 2008,
+  "words_chatter": 11,
+  "chatter_sample": [
+   "بذلك تكتمل الدفعة الثانية (الطاقات 5، 6، 7، 8) بنسبة 100%."
+  ]
+ },
+ {
+  "file": "1b484141043d.md",
+  "original": "عقيق أسترو - المرجع التشريحي الكامل- طاقة 9 (الناسك - The Hermit)",
+  "type": "reference",
+  "chars": 13497,
+  "words_total": 2006,
+  "duplicate_of": null,
+  "number": 9,
+  "words_content": 2006,
+  "words_chatter": 0,
+  "chatter_sample": []
+ },
+ {
+  "file": "b02ab445c1ad.md",
+  "original": "مشروع-عقيق-أسترو-",
+  "type": "engine-or-instructions",
+  "chars": 274,
+  "words_total": 20,
+  "duplicate_of": null,
+  "words_content": 20,
+  "words_chatter": 0,
+  "note": "ملف محركات/تعليمات برمجية؛ ليس تفسيرًا"
+ },
+ {
+  "file": "fea8ca2c20d0.md",
+  "original": "نبدأ بـ طاقة 11 (القوة - Strength) بنفس الأسلوب الشامل",
+  "type": "reference",
+  "chars": 13480,
+  "words_total": 2040,
+  "duplicate_of": null,
+  "number": 11,
+  "words_content": 2006,
+  "words_chatter": 34,
+  "chatter_sample": [
+   "نبدأ بـ طاقة 11 (القوة - Strength) بنفس الأسلوب الشامل",
+   "والعميق والجاهز للنسخ والحفظ مباشرة داخل فولدر الأرقام"
+  ]
+ },
+ {
+  "file": "c14c5f2dac96.md",
+  "original": "​رسم-مصفوفة-القدر.js",
+  "type": "engine-or-instructions",
+  "chars": 9561,
+  "words_total": 743,
+  "duplicate_of": null,
+  "words_content": 743,
+  "words_chatter": 0,
+  "note": "ملف محركات/تعليمات برمجية؛ ليس تفسيرًا"
+ }
+]
