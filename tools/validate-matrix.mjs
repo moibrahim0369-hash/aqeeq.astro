@@ -3,7 +3,7 @@ import fs from 'node:fs';
 const dir = new URL('../assets/data/matrix/', import.meta.url);
 const CH = ['sahasrara', 'ajna', 'vishuddha', 'anahata', 'manipura', 'svadhisthana', 'muladhara'];
 const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice'];
-const STATUS = ['draft', 'review', 'published'];
+const STATUS = ['draft', 'review', 'ready', 'published'];
 const errors = []; const err = (f, m) => errors.push(`${f}: ${m}`);
 const read = f => { try { return JSON.parse(fs.readFileSync(new URL(f, dir), 'utf8')); } catch (e) { err(f, 'مش JSON صالح — ' + e.message); return null; } };
 const core = read('core.json');
@@ -16,7 +16,7 @@ for (let id = 1; id <= 22; id++) {
   const f = `arcana-${String(id).padStart(2, '0')}.json`, d = read(f); if (!d) continue;
   if (d.id !== id) err(f, `id لازم يكون ${id}`);
   if (core && core.arcana[id - 1]?.slug !== d.slug) err(f, 'slug مختلف عن core.json');
-  if (!STATUS.includes(d.meta?.status)) err(f, 'meta.status لازم draft أو review أو published');
+  if (!STATUS.includes(d.meta?.status)) err(f, 'meta.status لازم draft أو review أو ready أو published');
   for (const k of ['psychology', 'gift', 'shadowTrap', 'growth']) if (typeof d.core?.[k] !== 'string') err(f, `core.${k} لازم نص`);
   for (const k of CH) for (const fl of FIELDS) {
     const v = d.chakras?.[k]?.[fl];
@@ -60,7 +60,7 @@ if (kt) {
     if (!Array.isArray(t.protocol) || t.protocol.length < 3) err(KT, `${w}: protocol لازم 3 خطوات على الأقل`);
     else t.protocol.forEach((p, j) => ktText(`${w}.protocol[${j}]`, p));
     for (const g of ['female', 'male']) for (const k of ['childhoodRoots', 'paradox']) ktText(`${w}.genderVariants.${g}.${k}`, t.genderVariants?.[g]?.[k]);
-    if (!STATUS.includes(t.meta?.status)) err(KT, `${w}: meta.status لازم draft أو review أو published`);
+    if (!STATUS.includes(t.meta?.status)) err(KT, `${w}: meta.status لازم draft أو review أو ready أو published`);
     if (!['archive', 'authored'].includes(t.meta?.source)) err(KT, `${w}: meta.source لازم archive أو authored`);
     tailCount++;
   });
@@ -110,7 +110,7 @@ for (const [section, spec] of Object.entries(SECTION_DEEP)) {
     }
     // genderDynamic اختياري: بيتكتب بس لما المصدر فيه نص مرتبط بالجنس (قاعدة: مفيش تأليف من الصفر).
     if (e.genderDynamic) for (const g of ['female', 'male']) at(`${w}.genderDynamic.${g}`, e.genderDynamic?.[g]);
-    if (!STATUS.includes(e.meta?.status)) err(f, `${w}: meta.status لازم draft أو review أو published`);
+    if (!STATUS.includes(e.meta?.status)) err(f, `${w}: meta.status لازم draft أو review أو ready أو published`);
   });
   sectionCount++;
 }
