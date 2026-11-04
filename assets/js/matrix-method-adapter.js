@@ -234,15 +234,22 @@
     const currentYear = new Date().getFullYear();
     const yearEnergy = reduceArcana(A + B + reduceArcana(digitSum(currentYear)));
 
-    // 10. جدول الشاكرات السبع (7 Chakras Energy Card):
+    // 10. جدول الشاكرات السبع (7 Chakras Energy Card).
+    // الأعمدة: الجسد (محور أفقي: A,C) · الطاقة (محور رأسي: B,D) · المشاعر = اختزال مجموعهما.
+    // نقاط المحور (لكل ركن X): x1 = X+E (الوسطى) · x2 = X+x1 (الخارجية) · x3 = x1+E (الداخلية).
+    // الصفوف بترتيب النقاط على المحور من الركن للمركز: العين الثالثة = x2، الحلق = x1، القلب = x3،
+    // العجز = (C+E, D+E). موثّقة بمثالين محسوبين منشورين (mind.university 23.06.1992 وnumato.pl 15.03.1990).
+    const axisTriple = X => { const x1 = reduceArcana(X + E); return { x1, x2: reduceArcana(X + x1), x3: reduceArcana(x1 + E) }; };
+    const aT = axisTriple(A), bT = axisTriple(B);
+    const chakraRow = (name, symbol, physics, energy) => ({ name, symbol, physics, energy, emotions: reduceArcana(physics + energy) });
     const chakras = {
-      sahasrara: { name: 'التاج (Sahasrara)', symbol: '🟣', physics: A, energy: B, emotions: reduceArcana(A + B) },
-      ajna: { name: 'العين الثالثة (Ajna)', symbol: '🔵', physics: A2, energy: B2, emotions: reduceArcana(A2 + B2) },
-      vishuddha: { name: 'الحلق (Vishuddha)', symbol: '🔷', physics: reduceArcana(A + A2), energy: reduceArcana(B + B2), emotions: reduceArcana(reduceArcana(A + A2) + reduceArcana(B + B2)) },
-      anahata: { name: 'القلب (Anahata)', symbol: '🟢', physics: reduceArcana(A2 + E), energy: reduceArcana(B2 + E), emotions: reduceArcana(reduceArcana(A2 + E) + reduceArcana(B2 + E)) },
-      manipura: { name: 'الضفيرة الشمسية (Manipura)', symbol: '🟡', physics: E, energy: E, emotions: reduceArcana(E + E) },
-      svadhisthana: { name: 'العجز (Svadhisthana)', symbol: '🟠', physics: reduceArcana(C2 + E), energy: reduceArcana(D2 + E), emotions: reduceArcana(reduceArcana(C2 + E) + reduceArcana(D2 + E)) },
-      muladhara: { name: 'الجذر (Muladhara)', symbol: '🔴', physics: C, energy: D, emotions: reduceArcana(C + D) }
+      sahasrara: chakraRow('التاج (Sahasrara)', '🟣', A, B),
+      ajna: chakraRow('العين الثالثة (Ajna)', '🔵', aT.x2, bT.x2),
+      vishuddha: chakraRow('الحلق (Vishuddha)', '🔷', aT.x1, bT.x1),
+      anahata: chakraRow('القلب (Anahata)', '🟢', aT.x3, bT.x3),
+      manipura: chakraRow('الضفيرة الشمسية (Manipura)', '🟡', E, E),
+      svadhisthana: chakraRow('العجز (Svadhisthana)', '🟠', C2, D2),
+      muladhara: chakraRow('الجذر (Muladhara)', '🔴', C, D)
     };
 
     const chakraRows = Object.values(chakras);
