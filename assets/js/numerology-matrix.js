@@ -238,6 +238,7 @@
       return `
         <g class="aqm-node ${cls}${r >= 26 ? ' aqm-node-primary' : ''}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
           <circle cx="0" cy="0" r="${r}" class="aqm-node-bg"${st} />
+          <circle cx="0" cy="0" r="${r - 1}" class="aqm-node-sheen" fill="url(#aqm-sheen)" />
           ${inner || ''}
           <text x="0" y="0" class="aqm-node-text${tc}" font-size="${fs}" font-weight="bold" fill="${txtFill}" text-anchor="middle" dominant-baseline="central">${arc}</text>
         </g>`;
@@ -248,20 +249,21 @@
         <style>
           svg.aqm-svg .aqm-svg-bg { fill: #FAF7F0; }
           svg.aqm-svg .aqm-svg-dial-ring { fill: none; stroke: #C5A46D; stroke-width: 1.2; }
-          svg.aqm-svg .aqm-svg-dial-ring.is-outer { stroke-width: 2.6; }
-          svg.aqm-svg .aqm-svg-tick { stroke: #C5A46D; stroke-width: 1; }
-          svg.aqm-svg .aqm-svg-tick.is-major { stroke: #6B263D; stroke-width: 1.4; }
+          svg.aqm-svg .aqm-svg-dial-ring.is-outer { stroke-width: 1.8; }
+          svg.aqm-svg .aqm-svg-tick { stroke: rgba(197, 164, 109, 0.75); stroke-width: 0.8; }
+          svg.aqm-svg .aqm-svg-tick.is-major { stroke: #A8865A; stroke-width: 1.2; }
           svg.aqm-svg .aqm-svg-guide { fill: none; stroke: rgba(197, 164, 109, 0.22); stroke-width: 1.2; stroke-dasharray: 4, 6; }
-          svg.aqm-svg .aqm-svg-personal-square { fill: none; stroke: #6B263D; stroke-width: 2.4; stroke-opacity: 1; }
-          svg.aqm-svg .aqm-svg-ancestral-square { fill: none; stroke: #C5A46D; stroke-width: 1.8; stroke-dasharray: 6, 4; }
-          svg.aqm-svg .aqm-svg-axis { stroke: rgba(107, 38, 61, 0.6); stroke-width: 2; }
-          svg.aqm-svg .aqm-svg-father { stroke: #8E6E85; stroke-width: 2.4; }
-          svg.aqm-svg .aqm-svg-mother { stroke: #B5443E; stroke-width: 2.4; }
-          svg.aqm-svg .aqm-svg-love-channel { stroke: #C89B9E; stroke-width: 2; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
-          svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; stroke-width: 2; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
+          svg.aqm-svg .aqm-svg-personal-square { fill: none; stroke: #B79B66; stroke-width: 1.5; stroke-opacity: 0.95; stroke-linejoin: round; }
+          svg.aqm-svg .aqm-svg-ancestral-square { fill: none; stroke: rgba(197, 164, 109, 0.8); stroke-width: 1.2; stroke-dasharray: 6, 5; }
+          svg.aqm-svg .aqm-svg-axis { stroke: rgba(138, 118, 96, 0.55); stroke-width: 1.2; }
+          svg.aqm-svg .aqm-svg-father { stroke: #8E6E85; stroke-width: 1.6; stroke-opacity: 0.9; }
+          svg.aqm-svg .aqm-svg-mother { stroke: #B5443E; stroke-width: 1.6; stroke-opacity: 0.9; }
+          svg.aqm-svg .aqm-svg-love-channel { stroke: #C89B9E; stroke-width: 1.5; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
+          svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; stroke-width: 1.5; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
           svg.aqm-svg .aqm-svg-age-label { fill: #5E4A52; font-size: 13px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
           svg.aqm-svg .aqm-svg-money-sign { fill: #5E7D52; font-size: 18px; font-weight: 700; }
-          svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.5; }
+          svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.8; }
+          svg.aqm-svg .aqm-node-sheen { fill: url(#aqm-sheen); stroke: none; pointer-events: none; }
           svg.aqm-svg .aqm-node-text { font-weight: 700; }
           svg.aqm-svg .aqm-node-text { fill: #6B263D; font-weight: 800; }
           svg.aqm-svg .aqm-node-love .aqm-node-bg { stroke: #C89B9E; }
@@ -273,6 +275,11 @@
           svg.aqm-svg .aqm-node-center .aqm-node-text { fill: #6B263D; font-size: 30px; font-weight: 800; }
         </style>
         <defs>
+          <radialGradient id="aqm-sheen" cx="35%" cy="28%" r="75%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.55" />
+            <stop offset="60%" stop-color="#FFFFFF" stop-opacity="0.06" />
+            <stop offset="100%" stop-color="#000000" stop-opacity="0.08" />
+          </radialGradient>
           <radialGradient id="aqm-halo" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.55" />
             <stop offset="55%" stop-color="#E6C280" stop-opacity="0.35" />
@@ -287,16 +294,16 @@
         </defs>
 
         <!-- الخلفية العاجية والإطار الدائري المزدوج -->
-        <rect x="0" y="0" width="800" height="800" rx="28" class="aqm-svg-bg" />
-        <circle cx="400" cy="400" r="372" class="aqm-svg-dial-ring is-outer" />
-        <circle cx="400" cy="400" r="356" class="aqm-svg-dial-ring" />
+        <rect x="0" y="0" width="800" height="800" rx="28" class="aqm-svg-bg" fill="#FAF7F0" />
+        <circle cx="400" cy="400" r="372" class="aqm-svg-dial-ring is-outer" fill="none" stroke="#C5A46D" />
+        <circle cx="400" cy="400" r="356" class="aqm-svg-dial-ring" fill="none" stroke="#C5A46D" />
         ${ticks}
         ${ageLabels}
-        <circle cx="400" cy="400" r="270" class="aqm-svg-guide" />
+        <circle cx="400" cy="400" r="270" class="aqm-svg-guide" fill="none" stroke="#C5A46D" stroke-opacity="0.25" />
 
         <!-- المربع الشخصي والأسلاف والمحاور -->
-        <polygon points="${pos.west[0]},${pos.west[1]} ${pos.north[0]},${pos.north[1]} ${pos.east[0]},${pos.east[1]} ${pos.south[0]},${pos.south[1]}" class="aqm-svg-personal-square" />
-        <polygon points="${pos.northWest[0]},${pos.northWest[1]} ${pos.northEast[0]},${pos.northEast[1]} ${pos.southEast[0]},${pos.southEast[1]} ${pos.southWest[0]},${pos.southWest[1]}" class="aqm-svg-ancestral-square" />
+        <polygon points="${pos.west[0]},${pos.west[1]} ${pos.north[0]},${pos.north[1]} ${pos.east[0]},${pos.east[1]} ${pos.south[0]},${pos.south[1]}" class="aqm-svg-personal-square" fill="none" stroke="#B79B66" />
+        <polygon points="${pos.northWest[0]},${pos.northWest[1]} ${pos.northEast[0]},${pos.northEast[1]} ${pos.southEast[0]},${pos.southEast[1]} ${pos.southWest[0]},${pos.southWest[1]}" class="aqm-svg-ancestral-square" fill="none" stroke="#C5A46D" />
         <line x1="${pos.west[0]}" y1="${pos.west[1]}" x2="${pos.east[0]}" y2="${pos.east[1]}" class="aqm-svg-axis" />
         <line x1="${pos.north[0]}" y1="${pos.north[1]}" x2="${pos.south[0]}" y2="${pos.south[1]}" class="aqm-svg-axis" />
         <line x1="${fatherA[0]}" y1="${fatherA[1]}" x2="${fatherB[0]}" y2="${fatherB[1]}" class="aqm-svg-father" marker-end="url(#aqm-arr-father)" />
