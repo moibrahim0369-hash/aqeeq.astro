@@ -197,7 +197,7 @@
 
     const toast = document.createElement('div');
     toast.className = 'tarot-toast';
-    toast.innerHTML = `<span>✦</span> <span>${message}</span>`;
+    toast.innerHTML = `<span><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></span> <span>${message}</span>`;
     document.body.appendChild(toast);
 
     setTimeout(() => {
@@ -233,7 +233,7 @@
     }
 
     if (authEl && Array.isArray(guide.authorities)) {
-      authEl.innerHTML = guide.authorities.map(a => `<span class="ref-auth-pill">📜 ${a}</span>`).join('');
+      authEl.innerHTML = guide.authorities.map(a => `<span class="ref-auth-pill"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4h11a1 1 0 0 1 1 1v12.500a2.500 2.500 0 0 1-2.500 2.500H8.500A2.500 2.500 0 0 1 6 17.500V6"/><path d="M9.500 9h6M9.500 12.500h6"/></svg> ${a}</span>`).join('');
     }
 
     // Build Table of Contents Bar
@@ -255,7 +255,7 @@
       if (guide.summary) {
         summaryHtml = `
           <div class="ref-summary-box">
-            <div class="ref-summary-icon">✦</div>
+            <div class="ref-summary-icon"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></div>
             <div class="ref-summary-text">
               <strong>خلاصة الدليل المرجعي:</strong> ${guide.summary}
             </div>

@@ -160,7 +160,7 @@
       : relationType === "family" ? "ديناميكية العلاقة الأسرية" : "ديناميكية الشراكة والعمل";
     const relationshipSummary = `${safeText(lens1.diagnosis, "")}<br><br>${safeText(lens2.diagnosis, "")}`;
     const masterBadge = meta.isCompositeMaster
-      ? `<p class="syn-master-badge" role="status">🌟 تنبيه قدري: تم رصد طاقة ماستر كبرى (${esc(meta.rawBaseSum)}) في رابط هذا الثنائي!</p>`
+      ? `<p class="syn-master-badge" role="status"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg> تنبيه قدري: تم رصد طاقة ماستر كبرى (${esc(meta.rawBaseSum)}) في رابط هذا الثنائي!</p>`
       : "";
     const attractionHook = attraction.attraction_hook || free.attraction || "اكتشفوا تفاصيل الجذب والتفاعل بينكم.";
 
@@ -219,7 +219,7 @@
           <p class="syn-note">قراءة رمزية للتأمل والحوار، وليست تشخيصًا نفسيًا أو ضمانًا لنجاح العلاقة.</p>
         </div>
         <div class="syn-lock-overlay">
-          <div style="font-size:2rem">✦</div>
+          <div style="font-size:2rem"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></div>
           <h3>التقرير الكامل</h3>
           <p>المعاينة الكاملة هنا تجريبية. زر العرض لا يمثل نظام دفع فعليًا.</p>
           <button class="btn" type="button" id="syn-unlock">عرض التقرير التفصيلي</button>

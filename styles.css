@@ -2880,3 +2880,8 @@ table{max-width:100%}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* ---- الهوية البصرية: أيقونات خطية بدل الإيموجي + رموز الأبراج كنص لا كإيموجي ---- */
+.aq-ic { width: 1.15em; height: 1.15em; vertical-align: -0.2em; margin-inline-end: .3em; flex: 0 0 auto; }
+.ref-summary-icon .aq-ic, .syn-master-badge .aq-ic { margin-inline-end: 0; }
+body, svg text { font-variant-emoji: text; }

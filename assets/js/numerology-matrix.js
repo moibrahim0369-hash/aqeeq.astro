@@ -790,7 +790,7 @@
     if (!uniqueArcana.length) return '';
     const buttons = uniqueArcana.map(a => `
       <button type="button" class="aqm-master-open" data-aqm-master-arcana="${a.num}" data-aqm-position="${escapeHtml(item.id || '')}" aria-expanded="false">
-        <span aria-hidden="true">✦</span> التفسير الموسع: ${a.num} · ${escapeHtml(a.name)}
+        <span aria-hidden="true"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></span> التفسير الموسع: ${a.num} · ${escapeHtml(a.name)}
       </button>`).join('');
     return `
       <section class="aqm-master-library" aria-label="التفسير الموسع للأركانا">
@@ -885,31 +885,31 @@
           <div class="aqm-content-grid">
             <!-- النص الأساسي -->
             <section class="aqm-slot aqm-slot-primary" data-slot="primary">
-              <h4 class="aqm-slot-title">✦ النص الأساسي</h4>
+              <h4 class="aqm-slot-title"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg> النص الأساسي</h4>
               <div class="aqm-slot-p">${slots.primary}</div>
             </section>
 
             <!-- التفسير التفصيلي والعميق -->
             <section class="aqm-slot aqm-slot-detailed" data-slot="detailed">
-              <h4 class="aqm-slot-title">📖 التفسير التفصيلي والعميق</h4>
+              <h4 class="aqm-slot-title"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5V19c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/></svg> التفسير التفصيلي والعميق</h4>
               <div class="aqm-slot-p">${slots.detailed}</div>
             </section>
 
             <!-- نقاط القوة والتجلي الإيجابي -->
             <section class="aqm-slot aqm-slot-strengths" data-slot="strengths">
-              <h4 class="aqm-slot-title">✨ نقاط القوة والتجلي الإيجابي (النور)</h4>
+              <h4 class="aqm-slot-title"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg> نقاط القوة والتجلي الإيجابي (النور)</h4>
               <div class="aqm-slot-p">${slots.strengths}</div>
             </section>
 
             <!-- التحديات والجانب الظلي -->
             <section class="aqm-slot aqm-slot-challenges" data-slot="challenges">
-              <h4 class="aqm-slot-title">⚠️ التحديات والجانب الظلي (الظل)</h4>
+              <h4 class="aqm-slot-title"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 4L21 19H3z"/><path d="M12 10v4M12 16.5v.5"/></svg> التحديات والجانب الظلي (الظل)</h4>
               <div class="aqm-slot-p">${slots.challenges}</div>
             </section>
 
             <!-- التطبيق العملي وخطوات التوازن -->
             <section class="aqm-slot aqm-slot-practical" data-slot="practical">
-              <h4 class="aqm-slot-title">🌱 خطوات التوازن والتطبيق اليومي</h4>
+              <h4 class="aqm-slot-title"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 19C5 10 10 5 20 4c0 10-5 15-14 15z"/><path d="M5 19c3-5 6-8 10-10"/></svg> خطوات التوازن والتطبيق اليومي</h4>
               <div class="aqm-slot-p">${slots.practical}</div>
             </section>
           </div>
@@ -1466,9 +1466,9 @@
     const PLACEHOLDER_PCT = { energy: 80, love: 65, money: 70 };
     const pctHtml = (k) => `<div class="aqm-pct" data-placeholder="true"><span class="aqm-pct-v">${PLACEHOLDER_PCT[k]}%</span><div class="aqm-pct-bar" role="img" aria-label="${PLACEHOLDER_PCT[k]}%"><i style="width:${PLACEHOLDER_PCT[k]}%"></i></div></div>`;
     const lineCard = (icon, title, arr, endNum, pk) => { const i = infoOf(endNum); return `<article class="aqm-line-card"><header><span class="aqm-line-ic" aria-hidden="true">${icon}</span><h3>${title}</h3></header><p class="aqm-line-sub">${i && i.name ? i.name : '—'}</p>${pk ? pctHtml(pk) : ''}<div class="aqm-chain" dir="ltr">${chainHtml(arr)}</div><p class="aqm-line-desc">${i && i.archetype ? i.archetype : ''}</p></article>`; };
-    const linesHtml = lineCard('☀', 'الطاقة الأساسية', pick(() => [P.anchors.A, P.anchors.B, P.anchors.C]), pick(() => P.anchors.A), 'energy')
-      + lineCard('♡', 'خط العلاقات', pick(() => P.loveLine.path), pick(() => P.channels.heartPoint), 'love')
-      + lineCard('◎', 'خط المال', pick(() => P.moneyLine.path), pick(() => P.channels.moneyPoint), 'money');
+    const linesHtml = lineCard('<svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>', 'الطاقة الأساسية', pick(() => [P.anchors.A, P.anchors.B, P.anchors.C]), pick(() => P.anchors.A), 'energy')
+      + lineCard('<svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.500-7 10-7 10z"/></svg>', 'خط العلاقات', pick(() => P.loveLine.path), pick(() => P.channels.heartPoint), 'love')
+      + lineCard('<svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></svg>', 'خط المال', pick(() => P.moneyLine.path), pick(() => P.channels.moneyPoint), 'money');
     const summaryHtml = summaryRows.map(([k, v]) => `<li class="aqm-sum-row${v === '—' ? ' is-empty' : ''}"><span class="aqm-sum-k">${k}</span><span class="aqm-sum-v">${v}</span></li>`).join('');
 
     const html = `
