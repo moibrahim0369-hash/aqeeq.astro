@@ -80,7 +80,6 @@
     clone.setAttribute('width', '900'); clone.setAttribute('height', '900');
     // النسخة المصدّرة فقط: خلفية الرسم شفافة لتظهر العلامة المائية، وتسميات الأعمار أرقام هادئة بدون كلمة "سنة"
     clone.querySelector('.aqm-svg-bg')?.remove();
-    clone.querySelector('.aqm-svg-watermark')?.remove(); // بطاقة التصدير لها علامتها المائية الخاصة
     // الصورة المرسومة لا تستقبل CSS الصفحة: نثبّت لون الرقم وحجمه ومحاذاته داخل النسخة المصدّرة مباشرة
     clone.querySelectorAll('.aqm-node-text').forEach(t => {
       t.style.fill = t.getAttribute('fill') || '#1A1A1A';
