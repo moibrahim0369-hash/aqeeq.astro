@@ -1,7 +1,9 @@
 'use strict';
-
+// الشريط السفلي (موبايل/تابلت ≤960px): شريط ملتصق بعرض الشاشة كاملًا، 8 وجهات، أيقونة + عنوان متمركزان.
+// على الديسكتوب (>960px) الشريط مخفي. التحقق على الواجهة الحالية (aqeeq-design-system.css §3).
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
+const BASE = 'http://127.0.0.1:8765/index.html';
 
 (async () => {
   const browser = await chromium.launch({ headless: true });
@@ -11,88 +13,59 @@ const { chromium } = require('playwright');
       { width: 360, height: 800 },
       { width: 390, height: 844 },
       { width: 430, height: 932 },
+      { width: 820, height: 1180 },
       { width: 1280, height: 900 }
     ]) {
       const page = await browser.newPage({ viewport });
       const pageErrors = [];
       page.on('pageerror', error => pageErrors.push(error.message));
-      await page.goto('http://127.0.0.1:8765/index.html', { waitUntil: 'domcontentloaded' });
-
+      await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(600);
       const nav = page.locator('nav.bnav');
+
+      if (viewport.width > 960) {
+        assert.equal(await nav.isVisible(), false, `Bottom nav must be hidden on desktop (${viewport.width}px)`);
+        assert.deepEqual(pageErrors, [], 'No JS errors');
+        await page.close();
+        continue;
+      }
+
       await nav.waitFor({ state: 'visible' });
-      const navBox = await nav.boundingBox();
-      assert.ok(navBox, 'Bottom navigation must have a rendered box');
-      assert.ok(navBox.width < viewport.width, 'Bottom navigation must float with side margins');
-      assert.ok(navBox.width <= 420, 'Bottom navigation must not exceed 420px');
-      assert.ok(Math.abs(navBox.width - Math.min(viewport.width - 32, 420)) <= 1,
-        'Bottom navigation must use 16px side margins up to its 420px maximum');
-      const navStyles = await nav.evaluate(element => ({
-        position: getComputedStyle(element).position,
-        zIndex: getComputedStyle(element).zIndex
+      const box = await nav.boundingBox();
+      assert.ok(box, 'Bottom navigation must have a rendered box');
+      assert.ok(Math.abs(box.x) <= 1 && Math.abs(box.width - viewport.width) <= 1,
+        `Bottom nav must span the full viewport width at ${viewport.width}px (x=${box.x}, w=${box.width})`);
+      assert.ok(Math.abs(viewport.height - (box.y + box.height)) <= 1, 'Bottom nav must be docked to the viewport bottom');
+      assert.ok(box.height <= viewport.height * 0.15, 'Bottom nav must not exceed 15% of the viewport height');
+      const st = await nav.evaluate(el => ({ position: getComputedStyle(el).position, z: getComputedStyle(el).zIndex }));
+      assert.equal(st.position, 'fixed', 'Bottom nav must remain fixed');
+      assert.equal(st.z, '130', 'Bottom nav must keep the design-system stacking order');
+
+      const pg = await page.evaluate(() => ({
+        sb: getComputedStyle(document.documentElement).scrollBehavior,
+        pb: Number.parseFloat(getComputedStyle(document.body).paddingBottom)
       }));
-      assert.equal(navStyles.position, 'fixed', 'Bottom navigation must remain fixed');
-      assert.equal(navStyles.zIndex, '1000', 'Bottom navigation must use the required stacking order');
-      const pageStyles = await page.evaluate(() => ({
-        scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior,
-        bodyPaddingBottom: Number.parseFloat(getComputedStyle(document.body).paddingBottom)
-      }));
-      assert.equal(pageStyles.scrollBehavior, 'smooth', 'Page scrolling must remain smooth');
-      assert.ok(pageStyles.bodyPaddingBottom >= 90, 'Page must reserve at least 90px below its content');
-      assert.ok(Math.abs((navBox.x + navBox.width / 2) - viewport.width / 2) <= 1,
-        'Bottom navigation must be horizontally centered');
-      assert.ok(viewport.height - (navBox.y + navBox.height) >= 10,
-        'Bottom navigation must sit above the viewport bottom');
+      assert.equal(pg.sb, 'smooth', 'Page scrolling must remain smooth');
+      assert.ok(pg.pb >= 58, 'Page must reserve at least the nav height below its content');
 
       const links = nav.locator('a');
-      assert.equal(await links.count(), 3, 'All three existing navigation destinations must remain');
-      for (let index = 0; index < await links.count(); index += 1) {
-        const link = links.nth(index);
-        const icon = link.locator('svg');
-        const label = link.locator('.bnav-label');
-        assert.ok(await icon.isVisible(), 'Each navigation item must retain its icon');
-        assert.ok(await label.isVisible(), 'Each navigation item must retain its label');
-        const iconBox = await icon.boundingBox();
-        const labelBox = await label.boundingBox();
-        assert.ok(Math.abs((iconBox.x + iconBox.width / 2) - (labelBox.x + labelBox.width / 2)) <= 1,
-          'Navigation icon and label must share a center line');
-      }
-
-      const firstCard = page.locator('a.card:visible').first();
-      if (await firstCard.count()) {
-        await firstCard.scrollIntoViewIfNeeded();
-        const cardBox = await firstCard.boundingBox();
-        const iconBox = await firstCard.locator('.ic').boundingBox();
-        assert.ok(cardBox && iconBox, 'Tool card and icon must be rendered');
-        assert.ok(Math.abs((cardBox.x + cardBox.width / 2) - (iconBox.x + iconBox.width / 2)) <= 2,
-          'Tool-card icon must be horizontally centered');
-        const iconMarginBottom = await firstCard.locator('.ic').evaluate(element =>
-          Number.parseFloat(getComputedStyle(element).marginBottom)
-        );
-        assert.equal(iconMarginBottom, 0, 'Tool-card icon must not be pushed down by a bottom margin');
-      }
-
-      await page.evaluate(() => {
-        document.documentElement.style.scrollBehavior = 'auto';
-        document.body.style.scrollBehavior = 'auto';
-        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
-        return new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-      });
-      const footerCopy = page.locator('.foot .copy');
-      if (await footerCopy.count()) {
-        const footerIsClear = await page.evaluate(() => {
-          const copy = document.querySelector('.foot .copy');
-          const dock = document.querySelector('nav.bnav');
-          if (!copy || !dock) return true;
-          return copy.getBoundingClientRect().bottom <= dock.getBoundingClientRect().top;
-        });
-        assert.ok(footerIsClear,
-          'Footer copyright text must not be covered by the floating navigation');
+      assert.equal(await links.count(), 8, 'All eight navigation destinations must be present');
+      for (let i = 0; i < 8; i += 1) {
+        const link = links.nth(i);
+        const lb = await link.boundingBox();
+        assert.ok(lb.x >= -1 && lb.x + lb.width <= viewport.width + 1, `Nav item ${i} must be inside the viewport`);
+        const icon = link.locator('svg'), label = link.locator('.bnav-label');
+        assert.ok(await icon.isVisible(), 'Each item keeps its icon');
+        assert.ok(await label.isVisible(), 'Each item keeps its label');
+        const ib = await icon.boundingBox(), tb = await label.boundingBox();
+        assert.ok(Math.abs((ib.x + ib.width / 2) - (tb.x + tb.width / 2)) <= 1.5, 'Icon and label share a center line');
+        assert.ok(tb.x >= lb.x - 1 && tb.x + tb.width <= lb.x + lb.width + 1, `Label ${i} must not overflow its item at ${viewport.width}px`);
       }
 
       assert.deepEqual(pageErrors, [], 'Page must not emit uncaught JavaScript errors');
       await page.close();
     }
-    console.log('Bottom navigation and tool-card alignment E2E passed at 390px and 1280px.');
+    console.log('Bottom navigation E2E passed at 320/360/390/430/820 (docked bar) and 1280 (hidden).');
   } finally {
     await browser.close();
   }

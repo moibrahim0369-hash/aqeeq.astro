@@ -105,3 +105,7 @@
   #home.aqh #aqh-energy .dbn-slide { transition: none; transform: none; }
   #home.aqh #aqh-energy .dbn-progress { display: none; }
 }
+
+/* منطقة لمس أكبر للنقاط دون تغيير شكلها */
+#home.aqh #aqh-energy .dbn-dot { position: relative; }
+#home.aqh #aqh-energy .dbn-dot::after { content: ""; position: absolute; inset: -12px -6px; }

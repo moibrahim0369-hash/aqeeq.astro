@@ -464,3 +464,8 @@ html.aqh-lock,html.aqh-lock body{overflow:hidden}
 
 /* Homepage cleanup phase 1: closing sections hidden from the UI (kept in DOM) */
 #home .aqh-closing[hidden] { display: none !important; }
+
+/* موبايل: رأس الصفحة لا يتجاوز العرض (زر الانضمام بدون سهم) */
+@media (max-width: 440px){ .aqh-join{padding:0 12px;gap:0} .aqh-join::after{display:none} }
+
+.aqh-all-articles{min-height:40px;display:inline-flex;align-items:center}

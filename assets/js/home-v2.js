@@ -217,7 +217,7 @@
     }
     function openPlanet(p, body, opener) {
       hideTip();
-      var retro = body.retro ? 'متراجع ℞' : 'مباشر';
+      var retro = body.retro ? 'متراجع' : 'مباشر';
       var box = openLayer({
         kind: 'panel', titleId: 'aqh-panel-title', opener: opener,
         html: closeBtn + '<div class="aqh-panel-body"><p class="aqh-kicker" dir="ltr">PLANET</p><h3 id="aqh-panel-title"><span class="aqh-panel-glyph" aria-hidden="true">' + p.sym + '</span> ' + p.ar + '</h3>' +

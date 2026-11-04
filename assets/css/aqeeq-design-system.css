@@ -400,6 +400,14 @@ nav.bnav {
   align-items: center !important;
   padding: 0 2px !important;
   box-shadow: 0 -6px 20px rgba(56, 49, 45, 0.05) !important;
+  /* يلغي قواعد الشريط العائم القديمة في styles.css (كانت تزيحه خارج الشاشة) */
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  gap: 0 !important;
+  transform: none !important;
+  box-sizing: border-box !important;
 }
 
 @media (min-width: 961px) {
@@ -1419,7 +1427,7 @@ section.sec.alt {
 
 /* Distinct Page Personality Backgrounds & Accents */
 section#sky {
-  background: linear-gradient(180deg, #FAF7F0 0%, rgba(220, 234, 240, 0.32) 50%, #FAF7F0 100%) !important;
+  background: linear-gradient(180deg, rgba(250, 247, 240, 0) 0%, rgba(220, 234, 240, 0.32) 50%, rgba(250, 247, 240, 0) 100%), #FAF7F0 !important;
 }
 
 section#chart {
@@ -1431,12 +1439,12 @@ section#matrix {
 }
 
 section#lifepath {
-  background: linear-gradient(180deg, #FAF7F0 0%, rgba(231, 215, 194, 0.35) 100%) !important;
+  background: linear-gradient(180deg, rgba(250, 247, 240, 0) 0%, rgba(231, 215, 194, 0.35) 100%), #FAF7F0 !important;
 }
 
 section#compat,
 section#life-path-synastry {
-  background: linear-gradient(180deg, #FAF7F0 0%, rgba(217, 183, 176, 0.22) 100%) !important;
+  background: linear-gradient(180deg, rgba(250, 247, 240, 0) 0%, rgba(217, 183, 176, 0.22) 100%), #FAF7F0 !important;
 }
 
 section#tarot-chamber {
@@ -3595,3 +3603,37 @@ footer.foot {
   display: block;
   width: 100%;
 }
+
+/* ---- بطاقة القمر في صفحة السماء (#sky-moon) ---- */
+#sky-moon { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: clamp(16px, 3.5vw, 40px); padding: clamp(16px, 2.6vw, 28px); background: #fff; border: 1px solid var(--aqh-line, #E5DED2); border-radius: 20px; box-shadow: 0 10px 30px rgba(56, 49, 45, .06); color: var(--charcoal, #29252A); }
+#sky-moon .mn-fig { width: clamp(110px, 16vw, 170px); aspect-ratio: 1; flex: 0 0 auto; }
+#sky-moon .mn-svg { display: block; width: 100%; height: 100%; }
+#sky-moon .mn-txt { display: grid; gap: 8px; min-width: 0; }
+#sky-moon .mn-kick { color: var(--antique-gold, #A8863F); font-size: .85rem; letter-spacing: .04em; }
+#sky-moon .mn-title { margin: 0; font-family: 'Amiri', serif; font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 600; line-height: 1.5; color: var(--burgundy, #642B3C); }
+#sky-moon .mn-title b { font-weight: 700; }
+#sky-moon .mn-meta { display: flex; flex-wrap: wrap; gap: 6px 10px; margin: 0; padding: 0; }
+#sky-moon .mn-meta span { padding: 4px 12px; border: 1px solid var(--aqh-line, #E5DED2); border-radius: 999px; font-size: .84rem; color: var(--muted-text, #746C68); background: #FBF8F2; }
+#sky-moon .mn-next { margin: 0; color: var(--charcoal, #29252A); font-size: .95rem; line-height: 1.8; }
+#sky-moon .mn-date { color: var(--muted-text, #746C68); }
+@media (max-width: 560px) { #sky-moon { grid-template-columns: 1fr; justify-items: center; text-align: center; } #sky-moon .mn-meta { justify-content: center; } }
+
+/* ---- صفحة الأبراج (#signs): نفس هوية الصفحات الفاتحة بدل الخلفية الداكنة القديمة ---- */
+section#signs { background: linear-gradient(180deg, #F4EFE5 0%, #FAF7F0 100%) !important; }
+#signs .picker { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+#signs .picker button { min-width: 92px; padding: 12px 10px; white-space: nowrap; background: #fff !important; border: 1px solid var(--aqh-line, #E5DED2) !important; border-radius: 14px !important; color: var(--charcoal, #29252A) !important; box-shadow: 0 4px 14px rgba(56, 49, 45, .05); }
+#signs .picker button:hover, #signs .picker button.active { border-color: var(--antique-gold, #B8964F) !important; box-shadow: 0 6px 18px rgba(184, 150, 79, .2); }
+#signs .arch { background: #fff !important; border: 1px solid var(--aqh-line, #E5DED2) !important; border-radius: 22px !important; box-shadow: 0 10px 30px rgba(56, 49, 45, .06); color: var(--charcoal, #29252A) !important; }
+#signs .arch h3 { color: var(--burgundy, #642B3C); }
+#signs .arch p { color: var(--muted-text, #746C68); }
+#signs .arch-g { color: var(--antique-gold, #B8964F) !important; filter: none !important; }
+#signs .sg { color: var(--antique-gold, #B8964F) !important; filter: none !important; }
+#signs .signs-back { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border: 1px solid var(--antique-gold, #B8964F); border-radius: 999px; background: transparent; color: var(--charcoal, #29252A); font: inherit; font-size: .92rem; cursor: pointer; transition: background-color .2s, color .2s; }
+#signs .signs-back:hover { background: var(--burgundy, #642B3C); color: #fff; border-color: var(--burgundy, #642B3C); }
+
+/* ---- نافذة الحساب: لا يُقص أعلاها خلف الرأس، واختصارات الداشبورد تلتف بدل النصوص العمودية ---- */
+#account.sec:target { align-items: flex-start !important; padding-top: clamp(104px, 12vh, 132px) !important; }
+.aq-dash-shortcuts { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; }
+.aq-dash-shortcut { min-width: 0; }
+@media (max-width: 960px) { #account.sec:target { padding-top: 96px !important; } }
+.aq-identity-summary { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }

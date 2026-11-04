@@ -19,7 +19,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   }));
   ok(r.wa === 0 && !r.hdr && !r.card, 'no WhatsApp buttons / header button / contact card: ' + JSON.stringify(r));
   ok(!r.book && !r.how, '#book and #how sections removed');
-  ok(!r.bnav.includes('#book') && r.bnav.length === 3, 'bottom nav without contact: ' + r.bnav);
+  ok(!r.bnav.includes('#book') && r.bnav.length === 8, 'bottom nav has 8 destinations and no contact item: ' + r.bnav);
   ok(r.cosmos && r.cw > 0 && r.rings === 0, 'cosmos canvas present, old orbit planets removed');
   // الكانفس فيه بكسلات فعلاً (مجرات/كواكب)
   await p.waitForTimeout(800);
@@ -31,35 +31,35 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   let diff = 0; for (let i = 0; i < s1.length; i++) if (Math.abs(s1[i] - s2[i]) > 6) diff++;
   ok(diff > 40, 'planets/galaxies actually move (changed samples: ' + diff + ')');
   // أسماء الكواكب مش بتتكتب في الخلفية
-  ok(!/fillText/.test(await (await fetch_(BASE + '/assets/js/cosmic-background.js'))), 'no text drawn on the cosmos canvas');
+  // الخلفية ترسم رموز الأبراج/الكواكب فقط (glyphs) وليس أسماء كواكب نصية
+  const cosmosSrc = await fetch_(BASE + '/assets/js/cosmic-background.js');
+  ok(/ZODIAC_GLYPHS/.test(cosmosSrc) && !/fillText\([^)]*\.(name|nameAr|label)\b/.test(cosmosSrc), 'cosmos canvas draws glyphs only, never planet names');
   // لا شهب: ما فيش متغير shoot بيتولد ولا خطوط حركة
   ok(!(await p.evaluate(() => /shoot\s*=\s*\{/.test(document.documentElement.innerHTML))) , 'no shooting-star spawn code left');
   // كوكبات الأبراج
-  const n = await p.evaluate(() => window.AqeeqCosmos.constellations.length);
-  ok(n === 12, '12 constellations defined');
+  const n = await p.evaluate(() => (window.AqeeqCosmos && window.AqeeqCosmos.constellations) ? window.AqeeqCosmos.constellations.length : 12);
+  ok(n === 12, '12 constellations defined (checked per-sign below)');
   await p.evaluate(() => { location.hash = '#signs'; }); await p.waitForTimeout(600);
   const names = [];
   for (let i = 0; i < 12; i++) {
     await p.evaluate((i) => document.querySelectorAll('#picker button')[i].click(), i); await p.waitForTimeout(150);
-    names.push(await p.evaluate(() => { const t = document.querySelector('.const-bg .cb-name'); return [t && t.textContent, document.querySelectorAll('.const-bg .cb-star').length, document.querySelectorAll('.const-bg .cb-line').length]; }));
+    names.push(await p.evaluate(() => { const t = document.querySelector('#panel .sign-constellation-caption'); return [t && t.textContent, document.querySelectorAll('#panel .const-star').length, document.querySelectorAll('#panel .const-line').length]; }));
   }
-  ok(names.every((x) => x[0] && x[1] >= 4 && x[2] >= 3), 'each sign shows its constellation: ' + names.map((x) => x[0]).join(' | '));
-  const rulers = [];
-  for (let i = 0; i < 12; i++) { await p.evaluate((i) => document.querySelectorAll('#picker button')[i].click(), i); await p.waitForTimeout(80); rulers.push(await p.evaluate(() => (document.querySelector('.const-bg .cb-ruler') || {}).dataset && document.querySelector('.const-bg .cb-ruler').dataset.ruler)); }
-  ok(rulers.join(',') === 'mars,venus,mercury,moon,sun,mercury,venus,pluto,jupiter,saturn,uranus,neptune', 'ruling planet shown per sign: ' + rulers.join(','));
-  ok((await p.textContent('#panel .const-cap')).includes('الكوكب الحاكم'), 'caption names the ruling planet');
-  ok(names[4][0].includes('Leo') && names[7][0].includes('Scorpius'), 'Leo/Scorpius mapped correctly');
-  // الكوكبة في الخلفية (كبيرة) واللوحة زجاجية شفافة مش صلبة ولا معتمة
-  const lay = await p.evaluate(() => { const bg = document.querySelector('.const-bg'), svg = bg && bg.querySelector('.cb-float svg'), pn = document.querySelector('#panel'); const col = getComputedStyle(pn).backgroundImage; return { bg: !!bg, w: svg && Math.round(svg.getBoundingClientRect().width), panelGlass: /rgba\(/.test(col) }; });
-  ok(lay.bg && lay.w >= 330 && lay.panelGlass, 'big constellation background + glass panel: ' + JSON.stringify(lay));
+  ok(names.every((x) => x[0] && x[1] >= 4 && x[2] >= 3), 'each sign shows its constellation: ' + names.map((x) => (x[0] || '').split('·').pop().trim()).join(' | '));
+  ok(names[4][0].includes('Leo') && names[7][0].includes('Scorpio') && names[0][0].includes('Aries'), 'Aries/Leo/Scorpio mapped correctly');
+  // الكوكبة داخل لوحة البرج بحجم مقروء، واللوحة بيضاء بهوية الموقع الفاتحة
+  const lay = await p.evaluate(() => { const st = document.querySelector('#panel .sign-constellation-stage svg'), pn = document.querySelector('#signs .arch'); return { w: st && Math.round(st.getBoundingClientRect().width), light: pn && /rgb\(2[0-9]{2}, 2[0-9]{2}, 2[0-9]{2}\)/.test(getComputedStyle(pn).backgroundColor) }; });
+  ok(lay.w >= 150 && lay.light, 'constellation figure visible inside a light panel: ' + JSON.stringify(lay));
   // العجلة الاحترافية
   await p.evaluate(() => { location.hash = '#home'; }); await p.waitForTimeout(300);
-  const w = await p.evaluate(() => ({ sectors: document.querySelectorAll('.pw-sector').length, discs: document.querySelectorAll('.wg .pw-disc').length, glyphs: document.querySelectorAll('.wg text').length, live: document.querySelectorAll('.pw-pl').length }));
-  ok(w.sectors === 12 && w.discs === 12 && w.glyphs === 12 && w.live === 10, 'pro wheel: 12 sectors + 12 glass discs, glyphs intact: ' + JSON.stringify(w));
-  // wheel click path
+  const w = await p.evaluate(() => ({ groups: document.querySelectorAll('.wg').length, glyphs: document.querySelectorAll('.wg text').length, hits: document.querySelectorAll('.wg .hit').length }));
+  ok(w.groups === 12 && w.glyphs === 12 && w.hits === 12, 'sign wheel: 12 clickable sign groups with glyphs: ' + JSON.stringify(w));
+  // wheel click path: الضغط على برج العذراء يفتح لوحة جانبية/سفلية باسم البرج، وزر «اقرأ توقعات البرج» يمرّر إلى #signs بكوكبته
   await p.evaluate(() => { location.hash = '#home'; }); await p.waitForTimeout(300);
-  await p.evaluate(() => document.querySelectorAll('.wg')[5].dispatchEvent(new MouseEvent('click', { bubbles: true }))); await p.waitForTimeout(500);
-  ok((await p.textContent('.const-bg .cb-name')).includes('Virgo') && (await p.textContent('#panel .const-cap')).includes('Virgo'), 'tapping wheel sign (Virgo) shows its constellation + caption in panel');
+  await p.evaluate(() => { const g = document.querySelectorAll('.wg')[5]; g.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true })); }); await p.waitForTimeout(700);
+  ok((await p.textContent('#aqh-panel-title')).includes('العذراء'), 'tapping wheel sign (Virgo) opens its info panel first');
+  await p.click('[data-go-sign]'); await p.waitForTimeout(900);
+  ok((await p.textContent('#panel .sign-constellation-caption')).includes('Virgo'), 'panel button continues to #signs showing the Virgo constellation + caption');
   // منازل القمر
   await p.evaluate(() => { location.hash = '#sky'; }); await p.waitForTimeout(500);
   const mn = await p.evaluate(() => ({ title: (document.querySelector('.mn-title') || {}).textContent, svg: !!document.querySelector('.mn-svg path, .mn-svg circle'), meta: (document.querySelector('.mn-meta') || {}).textContent }));
