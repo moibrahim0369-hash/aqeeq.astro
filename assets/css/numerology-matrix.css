@@ -1539,3 +1539,53 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 .aqm-modal-card input:focus-visible, .aqm-modal-card button:focus-visible { outline: 2px solid var(--aqm-gold-base); outline-offset: 2px; }
 .aqm-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 .aqm-state { text-align: center; padding: 28px 16px; border: 1px solid var(--aqm-gold-border); border-radius: 16px; background: #fffefa; display: grid; gap: 14px; justify-items: center; }
+
+/* ===== Matrix page — AQEQ brief tokens (design only) ===== */
+#matrix {
+  --mx-ivory: #F7F3EC; --mx-white: #FFFFFF; --mx-cream: #FBF8F2; --mx-burgundy: #642B3C; --mx-wine: #351B28;
+  --mx-charcoal: #29252A; --mx-gold: #D9B979; --mx-border: #E5DED2; --mx-muted: #746C68;
+}
+#matrix .aqm-shell { background: var(--mx-ivory) !important; border: 0 !important; box-shadow: none !important; border-radius: 0 !important; color: var(--mx-charcoal) !important; padding-top: 8px; }
+#matrix .aqm-shell::before, #matrix .aqm-shell::after { display: none !important; }
+#matrix .aqm-brand-stamp { display: none; }
+#matrix .aqm-crumbs { padding: 6px 2px 0; color: var(--mx-muted); }
+#matrix .aqm-crumbs a { color: var(--mx-burgundy); }
+#matrix .aqm-page-title { text-align: start; padding: 8px 2px 22px; }
+#matrix .aqm-page-title h1 { margin: 0 0 6px; font-family: 'Noto Serif Arabic', 'Amiri', serif; font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.2; color: var(--mx-burgundy); font-weight: 700; }
+#matrix .aqm-page-title p { margin: 0; color: var(--mx-muted); font-size: 1.05rem; }
+/* birth summary card */
+#matrix .aqm-header { display: flex !important; flex-direction: row-reverse; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; text-align: start !important; background: var(--mx-white) !important; border: 1px solid var(--mx-border) !important; border-radius: 20px !important; box-shadow: none !important; padding: 18px 22px !important; margin-bottom: 20px; }
+#matrix .aqm-header .aqm-kicker { display: none; }
+#matrix .aqm-header h2 { font-size: 1.25rem !important; margin: 0 !important; color: var(--mx-wine); font-family: inherit; }
+#matrix .aqm-header .aqm-meta-info { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 !important; justify-content: flex-start !important; flex: 1 1 320px; }
+#matrix .aqm-header .aqm-meta-pill { background: var(--mx-cream); border: 1px solid var(--mx-border); color: var(--mx-charcoal); border-radius: 999px; font-size: .84rem; }
+#matrix .aqm-header .aqm-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 !important; }
+#matrix .aqm-btn { border-radius: 12px; border: 1px solid var(--mx-border); background: var(--mx-white); color: var(--mx-burgundy); }
+#matrix .aqm-btn:hover { border-color: var(--mx-gold); }
+#matrix .aqm-btn-primary { background: var(--mx-burgundy) !important; border-color: var(--mx-burgundy) !important; color: #fff !important; }
+/* tabs */
+#matrix .aqm-tabs { background: var(--mx-ivory); border-bottom: 1px solid var(--mx-border); border-radius: 0; padding: 0; }
+#matrix .aqm-tab.is-active { color: var(--mx-burgundy); border-bottom-color: var(--mx-gold); }
+/* workspace surfaces */
+#matrix .aqm-canvas-wrap, #matrix .aqm-summary, #matrix .aqm-acc-item { background: var(--mx-white) !important; border: 1px solid var(--mx-border) !important; border-radius: 22px !important; box-shadow: none !important; }
+#matrix .aqm-workspace .aqm-svg-wrap, #matrix .aqm-canvas-wrap .aqm-svg { background: var(--mx-cream); border-radius: 18px; }
+#matrix .aqm-summary h3 { font-family: 'Noto Serif Arabic', serif; color: var(--mx-burgundy); font-size: 1.15rem; padding-bottom: 10px; border-bottom: 2px solid var(--mx-gold); display: inline-block; }
+#matrix .aqm-sum-row { border-bottom: 1px solid var(--mx-border); }
+#matrix .aqm-sum-v { color: var(--mx-burgundy); }
+/* chakras */
+#matrix .aqm-chakra-axis { margin-top: 18px; padding: 0; }
+#matrix .aqm-chakra-row { background: var(--mx-cream) !important; border: 1px solid var(--mx-border) !important; border-radius: 14px !important; }
+/* accordions */
+#matrix .aqm-acc-item.open { border-color: var(--mx-gold) !important; }
+#matrix .aqm-acc-title { color: var(--mx-wine); }
+#matrix .aqm-acc-subtitle { color: var(--mx-muted); }
+#matrix .aqm-badge-arcana { border-radius: 999px; }
+@media (max-width: 640px) {
+  #matrix .aqm-header { flex-direction: column; align-items: stretch; }
+  #matrix .aqm-header .aqm-actions .aqm-btn { flex: 1 1 100%; }
+}
+#matrix .aqm-tabs { border: 0 !important; border-bottom: 1px solid var(--mx-border) !important; background: var(--mx-ivory) !important; }
+@media (max-width: 640px) {
+  #matrix .aqm-header .aqm-meta-info { flex: 0 0 auto; }
+  #matrix .aqm-header .aqm-meta-pill { flex: 0 0 auto; }
+}
