@@ -1513,6 +1513,17 @@
           </ol>
         </div>
 
+          <aside class="aqm-rail" aria-label="التنقل السريع">
+            <div class="aqm-rail-quote"><span class="aqm-rail-mark" aria-hidden="true">✦</span><p>كل رقم يحمل في داخله حكاية أعمق من الظاهر</p></div>
+            <nav class="aqm-rail-nav">
+              <a class="is-active" href="#matrix" aria-current="page">مصفوفة القدر</a>
+              <a href="#compat">التوافق</a>
+              <a href="#aqh-articles">المقالات</a>
+              <a href="#lifepath">مسار الحياة</a>
+              <a href="#chart">الخريطة الفلكية</a>
+              <a href="#account">حسابي</a>
+            </nav>
+          </aside>
         </div>
         <section class="aqm-lines" aria-label="الخطوط الرئيسية">${linesHtml}</section>
         <section class="aqm-learn" aria-labelledby="aqm-learn-title">
