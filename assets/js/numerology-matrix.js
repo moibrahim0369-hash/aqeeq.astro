@@ -1280,6 +1280,7 @@
             <button class="aqm-btn aqm-btn-primary" type="button" id="aqm-btn-story">استخراج بطاقة القصة</button>
           </div>
         </header>
+        <div class="aqm-brand-stamp" role="note">✦ عقيق أسترو · Aqeq Astro ✦</div>
 
         <!-- حاوية الرسم الهندسي (SVG Octagram) -->
         <div class="aqm-canvas-wrap">
@@ -1306,6 +1307,7 @@
         <footer style="margin-top:32px;text-align:center;font-size:0.82rem;color:var(--aqm-text-muted);line-height:1.7;">
           <p>مصفوفة القدر نظام رمزي للتأمل واستكشاف الذات مبني على منهج ناتاليا لاديني (22 أركانا). عقيق أسترو يقدم القراءات كأداة للوعي والتمكين الذاتي وليست للتنبؤ القاطع أو المشورة الطبية.</p>
         </footer>
+        <div class="aqm-brand-sticky" role="note" aria-hidden="true">عقيق أسترو · Aqeq Astro</div>
       </section>
     `;
 
