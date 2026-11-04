@@ -1462,10 +1462,13 @@
       return `<li class="aqm-sum-card${num === null ? ' is-empty' : ''}"><span class="aqm-sum-num">${num === null ? '—' : num}</span><div class="aqm-sum-body"><span class="aqm-sum-label">${label}</span><strong class="aqm-sum-name">${i && i.name ? i.name : '—'}</strong><span class="aqm-sum-arch">${i && i.archetype ? i.archetype : ''}</span></div><p class="aqm-sum-light">${i && i.light ? i.light : ''}</p></li>`; };
     const sumCardsHtml = [['الطاقة الأساسية', pick(() => P.anchors.A)], ['الرقم المركزي', pick(() => P.anchors.E)], ['أبرز موهبة', pick(() => P.anchors.B)]].map(([l, n]) => sumCard(l, n)).join('');
     const chainHtml = (arr) => (Array.isArray(arr) && arr.length ? arr : [null, null, null]).map(n => `<span class="aqm-chain-n${n == null ? ' is-empty' : ''}">${n == null ? '—' : n}</span>`).join('<i class="aqm-chain-l" aria-hidden="true"></i>');
-    const lineCard = (icon, title, arr, endNum) => { const i = infoOf(endNum); return `<article class="aqm-line-card"><header><span class="aqm-line-ic" aria-hidden="true">${icon}</span><h3>${title}</h3></header><p class="aqm-line-sub">${i && i.name ? i.name : '—'}</p><div class="aqm-chain" dir="ltr">${chainHtml(arr)}</div><p class="aqm-line-desc">${i && i.archetype ? i.archetype : ''}</p></article>`; };
-    const linesHtml = lineCard('☀', 'الطاقة الأساسية', pick(() => [P.anchors.A, P.anchors.B, P.anchors.C]), pick(() => P.anchors.A))
-      + lineCard('♡', 'خط العلاقات', pick(() => P.loveLine.path), pick(() => P.channels.heartPoint))
-      + lineCard('◎', 'خط المال', pick(() => P.moneyLine.path), pick(() => P.channels.moneyPoint));
+    // نسب مؤقتة للعرض فقط (لا صيغة حسابية بعد). غيّر القيم هنا لاحقًا أو اربطها بصيغة المحرك.
+    const PLACEHOLDER_PCT = { energy: 80, love: 65, money: 70 };
+    const pctHtml = (k) => `<div class="aqm-pct" data-placeholder="true"><span class="aqm-pct-v">${PLACEHOLDER_PCT[k]}%</span><div class="aqm-pct-bar" role="img" aria-label="${PLACEHOLDER_PCT[k]}%"><i style="width:${PLACEHOLDER_PCT[k]}%"></i></div></div>`;
+    const lineCard = (icon, title, arr, endNum, pk) => { const i = infoOf(endNum); return `<article class="aqm-line-card"><header><span class="aqm-line-ic" aria-hidden="true">${icon}</span><h3>${title}</h3></header><p class="aqm-line-sub">${i && i.name ? i.name : '—'}</p>${pk ? pctHtml(pk) : ''}<div class="aqm-chain" dir="ltr">${chainHtml(arr)}</div><p class="aqm-line-desc">${i && i.archetype ? i.archetype : ''}</p></article>`; };
+    const linesHtml = lineCard('☀', 'الطاقة الأساسية', pick(() => [P.anchors.A, P.anchors.B, P.anchors.C]), pick(() => P.anchors.A), 'energy')
+      + lineCard('♡', 'خط العلاقات', pick(() => P.loveLine.path), pick(() => P.channels.heartPoint), 'love')
+      + lineCard('◎', 'خط المال', pick(() => P.moneyLine.path), pick(() => P.channels.moneyPoint), 'money');
     const summaryHtml = summaryRows.map(([k, v]) => `<li class="aqm-sum-row${v === '—' ? ' is-empty' : ''}"><span class="aqm-sum-k">${k}</span><span class="aqm-sum-v">${v}</span></li>`).join('');
 
     const html = `
@@ -1514,15 +1517,21 @@
         </div>
 
           <aside class="aqm-rail" aria-label="التنقل السريع">
-            <div class="aqm-rail-quote"><span class="aqm-rail-mark" aria-hidden="true">✦</span><p>كل رقم يحمل في داخله حكاية أعمق من الظاهر</p></div>
+            <div class="aqm-rail-quote">
+              <svg class="aqm-rail-emblem" viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="#D9B979" stroke-width="1.4" aria-hidden="true"><circle cx="32" cy="32" r="26"/><path d="M32 12 50 44H14Z"/><circle cx="32" cy="34" r="5"/></svg>
+              <p>كل رقم يحمل في داخله حكاية أعمق من الظاهر</p>
+              <i class="aqm-rail-rule" aria-hidden="true"></i>
+              <span class="aqm-rail-peaks" aria-hidden="true"></span>
+            </div>
             <nav class="aqm-rail-nav">
-              <a class="is-active" href="#matrix" aria-current="page">مصفوفة القدر</a>
-              <a href="#compat">التوافق</a>
-              <a href="#aqh-articles">المقالات</a>
-              <a href="#lifepath">مسار الحياة</a>
-              <a href="#chart">الخريطة الفلكية</a>
-              <a href="#account">حسابي</a>
+              <a class="is-active" href="#matrix" aria-current="page"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M12 7v4M7 17l4-6M17 17l-4-6"/></svg><span>مصفوفة القدر</span></a>
+              <a href="#compat"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg><span>التوافق</span></a>
+              <a href="#aqh-articles"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h8l4 4v14H7Z"/><path d="M15 3v4h4M10 12h6M10 16h6"/></svg><span>المقالات</span></a>
+              <a href="#lifepath"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19c4-1 3-6 8-6s4-5 8-6"/><circle cx="4" cy="19" r="1.5"/><circle cx="20" cy="7" r="1.5"/></svg><span>مسار الحياة</span></a>
+              <a href="#chart"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><span>الخريطة الفلكية</span></a>
+              <a href="#account"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span>حسابي</span></a>
             </nav>
+            <div class="aqm-rail-foot"><p>معرفة أعمق .. لحياة أكثر انسجامًا</p><span>AQEQ ASTRO</span></div>
           </aside>
         </div>
         <section class="aqm-lines" aria-label="الخطوط الرئيسية">${linesHtml}</section>
@@ -1532,6 +1541,7 @@
             <p>المصفوفة هي خريطة رمزية تعتمد على 22 طاقة، تعكس أنماطك الداخلية ومسارك في الحياة. من خلال تحليل مواقع الأرقام والعلاقات بينها، تكتشف نقاط القوة، مجالات النمو، والدروس الأساسية التي تحملها رحلتك.</p>
             <a class="aqm-btn" href="#aqm-readings">اكتشف المزيد</a>
           </div>
+          <svg class="aqm-learn-art" viewBox="0 0 120 120" width="120" height="120" fill="none" stroke="#D9B979" stroke-width="1" aria-hidden="true"><line x1="60" y1="60" x2="112.0" y2="60.0"/><line x1="60" y1="60" x2="108.0" y2="79.9"/><line x1="60" y1="60" x2="96.8" y2="96.8"/><line x1="60" y1="60" x2="79.9" y2="108.0"/><line x1="60" y1="60" x2="60.0" y2="112.0"/><line x1="60" y1="60" x2="40.1" y2="108.0"/><line x1="60" y1="60" x2="23.2" y2="96.8"/><line x1="60" y1="60" x2="12.0" y2="79.9"/><line x1="60" y1="60" x2="8.0" y2="60.0"/><line x1="60" y1="60" x2="12.0" y2="40.1"/><line x1="60" y1="60" x2="23.2" y2="23.2"/><line x1="60" y1="60" x2="40.1" y2="12.0"/><line x1="60" y1="60" x2="60.0" y2="8.0"/><line x1="60" y1="60" x2="79.9" y2="12.0"/><line x1="60" y1="60" x2="96.8" y2="23.2"/><line x1="60" y1="60" x2="108.0" y2="40.1"/><circle cx="60" cy="60" r="14"/><circle cx="60" cy="60" r="34" stroke-dasharray="2 4"/></svg>
           <ol class="aqm-learn-steps">
             <li>كل رقم يحمل طاقة ومعنى خاص</li>
             <li>مواقع الأرقام تكشف مجالات الحياة المختلفة</li>
