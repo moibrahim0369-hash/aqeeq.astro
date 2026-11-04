@@ -26,9 +26,33 @@
   function chartAt(ms) { return engine().chart({ utcMs: ms, lat: LAT, lon: LON, known: false }); }
   function body(c, k) { for (var i = 0; i < c.bodies.length; i++) if (c.bodies[i].key === k) return c.bodies[i]; return null; }
   function signName(i) { return (typeof SIGNS !== 'undefined' && SIGNS[i]) ? SIGNS[i].n : ''; }
-  function signGlyph(i) { return (typeof SIGNS !== 'undefined' && SIGNS[i]) ? SIGNS[i].g : ''; }
+
+  /* أيقونات SVG خطّية بدل رموز النص (لا تتحول لإيموجي على أي نظام) */
+  var GL = {
+    s0: 'M12 21V9M12 9C12 5.5 9.5 3.5 7 3.5S3.5 6 3.5 8M12 9C12 5.5 14.5 3.5 17 3.5S20.5 6 20.5 8',
+    s1: 'M5 3.5C5 7.5 8 9 12 9S19 7.5 19 3.5M12 9.5a5.2 5.2 0 1 0 .01 0',
+    s2: 'M6 4.5C9 6.2 15 6.2 18 4.5M6 19.5C9 17.8 15 17.8 18 19.5M9.5 5.5v13M14.5 5.5v13',
+    s3: 'M4 11.5C4.5 7 9 5 13 5.5c3 .4 5.5 2 7 4M20 12.5C19.5 17 15 19 11 18.5c-3-.4-5.5-2-7-4M6.5 9.5a2.2 2.2 0 1 0 .01 0M17.5 14.5a2.2 2.2 0 1 0 .01 0',
+    s4: 'M7.5 14.5a3 3 0 1 0 .01 0M10.5 14.5C10.5 9 10.5 5 14 5s4 4 2 7.500c-1.500 2.800-2 5.500.8 6.500 1.500.5 2.700-.3 3.200-1.500',
+    s5: 'M3.500 5v12M3.500 8.500c0-4 5-4 5 0V17M8.500 8.500c0-4 5-4 5 0V17M13.500 8.500c0-4 5-4 5 2v5.500c0 3.500-2.500 5-5.500 4.500M13 18c1 2.500 5 3 7 .5',
+    s6: 'M3.500 19.500h17M3.500 15h6C7.800 13.800 6.500 12 6.500 9.800 6.500 6.500 9 4.500 12 4.500s5.500 2 5.500 5.300c0 2.200-1.300 4-3 5.200h6',
+    s7: 'M3.500 5v11M3.500 8.500c0-4 5-4 5 0V16M8.500 8.500c0-4 5-4 5 0V16c0 2.800 1.500 3.500 3.500 3.500h3M18 16.800l2.800 2.700L18 22.200',
+    s8: 'M5 19L19 5M10 5h9v9M7 12.500l4.500 4.500',
+    s9: 'M3.500 5.500c2.200 0 3.500 1.800 3.500 5V17M7 9C7 5 12.500 4.500 12.500 9v8c0 3 4 3.500 5.200.8.800-2-1-3.200-2.700-2.200-1.200.8-1 3 .8 4.200 1.500 1 3.500.8 4.700-.8',
+    s10: 'M3.500 9l3.500-3 3.500 3 3.500-3 3.500 3 2-1.500M3.500 17l3.500-3 3.500 3 3.500-3 3.500 3 2-1.500',
+    s11: 'M5 3.500C9.500 7 9.500 17 5 20.500M19 3.500C14.500 7 14.500 17 19 20.500M4 12h16',
+    sun: 'M12 4a8 8 0 1 0 .01 0M12 11.200a.8.8 0 1 0 .01 0',
+    moon: 'M19 14.500A8 8 0 1 1 9.500 5 6.500 6.500 0 0 0 19 14.500z',
+    mercury: 'M12 9a4 4 0 1 0 .01 0M8 3c.6 2.800 7.400 2.800 8 0M12 13v8M9 18h6',
+    venus: 'M12 3.500a4.700 4.700 0 1 0 .01 0M12 13v8M8.500 17h7',
+    mars: 'M10 9.500a5 5 0 1 0 .01 0M13.800 10.200L20 4M14.500 4H20v5.500',
+    jupiter: 'M5 7.500C8 3.500 14 5.500 12 10.500L5 16.500h15M16 8v12.500',
+    saturn: 'M8 3.500v13M5 7h6M8 11c2-3 7-3 7 1.500 0 3-3.200 4.500-3.200 7.500 0 1.200 1.200 1.500 2.200 1'
+  };
+  function icon(k, cls) { var d = GL[k]; return d ? '<svg class="dbn-gl ' + (cls || '') + '" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="' + d + '"/></svg>' : ''; }
+  function signGlyph(i) { return icon('s' + i); }
   function planetName(k) { return (typeof PLANETS !== 'undefined' && PLANETS[k]) ? PLANETS[k].n : k; }
-  function planetGlyph(k) { return (typeof PLANETS !== 'undefined' && PLANETS[k]) ? PLANETS[k].g : ''; }
+  function planetGlyph(k) { return icon(k); }
   function deg(lon) { return Math.floor(mod(lon) % 30); }
   function fmtDT(ms) { try { return new Date(ms).toLocaleString('ar-EG-u-nu-latn', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch (e) { return new Date(ms).toISOString(); } }
   function fmtT(ms) { try { return new Date(ms).toLocaleTimeString('ar-EG-u-nu-latn', { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
@@ -82,9 +106,9 @@
     last.key = key;
     var sunLine = signGlyph(sun.sign) + ' ' + signName(sun.sign) + ' ' + deg(sun.lon) + '°';
     var moonSign = signGlyph(moon.sign) + ' ' + signName(moon.sign);
-    setF('sunLine', sunLine); setF('moonSign', moonSign); setF('phaseName', ph);
-    setF('moonSignDeg', moonSign + ' · ' + deg(moon.lon) + '°'); setF('illum', illum + '%');
-    setF('moonShort', moonSign + ' · ' + ph + ' · ' + illum + '%');
+    setF('sunLine', sunLine, 1); setF('moonSign', moonSign, 1); setF('phaseName', ph);
+    setF('moonSignDeg', moonSign + ' · ' + deg(moon.lon) + '°', 1); setF('illum', illum + '%');
+    setF('moonShort', moonSign + ' · ' + ph + ' · ' + illum + '%', 1);
     setF('updated', 'آخر تحديث ' + fmtT(now));
     [].forEach.call(root.querySelectorAll('[data-moon]'), function (sv) { sv.innerHTML = moonSvg(elong); sv.setAttribute('aria-label', 'القمر الآن: ' + ph + '، إضاءة ' + illum + '%'); });
     /* دخول/خروج القمر: يُعاد حسابه فقط عند تغير البرج */
@@ -101,14 +125,14 @@
     if (ruler) {
       var rb = body(c, ruler);
       if (rb) {
-        setF('ruler', planetGlyph(ruler) + ' ' + planetName(ruler) + ' في ' + signName(rb.sign) + ' ' + deg(rb.lon) + '° · ' + (rb.retro ? 'متراجع ℞' : 'مباشر'));
+        setF('ruler', planetGlyph(ruler) + ' ' + planetName(ruler) + ' في ' + signName(rb.sign) + ' ' + deg(rb.lon) + '° · ' + (rb.retro ? 'متراجع' : 'مباشر'), 1);
         setF('headline', 'يومٌ يحكمه ' + planetName(ruler) + '، والقمر في ' + signName(moon.sign) + ' (' + ph + ')');
         var th = (typeof PLANETS !== 'undefined' && PLANETS[ruler]) ? PLANETS[ruler].theme : '';
         setF('planetTheme', th ? '«' + planetName(ruler) + ': ' + th + '»' : '');
       }
     } else { setF('headline', 'القمر في ' + signName(moon.sign) + ' · ' + ph); }
     /* شريط الكواكب */
-    var pl = ['mercury', 'venus', 'mars', 'jupiter', 'saturn'].map(function (k) { var b = body(c, k); if (!b) return ''; return '<span class="dbn-pl"><b>' + planetGlyph(k) + ' ' + planetName(k) + '</b> ' + signName(b.sign) + ' ' + deg(b.lon) + '°' + (b.retro ? ' <em>℞</em>' : '') + '</span>'; }).join('');
+    var pl = ['mercury', 'venus', 'mars', 'jupiter', 'saturn'].map(function (k) { var b = body(c, k); if (!b) return ''; return '<span class="dbn-pl"><b>' + planetGlyph(k) + ' ' + planetName(k) + '</b> ' + signName(b.sign) + ' ' + deg(b.lon) + '°' + (b.retro ? ' <em>متراجع</em>' : '') + '</span>'; }).join('');
     setF('planets', pl, true);
   }
   function refresh() { renderStatic(); renderNumerology(); renderSky(); }
