@@ -1488,7 +1488,7 @@
             <button type="button" class="aqm-zoom-btn" data-aqm-zoom="reset" aria-label="إعادة الضبط">⟲</button>
           </div>
           <p style="margin:0 0 16px;color:var(--aqm-text-muted);font-size:0.85rem;">خريطة مصفوفة القدر (توزيع مسارات الطاقة والأركانا)</p>
-          ${generateMatrixSVG(P)}
+          ${generateMatrixSVG(P).replace(/>undefined</g, '>—<').replace(/data-arcana="undefined"/g, 'data-arcana=""')}
           <ol class="aqm-chakra-axis" id="aqm-chakras" aria-label="المحور الرأسي للشاكرات">
             ${Object.entries(P.chakras.rows).map(([key, r]) => `
               <li class="aqm-chakra-row"><span class="aqm-chakra-dot" style="background:${CHAKRA_COLORS[key] || '#C5A46D'}"></span><span class="aqm-chakra-name">${r.name}</span><span class="aqm-chakra-vals">الفيزياء ${r.physics} · الطاقة ${r.energy} · المشاعر ${r.emotions}</span></li>`).join('')}
@@ -1584,6 +1584,25 @@
         z = m === 'in' ? Math.min(1.6, z + 0.2) : m === 'out' ? Math.max(0.8, z - 0.2) : 1;
         z = Math.round(z * 10) / 10; apply();
       }));
+    })();
+
+    // تبويبات: تمييز التبويب الحالي عند التمرير + تمرير سلس (عرض فقط)
+    (function () {
+      const tabs = [...host.querySelectorAll('.aqm-tab')];
+      if (!tabs.length) return;
+      const setActive = id => tabs.forEach(t => { const on = t.getAttribute('href') === '#' + id; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', String(on)); });
+      tabs.forEach(t => t.addEventListener('click', ev => {
+        const id = t.getAttribute('href').slice(1);
+        const target = host.querySelector('#' + id);
+        if (!target) return;
+        ev.preventDefault();
+        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        setActive(id);
+      }));
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { rootMargin: '-20% 0px -60% 0px' });
+        ['aqm-map', 'aqm-chakras', 'aqm-readings'].forEach(id => { const el = host.querySelector('#' + id); if (el) io.observe(el); });
+      }
     })();
 
     // ربط زر الطباعة / PDF
