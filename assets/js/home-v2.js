@@ -276,6 +276,7 @@
         try {
           var sky = skyNow(), key = DAY_RULER[new Date().getDay()], p = PLANETS.filter(function (x) { return x.key === key; })[0], b = sky[key];
           if (!b) throw new Error('no-ruler');
+          card.setAttribute('data-ruler', key); /* مصدر وحيد لكوكب اليوم يقرأه بانر طاقة اليوم */
           $('#aqh-energy-main').innerHTML = '<span class="aqh-pl">' + p.sym + '</span> كوكب اليوم: <b>' + p.ar + '</b> في <b>' + SIGN_AR[b.sign] + '</b> — ' + b.deg + '°';
           $('#aqh-energy-state').innerHTML = 'الحالة: <b>' + (b.retro ? 'متراجع ℞' : 'مباشر') + '</b>';
           set('ready');

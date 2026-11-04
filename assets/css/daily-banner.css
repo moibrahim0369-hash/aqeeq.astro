@@ -15,31 +15,62 @@
 #home.aqh #aqh-energy .dbn-theme-lg { font-size: clamp(1.1rem, 1.6vw, 1.4rem); }
 #home.aqh #aqh-energy .dbn-theme:empty, #home.aqh #aqh-energy .dbn-quote:empty { display: none; }
 #home.aqh #aqh-energy .dbn-cta { justify-self: start; margin-top: 6px; }
-/* 1 ivory */
-#home.aqh #aqh-energy .dbn-s1 { background: linear-gradient(180deg, #FCFAF5, #F8F3EA); }
-/* 2 burgundy */
-#home.aqh #aqh-energy .dbn-s2 { background: linear-gradient(160deg, #6f3045, #4a1f2d 70%, #351B28); color: #fff; }
-#home.aqh #aqh-energy .dbn-s2::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(217, 185, 121, .5); border-radius: calc(var(--aqh-radius, 22px) - 8px); pointer-events: none; }
-#home.aqh #aqh-energy .dbn-moon { flex: 0 0 auto; width: clamp(90px, 12vw, 150px); height: auto; }
-#home.aqh #aqh-energy .dbn-quote { margin: 0; font-family: 'Noto Serif Arabic', 'Amiri', serif; font-size: clamp(1.15rem, 1.8vw, 1.55rem); line-height: 2; color: #fff; }
-#home.aqh #aqh-energy .dbn-moonline { margin: 0; color: rgba(255, 255, 255, .8); font-size: .95rem; }
-#home.aqh #aqh-energy .dbn-moonline strong { font-weight: 500; }
-#home.aqh #aqh-energy .dbn-sign { color: var(--antique-gold, #D9B979); letter-spacing: .3em; font-size: .75rem; }
-/* 3 cream date */
-#home.aqh #aqh-energy .dbn-s3 { background: var(--cream, #FBF8F2); }
-#home.aqh #aqh-energy .dbn-date { flex: 0 0 auto; display: grid; justify-items: center; gap: 2px; padding-inline-start: clamp(14px, 3vw, 36px); border-inline-start: 1px solid var(--aqh-line, #E5DED2); min-width: 130px; order: 2; }
-#home.aqh #aqh-energy .dbn-wd { color: var(--muted-text, #746C68); font-size: 1rem; }
-#home.aqh #aqh-energy .dbn-dn { font-family: 'Noto Serif Arabic', 'Amiri', serif; font-size: clamp(3.6rem, 7vw, 5.6rem); line-height: 1; color: var(--burgundy, #642B3C); font-weight: 600; }
-#home.aqh #aqh-energy .dbn-my { color: var(--muted-text, #746C68); font-size: .95rem; }
-/* 4 analysis */
-#home.aqh #aqh-energy .dbn-s4 { background: #FDFBF7; }
-#home.aqh #aqh-energy .dbn-units { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: 1px solid var(--aqh-line, #E5DED2); border-radius: 16px; overflow: hidden; background: #fff; }
-#home.aqh #aqh-energy .dbn-unit { display: grid; gap: 3px; padding: 12px 16px; border-bottom: 1px solid var(--aqh-line, #E5DED2); min-width: 0; }
-#home.aqh #aqh-energy .dbn-unit:nth-child(odd) { border-inline-start: 1px solid var(--aqh-line, #E5DED2); }
-#home.aqh #aqh-energy .dbn-unit:nth-last-child(-n+2) { border-bottom: 0; }
-#home.aqh #aqh-energy .dbn-unit small { color: var(--muted-text, #746C68); font-size: .74rem; }
-#home.aqh #aqh-energy .dbn-unit strong { font-size: .95rem; font-weight: 500; line-height: 1.6; color: var(--charcoal, #29252A); }
-#home.aqh #aqh-energy .dbn-unit strong b { color: var(--burgundy, #642B3C); font-weight: 600; }
+/* ---- shared ---- */
+#home.aqh #aqh-energy .dbn-title { margin: 0; display: flex; align-items: center; gap: 10px; font-size: clamp(1.4rem, 1.9vw, 1.9rem); font-weight: 600; padding: 0; color: var(--charcoal, #29252A); }
+#home.aqh #aqh-energy .dbn-title svg, #home.aqh #aqh-energy .dbn-kicker svg { color: var(--antique-gold, #B8964F); flex: 0 0 auto; }
+#home.aqh #aqh-energy .dbn-src { display: none !important; }
+#home.aqh #aqh-energy .dbn-moonsvg { display: block; width: 100%; height: auto; }
+#home.aqh #aqh-energy [data-f]:empty::before { content: '—'; opacity: .5; }
+/* ---- 1: طاقة اليوم (شريط عاجي: تاريخ + قمر + معلومات) ---- */
+#home.aqh #aqh-energy .dbn-s1 { background: linear-gradient(180deg, #FCFAF5, #F7F2E8); gap: clamp(14px, 2.4vw, 32px); }
+#home.aqh #aqh-energy .dbn-s1-main { order: 3; flex: 1 1 auto; min-width: 0; display: grid; gap: 10px; }
+#home.aqh #aqh-energy .dbn-s1-moon { order: 2; flex: 0 0 auto; width: clamp(84px, 11vw, 140px); }
+#home.aqh #aqh-energy .dbn-s1-date { order: 1; flex: 0 0 auto; display: grid; justify-items: center; gap: 4px; padding-inline-end: clamp(14px, 2.4vw, 32px); border-inline-end: 1px solid var(--aqh-line, #E5DED2); min-width: 110px; color: var(--muted-text, #746C68); }
+#home.aqh #aqh-energy .dbn-s1-date strong { color: var(--charcoal, #29252A); font-size: 1.15rem; font-weight: 600; }
+#home.aqh #aqh-energy .dbn-headline { margin: 0; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.8; color: var(--charcoal, #29252A); }
+#home.aqh #aqh-energy .dbn-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+#home.aqh #aqh-energy .dbn-chips li { display: grid; gap: 1px; padding: 8px 14px; border: 1px solid var(--aqh-line, #E5DED2); border-radius: 12px; background: #fff; }
+#home.aqh #aqh-energy .dbn-chips small { font-size: .72rem; color: var(--muted-text, #746C68); }
+#home.aqh #aqh-energy .dbn-chips strong { font-size: .92rem; font-weight: 500; }
+/* ---- 2: القمر الحي (بني داكن) ---- */
+#home.aqh #aqh-energy .dbn-s2 { background: radial-gradient(120% 140% at 15% 50%, #4a2a30 0%, #331a20 60%, #2a1519 100%); color: #fff; overflow: hidden; }
+#home.aqh #aqh-energy .dbn-s2-moon { flex: 0 0 auto; width: clamp(130px, 20vw, 230px); margin-inline-start: clamp(-40px, -3vw, -14px); filter: drop-shadow(0 0 28px rgba(217,185,121,.18)); }
+#home.aqh #aqh-energy .dbn-kicker { display: flex; align-items: center; gap: 10px; color: #E6CC9A; font-size: 1rem; }
+#home.aqh #aqh-energy .dbn-big { margin: 2px 0 6px; font-size: clamp(1.7rem, 3vw, 2.5rem); line-height: 1.25; color: #fff; font-weight: 500; }
+#home.aqh #aqh-energy .dbn-moonlist { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; }
+#home.aqh #aqh-energy .dbn-moonlist li { display: grid; gap: 2px; }
+#home.aqh #aqh-energy .dbn-moonlist small { color: rgba(255,255,255,.6); font-size: .76rem; }
+#home.aqh #aqh-energy .dbn-moonlist strong { font-weight: 500; font-size: .98rem; color: #fff; line-height: 1.6; }
+#home.aqh #aqh-energy .dbn-sign { color: #E6CC9A; letter-spacing: .12em; font-size: .78rem; margin-top: 6px; }
+/* ---- 3: التاريخ والإشارة اليومية ---- */
+#home.aqh #aqh-energy .dbn-s3 { background: var(--cream, #FBF8F2); gap: clamp(16px, 3vw, 40px); }
+#home.aqh #aqh-energy .dbn-s3-date { order: 1; flex: 0 0 auto; display: grid; justify-items: center; gap: 2px; padding: 16px clamp(18px, 3vw, 40px); background: #F0E7DA; border-radius: 18px; color: var(--muted-text, #746C68); min-width: 160px; }
+#home.aqh #aqh-energy .dbn-s3-tag { color: var(--antique-gold, #A8863F); font-size: .85rem; border-bottom: 1px solid currentColor; padding-bottom: 3px; margin-bottom: 6px; }
+#home.aqh #aqh-energy .dbn-dn { font-family: 'Noto Serif Arabic', 'Amiri', serif; font-size: clamp(3.8rem, 7vw, 5.6rem); line-height: 1.05; color: var(--burgundy, #642B3C); font-weight: 600; }
+#home.aqh #aqh-energy .dbn-s3-main { order: 2; flex: 1 1 auto; min-width: 0; display: grid; gap: 10px; }
+#home.aqh #aqh-energy .dbn-theme { margin: 0; line-height: 1.9; color: var(--charcoal, #29252A); }
+#home.aqh #aqh-energy .dbn-theme-lg { font-size: clamp(1.1rem, 1.6vw, 1.4rem); }
+#home.aqh #aqh-energy .dbn-src-note { color: var(--muted-text, #746C68); font-size: .78rem; }
+#home.aqh #aqh-energy .dbn-src-note:empty { display: none; }
+/* ---- 4: التحليل المختصر ---- */
+#home.aqh #aqh-energy .dbn-s4 { background: #FAF6EE; }
+#home.aqh #aqh-energy .dbn-tile { flex: 0 0 auto; width: clamp(84px, 11vw, 130px); aspect-ratio: 1; border-radius: 26px; background: #F1EADD; display: grid; place-items: center; color: #B08A3E; }
+#home.aqh #aqh-energy .dbn-tile svg { width: 62%; height: 62%; }
+#home.aqh #aqh-energy .dbn-s4-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+#home.aqh #aqh-energy .dbn-s4-date { display: inline-flex; align-items: center; gap: 8px; color: var(--muted-text, #746C68); font-size: .88rem; }
+#home.aqh #aqh-energy .dbn-quote4 { margin: 0; color: var(--muted-text, #746C68); font-size: 1rem; line-height: 1.8; }
+#home.aqh #aqh-energy .dbn-quote4:empty { display: none; }
+#home.aqh #aqh-energy .dbn-units { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin-top: 4px; }
+#home.aqh #aqh-energy .dbn-unit { display: grid; gap: 4px; justify-items: center; text-align: center; padding: 6px 10px; min-width: 0; }
+#home.aqh #aqh-energy .dbn-unit + .dbn-unit { border-inline-start: 1px solid var(--aqh-line, #E5DED2); }
+#home.aqh #aqh-energy .dbn-unit small { color: var(--muted-text, #746C68); font-size: .76rem; }
+#home.aqh #aqh-energy .dbn-unit small i { font-style: normal; display: block; font-size: .66rem; color: var(--antique-gold, #A8863F); }
+#home.aqh #aqh-energy .dbn-unit strong { font-size: .95rem; font-weight: 600; line-height: 1.6; color: var(--charcoal, #29252A); }
+#home.aqh #aqh-energy .dbn-planets { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .78rem; color: var(--muted-text, #746C68); margin-top: 2px; }
+#home.aqh #aqh-energy .dbn-pl b { color: var(--burgundy, #642B3C); font-weight: 600; }
+#home.aqh #aqh-energy .dbn-pl em { font-style: normal; color: #A77C4A; }
+#home.aqh #aqh-energy .dbn-copy { flex: 1 1 auto; min-width: 0; display: grid; gap: 10px; align-content: center; }
+#home.aqh #aqh-energy .dbn-cta { justify-self: start; margin-top: 4px; }
 /* controls */
 #home.aqh #aqh-energy .dbn-ctrl { position: absolute; inset-inline: 0; bottom: 14px; display: flex; align-items: center; justify-content: center; gap: 12px; z-index: 3; pointer-events: none; }
 #home.aqh #aqh-energy .dbn-ctrl > * { pointer-events: auto; }
@@ -55,13 +86,16 @@
 @keyframes dbnRun { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 /* responsive */
 @media (max-width: 720px) {
-  #home.aqh #aqh-energy .dbn-slide { flex-direction: column; align-items: flex-start; padding: 22px 18px 60px; gap: 14px; }
-  #home.aqh #aqh-energy .dbn-copy { width: 100%; }
-  #home.aqh #aqh-energy .dbn-moon { width: 84px; }
-  #home.aqh #aqh-energy .dbn-date { order: 0; border-inline-start: 0; padding-inline-start: 0; min-width: 0; grid-auto-flow: column; align-items: baseline; gap: 10px; }
-  #home.aqh #aqh-energy .dbn-units { grid-template-columns: 1fr; }
-  #home.aqh #aqh-energy .dbn-unit:nth-child(odd) { border-inline-start: 0; }
-  #home.aqh #aqh-energy .dbn-unit:nth-last-child(2) { border-bottom: 1px solid var(--aqh-line, #E5DED2); }
+  #home.aqh #aqh-energy .dbn-slide { flex-direction: column; align-items: stretch; padding: 22px 18px 62px; gap: 16px; }
+  #home.aqh #aqh-energy .dbn-s1-main, #home.aqh #aqh-energy .dbn-s3-main { order: 3; }
+  #home.aqh #aqh-energy .dbn-s1-moon { order: 1; width: 92px; align-self: center; }
+  #home.aqh #aqh-energy .dbn-s1-date { order: 2; border-inline-end: 0; padding-inline-end: 0; grid-auto-flow: column; justify-content: center; gap: 10px; min-width: 0; }
+  #home.aqh #aqh-energy .dbn-s2-moon { width: 120px; margin: 0 auto; }
+  #home.aqh #aqh-energy .dbn-s3-date { order: 1; min-width: 0; }
+  #home.aqh #aqh-energy .dbn-tile { width: 64px; border-radius: 18px; }
+  #home.aqh #aqh-energy .dbn-units { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 0; }
+  #home.aqh #aqh-energy .dbn-unit:nth-child(3) { border-inline-start: 0; }
+  #home.aqh #aqh-energy .dbn-moonlist { grid-template-columns: 1fr 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   #home.aqh #aqh-energy .dbn-slide { transition: none; transform: none; }
