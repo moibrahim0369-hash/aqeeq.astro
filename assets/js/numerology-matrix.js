@@ -1436,7 +1436,14 @@
       gender = gi ? gi.value : '';
     }
 
-    const P = engine.calculateDestinyMatrix(birthDate);
+    let P;
+    try { P = engine.calculateDestinyMatrix(birthDate); } catch (err) { P = null; console.error(err); }
+    if (!P || !P.anchors) {
+      host.innerHTML = '<div class="aqm-state aqm-state-error" role="alert"><p>تعذّر إنشاء المصفوفة لهذه البيانات. تحقّق من تاريخ الميلاد وحاول مرة أخرى.</p><button type="button" class="aqm-btn aqm-btn-primary" data-aqm-retry>حاول مرة أخرى</button></div>';
+      host.hidden = false;
+      host.querySelector('[data-aqm-retry]')?.addEventListener('click', () => { const d = document.getElementById('m-date'); host.hidden = true; host.innerHTML = ''; (d || document.getElementById('mform'))?.focus(); });
+      return;
+    }
     const getInfo = n => engine.getArcanaInfo(n);
     const dateStr = `${P.birthDate.year}-${String(P.birthDate.month).padStart(2, '0')}-${String(P.birthDate.day).padStart(2, '0')}`;
     const displayName = name ? name.trim() : 'مستخدم عقيق أسترو';
@@ -1565,6 +1572,7 @@
       const act = () => {
         host.querySelectorAll('.aqm-svg .aqm-node.is-active').forEach(n => n.classList.remove('is-active'));
         node.classList.add('is-active');
+        node.closest('.aqm-svg')?.classList.add('has-focus');
         openPositionModal(node);   // تفسير هذا الموضع مع هذا الرقم تحديدًا (position + arcana)
       };
       node.addEventListener('click', act);
@@ -1619,20 +1627,36 @@
     });
 
     // تعديل البيانات: يعيد فتح نموذج الإدخال مع القيم الحالية دون تحديث الصفحة
-    host.querySelector('#aqm-btn-edit')?.addEventListener('click', () => {
+    host.querySelector('#aqm-btn-edit')?.addEventListener('click', ev => {
       const mf = document.getElementById('mform');
       if (!mf) return;
-      for (let el = mf; el; el = el.parentElement) {
-        if (el.hidden) el.hidden = false;
-        if (el.style && el.style.display === 'none') el.style.display = '';
-        if (el.classList && el.classList.contains('hidden')) el.classList.remove('hidden');
-      }
-      const nameIn = document.getElementById('m-name');
-      const dateIn = document.getElementById('m-date');
-      if (nameIn) nameIn.value = name || '';
-      if (dateIn) dateIn.value = dateStr;
-      mf.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      (dateIn || nameIn)?.focus();
+      const opener = ev.currentTarget;
+      const dlg = document.createElement('div');
+      dlg.className = 'aqm-modal';
+      dlg.setAttribute('role', 'dialog'); dlg.setAttribute('aria-modal', 'true'); dlg.setAttribute('aria-labelledby', 'aqm-edit-title');
+      dlg.innerHTML = `<div class="aqm-modal-card"><h3 id="aqm-edit-title">تعديل بيانات التحليل</h3>
+        <label>الاسم (اختياري)<input type="text" maxlength="40" id="aqm-edit-name" autocomplete="off"></label>
+        <label>تاريخ الميلاد<input type="date" id="aqm-edit-date" min="1900-01-01" max="2100-12-31"></label>
+        <div class="aqm-modal-actions"><button type="button" class="aqm-btn" data-x>إلغاء</button><button type="button" class="aqm-btn aqm-btn-primary" data-ok>تحديث المصفوفة</button></div></div>`;
+      document.body.appendChild(dlg);
+      const nIn = dlg.querySelector('#aqm-edit-name'), dIn = dlg.querySelector('#aqm-edit-date');
+      nIn.value = name || ''; dIn.value = dateStr;
+      const close = () => { dlg.remove(); document.removeEventListener('keydown', onKey, true); opener && opener.focus(); };
+      const onKey = e => {
+        if (e.key === 'Escape') { e.stopPropagation(); close(); }
+        if (e.key === 'Tab') { const f = [...dlg.querySelectorAll('input,button')]; const first = f[0], last = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } }
+      };
+      document.addEventListener('keydown', onKey, true);
+      dlg.addEventListener('click', e => { if (e.target === dlg) close(); });
+      dlg.querySelector('[data-x]').addEventListener('click', close);
+      dlg.querySelector('[data-ok]').addEventListener('click', () => {
+        if (!dIn.value) { dIn.focus(); return; }
+        const nameIn = document.getElementById('m-name'), dateIn = document.getElementById('m-date');
+        if (nameIn) nameIn.value = nIn.value; if (dateIn) dateIn.value = dIn.value;
+        document.removeEventListener('keydown', onKey, true); dlg.remove();
+        if (mf.requestSubmit) mf.requestSubmit(); else mf.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      });
+      dIn.focus();
     });
 
     // بطاقة القصة: PNG 9:16 تُولَّد من الـ SVG الحالي
