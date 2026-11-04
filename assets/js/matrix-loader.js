@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '14';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '15';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -84,7 +84,18 @@
   /* تلميح تحميل مسبق (بيتجاهل الأخطاء) */
   function prefetch(ids) { [...new Set(ids)].filter(validId).forEach(id => arcana(id).catch(() => {})); core().catch(() => {}); }
 
+  /* محتوى Gemini الكامل (حرفي): gemini/pos-NN.json لكل أركانا (المواضع + المرجع التشريحي) وgemini/tails.json للذيول. */
+  function gemini(id) {
+    if (!validId(id)) return Promise.reject(new RangeError('رقم الأركانا لازم يكون من 1 إلى 22'));
+    return load('gemini/pos-' + String(id).padStart(2, '0') + '.json', d => d && d.number === id && d.positions && typeof d.positions === 'object')
+      .catch(() => null);   // رقم بلا ملف مصدر (مثل 22 للمرجع أو 17 للمواضع) = لا يوجد، وليس خطأ
+  }
+  function geminiTails() {
+    return load('gemini/tails.json', d => d && Array.isArray(d.tails));
+  }
+
   window.AqeeqMatrix = {
+    gemini, geminiTails,
     core, arcana, chakraText, chakraReading, prefetch, FIELDS,
     karmicTails, karmicTail, resolveKarmicTail,
     section, sectionEntry

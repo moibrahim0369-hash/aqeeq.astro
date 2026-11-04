@@ -1448,3 +1448,32 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
   .aqm-kt-box, .aqm-prog-box, .aqm-child-box, .aqm-rx-box { padding: 12px; }
   .aqm-chakra-table-wrap { padding: 8px 6px !important; }
 }
+
+/* ===== تفسيرات Gemini الكاملة (نافذة الموضع + الرقم) — يعتمد على متغيرات الهوية القائمة ===== */
+.aqm-g { font-size: 16px; line-height: 1.85; color: var(--aqm-body, #2D2D2D); }
+.aqm-g .aqm-xr-head h4 { font-size: 19px; line-height: 1.6; }
+.aqm-g-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 14px; }
+.aqm-g-tabs button { font: inherit; font-size: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--aqm-line, #C5A059); background: transparent; color: var(--aqm-title, #4A1521); cursor: pointer; }
+.aqm-g-tabs button.is-on { background: var(--aqm-title, #4A1521); color: #FFFEFA; }
+.aqm-g-panel[hidden] { display: none; }
+.aqm-g-h1 { font-size: 17px; margin: 22px 0 8px; color: var(--aqm-title, #4A1521); line-height: 1.7; }
+.aqm-g-h2 { font-size: 16px; margin: 16px 0 6px; color: var(--aqm-title, #4A1521); line-height: 1.7; }
+.aqm-g-p, .aqm-g-c { margin: 0 0 10px; overflow-wrap: anywhere; }
+.aqm-g-ul { margin: 6px 0 12px; padding: 0 20px 0 0; }
+.aqm-g-li { margin: 0 0 8px; overflow-wrap: anywhere; }
+.aqm-g-li.d1 { margin-right: 18px; list-style-type: circle; }
+.aqm-g-c { margin-top: 4px; }
+.aqm-g-q { margin: 12px 0; padding: 10px 14px; border-right: 3px solid var(--aqm-line, #C5A059); background: rgba(197,160,89,.08); border-radius: 8px; }
+.aqm-g-q p { margin: 0 0 6px; }
+.aqm-g-tw { overflow-x: auto; margin: 10px 0; }
+.aqm-g-table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.aqm-g-table td { border: 1px solid rgba(197,160,89,.45); padding: 6px 8px; vertical-align: top; }
+.aqm-g .is-hl { background: rgba(197,160,89,.14); border-radius: 6px; }
+.aqm-g-missing { margin: 12px 0; padding: 14px 16px; border: 1px dashed var(--aqm-line, #C5A059); border-radius: 12px; background: rgba(197,160,89,.07); }
+.aqm-g-missing p { margin: 6px 0 0; }
+.aqm-g-note { font-size: 13px; opacity: .8; }
+.aqm-g-goto { margin: 18px 0 4px; }
+.aqm-g-goto-btn { font: inherit; font-size: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--aqm-line, #C5A059); background: transparent; color: var(--aqm-title, #4A1521); cursor: pointer; }
+.aqm-svg .aqm-node { cursor: pointer; }
+.aqm-svg .aqm-node:focus-visible { outline: 2px solid #8B263E; outline-offset: 2px; }
+.aqm-kt-full { margin-top: 10px; }

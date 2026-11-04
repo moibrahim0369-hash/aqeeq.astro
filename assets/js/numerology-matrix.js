@@ -231,7 +231,7 @@
     const [fatherA, fatherB] = shorten(pos.northWest, pos.southEast, 26);
     const [motherA, motherB] = shorten(pos.northEast, pos.southWest, 26);
 
-    const nodeG = (cls, section, title, arc, p, r, inner, fill) => {
+    const nodeG = (cls, section, title, arc, p, r, inner, fill, posKey) => {
       const st = fill ? ` style="fill:${fill}"` : '';
       const dark = !!fill && DARK.includes(fill);
       const tc = dark ? ' is-dark' : '';
@@ -239,7 +239,7 @@
       const fs = r >= 26 ? 34 : r >= 23 ? 27 : 22;
       const txtFill = dark ? '#ffffff' : '#1A1A1A';
       return `
-        <g class="aqm-node ${cls}${r >= 26 ? ' aqm-node-primary' : ''}" data-section="${section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
+        <g class="aqm-node ${cls}${r >= 26 ? ' aqm-node-primary' : ''}" data-section="${section}" data-position="${posKey || section}" data-title="${title}" data-arcana="${arc}" transform="translate(${p[0]}, ${p[1]})">
           <circle cx="0" cy="0" r="${r}" class="aqm-node-bg"${st} />
           ${inner || ''}
           <text x="0" y="0" class="aqm-node-text${tc}" font-size="${fs}" font-weight="bold" fill="${txtFill}" text-anchor="middle" dominant-baseline="central">${arc}</text>
@@ -316,36 +316,36 @@
         <!-- المركز الجوهري E بهالة شمسية -->
 
         <!-- العُقد التفاعلية (المعرّفات مطابقة لأقسام الأكورديون) -->
-        ${nodeG('aqm-node-corner', 'personal', 'طاقة الشخصية والجوهر (اليوم)', A, pos.west, 26, null, '#8E6E85')}
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح والمواهب (الشهر)', B, pos.north, 26, null, '#8E6E85')}
-        ${nodeG('aqm-node-corner', 'money_line', 'طاقة المادة والصحة (السنة)', C, pos.east, 26, null, '#8B263E')}
-        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي الأساسي (Past Karma)', D, pos.south, 26, null, '#8B263E')}
-        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (نقطة وسطى D3)', intermediate.D3, pos.D3, 19, null, '#FFFFFF')}
-        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (مدخل القلب D2)', intermediate.D2, pos.D2, 19, null, '#C06C54')}
-        ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب العليا (مواهب الأب)', F, pos.northWest, 23)}
-        ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم العليا (مواهب الأم)', G, pos.northEast, 23)}
-        ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب السفلى (كارما المادة)', H, pos.southEast, 23)}
-        ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم السفلى (كارما المشاعر)', I, pos.southWest, 23)}
-        ${nodeG('aqm-node-love', 'love_line', 'مدخل الحب والعلاقات (Heart Point)', heartPoint, pos.heart, 18)}
-        ${nodeG('aqm-node-money', 'money_line', 'مدخل المال والوفرة (Money Point)', moneyPoint, pos.money, 18)}
+        ${nodeG('aqm-node-corner', 'personal', 'طاقة الشخصية والجوهر (اليوم)', A, pos.west, 26, null, '#8E6E85', 'personal_A')}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح والمواهب (الشهر)', B, pos.north, 26, null, '#8E6E85', 'talents_B')}
+        ${nodeG('aqm-node-corner', 'money_line', 'طاقة المادة والصحة (السنة)', C, pos.east, 26, null, '#8B263E', 'year_C')}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي الأساسي (Past Karma)', D, pos.south, 26, null, '#8B263E', 'tail_entry')}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (نقطة وسطى D3)', intermediate.D3, pos.D3, 19, null, '#FFFFFF', 'tail_D3')}
+        ${nodeG('aqm-node-corner', 'karmic_tail', 'الذيل الكارمي (مدخل القلب D2)', intermediate.D2, pos.D2, 19, null, '#C06C54', 'tail_D2')}
+        ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب العليا (مواهب الأب)', F, pos.northWest, 23, null, null, 'father_top')}
+        ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم العليا (مواهب الأم)', G, pos.northEast, 23, null, null, 'mother_top')}
+        ${nodeG('aqm-node-ancestral', 'father_line', 'سلالة الأب السفلى (كارما المادة)', H, pos.southEast, 23, null, null, 'father_bottom')}
+        ${nodeG('aqm-node-ancestral', 'mother_line', 'سلالة الأم السفلى (كارما المشاعر)', I, pos.southWest, 23, null, null, 'mother_bottom')}
+        ${nodeG('aqm-node-love', 'love_line', 'مدخل الحب والعلاقات (Heart Point)', heartPoint, pos.heart, 18, null, null, 'love')}
+        ${nodeG('aqm-node-money', 'money_line', 'مدخل المال والوفرة (Money Point)', moneyPoint, pos.money, 18, null, null, 'money')}
         ${[['F', 'father_line', -1, -1], ['G', 'mother_line', 1, -1], ['H', 'father_line', 1, 1], ['I', 'mother_line', -1, 1]].map(([k, sec, sx, sy]) => {
           const at = d => [r2(400 + sx * d / Math.SQRT2), r2(400 + sy * d / Math.SQRT2)];
-          return nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الخارجية: reduce22(' + k + '+الداخلية)', dg[k].outer, at(212), 17)
-               + nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الداخلية: reduce22(' + k + '+مركز الأجداد)', dg[k].inner, at(122), 17);
+          return nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الخارجية: reduce22(' + k + '+الداخلية)', dg[k].outer, at(212), 17, null, null, (sec === 'father_line' ? 'father' : 'mother') + '_diag_' + k + '_outer')
+               + nodeG('aqm-node-ancestral', sec, 'خط الأجداد المائل — النقطة الداخلية: reduce22(' + k + '+مركز الأجداد)', dg[k].inner, at(122), 17, null, null, (sec === 'father_line' ? 'father' : 'mother') + '_diag_' + k + '_inner');
         }).join('')}
-        ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 18)}
+        ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 18, null, null, 'balance')}
         <!-- المحور الأفقي الأيسر من A إلى E: النقاط الثلاث (الخارجية والوسطى والداخلية الخضراء) -->
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [200, 400], 19, '', T.petrol)}
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(A+E)', hP1, [265, 400], 19, '', T.sky)}
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية داخلية — reduce22(الوسطى+E)', hP2, [326, 400], 19, '', T.lgreen)}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [200, 400], 19, '', T.petrol, 'axis_left_outer')}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(A+E)', hP1, [265, 400], 19, '', T.sky, 'axis_left_mid')}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية داخلية — reduce22(الوسطى+E)', hP2, [326, 400], 19, '', T.lgreen, 'axis_left_inner')}
         <!-- المحور الأيمن من E إلى C: C2 = reduce(C+E) ثم reduce(C+C2) (والنقطة الداخلية هي نقطة المال) -->
-        ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange)}
-        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white)}
+        ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange, 'axis_right_mid')}
+        ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white, 'axis_right_outer')}
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol)}
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky)}
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح الداخلية — reduce22(B2+E)', tTop3, [400, 326], 19, '', T.lgreen)}
-        <g class="aqm-node aqm-node-center" data-section="center" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol, 'axis_top_outer')}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky, 'axis_top_mid')}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح الداخلية — reduce22(B2+E)', tTop3, [400, 326], 19, '', T.lgreen, 'axis_top_inner')}
+        <g class="aqm-node aqm-node-center" data-section="center" data-position="core" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" style="fill:#E6C280" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
           <text x="0" y="0" class="aqm-node-text" font-size="42" font-weight="bold" fill="#1A1A1A" text-anchor="middle" dominant-baseline="central">${E}</text>
@@ -389,6 +389,16 @@
       </div>`;
   }
 
+  /* زر التفسير الكامل للذيل (نص Gemini الحرفي)؛ يبحث بالشفرة ثم بعكسها، وإلا يعرض «غير متوفر». */
+  function addTailFullButton(item, code) {
+    const slot = item.querySelector('[data-slot="detailed"]');
+    if (!slot || slot.querySelector('.aqm-kt-full')) return;
+    const box = document.createElement('div');
+    box.className = 'aqm-kt-full aqm-master-actions';
+    box.innerHTML = `<button type="button" class="aqm-master-open" data-aqm-tail="${escapeHtml(code)}">التفسير الكامل للذيل ${escapeHtml(code)}</button>`;
+    slot.appendChild(box);
+  }
+
   function hydrateKarmicTail(item, triad, gender) {
     if (!item || item.dataset.ktState === 'loading' || item.dataset.ktState === 'done') return Promise.resolve();
     const loader = window.AqeeqMatrix;
@@ -407,6 +417,7 @@
     };
     return loader.karmicTail(triad[0], triad[1], triad[2]).then(viaRedirect).then(res => {
       item.dataset.ktState = 'done';
+      addTailFullButton(item, res && res.tail && res.match !== 'redirect' ? res.tail.code : triad.map(Number).join('-'));
       if (!res || !res.tail) return;
       const g = gender === 'male' || gender === 'female' ? gender : '';
       const detailed = item.querySelector('[data-slot="detailed"] .aqm-slot-p');
@@ -585,6 +596,104 @@
     });
   }
 
+
+  /* ===== تفسيرات Gemini الكاملة (حرفية) مربوطة بالموضع + الرقم =====
+     المفتاح المستقل = (position, arcana). لا يُلخَّص ولا يُدمج ولا يُعوَّض النقص بنص مولَّد:
+     الموضع بلا مصدر يعرض بطاقة «غير متوفر في المصدر». المصدر: assets/data/matrix/gemini/*.json
+     (تُبنى من content-sources/gemini بأداة tools/build-gemini-content.py مع مطابقة كلمة بكلمة). */
+  const GEMINI_POSITIONS = ['core', 'money', 'love', 'tail_entry', 'mission'];
+  const POSITION_LABEL = {
+    core: 'الجوهر ومركز الراحة', money: 'خط المال والوفرة', love: 'خط الحب والعلاقات',
+    tail_entry: 'مدخل الذيل الكارمي (قاع المصفوفة)', mission: 'خط الرسالة والقدر المجتمعي',
+    personal_A: 'طاقة اليوم (A)', talents_B: 'المواهب والروح (B)', year_C: 'المادة والصحة (C)',
+    tail_D2: 'الذيل الكارمي — نقطة D2', tail_D3: 'الذيل الكارمي — نقطة D3',
+    father_top: 'خط الأب العلوي (F)', father_bottom: 'خط الأب السفلي (H)',
+    mother_top: 'خط الأم العلوي (G)', mother_bottom: 'خط الأم السفلي (I)',
+    balance: 'نقطة التوازن بين الحب والمال',
+    axis_left_outer: 'نقطة على محور اليوم (A)', axis_left_mid: 'نقطة على محور اليوم (A)', axis_left_inner: 'نقطة على محور اليوم (A)',
+    axis_right_outer: 'نقطة على محور السنة (C)', axis_right_mid: 'نقطة على محور السنة (C)',
+    axis_top_outer: 'نقطة على محور الشهر (B)', axis_top_mid: 'نقطة على محور الشهر (B)', axis_top_inner: 'نقطة على محور الشهر (B)'
+  };
+  const SECTION_POSITION = { center: 'core', money_line: 'money', love_line: 'love', ancestral_programs: 'tail_entry', purposes: 'mission' };
+  function positionLabel(key) {
+    if (POSITION_LABEL[key]) return POSITION_LABEL[key];
+    const m = /^(father|mother)_diag_([FGHI])_(outer|inner)$/.exec(key || '');
+    if (m) return `نقطة على خط ${m[1] === 'father' ? 'الأب' : 'الأم'} المائل (${m[2]})`;
+    return key || 'موضع';
+  }
+  function gInline(t) { return escapeHtml(t).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>'); }
+  /* تحويل كتل المصدر إلى HTML بنفس الترتيب والعناوين؛ hl = مفتاح موضع يُميَّز داخل المرجع. */
+  function geminiBlocksHtml(blocks, hl) {
+    let out = '', mode = '', liOpen = false;
+    const close = () => {
+      if (mode === 'ul') { out += (liOpen ? '</li>' : '') + '</ul>'; liOpen = false; }
+      else if (mode === 'q') out += '</blockquote>';
+      else if (mode === 'tr') out += '</tbody></table></div>';
+      mode = '';
+    };
+    const cls = (b, base) => ` class="${base}${hl && b.pos === hl ? ' is-hl' : ''}"`;
+    blocks.forEach(b => {
+      if (b.k === 'li') {
+        if (mode !== 'ul') { close(); out += '<ul class="aqm-g-ul">'; mode = 'ul'; liOpen = false; }
+        if (liOpen) out += '</li>';
+        out += `<li${cls(b, 'aqm-g-li d' + b.d)}>${gInline(b.t)}`; liOpen = true;
+      } else if (b.k === 'c' && mode === 'ul' && liOpen) {
+        out += `<p class="aqm-g-c">${gInline(b.t)}</p>`;
+      } else if (b.k === 'q') {
+        if (mode !== 'q') { close(); out += '<blockquote class="aqm-g-q">'; mode = 'q'; }
+        out += `<p>${gInline(b.t)}</p>`;
+      } else if (b.k === 'tr') {
+        const cells = b.t.split(' | ');
+        if (mode !== 'tr') { close(); out += '<div class="aqm-g-tw"><table class="aqm-g-table"><tbody>'; mode = 'tr'; }
+        out += '<tr>' + cells.map(c => `<td>${gInline(c)}</td>`).join('') + '</tr>';
+      } else {
+        close();
+        if (b.k === 'h1') out += `<h5${cls(b, 'aqm-g-h1')}>${gInline(b.t)}</h5>`;
+        else if (b.k === 'h2') out += `<h6${cls(b, 'aqm-g-h2')}>${gInline(b.t)}</h6>`;
+        else out += `<p${cls(b, 'aqm-g-p')}>${gInline(b.t)}</p>`;
+      }
+    });
+    close();
+    return out;
+  }
+  function geminiMissing(label, n, why) {
+    return `<div class="aqm-g-missing" data-g-missing="true"><strong>التفسير غير متوفر في المصدر حاليًا</strong><p>${escapeHtml(why || `لا يوجد في ملفات Gemini تفسير مخصص لموضع «${label}» مع الرقم ${n}.`)}</p><p class="aqm-g-note">لم نعوّض هذا النقص بنص مولَّد؛ سُجّل في قائمة النواقص.</p></div>`;
+  }
+  function arcanaName(n) {
+    const eng = window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter;
+    try { return eng.getArcanaInfo(n).name; } catch (e) { return ''; }
+  }
+  function geminiPositionHtml(posKey, n, section) {
+    const loader = window.AqeeqMatrix;
+    const label = positionLabel(posKey);
+    const head = `<header class="aqm-xr-head"><h4>${escapeHtml(label)} · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4></header>`;
+    const goto = section ? `<p class="aqm-g-goto"><button type="button" class="aqm-g-goto-btn" data-g-goto="${escapeHtml(section)}">فتح بطاقة القسم في الصفحة</button></p>` : '';
+    return loader.gemini(n).then(d => {
+      const unit = d && d.positions && d.positions[posKey];
+      const ref = d && d.reference;
+      let posPanel;
+      if (GEMINI_POSITIONS.indexOf(posKey) !== -1) {
+        posPanel = unit ? geminiBlocksHtml((d.header || []).concat(unit.blocks)) : geminiMissing(label, n, d ? undefined : `لا يوجد ملف مواضع Gemini للرقم ${n}.`);
+      } else {
+        posPanel = geminiMissing(label, n, `موضع «${label}» لا يملك تفسيرًا مخصصًا في مصدر Gemini (المصدر يغطي: الجوهر، المال، الحب، مدخل الذيل، الرسالة).`);
+      }
+      const refPanel = ref ? geminiBlocksHtml(ref.blocks, GEMINI_POSITIONS.indexOf(posKey) !== -1 ? posKey : null) : geminiMissing('المرجع التشريحي', n, `لا يوجد ملف «المرجع التشريحي الكامل» للرقم ${n} في مصدر Gemini.`);
+      return `<article class="aqm-xr aqm-g" dir="rtl" data-g-position="${escapeHtml(posKey)}" data-g-arcana="${n}">${head}
+        <div class="aqm-g-tabs" role="tablist"><button type="button" role="tab" class="is-on" aria-selected="true" data-g-tab="pos">تفسير هذا الموضع</button><button type="button" role="tab" aria-selected="false" data-g-tab="ref">المرجع التشريحي الكامل للطاقة ${n}</button></div>
+        <div class="aqm-g-panel" role="tabpanel" data-g-panel="pos">${posPanel}</div>
+        <div class="aqm-g-panel" role="tabpanel" data-g-panel="ref" hidden>${refPanel}</div>${goto}</article>`;
+    });
+  }
+  function geminiTailHtml(code) {
+    const loader = window.AqeeqMatrix;
+    return loader.geminiTails().then(d => {
+      const rev = code.split('-').reverse().join('-');
+      const t = d.tails.find(x => x.code === code) || d.tails.find(x => x.code === rev);
+      if (!t) return `<article class="aqm-xr aqm-g" dir="rtl" data-g-tail="${escapeHtml(code)}"><header class="aqm-xr-head"><h4>الذيل الكارمي ${escapeHtml(code)}</h4></header>${geminiMissing('الذيل الكارمي ' + code, '', `هذا الذيل (${code}) غير موجود في ملفات Gemini (المصدر يغطي 26 ذيلًا).`)}</article>`;
+      return `<article class="aqm-xr aqm-g" dir="rtl" data-g-tail="${escapeHtml(t.code)}"><header class="aqm-xr-head"><h4>${gInline(t.title.replace(/^عقيق أسترو \|\s*/, ''))}</h4></header><div class="aqm-g-panel">${geminiBlocksHtml(t.blocks)}</div></article>`;
+    });
+  }
+
   /* التفسير الموسع يُعرض في نافذة واحدة مستقلة (Bottom Sheet على الهاتف / نافذة وسطية على الشاشة الكبيرة):
      لا حقن بطاقات داخل جسم الصفحة، ولا تراكم أو تكرار عند الضغط المتكرر. */
   let xrModal = null, xrLastTrigger = null, xrToken = 0;
@@ -597,7 +706,25 @@
       + '<div class="aqm-xr-sheet" role="dialog" aria-modal="true" aria-label="التفسير الموسع" tabindex="-1" dir="rtl">'
       + '<button type="button" class="aqm-xr-close" data-xr-close="true" aria-label="إغلاق">×</button>'
       + '<div class="aqm-xr-scroll" aria-live="polite"></div></div>';
-    m.addEventListener('click', ev => { if (ev.target.closest('[data-xr-close]')) closeXrModal(); });
+    m.addEventListener('click', ev => {
+      if (ev.target.closest('[data-xr-close]')) return closeXrModal();
+      const tab = ev.target.closest('[data-g-tab]');
+      if (tab) {
+        const art = tab.closest('.aqm-g');
+        art.querySelectorAll('[data-g-tab]').forEach(b => { const on = b === tab; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
+        art.querySelectorAll('[data-g-panel]').forEach(p => { p.hidden = p.getAttribute('data-g-panel') !== tab.getAttribute('data-g-tab'); });
+        const hl = art.querySelector('[data-g-panel="ref"] .is-hl');
+        if (tab.getAttribute('data-g-tab') === 'ref' && hl) hl.scrollIntoView({ block: 'center' });
+        return;
+      }
+      const go = ev.target.closest('[data-g-goto]');
+      if (go) {
+        const host = document.querySelector('.aqm-shell, .aqm-report') || document;
+        const item = document.getElementById('aqm-sec-' + go.getAttribute('data-g-goto'));
+        closeXrModal();
+        if (item) { item.classList.add('open', 'is-active'); item.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true'); item.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      }
+    });
     document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !m.hidden) closeXrModal(); });
     document.body.appendChild(m);
     xrModal = m;
@@ -611,23 +738,36 @@
     if (xrLastTrigger && document.contains(xrLastTrigger)) { try { xrLastTrigger.focus(); } catch (e) {} }
     xrLastTrigger = null;
   }
-  function openXrModal(btn, gender) {
+  /* يفتح النافذة بمحتوى Promise<string> (HTML). trigger = العنصر الذي يعود إليه التركيز عند الإغلاق. */
+  function openXrWith(trigger, makeHtml) {
     const loader = window.AqeeqMatrix;
     if (!loader) return;
     const m = ensureXrModal();
     const box = m.querySelector('.aqm-xr-scroll');
     const token = ++xrToken;
-    xrLastTrigger = btn;
+    xrLastTrigger = trigger;
     box.innerHTML = '<p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p>';
     box.scrollTop = 0;
     m.hidden = false;
     document.documentElement.classList.add('aqm-xr-open');
     m.querySelector('.aqm-xr-sheet').focus();
-    expandedArcanaHtml(Number(btn.dataset.aqmMasterArcana), gender).then(html => {
+    makeHtml().then(html => {
       if (token === xrToken) box.innerHTML = html;
     }).catch(() => {
       if (token === xrToken) box.innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
     });
+  }
+  function openXrModal(btn) {
+    if (btn.dataset.aqmTail) return openXrWith(btn, () => geminiTailHtml(btn.dataset.aqmTail));
+    const n = Number(btn.dataset.aqmMasterArcana);
+    const sec = btn.dataset.aqmPosition || '';
+    const posKey = SECTION_POSITION[sec] || sec;
+    openXrWith(btn, () => geminiPositionHtml(posKey, n, sec));
+  }
+  function openPositionModal(node) {
+    const posKey = node.getAttribute('data-position') || node.getAttribute('data-section');
+    const n = Number(node.getAttribute('data-arcana'));
+    openXrWith(node, () => geminiPositionHtml(posKey, n, node.getAttribute('data-section')));
   }
 
   function bindExpandedReadings(host) {
@@ -636,7 +776,7 @@
     host.addEventListener('click', ev => {
       const btn = ev.target.closest && ev.target.closest('.aqm-master-open');
       if (!btn || !host.contains(btn)) return;
-      openXrModal(btn, host.dataset.aqmGender || '');
+      openXrModal(btn);
     });
   }
 
@@ -646,7 +786,7 @@
       .map(a => [Number(a.num), a])).values()];
     if (!uniqueArcana.length) return '';
     const buttons = uniqueArcana.map(a => `
-      <button type="button" class="aqm-master-open" data-aqm-master-arcana="${a.num}" aria-expanded="false">
+      <button type="button" class="aqm-master-open" data-aqm-master-arcana="${a.num}" data-aqm-position="${escapeHtml(item.id || '')}" aria-expanded="false">
         <span aria-hidden="true">✦</span> التفسير الموسع: ${a.num} · ${escapeHtml(a.name)}
       </button>`).join('');
     return `
@@ -1332,16 +1472,15 @@
     // ربط عُقد النجمة بالأكورديون: النقر على العقدة يفتح الكارت المقابل له (data-section = id القسم) ويميّزه ثم يمرّره للأعلى
     const allAcc = host.querySelectorAll('.aqm-acc-item');
     host.querySelectorAll('.aqm-svg .aqm-node').forEach(node => {
-      node.addEventListener('click', () => {
-        const item = host.querySelector(`#aqm-sec-${node.getAttribute('data-section')}`);
-        if (!item) return;
+      node.setAttribute('role', 'button');
+      node.setAttribute('tabindex', '0');
+      const act = () => {
         host.querySelectorAll('.aqm-svg .aqm-node.is-active').forEach(n => n.classList.remove('is-active'));
-        allAcc.forEach(a => a.classList.remove('is-active'));
         node.classList.add('is-active');
-        item.classList.add('open', 'is-active');
-        item.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
-        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+        openPositionModal(node);   // تفسير هذا الموضع مع هذا الرقم تحديدًا (position + arcana)
+      };
+      node.addEventListener('click', act);
+      node.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); act(); } });
     });
 
     // الخريطة لوحة مرجعية ثابتة: لا توجد أحداث نقر أو تمرير على عُقد الـ SVG
@@ -1473,6 +1612,8 @@
 
   const root = typeof window !== 'undefined' ? window : globalThis;
   api.axisPoints = axisPoints;
+  api.geminiPositionHtml = geminiPositionHtml;
+  api.geminiTailHtml = geminiTailHtml;
   api.diagonalPoints = diagonalPoints;
   root.AqeeqMatrixUI = api;
   root.AqeeqNumerology = Object.assign(root.AqeeqNumerology || {}, api);
