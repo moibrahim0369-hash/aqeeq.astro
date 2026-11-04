@@ -461,3 +461,6 @@ html.aqh-lock,html.aqh-lock body{overflow:hidden}
   #home.aqh .aqh-orbit-dots,#home.aqh .aqh-energy-skel i,#home.aqh .aqh-article-skel i{animation:none!important}
   .aqh-box,.aqh-scrim{transition-duration:.01ms!important}
 }
+
+/* Homepage cleanup phase 1: closing sections hidden from the UI (kept in DOM) */
+#home .aqh-closing[hidden] { display: none !important; }
