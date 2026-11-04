@@ -1323,20 +1323,13 @@ html.aqm-xr-open { overflow: hidden; }
   background-size: 300px 200px; background-repeat: repeat;
 }
 .aqm-shell > * { position: relative; z-index: 1; }
-.aqm-shell > .aqm-brand-sticky { position: sticky; z-index: 5; }
 
-/* بصمة المنصة الواضحة أسفل الترويسة وفي أسفل الشاشة دائماً */
+/* بصمة المنصة الواضحة أسفل الترويسة (بدون أي عنصر عائم) */
 .aqm-brand-stamp {
   margin: 4px auto 22px; padding: 8px 18px; width: fit-content; max-width: 100%;
   font-family: 'Amiri', 'Cairo', serif; font-size: 1.05rem; font-weight: 700; letter-spacing: .03em;
   color: #8A6A2F; background: rgba(197, 160, 89, .12); border: 1px solid var(--aqm-line); border-radius: 999px;
 }
-.aqm-brand-sticky {
-  bottom: 76px; margin: 24px auto 0; width: fit-content; padding: 5px 16px; border-radius: 999px;
-  font-family: 'Amiri', 'Cairo', serif; font-size: .92rem; font-weight: 700; color: #8A6A2F;
-  background: rgba(250, 247, 242, .82); border: 1px solid var(--aqm-line); pointer-events: none;
-}
-@media (min-width: 900px) { .aqm-brand-sticky { bottom: 12px; } }
 
 /* العناوين: خط أميري + نبيذي داكن */
 .aqm-shell h2, .aqm-shell h3, .aqm-shell h4, .aqm-shell h5,
@@ -1389,9 +1382,21 @@ html.aqm-xr-open { overflow: hidden; }
   .aqm-acc-body { padding: 20px 14px 24px; }
 }
 #matrix .aqm-shell, #mresult .aqm-shell { background: var(--aqm-ivory) !important; color: var(--aqm-body) !important; border-color: var(--aqm-line) !important; }
-.aqm-brand-sticky { font-size: .8rem; padding: 3px 12px; background: rgba(250, 247, 242, .7); bottom: 80px; }
 .aqm-meta-info { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .aqm-actions { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .aqm-meta-pill { font-size: .88rem; padding: 5px 12px; }
 .aqm-shell { padding-bottom: 130px !important; }
 .aqm-shell footer { margin-bottom: 24px; }
+
+/* ===== الزجاج الفاخر (Glassmorphism) للكبسولات والأيقونات والأزرار ===== */
+.aqm-meta-pill, .aqm-badge-arcana, .aqm-master-open, .aqm-btn:not(.aqm-btn-primary), .aqm-acc-icon, .aqm-brand-stamp {
+  background: linear-gradient(135deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.34) 55%, rgba(231,205,150,.30) 100%) !important;
+  border: 1px solid rgba(255,255,255,.85) !important;
+  outline: 1px solid rgba(197,160,89,.45); outline-offset: -2px;
+  -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%);
+  box-shadow: 0 4px 14px rgba(74,21,33,.10), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(197,160,89,.25);
+}
+.aqm-acc-icon { color: var(--aqm-title); }
+.aqm-btn-primary { background: linear-gradient(135deg, rgba(120,47,59,.92), rgba(74,21,33,.92)) !important; color: #FFF8EA !important; border: 1px solid rgba(255,255,255,.55) !important; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 6px 16px rgba(74,21,33,.28), inset 0 1px 0 rgba(255,255,255,.35); }
+.aqm-master-open:hover, .aqm-btn:hover { box-shadow: 0 6px 18px rgba(184,151,88,.32), inset 0 1px 0 #fff; }
+.aqm-xr-compact .aqm-xr-sec { margin-bottom: 16px; }
