@@ -265,7 +265,7 @@
           svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; stroke-width: 1.5; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
           svg.aqm-svg .aqm-svg-age-label { fill: #5E4A52; font-size: 13px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
           svg.aqm-svg .aqm-svg-age-energy { fill: #8B263E; font-size: 15px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
-          svg.aqm-svg .aqm-svg-watermark { fill: #8A7A60; opacity: 0.15; font-size: 22px; font-weight: 700; text-anchor: end; letter-spacing: .5px; pointer-events: none; }
+          svg.aqm-svg .aqm-svg-watermark { fill: #B89758; opacity: 0.17; font-size: 22px; font-weight: 700; text-anchor: end; letter-spacing: .5px; pointer-events: none; }
           svg.aqm-svg .aqm-svg-money-sign { fill: #5E7D52; font-size: 18px; font-weight: 700; }
           svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.5; }
           svg.aqm-svg .aqm-node-text { font-weight: 700; }
@@ -291,7 +291,7 @@
         <rect x="0" y="0" width="800" height="800" rx="28" class="aqm-svg-bg" fill="#FAF7F0" />
         <circle cx="400" cy="400" r="372" class="aqm-svg-dial-ring is-outer" fill="none" stroke="#C5A46D" />
         <circle cx="400" cy="400" r="356" class="aqm-svg-dial-ring" fill="none" stroke="#C5A46D" />
-        <text x="778" y="786" class="aqm-svg-watermark" fill="#8A7A60" fill-opacity="0.15" text-anchor="end" font-size="22" font-weight="700" direction="ltr">عقيق أسترو · Aqeq Astro</text>
+        <text x="778" y="786" class="aqm-svg-watermark" fill="#B89758" fill-opacity="0.17" text-anchor="end" font-size="22" font-weight="700" direction="ltr">عقيق أسترو · Aqeq Astro</text>
         ${ticks}
         ${ageLabels}
         <circle cx="400" cy="400" r="270" class="aqm-svg-guide" fill="none" stroke="#C5A46D" stroke-opacity="0.25" />
