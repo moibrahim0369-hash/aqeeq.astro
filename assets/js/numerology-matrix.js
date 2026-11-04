@@ -614,7 +614,7 @@
     axis_right_outer: 'نقطة على محور السنة (C)', axis_right_mid: 'نقطة على محور السنة (C)',
     axis_top_outer: 'نقطة على محور الشهر (B)', axis_top_mid: 'نقطة على محور الشهر (B)', axis_top_inner: 'نقطة على محور الشهر (B)'
   };
-  const SECTION_POSITION = { center: 'core', money_line: 'money', love_line: 'love', ancestral_programs: 'tail_entry', purposes: 'mission' };
+  const SECTION_POSITION = { center: 'core', money_line: 'money', love_line: 'love', purposes: 'mission' };
   function positionLabel(key) {
     if (POSITION_LABEL[key]) return POSITION_LABEL[key];
     const m = /^(father|mother)_diag_([FGHI])_(outer|inner)$/.exec(key || '');
@@ -663,7 +663,7 @@
     const eng = window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter;
     try { return eng.getArcanaInfo(n).name; } catch (e) { return ''; }
   }
-  function geminiPositionHtml(posKey, n, section) {
+  function geminiPositionHtml(posKey, n, section, refOnly) {
     const loader = window.AqeeqMatrix;
     const label = positionLabel(posKey);
     const head = `<header class="aqm-xr-head"><h4>${escapeHtml(label)} · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4></header>`;
@@ -678,6 +678,9 @@
         posPanel = geminiMissing(label, n, `موضع «${label}» لا يملك تفسيرًا مخصصًا في مصدر Gemini (المصدر يغطي: الجوهر، المال، الحب، مدخل الذيل، الرسالة).`);
       }
       const refPanel = ref ? geminiBlocksHtml(ref.blocks, GEMINI_POSITIONS.indexOf(posKey) !== -1 ? posKey : null) : geminiMissing('المرجع التشريحي', n, `لا يوجد ملف «المرجع التشريحي الكامل» للرقم ${n} في مصدر Gemini.`);
+      if (refOnly) {
+        return `<article class="aqm-xr aqm-g" dir="rtl" data-g-position="${escapeHtml(posKey)}" data-g-arcana="${n}" data-g-refonly="true"><header class="aqm-xr-head"><h4>المرجع التشريحي الكامل · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4></header><div class="aqm-g-panel" data-g-panel="ref">${refPanel}</div></article>`;
+      }
       return `<article class="aqm-xr aqm-g" dir="rtl" data-g-position="${escapeHtml(posKey)}" data-g-arcana="${n}">${head}
         <div class="aqm-g-tabs" role="tablist"><button type="button" role="tab" class="is-on" aria-selected="true" data-g-tab="pos">تفسير هذا الموضع</button><button type="button" role="tab" aria-selected="false" data-g-tab="ref">المرجع التشريحي الكامل للطاقة ${n}</button></div>
         <div class="aqm-g-panel" role="tabpanel" data-g-panel="pos">${posPanel}</div>
@@ -761,8 +764,8 @@
     if (btn.dataset.aqmTail) return openXrWith(btn, () => geminiTailHtml(btn.dataset.aqmTail));
     const n = Number(btn.dataset.aqmMasterArcana);
     const sec = btn.dataset.aqmPosition || '';
-    const posKey = SECTION_POSITION[sec] || sec;
-    openXrWith(btn, () => geminiPositionHtml(posKey, n, sec));
+    const posKey = SECTION_POSITION[sec] || btn.dataset.aqmPos || sec;
+    openXrWith(btn, () => geminiPositionHtml(posKey, n, sec, btn.dataset.aqmRef === '1'));
   }
   function openPositionModal(node) {
     const posKey = node.getAttribute('data-position') || node.getAttribute('data-section');
@@ -799,6 +802,61 @@
   /**
    * إنشاء كارت قسم الأكورديون وفق بنية المحتوى المعتمدة
    */
+
+  /* ===== أكورديون التفسيرات = نص Gemini الكامل فقط =====
+     يستبدل المحتوى القديم المختصر بالكامل (لا نسختان من التفسير نفسه). الأقسام التي لا يغطيها المصدر
+     تعرض «غير متوفر في المصدر». جداول الأرقام الحسابية (الشاكرات، دورات الأعمار) لا تُمَس. */
+  const GEMINI_ACC = {
+    center: { pos: 'core', n: P => P.anchors.E },
+    love_line: { pos: 'love', n: P => P.channels.heartPoint },
+    money_line: { pos: 'money', n: P => P.channels.moneyPoint },
+    purposes: { pos: 'mission', n: P => P.purposes.social },
+    karmic_tail: { pos: 'tail_entry', n: P => P.anchors.D, tail: true }
+  };
+  const GEMINI_ACC_MISSING = {
+    personal: 'طاقة اليوم (A)', talents: 'المواهب والروح (B)', father_line: 'خط الأب', mother_line: 'خط الأم',
+    ancestral_programs: 'الأجداد والبرامج العائلية', children_line: 'خط الأطفال', transformation_rx: 'مفاتيح التحول',
+    composite_programs: 'البرامج المركبة'
+  };
+  function accGrid(item) { return item.querySelector('.aqm-content-grid'); }
+  function applyGeminiAccordions(host, P, tailTriad) {
+    const loader = window.AqeeqMatrix;
+    host.querySelectorAll('.aqm-acc-item').forEach(item => {
+      const sid = item.dataset.sectionId;
+      const grid = accGrid(item);
+      const lib = item.querySelector('.aqm-master-library');
+      if (lib) lib.remove();
+      if (GEMINI_ACC_MISSING[sid]) {
+        item.dataset.secState = 'done'; item.dataset.ktState = 'done'; item.dataset.secSource = 'gemini-missing';
+        if (grid) grid.innerHTML = `<section class="aqm-slot aqm-slot-gemini" data-slot="gemini">${geminiMissing(GEMINI_ACC_MISSING[sid], '', `قسم «${GEMINI_ACC_MISSING[sid]}» لا يملك تفسيرًا في مصدر Gemini المعتمد حاليًا.`)}</section>`;
+        return;
+      }
+      const cfg = GEMINI_ACC[sid];
+      if (!cfg || !grid) return;
+      item.dataset.secState = 'done'; item.dataset.ktState = 'done'; item.dataset.secSource = 'gemini';
+      const n = Number(cfg.n(P));
+      const label = positionLabel(cfg.pos);
+      grid.innerHTML = '<section class="aqm-slot aqm-slot-gemini" data-slot="gemini"><p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p></section>';
+      const parts = [loader.gemini(n)];
+      if (cfg.tail) parts.push(loader.geminiTails());
+      Promise.all(parts).then(([d, td]) => {
+        const unit = d && d.positions && d.positions[cfg.pos];
+        let html = `<h4 class="aqm-slot-title">${escapeHtml(label)} · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4>`;
+        html += unit ? geminiBlocksHtml(unit.blocks) : geminiMissing(label, n, d ? undefined : `لا يوجد ملف مواضع Gemini للرقم ${n}.`);   // ترويسة الملف تظهر في نافذة الموضع فقط (لا تتكرر بين الأقسام)
+        if (cfg.tail) {
+          const code = tailTriad.map(Number).join('-'), rev = tailTriad.map(Number).reverse().join('-');
+          const t = td.tails.find(x => x.code === code) || td.tails.find(x => x.code === rev);
+          html += t ? `<h4 class="aqm-slot-title aqm-g-tail-title">${gInline(t.title.replace(/^عقيق أسترو \|\s*/, ''))}</h4>${geminiBlocksHtml(t.blocks)}`
+                    : `<h4 class="aqm-slot-title aqm-g-tail-title">الذيل الكارمي ${escapeHtml(code)}</h4>${geminiMissing('الذيل الكارمي ' + code, '', `هذا الذيل (${code}) غير موجود في ملفات Gemini (المصدر يغطي 26 ذيلًا).`)}`;
+        }
+        const refBtn = d && d.reference ? `<div class="aqm-master-actions"><button type="button" class="aqm-master-open" data-aqm-ref="1" data-aqm-pos="${cfg.pos}" data-aqm-master-arcana="${n}" data-aqm-position="${sid}">المرجع التشريحي الكامل للطاقة ${n}</button></div>` : '';
+        grid.querySelector('[data-slot="gemini"]').innerHTML = html + refBtn;
+      }).catch(() => {
+        grid.querySelector('[data-slot="gemini"]').innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
+      });
+    });
+  }
+
   function buildAccordionItem(item) {
     const { id, icon, title, subtitle, arcanaList, contentKey, slots } = item;
     const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}">${a.num} · ${a.name}</span>`).join(' ');
@@ -1439,6 +1497,7 @@
     // تحميل المحتوى عند فتح الأكورديون (الذيل الكارمي من karmic-tails.json)
     // ترتيب الأرشيف هو عكس ترتيب المحرك (D, D3, D2)، فنعكس الثلاثية قبل البحث.
     const tailTriad = [P.intermediate && P.intermediate.D2, P.intermediate && P.intermediate.D3, P.anchors.D];
+    applyGeminiAccordions(host, P, tailTriad);
     const onAccOpen = item => {
       const sid = item.dataset.sectionId;
       if (sid === 'karmic_tail') return hydrateKarmicTail(item, tailTriad, gender);
