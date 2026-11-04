@@ -47,9 +47,9 @@ for (const name of NAMES) {
   }
 }
 
-// الأقسام اللي كتبناها مؤلَّفة لازم تفضل draft لحد المراجعة.
+// الأقسام المؤلَّفة بعد المراجعة: review (مش draft) وتفضل مصنفة authored.
 for (const name of ['father_line', 'mother_line']) {
-  assert.ok(read(name).entries.every(e => e.meta.status === 'draft' && e.meta.source === 'authored'), name + ' stays an authored draft');
+  assert.ok(read(name).entries.every(e => e.meta.status === 'review' && e.meta.source === 'authored'), name + ' is a reviewed authored section');
 }
 
 (async () => {
