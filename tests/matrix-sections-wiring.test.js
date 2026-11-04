@@ -49,7 +49,7 @@ for (const name of NAMES) {
 
 // الأقسام المؤلَّفة بعد المراجعة: review (مش draft) وتفضل مصنفة authored.
 for (const name of ['father_line', 'mother_line']) {
-  assert.ok(read(name).entries.every(e => e.meta.status === 'review' && e.meta.source === 'authored'), name + ' is a reviewed authored section');
+  assert.ok(read(name).entries.every(e => e.meta.status === 'ready' && e.meta.source === 'authored'), name + ' is a ready authored section');
 }
 
 (async () => {

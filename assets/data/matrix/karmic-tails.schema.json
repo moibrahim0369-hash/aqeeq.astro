@@ -63,7 +63,7 @@
           "type": "object",
           "required": ["status", "source"],
           "properties": {
-            "status": { "enum": ["draft", "review", "published"] },
+            "status": { "enum": ["draft", "review", "ready", "published"] },
             "source": { "enum": ["archive", "authored"] },
             "sourceSection": { "type": "integer", "minimum": 1 }
           }
