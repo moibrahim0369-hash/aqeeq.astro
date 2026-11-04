@@ -68,16 +68,33 @@
   /* رسم القمر من الاستطالة (الفرق بين خطي طول القمر والشمس) */
   var moonSeq = 0;
   function moonSvg(elong) {
-    var c = Math.cos(elong * Math.PI / 180), r = 50, rx = Math.abs(c) * r, waxing = elong < 180;
+    var c = Math.cos(elong * Math.PI / 180), rx = Math.abs(c) * 50, waxing = elong < 180;
     var sweep = c > 0 ? 0 : 1;
     var lit = 'M60 10 A50 50 0 0 1 60 110 A' + rx.toFixed(2) + ' 50 0 0 ' + sweep + ' 60 10Z';
     var tf = waxing ? '' : ' transform="translate(120 0) scale(-1 1)"';
-    var uid = 'dm' + (++moonSeq) + '_' + Math.round(elong * 10);
-    return '<defs><radialGradient id="' + uid + 'g" cx="42%" cy="40%"><stop offset="0" stop-color="#F8EBD0"/><stop offset="1" stop-color="#CDB48A"/></radialGradient>' +
-      '<clipPath id="' + uid + 'c"><circle cx="60" cy="60" r="50"/></clipPath></defs>' +
-      '<circle cx="60" cy="60" r="50" fill="#2A1A20" stroke="rgba(217,185,121,.45)" stroke-width="1"/>' +
-      '<g clip-path="url(#' + uid + 'c)"><path d="' + lit + '" fill="url(#' + uid + 'g)"' + tf + '/>' +
-      '<g' + tf + ' fill="#8a7458" opacity=".22"><circle cx="78" cy="46" r="7"/><circle cx="68" cy="74" r="9"/><circle cx="86" cy="68" r="4"/><circle cx="58" cy="34" r="4"/></g></g>';
+    var u = 'dm' + (++moonSeq) + '_';
+    /* قمر واقعي: قرص رمادي مظلّل + بحار قمرية + فوهات + حبيبات، ثم ظل الطور بحافة ناعمة */
+    return '<defs>' +
+      '<radialGradient id="' + u + 'b" cx="40%" cy="36%" r="75%"><stop offset="0" stop-color="#EDE8DE"/><stop offset=".55" stop-color="#BDB6A8"/><stop offset="1" stop-color="#6F685F"/></radialGradient>' +
+      '<radialGradient id="' + u + 'l" cx="50%" cy="50%" r="50%"><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>' +
+      '<radialGradient id="' + u + 'h" cx="50%" cy="50%" r="50%"><stop offset=".8" stop-color="#E6C98F" stop-opacity="0"/><stop offset=".9" stop-color="#E6C98F" stop-opacity=".16"/><stop offset="1" stop-color="#E6C98F" stop-opacity="0"/></radialGradient>' +
+      '<clipPath id="' + u + 'c"><circle cx="60" cy="60" r="50"/></clipPath>' +
+      '<filter id="' + u + 'n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7" result="t"/><feColorMatrix in="t" type="matrix" values="0 0 0 0 .35  0 0 0 0 .33  0 0 0 0 .3  0 0 0 .55 -.12"/></filter>' +
+      '<filter id="' + u + 'm" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"/></filter>' +
+      '<filter id="' + u + 's" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.2"/></filter>' +
+      '<mask id="' + u + 'k"><rect width="120" height="120" fill="#fff"/><path d="' + lit + '" fill="#000" filter="url(#' + u + 's)"' + tf + '/></mask>' +
+      '</defs>' +
+      '<circle cx="60" cy="60" r="55" fill="url(#' + u + 'h)"/>' +
+      '<g clip-path="url(#' + u + 'c)">' +
+      '<circle cx="60" cy="60" r="50" fill="url(#' + u + 'b)"/>' +
+      '<g filter="url(#' + u + 'm)" fill="#6B655E" opacity=".5"><ellipse cx="46" cy="40" rx="11" ry="9"/><ellipse cx="62" cy="38" rx="8" ry="7"/><ellipse cx="66" cy="55" rx="10" ry="8"/><ellipse cx="36" cy="58" rx="9" ry="14"/><ellipse cx="50" cy="66" rx="7" ry="6"/><ellipse cx="72" cy="72" rx="6" ry="5"/></g>' +
+      '<g fill="none" stroke="#5C564F" stroke-opacity=".28" stroke-width=".9"><circle cx="78" cy="84" r="5.500"/><circle cx="44" cy="82" r="4"/><circle cx="84" cy="50" r="3.500"/><circle cx="56" cy="92" r="3"/><circle cx="30" cy="42" r="3"/></g>' +
+      '<g fill="#F4EFE4" opacity=".6"><circle cx="78" cy="84" r="1.600"/><circle cx="35" cy="64" r="1.200"/><circle cx="52" cy="52" r="1.100"/></g>' +
+      '<rect width="120" height="120" filter="url(#' + u + 'n)" opacity=".7"/>' +
+      '<circle cx="60" cy="60" r="50" fill="url(#' + u + 'l)"/>' +
+      '<rect width="120" height="120" fill="#120A0D" opacity=".86" mask="url(#' + u + 'k)"/>' +
+      '</g>' +
+      '';
   }
   function themeNum() { var m = /(\d+)/.exec(txt('aq-obs-daynum')); return m ? m[1] : ''; }
   function txt(id) { var n = document.getElementById(id); return n ? (n.textContent || '').trim() : ''; }
