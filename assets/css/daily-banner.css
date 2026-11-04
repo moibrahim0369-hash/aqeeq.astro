@@ -19,6 +19,10 @@
 #home.aqh #aqh-energy .dbn-title { margin: 0; display: flex; align-items: center; gap: 10px; font-size: clamp(1.4rem, 1.9vw, 1.9rem); font-weight: 600; padding: 0; color: var(--charcoal, #29252A); }
 #home.aqh #aqh-energy .dbn-title svg, #home.aqh #aqh-energy .dbn-kicker svg { color: var(--antique-gold, #B8964F); flex: 0 0 auto; }
 #home.aqh #aqh-energy .dbn-src { display: none !important; }
+#home.aqh #aqh-energy { font-family: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif; }
+#home.aqh #aqh-energy .dbn-title, #home.aqh #aqh-energy .dbn-big, #home.aqh #aqh-energy .dbn-headline, #home.aqh #aqh-energy .dbn-theme-lg, #home.aqh #aqh-energy .dbn-s4-head h2 { font-family: 'Amiri', 'Noto Naskh Arabic', serif; }
+#home.aqh #aqh-energy .dbn-dn { font-family: 'Cormorant Garamond', 'Amiri', serif; }
+#home.aqh #aqh-energy .dbn-gl { width: 1.15em; height: 1.15em; vertical-align: -0.2em; margin-inline-end: .2em; flex: 0 0 auto; }
 #home.aqh #aqh-energy .dbn-moonsvg { display: block; width: 100%; height: auto; }
 #home.aqh #aqh-energy [data-f]:empty::before { content: '—'; opacity: .5; }
 /* ---- 1: طاقة اليوم (شريط عاجي: تاريخ + قمر + معلومات) ---- */
@@ -46,7 +50,7 @@
 #home.aqh #aqh-energy .dbn-s3 { background: var(--cream, #FBF8F2); gap: clamp(16px, 3vw, 40px); }
 #home.aqh #aqh-energy .dbn-s3-date { order: 1; flex: 0 0 auto; display: grid; justify-items: center; gap: 2px; padding: 16px clamp(18px, 3vw, 40px); background: #F0E7DA; border-radius: 18px; color: var(--muted-text, #746C68); min-width: 160px; }
 #home.aqh #aqh-energy .dbn-s3-tag { color: var(--antique-gold, #A8863F); font-size: .85rem; border-bottom: 1px solid currentColor; padding-bottom: 3px; margin-bottom: 6px; }
-#home.aqh #aqh-energy .dbn-dn { font-family: 'Noto Serif Arabic', 'Amiri', serif; font-size: clamp(3.8rem, 7vw, 5.6rem); line-height: 1.05; color: var(--burgundy, #642B3C); font-weight: 600; }
+#home.aqh #aqh-energy .dbn-dn { font-family: 'Cormorant Garamond', 'Amiri', serif; font-size: clamp(3.8rem, 7vw, 5.6rem); line-height: 1.05; color: var(--burgundy, #642B3C); font-weight: 600; }
 #home.aqh #aqh-energy .dbn-s3-main { order: 2; flex: 1 1 auto; min-width: 0; display: grid; gap: 10px; }
 #home.aqh #aqh-energy .dbn-theme { margin: 0; line-height: 1.9; color: var(--charcoal, #29252A); }
 #home.aqh #aqh-energy .dbn-theme-lg { font-size: clamp(1.1rem, 1.6vw, 1.4rem); }
