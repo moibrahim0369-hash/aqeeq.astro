@@ -1362,10 +1362,8 @@ html.aqm-xr-open { overflow: hidden; }
 .aqm-sec-entry + .aqm-sec-entry { padding-top: 18px; border-top: 1px dashed var(--aqm-line-soft); }
 
 /* الكبسولات والشارات: تباين متناسق */
-.aqm-meta-pill, .aqm-badge-arcana { color: var(--aqm-title) !important; background: rgba(197, 160, 89, .14) !important; border: 1px solid var(--aqm-line) !important; font-weight: 700; }
 .aqm-master-open { color: var(--aqm-title); background: var(--aqm-ivory-card); border: 1px solid var(--aqm-line); font-weight: 700; }
 .aqm-master-hint { color: #444; }
-.aqm-btn { border-color: var(--aqm-line); color: var(--aqm-title); background: var(--aqm-ivory-card); font-family: inherit; font-weight: 700; }
 
 /* فاصل أنيق بين الأقسام الكبرى */
 .aqm-accordion-container .aqm-acc-item + .aqm-acc-item::before { content: none; }
@@ -1388,17 +1386,6 @@ html.aqm-xr-open { overflow: hidden; }
 .aqm-shell { padding-bottom: 130px !important; }
 .aqm-shell footer { margin-bottom: 24px; }
 
-/* ===== الزجاج الفاخر (Glassmorphism) للكبسولات والأيقونات والأزرار ===== */
-.aqm-meta-pill, .aqm-badge-arcana, .aqm-master-open, .aqm-btn:not(.aqm-btn-primary), .aqm-acc-icon, .aqm-brand-stamp {
-  background: linear-gradient(135deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.34) 55%, rgba(231,205,150,.30) 100%) !important;
-  border: 1px solid rgba(255,255,255,.85) !important;
-  outline: 1px solid rgba(197,160,89,.45); outline-offset: -2px;
-  -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%);
-  box-shadow: 0 4px 14px rgba(74,21,33,.10), inset 0 1px 0 rgba(255,255,255,.95), inset 0 -1px 0 rgba(197,160,89,.25);
-}
-.aqm-acc-icon { color: var(--aqm-title); }
-.aqm-btn-primary { background: linear-gradient(135deg, rgba(120,47,59,.92), rgba(74,21,33,.92)) !important; color: #FFF8EA !important; border: 1px solid rgba(255,255,255,.55) !important; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 6px 16px rgba(74,21,33,.28), inset 0 1px 0 rgba(255,255,255,.35); }
-.aqm-master-open:hover, .aqm-btn:hover { box-shadow: 0 6px 18px rgba(184,151,88,.32), inset 0 1px 0 #fff; }
 .aqm-xr-compact .aqm-xr-sec { margin-bottom: 16px; }
 
 /* ==========================================================================
