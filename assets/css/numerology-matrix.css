@@ -1269,3 +1269,28 @@
   .aqm-kt-box .aqm-slot-p { margin-bottom: 14px; line-height: 2.05; }
   .aqm-kt-protocol li { margin-bottom: 12px; }
 }
+
+/* ===== نافذة التفسير الموسع (Bottom Sheet على الهاتف) ===== */
+.aqm-master-output { display: none; }
+html.aqm-xr-open { overflow: hidden; }
+.aqm-xr-modal { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: flex-end; justify-content: center; }
+.aqm-xr-modal[hidden] { display: none; }
+.aqm-xr-backdrop { position: absolute; inset: 0; background: rgba(45, 37, 34, .45); }
+.aqm-xr-sheet {
+  position: relative; width: 100%; max-width: 720px; max-height: 88vh; max-height: 88dvh;
+  display: flex; flex-direction: column; outline: none;
+  background: #FBF8F1; border-radius: 18px 18px 0 0; border: 1px solid #E6D9BE;
+  box-shadow: 0 -8px 30px rgba(45, 37, 34, .18);
+}
+.aqm-xr-scroll { overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; padding: 52px 18px 24px; }
+.aqm-xr-close {
+  position: absolute; top: 8px; left: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid #E0D2B4; background: #fff; color: #6B263D; font-size: 1.6rem; line-height: 1; cursor: pointer;
+}
+.aqm-xr-close:focus-visible { outline: 2px solid #B89758; outline-offset: 2px; }
+@media (min-width: 768px) {
+  .aqm-xr-modal { align-items: center; }
+  .aqm-xr-sheet { border-radius: 18px; max-height: 84vh; box-shadow: 0 16px 50px rgba(45, 37, 34, .25); }
+  .aqm-xr-scroll { padding: 56px 28px 28px; }
+}
+.aqm-master-hint { margin: 0 0 8px; font-size: .85rem; color: #74685F; }
