@@ -422,6 +422,23 @@
       }
       if (title) title.textContent = `الذيل الكارمي — ${res.tail.title.ar}`;
       item.dataset.ktCode = res.tail.code;
+      // مزامنة الكبسولات والنص التمهيدي مع شفرة الذيل المحمّل فعلاً (كانت تعرض أرقام ذيل مربوط قديم)
+      if (res.match !== 'redirect') {
+        const eng = window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter;
+        const digits = res.tail.digits || res.tail.code.split('-').map(Number);
+        const badgeBox = item.querySelector('.aqm-acc-badges');
+        if (badgeBox && eng && typeof eng.getArcanaInfo === 'function') {
+          badgeBox.querySelectorAll('.aqm-badge-arcana').forEach(el => el.remove());
+          digits.forEach((n, i) => {
+            const span = document.createElement('span');
+            span.className = `aqm-badge-arcana aqm-tone-${i % 4}`;
+            span.textContent = `${n} · ${eng.getArcanaInfo(n).name}`;
+            badgeBox.appendChild(span);
+          });
+        }
+        const primary = item.querySelector('[data-slot="primary"] .aqm-slot-p');
+        if (primary) primary.innerHTML = `يتشكل ثالوث ذيلك الكارمي من الطاقات <strong>(${digits.join(' - ')})</strong>.`;
+      }
     }).catch(() => { delete item.dataset.ktState; });
   }
 
