@@ -1911,7 +1911,8 @@
     const code = `${c1}-${c2}-${c3}`;
     const reverseCode = `${c3}-${c2}-${c1}`;
 
-    // بحث مباشر
+    // الترتيب له دلالة: التطابق التام أولاً، والمعكوس فقط لو الشفرة مش مسجلة كذيل مستقل.
+    // اتشالت المطابقة بمجموعة الأرقام لأنها كانت بتخلط ذيول مستقلة زي 18-9-9 و9-9-18.
     if (KARMIC_TAILS[code]) return KARMIC_TAILS[code];
     if (KARMIC_TAILS[reverseCode]) return KARMIC_TAILS[reverseCode];
 

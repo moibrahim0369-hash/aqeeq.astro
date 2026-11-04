@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '6';                       // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '9';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -23,6 +23,43 @@
   function arcana(id) {
     if (!validId(id)) return Promise.reject(new RangeError('رقم الأركانا لازم يكون من 1 إلى 22'));
     return load('arcana-' + String(id).padStart(2, '0') + '.json', d => d && d.id === id && d.chakras && typeof d.chakras === 'object');
+  }
+
+  /* الذيول الكارمية المنظّفة (Schema v2). بتتحمّل بس لما أكورديون الذيل يتفتح. */
+  function karmicTails() {
+    return load('karmic-tails.json', d => d && d.schemaVersion === 2 && Array.isArray(d.tails));
+  }
+
+  /* الترتيب له دلالة في سريان الطاقة:
+     1) التطابق التام بالترتيب الأصلي أولاً.
+     2) المعكوس فقط لو الشفرة نفسها مش مسجلة كذيل مستقل (والمعكوس مسجل).
+     مفيش مطابقة بمجموعة الأرقام؛ أي ترتيب تالت يرجّع null. */
+  function resolveKarmicTail(data, c1, c2, c3) {
+    const tails = (data && Array.isArray(data.tails)) ? data.tails : [];
+    const code = [c1, c2, c3].map(Number).join('-');
+    const reverse = [c3, c2, c1].map(Number).join('-');
+    const exact = tails.find(t => t.code === code);
+    if (exact) return { tail: exact, match: 'exact', requested: code };
+    const rev = tails.find(t => t.code === reverse);
+    if (rev) return { tail: rev, match: 'reverse', requested: code };
+    return null;
+  }
+
+  function karmicTail(c1, c2, c3) {
+    return karmicTails().then(d => resolveKarmicTail(d, c1, c2, c3));
+  }
+  /* أقسام المصفوفة (Schema v2): sections/<name>.json — 22 مدخل أو أقل مع missingIds.
+     قائمة بيضاء بالأسماء عشان ما يتحمّلش أي مسار تاني. */
+  const SECTION_NAMES = ['center', 'talents', 'love_line', 'money_line', 'father_line', 'mother_line',
+    'ancestral_programs', 'purposes', 'children_line', 'transformation_rx', 'composite_programs'];
+  function section(name) {
+    if (SECTION_NAMES.indexOf(name) === -1) return Promise.reject(new RangeError('قسم غير معروف: ' + name));
+    return load('sections/' + name + '.json', d => d && d.schemaVersion === 2 && d.section === name && Array.isArray(d.entries));
+  }
+  /* مدخل أركانا واحد من قسم، أو null لو مش موجود (مثلاً أركانا في missingIds). */
+  function sectionEntry(name, id) {
+    if (!validId(id)) return Promise.reject(new RangeError('رقم الأركانا لازم يكون من 1 إلى 22'));
+    return section(name).then(d => d.entries.find(e => e.id === id) || null);
   }
   const clean = v => (typeof v === 'string' ? v.trim() : '');
 
@@ -47,5 +84,9 @@
   /* تلميح تحميل مسبق (بيتجاهل الأخطاء) */
   function prefetch(ids) { [...new Set(ids)].filter(validId).forEach(id => arcana(id).catch(() => {})); core().catch(() => {}); }
 
-  window.AqeeqMatrix = { core, arcana, chakraText, chakraReading, prefetch, FIELDS };
+  window.AqeeqMatrix = {
+    core, arcana, chakraText, chakraReading, prefetch, FIELDS,
+    karmicTails, karmicTail, resolveKarmicTail,
+    section, sectionEntry
+  };
 })();
