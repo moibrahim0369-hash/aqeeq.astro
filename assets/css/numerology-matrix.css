@@ -952,9 +952,7 @@
 .aqm-acc-icon .aqm-ico { width: 20px; height: 20px; }
 
 /* حيوية هادئة: نبض خفيف للمركز وظل ناعم للعُقد */
-.aqm-node-bg {
-  filter: drop-shadow(0 2px 6px rgba(107, 38, 61, 0.12));
-}
+.aqm-node-bg { filter: none; }
 
 /* المحور الرأسي للشاكرات (تحت الرسمة) */
 .aqm-chakra-axis {
@@ -1076,8 +1074,8 @@
 .aqm-acc-badges .aqm-badge-arcana { font-size: 13px; font-weight: 700; text-align: center; }
 
 /* ظلال خفيفة على العُقد الحقيقية وتوهج ذهبي ناعم للمركز (filter فقط — بلا transform للحفاظ على الإحداثيات) */
-.aqm-svg .aqm-node { filter: drop-shadow(0 2px 3px rgba(60, 20, 10, 0.2)); }
-.aqm-svg .aqm-node.aqm-node-center { filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.5)); }
+.aqm-svg .aqm-node,
+.aqm-svg .aqm-node.aqm-node-center { filter: none; }
 .aqm-svg .aqm-node circle.aqm-node-bg { filter: none !important; }
 
 /* ==========================================================================
