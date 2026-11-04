@@ -356,8 +356,301 @@
     `;
   }
 
+  // ==================== 2. بنية الأكورديون الـ 15 وحقن النصوص ====================
 
-  // ==================== 2. بنية الأكورديون الـ 12 وحقن النصوص ====================
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  /* ===== الذيل الكارمي من karmic-tails.json (Schema v2) =====
+     بيتحمّل لما أكورديون الذيل يتفتح بس. لو الملف مش متاح أو الشفرة مش مسجلة،
+     النص الحالي (من destiny-matrix-data.js) بيفضل زي ما هو. */
+  function karmicTailV2Html(res, gender) {
+    const t = res.tail;
+    const v = (gender && t.genderVariants && t.genderVariants[gender]) || {};
+    const e = escapeHtml;
+    const note = res.match === 'redirect'
+      ? `<p class="aqm-slot-p aqm-kt-note">لا توجد قراءة مستقلة للثلاثية ${e(res.requested)}، فاعتُمدت أقرب قراءة معتمدة لها: ${e(t.code)}.</p>`
+      : res.match === 'reverse'
+      ? `<p class="aqm-slot-p aqm-kt-note">لا توجد قراءة مستقلة للترتيب ${e(res.requested)}، فاعتُمدت قراءة الترتيب المعكوس ${e(t.code)}.</p>`
+      : '';
+    return `
+      <div class="aqm-kt-box" data-kt-source="v2" data-kt-code="${e(t.code)}">
+        <p class="aqm-slot-p"><strong>${e(t.title.ar)}</strong> — ${e(t.title.subtitle)} <span class="aqm-kt-code">(شفرة ${e(t.code)})</span></p>
+        ${note}
+        <p class="aqm-slot-p"><strong>العمق النفسي:</strong> ${e(t.psychologicalDepth)}</p>
+        <p class="aqm-slot-p"><strong>التناقض:</strong> ${e(v.paradox || t.paradox)}</p>
+        <p class="aqm-slot-p"><strong>جذور الطفولة:</strong> ${e(v.childhoodRoots || t.childhoodRoots)}</p>
+        <p class="aqm-slot-p"><strong>التنبيه الجسدي الرمزي:</strong> ${e(t.symbolicBodyNote)}</p>
+      </div>`;
+  }
+
+  function hydrateKarmicTail(item, triad, gender) {
+    if (!item || item.dataset.ktState === 'loading' || item.dataset.ktState === 'done') return Promise.resolve();
+    const loader = window.AqeeqMatrix;
+    if (!loader || typeof loader.karmicTail !== 'function') return Promise.resolve();
+    if (!triad.every(n => Number.isInteger(Number(n)) && Number(n) >= 1 && Number(n) <= 22)) return Promise.resolve();
+    item.dataset.ktState = 'loading';
+    // ثلاثية بلا نص مستقل: نجرّب الذيل المعتمد المربوط بها (خريطة الربط) بمطابقة مجموعة الأرقام، وإلا يبقى النص القديم
+    const redirect = (item.dataset.ktRedirect || '').split('-').map(Number);
+    const viaRedirect = res => {
+      if (res || redirect.length !== 3 || redirect.some(n => !(n >= 1 && n <= 22))) return res;
+      const sorted = a => a.slice().sort((x, y) => x - y).join('-');
+      return loader.karmicTails().then(d => {
+        const hit = d.tails.find(tl => sorted(tl.code.split('-').map(Number)) === sorted(redirect));
+        return hit ? { tail: hit, match: 'redirect', requested: triad.join('-') } : null;
+      });
+    };
+    return loader.karmicTail(triad[0], triad[1], triad[2]).then(viaRedirect).then(res => {
+      item.dataset.ktState = 'done';
+      if (!res || !res.tail) return;
+      const g = gender === 'male' || gender === 'female' ? gender : '';
+      const detailed = item.querySelector('[data-slot="detailed"] .aqm-slot-p');
+      const practical = item.querySelector('[data-slot="practical"] .aqm-slot-p');
+      const title = item.querySelector('.aqm-acc-title');
+      if (detailed) detailed.innerHTML = karmicTailV2Html(res, g);
+      if (practical && Array.isArray(res.tail.protocol)) {
+        practical.innerHTML = `<ol class="aqm-kt-protocol">${res.tail.protocol.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ol>`;
+      }
+      if (title) title.textContent = `الذيل الكارمي — ${res.tail.title.ar}`;
+      item.dataset.ktCode = res.tail.code;
+    }).catch(() => { delete item.dataset.ktState; });
+  }
+
+  /* ===== أقسام المصفوفة من sections/*.json (Schema v2) =====
+     كل قسم بيتحمّل لما أكورديونه يتفتح. لو الملف مش متاح أو الأركانا مالهاش نص (missingIds)،
+     النص القديم بيفضل زي ما هو. genderDynamic بيظهر بس لما المستخدم يختار ذكر/أنثى
+     والمدخل فيه الحقل ده. المصدر: ['t' نص | 'l' قائمة | 'j' قائمة بفواصل, التسمية, المفتاح]. */
+  const SECTION_SPECS = {
+    center: { file: 'center', ids: P => [P.anchors.E],
+      detailed: [['t', 'الهوية', 'identity'], ['t', 'السلوك التلقائي', 'behavior']],
+      challenges: ['shadow'], practical: ['balanceKey'] },
+    talents: { file: 'talents', ids: P => [P.anchors.B],
+      detailed: [['t', 'قناة الاتصال', 'channel']],
+      strengths: ['gift'], challenges: ['trap'], practical: ['practice'] },
+    love_line: { file: 'love_line', ids: P => [P.channels.heartPoint],
+      detailed: [['t', 'الانجذاب', 'attraction']],
+      challenges: ['shadowPatterns'], practical: ['harmonyKey'] },
+    money_line: { file: 'money_line', ids: P => [P.channels.moneyPoint],
+      detailed: [['t', 'بوابة التدفق', 'inflow'], ['j', 'المجالات الأنسب', 'sectors']],
+      challenges: ['blocks'], practical: ['goldenRule'] },
+    father_line: { file: 'father_line', ids: P => [P.corners.F, P.corners.H],
+      detailed: [['t', 'المحور', 'theme'], ['l', 'أسئلة للتأمل', 'questions']],
+      strengths: ['potential'], challenges: ['challenge'], practical: ['practice'] },
+    mother_line: { file: 'mother_line', ids: P => [P.corners.G, P.corners.I],
+      detailed: [['t', 'المحور', 'theme'], ['l', 'أسئلة للتأمل', 'questions']],
+      strengths: ['potential'], challenges: ['challenge'], practical: ['practice'] },
+    ancestral_programs: { file: 'ancestral_programs', ids: P => [P.ancestralPrograms.ancestralCenter],
+      detailed: [['t', 'الجذر والموروث', 'roots'], ['l', 'أنماط السقوط التلقائي', 'fallPatterns']],
+      practical: ['path'] },
+    purposes: { file: 'purposes', ids: P => [P.purposes.social],
+      detailed: [['t', 'الرسالة', 'mission']], practical: ['maturityTest'] },
+    children_line: { file: 'children_line', ids: P => [P.childrenLine.childEnergy],
+      detailed: [['t', 'الأسرة والتربية', 'family']] },
+    transformation_rx: { file: 'transformation_rx', ids: P => [P.transformationKeys.balancePoint],
+      detailed: [['l', 'خطوات التحول', 'protocol'], ['l', 'أسئلة للتأمل', 'reflectiveQuestions']],
+      practical: ['__summary'] }
+  };
+
+  function sectionVal(kind, label, val) {
+    if (val == null || val === '' || (Array.isArray(val) && !val.length)) return '';
+    const lab = label ? `<strong>${escapeHtml(label)}:</strong> ` : '';
+    if (Array.isArray(val) && kind === 'j') return `<p class="aqm-slot-p">${lab}${escapeHtml(val.join('، '))}</p>`;
+    if (Array.isArray(val)) {
+      return `<div class="aqm-slot-sub">${lab ? `<p class="aqm-slot-p">${lab}</p>` : ''}<ul class="aqm-slot-list">${val.map(x => `<li>${escapeHtml(x)}</li>`).join('')}</ul></div>`;
+    }
+    return `<p class="aqm-slot-p">${lab}${escapeHtml(val)}</p>`;
+  }
+
+  function sectionEntryVal(entry, key) {
+    return key === '__summary' ? entry.summary : (entry.deep ? entry.deep[key] : undefined);
+  }
+
+  function buildSectionFill(spec, entries, gender) {
+    const multi = entries.length > 1;
+    const head = e => (multi ? `<p class="aqm-slot-p aqm-entry-head"><strong>الأركانا ${e.id} · ${escapeHtml(e.arcana && e.arcana.ar)}</strong></p>` : '');
+    const slot = def => {
+      if (!def) return null;
+      const parts = entries.map(en => {
+        const v = sectionEntryVal(en, def[0]);
+        const html = sectionVal(Array.isArray(v) ? 'l' : 't', '', v);
+        return html ? head(en) + html : '';
+      }).filter(Boolean);
+      return parts.length ? parts.join('') : null;
+    };
+    const g = gender === 'male' || gender === 'female' ? gender : '';
+    const detailed = entries.map(en => {
+      const rows = spec.detailed.map(([kind, label, key]) => sectionVal(kind, label, sectionEntryVal(en, key))).join('');
+      const gd = g && en.genderDynamic && en.genderDynamic[g]
+        ? `<p class="aqm-slot-p aqm-gender-dynamic"><strong>بصيغتك:</strong> ${escapeHtml(en.genderDynamic[g])}</p>` : '';
+      const draft = en.meta && en.meta.status === 'draft' ? '<p class="aqm-slot-p aqm-draft-note">نص تأملي قيد المراجعة.</p>' : '';
+      return `<div class="aqm-sec-entry">${head(en)}${en.summary ? `<p class="aqm-slot-p aqm-sec-lead">${escapeHtml(en.summary)}</p>` : ''}${rows}${gd}${draft}</div>`;
+    }).join('');
+    return { detailed, strengths: slot(spec.strengths), challenges: slot(spec.challenges), practical: slot(spec.practical) };
+  }
+
+  function setSlots(item, fill) {
+    ['detailed', 'strengths', 'challenges', 'practical'].forEach(name => {
+      if (!fill[name]) return;
+      const el = item.querySelector(`[data-slot="${name}"] .aqm-slot-p`);
+      if (el) el.innerHTML = fill[name];
+    });
+  }
+
+  function hydrateSection(item, spec, P, gender) {
+    if (!item || item.dataset.secState === 'loading' || item.dataset.secState === 'done') return Promise.resolve();
+    const loader = window.AqeeqMatrix;
+    if (!loader || typeof loader.section !== 'function') return Promise.resolve();
+    item.dataset.secState = 'loading';
+    return loader.section(spec.file).then(data => {
+      item.dataset.secState = 'done';
+      const ids = [...new Set(spec.ids(P).map(Number).filter(n => Number.isInteger(n) && n >= 1 && n <= 22))];
+      const entries = ids.map(id => data.entries.find(e => e.id === id)).filter(Boolean);
+      if (!entries.length) {
+        const el = item.querySelector('[data-slot="detailed"] .aqm-slot-p');
+        if (el) el.insertAdjacentHTML('beforeend', '<p class="aqm-slot-p aqm-pending-note">نص هذا الموضع قيد الإعداد.</p>');
+        return;
+      }
+      setSlots(item, buildSectionFill(spec, entries, gender));
+      item.dataset.secSource = 'json';
+    }).catch(err => {
+      delete item.dataset.secState;
+      if (typeof console !== 'undefined') console.warn('matrix section load failed:', spec.file, err && err.message);
+    });
+  }
+
+  /* البرامج المركبة: بحث بالكود، التطابق التام أولاً ثم المعكوس، ومفيش حاجة لو الثلاثية مش مسجلة. */
+  function hydrateComposite(item, P) {
+    if (!item || item.dataset.secState === 'loading' || item.dataset.secState === 'done') return Promise.resolve();
+    const loader = window.AqeeqMatrix;
+    if (!loader || typeof loader.section !== 'function') return Promise.resolve();
+    item.dataset.secState = 'loading';
+    return loader.section('composite_programs').then(data => {
+      item.dataset.secState = 'done';
+      const triads = [P.compositePrograms.spiritualTriad, P.compositePrograms.materialTriad].filter(t => Array.isArray(t) && t.length === 3);
+      const found = [];
+      triads.forEach(t => {
+        const code = t.map(Number).join('-');
+        const rev = t.map(Number).reverse().join('-');
+        const hit = data.entries.find(e => e.code === code) || data.entries.find(e => e.code === rev);
+        if (hit && !found.includes(hit)) found.push(hit);
+      });
+      if (!found.length) return;
+      const html = found.map(e => `<div class="aqm-sec-entry"><p class="aqm-slot-p aqm-entry-head"><strong>${escapeHtml(e.title)} (شفرة ${escapeHtml(e.code)})</strong></p><p class="aqm-slot-p">${escapeHtml(e.summary)}</p>${sectionVal('t', 'مفتاح التوازن', e.deep && e.deep.remedy)}</div>`).join('');
+      setSlots(item, { detailed: html });
+      item.dataset.secSource = 'json';
+    }).catch(err => {
+      delete item.dataset.secState;
+      if (typeof console !== 'undefined') console.warn('matrix composite load failed:', err && err.message);
+    });
+  }
+
+  /* ===== التفسير الموسع: بيتبني من sections/*.json المراجَعة (مش من Master V1 الخام) =====
+     كل قسم بيعرض كل حقول deep + genderDynamic (لو المستخدم اختار ذكر/أنثى). */
+  const XR_SECTIONS = [
+    { name: 'center', title: 'الجوهر والمركز', fields: [['t', 'الهوية', 'identity'], ['t', 'السلوك التلقائي', 'behavior'], ['l', 'فخ الظل', 'shadow'], ['t', 'مفتاح التوازن', 'balanceKey']] },
+    { name: 'talents', title: 'المواهب والقدرات', fields: [['t', 'قناة الاتصال', 'channel'], ['t', 'الموهبة', 'gift'], ['t', 'الفخ', 'trap'], ['t', 'خطوة عملية', 'practice']] },
+    { name: 'love_line', title: 'خط العلاقات والحب', fields: [['t', 'الانجذاب', 'attraction'], ['l', 'أنماط الظل', 'shadowPatterns'], ['t', 'مفتاح التناغم', 'harmonyKey']] },
+    { name: 'money_line', title: 'خط المال والعمل', fields: [['t', 'بوابة التدفق', 'inflow'], ['j', 'المجالات الأنسب', 'sectors'], ['l', 'عوائق التدفق', 'blocks'], ['t', 'القاعدة الذهبية', 'goldenRule']] },
+    { name: 'father_line', title: 'خط الأب', fields: [['t', 'المحور', 'theme'], ['t', 'الإمكانية', 'potential'], ['t', 'التحدي', 'challenge'], ['l', 'أسئلة للتأمل', 'questions'], ['t', 'خطوة عملية', 'practice']] },
+    { name: 'mother_line', title: 'خط الأم', fields: [['t', 'المحور', 'theme'], ['t', 'الإمكانية', 'potential'], ['t', 'التحدي', 'challenge'], ['l', 'أسئلة للتأمل', 'questions'], ['t', 'خطوة عملية', 'practice']] },
+    { name: 'ancestral_programs', title: 'برامج الأسلاف', fields: [['t', 'الجذر والموروث', 'roots'], ['l', 'أنماط السقوط التلقائي', 'fallPatterns'], ['t', 'مسار التحرر', 'path']] },
+    { name: 'purposes', title: 'الغاية والرسالة', fields: [['t', 'الرسالة', 'mission'], ['t', 'امتحان النضج', 'maturityTest']] },
+    { name: 'children_line', title: 'خط الأبناء', fields: [['t', 'الأسرة والتربية', 'family']] },
+    { name: 'transformation_rx', title: 'روشتة التحول', fields: [['l', 'خطوات التحول', 'protocol'], ['l', 'أسئلة للتأمل', 'reflectiveQuestions']] }
+  ];
+
+  function xrSectionHtml(def, entry, gender) {
+    const g = gender === 'male' || gender === 'female' ? gender : '';
+    const rows = def.fields.map(([kind, label, key]) => sectionVal(kind, label, entry.deep && entry.deep[key])).join('');
+    const gd = g && entry.genderDynamic && entry.genderDynamic[g]
+      ? `<p class="aqm-slot-p aqm-gender-dynamic"><strong>بصيغتك:</strong> ${escapeHtml(entry.genderDynamic[g])}</p>` : '';
+    const draft = entry.meta && entry.meta.status === 'draft' ? '<p class="aqm-slot-p aqm-draft-note">نص تأملي قيد المراجعة.</p>' : '';
+    const lead = entry.summary ? `<p class="aqm-slot-p aqm-sec-lead">${escapeHtml(entry.summary)}</p>` : '';
+    return `<section class="aqm-xr-sec"><h5>${escapeHtml(def.title)}</h5>${lead}${rows}${gd}${draft}</section>`;
+  }
+
+  function expandedArcanaHtml(id, gender) {
+    const loader = window.AqeeqMatrix;
+    return Promise.all(XR_SECTIONS.map(def =>
+      loader.sectionEntry(def.name, id).then(e => (e ? { def, e } : null)).catch(() => null)
+    )).then(list => {
+      const found = list.filter(Boolean);
+      if (!found.length) return '<p class="aqm-slot-p aqm-pending-note">لا يوجد نص موسع لهذه الأركانا بعد.</p>';
+      const a = found[0].e.arcana || {};
+      return `<article class="aqm-xr" dir="rtl"><header class="aqm-xr-head"><span class="aqm-xr-kicker">التفسير الموسع</span><h4>الأركانا ${id} · ${escapeHtml(a.ar || '')}${a.en ? ` <small>${escapeHtml(a.en)}</small>` : ''}</h4></header>${found.map(({ def, e }) => xrSectionHtml(def, e, gender)).join('')}</article>`;
+    });
+  }
+
+  function tailsLibraryHtml(data, gender) {
+    const g = gender === 'male' || gender === 'female' ? gender : '';
+    const items = data.tails.map(t => {
+      const v = (g && t.genderVariants && t.genderVariants[g]) || {};
+      return `<details class="aqm-xr-tail"><summary><strong>${escapeHtml(t.code)}</strong> · ${escapeHtml(t.title.ar)} — ${escapeHtml(t.title.subtitle)}</summary>
+        ${sectionVal('t', 'العمق النفسي', t.psychologicalDepth)}${sectionVal('t', 'التناقض', v.paradox || t.paradox)}${sectionVal('t', 'جذور الطفولة', v.childhoodRoots || t.childhoodRoots)}${sectionVal('t', 'التنبيه الجسدي الرمزي', t.symbolicBodyNote)}${sectionVal('l', 'بروتوكول التحرر', t.protocol)}
+      </details>`;
+    }).join('');
+    return `<article class="aqm-xr" dir="rtl"><header class="aqm-xr-head"><span class="aqm-xr-kicker">مكتبة الذيول الكارمية</span><h4>${data.tails.length} ذيلاً كارمياً</h4></header>${items}</article>`;
+  }
+
+  /* زر «التفسير الموسع» وزر مكتبة الذيول: كليك واحد يفتح المحتوى جوه البطاقة، وكليك تاني يقفله. */
+  function bindExpandedReadings(host) {
+    if (!host || host.dataset.aqmXrBound === 'true') return;
+    host.dataset.aqmXrBound = 'true';
+    host.addEventListener('click', ev => {
+      const btn = ev.target.closest && ev.target.closest('.aqm-master-open');
+      if (!btn || !host.contains(btn)) return;
+      const lib = btn.closest('.aqm-master-library');
+      const out = lib && lib.querySelector('.aqm-master-output');
+      const loader = window.AqeeqMatrix;
+      if (!out || !loader) return;
+      if (btn.getAttribute('aria-expanded') === 'true') {
+        btn.setAttribute('aria-expanded', 'false');
+        out.innerHTML = '';
+        return;
+      }
+      lib.querySelectorAll('.aqm-master-open').forEach(b => b.setAttribute('aria-expanded', String(b === btn)));
+      out.innerHTML = '<p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p>';
+      const gender = host.dataset.aqmGender || '';
+      const task = btn.dataset.aqmMasterTail
+        ? loader.karmicTails().then(d => tailsLibraryHtml(d, gender))
+        : expandedArcanaHtml(Number(btn.dataset.aqmMasterArcana), gender);
+      task.then(html => {
+        if (btn.getAttribute('aria-expanded') === 'true') out.innerHTML = html;
+      }).catch(() => {
+        out.innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  function buildMasterLibrary(item) {
+    const uniqueArcana = [...new Map((item.arcanaList || [])
+      .filter(a => Number.isInteger(Number(a.num)) && Number(a.num) >= 1 && Number(a.num) <= 22)
+      .map(a => [Number(a.num), a])).values()];
+    if (!uniqueArcana.length) return '';
+    const buttons = uniqueArcana.map(a => `
+      <button type="button" class="aqm-master-open" data-aqm-master-arcana="${a.num}" aria-expanded="false">
+        <span aria-hidden="true">✦</span> التفسير الموسع: ${a.num} · ${escapeHtml(a.name)}
+      </button>`).join('');
+    const tailButton = item.id === 'karmic_tail'
+      ? '<button type="button" class="aqm-master-open aqm-master-tail-open" data-aqm-master-tail="true" aria-expanded="false">⚓ مكتبة الذيول الكارمية والتركيبات الكاملة</button>'
+      : '';
+    return `
+      <section class="aqm-master-library" aria-label="التفسير الموسع للأركانا">
+        <div class="aqm-master-library-intro">
+          <h4>المكتبة الموسعة للطاقات الظاهرة في هذا الموضع</h4>
+          <p>اضغط على أي طاقة لقراءة تفسيرها الموسع المراجَع (الجوهر والمواهب والعلاقات والمال والأسلاف وغيرها). التحميل يتم عند الطلب ولا يغير حساب المصفوفة.</p>
+        </div>
+        <div class="aqm-master-actions">${buttons}${tailButton}</div>
+        <div class="aqm-master-output" aria-live="polite"></div>
+      </section>`;
+  }
 
   /**
    * إنشاء كارت قسم الأكورديون وفق بنية المحتوى المعتمدة
@@ -370,7 +663,7 @@
     const pendingHtml = isPending ? `<span class="aqm-pending-badge" data-pending="true">Pending Content</span>` : '';
 
     return `
-      <div class="aqm-acc-item${isPending ? ' is-pending' : ''}" id="aqm-sec-${id}" data-section-id="${id}" data-content-key="${contentKey}" data-pending="${isPending}">
+      <div class="aqm-acc-item${isPending ? ' is-pending' : ''}" id="aqm-sec-${id}" data-section-id="${id}" data-content-key="${contentKey}" data-pending="${isPending}"${item.ktRedirect ? ` data-kt-redirect="${item.ktRedirect}"` : ''}>
         <button class="aqm-acc-header" type="button" aria-expanded="false" aria-controls="aqm-body-${id}">
           <div class="aqm-acc-header-left">
             <span class="aqm-acc-icon" aria-hidden="true">${ICON_SVG[id] || ''}</span>
@@ -389,35 +682,36 @@
         <div class="aqm-acc-body" id="aqm-body-${id}">
           <div class="aqm-content-grid">
             <!-- النص الأساسي -->
-            <div class="aqm-slot aqm-slot-primary" data-slot="primary">
-              <h4 class="aqm-slot-title">النص الأساسي</h4>
-              <p class="aqm-slot-p">${slots.primary}</p>
-            </div>
+            <section class="aqm-slot aqm-slot-primary" data-slot="primary">
+              <h4 class="aqm-slot-title">✦ النص الأساسي</h4>
+              <div class="aqm-slot-p">${slots.primary}</div>
+            </section>
 
             <!-- التفسير التفصيلي والعميق -->
-            <div class="aqm-slot aqm-slot-detailed" data-slot="detailed">
-              <h4 class="aqm-slot-title">التفسير التفصيلي والعميق</h4>
-              <p class="aqm-slot-p">${slots.detailed}</p>
-            </div>
+            <section class="aqm-slot aqm-slot-detailed" data-slot="detailed">
+              <h4 class="aqm-slot-title">📖 التفسير التفصيلي والعميق</h4>
+              <div class="aqm-slot-p">${slots.detailed}</div>
+            </section>
 
             <!-- نقاط القوة والتجلي الإيجابي -->
-            <div class="aqm-slot aqm-slot-strengths" data-slot="strengths">
-              <h4 class="aqm-slot-title">نقاط القوة والتجلي الإيجابي (النور)</h4>
-              <p class="aqm-slot-p">${slots.strengths}</p>
-            </div>
+            <section class="aqm-slot aqm-slot-strengths" data-slot="strengths">
+              <h4 class="aqm-slot-title">✨ نقاط القوة والتجلي الإيجابي (النور)</h4>
+              <div class="aqm-slot-p">${slots.strengths}</div>
+            </section>
 
             <!-- التحديات والجانب الظلي -->
-            <div class="aqm-slot aqm-slot-challenges" data-slot="challenges">
-              <h4 class="aqm-slot-title">التحديات والجانب الظلي (الظل)</h4>
-              <p class="aqm-slot-p">${slots.challenges}</p>
-            </div>
+            <section class="aqm-slot aqm-slot-challenges" data-slot="challenges">
+              <h4 class="aqm-slot-title">⚠️ التحديات والجانب الظلي (الظل)</h4>
+              <div class="aqm-slot-p">${slots.challenges}</div>
+            </section>
 
             <!-- التطبيق العملي وخطوات التوازن -->
-            <div class="aqm-slot aqm-slot-practical" data-slot="practical">
-              <h4 class="aqm-slot-title">خطوات التوازن والتطبيق اليومي</h4>
-              <p class="aqm-slot-p">${slots.practical}</p>
-            </div>
+            <section class="aqm-slot aqm-slot-practical" data-slot="practical">
+              <h4 class="aqm-slot-title">🌱 خطوات التوازن والتطبيق اليومي</h4>
+              <div class="aqm-slot-p">${slots.practical}</div>
+            </section>
           </div>
+          ${buildMasterLibrary(item)}
         </div>
       </div>
     `;
@@ -440,10 +734,10 @@
     const arcE = getProfile(E);
     const arcA = getProfile(A);
     const arcB = getProfile(B);
-    const ktData = destinyData && destinyData.getKarmicTail ? destinyData.getKarmicTail(D, intermediate.D3, intermediate.D2) : null;
+    const ktData = destinyData && destinyData.getKarmicTail ? destinyData.getKarmicTail(intermediate.D2, intermediate.D3, D) : null;
     // أرقام الذيل المعتمدة للعرض: عند ربط ثلاثية بذيل معتمد (mappedFrom) نعرض أرقام شفرته هو في كل مكان بالأكورديون
     const tailMapped = !!(ktData && ktData.mappedFrom && ktData.code);
-    const tailNums = tailMapped ? ktData.code.split('-').map(Number) : [D, intermediate.D3, intermediate.D2];
+    const tailNums = tailMapped ? ktData.code.split('-').map(Number) : [intermediate.D2, intermediate.D3, D];
     const ancLines = destinyData && destinyData.ancestralLines ? destinyData.ancestralLines : null;
 
     const sections = [
@@ -480,6 +774,7 @@
         subtitle: 'الأنماط النفسية المتكررة والمواقف التي تختبر وعيك حتى تحررها (Karmic Tail)',
         arcanaList: tailNums.map(n => ({ num: n, name: getInfo(n).name })),
         contentKey: 'matrix.section.karmic_tail',
+        ktRedirect: tailMapped ? ktData.code : '',
         slots: {
           primary: `يتشكل ثالوث ذيلك الكارمي من الطاقات <strong>(${tailNums.join(' - ')})</strong>${tailMapped ? '.' : ` بقيادة طاقة الأساس <strong>${getInfo(D).name}</strong>.`}`,
           detailed: ktData ? `
@@ -933,6 +1228,12 @@
       return;
     }
 
+    // لو الاستدعاء جه من index.html (بدون جنس)، ناخد الاختيار من حقل صيغة التقرير.
+    if (!gender) {
+      const gi = document.querySelector('#m-gender');
+      gender = gi ? gi.value : '';
+    }
+
     const P = engine.calculateDestinyMatrix(birthDate);
     const getInfo = n => engine.getArcanaInfo(n);
     const dateStr = `${P.birthDate.year}-${String(P.birthDate.month).padStart(2, '0')}-${String(P.birthDate.day).padStart(2, '0')}`;
@@ -987,6 +1288,19 @@
 
     host.innerHTML = html;
     host.hidden = false;
+    host.dataset.aqmGender = gender || '';
+    bindExpandedReadings(host);
+
+    // تحميل المحتوى عند فتح الأكورديون (الذيل الكارمي من karmic-tails.json)
+    // ترتيب الأرشيف هو عكس ترتيب المحرك (D, D3, D2)، فنعكس الثلاثية قبل البحث.
+    const tailTriad = [P.intermediate && P.intermediate.D2, P.intermediate && P.intermediate.D3, P.anchors.D];
+    const onAccOpen = item => {
+      const sid = item.dataset.sectionId;
+      if (sid === 'karmic_tail') return hydrateKarmicTail(item, tailTriad, gender);
+      if (sid === 'composite_programs') return hydrateComposite(item, P);
+      if (SECTION_SPECS[sid]) return hydrateSection(item, SECTION_SPECS[sid], P, gender);
+      return Promise.resolve();
+    };
 
     // ربط تفاعلات الأكورديون
     const accItems = host.querySelectorAll('.aqm-acc-item');
@@ -997,6 +1311,7 @@
         // السماح بفتح وإغلاق مستقل
         item.classList.toggle('open');
         header.setAttribute('aria-expanded', String(!isOpen));
+        if (!isOpen) onAccOpen(item);
       });
     });
 
@@ -1006,6 +1321,8 @@
       firstAcc.classList.add('open');
       firstAcc.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
     }
+    // نحمّل نصوص كل الأقسام فوراً بعد الرسم عشان النص العميق يكون جاهز أول ما الأكورديون يتفتح.
+    accItems.forEach(item => { onAccOpen(item); });
 
     // ربط عُقد النجمة بالأكورديون: النقر على العقدة يفتح الكارت المقابل له (data-section = id القسم) ويميّزه ثم يمرّره للأعلى
     const allAcc = host.querySelectorAll('.aqm-acc-item');
@@ -1027,11 +1344,14 @@
     // ربط زر الطباعة / PDF
     host.querySelector('#aqm-btn-print')?.addEventListener('click', () => {
       // فتح كل الأكورديونات قبل الطباعة لضمان ظهور كامل المحتوى في الـ PDF
+      const loads = [];
       accItems.forEach(item => {
         item.classList.add('open');
         item.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true');
+        loads.push(onAccOpen(item));
       });
-      window.print();
+      // نستنى تحميل نصوص الأقسام قبل الطباعة عشان الـ PDF يطلع كامل.
+      Promise.all(loads).then(() => window.print(), () => window.print());
     });
 
     // تعديل البيانات: يعيد فتح نموذج الإدخال مع القيم الحالية دون تحديث الصفحة
