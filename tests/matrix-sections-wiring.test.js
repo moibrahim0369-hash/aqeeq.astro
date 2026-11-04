@@ -47,9 +47,9 @@ for (const name of NAMES) {
   }
 }
 
-// الأقسام اللي كتبناها مؤلَّفة لازم تفضل draft لحد المراجعة.
+// الأقسام المؤلَّفة بعد المراجعة: review (مش draft) وتفضل مصنفة authored.
 for (const name of ['father_line', 'mother_line']) {
-  assert.ok(read(name).entries.every(e => e.meta.status === 'draft' && e.meta.source === 'authored'), name + ' stays an authored draft');
+  assert.ok(read(name).entries.every(e => e.meta.status === 'review' && e.meta.source === 'authored'), name + ' is a reviewed authored section');
 }
 
 (async () => {
@@ -65,9 +65,10 @@ for (const name of ['father_line', 'mother_line']) {
   const e9 = await api.sectionEntry('center', 9);
   assert.equal(e9.id, 9);
   const anc17 = await api.sectionEntry('ancestral_programs', 17);
-  assert.equal(anc17 && anc17.id, 17, 'ancestral_programs now covers arcana 17');
-  assert.equal(await api.sectionEntry('purposes', 17), null, 'missing arcana resolves to null, not an error');
-  assert.equal(await api.sectionEntry('children_line', 22), null);
+  assert.equal(anc17 && anc17.id, 17, 'ancestral_programs covers arcana 17');
+  assert.equal((await api.sectionEntry('purposes', 17)).id, 17, 'purposes covers arcana 17');
+  assert.equal((await api.sectionEntry('children_line', 22)).id, 22, 'children_line covers arcana 22');
+  assert.equal(await api.sectionEntry('composite_programs', 22), null, 'an id with no entry resolves to null, not an error');
 
   await assert.rejects(() => api.section('../core'), err => /قسم غير معروف/.test(err.message), 'only whitelisted section names are loadable');
   // الـ RangeError بييجي من context تاني (vm)، فنقارن بالاسم مش بالـ instanceof.
