@@ -1393,3 +1393,5 @@ html.aqm-xr-open { overflow: hidden; }
 .aqm-meta-info { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .aqm-actions { display: flex !important; flex-wrap: wrap; justify-content: center; gap: 10px; }
 .aqm-meta-pill { font-size: .88rem; padding: 5px 12px; }
+.aqm-shell { padding-bottom: 130px !important; }
+.aqm-shell footer { margin-bottom: 24px; }
