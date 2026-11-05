@@ -55,7 +55,7 @@
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/hero-wide.css?v=20261106h">
 <link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106d">
-<link rel="stylesheet" href="assets/css/hero-energy.css?v=20261106m">
+<link rel="stylesheet" href="assets/css/hero-energy.css?v=20261106q">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
@@ -163,18 +163,7 @@
           <p class="aq-wheel-caption wheel-hint aqh-wheel-hint" data-i18n-ar="انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته" data-i18n-en="Select any zodiac sign on the celestial wheel to view its reading">انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته</p>
           <a class="aqh-sky-link" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>استكشف السماء الآن</span></a>
         </div>
-        <aside class="hv-live" id="hv-live" aria-label="السماء الآن">
-          <p class="hv-live-k"><i class="hv-dot" aria-hidden="true"></i><span>الخريطة الحية الآن</span></p>
-          <p class="hv-live-t">اضغط على برجك في الدائرة لتعرف كيف تؤثر السماء في قراراتك وإيقاعك اليومي.</p>
-          <ul class="hv-rows" id="hv-rows"></ul>
-          <div class="hv-nav">
-            <button type="button" class="hv-arr" data-hv="prev" aria-label="المواقع السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-            <span class="hv-dots" id="hv-dots" aria-hidden="true"></span>
-            <button type="button" class="hv-arr" data-hv="next" aria-label="المواقع التالية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
-          </div>
-          <a class="hv-watch" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>راقب السماء الآن</span></a>
-          <p class="hv-foot-note">البيوت محسوبة لسماء الشرق الأوسط (القاهرة).</p>
-        </aside>
+        
         <aside class="aqh-tagline" aria-hidden="true"><span>النجوم</span><span>لغة أخرى</span><span>لنفهم بها أنفسنا</span><i></i><em dir="ltr">A DEEPER YOU<br>A BRIGHTER TOMORROW</em></aside>
       </div>
     </div>
@@ -231,7 +220,7 @@
         </div>
         <div class="dbn-stage" id="dbn-stage" tabindex="0" aria-live="off">
           <!-- 1: طاقة اليوم (مرجع: الشريط العاجي بالتاريخ والقمر) -->
-          <section class="dbn-slide dbn-s1" role="group" aria-roledescription="شريحة" aria-label="1 من 4: طاقة اليوم">
+          <section class="dbn-slide dbn-s1" role="group" aria-roledescription="شريحة" aria-label="1 من 7: طاقة اليوم">
             <div class="dbn-s1-main">
               <h2 id="aqh-energy-h" class="dbn-title"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 1l1.6 8.4L22 12l-8.4 2.6L12 23l-1.6-8.4L2 12l8.4-2.6z"/></svg><span>طاقة اليوم</span></h2>
               <p class="dbn-headline" data-f="headline">—</p>
@@ -245,8 +234,32 @@
             <div class="dbn-s1-moon"><svg class="dbn-moonsvg" data-moon viewBox="0 0 120 120" role="img" aria-label="شكل القمر الحالي"></svg></div>
             <div class="dbn-s1-date"><span data-f="wd">—</span><strong data-f="dateShort">—</strong><span data-f="year">—</span></div>
           </section>
+          <!-- السماء الآن 1: مواقع الكواكب الحية -->
+          <section class="dbn-slide dbn-live-s" role="group" aria-roledescription="شريحة" aria-label="السماء الآن" aria-hidden="true">
+            <div class="dbn-copy">
+              <h2 class="dbn-title"><i class="dbn-pulse" aria-hidden="true"></i><span>السماء الآن</span></h2>
+              <div class="dbn-live" data-f="live1"></div>
+              <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-live-now" data-content-type="sky-event" data-slug="live"><span>راقب السماء الآن</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+            </div>
+          </section>
+          <!-- السماء الآن 2: مواقع الكواكب الحية -->
+          <section class="dbn-slide dbn-live-s" role="group" aria-roledescription="شريحة" aria-label="السماء الآن" aria-hidden="true">
+            <div class="dbn-copy">
+              <h2 class="dbn-title"><i class="dbn-pulse" aria-hidden="true"></i><span>السماء الآن</span></h2>
+              <div class="dbn-live" data-f="live2"></div>
+              <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-live-now" data-content-type="sky-event" data-slug="live"><span>راقب السماء الآن</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+            </div>
+          </section>
+          <!-- السماء الآن 3: مواقع الكواكب الحية -->
+          <section class="dbn-slide dbn-live-s" role="group" aria-roledescription="شريحة" aria-label="السماء الآن" aria-hidden="true">
+            <div class="dbn-copy">
+              <h2 class="dbn-title"><i class="dbn-pulse" aria-hidden="true"></i><span>السماء الآن</span></h2>
+              <div class="dbn-live" data-f="live3"></div>
+              <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-live-now" data-content-type="sky-event" data-slug="live"><span>راقب السماء الآن</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+            </div>
+          </section>
           <!-- 2: القمر الحي (مرجع: القمر على خلفية بنية داكنة) -->
-          <section class="dbn-slide dbn-s2" role="group" aria-roledescription="شريحة" aria-label="2 من 4: القمر الحي" aria-hidden="true">
+          <section class="dbn-slide dbn-s2" role="group" aria-roledescription="شريحة" aria-label="2 من 7: القمر الحي" aria-hidden="true">
             <div class="dbn-s2-moon"><svg class="dbn-moonsvg" data-moon viewBox="0 0 120 120" role="img" aria-label="شكل القمر الحالي"></svg></div>
             <div class="dbn-copy">
               <span class="dbn-kicker"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 1l1.6 8.4L22 12l-8.4 2.6L12 23l-1.6-8.4L2 12l8.4-2.6z"/></svg><span>القمر الآن</span></span>
@@ -261,7 +274,7 @@
             </div>
           </section>
           <!-- 3: التاريخ والإشارة اليومية (مرجع: كتلة التاريخ الكبيرة) -->
-          <section class="dbn-slide dbn-s3" role="group" aria-roledescription="شريحة" aria-label="3 من 4: التاريخ والإشارة اليومية" aria-hidden="true">
+          <section class="dbn-slide dbn-s3" role="group" aria-roledescription="شريحة" aria-label="3 من 7: التاريخ والإشارة اليومية" aria-hidden="true">
             <div class="dbn-s3-main">
               <h2 class="dbn-title"><span>رسالة اليوم</span></h2>
               <p class="dbn-theme dbn-theme-lg" data-f="theme">—</p>
@@ -271,7 +284,7 @@
             <div class="dbn-s3-date"><span class="dbn-s3-tag">إشارتك اليومية</span><span data-f="wd">—</span><strong class="dbn-dn" data-f="dayNum">—</strong><span data-f="monthYear">—</span></div>
           </section>
           <!-- 4: التحليل المختصر (مرجع: بطاقة إشارتك اليومية بوحداتها) -->
-          <section class="dbn-slide dbn-s4" role="group" aria-roledescription="شريحة" aria-label="4 من 4: التحليل المختصر للطاقة" aria-hidden="true">
+          <section class="dbn-slide dbn-s4" role="group" aria-roledescription="شريحة" aria-label="4 من 7: التحليل المختصر للطاقة" aria-hidden="true">
             <span class="dbn-tile"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="32" cy="32" r="11"/><path d="M32 6v8M32 50v8M6 32h8M50 32h8M13.6 13.6l5.6 5.6M44.8 44.8l5.6 5.6M50.4 13.6l-5.6 5.6M19.2 44.8l-5.6 5.6"/></svg></span>
             <div class="dbn-copy">
               <header class="dbn-s4-head"><h2 class="dbn-title"><span>التحليل المختصر</span></h2><span class="dbn-s4-date"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span data-f="dateLong">—</span></span></header>
@@ -291,10 +304,13 @@
           <button type="button" class="dbn-toggle" data-dbn="toggle" aria-pressed="false" aria-label="إيقاف التبديل التلقائي"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
           <button type="button" class="dbn-arrow" data-dbn="prev" aria-label="الشريحة السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <div class="dbn-dots" role="group" aria-label="اختيار الشريحة">
-            <button type="button" class="dbn-dot is-on" aria-label="الشريحة 1 من 4: طاقة اليوم" aria-current="true"></button>
-            <button type="button" class="dbn-dot" aria-label="الشريحة 2 من 4: إشارة اليوم"></button>
-            <button type="button" class="dbn-dot" aria-label="الشريحة 3 من 4: التاريخ"></button>
-            <button type="button" class="dbn-dot" aria-label="الشريحة 4 من 4: التحليل المختصر"></button>
+            <button type="button" class="dbn-dot is-on" aria-label="الشريحة 1 من 7: طاقة اليوم" aria-current="true"></button>
+            <button type="button" class="dbn-dot" aria-label="السماء الآن 1"></button>
+            <button type="button" class="dbn-dot" aria-label="السماء الآن 2"></button>
+            <button type="button" class="dbn-dot" aria-label="السماء الآن 3"></button>
+            <button type="button" class="dbn-dot" aria-label="الشريحة 2 من 7: إشارة اليوم"></button>
+            <button type="button" class="dbn-dot" aria-label="الشريحة 3 من 7: التاريخ"></button>
+            <button type="button" class="dbn-dot" aria-label="الشريحة 4 من 7: التحليل المختصر"></button>
           </div>
           <button type="button" class="dbn-arrow" data-dbn="next" aria-label="الشريحة التالية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
         </div>
@@ -4603,7 +4619,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/content-links.js?v=20261106a" defer></script>
 <script src="assets/js/natal-view.js?v=20261106b" defer></script>
 <script src="assets/js/life-path-view.js?v=20261105a" defer></script>
-<script src="assets/js/daily-banner.js?v=20261106a" defer></script>
+<script src="assets/js/daily-banner.js?v=20261106f" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
