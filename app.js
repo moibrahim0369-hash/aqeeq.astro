@@ -228,6 +228,7 @@
       <p class="syn-note">الحسابات تتم داخل المتصفح. درجة التوافق مؤشر داخل منهج عقيق أسترو وليست قياسًا علميًا للعلاقة.</p>`;
 
     output.hidden = false;
+    output.style.display = "";
     const unlock = $("syn-unlock");
     if (unlock) unlock.addEventListener("click", () => {
       const premium = $("syn-premium");
