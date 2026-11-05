@@ -52,3 +52,37 @@ html body #home.aqh #aqh-band{border-radius:34px 34px 0 0;position:relative;box-
 @media (prefers-reduced-motion:reduce){html body #home.aqh .aqh-band-arts .aqh-article{transition:none}}
 /* المسار يقصّ الظل: نمنحه مساحة ليظهر ظل البطاقات كاملًا */
 html body #home.aqh .aqh-band-arts .aqh-track{padding:8px 4px 30px!important;margin-bottom:-16px}
+
+/* ---------- الخريطة + طاقة اليوم: شريط عاجي بعرض الشاشة، أصغر ومتناسق ---------- */
+html body #home.aqh #aqh-band.aqh-band{
+  background:radial-gradient(520px 260px at 90% 0,rgba(183,138,82,.14),transparent 70%),linear-gradient(180deg,#F1E8DA,#F7F2EA)!important;
+  border-radius:0!important;box-shadow:none!important;
+  padding:clamp(20px,3vw,40px) 0 clamp(36px,5vw,64px)!important}
+html body #home.aqh .aqh-skyb{
+  grid-template-columns:minmax(240px,.6fr) minmax(0,1.4fr)!important;
+  background:linear-gradient(135deg,#FFFDFA,#F6EEE0)!important;
+  border:1px solid rgba(183,138,82,.4)!important;border-radius:22px!important;
+  box-shadow:0 14px 34px rgba(74,26,43,.10)!important}
+html body #home.aqh .aqh-skyb-wheel{padding:clamp(10px,1.4vw,18px)}
+html body #home.aqh .aqh-skyb-wheel .aqh-wheel-box{width:min(100%,300px)!important;max-width:300px!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-stage{min-height:clamp(220px,18vw,260px)}
+@media (max-width:760px){
+  html body #home.aqh .aqh-skyb{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;border-radius:16px!important}
+  html body #home.aqh .aqh-skyb-wheel .aqh-wheel-box{width:100%!important;max-width:100%!important}
+}
+
+/* ---------- الدعوة الختامية: عاجية بدل العنابي ---------- */
+html body #home.aqh #aqh-cta.aqh-final{
+  background:radial-gradient(520px 240px at 12% 100%,rgba(183,138,82,.14),transparent 70%),linear-gradient(180deg,#F7F2EA,#F3EADC)!important;
+  border-top:1px solid rgba(183,138,82,.3);padding:clamp(28px,5vw,54px) 0 clamp(44px,6vw,76px)!important;overflow:hidden}
+html body #home.aqh #aqh-cta.aqh-final::before,html body #home.aqh #aqh-cta.aqh-final::after{display:none!important}
+html body #home.aqh #aqh-cta .aqh-cta-in{text-align:center;display:grid;justify-items:center;gap:10px}
+html body #home.aqh #aqh-cta .aqh-cta-ic{width:44px;height:44px;color:#B78A52}
+html body #home.aqh #aqh-cta h2{color:#70263F!important;font-family:'Amiri',serif!important;font-size:clamp(1.6rem,3.4vw,2.3rem)!important;margin:0}
+html body #home.aqh #aqh-cta p{color:#4a3b41!important;max-width:560px;margin:0}
+html body #home.aqh #aqh-cta .aqh-cta-btn{background:linear-gradient(135deg,#8a3d56,#70263F)!important;color:#fff!important;border:1px solid rgba(228,196,134,.7)!important;box-shadow:0 10px 22px rgba(112,38,63,.22)}
+html body #home.aqh .aqh-skyb-wheel .aq-celestial-wheel-frame{width:min(70vw,262px)!important;height:min(70vw,262px)!important;padding:10px}
+html body #home.aqh .aqh-skyb-wheel .aqh-wheel-box{width:min(100%,262px)!important;max-width:262px!important}
+@media (max-width:760px){html body #home.aqh .aqh-skyb-wheel .aq-celestial-wheel-frame{width:min(38vw,150px)!important;height:min(38vw,150px)!important;padding:5px}}
+/* زخارف الخلفية البنفسجية لا تناسب الصفحة العاجية */
+html body #home.aqh .amb-planet,html body #home.aqh::after{display:none!important}
