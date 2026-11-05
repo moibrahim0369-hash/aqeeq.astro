@@ -39,3 +39,12 @@
 #home.aqh #aqh-energy .dbn-lv small{font-size:.74rem;color:#4a4348;white-space:nowrap}
 #home.aqh #aqh-energy .dbn-lv i{font-style:normal;font-size:.66rem;color:#8a8186}
 #home.aqh #aqh-energy .dbn-lv.is-retro i{color:#642B3C;font-weight:600}
+/* البانر العلوي: صورة كاملة بدون تلاشي أبيض + خط واضح وأنيق */
+#home.aqh .aqh-hero .aqh-title{font-family:'Amiri','IBM Plex Sans Arabic',serif!important;font-weight:700!important;color:#29252A!important;letter-spacing:0;line-height:1.35!important;font-size:clamp(1.8rem,2.9vw,2.6rem)!important;text-shadow:0 1px 0 rgba(255,255,255,.6)}
+#home.aqh .aqh-hero .aqh-lead{color:#3b363a!important;opacity:1!important;font-weight:500;font-size:clamp(.92rem,1.05vw,1.02rem)!important;line-height:1.85!important}
+#home.aqh .aqh-hero .aqh-eyebrow{color:#8E7340!important;font-weight:600;letter-spacing:.02em}
+@media (max-width:1024px){
+  #home.aqh .hw-statue{height:auto!important;aspect-ratio:16/10;max-height:240px;width:100%!important;margin:0 0 14px!important;-webkit-mask-image:none!important;mask-image:none!important;object-fit:cover;border-radius:0}
+  #home.aqh .aqh-hero .aqh-title{font-size:clamp(1.9rem,7.4vw,2.4rem)!important;white-space:normal!important}
+  #home.aqh .aqh-hero .aqh-lead{font-size:.98rem!important}
+}
