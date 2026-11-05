@@ -306,9 +306,10 @@
       fetch(SRC, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
         ARTICLES = ((j && j.articles) || []).map(function (a) { return { id: a.id, slug: a.slug, category: a.category, title: a.title, date: a.publishedAt, readMinutes: a.readingTime, image: a.coverImage, imageAlt: a.coverAlt, intro: a.excerpt, featured: a.featured }; });
         if (!ARTICLES.length) { track.innerHTML = ''; state('empty', '<p>لا يوجد محتوى حاليًا.</p>'); return; }
+        (function shuffle() { var n = ARTICLES.length, last = -1; try { last = Number(sessionStorage.getItem('aqh-art-off')); } catch (e) { } var o = Math.floor(Math.random() * n); if (n > 1 && o === last) o = (o + 1 + Math.floor(Math.random() * (n - 1))) % n; try { sessionStorage.setItem('aqh-art-off', String(o)); sessionStorage.removeItem('aqh-car'); } catch (e) { } ARTICLES = ARTICLES.slice(o).concat(ARTICLES.slice(0, o)); })();
         track.innerHTML = ARTICLES.map(card).join(''); state('ready');
         $$('.aqh-article', track).forEach(function (el, k) { el.classList.add('aqh-reveal'); el.style.setProperty('--aqh-d', (k * 70) + 'ms'); if (window.__aqhObserve) window.__aqhObserve(el); });
-        restorePos(); update();
+        update(); autoTimer();
       }).catch(function () { track.innerHTML = ''; state('error', '<p>تعذر تحميل المحتوى حاليًا. حاول مرة أخرى.</p><button type="button" class="aqh-outline-btn" data-car-retry><span>إعادة المحاولة</span></button>'); var r = $('[data-car-retry]', msg); if (r) r.addEventListener('click', load); });
     }
     /* --- سحب بالماوس + أسهم + تلميح الحافة --- */
@@ -330,6 +331,17 @@
     track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; return; } var l = e.target.closest('.aqh-article-link'); if (l) { e.preventDefault(); openArticle(l.getAttribute('data-slug'), l); } else { var c = e.target.closest('.aqh-article'); if (c) { var a = $('.aqh-article-link', c); e.preventDefault(); openArticle(a.getAttribute('data-slug'), a); } } }, true);
     document.addEventListener('keydown', function (e) { if (e.target === track && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); step(e.key === 'ArrowLeft' ? -1 : 1); } });
 
+    /* --- تجديد تلقائي كل 30 ثانية: يتقدم المعرض خطوة، ويعود للبداية عند النهاية --- */
+    var autoT = null;
+    function autoTimer() {
+      clearInterval(autoT); if (reduce) return;
+      autoT = setInterval(function () {
+        if (document.hidden || carousel.matches(':hover') || carousel.contains(document.activeElement)) return;
+        var r = carousel.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+        var max = track.scrollWidth - track.clientWidth; if (max <= 4) return;
+        if (Math.abs(track.scrollLeft) >= max - 4) track.scrollTo({ left: 0, behavior: 'smooth' }); else step(-1);
+      }, 30000);
+    }
     /* --- فتح المحتوى: صفحة القراءة الداخلية (featured-content.js) --- */
     function openArticle(slug) { location.hash = '#featured-content/' + slug; }
     window.AqhArticles = { all: function () { return ARTICLES; }, open: openArticle };
