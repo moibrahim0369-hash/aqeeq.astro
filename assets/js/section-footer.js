@@ -2,7 +2,7 @@
    طبقة عرض فقط: النسخة بلا ids، وزر المشاركة يمرّر الضغطة للزر الأصلي. */
 (function () {
   'use strict';
-  var IDS = ['sky', 'signs', 'astro-maps'];
+  var IDS = ['sky', 'signs', 'astro-maps', 'for-you'];
   function build() {
     var orig = document.querySelector('body > footer.foot');
     if (!orig) return;
