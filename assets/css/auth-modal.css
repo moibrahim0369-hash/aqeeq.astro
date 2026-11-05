@@ -84,3 +84,11 @@ section#account.acx .acct-card-shell:not(:has(#acct-guest:not([hidden]))){grid-t
 section#account.acx form#acct-form{padding:0!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important}
 section#account.acx.sec:target{padding-top:clamp(112px,14vh,140px)!important}
 @media(max-width:820px){section#account.acx.sec:target{padding-top:96px!important}}
+
+/* زر إغلاق نموذج استكمال الملف + قوائم الدولة والمحافظة */
+.profile-onboarding-banner{position:relative}
+.profile-close-btn{position:absolute;top:10px;inset-inline-start:10px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(112,38,63,.25);background:#FFFDFA;color:#70263F;display:grid;place-items:center;cursor:pointer;padding:0;transition:background .2s,color .2s}
+.profile-close-btn:hover,.profile-close-btn:focus-visible{background:#70263F;color:#FFFDFA;outline:none}
+.profile-onboarding-banner h4{padding-inline-start:44px}
+.profile-form-grid select{width:100%;min-height:46px;padding:0 12px;border:1px solid rgba(112,38,63,.22);border-radius:12px;background:#FFFDFA;color:#35252B;font:inherit}
+.profile-form-grid select:disabled{opacity:.55;cursor:not-allowed}
