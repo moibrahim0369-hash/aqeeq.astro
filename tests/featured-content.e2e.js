@@ -11,12 +11,22 @@ let pass=0,fail=0; const ok=(n,c,x)=>{ (c?pass++:fail++); console.log((c?'PASS '
  ok('list open', await p.evaluate(()=>getComputedStyle(document.getElementById('featured-content')).display==='block'));
  ok('title', (await p.textContent('#fc-title'))==='محتوى مميز');
  ok('10 filters', await p.locator('.fc-chip').count()===10);
- ok('cards page1=4 (stacked list)', await p.locator('.fc-list .fc-card').count()===4);
+ ok('rows layout: latest row has 4 cards', await p.locator('.fc-rows #fc-latest-grid .fc-card').count()===4);
+ ok('4 topic rows below latest', await p.locator('.fc-rows .fc-row:not(.is-latest)').count()===4);
+ ok('latest row is newest-first', await p.evaluate(()=>{var d=[...document.querySelectorAll('#fc-latest-grid .fc-meta span:first-child')].length;return d===4}));
  ok('pick shown', await p.locator('.fc-pick').isVisible());
  await p.waitForTimeout(900);
  await p.screenshot({path:OUT+'list-desktop.png'});
+ { const sl=await p.getAttribute('.fc-pick','data-slug'); ok('banner has dots', await p.locator('.fc-pick-dots button').count()>=2); await p.click('.fc-pick-dots button:not([aria-current]) >> nth=0'); await p.waitForTimeout(700); ok('banner dot switches article', sl!==await p.getAttribute('.fc-pick','data-slug')); }
  // load more
- await p.click('.fc-pg[data-pg="2"]'); await p.waitForTimeout(300); ok('pagination page 2', await p.locator('.fc-list .fc-card').count()===4 && (await p.getAttribute('.fc-pg.on','aria-current'))==='page');
+ await p.click('.fc-pg[data-pg="2"]'); await p.waitForTimeout(300); ok('pagination page 2', await p.locator('#fc-latest-grid .fc-card').count()===4 && (await p.getAttribute('.fc-pg.on','aria-current'))==='page');
+ { const first=await p.getAttribute('#fc-latest-grid .fc-card','data-slug'); await p.click('.fc-pg[data-pg="1"]'); await p.waitForTimeout(200); ok('page 1 vs 2 differ', first!==await p.getAttribute('#fc-latest-grid .fc-card','data-slug')); }
+ // group header -> filtered list
+ await p.click('.fc-row:not(.is-latest) .fc-row-all >> nth=0'); await p.waitForTimeout(400);
+ ok('group header opens category list', await p.locator('.fc-list .fc-card').count()>=1 && await p.locator('.fc-rows').count()===0);
+ ok('group count line', (await p.textContent('#fc-count')).includes('الأبراج'));
+ await p.click('.fc-chip[data-cat="الكل"]'); await p.waitForTimeout(500);
+ ok('back to rows', await p.locator('.fc-rows').count()===1);
  await p.click('.fc-pg[data-pg="1"]'); await p.waitForTimeout(200);
  ok('cards stacked vertically', await p.evaluate(()=>{const c=[...document.querySelectorAll('.fc-list .fc-card')].map(e=>e.getBoundingClientRect());return c.every((r,i)=>!i||r.top>=c[i-1].bottom-1);}));
  ok('each card has topic label', await p.evaluate(()=>[...document.querySelectorAll('.fc-list .fc-card')].every(c=>c.querySelector('.fc-topic'))));
