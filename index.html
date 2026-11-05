@@ -53,7 +53,7 @@
 <link rel="stylesheet" href="assets/css/daily-banner.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/natal-view.css?v=20261106b">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
-<link rel="stylesheet" href="assets/css/hero-wide.css?v=20261106d">
+<link rel="stylesheet" href="assets/css/hero-wide.css?v=20261106e">
 <link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106d">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
@@ -121,7 +121,6 @@
   <div class="aqh-hero">
     <img class="aqh-rock" src="assets/images/home/rock.svg" alt="" aria-hidden="true" decoding="async">
     <img class="hw-statue" src="assets/images/home/hero-statue.jpg" alt="" aria-hidden="true" decoding="async">
-    <img class="hw-agate" src="assets/images/home/agate-slice.svg" alt="" aria-hidden="true" decoding="async">
     <div class="aqh-wrap aqh-hero-grid">
       <div class="aqh-hero-copy" id="home-intro">
         <span class="aqh-rule" aria-hidden="true"></span>
@@ -163,6 +162,18 @@
           <p class="aq-wheel-caption wheel-hint aqh-wheel-hint" data-i18n-ar="انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته" data-i18n-en="Select any zodiac sign on the celestial wheel to view its reading">انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته</p>
           <a class="aqh-sky-link" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>استكشف السماء الآن</span></a>
         </div>
+        <aside class="hv-live" id="hv-live" aria-label="السماء الآن">
+          <p class="hv-live-k"><i class="hv-dot" aria-hidden="true"></i><span>الخريطة الحية الآن</span></p>
+          <p class="hv-live-t">اضغط على برجك في الدائرة لتعرف كيف تؤثر السماء في قراراتك وإيقاعك اليومي.</p>
+          <ul class="hv-rows" id="hv-rows"></ul>
+          <div class="hv-nav">
+            <button type="button" class="hv-arr" data-hv="prev" aria-label="المواقع السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            <span class="hv-dots" id="hv-dots" aria-hidden="true"></span>
+            <button type="button" class="hv-arr" data-hv="next" aria-label="المواقع التالية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          </div>
+          <a class="hv-watch" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>راقب السماء الآن</span></a>
+          <p class="hv-foot-note">البيوت محسوبة لسماء الشرق الأوسط (القاهرة).</p>
+        </aside>
         <aside class="aqh-tagline" aria-hidden="true"><span>النجوم</span><span>لغة أخرى</span><span>لنفهم بها أنفسنا</span><i></i><em dir="ltr">A DEEPER YOU<br>A BRIGHTER TOMORROW</em></aside>
       </div>
     </div>
@@ -4589,7 +4600,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="account-profile.js" type="module"></script>
 <script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
-<script src="assets/js/home-v2.js?v=20261106a" defer></script>
+<script src="assets/js/hero-live.js?v=20261106e" defer></script>
+<script src="assets/js/home-v2.js?v=20261106e" defer></script>
 <script src="assets/js/featured-content.js?v=20261106a" defer></script>
 <script src="assets/js/content-links.js?v=20261106a" defer></script>
 <script src="assets/js/natal-view.js?v=20261106b" defer></script>
