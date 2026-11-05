@@ -1,0 +1,71 @@
+/* عجلات الخرائط الفلكية والتوافق: قرص عاجي بإطارات ذهبية مطفأة (طبقة عرض فقط، لا تغيّر أي حساب) */
+:root{--wv-gold:#C5A059;--wv-wine:#4A1521;--wv-bronze:#9E782F;--wv-crimson:#B3263E;--wv-ivory:#FDFBF7}
+
+/* القرص والإطارات */
+.aq-wheel-svg circle.aq-wheel-border:first-of-type{fill:#FDFBF7!important;stroke:var(--wv-gold)!important;stroke-width:2.6!important}
+.aq-wheel-svg circle.aq-wheel-border:nth-of-type(2){stroke:var(--wv-gold)!important;stroke-width:1.2!important}
+.aq-wheel-svg circle.aq-wheel-border:nth-of-type(3){stroke:var(--wv-gold)!important;stroke-width:1.6!important;fill:#FFFEFB!important}
+.aq-wheel-svg .aq-wheel-zodiac{stroke:rgba(197,160,89,.55)!important;stroke-width:.7!important}
+.aq-wheel-svg .aq-wheel-zodiac:nth-of-type(even){fill:rgba(197,160,89,.13)!important}
+.aq-wheel-svg .aq-wheel-zodiac:nth-of-type(odd){fill:rgba(250,244,234,.9)!important}
+.aq-wheel-svg .aq-wheel-sign{fill:#7a5a22!important;font-size:18px}
+.aq-wheel-svg .aq-wheel-sign-line{stroke:rgba(197,160,89,.6)!important}
+.aq-wheel-svg .aq-wheel-house{stroke:rgba(197,160,89,.38)!important}
+.aq-wheel-svg .aq-wheel-angle{stroke:var(--wv-gold)!important;stroke-width:1.6!important}
+.aq-wheel-svg .aq-wheel-house-number{fill:#8a7a62!important}
+.aq-wheel-svg .aq-wheel-angle-label{fill:var(--wv-wine)!important}
+.cp-wheel-host,.aq-wheel-host{background:radial-gradient(circle,#FFFEFB 0%,#FAF4EA 85%)!important;border:1px solid var(--wv-gold)!important;border-radius:22px!important;box-shadow:0 8px 24px rgba(74,21,33,.08)}
+
+/* الكواكب: الطرف الأول بورجوندي، الثاني ذهبي برونزي */
+.aq-wheel-svg .aq-wheel-planet-dot{fill:#FFFEFB!important;stroke:var(--wv-wine)!important;stroke-width:1.7!important}
+.aq-wheel-svg .aq-wheel-planet-glyph{fill:var(--wv-wine)!important;font-size:13px}
+.aq-wheel-svg .person-b .aq-wheel-planet-dot{stroke:var(--wv-bronze)!important}
+.aq-wheel-svg .person-b .aq-wheel-planet-glyph{fill:var(--wv-bronze)!important}
+.aq-wheel-svg .person-composite .aq-wheel-planet-dot{stroke:var(--wv-gold)!important}
+.aq-wheel-svg .person-composite .aq-wheel-planet-glyph{fill:var(--wv-wine)!important}
+.aq-wheel-svg .person-a .aq-wheel-degree{fill:var(--wv-wine)!important}
+.aq-wheel-svg .person-b .aq-wheel-degree{fill:var(--wv-bronze)!important}
+.aq-wheel-svg .aq-wheel-degree{stroke:#FFFEFB!important;font-weight:700}
+.aq-wheel-svg .aq-wheel-planet:hover .aq-wheel-planet-dot,.aq-wheel-svg .aq-wheel-planet:focus .aq-wheel-planet-dot{fill:#F6EEDF!important;stroke-width:2.6!important}
+
+/* خطوط الاتصالات */
+.aq-wheel-svg .aq-wheel-aspect{stroke-dasharray:none!important;stroke-width:1.7!important}
+.aq-wheel-svg .aq-wheel-aspect.harmonious{stroke:var(--wv-gold)!important}
+.aq-wheel-svg .aq-wheel-aspect.challenging{stroke:var(--wv-crimson)!important}
+.aq-wheel-svg .aq-wheel-aspect.neutral{stroke:#9a8a6d!important;stroke-dasharray:4 4!important}
+
+/* المركز */
+.aq-wheel-svg .aq-wheel-center{fill:#FFFEFB!important;stroke:var(--wv-gold)!important;stroke-width:2!important}
+.aq-wheel-svg .aq-wheel-center-title{fill:var(--wv-wine)!important;font-family:'Amiri','Cairo',serif!important;font-size:12px!important;letter-spacing:0!important}
+.aq-wheel-svg .aq-wheel-center-sub{fill:#6b5b52!important;font-size:9px}
+.aq-wheel-svg .aq-wheel-hub-name{font-family:'Amiri','Cairo',serif;font-size:13px;font-weight:700;text-anchor:middle}
+.aq-wheel-svg .hub-a{fill:var(--wv-wine)}
+.aq-wheel-svg .hub-b{fill:var(--wv-bronze)}
+.aq-wheel-svg .aq-wheel-hub-amp{fill:var(--wv-gold);font-family:'Amiri',serif;font-size:11px;text-anchor:middle}
+
+/* الدليل */
+.aq-wheel-legend{color:#2C2523!important}
+.aq-wheel-legend i.a{background:var(--wv-wine)!important}.aq-wheel-legend i.b{background:var(--wv-bronze)!important}
+.aq-wheel-legend i.h{background:var(--wv-gold)!important}.aq-wheel-legend i.c{background:var(--wv-crimson)!important}
+.aq-wheel-note{color:#4a3d38!important}
+
+/* نتائج التوافق: أكورديون عاجي */
+.cp-details-stack{display:grid;gap:12px}
+.cp-acc.lpa-card{margin:0!important;padding:0!important;background:#FDFBF7!important}
+.cp-acc .lpa-body ul{margin:.6rem 0;padding-inline-start:1.2rem}
+.cp-acc .lpa-body li+li{margin-top:.45rem}
+.cp-acc .lpa-body,.cp-acc .lpa-body li,.cp-acc .lpa-body p{color:#2C2523!important}
+.cp-acc .cp-composite-chip{background:#fff!important;border-color:#E2D9CC!important}
+.cp-acc .cp-composite-houses summary{color:var(--wv-wine)}
+.cp-res .cp-overview-copy,.cp-res .cp-indicators article{box-shadow:0 4px 15px rgba(74,21,33,.04)}
+
+/* نموذج التوافق: بطاقتان عاجيتان، والشارة فقط تميّز الطرفين */
+section#compat.cpx{--p:#9E782F}
+section#compat.cpx fieldset.cp-person{background:#FDFBF7!important;border:1px solid #E2D9CC!important;box-shadow:0 4px 15px rgba(74,21,33,.05);transition:border-color .2s,box-shadow .2s}
+section#compat.cpx fieldset.cp-person:hover,section#compat.cpx fieldset.cp-person:focus-within{border-color:var(--wv-gold)!important;box-shadow:0 10px 24px rgba(74,21,33,.1)}
+section#compat.cpx #cp2 fieldset.cp-person{border-color:#E2D9CC!important}
+section#compat.cpx fieldset.cp-person legend{background:#FAF4EA!important;color:var(--wv-wine)!important;border-bottom:1px solid #E2D9CC}
+section#compat.cpx fieldset.cp-person legend::before{background:var(--c)!important;width:30px!important;height:30px!important;border-radius:50%;padding:6px;box-sizing:border-box;-webkit-mask:none!important;mask:none!important;content:"1";color:#FDFBF7;font:700 .95rem/18px 'Cairo',sans-serif;text-align:center}
+section#compat.cpx #cp2 legend::before{content:"2"}
+section#compat.cpx #cp1 fieldset.cp-person{--c:var(--wv-wine)}
+section#compat.cpx #cp2 fieldset.cp-person{--c:var(--wv-bronze)}

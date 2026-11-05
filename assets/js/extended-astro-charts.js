@@ -56,8 +56,8 @@
   if(!section||!content)return;
   let mode='transit';
   const nowLocal=()=>{const d=new Date(),local=new Date(d.getTime()-d.getTimezoneOffset()*60000);return local.toISOString().slice(0,16);};
-  function context(){return window.AqeeqChartContext?.getNatal?.()||null;}
-  function readyMessage(){return '<div class="eam-empty"><span>✦</span><h3>ابدأ بخريطة الميلاد</h3><p>احسب خريطتك أولاً، ثم ارجع هنا لإنشاء خريطة العبور أو العودة الشمسية أو العرض الفيدي.</p><a class="btn ghost sm" href="#chart">اذهب إلى خريطة الميلاد</a></div>';}
+  function context(){return window.AqeeqChartContext?.getNatal?.()||window.AqeeqChartContext?.getOrPrefill?.()||null;}
+  function readyMessage(){return '<div class="eam-empty eam-invite"><span>✦</span><h3>ابدأ بخريطة الميلاد</h3><p>احسب خريطتك أولاً، ثم ارجع هنا لإنشاء خريطة العبور أو العودة الشمسية أو العرض الفيدي.</p><a class="btn ghost sm" href="#chart">اذهب إلى خريطة الميلاد</a></div>';}
   function setMode(next){
     mode=next;
     section.querySelectorAll('[data-eam-mode]').forEach(b=>{const active=b.dataset.eamMode===mode;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
@@ -242,5 +242,6 @@
   section.querySelectorAll('[data-eam-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.eamMode)));
   section.querySelector('.eam-tabs')?.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();const buttons=[...section.querySelectorAll('[data-eam-mode]')],current=buttons.indexOf(event.target.closest('[data-eam-mode]'));const step=event.key==='ArrowLeft'?1:-1;buttons[(current+step+buttons.length)%buttons.length].click();buttons[(current+step+buttons.length)%buttons.length].focus();});
   document.addEventListener('aqeeq:natal-ready',renderControls);
+  window.addEventListener('hashchange',()=>{if(location.hash==='#astro-maps'&&content.querySelector('.eam-invite'))renderControls();});
   renderControls();
 })();
