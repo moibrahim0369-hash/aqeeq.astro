@@ -1,0 +1,61 @@
+/* الأنظمة الثلاثة + شريط الأدوات: تحت بانر الخريطة، بروز ورتوش وظل متحرك */
+#home.aqh .aqh-fuse{position:relative;z-index:4;margin-top:clamp(-34px,-2.4vw,-18px);padding:0 0 clamp(26px,3vw,40px)}
+#home.aqh .aqh-fuse::before{content:"";position:absolute;left:0;right:0;top:-44px;height:90px;pointer-events:none;z-index:0;background:radial-gradient(55% 100% at 50% 100%,rgba(217,185,121,.2),transparent 72%)}
+#home.aqh .aqh-fuse .aqh-systems-shell{position:relative;z-index:1;margin-top:0!important;padding-top:0!important}
+#home.aqh .aqh-fuse .aqh-systems{background:transparent!important;border:0!important;box-shadow:none!important;padding:clamp(10px,1.2vw,16px) 0 clamp(18px,2vw,26px)!important;gap:clamp(14px,1.8vw,26px)!important;align-items:stretch}
+#home.aqh .aqh-fuse .aqh-system:nth-child(1){order:3}
+#home.aqh .aqh-fuse .aqh-system:nth-child(2){order:1}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3){order:2}
+#home.aqh .aqh-fuse .aqh-system{position:relative;overflow:hidden;isolation:isolate;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;text-align:center;gap:10px;min-height:clamp(236px,19vw,272px)!important;padding:clamp(22px,2vw,30px) clamp(16px,1.6vw,26px) 68px!important;border-radius:22px;border:1px solid rgba(185,154,91,.5);color:#29252A!important;text-decoration:none;
+  background:linear-gradient(180deg,#FFFDF9 0%,#F7F0E5 100%);box-shadow:0 14px 30px rgba(80,55,40,.13),0 1px 0 #fff inset;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .3s ease}
+/* ضباب سفلي */
+#home.aqh .aqh-fuse .aqh-system::before{content:"";position:absolute;left:-10%;right:-10%;bottom:-38%;height:70%;z-index:-1;pointer-events:none;background:radial-gradient(50% 60% at 50% 100%,rgba(217,185,121,.28),transparent 70%);filter:blur(4px);transition:opacity .35s ease;opacity:.8}
+/* زخرفة: خط بمعين فوق الزر */
+#home.aqh .aqh-fuse .aqh-system::after{content:"";position:absolute;left:50%;bottom:58px;width:96px;height:10px;transform:translateX(-50%);z-index:-1;pointer-events:none;opacity:.8;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 10' fill='none' stroke='%23B99A5B' stroke-width='1'%3E%3Cpath d='M0 5h38M58 5h38' stroke-opacity='.6'/%3E%3Cpath d='M48 1l4 4-4 4-4-4z' fill='%23B99A5B' stroke='none'/%3E%3C/svg%3E") center/contain no-repeat}
+#home.aqh .aqh-fuse .aqh-system-ico{flex:0 0 auto;width:clamp(58px,5vw,74px)!important;color:#B99A5B!important;filter:drop-shadow(0 4px 10px rgba(185,154,91,.3));transition:transform .35s ease}
+#home.aqh .aqh-fuse .aqh-system-ico svg{width:100%;height:auto;display:block}
+#home.aqh .aqh-fuse .aqh-system-body{text-align:center!important;flex:0 1 auto}
+#home.aqh .aqh-fuse .aqh-system-body h3{margin:0 0 6px!important;color:#29252A!important;font-family:'Amiri',serif;font-size:clamp(1.35rem,1.8vw,1.7rem)!important}
+#home.aqh .aqh-fuse .aqh-system-body p{margin:0!important;color:#4a4348!important;opacity:.9;font-size:clamp(.88rem,.98vw,.98rem)!important;line-height:1.75!important}
+#home.aqh .aqh-fuse .aqh-system .aqh-go{position:absolute!important;inset-inline-end:auto!important;inset-inline-start:auto!important;left:50%;bottom:14px;transform:translateX(-50%);width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid rgba(185,154,91,.6);color:#642B3C;box-shadow:0 4px 10px rgba(80,55,40,.15);transition:background .3s ease,color .3s ease,box-shadow .3s ease}
+#home.aqh .aqh-fuse .aqh-system .aqh-go svg{width:16px;height:16px}
+/* بطاقة مصفوفة القدر: عنابي، مرفوعة قليلاً بنفس الحجم */
+#home.aqh .aqh-fuse .aqh-system:nth-child(3){background:linear-gradient(165deg,#7a3449 0%,#642B3C 55%,#4d1f2f 100%);border-color:rgba(228,196,134,.65);box-shadow:0 22px 40px rgba(77,31,47,.38),0 1px 0 rgba(255,255,255,.12) inset;transform:translateY(-10px)}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3) .aqh-system-body h3{color:#fff!important}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3) .aqh-system-body p{color:#F1E6DA!important}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3) .aqh-system-ico{color:#E4C486!important}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3) .aqh-system-ico svg circle[fill="#fbf8f2"]{fill:#642B3C}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3)::before{background:radial-gradient(50% 60% at 50% 100%,rgba(255,235,200,.22),transparent 70%)}
+/* تفاعل: ظل وحركة */
+#home.aqh .aqh-fuse .aqh-system:hover,#home.aqh .aqh-fuse .aqh-system:focus-visible{transform:translateY(-8px)!important;border-color:#B99A5B;box-shadow:0 30px 52px rgba(80,55,40,.24),0 0 0 4px rgba(217,185,121,.18)}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3):hover,#home.aqh .aqh-fuse .aqh-system:nth-child(3):focus-visible{transform:translateY(-18px)!important;box-shadow:0 36px 58px rgba(77,31,47,.5),0 0 0 4px rgba(217,185,121,.28)}
+#home.aqh .aqh-fuse .aqh-system:hover::before{opacity:1}
+#home.aqh .aqh-fuse .aqh-system:hover .aqh-system-ico{transform:scale(1.08) translateY(-2px)}
+#home.aqh .aqh-fuse .aqh-system:hover .aqh-go,#home.aqh .aqh-fuse .aqh-system:focus-visible .aqh-go{background:#642B3C;color:#fff;box-shadow:0 6px 14px rgba(77,31,47,.4)}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3):hover .aqh-go{background:#E4C486;color:#4d1f2f}
+#home.aqh .aqh-fuse .aqh-system:active{transform:translateY(-3px)!important;box-shadow:0 12px 24px rgba(80,55,40,.2)}
+#home.aqh .aqh-fuse .aqh-system:nth-child(3):active{transform:translateY(-8px)!important}
+/* شريط الأدوات */
+#home.aqh .aqh-fuse .aqh-tools{margin:clamp(8px,1vw,14px) 0 0!important;padding:6px!important;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important;background:linear-gradient(180deg,#FFFDF9,#F7F0E5)!important;border:1px solid rgba(185,154,91,.45)!important;border-radius:20px!important;box-shadow:0 12px 26px rgba(80,55,40,.1)!important}
+#home.aqh .aqh-fuse .aqh-tool{min-height:66px!important;padding:10px 14px!important;justify-content:center;gap:12px;background:transparent!important;border:0!important;border-radius:14px!important;box-shadow:none!important;transition:background .3s ease,box-shadow .3s ease,transform .3s ease}
+#home.aqh .aqh-fuse .aqh-tool+.aqh-tool{border-inline-start:1px solid rgba(185,154,91,.3)!important;border-radius:0!important}
+#home.aqh .aqh-fuse .aqh-tool-ico{width:34px!important;color:#B99A5B!important}
+#home.aqh .aqh-fuse .aqh-tool b{font-size:clamp(.95rem,1.1vw,1.1rem)!important}
+#home.aqh .aqh-fuse .aqh-tool .aqh-go{display:none!important}
+#home.aqh .aqh-fuse .aqh-tool:hover,#home.aqh .aqh-fuse .aqh-tool:focus-visible{background:rgba(217,185,121,.14)!important;box-shadow:0 8px 16px rgba(80,55,40,.14)!important;transform:translateY(-2px)!important;border-radius:14px!important}
+@media (max-width:1024px){
+  #home.aqh .aqh-fuse .aqh-systems{grid-template-columns:minmax(0,1fr)!important;gap:14px!important}
+  #home.aqh .aqh-fuse .aqh-system{min-height:0!important;padding:20px 16px 64px!important}
+  #home.aqh .aqh-fuse .aqh-system:nth-child(3){transform:none}
+  #home.aqh .aqh-fuse .aqh-system:nth-child(3):hover{transform:translateY(-6px)!important}
+  #home.aqh .aqh-fuse .aqh-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #home.aqh .aqh-fuse .aqh-tool:nth-child(3){border-inline-start:0!important}
+  #home.aqh .aqh-fuse .aqh-tool:nth-child(n+3){border-top:1px solid rgba(185,154,91,.3)!important}
+}
+@media (prefers-reduced-motion:reduce){#home.aqh .aqh-fuse .aqh-system,#home.aqh .aqh-fuse .aqh-tool,#home.aqh .aqh-fuse .aqh-system-ico{transition:none}#home.aqh .aqh-fuse .aqh-system:hover,#home.aqh .aqh-fuse .aqh-tool:hover{transform:none!important}}
+#home.aqh .aqh-hero{padding-bottom:clamp(44px,4vw,58px)!important}
+#home.aqh .aqh-fuse{margin-top:clamp(-40px,-3vw,-26px)}
+#home.aqh .aqh-fuse .aqh-system{padding-bottom:78px!important}
+#home.aqh .aqh-fuse .aqh-system::after{bottom:62px}
