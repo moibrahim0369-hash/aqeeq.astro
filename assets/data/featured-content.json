@@ -246,7 +246,7 @@
     "saturn-retrograde",
     "natal-trinity"
    ],
-   "coverAlt": "زحل بحلقتين رفيعتين وخطوط عمودية ترمز إلى البناء التدريجي على خلفية عنابية.",
+   "coverAlt": "أسطرلاب نحاسي قديم بحلقات متداخلة ودرجات منقوشة.",
    "body": [
     {
      "t": "p",
@@ -330,7 +330,7 @@
      "href": "#chart"
     }
    ],
-   "coverImage": "assets/images/content/saturn-in-chart.svg",
+   "coverImage": "assets/images/content/photo-matrix.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   },
   {
@@ -353,7 +353,7 @@
     "mars-in-chart",
     "natal-trinity"
    ],
-   "coverAlt": "المشتري وأقماره بخطوط ذهبية رفيعة ومدارات هادئة على خلفية عنابية.",
+   "coverAlt": "لوحة مؤطرة بالذهب لدائرة الأبراج وشمس مضيئة على جدار رخامي دافئ.",
    "body": [
     {
      "t": "p",
@@ -437,7 +437,7 @@
      "href": "#chart"
     }
    ],
-   "coverImage": "assets/images/content/jupiter-in-chart.svg",
+   "coverImage": "assets/images/content/photo-sun-frame.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   },
   {
@@ -579,7 +579,7 @@
     "mercury-retrograde",
     "understanding-transits"
    ],
-   "coverAlt": "خماسي الزهرة بخطوط ذهبية رفيعة داخل دوائر متحدة المركز على خلفية عنابية.",
+   "coverAlt": "تمثال رخامي لوجه امرأة بملامح هادئة وشعر مجدول.",
    "body": [
     {
      "t": "p",
@@ -667,7 +667,7 @@
      "href": "#chart"
     }
    ],
-   "coverImage": "assets/images/content/venus-retrograde.svg",
+   "coverImage": "assets/images/content/photo-venus.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   },
   {
@@ -1009,7 +1009,7 @@
     "symbol-and-reading",
     "how-to-start-natal-chart"
    ],
-   "coverAlt": "خط ذهبي رفيع يصعد عبر درجات معمارية على ورق عاجي.",
+   "coverAlt": "درج أزرق يصعد على جدار أبيض بجانب شاطئ رملي وبحر فيروزي هادئ.",
    "body": [
     {
      "t": "p",
@@ -1090,7 +1090,7 @@
      "href": "#lifepath"
     }
    ],
-   "coverImage": "assets/images/content/pinnacles-cycles.svg",
+   "coverImage": "assets/images/content/photo-stairs.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   },
   {
@@ -1776,7 +1776,7 @@
     "symbol-and-reading",
     "mars-in-chart"
    ],
-   "coverAlt": "قرص خريطة ميلاد أرشيفي بإضاءة دافئة وخطوط ذهبية دقيقة.",
+   "coverAlt": "نموذج فلكي نحاسي وكتب قديمة ولوحة مدارات ذهبية على جدار من الرخام.",
    "body": [
     {
      "t": "p",
@@ -1856,7 +1856,7 @@
      "href": "#chart"
     }
    ],
-   "coverImage": "assets/images/content/how-to-start-natal-chart.svg",
+   "coverImage": "assets/images/content/photo-orrery.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   }
  ]
