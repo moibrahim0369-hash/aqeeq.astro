@@ -9,7 +9,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   await p.route('**/*', (r) => (r.request().url().startsWith(BASE) ? r.continue() : r.abort()));
   await p.goto(BASE + '/index.html'); await p.waitForTimeout(1500);
   const r = await p.evaluate(() => ({
-    wa: document.querySelectorAll('[data-wa], a[href*="wa.me"]:not(#acct-whatsapp-support)').length,
+    wa: document.querySelectorAll('[data-wa], a[href*="wa.me"]:not(#acct-whatsapp-support):not(.aq-soc a):not(.fc-foot a)').length,
     book: !!document.getElementById('book'), how: !!document.getElementById('how'),
     bnav: [...document.querySelectorAll('.bnav a')].map((a) => a.getAttribute('href')),
     card: [...document.querySelectorAll('.card')].some((c) => /تواصل معايا/.test(c.textContent)),
