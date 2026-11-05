@@ -1,110 +1,31 @@
-/* طاقة اليوم + مقالات مختارة: صف بسيط وقصير ومتساوي */
-#home.aqh .aqh-band{padding:clamp(16px,2vw,26px) 0!important;margin-top:0!important}
-#home.aqh .aqh-duo{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(12px,1.4vw,18px);align-items:stretch}
-#home.aqh .aqh-duo>*{min-width:0}
-#home.aqh .aqh-duo #aqh-energy{height:100%;display:flex;flex-direction:column;margin:0;border-radius:18px}
-#home.aqh .aqh-duo #aqh-energy .dbn-stage{flex:1 1 auto;height:clamp(150px,12.5vw,172px)}
-#home.aqh .aqh-duo #aqh-energy .dbn-slide{padding:12px clamp(14px,1.4vw,20px) 40px!important;gap:clamp(10px,1.2vw,16px);overflow:hidden}
-/* 1: طاقة اليوم */
-#home.aqh .aqh-duo #aqh-energy .dbn-s1-moon{width:clamp(64px,6vw,84px)}
-#home.aqh .aqh-duo #aqh-energy .dbn-s1-date{min-width:72px;padding-inline-end:12px;font-size:.78rem}
-#home.aqh .aqh-duo #aqh-energy .dbn-s1-date strong{font-size:.92rem}
-#home.aqh .aqh-duo #aqh-energy .dbn-s1-main{gap:6px}
-#home.aqh .aqh-duo #aqh-energy .dbn-title{font-size:1.1rem}
-#home.aqh .aqh-duo #aqh-energy .dbn-headline{font-size:.9rem;line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#home.aqh .aqh-duo #aqh-energy .dbn-chips{display:none}
-#home.aqh .aqh-duo #aqh-energy .dbn-cta{min-height:32px;padding:0 14px;font-size:.82rem;margin-top:0}
-/* 2: القمر */
-#home.aqh .aqh-duo #aqh-energy .dbn-s2-moon{width:clamp(80px,8vw,104px);margin:0}
-#home.aqh .aqh-duo #aqh-energy .dbn-big{font-size:1.25rem;margin:0 0 4px}
-#home.aqh .aqh-duo #aqh-energy .dbn-moonlist{gap:4px 14px}
-#home.aqh .aqh-duo #aqh-energy .dbn-moonlist small{font-size:.68rem}
-#home.aqh .aqh-duo #aqh-energy .dbn-moonlist strong{font-size:.8rem;line-height:1.4}
-#home.aqh .aqh-duo #aqh-energy .dbn-sign,#home.aqh .aqh-duo #aqh-energy .dbn-kicker{display:none}
-/* 3: رسالة اليوم */
-#home.aqh .aqh-duo #aqh-energy .dbn-s3-date{min-width:84px;padding:8px 12px;border-radius:14px}
-#home.aqh .aqh-duo #aqh-energy .dbn-dn{font-size:2.4rem}
-#home.aqh .aqh-duo #aqh-energy .dbn-theme-lg{font-size:.92rem;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-#home.aqh .aqh-duo #aqh-energy .dbn-src-note,#home.aqh .aqh-duo #aqh-energy .dbn-s3-tag{display:none}
-/* 4: التحليل المختصر */
-#home.aqh .aqh-duo #aqh-energy .dbn-tile{display:none}
-#home.aqh .aqh-duo #aqh-energy .dbn-s4-head .dbn-s4-date{display:none}
-#home.aqh .aqh-duo #aqh-energy .dbn-quote4{font-size:.86rem;line-height:1.55;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#home.aqh .aqh-duo #aqh-energy .dbn-units{gap:6px;grid-template-columns:repeat(4,minmax(0,1fr))}
-#home.aqh .aqh-duo #aqh-energy .dbn-unit{padding:4px 6px}
-#home.aqh .aqh-duo #aqh-energy .dbn-unit small{font-size:.62rem}
-#home.aqh .aqh-duo #aqh-energy .dbn-unit strong{font-size:.76rem}
-#home.aqh .aqh-duo #aqh-energy .dbn-planets{display:none}
-#home.aqh .aqh-duo #aqh-energy .dbn-s4 .dbn-copy{gap:6px}
-/* تحكم */
-#home.aqh .aqh-duo #aqh-energy .dbn-ctrl{bottom:8px}
-/* القمر: تفاعل */
+/* بانر السماء: الخريطة + طاقة اليوم متصلين في بانر واحد عريض */
+#home.aqh .aqh-band{padding:clamp(18px,2.4vw,34px) 0!important;margin:0!important}
+#home.aqh .aqh-band+.aqh-band{margin-top:0!important}
+#home.aqh .aqh-skyb{display:grid;grid-template-columns:minmax(280px,.78fr) minmax(0,1.22fr);align-items:center;gap:0;background:linear-gradient(135deg,#FDFBF7,#F4ECDD);border:1px solid rgba(185,154,91,.55);border-radius:22px;box-shadow:0 22px 56px rgba(0,0,0,.32);overflow:hidden;position:relative}
+#home.aqh .aqh-skyb::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 22% 50%,rgba(217,185,121,.22),transparent 60%);pointer-events:none}
+#home.aqh .aqh-skyb-wheel{position:relative;z-index:1;display:grid;place-items:center;padding:clamp(14px,2vw,28px)}
+#home.aqh .aqh-skyb-wheel .aqh-wheel-box{position:static!important;transform:none!important;width:min(100%,430px)!important;max-width:430px!important;opacity:1!important;margin:0 auto!important}
+#home.aqh .aqh-skyb-wheel .aqh-wheel-box .aqh-wheel-hint{display:block!important;text-align:center;font-size:.78rem;color:#6b6368;margin:8px 0 0}
+#home.aqh .aqh-skyb-wheel .aqh-wheel-box .aqh-sky-link{display:none!important}
+#home.aqh .aqh-skyb #aqh-energy{position:relative;z-index:1;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;margin:0!important;border-inline-start:1px solid rgba(185,154,91,.4)!important}
+#home.aqh .aqh-skyb #aqh-energy .dbn-stage{height:auto;min-height:clamp(320px,26vw,380px)}
+#home.aqh .aqh-skyb #aqh-energy .dbn-slide{background:none!important;box-shadow:none!important;border:0!important}
+/* محتوى مميز */
+#home.aqh .aqh-band-arts{padding-top:0!important}
+#home.aqh .aqh-band-arts .aqh-articles{padding:clamp(14px,1.8vw,24px);background:var(--aqh-card,#FDFBF7);border:1px solid var(--aqh-line,#E5DED2);border-radius:20px;box-shadow:0 18px 44px rgba(0,0,0,.28)}
+#home.aqh .aqh-band-arts .aqh-article,#home.aqh .aqh-band-arts .aqh-article-skel{flex:0 0 calc((100% - 48px)/4);min-width:200px}
+@media (max-width:1024px){
+  #home.aqh .aqh-skyb{grid-template-columns:minmax(0,1fr)}
+  #home.aqh .aqh-skyb #aqh-energy{border-inline-start:0!important;border-top:1px solid rgba(185,154,91,.4)!important}
+  #home.aqh .aqh-skyb-wheel .aqh-wheel-box{width:min(100%,340px)!important}
+  #home.aqh .aqh-skyb #aqh-energy .dbn-stage{height:auto;min-height:250px}
+  #home.aqh .aqh-band-arts .aqh-article,#home.aqh .aqh-band-arts .aqh-article-skel{flex-basis:calc((100% - 12px)/2.2);min-width:0}
+}
+@media (max-width:760px){
+  #home.aqh .dbn-live{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 #home.aqh #aqh-energy .dbn-moonsvg{transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s ease;cursor:pointer;filter:drop-shadow(0 4px 10px rgba(40,25,20,.28))}
 #home.aqh #aqh-energy .dbn-moonsvg:hover{transform:scale(1.1) rotate(-4deg);filter:drop-shadow(0 6px 18px rgba(217,185,121,.55))}
-/* مقالات مختارة */
-#home.aqh .aqh-duo .aqh-articles{display:flex;flex-direction:column;padding:12px clamp(12px,1.3vw,18px) 14px;background:var(--aqh-card,#FDFBF7);border:1px solid var(--aqh-line,#E5DED2);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.28)}
-#home.aqh .aqh-duo .aqh-articles-head{margin-bottom:8px}
-#home.aqh .aqh-duo .aqh-articles-head h2{font-family:'Amiri',serif;font-size:1.2rem;color:#29252A}
-#home.aqh .aqh-duo .aqh-all{font-size:.8rem}
-#home.aqh .aqh-duo .aqh-carousel{flex:1 1 auto;display:flex;flex-direction:column}
-#home.aqh .aqh-duo .aqh-track{flex:1 1 auto;align-items:stretch;gap:10px}
-#home.aqh .aqh-duo .aqh-article,#home.aqh .aqh-duo .aqh-article-skel{flex:0 0 calc((100% - 20px)/3);min-width:120px;padding:6px 6px 8px;gap:4px}
-#home.aqh .aqh-duo .aqh-article img{aspect-ratio:16/8;border-radius:8px}
-#home.aqh .aqh-duo .aqh-article time{font-size:.68rem;padding-inline:4px}
-#home.aqh .aqh-duo .aqh-article h3{margin:0 4px;font-size:.82rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#home.aqh .aqh-duo .aqh-article p{display:none}
-#home.aqh .aqh-duo .aqh-article .aqh-go{display:none}
-@media (max-width:1024px){
-  #home.aqh .aqh-duo{grid-template-columns:minmax(0,1fr)}
-  #home.aqh .aqh-duo #aqh-energy .dbn-stage{height:176px}
-  #home.aqh .aqh-duo .aqh-article,#home.aqh .aqh-duo .aqh-article-skel{flex-basis:calc((100% - 10px)/2.3)}
-}
-@media (max-width:1024px){
-  #home.aqh .aqh-duo #aqh-energy .dbn-stage{height:auto;min-height:196px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-slide{padding:14px 14px 46px!important;flex-direction:row!important;align-items:center;text-align:start}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s1-date{display:none}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s1-moon{width:60px;flex:0 0 60px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s2-moon{width:64px;flex:0 0 64px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s1-main{align-items:flex-start}
-  #home.aqh .aqh-duo #aqh-energy .dbn-ctrl{bottom:8px}
-}
-/* سطر واحد على التابلت/الشاشات المتوسطة */
-@media (min-width:761px) and (max-width:1024px){
-  #home.aqh .aqh-duo{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important}
-  #home.aqh .aqh-duo #aqh-energy .dbn-stage{height:176px;min-height:0}
-  #home.aqh .aqh-duo #aqh-energy .dbn-slide{padding:12px 12px 42px!important;gap:10px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s1-moon{width:52px;flex:0 0 52px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-headline{font-size:.82rem}
-  #home.aqh .aqh-duo .aqh-article,#home.aqh .aqh-duo .aqh-article-skel{flex-basis:calc((100% - 20px)/3)!important;min-width:0}
-}
-/* موبايل: سطر واحد بكروت أصغر */
-@media (max-width:760px){
-  #home.aqh .aqh-duo{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;gap:8px}
-  #home.aqh .aqh-duo #aqh-energy{border-radius:14px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-stage{height:178px;min-height:0}
-  #home.aqh .aqh-duo #aqh-energy .dbn-slide{flex-direction:column!important;justify-content:center;align-items:center;text-align:center;padding:10px 8px 36px!important;gap:6px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s1-moon{width:44px;flex:0 0 44px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s2-moon{width:50px;flex:0 0 50px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-s1-main{align-items:center;gap:4px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-title{font-size:.9rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-headline{font-size:.68rem;line-height:1.5;-webkit-line-clamp:3}
-  #home.aqh .aqh-duo #aqh-energy .dbn-cta{min-height:26px;padding:0 10px;font-size:.68rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-cta svg{display:none}
-  #home.aqh .aqh-duo #aqh-energy .dbn-big{font-size:.95rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-moonlist strong{font-size:.68rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-theme-lg,#home.aqh .aqh-duo #aqh-energy .dbn-quote4{font-size:.7rem;-webkit-line-clamp:4}
-  #home.aqh .aqh-duo #aqh-energy .dbn-dn{font-size:1.6rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-units{display:none}
-  #home.aqh .aqh-duo #aqh-energy .dbn-arr{display:none}
-  #home.aqh .aqh-duo #aqh-energy .dbn-ctrl{bottom:6px;transform:scale(.8)}
-  #home.aqh .aqh-duo .aqh-articles{padding:8px;border-radius:14px}
-  #home.aqh .aqh-duo .aqh-articles-head h2{font-size:.95rem}
-  #home.aqh .aqh-duo .aqh-all{font-size:.65rem}
-  #home.aqh .aqh-duo .aqh-track{gap:6px}
-  #home.aqh .aqh-duo .aqh-article,#home.aqh .aqh-duo .aqh-article-skel{flex-basis:78%!important;min-width:0;padding:4px 4px 6px}
-  #home.aqh .aqh-duo .aqh-article time{display:none}
-  #home.aqh .aqh-duo .aqh-article h3{font-size:.7rem;line-height:1.45}
-}
 /* السماء الآن: كواكب حية داخل بانر الطاقة */
 #home.aqh #aqh-energy .dbn-live-s .dbn-copy{display:grid;gap:8px;width:100%;align-content:center}
 #home.aqh #aqh-energy .dbn-pulse{width:8px;height:8px;border-radius:50%;background:#642B3C;display:inline-block;margin-inline-end:8px;animation:dbnPulse 2s ease-in-out infinite}
@@ -118,18 +39,3 @@
 #home.aqh #aqh-energy .dbn-lv small{font-size:.74rem;color:#4a4348;white-space:nowrap}
 #home.aqh #aqh-energy .dbn-lv i{font-style:normal;font-size:.66rem;color:#8a8186}
 #home.aqh #aqh-energy .dbn-lv.is-retro i{color:#642B3C;font-weight:600}
-@media (max-width:760px){
-  #home.aqh .aqh-duo #aqh-energy .dbn-live-s .dbn-title,#home.aqh .aqh-duo #aqh-energy .dbn-live-s .dbn-cta{display:none}
-  #home.aqh .aqh-duo #aqh-energy .dbn-live{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
-  #home.aqh .aqh-duo #aqh-energy .dbn-lv{padding:4px 2px;gap:0}
-  #home.aqh .aqh-duo #aqh-energy .dbn-lv-g{width:20px;height:20px;font-size:.7rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-lv b{font-size:.68rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-lv small{font-size:.6rem}
-  #home.aqh .aqh-duo #aqh-energy .dbn-lv i{display:none}
-}
-/* بعد نقل اللوحة الحية: ارتفاع يتسع للخريطة كاملة */
-@media (min-width:1025px){
-  #home.aqh .aqh-hero{min-height:clamp(340px,29vw,380px)!important;display:flex!important;align-items:center}
-  #home.aqh .aqh-hero>.aqh-wrap,#home.aqh .aqh-hero-grid{width:100%}
-  #home.aqh .aqh-wheel-box{width:min(380px,30vw)!important}
-}
