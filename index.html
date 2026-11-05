@@ -53,6 +53,7 @@
 <link rel="stylesheet" href="assets/css/home-v2.css?v=20261105h">
 <link rel="stylesheet" href="assets/css/daily-banner.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/natal-view.css?v=20261106b">
+<link rel="stylesheet" href="assets/css/natal-page.css?v=20261108d">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/hero-wide.css?v=20261106h">
 <link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106d">
@@ -532,7 +533,7 @@
 </div>
 </div>
 </section>
-<section class="sec" id="chart">
+<section class="sec ntx" id="chart">
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="aq-section-topbar">
@@ -543,34 +544,47 @@
     <a href="#sky" class="aq-section-pill">حركة السماء الآن</a>
   </div>
 </div>
-<div class="center">
+<div class="ntx-wrap">
+<div class="ntx-art" aria-hidden="true">
+  <svg class="ntx-wheel" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width=".6"><circle cx="100" cy="100" r="98"/><circle cx="100" cy="100" r="86"/><circle cx="100" cy="100" r="60"/><circle cx="100" cy="100" r="34" stroke-dasharray="1.5 3"/><path d="M100.0 40.0L100.0 14.0"/><path d="M130.0 48.0L143.0 25.5"/><path d="M152.0 70.0L174.5 57.0"/><path d="M160.0 100.0L186.0 100.0"/><path d="M152.0 130.0L174.5 143.0"/><path d="M130.0 152.0L143.0 174.5"/><path d="M100.0 160.0L100.0 186.0"/><path d="M70.0 152.0L57.0 174.5"/><path d="M48.0 130.0L25.5 143.0"/><path d="M40.0 100.0L14.0 100.0"/><path d="M48.0 70.0L25.5 57.0"/><path d="M70.0 48.0L57.0 25.5"/><path d="M186.0 100.0L190.0 100.0"/><path d="M185.7 107.5L188.2 107.7"/><path d="M184.7 114.9L187.2 115.4"/><path d="M183.1 122.3L185.5 122.9"/><path d="M180.8 129.4L183.2 130.3"/><path d="M177.9 136.3L180.2 137.4"/><path d="M174.5 143.0L177.9 145.0"/><path d="M170.4 149.3L172.5 150.8"/><path d="M165.9 155.3L167.8 156.9"/><path d="M160.8 160.8L162.6 162.6"/><path d="M155.3 165.9L156.9 167.8"/><path d="M149.3 170.4L150.8 172.5"/><path d="M143.0 174.5L145.0 177.9"/><path d="M136.3 177.9L137.4 180.2"/><path d="M129.4 180.8L130.3 183.2"/><path d="M122.3 183.1L122.9 185.5"/><path d="M114.9 184.7L115.4 187.2"/><path d="M107.5 185.7L107.7 188.2"/><path d="M100.0 186.0L100.0 190.0"/><path d="M92.5 185.7L92.3 188.2"/><path d="M85.1 184.7L84.6 187.2"/><path d="M77.7 183.1L77.1 185.5"/><path d="M70.6 180.8L69.7 183.2"/><path d="M63.7 177.9L62.6 180.2"/><path d="M57.0 174.5L55.0 177.9"/><path d="M50.7 170.4L49.2 172.5"/><path d="M44.7 165.9L43.1 167.8"/><path d="M39.2 160.8L37.4 162.6"/><path d="M34.1 155.3L32.2 156.9"/><path d="M29.6 149.3L27.5 150.8"/><path d="M25.5 143.0L22.1 145.0"/><path d="M22.1 136.3L19.8 137.4"/><path d="M19.2 129.4L16.8 130.3"/><path d="M16.9 122.3L14.5 122.9"/><path d="M15.3 114.9L12.8 115.4"/><path d="M14.3 107.5L11.8 107.7"/><path d="M14.0 100.0L10.0 100.0"/><path d="M14.3 92.5L11.8 92.3"/><path d="M15.3 85.1L12.8 84.6"/><path d="M16.9 77.7L14.5 77.1"/><path d="M19.2 70.6L16.8 69.7"/><path d="M22.1 63.7L19.8 62.6"/><path d="M25.5 57.0L22.1 55.0"/><path d="M29.6 50.7L27.5 49.2"/><path d="M34.1 44.7L32.2 43.1"/><path d="M39.2 39.2L37.4 37.4"/><path d="M44.7 34.1L43.1 32.2"/><path d="M50.7 29.6L49.2 27.5"/><path d="M57.0 25.5L55.0 22.1"/><path d="M63.7 22.1L62.6 19.8"/><path d="M70.6 19.2L69.7 16.8"/><path d="M77.7 16.9L77.1 14.5"/><path d="M85.1 15.3L84.6 12.8"/><path d="M92.5 14.3L92.3 11.8"/><path d="M100.0 14.0L100.0 10.0"/><path d="M107.5 14.3L107.7 11.8"/><path d="M114.9 15.3L115.4 12.8"/><path d="M122.3 16.9L122.9 14.5"/><path d="M129.4 19.2L130.3 16.8"/><path d="M136.3 22.1L137.4 19.8"/><path d="M143.0 25.5L145.0 22.1"/><path d="M149.3 29.6L150.8 27.5"/><path d="M155.3 34.1L156.9 32.2"/><path d="M160.8 39.2L162.6 37.4"/><path d="M165.9 44.7L167.8 43.1"/><path d="M170.4 50.7L172.5 49.2"/><path d="M174.5 57.0L177.9 55.0"/><path d="M177.9 63.7L180.2 62.6"/><path d="M180.8 70.6L183.2 69.7"/><path d="M183.1 77.7L185.5 77.1"/><path d="M184.7 85.1L187.2 84.6"/><path d="M185.7 92.5L188.2 92.3"/><text x="118.9" y="32.7" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♈&#xFE0E;</text><text x="151.6" y="51.6" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♉&#xFE0E;</text><text x="170.5" y="84.3" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♊&#xFE0E;</text><text x="170.5" y="122.1" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♋&#xFE0E;</text><text x="151.6" y="154.8" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♌&#xFE0E;</text><text x="118.9" y="173.7" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♍&#xFE0E;</text><text x="81.1" y="173.7" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♎&#xFE0E;</text><text x="48.4" y="154.8" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♏&#xFE0E;</text><text x="29.5" y="122.1" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♐&#xFE0E;</text><text x="29.5" y="84.3" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♑&#xFE0E;</text><text x="48.4" y="51.6" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♒&#xFE0E;</text><text x="81.1" y="32.7" text-anchor="middle" font-size="9" fill="currentColor" stroke="none">♓&#xFE0E;</text></svg>
+  <img class="ntx-statue" src="assets/images/home/hero-bust.jpg" alt="" decoding="async">
+  <svg class="ntx-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l1.600 8.400L22 12l-8.400 2.600L12 23l-1.600-8.400L2 12l8.400-2.600z"/></svg>
+</div>
+<div class="center ntx-head">
+  <nav aria-label="مسار التنقل"><ol class="ntx-crumb"><li><a href="#home">الرئيسية</a></li><li><a href="#aqh-tools">اكتشف ذاتك</a></li><li aria-current="page">الخريطة الفلكية</li></ol></nav>
   <span class="eyebrow" dir="ltr">NATAL ASTROLOGY · PLANETS, HOUSES &amp; ASPECTS</span>
-  <h2>خريطة الميلاد الفلكية الكاملة</h2>
+  <h2>الخريطة الفلكية الكاملة</h2>
+  <span class="ntx-orn" aria-hidden="true"><i></i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.800 8.200L22 12l-8.200 1.800L12 22l-1.800-8.200L2 12l8.200-1.800z"/></svg><i></i></span>
   <p class="intro">أدخل تاريخ ووقت ومكان ميلادك لحساب مواقع الكواكب والبيوت الاثني عشر والدرجات الفلكية، مع الرسوم البيانية لتوزيع العناصر والطبائع والتفسير التفصيلي الكامل.</p>
 </div>
-<form class="cform" id="cform" novalidate="">
-<div class="field"><label for="f-name">الاسم (اختياري)</label><input autocomplete="off" id="f-name" maxlength="40" type="text"/></div>
-<div class="field"><label for="f-gender">صيغة التقرير (اختياري)</label><select id="f-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
-<div class="two">
-<div class="field"><label for="f-date">تاريخ الميلاد</label><input id="f-date" max="2100-12-31" min="1900-01-01" required="" type="date"/></div>
-<div class="field"><label for="f-time">وقت الميلاد</label><input id="f-time" type="time"/></div>
+<form class="cform ntx-card" id="cform" novalidate="">
+<span class="ntx-gem" aria-hidden="true"><svg viewBox="0 0 40 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 12h12l6-9 6 9h12"/><circle cx="20" cy="9" r="2" fill="currentColor"/></svg></span>
+<p class="ntx-grp"><i></i><span>البيانات الشخصية</span></p>
+<div class="field"><label for="f-name"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/></svg></span>الاسم (اختياري)</label><input autocomplete="off" id="f-name" maxlength="40" type="text"/></div>
+<div class="field"><label for="f-gender"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span>صيغة التقرير (اختياري)</label><select id="f-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
+<p class="ntx-grp"><i></i><span>تاريخ ووقت الميلاد</span></p>
+<div class="two ntx-dt">
+<div class="field"><label for="f-date"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><rect x="3.500" y="5" width="17" height="15" rx="2.500"/><path d="M3.500 10h17M8 3v4M16 3v4"/></svg></span>تاريخ الميلاد</label><input id="f-date" max="2100-12-31" min="1900-01-01" required="" type="date"/></div>
+<div class="field"><label for="f-time"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.500"/><path d="M12 7.500V12l3 2"/></svg></span>وقت الميلاد</label><input id="f-time" type="time"/></div>
 </div>
-<label class="chk"><input id="f-unknown" type="checkbox"/> مش عارف وقت ميلادي</label>
-<div class="field"><label for="f-city-search">ابحث عن مدينة أو محافظة</label><input id="f-city-search" type="search" autocomplete="off" placeholder="مثال: الفيوم، بغداد، جدة"/><label for="f-city">مكان الميلاد</label><select id="f-city"></select><small id="f-city-coords" class="note" aria-live="polite">اختار المدينة لعرض الإحداثيات والمنطقة الزمنية.</small></div>
+<label class="chk ntx-chk"><input id="f-unknown" type="checkbox"/> مش عارف وقت ميلادي</label>
+<p class="ntx-grp"><i></i><span>مكان الميلاد</span></p>
+<div class="field ntx-place"><label for="f-city-search"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.500"/><path d="m16 16 4.500 4.500"/></svg></span>ابحث عن مدينة أو محافظة</label><input id="f-city-search" type="search" autocomplete="off" placeholder="مثال: الفيوم، بغداد، جدة"/><label for="f-city"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11.500A7 7 0 0 0 5 9.500C5 15 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/></svg></span>مكان الميلاد</label><select id="f-city"></select><small id="f-city-coords" class="note" aria-live="polite">اختار المدينة لعرض الإحداثيات والمنطقة الزمنية.</small></div>
 <div class="two" hidden="" id="manual">
 <div class="field"><label for="f-lat">خط العرض (شمال +)</label><input id="f-lat" inputmode="decimal" placeholder="30.04" step="any" type="number"/></div>
 <div class="field"><label for="f-lon">خط الطول (شرق +)</label><input id="f-lon" inputmode="decimal" placeholder="31.23" step="any" type="number"/></div>
 <div class="field"><label for="f-off">فرق التوقيت عن جرينتش بالساعات</label><input id="f-off" inputmode="decimal" placeholder="2" step="any" type="number"/></div>
 </div>
-<div class="two">
+<p class="ntx-grp"><i></i><span>الإعدادات الفلكية</span></p>
+<div class="two ntx-set">
   <div class="field">
-    <label for="f-zodiac-sys">نظام الأبراج</label>
+    <label for="f-zodiac-sys"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>نظام الأبراج</label>
     <select id="f-zodiac-sys" aria-label="نظام الأبراج الفلكي">
       <option value="tropical" selected>الاستوائي المعتمد (Tropical Zodiac)</option>
     </select>
   </div>
   <div class="field">
-    <label for="f-hs">نظام البيوت</label>
+    <label for="f-hs"><span class="ntx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M3.500 10.500 12 3.500l8.500 7v9a1.500 1.500 0 0 1-1.500 1.500H5a1.500 1.500 0 0 1-1.500-1.500z"/><path d="M9.500 21v-6h5v6"/></svg></span>نظام البيوت</label>
     <select id="f-hs">
       <option value="placidus">Placidus (بلاسيدوس)</option>
       <option value="whole">Whole Sign (البيوت الكاملة)</option>
@@ -580,10 +594,17 @@
   </div>
 </div>
 <p class="ferr" hidden="" id="ferr" role="alert"></p>
-<button class="btn" type="submit">احسب خريطتي</button>
+<button class="btn" type="submit"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.500 8.500-2 5-5 2 2-5z"/></svg><span>احسب خريطتي</span></button>
 
 </form>
+<div class="ntx-after">
 <div aria-live="polite" class="result animate-lux-reveal transition-all duration-700 ease-out" hidden="" id="result" data-view-result="chart"></div>
+</div>
+<ul class="ntx-feats" aria-label="مكونات الخريطة الفلكية"><li><span class="ntx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="2.500"/><path d="M24 7v6M24 35v6M7 24h6M35 24h6"/></svg></span><b>مواقع الكواكب</b><small>تحديد دقيق لمواقع الكواكب في الأبراج والبيوت.</small></li><li><span class="ntx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22 24 7l18 15"/><path d="M11 19v20h26V19M20 39V28h8v11"/></svg></span><b>البيوت الفلكية</b><small>تحليل مجالات حياتك الاثني عشر.</small></li><li><span class="ntx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="10" r="4"/><circle cx="10" cy="36" r="4"/><circle cx="38" cy="36" r="4"/><path d="m22 13.500-10 19M26 13.500l10 19M14.500 36h19"/></svg></span><b>الجوانب (Aspects)</b><small>فهم التفاعلات والروابط بين الكواكب.</small></li><li><span class="ntx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 8h16L16 22zM24 26h16L32 40z"/><path d="M12 28h8M16 28v8" opacity=".0"/></svg></span><b>العناصر والطبائع</b><small>توزيع الطاقة بين العناصر الأربعة (النار، الأرض، الهواء، الماء).</small></li></ul>
+<div class="ntx-moons" aria-hidden="true"><i></i><svg viewBox="0 0 160 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="5"/><path d="M33 7a6 6 0 1 0 0 10 4.500 4.500 0 0 1 0-10Z" fill="currentColor"/><path d="M55 5a7 7 0 1 0 0 14 5 5 0 0 1 0-14Z" fill="currentColor"/><circle cx="80" cy="12" r="7" fill="currentColor" fill-opacity=".85"/><path d="M105 5a7 7 0 1 1 0 14 5 5 0 0 0 0-14Z" fill="currentColor"/><path d="M127 7a6 6 0 1 1 0 10 4.500 4.500 0 0 0 0-10Z" fill="currentColor"/><circle cx="148" cy="12" r="5"/></svg><i></i></div>
+<svg class="ntx-ridge" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160V110l90-40 70 30 110-70 100 80 90-50 120 70 110-60 100 50 120-80 90 60 100-40 100 60V160z" fill="currentColor"/></svg>
+<svg class="ntx-astrolabe" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width=".8" aria-hidden="true"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="38"/><circle cx="50" cy="50" r="12"/><path d="M50 4v92M4 50h92M18 18l64 64M82 18 18 82"/><ellipse cx="50" cy="50" rx="38" ry="16" transform="rotate(-25 50 50)"/></svg>
+</div>
 </div>
 </section>
 <section class="sec" id="astro-maps"><div class="wrap">
@@ -2091,7 +2112,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       op.hidden = !!q && !op.dataset.search.includes(q);
     });
     Array.from(citySel.querySelectorAll("optgroup")).forEach(group => {
-      group.hidden = Array.from(group.options).every(op => op.hidden);
+      group.hidden = Array.from(group.querySelectorAll("option")).every(op => op.hidden);
     });
     const visible = Array.from(citySel.options).find(op => op.value !== "manual" && !op.hidden);
     if (q && visible) citySel.value = visible.value;
