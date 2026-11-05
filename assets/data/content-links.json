@@ -2,18 +2,126 @@
   "version": 1,
   "note": "ربط مركزي بين الكيانات الفلكية (entityKey) والمقالات. لا يحسب شيئًا؛ يبحث عن مقال مطابق فقط.",
   "entries": [
-    { "entityKey": "retrograde-mercury", "entityType": "retrograde", "planet": "mercury", "slug": "mercury-retrograde", "category": "retrogrades", "label": "افهم معنى تراجع عطارد" },
-    { "entityKey": "planet-venus", "entityType": "planet", "planet": "venus", "slug": "venus-in-chart", "category": "planets", "label": "اقرأ عن الزهرة في الخريطة" },
-    { "entityKey": "planet-mars", "entityType": "planet", "planet": "mars", "slug": "mars-in-chart", "category": "planets", "label": "اقرأ عن المريخ في الخريطة" },
-    { "entityKey": "planet-sun", "entityType": "planet", "planet": "sun", "slug": "natal-trinity", "category": "planets", "label": "اقرأ عن الثلاثي الأساسي في الخريطة" },
-    { "entityKey": "planet-moon", "entityType": "planet", "planet": "moon", "slug": "natal-trinity", "category": "planets", "label": "اقرأ عن الثلاثي الأساسي في الخريطة" },
-    { "entityKey": "moon-phase", "entityType": "moon-phase", "slug": "moon-phases", "category": "moon", "label": "افهم مراحل القمر" }
+    {
+      "entityKey": "retrograde-venus",
+      "entityType": "retrograde",
+      "planet": "venus",
+      "slug": "venus-retrograde",
+      "category": "retrogrades",
+      "label": "افهم معنى تراجع الزهرة"
+    },
+    {
+      "entityKey": "retrograde-saturn",
+      "entityType": "retrograde",
+      "planet": "saturn",
+      "slug": "saturn-retrograde",
+      "category": "retrogrades",
+      "label": "افهم معنى تراجع زحل"
+    },
+    {
+      "entityKey": "planet-jupiter",
+      "entityType": "planet",
+      "planet": "jupiter",
+      "slug": "jupiter-in-chart",
+      "category": "planets",
+      "label": "اقرأ عن المشتري في الخريطة"
+    },
+    {
+      "entityKey": "planet-saturn",
+      "entityType": "planet",
+      "planet": "saturn",
+      "slug": "saturn-in-chart",
+      "category": "planets",
+      "label": "اقرأ عن زحل في الخريطة"
+    },
+    {
+      "entityKey": "planet-mercury",
+      "entityType": "planet",
+      "planet": "mercury",
+      "slug": "mercury-in-chart",
+      "category": "planets",
+      "label": "اقرأ عن عطارد في الخريطة"
+    },
+    {
+      "entityKey": "chakra-planets",
+      "entityType": "chakra",
+      "slug": "chakras-and-planets",
+      "category": "symbols",
+      "label": "اقرأ عن الشاكرات والكواكب"
+    },
+    {
+      "entityKey": "retrograde-mercury",
+      "entityType": "retrograde",
+      "planet": "mercury",
+      "slug": "mercury-retrograde",
+      "category": "retrogrades",
+      "label": "افهم معنى تراجع عطارد"
+    },
+    {
+      "entityKey": "planet-venus",
+      "entityType": "planet",
+      "planet": "venus",
+      "slug": "venus-in-chart",
+      "category": "planets",
+      "label": "اقرأ عن الزهرة في الخريطة"
+    },
+    {
+      "entityKey": "planet-mars",
+      "entityType": "planet",
+      "planet": "mars",
+      "slug": "mars-in-chart",
+      "category": "planets",
+      "label": "اقرأ عن المريخ في الخريطة"
+    },
+    {
+      "entityKey": "planet-sun",
+      "entityType": "planet",
+      "planet": "sun",
+      "slug": "natal-trinity",
+      "category": "planets",
+      "label": "اقرأ عن الثلاثي الأساسي في الخريطة"
+    },
+    {
+      "entityKey": "planet-moon",
+      "entityType": "planet",
+      "planet": "moon",
+      "slug": "natal-trinity",
+      "category": "planets",
+      "label": "اقرأ عن الثلاثي الأساسي في الخريطة"
+    },
+    {
+      "entityKey": "moon-phase",
+      "entityType": "moon-phase",
+      "slug": "moon-phases",
+      "category": "moon",
+      "label": "افهم مراحل القمر"
+    }
   ],
   "general": [
-    { "entityType": "retrograde", "slug": "mercury-retrograde", "label": "اقرأ الدليل العام عن التراجعات الكوكبية" },
-    { "entityType": "transit", "slug": "understanding-transits", "label": "اقرأ الدليل العام عن العبور الفلكي" },
-    { "entityType": "moon-phase", "slug": "moon-phases", "label": "اقرأ الدليل العام عن مراحل القمر" },
-    { "entityType": "planet", "slug": "how-to-read-the-sky", "label": "اقرأ الدليل العام لقراءة السماء" },
-    { "entityType": "sign", "slug": "how-to-read-the-sky", "label": "اقرأ الدليل العام لقراءة السماء" }
+    {
+      "entityType": "retrograde",
+      "slug": "mercury-retrograde",
+      "label": "اقرأ الدليل العام عن التراجعات الكوكبية"
+    },
+    {
+      "entityType": "transit",
+      "slug": "understanding-transits",
+      "label": "اقرأ الدليل العام عن العبور الفلكي"
+    },
+    {
+      "entityType": "moon-phase",
+      "slug": "moon-phases",
+      "label": "اقرأ الدليل العام عن مراحل القمر"
+    },
+    {
+      "entityType": "planet",
+      "slug": "how-to-read-the-sky",
+      "label": "اقرأ الدليل العام لقراءة السماء"
+    },
+    {
+      "entityType": "sign",
+      "slug": "how-to-read-the-sky",
+      "label": "اقرأ الدليل العام لقراءة السماء"
+    }
   ]
 }
