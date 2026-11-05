@@ -153,7 +153,8 @@
     // خط الأم (Maternal): من G إلى I
     const motherCombined = reduceArcana(G + I);
     // المركز الكارمي للأسلاف (Ancestral Center):
-    const ancestralCenter = reduceArcana(fatherCombined + motherCombined);
+    // يُحسب من مجموع الزوايا الأربع كاملًا ثم يُختزل مرة واحدة (مطابق للموقع الأصلي: 22+20+13+15 = 70 → 7)
+    const ancestralCenter = reduceArcana(F + G + H + I);
     // المركز المشترك الإجمالي:
     const commonCenter = reduceArcana(ancestralCenter + E);
 
