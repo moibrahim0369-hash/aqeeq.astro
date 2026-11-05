@@ -9,9 +9,10 @@
   function mode() { var t = sec.querySelector('.acct-tabs button[aria-selected="true"]'); return t ? t.getAttribute('data-mode') : 'signin'; }
   function set(el, t) { if (el && el.textContent !== t) el.textContent = t; }
   function render() {
-    var m = mode();
+    var m = mode(), usr = q('#acct-user');
     sec.classList.toggle('acx-reset', reset);
-    if (reset) { set(title, 'استعادة كلمة المرور'); set(sub, 'اكتب بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.'); set(forgot, 'إرسال رابط الاستعادة'); back.hidden = false; }
+    if (usr && !usr.hidden) { set(title, 'حسابي'); set(sub, 'بياناتك الشخصية وقراءاتك المحفوظة في مكان واحد.'); }
+    else if (reset) { set(title, 'استعادة كلمة المرور'); set(sub, 'اكتب بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.'); set(forgot, 'إرسال رابط الاستعادة'); back.hidden = false; }
     else {
       back.hidden = true; set(forgot, 'نسيت كلمة المرور؟');
       if (m === 'signup') { set(title, 'إنشاء حساب جديد'); set(sub, 'ابدأ مساحتك الشخصية لحفظ قراءاتك وتقاريرك.'); set(swQ, 'لديك حساب بالفعل؟'); set(swBtn, 'تسجيل الدخول'); }
@@ -20,6 +21,7 @@
     if (submit && submit.textContent.trim() === 'دخول') set(submit, 'تسجيل الدخول');
   }
   var mo = new MutationObserver(render);
+  var uEl = q('#acct-user'); if (uEl) mo.observe(uEl, { attributes: true, attributeFilter: ['hidden'] });
   [].forEach.call(sec.querySelectorAll('.acct-tabs button'), function (b) { mo.observe(b, { attributes: true, attributeFilter: ['aria-selected'] }); });
   if (submit) mo.observe(submit, { childList: true, characterData: true, subtree: true });
   /* نسيت كلمة المرور: أول ضغطة تفتح واجهة الاستعادة، الثانية تمر إلى المنطق الحالي */

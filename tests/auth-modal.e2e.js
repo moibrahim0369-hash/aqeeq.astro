@@ -37,6 +37,9 @@ async function open(b, w, h) {
     const { p, errs } = await open(b, w, h);
     const T = (k) => p.evaluate((k) => JSON.stringify(globalThis.__T[k]), k).then(JSON.parse);
     ok(await p.evaluate(() => document.getElementById('acx-title').textContent === 'مرحبًا بعودتك'), w + ': title');
+    ok(await p.evaluate(() => { location.hash = '#home'; return getComputedStyle(document.getElementById('account')).display === 'none'; }), w + ': account overlay hidden on home');
+    await p.evaluate(() => { location.hash = '#account'; });
+    ok(await p.evaluate(() => getComputedStyle(document.getElementById('account')).position === 'fixed'), w + ': account is fixed overlay when opened');
     ok(await p.isVisible('#acct-google') && await p.isVisible('#acct-email') && await p.isVisible('#acct-pass') && await p.isVisible('#acct-submit') && await p.isVisible('#acct-forgot'), w + ': core controls visible');
     ok((await p.textContent('#acct-submit')).trim() === 'تسجيل الدخول', w + ': submit label');
     ok(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), w + ': no hscroll');
