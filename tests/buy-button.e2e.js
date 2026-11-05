@@ -14,7 +14,7 @@ export function createClient() {
       async signOut() { return { error: null }; },
     },
     functions: { async invoke(name, o) { T.calls.push([name, o, session.access_token]); if (globalThis.__rec) globalThis.__rec(JSON.stringify([name, o, session.access_token])); return T.invoke ? T.invoke() : { data: { checkoutUrl: 'https://accept.paymob.com/unifiedcheckout/?publicKey=pk&clientSecret=cs' }, error: null }; } },
-    from: () => ({ select() { return this; }, eq() { return this; }, async maybeSingle() { return { data: null, error: null }; } }),
+    from: (t) => ({ select() { return this; }, eq() { return this; }, async maybeSingle() { return { data: t === 'profiles' ? { id: 'u1', first_name: 'س', last_name: 'م', birth_date: '1999-09-25', birth_time_unknown: true, birth_city: 'القاهرة', birth_country: 'مصر', profile_completed_at: '2026-01-01' } : null, error: null }; } }),
     rpc: async () => ({ data: null, error: null }),
   };
 }`;
@@ -24,7 +24,7 @@ async function open(b, noSession, invokeJs) {
   await p.exposeFunction('__rec', (x) => rec.push(JSON.parse(x)));
   await p.exposeFunction('__oauthRec', (x) => oauth.push(JSON.parse(x)));
   p.on('pageerror', (e) => errs.push(e.message));
-  await p.addInitScript(`globalThis.__noSession=${!!noSession}`);
+  await p.addInitScript(`globalThis.__noSession=${!!noSession}; window.AQEEQ_PAYMOB_ENABLED=true;`);
   await p.route('**/*', (r) => {
     const u = r.request().url();
     if (u.startsWith(BASE)) return r.continue();
