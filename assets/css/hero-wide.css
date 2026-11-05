@@ -1,0 +1,32 @@
+/* بانر عريض بطول الشاشة وقليل الارتفاع — نفس المحتوى والتصميم */
+#home.aqh .aqh-hero{padding:clamp(10px,1.2vw,16px) 0 clamp(12px,1.4vw,18px)!important;min-height:0!important}
+#home.aqh .aqh-hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)!important;column-gap:clamp(16px,3vw,56px)!important;row-gap:6px!important;align-items:center!important;max-width:min(1360px,96vw)!important}
+#home.aqh .aqh-hero-wheel{order:0;grid-column:2;grid-row:1}
+#home.aqh .aqh-hero-copy{grid-column:1;grid-row:1;max-width:none!important;gap:6px!important}
+#home.aqh .aqh-rule{display:none!important}
+#home.aqh .aqh-eyebrow{font-size:clamp(.85rem,1.05vw,1rem)!important}
+#home.aqh .aqh-title{font-size:clamp(1.5rem,2.6vw,2.4rem)!important;line-height:1.2!important;white-space:nowrap}
+#home.aqh .aqh-lead{font-size:clamp(.85rem,1vw,.98rem)!important;line-height:1.7!important;max-width:44em!important}
+#home.aqh .aqh-cta-row{margin:2px 0 0!important}
+#home.aqh .aqh-hero .aqh-cta{height:44px!important;min-height:0!important;padding:0 24px!important}
+#home.aqh .aqh-values{margin-top:2px!important}
+#home.aqh .aqh-values li{font-size:.85rem!important}
+#home.aqh .aqh-values svg{width:20px!important;height:20px!important}
+#home.aqh .aqh-wheel-box,#home.aqh .aqh-wheel-frame{max-width:clamp(190px,19vw,250px)!important;margin-inline:auto}
+#home.aqh .aqh-wheel-wrap,#home.aqh .aqh-wheel-frame{height:auto!important;aspect-ratio:1/1}
+#home.aqh svg.wheel{width:100%!important;height:100%!important}
+#home.aqh .aqh-wheel-hint{margin:0!important;font-size:.74rem!important}
+@media (max-width:1024px){
+  #home.aqh .aqh-hero-grid{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)!important;column-gap:10px!important;max-width:96vw!important}
+  #home.aqh .aqh-hero-copy{justify-items:start;text-align:start}
+  #home.aqh .aqh-hero-copy>*{text-align:start!important;margin-inline:0!important}
+  #home.aqh .aqh-title{white-space:normal;font-size:clamp(1.25rem,5vw,1.6rem)!important}
+  #home.aqh .aqh-lead{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.82rem!important}
+  #home.aqh .aqh-values{display:none!important}
+  #home.aqh .aqh-hero .aqh-cta{height:40px!important;padding:0 18px!important}
+  #home.aqh .aqh-wheel-box,#home.aqh .aqh-wheel-frame{max-width:min(36vw,150px)!important}
+  #home.aqh .aqh-wheel-hint{display:none!important}
+}
+#home.aqh .aqh-tagline{top:22%!important;right:0!important}
+#home.aqh .aqh-wheel-hint{max-width:230px;margin-inline:auto!important}
+@media (max-width:1024px){#home.aqh .aqh-sky-link{display:none!important}}
