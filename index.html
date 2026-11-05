@@ -54,6 +54,7 @@
 <link rel="stylesheet" href="assets/css/natal-view.css?v=20261106b">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/hero-v3.css?v=20261106a">
+<link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
@@ -176,6 +177,41 @@
     </div>
   </div>
 
+  <!-- الأنظمة الثلاثة + الأدوات: ملتصقة بأسفل البانر -->
+  <div class="aqh-fuse" id="aqh-fuse">
+    <div class="aqh-wrap aqh-systems-shell" id="explore-systems">
+      <div class="aqh-systems aqh-stagger" id="services-catalog">
+        <a class="aqh-system aqh-reveal" href="#chart" id="cat-discover">
+          <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><ellipse cx="48" cy="48" rx="42" ry="22" transform="rotate(-28 48 48)"/><ellipse cx="48" cy="48" rx="30" ry="15" transform="rotate(-28 48 48)" stroke-opacity=".6"/><circle cx="48" cy="48" r="8" fill="currentColor" fill-opacity=".85"/><circle cx="19" cy="62" r="2.6" fill="currentColor"/><circle cx="79" cy="33" r="2.6" fill="currentColor"/></svg></span>
+          <span class="aqh-system-body"><h3>الخريطة الفلكية</h3><p>تحليل شامل لخريطتك الفلكية يكشف لك شخصيتك، مواهبك وتحدياتك.</p></span>
+          <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+        </a>
+        <a class="aqh-system aqh-reveal" href="#lifepath">
+          <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M6 74 34 24l18 28 10-14 28 36Z" fill="currentColor" fill-opacity=".16"/><path d="M34 24l8 14-8 6-6-10M62 38l6 10-8-2" stroke-opacity=".7"/><path d="M10 86c18-8 34 6 52-2s22-6 26-4" stroke-linecap="round"/></svg></span>
+          <span class="aqh-system-body"><h3>مسار الحياة</h3><p>افهم رحلتك، محطاتك، ودروسك الكارمية لتسير في اتجاهك الحقيقي.</p></span>
+          <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+        </a>
+        <a class="aqh-system aqh-reveal" href="#matrix">
+          <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M48 14 82 48 48 82 14 48Z"/><path d="M48 14v68M14 48h68" stroke-opacity=".7"/><circle cx="48" cy="14" r="7" fill="#fbf8f2"/><circle cx="82" cy="48" r="7" fill="#fbf8f2"/><circle cx="48" cy="82" r="7" fill="#fbf8f2"/><circle cx="14" cy="48" r="7" fill="#fbf8f2"/><circle cx="48" cy="48" r="7" fill="#fbf8f2"/></svg></span>
+          <span class="aqh-system-body"><h3>مصفوفة القدر</h3><p>اكتشاف الأنماط والطاقات التي تشكل حياتك من خلال تاريخ ميلادك.</p></span>
+          <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
+        </a>
+      </div>
+
+      <div class="aqh-tools aqh-stagger" id="aqh-tools">
+        <a class="aqh-tool aqh-reveal" href="#compat"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 40C8 28 6 18 10 13c4-5 11-3 14 2 3-5 10-7 14-2 4 5 2 15-14 27Z"/><path d="M17 18c3-3 8-1 10 3" stroke-opacity=".6"/></svg></span><b>التوافق</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-reveal" href="#tarot-chamber"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="20" height="30" rx="2.5" transform="rotate(-10 16 24)"/><rect x="22" y="9" width="20" height="30" rx="2.5" transform="rotate(8 32 24)"/><path d="M32 18l3 5-3 5-3-5Z"/></svg></span><b>التاروت</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-reveal" href="#featured-content"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 6h18l8 8v28H12Z"/><path d="M29 6v9h9M18 22h14M18 28h14M18 34h9" stroke-linecap="round"/></svg></span><b>محتوى مميز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-reveal" href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 12C19 8 11 8 5 11v27c6-3 14-3 19 1 5-4 13-4 19-1V11c-6-3-14-3-19 1ZM24 12v27"/></svg></span><b>مكتبة الرموز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+      </div>
+      <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
+      <div class="grp hidden-feature" id="cat-tarot" hidden style="display:none !important;"></div>
+      <div class="grp hidden-feature" id="cat-account" hidden style="display:none !important;"></div>
+      <div class="grp hidden-feature" id="cat-forecast" hidden style="display:none !important;"></div>
+      <div class="grp hidden-feature" id="cat-library" hidden style="display:none !important;"></div>
+    </div>
+  </div>
+
   <!-- طاقة اليوم: شريط كامل العرض بعد الواجهة -->
   <div class="aqh-band" id="aqh-band">
     <div class="aqh-wrap">
@@ -263,38 +299,6 @@
     </div>
   </div>
 
-  <!-- 3. الأنظمة الثلاثة + 4. الأدوات المساعدة -->
-  <div class="aqh-wrap aqh-systems-shell" id="explore-systems">
-    <div class="aqh-systems aqh-stagger" id="services-catalog">
-      <a class="aqh-system aqh-reveal" href="#chart" id="cat-discover">
-        <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><ellipse cx="48" cy="48" rx="42" ry="22" transform="rotate(-28 48 48)"/><ellipse cx="48" cy="48" rx="30" ry="15" transform="rotate(-28 48 48)" stroke-opacity=".6"/><circle cx="48" cy="48" r="8" fill="currentColor" fill-opacity=".85"/><circle cx="19" cy="62" r="2.6" fill="currentColor"/><circle cx="79" cy="33" r="2.6" fill="currentColor"/></svg></span>
-        <span class="aqh-system-body"><h3>الخريطة الفلكية</h3><p>تحليل شامل لخريطتك الفلكية يكشف لك شخصيتك، مواهبك وتحدياتك.</p></span>
-        <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-      </a>
-      <a class="aqh-system aqh-reveal" href="#lifepath">
-        <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M6 74 34 24l18 28 10-14 28 36Z" fill="currentColor" fill-opacity=".16"/><path d="M34 24l8 14-8 6-6-10M62 38l6 10-8-2" stroke-opacity=".7"/><path d="M10 86c18-8 34 6 52-2s22-6 26-4" stroke-linecap="round"/></svg></span>
-        <span class="aqh-system-body"><h3>مسار الحياة</h3><p>افهم رحلتك، محطاتك، ودروسك الكارمية لتسير في اتجاهك الحقيقي.</p></span>
-        <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-      </a>
-      <a class="aqh-system aqh-reveal" href="#matrix">
-        <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M48 14 82 48 48 82 14 48Z"/><path d="M48 14v68M14 48h68" stroke-opacity=".7"/><circle cx="48" cy="14" r="7" fill="#fbf8f2"/><circle cx="82" cy="48" r="7" fill="#fbf8f2"/><circle cx="48" cy="82" r="7" fill="#fbf8f2"/><circle cx="14" cy="48" r="7" fill="#fbf8f2"/><circle cx="48" cy="48" r="7" fill="#fbf8f2"/></svg></span>
-        <span class="aqh-system-body"><h3>مصفوفة القدر</h3><p>اكتشاف الأنماط والطاقات التي تشكل حياتك من خلال تاريخ ميلادك.</p></span>
-        <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
-      </a>
-    </div>
-
-    <div class="aqh-tools aqh-stagger" id="aqh-tools">
-      <a class="aqh-tool aqh-reveal" href="#compat"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 40C8 28 6 18 10 13c4-5 11-3 14 2 3-5 10-7 14-2 4 5 2 15-14 27Z"/><path d="M17 18c3-3 8-1 10 3" stroke-opacity=".6"/></svg></span><b>التوافق</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-      <a class="aqh-tool aqh-reveal" href="#tarot-chamber"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="20" height="30" rx="2.5" transform="rotate(-10 16 24)"/><rect x="22" y="9" width="20" height="30" rx="2.5" transform="rotate(8 32 24)"/><path d="M32 18l3 5-3 5-3-5Z"/></svg></span><b>التاروت</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-      <a class="aqh-tool aqh-reveal" href="#featured-content"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 6h18l8 8v28H12Z"/><path d="M29 6v9h9M18 22h14M18 28h14M18 34h9" stroke-linecap="round"/></svg></span><b>محتوى مميز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-      <a class="aqh-tool aqh-reveal" href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 12C19 8 11 8 5 11v27c6-3 14-3 19 1 5-4 13-4 19-1V11c-6-3-14-3-19 1ZM24 12v27"/></svg></span><b>مكتبة الرموز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-    </div>
-    <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
-    <div class="grp hidden-feature" id="cat-tarot" hidden style="display:none !important;"></div>
-    <div class="grp hidden-feature" id="cat-account" hidden style="display:none !important;"></div>
-    <div class="grp hidden-feature" id="cat-forecast" hidden style="display:none !important;"></div>
-    <div class="grp hidden-feature" id="cat-library" hidden style="display:none !important;"></div>
-  </div>
 
   <!-- 5. طاقة اليوم + 6. المقالات المختارة -->
   <div class="aqh-wrap aqh-lower">
