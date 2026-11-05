@@ -91,8 +91,53 @@
       '<input id="fc-q" type="search" autocomplete="off" placeholder="ابحث بالعنوان أو التصنيف أو الكلمة" value="' + esc(st.q) + '"><button type="button" data-fc-clear aria-label="مسح البحث"' + (st.q ? '' : ' hidden') + '>' + ICO.x + '</button></div></div>';
     h += '<div class="fc-list" id="fc-grid"></div><nav class="fc-pager" id="fc-more" aria-label="ترقيم الصفحات"></nav>';
     h += '<div class="fc-back-cta"><a class="fc-btn" href="#home"><span>العودة إلى الرئيسية</span>' + ARROW + '</a></div>';
-    host.innerHTML = h; paintGrid(); bindTools();
+    h += newsletterHTML();
+    host.innerHTML = h; paintGrid(); bindTools(); bindNewsletter();
   }
+  var MAIL = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg>';
+  function newsletterHTML() {
+    return '<section class="fc-news" aria-labelledby="fc-news-t"><div class="fc-news-ico">' + MAIL + '</div>' +
+      '<div class="fc-news-txt"><h2 id="fc-news-t">انضم إلى نشرة عقيق</h2><p>مقالات مختارة وقراءات فلكية تصلك على بريدك، بلا إزعاج.</p></div>' +
+      '<form class="fc-news-form" id="fc-news-form" novalidate><label for="fc-news-email" class="fc-sr">البريد الإلكتروني</label>' +
+      '<input id="fc-news-email" type="email" inputmode="email" autocomplete="email" dir="ltr" placeholder="بريدك الإلكتروني" maxlength="254" required>' +
+      '<button type="submit" class="fc-news-btn">اشترك</button></form>' +
+      '<p class="fc-news-msg" id="fc-news-msg" role="status" aria-live="polite"></p></section>';
+  }
+  function bindNewsletter() {
+    var f = $('#fc-news-form'); if (!f) return;
+    var msg = $('#fc-news-msg'), inp = $('#fc-news-email'), btn = f.querySelector('button'), busy = false;
+    function say(t, ok) { msg.textContent = t; msg.className = 'fc-news-msg ' + (ok ? 'is-ok' : 'is-err'); }
+    f.addEventListener('submit', function (e) {
+      e.preventDefault(); if (busy) return;
+      var v = inp.value.trim();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v) || v.length > 254) { say('اكتب بريدًا إلكترونيًا صحيحًا.', false); inp.focus(); return; }
+      var sb = window.aqeeqSupabase;
+      if (!sb || !sb.rpc) { say('تعذّر الاتصال الآن، حاول لاحقًا.', false); return; }
+      busy = true; btn.disabled = true; btn.textContent = 'جارٍ الإرسال';
+      sb.rpc('subscribe_newsletter', { p_email: v, p_source: 'featured-content' }).then(function (r) {
+        if (r && !r.error && r.data === 'ok') { say('تم اشتراكك. شكرًا لانضمامك إلى نشرة عقيق.', true); inp.value = ''; }
+        else if (r && !r.error && r.data === 'invalid') say('اكتب بريدًا إلكترونيًا صحيحًا.', false);
+        else say('تعذّر إتمام الاشتراك، حاول مرة أخرى.', false);
+      }, function () { say('تعذّر إتمام الاشتراك، حاول مرة أخرى.', false); })
+      .then(function () { busy = false; btn.disabled = false; btn.textContent = 'اشترك'; });
+    });
+  }
+  (function legal() {
+    var T = {
+      privacy: ['سياسة الخصوصية', 'نجمع بريدك الإلكتروني فقط عند اشتراكك في النشرة، ونستخدمه لإرسال المحتوى المختار إليك. لا نبيع بريدك ولا نشاركه مع أي جهة، ويمكنك طلب حذفه في أي وقت عبر التواصل معنا.'],
+      terms: ['شروط الاستخدام', 'المحتوى المنشور للتأمل والاطلاع والتسلية، ولا يُعدّ استشارة طبية أو مالية أو قانونية. استخدامك للموقع يعني موافقتك على ذلك، ويحق لنا تحديث المحتوى والشروط عند الحاجة.']
+    };
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-fc-legal]'); if (!b) { if (e.target.closest('[data-fc-legal-close]')) { var o = document.getElementById('fc-legal'); if (o) o.remove(); } return; }
+      e.preventDefault(); var k = b.getAttribute('data-fc-legal'), d = T[k]; if (!d) return;
+      var old = document.getElementById('fc-legal'); if (old) old.remove();
+      var el = document.createElement('div'); el.id = 'fc-legal'; el.className = 'fc-legal'; el.setAttribute('data-fc-legal-close', '');
+      el.innerHTML = '<div class="fc-legal-box" role="dialog" aria-modal="true" aria-labelledby="fc-legal-t" dir="rtl"><h2 id="fc-legal-t">' + d[0] + '</h2><p>' + d[1] + '</p><button type="button" class="fc-news-btn" data-fc-legal-close>حسنًا</button></div>';
+      el.firstChild.addEventListener('click', function (ev) { if (!ev.target.closest('[data-fc-legal-close]')) ev.stopPropagation(); });
+      document.body.appendChild(el); el.querySelector('button').focus();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var o = document.getElementById('fc-legal'); if (o) o.remove(); } });
+  })();
   function paintGrid() {
     var all = filtered(), g = $('#fc-grid'), pg = $('#fc-more'), cnt = $('#fc-count'); if (!g) return;
     var pick0 = (DATA || []).filter(function (x) { return x.featured; })[0] || (DATA || [])[0];
