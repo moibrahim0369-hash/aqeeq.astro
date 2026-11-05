@@ -1,0 +1,49 @@
+/* صفحة «لك» + بلوكات السيو + CTA المرصد (طبقة عرض فقط) */
+:root{--fy-bg:#FDFBF7;--fy-bd:#E2D9CC;--fy-gold:#C5A059;--fy-wine:#4A1521;--fy-ink:#2C2523;--fy-sh:0 4px 15px rgba(74,21,33,.05);--fy-sh-h:0 10px 24px rgba(74,21,33,.11)}
+section#for-you:target{background:#FDFBF7!important}
+#for-you .center h2{color:var(--fy-wine)!important}
+#for-you .center .intro{color:var(--fy-ink)!important}
+#for-you .eyebrow{color:#7a5a22!important}
+#fy-body{display:grid;gap:16px;max-width:860px;margin:18px auto 0}
+.fy-card,.fy-welcome{background:var(--fy-bg);border:1px solid var(--fy-bd);border-radius:18px;padding:22px 20px;box-shadow:var(--fy-sh);transition:border-color .2s,box-shadow .2s}
+.fy-card:hover,.fy-welcome:hover{border-color:var(--fy-gold);box-shadow:var(--fy-sh-h)}
+.fy-card h3,.fy-welcome h3{margin:6px 0 10px;color:var(--fy-wine)!important;font:700 1.35rem/1.5 'Amiri','Cairo',serif}
+.fy-card p,.fy-welcome p{color:var(--fy-ink)!important;line-height:1.95;margin:0 0 10px}
+.fy-daily{border:1.5px solid var(--fy-gold);background:linear-gradient(180deg,#FFFEFB,#FAF4EA)}
+.fy-kick{display:inline-block;color:#7a5a22;font-weight:700;font-size:.85rem}
+.fy-basis{display:block;margin-top:6px;color:#5a4a42;font-size:.82rem;line-height:1.8}
+.fy-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:#F3EBDD;border:1px solid var(--fy-gold);color:var(--fy-wine);font:700 .85rem 'Cairo',sans-serif}
+.fy-badge .sg{color:var(--fy-gold);font-size:1.1rem}
+.fy-badge i{font-style:normal;font-weight:400;color:var(--fy-ink);opacity:.85;font-size:.78rem}
+.fy-sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:6px}
+.fy-sec-h h3{margin:0;color:var(--fy-wine);font:700 1.3rem 'Amiri','Cairo',serif}
+.fy-sec-h small{color:var(--fy-ink);opacity:.8}
+.fy-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 2px 14px;scrollbar-width:thin;scrollbar-color:var(--fy-gold) transparent;overscroll-behavior-x:contain}
+.fy-tr{flex:0 0 min(86%,330px);scroll-snap-align:center;background:var(--fy-bg);border:1px solid var(--fy-bd);border-radius:16px;padding:18px 16px;box-shadow:var(--fy-sh);display:flex;flex-direction:column;gap:10px;transition:border-color .2s,box-shadow .2s,transform .2s}
+.fy-tr:hover{border-color:var(--fy-gold);box-shadow:var(--fy-sh-h);transform:translateY(-1px)}
+.fy-tr h4{margin:0;color:var(--fy-wine)!important;font:700 1.08rem/1.7 'Amiri','Cairo',serif}
+.fy-tr>p{margin:0;color:var(--fy-ink)!important;line-height:1.9;font-size:.95rem}
+.fy-lock{margin-top:auto;padding:14px;border:1px solid var(--fy-gold);border-radius:14px;background:linear-gradient(180deg,#FBF3E2,#F6EBD3);text-align:center}
+.fy-lock p{margin:6px 0 10px;color:var(--fy-ink)!important;font-size:.85rem;line-height:1.7}
+.fy-lock-ic{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--fy-bg);border:1px solid var(--fy-gold);color:#7a5a22}
+.fy-lock-ic svg{width:18px;height:18px}
+.fy-lock-btn{display:block;min-height:44px;padding:10px 14px;border-radius:999px;font-size:.88rem;line-height:1.5;white-space:normal;text-align:center;text-decoration:none}
+.fy-welcome{text-align:center;border:1.5px solid var(--fy-gold);background:linear-gradient(180deg,#FFFEFB,#FAF4EA);padding:30px 20px}
+.fy-ic{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#F3EBDD;border:1px solid var(--fy-gold);color:var(--fy-gold);font-size:1.6rem}
+.fy-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:8px}
+.fy-actions .btn{text-decoration:none;min-height:44px}
+@media(min-width:900px){.fy-tr{flex-basis:340px}}
+/* CTA المرصد */
+.sky-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:16px 0 4px;padding:16px;border:1px solid var(--fy-gold);border-radius:16px;background:linear-gradient(180deg,#FFFEFB,#FAF4EA);box-shadow:var(--fy-sh)}
+.sky-cta-ic{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:#F3EBDD;border:1px solid var(--fy-gold);color:var(--fy-gold);font-size:1.3rem}
+.sky-cta p{flex:1 1 220px;margin:0;color:var(--fy-ink)!important;line-height:1.9}
+.sky-cta .btn{text-decoration:none;min-height:44px}
+/* السيو */
+.seo-authority-block{max-width:860px;margin:36px auto 0;padding:0 16px;position:relative;z-index:1}
+.seo-in{padding:22px 20px;background:#FAF6F0;border:1px solid var(--fy-bd);border-radius:16px;box-shadow:var(--fy-sh)}
+.seo-in h2{margin:0 0 10px;color:var(--fy-wine)!important;font:700 1.3rem/1.6 'Amiri','Cairo',serif}
+.seo-in p{margin:0 0 10px;color:var(--fy-ink)!important;line-height:1.95;font-size:.95rem}
+.seo-in p:last-child{margin-bottom:0}
+section.sec .seo-authority-block:last-child{margin-bottom:24px}
+@media(max-width:820px){section#for-you:target{padding-bottom:90px}}
+@media(prefers-reduced-motion:reduce){.fy-card,.fy-tr{transition:none!important}}

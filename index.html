@@ -78,6 +78,7 @@
 <link rel="stylesheet" href="assets/css/lp-accordion.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/sky-zodiac-theme.css?v=20261106b">
 <link rel="stylesheet" href="assets/css/wheel-ivory.css?v=20261106a">
+<link rel="stylesheet" href="assets/css/for-you.css?v=20261106a">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -99,6 +100,7 @@
       <div class="aqh-drop">
         <button type="button" class="aqh-drop-btn" aria-expanded="false" aria-haspopup="true"><span data-i18n-ar="اكتشف ذاتك" data-i18n-en="Discover Yourself">اكتشف ذاتك</span></button>
         <div class="aqh-drop-menu" role="menu">
+          <a role="menuitem" href="#for-you" class="aqh-foryou">لك</a>
           <a role="menuitem" href="#chart">الخريطة الفلكية</a>
           <a role="menuitem" href="#matrix">مصفوفة القدر</a>
           <a role="menuitem" href="#lifepath">مسار الحياة</a>
@@ -494,6 +496,7 @@
     </ul>
     <div class="mxp-badge" aria-hidden="true"><small>مبنية على منهجية</small><b>٢٢</b><small>أركانا</small></div>
   </div>
+<aside class="seo-authority-block" aria-labelledby="seo-matrix"><div class="seo-in"><h2 id="seo-matrix">عن مصفوفة القدر ونظام الـ 22 طاقة</h2><p>مصفوفة القدر نظام تحليل رمزي بيعتمد على تاريخ الميلاد لاستخراج 22 طاقة، كل طاقة بتقابل أحد الأركانا الكبرى (Major Arcana) في التاروت. بتتوزع الطاقات على نقاط المصفوفة لتوصف الشخصية والموهبة والعلاقات والمال والرسالة.</p><p>الجذور الكارمية في المصفوفة بتتمثل في «الذيل الكارمي» والنقاط اللي بترتبط بالدروس المتكررة، وبتتقرا كفرص وعي ونمو مش كحكم نهائي.</p><p>اشتهر الأسلوب على يد عالمة النفس ناتاليا لاديني، اللي ربطت بين الأرقام والأركانا وعلم النفس. القراءة هنا للتأمل والوعي بالنفس، ومش بديل عن استشارة مختصة.</p></div></aside>
 </section>
 </div>
 </section>
@@ -558,6 +561,7 @@
 <svg class="lpx-ridge" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160V110l90-40 70 30 110-70 100 80 90-50 120 70 110-60 100 50 120-80 90 60 100-40 100 60V160z" fill="currentColor"/></svg>
 </div>
 </div>
+<aside class="seo-authority-block" aria-labelledby="seo-lifepath"><div class="seo-in"><h2 id="seo-lifepath">علم الأرقام الفيثاغوري ومسار الحياة</h2><p>مسار الحياة هو الرقم الناتج من اختزال تاريخ ميلادك في علم الأرقام الفيثاغوري، وبيوصف الاتجاه العام لتجربتك وأسلوبك في التعامل مع الحياة.</p><p>كل سنة شخصية بتنتمي لدورة من تسع سنوات: بداية، تعاون، تعبير، بناء، تغيير، مسؤولية، تأمل، إنجاز، وإغلاق. معرفة سنتك الحالية بتساعدك تختار التوقيت المناسب لخطواتك.</p><p>القمم والتحديات (Pinnacles & Challenges) بتقسم العمر لأربع مراحل، لكل مرحلة قمة بتعبّر عن الفرصة وتحدي بيعبّر عن الدرس الأهم فيها.</p></div></aside>
 </section>
 <section class="sec ntx" id="chart">
 <div class="wrap">
@@ -653,6 +657,25 @@
 <button type="button" role="tab" aria-selected="false" data-eam-mode="sidereal" tabindex="-1">الفيدية</button>
 </div><div id="eam-content" aria-live="polite"></div>
 </div></section>
+<section class="sec alt fyx" id="for-you" aria-labelledby="fy-h">
+<div class="wrap">
+<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
+<div class="aq-section-topbar">
+  <a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a>
+  <div class="aq-section-quick-links">
+    <a href="#for-you" class="aq-section-pill active">لك</a>
+    <a href="#sky" class="aq-section-pill">حركة السماء الآن</a>
+    <a href="#chart" class="aq-section-pill">خريطة الميلاد</a>
+  </div>
+</div>
+<div class="center">
+  <span class="eyebrow" dir="ltr">FOR YOU · YOUR DAILY WINDOW</span>
+  <h2 id="fy-h">لك: نافذتك اليومية</h2>
+  <p class="intro">رسالة يومك وتذكير بنمطك والعبورات الكبرى الشغالة في خريطتك أنت تحديدًا، مكتوبة بلغة بسيطة وقريبة منك.</p>
+</div>
+<div id="fy-body" aria-live="polite"></div>
+</div>
+</section>
 <section class="sec alt" id="sky">
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
@@ -975,7 +998,8 @@
 </form>
 <div aria-live="polite" class="result" hidden="" id="cp-out"></div>
 <ul class="cpx-feats" aria-label="مكونات التحليل"><li><span class="cpx-fi"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="6"/><ellipse cx="24" cy="24" rx="19" ry="8" transform="rotate(-30 24 24)"/><circle cx="40" cy="14" r="2" fill="currentColor"/></svg></span><h3>التوافق بين الكواكب</h3><p>دراسة الاتصالات المتبادلة بين كواكب الطرفين.</p></li><li><span class="cpx-fi"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M34 8a17 17 0 1 0 0 32 14 14 0 0 1 0-32z"/><circle cx="38" cy="14" r="1.500" fill="currentColor"/></svg></span><h3>التوافق العاطفي</h3><p>قراءة رمزية لديناميكية المشاعر والاحتياجات.</p></li><li><span class="cpx-fi"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="9"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8"/></svg></span><h3>التوافق الفكري</h3><p>فهم أساليب التواصل والتفكير.</p></li><li><span class="cpx-fi"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="24" r="12"/><circle cx="30" cy="24" r="12"/><circle cx="24" cy="24" r="2" fill="currentColor"/></svg></span><h3>الخريطة المركّبة</h3><p>استكشاف الخريطة الناتجة عن نقاط المنتصف بين الخريطتين.</p></li></ul><div class="cpx-moons" aria-hidden="true"><i></i><svg viewBox="0 0 120 30" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="20" cy="15" r="8"/><path d="M60 7a8 8 0 1 0 0 16 6 6 0 0 1 0-16z" fill="currentColor"/><circle cx="100" cy="15" r="8"/></svg><i></i></div><svg class="cpx-ridge" viewBox="0 0 800 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 90V55l90-28 80 30 110-42 120 50 110-34 140 40 100-26 50 18V90z" fill="rgba(142,126,158,.18)"/><path d="M0 90V70l120-24 100 28 150-32 130 30 130-22 170 24V90z" fill="rgba(183,138,82,.18)"/></svg>
-</div></section>
+</div><aside class="seo-authority-block" aria-labelledby="seo-compat"><div class="seo-in"><h2 id="seo-compat">الخريطة التوافقية والمركبة وتوافق المسارات</h2><p>الخريطة التوافقية (Synastry) بتقارن مواقع كواكب شخصين، وبتبيّن الزوايا بينهم اللي بتوصف الانجذاب والتفاهم ونقاط الاحتكاك.</p><p>الخريطة المركبة (Composite) بتحسب نقطة منتصف مواقع الكواكب بين الخريطتين، فتطلع خريطة ثالثة تمثل العلاقة نفسها ككيان مستقل.</p><p>توافق المسارات العددية بيقارن أرقام مسار الحياة للطرفين، وبيوضح نقاط التناغم والاختلاف. كل ده قراءة رمزية للحوار والتأمل، ومش حكم على نجاح العلاقة.</p></div></aside>
+</section>
 <section class="sec alt" id="tarot-chamber"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="aq-section-topbar">
@@ -1119,6 +1143,7 @@
   <span class="aqn-grab" aria-hidden="true"></span>
   <h2 id="aqn-sheet-h">اكتشف ذاتك</h2>
   <div class="aqn-grid">
+    <a href="#for-you"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 9.5l-4.4 3.9L17 19l-5-3-5 3 1.4-5.6L4 9.5l5.8-.9z"/></svg><b>لك</b><small>نافذتك اليومية</small></a>
     <a href="#chart"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg><b>الخريطة الفلكية</b><small>مواقع الكواكب والبيوت</small></a>
     <a href="#matrix"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="m12 2.500 9.500 9.500-9.500 9.500L2.500 12z"/><rect x="7" y="7" width="10" height="10" rx=".5"/></svg><b>مصفوفة القدر</b><small>٢٢ أركانا</small></a>
     <a href="#lifepath"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2.500"/><circle cx="18" cy="5" r="2.500"/><path d="M6 16.500V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7.500"/></svg><b>مسار الحياة</b><small>المراحل والدورات</small></a>
@@ -3127,6 +3152,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true">${gl(p.g)}</span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لترى أثر ${p.n} في بيتك بالتحديد</small></div></div>
       <div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">${SIGNS.map((sg, i) => `<button type="button" class="sky-sg${i === skySign ? " is-on" : ""}" data-i="${i}" aria-pressed="${i === skySign}"><span class="sg" aria-hidden="true">${gl(sg.g)}</span><span>${sg.n}</span></button>`).join("")}</div>
       <div class="sky-signcard" id="sky-signcard" aria-live="polite">${skySign == null ? `<p class="sky-pick-empty">اختر برجك من الشريط لتظهر لك قراءة ${p.n} في بيتك، بدل قراءة كل الأبراج دفعة واحدة.</p>` : skyCard(k, bd, skySign)}</div></div>`;
+    o += `<aside class="sky-cta"><span class="sky-cta-ic" aria-hidden="true">${gl("✦")}</span><p>العبور العام يصف طقس السماء، وخريطتك الشخصية تحدد أين تمطر. اكتشف تأثير ${p.n} على بيوتك بدقة في صفحة (لك).</p><a class="btn" href="#for-you">افتح صفحة لك</a></aside>`;
     $("#sky-panel").innerHTML = o;
     $$("#sky-panel .sky-sg").forEach(btn => btn.addEventListener("click", () => {
       skySign = +btn.dataset.i; try { localStorage.setItem("aq-sky-sign", skySign); } catch (e) { }
@@ -3137,6 +3163,68 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   skyDateInput.addEventListener("change", renderSky);
   $("#sky-today").addEventListener("click", () => { skyDateInput.value = ""; renderSky(); });
   renderSky();
+
+
+  /* ---------- صفحة «لك»: نافذة يومية مخصصة من خريطة الميلاد المحفوظة ---------- */
+  (function forYou() {
+    const host = $("#fy-body"); if (!host) return;
+    const lockIc = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+    const natalHouse = (nat, lon) => {
+      const ch = nat.ch;
+      if (ch.known && Array.isArray(ch.cusps)) {
+        const x = Astro.norm(lon);
+        for (let i = 0; i < 12; i++) { const st = Astro.norm(ch.cusps[i]), sp = Astro.norm(ch.cusps[(i + 1) % 12] - st); if (Astro.norm(x - st) < sp) return i + 1; }
+      }
+      const sun = ch.bodies.find(b => b.key === "sun");
+      return ((Math.floor(Astro.norm(lon) / 30) - sun.sign + 12) % 12) + 1;
+    };
+    const mY = ms => new Date(ms).toLocaleDateString("ar-EG", { month: "long", year: "numeric" });
+    function welcome(note) {
+      host.innerHTML = `<div class="fy-welcome"><span class="fy-ic" aria-hidden="true">${gl("☽")}</span><h3>افتح نافذتك اليومية</h3>
+        <p>${note || "احفظ بيانات ميلادك مرة واحدة، وهتلاقي هنا رسالة يومك وتذكير بنمطك والعبورات الكبرى في خريطتك، من غير ما تدخل بياناتك كل مرة."}</p>
+        <div class="fy-actions"><a class="btn" href="#chart">احسب خريطة ميلادك</a><a class="btn ghost" href="#account">حسابي وبياناتي</a></div></div>`;
+    }
+    function render() {
+      let nat = null;
+      try { nat = window.AqeeqChartContext && window.AqeeqChartContext.getOrPrefill(); } catch (e) { }
+      if (!nat) { welcome(); return; }
+      const ms = Date.now(), now = Astro.chart({ utcMs: ms, lat: nat.lat, lon: nat.lon, known: false });
+      const nb = k => now.bodies.find(b => b.key === k);
+      const dt = new Date(ms).toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long" });
+      const moon = nb("moon"), h = natalHouse(nat, moon.lon), H = HOUSES[h - 1];
+      const who = nat.name ? `يا ${esc(nat.name)}، ` : "";
+      let o = `<article class="fy-card fy-daily"><span class="fy-kick">${dt}</span><h3>رسالة يومك النفسية</h3>
+        <p>${who}${moonDay(h)}</p>
+        <p>الحدود: الضغط بيزيد لو ${HOUSE_TRIG[h - 1]}، فخد مسافة صغيرة قبل ما ترد أو توافق.</p>
+        <p>في الشغل والقرارات: ${HOUSE_ADV[h - 1]}.</p>
+        <small class="fy-basis">القمر دلوقتي في ${SIGNS[moon.sign].n}، وبيعدّي على بيتك ${H.n}${nat.ch.known ? "" : " (بنظام البيوت الكاملة من برج شمسك، لأن وقت الميلاد غير معروف)"}.</small></article>`;
+      const mo = nat.ch.bodies.find(b => b.key === "moon"), S = SIGNS[mo.sign], mh = nat.ch.known ? mo.house : null;
+      o += `<article class="fy-card fy-pattern"><span class="fy-badge"><span class="sg" aria-hidden="true">${gl("☽")}</span> القمر في ${S.n}${mh ? ` / البيت ${HOUSES[mh - 1].n}` : ""}</span><h3>تذكير بنمطك النفسي</h3>
+        <p>قمرك في ${S.n}، فبتتعامل مع مشاعرك بأسلوب ${S.way}. ولما الضغط يزيد ممكن تلاقي نفسك في ${S.shadow}${mh ? `، وغالبًا ده بيظهر في مجال ${HOUSES[mh - 1].area}` : ""}.</p>
+        <p>مجرد ملاحظة بدون لوم: ${S.growth}.</p></article>`;
+      const TR = ["jupiter", "saturn", "uranus", "neptune", "pluto", "truenode"];
+      o += `<div class="fy-sec-h"><h3>عبوراتك الكبرى الآن</h3><small>اسحب لتشوف باقي العبورات</small></div><div class="fy-track" tabindex="0" role="group" aria-label="العبورات الكبرى الحالية">`;
+      TR.forEach(k => {
+        const b = nb(k), th = natalHouse(nat, b.lon), TH = HOUSES[th - 1], sg = SIGNS[Math.floor(Astro.norm(b.lon) / 30)];
+        const node = k === "truenode", P = PLANETS[k];
+        let period = "";
+        if (node) period = "حوالي ١٨ شهر في كل برج";
+        else { try { const ing = nextIngress(k, ms); period = ing ? "في " + sg.n + " حتى " + mY(ing.ms) : "في " + sg.n; } catch (e) { period = "في " + sg.n; } }
+        const name = node ? "العقدة الشمالية" : P.n;
+        const hook1 = node ? `مسارك بيتجه ناحية ${TH.area}.` : `${P.n} بيختبر ${TH.area} عندك.`;
+        const hook2 = node ? "وده اللي بيشدك لقدام حتى لو كان غير مألوف." : `وقت تعيد فيه فهم ${P.theme}.`;
+        const intro = node ? `العقدة الشمالية بتشير لاتجاه النمو. وهي دلوقتي في بيتك ${TH.n}، يعني المواقف المرتبطة بـ${TH.area} هي ساحة التعلم. ممكن تظهر في: ${HOUSE_SIT[th - 1][0]}، أو ${HOUSE_SIT[th - 1][1]}.`
+          : `${planetInHouse(k, th, "transit")} ممكن يظهر ده في مواقف زي: ${HOUSE_SIT[th - 1][0]}، أو ${HOUSE_SIT[th - 1][1]}.${b.retro ? " " + retroText(k) : ""}`;
+        o += `<article class="fy-tr"><span class="fy-badge"><span class="sg" aria-hidden="true">${gl(node ? "☊" : P.g)}</span> ${name} <i>${period}</i></span>
+          <h4>${hook1}<br>${hook2}</h4><p>${intro}</p>
+          <div class="fy-lock"><span class="fy-lock-ic">${lockIc}</span><p>باقي القراءة، وتوقيت الذروة وخريطة التحرر، للمشتركين.</p><a class="btn fy-lock-btn" href="#pay">افتح قراءة العبور الكاملة وخريطة التحرر</a></div></article>`;
+      });
+      host.innerHTML = o + `</div>${NOTE_SYM}`;
+    }
+    setTimeout(render, 0);
+    window.addEventListener("hashchange", () => { if (location.hash === "#for-you") render(); });
+    document.addEventListener("aqeeq:natal-ready", render);
+  })();
 
   /* ---------- عجلة الهيرو وتوقعات الأبراج ---------- */
   const NS = "http://www.w3.org/2000/svg";
@@ -4754,7 +4842,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/numerology-matrix.js?v=20261105q"></script>
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js?v=20261106a"></script>
-<script src="assets/js/section-footer.js?v=20261106a"></script>
+<script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
@@ -4765,7 +4853,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/aqeeq-platform.js"></script>
 <script src="assets/js/hero-live.js?v=20261106e" defer></script>
 <script src="assets/js/hero-rotate.js?v=20261107g" defer></script>
-<script src="assets/js/nav-unified.js?v=20261108a" defer></script>
+<script src="assets/js/nav-unified.js?v=20261108b" defer></script>
 <script src="assets/js/home-v2.js?v=20261106e" defer></script>
 <script src="assets/js/featured-content.js?v=20261106b" defer></script>
 <script src="assets/js/content-links.js?v=20261106a" defer></script>
