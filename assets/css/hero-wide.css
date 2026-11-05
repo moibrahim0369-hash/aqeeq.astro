@@ -79,3 +79,46 @@
   #home.aqh .hw-statue{position:relative;display:block;width:100%;height:110px;margin:0 0 4px;border:0;box-shadow:none;object-position:88% 28%}
 }
 @media (prefers-reduced-motion:reduce){.hv-dot{animation:none}.hv-in,.hv-rows.hv-in{animation:none}.hv-out{transition:none}}
+
+
+/* ===== النسخة النهائية: الخريطة مدموجة في خلفية البانر + تمثال مندمج ===== */
+#home.aqh .aqh-hero{padding:clamp(14px,1.6vw,22px) 0 clamp(40px,3.4vw,52px)!important}
+#home.aqh .aqh-hero-grid{display:block!important;position:relative;padding-left:clamp(150px,24vw,330px)!important;max-width:min(1400px,98vw)!important}
+#home.aqh .aqh-wheel-box{position:absolute!important;right:clamp(-60px,-2.6vw,-16px);top:50%;transform:translateY(-50%);width:min(500px,40vw)!important;max-width:none!important;z-index:0;opacity:.95;margin:0!important;filter:drop-shadow(0 10px 26px rgba(120,90,50,.22))}
+#home.aqh .aqh-wheel-box .aqh-wheel-hint,#home.aqh .aqh-wheel-box .aqh-sky-link{display:none!important}
+#home.aqh .aqh-hero-copy{position:relative;z-index:2;width:min(540px,100%);margin-inline-start:min(420px,34vw)!important;justify-items:start}
+#home.aqh .aqh-values{display:none!important}
+/* التمثال جزء من الخلفية: بدون مربع، يذوب في لون البانر */
+#home.aqh .hw-statue{border:0!important;box-shadow:none!important;width:clamp(200px,34vw,470px)!important;object-position:84% 30%;
+  -webkit-mask-image:linear-gradient(to right,#000 0,#000 52%,rgba(0,0,0,.55) 74%,transparent 100%);mask-image:linear-gradient(to right,#000 0,#000 52%,rgba(0,0,0,.55) 74%,transparent 100%)}
+/* لوحة المواقع: شريط أفقي صغير تحت النص */
+#home.aqh .hv-live{position:relative;z-index:2;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px 14px;margin:12px 0 0!important;margin-inline-start:min(420px,34vw)!important;width:min(560px,100%);padding:8px 12px}
+#home.aqh .hv-live-t,#home.aqh .hv-foot-note{display:none}
+#home.aqh .hv-live-k{grid-column:1;font-size:.78rem;white-space:nowrap}
+#home.aqh .hv-rows{grid-column:2;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+#home.aqh .hv-row{padding:5px 8px;gap:6px}
+#home.aqh .hv-sym{flex-basis:26px;width:26px;height:26px;font-size:.95rem}
+#home.aqh .hv-txt b{font-size:.84rem;white-space:nowrap}
+#home.aqh .hv-txt small{font-size:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#home.aqh .hv-state{display:none}
+#home.aqh .hv-row.is-retro .hv-txt b::after{content:" R";color:#642B3C;font-weight:700}
+#home.aqh .hv-nav{grid-column:3;gap:6px}
+#home.aqh .hv-dots,#home.aqh .hv-watch{display:none}
+@media (max-width:1024px){
+  #home.aqh .aqh-hero{padding:0 0 34px!important}
+  #home.aqh .aqh-hero-grid{padding-left:0!important;max-width:100%!important;padding-inline:14px!important}
+  #home.aqh .hw-statue{position:relative;display:block;width:100%!important;margin:0 0 8px;height:90px;object-position:88% 26%;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent 100%);mask-image:linear-gradient(to bottom,#000 55%,transparent 100%)}
+  #home.aqh .aqh-wheel-box{right:-16%;top:112px;transform:none;width:330px!important;opacity:.5}
+  #home.aqh .aqh-hero-copy{margin-inline-start:0!important;width:100%;justify-items:center;text-align:center}
+  #home.aqh .aqh-hero-copy>*{text-align:center!important;margin-inline:auto!important}
+  #home.aqh .hv-live{margin-inline-start:0!important;width:100%;grid-template-columns:1fr auto;margin-top:10px!important;padding:6px}
+  #home.aqh .hv-live-k{display:none}
+  #home.aqh .hv-rows{grid-column:1;gap:4px}
+  #home.aqh .hv-row{flex-direction:column;align-items:center;text-align:center;padding:5px 3px;gap:3px}
+  #home.aqh .hv-sym{width:22px;height:22px;flex-basis:22px}
+  #home.aqh .hv-txt{text-align:center}
+  #home.aqh .hv-nav{grid-column:2;flex-direction:column}
+}
+#home.aqh .hv-live-k span{display:none}
+#home.aqh .hv-txt small{overflow:visible;text-overflow:clip}
+@media (max-width:1024px){#home.aqh .hv-live-k span{display:none}}
