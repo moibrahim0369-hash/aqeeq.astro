@@ -68,3 +68,12 @@
   #home.aqh .aqh-duo #aqh-energy .dbn-s1-main{align-items:flex-start}
   #home.aqh .aqh-duo #aqh-energy .dbn-ctrl{bottom:8px}
 }
+/* سطر واحد على التابلت/الشاشات المتوسطة */
+@media (min-width:761px) and (max-width:1024px){
+  #home.aqh .aqh-duo{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)!important}
+  #home.aqh .aqh-duo #aqh-energy .dbn-stage{height:176px;min-height:0}
+  #home.aqh .aqh-duo #aqh-energy .dbn-slide{padding:12px 12px 42px!important;gap:10px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-s1-moon{width:52px;flex:0 0 52px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-headline{font-size:.82rem}
+  #home.aqh .aqh-duo .aqh-article,#home.aqh .aqh-duo .aqh-article-skel{flex-basis:calc((100% - 20px)/3)!important;min-width:0}
+}
