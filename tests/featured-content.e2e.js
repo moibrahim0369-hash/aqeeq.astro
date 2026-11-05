@@ -17,7 +17,7 @@ let pass=0,fail=0; const ok=(n,c,x)=>{ (c?pass++:fail++); console.log((c?'PASS '
  ok('pick shown', await p.locator('.fc-pick').isVisible());
  await p.waitForTimeout(900);
  await p.screenshot({path:OUT+'list-desktop.png'});
- { const sl=await p.getAttribute('.fc-pick','data-slug'); ok('banner has dots', await p.locator('.fc-pick-dots button').count()>=2); await p.click('.fc-pick-dots button:not([aria-current]) >> nth=0'); await p.waitForTimeout(700); ok('banner dot switches article', sl!==await p.getAttribute('.fc-pick','data-slug')); }
+ { ok('banner is fixed: no dots', await p.locator('.fc-pick-dots').count()===0); ok('banner is the featured article', (await p.getAttribute('.fc-pick','data-slug'))==='how-to-read-the-sky'); const q0=await p.textContent('#fc-quote'); await p.waitForTimeout(9200); ok('quote line changes', q0!==await p.textContent('#fc-quote')); ok('banner article unchanged after rotation', (await p.getAttribute('.fc-pick','data-slug'))==='how-to-read-the-sky'); }
  // load more
  await p.click('.fc-pg[data-pg="2"]'); await p.waitForTimeout(300); ok('pagination page 2', await p.locator('#fc-latest-grid .fc-card').count()===4 && (await p.getAttribute('.fc-pg.on','aria-current'))==='page');
  { const first=await p.getAttribute('#fc-latest-grid .fc-card','data-slug'); await p.click('.fc-pg[data-pg="1"]'); await p.waitForTimeout(200); ok('page 1 vs 2 differ', first!==await p.getAttribute('#fc-latest-grid .fc-card','data-slug')); }
