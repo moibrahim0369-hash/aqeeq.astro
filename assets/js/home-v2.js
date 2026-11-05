@@ -119,7 +119,10 @@
     { key: 'venus', ar: 'الزهرة', sym: '♀', meaning: 'العلاقات والقيم وما نراه جميلًا.' },
     { key: 'mars', ar: 'المريخ', sym: '♂', meaning: 'الفعل والدافع وطريقة بذل الجهد.' },
     { key: 'jupiter', ar: 'المشتري', sym: '♃', meaning: 'النمو والثقة وفرص التوسع.' },
-    { key: 'saturn', ar: 'زحل', sym: '♄', meaning: 'الالتزام والحدود ودروس الصبر.' }
+    { key: 'saturn', ar: 'زحل', sym: '♄', meaning: 'الالتزام والحدود ودروس الصبر.' },
+    { key: 'uranus', ar: 'أورانوس', sym: '♅', meaning: 'التجديد والتحرر والتغيير المفاجئ.' },
+    { key: 'neptune', ar: 'نبتون', sym: '♆', meaning: 'الخيال والحدس وما وراء الظاهر.' },
+    { key: 'pluto', ar: 'بلوتو', sym: '♇', meaning: 'التحول العميق والبدايات الجديدة بعد النهايات.' }
   ];
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
   var SIGN_GLYPH = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
@@ -132,6 +135,10 @@
     var out = {};
     c.bodies.forEach(function (b) { out[b.key] = { lon: ((b.lon % 360) + 360) % 360, sign: b.sign, deg: Math.floor(((b.lon % 30) + 30) % 30), retro: !!b.retro }; });
     return out;
+  }
+  /* بيوت سماء الشرق الأوسط (القاهرة) الآن: قراءة فقط من المحرك الحالي */
+  function skyHouses() {
+    try { var c = window.Astro.chart({ utcMs: Date.now(), lat: 30.0444, lon: 31.2357, known: true }); return c && c.known && Array.isArray(c.cusps) && c.cusps.length === 12 ? c.cusps.map(function (x) { return ((x % 360) + 360) % 360; }) : null; } catch (e) { return null; }
   }
 
   /* =============== HeroChart: قطاعات البروج + الكواكب + اللوحة الجانبية =============== */
@@ -249,17 +256,41 @@
     svg.addEventListener('click', intercept, true);
     svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') intercept(e); }, true);
 
-    /* كواكب حقيقية من المحرك الحالي (إن لم يتوفر المحرك لا تُرسم) */
+    /* كواكب حقيقية من المحرك الحالي + بيوت سماء الشرق الأوسط + علامة R للتراجع */
+    function pt(lon, r) { var a = (-90 + lon) * Math.PI / 180; return [+(200 + Math.cos(a) * r).toFixed(2), +(200 + Math.sin(a) * r).toFixed(2)]; }
+    function drawHouses() {
+      var old = svg.querySelector('.aqh-houses'); if (old) old.remove();
+      var cusps = skyHouses(); if (!cusps) return;
+      var g = sv('g', { 'class': 'aqh-houses', 'aria-hidden': 'true' });
+      cusps.forEach(function (c, i) {
+        var p1 = pt(c, 64), p2 = pt(c, 126);
+        g.appendChild(sv('line', { x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1], 'class': 'aqh-hl' + (i % 3 === 0 ? ' ax' : '') }));
+        var mid = c + (((cusps[(i + 1) % 12] - c) % 360 + 360) % 360) / 2, n = pt(mid, 76);
+        var t = sv('text', { x: n[0], y: n[1], 'text-anchor': 'middle', 'dominant-baseline': 'central', 'class': 'aqh-hn' }); t.textContent = String(i + 1); g.appendChild(t);
+      });
+      svg.insertBefore(g, glyphsG);
+    }
     function drawPlanets() {
       var data; try { data = skyNow(); } catch (e) { return; }
+      var old = svg.querySelector('.aqh-planets'); if (old) old.remove();
+      drawHouses();
       var g = sv('g', { 'class': 'aqh-planets aqh-orbit-detail' });
-      PLANETS.forEach(function (p, k) {
-        var b = data[p.key]; if (!b) return;
-        var a = (-90 + b.lon) * Math.PI / 180, r = 112 + ((k % 3) - 1) * 10;
-        var x = (200 + Math.cos(a) * r).toFixed(2), y = (200 + Math.sin(a) * r).toFixed(2);
-        var n = sv('g', { 'class': 'aqh-planet', role: 'button', tabindex: '0', 'aria-label': p.ar + ' في ' + SIGN_AR[b.sign] + ' ' + b.deg + ' درجة' + (b.retro ? '، متراجع' : '') });
-        n.appendChild(sv('circle', { cx: x, cy: y, r: 9 }));
-        var t = sv('text', { x: x, y: y, 'text-anchor': 'middle', 'dominant-baseline': 'central' }); t.textContent = p.sym; n.appendChild(t);
+      var order = PLANETS.map(function (p) { return { p: p, b: data[p.key] }; }).filter(function (x) { return x.b; }).sort(function (a, b) { return a.b.lon - b.b.lon; });
+      var tiers = [96, 108, 120], last = [-99, -99, -99];
+      order.forEach(function (x) {
+        var best = 0, bs = -1;
+        for (var t = 0; t < 3; t++) { var d = Math.abs(x.b.lon - last[t]); d = Math.min(d, 360 - d); if (d >= 11) { best = t; bs = 99; break; } if (d > bs) { bs = d; best = t; } }
+        last[best] = x.b.lon; x.r = tiers[best];
+      });
+      order.forEach(function (x) {
+        var p = x.p, b = x.b, xy = pt(b.lon, x.r), cx = xy[0], cy = xy[1];
+        var n = sv('g', { 'class': 'aqh-planet' + (b.retro ? ' is-retro' : ''), role: 'button', tabindex: '0', 'data-key': p.key, 'aria-label': p.ar + ' في ' + SIGN_AR[b.sign] + ' ' + b.deg + ' درجة' + (b.retro ? '، متراجع' : '') });
+        n.appendChild(sv('circle', { cx: cx, cy: cy, r: 8 }));
+        var t = sv('text', { x: cx, y: cy, 'text-anchor': 'middle', 'dominant-baseline': 'central' }); t.textContent = p.sym; n.appendChild(t);
+        if (b.retro) {
+          n.appendChild(sv('circle', { cx: cx + 8, cy: cy - 8, r: 4.6, 'class': 'aqh-rbg' }));
+          var r = sv('text', { x: cx + 8, y: cy - 7.8, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'class': 'aqh-r' }); r.textContent = 'R'; n.appendChild(r);
+        }
         var act = function () { openPlanet(p, b, n); };
         n.addEventListener('click', function (e) { e.stopPropagation(); act(); });
         n.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(); } });
@@ -268,6 +299,19 @@
       svg.appendChild(g);
     }
     drawPlanets();
+    setInterval(function () { if (!document.hidden) drawPlanets(); }, 60000);
+    window.__aqhHero = {
+      planets: PLANETS, signs: SIGN_AR, sky: skyNow,
+      focus: function (key) {
+        var wrap = svg.closest('.aqh-wheel-wrap');
+        $$('.aqh-planet', svg).forEach(function (n) { n.classList.toggle('is-focus', !!key && n.getAttribute('data-key') === key); });
+        svg.classList.toggle('has-focus', !!key);
+        if (!wrap) return;
+        var n = key && svg.querySelector('.aqh-planet[data-key="' + key + '"] circle');
+        if (n) { wrap.style.transformOrigin = (n.getAttribute('cx') / 4) + '% ' + (n.getAttribute('cy') / 4) + '%'; wrap.classList.add('is-zoom'); }
+        else wrap.classList.remove('is-zoom');
+      }
+    };
   })();
 
   /* =============== DailyEnergy: Skeleton ← بيانات / خطأ + إعادة المحاولة =============== */
