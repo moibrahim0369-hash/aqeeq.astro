@@ -19,6 +19,8 @@ const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-
       const t = document.body.innerText;
       return { unavail: /غير متوفر|قيد الإعداد|Pending Content|نص مولَّد/.test(t), assess: /للتقييم والتأمل|ينطبق تماماً|لا يمثلني/.test(t),
         btns: document.querySelectorAll('.aqm-master-open, .aqm-g-goto-btn').length, missingCards: document.querySelectorAll('.aqm-g-missing').length,
+        cards: document.querySelectorAll('#aqm-sec-chakras .aqm-chakra-card').length, cardsEmpty: [...document.querySelectorAll('#aqm-sec-chakras .aqm-chakra-card')].filter(c => c.innerText.length < 120).length,
+        lines: ['father_line', 'mother_line'].map(s => document.querySelectorAll(`#aqm-sec-${s} .aqm-line-entry`).length),
         slots: ['center', 'love_line', 'money_line', 'purposes', 'karmic_tail'].map(s => { const g = document.querySelector(`#aqm-sec-${s} [data-slot="gemini"]`); return g ? g.innerText.length : 0; }) };
     });
     const tag = `${date}@${vw}`;
@@ -29,13 +31,15 @@ const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-
     ok(keyOk, `${tag}: center text key != engine arcana ${E}`);
     ok(!r.unavail, `${tag}: missing/pending notice visible`); ok(!r.assess, `${tag}: self-assessment visible`);
     ok(r.btns === 0 && r.missingCards === 0, `${tag}: buttons/missing cards present`);
+    ok(r.cards === 7 && r.cardsEmpty === 0, `${date}@${vw}: chakra readings ${r.cards}/${r.cardsEmpty}`);
+    ok(r.lines.every(l => l === 3), `${date}@${vw}: father/mother line entries ${r.lines}`);
     ok(r.slots.every(l => l > 300), `${tag}: a section has no inline text ${r.slots}`);
     await p.evaluate(() => document.querySelector('.aqm-svg .aqm-node[data-section="love_line"]').dispatchEvent(new MouseEvent('click', { bubbles: true })));
     await p.waitForTimeout(500);
     ok(await p.evaluate(() => !document.querySelector('.aqm-xr-modal:not([hidden])') && document.querySelector('#aqm-sec-love_line').classList.contains('open')), `${tag}: node click must open accordion, no modal`);
     // التبويبات: ثابتة أسفل الهيدر
     const tops = [];
-    for (const dy of [0, 900, 1800]) { await p.evaluate(dy => { const m = document.querySelector('#matrix'); m.scrollTop += dy; }, dy); await p.waitForTimeout(200); tops.push(await p.evaluate(() => { const t = document.querySelector('.aqm-tabs').getBoundingClientRect().top; return Math.round(t); })); }
+    for (const dy of [0, 900, 1800]) { await p.evaluate(dy => { const m = document.querySelector('#matrix'); m.scrollTop += dy; }, dy); await p.waitForTimeout(450); tops.push(await p.evaluate(() => { const t = document.querySelector('.aqm-tabs').getBoundingClientRect().top; return Math.round(t); })); }
     const hdr = await p.evaluate(() => Math.round(document.querySelector('header.top').getBoundingClientRect().bottom));
     ok(tops.every(t => t >= hdr - 2 && t <= hdr + 12), `${tag}: tabs bar not pinned under header ${tops} vs ${hdr}`);
     ok(errs.length === 0, `${tag}: js errors ${errs.join(';')}`);

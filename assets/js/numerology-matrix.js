@@ -886,6 +886,84 @@
     });
   }
 
+
+  /* ===== مكونات عرض موحّدة (قطب النور + / قطب الظل −) بنفس تنسيق الأكورديون الهادئ ===== */
+  const poleLi = (title, text, pole) => text ? `<li class="aqm-g-li d0${pole ? ' is-' + pole : ''}">${escapeHtml(title)}<p class="aqm-g-c">${escapeHtml(text)}</p></li>` : '';
+  const poleUl = items => { const h = items.filter(Boolean).join(''); return h ? `<ul class="aqm-g-ul">${h}</ul>` : ''; };
+  const aspectLabel = { physics: 'الجسد والفيزياء', energy: 'الطاقة', emotions: 'المشاعر' };
+  function arcCore(a) { return (a && a.core) || {}; }
+
+  /* ===== الشاكرات السبع: قراءة كل مستوى (الجسد/الطاقة/المشاعر) داخل الأكورديون =====
+     الخمس العليا من نصوص الأركانا لكل شاكرا، والعجز والجذر من chakra-lower.json (الجذر النفسي وطريقة التعامل، بلا أعراض مرضية).
+     أي نص ناقص يُعوَّض تلقائيًا بنص الأركانا الأساسي لنفس الرقم دون أي إشعار. */
+  function hydrateChakraReadings(host, P) {
+    const loader = window.AqeeqMatrix;
+    const item = host.querySelector('#aqm-sec-chakras');
+    const grid = item && accGrid(item);
+    if (!grid || !loader || !loader.chakraLower) return;
+    const keys = ['sahasrara', 'ajna', 'vishuddha', 'anahata', 'manipura', 'svadhisthana', 'muladhara'];
+    const ids = [...new Set(keys.flatMap(k => ['physics', 'energy', 'emotions'].map(a => Number(P.chakras.rows[k][a]))))].filter(n => n >= 1 && n <= 22);
+    Promise.all([loader.chakraLower(), ...ids.map(id => loader.arcana(id).catch(() => null))]).then(([low, ...arr]) => {
+      const byId = {}; ids.forEach((id, i) => { byId[id] = arr[i]; });
+      const html = keys.map(k => {
+        const row = P.chakras.rows[k];
+        const lowDef = low.chakras[k];
+        const aspects = ['physics', 'energy', 'emotions'].map(a => {
+          const n = Number(row[a]); const A = byId[n]; const c = arcCore(A);
+          const head = `<div class="aqm-chakra-aspect-head"><span class="aqm-badge-arcana aqm-tone-${['physics', 'energy', 'emotions'].indexOf(a)}">${n} · ${escapeHtml(arcanaName(n))}</span><span class="aqm-chakra-aspect-name">${aspectLabel[a]}</span></div>`;
+          let body = '';
+          if (lowDef) {
+            const x = low.arcana[String(n)] || {};
+            const lead = `<p class="aqm-g-p aqm-chakra-lead">${escapeHtml(lowDef.lead[a])}</p>`;
+            if (a === 'physics') body = lead + poleUl([poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow')]);
+            else if (a === 'energy') body = lead + poleUl([poleLi('قطب النور', c.growth, 'light'), poleLi('قطب الظل', x.root, 'shadow')]);
+            else body = lead + poleUl([poleLi('الدلالة', c.psychology, ''), poleLi('طريق التوازن', x.care, 'light')]);
+          } else {
+            const t = A && A.chakras && A.chakras[k] && A.chakras[k][a + 'Psychology'];
+            body = t ? `<p class="aqm-g-p">${escapeHtml(t)}</p>` : poleUl([poleLi('الدلالة', c.psychology, ''), poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow')]);
+          }
+          return `<div class="aqm-chakra-aspect">${head}${body}</div>`;
+        }).join('');
+        const theme = lowDef ? `<p class="aqm-g-p aqm-chakra-theme">${escapeHtml(lowDef.theme)}</p>` : '';
+        return `<article class="aqm-chakra-card"><h5 class="aqm-chakra-card-title"><span class="aqm-chakra-dot" style="background:${CHAKRA_COLORS[k] || '#C5A46D'}"></span>${escapeHtml(row.name)}</h5>${theme}${aspects}</article>`;
+      }).join('');
+      grid.insertAdjacentHTML('beforeend', `<section class="aqm-slot aqm-slot-gemini aqm-chakra-readings" data-slot="chakra-readings"><h4 class="aqm-slot-title">قراءة كل شاكرا</h4>${html}<p class="aqm-g-p aqm-chakra-note">قراءة رمزية للتأمل، وليست تشخيصاً ولا بديلاً عن الطبيب.</p></section>`);
+    }).catch(() => {});
+  }
+
+  /* ===== خطا الأب والأم (سلالة الأجداد): دلالات المحاور داخل الأكورديون ===== */
+  function hydrateLineSections(host, P) {
+    const loader = window.AqeeqMatrix;
+    if (!loader) return;
+    const gender = host.dataset.aqmGender || '';
+    const g = gender === 'male' || gender === 'female' ? gender : '';
+    const specs = {
+      father_line: { file: 'father_line', who: 'الأب', items: [[P.corners.F, 'مواهب الأب العليا (F) — ما ورثته من الأب روحيًا وفكريًا'], [P.corners.H, 'كارما الأب السفلية (H) — ما ورثته من الأب ماديًا وسلوكيًا'], [P.generational.father.combined, 'محصلة خط الأب']] },
+      mother_line: { file: 'mother_line', who: 'الأم', items: [[P.corners.G, 'مواهب الأم العليا (G) — ما ورثته من الأم روحيًا وفكريًا'], [P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] }
+    };
+    Object.entries(specs).forEach(([sid, spec]) => {
+      const item = host.querySelector('#aqm-sec-' + sid); const grid = item && accGrid(item);
+      if (!grid) return;
+      item.dataset.secState = 'done'; item.dataset.secSource = 'json';
+      grid.innerHTML = '<section class="aqm-slot aqm-slot-gemini" data-slot="gemini"><p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p></section>';
+      const ids = spec.items.map(i => Number(i[0]));
+      Promise.all([loader.section(spec.file).catch(() => ({ entries: [] })), ...ids.map(id => loader.arcana(id).catch(() => null))]).then(([data, ...arr]) => {
+        const html = spec.items.map(([n, label], i) => {
+          n = Number(n);
+          const e = (data.entries || []).find(x => x.id === n); const c = arcCore(arr[i]); const d = (e && e.deep) || {};
+          const q = Array.isArray(d.questions) && d.questions.length ? `<li class="aqm-g-li d0">أسئلة للتأمل<ul class="aqm-g-ul aqm-g-sub">${d.questions.map(t => `<li class="aqm-g-li d1">${escapeHtml(t)}</li>`).join('')}</ul></li>` : '';
+          const gd = g && e && e.genderDynamic && e.genderDynamic[g] ? poleLi('بصيغتك', e.genderDynamic[g], '') : '';
+          const lead = (e && e.summary) || c.psychology || '';
+          const list = e
+            ? poleUl([poleLi('المحور', d.theme, ''), poleLi('قطب النور', d.potential, 'light'), poleLi('قطب الظل', d.challenge, 'shadow'), q, poleLi('الممارسة', d.practice, 'light'), gd])
+            : poleUl([poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow'), poleLi('الممارسة', c.growth, 'light')]);
+          return `<article class="aqm-line-entry"><h4 class="aqm-slot-title">${escapeHtml(label)}<span class="aqm-badge-arcana aqm-tone-${i}">${n} · ${escapeHtml(arcanaName(n))}</span></h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${list}</article>`;
+        }).join('');
+        grid.querySelector('[data-slot="gemini"]').innerHTML = html;
+      }).catch(() => { grid.querySelector('[data-slot="gemini"]').innerHTML = ''; });
+    });
+  }
+
   function buildAccordionItem(item) {
     const { id, icon, title, subtitle, arcanaList, contentKey, slots } = item;
     const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}">${a.num} · ${a.name}</span>`).join(' ');
@@ -1610,6 +1688,8 @@
     // ترتيب الأرشيف هو عكس ترتيب المحرك (D, D3, D2)، فنعكس الثلاثية قبل البحث.
     const tailTriad = [P.intermediate && P.intermediate.D2, P.intermediate && P.intermediate.D3, P.anchors.D];
     applyGeminiAccordions(host, P, tailTriad);
+    hydrateChakraReadings(host, P);
+    hydrateLineSections(host, P);
     const onAccOpen = item => {
       const sid = item.dataset.sectionId;
       if (sid === 'karmic_tail') return hydrateKarmicTail(item, tailTriad, gender);
