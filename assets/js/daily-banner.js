@@ -47,6 +47,9 @@
     venus: 'M12 3.500a4.700 4.700 0 1 0 .01 0M12 13v8M8.500 17h7',
     mars: 'M10 9.500a5 5 0 1 0 .01 0M13.800 10.200L20 4M14.500 4H20v5.500',
     jupiter: 'M5 7.500C8 3.500 14 5.500 12 10.500L5 16.500h15M16 8v12.500',
+    uranus: 'M12 3v10M6.500 3v8M17.500 3v8M6.500 7h11M12 15.500a2.300 2.300 0 1 0 .01 0M12 13v.5',
+    neptune: 'M12 21V8M8.500 21h7M5 3.500v4.500a7 7 0 0 0 14 0V3.500M12 3.500V8',
+    pluto: 'M12 21v-9M8.500 18h7M7 5a5 5 0 0 0 10 0M12 7.500a2.200 2.200 0 1 0 .01 0',
     saturn: 'M8 3.500v13M5 7h6M8 11c2-3 7-3 7 1.500 0 3-3.200 4.500-3.200 7.500 0 1.200 1.200 1.500 2.200 1'
   };
   function icon(k, cls) { var d = GL[k]; return d ? '<svg class="dbn-gl ' + (cls || '') + '" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="' + d + '"/></svg>' : ''; }
@@ -154,7 +157,20 @@
     var pl = ['mercury', 'venus', 'mars', 'jupiter', 'saturn'].map(function (k) { var b = body(c, k); if (!b) return ''; return '<span class="dbn-pl"><b>' + planetGlyph(k) + ' ' + planetName(k) + '</b> ' + signName(b.sign) + ' ' + deg(b.lon) + '°' + (b.retro ? ' <em>متراجع</em>' : '') + '</span>'; }).join('');
     setF('planets', pl, true);
   }
-  function refresh() { renderStatic(); renderNumerology(); renderSky(); }
+  /* السماء الآن: مواقع الكواكب الحية (نفس محرك Astro) */
+  var LIVE_SETS = [['sun', 'moon', 'mercury', 'venus'], ['mars', 'jupiter', 'saturn'], ['uranus', 'neptune', 'pluto']];
+  function renderLive() {
+    if (!engine()) return;
+    var c; try { c = chartAt(Date.now()); } catch (e) { return; }
+    LIVE_SETS.forEach(function (set, i) {
+      var h = set.map(function (k) {
+        var b = body(c, k); if (!b) return '';
+        return '<div class="dbn-lv' + (b.retro ? ' is-retro' : '') + '"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'مباشر') + '</i></div>';
+      }).join('');
+      setF('live' + (i + 1), h, true);
+    });
+  }
+  function refresh() { renderStatic(); renderNumerology(); renderSky(); renderLive(); }
   refresh();
   /* تحديث البيانات: مؤقت مستقل عن مؤقت الشرائح، كل دقيقة، ويُعيد الرسم فقط عند تغير القيم */
   var dataTimer = setInterval(function () { if (!document.hidden) refresh(); }, 60000);
