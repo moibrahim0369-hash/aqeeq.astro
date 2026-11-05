@@ -652,7 +652,7 @@
         if (mode !== 'ul') { close(); out += '<ul class="aqm-g-ul">'; mode = 'ul'; liOpen = false; }
         if (liOpen) out += '</li>';
         // تمييز قطب الظل (Minus) وقطب النور (Plus) بالكلمات الدالة في العنوان؛ ويرث الأبناء قطب أبيهم
-        if (b.d === 0) poleCls = /الظل|فخ |البلوك|العائق|الوجه المظلم|الوجه الهابط|المسار السلبي/.test(b.t) ? ' is-shadow' : /النور|القوة|الموهبة|الذهبية|المسار الواعي|التناغم|مفتاح|المسار العلاجي|البوابة|القطاعات|الدور الاجتماعي|الهوية|البصمة|المغناطيس/.test(b.t) ? ' is-light' : '';
+        if (b.d === 0) poleCls = /الظل|فخ |البلوك|العائق|الوجه المظلم|الوجه الهابط|المسار السلبي/.test(b.t) ? ' is-shadow' : /النور|القوة|الموهبة|الذهبية|المسار الواعي|التناغم|مفتاح|التوازن|التحرر|المسار العلاجي|البوابة|القطاعات|الدور الاجتماعي|الهوية|البصمة|المغناطيس/.test(b.t) ? ' is-light' : '';
         out += `<li${cls(b, 'aqm-g-li d' + b.d + poleCls)}>${gInline(b.t)}`; liOpen = true;
       } else if (b.k === 'c' && mode === 'ul' && liOpen) {
         out += `<p class="aqm-g-c">${gInline(b.t)}</p>`;
@@ -931,16 +931,24 @@
     }).catch(() => {});
   }
 
-  /* ===== خطا الأب والأم (سلالة الأجداد): دلالات المحاور داخل الأكورديون ===== */
+  /* ===== أقسام sections/*.json بعرض موحّد داخل الأكورديون: الأب، الأم، المواهب، الأجداد، الأطفال، روشتة التحول =====
+     لكل مدخل: ملخص + حقول (محايد / قطب النور + / قطب الظل − / قوائم). أي نقص يُعوَّض بنص الأركانا الأساسي بصمت. */
+  const LINE_FIELDS = [['theme', 'المحور', ''], ['potential', 'قطب النور', 'light'], ['challenge', 'قطب الظل', 'shadow'], ['questions', 'أسئلة للتأمل', 'list'], ['practice', 'الممارسة', 'light']];
   function hydrateLineSections(host, P) {
     const loader = window.AqeeqMatrix;
     if (!loader) return;
     const gender = host.dataset.aqmGender || '';
     const g = gender === 'male' || gender === 'female' ? gender : '';
     const specs = {
-      father_line: { file: 'father_line', who: 'الأب', items: [[P.corners.F, 'مواهب الأب العليا (F) — ما ورثته من الأب روحيًا وفكريًا'], [P.corners.H, 'كارما الأب السفلية (H) — ما ورثته من الأب ماديًا وسلوكيًا'], [P.generational.father.combined, 'محصلة خط الأب']] },
-      mother_line: { file: 'mother_line', who: 'الأم', items: [[P.corners.G, 'مواهب الأم العليا (G) — ما ورثته من الأم روحيًا وفكريًا'], [P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] }
+      father_line: { file: 'father_line', fields: LINE_FIELDS, items: [[P.corners.F, 'مواهب الأب العليا (F) — ما ورثته من الأب روحيًا وفكريًا'], [P.corners.H, 'كارما الأب السفلية (H) — ما ورثته من الأب ماديًا وسلوكيًا'], [P.generational.father.combined, 'محصلة خط الأب']] },
+      mother_line: { file: 'mother_line', fields: LINE_FIELDS, items: [[P.corners.G, 'مواهب الأم العليا (G) — ما ورثته من الأم روحيًا وفكريًا'], [P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] },
+      talents: { file: 'talents', fields: [['channel', 'قناة الاتصال', ''], ['gift', 'قطب النور', 'light'], ['trap', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [[P.anchors.B, 'المواهب والروح (B) — هبتك الفطرية']] },
+      ancestral_programs: { file: 'ancestral_programs', fields: [['roots', 'الجذر والموروث', ''], ['fallPatterns', 'أنماط السقوط التلقائي', 'shadowlist'], ['path', 'مسار التحرر', 'light']], items: [[P.ancestralPrograms.ancestralCenter, 'مركز الأجداد — الجذر الذي تتشكل منه برمجتك العائلية'], [P.ancestralPrograms.commonCenter, 'المركز المشترك — ما يجمع تراثك العائلي بجوهرك']] },
+      children_line: { file: 'children_line', fields: [['family', 'الأسرة والتربية', '']], items: [[P.childrenLine.childEnergy, 'طاقة الطفل'], [P.childrenLine.generationKey, 'مفتاح التواصل بين الأجيال']] },
+      transformation_rx: { file: 'transformation_rx', fields: [['protocol', 'خطوات التحول', 'lightlist'], ['reflectiveQuestions', 'أسئلة للتأمل', 'list']], items: [[P.transformationKeys.balancePoint, 'نقطة التوازن'], [P.transformationKeys.skyAxis, 'المفتاح الروحي'], [P.transformationKeys.earthAxis, 'المفتاح المادي']] }
     };
+    const listLi = (label, arr, kind) => Array.isArray(arr) && arr.length
+      ? `<li class="aqm-g-li d0${kind === 'shadowlist' ? ' is-shadow' : kind === 'lightlist' ? ' is-light' : ''}">${escapeHtml(label)}<ul class="aqm-g-ul aqm-g-sub">${arr.map(t => `<li class="aqm-g-li d1">${escapeHtml(t)}</li>`).join('')}</ul></li>` : '';
     Object.entries(specs).forEach(([sid, spec]) => {
       const item = host.querySelector('#aqm-sec-' + sid); const grid = item && accGrid(item);
       if (!grid) return;
@@ -951,13 +959,12 @@
         const html = spec.items.map(([n, label], i) => {
           n = Number(n);
           const e = (data.entries || []).find(x => x.id === n); const c = arcCore(arr[i]); const d = (e && e.deep) || {};
-          const q = Array.isArray(d.questions) && d.questions.length ? `<li class="aqm-g-li d0">أسئلة للتأمل<ul class="aqm-g-ul aqm-g-sub">${d.questions.map(t => `<li class="aqm-g-li d1">${escapeHtml(t)}</li>`).join('')}</ul></li>` : '';
           const gd = g && e && e.genderDynamic && e.genderDynamic[g] ? poleLi('بصيغتك', e.genderDynamic[g], '') : '';
           const lead = (e && e.summary) || c.psychology || '';
-          const list = e
-            ? poleUl([poleLi('المحور', d.theme, ''), poleLi('قطب النور', d.potential, 'light'), poleLi('قطب الظل', d.challenge, 'shadow'), q, poleLi('الممارسة', d.practice, 'light'), gd])
-            : poleUl([poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow'), poleLi('الممارسة', c.growth, 'light')]);
-          return `<article class="aqm-line-entry"><h4 class="aqm-slot-title">${escapeHtml(label)}<span class="aqm-badge-arcana aqm-tone-${i}">${n} · ${escapeHtml(arcanaName(n))}</span></h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${list}</article>`;
+          const rows = e
+            ? spec.fields.map(([k, lab, kind]) => (kind === 'list' || kind === 'shadowlist' || kind === 'lightlist') ? listLi(lab, d[k], kind) : poleLi(lab, String(d[k] || '').trim() === String(lead).trim() ? '' : d[k], kind))
+            : [poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow'), poleLi('الممارسة', c.growth, 'light')];
+          return `<article class="aqm-line-entry"><h4 class="aqm-slot-title">${escapeHtml(label)}<span class="aqm-badge-arcana aqm-tone-${i % 4}">${n} · ${escapeHtml(arcanaName(n))}</span></h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${poleUl(rows.concat([gd]))}</article>`;
         }).join('');
         grid.querySelector('[data-slot="gemini"]').innerHTML = html;
       }).catch(() => { grid.querySelector('[data-slot="gemini"]').innerHTML = ''; });
