@@ -1720,3 +1720,19 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 #matrix .aqm-slot-gemini .aqm-g-table td{padding:8px 10px;border-bottom:1px solid #EDE3D5}
 #matrix .aqm-slot-gemini .aqm-g-li{list-style:none}
 #matrix .aqm-slot-gemini .aqm-g-li::marker{content:''}
+
+/* ===== بطاقات الشاكرات وخطّي الأب والأم ===== */
+#matrix .aqm-chakra-card{margin:0 0 20px;padding:18px 18px 6px;background:#FFFDFA;border:1px solid #EDE3D5;border-radius:18px}
+#matrix .aqm-chakra-card-title{display:flex;align-items:center;gap:10px;margin:0 0 6px;font-family:'Noto Serif Arabic',serif;color:#4a1a2b;font-size:1.05rem}
+#matrix .aqm-chakra-card .aqm-chakra-dot{width:12px;height:12px;border-radius:50%;flex:none}
+#matrix .aqm-chakra-theme{color:#7a5a22;margin:0 0 10px!important;font-size:.92rem}
+#matrix .aqm-chakra-aspect{padding:12px 0 6px;border-top:1px dashed #EDE3D5}
+#matrix .aqm-chakra-aspect-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+#matrix .aqm-chakra-aspect-name{color:#7a6b63;font-size:.88rem;font-weight:600}
+#matrix .aqm-chakra-lead{color:#6b5a54;font-size:.92rem;margin:0 0 4px!important}
+#matrix .aqm-chakra-note{font-size:.82rem;color:#8a7a72;text-align:center;margin-top:12px!important}
+#matrix .aqm-line-entry{margin:0 0 26px;padding-bottom:6px;border-bottom:1px solid #EDE3D5}
+#matrix .aqm-line-entry:last-child{border-bottom:0}
+#matrix .aqm-line-entry .aqm-slot-title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#matrix .aqm-sec-lead{font-size:1.02rem;color:#4a1a2b}
+#matrix .aqm-slot-gemini .aqm-g-sub{margin:10px 0 0;padding:0;list-style:none}

@@ -38,3 +38,5 @@ umerology-matrix.js بيحدد أي أركانا بتقود كل قسم. لو ا
 - لا تُعرض أي رسائل «غير متوفر/قيد الإعداد». الأركانا 17 كتبت مواضعها الخمسة (gemini/pos-17.json، المصدر aqeeq-authored).
 - ذيل بلا نص مطابق: نص مركّب من بيانات الأركانا الثلاث (composeTailFallback).
 - اختبار: tests/matrix-inline.e2e.js
+- الشاكرات السبع: `hydrateChakraReadings` تعرض الجسد/الطاقة/المشاعر لكل شاكرا. الخمس العليا من نصوص الأركانا، والعجز والجذر من `chakra-lower.json` (الجذر النفسي وطريقة التعامل، من غير قوائم أعراض مرضية).
+- خطا الأب والأم: `hydrateLineSections` تعرض F/H/G/I ومحصلة كل خط من `sections/father_line.json` و`mother_line.json`، وإن نقص نص يُستبدل بنص الأركانا الأساسي بصمت.
