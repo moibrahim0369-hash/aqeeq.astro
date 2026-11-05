@@ -34,7 +34,7 @@
     items.forEach(([tone,label])=>{const item=document.createElement('span'),dot=document.createElement('i');dot.className=tone;item.append(dot,document.createTextNode(label));row.append(item);});
     host.append(row);const p=document.createElement('p');p.className='aq-wheel-note';p.textContent=note;host.append(p);
   }
-  function renderSynastryWheel(host,chartA,chartB,aspects=[]){
+  function renderSynastryWheel(host,chartA,chartB,aspects=[],names={}){
     if(!host||!chartA||!chartB)return;
     const svg=baseSvg('عجلة التوافق الثنائية','الأبراج والبيوت في الحلقة الخارجية، الشخص الأول بالذهب والشخص الثاني بالعقيق، والاتصالات الرئيسية في المركز.');
     const {outer,center}=drawFramework(svg,chartA.known?chartA.cusps:null), find=(ch,k)=>ch.bodies?.find(x=>x.key===k), anchors={};
@@ -44,11 +44,11 @@
     });
     const add=(ch,r,cls)=>PERSONAL.forEach(key=>{const b=find(ch,key);if(!b)return;const [x,y]=pt(b.lon,r),[tx,ty]=pt(b.lon,r+15),info=PLANETS[key],h=houseAt(chartA,b.lon),s=SIGNS[Math.floor(norm(b.lon)/30)],group=el('g',{class:'aq-wheel-planet '+cls,tabindex:'0',role:'img','aria-label':info[0]+'، '+s+' '+position(b.lon)+(h?'، بيت الشخص الأول '+h:'')});group.append(el('circle',{cx:x,cy:y,r:12,class:'aq-wheel-planet-dot'}),el('text',{x,y:y+4,class:'aq-wheel-planet-glyph'},info[1]),el('text',{x:tx,y:ty,class:'aq-wheel-degree'},position(b.lon)),el('title',{},info[0]+' · '+s+' '+position(b.lon)+(h?' · بيت الشخص الأول '+h:'')));svg.append(group);});
     add(chartA,174,'person-a');add(chartB,128,'person-b');
-    svg.append(el('circle',{cx:260,cy:260,r:center,class:'aq-wheel-center'}),el('text',{x:260,y:255,class:'aq-wheel-center-title'},'SYNASTRY'),el('text',{x:260,y:274,class:'aq-wheel-center-sub'},'A × B'));
+    svg.append(el('circle',{cx:260,cy:260,r:center,class:'aq-wheel-center'}),...(()=>{const cut=t=>{t=String(t||'').trim();return t.length>9?t.slice(0,8)+'…':t;},na=cut(names.a)||'الطرف الأول',nb=cut(names.b)||'الطرف الثاني';return[el('text',{x:260,y:243,class:'aq-wheel-hub-name hub-a'},na),el('text',{x:260,y:262,class:'aq-wheel-hub-amp'},'وَ'),el('text',{x:260,y:282,class:'aq-wheel-hub-name hub-b'},nb)];})());
     if(chartA.known&&Number.isFinite(chartA.asc)){const [x,y]=pt(chartA.asc,outer-7);svg.append(el('text',{x,y,class:'aq-wheel-angle-label'},'ASC'));}
     if(chartA.known&&Number.isFinite(chartA.mc)){const [x,y]=pt(chartA.mc,outer-24);svg.append(el('text',{x,y,class:'aq-wheel-angle-label'},'MC'));}
     host.replaceChildren(svg);
-    legend(host,[['a','الشخص الأول · ذهبي'],['b','الشخص الثاني · عقيقي'],['h','اتصال منسجم'],['c','اتصال ضاغط']],chartA.known?'البيوت الظاهرة تخص خريطة الشخص الأول؛ درجات الكواكب تظهر عند المرور أو التركيز عليها.':'وقت ميلاد الشخص الأول غير معروف، لذلك تقسيم البيوت إرشادي فقط.');
+    legend(host,[['a','الطرف الأول · بورجوندي'],['b','الطرف الثاني · ذهبي برونزي'],['h','اتصال منسجم · ذهبي'],['c','اتصال ضاغط · قرمزي']],chartA.known?'البيوت الظاهرة تخص خريطة الشخص الأول؛ درجات الكواكب تظهر عند المرور أو التركيز عليها.':'وقت ميلاد الشخص الأول غير معروف، لذلك تقسيم البيوت إرشادي فقط.');
   }
   function renderCompositeWheel(host,composite){
     if(!host||!composite)return;
@@ -56,7 +56,7 @@
     const {outer,center}=drawFramework(svg,cusps),positions=new Map((composite.positions||[]).map(x=>[x.key,x])),major=(composite.aspects||[]).filter(x=>PERSONAL.includes(x.a)&&PERSONAL.includes(x.b)).sort((a,b)=>a.orb-b.orb).slice(0,6);
     major.forEach(a=>{const x=positions.get(a.a),y=positions.get(a.b);if(!x||!y)return;const [x1,y1]=pt(x.lon,72),[x2,y2]=pt(y.lon,72),k=a.asp?.k||'';svg.append(el('line',{x1,y1,x2,y2,class:'aq-wheel-aspect '+(['tri','sext'].includes(k)?'harmonious':['sq','opp'].includes(k)?'challenging':'neutral'),opacity:.54}));});
     PERSONAL.forEach(key=>{const b=positions.get(key);if(!b)return;const [x,y]=pt(b.lon,146),[tx,ty]=pt(b.lon,166),info=PLANETS[key],s=SIGNS[Math.floor(norm(b.lon)/30)],group=el('g',{class:'aq-wheel-planet person-composite',tabindex:'0',role:'img','aria-label':info[0]+'، '+s+' '+position(b.lon)});group.append(el('circle',{cx:x,cy:y,r:12,class:'aq-wheel-planet-dot'}),el('text',{x,y:y+4,class:'aq-wheel-planet-glyph'},info[1]),el('text',{x:tx,y:ty,class:'aq-wheel-degree'},position(b.lon)),el('title',{},info[0]+' · '+s+' '+position(b.lon)));svg.append(group);});
-    svg.append(el('circle',{cx:260,cy:260,r:center,class:'aq-wheel-center'}),el('text',{x:260,y:255,class:'aq-wheel-center-title'},'COMPOSITE'),el('text',{x:260,y:274,class:'aq-wheel-center-sub'},'الخريطة المشتركة'));
+    svg.append(el('circle',{cx:260,cy:260,r:center,class:'aq-wheel-center'}),el('text',{x:260,y:255,class:'aq-wheel-center-title'},'الخريطة المركّبة'),el('text',{x:260,y:274,class:'aq-wheel-center-sub'},'نقطة التقاء الطرفين'));
     if(composite.anglesKnown&&Number.isFinite(composite.asc)){const [x,y]=pt(composite.asc,outer-7);svg.append(el('text',{x,y,class:'aq-wheel-angle-label'},'ASC'));}
     if(composite.anglesKnown&&Number.isFinite(composite.mc)){const [x,y]=pt(composite.mc,outer-24);svg.append(el('text',{x,y,class:'aq-wheel-angle-label'},'MC'));}
     host.replaceChildren(svg);legend(host,[['a','مواضع الخريطة المركّبة'],['h','اتصال منسجم'],['c','اتصال ضاغط']],'العجلة تعرض الكواكب الشخصية؛ قائمة المواضع أسفلها تعرض بقية الكواكب أيضاً.');
