@@ -3,7 +3,7 @@
 const { chromium } = require('playwright');
 const port = process.argv[2] || '8765';
 const BASE = `http://127.0.0.1:${port}`;
-const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-13'];
+const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-13', '1970-02-13', '1970-03-13', '1976-03-03'];
 (async () => {
   const b = await chromium.launch(); const fails = []; let n = 0;
   const ok = (c, m) => { n++; if (!c) fails.push(m); };
@@ -22,6 +22,11 @@ const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-
         slots: ['center', 'love_line', 'money_line', 'purposes', 'karmic_tail'].map(s => { const g = document.querySelector(`#aqm-sec-${s} [data-slot="gemini"]`); return g ? g.innerText.length : 0; }) };
     });
     const tag = `${date}@${vw}`;
+    // مفتاح النص = الرقم الأصلي 1..22 بدون أي تقليص (10 عجلة الحظ لا الساحر، 12 المعلّق لا الإمبراطورة، 22 الأحمق)
+    const [yy, mm, dd] = date.split('-').map(Number);
+    const E = await p.evaluate(([y, m, d]) => window.AqeeqMatrixMethodAdapter.calculateDestinyMatrix({ year: y, month: m, day: d }).anchors.E, [yy, mm, dd]);
+    const keyOk = await p.evaluate(E => { const it = document.querySelector('#aqm-sec-center'); return it.querySelector('.aqm-badge-arcana').textContent.startsWith(E + ' ·') && new RegExp('\\(' + E + '[ )/]').test(it.querySelector('[data-slot="gemini"]').innerText); }, E);
+    ok(keyOk, `${tag}: center text key != engine arcana ${E}`);
     ok(!r.unavail, `${tag}: missing/pending notice visible`); ok(!r.assess, `${tag}: self-assessment visible`);
     ok(r.btns === 0 && r.missingCards === 0, `${tag}: buttons/missing cards present`);
     ok(r.slots.every(l => l > 300), `${tag}: a section has no inline text ${r.slots}`);
