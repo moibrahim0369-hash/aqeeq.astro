@@ -460,7 +460,7 @@
     "mercury-retrograde",
     "understanding-transits"
    ],
-   "coverAlt": "زحل وحلقاته بخطوط ذهبية رفيعة وسهم صغير يعود إلى الخلف على خلفية عنابية.",
+   "coverAlt": "وجه ساعة عتيقة بأرقام رومانية وعقارب سوداء مزخرفة تحيط بها أضواء ذهبية ضبابية.",
    "body": [
     {
      "t": "p",
@@ -556,7 +556,7 @@
      "href": "#chart"
     }
    ],
-   "coverImage": "assets/images/content/saturn-retrograde.svg",
+   "coverImage": "assets/images/content/photo-clock.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   },
   {
@@ -1113,7 +1113,7 @@
     "moon-phases",
     "natal-trinity"
    ],
-   "coverAlt": "أداة فلكية قديمة دقيقة وخطوط مدارية ذهبية متقطعة على خلفية نبيذية داكنة.",
+   "coverAlt": "مقبض باب نحاسي مزخرف ومفتاحان عتيقان معلقان في ثقب باب خشبي داكن.",
    "body": [
     {
      "t": "p",
@@ -1193,7 +1193,7 @@
      "href": "#sky"
     }
    ],
-   "coverImage": "assets/images/content/mercury-retrograde.svg",
+   "coverImage": "assets/images/content/photo-keys.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   },
   {
@@ -1669,7 +1669,7 @@
     "natal-trinity",
     "understanding-transits"
    ],
-   "coverAlt": "خطوط هندسية حادة بذهبي رفيع على ورق عاجي مع ظل فحمي هادئ.",
+   "coverAlt": "رأس حصان أبيض بضفيرة في ضوء وردي ناعم.",
    "body": [
     {
      "t": "p",
@@ -1753,7 +1753,7 @@
      "href": "#chart"
     }
    ],
-   "coverImage": "assets/images/content/mars-in-chart.svg",
+   "coverImage": "assets/images/content/photo-horse.jpg",
    "note": "مادة تعليمية عامة بصيغة رمزية للتأمل والفهم، ولا تقدّم تنبؤًا مؤكدًا أو بديلًا عن استشارة مختصة."
   },
   {
