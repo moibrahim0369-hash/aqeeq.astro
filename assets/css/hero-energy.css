@@ -105,3 +105,31 @@
   #home.aqh .aqh-duo .aqh-article time{display:none}
   #home.aqh .aqh-duo .aqh-article h3{font-size:.7rem;line-height:1.45}
 }
+/* السماء الآن: كواكب حية داخل بانر الطاقة */
+#home.aqh #aqh-energy .dbn-live-s .dbn-copy{display:grid;gap:8px;width:100%;align-content:center}
+#home.aqh #aqh-energy .dbn-pulse{width:8px;height:8px;border-radius:50%;background:#642B3C;display:inline-block;margin-inline-end:8px;animation:dbnPulse 2s ease-in-out infinite}
+@keyframes dbnPulse{0%,100%{box-shadow:0 0 0 0 rgba(100,43,60,.45)}50%{box-shadow:0 0 0 7px rgba(100,43,60,0)}}
+#home.aqh #aqh-energy .dbn-live{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#home.aqh #aqh-energy .dbn-lv{display:grid;justify-items:center;gap:2px;padding:8px 4px;border:1px solid rgba(185,154,91,.45);border-radius:12px;background:#FBF8F2;text-align:center;transition:transform .3s,background .3s,border-color .3s}
+#home.aqh #aqh-energy .dbn-lv:hover{transform:translateY(-2px);background:#F3E6CC;border-color:#B99A5B}
+#home.aqh #aqh-energy .dbn-lv-g{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#642B3C;color:#F7F3EC;font-size:1rem}
+#home.aqh #aqh-energy .dbn-lv b{font-size:.86rem;color:#29252A}
+#home.aqh #aqh-energy .dbn-lv b em{font-style:normal;display:inline-grid;place-items:center;width:14px;height:14px;border-radius:50%;background:#642B3C;color:#fff;font-size:.6rem}
+#home.aqh #aqh-energy .dbn-lv small{font-size:.74rem;color:#4a4348;white-space:nowrap}
+#home.aqh #aqh-energy .dbn-lv i{font-style:normal;font-size:.66rem;color:#8a8186}
+#home.aqh #aqh-energy .dbn-lv.is-retro i{color:#642B3C;font-weight:600}
+@media (max-width:760px){
+  #home.aqh .aqh-duo #aqh-energy .dbn-live-s .dbn-title,#home.aqh .aqh-duo #aqh-energy .dbn-live-s .dbn-cta{display:none}
+  #home.aqh .aqh-duo #aqh-energy .dbn-live{grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-lv{padding:4px 2px;gap:0}
+  #home.aqh .aqh-duo #aqh-energy .dbn-lv-g{width:20px;height:20px;font-size:.7rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-lv b{font-size:.68rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-lv small{font-size:.6rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-lv i{display:none}
+}
+/* بعد نقل اللوحة الحية: ارتفاع يتسع للخريطة كاملة */
+@media (min-width:1025px){
+  #home.aqh .aqh-hero{min-height:clamp(340px,29vw,380px)!important;display:flex!important;align-items:center}
+  #home.aqh .aqh-hero>.aqh-wrap,#home.aqh .aqh-hero-grid{width:100%}
+  #home.aqh .aqh-wheel-box{width:min(380px,30vw)!important}
+}
