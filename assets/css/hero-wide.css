@@ -30,3 +30,18 @@
 #home.aqh .aqh-tagline{top:22%!important;right:0!important}
 #home.aqh .aqh-wheel-hint{max-width:230px;margin-inline:auto!important}
 @media (max-width:1024px){#home.aqh .aqh-sky-link{display:none!important}}
+
+/* تمثال الزهرة + حجر العقيق داخل نفس بانر الخريطة */
+#home.aqh .aqh-hero{position:relative;overflow:hidden}
+#home.aqh .hw-statue{position:absolute;z-index:0;left:0;top:0;height:100%;width:clamp(200px,27vw,380px);object-fit:cover;object-position:68% 38%;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to right,#000 0,#000 55%,transparent 100%);mask-image:linear-gradient(to right,#000 0,#000 55%,transparent 100%)}
+#home.aqh .hw-agate{position:absolute;z-index:1;right:clamp(8px,1.5vw,24px);bottom:clamp(6px,1vw,14px);width:clamp(80px,9vw,130px);height:auto;pointer-events:none;filter:drop-shadow(0 8px 14px rgba(60,30,30,.28))}
+#home.aqh .aqh-hero-grid{position:relative;z-index:2;padding-left:clamp(120px,22vw,320px)!important}
+#home.aqh .aqh-hero-wheel{margin-inline-start:0}
+@media (max-width:1024px){
+  #home.aqh .hw-statue{width:52%;opacity:.28;object-position:60% 30%}
+  #home.aqh .hw-agate{width:46px;right:auto;left:8px;bottom:6px}
+  #home.aqh .aqh-hero-grid{padding-left:0!important}
+}
+#home.aqh .aqh-values li{padding-inline:0 12px!important}#home.aqh .aqh-values li+li{padding-inline-start:12px!important}
+#home.aqh .aqh-tagline{pointer-events:none}
