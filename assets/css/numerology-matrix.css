@@ -1736,3 +1736,6 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 #matrix .aqm-line-entry .aqm-slot-title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 #matrix .aqm-sec-lead{font-size:1.02rem;color:#4a1a2b}
 #matrix .aqm-slot-gemini .aqm-g-sub{margin:10px 0 0;padding:0;list-style:none}
+
+/* شارات الثلاثية في عنوان البرنامج المركب */
+#matrix .aqm-code-badges{display:inline-flex;flex-wrap:wrap;gap:6px;margin-inline-start:10px;vertical-align:middle}

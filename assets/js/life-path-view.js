@@ -75,7 +75,7 @@
     var chips = '<div class="lpd-chips lpj-reveal" style="--d:60ms">' +
       '<div class="lpd-chip"><span class="lpd-ci">' + IC('<circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/>') + '</span><span class="lpd-ct"><small>الاسم</small><b>' + esc(inp.name || 'مسارك الشخصي') + '</b></span></div>' +
       '<div class="lpd-chip"><span class="lpd-ci">' + IC('<rect x="3.500" y="5" width="17" height="15" rx="2.500"/><path d="M3.500 10h17M8 3v4M16 3v4"/>') + '</span><span class="lpd-ct"><small>تاريخ الميلاد · العمر ' + age + ' سنة</small><b>' + pad(inp.d) + '/' + pad(inp.m) + '/' + inp.y + '</b></span></div>' +
-      '<div class="lpd-acts"><button type="button" class="lpj-btn ghost" data-lpj-interp><span>القراءة الكاملة</span></button><a class="lpj-btn ghost" href="#life-path-synastry"><span>قارن مساري الحياة</span>' + I.arrow + '</a>' +
+      '<div class="lpd-acts"><button type="button" class="lpj-btn ghost" data-lpj-interp><span>القراءة الكاملة</span></button><a class="lpj-btn ghost" href="#lifepath-compat"><span>قارن مساري الحياة</span>' + I.arrow + '</a>' +
       '<button type="button" class="lpj-btn ghost" data-lpj-edit><span>تعديل التاريخ</span></button></div></div>';
     function metric(ico, label, tip, val, desc, d) {
       return '<div class="lpj-m lpj-reveal" style="--d:' + d + 'ms"><span class="lpj-ico">' + ico + '</span><div><small>' + label + '<button type="button" class="lpj-tip" data-tip="' + esc(tip) + '" aria-label="' + esc(tip) + '">؟</button></small><b>' + val + '</b><span class="d">' + desc + '</span></div></div>';

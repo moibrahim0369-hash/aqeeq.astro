@@ -22,6 +22,8 @@ const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-
         cards: document.querySelectorAll('#aqm-sec-chakras .aqm-chakra-card').length, cardsEmpty: [...document.querySelectorAll('#aqm-sec-chakras .aqm-chakra-card')].filter(c => c.innerText.length < 120).length,
         lines: ['father_line', 'mother_line'].map(s => document.querySelectorAll(`#aqm-sec-${s} .aqm-line-entry`).length),
         unified: ['talents', 'ancestral_programs', 'children_line', 'transformation_rx'].map(s => document.querySelectorAll(`#aqm-sec-${s} .aqm-line-entry`).length),
+        personal: (() => { const e = document.querySelectorAll('#aqm-sec-personal .aqm-line-entry'); const t = e[0] ? e[0].innerText : ''; return { n: e.length, len: t.length, light: !!document.querySelector('#aqm-sec-personal .is-light'), shadow: !!document.querySelector('#aqm-sec-personal .is-shadow') }; })(),
+        composite: [...document.querySelectorAll('#aqm-sec-composite_programs .aqm-line-entry')].map(e => ({ len: e.innerText.length, badges: e.querySelectorAll('.aqm-badge-arcana').length, light: !!e.querySelector('.is-light') })),
         deeper22: window.__d22 || 0,
         slots: ['center', 'love_line', 'money_line', 'purposes', 'karmic_tail'].map(s => { const g = document.querySelector(`#aqm-sec-${s} [data-slot="gemini"]`); return g ? g.innerText.length : 0; }) };
     });
@@ -35,6 +37,8 @@ const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-
     ok(r.btns === 0 && r.missingCards === 0, `${tag}: buttons/missing cards present`);
     ok(r.cards === 7 && r.cardsEmpty === 0, `${date}@${vw}: chakra readings ${r.cards}/${r.cardsEmpty}`);
     ok(r.unified.join() === '1,2,2,3', `${date}@${vw}: unified sections ${r.unified}`);
+    ok(r.personal.n === 1 && r.personal.len > 200 && r.personal.light && r.personal.shadow, `${tag}: personal section ${JSON.stringify(r.personal)}`);
+    ok(r.composite.length === 3 && r.composite.every(c => c.len > 150 && c.badges === 3 && c.light), `${tag}: composite section ${JSON.stringify(r.composite)}`);
     ok(r.lines.every(l => l === 3), `${date}@${vw}: father/mother line entries ${r.lines}`);
     ok(r.slots.every(l => l > 300), `${tag}: a section has no inline text ${r.slots}`);
     await p.evaluate(() => document.querySelector('.aqm-svg .aqm-node[data-section="love_line"]').dispatchEvent(new MouseEvent('click', { bubbles: true })));
