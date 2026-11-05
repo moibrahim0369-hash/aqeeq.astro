@@ -50,3 +50,12 @@ const BASE = `http://127.0.0.1:${process.argv[2] || '8765'}`;
   await b.close();
   console.log(fails.length ? 'FAIL\n' + fails.join('\n') : `PASS ${n} checks`); process.exit(fails.length ? 1 : 0);
 })();
+/* mobile: بصمة الاسم + القمم عمود واحد وبلا خلفية كحلية */
+(async()=>{const {chromium}=require('playwright');const b=await chromium.launch();const p=await b.newPage({viewport:{width:390,height:844}});
+await p.route('**/*',r=>r.request().url().startsWith('http://127.0.0.1')?r.continue():r.abort());
+await p.goto('http://127.0.0.1:8765/index.html#lifepath');await p.waitForTimeout(800);
+await p.fill('#lp-name','محمد ابراهيم');await p.fill('#lp-date','1990-05-14');await p.click('#lpform button[type=submit]');
+await p.waitForSelector('#lpresult .aqeq-name-readings',{timeout:10000}).catch(()=>{});await p.waitForTimeout(500);
+const r=await p.evaluate(()=>{const cols=s=>[...document.querySelectorAll(s)].map(e=>getComputedStyle(e)).every(c=>c.display==='flex'&&c.flexDirection==='column'||c.gridTemplateColumns.split(' ').length===1);return{bg:getComputedStyle(document.querySelector('.aqeq-name-readings')).backgroundColor,g:cols('#lpresult .aqeq-name-groups,#lpresult .aqeq-pc-grid,#lpresult .aqeq-reading-grid'),hs:document.documentElement.scrollWidth>innerWidth}});
+console.log(r.bg==='rgb(253, 251, 247)'&&r.g&&!r.hs?'PASS mobile single column + ivory name blueprint':'FAIL mobile name blueprint '+JSON.stringify(r));
+await b.close();if(!(r.bg==='rgb(253, 251, 247)'&&r.g&&!r.hs))process.exit(1)})();

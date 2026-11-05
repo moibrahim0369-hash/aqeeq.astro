@@ -111,3 +111,27 @@ section#lifepath .lpj-top{padding-top:84px!important}
 #lifepath .syn-score-card h3{color:#7a5a22!important}
 #lifepath .syn-gauge strong{color:var(--lpa-wine)!important}
 #lifepath .syn-score-note,#lifepath .syn-insight,#lifepath .syn-note{color:var(--lpa-ink)!important}
+
+/* ===== بصمة الاسم + القمم والتحديات: إلغاء الخلفية الكحلية وعمود واحد على الموبايل (عرض فقط) ===== */
+#lpresult .aqeq-name-readings,#lpresult .aqeq-pc-wrap,#lpresult .aqeq-extra-numbers{background:#FDFBF7!important;background-image:none!important;border:1px solid #E2D9CC!important;border-radius:16px!important;color:#2C2523!important;box-shadow:0 4px 15px rgba(74,21,33,.05)}
+#lpresult .aqeq-name-readings{padding:clamp(14px,3vw,24px)!important}
+#lpresult .aqeq-name-readings :is(p,li,span,small,div):not(.aqeq-name-number):not(.aqeq-pc-number):not(.aqeq-name-kicker){color:#2C2523}
+#lpresult .aqeq-name-readings :is(h3,h4,h5),#lpresult .aqeq-pc-wrap :is(h3,h4,h5){color:#4A1521!important}
+#lpresult .aqeq-name-number,#lpresult .aqeq-pc-number{background:#F3EBDD!important;color:#4A1521!important;border-color:#C5A059!important}
+#lpresult .aqeq-name-group,#lpresult .aqeq-reading-card,#lpresult .aqeq-pc-card,#lpresult .aqeq-extra-card{background:#fff!important;border:1px solid #E2D9CC!important;box-shadow:0 4px 15px rgba(74,21,33,.04)!important}
+#lpresult .aqeq-pc-period{background:#F3EBDD!important;color:#4A1521!important}
+#lpresult .aqeq-pc-copy,#lpresult .aqeq-pc-copy p,#lpresult .aqeq-reading-content,#lpresult .aqeq-reading-content p,#lpresult .aqeq-pc-heading p,#lpresult .aqeq-name-heading p{color:#2C2523!important;opacity:1!important}
+#lpresult .aqeq-pc-copy strong,#lpresult .aqeq-pc-copy h5{color:#4A1521!important}
+@media(max-width:768px){
+  #lpresult .aqeq-name-readings{padding:12px!important}
+  #lpresult .aqeq-name-groups,#lpresult .aqeq-pc-grid,#lpresult .aqeq-reading-grid,#lpresult .aqeq-extra-grid,#lpresult .aqeq-extra-cards,#lpresult .aqeq-extra-numbers>div{display:flex!important;flex-direction:column!important;grid-template-columns:1fr!important;columns:1!important;width:100%!important;gap:16px!important}
+  #lpresult .aqeq-name-group,#lpresult .aqeq-pc-card,#lpresult .aqeq-reading-card,#lpresult .aqeq-extra-card{width:100%!important;max-width:100%!important;padding:14px!important;box-sizing:border-box}
+  #lpresult .aqeq-name-group{padding:12px!important}
+  #lpresult .aqeq-reading-card{padding:12px!important}
+  #lpresult .aqeq-reading-content,#lpresult .aqeq-pc-copy{width:100%!important;max-width:100%!important}
+}
+@media(max-width:768px){
+  #lpresult .aqeq-name-group{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+  #lpresult .aqeq-name-readings{padding:10px!important}
+  #lpresult .aqeq-reading-card{padding:10px 12px!important}
+}
