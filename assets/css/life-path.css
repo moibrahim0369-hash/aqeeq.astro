@@ -228,3 +228,34 @@ html:has(#lifepath:target) .amb,html:has(#lifepath:target) #sky-tint{display:non
 section#lifepath .cform{width:100%!important;max-width:none!important;margin:0!important}
 section#lifepath.sec:target>.wrap{margin-inline:auto!important;max-width:none!important;box-sizing:border-box}
 #lpj-interp{scroll-margin-top:132px}.lpj-stage,.lpj-sec{scroll-margin-top:132px}
+/* ---- توحيد: الخطة الفكرية (Blueprint) + رسالة اليوم ---- */
+#lpresult .aq-lp-blueprint-summary{background:#fff!important;border:1px solid var(--bd)!important;border-radius:10px!important;padding:clamp(22px,3vw,34px)!important;box-shadow:none!important;margin:0 0 22px!important;font-family:'IBM Plex Sans Arabic',sans-serif}
+#lpresult .aq-lp-blueprint-summary .eyebrow{display:block;font-size:.72rem;letter-spacing:.14em;color:var(--mgold)!important;margin:0 0 6px}
+#lpresult .aq-lp-blueprint-summary>h3{font-family:'Amiri',serif!important;font-size:clamp(1.6rem,3.2vw,2.1rem)!important;color:var(--wine)!important;margin:4px 0 8px!important;line-height:1.35}
+#lpresult .aq-lp-blueprint-summary>p{color:var(--mut)!important;font-weight:400!important;font-size:1.02rem;line-height:1.95!important;max-width:70ch}
+#lpresult .aq-lp-pillars-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;margin-top:18px}
+@media(max-width:700px){#lpresult .aq-lp-pillars-grid{grid-template-columns:1fr!important}}
+#lpresult .aq-lp-pillars-grid>article{background:var(--cream)!important;border:1px solid var(--bd)!important;border-radius:8px!important;padding:20px!important;border-inline-start:3px solid var(--gold)!important;transition:border-color .24s,transform .24s}
+#lpresult .aq-lp-pillars-grid>article:hover{border-color:var(--gold)!important;transform:translateY(-3px)}
+#lpresult .aq-lp-pillars-grid>article:nth-child(3){border-inline-start-color:var(--burgundy)!important}
+#lpresult .aq-lp-pillars-grid>article h4{font-family:'Amiri',serif!important;font-size:1.2rem!important;color:var(--wine)!important;margin:0 0 8px!important}
+#lpresult .aq-lp-pillars-grid>article p{color:var(--char)!important;font-size:.95rem!important;line-height:1.95!important}
+#lpresult .aqm-cheat-sheet h4,#lpresult .aqm-protocol-box h4{font-family:'Amiri',serif!important;color:var(--wine)!important;font-size:1.3rem!important}
+#lpresult .aqm-protocol-box{background:var(--cream)!important;border:1px solid var(--bd)!important;border-radius:8px!important;border-inline-start:3px solid var(--burgundy)!important}
+#lpresult .aqm-steps-list{padding-inline-start:22px!important;padding-right:0!important;color:var(--char)}
+#lpresult .aqm-steps-list li::marker{color:var(--mgold)}
+#lpresult .aqm-table-scroll{border:1px solid var(--bd);border-radius:8px;overflow-x:auto;background:#fff}
+#lpresult .aqm-cheat-table{width:100%;border-collapse:collapse;min-width:520px}
+#lpresult .aqm-cheat-table th{background:var(--cream)!important;color:var(--wine)!important;font-weight:600;text-align:right;padding:12px 14px;border-bottom:1px solid var(--gold)!important;font-size:.88rem}
+#lpresult .aqm-cheat-table td{padding:12px 14px;border-bottom:1px solid var(--bd)!important;color:var(--char)!important;font-size:.92rem;line-height:1.8;vertical-align:top}
+#lpresult .aqm-cheat-table tr:last-child td{border-bottom:0!important}
+/* رسالة اليوم */
+#lpresult>.daily{background:#fff!important;border:1px solid var(--bd)!important;border-radius:10px!important;border-inline-start:3px solid var(--gold)!important;padding:clamp(20px,3vw,30px)!important;margin:0 0 22px!important;box-shadow:none!important}
+#lpresult>.daily h4{font-family:'Amiri',serif!important;font-size:1.45rem!important;color:var(--wine)!important;margin:0 0 8px!important}
+#lpresult>.daily>p{color:var(--mut)!important;line-height:1.95!important;margin:0 0 14px!important}
+#lpresult>.daily .dd{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 14px}
+@media(max-width:700px){#lpresult>.daily .dd{grid-template-columns:1fr}}
+#lpresult>.daily .dd>div{background:var(--cream)!important;border:1px solid var(--bd)!important;border-radius:8px!important;padding:14px 16px!important;line-height:1.85;color:var(--char)!important;font-size:.95rem}
+#lpresult>.daily .dd>div b{display:block;font-family:'Amiri',serif;font-size:1.1rem;color:var(--burgundy)!important;margin-bottom:2px}
+#lpresult>.daily .dd>div:last-child b{color:var(--wine)!important}
+#lpresult>.daily p.note{font-size:.84rem!important;color:var(--mut)!important;margin:0!important;border:0!important;background:none!important;padding:0!important;text-align:right}
