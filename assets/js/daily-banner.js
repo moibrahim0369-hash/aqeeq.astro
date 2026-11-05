@@ -73,28 +73,30 @@
     var lit = 'M60 10 A50 50 0 0 1 60 110 A' + rx.toFixed(2) + ' 50 0 0 ' + sweep + ' 60 10Z';
     var tf = waxing ? '' : ' transform="translate(120 0) scale(-1 1)"';
     var u = 'dm' + (++moonSeq) + '_';
-    /* قمر واقعي: قرص رمادي مظلّل + بحار قمرية + فوهات + حبيبات، ثم ظل الطور بحافة ناعمة */
+    /* قمر واقعي: كرة مظلّلة + بحار قمرية + فوهات بأشعة + حبيبات؛ الجانب المظلم يظهر بضوء الأرض الخافت، والجانب المضيء بحافة ناعمة */
+    var rays = '<g stroke="#F8F3E8" stroke-opacity=".28" stroke-width=".5" fill="none"><path d="M78 84l10 12M78 84l-8 14M78 84l14-2M78 84l6-14"/><path d="M84 50l9-7M84 50l10 3M84 50l3 10"/></g>';
     return '<defs>' +
-      '<radialGradient id="' + u + 'b" cx="40%" cy="36%" r="75%"><stop offset="0" stop-color="#EDE8DE"/><stop offset=".55" stop-color="#BDB6A8"/><stop offset="1" stop-color="#6F685F"/></radialGradient>' +
-      '<radialGradient id="' + u + 'l" cx="50%" cy="50%" r="50%"><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></radialGradient>' +
-      '<radialGradient id="' + u + 'h" cx="50%" cy="50%" r="50%"><stop offset=".8" stop-color="#E6C98F" stop-opacity="0"/><stop offset=".9" stop-color="#E6C98F" stop-opacity=".16"/><stop offset="1" stop-color="#E6C98F" stop-opacity="0"/></radialGradient>' +
+      '<radialGradient id="' + u + 'b" cx="38%" cy="34%" r="80%"><stop offset="0" stop-color="#F7F2E7"/><stop offset=".5" stop-color="#CFC7B8"/><stop offset=".85" stop-color="#8B8377"/><stop offset="1" stop-color="#5E574E"/></radialGradient>' +
+      '<radialGradient id="' + u + 'l" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient>' +
+      '<radialGradient id="' + u + 'h" cx="50%" cy="50%" r="50%"><stop offset=".78" stop-color="#E6C98F" stop-opacity="0"/><stop offset=".9" stop-color="#E6C98F" stop-opacity=".2"/><stop offset="1" stop-color="#E6C98F" stop-opacity="0"/></radialGradient>' +
+      '<radialGradient id="' + u + 'e" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#6D7482"/><stop offset="1" stop-color="#3C414C"/></radialGradient>' +
       '<clipPath id="' + u + 'c"><circle cx="60" cy="60" r="50"/></clipPath>' +
-      '<filter id="' + u + 'n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7" result="t"/><feColorMatrix in="t" type="matrix" values="0 0 0 0 .35  0 0 0 0 .33  0 0 0 0 .3  0 0 0 .55 -.12"/></filter>' +
-      '<filter id="' + u + 'm" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.6"/></filter>' +
-      '<filter id="' + u + 's" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.2"/></filter>' +
+      '<filter id="' + u + 'n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="11" result="t"/><feColorMatrix in="t" type="matrix" values="0 0 0 0 .32  0 0 0 0 .30  0 0 0 0 .28  0 0 0 .6 -.14"/></filter>' +
+      '<filter id="' + u + 'm" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.4"/></filter>' +
+      '<filter id="' + u + 's" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.6"/></filter>' +
       '<mask id="' + u + 'k"><rect width="120" height="120" fill="#fff"/><path d="' + lit + '" fill="#000" filter="url(#' + u + 's)"' + tf + '/></mask>' +
       '</defs>' +
-      '<circle cx="60" cy="60" r="55" fill="url(#' + u + 'h)"/>' +
+      '<circle cx="60" cy="60" r="56" fill="url(#' + u + 'h)"/>' +
       '<g clip-path="url(#' + u + 'c)">' +
       '<circle cx="60" cy="60" r="50" fill="url(#' + u + 'b)"/>' +
-      '<g filter="url(#' + u + 'm)" fill="#6B655E" opacity=".5"><ellipse cx="46" cy="40" rx="11" ry="9"/><ellipse cx="62" cy="38" rx="8" ry="7"/><ellipse cx="66" cy="55" rx="10" ry="8"/><ellipse cx="36" cy="58" rx="9" ry="14"/><ellipse cx="50" cy="66" rx="7" ry="6"/><ellipse cx="72" cy="72" rx="6" ry="5"/></g>' +
-      '<g fill="none" stroke="#5C564F" stroke-opacity=".28" stroke-width=".9"><circle cx="78" cy="84" r="5.500"/><circle cx="44" cy="82" r="4"/><circle cx="84" cy="50" r="3.500"/><circle cx="56" cy="92" r="3"/><circle cx="30" cy="42" r="3"/></g>' +
-      '<g fill="#F4EFE4" opacity=".6"><circle cx="78" cy="84" r="1.600"/><circle cx="35" cy="64" r="1.200"/><circle cx="52" cy="52" r="1.100"/></g>' +
-      '<rect width="120" height="120" filter="url(#' + u + 'n)" opacity=".7"/>' +
+      '<g filter="url(#' + u + 'm)" fill="#5F5951" opacity=".62"><ellipse cx="44" cy="38" rx="12" ry="9"/><ellipse cx="63" cy="36" rx="8" ry="7"/><ellipse cx="68" cy="54" rx="11" ry="8"/><ellipse cx="35" cy="58" rx="9" ry="15"/><ellipse cx="50" cy="68" rx="8" ry="6"/><ellipse cx="73" cy="73" rx="6" ry="5"/><ellipse cx="56" cy="50" rx="6" ry="4"/></g>' +
+      '<g fill="none" stroke="#4F4943" stroke-opacity=".38" stroke-width="1"><circle cx="78" cy="84" r="5.5"/><circle cx="44" cy="82" r="4"/><circle cx="84" cy="50" r="3.5"/><circle cx="56" cy="92" r="3"/><circle cx="30" cy="42" r="3"/><circle cx="66" cy="22" r="2.6"/></g>' +
+      '<g fill="#FBF7EE" opacity=".7"><circle cx="78" cy="84" r="1.7"/><circle cx="35" cy="64" r="1.3"/><circle cx="52" cy="52" r="1.2"/><circle cx="84" cy="50" r="1.1"/></g>' + rays +
+      '<rect width="120" height="120" filter="url(#' + u + 'n)" opacity=".75"/>' +
       '<circle cx="60" cy="60" r="50" fill="url(#' + u + 'l)"/>' +
-      '<rect width="120" height="120" fill="#120A0D" opacity=".86" mask="url(#' + u + 'k)"/>' +
+      '<g mask="url(#' + u + 'k)"><circle cx="60" cy="60" r="50" fill="url(#' + u + 'e)" opacity=".92"/><rect width="120" height="120" fill="#0F0A10" opacity=".7"/></g>' +
       '</g>' +
-      '';
+      '<circle cx="60" cy="60" r="50" fill="none" stroke="#F2E7CF" stroke-opacity=".22" stroke-width=".8"/>';
   }
   function themeNum() { var m = /(\d+)/.exec(txt('aq-obs-daynum')); return m ? m[1] : ''; }
   function txt(id) { var n = document.getElementById(id); return n ? (n.textContent || '').trim() : ''; }
