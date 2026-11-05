@@ -23,7 +23,7 @@ function spec(y, m, d) {
   const F = R(A + B), G = R(B + C), H = R(C + D), I = R(D + A);
   const ax = X => { const x1 = R(X + E); return { x1, x2: R(X + x1), x3: R(x1 + E) }; };
   const a = ax(A), b = ax(B), c = ax(C), dd = ax(D);
-  const father = R(F + H), mother = R(G + I), anc = R(father + mother), common = R(anc + E);
+  const father = R(F + H), mother = R(G + I), anc = R(F + G + H + I), common = R(anc + E);
   const bal = R(dd.x1 + c.x1), heart = R(bal + dd.x1), money = R(bal + c.x1);
   const row = (p, e) => [p, e, R(p + e)];
   const ch = [row(A, B), row(a.x2, b.x2), row(a.x1, b.x1), row(a.x3, b.x3), row(E, E), row(c.x1, dd.x1), row(C, D)];
