@@ -12,6 +12,8 @@
  */
 (function () {
   var AVATAR_BUCKET = 'avatars';
+  var PROFILE_COLS = 'id, first_name, last_name, birth_date, birth_time, birth_time_unknown, birth_city, birth_country, avatar_path, profile_completed_at';
+  var DISMISS_KEY = 'aqeeq_profile_prompt_dismissed_v1';
   var LOCAL_CACHE_KEY = 'aqeeq_profile_cache_v1';
   var PREF_NAME_KEY = 'aqeeq_preferred_name_v1';
   var currentUser = null;
@@ -20,6 +22,14 @@
   var isEditingProfile = false;
 
   function $(id) { return document.getElementById(id); }
+
+  // أعمدة القاعدة: avatar_path و profile_completed_at. نضيف أسماء مشتقة يستعملها باقي الكود.
+  function normalizeProfile(row) {
+    if (!row) return row;
+    row.avatar_url = row.avatar_path || null;
+    row.profile_completed = Boolean(row.profile_completed_at);
+    return row;
+  }
 
   function escapeHtml(str) {
     return String(str || '')
@@ -86,6 +96,57 @@
     }
   }
 
+  function fillCountries() {
+    var sel = $('profile-birth-country');
+    var geo = window.AQEEQ_GEO || [];
+    if (!sel || sel.options.length > 1) return;
+    geo.forEach(function (c) {
+      var o = document.createElement('option');
+      o.value = c.name; o.textContent = c.name;
+      sel.appendChild(o);
+    });
+  }
+
+  function fillRegions(country, selected) {
+    var sel = $('profile-birth-city');
+    if (!sel) return;
+    var geo = window.AQEEQ_GEO || [];
+    var hit = geo.filter(function (c) { return c.name === country; })[0];
+    sel.innerHTML = '';
+    var first = document.createElement('option');
+    first.value = ''; first.textContent = hit ? 'اختر المحافظة / الولاية' : 'اختر الدولة أولًا';
+    sel.appendChild(first);
+    if (hit) {
+      var list = hit.regions.slice();
+      // قيمة محفوظة سابقًا خارج القائمة تبقى متاحة حتى لا تضيع
+      if (selected && list.indexOf(selected) === -1) list.unshift(selected);
+      list.forEach(function (r) {
+        var o = document.createElement('option');
+        o.value = r; o.textContent = r;
+        sel.appendChild(o);
+      });
+    }
+    sel.disabled = !hit;
+    sel.value = selected || '';
+  }
+
+  function setPlaceValues(city, country) {
+    var cs = $('profile-birth-country');
+    if (!cs) return;
+    if (country && !Array.prototype.some.call(cs.options, function (o) { return o.value === country; })) {
+      var o = document.createElement('option');
+      o.value = country; o.textContent = country;
+      cs.appendChild(o);
+    }
+    cs.value = country || '';
+    fillRegions(country || '', city || '');
+  }
+
+  function dismissProfilePrompt() {
+    try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (_) {}
+    location.hash = '#home';
+  }
+
   function ensureProfileElements() {
     var userCard = $('acct-user');
     if (!userCard || $('account-profile-completion')) return;
@@ -138,6 +199,7 @@
       /* 2. نموذج استكمال أو تعديل البيانات الشخصية والفلكية */
       '<div id="profile-form-wrapper">' +
         '<div class="profile-onboarding-banner" id="profile-onboarding-banner">' +
+          '<button type="button" id="profile-close-btn" class="profile-close-btn" aria-label="إغلاق وإكمال البيانات لاحقًا"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
           '<h4>' +
             '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>' +
             '<span id="profile-banner-title">استكمال بياناتك الفلكية والشخصية</span>' +
@@ -185,12 +247,12 @@
               '</label>' +
             '</div>' +
             '<div class="field">' +
-              '<label for="profile-birth-city">مدينة الميلاد *</label>' +
-              '<input id="profile-birth-city" type="text" maxlength="120" placeholder="مثال: القاهرة، الرياض، دبي..." required />' +
+              '<label for="profile-birth-country">دولة الميلاد *</label>' +
+              '<select id="profile-birth-country" required><option value="">اختر الدولة</option></select>' +
             '</div>' +
             '<div class="field">' +
-              '<label for="profile-birth-country">دولة الميلاد *</label>' +
-              '<input id="profile-birth-country" type="text" maxlength="120" placeholder="مثال: مصر، السعودية، الإمارات..." required />' +
+              '<label for="profile-birth-city">المحافظة / الولاية / المدينة *</label>' +
+              '<select id="profile-birth-city" required disabled><option value="">اختر الدولة أولًا</option></select>' +
             '</div>' +
           '</div>' +
 
@@ -213,6 +275,9 @@
       userCard.appendChild(section);
     }
 
+    fillCountries();
+    $('profile-birth-country').addEventListener('change', function () { fillRegions(this.value, ''); });
+    $('profile-close-btn').addEventListener('click', dismissProfilePrompt);
     $('profile-time-unknown').addEventListener('change', syncBirthTimeUnknownState);
     ($('profile-avatar-file') || $('profile-avatar')).addEventListener('change', onAvatarChanged);
     $('profile-completion-form').addEventListener('submit', onProfileSubmit);
@@ -376,8 +441,7 @@
     $('profile-birth-date').value = (profile && profile.birth_date) || '';
     $('profile-birth-time').value = (profile && profile.birth_time ? String(profile.birth_time).slice(0, 5) : '');
     $('profile-time-unknown').checked = Boolean(profile && profile.birth_time_unknown);
-    $('profile-birth-city').value = (profile && profile.birth_city) || '';
-    $('profile-birth-country').value = (profile && profile.birth_country) || '';
+    setPlaceValues(profile && profile.birth_city, profile && profile.birth_country);
 
     var initials = getInitials(first, last, pref, user && user.email);
     setAvatarPreview((profile && profile.avatar_url) || meta.avatar_url || meta.picture || '', initials);
@@ -432,29 +496,29 @@
       id: user.id,
       first_name: meta.first_name || split.firstName || null,
       last_name: meta.last_name || split.lastName || null,
-      avatar_url: meta.avatar_url || meta.picture || null
+      avatar_path: meta.avatar_url || meta.picture || null
     };
 
     var res = await sb
       .from('profiles')
       .upsert(payload, { onConflict: 'id' })
-      .select('id, first_name, last_name, birth_date, birth_time, birth_time_unknown, birth_city, birth_country, avatar_url, profile_completed')
+      .select(PROFILE_COLS)
       .single();
 
     if (res.error) throw res.error;
-    return res.data;
+    return normalizeProfile(res.data);
   }
 
   async function fetchOrCreateProfile(user) {
     var sb = window.aqeeqSupabase;
     var res = await sb
       .from('profiles')
-      .select('id, first_name, last_name, birth_date, birth_time, birth_time_unknown, birth_city, birth_country, avatar_url, profile_completed')
+      .select(PROFILE_COLS)
       .eq('id', user.id)
       .maybeSingle();
 
     if (res.error) throw res.error;
-    if (res.data) return res.data;
+    if (res.data) return normalizeProfile(res.data);
     return ensureInitialProfileRow(user);
   }
 
@@ -508,7 +572,7 @@
       return;
     }
     if (!birthCity || !birthCountry) {
-      showProfileMsg('يرجى كتابة مدينة ودولة الميلاد.');
+      showProfileMsg('يرجى اختيار دولة الميلاد ثم المحافظة أو المدينة.');
       return;
     }
 
@@ -518,8 +582,8 @@
       var timeUnknown = birthTimeUnknown;
       var res = await window.aqeeqSupabase
         .from('profiles')
-        .upsert({ id: currentUser.id, first_name: firstName, last_name: lastName, birth_date: birthDate, birth_time: birthTime, birth_time_unknown: timeUnknown, birth_city: birthCity, birth_country: birthCountry, avatar_url: avatarUrl, profile_completed: true, updated_at: new Date().toISOString() }, { onConflict: 'id' })
-        .select('id, first_name, last_name, birth_date, birth_time, birth_time_unknown, birth_city, birth_country, avatar_url, profile_completed')
+        .upsert({ id: currentUser.id, first_name: firstName, last_name: lastName, birth_date: birthDate, birth_time: birthTime, birth_time_unknown: timeUnknown, birth_city: birthCity, birth_country: birthCountry, avatar_path: avatarUrl, profile_completed_at: new Date().toISOString(), updated_at: new Date().toISOString() }, { onConflict: 'id' })
+        .select(PROFILE_COLS)
         .single();
 
       if (res.error) throw res.error;
@@ -532,7 +596,7 @@
         }
       } catch (_) {}
 
-      currentProfile = res.data;
+      currentProfile = normalizeProfile(res.data);
       selectedAvatarFile = null;
       isEditingProfile = false;
       fillProfileForm(currentProfile, currentUser);
@@ -569,7 +633,9 @@
       fillProfileForm(currentProfile, user);
       applyCompletionGate(currentProfile);
 
-      if (!isProfileComplete(currentProfile) && location.hash !== '#account') {
+      var dismissed = false;
+      try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch (_) {}
+      if (!isProfileComplete(currentProfile) && !dismissed && location.hash !== '#account') {
         location.hash = '#account';
       }
     } catch (err) {
