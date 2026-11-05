@@ -10,7 +10,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
     p.on('pageerror', e => errs.push(e.message));
     await p.goto(BASE + '#lifepath'); await p.waitForTimeout(1500);
     ok(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${w}: no hscroll`);
-    ok(await p.evaluate(() => !!document.querySelector('#lifepath .lpx-statue') && !!document.querySelector('#lifepath .lpx-ring')), `${w}: statue + ring`);
+    ok(await p.evaluate(() => !!document.querySelector('#lifepath .lpx-path-art') && !document.querySelector('#lifepath .lpx-statue')), `${w}: path svg art replaces statue`);
     ok(await p.evaluate(() => ['lp-start-discover', 'lp-start-compare', 'lp-name', 'lp-gender', 'lp-date', 'lperr', 'lpresult'].every(i => document.getElementById(i))), `${w}: ids kept`);
     ok(await p.evaluate(() => document.querySelectorAll('.lpx-feats li').length === 4), `${w}: 4 benefits`);
     ok(await p.evaluate(() => !!document.querySelector('#lpform .aq-autofill-bar .aq-autofill-btn')), `${w}: autofill bar`);
@@ -30,7 +30,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   await p.click('#lpform button[type=submit]'); await p.waitForTimeout(500);
   ok(await p.evaluate(() => !document.getElementById('lperr').hidden), 'empty date shows error');
   await p.click('#lp-start-compare'); await p.waitForTimeout(800);
-  ok(await p.evaluate(() => location.hash) === '#life-path-synastry', 'compare card opens compatibility');
+  ok(await p.evaluate(() => document.getElementById('lpx-tabbox').dataset.tab === 'compat' && getComputedStyle(document.getElementById('lpcompat')).display !== 'none' && getComputedStyle(document.getElementById('lpform')).display === 'none' && !document.getElementById('life-path-synastry')), 'compare tab opens inline compatibility');
   ok(errs.length === 0, 'no JS errors ' + JSON.stringify(errs.slice(0, 3)));
   console.log(`\n${pass} pass ${fail} fail`); await b.close(); process.exitCode = fail ? 1 : 0;
 })();

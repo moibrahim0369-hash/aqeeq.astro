@@ -971,6 +971,74 @@
     });
   }
 
+
+  /* ===== الشخصية والصورة الخارجية (A) + البرامج المركبة: عرض موحّد داخل الأكورديون ===== */
+  function hydratePersonalComposite(host, P) {
+    const loader = window.AqeeqMatrix;
+    if (!loader) return;
+    const gender = host.dataset.aqmGender || '';
+    const g = gender === 'male' || gender === 'female' ? gender : '';
+    const mount = sid => {
+      const item = host.querySelector('#aqm-sec-' + sid); const grid = item && accGrid(item);
+      if (!grid) return null;
+      item.dataset.secState = 'done'; item.dataset.secSource = 'json';
+      grid.innerHTML = '<section class="aqm-slot aqm-slot-gemini" data-slot="gemini"><p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p></section>';
+      return grid.querySelector('[data-slot="gemini"]');
+    };
+    const same = (a, b) => String(a || '').trim() === String(b || '').trim();
+    const badge = (n, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}">${n} · ${escapeHtml(arcanaName(n))}</span>`;
+
+    /* الشخصية: مدخل المركز (center) للأركانا A + نص الأركانا الأساسي */
+    const pMount = mount('personal');
+    if (pMount) {
+      const A = Number(P.anchors.A);
+      Promise.all([loader.section('center').catch(() => ({ entries: [] })), loader.arcana(A).catch(() => null)]).then(([data, arc]) => {
+        const e = (data.entries || []).find(x => x.id === A); const c = arcCore(arc); const d = (e && e.deep) || {};
+        const lead = (e && e.summary) || c.psychology || '';
+        const shadowArr = Array.isArray(d.shadow) ? d.shadow : (d.shadow ? [d.shadow] : []);
+        const rows = e ? [
+          poleLi('الصورة التي يراها الناس', d.identity, ''),
+          poleLi('قطب النور', d.behavior, 'light'),
+          shadowArr.length ? `<li class="aqm-g-li d0 is-shadow">قطب الظل<ul class="aqm-g-ul aqm-g-sub">${shadowArr.map(t => `<li class="aqm-g-li d1">${escapeHtml(t)}</li>`).join('')}</ul></li>` : '',
+          poleLi('مسار التحرر', d.balanceKey, 'light'),
+          g && e.genderDynamic && e.genderDynamic[g] ? poleLi('بصيغتك', e.genderDynamic[g], '') : ''
+        ] : [poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow'), poleLi('مسار التحرر', c.growth, 'light')];
+        pMount.innerHTML = `<article class="aqm-line-entry"><h4 class="aqm-slot-title">طاقة يوم الميلاد (A)${badge(A, 0)}</h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${poleUl(rows)}</article>`;
+      }).catch(() => { pMount.innerHTML = ''; });
+    }
+
+    /* البرامج المركبة: مدخل جاهز بالكود (مباشر ثم معكوس)، وإلا تركيب من نصوص الأركانا الثلاث */
+    const cMount = mount('composite_programs');
+    if (cMount) {
+      const triads = [['البرنامج الشخصي', P.compositePrograms.personalTriad], ['البرنامج الروحي', P.compositePrograms.spiritualTriad], ['البرنامج المادي', P.compositePrograms.materialTriad]]
+        .filter(t => Array.isArray(t[1]) && t[1].length === 3).map(([l, t]) => [l, t.map(Number)]);
+      const ids = [...new Set(triads.flatMap(t => t[1]))].filter(n => n >= 1 && n <= 22);
+      Promise.all([loader.section('composite_programs').catch(() => ({ entries: [] })), ...ids.map(id => loader.arcana(id).catch(() => null))]).then(([data, ...arr]) => {
+        const byId = {}; ids.forEach((id, i) => { byId[id] = arr[i]; });
+        const html = triads.map(([label, t]) => {
+          const code = t.join('-'), rev = [...t].reverse().join('-');
+          const hit = (data.entries || []).find(e => e.code === code) || (data.entries || []).find(e => e.code === rev);
+          const badges = t.map(badge).join(' ');
+          let body;
+          if (hit) {
+            body = `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(hit.summary)}</p>` + poleUl([poleLi('مسار التحرر', hit.deep && hit.deep.remedy, 'light')]);
+          } else {
+            const cs = t.map(n => arcCore(byId[n]));
+            const lead = cs[0].psychology || '';
+            body = (lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : '') + poleUl([
+              poleLi('قطب النور', cs.map(c => c.gift).filter(Boolean)[0], 'light'),
+              poleLi('قطب الظل', cs.map(c => c.shadowTrap).filter(Boolean)[0], 'shadow'),
+              poleLi('مسار التحرر', cs.map(c => c.growth).filter(Boolean)[0], 'light')
+            ]);
+          }
+          const title = hit ? `${escapeHtml(hit.title)}` : label;
+          return `<article class="aqm-line-entry"><h4 class="aqm-slot-title">${escapeHtml(label)}${hit ? ' — ' + title : ''}<span class="aqm-code-badges">${badges}</span></h4>${body}</article>`;
+        }).join('');
+        cMount.innerHTML = html;
+      }).catch(() => { cMount.innerHTML = ''; });
+    }
+  }
+
   function buildAccordionItem(item) {
     const { id, icon, title, subtitle, arcanaList, contentKey, slots } = item;
     const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}">${a.num} · ${a.name}</span>`).join(' ');
@@ -1697,6 +1765,7 @@
     applyGeminiAccordions(host, P, tailTriad);
     hydrateChakraReadings(host, P);
     hydrateLineSections(host, P);
+    hydratePersonalComposite(host, P);
     const onAccOpen = item => {
       const sid = item.dataset.sectionId;
       if (sid === 'karmic_tail') return hydrateKarmicTail(item, tailTriad, gender);
