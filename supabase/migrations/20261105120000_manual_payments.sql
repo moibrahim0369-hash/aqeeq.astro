@@ -10,7 +10,7 @@ create table if not exists public.manual_payments (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
   product_code text not null references public.products(code),
-  method text not null check (method in ('vodafone_cash','instapay','paypal')),
+  method text not null check (method in ('wallet','vodafone_cash','instapay','paypal')),
   amount_cents integer not null check (amount_cents > 0),
   currency text not null check (currency ~ '^[A-Z]{3}$'),
   reference text not null check (char_length(btrim(reference)) between 3 and 120),
@@ -41,7 +41,7 @@ begin
   if v_uid is null then raise exception 'not_authenticated'; end if;
   select * into v_prod from public.products where code = p_product and active and amount_cents is not null;
   if not found then raise exception 'unknown_product'; end if;
-  if p_method not in ('vodafone_cash','instapay','paypal') then raise exception 'bad_method'; end if;
+  if p_method not in ('wallet','vodafone_cash','instapay','paypal') then raise exception 'bad_method'; end if;
   if char_length(btrim(coalesce(p_reference,''))) < 3 then raise exception 'bad_reference'; end if;
   if exists (select 1 from public.manual_payments where user_id = v_uid and product_code = p_product and status = 'pending') then
     raise exception 'already_pending';
@@ -93,3 +93,6 @@ begin
 end $$;
 revoke all on function public.admin_review_manual_payment(uuid, boolean) from public, anon;
 grant execute on function public.admin_review_manual_payment(uuid, boolean) to authenticated;
+
+-- Owner allowed to review payments (email of the site owner's login).
+insert into public.app_admins (email) values ('mo.ibrahim.0369@gmail.com') on conflict do nothing;
