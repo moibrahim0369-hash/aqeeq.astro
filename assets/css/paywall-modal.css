@@ -1,0 +1,43 @@
+/* عقيق أسترو بلس: النافذة المنبثقة */
+html.pwm-lock,html.pwm-lock body{overflow:hidden}
+.pwm{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:16px;background:rgba(44,37,35,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .2s}
+.pwm[hidden]{display:none}
+.pwm.is-open{opacity:1}
+.pwm-box{position:relative;width:min(540px,92vw);max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#FDFBF7;border:1px solid #E2D9CC;border-radius:20px;box-shadow:0 20px 50px rgba(74,21,33,.15);padding:28px 22px 22px;color:#2C2523;font-family:'Cairo','Tajawal',sans-serif;outline:0;transform:translateY(10px) scale(.98);transition:transform .22s}
+.pwm.is-open .pwm-box{transform:none}
+.pwm-x{position:absolute;top:10px;inset-inline-start:12px;width:38px;height:38px;border-radius:50%;border:1px solid #E2D9CC;background:#fff;color:#4A1521;font:400 1.6rem/1 sans-serif;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.pwm-x:hover,.pwm-x:focus-visible{border-color:#C5A059;box-shadow:0 6px 16px rgba(74,21,33,.12);outline:0}
+.pwm-head{text-align:center;margin-bottom:16px}
+.pwm-mark{display:inline-grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#F3EBDD;border:1px solid #C5A059;color:#B8913F}
+.pwm-mark svg{width:28px;height:28px}
+.pwm-head h2{margin:12px 0 6px;color:#4A1521;font:700 1.45rem/1.5 'Amiri','Cairo',serif}
+.pwm-ctx{margin:0 0 8px;display:inline-block;padding:4px 14px;border-radius:999px;background:#F3EBDD;border:1px solid #C5A059;color:#4A1521;font-weight:700;font-size:.88rem}
+.pwm-sub{margin:0;color:#2C2523;line-height:1.85;font-size:.94rem}
+.pwm-feats{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:10px}
+.pwm-feats li{display:flex;gap:10px;align-items:flex-start}
+.pwm-ck{flex:none;width:24px;height:24px;margin-top:2px;border-radius:50%;display:grid;place-items:center;background:#F3EBDD;border:1px solid #C5A059;color:#9E782F}
+.pwm-ck svg{width:14px;height:14px}
+.pwm-feats b{display:block;color:#4A1521;font-size:.95rem}
+.pwm-feats span:not(.pwm-ck){display:block;color:#2C2523;font-size:.86rem;line-height:1.75}
+.pwm-plans{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 10px}
+@media(max-width:560px){.pwm-plans{grid-template-columns:1fr}}
+.pwm-plan{position:relative;display:flex;gap:10px;align-items:flex-start;padding:16px 14px;border:1px solid #E2D9CC;border-radius:16px;background:#FDFBF7;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.pwm-plan:hover{border-color:#C5A059;box-shadow:0 8px 20px rgba(74,21,33,.09)}
+.pwm-plan input{position:absolute;opacity:0;pointer-events:none}
+.pwm-plan:focus-within{outline:3px solid rgba(197,160,89,.6);outline-offset:2px}
+.pwm-plan.is-best{background:#fff;border:2px solid #C5A059;padding-top:26px;margin-top:10px}
+.pwm-plan.is-on{box-shadow:0 8px 22px rgba(197,160,89,.28);border-color:#C5A059}
+.pwm-flag{position:absolute;top:-12px;inset-inline-end:14px;padding:3px 12px;border-radius:999px;background:#C5A059;color:#2C2523;font:700 .74rem/1.6 'Cairo',sans-serif;white-space:nowrap}
+.pwm-dot{flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;border:2px solid #C5A059;background:#fff;position:relative}
+.pwm-plan.is-on .pwm-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#4A1521}
+.pwm-pt b{display:block;color:#4A1521;font-size:1rem}
+.pwm-pt strong{display:block;margin:2px 0;font:700 1.5rem/1.4 'Amiri','Cairo',serif;color:#2C2523}
+.pwm-pt small{color:#4a3d38;font-size:.8rem;line-height:1.6}
+.pwm-once{margin:6px 0 16px;text-align:center;color:#2C2523;font-size:.88rem;line-height:1.8}
+.pwm-once b{color:#4A1521}
+.pwm-cta{display:flex;align-items:center;justify-content:center;min-height:52px;padding:12px 18px;border-radius:14px;background:#4A1521;border:1px solid #C5A059;color:#FDFBF7!important;font:700 1.02rem 'Cairo',sans-serif;text-decoration:none;text-align:center;transition:box-shadow .2s,transform .2s}
+.pwm-cta:hover,.pwm-cta:focus-visible{box-shadow:0 10px 24px rgba(74,21,33,.3);transform:translateY(-1px);outline:0}
+.pwm-safe{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px 0 0;color:#4a3d38;font-size:.78rem;line-height:1.7;text-align:center}
+.pwm-safe svg{width:14px;height:14px;flex:none;color:#9E782F}
+.lpa-badge.is-deep{cursor:pointer}
+@media(prefers-reduced-motion:reduce){.pwm,.pwm-box{transition:none}}
