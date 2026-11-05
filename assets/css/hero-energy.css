@@ -77,3 +77,31 @@
   #home.aqh .aqh-duo #aqh-energy .dbn-headline{font-size:.82rem}
   #home.aqh .aqh-duo .aqh-article,#home.aqh .aqh-duo .aqh-article-skel{flex-basis:calc((100% - 20px)/3)!important;min-width:0}
 }
+/* موبايل: سطر واحد بكروت أصغر */
+@media (max-width:760px){
+  #home.aqh .aqh-duo{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)!important;gap:8px}
+  #home.aqh .aqh-duo #aqh-energy{border-radius:14px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-stage{height:178px;min-height:0}
+  #home.aqh .aqh-duo #aqh-energy .dbn-slide{flex-direction:column!important;justify-content:center;align-items:center;text-align:center;padding:10px 8px 36px!important;gap:6px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-s1-moon{width:44px;flex:0 0 44px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-s2-moon{width:50px;flex:0 0 50px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-s1-main{align-items:center;gap:4px}
+  #home.aqh .aqh-duo #aqh-energy .dbn-title{font-size:.9rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-headline{font-size:.68rem;line-height:1.5;-webkit-line-clamp:3}
+  #home.aqh .aqh-duo #aqh-energy .dbn-cta{min-height:26px;padding:0 10px;font-size:.68rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-cta svg{display:none}
+  #home.aqh .aqh-duo #aqh-energy .dbn-big{font-size:.95rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-moonlist strong{font-size:.68rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-theme-lg,#home.aqh .aqh-duo #aqh-energy .dbn-quote4{font-size:.7rem;-webkit-line-clamp:4}
+  #home.aqh .aqh-duo #aqh-energy .dbn-dn{font-size:1.6rem}
+  #home.aqh .aqh-duo #aqh-energy .dbn-units{display:none}
+  #home.aqh .aqh-duo #aqh-energy .dbn-arr{display:none}
+  #home.aqh .aqh-duo #aqh-energy .dbn-ctrl{bottom:6px;transform:scale(.8)}
+  #home.aqh .aqh-duo .aqh-articles{padding:8px;border-radius:14px}
+  #home.aqh .aqh-duo .aqh-articles-head h2{font-size:.95rem}
+  #home.aqh .aqh-duo .aqh-all{font-size:.65rem}
+  #home.aqh .aqh-duo .aqh-track{gap:6px}
+  #home.aqh .aqh-duo .aqh-article,#home.aqh .aqh-duo .aqh-article-skel{flex-basis:78%!important;min-width:0;padding:4px 4px 6px}
+  #home.aqh .aqh-duo .aqh-article time{display:none}
+  #home.aqh .aqh-duo .aqh-article h3{font-size:.7rem;line-height:1.45}
+}
