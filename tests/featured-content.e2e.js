@@ -57,7 +57,7 @@ let pass=0,fail=0; const ok=(n,c,x)=>{ (c?pass++:fail++); console.log((c?'PASS '
  await p.click('.fc-chip[data-cat="الكل"]'); await p.waitForTimeout(300);
  // open every card, check, back
  const slugs=await p.evaluate(()=>FeaturedContent.all().map(a=>a.slug));
- ok('11 slugs', slugs.length===11);
+ ok('17 slugs', slugs.length===17);
  // position restore
  await p.evaluate(()=>{document.getElementById('featured-content').scrollTop=500});
  const before=await p.evaluate(()=>document.getElementById('featured-content').scrollTop);

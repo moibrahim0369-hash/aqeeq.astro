@@ -28,6 +28,44 @@
     d.querySelector('[data-nv-edit]').addEventListener('click', function () { var b = document.getElementById('btn-edit-chart'); if (b) b.click(); });
   }
 
+
+  /* الشاكرات: تقابل تقليدي رمزي (مدرسة واحدة من عدة مدارس). لا نسب ولا درجات؛ نعرض ما تحمله الخريطة فقط. */
+  var SN = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+  var CH = [
+    { n: 'الجذر', s: 'Muladhara', pet: 4, signs: [9, 10], pl: ['saturn'] },
+    { n: 'العجز', s: 'Svadhisthana', pet: 6, signs: [8, 11], pl: ['jupiter'] },
+    { n: 'الضفيرة الشمسية', s: 'Manipura', pet: 10, signs: [0, 7], pl: ['mars'] },
+    { n: 'القلب', s: 'Anahata', pet: 12, signs: [1, 6], pl: ['venus'] },
+    { n: 'الحلق', s: 'Vishuddha', pet: 16, signs: [2, 5], pl: ['mercury'] },
+    { n: 'العين الثالثة', s: 'Ajna', pet: 2, signs: [3, 4], pl: ['sun', 'moon'] },
+    { n: 'التاج', s: 'Sahasrara', pet: 12, signs: [], pl: [] }
+  ];
+  function petals(n) {
+    var o = '<svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="9" fill="none" stroke="currentColor" stroke-width="1.4"/>';
+    for (var i = 0; i < n; i++) { var a = 360 / n * i; o += '<ellipse cx="30" cy="12" rx="3" ry="7" transform="rotate(' + a + ' 30 30)" fill="none" stroke="currentColor" stroke-width=".9" opacity=".7"/>'; }
+    return o + '</svg>';
+  }
+  function chakras(S) {
+    if (root.querySelector('.nv-chakra')) return;
+    var ctx = (window.AqeeqChartContext && window.AqeeqChartContext.getNatal && window.AqeeqChartContext.getNatal()) || S || {};
+    var bodies = (ctx.ch && ctx.ch.bodies) || []; if (!bodies.length) return;
+    var by = {}; bodies.forEach(function (b) { by[b.key] = b; });
+    var personal = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn'];
+    var cards = CH.map(function (c) {
+      var rows = '';
+      c.pl.forEach(function (k) { var b = by[k]; if (b) rows += '<li><small>كوكب المركز</small><b>' + PL[k] + ' في ' + SN[b.sign] + (b.retro ? ' (متراجع)' : '') + '</b></li>'; });
+      var inSigns = personal.filter(function (k) { return by[k] && c.signs.indexOf(by[k].sign) > -1 && c.pl.indexOf(k) < 0; }).map(function (k) { return PL[k]; });
+      if (c.signs.length) rows += '<li><small>أبراج المركز: ' + c.signs.map(function (i) { return SN[i]; }).join(' و') + '</small><b>' + (inSigns.length ? 'فيها: ' + inSigns.join('، ') : 'لا كواكب شخصية أخرى فيها') + '</b></li>';
+      else rows += '<li><small>لا يرتبط عادة ببرج أو كوكب محدد</small><b>مركز تأملي</b></li>';
+      return '<li class="nv-ch"><span class="nv-ch-ic">' + petals(c.pet) + '</span><div><h4>' + c.n + '</h4><ul>' + rows + '</ul></div></li>';
+    }).join('');
+    var L = window.AqeeqContentLinks, l = L && L.find('chakra-planets');
+    var h = '<section class="nv-chakra" aria-labelledby="nv-ch-h"><h3 id="nv-ch-h">الشاكرات والكواكب في خريطتك</h3>' +
+      '<p class="nv-ch-note">تقابل رمزي من إحدى مدارس الفلك الباطني، وتختلف فيه المدارس. لا نعرض نسبًا أو تقييمًا، فقط ما تحمله خريطتك في كل مركز.</p>' +
+      '<ul class="nv-ch-grid">' + cards + '</ul>' + (l ? '<a class="nv-ch-more" href="' + L.hrefFrom(l, 'chart') + '">' + esc(l.label) + '</a>' : '') + '</section>';
+    root.insertAdjacentHTML('beforeend', h);
+  }
+
   function related(S) {
     var L = window.AqeeqContentLinks; if (!L || root.querySelector('.nv-related')) return;
     var ctx = (window.AqeeqChartContext && window.AqeeqChartContext.getNatal && window.AqeeqChartContext.getNatal()) || S || {};
@@ -78,7 +116,7 @@
     var p = document.getElementById('wd-panel'); if (p) { var old = p.querySelector('.nv-pl-link'); if (old) old.remove(); setTimeout(function () { if (!p.hidden) addLink(p); }, 0); }
   }, true);
 
-  function apply(S) { try { document.querySelectorAll('body > #wd-panel, body > .nv-ov').forEach(function (n) { n.remove(); }); document.documentElement.classList.remove('nv-lock'); crumb(); birth(S); related(S); sheet(); } catch (e) { if (window.console) console.warn('natal-view', e); } }
+  function apply(S) { try { document.querySelectorAll('body > #wd-panel, body > .nv-ov').forEach(function (n) { n.remove(); }); document.documentElement.classList.remove('nv-lock'); crumb(); birth(S); chakras(S); related(S); sheet(); } catch (e) { if (window.console) console.warn('natal-view', e); } }
   window.addEventListener('aqeeq:chart-rendered', function (e) { setTimeout(function () { apply(e.detail); }, 0); });
   if (root.querySelector('.wheel-wrap')) apply(null);
 })();
