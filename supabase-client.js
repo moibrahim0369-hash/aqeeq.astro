@@ -16,6 +16,9 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   },
 });
 
+// يعرض نفس العميل للسكربتات التقليدية (الهيدر، المحتوى المميز، استكمال الملف الشخصي) دون إنشاء عميل ثانٍ.
+globalThis.aqeeqSupabase = supabase;
+
 // تسجيل الحضور اليومي (Streak).
 // الهوية تُؤخذ من جلسة الدخول داخل قاعدة البيانات، فلا نرسل user id أبداً.
 // يرجع { status: 'success' | 'already_checked_in', ... } أو null عند الفشل / عدم تسجيل الدخول.
