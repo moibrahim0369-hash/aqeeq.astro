@@ -53,6 +53,7 @@
 <link rel="stylesheet" href="assets/css/daily-banner.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/natal-view.css?v=20261106b">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
+<link rel="stylesheet" href="assets/css/hero-v3.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
@@ -117,13 +118,14 @@
 
   <!-- 2. HERO -->
   <div class="aqh-hero">
-    <img class="aqh-rock" src="assets/images/home/rock.svg" alt="" aria-hidden="true" decoding="async">
+    <img class="hv-statue" src="assets/images/home/hero-statue.jpg" alt="" aria-hidden="true" decoding="async" fetchpriority="high">
+    <img class="hv-agate" src="assets/images/home/agate-slice.svg" alt="" aria-hidden="true" decoding="async">
     <div class="aqh-wrap aqh-hero-grid">
       <div class="aqh-hero-copy" id="home-intro">
         <span class="aqh-rule" aria-hidden="true"></span>
         <p class="aqh-eyebrow aqh-seq" style="--seq:0ms;--dur:400ms" data-i18n-ar="أكثر من توقعات .. رحلة إلى ذاتك" data-i18n-en="More than predictions .. a journey to yourself">أكثر من توقعات .. رحلة إلى ذاتك</p>
-        <h1 class="hero-title aqh-title aqh-seq" style="--seq:100ms;--dur:600ms" data-i18n-ar="اكتشف خريطتك الداخلية" data-i18n-en="Discover Your Inner Map">اكتشف خريطتك الداخلية</h1>
-        <p class="lead intro-p hero-sub aqh-lead aqh-seq" style="--seq:180ms;--dur:500ms" data-i18n-ar="في AQEQ ASTRO نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر." data-i18n-en="At AQEQ ASTRO we believe astrology is not just knowing the future, but a deep tool to understand yourself, uncover your potential, and live in greater harmony.">في <span dir="ltr">AQEQ ASTRO</span> نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر.</p>
+        <h1 id="hv-title" class="hero-title aqh-title aqh-seq" style="--seq:100ms;--dur:600ms" data-i18n-ar="اكتشف خريطتك الداخلية" data-i18n-en="Discover Your Inner Map">اكتشف خريطتك الداخلية</h1>
+        <p id="hv-lead" class="lead intro-p hero-sub aqh-lead aqh-seq" style="--seq:180ms;--dur:500ms" data-i18n-ar="في AQEQ ASTRO نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر." data-i18n-en="At AQEQ ASTRO we believe astrology is not just knowing the future, but a deep tool to understand yourself, uncover your potential, and live in greater harmony.">في <span dir="ltr">AQEQ ASTRO</span> نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر.</p>
         <div class="aq-hero-cta-row aqh-cta-row aqh-seq" style="--seq:260ms;--dur:450ms">
           <a href="#chart" class="aq-btn-burgundy aqh-cta" data-i18n-ar="ابدأ رحلتك" data-i18n-en="Begin Your Journey"><span>ابدأ رحلتك</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
         </div>
@@ -156,9 +158,19 @@
               <img class="aqh-agate" src="assets/images/home/agate-eye.svg" alt="" aria-hidden="true" decoding="async">
             </div>
           </div>
-          <p class="aq-wheel-caption wheel-hint aqh-wheel-hint" data-i18n-ar="انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته" data-i18n-en="Select any zodiac sign on the celestial wheel to view its reading">انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته</p>
-          <a class="aqh-sky-link" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>استكشف السماء الآن</span></a>
         </div>
+        <aside class="hv-live" id="hv-live" aria-label="السماء الآن">
+          <p class="hv-live-k"><i class="hv-dot" aria-hidden="true"></i><span>الخريطة الحية الآن</span></p>
+          <p class="hv-live-t">اضغط على برجك في الدائرة لتعرف كيف تؤثر السماء في قراراتك وإيقاعك اليومي.</p>
+          <ul class="hv-rows" id="hv-rows"></ul>
+          <div class="hv-nav">
+            <button type="button" class="hv-arr" data-hv="prev" aria-label="المواقع السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+            <span class="hv-dots" id="hv-dots" aria-hidden="true"></span>
+            <button type="button" class="hv-arr" data-hv="next" aria-label="المواقع التالية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          </div>
+          <a class="hv-watch" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>راقب السماء الآن</span></a>
+          <p class="hv-foot-note">البيوت محسوبة لسماء الشرق الأوسط (القاهرة).</p>
+        </aside>
         <aside class="aqh-tagline" aria-hidden="true"><span>النجوم</span><span>لغة أخرى</span><span>لنفهم بها أنفسنا</span><i></i><em dir="ltr">A DEEPER YOU<br>A BRIGHTER TOMORROW</em></aside>
       </div>
     </div>
@@ -4588,6 +4600,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/natal-view.js?v=20261106b" defer></script>
 <script src="assets/js/life-path-view.js?v=20261105a" defer></script>
 <script src="assets/js/daily-banner.js?v=20261106a" defer></script>
+<script src="assets/js/hero-v3.js?v=20261106a" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
