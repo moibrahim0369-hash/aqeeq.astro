@@ -1,5 +1,5 @@
 /* ===== صفحة مصفوفة القدر: تصميم فاخر (بصري فقط، بدون أي تغيير في المنطق) ===== */
-#matrix.mxp{position:relative;overflow:hidden;--b:#642B3C;--bd:#4a1a2b;--g:#B99A5B;--gl:#D9B979;--ink:#29252A;
+#matrix.mxp{--b:#642B3C;--bd:#4a1a2b;--g:#B99A5B;--gl:#D9B979;--ink:#29252A;
   background:
    radial-gradient(900px 420px at 50% 0%,rgba(217,185,121,.22),transparent 70%),
    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .25 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
@@ -81,3 +81,4 @@
 #matrix.mxp .mxp-head .eyebrow,#matrix.mxp .mxp-head h2,#matrix.mxp .mxp-head .intro{text-align:center!important}
 #matrix.mxp .aq-section-quick-links{flex-wrap:nowrap!important}
 @media(min-width:1025px){#matrix.mxp .mxp-head{max-width:600px;margin-right:5%!important;margin-left:auto!important}}
+#matrix.mxp.sec:target{overflow-x:hidden!important}
