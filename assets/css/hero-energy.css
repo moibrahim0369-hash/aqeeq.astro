@@ -105,3 +105,30 @@
   #home.aqh .aqh-skyb #aqh-energy .dbn-ctrl{bottom:4px;transform:scale(.7)}
   #home.aqh .aqh-skyb #aqh-energy .dbn-dot{width:6px;height:6px}
 }
+/* موبايل: تناسق البانر العلوي ومحتوى مميز */
+@media (max-width:760px){
+  #home.aqh .hw-statue{aspect-ratio:16/9;max-height:190px;margin:0 0 10px!important}
+  #home.aqh .aqh-hero{padding-bottom:22px!important}
+  #home.aqh .aqh-hero .aqh-title{font-size:clamp(1.7rem,7vw,2.1rem)!important}
+  #home.aqh .aqh-hero .aqh-lead{font-size:.9rem!important;line-height:1.75!important}
+  #home.aqh .aqh-hero .aqh-cta-row{margin-top:2px}
+  #home.aqh .aqh-band{padding:14px 0!important}
+  #home.aqh .aqh-band-arts .aqh-articles{padding:12px;border-radius:16px}
+  #home.aqh .aqh-band-arts .aqh-articles-head{margin-bottom:8px}
+  #home.aqh .aqh-band-arts .aqh-articles-head h2{font-size:1.15rem}
+  #home.aqh .aqh-band-arts .aqh-all{font-size:.78rem}
+  #home.aqh .aqh-band-arts .aqh-track{gap:10px}
+  #home.aqh .aqh-band-arts .aqh-article,#home.aqh .aqh-band-arts .aqh-article-skel{flex:0 0 62%!important;min-width:0;padding:6px 6px 10px;gap:5px;border-radius:14px}
+  #home.aqh .aqh-band-arts .aqh-article img{aspect-ratio:16/9;border-radius:10px}
+  #home.aqh .aqh-band-arts .aqh-article time{font-size:.68rem;line-height:1.4;padding-inline:4px}
+  #home.aqh .aqh-band-arts .aqh-article h3{font-size:.9rem;line-height:1.55;margin:0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  #home.aqh .aqh-band-arts .aqh-article p{display:none}
+  #home.aqh .aqh-band-arts .aqh-article .aqh-go{width:30px;height:30px;margin:2px 4px 0}
+  #home.aqh .aqh-band-arts .aqh-article .aqh-go svg{width:14px;height:14px}
+  #home.aqh .aqh-band-arts .aqh-car-btn{width:34px;height:34px}
+}
+@media (max-width:760px){
+  #home.aqh .aqh-hero{padding-bottom:44px!important}
+  #home.aqh .aqh-band-arts .aqh-article{padding-bottom:44px!important;position:relative}
+  #home.aqh .aqh-band-arts .aqh-article .aqh-go{position:absolute!important;bottom:8px;inset-inline-start:10px;margin:0}
+}
