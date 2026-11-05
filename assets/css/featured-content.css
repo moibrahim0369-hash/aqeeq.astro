@@ -230,3 +230,49 @@
 .fc-legal-box h2{font-family:Amiri,serif;color:#642B3C;margin:0 0 10px}
 .fc-legal-box p{color:#29252A;line-height:1.9;margin:0 0 18px}
 @media(max-width:800px){.fc-news{grid-template-columns:1fr;padding:24px 18px;text-align:center}.fc-news-ico{margin:0 auto}.fc-foot-in{justify-content:center;text-align:center}}
+
+/* rows layout + rotating banner + brand newsletter */
+.fc-rows{display:flex;flex-direction:column;gap:54px;margin-top:8px}
+.fc-row-h{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--fc-line)}
+.fc-row-t{display:flex;align-items:center;gap:14px;background:none;border:0;padding:0;color:inherit;font:inherit;text-align:start}
+button.fc-row-t{cursor:pointer}
+.fc-row-ic{width:46px;height:46px;border-radius:50%;border:1px solid var(--fc-gold);color:var(--fc-wine);display:grid;place-items:center;flex:none;background:#FBF8F2;transition:background .22s,color .22s}
+.fc-row-ic svg{width:22px;height:22px}
+button.fc-row-t:hover .fc-row-ic{background:var(--fc-wine);color:var(--fc-gold)}
+.fc-row-t h2{font-family:'Amiri',serif;font-weight:700;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.2;color:var(--fc-wine);margin:0}
+.fc-row-t small{display:block;margin-top:2px;color:var(--fc-mute);font-size:.82rem}
+.fc-row-all{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 18px;border-radius:999px;border:1px solid var(--fc-gold);background:transparent;color:var(--fc-wine);font:600 .88rem 'IBM Plex Sans Arabic',sans-serif;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.fc-row-all svg{width:16px;height:16px}
+.fc-row-all:hover{background:var(--fc-wine);color:#fff;border-color:var(--fc-wine)}
+.fc-row-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.fc-row-grid[data-n="3"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fc-row-grid[data-n="2"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fc-row-grid[data-n="1"]{grid-template-columns:minmax(0,1fr)}
+.fc-row-grid .fc-card h3{font-size:1.08rem;line-height:1.5}
+.fc-row-grid .fc-card p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.fc-row-grid[data-n="2"] .fc-card-img{aspect-ratio:21/8}
+.fc-row .fc-pager{margin-top:22px}
+@media(max-width:960px){.fc-row-grid,.fc-row-grid[data-n="3"]{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.fc-row-grid,.fc-row-grid[data-n="3"],.fc-row-grid[data-n="2"]{grid-template-columns:1fr}.fc-rows{gap:40px}.fc-row-all span{display:none}.fc-row-all{padding:0 12px}}
+.fc-pick-txt,.fc-pick-img{transition:opacity .28s ease}
+.fc-pick.is-swap .fc-pick-txt,.fc-pick.is-swap .fc-pick-img{opacity:0}
+.fc-pick-dots{display:flex;gap:2px;margin-top:6px}
+.fc-pick-dots button{width:24px;height:24px;border:0;padding:0;background:none;cursor:pointer;position:relative}
+.fc-pick-dots button::before{content:"";position:absolute;inset:8px;border-radius:50%;background:rgba(217,185,121,.4);transition:inset .2s,background .2s}
+.fc-pick-dots button[aria-current="true"]::before{inset:6px;background:#D9B979}
+.fc-pick-dots button:focus-visible{outline:2px solid #D9B979;outline-offset:1px;border-radius:50%}
+@media(prefers-reduced-motion:reduce){.fc-pick-txt,.fc-pick-img{transition:none}}
+/* newsletter: brand panel */
+.fc-news{position:relative;overflow:hidden;background:linear-gradient(115deg,#351B28 0%,#4a2335 55%,#642B3C 100%);border:0;color:#F7F3EC;padding:38px 44px}
+.fc-news>:not(.fc-news-art){position:relative;z-index:1}
+.fc-news-art{position:absolute;color:#D9B979;pointer-events:none}
+.fc-news-art.a1{width:250px;height:250px;inset-inline-start:-70px;top:50%;transform:translateY(-50%);opacity:.3}
+.fc-news-art.a2{width:230px;height:230px;inset-inline-end:-40px;top:50%;transform:translateY(-50%);opacity:.34}
+.fc-news-ico{border-color:#D9B979;color:#D9B979;background:rgba(255,255,255,.04)}
+.fc-news-txt h2{color:#fff}
+.fc-news-txt p{color:#E0D2D2}
+.fc-news-form input{border-color:rgba(217,185,121,.5);background:rgba(255,255,255,.96)}
+.fc-news-form .fc-news-btn{background:#D9B979;color:#351B28}
+.fc-news-form .fc-news-btn:hover{background:#e6cb93}
+.fc-news-msg.is-ok{color:#9fdcb4}.fc-news-msg.is-err{color:#f6b4ae}
+@media(max-width:800px){.fc-news{padding:30px 18px}.fc-news-art.a1{inset-inline-start:-110px;opacity:.2}.fc-news-art.a2{inset-inline-end:-90px;opacity:.22}}

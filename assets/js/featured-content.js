@@ -28,6 +28,24 @@
     'العلاقات': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5"/></svg>',
     'الرموز': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17M3.5 12h17"/></svg>'
   };
+  TICO['الأبراج'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3.5v6.3M12 14.2v6.3M4.6 7.8l5.5 3.2M13.9 13l5.5 3.2M4.6 16.2l5.5-3.2M13.9 11l5.5-3.2"/></svg>';
+  TICO['الكواكب'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><path d="M3.2 15.5c-1-2.4 3.7-6.2 10.4-8.4 4.3-1.4 7.4-1.4 7.8-.3.5 1.3-2.4 3.9-6.8 5.8"/></svg>';
+  TICO['أحدث'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
+  var GROUPS = [
+    { k: 'الأبراج', cats: ['الأبراج'], ico: 'الأبراج' },
+    { k: 'الكواكب والقمر والعبور', cats: ['الكواكب', 'القمر', 'العبور', 'التراجعات'], ico: 'الكواكب' },
+    { k: 'مسار الحياة ومصفوفة القدر', cats: ['مسار الحياة', 'مصفوفة القدر'], ico: 'مسار الحياة' },
+    { k: 'العلاقات والرموز', cats: ['العلاقات', 'الرموز'], ico: 'العلاقات' }
+  ];
+  function groupOf(k) { return GROUPS.filter(function (g) { return g.k === k; })[0]; }
+  function newest() { return (DATA || []).slice().sort(function (a, b) { return a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : 0; }); }
+  function rowDefs() {
+    var all = newest(), used = {}, out = [];
+    GROUPS.forEach(function (g) { var it = all.filter(function (a) { return g.cats.indexOf(a.category) > -1; }); g.cats.forEach(function (c) { used[c] = 1; }); if (it.length) out.push({ k: g.k, ico: g.ico, items: it }); });
+    var extra = {}; all.forEach(function (a) { if (!used[a.category]) (extra[a.category] = extra[a.category] || []).push(a); });
+    Object.keys(extra).forEach(function (c) { out.push({ k: c, ico: 'الفلك', items: extra[c] }); });
+    return out;
+  }
   function topic(a) {
     var main = ASTRO.indexOf(a.category) > -1 ? 'الفلك' : a.category, sub = main !== a.category ? a.category : '';
     return '<span class="fc-topic" data-topic="' + esc(main) + '"><span class="fc-topic-i">' + (TICO[main] || TICO['الفلك']) + '</span><b>' + esc(main) + '</b>' + (sub ? '<i aria-hidden="true"></i><span>' + esc(sub) + '</span>' : '') + '</span>';
@@ -39,11 +57,11 @@
   function load() {
     loadState = 'loading'; render();
     return fetch(SRC, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
-      DATA = (j && j.articles) || []; offline = false; loadState = 'ready';
+      DATA = (j && j.articles) || []; offline = false; loadState = 'ready'; poolInit();
       try { localStorage.setItem(CK, JSON.stringify(DATA)); } catch (e) { }
     }).catch(function () {
       var c = null; try { c = JSON.parse(localStorage.getItem(CK) || 'null'); } catch (e) { }
-      if (c && c.length) { DATA = c; offline = true; loadState = 'ready'; } else loadState = 'error';
+      if (c && c.length) { DATA = c; offline = true; loadState = 'ready'; poolInit(); } else loadState = 'error';
     }).then(function () { render(); route(); window.dispatchEvent(new CustomEvent('fc:ready')); });
   }
   window.FeaturedContent = { all: function () { return DATA || []; }, get: bySlug, href: function (s) { return '#featured-content/' + s; } };
@@ -52,7 +70,8 @@
   function filtered() {
     var q = norm(st.q);
     return (DATA || []).filter(function (a) {
-      if (st.cat !== 'الكل' && a.category !== st.cat) return false;
+      var g = groupOf(st.cat);
+      if (st.cat !== 'الكل' && (g ? g.cats.indexOf(a.category) < 0 : a.category !== st.cat)) return false;
       if (!q) return true;
       return norm([a.title, a.category, a.excerpt, (a.keywords || []).join(' ')].join(' ')).indexOf(q) > -1;
     });
@@ -63,12 +82,42 @@
       '<div class="fc-card-b">' + topic(a) + '<h3><a href="#featured-content/' + esc(a.slug) + '">' + esc(a.title) + '</a></h3><p>' + esc(a.excerpt) + '</p>' +
       '<div class="fc-card-f"><div class="fc-meta">' + meta(a) + '</div><span class="fc-go" aria-hidden="true">' + ARROW + '</span></div></div></article>';
   }
+  /* ---------- البانر المتجدد: يبدأ بمقال مختلف مع كل تحميل ويتبدل كل 30 ثانية ---------- */
+  var POOL = [], pickI = 0, pickT = null, PICK_MS = 30000;
+  function poolInit() {
+    POOL = newest().slice(0, 6); var n = POOL.length; if (!n) return;
+    var last = -1; try { last = Number(sessionStorage.getItem('aq-fc-pick')); } catch (e) { }
+    var i = Math.floor(Math.random() * n); if (n > 1 && i === last) i = (i + 1 + Math.floor(Math.random() * (n - 1))) % n;
+    pickI = i; try { sessionStorage.setItem('aq-fc-pick', String(i)); } catch (e) { }
+  }
+  function pickInner(a) {
+    var dots = POOL.length > 1 ? '<div class="fc-pick-dots" role="group" aria-label="مقالات البانر">' + POOL.map(function (x, k) { return '<button type="button" data-pick="' + k + '" aria-label="' + esc(x.title) + '"' + (k === pickI ? ' aria-current="true"' : '') + '></button>'; }).join('') + '</div>' : '';
+    return '<div class="fc-pick-txt"><span class="fc-flag">اختيار المحررين</span><h2 id="fc-pick-t">' + esc(a.title) + '</h2><p>' + esc(a.excerpt) + '</p>' +
+      '<div class="fc-pick-row"><a class="fc-btn" href="#featured-content/' + esc(a.slug) + '"><span>اقرأ المحتوى</span>' + ARROW + '</a><div class="fc-meta">' + meta(a) + '</div></div>' + dots + '</div>' +
+      '<div class="fc-pick-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div>';
+  }
   function pick() {
-    var a = (DATA || []).filter(function (x) { return x.featured; })[0] || (DATA || [])[0]; if (!a) return '';
-    return '<section class="fc-pick" aria-labelledby="fc-pick-t" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '">' +
-      '<div class="fc-pick-txt"><span class="fc-flag">اختيار المحررين</span><h2 id="fc-pick-t">' + esc(a.title) + '</h2><p>' + esc(a.excerpt) + '</p>' +
-      '<div class="fc-pick-row"><a class="fc-btn" href="#featured-content/' + esc(a.slug) + '"><span>اقرأ المحتوى</span>' + ARROW + '</a><div class="fc-meta">' + meta(a) + '</div></div></div>' +
-      '<div class="fc-pick-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div></section>';
+    var a = POOL[pickI]; if (!a) return '';
+    return '<section class="fc-pick" aria-labelledby="fc-pick-t" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '">' + pickInner(a) + '</section>';
+  }
+  function setPick(i, instant) {
+    var el = $('.fc-pick'); if (!el || !POOL.length) return;
+    pickI = (i + POOL.length) % POOL.length; try { sessionStorage.setItem('aq-fc-pick', String(pickI)); } catch (e) { }
+    var a = POOL[pickI];
+    function apply() {
+      el.setAttribute('data-content-id', a.id); el.setAttribute('data-slug', a.slug); el.setAttribute('data-category', a.category);
+      el.innerHTML = pickInner(a); el.classList.remove('is-swap');
+    }
+    if (reduce || instant) { apply(); return; }
+    el.classList.add('is-swap'); setTimeout(apply, 280);
+  }
+  function startPick() {
+    clearInterval(pickT); if (POOL.length < 2 || reduce) return;
+    pickT = setInterval(function () {
+      var el = $('.fc-pick');
+      if (!el || el.hidden || document.hidden || !list.getClientRects().length || !list.matches(".fc-open,:target") || el.matches(':hover') || el.contains(document.activeElement)) return;
+      setPick(pickI + 1);
+    }, PICK_MS);
   }
 
   /* ---------- رسم القائمة ---------- */
@@ -92,11 +141,18 @@
     h += '<div class="fc-list" id="fc-grid"></div><nav class="fc-pager" id="fc-more" aria-label="ترقيم الصفحات"></nav>';
     h += '<div class="fc-back-cta"><a class="fc-btn" href="#home"><span>العودة إلى الرئيسية</span>' + ARROW + '</a></div>';
     h += newsletterHTML();
-    host.innerHTML = h; paintGrid(); bindTools(); bindNewsletter();
+    host.innerHTML = h; paintGrid(); bindTools(); bindNewsletter(); if (showPick) startPick(); else clearInterval(pickT);
   }
   var MAIL = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg>';
+  function newsArt() {
+    var t = '', k, a, c, sn;
+    for (k = 0; k < 72; k++) { a = k * 5 * Math.PI / 180; c = Math.cos(a); sn = Math.sin(a); var r2 = k % 6 === 0 ? 80 : 86; t += '<path d="M' + (100 + 92 * c).toFixed(1) + ' ' + (100 + 92 * sn).toFixed(1) + 'L' + (100 + r2 * c).toFixed(1) + ' ' + (100 + r2 * sn).toFixed(1) + '"/>'; }
+    var star = function (x, y, z) { return '<path d="M' + x + ' ' + (y - z) + 'Q' + x + ' ' + y + ' ' + (x + z) + ' ' + y + 'Q' + x + ' ' + y + ' ' + x + ' ' + (y + z) + 'Q' + x + ' ' + y + ' ' + (x - z) + ' ' + y + 'Q' + x + ' ' + y + ' ' + x + ' ' + (y - z) + 'Z" fill="currentColor"/>'; };
+    return '<svg class="fc-news-art a1" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width=".8" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="74"/><circle cx="100" cy="100" r="52"/><circle cx="100" cy="100" r="3" fill="currentColor"/>' + t + '<path d="M100 4v192M4 100h192M32 32l136 136M168 32L32 168" stroke-width=".5"/></svg>' +
+      '<svg class="fc-news-art a2" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width=".9" aria-hidden="true" focusable="false"><path d="M118 28a72 72 0 1 0 0 144 58 58 0 1 1 0-144z"/><path d="M118 40a60 60 0 1 0 0 120 48 48 0 1 1 0-120z" stroke-width=".4"/>' + star(158, 52, 7) + star(176, 108, 4) + star(150, 150, 5) + star(40, 36, 3) + '</svg>';
+  }
   function newsletterHTML() {
-    return '<section class="fc-news" aria-labelledby="fc-news-t"><div class="fc-news-ico">' + MAIL + '</div>' +
+    return '<section class="fc-news" aria-labelledby="fc-news-t">' + newsArt() + '<div class="fc-news-ico">' + MAIL + '</div>' +
       '<div class="fc-news-txt"><h2 id="fc-news-t">انضم إلى نشرة عقيق</h2><p>مقالات مختارة وقراءات فلكية تصلك على بريدك، بلا إزعاج.</p></div>' +
       '<form class="fc-news-form" id="fc-news-form" novalidate><label for="fc-news-email" class="fc-sr">البريد الإلكتروني</label>' +
       '<input id="fc-news-email" type="email" inputmode="email" autocomplete="email" dir="ltr" placeholder="بريدك الإلكتروني" maxlength="254" required>' +
@@ -138,10 +194,44 @@
     });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var o = document.getElementById('fc-legal'); if (o) o.remove(); } });
   })();
+  var PGP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+  var PGN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
+  function pagerHTML(pages) {
+    if (pages < 2) return '';
+    var h = '<button type="button" class="fc-pg" data-pg="' + (st.page - 1) + '" aria-label="الصفحة السابقة"' + (st.page === 1 ? ' disabled' : '') + '>' + PGP + '</button>';
+    for (var k = 1; k <= pages; k++) h += '<button type="button" class="fc-pg' + (k === st.page ? ' on' : '') + '" data-pg="' + k + '"' + (k === st.page ? ' aria-current="page"' : '') + ' aria-label="الصفحة ' + k + '">' + k + '</button>';
+    return h + '<button type="button" class="fc-pg" data-pg="' + (st.page + 1) + '" aria-label="الصفحة التالية"' + (st.page === pages ? ' disabled' : '') + '>' + PGN + '</button>';
+  }
+  function countText(n) { return n + (n === 1 ? ' مادة' : n === 2 ? ' مادتان' : n <= 10 ? ' مواد' : ' مادة'); }
+  function rowHead(k, ico, n, all) {
+    return '<header class="fc-row-h"><' + (all ? 'button type="button" data-fc-group="' + esc(k) + '"' : 'div') + ' class="fc-row-t"><span class="fc-row-ic">' + (TICO[ico] || TICO['الفلك']) + '</span><span><h2>' + esc(k) + '</h2><small>' + countText(n) + '</small></span></' + (all ? 'button' : 'div') + '>' +
+      (all ? '<button type="button" class="fc-row-all" data-fc-group="' + esc(k) + '"><span>عرض كل المقالات</span>' + ARROW + '</button>' : '') + '</header>';
+  }
+  function paintRows(g, pg, cnt) {
+    var all = newest(), pages = Math.max(1, Math.ceil(all.length / PAGE)); if (st.page > pages) st.page = pages;
+    var latest = all.slice((st.page - 1) * PAGE, st.page * PAGE);
+    cnt.textContent = countText(all.length);
+    pg.innerHTML = '';
+    if (g.getAttribute('data-mode') === 'rows' && $('#fc-latest-grid')) {
+      $('#fc-latest-grid').innerHTML = latest.map(function (a, i) { return card(a, i); }).join('');
+      $('#fc-more-l').innerHTML = pagerHTML(pages); return;
+    }
+    g.setAttribute('data-mode', 'rows'); g.className = 'fc-rows';
+    var h = '<section class="fc-row is-latest" id="fc-latest" aria-label="أحدث ما نُشر">' + rowHead('أحدث ما نُشر', 'أحدث', all.length, false) +
+      '<div class="fc-row-grid" id="fc-latest-grid" data-n="4">' + latest.map(function (a, i) { return card(a, i); }).join('') + '</div>' +
+      '<nav class="fc-pager" id="fc-more-l" aria-label="ترقيم الصفحات">' + pagerHTML(pages) + '</nav></section>';
+    rowDefs().forEach(function (r) {
+      var it = r.items.slice(0, 4);
+      h += '<section class="fc-row" aria-label="' + esc(r.k) + '">' + rowHead(r.k, r.ico, r.items.length, true) +
+        '<div class="fc-row-grid" data-n="' + it.length + '">' + it.map(function (a, i) { return card(a, i); }).join('') + '</div></section>';
+    });
+    g.innerHTML = h;
+  }
   function paintGrid() {
     var all = filtered(), g = $('#fc-grid'), pg = $('#fc-more'), cnt = $('#fc-count'); if (!g) return;
-    var pick0 = (DATA || []).filter(function (x) { return x.featured; })[0] || (DATA || [])[0];
-    var items = (st.cat === 'الكل' && !st.q && pick0) ? all.filter(function (x) { return x.slug !== pick0.slug; }) : all;
+    if (st.cat === 'الكل' && !st.q) { paintRows(g, pg, cnt); return; }
+    g.removeAttribute('data-mode'); g.className = 'fc-list';
+    var items = all;
     if (!all.length) {
       g.innerHTML = '<div class="fc-msg"><p>' + (st.q ? 'لا توجد نتائج مطابقة لـ «' + esc(st.q) + '». جرّب كلمة أخرى أو امسح البحث.' : 'لا يوجد محتوى في هذا التصنيف حاليًا. استكشف التصنيفات الأخرى أو عد لاحقًا.') + '</p>' +
         '<button type="button" class="fc-ghost" data-fc-reset><span>عرض كل المحتوى</span></button></div>';
@@ -149,14 +239,8 @@
     }
     var pages = Math.max(1, Math.ceil(items.length / PAGE)); if (st.page > pages) st.page = pages;
     g.innerHTML = items.slice((st.page - 1) * PAGE, st.page * PAGE).map(function (a, i) { return card(a, i); }).join('');
-    cnt.textContent = all.length + (all.length === 1 ? ' مادة' : all.length === 2 ? ' مادتان' : all.length <= 10 ? ' مواد' : ' مادة');
-    var P = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
-    var N = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
-    if (pages < 2) { pg.innerHTML = ''; return; }
-    var h = '<button type="button" class="fc-pg" data-pg="' + (st.page - 1) + '" aria-label="الصفحة السابقة"' + (st.page === 1 ? ' disabled' : '') + '>' + P + '</button>';
-    for (var k = 1; k <= pages; k++) h += '<button type="button" class="fc-pg' + (k === st.page ? ' on' : '') + '" data-pg="' + k + '"' + (k === st.page ? ' aria-current="page"' : '') + ' aria-label="الصفحة ' + k + '">' + k + '</button>';
-    h += '<button type="button" class="fc-pg" data-pg="' + (st.page + 1) + '" aria-label="الصفحة التالية"' + (st.page === pages ? ' disabled' : '') + '>' + N + '</button>';
-    pg.innerHTML = h;
+    cnt.textContent = (groupOf(st.cat) ? st.cat + ' · ' : '') + countText(all.length);
+    pg.innerHTML = pagerHTML(pages);
   }
   function bindTools() {
     var f = $('#fc-filters'), q = $('#fc-q'), t;
@@ -182,12 +266,14 @@
   }
   function showPickFor() { var p = $('.fc-pick'), want = st.cat === 'الكل' && !st.q; if (p) p.hidden = !want; else if (want) render(); paintGrid(); }
   function save() { try { sessionStorage.setItem('aq-fc-state', JSON.stringify({ c: st.cat, q: st.q })); } catch (e) { } }
-  (function restore() { try { var s = JSON.parse(sessionStorage.getItem('aq-fc-state') || 'null'); if (s) { st.cat = CATS.indexOf(s.c) > -1 ? s.c : 'الكل'; st.q = s.q || ''; } } catch (e) { } })();
+  (function restore() { try { var s = JSON.parse(sessionStorage.getItem('aq-fc-state') || 'null'); if (s) { st.cat = (CATS.indexOf(s.c) > -1 || groupOf(s.c)) ? s.c : 'الكل'; st.q = s.q || ''; } } catch (e) { } })();
 
   list.addEventListener('click', function (e) {
     if (e.target.closest('[data-fc-retry]')) { load(); return; }
-    var pgb = e.target.closest('[data-pg]'); if (pgb && !pgb.disabled) { st.page = Number(pgb.getAttribute('data-pg')); paintGrid(); var gg = $('#fc-grid'); if (gg) gg.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); return; }
+    var pgb = e.target.closest('[data-pg]'); if (pgb && !pgb.disabled) { st.page = Number(pgb.getAttribute('data-pg')); paintGrid(); var gg = $('#fc-latest') || $('#fc-grid'); if (gg) gg.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); return; }
     if (e.target.closest('[data-fc-reset]') || e.target.closest('[data-fc-clear]')) { st.q = ''; st.cat = e.target.closest('[data-fc-reset]') ? 'الكل' : st.cat; st.page = 1; save(); render(); return; }
+    var gb = e.target.closest('[data-fc-group]'); if (gb) { st.cat = gb.getAttribute('data-fc-group'); st.page = 1; st.q = ''; save(); render(); var tl = $('.fc-tools'); if (tl) tl.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); return; }
+    var pk = e.target.closest('[data-pick]'); if (pk) { setPick(Number(pk.getAttribute('data-pick'))); startPick(); return; }
     var a = e.target.closest('a[href^="#featured-content/"]'); if (a) internal++;
   });
 
