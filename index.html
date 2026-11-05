@@ -51,6 +51,7 @@
 <link rel="stylesheet" href="assets/css/aqeeq-design-system.css?v=3.15">
 <link rel="stylesheet" href="assets/css/home-v2.css?v=20261105h">
 <link rel="stylesheet" href="assets/css/daily-banner.css?v=20261105h">
+<link rel="stylesheet" href="assets/css/featured-content.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 <style>
 #manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
@@ -89,7 +90,7 @@
           <a role="menuitem" href="#account">حسابي <span class="aq-saved-count">0</span></a>
         </div>
       </div>
-      <a href="#aqh-articles"><span data-i18n-ar="المقالات" data-i18n-en="Articles">المقالات</span></a>
+      <a href="#featured-content"><span data-i18n-ar="محتوى مميز" data-i18n-en="Featured Content">محتوى مميز</span></a>
       <a href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز"><span data-i18n-ar="مكتبة الرموز" data-i18n-en="Symbols Library">مكتبة الرموز</span></a>
     </nav>
     <div class="hd-act aq-header-tools aqh-tools">
@@ -102,7 +103,7 @@
     </div>
   </div>
 <nav class="aqh-menu" id="aqh-menu" aria-label="قائمة الموقع" hidden>
-    <a href="#home">الرئيسية</a><a href="#chart">الخريطة الفلكية</a><a href="#lifepath">مسار الحياة</a><a href="#matrix">مصفوفة القدر</a><a href="#compat">التوافق</a><a href="#tarot-chamber">التاروت</a><a href="#sky">السماء</a><a href="#aqh-articles">المقالات</a><a href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز">مكتبة الرموز</a><a href="#account">حسابي</a>
+    <a href="#home">الرئيسية</a><a href="#chart">الخريطة الفلكية</a><a href="#lifepath">مسار الحياة</a><a href="#matrix">مصفوفة القدر</a><a href="#compat">التوافق</a><a href="#tarot-chamber">التاروت</a><a href="#sky">السماء</a><a href="#featured-content">محتوى مميز</a><a href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز">مكتبة الرموز</a><a href="#account">حسابي</a>
   </nav>
 </header>
 
@@ -182,7 +183,7 @@
     <div class="aqh-tools aqh-stagger" id="aqh-tools">
       <a class="aqh-tool aqh-reveal" href="#compat"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 40C8 28 6 18 10 13c4-5 11-3 14 2 3-5 10-7 14-2 4 5 2 15-14 27Z"/><path d="M17 18c3-3 8-1 10 3" stroke-opacity=".6"/></svg></span><b>التوافق</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
       <a class="aqh-tool aqh-reveal" href="#tarot-chamber"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="20" height="30" rx="2.5" transform="rotate(-10 16 24)"/><rect x="22" y="9" width="20" height="30" rx="2.5" transform="rotate(8 32 24)"/><path d="M32 18l3 5-3 5-3-5Z"/></svg></span><b>التاروت</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-      <a class="aqh-tool aqh-reveal" href="#aqh-articles"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 6h18l8 8v28H12Z"/><path d="M29 6v9h9M18 22h14M18 28h14M18 34h9" stroke-linecap="round"/></svg></span><b>المقالات</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+      <a class="aqh-tool aqh-reveal" href="#featured-content"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 6h18l8 8v28H12Z"/><path d="M29 6v9h9M18 22h14M18 28h14M18 34h9" stroke-linecap="round"/></svg></span><b>محتوى مميز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
       <a class="aqh-tool aqh-reveal" href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 12C19 8 11 8 5 11v27c6-3 14-3 19 1 5-4 13-4 19-1V11c-6-3-14-3-19 1ZM24 12v27"/></svg></span><b>مكتبة الرموز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
     </div>
     <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
@@ -216,7 +217,7 @@
                 <li><small>برج القمر</small><strong data-f="moonSign">—</strong></li>
                 <li><small>المرحلة القمرية</small><strong data-f="phaseName">—</strong></li>
               </ul>
-              <a class="aqh-outline-btn dbn-cta" href="#sky"><span>عرض التحليل الكامل</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+              <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-energy-today" data-content-type="sky-event" data-slug="energy"><span>عرض التحليل الكامل</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
             </div>
             <div class="dbn-s1-moon"><svg class="dbn-moonsvg" data-moon viewBox="0 0 120 120" role="img" aria-label="شكل القمر الحالي"></svg></div>
             <div class="dbn-s1-date"><span data-f="wd">—</span><strong data-f="dateShort">—</strong><span data-f="year">—</span></div>
@@ -242,7 +243,7 @@
               <h2 class="dbn-title"><span>رسالة اليوم</span></h2>
               <p class="dbn-theme dbn-theme-lg" data-f="theme">—</p>
               <small class="dbn-src-note" data-f="themeSrc"></small>
-              <a class="aqh-outline-btn dbn-cta" href="#sky"><span>تفاصيل اليوم</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+              <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-moon" data-content-type="moon" data-slug="moon"><span>تفاصيل اليوم</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
             </div>
             <div class="dbn-s3-date"><span class="dbn-s3-tag">إشارتك اليومية</span><span data-f="wd">—</span><strong class="dbn-dn" data-f="dayNum">—</strong><span data-f="monthYear">—</span></div>
           </section>
@@ -259,7 +260,7 @@
                 <div class="dbn-unit"><small>الكوكب المؤثر <i>فلك</i></small><strong data-f="ruler">—</strong></div>
               </div>
               <div class="dbn-planets" data-f="planets" aria-label="مواقع الكواكب"></div>
-              <a class="aqh-outline-btn dbn-cta" href="#sky"><span>عرض التحليل الكامل</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+              <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-daily-summary" data-content-type="sky-event" data-slug="summary"><span>عرض التحليل الكامل</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
             </div>
           </section>
         </div>
@@ -277,13 +278,13 @@
       </article>
 
       <section class="aqh-articles" id="aqh-articles" aria-labelledby="aqh-articles-h">
-        <div class="aqh-articles-head aqh-reveal"><h2 id="aqh-articles-h">مقالات مختارة</h2><a class="aqh-all" href="#aqh-articles" id="aqh-all-articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>عرض جميع المقالات</span></a></div>
+        <div class="aqh-articles-head aqh-reveal"><h2 id="aqh-articles-h">محتوى مميز</h2><a class="aqh-all" href="#featured-content" id="aqh-all-articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>عرض كل المحتوى المميز</span></a></div>
         <div class="aqh-carousel" data-state="loading">
-          <button type="button" class="aqh-car-btn aqh-car-prev" aria-label="المقالات السابقة" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
-          <div class="aqh-track" id="aqh-track" tabindex="0" role="region" aria-label="مقالات مختارة — مرّر أفقيًا">
+          <button type="button" class="aqh-car-btn aqh-car-prev" aria-label="المحتوى السابق" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+          <div class="aqh-track" id="aqh-track" tabindex="0" role="region" aria-label="محتوى مميز — مرّر أفقيًا">
             <div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div>
           </div>
-          <button type="button" class="aqh-car-btn aqh-car-next" aria-label="المقالات التالية" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+          <button type="button" class="aqh-car-btn aqh-car-next" aria-label="المحتوى التالي" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
           <div class="aqh-car-msg" role="status" hidden></div>
         </div>
       </section>
@@ -888,6 +889,16 @@
 <article class="rd"><h3>٥. الخلاصة ونسبة التوافق <small>تفاصيل القراءة</small></h3><p>الخلاصة المفيدة لازم تجمع بين نقاط القوة، وأهم تحدٍّ، والخطوات اللي يقدر الطرفان يجرّبوها. أي نسبة توافق تُعرض في الأداة لازم تتفهم كمؤشر رمزي داخل طريقة الحساب، مش قياس علمي ولا ضمان لنجاح العلاقة.</p><ul><li>اتفقوا على طريقة هادئة لإدارة الخلاف قبل ما يحصل.</li><li>وضحوا احتياجاتكم بدل الاعتماد على التلميحات والتوقعات.</li><li>راجعوا تقسيم المسؤوليات والوقت والمال بشكل عادل ومنتظم.</li></ul></article>
 <p class="notice-soft">ملاحظة: دي معاينة محتوى للأقسام الخمسة. ما أضفتش نسبة رقمية مصطنعة أو ادعاءً بأن الأداة تحسب توافقًا كاملًا من غير ربطها بحسابات فعلية.</p>
 </div></div></section>
+<section class="fc-page" id="featured-content" aria-labelledby="fc-title" dir="rtl" lang="ar">
+  <div class="fc-wrap">
+    <nav aria-label="مسار التنقل"><ol class="fc-crumb"><li><a href="#home">الرئيسية</a></li><li aria-current="page">محتوى مميز</li></ol></nav>
+    <header class="fc-hero"><h1 id="fc-title">محتوى مميز</h1><p>قراءات وأفكار لفهم السماء والرموز والذات</p></header>
+    <div id="fc-list-body" aria-live="polite"></div>
+  </div>
+</section>
+<section class="fc-page fc-reader" id="featured-reader" aria-label="قراءة المحتوى" dir="rtl" lang="ar">
+  <div class="fc-wrap"><div id="fc-reader-body"></div></div>
+</section>
 <!-- Hidden: relationship lab section removed (single compatibility tool) --><footer class="foot">
 <div class="wrap">
 <div class="brand"><svg aria-hidden="true" viewbox="0 0 40 40"><path d="M20 4A16 16 0 0 0 20 36A20 20 0 0 1 20 4Z" fill="#C5A46D"></path></svg><span data-brand=""></span></div>
@@ -4543,7 +4554,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="account-profile.js" type="module"></script>
 <script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
-<script src="assets/js/home-v2.js?v=20261104b" defer></script>
+<script src="assets/js/home-v2.js?v=20261105a" defer></script>
+<script src="assets/js/featured-content.js?v=20261105a" defer></script>
 <script src="assets/js/daily-banner.js?v=20261105f" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>

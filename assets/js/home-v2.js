@@ -293,23 +293,23 @@
   (function articles() {
     var carousel = $('.aqh-carousel'), track = $('#aqh-track'); if (!carousel || !track) return;
     var prev = $('.aqh-car-prev'), next = $('.aqh-car-next'), msg = $('.aqh-car-msg');
-    var SRC = 'assets/data/home/articles.json';
+    var SRC = 'assets/data/featured-content.json';
     function state(s, text) { carousel.setAttribute('data-state', s); msg.hidden = !text; if (text) msg.innerHTML = text; }
     function fmt(a) { var parts = []; if (a.category) parts.push(esc(a.category)); if (a.date) parts.push(esc(a.date)); if (a.readMinutes) parts.push(a.readMinutes + ' دقائق قراءة'); return parts.join(' · '); }
     function card(a) {
-      return '<article class="aqh-article"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || '') + '" loading="lazy" decoding="async" draggable="false">' +
-        '<div class="aqh-article-txt"><time>' + fmt(a) + '</time><h3><a class="aqh-article-link" href="#article-' + esc(a.slug) + '" data-slug="' + esc(a.slug) + '">' + esc(a.title) + '</a></h3><p>' + esc(a.intro) + '</p></div>' +
+      return '<article class="aqh-article" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || '') + '" loading="lazy" decoding="async" draggable="false">' +
+        '<div class="aqh-article-txt"><time>' + fmt(a) + '</time><h3><a class="aqh-article-link" href="#featured-content/' + esc(a.slug) + '" data-slug="' + esc(a.slug) + '">' + esc(a.title) + '</a></h3><p>' + esc(a.intro) + '</p></div>' +
         '<span class="aqh-go" aria-hidden="true">' + ARROW + '</span></article>';
     }
     function load() {
       state('loading'); track.innerHTML = '<div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div>';
       fetch(SRC, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
-        ARTICLES = (j && j.articles) || [];
-        if (!ARTICLES.length) { track.innerHTML = ''; state('empty', '<p>لا توجد مقالات حاليًا.</p>'); return; }
+        ARTICLES = ((j && j.articles) || []).map(function (a) { return { id: a.id, slug: a.slug, category: a.category, title: a.title, date: a.publishedAt, readMinutes: a.readingTime, image: a.coverImage, imageAlt: a.coverAlt, intro: a.excerpt, featured: a.featured }; });
+        if (!ARTICLES.length) { track.innerHTML = ''; state('empty', '<p>لا يوجد محتوى حاليًا.</p>'); return; }
         track.innerHTML = ARTICLES.map(card).join(''); state('ready');
         $$('.aqh-article', track).forEach(function (el, k) { el.classList.add('aqh-reveal'); el.style.setProperty('--aqh-d', (k * 70) + 'ms'); if (window.__aqhObserve) window.__aqhObserve(el); });
-        restorePos(); update(); openFromHash();
-      }).catch(function () { track.innerHTML = ''; state('error', '<p>تعذر تحميل المقالات. حاول مرة أخرى.</p><button type="button" class="aqh-outline-btn" data-car-retry><span>إعادة المحاولة</span></button>'); var r = $('[data-car-retry]', msg); if (r) r.addEventListener('click', load); });
+        restorePos(); update();
+      }).catch(function () { track.innerHTML = ''; state('error', '<p>تعذر تحميل المحتوى حاليًا. حاول مرة أخرى.</p><button type="button" class="aqh-outline-btn" data-car-retry><span>إعادة المحاولة</span></button>'); var r = $('[data-car-retry]', msg); if (r) r.addEventListener('click', load); });
     }
     /* --- سحب بالماوس + أسهم + تلميح الحافة --- */
     function update() {
@@ -328,55 +328,10 @@
     window.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - drag.x; if (Math.abs(dx) > 6) moved = true; if (moved) track.scrollLeft = drag.s - dx; });
     window.addEventListener('pointerup', function () { if (!drag) return; drag = null; track.classList.remove('is-drag'); });
     track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; return; } var l = e.target.closest('.aqh-article-link'); if (l) { e.preventDefault(); openArticle(l.getAttribute('data-slug'), l); } else { var c = e.target.closest('.aqh-article'); if (c) { var a = $('.aqh-article-link', c); e.preventDefault(); openArticle(a.getAttribute('data-slug'), a); } } }, true);
-    $('#aqh-all-articles').addEventListener('click', function (e) { e.preventDefault(); track.scrollTo({ left: 0, behavior: reduce ? 'auto' : 'smooth' }); var s = $('#aqh-articles'); if (s) s.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); });
     document.addEventListener('keydown', function (e) { if (e.target === track && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); step(e.key === 'ArrowLeft' ? -1 : 1); } });
 
-    /* --- معاينة المقال --- */
-    function savedKey() { return 'aqh-saved:' + (session.user ? session.user.id : 'guest'); }
-    function getSaved() { try { return JSON.parse(localStorage.getItem(savedKey()) || '[]'); } catch (e) { return []; } }
-    function setSaved(list) { try { localStorage.setItem(savedKey(), JSON.stringify(list)); } catch (e) { } }
-    function articleUrl(slug) { return location.origin + location.pathname + '#article-' + slug; }
-    function openArticle(slug, opener) {
-      var a = ARTICLES.filter(function (x) { return x.slug === slug; })[0];
-      if (!a) { toast('المقال غير متاح حاليًا'); return; }
-      var saved = getSaved().indexOf(slug) > -1;
-      var box = openLayer({
-        kind: 'modal', titleId: 'aqh-art-title', opener: opener, onClose: function () { if (location.hash === '#article-' + slug) history.replaceState(null, '', location.pathname + location.search + '#aqh-articles'); },
-        html: closeBtn + '<img class="aqh-art-img" src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || '') + '"><div class="aqh-art-body"><p class="aqh-kicker">' + esc(a.category) + '</p><h3 id="aqh-art-title">' + esc(a.title) + '</h3><p class="aqh-art-meta">' + fmt({ date: a.date, readMinutes: a.readMinutes }) + '</p><p class="aqh-art-intro">' + esc(a.intro) + '</p><div class="aqh-art-full" id="aqh-art-full" hidden>' + a.body + '</div>' +
-          '<div class="aqh-art-actions"><button type="button" class="aqh-solid" data-art-full aria-expanded="false" aria-controls="aqh-art-full"><span>اقرأ المقال كاملًا</span>' + ARROW + '</button>' +
-          '<button type="button" class="aqh-ghost" data-art-save aria-pressed="' + saved + '"><svg viewBox="0 0 24 24" fill="' + (saved ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4Z"/></svg><span>' + (saved ? 'محفوظ' : 'حفظ المقال') + '</span></button>' +
-          '<span class="aqh-share-wrap"><button type="button" class="aqh-ghost" data-art-share aria-haspopup="menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.4"/><circle cx="17" cy="6" r="2.4"/><circle cx="17" cy="18" r="2.4"/><path d="m8.2 11 6.6-3.8M8.2 13l6.6 3.8"/></svg><span>مشاركة</span></button><span class="aqh-share-menu" role="menu" hidden><button type="button" role="menuitem" data-copy>نسخ الرابط</button></span></span>' +
-          '<span class="aqh-saved-label" role="status" hidden>تم الحفظ</span></div></div>'
-      });
-      history.replaceState(null, '', '#article-' + slug);
-      var full = $('#aqh-art-full', box), fb = $('[data-art-full]', box);
-      fb.addEventListener('click', function () { var open = full.hidden; full.hidden = !open; fb.setAttribute('aria-expanded', open ? 'true' : 'false'); $('span', fb).textContent = open ? 'إخفاء النص الكامل' : 'اقرأ المقال كاملًا'; if (open) { full.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }); } });
-      var sb = $('[data-art-save]', box), lab = $('.aqh-saved-label', box);
-      sb.addEventListener('click', function () {
-        if (!(session.known && session.user)) { askLogin(opener); return; }
-        var list = getSaved(), k = list.indexOf(slug), on = k === -1;
-        if (on) list.push(slug); else list.splice(k, 1); setSaved(list);
-        sb.setAttribute('aria-pressed', on); $('svg', sb).setAttribute('fill', on ? 'currentColor' : 'none'); $('span', sb).textContent = on ? 'محفوظ' : 'حفظ المقال';
-        if (on) { lab.hidden = false; setTimeout(function () { lab.hidden = true; }, 1800); }
-      });
-      var sh = $('[data-art-share]', box), menu = $('.aqh-share-menu', box);
-      sh.addEventListener('click', function () {
-        if (navigator.share && !canHover) { navigator.share({ title: a.title, url: articleUrl(slug) }).catch(function () { }); return; }
-        var o = menu.hidden; menu.hidden = !o; sh.setAttribute('aria-expanded', o ? 'true' : 'false');
-      });
-      $('[data-copy]', box).addEventListener('click', function () {
-        var u = articleUrl(slug), done = function () { menu.hidden = true; sh.setAttribute('aria-expanded', 'false'); toast('تم نسخ الرابط', 2200); };
-        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(u).then(done, done); else { var ta = mk('textarea'); ta.value = u; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) { } ta.remove(); done(); }
-      });
-    }
-    function askLogin(opener) {
-      var back = ARTICLES.length && current ? current.opener : opener;
-      openLayer({
-        kind: 'small', titleId: 'aqh-login-title', opener: back,
-        html: closeBtn + '<div class="aqh-small-body"><h3 id="aqh-login-title">سجّل الدخول لحفظ المقال</h3><p>حفظ المقالات متاح لأصحاب الحساب حتى لا تفقد ما حفظته. يمكنك متابعة القراءة دون تسجيل.</p><div class="aqh-panel-actions"><a class="aqh-solid" href="#account" data-layer-close><span>تسجيل الدخول</span>' + ARROW + '</a><button type="button" class="aqh-ghost" data-layer-close><span>لاحقًا</span></button></div></div>'
-      });
-    }
-    function openFromHash() { var m = /^#article-([\w-]+)$/.exec(location.hash); if (m) openArticle(m[1], $('#aqh-articles')); }
+    /* --- فتح المحتوى: صفحة القراءة الداخلية (featured-content.js) --- */
+    function openArticle(slug) { location.hash = '#featured-content/' + slug; }
     window.AqhArticles = { all: function () { return ARTICLES; }, open: openArticle };
     load();
   })();
@@ -396,17 +351,17 @@
     btn.addEventListener('click', function () {
       var box = openLayer({
         kind: 'search', titleId: 'aqh-search-title', opener: btn,
-        html: closeBtn + '<div class="aqh-search-body"><h3 id="aqh-search-title">بحث في الموقع</h3><label class="aqh-sr" for="aqh-q">ابحث عن قسم أو مقال</label><input id="aqh-q" type="search" placeholder="مثال: مصفوفة، تاروت، ترانزيت…" autocomplete="off"><ul class="aqh-results" role="listbox" aria-label="النتائج"></ul></div>'
+        html: closeBtn + '<div class="aqh-search-body"><h3 id="aqh-search-title">بحث في الموقع</h3><label class="aqh-sr" for="aqh-q">ابحث عن قسم أو محتوى</label><input id="aqh-q" type="search" placeholder="مثال: مصفوفة، تاروت، ترانزيت…" autocomplete="off"><ul class="aqh-results" role="listbox" aria-label="النتائج"></ul></div>'
       });
       var inp = $('#aqh-q', box), ul = $('.aqh-results', box);
       function items(q) {
         var n = norm(q), all = DEST.map(function (d) { return { t: d.t, sub: 'قسم', h: d.h, hay: norm(d.t + ' ' + d.k) }; })
-          .concat(ARTICLES.map(function (a) { return { t: a.title, sub: 'مقال', slug: a.slug, hay: norm(a.title + ' ' + a.category + ' ' + a.intro) }; }));
+          .concat(ARTICLES.map(function (a) { return { t: a.title, sub: 'محتوى مميز', slug: a.slug, hay: norm(a.title + ' ' + a.category + ' ' + a.intro) }; }));
         return n ? all.filter(function (x) { return x.hay.indexOf(n) > -1; }) : all.slice(0, 7);
       }
       function render() {
         var r = items(inp.value);
-        ul.innerHTML = r.length ? r.map(function (x, k) { return '<li role="option"><a href="' + (x.h || '#article-' + x.slug) + '" data-k="' + k + '"><b>' + esc(x.t) + '</b><small>' + x.sub + '</small></a></li>'; }).join('') : '<li class="aqh-empty">لا نتائج مطابقة.</li>';
+        ul.innerHTML = r.length ? r.map(function (x, k) { return '<li role="option"><a href="' + (x.h || '#featured-content/' + x.slug) + '" data-k="' + k + '"><b>' + esc(x.t) + '</b><small>' + x.sub + '</small></a></li>'; }).join('') : '<li class="aqh-empty">لا نتائج مطابقة.</li>';
         $$('a', ul).forEach(function (a, k) { a.addEventListener('click', function (e) { var x = r[k]; if (x.slug) { e.preventDefault(); closeLayer(true); window.AqhArticles.open(x.slug, btn); } else closeLayer(true); }); });
       }
       inp.addEventListener('input', render);
