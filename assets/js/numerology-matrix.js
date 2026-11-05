@@ -394,6 +394,7 @@
 
   /* زر التفسير الكامل للذيل (نص Gemini الحرفي)؛ يبحث بالشفرة ثم بعكسها، وإلا يعرض «غير متوفر». */
   function addTailFullButton(item, code) {
+    return; // لا أزرار تشريح فرعية: النص كامل داخل الأكورديون
     const slot = item.querySelector('[data-slot="detailed"]');
     if (!slot || slot.querySelector('.aqm-kt-full')) return;
     const box = document.createElement('div');
@@ -626,7 +627,18 @@
   }
   function gInline(t) { return escapeHtml(t).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>'); }
   /* تحويل كتل المصدر إلى HTML بنفس الترتيب والعناوين؛ hl = مفتاح موضع يُميَّز داخل المرجع. */
+  /* حذف قسم «أداة عقيق أسترو للتقييم والتأمل الذاتي» (العنوان + السؤال + جدول الخيارات) من المراجع */
+  function stripAssessment(blocks) {
+    const out = []; let skip = false;
+    (blocks || []).forEach(b => {
+      if (/تقييم والتأمل الذاتي/.test(b.t) && b.k !== 'tr') { skip = true; return; }
+      if (skip && (b.k === 'q' || b.k === 'tr')) return;
+      skip = false; out.push(b);
+    });
+    return out;
+  }
   function geminiBlocksHtml(blocks, hl) {
+    blocks = stripAssessment(blocks);
     let out = '', mode = '', liOpen = false;
     const close = () => {
       if (mode === 'ul') { out += (liOpen ? '</li>' : '') + '</ul>'; liOpen = false; }
@@ -659,9 +671,8 @@
     close();
     return out;
   }
-  function geminiMissing(label, n, why) {
-    return `<div class="aqm-g-missing" data-g-missing="true"><strong>التفسير غير متوفر في المصدر حاليًا</strong><p>${escapeHtml(why || `لا يوجد في ملفات Gemini تفسير مخصص لموضع «${label}» مع الرقم ${n}.`)}</p><p class="aqm-g-note">لم نعوّض هذا النقص بنص مولَّد؛ سُجّل في قائمة النواقص.</p></div>`;
-  }
+  /* لا تُعرض أي رسالة «غير متوفر» للمستخدم: الموضع بلا نص يُترك صامتًا (والمحتوى مكتمل للـ22 أركانا). */
+  function geminiMissing() { return ''; }
   function arcanaName(n) {
     const eng = window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter;
     try { return eng.getArcanaInfo(n).name; } catch (e) { return ''; }
@@ -789,7 +800,8 @@
     });
   }
 
-  function buildMasterLibrary(item) {
+  function buildMasterLibrary() { return ''; }
+  function _unusedMasterLibrary(item) {
     const uniqueArcana = [...new Map((item.arcanaList || [])
       .filter(a => Number.isInteger(Number(a.num)) && Number(a.num) >= 1 && Number(a.num) <= 22)
       .map(a => [Number(a.num), a])).values()];
@@ -819,12 +831,23 @@
     purposes: { pos: 'mission', n: P => P.purposes.social },
     karmic_tail: { pos: 'tail_entry', n: P => P.anchors.D, tail: true }
   };
-  const GEMINI_ACC_MISSING = {
-    personal: 'طاقة اليوم (A)', talents: 'المواهب والروح (B)', father_line: 'خط الأب', mother_line: 'خط الأم',
-    ancestral_programs: 'الأجداد والبرامج العائلية', children_line: 'خط الأطفال', transformation_rx: 'مفاتيح التحول',
-    composite_programs: 'البرامج المركبة'
-  };
+  /* مواضع Gemini تُعرض داخل الأكورديون نفسه: نص الموضع ثم القراءة الأعمق (المرجع) بدون أزرار أو نوافذ.
+     وأي قسم آخر يُملأ من sections/*.json عند الفتح (SECTION_SPECS). */
   function accGrid(item) { return item.querySelector('.aqm-content-grid'); }
+  /* ذيل بلا نص مطابق في الأرشيف: نص متّسق مركّب من بيانات الأركانا الثلاث نفسها (جذر الطفولة، السيناريو، مسار التحرير). */
+  function composeTailFallback(triad) {
+    const loader = window.AqeeqMatrix;
+    const nums = triad.map(Number);
+    return Promise.all(nums.map(n => loader.arcana(n).catch(() => null))).then(list => {
+      const c = list.map(a => (a && a.core) || {});
+      const nm = (i) => arcanaName(nums[i]);
+      const para = t => t ? `<p class="aqm-g-p">${escapeHtml(t)}</p>` : '';
+      return `<h5 class="aqm-g-h1">جذر الطفولة والبرمجة الأسرية</h5>${para(c[0].psychology)}${para(c[0].shadowTrap)}`
+        + `<h5 class="aqm-g-h1">السيناريو الكارمي القديم ونمط التكرار</h5>${para(c[1].shadowTrap)}${para(c[2].shadowTrap)}`
+        + `<h5 class="aqm-g-h1">مسار التحرير وفك العقدة</h5>${para(c[1].growth)}${para(c[2].growth)}`
+        + `<p class="aqm-g-p"><em>${escapeHtml(nm(0))} · ${escapeHtml(nm(1))} · ${escapeHtml(nm(2))}</em></p>`;
+    });
+  }
   function applyGeminiAccordions(host, P, tailTriad) {
     const loader = window.AqeeqMatrix;
     host.querySelectorAll('.aqm-acc-item').forEach(item => {
@@ -832,11 +855,6 @@
       const grid = accGrid(item);
       const lib = item.querySelector('.aqm-master-library');
       if (lib) lib.remove();
-      if (GEMINI_ACC_MISSING[sid]) {
-        item.dataset.secState = 'done'; item.dataset.ktState = 'done'; item.dataset.secSource = 'gemini-missing';
-        if (grid) grid.innerHTML = `<section class="aqm-slot aqm-slot-gemini" data-slot="gemini">${geminiMissing(GEMINI_ACC_MISSING[sid], '', `قسم «${GEMINI_ACC_MISSING[sid]}» لا يملك تفسيرًا في مصدر Gemini المعتمد حاليًا.`)}</section>`;
-        return;
-      }
       const cfg = GEMINI_ACC[sid];
       if (!cfg || !grid) return;
       item.dataset.secState = 'done'; item.dataset.ktState = 'done'; item.dataset.secSource = 'gemini';
@@ -845,18 +863,21 @@
       grid.innerHTML = '<section class="aqm-slot aqm-slot-gemini" data-slot="gemini"><p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p></section>';
       const parts = [loader.gemini(n)];
       if (cfg.tail) parts.push(loader.geminiTails());
-      Promise.all(parts).then(([d, td]) => {
+      Promise.all(parts).then(async ([d, td]) => {
         const unit = d && d.positions && d.positions[cfg.pos];
         let html = `<h4 class="aqm-slot-title">${escapeHtml(label)} · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4>`;
-        html += unit ? geminiBlocksHtml(unit.blocks) : geminiMissing(label, n, d ? undefined : `لا يوجد ملف مواضع Gemini للرقم ${n}.`);   // ترويسة الملف تظهر في نافذة الموضع فقط (لا تتكرر بين الأقسام)
+        if (unit) html += geminiBlocksHtml(unit.blocks);
         if (cfg.tail) {
           const code = tailTriad.map(Number).join('-'), rev = tailTriad.map(Number).reverse().join('-');
           const t = td.tails.find(x => x.code === code) || td.tails.find(x => x.code === rev);
-          html += t ? `<h4 class="aqm-slot-title aqm-g-tail-title">${gInline(t.title.replace(/^عقيق أسترو \|\s*/, ''))}</h4>${geminiBlocksHtml(t.blocks)}`
-                    : `<h4 class="aqm-slot-title aqm-g-tail-title">الذيل الكارمي ${escapeHtml(code)}</h4>${geminiMissing('الذيل الكارمي ' + code, '', `هذا الذيل (${code}) غير موجود في ملفات Gemini (المصدر يغطي 26 ذيلًا).`)}`;
+          html += `<h4 class="aqm-slot-title aqm-g-tail-title">${t ? gInline(t.title.replace(/^عقيق أسترو \|\s*/, '')) : 'الذيل الكارمي ' + escapeHtml(code)}</h4>`;
+          html += t ? geminiBlocksHtml(t.blocks) : await composeTailFallback(tailTriad).catch(() => '');
         }
-        const refBtn = d && d.reference ? `<div class="aqm-master-actions"><button type="button" class="aqm-master-open" data-aqm-ref="1" data-aqm-pos="${cfg.pos}" data-aqm-master-arcana="${n}" data-aqm-position="${sid}">المرجع التشريحي الكامل للطاقة ${n}</button></div>` : '';
-        grid.querySelector('[data-slot="gemini"]').innerHTML = html + refBtn;
+        const ref = d && d.reference && d.reference.blocks && d.reference.blocks.length ? d.reference : null;
+        if (ref) {
+          html += `<h4 class="aqm-slot-title aqm-g-deeper-title">قراءة أعمق للطاقة ${n}</h4>` + geminiBlocksHtml(ref.blocks, cfg.pos);
+        }
+        grid.querySelector('[data-slot="gemini"]').innerHTML = html;
       }).catch(() => {
         grid.querySelector('[data-slot="gemini"]').innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
       });
@@ -868,7 +889,7 @@
     const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}">${a.num} · ${a.name}</span>`).join(' ');
     // Pending Content: any of the five slots empty means the section is not complete textually
     const isPending = !slots || Object.values(slots).some(v => !String(v || '').trim());
-    const pendingHtml = isPending ? `<span class="aqm-pending-badge" data-pending="true">Pending Content</span>` : '';
+    const pendingHtml = '';
 
     return `
       <div class="aqm-acc-item${isPending ? ' is-pending' : ''}" id="aqm-sec-${id}" data-section-id="${id}" data-content-key="${contentKey}" data-pending="${isPending}"${item.ktRedirect ? ` data-kt-redirect="${item.ktRedirect}"` : ''}>
@@ -1582,7 +1603,6 @@
     host.innerHTML = html;
     host.hidden = false;
     host.dataset.aqmGender = gender || '';
-    bindExpandedReadings(host);
 
     // تحميل المحتوى عند فتح الأكورديون (الذيل الكارمي من karmic-tails.json)
     // ترتيب الأرشيف هو عكس ترتيب المحرك (D, D3, D2)، فنعكس الثلاثية قبل البحث.
@@ -1624,10 +1644,14 @@
       node.setAttribute('role', 'button');
       node.setAttribute('tabindex', '0');
       const act = () => {
-        host.querySelectorAll('.aqm-svg .aqm-node.is-active').forEach(n => n.classList.remove('is-active'));
-        node.classList.add('is-active');
-        node.closest('.aqm-svg')?.classList.add('has-focus');
-        openPositionModal(node);   // تفسير هذا الموضع مع هذا الرقم تحديدًا (position + arcana)
+        // لا نوافذ منبثقة: الضغط على العقدة يفتح قسمها داخل الأكورديون ويمرّر إليه
+        const sec = node.getAttribute('data-section');
+        const item = sec && host.querySelector('#aqm-sec-' + sec);
+        host.querySelectorAll('.aqm-acc-item.is-active').forEach(i => i.classList.remove('is-active'));
+        if (!item) return;
+        if (!item.classList.contains('open')) { item.classList.add('open'); item.querySelector('.aqm-acc-header')?.setAttribute('aria-expanded', 'true'); onAccOpen(item); }
+        item.classList.add('is-active');
+        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
       node.addEventListener('click', act);
       node.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); act(); } });
