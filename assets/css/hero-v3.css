@@ -1,0 +1,104 @@
+/* Hero v3: شريط عميق بتمثال فينوس + خريطة حية في المركز + حجر عقيق مساعد */
+#home.aqh .aqh-hero{min-height:0;background:radial-gradient(90% 120% at 78% 40%,#5a2c3c 0%,#40212f 38%,#2b1520 100%);color:#F7F3EC;overflow:hidden;padding:clamp(24px,2.6vw,38px) 0 clamp(54px,5vw,72px);isolation:isolate}
+#home.aqh .aqh-hero::before{content:"";position:absolute;inset:0;z-index:0;background:repeating-linear-gradient(115deg,rgba(217,185,121,.035) 0 1px,transparent 1px 26px),radial-gradient(60% 80% at 20% 100%,rgba(217,185,121,.14),transparent 70%);pointer-events:none}
+#home.aqh .hv-statue{position:absolute;z-index:0;left:0;right:auto;bottom:0;height:min(88%,400px);width:auto;max-width:42%;object-fit:contain;object-position:left bottom;pointer-events:none;opacity:.95;-webkit-mask-image:radial-gradient(ellipse 80% 90% at 28% 72%,#000 52%,transparent 100%);mask-image:radial-gradient(ellipse 80% 90% at 28% 72%,#000 52%,transparent 100%)}
+#home.aqh .hv-agate{position:absolute;z-index:0;right:clamp(-120px,-6vw,-48px);bottom:clamp(-70px,-4vw,-30px);width:clamp(150px,19vw,290px);height:auto;pointer-events:none;transform:rotate(-12deg);opacity:.96}
+#home.aqh .aqh-hero-grid{direction:ltr}
+#home.aqh .aqh-hero-grid>*{direction:rtl}
+/* النص */
+#home.aqh .aqh-hero-copy{justify-items:start;text-align:start;max-width:none;margin:0}
+#home.aqh .aqh-hero-copy>*{text-align:start!important;margin-inline:0}
+#home.aqh .aqh-rule{background:#D9B979}
+#home.aqh .aqh-eyebrow{color:#D9B979}
+#home.aqh .aqh-hero-copy{align-content:center;grid-auto-rows:min-content}
+#home.aqh section.hero h1.aqh-title,#home.aqh h1.hero-title.aqh-title{font-family:'Amiri','Noto Naskh Arabic',serif!important;font-weight:700!important;font-size:clamp(1.8rem,2.7vw,2.6rem)!important;line-height:1.3!important;color:#fff!important;white-space:normal!important;min-height:2.6em;display:flex;align-items:flex-end;margin:0!important;max-width:14ch!important;text-wrap:balance}
+#home.aqh .aqh-lead,#home.aqh p.lead.aqh-lead{color:#EFE6D8!important;opacity:1!important;max-width:30em;min-height:4.6em;font-size:clamp(.98rem,1.2vw,1.12rem)}
+#home.aqh .aqh-cta-row{justify-content:flex-start}
+#home.aqh .aqh-cta,#home.aqh a.aqh-cta{background:#D9B979!important;color:#351B28!important;height:52px!important;padding:0 28px!important;min-width:200px!important;font-weight:600;font-size:1.05rem}
+#home.aqh .aqh-cta-row{height:auto!important}
+#home.aqh .aqh-tagline{display:none!important}
+#home.aqh .aqh-cta:hover{background:#ecd29b!important;box-shadow:0 14px 28px rgba(0,0,0,.4)}
+#home.aqh .aqh-values{justify-content:flex-start;margin-top:2px;gap:8px 0}
+#home.aqh .aqh-values li{color:#EFE6D8;font-size:.92rem;padding-inline:0 clamp(12px,1.6vw,22px)}
+#home.aqh .aqh-values li+li{border-inline-start:1px solid rgba(217,185,121,.35);padding-inline-start:clamp(12px,1.6vw,22px)}
+#home.aqh .aqh-values svg{width:24px;height:24px;color:#D9B979}
+.hv-out{opacity:0;transform:translateY(8px);transition:opacity .35s ease,transform .35s ease}
+.hv-in{animation:hvIn .5s ease both}
+@keyframes hvIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+/* الخريطة + اللوحة */
+#home.aqh .aqh-hero-wheel{display:flex;align-items:center;justify-content:center;gap:clamp(14px,1.6vw,22px);flex-wrap:wrap}
+#home.aqh .aqh-hero-wheel .aq-celestial-wheel-frame{width:auto;height:auto;padding:0;border:0;box-shadow:none;background:none}
+#home.aqh .aqh-hero-wheel .aq-celestial-wheel-frame::before{display:none}
+#home.aqh .aqh-wheel-wrap{width:min(84vw,330px);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+#home.aqh .aqh-wheel-wrap.is-zoom{transform:scale(1.22)}
+#home.aqh .aqh-wheel-wrap::before{border-color:rgba(217,185,121,.45)}
+#home.aqh .wheel .ln{stroke:#B99A5B!important}
+#home.aqh .wheel .ln.faint{stroke:rgba(100,43,60,.28)!important}
+#home.aqh .wheel .wg text{fill:#642B3C!important;font-size:22px}
+#home.aqh .wheel .wg:hover text,#home.aqh .wheel .wg:focus-visible text,#home.aqh .wheel .wg.is-hover text,#home.aqh .wheel .wg.is-active text{fill:#351B28!important}
+#home.aqh .wheel .wg:hover .hit{fill:rgba(185,154,91,.2)}
+#home.aqh .aqh-sector{fill:rgba(185,154,91,.05)}
+#home.aqh .aqh-sector.is-active,#home.aqh .aqh-sector.is-hover{fill:rgba(185,154,91,.28)}
+#home.aqh .aqh-planet circle{fill:#642B3C;stroke:#D9B979;stroke-width:1.1}
+#home.aqh .aqh-planet text{fill:#F7F3EC;font-size:9px}
+#home.aqh .aqh-planet.is-focus circle{fill:#B99A5B;stroke:#351B28;stroke-width:1.8;filter:drop-shadow(0 0 6px rgba(185,154,91,.9))}
+#home.aqh .aqh-planet.is-focus text{fill:#351B28}
+#home.aqh .wheel.has-focus .aqh-planet:not(.is-focus){opacity:.4}
+#home.aqh .aqh-rbg{fill:#F7F3EC;stroke:#642B3C;stroke-width:.9}
+#home.aqh .aqh-r{fill:#642B3C;font-size:5.8px;font-weight:700;font-family:'IBM Plex Sans Arabic',sans-serif}
+#home.aqh .aqh-hl{stroke:rgba(100,43,60,.25);stroke-width:.6;stroke-dasharray:2 3}
+#home.aqh .aqh-hl.ax{stroke:rgba(100,43,60,.55);stroke-dasharray:none}
+#home.aqh .aqh-hn{fill:rgba(100,43,60,.8);font-size:7.5px;font-family:'IBM Plex Sans Arabic',sans-serif}
+#home.aqh .aqh-agate{filter:drop-shadow(0 8px 18px rgba(0,0,0,.5))}
+.hv-live{flex:1 1 210px;max-width:260px;display:grid;gap:8px;align-content:center;padding:14px 14px 12px;border:1px solid rgba(217,185,121,.38);border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(0,0,0,.28);color:#F7F3EC;position:relative;z-index:2}
+.hv-live-k{margin:0;display:flex;align-items:center;gap:8px;color:#E6CC9A;font-size:.82rem;letter-spacing:.02em}
+.hv-dot{width:8px;height:8px;border-radius:50%;background:#7fd6a0;box-shadow:0 0 0 0 rgba(127,214,160,.6);animation:hvPulse 2.4s ease-out infinite}
+@keyframes hvPulse{70%{box-shadow:0 0 0 8px rgba(127,214,160,0)}100%{box-shadow:0 0 0 0 rgba(127,214,160,0)}}
+.hv-live-t{margin:0;font-size:.8rem;line-height:1.7;color:#EFE6D8}
+.hv-rows{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.hv-rows.hv-out{opacity:0;transform:translateX(10px);transition:opacity .3s ease,transform .3s ease}
+.hv-rows.hv-in{animation:hvIn .45s ease both}
+.hv-row{width:100%;display:flex;align-items:center;gap:9px;padding:7px 10px;border:1px solid rgba(217,185,121,.28);border-radius:12px;background:rgba(0,0,0,.18);color:inherit;font:inherit;text-align:start;cursor:pointer;transition:background .25s ease,border-color .25s ease,transform .25s ease}
+.hv-row:hover,.hv-row:focus-visible{background:rgba(217,185,121,.14);border-color:#D9B979;outline:none}
+.hv-row:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hv-row.is-on{background:rgba(217,185,121,.24);border-color:#E6CC9A}
+.hv-sym{flex:0 0 28px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(217,185,121,.18);color:#E6CC9A;font-size:1rem}
+.hv-txt{flex:1;min-width:0;display:grid;gap:1px}
+.hv-txt b{font-weight:600;font-size:.92rem}
+.hv-txt small{color:rgba(247,243,236,.72);font-size:.76rem}
+.hv-state{font-size:.72rem;color:rgba(247,243,236,.75);white-space:nowrap}
+.hv-state em{font-style:normal;display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;background:#642B3C;border:1px solid #E6CC9A;color:#fff;font-size:.62rem;font-weight:700;margin-inline-end:3px}
+.hv-row.is-retro .hv-state{color:#E6CC9A}
+.hv-nav{display:flex;align-items:center;justify-content:center;gap:12px}
+.hv-arr{width:28px;height:28px;border-radius:50%;border:1px solid rgba(217,185,121,.5);background:transparent;color:#E6CC9A;display:grid;place-items:center;cursor:pointer;padding:0}
+.hv-arr svg{width:14px;height:14px}
+.hv-arr:hover,.hv-arr:focus-visible{background:#D9B979;color:#351B28;outline:none}
+.hv-dots{display:flex;gap:5px}
+.hv-dots i{width:6px;height:6px;border-radius:50%;background:rgba(217,185,121,.4);transition:width .3s,background .3s}
+.hv-dots i.on{width:18px;border-radius:4px;background:#D9B979}
+.hv-watch{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;border-radius:999px;background:#D9B979;color:#351B28!important;text-decoration:none;font-weight:600;font-size:.9rem;transition:background .25s,transform .25s}
+.hv-watch svg{width:17px;height:17px}
+.hv-watch:hover,.hv-watch:focus-visible{background:#ecd29b;transform:translateY(-1px);outline:none}
+.hv-foot-note{margin:0;font-size:.7rem;color:rgba(247,243,236,.55);text-align:center}
+/* شاشات كبيرة: [مساحة التمثال][النص][الخريطة+اللوحة] */
+@media (min-width:1025px){
+  #home.aqh .aqh-hero-grid{grid-template-columns:minmax(0,.95fr) minmax(0,.85fr) minmax(0,1.9fr);gap:clamp(12px,2vw,28px)}
+  #home.aqh .aqh-hero-copy{grid-column:2;grid-row:1}
+  #home.aqh .aqh-hero-wheel{grid-column:3;grid-row:1}
+  #home.aqh .aqh-wheel-wrap{width:min(26vw,340px)}
+  #home.aqh .aqh-hero-wheel{flex-wrap:nowrap}
+  .hv-live{flex:0 0 250px;max-width:250px}
+}
+/* شاشات صغيرة: تمثال كشريط علوي هادئ */
+@media (max-width:1024px){
+  #home.aqh .aqh-hero{padding-top:clamp(150px,34vw,230px)}
+  #home.aqh .hv-statue{height:clamp(150px,34vw,230px);max-width:72%;opacity:.9;top:0;bottom:auto;object-position:left top;-webkit-mask-image:radial-gradient(ellipse 80% 90% at 28% 72%,#000 52%,transparent 100%);mask-image:radial-gradient(ellipse 80% 90% at 28% 72%,#000 52%,transparent 100%)}
+  #home.aqh .aqh-values{display:none}
+  #home.aqh .aqh-hero-copy{justify-items:center;text-align:center}
+  #home.aqh .aqh-hero-copy>*{text-align:center!important;margin-inline:auto}
+  #home.aqh .aqh-title{justify-content:center;min-height:0}
+  #home.aqh .aqh-lead{min-height:0}
+  #home.aqh .aqh-cta-row,#home.aqh .aqh-values{justify-content:center}
+  .hv-live{max-width:none;width:min(100%,420px);flex:1 1 100%}
+}
+@media (prefers-reduced-motion:reduce){.hv-dot{animation:none}.hv-in,.hv-rows.hv-in{animation:none}.hv-out{transition:none}#home.aqh .aqh-wheel-wrap{transition:none}}
