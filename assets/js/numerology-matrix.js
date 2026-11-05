@@ -639,7 +639,7 @@
   }
   function geminiBlocksHtml(blocks, hl) {
     blocks = stripAssessment(blocks);
-    let out = '', mode = '', liOpen = false;
+    let out = '', mode = '', liOpen = false, poleCls = '';
     const close = () => {
       if (mode === 'ul') { out += (liOpen ? '</li>' : '') + '</ul>'; liOpen = false; }
       else if (mode === 'q') out += '</blockquote>';
@@ -651,7 +651,9 @@
       if (b.k === 'li') {
         if (mode !== 'ul') { close(); out += '<ul class="aqm-g-ul">'; mode = 'ul'; liOpen = false; }
         if (liOpen) out += '</li>';
-        out += `<li${cls(b, 'aqm-g-li d' + b.d)}>${gInline(b.t)}`; liOpen = true;
+        // تمييز قطب الظل (Minus) وقطب النور (Plus) بالكلمات الدالة في العنوان؛ ويرث الأبناء قطب أبيهم
+        if (b.d === 0) poleCls = /الظل|فخ |البلوك|العائق|الوجه المظلم|الوجه الهابط|المسار السلبي/.test(b.t) ? ' is-shadow' : /النور|القوة|الموهبة|الذهبية|المسار الواعي|التناغم|مفتاح|المسار العلاجي|البوابة|القطاعات|الدور الاجتماعي|الهوية|البصمة|المغناطيس/.test(b.t) ? ' is-light' : '';
+        out += `<li${cls(b, 'aqm-g-li d' + b.d + poleCls)}>${gInline(b.t)}`; liOpen = true;
       } else if (b.k === 'c' && mode === 'ul' && liOpen) {
         out += `<p class="aqm-g-c">${gInline(b.t)}</p>`;
       } else if (b.k === 'q') {

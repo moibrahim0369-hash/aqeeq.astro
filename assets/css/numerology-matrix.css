@@ -1700,3 +1700,23 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 #matrix .aqm-slot-gemini .aqm-g-h1{margin:26px 0 10px;color:var(--mx-wine,#4a1a2b);font-weight:700}
 #matrix .aqm-slot-gemini .aqm-g-h2{margin:18px 0 8px;color:#7a5a22;font-weight:600}
 #matrix .aqm-slot-gemini .aqm-g-q{margin:18px 0;padding:14px 18px;border-inline-start:3px solid #B78A52;background:#FBF6EC;border-radius:12px;color:#4a1a2b}
+
+/* ===== تنسيق نصوص الأكورديون: عناوين هادئة، فقرات مريحة، قطبا النور والظل ===== */
+#matrix .aqm-slot-gemini{font-size:1rem;line-height:2.05;color:#35252B}
+#matrix .aqm-slot-gemini .aqm-slot-title{font-family:'Noto Serif Arabic',serif;color:#4a1a2b;font-size:1.12rem;margin:0 0 14px;padding-bottom:10px;border-bottom:1px solid #EDE3D5}
+#matrix .aqm-slot-gemini .aqm-g-tail-title{margin-top:30px}
+#matrix .aqm-slot-gemini .aqm-g-ul{list-style:none;margin:0 0 10px;padding:0}
+#matrix .aqm-slot-gemini .aqm-g-li{position:relative;margin:0 0 12px}
+#matrix .aqm-slot-gemini .aqm-g-li.d0{margin-top:22px;font-weight:700;color:#5a2a3a;font-size:.98rem}
+#matrix .aqm-slot-gemini .aqm-g-li.d0::before{content:"";display:inline-block;vertical-align:middle;margin-inline-end:10px;width:8px;height:8px;border-radius:50%;background:#B78A52}
+#matrix .aqm-slot-gemini .aqm-g-li.d0.is-light::before{content:"+";width:22px;height:22px;display:inline-grid;place-items:center;background:#E8F0E6;color:#4C7A4A;font-weight:800;font-size:15px;line-height:1}
+#matrix .aqm-slot-gemini .aqm-g-li.d0.is-shadow::before{content:"−";width:22px;height:22px;display:inline-grid;place-items:center;background:#F4E3E3;color:#8B263E;font-weight:800;font-size:15px;line-height:1}
+#matrix .aqm-slot-gemini .aqm-g-li.d1{font-weight:400;color:#35252B;padding:12px 16px;background:#FBF8F2;border-radius:12px;border-inline-start:3px solid #D9C8A8}
+#matrix .aqm-slot-gemini .aqm-g-li.d1.is-light,#matrix .aqm-slot-gemini .is-light~.d1{border-inline-start-color:#8DB38A}
+#matrix .aqm-slot-gemini .aqm-g-li.d1.is-shadow{border-inline-start-color:#C98A92;background:#FBF3F2}
+#matrix .aqm-slot-gemini .aqm-g-c{margin:6px 0 0;padding:0;background:none;line-height:2.05}
+#matrix .aqm-slot-gemini .aqm-g-li.d0 .aqm-g-c{font-weight:400;color:#35252B;margin-top:8px}
+#matrix .aqm-slot-gemini .aqm-g-table{width:100%;border-collapse:collapse;font-size:.92rem}
+#matrix .aqm-slot-gemini .aqm-g-table td{padding:8px 10px;border-bottom:1px solid #EDE3D5}
+#matrix .aqm-slot-gemini .aqm-g-li{list-style:none}
+#matrix .aqm-slot-gemini .aqm-g-li::marker{content:''}
