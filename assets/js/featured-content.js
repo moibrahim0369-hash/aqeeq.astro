@@ -196,8 +196,25 @@
     return '<header class="fc-row-h"><' + (all ? 'button type="button" data-fc-group="' + esc(k) + '"' : 'div') + ' class="fc-row-t"><span class="fc-row-ic">' + (TICO[ico] || TICO['الفلك']) + '</span><span><h2>' + esc(k) + '</h2><small>' + countText(n) + '</small></span></' + (all ? 'button' : 'div') + '>' +
       (all ? '<button type="button" class="fc-row-all" data-fc-group="' + esc(k) + '"><span>عرض كل المقالات</span>' + ARROW + '</button>' : '') + '</header>';
   }
-  function bandHTML() {
-    return '<aside class="fc-band" aria-label="ابدأ رحلتك"><span class="fc-band-ico">' + STAR + '</span><div class="fc-band-t"><b>ابدأ من تاريخ ميلادك</b><span>احسب مسار حياتك وخريطتك الفلكية، ثم عد لتقرأ ما يخصك.</span></div><a class="fc-band-btn" href="#lifepath"><span>احسب مسار حياتي</span>' + ARROW + '</a></aside>';
+  /* ---------- بطاقات الدعوة السياقية: كل تصنيف يقود للأداة المناسبة ---------- */
+  var CTA = {
+    chart: { ico: 'الفلك', t: 'استخرج خريطتك الفلكية', x: 'اكتشف تموضع كواكبك وبيوتك الفلكية بالتفصيل', href: '#chart', b: 'احسب خريطتي الفلكية' },
+    life: { ico: 'مسار الحياة', t: 'احسب مسار حياتك', x: 'اكتشف أرقام القمم والتحديات ودورات العمر', href: '#lifepath', b: 'احسب مسار حياتي' },
+    matrix: { ico: 'مصفوفة القدر', t: 'احسب مصفوفة قدرك', x: 'اكتشف طاقتك المركزية وذيولك الكارمية', href: '#matrix', b: 'احسب مصفوفتي' },
+    rel: { ico: 'العلاقات', t: 'استكشف ديناميكية العلاقة', x: 'عبر حواسب التوافق الفلكي والعددي في مركز العلاقات والشراكات', href: '#relationships', b: 'افتح مركز العلاقات' }
+  };
+  var CAT_CTA = { 'الأبراج': 'chart', 'الكواكب': 'chart', 'القمر': 'chart', 'العبور': 'chart', 'التراجعات': 'chart', 'الرموز': 'chart', 'مسار الحياة': 'life', 'مصفوفة القدر': 'matrix', 'العلاقات': 'rel' };
+  function ctaCard(k, where) {
+    var c = CTA[k]; if (!c) return '';
+    return '<aside class="fc-cta" data-cta="' + k + '" data-where="' + where + '"><span class="fc-cta-ico">' + (TICO[c.ico] || TICO['الفلك']) + '</span>' +
+      '<div class="fc-cta-t"><b>' + esc(c.t) + '</b><span>' + esc(c.x) + '</span></div>' +
+      '<a class="fc-cta-btn" href="' + esc(c.href) + '"><span>' + esc(c.b) + '</span>' + ARROW + '</a></aside>';
+  }
+  var ROW_CTA = { 'الأبراج': ['chart'], 'الكواكب والقمر والعبور': ['chart'], 'مسار الحياة ومصفوفة القدر': ['life', 'matrix'], 'العلاقات والرموز': ['rel'] };
+  function rowCtas(r) {
+    var ks = ROW_CTA[r.k] || [CAT_CTA[(r.items[0] || {}).category]];
+    var out = ks.filter(Boolean).map(function (k) { return ctaCard(k, 'row'); }).join('');
+    return out ? '<div class="fc-cta-row">' + out + '</div>' : '';
   }
   function paintRows(g, pg, cnt) {
     var all = newest(), pages = Math.max(1, Math.ceil(all.length / PAGE)); if (st.page > pages) st.page = pages;
@@ -216,8 +233,7 @@
       h += '<section class="fc-row" aria-label="' + esc(r.k) + '">' + rowHead(r.k, r.ico, r.items.length, true) +
         '<div class="fc-track-wrap"><button type="button" class="fc-nav fc-nav-p" data-nav="1" aria-label="السابق" hidden>' + PGP + '</button>' +
         '<div class="fc-track" tabindex="0" role="region" aria-label="' + esc(r.k) + ' — مرّر أفقيًا">' + r.items.map(function (a, i) { return mini(a, i); }).join('') + '</div>' +
-        '<button type="button" class="fc-nav fc-nav-n" data-nav="-1" aria-label="التالي" hidden>' + PGN + '</button></div></section>';
-      if (ri === 1) h += bandHTML();
+        '<button type="button" class="fc-nav fc-nav-n" data-nav="-1" aria-label="التالي" hidden>' + PGN + '</button></div>' + rowCtas(r) + '</section>';
     });
     g.innerHTML = h; wireTracks(g);
   }
@@ -298,7 +314,7 @@
       if (b.t === 'h2') { h2n++; var pre = ''; if (h2n === 2 && rel && !did) { did = true; pre = '<aside class="fc-inline" data-content-type="article"><small>اقرأ أيضًا</small><a href="#featured-content/' + esc(rel.slug) + '">' + esc(rel.title) + '</a></aside>'; } return pre + '<h2>' + esc(b.x) + '</h2>'; }
       if (b.t === 'quote') return '<blockquote>' + esc(b.x) + '</blockquote>';
       if (b.t === 'ul') return '<ul>' + b.x.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>';
-      if (b.t === 'cta') return '<p><a class="fc-btn" href="' + esc(b.href) + '"><span>' + esc(b.x) + '</span>' + ARROW + '</a></p>';
+      if (b.t === 'cta') return '';
       return '<p>' + esc(b.x) + '</p>';
     }).join('');
   }
@@ -334,6 +350,7 @@
       '<a role="menuitem" target="_blank" rel="noopener" href="https://t.me/share/url?url=' + encodeURIComponent(url(a.slug)) + '&text=' + encodeURIComponent(a.title) + '">تيليجرام</a>' +
       '<a role="menuitem" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=' + encodeURIComponent(url(a.slug)) + '&text=' + encodeURIComponent(a.title) + '">إكس</a></div></span>' +
       '<span class="fc-saved" role="status"></span></div></div>' +
+      '<div class="fc-art fc-art-cta">' + ctaCard(CAT_CTA[a.category] || 'chart', 'article') + '</div>' +
       '<section class="fc-related" aria-labelledby="fc-rel-t"><h2 id="fc-rel-t">محتوى ذو صلة</h2><div class="fc-grid">' + rel.map(function (x, i) { return card(x, i, true); }).join('') + '</div></section>' +
       '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المحتوى المميز') + '</span>' + ARROW + '</a>' + (fromKey ? '' : '') + '</div>';
     var sv = $('[data-fc-save]', host), msg = $('.fc-saved', host);
