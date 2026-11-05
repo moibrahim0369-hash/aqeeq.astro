@@ -76,6 +76,8 @@
 #manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
 </style>
 <link rel="stylesheet" href="assets/css/lp-accordion.css?v=20261106a">
+<link rel="stylesheet" href="assets/css/sky-zodiac-theme.css?v=20261106b">
+<link rel="stylesheet" href="assets/css/wheel-ivory.css?v=20261106a">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -2220,7 +2222,24 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   $("#f-unknown").addEventListener("change", e => { $("#f-time").disabled = e.target.checked; });
 
   let LAST = null;
-  window.AqeeqChartContext = { getNatal: () => LAST };
+  /* ملء صامت من بيانات الميلاد المحفوظة: يحسب نفس خريطة الميلاد بدون ما يغيّر شاشة الحاسبة. */
+  function natalFromProfile() {
+    try {
+      const p = JSON.parse(localStorage.getItem("aqeeq_profile_cache_v1") || "null");
+      if (!p || !p.date || !p.city) return null;
+      const [y, m, d] = String(p.date).split("-").map(Number);
+      if (!y || y < 1900 || y > 2100) return null;
+      const known = !p.noTime && !!p.time; let hh = 12, mm = 0;
+      if (known) [hh, mm] = String(p.time).split(":").map(Number);
+      const q = String(p.city).trim().toLocaleLowerCase("ar");
+      const c = CITIES.find(x => x.n.trim().toLocaleLowerCase("ar") === q) || CITIES.find(x => x.n.toLocaleLowerCase("ar").includes(q) || q.includes(x.n.toLocaleLowerCase("ar")));
+      if (!c || !c.tz) return null;
+      const utcMs = Astro.localToUtcMs(y, m, d, hh, mm, c.tz);
+      const ch = Astro.chart({ utcMs, lat: c.lat, lon: c.lon, hs: "placidus", known });
+      return { ch, name: p.name || "", y, m, d, hh, mm, known, placeName: c.n, lat: c.lat, lon: c.lon, utcMs, gender: "" };
+    } catch (e) { return null; }
+  }
+  window.AqeeqChartContext = { getNatal: () => LAST, getOrPrefill: () => LAST || (LAST = natalFromProfile()) };
   $("#cform").addEventListener("submit", e => { e.preventDefault(); calc(); });
 
   function isolateResultView(activeView) {
@@ -2689,18 +2708,18 @@ if (typeof window !== 'undefined') window.Astro = Astro;
         </section>
         <section class="sx cp-wheel-section"><div class="cp-section-heading"><div><span class="cp-result-kicker">01 · SYNASTRY</span><h4>تراكب الخريطتين</h4></div><span class="cp-section-caption">مواضع واتصالات</span></div><div id="cp-bi-wheel" class="aq-wheel-host" aria-label="عجلة التوافق الثنائية"></div></section>
         <div class="cp-details-stack">
-          <details class="sx cp-accordion"><summary><span>اتصالات الانسجام</span><small>${allPos.length} اتصال</small></summary><div class="cp-accordion-body"><ul>${allPos.map(line).join("") || "<li>لا توجد اتصالات منسجمة ضمن المحاور المحددة.</li>"}</ul></div></details>
-          <details class="sx cp-accordion"><summary><span>نقاط تحتاج إلى تفاهم</span><small>${allNeg.length} اتصال</small></summary><div class="cp-accordion-body"><ul>${allNeg.map(line).join("") || "<li>لا توجد اتصالات ضاغطة بارزة ضمن المحاور المحددة.</li>"}</ul></div></details>
-          <details class="sx cp-accordion"><summary><span>أقرب اتصالات الكواكب</span><small>حتى 6 اتصالات</small></summary><div class="cp-accordion-body"><ul>${top.map(line).join("") || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul></div></details>
-          <details class="sx cp-accordion cp-composite">
-            <summary><span><small class="cp-result-kicker">02 · COMPOSITE</small><b>الخريطة المركّبة</b></span><small>مواضع مشتركة واتصالات</small></summary>
-            <div class="cp-accordion-body"><p class="cp-note">مواضع الكواكب هي منتصفات القوس الأقصر بين خريطتي الميلاد. هذه قراءة رمزية وليست قياسًا لنجاح العلاقة.</p>
+          <details class="lpa-card is-light cp-acc"><summary class="lpa-sum"><span class="lpa-ic">+</span><span class="lpa-t">اتصالات الانسجام</span><small class="lpa-sub">${allPos.length} اتصال</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${allPos.map(line).join("") || "<li>لا توجد اتصالات منسجمة ضمن المحاور المحددة.</li>"}</ul></div></details>
+          <details class="lpa-card is-shadow cp-acc"><summary class="lpa-sum"><span class="lpa-ic">−</span><span class="lpa-t">نقاط تحتاج إلى تفاهم</span><small class="lpa-sub">${allNeg.length} اتصال</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${allNeg.map(line).join("") || "<li>لا توجد اتصالات ضاغطة بارزة ضمن المحاور المحددة.</li>"}</ul></div></details>
+          <details class="lpa-card  cp-acc"><summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">أقرب اتصالات الكواكب</span><small class="lpa-sub">حتى 6 اتصالات</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${top.map(line).join("") || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul></div></details>
+          <details class="lpa-card cp-acc cp-composite">
+            <summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">الخريطة المركّبة</span><small class="lpa-sub">مواضع مشتركة واتصالات</small><span class="lpa-chev"></span></summary>
+            <div class="lpa-body cp-accordion-body"><p class="cp-note">مواضع الكواكب هي منتصفات القوس الأقصر بين خريطتي الميلاد. هذه قراءة رمزية وليست قياسًا لنجاح العلاقة.</p>
               <div id="cp-composite-wheel" class="aq-wheel-host" aria-label="عجلة الخريطة المركبة"></div>
               <div class="cp-composite-grid">${compositePositions}</div><h5>اتصالات داخل الخريطة المركّبة</h5>
               <ul>${compositeAspects || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul>${compositeAngles}${compositeCusps}
             </div>
           </details>
-          <details class="sx cp-accordion"><summary><span>اقتراحات للحوار والتعامل</span><small>نصائح عملية</small></summary><div class="cp-accordion-body"><ul>${tips.map(t => '<li>'+esc(t)+'</li>').join("")}</ul></div></details>
+          <details class="lpa-card  cp-acc"><summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">اقتراحات للحوار والتعامل</span><small class="lpa-sub">نصائح عملية</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${tips.map(t => '<li>'+esc(t)+'</li>').join("")}</ul></div></details>
         </div>
         <p class="cp-result-disclaimer">القراءة الفلكية هنا للتأمل والحوار، ولا تحكم على نجاح العلاقة أو مستقبلها.</p>
       </div>`;
@@ -2725,7 +2744,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
         const synastry = calculateSynastry(P1, P2);
         out.innerHTML = render(P1, P2, synastry);
         if (P1.gender === P2.gender) window.AqeeqGender?.apply(out, P1.gender);
-        window.AqeeqAstroWheel?.renderSynastryWheel(document.querySelector("#cp-bi-wheel"), P1.ch, P2.ch, synastry.asps);
+        window.AqeeqAstroWheel?.renderSynastryWheel(document.querySelector("#cp-bi-wheel"), P1.ch, P2.ch, synastry.asps, { a: P1.name, b: P2.name });
         window.AqeeqAstroWheel?.renderCompositeWheel(document.querySelector("#cp-composite-wheel"), synastry.composite);
         out.hidden = false;
         out.style.display = "block";
@@ -3015,7 +3034,15 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     return null;
   }
   const skyDateInput = $("#sky-date");
-  let skyKey = "mars";
+  let skyKey = "mars", skySign = null;
+  try { const v = localStorage.getItem("aq-sky-sign"); if (v !== null && +v >= 0 && +v < 12) skySign = +v; } catch (e) { }
+  function skyCard(k, bd, i) {
+    const P = PLANETS[k], sg = SIGNS[i], h = ((bd.sign - i + 12) % 12) + 1, H = HOUSES[h - 1], S = HOUSE_SIT[h - 1];
+    return `<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true">${gl(P.g)}</span><div><h4>${P.n} في بيتك ${H.n}</h4><small>${sg.n} · مجال ${H.area}</small></div></header>
+      <details class="lpa-card sky-acc" open><summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">الدلالة النفسية</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${planetInHouse(k, h, "transit")}</p><p>ممكن يظهر ده في مواقف زي: ${S[0]}، أو ${S[1]}، أو ${S[2]}.</p></div></details>
+      <details class="lpa-card is-shadow sky-acc"><summary class="lpa-sum"><span class="lpa-ic">−</span><span class="lpa-t">الفخاخ التي تنتبه لها</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>الجانب الصعب (${P.watch}) بيزيد لو ${HOUSE_TRIG[h - 1]}.</p></div></details>
+      <details class="lpa-card is-light sky-acc"><summary class="lpa-sum"><span class="lpa-ic">+</span><span class="lpa-t">طاقة التحول والنصيحة</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${HOUSE_ADV[h - 1]}.</p><p>تتوقع فيه ${P.give}.</p></div></details></article>`;
+  }
   const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
 
   /* ---------- كارت منازل القمر: اسم الطور + شكل القمر الحقيقي ---------- */
@@ -3078,11 +3105,12 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const top = found.slice(0, 12);
     const head = `<h4 class="ph">أهم الاسبكتات بين الكواكب دلوقتي</h4>`;
     if (!top.length) { $("#sky-asp").innerHTML = head + `<p class="sub">مفيش اسبكتات مؤثرة في اليوم ده (حسب أوربات 6° وخاصة 8° للشمس والقمر).</p>`; return; }
-    $("#sky-asp").innerHTML = head + `<ul class="asp-list">` + top.map(x => {
-      const tone = ["square", "opp"].includes(x.k) ? "متوتر" : "داعم";
+    const AM = { conj: "المجالان يمتزجان في طاقة واحدة مكثفة، فيصعب الفصل بينهما.", sext: "فرصة هادئة للتعاون، تحتاج مبادرة بسيطة منك لتستثمرها.", square: "احتكاك يحرّك الأمور، ويكشف خلافًا داخليًا يحتاج قرارًا واضحًا.", trine: "انسجام وتدفق طبيعي، وانتبه فقط من الاعتياد على السهولة.", opp: "شدّ بين طرفين يحتاج توازنًا واعيًا بدل الانحياز لأحدهما." };
+    $("#sky-asp").innerHTML = head + `<div class="sky-asp-list">` + top.map((x, ix) => {
+      const hard = ["square", "opp"].includes(x.k), tone = hard ? "متوتر" : "داعم";
       const rA = x.A.retro ? " (راجع)" : "", rB = x.B.retro ? " (راجع)" : "";
-      return `<li><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span> ${PLANETS[x.A.key].n}${rA} <b>${x.name}</b> <span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span> ${PLANETS[x.B.key].n}${rB} <span class="tone">${tone} · أوربة ${x.orb.toFixed(1)}°</span></li>`;
-    }).join("") + `</ul><p class="sub">الاسبكتات دي حسابية بين مواقع الكواكب في السما، وتأثيرها على برجك الشخصي بيتحدد بخريطتك.</p>`;
+      return `<details class="lpa-card ${hard ? "is-shadow" : "is-light"} sky-asp-item"${ix === 0 ? " open" : ""}><summary class="lpa-sum"><span class="lpa-ic">${hard ? "−" : "+"}</span><span class="lpa-t"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span> ${PLANETS[x.A.key].n}${rA} <b>${x.name}</b> <span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span> ${PLANETS[x.B.key].n}${rB}</span><small class="lpa-sub">${tone} · أوربة ${x.orb.toFixed(1)}°</small><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p></div></details>`;
+    }).join("") + `</div><p class="sub">الاسبكتات دي حسابية بين مواقع الكواكب في السما، وتأثيرها على برجك الشخصي بيتحدد بخريطتك.</p>`;
   }
   function renderSkyPanel(ch, ms) {
     const k = skyKey, p = PLANETS[k], bd = ch.bodies.find(x => x.key === k), S = SIGNS[bd.sign];
@@ -3096,8 +3124,15 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <p>الفترة دي ${p.theme} بتتحرك بأسلوب ${S.way}. الأجواء العامة بتساعد على ${S.strength}، لكن انتبه من ${S.shadow}.</p>
       ${bd.retro ? `<p class="sub">${retroText(k)}</p>` : ""}${ingTxt}
       <h4 class="ph">تأثيره على كل برج</h4><p class="sub">التأثير بيتحدد حسب البيت الي ${p.n} بيعدي عليه من برجك (نظام البيوت الكاملة).</p>`;
-    o += SIGNS.map((s, i) => { const h = ((bd.sign - i + 12) % 12) + 1; return `<details class="acc"><summary><span class="sg" aria-hidden="true">${gl(s.g)}</span> ${s.n} <span class="hs">بيتك ${HOUSES[h - 1].n}</span></summary><p>${deepHouse(k, h, "transit")}</p></details>`; }).join("");
+    o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true">${gl(p.g)}</span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لترى أثر ${p.n} في بيتك بالتحديد</small></div></div>
+      <div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">${SIGNS.map((sg, i) => `<button type="button" class="sky-sg${i === skySign ? " is-on" : ""}" data-i="${i}" aria-pressed="${i === skySign}"><span class="sg" aria-hidden="true">${gl(sg.g)}</span><span>${sg.n}</span></button>`).join("")}</div>
+      <div class="sky-signcard" id="sky-signcard" aria-live="polite">${skySign == null ? `<p class="sky-pick-empty">اختر برجك من الشريط لتظهر لك قراءة ${p.n} في بيتك، بدل قراءة كل الأبراج دفعة واحدة.</p>` : skyCard(k, bd, skySign)}</div></div>`;
     $("#sky-panel").innerHTML = o;
+    $$("#sky-panel .sky-sg").forEach(btn => btn.addEventListener("click", () => {
+      skySign = +btn.dataset.i; try { localStorage.setItem("aq-sky-sign", skySign); } catch (e) { }
+      $$("#sky-panel .sky-sg").forEach(x => { const on = x === btn; x.classList.toggle("is-on", on); x.setAttribute("aria-pressed", on); });
+      $("#sky-signcard").innerHTML = skyCard(k, bd, skySign);
+    }));
   }
   skyDateInput.addEventListener("change", renderSky);
   $("#sky-today").addEventListener("click", () => { skyDateInput.value = ""; renderSky(); });
@@ -3255,12 +3290,15 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const picker = $("#picker"), panel = $("#panel"), pbtns = [];
   function signExtra(s, f, i) {
     const q = `إيه الموقف اللي تقدر تطبق فيه: ${s.growth}؟`;
-    return `<div class="sx"><h4>إيه الأفضل تعمله النهارده؟</h4><ul><li>استخدم ${s.strength} في أول موقف يحتاجك النهارده.</li><li>اختار حاجة واحدة وخلّصها بهدوء.</li></ul></div>
-      <div class="sx"><h4>إيه الأفضل تتجنبه؟</h4><ul><li>انتبه لـ${s.shadow}، وخد نفس قبل ما ترد.</li></ul></div>
-      <div class="sx"><h4>نصيحة اليوم</h4><p>${s.growth}.</p></div>
-      <div class="sx"><h4>السماء الفلكية الحالية</h4><p>المواقع والحركات الفلكية الحالية بتتعرض في <a href="#sky">قسم السماء دلوقتي</a>، والقراءة دي عامة لبرج الشمس، ومش بديل عن تحليل خريطتك الشخصية.</p></div>
-      <div class="sx"><h4>سؤال اليوم</h4><p>${q}</p></div>
-      <div class="sx"><h4>اكتشف أكتر</h4><p><a href="#chart">خريطتك الفلكية الشخصية</a> · <a href="#services">استكشف العلاقة ما بينكم</a></p></div>`;
+    const acc = (ic, t, body, cls, open) => `<details class="lpa-card ${cls || ""} zd-acc"${open ? " open" : ""}><summary class="lpa-sum"><span class="lpa-ic">${ic}</span><span class="lpa-t">${t}</span><span class="lpa-chev"></span></summary><div class="lpa-body">${body}</div></details>`;
+    return `<div class="zd-stack">`
+      + acc("✦", "إيه الأفضل تعمله النهارده؟", `<ul><li>استخدم ${s.strength} في أول موقف يحتاجك النهارده.</li><li>اختار حاجة واحدة وخلّصها بهدوء.</li></ul>`, "is-light", true)
+      + acc("−", "إيه الأفضل تتجنبه؟", `<ul><li>انتبه لـ${s.shadow}، وخد نفس قبل ما ترد.</li></ul>`, "is-shadow")
+      + acc("✦", "نصيحة اليوم", `<p>${s.growth}.</p>`)
+      + acc("☉", "السماء الفلكية الحالية", `<p>المواقع والحركات الفلكية الحالية بتتعرض في <a href="#sky">قسم السماء دلوقتي</a>، والقراءة دي عامة لبرج الشمس، ومش بديل عن تحليل خريطتك الشخصية.</p>`)
+      + acc("؟", "سؤال اليوم", `<p>${q}</p>`)
+      + acc("→", "اكتشف أكتر", `<p><a href="#chart">خريطتك الفلكية الشخصية</a> · <a href="#services">استكشف العلاقة ما بينكم</a></p>`)
+      + `</div>`;
   }
   const SIGN_SECS = [
     { t: "شخصية البرج", g: "✦" }, { t: "الطفولة", g: "◌" }, { t: "المراهقة ومراحل العمر", g: "✧" },
@@ -3434,12 +3472,16 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const hOf = k => ((nb(k).sign - i + 12) % 12) + 1;
     const dt = new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long" });
     const mh = hOf("moon");
-    let o = `<div class="fcs"><h4 class="ph">توقعات النهاردة، ${dt}</h4>
-      <article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> يومك (القمر في بيتك ${HOUSES[mh - 1].n})</h4><p>${moonDay(mh)}</p></article>`;
+    const acc = (ic, t, body, cls, open, sub) => `<details class="lpa-card ${cls || ""} zd-acc"${open ? " open" : ""}><summary class="lpa-sum"><span class="lpa-ic">${ic}</span><span class="lpa-t">${t}</span>${sub ? `<small class="lpa-sub">${sub}</small>` : ""}<span class="lpa-chev"></span></summary><div class="lpa-body">${body}</div></details>`;
+    let o = `<div class="fcs zd-daily"><h4 class="ph">توقعات النهاردة، ${dt}</h4>`;
+    o += acc(gl("☽"), `طاقة يومك (القمر في بيتك ${HOUSES[mh - 1].n})`, `<p>${moonDay(mh)}</p>`, "", true);
+    let pl = "", rx = [];
     ["mercury", "venus", "mars"].forEach(k => {
       const h = hOf(k), b = nb(k);
-      o += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span> ${PLANETS[k].n} في بيتك ${HOUSES[h - 1].n}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4><p>${deepHouse(k, h, "transit")}</p>${b.retro ? `<p class="sub">${retroText(k)}</p>` : ""}</article>`;
+      if (b.retro) rx.push(PLANETS[k].n);
+      pl += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span> ${PLANETS[k].n} في بيتك ${HOUSES[h - 1].n}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4><p>${deepHouse(k, h, "transit")}</p>${b.retro ? `<p class="sub">${retroText(k)}</p>` : ""}</article>`;
     });
+    o += acc("☿", "حركة الكواكب في بيتك", pl, "", false, rx.length ? `تراجع: ${rx.join("، ")}` : "كلها مباشرة");
     return o + `${NOTE_SYM}</div>`;
   }
 
@@ -4711,7 +4753,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/matrix-method-adapter.js"></script>
 <script src="assets/js/numerology-matrix.js?v=20261105q"></script>
 <script src="assets/js/astro-wheel.js"></script>
-<script src="assets/js/extended-astro-charts.js"></script>
+<script src="assets/js/extended-astro-charts.js?v=20261106a"></script>
+<script src="assets/js/section-footer.js?v=20261106a"></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
