@@ -78,3 +78,6 @@ section#chart.ntx .ntx-card .btn:focus-visible{outline:3px solid rgba(183,138,82
   section#chart.ntx .ntx-head .intro{margin-top:22px!important}
   .ntx-orn{width:240px}.ntx-head{min-height:380px}
 }
+
+.ntx-wrap:has(#result:not([hidden])) .ntx-art{display:none}
+.ntx-wrap:has(#result:not([hidden])) .ntx-head{min-height:0}
