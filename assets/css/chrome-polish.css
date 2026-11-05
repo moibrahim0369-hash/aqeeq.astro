@@ -125,3 +125,21 @@ html body .aqh-nav>a.aqh-nav-invest:hover{color:#70263F!important}
 html body .aqh-header .aqh-invest-ico{display:none;width:34px;height:34px;border-radius:50%;place-items:center;border:1px solid rgba(183,138,82,.75);color:#9a6f2f;background:linear-gradient(135deg,#FFF6E0,#F1DDB0)}
 html body .aqh-header .aqh-invest-ico svg{width:18px;height:18px}
 @media (max-width:1100px){html body .aqh-header .aqh-invest-ico{display:grid}html body .aqh-nav>a.aqh-nav-invest{display:none}}
+
+/* ===== فوتر ثابت في نهاية الصفحة (sticky-footer) + مساحة أمان للشريط السفلي ===== */
+html body{min-height:100vh;display:flex;flex-direction:column;margin:0}
+html body>main,html body>.main-content,html body>.container,html body>.page-wrapper{flex:1 0 auto;width:100%}
+html body>footer.foot,html body>footer,html body>.site-footer{flex-shrink:0;width:100%;position:static!important;background:#fdfbf7;border-top:1px solid #e2d9cc;margin-top:3rem;text-align:center}
+@media (max-width:768px){html body{padding-bottom:calc(90px + env(safe-area-inset-bottom,0px))!important}}
+
+/* ===== الموبايل: أزرار الهيرو أنحف ومسافات أقل ليظهر أعلى كروت الأدوات في الشاشة الأولى ===== */
+@media (max-width:768px){
+  html body #home.aqh .aqh-hero{--hh:206px;--hpt:170px}
+  html body #home.aqh .aqh-hero .aqh-hero-copy{gap:6px!important}
+  html body #home.aqh .aqh-hero .aqh-lead{font-size:.92rem!important;line-height:1.65!important;margin:0 0 2px!important}
+  html body #home.aqh .aqh-hero .aqh-cta-row{gap:6px!important;margin-top:4px!important}
+  html body #home.aqh .aqh-hero .aqh-cta,html body #home.aqh .aqh-hero .aqh-cta-gold{height:36px!important;min-height:0!important;padding:0 16px!important;font-size:.92rem!important;gap:8px!important}
+  html body #home.aqh .aqh-hero .aqh-cta svg,html body #home.aqh .aqh-hero .aqh-cta-gold svg{width:16px!important;height:16px!important}
+  html body #home.aqh .aqh-invest-line{margin:2px 0 0!important;font-size:.9rem!important;line-height:1.4}
+  html body #home.aqh .aqh-hero{padding-bottom:0!important;margin-bottom:0!important}
+}

@@ -4,7 +4,7 @@ for(const [w,h] of [[1440,900],[390,844]]){const p=await b.newPage({viewport:{wi
 await p.goto('http://localhost:8765/index.html#life-path-synastry');await p.waitForTimeout(800);
 ok(w+' ids kept',await p.evaluate(()=>['syn-name-a','syn-gender-a','syn-date-a','syn-name-b','syn-gender-b','syn-date-b','syn-type','synastry-form','syn-result'].every(i=>document.getElementById(i))));
 ok(w+' relation options kept',await p.locator('#syn-type option').count()===3&&await p.inputValue('#syn-type')==='romantic');
-ok(w+' 4 features',await p.locator('.lps-feats li').count()===4);
+ok(w+' compat lives inside life path tab',await p.evaluate(()=>!!document.querySelector('#lifepath #lpcompat #synastry-form')&&!document.getElementById('life-path-synastry')));
 ok(w+' no hscroll',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
 if(w>800){const a=await p.locator('.syn-person').nth(0).boundingBox(),c=await p.locator('.syn-person').nth(1).boundingBox();ok('side by side, first on right',Math.abs(a.y-c.y)<5&&a.x>c.x);}
 await p.fill('#syn-name-a','أ');await p.fill('#syn-name-b','ب');await p.fill('#syn-date-a','1990-05-14');await p.fill('#syn-date-b','1992-09-02');await p.selectOption('#syn-type','family');

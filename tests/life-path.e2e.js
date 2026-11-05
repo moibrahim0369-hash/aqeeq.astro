@@ -29,7 +29,7 @@ let pass = 0, fail = 0; const ok = (n, c, x) => { (c ? pass++ : fail++); console
   ok('one aria-current=step', await p.locator('.lpj-st[aria-current=step]').count() === 1);
   const st = await p.$$eval('.lpj-st', e => e.map(x => x.dataset.status)); ok('status order past<=current<=future', ['past', 'current', 'future'].map(s => st.indexOf(s)).filter(i => i > -1).every((v, i, a) => !i || v >= a[i - 1]), st);
   ok('status text present', (await p.textContent('.lpj-tl')).includes('المرحلة الحالية'));
-  ok('compare link', (await p.getAttribute('.lpd-acts a.lpj-btn', 'href')) === '#life-path-synastry');
+  ok('compare link', (await p.getAttribute('.lpd-acts a.lpj-btn', 'href')) === '#lifepath-compat');
   ok('related tools links', await p.locator('.lpj-tool').count() === 4);
   // stage select
   await p.click('.lpj-st[data-i="3"]'); await p.waitForTimeout(200);
