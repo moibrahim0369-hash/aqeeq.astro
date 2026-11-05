@@ -1,5 +1,6 @@
 /* ===== صفحة مسار حياتك: تصميم تحريري هادئ (بصري فقط، لا تغيير في المحرك) ===== */
-section#lifepath.lpx{--b:#70263F;--bd:#4a1a2b;--g:#B78A52;--gl:#D9B979;--ink:#35252B;--bg:#F7F2EA;--beige:#EDE3D5;position:relative;overflow:hidden}
+section#lifepath.lpx{--b:#70263F;--bd:#4a1a2b;--g:#B78A52;--gl:#D9B979;--ink:#35252B;--bg:#F7F2EA;--beige:#EDE3D5}
+section#lifepath.lpx.sec:target{overflow-x:hidden!important}
 section#lifepath.lpx.sec:target{background:
   radial-gradient(800px 360px at 15% 0%,rgba(237,227,213,.9),transparent 70%),
   linear-gradient(180deg,#F7F2EA,#F2E9DB 60%,#F7F2EA)!important;padding:0 0 clamp(110px,18vw,150px)!important}
