@@ -11,17 +11,21 @@ let pass=0,fail=0; const ok=(n,c,x)=>{ (c?pass++:fail++); console.log((c?'PASS '
  ok('list open', await p.evaluate(()=>getComputedStyle(document.getElementById('featured-content')).display==='block'));
  ok('title', (await p.textContent('#fc-title'))==='محتوى مميز');
  ok('10 filters', await p.locator('.fc-chip').count()===10);
- ok('cards page1=6', await p.locator('.fc-card').count()===6);
+ ok('cards page1=4 (stacked list)', await p.locator('.fc-list .fc-card').count()===4);
  ok('pick shown', await p.locator('.fc-pick').isVisible());
  await p.waitForTimeout(900);
  await p.screenshot({path:OUT+'list-desktop.png'});
  // load more
- await p.click('[data-fc-more]'); ok('load more -> 9 (10 total minus?)', await p.locator('.fc-card').count()===10);
+ await p.click('.fc-pg[data-pg="2"]'); await p.waitForTimeout(300); ok('pagination page 2', await p.locator('.fc-list .fc-card').count()===4 && (await p.getAttribute('.fc-pg.on','aria-current'))==='page');
+ await p.click('.fc-pg[data-pg="1"]'); await p.waitForTimeout(200);
+ ok('cards stacked vertically', await p.evaluate(()=>{const c=[...document.querySelectorAll('.fc-list .fc-card')].map(e=>e.getBoundingClientRect());return c.every((r,i)=>!i||r.top>=c[i-1].bottom-1);}));
+ ok('each card has topic label', await p.evaluate(()=>[...document.querySelectorAll('.fc-list .fc-card')].every(c=>c.querySelector('.fc-topic'))));
+ ok('astro/lifepath topic labels', await p.evaluate(()=>FeaturedContent.all().length>0 && [...document.querySelectorAll('.fc-topic b')].every(b=>b.textContent.length>1)));
  // filters
  for (const c of ['الأبراج','الكواكب','القمر','العبور','التراجعات','مصفوفة القدر','مسار الحياة','العلاقات','الرموز','الكل']) {
    await p.click(`.fc-chip[data-cat="${c}"]`); await p.waitForTimeout(250);
    const cats=await p.$$eval('.fc-card',e=>e.map(x=>x.dataset.category));
-   ok('filter '+c, c==='الكل'?cats.length>=6:(cats.length>0&&cats.every(x=>x===c)),cats.length);
+   ok('filter '+c, c==='الكل'?cats.length>=4:(cats.length>0&&cats.every(x=>x===c)),cats.length);
  }
  // empty filter state message: simulate via search none
  await p.fill('#fc-q','زززز'); await p.waitForTimeout(500);
@@ -43,7 +47,7 @@ let pass=0,fail=0; const ok=(n,c,x)=>{ (c?pass++:fail++); console.log((c?'PASS '
  await p.click('.fc-chip[data-cat="الكل"]'); await p.waitForTimeout(300);
  // open every card, check, back
  const slugs=await p.evaluate(()=>FeaturedContent.all().map(a=>a.slug));
- ok('10 slugs', slugs.length===10);
+ ok('11 slugs', slugs.length===11);
  // position restore
  await p.evaluate(()=>{document.getElementById('featured-content').scrollTop=500});
  const before=await p.evaluate(()=>document.getElementById('featured-content').scrollTop);
