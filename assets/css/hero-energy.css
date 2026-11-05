@@ -148,3 +148,7 @@
   #home.aqh .hw-statue{aspect-ratio:2.3/1!important;max-height:none!important;object-position:38% 50%!important}
   #home.aqh .aqh-hero::after{display:none}
 }
+/* الشعار الجديد */
+#home.aqh .aqh-emblem,.aqh-header .aqh-emblem{width:48px!important;height:48px!important;object-fit:contain;color:inherit}
+.aq-foot-mark{display:inline-block;vertical-align:middle;margin-inline-end:10px;object-fit:contain}
+@media (max-width:1024px){#home.aqh .aqh-emblem,.aqh-header .aqh-emblem{width:36px!important;height:36px!important}}
