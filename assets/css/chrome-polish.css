@@ -1,0 +1,54 @@
+/* صقل الهيدر العلوي + قسم «محتوى مميز» في الرئيسية. بصري فقط. */
+
+/* ---------- الهيدر: أنحف، زجاجي، متناسق مع البانر ---------- */
+html body header.top.aqh-header{
+  padding:6px clamp(14px,3vw,40px)!important;
+  background:linear-gradient(180deg,rgba(252,249,243,.94),rgba(248,242,233,.86))!important;
+  border-bottom:1px solid rgba(183,138,82,.34)!important;
+  box-shadow:0 8px 28px rgba(74,26,43,.06)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+html body header.top.aqh-header.is-scrolled{background:linear-gradient(180deg,rgba(252,249,243,.97),rgba(248,242,233,.92))!important}
+html body .aqh-header .aqh-header-in{min-height:54px!important}
+html body .aqh-header .aqh-emblem{width:38px!important;height:38px!important}
+html body .aqh-header .aqh-brand-text b{font-size:clamp(1.12rem,1.7vw,1.45rem)!important}
+html body .aqh-header .aqh-brand-text small{font-size:.7rem!important}
+@media (max-width:640px){
+  html body header.top.aqh-header{padding:3px 0!important}
+  html body .aqh-header .aqh-header-in{min-height:46px!important}
+  html body .aqh-header .aqh-emblem{width:30px!important;height:30px!important}
+  html body .aqh-header .aqh-brand-text b{font-size:1rem!important}
+  html body .aqh-header .aqh-join{height:32px!important}
+  html body .aqh-header .aqh-burger{width:34px;height:34px}
+}
+
+/* ---------- محتوى مميز: خلفية عاجية بدل العنابي، عنوان بزخرفة، بطاقات مرفوعة ---------- */
+html body #home.aqh .aqh-band.aqh-band-arts{
+  background:radial-gradient(540px 260px at 10% 0,rgba(183,138,82,.16),transparent 70%),radial-gradient(560px 280px at 94% 8%,rgba(112,38,63,.08),transparent 70%),linear-gradient(180deg,#F7F2EA,#F1E8DA)!important;
+  padding:clamp(26px,4vw,50px) 0 clamp(40px,6vw,76px)!important;margin:0!important}
+html body #home.aqh .aqh-band-arts .aqh-articles-head{position:relative;justify-content:center;margin-bottom:clamp(18px,2.6vw,30px)}
+html body #home.aqh .aqh-band-arts .aqh-articles-head h2{display:flex;align-items:center;gap:16px;width:min(100%,520px);justify-content:center;color:#70263F!important;font-family:'Amiri',serif!important;font-weight:700!important;font-size:clamp(1.6rem,3vw,2.2rem)!important;white-space:nowrap}
+html body #home.aqh .aqh-band-arts .aqh-articles-head h2::before,html body #home.aqh .aqh-band-arts .aqh-articles-head h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#B78A52)}
+html body #home.aqh .aqh-band-arts .aqh-articles-head h2::after{transform:scaleX(-1)}
+html body #home.aqh .aqh-band-arts .aqh-all{color:#70263F!important;font-weight:600;border:1px solid rgba(183,138,82,.55);background:#FFFDFA;padding:7px 16px;border-radius:999px;transition:background .2s,color .2s}
+html body #home.aqh .aqh-band-arts .aqh-all:hover{background:#70263F;color:#fff!important}
+@media (min-width:1024px){html body #home.aqh .aqh-band-arts .aqh-all{position:absolute;inset-inline-start:0;top:50%;transform:translateY(-50%)}}
+@media (max-width:1023px){html body #home.aqh .aqh-band-arts .aqh-articles-head{flex-direction:column;gap:10px}}
+
+html body #home.aqh .aqh-band-arts .aqh-article{background:#FFFDFA!important;border:1px solid rgba(183,138,82,.38)!important;border-radius:22px!important;box-shadow:0 14px 34px rgba(74,26,43,.10)!important;padding:10px 10px 64px!important;transition:transform .25s ease,box-shadow .25s ease}
+html body #home.aqh .aqh-band-arts .aqh-article:hover{transform:translateY(-5px);box-shadow:0 24px 46px rgba(74,26,43,.17)!important}
+html body #home.aqh .aqh-band-arts .aqh-article img{border-radius:16px!important;aspect-ratio:16/10;object-fit:cover;width:100%}
+html body #home.aqh .aqh-band-arts .aqh-article time{color:#8a6a3a;font-size:.78rem}
+html body #home.aqh .aqh-band-arts .aqh-article h3{font-family:'Amiri',serif;font-size:1.22rem;line-height:1.7}
+html body #home.aqh .aqh-band-arts .aqh-article h3 a{color:#35252B!important}
+html body #home.aqh .aqh-band-arts .aqh-article p{display:none}
+html body #home.aqh .aqh-band-arts .aqh-article .aqh-go{background:#FFFDFA;color:#70263F;border:1px solid rgba(183,138,82,.7);position:absolute;bottom:14px;inset-inline-start:14px}
+html body #home.aqh .aqh-band-arts .aqh-article:hover .aqh-go{background:#70263F;color:#fff;border-color:#70263F}
+html body #home.aqh .aqh-band-arts .aqh-car-btn{background:#FFFDFA;color:#70263F;border:1px solid rgba(183,138,82,.6);box-shadow:0 8px 20px rgba(74,26,43,.16)}
+@media (min-width:900px){html body #home.aqh .aqh-band-arts .aqh-article,html body #home.aqh .aqh-band-arts .aqh-article-skel{flex:0 0 calc((100% - 44px)/3)!important}}
+@media (max-width:640px){html body #home.aqh .aqh-band-arts .aqh-article,html body #home.aqh .aqh-band-arts .aqh-article-skel{flex:0 0 80%!important}}
+
+/* الشريط الداكن التالي (طاقة اليوم) يرتفع كحافة منحنية فوق القسم العاجي بدل قطع حاد */
+html body #home.aqh #aqh-band{border-radius:34px 34px 0 0;position:relative;box-shadow:0 -14px 34px rgba(74,26,43,.12)}
+@media (prefers-reduced-motion:reduce){html body #home.aqh .aqh-band-arts .aqh-article{transition:none}}
+/* المسار يقصّ الظل: نمنحه مساحة ليظهر ظل البطاقات كاملًا */
+html body #home.aqh .aqh-band-arts .aqh-track{padding:8px 4px 30px!important;margin-bottom:-16px}
