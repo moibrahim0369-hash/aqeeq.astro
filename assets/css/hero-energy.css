@@ -194,3 +194,22 @@
 @media (min-width:761px){#home.aqh .aqh-hero .aqh-title{font-size:clamp(2.6rem,3.6vw,3.5rem)!important}}
 /* هالة ناعمة متدرجة ورا الكلام (من غير حواف) */
 #home.aqh .aqh-hero .aqh-hero-copy::before{display:block!important;content:"";position:absolute;z-index:-1;inset:-40px -80px -30px;background:radial-gradient(ellipse 62% 60% at 50% 50%,rgba(251,246,236,.62),rgba(251,246,236,.3) 55%,rgba(251,246,236,0) 78%);filter:blur(10px);pointer-events:none}
+
+/* ===== نص البانر: من غير هالات بيضا. خط واضح مريح + تعتيم خفيف موحد للصورة ===== */
+#home.aqh .aqh-hero .aqh-hero-copy::before{display:none!important}
+#home.aqh .aqh-hero .hw-statue{filter:brightness(1.06) saturate(.92)}
+#home.aqh .aqh-hero::before{content:"";position:absolute;inset:0 0 auto 0;height:var(--hh,560px);z-index:1;background:rgba(251,246,236,.30);pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 100%)}
+#home.aqh .aqh-hero .aqh-title{font-family:'Amiri','IBM Plex Sans Arabic',serif!important;font-weight:700!important;color:#4A1A2B!important;text-shadow:0 1px 0 rgba(251,246,236,.55)!important;-webkit-text-stroke:0!important;letter-spacing:0!important}
+#home.aqh .aqh-hero .aqh-lead{color:#2b2428!important;font-weight:500!important;text-shadow:none!important}
+#home.aqh .aqh-hero .aqh-eyebrow{color:#6f5220!important;text-shadow:none!important}
+
+/* ===== المحتوى المميز: كروت منفصلة من غير حاوية كبيرة، تظليل بدل الإطار ===== */
+#home.aqh .aqh-band-arts .aqh-articles{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+#home.aqh .aqh-band-arts .aqh-articles-head h2{color:#F4E7C8!important}
+#home.aqh .aqh-band-arts .aqh-all{color:#E4C486!important}
+#home.aqh .aqh-band-arts .aqh-article{border:0!important;box-shadow:0 14px 30px rgba(0,0,0,.32)!important}
+#home.aqh .aqh-band-arts .aqh-car-btn{box-shadow:0 8px 18px rgba(0,0,0,.3)}
+/* بانر الخريطة وطاقة اليوم: من غير إطار، تظليل تحته */
+#home.aqh .aqh-skyb{border:0!important;box-shadow:0 22px 48px rgba(0,0,0,.36)!important}
+#home.aqh .aqh-skyb #aqh-energy{border:0!important;border-radius:0!important}
