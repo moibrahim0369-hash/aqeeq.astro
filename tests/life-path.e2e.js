@@ -6,7 +6,7 @@ let pass = 0, fail = 0; const ok = (n, c, x) => { (c ? pass++ : fail++); console
 (async () => {
   const br = await chromium.launch(); const errs = [];
   async function mk(w, h, extra) { const c = await br.newContext({ viewport: { width: w, height: h }, locale: 'ar', ...extra }); const p = await c.newPage(); p.on('pageerror', e => errs.push(e.message)); return p; }
-  async function calc(p, date) { await p.fill('#lp-date', date); await p.click('#lpform button[type=submit]'); await p.waitForSelector('.lpj-hero', { timeout: 6000 }); await p.waitForTimeout(500); }
+  async function calc(p, date) { await p.fill('#lp-date', date); await p.click('#lpform button[type=submit]'); await p.waitForSelector('.lpd-chips', { timeout: 6000 }); await p.waitForTimeout(500); }
   const p = await mk(1366, 900);
   await p.goto(B + '#lifepath'); await p.waitForTimeout(900);
   ok('empty: no demo date', (await p.inputValue('#lp-date')) === '');
@@ -18,7 +18,7 @@ let pass = 0, fail = 0; const ok = (n, c, x) => { (c ? pass++ : fail++); console
   const info = await p.evaluate(() => {
     const E = window.AqeqPinnaclesChallenges, lp = parseInt(document.querySelector('.numbadge').textContent, 10);
     const r = E.calculatePinnaclesChallenges(14, 4, 1992, lp);
-    return { lp, hero: parseInt(document.querySelector('.lpj-num button').textContent, 10), pin: r.pinnacles.map(x => x.value), ch: r.challenges.map(x => x.value),
+    return { lp, hero: parseInt(document.querySelector('.lpj-m:first-child b').textContent, 10), pin: r.pinnacles.map(x => x.value), ch: r.challenges.map(x => x.value),
       shownP: [...document.querySelectorAll('.lpj-pc .lpj-card:first-child .lpj-row .v')].map(e => +e.textContent), shownC: [...document.querySelectorAll('.lpj-pc .lpj-card.ch .lpj-row .v')].map(e => +e.textContent) };
   });
   ok('hero number == engine', info.lp === info.hero, info.lp);
@@ -29,7 +29,7 @@ let pass = 0, fail = 0; const ok = (n, c, x) => { (c ? pass++ : fail++); console
   ok('one aria-current=step', await p.locator('.lpj-st[aria-current=step]').count() === 1);
   const st = await p.$$eval('.lpj-st', e => e.map(x => x.dataset.status)); ok('status order past<=current<=future', ['past', 'current', 'future'].map(s => st.indexOf(s)).filter(i => i > -1).every((v, i, a) => !i || v >= a[i - 1]), st);
   ok('status text present', (await p.textContent('.lpj-tl')).includes('المرحلة الحالية'));
-  ok('compare link', (await p.getAttribute('.lpj-hero a.lpj-btn', 'href')) === '#life-path-synastry');
+  ok('compare link', (await p.getAttribute('.lpd-acts a.lpj-btn', 'href')) === '#life-path-synastry');
   ok('related tools links', await p.locator('.lpj-tool').count() === 4);
   // stage select
   await p.click('.lpj-st[data-i="3"]'); await p.waitForTimeout(200);
@@ -54,7 +54,7 @@ let pass = 0, fail = 0; const ok = (n, c, x) => { (c ? pass++ : fail++); console
   await p.evaluate(() => { document.getElementById('lifepath').scrollTop = 0; }); await p.click('[data-lpj-edit]'); await p.waitForTimeout(500);
   ok('edit returns to form', await p.isVisible('#lpform'));
   // recalc another date updates
-  await calc(p, '1980-11-02'); ok('recalc rebuilds once', await p.locator('.lpj-top').count() === 1 && await p.locator('.lpj-hero').count() === 1);
+  await calc(p, '1980-11-02'); ok('recalc rebuilds once', await p.locator('.lpj-top').count() === 1 && await p.locator('.lpd-chips').count() === 1);
   // back fallback
   await p.click('[data-lpj-back]'); await p.waitForTimeout(400); ok('back works', true, await p.evaluate(() => location.hash));
   // error state
