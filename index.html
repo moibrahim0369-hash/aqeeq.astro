@@ -55,7 +55,7 @@
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/hero-wide.css?v=20261106h">
 <link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106d">
-<link rel="stylesheet" href="assets/css/hero-energy.css?v=20261107j">
+<link rel="stylesheet" href="assets/css/hero-energy.css?v=20261107k">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
@@ -174,6 +174,22 @@
   </div><!-- /aqh-hero -->
 
   <!-- طاقة اليوم: شريط كامل العرض بعد الواجهة -->
+  <div class="aqh-band aqh-band-arts">
+    <div class="aqh-wrap">
+      <section class="aqh-articles" id="aqh-articles" aria-labelledby="aqh-articles-h">
+        <div class="aqh-articles-head aqh-reveal"><h2 id="aqh-articles-h">محتوى مميز</h2><a class="aqh-all" href="#featured-content" id="aqh-all-articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>عرض كل المحتوى المميز</span></a></div>
+        <div class="aqh-carousel" data-state="loading">
+          <button type="button" class="aqh-car-btn aqh-car-prev" aria-label="المحتوى السابق" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+          <div class="aqh-track" id="aqh-track" tabindex="0" role="region" aria-label="محتوى مميز — مرّر أفقيًا">
+            <div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div>
+          </div>
+          <button type="button" class="aqh-car-btn aqh-car-next" aria-label="المحتوى التالي" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+          <div class="aqh-car-msg" role="status" hidden></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
   <div class="aqh-band" id="aqh-band">
     <div class="aqh-wrap">
       <div class="aqh-skyb" id="aqh-skyb">
@@ -313,21 +329,6 @@
         <i class="dbn-progress" aria-hidden="true"></i>
       </article>
       </div>
-    </div>
-  </div>
-  <div class="aqh-band aqh-band-arts">
-    <div class="aqh-wrap">
-      <section class="aqh-articles" id="aqh-articles" aria-labelledby="aqh-articles-h">
-        <div class="aqh-articles-head aqh-reveal"><h2 id="aqh-articles-h">محتوى مميز</h2><a class="aqh-all" href="#featured-content" id="aqh-all-articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>عرض كل المحتوى المميز</span></a></div>
-        <div class="aqh-carousel" data-state="loading">
-          <button type="button" class="aqh-car-btn aqh-car-prev" aria-label="المحتوى السابق" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
-          <div class="aqh-track" id="aqh-track" tabindex="0" role="region" aria-label="محتوى مميز — مرّر أفقيًا">
-            <div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div>
-          </div>
-          <button type="button" class="aqh-car-btn aqh-car-next" aria-label="المحتوى التالي" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
-          <div class="aqh-car-msg" role="status" hidden></div>
-        </div>
-      </section>
     </div>
   </div>
 
