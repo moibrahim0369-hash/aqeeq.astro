@@ -33,15 +33,6 @@
     } catch (e) { /* بدون سعر */ }
   }
   window.addEventListener('load', price);
-  /* الشراء: يمر على الحساب (تسجيل الدخول + استكمال البيانات) ثم زر الشراء الحالي */
-  if (buy) buy.addEventListener('click', function () {
-    var sb = window.aqeeqSupabase;
-    var go = function (signed) {
-      location.hash = '#account';
-      if (!signed) return;
-      setTimeout(function () { var b = document.getElementById('acct-buy'); if (b && !b.disabled) b.click(); }, 350);
-    };
-    if (!sb || !sb.auth) return go(false);
-    sb.auth.getSession().then(function (r) { go(!!(r && r.data && r.data.session)); }, function () { go(false); });
-  });
+  /* الشراء: صفحة الدفع (تتولى طلب تسجيل الدخول لو لزم) */
+  if (buy) buy.addEventListener('click', function () { location.hash = '#pay'; });
 })();
