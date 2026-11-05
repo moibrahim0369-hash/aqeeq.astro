@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '16';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '17';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -94,7 +94,11 @@
     return load('gemini/tails.json', d => d && Array.isArray(d.tails));
   }
 
+  /* شاكرتا العجز والجذر: تعريف كل مستوى + الجذر النفسي وطريقة التعامل لكل أركانا (رمزي، ليس تشخيصاً) */
+  function chakraLower() { return load('chakra-lower.json', d => d && d.chakras && d.arcana); }
+
   window.AqeeqMatrix = {
+    chakraLower,
     gemini, geminiTails,
     core, arcana, chakraText, chakraReading, prefetch, FIELDS,
     karmicTails, karmicTail, resolveKarmicTail,
