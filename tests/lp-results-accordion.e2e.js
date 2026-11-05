@@ -59,3 +59,11 @@ await p.waitForSelector('#lpresult .aqeq-name-readings',{timeout:10000}).catch((
 const r=await p.evaluate(()=>{const cols=s=>[...document.querySelectorAll(s)].map(e=>getComputedStyle(e)).every(c=>c.display==='flex'&&c.flexDirection==='column'||c.gridTemplateColumns.split(' ').length===1);return{bg:getComputedStyle(document.querySelector('.aqeq-name-readings')).backgroundColor,g:cols('#lpresult .aqeq-name-groups,#lpresult .aqeq-pc-grid,#lpresult .aqeq-reading-grid'),hs:document.documentElement.scrollWidth>innerWidth}});
 console.log(r.bg==='rgb(253, 251, 247)'&&r.g&&!r.hs?'PASS mobile single column + ivory name blueprint':'FAIL mobile name blueprint '+JSON.stringify(r));
 await b.close();if(!(r.bg==='rgb(253, 251, 247)'&&r.g&&!r.hs))process.exit(1)})();
+/* الفصول السبعة: فصل أول مفتوح، تباين، شارات، أيقونات 36px */
+(async()=>{const {chromium}=require('playwright');const b=await chromium.launch();const p=await b.newPage({viewport:{width:390,height:844}});
+await p.route('**/*',r=>r.request().url().startsWith('http://127.0.0.1')?r.continue():r.abort());
+await p.goto('http://127.0.0.1:8765/index.html#lifepath');await p.waitForTimeout(800);
+await p.fill('#lp-date','1990-05-14');await p.click('#lpform button[type=submit]');await p.waitForSelector('#lpresult details.lp-section',{timeout:10000});await p.waitForTimeout(500);
+const r=await p.evaluate(()=>{const L=[...document.querySelectorAll('#lpresult details.lp-section')];const p0=L[0].querySelector('.lp-sec-body p');return{n:L.length,open:L.map(d=>d.open).join(),col:getComputedStyle(p0).color,lh:parseFloat(getComputedStyle(p0).lineHeight)/parseFloat(getComputedStyle(p0).fontSize),badges:L.every(d=>d.querySelector('.lpa-badge')),tags:L.some(d=>/\[|—\s*مجاني/.test(d.querySelector('.lp-sec-title b').textContent)),ic:L.every(d=>getComputedStyle(d.querySelector('.lp-sec-icon')).width==='36px'),single:new Set(L.map(d=>Math.round(d.getBoundingClientRect().left))).size===1}});
+const good=r.n===7&&r.open==='true,false,false,false,false,false,false'&&r.col==='rgb(44, 37, 35)'&&r.lh>=1.8&&r.badges&&!r.tags&&r.ic&&r.single;
+console.log(good?'PASS seven chapters accordion/contrast/badges/icons':'FAIL seven chapters '+JSON.stringify(r));await b.close();if(!good)process.exit(1)})();

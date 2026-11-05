@@ -74,7 +74,20 @@
       out.forEach(function (o, i) { pc.appendChild(o.keep ? o.keep : card(o.t, o.nodes, { tone: tone(o.t), open: i === 0 })); });
     }
     /* الفصول السبعة: details موجودة، نوحّد شكلها */
-    [].forEach.call(root.querySelectorAll('details.lp-section'), function (d) { d.classList.add('lpa-card', 'lpa-native'); });
+    var secs = [].slice.call(root.querySelectorAll('details.lp-section'));
+    secs.forEach(function (d, i) {
+      d.classList.add('lpa-card', 'lpa-native');
+      /* شارة مجاني / قراءة متعمقة بدل الوسوم النصية في العنوان (عرض فقط) */
+      var b = d.querySelector('.lp-sec-title b'), sm = d.querySelector('.lp-sec-title small');
+      if (b && !b.querySelector('.lpa-badge')) {
+        var t = b.textContent, free = /مجاني|متاح بالكامل/.test(t + ' ' + (sm ? sm.textContent : '')) && !/مدفوع/.test(t);
+        b.textContent = t.replace(/\s*[—–-]\s*(مجاني|مدفوع[^\]]*)\s*$/, '').replace(/\s*\[[^\]]*\]\s*$/, '');
+        var bd = document.createElement('span'); bd.className = 'lpa-badge ' + (free ? 'is-free' : 'is-deep');
+        bd.innerHTML = free ? 'متاح مجاناً' : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>قراءة متعمقة';
+        b.appendChild(document.createTextNode(' ')); b.appendChild(bd);
+      }
+      d.open = i === 0;
+    });
   }
 
   function enhanceSyn(out) {
