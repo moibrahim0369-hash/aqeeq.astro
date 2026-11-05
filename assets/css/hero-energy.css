@@ -180,3 +180,17 @@
   #home.aqh .aqh-hero{--hh:620px;--hpt:300px}
   #home.aqh .aqh-hero .hw-statue{object-position:42% 22%!important;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 36%,rgba(0,0,0,.35) 62%,transparent 86%)!important;mask-image:linear-gradient(180deg,#000 0,#000 36%,rgba(0,0,0,.35) 62%,transparent 86%)!important}
 }
+
+/* ===== نص البانر: أكبر وأوضح مع لمسة زخرفية ===== */
+#home.aqh .aqh-hero .aqh-hero-copy{text-shadow:none!important}
+#home.aqh .aqh-hero .aqh-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:clamp(.95rem,1.1vw,1.08rem)!important;font-weight:700!important;color:#6f5220!important;letter-spacing:.03em;text-shadow:0 1px 10px rgba(251,246,236,.95),0 0 3px rgba(251,246,236,.9)}
+#home.aqh .aqh-hero .aqh-eyebrow::before,#home.aqh .aqh-hero .aqh-eyebrow::after{content:"";width:clamp(22px,5vw,46px);height:1px;background:linear-gradient(90deg,transparent,#B99A5B)}
+#home.aqh .aqh-hero .aqh-eyebrow::after{background:linear-gradient(270deg,transparent,#B99A5B)}
+#home.aqh .aqh-hero .aqh-title{font-size:clamp(2.5rem,9.4vw,3.2rem)!important;line-height:1.28!important;color:#3a1726!important;font-weight:700!important;text-shadow:0 2px 2px rgba(251,246,236,.9),0 0 22px rgba(251,246,236,.95),0 0 44px rgba(251,246,236,.7)!important;-webkit-text-stroke:.4px rgba(251,246,236,.6);position:relative;padding-bottom:20px}
+#home.aqh .aqh-hero .aqh-title::after{content:"";position:absolute;left:50%;bottom:4px;width:110px;height:10px;transform:translateX(-50%);background:
+  linear-gradient(90deg,transparent,#B99A5B 30%,#B99A5B 70%,transparent) center/100% 1px no-repeat,
+  radial-gradient(circle,#B99A5B 0 3px,transparent 3.5px) center/10px 10px no-repeat}
+#home.aqh .aqh-hero .aqh-lead{color:#2b2428!important;font-weight:600!important;font-size:clamp(1.02rem,1.2vw,1.12rem)!important;line-height:1.9!important;text-shadow:0 1px 8px rgba(251,246,236,.95),0 0 18px rgba(251,246,236,.85)}
+@media (min-width:761px){#home.aqh .aqh-hero .aqh-title{font-size:clamp(2.6rem,3.6vw,3.5rem)!important}}
+/* هالة ناعمة متدرجة ورا الكلام (من غير حواف) */
+#home.aqh .aqh-hero .aqh-hero-copy::before{display:block!important;content:"";position:absolute;z-index:-1;inset:-40px -80px -30px;background:radial-gradient(ellipse 62% 60% at 50% 50%,rgba(251,246,236,.62),rgba(251,246,236,.3) 55%,rgba(251,246,236,0) 78%);filter:blur(10px);pointer-events:none}
