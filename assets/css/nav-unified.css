@@ -1,0 +1,99 @@
+/* AQEQ ASTRO — نظام تنقل موحد: هيدر + شريط سفلي (5 وجهات) + قائمة جانبية + ورقة "اكتشف ذاتك"
+   تعديل بصري فقط. نقطة الفصل الموحدة: 1100px */
+:root{--aqn-ivory:#FBF8F2;--aqn-burg:#70263F;--aqn-gold:#B78A52;--aqn-ink:#35252B;--aqn-line:rgba(183,138,82,.38);--aqn-dir:1}
+html[dir="ltr"]{--aqn-dir:-1}
+
+/* ---------- الشريط السفلي ---------- */
+html body nav.bnav{height:calc(64px + env(safe-area-inset-bottom,0px))!important;padding:0 6px env(safe-area-inset-bottom,0px)!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;background:rgba(251,248,242,.97)!important;border-top:1px solid var(--aqn-line)!important;border-radius:18px 18px 0 0!important;box-shadow:0 -8px 24px rgba(53,37,43,.08)!important;align-items:stretch!important}
+html body nav.bnav .bnav-item{position:relative!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;min-height:48px!important;height:auto!important;margin:7px 2px!important;padding:0!important;border:0!important;border-radius:14px!important;background:none!important;color:#6f6168!important;font:500 .72rem/1.2 'IBM Plex Sans Arabic',system-ui,sans-serif!important;cursor:pointer;text-decoration:none!important;-webkit-tap-highlight-color:transparent;transition:background-color .22s ease,color .22s ease!important}
+html body nav.bnav .bnav-item .bnav-icon{display:grid;place-items:center;width:26px;height:26px}
+html body nav.bnav .bnav-item svg{width:23px!important;height:23px!important;stroke-width:1.6!important}
+html body nav.bnav .bnav-item .bnav-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+html body nav.bnav .bnav-item:hover{color:var(--aqn-burg)!important}
+html body nav.bnav .bnav-item.on{color:var(--aqn-burg)!important;font-weight:700!important;background:rgba(183,138,82,.14)!important}
+html body nav.bnav .bnav-item.on::before{content:"";position:absolute;top:-8px;left:50%;width:22px;height:2px;margin-left:-11px;border-radius:2px;background:var(--aqn-gold)}
+html body nav.bnav .bnav-item:focus-visible{outline:2px solid var(--aqn-burg);outline-offset:-2px}
+html body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))!important}
+@media (min-width:1100px){html body nav.bnav{display:none!important}html body{padding-bottom:0!important}}
+
+/* ---------- ورقة اكتشف ذاتك ---------- */
+.aqn-scrim{position:fixed;inset:0;z-index:1500;background:rgba(41,37,42,.45);opacity:0;transition:opacity .25s ease}
+.aqn-scrim[hidden]{display:none}
+.aqn-scrim.is-open{opacity:1}
+.aqn-sheet{position:fixed;inset-inline:0;bottom:0;z-index:1510;max-width:560px;margin-inline:auto;padding:10px 18px calc(22px + env(safe-area-inset-bottom,0px));background:var(--aqn-ivory);border:1px solid var(--aqn-line);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -18px 44px rgba(53,37,43,.22);transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s;visibility:hidden;direction:rtl}
+.aqn-sheet[hidden]{display:block;pointer-events:none}
+.aqn-sheet.is-open{transform:none;visibility:visible;transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.aqn-grab{display:block;width:42px;height:4px;border-radius:4px;background:var(--aqn-line);margin:0 auto 12px}
+.aqn-sheet h2{margin:0 0 12px;font:700 1.35rem/1.3 'Amiri',serif;color:var(--aqn-burg);text-align:center}
+.aqn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.aqn-grid a{display:grid;justify-items:center;gap:4px;padding:16px 8px;border:1px solid var(--aqn-line);border-radius:16px;background:#fff;color:var(--aqn-ink)!important;text-decoration:none!important;text-align:center;transition:border-color .2s,box-shadow .2s,transform .2s}
+.aqn-grid a:hover,.aqn-grid a:focus-visible{border-color:var(--aqn-burg);box-shadow:0 8px 20px rgba(112,38,63,.12);outline:0}
+.aqn-grid a.on{border-color:var(--aqn-burg);background:rgba(112,38,63,.05)}
+.aqn-grid svg{width:30px;height:30px;color:var(--aqn-burg)}
+.aqn-grid b{font:700 1rem/1.3 'IBM Plex Sans Arabic',system-ui,sans-serif}
+.aqn-grid small{font:400 .78rem/1.4 'IBM Plex Sans Arabic',system-ui,sans-serif;color:#7a6a70}
+@media (min-width:1100px){.aqn-sheet,.aqn-scrim{display:none!important}}
+
+/* ---------- القائمة الجانبية ---------- */
+.aqn-scrim--drawer{z-index:1500}
+html body nav.aqh-menu{position:fixed!important;top:0!important;bottom:0!important;inset-inline:0 auto!important;width:min(86vw,340px)!important;max-height:none!important;z-index:1510;display:flex!important;flex-direction:column;padding:0!important;background:var(--aqn-ivory)!important;border:0!important;border-inline-end:1px solid var(--aqn-line)!important;box-shadow:0 0 44px rgba(53,37,43,.25);overflow:hidden!important;transform:none;visibility:visible;transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s}
+html body nav.aqh-menu[hidden]{display:flex!important;transform:translateX(calc(100% * var(--aqn-dir)));visibility:hidden;pointer-events:none;transition:transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s}
+.aqn-dr-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--aqn-line)}
+.aqn-dr-title{font:600 1.15rem 'Cormorant Garamond','Amiri',serif;letter-spacing:.12em;color:var(--aqn-burg)}
+.aqn-dr-close{width:40px;height:40px;display:grid;place-items:center;border:1px solid var(--aqn-line);border-radius:12px;background:none;color:var(--aqn-ink);cursor:pointer}
+.aqn-dr-close svg{width:22px;height:22px}
+.aqn-dr-body{flex:1;overflow:auto;padding:8px 14px;overscroll-behavior:contain}
+.aqn-dr-cap{margin:14px 6px 4px;font:600 .78rem 'IBM Plex Sans Arabic',sans-serif;color:var(--aqn-gold);letter-spacing:.04em}
+html body nav.aqh-menu .aqn-dr-body a{display:flex;align-items:center;gap:12px;padding:12px 10px!important;margin:2px 0;border:0!important;border-radius:12px;color:var(--aqn-ink)!important;text-decoration:none!important;font:500 1rem 'IBM Plex Sans Arabic',system-ui,sans-serif!important;transition:background-color .2s,color .2s}
+html body nav.aqh-menu .aqn-dr-body a svg{width:22px;height:22px;flex:none;color:var(--aqn-burg)}
+html body nav.aqh-menu .aqn-dr-body a:hover,html body nav.aqh-menu .aqn-dr-body a:focus-visible{background:rgba(183,138,82,.14);color:var(--aqn-burg)!important;outline:0}
+html body nav.aqh-menu .aqn-dr-body a.on{background:rgba(112,38,63,.08);color:var(--aqn-burg)!important;font-weight:700!important}
+.aqn-dr-foot{display:flex;gap:10px;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--aqn-line)}
+.aqn-dr-btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;border:1px solid var(--aqn-line);border-radius:999px;background:#fff;color:var(--aqn-ink);font:600 .9rem 'IBM Plex Sans Arabic',sans-serif;cursor:pointer}
+.aqn-dr-btn svg{width:20px;height:20px}
+.aqn-dr-btn:hover{border-color:var(--aqn-burg);color:var(--aqn-burg)}
+html.aqn-lock,html.aqn-lock body{overflow:hidden}
+@media (min-width:1100px){html body nav.aqh-menu,.aqn-scrim--drawer{display:none!important}}
+
+/* ---------- الهيدر: نقطة فصل موحدة ---------- */
+@media (max-width:1099px){
+  html body .aqh-nav{display:none!important}
+  html body .aqh-burger{display:grid!important}
+  html body .aqh-tools .aqh-icon-account{display:none!important}
+  html body .aqh-tools{margin-inline-start:auto}
+}
+@media (min-width:1100px){
+  html body .aqh-burger{display:none!important}
+  html body .aqh-nav{gap:clamp(14px,2vw,40px)}
+  html body .aqh-tools{gap:10px}
+}
+@media (max-width:640px){html body .aqh-tools .aq-lang-switch{display:none!important}}
+.aqh-drop-btn.is-current,.aqh-nav>a.is-current{color:var(--aqn-burg)!important}
+.aqh-drop-btn.is-current::after{transform:scaleX(1)!important;opacity:1!important}
+.aqh-drop-menu a.on{background:rgba(112,38,63,.08);color:var(--aqn-burg)!important;font-weight:700}
+.aqh-menu a,.aqn-sheet a,.bnav-item{touch-action:manipulation}
+@media (prefers-reduced-motion:reduce){.aqn-sheet,.aqn-scrim,html body nav.aqh-menu,html body nav.bnav .bnav-item{transition-duration:.01ms!important}}
+
+/* ---------- هيدر الموبايل: لا يتجاوز العرض أبدًا ---------- */
+@media (max-width:640px){
+  html body .aqh-header .aqh-header-in{margin-inline:0!important;width:100%!important;padding-inline:12px!important;gap:8px!important;max-width:100%!important;box-sizing:border-box}
+  html body .aqh-header .aqh-brand{flex:0 1 auto;min-width:0;gap:8px}
+  html body .aqh-header .aqh-brand-text b{font-size:1.02rem!important;letter-spacing:.04em}
+  html body .aqh-header .aqh-brand-text small{font-size:.64rem!important}
+  html body .aqh-header .aqh-emblem{width:34px!important;height:34px!important}
+  html body .aqh-header .aqh-tools{gap:6px!important;flex:0 0 auto}
+  html body .aqh-header .aqh-join{height:36px!important;padding:0 12px!important;font-size:.84rem!important}
+  html body .aqh-header .aqh-burger{width:38px;height:38px}
+  html body .aqh-header .aqh-icon{width:34px;height:34px}
+}
+@media (max-width:359px){html body .aqh-header .aqh-brand-text small{display:none}html body .aqh-header .aqh-brand-text b{font-size:.92rem!important}}
+@media (max-width:640px){html body header.top.aqh-header{padding-inline:0!important}}
+@media (max-width:359px){
+  html body .aqh-header .aqh-brand-text b{font-size:.8rem!important;letter-spacing:.02em}
+  html body .aqh-header .aqh-emblem{width:28px!important;height:28px!important}
+  html body .aqh-header .aqh-brand{gap:6px}
+  html body .aqh-header .aqh-join{padding:0 9px!important;font-size:.78rem!important}
+  html body .aqh-header .aqh-burger{width:34px;height:34px}
+  html body .aqh-header .aqh-icon{width:30px;height:30px}
+  html body .aqh-header .aqh-tools{gap:4px!important}
+}
