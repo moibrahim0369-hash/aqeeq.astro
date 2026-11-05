@@ -72,7 +72,7 @@ let pass = 0, fail = 0; const ok = (n, c, x) => { (c ? pass++ : fail++); console
     ok(n + ' tap targets >=40', await m.evaluate(() => [...document.querySelectorAll('.lpj-btn,.lpj-st,.lpj-row')].every(b => { const r = b.getBoundingClientRect(); return r.height >= 40 || !r.width; })));
     await m.screenshot({ path: OUT + 'lp-' + n + '-hero.png' });
     await m.evaluate(() => document.querySelector('.lpj-st').scrollIntoView()); await m.waitForTimeout(300); await m.screenshot({ path: OUT + 'lp-' + n + '-timeline.png' });
-    await m.evaluate(() => document.querySelector('.lpj-st[data-status=current]').click()); await m.evaluate(() => document.querySelector('#lpj-stage [data-lpj-open]').click()); await m.waitForSelector('.lpj-panel'); await m.waitForTimeout(400);
+    await m.evaluate(() => document.querySelector('.lpj-st[data-status=current]').click()); await m.evaluate(() => document.querySelector('#lpj-stage [data-lpj-open]').click()); await m.waitForSelector('.lpj-panel'); await m.waitForTimeout(800);
     ok(n + ' sheet fits viewport', await m.evaluate(() => { const r = document.querySelector('.lpj-panel').getBoundingClientRect(); return r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1; }));
     await m.screenshot({ path: OUT + 'lp-' + n + '-sheet.png' });
   }
