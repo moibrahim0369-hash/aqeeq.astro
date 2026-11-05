@@ -79,6 +79,7 @@
 <link rel="stylesheet" href="assets/css/sky-zodiac-theme.css?v=20261106b">
 <link rel="stylesheet" href="assets/css/wheel-ivory.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/for-you.css?v=20261106a">
+<link rel="stylesheet" href="assets/css/paywall-modal.css?v=20261106a">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -3217,7 +3218,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
           : `${planetInHouse(k, th, "transit")} ممكن يظهر ده في مواقف زي: ${HOUSE_SIT[th - 1][0]}، أو ${HOUSE_SIT[th - 1][1]}.${b.retro ? " " + retroText(k) : ""}`;
         o += `<article class="fy-tr"><span class="fy-badge"><span class="sg" aria-hidden="true">${gl(node ? "☊" : P.g)}</span> ${name} <i>${period}</i></span>
           <h4>${hook1}<br>${hook2}</h4><p>${intro}</p>
-          <div class="fy-lock"><span class="fy-lock-ic">${lockIc}</span><p>باقي القراءة، وتوقيت الذروة وخريطة التحرر، للمشتركين.</p><a class="btn fy-lock-btn" href="#pay">افتح قراءة العبور الكاملة وخريطة التحرر</a></div></article>`;
+          <div class="fy-lock"><span class="fy-lock-ic">${lockIc}</span><p>باقي القراءة، وتوقيت الذروة وخريطة التحرر، للمشتركين.</p><a class="btn fy-lock-btn" href="#pay" data-paywall="${node ? "العقدة الشمالية في بيتك " + TH.n : "عبور " + P.n + " في بيتك " + TH.n}">افتح قراءة العبور الكاملة وخريطة التحرر</a></div></article>`;
       });
       host.innerHTML = o + `</div>${NOTE_SYM}`;
     }
@@ -4843,6 +4844,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js?v=20261106a"></script>
 <script src="assets/js/section-footer.js?v=20261106b"></script>
+<script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
