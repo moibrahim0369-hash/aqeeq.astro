@@ -21,10 +21,9 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   // قسم «المهمة والغاية» موجود بعنوانه وشارة أركانا واحدة على الأقل (النص التفصيلي من مكتبة المحتوى)
   ok(!!r.purposes && /الغاية|المهمة/.test(r.purposes.title) && r.purposes.badges >= 1, 'purposes section present with arcana badge: ' + JSON.stringify(r.purposes));
   ok(r.tail && r.anc && !r.err, 'Karmic Tail + Ancestral Lines titles present');
-  // الخريطة مرجع ثابت: الضغط على عقدة يفتح لوحة تفسير الموضع بعنوان (أكاديمي + مبسّط)
+  // الضغط على عقدة يفتح قسمها داخل الأكورديون (بدون نافذة منبثقة)
   await p.evaluate(() => document.querySelector('.aqm-node').dispatchEvent(new MouseEvent('click', { bubbles: true }))); await p.waitForTimeout(600);
-  const sheet = await p.textContent('.aqm-xr-sheet .aqm-xr');
-  ok(/\(.+\)/.test(sheet) && sheet.includes('الأركانا'), 'node click opens position sheet with academic + plain title: ' + sheet.trim().slice(0, 60));
+  ok(await p.evaluate(() => !document.querySelector('.aqm-xr-modal:not([hidden])') && document.querySelectorAll('.aqm-acc-item.open').length >= 1), 'node click opens accordion inline, no modal');
   ok(errs.length === 0, 'no JS errors ' + errs.join(';'));
   await b.close(); console.log(`\n${pass} passed, ${fail} failed`); process.exit(fail ? 1 : 0);
 })();
