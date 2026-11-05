@@ -1,0 +1,65 @@
+/* توافق مسارات الحياة والشراكات القدرية — هندسة الأعداد (بصري فقط) */
+section#life-path-synastry.lps{--b:#70263F;--p:#8E7E9E;--g:#B78A52;--ink:#35252B}
+section#life-path-synastry.lps.sec,section#life-path-synastry.lps.sec:target{background:radial-gradient(700px 360px at 90% 0,rgba(112,38,63,.08),transparent 70%),radial-gradient(640px 320px at 8% 6%,rgba(142,126,158,.18),transparent 70%),linear-gradient(180deg,#F7F2EA,#F3EADC 60%,#F7F2EA)!important;padding-top:0!important}
+section#life-path-synastry.lps>.wrap{width:min(1080px,100% - 32px)!important;max-width:none!important;padding-top:12px!important;position:relative;overflow:hidden;padding-bottom:clamp(150px,22vw,230px)!important}
+section#life-path-synastry.lps .sheet-x,section#life-path-synastry.lps .aq-back-home-btn{display:none!important}
+section#life-path-synastry.lps .aq-section-topbar{margin:0 0 6px!important;padding:0!important;border:0!important}
+section#life-path-synastry.lps .aq-section-quick-links{display:flex!important;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none}
+section#life-path-synastry.lps .aq-section-pill{flex:0 0 auto;font-size:.74rem!important;padding:7px 12px!important;border-radius:999px!important}
+section#life-path-synastry.lps .lps-head{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;gap:8px 24px;text-align:right!important;margin:0 0 28px!important;max-width:none!important}
+.lps-art{grid-column:2;grid-row:1/5;justify-self:center;width:min(100%,400px)}
+.lps-art svg{width:100%;height:auto;display:block}
+section#life-path-synastry.lps .lps-head>.eyebrow,section#life-path-synastry.lps .lps-head>h2,section#life-path-synastry.lps .lps-head>.lps-orn,section#life-path-synastry.lps .lps-head>.intro{grid-column:1;text-align:right!important;margin-inline:0!important}
+section#life-path-synastry.lps .lps-head .eyebrow{display:block;font-size:.62rem!important;letter-spacing:.14em;color:#7a5a22!important;font-weight:600}
+section#life-path-synastry.lps .lps-head h2{font-family:'Amiri',serif!important;font-weight:700!important;color:var(--b)!important;font-size:clamp(2rem,7vw,3.1rem)!important;line-height:1.3!important;margin:0!important;max-width:none!important}
+.lps-orn{display:flex;align-items:center;gap:8px;color:var(--g);width:min(70%,260px)}
+.lps-orn i{flex:1;height:1px;background:linear-gradient(90deg,transparent,currentColor)}.lps-orn i:last-child{transform:scaleX(-1)}.lps-orn svg{width:14px;flex:none}
+section#life-path-synastry.lps .lps-head .intro{max-width:34em!important;color:#2f2227!important;font-size:clamp(.95rem,3.4vw,1.06rem)!important;line-height:1.95!important;margin-top:6px!important}
+.lps-a{transform-origin:120px 100px;animation:lpsSpin 120s linear infinite}.lps-b{transform-origin:210px 100px;animation:lpsSpin 120s linear infinite reverse}
+@keyframes lpsSpin{to{transform:rotate(360deg)}}
+.lps-dot{animation:lpsGlow 3s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(217,185,121,.9))}
+@keyframes lpsGlow{50%{opacity:.45}}
+/* النموذج */
+section#life-path-synastry.lps form.syn-form{position:relative;display:grid!important;grid-template-columns:1fr 1fr;gap:20px 56px;max-width:1000px!important;margin:0 auto!important;padding:clamp(18px,4vw,34px)!important;background:rgba(255,253,250,.92)!important;border:1px solid rgba(183,138,82,.55)!important;border-radius:22px!important;box-shadow:0 22px 50px rgba(74,26,43,.09),inset 0 0 0 5px rgba(247,242,234,.8)!important}
+section#life-path-synastry.lps form.syn-form>*{min-width:0}
+section#life-path-synastry.lps form.syn-form>.syn-rel,section#life-path-synastry.lps form.syn-form>.ferr,section#life-path-synastry.lps form.syn-form>.btn{grid-column:1/-1}
+.lps-join{position:absolute;inset-inline-start:50%;top:calc(50% - 60px);width:62px;height:62px;transform:translate(50%,-50%);background:#FFFDFA;border:1px solid rgba(183,138,82,.5);border-radius:50%;padding:8px;z-index:2;display:none;animation:lpsGlow 4s ease-in-out infinite}
+@media(min-width:861px){.lps-join{display:block}}
+section#life-path-synastry.lps .syn-person{--c:var(--b);border:1px solid rgba(112,38,63,.28);border-radius:16px;background:#FFFDFA;overflow:hidden;padding:0 0 6px!important;margin:0!important;min-width:0}
+section#life-path-synastry.lps .syn-person:nth-of-type(2){--c:var(--p);border-color:rgba(142,126,158,.55)}
+section#life-path-synastry.lps .syn-person h3{display:flex;align-items:center;gap:10px;margin:0 0 16px!important;padding:14px 18px!important;background:linear-gradient(120deg,var(--c),color-mix(in srgb,var(--c) 70%,#fff));color:#fff!important;font-family:'Amiri',serif;font-size:1.25rem;font-weight:700}
+section#life-path-synastry.lps .syn-person h3::before{content:"";width:22px;height:22px;flex:none;background:#E8CD92;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4.500 20.500a7.500 7.500 0 0 1 15 0'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4.500 20.500a7.500 7.500 0 0 1 15 0'/%3E%3C/svg%3E") center/contain no-repeat}
+section#life-path-synastry.lps .syn-person .field{margin:0 18px 12px!important;width:auto!important;min-width:0}
+section#life-path-synastry.lps .syn-form .field label{display:block;font-weight:700;color:var(--ink)!important;font-size:.88rem!important;margin:0 0 6px!important}
+section#life-path-synastry.lps .syn-form input,section#life-path-synastry.lps .syn-form select{width:100%;box-sizing:border-box;min-height:48px!important;border-radius:12px!important;border:1px solid rgba(183,138,82,.55)!important;background:#fff!important;color:var(--ink)!important;padding:0 12px!important;min-width:0}
+section#life-path-synastry.lps .syn-person input:focus,section#life-path-synastry.lps .syn-person select:focus{outline:0!important;border-color:var(--c)!important;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 15%,transparent)!important}
+section#life-path-synastry.lps .syn-rel{margin:0!important;position:relative}
+section#life-path-synastry.lps .syn-rel select{padding-inline-start:44px!important;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2370263F' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M12 20L4.500 12.500a4.500 4.500 0 0 1 7.500-4.500 4.500 4.500 0 0 1 7.500 4.500z'/%3E%3C/svg%3E") no-repeat 12px center/22px!important}
+html[dir=rtl] section#life-path-synastry.lps .syn-rel select{background-position:right 12px center!important;padding-inline-start:12px!important;padding-inline-end:44px!important}
+section#life-path-synastry.lps form.syn-form .btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:400px;margin:6px auto 0!important;min-height:56px;border-radius:999px!important;background:linear-gradient(135deg,#8a3d56,var(--b))!important;color:#fff!important;border:1px solid rgba(228,196,134,.7)!important;font-weight:700;font-size:1.05rem;box-shadow:0 14px 28px rgba(112,38,63,.32);transition:transform .2s,box-shadow .2s}
+section#life-path-synastry.lps form.syn-form .btn svg{color:#E8CD92;flex:none}
+section#life-path-synastry.lps form.syn-form .btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(112,38,63,.4)}
+section#life-path-synastry.lps form.syn-form .btn:disabled{opacity:.65;cursor:progress;transform:none}
+section#life-path-synastry.lps form.syn-form .btn:focus-visible{outline:3px solid rgba(183,138,82,.7);outline-offset:3px}
+.lps-feats{list-style:none;margin:34px auto 0;padding:0;max-width:1000px;display:grid;grid-template-columns:repeat(4,1fr);position:relative;z-index:2}
+.lps-feats li{padding:6px 20px;text-align:center;border-inline-start:1px solid rgba(183,138,82,.3)}
+.lps-feats li:first-child{border-inline-start:0}
+.lps-fi{display:inline-grid;place-items:center;width:58px;height:58px;color:var(--b)}.lps-feats li:nth-child(even) .lps-fi{color:#6f5f82}.lps-fi svg{width:46px;height:46px}
+.lps-feats h3{font-family:'Amiri',serif;color:var(--b);font-size:1.2rem;margin:6px 0 4px}
+.lps-feats p{margin:0;color:#4a3b41;font-size:.88rem;line-height:1.8}
+.lps-ridge{position:absolute;inset-inline:0;bottom:0;width:100%;height:clamp(110px,18vw,200px);z-index:0;pointer-events:none}
+section#life-path-synastry.lps #syn-result{position:relative;z-index:2}
+@media(max-width:860px){
+ section#life-path-synastry.lps form.syn-form{grid-template-columns:1fr;gap:18px}
+ section#life-path-synastry.lps .lps-head{grid-template-columns:1fr}
+ .lps-art{grid-column:1;grid-row:auto;width:min(92%,330px);order:5}
+ .lps-feats{grid-template-columns:1fr 1fr;gap:18px 0}.lps-feats li:nth-child(odd){border-inline-start:0}
+}
+@media(max-width:560px){section#life-path-synastry.lps form.syn-form{padding:14px!important}section#life-path-synastry.lps .syn-person .field{margin-inline:14px!important}}
+@media(prefers-reduced-motion:reduce){.lps *{animation:none!important;transition:none!important}}
+section#life-path-synastry.lps .lps-join+.syn-person{--c:var(--p);border-color:rgba(142,126,158,.55)}
+section#life-path-synastry.lps .syn-rel select{background-position:right 12px center!important;padding-right:44px!important;padding-left:12px!important}
+html[dir=rtl] section#life-path-synastry.lps .syn-rel select{padding-right:44px!important;padding-left:12px!important;padding-inline:44px 12px!important}
+section#life-path-synastry.lps>.wrap{overflow:visible!important}
+section#life-path-synastry.lps{overflow-x:clip}
+.lps-ridge{-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
