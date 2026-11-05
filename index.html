@@ -55,7 +55,7 @@
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/hero-wide.css?v=20261106h">
 <link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106d">
-<link rel="stylesheet" href="assets/css/hero-energy.css?v=20261106q">
+<link rel="stylesheet" href="assets/css/hero-energy.css?v=20261106t">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
@@ -138,34 +138,7 @@
         </ul>
       </div>
 
-      <!-- الخريطة الفلكية الحقيقية (نفس عناصر الكود الحالي: #ticks و#glyphs تُملأ من السكربت وتفتح قراءة البرج) -->
-      <div class="aqh-hero-wheel aqh-chart-seq" id="home-chart-identity-wheel">
-        <div class="aq-hero-wheel-col wheel-box aqh-wheel-box">
-          <div class="aq-celestial-wheel-frame aqh-wheel-frame">
-            <div class="wheel-wrap aqh-wheel-wrap">
-              <svg aria-label="دائرة البروج الفلكية التفاعلية" class="wheel" role="group" viewBox="0 0 400 400">
-                <circle class="ln strong" cx="200" cy="200" r="192"></circle>
-                <g class="spin-a"><g class="ln strong" id="ticks" style="stroke-width:1"></g></g>
-                <circle class="ln" cx="200" cy="200" r="170"></circle>
-                <circle class="ln" cx="200" cy="200" r="126"></circle>
-                <g class="spin-b">
-                  <circle class="ln dash" cx="200" cy="200" r="112"></circle>
-                  <polygon class="ln faint" points="200,88 297,256 103,256"></polygon>
-                  <polygon class="ln faint" points="200,312 103,144 297,144"></polygon>
-                  <circle class="ln faint" cx="200" cy="200" r="64"></circle>
-                </g>
-                <path class="moon" d="M200 168A32 32 0 0 0 200 232A40 40 0 0 1 200 168Z" transform="translate(18 0)"></path>
-                <g id="glyphs"></g>
-              </svg>
-              <img class="aqh-agate" src="assets/images/home/agate-eye.svg" alt="" aria-hidden="true" decoding="async">
-            </div>
-          </div>
-          <p class="aq-wheel-caption wheel-hint aqh-wheel-hint" data-i18n-ar="انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته" data-i18n-en="Select any zodiac sign on the celestial wheel to view its reading">انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته</p>
-          <a class="aqh-sky-link" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>استكشف السماء الآن</span></a>
-        </div>
-        
-        <aside class="aqh-tagline" aria-hidden="true"><span>النجوم</span><span>لغة أخرى</span><span>لنفهم بها أنفسنا</span><i></i><em dir="ltr">A DEEPER YOU<br>A BRIGHTER TOMORROW</em></aside>
-      </div>
+      
     </div>
   </div>
 
@@ -207,7 +180,34 @@
   <!-- طاقة اليوم: شريط كامل العرض بعد الواجهة -->
   <div class="aqh-band" id="aqh-band">
     <div class="aqh-wrap">
-      <div class="aqh-duo">
+      <div class="aqh-skyb" id="aqh-skyb">
+<div class="aqh-skyb-wheel aqh-chart-seq" id="home-chart-identity-wheel">
+        <div class="aq-hero-wheel-col wheel-box aqh-wheel-box">
+          <div class="aq-celestial-wheel-frame aqh-wheel-frame">
+            <div class="wheel-wrap aqh-wheel-wrap">
+              <svg aria-label="دائرة البروج الفلكية التفاعلية" class="wheel" role="group" viewBox="0 0 400 400">
+                <circle class="ln strong" cx="200" cy="200" r="192"></circle>
+                <g class="spin-a"><g class="ln strong" id="ticks" style="stroke-width:1"></g></g>
+                <circle class="ln" cx="200" cy="200" r="170"></circle>
+                <circle class="ln" cx="200" cy="200" r="126"></circle>
+                <g class="spin-b">
+                  <circle class="ln dash" cx="200" cy="200" r="112"></circle>
+                  <polygon class="ln faint" points="200,88 297,256 103,256"></polygon>
+                  <polygon class="ln faint" points="200,312 103,144 297,144"></polygon>
+                  <circle class="ln faint" cx="200" cy="200" r="64"></circle>
+                </g>
+                <path class="moon" d="M200 168A32 32 0 0 0 200 232A40 40 0 0 1 200 168Z" transform="translate(18 0)"></path>
+                <g id="glyphs"></g>
+              </svg>
+              <img class="aqh-agate" src="assets/images/home/agate-eye.svg" alt="" aria-hidden="true" decoding="async">
+            </div>
+          </div>
+          <p class="aq-wheel-caption wheel-hint aqh-wheel-hint" data-i18n-ar="انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته" data-i18n-en="Select any zodiac sign on the celestial wheel to view its reading">انقر على أي برج في الدائرة الفلكية لاستعراض خصائصه وقراءته</p>
+          <a class="aqh-sky-link" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5c3 2.6 3 14.4 0 17M12 3.5c-3 2.6-3 14.4 0 17M3.5 12h17" stroke-linecap="round"/></svg><span>استكشف السماء الآن</span></a>
+        </div>
+        
+        <aside class="aqh-tagline" aria-hidden="true"><span>النجوم</span><span>لغة أخرى</span><span>لنفهم بها أنفسنا</span><i></i><em dir="ltr">A DEEPER YOU<br>A BRIGHTER TOMORROW</em></aside>
+      </div>
       <article class="aqh-energy aqh-reveal" id="aqh-energy" aria-roledescription="carousel" aria-label="طاقة اليوم" data-state="loading">
         <!-- مصادر علم الأعداد الحالية (يملؤها aqeeq-platform.js) — مخفية، يقرأ منها البانر رقم اليوم ورسالته دون تكرار الحساب -->
         <div class="dbn-src" hidden>
@@ -316,6 +316,11 @@
         </div>
         <i class="dbn-progress" aria-hidden="true"></i>
       </article>
+      </div>
+    </div>
+  </div>
+  <div class="aqh-band aqh-band-arts">
+    <div class="aqh-wrap">
       <section class="aqh-articles" id="aqh-articles" aria-labelledby="aqh-articles-h">
         <div class="aqh-articles-head aqh-reveal"><h2 id="aqh-articles-h">محتوى مميز</h2><a class="aqh-all" href="#featured-content" id="aqh-all-articles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span>عرض كل المحتوى المميز</span></a></div>
         <div class="aqh-carousel" data-state="loading">
@@ -327,10 +332,8 @@
           <div class="aqh-car-msg" role="status" hidden></div>
         </div>
       </section>
-      </div>
     </div>
   </div>
-
 
   <!-- دعوة ختامية -->
   <section class="aqh-final" id="aqh-cta" aria-labelledby="aqh-cta-h">
