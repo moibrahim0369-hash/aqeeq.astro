@@ -5,10 +5,10 @@
   /* لإضافة صورة جديدة لأي شريحة: ضع الملف في assets/images/home/ وأضف الحقل img (مثال: img: 'assets/images/home/hero-2.jpg', pos: '70% 30%') */
   var SLIDES = [
     { eye: 'أكثر من توقعات .. رحلة إلى ذاتك', h: 'اكتشف خريطتك الداخلية', p: 'في AQEQ ASTRO نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر.', cta: 'ابدأ رحلتك', href: '#chart' },
-    { eye: 'AQEQ ASTRO', h: 'كل إجابة تبدأ بسؤال', p: 'في عقيق نؤمن أن الأسئلة الصادقة تقود إلى حياة أعمق. اكتشف ذاتك من خلال علم الفلك والأرقام والرموز.', cta: 'اكتشف الآن', href: '#sky' },
-    { eye: 'رحلة أعمق نحو ذاتك', h: 'خريطتك الداخلية تستحق أن تُقرأ', p: 'لكل إنسان كون فريد من الرموز والدلالات. نساعدك على فهم خريطتك الداخلية واكتشاف المعاني الخفية في رحلتك الحياتية.', cta: 'ابدأ القراءة', href: '#chart' },
-    { eye: 'من الرموز إلى الوضوح', h: 'المعرفة تبدأ من الداخل', p: 'رحلة وعي عميقة تجمع بين علم الفلك والرموز القديمة لمساعدتك على فهم ذاتك وعلاقاتك وإمكاناتك الحقيقية.', cta: 'ابدأ رحلتك الآن', href: '#chart' },
-    { eye: 'السماء مرآة لداخلك', h: 'رموز تساعدك على رؤية أوسع', p: 'اكتشف ذاتك من خلال علم الرموز والفلك، وأعد اكتشاف احتمالاتك.', cta: 'اكتشف المنصة', href: '#sky' }
+    { eye: 'AQEQ ASTRO', h: 'كل إجابة تبدأ بسؤال', p: 'في عقيق نؤمن أن الأسئلة الصادقة تقود إلى حياة أعمق. اكتشف ذاتك من خلال علم الفلك والأرقام والرموز.', cta: 'اكتشف الآن', href: '#sky', img: 'assets/images/home/hero-art-arch.svg', pos: '50% 45%' },
+    { eye: 'رحلة أعمق نحو ذاتك', h: 'خريطتك الداخلية تستحق أن تُقرأ', p: 'لكل إنسان كون فريد من الرموز والدلالات. نساعدك على فهم خريطتك الداخلية واكتشاف المعاني الخفية في رحلتك الحياتية.', cta: 'ابدأ القراءة', href: '#chart', img: 'assets/images/home/hero-art-drape.svg', pos: '55% 40%' },
+    { eye: 'من الرموز إلى الوضوح', h: 'المعرفة تبدأ من الداخل', p: 'رحلة وعي عميقة تجمع بين علم الفلك والرموز القديمة لمساعدتك على فهم ذاتك وعلاقاتك وإمكاناتك الحقيقية.', cta: 'ابدأ رحلتك الآن', href: '#chart', img: 'assets/images/home/hero-art-orrery.svg', pos: '50% 50%' },
+    { eye: 'السماء مرآة لداخلك', h: 'رموز تساعدك على رؤية أوسع', p: 'اكتشف ذاتك من خلال علم الرموز والفلك، وأعد اكتشاف احتمالاتك.', cta: 'اكتشف المنصة', href: '#sky', img: 'assets/images/home/hero-art-moon.svg', pos: '50% 45%' }
   ];
   var copy = document.getElementById('home-intro');
   if (!copy) return;
@@ -19,6 +19,7 @@
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cur = 0, timer = null;
   function pick() {
+    var q = /[?&]hero=(\d+)/.exec(location.search); if (q && SLIDES[+q[1]]) return +q[1];
     var last = -1; try { last = parseInt(localStorage.getItem('aqh-hero-last'), 10); } catch (e) {}
     var n; do { n = Math.floor(Math.random() * SLIDES.length); } while (SLIDES.length > 1 && n === last);
     try { localStorage.setItem('aqh-hero-last', String(n)); } catch (e) {}
