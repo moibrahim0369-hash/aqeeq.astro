@@ -1683,3 +1683,9 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 #matrix .aqm-learn-art { justify-self: center; opacity: .9; }
 @media (max-width: 1000px) { #matrix .aqm-learn { grid-template-columns: 1fr; } #matrix .aqm-learn-art { display: none; } }
 @media (prefers-reduced-motion: reduce) { #matrix .aqm-pct-bar i { transition: none; } }
+
+/* تحسين التفاعل: لا مربع تركيز قبيح، وتعتيم خفيف فقط أثناء فتح التفسير */
+.aqm-svg .aqm-node:focus,.aqm-svg .aqm-node:focus-visible,#matrix .aqm-svg .aqm-node:focus-visible{outline:none!important}
+#matrix .aqm-svg.has-focus .aqm-node:not(.is-active){opacity:.72}
+.aqm-svg .aqm-node.is-active circle.aqm-node-bg{stroke:#B78A52!important;stroke-width:2.5px!important}
+.aqm-svg .aqm-node{transition:opacity .2s ease}

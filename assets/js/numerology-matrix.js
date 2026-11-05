@@ -341,6 +341,9 @@
         <!-- المحور الأيمن من E إلى C: C2 = reduce(C+E) ثم reduce(C+C2) (والنقطة الداخلية هي نقطة المال) -->
         ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange, 'axis_right_mid')}
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white, 'axis_right_outer')}
+        <!-- مركز الأجداد والمركز المشترك على المحور الأيمن (مطابق للأصل: 7 ثم 15) -->
+        ${nodeG('aqm-node-ancestral', 'ancestral_programs', 'مركز الأجداد (مجموع الزوايا الأربع)', generational.ancestralCenter, [466, 400], 14, '', null, 'ancestral_center')}
+        ${nodeG('aqm-node-ancestral', 'ancestral_programs', 'المركز المشترك (مركز الأجداد + المركز)', generational.commonCenter, [497, 400], 14, '', null, 'common_center')}
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol, 'axis_top_outer')}
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky, 'axis_top_mid')}
@@ -738,6 +741,9 @@
     xrToken++;
     xrModal.hidden = true;
     document.documentElement.classList.remove('aqm-xr-open');
+    // إعادة الخريطة لحالتها الطبيعية بعد إغلاق التفسير (إزالة التظليل والتعتيم)
+    document.querySelectorAll('.aqm-svg .aqm-node.is-active').forEach(n => n.classList.remove('is-active'));
+    document.querySelectorAll('.aqm-svg.has-focus').forEach(n => n.classList.remove('has-focus'));
     if (xrLastTrigger && document.contains(xrLastTrigger)) { try { xrLastTrigger.focus(); } catch (e) {} }
     xrLastTrigger = null;
   }
