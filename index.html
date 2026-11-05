@@ -52,6 +52,7 @@
 <link rel="stylesheet" href="assets/css/home-v2.css?v=20261105h">
 <link rel="stylesheet" href="assets/css/daily-banner.css?v=20261105h">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261105a">
+<link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 <style>
 #manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
@@ -400,9 +401,10 @@
   </div>
 </div>
 <div class="center">
-  <span class="eyebrow" dir="ltr">PYTHAGOREAN NUMEROLOGY · LIFE PATH &amp; PINNACLES</span>
-  <h2>مسار الحياة والدورات الزمنية</h2>
-  <p class="intro">ابدأ بتاريخ ميلادك لاكتشاف رقم مسار حياتك الأساسي، ثم استعرض الفصول السبعة المتكاملة: الجوهر، نقاط القوة، الظل والتحديات، الأنماط النفسية، العلاقات، المهنة، والدورات الزمنية.</p>
+  <nav aria-label="مسار التنقل"><ol class="lpj-crumb"><li><a href="#home">الرئيسية</a></li><li><a href="#aqh-tools">اكتشف ذاتك</a></li><li aria-current="page">مسار الحياة</li></ol></nav>
+  <h2>مسار حياتك</h2>
+  <p class="intro">اقرأ الإيقاع العام لرحلتك، والمراحل التي تحمل دروسك ونقاط تحوّلك.</p>
+  <p class="lpj-empty-note" style="margin-top:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg><span>أدخل تاريخ ميلادك لاكتشاف مسار حياتك.</span></p>
 </div>
 <div class="lp-start aq-lp-mode-switcher" id="lp-start">
   <button class="lp-start-card is-active" id="lp-start-discover" type="button">
@@ -419,9 +421,9 @@
 <form class="cform" id="lpform" novalidate="">
 <div class="field"><label for="lp-name">الاسم (اختياري)</label><input autocomplete="off" id="lp-name" maxlength="40" placeholder="اكتب اسمك لعرض قراءة الاسم مع مسار الحياة" type="text"/></div>
 <div class="field"><label for="lp-gender">صيغة التقرير (اختياري)</label><select id="lp-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
-<div class="field"><label for="lp-date">تاريخ الميلاد</label><input id="lp-date" max="2100-12-31" min="1900-01-01" type="date" value="1995-04-12"/></div>
+<div class="field"><label for="lp-date">تاريخ الميلاد</label><input id="lp-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <p class="ferr" hidden="" id="lperr" role="alert"></p>
-<button class="btn" type="submit">احسب مسار حياتي والقمم الأربع</button>
+<button class="btn" type="submit">احسب مسار حياتي</button>
 
 </form>
 <div aria-live="polite" class="result" hidden="" id="lpresult" data-view-result="lifepath"></div>
@@ -4556,6 +4558,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/aqeeq-platform.js"></script>
 <script src="assets/js/home-v2.js?v=20261105a" defer></script>
 <script src="assets/js/featured-content.js?v=20261105a" defer></script>
+<script src="assets/js/life-path-view.js?v=20261105a" defer></script>
 <script src="assets/js/daily-banner.js?v=20261105f" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>
