@@ -132,3 +132,19 @@
   #home.aqh .aqh-band-arts .aqh-article{padding-bottom:44px!important;position:relative}
   #home.aqh .aqh-band-arts .aqh-article .aqh-go{position:absolute!important;bottom:8px;inset-inline-start:10px;margin:0}
 }
+/* البانر العلوي: صورة واحدة موحّدة كخلفية، والنص فوقها */
+#home.aqh .aqh-rock{display:none!important}
+@media (min-width:1025px){
+  #home.aqh .aqh-hero{min-height:clamp(380px,32vw,440px)!important;display:flex!important;align-items:center;padding:0 0 46px!important}
+  #home.aqh .hw-statue{position:absolute!important;inset:0;width:100%!important;height:100%!important;object-fit:cover;object-position:50% 50%!important;border:0!important;box-shadow:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+  #home.aqh .aqh-hero::after{content:"";position:absolute;z-index:1;inset:0;background:radial-gradient(ellipse 34% 62% at 50% 46%,rgba(251,246,236,.82),rgba(251,246,236,.55) 55%,rgba(251,246,236,0) 100%);pointer-events:none}
+  #home.aqh .aqh-hero-grid{display:flex!important;justify-content:center;width:100%;padding:0!important}
+  #home.aqh .aqh-hero-copy{margin:0!important;max-width:520px;justify-items:center;text-align:center}
+  #home.aqh .aqh-hero-copy>*{text-align:center!important;margin-inline:auto!important}
+  #home.aqh .aqh-hero .aqh-lead{max-width:30em!important}
+  #home.aqh .aqh-hero .aqh-title{white-space:nowrap}
+}
+@media (max-width:1024px){
+  #home.aqh .hw-statue{aspect-ratio:2.3/1!important;max-height:none!important;object-position:38% 50%!important}
+  #home.aqh .aqh-hero::after{display:none}
+}
