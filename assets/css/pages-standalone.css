@@ -1,0 +1,3 @@
+/* كل قسم يُفتح كصفحة مستقلة فوق الموقع: تمرير داخلي سلس بدون تمرير أفقي أو انجراف للصفحة الخلفية */
+.sec:target{position:fixed!important;inset:0!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y pinch-zoom;scroll-behavior:auto}
+html:has(.sec:target),html:has(.sec:target) body{overflow:hidden!important;overscroll-behavior:none}
