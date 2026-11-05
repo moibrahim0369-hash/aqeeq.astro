@@ -3,7 +3,7 @@
 <html dir="rtl" lang="ar">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>عقيق أسترو | الخريطة الفلكية ومصفوفة الأقدار وتحليل الترانزيت</title>
 <meta content="light" name="color-scheme"/>
 <meta content="عقيق أسترو" name="application-name"/>
@@ -57,6 +57,7 @@
 <link rel="stylesheet" href="assets/css/hero-wide.css?v=20261106h">
 <link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106d">
 <link rel="stylesheet" href="assets/css/hero-energy.css?v=20261107l">
+<link rel="stylesheet" href="assets/css/nav-unified.css?v=20261108e">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
@@ -90,25 +91,34 @@
           <a role="menuitem" href="#compat">التوافق</a>
           <a role="menuitem" href="#tarot-chamber">التاروت</a>
           <a role="menuitem" href="#sky">السماء</a>
-          <a role="menuitem" href="#account">حسابي <span class="aq-saved-count">0</span></a>
         </div>
       </div>
       <a href="#featured-content"><span data-i18n-ar="محتوى مميز" data-i18n-en="Featured Content">محتوى مميز</span></a>
-      <a href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز"><span data-i18n-ar="مكتبة الرموز" data-i18n-en="Symbols Library">مكتبة الرموز</span></a>
+      <a href="#dream-library" data-soon="مكتبة عقيق قيد التجهيز"><span data-i18n-ar="مكتبة عقيق" data-i18n-en="Aqeeq Library">مكتبة عقيق</span></a>
     </nav>
     <div class="hd-act aq-header-tools aqh-tools">
       <button type="button" class="aqh-burger" id="aqh-burger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="aqh-menu"><span></span><span></span><span></span></button>
       <a class="aqh-join" href="#account"><span data-i18n-ar="انضم الآن" data-i18n-en="Join now">انضم الآن</span></a>
       <button type="button" class="aqh-icon" data-aqh-search aria-label="بحث في الموقع" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button>
-      <a class="aqh-icon aqh-icon-account" href="#account" aria-label="حسابي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1-4 4-6 7.5-6s6.500 2 7.5 6"/></svg></a>
+      <a class="aqh-icon aqh-icon-account" href="#account" aria-label="حسابي / تسجيل الدخول" title="حسابي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1-4 4-6 7.5-6s6.500 2 7.5 6"/></svg></a>
       <button type="button" class="aq-lang-switch" id="aq-lang-toggle" title="تغيير اتجاه ولغة الواجهة">AR / EN</button>
       <a aria-label="انستجرام" class="ig-top" href="#home" id="ig-top" hidden style="display:none;"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" fill="currentColor" r="1"></circle></svg></a>
     </div>
   </div>
-<nav class="aqh-menu" id="aqh-menu" aria-label="قائمة الموقع" hidden>
-    <a href="#home">الرئيسية</a><a href="#chart">الخريطة الفلكية</a><a href="#lifepath">مسار الحياة</a><a href="#matrix">مصفوفة القدر</a><a href="#compat">التوافق</a><a href="#tarot-chamber">التاروت</a><a href="#sky">السماء</a><a href="#featured-content">محتوى مميز</a><a href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز">مكتبة الرموز</a><a href="#account">حسابي</a>
-  </nav>
+
 </header>
+<div class="aqn-scrim aqn-scrim--drawer" id="aqn-drawer-scrim" hidden></div>
+<nav class="aqh-menu" id="aqh-menu" aria-label="قائمة الموقع" hidden>
+  <div class="aqn-dr-head"><span class="aqn-dr-title" dir="ltr">AQEQ ASTRO</span><button type="button" class="aqn-dr-close" data-aqn-close aria-label="إغلاق القائمة"><svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="aqn-dr-body">
+    <a href="#home"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7v9a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.500-1.500z"/><path d="M9.500 21v-6h5v6"/></svg><span>الرئيسية</span></a>
+    <p class="aqn-dr-cap">اكتشف ذاتك</p>
+    <a href="#chart"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg><span>الخريطة الفلكية</span></a><a href="#matrix"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="m12 2.500 9.500 9.500-9.500 9.500L2.500 12z"/><rect x="7" y="7" width="10" height="10" rx=".5"/></svg><span>مصفوفة القدر</span></a><a href="#lifepath"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2.500"/><circle cx="18" cy="5" r="2.500"/><path d="M6 16.500V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7.500"/></svg><span>مسار الحياة</span></a><a href="#sky"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M14.500 4.500a7.500 7.500 0 1 0 5 13 8.500 8.500 0 0 1-5-13z"/></svg><span>السماء</span></a>
+    <p class="aqn-dr-cap">المزيد</p>
+    <a href="#compat"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.500"/><circle cx="15" cy="12" r="5.500"/></svg><span>التوافق</span></a><a href="#tarot-chamber"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m12 8 2 4-2 4-2-4z"/></svg><span>التاروت</span></a><a href="#featured-content"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14.500 3v4.500H19M9 12h7M9 16h7"/></svg><span>محتوى مميز</span></a><a href="#dream-library" data-soon="مكتبة عقيق قيد التجهيز"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5.500C6.500 4.500 9.500 4.500 12 6c2.500-1.500 5.500-1.500 8-.5V19c-2.500-1-5.500-1-8 .5-2.500-1.500-5.500-1.500-8-.5z"/><path d="M12 6v13.500"/></svg><span>مكتبة عقيق</span></a><a href="#account"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/></svg><span>حسابي</span></a>
+  </div>
+  <div class="aqn-dr-foot"><button type="button" class="aqn-dr-btn" data-aqn-search><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.500"/><path d="m16 16 4.500 4.500"/></svg><span>بحث</span></button><button type="button" class="aqn-dr-btn" data-aqn-lang>AR / EN</button></div>
+</nav>
 
 
 <main>
@@ -163,7 +173,7 @@
         <a class="aqh-tool aqh-reveal" href="#compat"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 40C8 28 6 18 10 13c4-5 11-3 14 2 3-5 10-7 14-2 4 5 2 15-14 27Z"/><path d="M17 18c3-3 8-1 10 3" stroke-opacity=".6"/></svg></span><b>التوافق</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
         <a class="aqh-tool aqh-reveal" href="#tarot-chamber"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="9" width="20" height="30" rx="2.5" transform="rotate(-10 16 24)"/><rect x="22" y="9" width="20" height="30" rx="2.5" transform="rotate(8 32 24)"/><path d="M32 18l3 5-3 5-3-5Z"/></svg></span><b>التاروت</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
         <a class="aqh-tool aqh-reveal" href="#featured-content"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 6h18l8 8v28H12Z"/><path d="M29 6v9h9M18 22h14M18 28h14M18 34h9" stroke-linecap="round"/></svg></span><b>محتوى مميز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-        <a class="aqh-tool aqh-reveal" href="#dream-library" data-soon="مكتبة الرموز قيد التجهيز"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 12C19 8 11 8 5 11v27c6-3 14-3 19 1 5-4 13-4 19-1V11c-6-3-14-3-19 1ZM24 12v27"/></svg></span><b>مكتبة الرموز</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-reveal" href="#dream-library" data-soon="مكتبة عقيق قيد التجهيز"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M24 12C19 8 11 8 5 11v27c6-3 14-3 19 1 5-4 13-4 19-1V11c-6-3-14-3-19 1ZM24 12v27"/></svg></span><b>مكتبة عقيق</b><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
       </div>
       <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
       <div class="grp hidden-feature" id="cat-tarot" hidden style="display:none !important;"></div>
@@ -996,79 +1006,24 @@
 <p class="copy">© 2026 عقيق، محمد ابراهيم. جميع الحقوق محفوظة. كل النصوص والقراءات والتصاميم والحسابات في الموقع ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها أو استخدامها في تطبيقات أو مواقع أخرى بدون إذن كتابي.</p>
 </div>
 </footer>
-<nav aria-label="التنقل الرئيسي" class="bnav">
-<a class="on" href="#home">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <path d="M3 10.5L12 3l9 7.5v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9z"></path>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="الرئيسية" data-i18n-en="Home">الرئيسية</span>
-</a>
-<a href="#chart">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9"></circle>
-      <circle cx="12" cy="12" r="3"></circle>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="الخريطة" data-i18n-en="Chart">الخريطة</span>
-</a>
-<a href="#lifepath">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <circle cx="6" cy="19" r="2.5"></circle>
-      <circle cx="18" cy="5" r="2.5"></circle>
-      <path d="M6 16.5V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7.5"></path>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="المسار" data-i18n-en="Path">المسار</span>
-</a>
-<a href="#matrix">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <polygon points="12 2 22 12 12 22 2 12"></polygon>
-      <rect x="6.5" y="6.5" width="11" height="11"></rect>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="المصفوفة" data-i18n-en="Matrix">المصفوفة</span>
-</a>
-<a href="#compat">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <circle cx="9" cy="12" r="5.5"></circle>
-      <circle cx="15" cy="12" r="5.5"></circle>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="التوافق" data-i18n-en="Synastry">التوافق</span>
-</a>
-<a href="#tarot-chamber">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <rect x="5" y="3" width="14" height="18" rx="2"></rect>
-      <path d="M12 8l2 4-2 4-2-4z"></path>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="التاروت" data-i18n-en="Tarot">التاروت</span>
-</a>
-<a href="#sky">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <path d="M14.5 4.5a7.5 7.5 0 1 0 5 13 8.5 8.5 0 0 1-5-13z"></path>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="السماء" data-i18n-en="Sky">السماء</span>
-</a>
-<a href="#account">
-  <span class="bnav-icon">
-    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24">
-      <circle cx="12" cy="8" r="4"></circle>
-      <path d="M5 20a7 7 0 0 1 14 0"></path>
-    </svg>
-  </span>
-  <span class="bnav-label" data-i18n-ar="حسابي" data-i18n-en="Account">حسابي</span>
-</a>
+<nav aria-label="التنقل السفلي" class="bnav" id="aqn-bnav">
+<a class="bnav-item on" href="#home" data-nav="home"><span class="bnav-icon"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7v9a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.500-1.500z"/><path d="M9.500 21v-6h5v6"/></svg></span><span class="bnav-label" data-i18n-ar="الرئيسية" data-i18n-en="Home">الرئيسية</span></a>
+<button class="bnav-item" type="button" id="aqn-discover-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="aqn-sheet" data-nav="discover"><span class="bnav-icon"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.500 8.500-2 5-5 2 2-5z"/></svg></span><span class="bnav-label" data-i18n-ar="اكتشف ذاتك" data-i18n-en="Discover">اكتشف ذاتك</span></button>
+<a class="bnav-item" href="#tarot-chamber" data-nav="tarot"><span class="bnav-icon"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="m12 8 2 4-2 4-2-4z"/></svg></span><span class="bnav-label" data-i18n-ar="التاروت" data-i18n-en="Tarot">التاروت</span></a>
+<a class="bnav-item" href="#compat" data-nav="compat"><span class="bnav-icon"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="9" cy="12" r="5.500"/><circle cx="15" cy="12" r="5.500"/></svg></span><span class="bnav-label" data-i18n-ar="التوافق" data-i18n-en="Synastry">التوافق</span></a>
+<a class="bnav-item" href="#account" data-nav="account"><span class="bnav-icon"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/></svg></span><span class="bnav-label" data-i18n-ar="حسابي" data-i18n-en="Account">حسابي</span></a>
 </nav>
+<div class="aqn-scrim" id="aqn-scrim" hidden></div>
+<div class="aqn-sheet" id="aqn-sheet" role="dialog" aria-modal="true" aria-labelledby="aqn-sheet-h" hidden>
+  <span class="aqn-grab" aria-hidden="true"></span>
+  <h2 id="aqn-sheet-h">اكتشف ذاتك</h2>
+  <div class="aqn-grid">
+    <a href="#chart"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg><b>الخريطة الفلكية</b><small>مواقع الكواكب والبيوت</small></a>
+    <a href="#matrix"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="m12 2.500 9.500 9.500-9.500 9.500L2.500 12z"/><rect x="7" y="7" width="10" height="10" rx=".5"/></svg><b>مصفوفة القدر</b><small>٢٢ أركانا</small></a>
+    <a href="#lifepath"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2.500"/><circle cx="18" cy="5" r="2.500"/><path d="M6 16.500V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7.500"/></svg><b>مسار الحياة</b><small>المراحل والدورات</small></a>
+    <a href="#sky"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M14.500 4.500a7.500 7.500 0 1 0 5 13 8.500 8.500 0 0 1-5-13z"/></svg><b>السماء</b><small>حركة الكواكب الآن</small></a>
+  </div>
+</div>
 <script src="astronomy.min.js"></script>
 <script src="name_engine.js"></script>
 <script src="pinnacles_challenges.js?v=3.0.0"></script>
@@ -4644,6 +4599,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/aqeeq-platform.js"></script>
 <script src="assets/js/hero-live.js?v=20261106e" defer></script>
 <script src="assets/js/hero-rotate.js?v=20261107g" defer></script>
+<script src="assets/js/nav-unified.js?v=20261108a" defer></script>
 <script src="assets/js/home-v2.js?v=20261106e" defer></script>
 <script src="assets/js/featured-content.js?v=20261106a" defer></script>
 <script src="assets/js/content-links.js?v=20261106a" defer></script>

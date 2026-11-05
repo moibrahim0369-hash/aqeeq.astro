@@ -1,6 +1,6 @@
 'use strict';
-// الشريط السفلي (موبايل/تابلت ≤960px): شريط ملتصق بعرض الشاشة كاملًا، 8 وجهات، أيقونة + عنوان متمركزان.
-// على الديسكتوب (>960px) الشريط مخفي. التحقق على الواجهة الحالية (aqeeq-design-system.css §3).
+// الشريط السفلي (موبايل/تابلت <1100px): شريط ملتصق بعرض الشاشة كاملًا، 5 وجهات، أيقونة + عنوان متمركزان.
+// على الديسكتوب (>=1100px) الشريط مخفي. التحقق على الواجهة الحالية (aqeeq-design-system.css §3).
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 const BASE = 'http://127.0.0.1:8765/index.html';
@@ -14,6 +14,7 @@ const BASE = 'http://127.0.0.1:8765/index.html';
       { width: 390, height: 844 },
       { width: 430, height: 932 },
       { width: 820, height: 1180 },
+      { width: 1100, height: 800 },
       { width: 1280, height: 900 }
     ]) {
       const page = await browser.newPage({ viewport });
@@ -23,7 +24,7 @@ const BASE = 'http://127.0.0.1:8765/index.html';
       await page.waitForTimeout(600);
       const nav = page.locator('nav.bnav');
 
-      if (viewport.width > 960) {
+      if (viewport.width >= 1100) {
         assert.equal(await nav.isVisible(), false, `Bottom nav must be hidden on desktop (${viewport.width}px)`);
         assert.deepEqual(pageErrors, [], 'No JS errors');
         await page.close();
@@ -46,11 +47,11 @@ const BASE = 'http://127.0.0.1:8765/index.html';
         pb: Number.parseFloat(getComputedStyle(document.body).paddingBottom)
       }));
       assert.equal(pg.sb, 'smooth', 'Page scrolling must remain smooth');
-      assert.ok(pg.pb >= 58, 'Page must reserve at least the nav height below its content');
+      assert.ok(pg.pb >= 64, 'Page must reserve at least the nav height below its content');
 
-      const links = nav.locator('a');
-      assert.equal(await links.count(), 8, 'All eight navigation destinations must be present');
-      for (let i = 0; i < 8; i += 1) {
+      const links = nav.locator('.bnav-item');
+      assert.equal(await links.count(), 5, 'Exactly five navigation destinations');
+      for (let i = 0; i < 5; i += 1) {
         const link = links.nth(i);
         const lb = await link.boundingBox();
         assert.ok(lb.x >= -1 && lb.x + lb.width <= viewport.width + 1, `Nav item ${i} must be inside the viewport`);
