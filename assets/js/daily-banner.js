@@ -12,7 +12,7 @@
   var dots = [].slice.call(root.querySelectorAll('.dbn-dot'));
   var bar = root.querySelector('.dbn-progress');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var cur = 0, timer = null, idleTimer = null, hovering = false, userActive = false;
+  var cur = 0, timer = null, idleTimer = null, hovering = false, userActive = false, userPaused = false, selecting = false;
 
   /* ---------- Live sky data: مصدر واحد = محرك Astro الموجود (نفس معاملات الموقع/المنصة) ---------- */
   var LAT = 30.0444, LON = 31.2357;               /* نفس إحداثيات aqeeq-platform.js / home-v2.js */
@@ -176,7 +176,7 @@
   function stopTimers() { if (timer) { clearTimeout(timer); timer = null; } if (bar) { bar.classList.remove('is-run'); } }
   function schedule() {
     stopTimers();
-    if (reduce || document.hidden || hovering || userActive) return;
+    if (reduce || document.hidden || hovering || userActive || userPaused || selecting) return;
     if (bar) { void bar.offsetWidth; bar.classList.add('is-run'); }
     timer = setTimeout(function () { show(cur + 1, false); }, AUTO_MS);
   }
@@ -223,6 +223,26 @@
   stage.addEventListener('pointerup', end);
   stage.addEventListener('pointercancel', function () { sx = null; stage.classList.remove('is-drag'); if (!userActive && !hovering) schedule(); });
   stage.addEventListener('click', function (e) { if (dragged) { e.preventDefault(); e.stopPropagation(); dragged = false; } }, true);
+
+
+  /* play / pause toggle */
+  var tg = root.querySelector('[data-dbn="toggle"]');
+  if (tg) tg.addEventListener('click', function () {
+    userPaused = !userPaused;
+    tg.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+    tg.setAttribute('aria-label', userPaused ? 'تشغيل التبديل التلقائي' : 'إيقاف التبديل التلقائي');
+    tg.classList.toggle('is-paused', userPaused);
+    if (userPaused) { if (idleTimer) clearTimeout(idleTimer); userActive = false; pause(); } else schedule();
+  });
+  /* pause while text inside the banner is selected, and while an inner area scrolls */
+  document.addEventListener('selectionchange', function () {
+    var sel = window.getSelection && window.getSelection();
+    var inside = !!(sel && !sel.isCollapsed && sel.anchorNode && root.contains(sel.anchorNode));
+    if (inside === selecting) return;
+    selecting = inside;
+    if (selecting) pause(); else if (!userActive && !hovering) schedule();
+  });
+  stage.addEventListener('scroll', function () { pause(); if (!userActive && !hovering) { clearTimeout(stage._st); stage._st = setTimeout(schedule, 1500); } }, true);
 
   /* init */
   show(0, false);
