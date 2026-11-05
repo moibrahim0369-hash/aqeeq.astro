@@ -63,3 +63,17 @@
   #result > .big3{padding:14px}
 }
 @media (prefers-reduced-motion:reduce){#result *{animation:none!important;transition:none!important}}
+
+/* الشاكرات */
+.nv-chakra{background:#fff;border:1px solid #E5DED2;border-radius:16px;padding:20px 22px;margin-top:20px}
+.nv-chakra h3{margin:0 0 6px;font-family:'Amiri',serif;color:#29252A;font-size:1.3rem}
+.nv-ch-note{margin:0 0 14px;color:#746C68;font-size:.9rem;line-height:1.8}
+.nv-ch-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.nv-ch{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid #E5DED2;border-radius:14px;background:#FBF8F2}
+.nv-ch-ic{flex:0 0 46px;width:46px;height:46px;color:#B99A5B}
+.nv-ch-ic svg{width:100%;height:100%}
+.nv-ch h4{margin:0 0 6px;color:#642B3C;font-size:1rem}
+.nv-ch ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.nv-ch li{display:grid;gap:1px}
+.nv-ch small{color:#746C68;font-size:.76rem}.nv-ch b{font-weight:600;color:#29252A;font-size:.92rem}
+.nv-ch-more{display:inline-block;margin-top:14px;color:#642B3C;text-decoration:underline;text-underline-offset:4px}
