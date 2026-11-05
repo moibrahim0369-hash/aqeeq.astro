@@ -60,7 +60,7 @@
 <link rel="stylesheet" href="assets/css/hero-cards.css?v=20261106d">
 <link rel="stylesheet" href="assets/css/hero-energy.css?v=20261107l">
 <link rel="stylesheet" href="assets/css/nav-unified.css?v=20261108e">
-<link rel="stylesheet" href="assets/css/chrome-polish.css?v=20261105e">
+<link rel="stylesheet" href="assets/css/chrome-polish.css?v=20261105f">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
 <link rel="stylesheet" href="assets/css/life-path-dashboard.css?v=20261105e">
@@ -105,9 +105,11 @@
         </div>
       </div>
       <a href="#featured-content"><span data-i18n-ar="محتوى مميز" data-i18n-en="Featured Content">محتوى مميز</span></a>
+      <a href="#invest" class="aqh-nav-invest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3 7 9l5 12M15 3l2 6-5 12"/></svg><span data-i18n-ar="استثمر في ذاتك" data-i18n-en="Invest in Yourself">استثمر في ذاتك</span></a>
       <a href="#dream-library" data-soon="مكتبة عقيق قيد التجهيز"><span data-i18n-ar="مكتبة عقيق" data-i18n-en="Aqeeq Library">مكتبة عقيق</span></a>
     </nav>
     <div class="hd-act aq-header-tools aqh-tools">
+      <a class="aqh-invest-ico" href="#invest" aria-label="استثمر في ذاتك"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3 7 9l5 12M15 3l2 6-5 12"/></svg></a>
       <button type="button" class="aqh-burger" id="aqh-burger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="aqh-menu"><span></span><span></span><span></span></button>
       <a class="aqh-join" href="#account"><span data-i18n-ar="انضم الآن" data-i18n-en="Join now">انضم الآن</span></a>
       <button type="button" class="aqh-icon" data-aqh-search aria-label="بحث في الموقع" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button>
@@ -140,7 +142,7 @@
   <!-- 2. HERO -->
   <div class="aqh-hero">
     <img class="aqh-rock" src="assets/images/home/rock.svg" alt="" aria-hidden="true" decoding="async">
-    <img class="hw-statue" src="assets/images/home/hero-bust.jpg" alt="" aria-hidden="true" decoding="async">
+    <img class="hw-statue" src="assets/images/home/hero-plate.jpg" srcset="assets/images/home/hero-plate-m.jpg 1400w, assets/images/home/hero-plate.jpg 2560w" sizes="100vw" width="2560" height="400" alt="" aria-hidden="true" decoding="async" fetchpriority="high">
     <div class="aqh-wrap aqh-hero-grid">
       <div class="aqh-hero-copy" id="home-intro">
         <span class="aqh-rule" aria-hidden="true"></span>
@@ -149,7 +151,9 @@
         <p class="lead intro-p hero-sub aqh-lead aqh-seq" style="--seq:180ms;--dur:500ms" data-i18n-ar="في AQEQ ASTRO نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر." data-i18n-en="At AQEQ ASTRO we believe astrology is not just knowing the future, but a deep tool to understand yourself, uncover your potential, and live in greater harmony.">في <span dir="ltr">AQEQ ASTRO</span> نؤمن أن علم الفلك ليس مجرد معرفة بالمستقبل، بل هو أداة عميقة لفهم نفسك، واكتشاف إمكانياتك، والعيش بانسجام أكبر.</p>
         <div class="aq-hero-cta-row aqh-cta-row aqh-seq" style="--seq:260ms;--dur:450ms">
           <a href="#chart" class="aq-btn-burgundy aqh-cta" data-i18n-ar="ابدأ رحلتك" data-i18n-en="Begin Your Journey"><span>ابدأ رحلتك</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+          <a href="#invest" class="aqh-cta aqh-cta-gold" id="aqh-invest-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3 7 9l5 12M15 3l2 6-5 12"/></svg><span data-i18n-ar="استثمر في ذاتك" data-i18n-en="Invest in Yourself">استثمر في ذاتك</span></a>
         </div>
+        <p class="aqh-invest-line" data-i18n-ar="نفسك غالية، لا تحرمها من الوعي" data-i18n-en="You are worth it. Do not deny yourself awareness.">نفسك غالية، لا تحرمها من الوعي</p>
         <ul class="aqh-values" aria-label="ما تمنحه الرحلة">
           <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 26C6 12 14 6 26 6c0 12-6 20-20 20ZM6 26 18 14"/></svg><span>وعي أعمق</span></li>
           <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="16" cy="16" r="5.5"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M25 7l-3 3M10 22l-3 3"/></svg><span>قرارات أكثر اتزانًا</span></li>
