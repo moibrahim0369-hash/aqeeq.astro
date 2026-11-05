@@ -11,7 +11,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   const r = await p.evaluate(() => ({
     wa: document.querySelectorAll('[data-wa], a[href*="wa.me"]:not(#acct-whatsapp-support):not(.aq-soc a):not(.fc-foot a)').length,
     book: !!document.getElementById('book'), how: !!document.getElementById('how'),
-    bnav: [...document.querySelectorAll('.bnav a')].map((a) => a.getAttribute('href')),
+    bnav: [...document.querySelectorAll('.bnav .bnav-item')].map((a) => a.getAttribute('href')),
     card: [...document.querySelectorAll('.card')].some((c) => /تواصل معايا/.test(c.textContent)),
     hdr: /واتساب/.test(document.querySelector('header.top').textContent),
     cosmos: !!document.getElementById('cosmos-bg'), cw: document.getElementById('cosmos-bg') && document.getElementById('cosmos-bg').width,
@@ -19,7 +19,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   }));
   ok(r.wa === 0 && !r.hdr && !r.card, 'no WhatsApp buttons / header button / contact card: ' + JSON.stringify(r));
   ok(!r.book && !r.how, '#book and #how sections removed');
-  ok(!r.bnav.includes('#book') && r.bnav.length === 8, 'bottom nav has 8 destinations and no contact item: ' + r.bnav);
+  ok(!r.bnav.includes('#book') && r.bnav.length === 5, 'bottom nav has 5 destinations and no contact item: ' + r.bnav);
   ok(r.cosmos && r.cw > 0 && r.rings === 0, 'cosmos canvas present, old orbit planets removed');
   // الكانفس فيه بكسلات فعلاً (مجرات/كواكب)
   await p.waitForTimeout(800);
