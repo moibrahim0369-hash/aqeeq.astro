@@ -60,6 +60,7 @@
 <link rel="stylesheet" href="assets/css/nav-unified.css?v=20261108e">
 <link rel="stylesheet" href="assets/css/featured-content.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/life-path.css?v=20261105a">
+<link rel="stylesheet" href="assets/css/lifepath-page.css?v=20261108f">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
 <style>
 #manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
@@ -478,7 +479,7 @@
 </section>
 </div>
 </section>
-<section class="sec" id="lifepath">
+<section class="sec lpx" id="lifepath">
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="aq-section-topbar">
@@ -489,33 +490,46 @@
     <a href="#life-path-synastry" class="aq-section-pill">توافق مسارات الحياة</a>
   </div>
 </div>
-<div class="center">
+<div class="lpx-wrap">
+<div class="lpx-art" aria-hidden="true">
+  <svg class="lpx-ring" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width=".7"><circle cx="100" cy="100" r="98"/><circle cx="100" cy="100" r="84"/><circle cx="100" cy="100" r="62" stroke-dasharray="1.5 3.5"/><path d="M186.0 100.0L194.0 100.0"/><path d="M184.7 114.9L189.6 115.8"/><path d="M180.8 129.4L185.5 131.1"/><path d="M174.5 143.0L181.4 147.0"/><path d="M165.9 155.3L169.7 158.5"/><path d="M155.3 165.9L158.5 169.7"/><path d="M143.0 174.5L147.0 181.4"/><path d="M129.4 180.8L131.1 185.5"/><path d="M114.9 184.7L115.8 189.6"/><path d="M100.0 186.0L100.0 194.0"/><path d="M85.1 184.7L84.2 189.6"/><path d="M70.6 180.8L68.9 185.5"/><path d="M57.0 174.5L53.0 181.4"/><path d="M44.7 165.9L41.5 169.7"/><path d="M34.1 155.3L30.3 158.5"/><path d="M25.5 143.0L18.6 147.0"/><path d="M19.2 129.4L14.5 131.1"/><path d="M15.3 114.9L10.4 115.8"/><path d="M14.0 100.0L6.0 100.0"/><path d="M15.3 85.1L10.4 84.2"/><path d="M19.2 70.6L14.5 68.9"/><path d="M25.5 57.0L18.6 53.0"/><path d="M34.1 44.7L30.3 41.5"/><path d="M44.7 34.1L41.5 30.3"/><path d="M57.0 25.5L53.0 18.6"/><path d="M70.6 19.2L68.9 14.5"/><path d="M85.1 15.3L84.2 10.4"/><path d="M100.0 14.0L100.0 6.0"/><path d="M114.9 15.3L115.8 10.4"/><path d="M129.4 19.2L131.1 14.5"/><path d="M143.0 25.5L147.0 18.6"/><path d="M155.3 34.1L158.5 30.3"/><path d="M165.9 44.7L169.7 41.5"/><path d="M174.5 57.0L181.4 53.0"/><path d="M180.8 70.6L185.5 68.9"/><path d="M184.7 85.1L189.6 84.2"/><path d="M100 8v14M100 178v14M8 100h14M178 100h14" stroke-width="1"/></svg>
+  <svg class="lpx-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l1.6 8.4L22 12l-8.400 2.600L12 23l-1.600-8.400L2 12l8.400-2.600z"/></svg>
+  <img class="lpx-statue" src="assets/images/home/hero-bust.jpg" alt="" decoding="async">
+</div>
+<div class="center lpx-head">
   <nav aria-label="مسار التنقل"><ol class="lpj-crumb"><li><a href="#home">الرئيسية</a></li><li><a href="#aqh-tools">اكتشف ذاتك</a></li><li aria-current="page">مسار الحياة</li></ol></nav>
   <h2>مسار حياتك</h2>
+  <span class="lpx-orn" aria-hidden="true"><i></i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 8.2L22 12l-8.200 1.800L12 22l-1.800-8.200L2 12l8.200-1.800z"/></svg><i></i></span>
   <p class="intro">اقرأ الإيقاع العام لرحلتك، والمراحل التي تحمل دروسك ونقاط تحوّلك.</p>
-  <p class="lpj-empty-note" style="margin-top:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg><span>أدخل تاريخ ميلادك لاكتشاف مسار حياتك.</span></p>
+  <p class="lpj-empty-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg><span>أدخل تاريخ ميلادك لاكتشاف مسار حياتك.</span></p>
 </div>
-<div class="lp-start aq-lp-mode-switcher" id="lp-start">
+<div class="lp-start aq-lp-mode-switcher lpx-cards" id="lp-start">
   <button class="lp-start-card is-active" id="lp-start-discover" type="button">
     <span class="lp-start-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v10M7 12h10"/><circle cx="12" cy="12" r="3"/></svg></span>
-    <span class="lp-start-copy"><b>حاسبة مسار الحياة والقمم الأربع</b><small>أدخل تاريخ ميلادك بالأسفل لحساب رقمك الأساسي والقمم الزمنية والفصول السبعة.</small><em>النموذج جاهز بالأسفل <span aria-hidden="true">↓</span></em></span>
+    <span class="lp-start-copy"><b>حاسبة مسار الحياة والقمم الأربع</b><small>تحليل دورة حياتك بالأرقام الأربعة والتقدم الزمني والفصول السبعة.</small><em>النموذج جاهز بالأسفل <span aria-hidden="true">↓</span></em></span>
     <span class="lp-start-arrow" aria-hidden="true">↓</span>
   </button>
   <button class="lp-start-card lp-compare-card" id="lp-start-compare" type="button" aria-label="افتح حاسبة توافق مسارات الحياة والشراكات القدرية">
     <span class="lp-start-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="7.5" r="3.5"/><circle cx="16.5" cy="7.5" r="3.5"/><path d="M1.8 20a5.7 5.7 0 0 1 11.4 0M10.8 20a5.7 5.7 0 0 1 11.4 0M9.5 7.5h5"/></svg></span>
-    <span class="lp-start-copy"><b>حاسبة توافق مسارات الحياة</b><small>قراءة التوافق الرقمي بين شخصين، كروت الانجذاب الأربعة، والجسر الأساسي واليومي.</small><em>افتح حاسبة التوافق <span aria-hidden="true">←</span></em></span>
+    <span class="lp-start-copy"><b>حاسبة توافق مسارات الحياة</b><small>مقارنة التوافق الطاقي بين شخصين في الرؤية والقيم والإيقاع اليومي.</small><em>افتح حاسبة التوافق <span aria-hidden="true">←</span></em></span>
     <span class="lp-start-arrow" aria-hidden="true">‹</span>
   </button>
 </div>
-<form class="cform" id="lpform" novalidate="">
-<div class="field"><label for="lp-name">الاسم (اختياري)</label><input autocomplete="off" id="lp-name" maxlength="40" placeholder="اكتب اسمك لعرض قراءة الاسم مع مسار الحياة" type="text"/></div>
-<div class="field"><label for="lp-gender">صيغة التقرير (اختياري)</label><select id="lp-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
-<div class="field"><label for="lp-date">تاريخ الميلاد</label><input id="lp-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
+<form class="cform lpx-card" id="lpform" novalidate="">
+<span class="lpx-corner lpx-c1" aria-hidden="true"></span><span class="lpx-corner lpx-c2" aria-hidden="true"></span>
+<div class="field"><label for="lp-name"><span class="lpx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/></svg></span>الاسم (اختياري)</label><input autocomplete="off" id="lp-name" maxlength="40" placeholder="اكتب اسمك لعرض قراءة الاسم مع مسار الحياة" type="text"/></div>
+<div class="field"><label for="lp-gender"><span class="lpx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span>صيغة التقرير (اختياري)</label><select id="lp-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
+<div class="field"><label for="lp-date"><span class="lpx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><rect x="3.500" y="5" width="17" height="15" rx="2.500"/><path d="M3.500 10h17M8 3v4M16 3v4"/></svg></span>تاريخ الميلاد</label><input id="lp-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <p class="ferr" hidden="" id="lperr" role="alert"></p>
-<button class="btn" type="submit">احسب مسار حياتي</button>
-
+<button class="btn" type="submit"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.500 8.500-2 5-5 2 2-5z"/></svg><span>احسب مسار حياتي</span></button>
 </form>
+<div class="lpx-after">
 <div aria-live="polite" class="result" hidden="" id="lpresult" data-view-result="lifepath"></div>
+</div>
+<ul class="lpx-feats" aria-label="ما تقدمه القراءة"><li><span class="lpx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 18 16 8h16l8 10-16 22z"/><path d="M8 18h32M16 8l8 10 8-10M24 18v22"/></svg></span><b>الرقم الشخصي</b><small>معنى رقم مسار حياتك وتأثيره على قراراتك.</small></li><li><span class="lpx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 40h36"/><rect x="9" y="28" width="7" height="12"/><rect x="21" y="20" width="7" height="20"/><rect x="33" y="10" width="7" height="30"/></svg></span><b>فرص وتحديات</b><small>اكتشاف فرص النمو والدروس الرئيسية.</small></li><li><span class="lpx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6h20M14 42h20M16 6c0 10 16 10 16 18S16 32 16 42M32 6c0 10-16 10-16 18s16 8 16 18"/></svg></span><b>مراحل حياتية</b><small>فهم دورات العمر ونقاط التحول.</small></li><li><span class="lpx-fico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 38V22M24 22c0-8-6-12-14-12 0 8 6 12 14 12ZM24 26c0-6 5-10 14-10 0 7-5 10-14 10Z"/><path d="M14 40h20"/></svg></span><b>توازن واتجاه</b><small>لتحقيق انسجام أكبر مع مسارك الحقيقي.</small></li></ul>
+<div class="lpx-moons" aria-hidden="true"><i></i><svg viewBox="0 0 160 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="5"/><path d="M33 7a6 6 0 1 0 0 10 4.500 4.500 0 0 1 0-10Z" fill="currentColor"/><path d="M55 5a7 7 0 1 0 0 14 5 5 0 0 1 0-14Z" fill="currentColor"/><circle cx="80" cy="12" r="7" fill="currentColor" fill-opacity=".85"/><path d="M105 5a7 7 0 1 1 0 14 5 5 0 0 0 0-14Z" fill="currentColor"/><path d="M127 7a6 6 0 1 1 0 10 4.500 4.500 0 0 0 0-10Z" fill="currentColor"/><circle cx="148" cy="12" r="5"/></svg><i></i></div>
+<svg class="lpx-ridge" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0 160V110l90-40 70 30 110-70 100 80 90-50 120 70 110-60 100 50 120-80 90 60 100-40 100 60V160z" fill="currentColor"/></svg>
+</div>
 </div>
 </section>
 <section class="sec" id="chart">
