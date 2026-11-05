@@ -1,0 +1,80 @@
+/* ===== صفحة الخريطة الفلكية: تصميم تحريري فلكي (بصري فقط، المحرك الفلكي لم يُمس) ===== */
+section#chart.ntx{--b:#70263F;--bd:#4a1a2b;--g:#B78A52;--gl:#D9B979;--ink:#35252B;position:relative;overflow:hidden}
+section#chart.ntx.sec,section#chart.ntx.sec:target{background:radial-gradient(800px 380px at 12% 0%,rgba(237,227,213,.95),transparent 70%),linear-gradient(180deg,#F7F2EA,#F2E9DB 55%,#F7F2EA)!important}
+section#chart.ntx.sec,section#chart.ntx.sec:target{padding-top:0!important;padding-bottom:clamp(110px,18vw,150px)!important}
+section#chart.ntx>.wrap{width:min(1080px,100% - 32px)!important;max-width:none!important;padding-top:12px!important}
+.ntx-wrap{position:relative}
+/* الشريط العلوي المختصر */
+section#chart.ntx .aq-section-topbar{margin:0 0 4px!important;padding:0!important;border:0!important;position:relative;z-index:3}
+section#chart.ntx .aq-back-home-btn{display:none!important}
+section#chart.ntx .aq-section-quick-links{display:flex!important;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+section#chart.ntx .aq-section-quick-links::-webkit-scrollbar{display:none}
+section#chart.ntx .aq-section-pill{flex:0 0 auto;font-size:.74rem!important;padding:7px 12px!important;border-radius:999px!important;background:rgba(255,253,250,.9)!important;border:1px solid rgba(183,138,82,.5)!important;color:var(--ink)!important;white-space:nowrap}
+section#chart.ntx .aq-section-pill.active{background:linear-gradient(135deg,#7f3a52,var(--b))!important;color:#fff!important}
+/* التمثال + عجلة الأبراج */
+.ntx-art{position:absolute;inset-block-start:4px;left:-34px;width:min(56vw,240px);aspect-ratio:1/1.15;z-index:0;pointer-events:none}
+.ntx-wheel{position:absolute;inset:4% -22% auto auto;width:100%;color:var(--g);opacity:.85;animation:ntxSpin 300s linear infinite}
+@keyframes ntxSpin{to{transform:rotate(360deg)}}
+.ntx-statue{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 20%;filter:saturate(.88) brightness(1.04);-webkit-mask-image:radial-gradient(ellipse 52% 54% at 50% 46%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 52% 54% at 50% 46%,#000 55%,transparent 100%)}
+.ntx-star{position:absolute;width:18px;color:var(--gl);inset-block-start:6%;inset-inline-end:-6px}
+/* العنوان */
+section#chart.ntx .ntx-head{position:relative;z-index:2;text-align:right;margin:0 0 clamp(18px,4vw,28px)!important}
+.ntx-crumb{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:6px 0 12px;padding:0;font-size:.78rem;color:#6f6168}
+.ntx-crumb li+li::before{content:"/";margin-inline-end:6px;color:var(--g)}
+.ntx-crumb a{color:#6f6168;text-decoration:none}.ntx-crumb a:hover{color:var(--b)}.ntx-crumb [aria-current]{color:var(--ink)}
+section#chart.ntx .ntx-head .eyebrow{display:block;font-size:.6rem!important;letter-spacing:.14em;color:#7a5a22!important;font-weight:600;margin:0 0 6px;text-align:right}
+section#chart.ntx .ntx-head h2{font-family:'Amiri',serif!important;font-weight:700!important;color:var(--b)!important;font-size:clamp(2.1rem,9.6vw,3.4rem)!important;line-height:1.2!important;margin:0!important;text-align:right!important}
+.ntx-orn{display:flex;align-items:center;gap:8px;margin:8px 0 0;color:var(--g);width:min(52%,260px)}
+.ntx-orn i{flex:1;height:1px;background:linear-gradient(90deg,transparent,currentColor)}.ntx-orn i:last-child{transform:scaleX(-1)}.ntx-orn svg{width:15px;height:15px;flex:none}
+section#chart.ntx .ntx-head .intro{max-width:36em!important;margin:clamp(56px,16vw,92px) 0 0!important;color:#2f2227!important;font-weight:500;font-size:clamp(.95rem,3.7vw,1.06rem)!important;line-height:1.95!important;text-align:right!important}
+@media(max-width:899px){.ntx-crumb,section#chart.ntx .ntx-head .eyebrow,section#chart.ntx .ntx-head h2,.ntx-orn{margin-inline-end:auto;max-width:54%}.ntx-orn{width:54%}}
+/* بطاقة النموذج */
+section#chart.ntx form.ntx-card{position:relative;z-index:2;max-width:820px!important;margin:0 auto!important;padding:clamp(24px,4.5vw,36px) clamp(16px,4vw,34px) clamp(22px,4vw,30px)!important;border-radius:22px!important;background:linear-gradient(180deg,rgba(255,253,250,.98),rgba(250,244,234,.98))!important;border:1px solid rgba(183,138,82,.75)!important;box-shadow:0 0 0 5px rgba(247,242,234,.9),0 0 0 6px rgba(183,138,82,.4),0 24px 50px rgba(112,38,63,.14)!important}
+.ntx-gem{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:64px;color:var(--g);background:#F4EBDD;padding:0 8px;border-radius:10px}.ntx-gem svg{display:block;width:100%}
+.ntx-grp{display:flex;align-items:center;gap:10px;margin:18px 0 10px;font:700 .8rem 'IBM Plex Sans Arabic',sans-serif;color:var(--g);letter-spacing:.04em}
+.ntx-grp:first-of-type{margin-top:4px}
+.ntx-grp i{flex:none;width:6px;height:6px;background:var(--g);transform:rotate(45deg)}
+.ntx-grp::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(183,138,82,.5),transparent)}
+section#chart.ntx .ntx-card .aq-autofill-bar{display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:0 0 6px!important;padding:12px 14px!important;border-radius:14px!important;background:rgba(237,227,213,.7)!important;border:1px solid rgba(183,138,82,.35)!important}
+section#chart.ntx .ntx-card .aq-autofill-btn{border-radius:10px!important;background:linear-gradient(135deg,#7f3a52,var(--b))!important;color:#fff!important;border:1px solid rgba(228,196,134,.6)!important;padding:9px 15px!important;font-weight:600;min-height:40px}
+section#chart.ntx .ntx-card .field{margin:0 0 12px!important}
+section#chart.ntx .ntx-card label:not(.chk){display:flex;align-items:center;gap:10px;font-weight:700;color:var(--ink)!important;font-size:.9rem!important;margin:0 0 7px!important}
+.ntx-fi{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;color:var(--b);background:rgba(217,185,121,.22);border:1px solid rgba(183,138,82,.45);flex:none}.ntx-fi svg{width:16px;height:16px}
+section#chart.ntx .ntx-card input:not([type=checkbox]),section#chart.ntx .ntx-card select{width:100%;min-height:52px!important;border-radius:12px!important;border:1px solid rgba(183,138,82,.6)!important;background:#FFFDFA!important;color:var(--ink)!important;padding:0 14px!important;font-size:1rem!important;transition:border-color .2s,box-shadow .2s!important}
+section#chart.ntx .ntx-card input:not([type=checkbox]):hover,section#chart.ntx .ntx-card select:hover{border-color:var(--g)!important}
+section#chart.ntx .ntx-card input:not([type=checkbox]):focus,section#chart.ntx .ntx-card select:focus{outline:0!important;border-color:var(--b)!important;box-shadow:0 0 0 4px rgba(112,38,63,.12)!important}
+section#chart.ntx .ntx-card .two{gap:12px}
+section#chart.ntx .ntx-card .ntx-dt,section#chart.ntx .ntx-card .ntx-set{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:400px){section#chart.ntx .ntx-card .ntx-dt{grid-template-columns:1fr}}
+@media(max-width:559px){section#chart.ntx .ntx-card .ntx-set{grid-template-columns:1fr}}
+section#chart.ntx .ntx-chk{display:flex;align-items:center;gap:12px;margin:0 0 14px;padding:12px 14px;border:1px solid rgba(183,138,82,.4);border-radius:12px;background:rgba(237,227,213,.4);font-weight:600;color:var(--ink);cursor:pointer;min-height:48px}
+section#chart.ntx .ntx-chk input{width:20px!important;height:20px;min-height:0!important;accent-color:var(--b);flex:none}
+section#chart.ntx .ntx-place #f-city-search{margin-bottom:10px}
+section#chart.ntx .ntx-place #f-city-coords{display:flex;align-items:center;gap:8px;margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(237,227,213,.55);border:1px dashed rgba(183,138,82,.5);color:#5b5054!important;font-size:.84rem;line-height:1.6;direction:rtl}
+section#chart.ntx .ntx-card .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:360px;margin:22px auto 0!important;min-height:56px;border-radius:999px!important;background:linear-gradient(135deg,#7f3a52,var(--b) 55%,var(--bd))!important;color:#fff!important;border:1px solid rgba(228,196,134,.6)!important;font-family:'Amiri',serif!important;font-size:1.3rem!important;font-weight:700!important;box-shadow:0 14px 28px rgba(112,38,63,.32),inset 0 1px 0 rgba(255,255,255,.22)!important;transition:transform .2s,box-shadow .2s!important}
+section#chart.ntx .ntx-card .btn svg{width:24px;height:24px;color:#E8CD92}
+section#chart.ntx .ntx-card .btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(112,38,63,.4)!important}
+section#chart.ntx .ntx-card .btn:disabled{opacity:.6;cursor:progress;transform:none}
+section#chart.ntx .ntx-card .btn:focus-visible{outline:3px solid rgba(183,138,82,.7);outline-offset:3px}
+.ntx-after{position:relative;z-index:2;margin-top:20px}
+/* مكونات الخريطة */
+.ntx-feats{list-style:none;margin:clamp(34px,7vw,52px) auto 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:26px 12px;max-width:980px;position:relative;z-index:2;align-items:start}
+.ntx-feats li{display:grid;align-content:start;justify-items:center;text-align:center;gap:6px;padding:0 6px;position:relative}
+.ntx-fico{display:grid;place-items:center;width:64px;height:64px;color:var(--g)}.ntx-fico svg{width:100%;height:100%}
+.ntx-feats b{font-family:'Amiri',serif;font-size:1.2rem;color:var(--b)}
+.ntx-feats small{font-size:.84rem;color:#5b5054;line-height:1.7;max-width:15em}
+@media(min-width:760px){.ntx-feats{grid-template-columns:repeat(4,1fr)}.ntx-feats li+li::before{content:"";position:absolute;inset-inline-start:-6px;top:8%;height:84%;width:1px;background:linear-gradient(180deg,transparent,rgba(183,138,82,.55),transparent)}}
+.ntx-wrap:has(#result:not([hidden])) .ntx-feats{display:none}
+/* لمسات سفلية ثانوية */
+.ntx-moons{display:flex;align-items:center;justify-content:center;gap:14px;margin:clamp(34px,7vw,48px) auto 0;color:var(--g);max-width:520px;position:relative;z-index:2}
+.ntx-moons i{flex:1;height:1px;background:linear-gradient(90deg,transparent,currentColor)}.ntx-moons i:last-child{transform:scaleX(-1)}.ntx-moons svg{width:140px;flex:none}
+.ntx-ridge{position:absolute;inset-inline:-16px;bottom:-60px;width:calc(100% + 32px);height:clamp(90px,16vw,150px);color:rgba(183,138,82,.14);z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 10%,transparent 85%);mask-image:linear-gradient(180deg,#000 10%,transparent 85%)}
+.ntx-astrolabe{display:none}
+@media(min-width:900px){.ntx-astrolabe{display:block;position:absolute;right:-30px;left:auto;bottom:-110px;width:150px;color:rgba(183,138,82,.45);z-index:1;pointer-events:none}}
+@media (prefers-reduced-motion:reduce){.ntx-wheel{animation:none}section#chart.ntx *{transition-duration:.01ms!important}}
+@media(min-width:900px){
+  .ntx-art{width:min(44%,450px);aspect-ratio:auto;height:440px;left:-20px;inset-block-start:0}
+  section#chart.ntx .center.ntx-head{max-width:600px!important;margin-inline-end:auto!important;margin-inline-start:0!important}
+  section#chart.ntx .ntx-head .intro{margin-top:22px!important}
+  .ntx-orn{width:240px}.ntx-head{min-height:380px}
+}
