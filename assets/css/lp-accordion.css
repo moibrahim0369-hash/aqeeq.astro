@@ -1,0 +1,113 @@
+/* نتائج مسار الحياة وتوافق المسارات: بطاقات أكورديون عاجية + تطهير الصناديق الداكنة + تفاعلات ناعمة */
+:root{--lpa-bg:#FDFBF7;--lpa-bd:#E2D9CC;--lpa-gold:#C5A059;--lpa-wine:#4A1521;--lpa-ink:#2C2523}
+
+/* ----- شريط الرجوع ----- */
+.lpa-nav{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.lpa-navbtn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 18px;border-radius:999px;border:1px solid var(--lpa-bd)!important;background:var(--lpa-bg)!important;color:var(--lpa-wine)!important;font:700 .92rem 'Cairo','Tajawal',sans-serif;text-decoration:none;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
+.lpa-navbtn svg{width:17px;height:17px;flex:none;transform:scaleX(-1)}
+.lpa-navbtn:hover,.lpa-navbtn:focus-visible{border-color:var(--lpa-gold)!important;box-shadow:0 6px 16px rgba(74,21,33,.1);transform:translateY(-1px);outline:0}
+.lpa-navbtn:active{transform:translateY(0);background:#F5EEE2!important}
+
+/* ----- بطاقة الأكورديون ----- */
+.lpa-stack{display:grid;gap:12px;margin:14px 0}
+details.lpa-card{background:var(--lpa-bg);border:1px solid var(--lpa-bd);border-radius:14px;box-shadow:0 4px 15px rgba(74,21,33,.04);overflow:hidden;transition:border-color .2s,box-shadow .25s}
+details.lpa-card:hover,details.lpa-card[open]{border-color:var(--lpa-gold);box-shadow:0 8px 22px rgba(74,21,33,.08)}
+.lpa-sum{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;list-style:none;min-height:56px;color:var(--lpa-wine);font:700 1.05rem/1.6 'Amiri','Cairo',serif;transition:background .2s}
+.lpa-sum::-webkit-details-marker{display:none}
+.lpa-sum:hover{background:#FAF4EA}
+.lpa-sum:focus-visible{outline:3px solid rgba(197,160,89,.7);outline-offset:-3px}
+.lpa-ic{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#F3EBDD;color:#7a5a22;border:1px solid var(--lpa-gold);font:700 1.1rem/1 'Cairo',sans-serif}
+.lpa-ic svg{width:14px;height:14px}
+.is-light>.lpa-sum .lpa-ic{background:#EEF3E7;color:#3d6a45;border-color:#9bb98f}
+.is-shadow>.lpa-sum .lpa-ic{background:#FBEDEE;color:#8a2f3c;border-color:#e2a9b0}
+.lpa-t{flex:1;min-width:0}
+.lpa-sub{color:#6b5b52;font:400 .8rem 'Cairo',sans-serif}
+.lpa-chev{flex:none;width:22px;height:22px;color:var(--lpa-gold);transition:transform .25s}
+.lpa-chev svg{width:100%;height:100%}
+details.lpa-card[open]>.lpa-sum .lpa-chev{transform:rotate(180deg)}
+.lpa-body{padding:4px 18px 18px;color:var(--lpa-ink);font:400 .98rem/1.9 'Cairo','Tajawal',sans-serif;border-top:1px dashed var(--lpa-bd)}
+.is-light>.lpa-body{background:linear-gradient(180deg,#FDFBF7,#F8FAF3)}
+.is-shadow>.lpa-body{background:linear-gradient(180deg,#FDFBF7,#FCF3F3)}
+.lpa-text p{margin:10px 0 0;line-height:1.9;color:var(--lpa-ink)}
+.lpa-body ol{margin:10px 0 0;padding-inline-start:22px;line-height:1.9}
+.lpa-body li{margin-bottom:8px}
+.lpa-rows{display:grid;gap:10px;margin-top:12px}
+.lpa-row{padding:12px 14px;border:1px solid var(--lpa-bd);border-radius:12px;background:#fff}
+.lpa-row b{display:block;color:var(--lpa-wine);font-family:'Amiri',serif;font-size:1.08rem;margin-bottom:4px}
+.lpa-row p{margin:4px 0 0;line-height:1.8;font-size:.94rem}
+.lpa-row em{font-style:normal;font-weight:700;color:#7a5a22}
+/* الفصول السبعة الأصلية بنفس الشكل */
+details.lp-section.lpa-native{border-radius:14px!important;border:1px solid var(--lpa-bd)!important;background:var(--lpa-bg)!important;box-shadow:0 4px 15px rgba(74,21,33,.04)!important;transition:border-color .2s,box-shadow .25s}
+details.lp-section.lpa-native:hover,details.lp-section.lpa-native[open]{border-color:var(--lpa-gold)!important;box-shadow:0 8px 22px rgba(74,21,33,.08)!important}
+details.lp-section.lpa-native .lp-sec-body{line-height:1.9}
+
+/* قمم/تحديات: عمود واحد داخل البطاقة على الموبايل */
+.lpa-body .aqeq-pc-grid{margin-top:12px}
+@media(max-width:720px){
+  #lpresult .aqeq-pc-grid,#lpresult .lpd-tri,#lpresult .lpj-pc,#lpresult .lpd-main{grid-template-columns:1fr!important;columns:1!important}
+  #lpresult .lpd-main>*{width:100%}
+  .lpa-sum{padding:14px}
+  .lpa-body{padding:2px 14px 16px}
+}
+
+/* ----- تطهير الصناديق الداكنة: عاجي + ذهبي + بورجوندي ----- */
+.lpd-jr{background:linear-gradient(180deg,#FDFBF7,#FAF4EA)!important;color:var(--lpa-ink)!important;border:1px solid var(--lpa-bd);box-shadow:0 4px 15px rgba(74,21,33,.04)}
+.lpd-jr .lpd-mnt{display:none}
+.lpd-jr h2,section#lifepath .lpd .lpd-jr h2{color:var(--lpa-wine)!important}
+.lpd-jr header p,section#lifepath .lpd .lpd-jr header p,.lpd-jr .lpj-st .n,.lpd-jr .lpj-st .vals,.lpd-jr .lpj-st small{color:#5b4a43!important}
+.lpd-jr .lpj-st .t,.lpd-jr .lpj-st b{color:var(--lpa-wine)!important}
+.lpd-jr-note{color:#7a5a22!important;border-color:var(--lpa-gold)!important;background:#fff}
+.lpd-jr .lpj-st{color:var(--lpa-ink)!important}
+.lpd-jr .lpj-tag{color:#7a5a22!important;border-color:rgba(197,160,89,.6)!important;background:#fff!important}
+.lpd-jr .lpj-st[data-status="current"] .lpj-tag{background:var(--lpa-gold)!important;color:#2C2523!important}
+.lpd-jr .lpj-node{background:#fff!important;border-color:var(--lpa-gold)!important;color:var(--lpa-wine)!important}
+.lpd-jr .lpj-st[data-status="current"] .lpj-node{background:#F3EBDD!important}
+.lpd-jr .lpd-here{background:var(--lpa-gold)!important;color:#2C2523!important}
+.lpd-jr svg.lpd-curve path,.lpd-jr svg.lpj-stairs{stroke:var(--lpa-gold)!important}
+.lpj-reflect{background:linear-gradient(180deg,#FFFDFA,#FAF1E6)!important;color:var(--lpa-ink)!important;border:1px solid var(--lpa-gold);box-shadow:0 8px 22px rgba(74,21,33,.07)}
+.lpj .lpj-reflect q,.lpj .lpj-reflect small{color:var(--lpa-wine)!important}
+.lpj .lpj-reflect small{color:#7a5a22!important}
+.lpd-seg{background:var(--lpa-wine)!important}
+
+/* ----- توافق المسارات: النتيجة بنفس الثيم ----- */
+#lifepath .syn-result{margin-top:22px}
+#lifepath .syn-result-card{background:var(--lpa-bg)!important;border:1px solid var(--lpa-bd)!important;border-radius:14px!important;box-shadow:0 4px 15px rgba(74,21,33,.04)!important;color:var(--lpa-ink)!important}
+#lifepath .syn-result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+#lifepath .syn-section-heading{font-family:'Amiri',serif;color:var(--lpa-wine);margin:22px 0 10px}
+#lifepath .syn-premium.locked .syn-lock-overlay{display:none!important}
+#lifepath .syn-premium.locked .syn-premium-content{filter:none!important;pointer-events:auto!important;max-height:none!important;opacity:1!important}
+@media(max-width:720px){#lifepath .syn-result-grid{grid-template-columns:1fr}}
+
+/* ----- تفاعل ناعم للأزرار في صفحة مسار الحياة ----- */
+#lifepath .lpj-btn,#lifepath .btn,#lifepath .lpx-tab{transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
+#lifepath .lpj-btn:hover,#lifepath .btn:hover{border-color:var(--lpa-gold)!important;box-shadow:0 8px 20px rgba(74,21,33,.14);transform:translateY(-1px)}
+#lifepath .lpj-btn:active,#lifepath .btn:active{transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.lpa-chev,details.lpa-card,.lpa-navbtn,#lifepath .btn{transition:none!important}}
+
+/* تفاصيل المراحل: لون مقروء بدل الباهت */
+.lpd-jr .lpj-st .body,.lpd-jr .lpj-st .body span{opacity:1!important}
+.lpd-jr .lpj-st .body span:not(.t):not(.lpj-tag):not(.n){color:#5b4a43!important}
+/* أزرار الإجراءات أعلى النتيجة: لا التفاف حرف بحرف */
+#lpresult .lpd-acts{display:flex;flex-wrap:wrap;gap:10px}
+#lpresult .lpd-acts .lpj-btn{flex:1 1 auto;white-space:nowrap;justify-content:center}
+
+/* مسافة علوية تحت الهيدر الثابت حتى لا يختفي شريط الرجوع */
+section#lifepath .lpj-top{padding-top:84px!important}
+@media(min-width:900px){section#lifepath .lpj-top{padding-top:96px!important}}
+.lpa-nav .lpa-navbtn{flex:1 1 auto;justify-content:center;padding:0 14px;font-size:.88rem}
+
+/* مقدمة الفصول السبعة: كانت نيلية داكنة ← عاجي هادئ */
+#lpresult .lp-sections-intro{background:#FAF4EA!important;border:1px solid var(--lpa-bd)!important;border-radius:14px!important;color:var(--lpa-ink)!important}
+#lpresult .lp-sections-intro p,#lpresult .lp-sections-intro p.note{color:var(--lpa-ink)!important;line-height:1.9}
+#lpresult .lp-sections-intro p.note b{color:var(--lpa-wine)}
+#lpresult details.lp-section.lpa-native{border:1px solid var(--lpa-bd)!important;border-radius:14px!important;background:var(--lpa-bg)!important;box-shadow:0 4px 15px rgba(74,21,33,.04)!important;margin:0 0 12px!important}
+#lpresult details.lp-section.lpa-native:hover,#lpresult details.lp-section.lpa-native[open]{border-color:var(--lpa-gold)!important;box-shadow:0 8px 22px rgba(74,21,33,.08)!important}
+
+/* توافق المسارات: ألوان مقروءة بدل الباهتة */
+#lifepath .syn-result{scroll-margin-top:84px}
+#lifepath .syn-kpi{color:#6b5b52!important;font-weight:700}
+#lifepath .syn-value{color:var(--lpa-wine)!important;font-family:'Amiri',serif}
+#lifepath .syn-result-card h3,#lifepath .syn-result-card h4{color:var(--lpa-wine)!important}
+#lifepath .syn-score-card h3{color:#7a5a22!important}
+#lifepath .syn-gauge strong{color:var(--lpa-wine)!important}
+#lifepath .syn-score-note,#lifepath .syn-insight,#lifepath .syn-note{color:var(--lpa-ink)!important}
