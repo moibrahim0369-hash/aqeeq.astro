@@ -1,0 +1,8 @@
+.aq-soc{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
+.aq-soc a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid rgba(217,185,121,.55);border-radius:999px;color:#E9DFD0;text-decoration:none;font-size:.88rem;transition:background .25s ease,color .25s ease,border-color .25s ease}
+.aq-soc a svg{width:18px;height:18px;flex:none}
+.aq-soc a:hover,.aq-soc a:focus-visible{background:#D9B979;color:#351B28;border-color:#D9B979;outline:none}
+.aq-soc a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.aq-soc-lt{margin:14px 0}
+.aq-soc-lt a{color:#642B3C;border-color:#D9B979}
+.aq-soc-lt a:hover,.aq-soc-lt a:focus-visible{background:#642B3C;color:#fff;border-color:#642B3C}
