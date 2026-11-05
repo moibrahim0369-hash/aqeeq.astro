@@ -1689,3 +1689,14 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 #matrix .aqm-svg.has-focus .aqm-node:not(.is-active){opacity:.72}
 .aqm-svg .aqm-node.is-active circle.aqm-node-bg{stroke:#B78A52!important;stroke-width:2.5px!important}
 .aqm-svg .aqm-node{transition:opacity .2s ease}
+
+/* ===== شريط التبويبات: sticky محكوم أسفل الهيدر الثابت (بدون تداخل) ===== */
+#matrix .aqm-tabs{position:sticky!important;top:-38px!important;z-index:30!important;margin:6px 0 20px!important;background:var(--mx-ivory,#F7F2EA)!important;box-shadow:0 6px 14px -12px rgba(53,37,43,.35);transform:none!important}
+@media (max-width:900px){#matrix .aqm-tabs{top:-44px!important}}
+
+/* ===== قراءة أعمق داخل الأكورديون ===== */
+#matrix .aqm-g-deeper-title{margin-top:28px;padding-top:18px;border-top:1px solid var(--mx-border,#EDE3D5)}
+#matrix .aqm-slot-gemini .aqm-g-p{line-height:2;margin:0 0 14px}
+#matrix .aqm-slot-gemini .aqm-g-h1{margin:26px 0 10px;color:var(--mx-wine,#4a1a2b);font-weight:700}
+#matrix .aqm-slot-gemini .aqm-g-h2{margin:18px 0 8px;color:#7a5a22;font-weight:600}
+#matrix .aqm-slot-gemini .aqm-g-q{margin:18px 0;padding:14px 18px;border-inline-start:3px solid #B78A52;background:#FBF6EC;border-radius:12px;color:#4a1a2b}
