@@ -215,6 +215,13 @@
       syncNatal(); document.addEventListener('aqh:session', syncNatal, { once: true });
       natal.addEventListener('click', function () { closeLayer(true); });
     }
+    function relLink(p, body) {
+      var L = window.AqeeqContentLinks; if (!L) return '';
+      var key = body.retro ? 'retrograde-' + p.key : 'planet-' + p.key, l = L.find(key);
+      if (!l && body.retro) l = null;
+      if (!l) return '';
+      return '<a class="aqh-outline-btn aqh-rel" href="' + L.hrefFrom(l, 'home') + '" data-layer-close data-content-slug="' + l.slug + '"><span>' + esc(l.label) + '</span>' + ARROW + '</a>';
+    }
     function openPlanet(p, body, opener) {
       hideTip();
       var retro = body.retro ? 'متراجع' : 'مباشر';
@@ -224,9 +231,10 @@
           '<ul class="aqh-facts"><li><small>البرج الحالي</small><b>' + SIGN_GLYPH[body.sign] + ' ' + SIGN_AR[body.sign] + '</b></li><li><small>الدرجة</small><b>' + body.deg + '°</b></li><li><small>الحالة</small><b>' + retro + '</b></li></ul>' +
           '<p class="aqh-panel-sum">' + esc(p.meaning) + '</p>' +
           '<p class="aqh-note">أضف وقت ومكان الميلاد لعرض البيت الفلكي بدقة.</p>' +
-          '<div class="aqh-panel-actions"><a class="aqh-solid" href="#sky" data-layer-close><span>اعرف المزيد</span>' + ARROW + '</a></div></div>'
+          '<div class="aqh-panel-actions">' + relLink(p, body) + '<a class="aqh-solid" href="#sky" data-layer-close><span>اعرف المزيد</span>' + ARROW + '</a></div></div>'
       });
       $('a.aqh-solid', box).addEventListener('click', function () { closeLayer(true); });
+      var rl = $('a.aqh-rel', box); if (rl) rl.addEventListener('click', function () { closeLayer(true); });
     }
 
     /* اعتراض نقر/لوحة مفاتيح البرج (الكود الأصلي يفتح #signs مباشرة؛ نعرض اللوحة أولًا ثم نمرّر للأصل عبر الزر) */

@@ -6,7 +6,7 @@
   var list = document.getElementById('featured-content'), reader = document.getElementById('featured-reader');
   if (!list || !reader) return;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DATA = null, offline = false, loadState = 'idle', st = { cat: 'الكل', q: '', page: 1 }, internal = 0, toastEl, toastT;
+  var DATA = null, offline = false, loadState = 'idle', st = { cat: 'الكل', q: '', page: 1 }, internal = 0, fromKey = '', toastEl, toastT;
   var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
   var ICO = {
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>',
@@ -326,7 +326,7 @@
       '<div class="fc-hero-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div>' +
       '<div class="fc-art"><div class="fc-body">' + body(a) + '</div>' +
       '<div class="fc-note"><b>ملاحظة تحريرية:</b> ' + esc(a.note || '') + '</div>' +
-      '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="رجوع إلى المحتوى المميز">' + ARROW + '<span>رجوع إلى المحتوى المميز</span></button>' +
+      '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '">' + ARROW + '<span>' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '</span></button>' +
       '<button type="button" class="fc-ghost" data-fc-save aria-pressed="false" aria-label="حفظ المقال">' + ICO.save + '<span>حفظ المقال</span></button>' +
       '<span class="fc-share"><button type="button" class="fc-ghost" data-fc-share aria-haspopup="menu" aria-expanded="false" aria-label="مشاركة المقال">' + ICO.share + '<span>مشاركة المقال</span></button>' +
       '<div class="fc-menu" role="menu" hidden><button type="button" role="menuitem" data-fc-copy>نسخ الرابط</button>' +
@@ -335,7 +335,7 @@
       '<a role="menuitem" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=' + encodeURIComponent(url(a.slug)) + '&text=' + encodeURIComponent(a.title) + '">إكس</a></div></span>' +
       '<span class="fc-saved" role="status"></span></div></div>' +
       '<section class="fc-related" aria-labelledby="fc-rel-t"><h2 id="fc-rel-t">محتوى ذو صلة</h2><div class="fc-grid">' + rel.map(function (x, i) { return card(x, i, true); }).join('') + '</div></section>' +
-      '<div class="fc-back-cta"><a class="fc-btn" href="#featured-content"><span>العودة إلى المحتوى المميز</span>' + ARROW + '</a></div>';
+      '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المحتوى المميز') + '</span>' + ARROW + '</a>' + (fromKey ? '' : '') + '</div>';
     var sv = $('[data-fc-save]', host), msg = $('.fc-saved', host);
     getUser().then(function (u) { var on = getSaved(u && u.id).indexOf(slug) > -1; sv.setAttribute('aria-pressed', on); $('span', sv).textContent = on ? 'محفوظ' : 'حفظ المقال'; sv._u = u; });
     sv.addEventListener('click', function () {
@@ -359,7 +359,13 @@
     $('[data-fc-back]', host).addEventListener('click', goBack);
     var h1 = $('#fc-art-title', host); if (h1) h1.focus({ preventScroll: true });
   }
-  function goBack() { if (internal > 0) { internal--; history.back(); } else location.hash = '#featured-content'; }
+  var FROM = {
+    chart: ['#chart', 'العودة إلى الخريطة الفلكية'], lifepath: ['#lifepath', 'العودة إلى مسار الحياة'],
+    matrix: ['#matrix', 'العودة إلى مصفوفة القدر'], sky: ['#sky', 'العودة إلى السماء'],
+    featured: ['#featured-content', 'العودة إلى المحتوى المميز'], home: ['#home', 'العودة إلى الرئيسية']
+  };
+  function backTarget() { return FROM[fromKey] || null; }
+  function goBack() { var t = backTarget(); if (t) { fromKey = ''; location.hash = t[0]; return; } if (internal > 0) { internal--; history.back(); } else location.hash = '#featured-content'; }
   reader.addEventListener('click', function (e) {
     var a = e.target.closest('a[href^="#featured-content/"]'); if (a) internal++;
     if (!e.target.closest('.fc-share')) { var m = $('.fc-menu', reader); if (m && !m.hidden) { m.hidden = true; var b = $('[data-fc-share]', reader); if (b) b.setAttribute('aria-expanded', 'false'); } }
@@ -370,8 +376,8 @@
   function route() {
     var h = decodeURIComponent(location.hash || ''), m;
     if ((m = /^#article-([\w-]+)$/.exec(h))) { location.replace('#featured-content/' + m[1]); return; }
-    if ((m = /^#featured-content\/([\w-]+)$/.exec(h))) {
-      list.classList.add('fc-open');
+    if ((m = /^#featured-content\/([\w-]+)(?:\?from=([\w-]+))?$/.exec(h))) {
+      list.classList.add('fc-open'); fromKey = m[2] || '';
       if (loadState === 'ready') showReader(m[1]); else { reader.classList.add('fc-open'); }
       return;
     }
