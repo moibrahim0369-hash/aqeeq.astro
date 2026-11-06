@@ -1,0 +1,53 @@
+/* ============================================================
+   الرئيسية: بطاقات الأنظمة الثلاث بألوان متناسقة، الصف الثاني للمحتوى،
+   الهيدر والفوتر. كريمي/ذهبي مع نبيتي.
+   ============================================================ */
+:root{--hp-wine:#5E2234;--hp-wine2:#6A2A3C;--hp-gold:#C5A059;--hp-gold2:#E8CF98;--hp-line:#E6D8BD;--hp-mut:#6b5b52;--hp-brick:#9A5B3C;--hp-olive:#7F6E2F}
+
+/* ---------- بطاقات الأنظمة: تمييز الخريطة ومسار الحياة ---------- */
+#home.aqh .aqh-system.is-chart .aqh-system-ico,#home.aqh .aqh-system.is-chart .aqh-system-ico svg{color:var(--hp-brick)!important}
+#home.aqh .aqh-system.is-path .aqh-system-ico,#home.aqh .aqh-system.is-path .aqh-system-ico svg{color:var(--hp-olive)!important}
+#home.aqh .aqh-system.is-chart{border-top:3px solid var(--hp-brick)!important;background:linear-gradient(180deg,#FFFDF8,#F8ECE1)!important}
+#home.aqh .aqh-system.is-path{border-top:3px solid var(--hp-olive)!important;background:linear-gradient(180deg,#FFFDF8,#F5F1DF)!important}
+#home.aqh .aqh-system.is-chart h3{color:#6E3A22!important}
+#home.aqh .aqh-system.is-path h3{color:#5B4E1E!important}
+#home.aqh .aqh-system.is-chart .aqh-go{color:var(--hp-brick)!important}
+#home.aqh .aqh-system.is-path .aqh-go{color:var(--hp-olive)!important}
+#home.aqh .aqh-system.is-chart p,#home.aqh .aqh-system.is-path p{color:#4d433e!important}
+
+/* ---------- المحتوى المميز: زر العرض يمينًا + صف ثانٍ ---------- */
+#home.aqh .aqh-articles-head{flex-direction:column!important;align-items:stretch!important;gap:12px!important}
+#home.aqh .aqh-articles-head .aqh-all{align-self:flex-start!important;margin:0!important;padding:8px 18px;border:1px solid var(--hp-gold);border-radius:999px;background:#FFFDF8;font:700 .88rem 'Cairo',sans-serif;color:var(--hp-wine)!important}
+#home.aqh .aqh-articles-head .aqh-all:hover{background:var(--hp-wine);color:#fff!important}
+#home.aqh .aqh-row2{margin-top:clamp(14px,2vw,22px)}
+#home.aqh .aqh-row2[hidden]{display:none}
+#home.aqh .aqh-track2{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 2px 12px;scrollbar-width:none}
+#home.aqh .aqh-track2::-webkit-scrollbar{display:none}
+#home.aqh .aqh-track2 .aqh-article{flex:0 0 min(300px,82%);scroll-snap-align:start}
+
+/* ---------- الهيدر: شريط مميز + زر انضم الآن ---------- */
+html body header.top.aqh-header{background:linear-gradient(180deg,rgba(255,253,248,.97),rgba(248,239,221,.95))!important;border-bottom:1px solid transparent!important;border-image:linear-gradient(90deg,transparent,var(--hp-gold),transparent) 1!important;box-shadow:0 6px 22px rgba(94,34,52,.08)!important}
+html body .aqh-header .aqh-nav a,html body .aqh-header .aqh-drop-btn{font-weight:700}
+html body .aqh-header .aqh-nav a.aq-nav-active,html body .aqh-header .aqh-nav a[aria-current="page"]{color:var(--hp-wine)!important;position:relative}
+html body .aqh-header .aqh-nav a.aq-nav-active::after{content:"";position:absolute;inset-inline:18%;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--hp-gold),transparent)}
+html body .aqh-header .aqh-nav a.aqh-nav-sky{display:inline-flex;align-items:center;gap:6px}
+html body .aqh-header .aqh-nav a.aqh-nav-sky::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--hp-gold);box-shadow:0 0 0 0 rgba(197,160,89,.6);animation:hpLive 2.4s ease-out infinite}
+@keyframes hpLive{0%{box-shadow:0 0 0 0 rgba(197,160,89,.55)}100%{box-shadow:0 0 0 8px rgba(197,160,89,0)}}
+html body .aqh-header .aqh-join{position:relative;overflow:hidden;gap:7px!important;background:linear-gradient(135deg,#7A3449,var(--hp-wine) 78%)!important;border:1px solid var(--hp-gold)!important;color:#FFF6E4!important;font-weight:700;box-shadow:0 6px 16px rgba(94,34,52,.28)}
+html body .aqh-header .aqh-join::after{display:none!important}
+html body .aqh-header .aqh-join::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,226,160,.35) 50%,transparent 65%);transform:translateX(130%);animation:hpShine 4.5s ease-in-out infinite}
+@keyframes hpShine{0%,60%{transform:translateX(130%)}100%{transform:translateX(-130%)}}
+html body .aqh-header .aqh-join-ic{width:16px;height:16px;flex:none;stroke:var(--hp-gold2);fill:rgba(232,207,152,.25)}
+html body .aqh-header .aqh-join:hover{background:linear-gradient(135deg,#8A3C54,#6A2A3C 78%)!important;color:#fff!important}
+@media(max-width:440px){html body .aqh-header .aqh-join-ic{display:none}}
+@media(prefers-reduced-motion:reduce){html body .aqh-header .aqh-join::before,html body .aqh-header .aqh-nav a.aqh-nav-sky::before{animation:none}}
+
+/* ---------- الفوتر: نبذة + نصوص صغيرة باهتة ---------- */
+footer.foot .foot-about{max-width:640px;margin:18px auto 10px;padding:14px 16px;border-radius:16px;background:rgba(255,253,248,.7);border:1px solid var(--hp-line);text-align:center}
+footer.foot .foot-about h4{margin:0 0 6px;font:700 1rem 'Amiri','Cairo',serif;color:var(--hp-wine)}
+footer.foot .foot-about p{margin:0;font:500 .86rem/1.95 'Cairo',sans-serif;color:var(--hp-mut)}
+footer.foot .foot-dis{margin:8px auto 4px;max-width:560px;font:400 .68rem/1.7 'Cairo',sans-serif;color:#9b8f86;opacity:.85;text-align:center}
+footer.foot .copy{margin:4px auto 0;max-width:640px;font:400 .66rem/1.7 'Cairo',sans-serif!important;color:#a3978d!important;opacity:.8;text-align:center}
+
+/* بلاطة الحساب: لا تنتظر مراقب الظهور */
+html body #home.aqh .aqh-tools a.aqh-tool-login.aqh-reveal{opacity:1!important;transform:none!important}

@@ -358,8 +358,12 @@
       fetch(SRC, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
         ARTICLES = ((j && j.articles) || []).map(function (a) { return { id: a.id, slug: a.slug, category: a.category, title: a.title, date: a.publishedAt, readMinutes: a.readingTime, image: a.coverImage, imageAlt: a.coverAlt, intro: a.excerpt, featured: a.featured }; });
         if (!ARTICLES.length) { track.innerHTML = ''; state('empty', '<p>لا يوجد محتوى حاليًا.</p>'); return; }
-        (function shuffle() { var n = ARTICLES.length, last = -1; try { last = Number(sessionStorage.getItem('aqh-art-off')); } catch (e) { } var o = Math.floor(Math.random() * n); if (n > 1 && o === last) o = (o + 1 + Math.floor(Math.random() * (n - 1))) % n; try { sessionStorage.setItem('aqh-art-off', String(o)); sessionStorage.removeItem('aqh-car'); } catch (e) { } ARTICLES = ARTICLES.slice(o).concat(ARTICLES.slice(0, o)); })();
-        track.innerHTML = ARTICLES.map(card).join(''); state('ready');
+        /* الصف الأول: أحدث المقالات. الصف الثاني: اختيار عشوائي مرتب من بقية المقالات (بدون تكرار الصف الأول) */
+        ARTICLES = ARTICLES.map(function (a, n) { return { a: a, n: n }; }).sort(function (x, y) { return String(y.a.date).localeCompare(String(x.a.date)) || y.n - x.n; }).map(function (x) { return x.a; });
+        var TOP = ARTICLES.slice(0, 6), REST = ARTICLES.slice(6).map(function (a) { return { a: a, r: Math.random() }; }).sort(function (x, y) { return x.r - y.r; }).slice(0, 6).map(function (x) { return x.a; });
+        var track2 = $('#aqh-track2'), wrap2 = $('#aqh-row2');
+        if (track2 && REST.length) { track2.innerHTML = REST.map(card).join(''); if (wrap2) wrap2.hidden = false; $$('.aqh-article', track2).forEach(function (el, k) { el.classList.add('aqh-reveal'); el.style.setProperty('--aqh-d', (k * 70) + 'ms'); if (window.__aqhObserve) window.__aqhObserve(el); }); track2.addEventListener('click', function (e) { var l = e.target.closest('.aqh-article-link'); if (l) { e.preventDefault(); openArticle(l.getAttribute('data-slug')); } }); }
+        track.innerHTML = TOP.map(card).join(''); state('ready');
         $$('.aqh-article', track).forEach(function (el, k) { el.classList.add('aqh-reveal'); el.style.setProperty('--aqh-d', (k * 70) + 'ms'); if (window.__aqhObserve) window.__aqhObserve(el); });
         update(); autoTimer();
       }).catch(function () { track.innerHTML = ''; state('error', '<p>تعذر تحميل المحتوى حاليًا. حاول مرة أخرى.</p><button type="button" class="aqh-outline-btn" data-car-retry><span>إعادة المحاولة</span></button>'); var r = $('[data-car-retry]', msg); if (r) r.addEventListener('click', load); });
