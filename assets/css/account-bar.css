@@ -1,0 +1,30 @@
+/* الشريط السفلي (لك/أنت) + جرس الإشعارات + نافذة الدعوة للدخول */
+.aq-bell{position:relative}
+.aq-n-badge{position:absolute;top:-3px;inset-inline-end:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#D9362B;color:#fff;font:700 .66rem/17px 'Cairo',sans-serif;text-align:center;font-style:normal;box-shadow:0 0 0 2px #FFFDF8}
+.aq-n-badge[hidden]{display:none}
+.aq-notif{position:fixed;top:72px;inset-inline-start:14px;width:min(360px,calc(100vw - 28px));max-height:min(70vh,520px);overflow:auto;z-index:2300;padding:10px;border-radius:18px;background:linear-gradient(180deg,#FFFEFB,#FBF4E6);border:1px solid #E6D8BD;box-shadow:0 22px 50px rgba(94,34,52,.25)}
+.aq-notif[hidden]{display:none}
+.aq-n-h{display:flex;align-items:center;justify-content:space-between;padding:4px 6px 10px;border-bottom:1px dashed #E6D8BD;margin-bottom:8px}
+.aq-n-h b{font:700 1.05rem 'Amiri','Cairo',serif;color:#5E2234}
+.aq-n-h button{width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:#6b5b52;cursor:pointer}
+.aq-n-h svg{width:16px;height:16px}
+.aq-n-i{display:flex;align-items:center;gap:11px;padding:10px;border-radius:14px;text-decoration:none;color:inherit;transition:background .2s}
+.aq-n-i:hover{background:#fff}
+.aq-n-i.is-new{background:rgba(197,160,89,.12)}
+.aq-n-i.is-me{background:linear-gradient(135deg,#7A3449,#5E2234);margin-bottom:6px}
+.aq-n-ic{flex:none;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#FBF1DC,#F1DFB8);border:1px solid #C5A059;color:#6A2A3C}
+.aq-n-ic svg{width:19px;height:19px}
+.is-me .aq-n-ic{background:rgba(255,236,196,.14);border-color:rgba(232,207,152,.85);color:#E8CF98}
+.aq-n-t{display:grid;gap:2px;min-width:0}
+.aq-n-t b{font:700 .88rem/1.45 'Cairo',sans-serif;color:#5E2234}
+.aq-n-t small{font:500 .72rem 'Cairo',sans-serif;color:#6b5b52}
+.is-me .aq-n-t b{color:#FFF6E4}.is-me .aq-n-t small{color:#EBD7B4}
+.aq-n-empty{margin:8px;font:500 .84rem 'Cairo',sans-serif;color:#6b5b52}
+.aq-n-all{display:block;margin:8px 4px 2px;padding:9px;text-align:center;border-radius:999px;border:1px solid #C5A059;color:#5E2234;font:700 .8rem 'Cairo',sans-serif;text-decoration:none}
+.aq-n-all:hover{background:#5E2234;color:#fff}
+@media(min-width:1100px){.aq-notif{inset-inline-start:auto;inset-inline-end:auto;left:24px}}
+.aq-you-sheet .aq-you-p{margin:0 0 14px;text-align:center;font:500 .92rem/1.9 'Cairo',sans-serif;color:#4d433e}
+.aq-you-cta{display:flex;align-items:center;justify-content:center;gap:9px;min-height:48px;border-radius:999px;background:linear-gradient(135deg,#7A3449,#5E2234);border:1px solid #C5A059;color:#FFF6E4!important;font:700 .95rem 'Cairo',sans-serif;text-decoration:none;box-shadow:0 8px 20px rgba(94,34,52,.28)}
+.aq-you-cta svg{width:20px;height:20px;stroke:#E8CF98}
+.aq-you-later{display:block;margin:10px auto 0;border:0;background:none;color:#6b5b52;font:600 .84rem 'Cairo',sans-serif;cursor:pointer}
+@media(min-width:1100px){.aq-you-sheet{display:none!important}}
