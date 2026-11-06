@@ -223,6 +223,16 @@
     setInputs(t); live = off === 0; setQuick(b); render();
   });
   [dateI, timeI, citySel].forEach(function (el) { el.addEventListener('change', function () { if (el === citySel && live) { setInputs(nowLocal(CITIES[+citySel.value])); } else { live = false; setQuick(null); } render(); }); });
+  /* أسهم زيادة/نقص يوم بجانب التاريخ: تُحدّث الخريطة والقمر وقسم الكوكب مباشرة */
+  [].forEach.call(form.querySelectorAll('.swc-step'), function (b) {
+    b.addEventListener('click', function () {
+      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateI.value); if (!m) return;
+      var d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3] + (+b.getAttribute('data-step'))));
+      if (d.getUTCFullYear() < 1900 || d.getUTCFullYear() > 2100) return;
+      dateI.value = d.getUTCFullYear() + '-' + ('0' + (d.getUTCMonth() + 1)).slice(-2) + '-' + ('0' + d.getUTCDate()).slice(-2);
+      live = false; setQuick(null); render();
+    });
+  });
   function pickEv(e) { var n = e.target.closest('[data-k]'); if (n) openPlanet(n.getAttribute('data-k')); }
   svg.addEventListener('click', pickEv); gridEl.addEventListener('click', pickEv);
   svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickEv(e); } });
