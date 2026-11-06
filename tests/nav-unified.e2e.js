@@ -11,7 +11,7 @@ const ok = (c, m) => { if (c) { pass++; console.log('PASS', m); } else { fail++;
     p.on('pageerror', e => errs.push(e.message));
     await p.goto(BASE + '#home'); await p.waitForTimeout(900);
     const hs = () => p.evaluate(() => location.hash);
-    for (const [sel, hash] of [['.bnav a[href="#tarot-chamber"]', '#tarot-chamber'], ['.bnav a[href="#compat"]', '#compat'], ['.bnav a[href="#account"]', '#account'], ['.bnav a[href="#home"]', '#home']]) {
+    for (const [sel, hash] of [['.bnav a[href="#compat"]', '#compat'], ['.bnav a[href="#account"]', '#account'], ['.bnav a[href="#home"]', '#home']]) {
       await p.click(sel); await p.waitForTimeout(350);
       ok(await hs() === hash, `${w}: bnav ${hash}`);
       ok(await p.evaluate(s => document.querySelector(s).classList.contains('on'), sel), `${w}: active ${hash}`);
@@ -31,7 +31,7 @@ const ok = (c, m) => { if (c) { pass++; console.log('PASS', m); } else { fail++;
     await p.click('#aqh-burger'); await p.waitForTimeout(450);
     ok(await p.evaluate(() => !document.getElementById('aqh-menu').hidden && document.getElementById('aqh-burger').getAttribute('aria-expanded') === 'true'), `${w}: drawer opens`);
     const links = await p.$$eval('#aqh-menu a', a => a.map(x => x.getAttribute('href')));
-    ok(['#home', '#chart', '#matrix', '#lifepath', '#sky', '#compat', '#tarot-chamber', '#featured-content', '#dream-library', '#account'].every(x => links.includes(x)), `${w}: drawer has all destinations`);
+    ok(['#home', '#chart', '#matrix', '#lifepath', '#sky', '#compat', '#featured-content', '#dream-library', '#account'].every(x => links.includes(x)), `${w}: drawer has all destinations`);
     await p.keyboard.press('Escape'); await p.waitForTimeout(450);
     ok(await p.evaluate(() => document.getElementById('aqh-menu').hidden), `${w}: Esc closes drawer`);
     await p.click('#aqh-burger'); await p.waitForTimeout(400);

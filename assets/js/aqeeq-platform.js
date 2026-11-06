@@ -551,14 +551,13 @@
           </strong>
           <p style="margin: 0 auto 16px; max-width: 460px; font-size: 0.88rem; color: var(--muted-text); line-height: 1.75;">
             ${all.length === 0
-              ? 'احسب خريطة ميلادك، مصفوفة القدر، مسار الحياة، التوافق، أو اسحب قراءة تاروت واضغط «حفظ في مكتبتي» للرجوع إليها في أي وقت.'
+              ? 'احسب خريطة ميلادك، مصفوفة القدر، مسار الحياة، التوافق، واضغط «حفظ في مكتبتي» للرجوع إليها في أي وقت.'
               : 'جرّب تغيير كلمة البحث أو اختيار تصنيف آخر لعرض قراءاتك المحفوظة.'}
           </p>
           <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
             <a href="#chart" class="aq-section-pill">حساب خريطة الميلاد</a>
             <a href="#matrix" class="aq-section-pill">مصفوفة القدر</a>
             <a href="#lifepath" class="aq-section-pill">مسار الحياة</a>
-            <a href="#tarot-chamber" class="aq-section-pill">محراب التاروت</a>
           </div>
         </div>
       `;
@@ -656,10 +655,6 @@
         <a href="#compat" class="aq-dash-shortcut">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
           <span>التوافق والعلاقات</span>
-        </a>
-        <a href="#tarot-chamber" class="aq-dash-shortcut">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8l2 4-2 4-2-4z"/></svg>
-          <span>محراب التاروت</span>
         </a>
       </div>
 
