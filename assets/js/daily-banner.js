@@ -112,10 +112,13 @@
     setF('wd', f({ weekday: 'long' })); setF('dateShort', f({ day: 'numeric', month: 'long' })); setF('year', f({ year: 'numeric' }));
     setF('dayNum', String(d.getDate())); setF('monthYear', f({ month: 'long', year: 'numeric' })); setF('dateLong', f({ weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }));
   }
+  var MOON_TXT = ['طاقة اندفاع وبداية، تناسب المبادرة واتخاذ الخطوة الأولى', 'ميل للثبات والراحة، تناسب الاستقرار والاهتمام بالتفاصيل الحسية', 'فضول وكثرة حديث، تناسب التواصل والتعلم وتبادل الأفكار', 'حساسية أعلى ورغبة في الأمان، تناسب البيت والعائلة والاهتمام بالنفس', 'حضور وثقة وطاقة دافئة، تناسب الظهور والإبداع والتعبير الصادق', 'تركيز وترتيب، تناسب إنجاز المهام الصغيرة وتنظيم الأولويات', 'ميل للتوازن والعلاقات، تناسب الحوار الهادئ واتخاذ القرارات بروية', 'عمق ومشاعر مكثفة، تناسب مراجعة الداخل وإنهاء ما أرهقك', 'تفاؤل وتطلع للأمام، تناسب التخطيط والسفر وتوسيع الأفق', 'جدية والتزام، تناسب العمل المنظم وبناء الأهداف طويلة المدى', 'تفكير مختلف وروح مستقلة، تناسب الأفكار الجديدة والعمل الجماعي', 'خيال وحدس عاليان، تناسب الهدوء والتأمل والإصغاء لما بداخلك'];
+  function phaseTxt(el) { if (el < 11.25 || el >= 348.75) return 'القمر في المحاق: وقت للسكون ونية بداية جديدة.'; if (el < 168.75) return 'القمر في طور النمو: وقت مناسب للبناء والتقدم بما بدأته.'; if (el < 191.25) return 'القمر بدر: ذروة الوضوح والمشاعر، وفرصة لحصاد ما زرعته.'; return 'القمر في طور التناقص: وقت للتهدئة والتخفف من الأعباء وإنهاء المعلّق.'; }
+  var NUM_NOTE = { 1: 'ابدأ بخطوة واحدة واضحة ولا تؤجلها.', 2: 'اختر التعاون والإنصات، فالتوازن يسبق القرار.', 3: 'عبّر عن نفسك بصدق، فالكلمة اليوم تفتح الأبواب.', 4: 'رتّب أولوياتك وابنِ بثبات خطوة بعد خطوة.', 5: 'كن مرناً مع التغيير، وجرّب طريقاً جديداً بحذر.', 6: 'اعتنِ بمن حولك وبنفسك، فالانسجام يبدأ من البيت.', 7: 'خصّص وقتاً للهدوء والتأمل، فالإجابة تأتي من الداخل.', 8: 'وازن بين الطموح والمسؤولية، وركّز على الإنجاز الواقعي.', 9: 'أنهِ ما استنفد وقته وسامح، لتفسح مكاناً لبداية جديدة.', 11: 'أصغِ لحدسك اليوم، فهو أصدق من الضجيج حولك.', 22: 'فكّر بعيد المدى، فاليوم يناسب وضع أساس لشيء كبير.', 33: 'العطاء الصادق هو بوصلتك اليوم، فلا تنسَ نفسك فيه.' };
   function renderNumerology() {
     var n = themeNum(), th = txt('aq-obs-focus');
     setF('numDay', n ? 'الرقم ' + n : '—');
-    setF('theme', th || '—'); setF('themeSrc', n ? 'مصدر الرسالة: علم الأعداد — رقم اليوم ' + n : '');
+    setF('theme', th || '—'); setF('themeNote', NUM_NOTE[+n] || ''); setF('themeSrc', n ? 'مصدر الرسالة: علم الأعداد — رقم اليوم ' + n : '');
   }
   function renderSky() {
     if (!engine()) { errState = true; setF('headline', 'تعذر حساب بيانات السماء حاليًا'); return; }
@@ -144,16 +147,9 @@
         setF('entered', enter ? fmtDT(enter) : 'غير متاح'); setF('exits', exit ? fmtDT(exit) + ' ← ' + signName((moon.sign + 1) % 12) : 'غير متاح');
       } catch (e) { setF('entered', 'غير متاح'); setF('exits', 'غير متاح'); }
     }
-    /* الكوكب المؤثر (كوكب اليوم من home-v2) */
-    if (ruler) {
-      var rb = body(c, ruler);
-      if (rb) {
-        setF('ruler', planetGlyph(ruler) + ' ' + planetName(ruler) + ' في ' + signName(rb.sign) + ' ' + deg(rb.lon) + '° · ' + (rb.retro ? 'متراجع' : 'مباشر'), 1);
-        setF('headline', 'يومٌ يحكمه ' + planetName(ruler) + '، والقمر في ' + signName(moon.sign) + ' (' + ph + ')');
-        var th = (typeof PLANETS !== 'undefined' && PLANETS[ruler]) ? PLANETS[ruler].theme : '';
-        setF('planetTheme', th ? '«' + planetName(ruler) + ': ' + th + '»' : '');
-      }
-    } else { setF('headline', 'القمر في ' + signName(moon.sign) + ' · ' + ph); }
+    setF('headline', 'القمر في ' + signName(moon.sign) + ' · ' + ph + ' بإضاءة ' + illum + '%');
+    setF('moonDesc', MOON_TXT[moon.sign] + '. ' + phaseTxt(elong));
+    setF('planetTheme', 'القمر في ' + signName(moon.sign) + ': ' + MOON_TXT[moon.sign] + '.');
     /* شريط الكواكب */
     var pl = ['mercury', 'venus', 'mars', 'jupiter', 'saturn'].map(function (k) { var b = body(c, k); if (!b) return ''; return '<span class="dbn-pl"><b>' + planetGlyph(k) + ' ' + planetName(k) + '</b> ' + signName(b.sign) + ' ' + deg(b.lon) + '°' + (b.retro ? ' <em>متراجع</em>' : '') + '</span>'; }).join('');
     setF('planets', pl, true);
@@ -168,46 +164,15 @@
         if (k === 'phase') {
           var sn = body(c, 'sun'), mn = body(c, 'moon'); if (!sn || !mn) return '';
           var el = mod(mn.lon - sn.lon), il = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
-          return '<div class="dbn-lv"><span class="dbn-lv-g">' + icon('moon') + '</span><b>مرحلة القمر</b><small>' + phaseOf(el) + ' · ' + il + '%</small><i>إضاءة</i></div>';
+          return '<div class="dbn-lv k-moon"><span class="dbn-lv-g">' + icon('moon') + '</span><b>مرحلة القمر</b><small>' + phaseOf(el) + ' · ' + il + '%</small><i>إضاءة</i></div>';
         }
         var b = body(c, k); if (!b) return '';
-        return '<div class="dbn-lv' + (b.retro ? ' is-retro' : '') + '"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'مباشر') + '</i></div>';
+        return '<div class="dbn-lv k-' + k + (b.retro ? ' is-retro' : '') + '"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'مباشر') + '</i></div>';
       }).join('');
       setF('live' + (i + 1), h, true);
     });
   }
-  /* خريطة حيّة: مواقع الكواكب الحقيقية (خطوط الطول البروجية من محرك Astro) على العجلة الثابتة.
-     الحمل ٠° عند الجهة اليسرى، والأبراج تزيد عكس عقارب الساعة كالخرائط الفلكية التقليدية. */
-  var CH_KEYS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
-  var CH_COL = { 0: '#9C2F2F', 60: '#3D6B5A', 90: '#9C2F2F', 120: '#3D6B5A', 180: '#9C2F2F' };
-  function pt(r, lon) { var th = (270 - lon) * Math.PI / 180; return [200 + r * Math.sin(th), 200 - r * Math.cos(th)]; }
-  function renderChart() {
-    var gP = document.getElementById('skb-planets'), gA = document.getElementById('skb-aspects');
-    if (!gP || !gA || !engine()) return;
-    var c; try { c = chartAt(Date.now()); } catch (e) { return; }
-    var items = CH_KEYS.map(function (k) { var b = body(c, k); return b ? { k: k, lon: mod(b.lon), retro: !!b.retro, sign: b.sign } : null; }).filter(Boolean);
-    items.sort(function (a, b) { return a.lon - b.lon; });
-    var lastLon = -99, lvl = 0;
-    items.forEach(function (it) { lvl = (it.lon - lastLon < 11) ? (lvl + 1) % 3 : 0; it.r = 138 - lvl * 16; lastLon = it.lon; });
-    var asp = '';
-    for (var i = 0; i < items.length; i++) for (var j = i + 1; j < items.length; j++) {
-      var d = Math.abs(items[i].lon - items[j].lon); if (d > 180) d = 360 - d;
-      var hit = [[60, 4], [90, 5], [120, 6], [180, 6]].filter(function (a) { return Math.abs(d - a[0]) <= a[1]; })[0];
-      if (!hit) continue;
-      var p1 = pt(92, items[i].lon), p2 = pt(92, items[j].lon);
-      asp += '<path d="M' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + 'L' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1) + '" stroke="' + CH_COL[hit[0]] + '" stroke-opacity=".6"/>';
-    }
-    gA.innerHTML = asp;
-    gP.innerHTML = items.map(function (it) {
-      var p = pt(it.r, it.lon), q = pt(92, it.lon), g = GL[it.k] || '';
-      return '<g class="skb-pl"><title>' + planetName(it.k) + ' · ' + signName(it.sign) + ' ' + deg(it.lon) + '°' + (it.retro ? ' · متراجع' : '') + '</title>' +
-        '<path d="M' + q[0].toFixed(1) + ' ' + q[1].toFixed(1) + 'L' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + '" stroke="#4A1521" stroke-width=".8" stroke-opacity=".5"/>' +
-        '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="12" fill="#4A1521" stroke="#C5A059" stroke-width="1"/>' +
-        '<path transform="translate(' + (p[0] - 8).toFixed(1) + ' ' + (p[1] - 8).toFixed(1) + ') scale(.667)" d="' + g + '" stroke="#F6DDA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
-        (it.retro ? '<circle cx="' + (p[0] + 9).toFixed(1) + '" cy="' + (p[1] - 9).toFixed(1) + '" r="5" fill="#C0553A"/><text x="' + (p[0] + 9).toFixed(1) + '" y="' + (p[1] - 6.6).toFixed(1) + '" font-size="7" font-weight="700" text-anchor="middle" fill="#fff" font-family="Cairo,sans-serif">R</text>' : '') + '</g>';
-    }).join('');
-  }
-  function refresh() { renderStatic(); renderNumerology(); renderSky(); renderLive(); renderChart(); }
+  function refresh() { renderStatic(); renderNumerology(); renderSky(); renderLive(); }
   refresh();
   /* تحديث البيانات: مؤقت مستقل عن مؤقت الشرائح، كل دقيقة، ويُعيد الرسم فقط عند تغير القيم */
   var dataTimer = setInterval(function () { if (!document.hidden) refresh(); }, 60000);
