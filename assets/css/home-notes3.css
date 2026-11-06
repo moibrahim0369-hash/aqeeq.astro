@@ -108,3 +108,46 @@ html body #home.aqh .aqh-hero .aqh-title{text-shadow:0 1px 14px rgba(251,246,236
   html body .aqh-header .aqh-header-in{gap:clamp(10px,1.2vw,22px);max-width:1500px!important}
 }
 @media(min-width:1101px) and (max-width:1360px){html body .aqh-header .aqh-nav>a[href="#dream-library"]{display:none!important}}
+
+/* ===== جولة 4 ===== */
+/* نقطة مباشر: مساحة كافية كي لا تُقص الحلقة */
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-eyebrow{padding-inline-start:14px;margin-inline-start:2px;overflow:visible}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-eyebrow::before{margin-inline-start:0;margin-inline-end:2px}
+html body #home.aqh .aqh-skyb #aqh-energy,html body #home.aqh .aqh-skyb #aqh-energy *{--hn-x:0}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-live-s,html body #home.aqh .aqh-skyb #aqh-energy .dbn-live{overflow:visible!important}
+
+/* ارتعاش المعرض: منع التمرير الرأسي الداخلي */
+html body #home.aqh .aqh-track,html body #home.aqh .aqh-track2{overflow-y:hidden!important;overscroll-behavior:contain}
+
+/* شارة جديد وزر عرض الكل على اليمين */
+html body #home.aqh .aqh-band-arts .aqh-articles-head .aqh-new-badge{align-self:flex-start}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap{justify-content:flex-start}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all{display:inline-flex;align-items:center;gap:10px;padding:6px 8px 6px 18px;background:linear-gradient(135deg,#7A3449,#5E2234)!important;color:#FFF6E4!important;border:1px solid #C5A059;box-shadow:0 8px 18px rgba(94,34,52,.25)}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all:hover{background:linear-gradient(135deg,#8a3d54,#6a2840)!important}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all .aqh-all-ico{order:2;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF8E6,#EAD09B);color:#642B3C}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all .aqh-all-ico svg{width:16px;height:16px}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all>svg{display:none}
+
+/* التمثال على الديسكتوب والتابلت: بالكامل ومن بعيد */
+@media(min-width:761px){
+  html body #home.aqh .aqh-hero .hw-statue{height:auto!important;aspect-ratio:2560/400!important;width:100%!important;object-fit:cover!important;object-position:left top!important;
+    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 62%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0,#000 62%,transparent 100%)!important}
+  html body #home.aqh .aqh-hero{background:linear-gradient(180deg,#EFE6D9 0,#F4EDE2 60%,#F7F3EC 100%)!important}
+}
+
+/* هالة الموبايل: أخف وأعمق مثل الديسكتوب */
+@media(max-width:760px){
+  html body #home.aqh .aqh-hero .hw-statue{filter:brightness(.92) contrast(1.1) saturate(1.08)!important;
+    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0,#000 90%,transparent 100%)!important}
+  html body #home.aqh .aqh-hero::before{background:linear-gradient(180deg,rgba(96,56,40,.08),transparent 80%)!important}
+  html body #home.aqh .aqh-hero .aqh-hero-copy::before{display:none!important}
+}
+
+/* الشريط السفلي: عنابي بأيقونات ذهبية */
+html body nav.bnav{background:linear-gradient(180deg,#6E2C41 0%,#4F1D2E 100%)!important;border-top:1px solid #C5A059!important;box-shadow:0 -10px 26px rgba(50,15,28,.35),inset 0 1px 0 rgba(255,236,196,.18)!important}
+html body nav.bnav .bnav-item{color:#E9D5AE!important}
+html body nav.bnav .bnav-item svg{color:#E3C487!important;stroke-width:1.7!important;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+html body nav.bnav .bnav-item:hover{color:#FFF3D8!important}
+html body nav.bnav .bnav-item.on{color:#4A1A2B!important;background:linear-gradient(160deg,#F7E3B0,#DDB872)!important;box-shadow:0 4px 12px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.6)}
+html body nav.bnav .bnav-item.on svg{color:#6A2437!important;filter:none}
+html body nav.bnav .bnav-item.on::before{background:#F7E3B0;top:-9px;width:26px;margin-left:-13px}
