@@ -81,6 +81,7 @@
 <link rel="stylesheet" href="assets/css/for-you.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/paywall-modal.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/lifepath-vivid.css?v=20261106i">
+<link rel="stylesheet" href="assets/css/sky-world-chart.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/sky-banner.css?v=20261106i">
 </head>
 <body>
@@ -865,6 +866,22 @@
   <h2>مرصد السماء وحركة الكواكب</h2>
   <p class="intro">رصد حي لمواضع الكواكب الحقيقية، أطوار القمر، حالات التراجع، والاتصالات الفلكية لأي تاريخ تختاره.</p>
 </div>
+<section class="swc" id="swc" aria-labelledby="swc-h">
+  <header class="swc-head"><span class="swc-eyebrow">خريطة السماء العالمية</span><h3 id="swc-h">السماء كما تبدو في أي مكان بالعالم</h3>
+  <p>خريطة لحظة السماء بإحداثيات حقيقية لأي تاريخ ووقت وأي مدينة في العالم، وهي ليست خريطة شخصية.</p></header>
+  <form class="swc-ctl" id="swc-form" novalidate>
+    <label class="swc-f"><span>التاريخ</span><input id="swc-date" type="date" min="1900-01-01" max="2100-12-31" required></label>
+    <label class="swc-f"><span>الوقت</span><input id="swc-time" type="time" required></label>
+    <label class="swc-f swc-city"><span>المدينة</span><select id="swc-city"></select></label>
+    <button class="swc-go" type="submit">احسب الخريطة</button>
+    <div class="swc-quick" role="group" aria-label="اختصارات التاريخ"><button type="button" data-off="0" class="is-on">الآن</button><button type="button" data-off="1">غدًا</button><button type="button" data-off="7">بعد أسبوع</button><button type="button" data-off="30">بعد شهر</button></div>
+  </form>
+  <p class="swc-err" id="swc-err" role="alert" hidden></p>
+  <div class="swc-body">
+    <div class="swc-wheel"><svg id="swc-svg" viewBox="0 0 460 460" role="img" aria-label="خريطة السماء العالمية"></svg><p class="swc-cap" id="swc-cap" aria-live="polite"></p></div>
+    <div class="swc-side"><ul class="swc-list" id="swc-list" aria-label="مواقع الكواكب"></ul><div class="swc-moon" id="swc-moon"></div></div>
+  </div>
+</section>
 <div class="sky-ctl">
 <div class="field" style="flex:1;min-width:220px;margin:0;"><label for="sky-date">تاريخ الرصد الفلكي</label><input id="sky-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <button class="btn ghost sm" id="sky-today" type="button">العودة لتاريخ اليوم</button>
@@ -5028,6 +5045,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
+<script src="assets/js/sky-world-chart.js?v=20261106c" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
@@ -5046,7 +5064,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/natal-dashboard.js?v=20261109b" defer></script>
 <script src="assets/js/life-path-view.js?v=20261105e" defer></script>
 <script src="assets/js/lp-accordion.js?v=20261106b" defer></script>
-<script src="assets/js/daily-banner.js?v=20261106k" defer></script>
+<script src="assets/js/daily-banner.js?v=20261106l" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>

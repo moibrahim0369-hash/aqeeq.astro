@@ -52,6 +52,7 @@
     pluto: 'M12 21v-9M8.500 18h7M7 5a5 5 0 0 0 10 0M12 7.500a2.200 2.200 0 1 0 .01 0',
     saturn: 'M8 3.500v13M5 7h6M8 11c2-3 7-3 7 1.500 0 3-3.200 4.500-3.200 7.500 0 1.200 1.200 1.500 2.200 1'
   };
+  window.AqeeqGL = GL;
   function icon(k, cls) { var d = GL[k]; return d ? '<svg class="dbn-gl ' + (cls || '') + '" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.700" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="' + d + '"/></svg>' : ''; }
   function signGlyph(i) { return icon('s' + i); }
   function planetName(k) { return (typeof PLANETS !== 'undefined' && PLANETS[k]) ? PLANETS[k].n : k; }
