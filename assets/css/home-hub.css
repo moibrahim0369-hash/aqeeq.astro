@@ -1,0 +1,85 @@
+/* ============================================================
+   الرئيسية: شريط الأدوات الخماسي + محفوظاتك/نشاطك + صفحات المراكز
+   كريمي/ذهبي مع نبيتي، متناسق مع باقي الموقع
+   ============================================================ */
+:root{--hh-wine:#5E2234;--hh-wine2:#6A2A3C;--hh-gold:#C5A059;--hh-gold2:#E8CF98;--hh-line:#E6D8BD;--hh-ink:#2C2523;--hh-mut:#6b5b52}
+
+/* ---------- 1) شريط الأدوات ---------- */
+#home.aqh .aqh-fuse .aqh-tools{grid-template-columns:repeat(5,minmax(0,1fr))!important;padding:8px!important;gap:6px!important;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;border:1px solid var(--hh-line)!important;border-radius:22px!important;box-shadow:0 14px 30px rgba(94,34,52,.10)!important}
+#home.aqh .aqh-fuse .aqh-tool{align-self:center;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important;min-height:78px!important;padding:12px 14px!important;border:1px solid transparent!important;border-radius:16px!important;background:transparent!important;text-align:start!important}
+#home.aqh .aqh-fuse .aqh-tool+.aqh-tool{border-inline-start:1px solid rgba(197,160,89,.28)!important;border-radius:16px!important}
+#home.aqh .aqh-fuse .aqh-tool-ico{flex:none;width:40px!important;height:40px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#FBF1DC,#F1DFB8);border:1px solid var(--hh-gold);color:var(--hh-wine2)!important}
+#home.aqh .aqh-fuse .aqh-tool-ico svg{width:22px!important;height:22px!important}
+#home.aqh .aqh-tool-t{display:grid;gap:3px;min-width:0}
+#home.aqh .aqh-fuse .aqh-tool b{font:700 1rem/1.35 'Cairo','IBM Plex Sans Arabic',sans-serif!important;color:var(--hh-wine)}
+#home.aqh .aqh-tool small{font:500 .74rem/1.55 'Cairo',sans-serif;color:var(--hh-mut)}
+#home.aqh .aqh-fuse .aqh-tool:hover,#home.aqh .aqh-fuse .aqh-tool:focus-visible{background:#fff!important;border-color:var(--hh-gold)!important;box-shadow:0 10px 22px rgba(94,34,52,.14)!important;transform:translateY(-2px)!important}
+/* زر تسجيل الدخول: نبيتي بارز */
+#home.aqh .aqh-fuse .aqh-tool-login{background:linear-gradient(135deg,#7A3449,var(--hh-wine) 75%)!important;border-color:var(--hh-gold)!important;box-shadow:0 8px 20px rgba(94,34,52,.28)!important}
+#home.aqh .aqh-fuse .aqh-tool-login+.aqh-tool,#home.aqh .aqh-fuse .aqh-tool+.aqh-tool-login{border-inline-start-color:var(--hh-gold)!important}
+#home.aqh .aqh-fuse .aqh-tool-login .aqh-tool-ico{background:rgba(255,236,196,.14);border-color:rgba(232,207,152,.85);color:var(--hh-gold2)!important}
+#home.aqh .aqh-fuse .aqh-tool-login b{color:#FFF6E4}
+#home.aqh .aqh-fuse .aqh-tool-login small{color:#EBD7B4}
+#home.aqh .aqh-fuse .aqh-tool-login:hover{background:linear-gradient(135deg,#8A3C54,#6A2A3C 75%)!important}
+@media(max-width:1180px){#home.aqh .aqh-fuse .aqh-tool{padding:10px!important;gap:9px!important}#home.aqh .aqh-fuse .aqh-tool-ico{width:34px!important;height:34px}#home.aqh .aqh-fuse .aqh-tool b{font-size:.9rem}#home.aqh .aqh-tool small{font-size:.68rem}}
+@media(max-width:1024px){
+  #home.aqh .aqh-fuse .aqh-tools{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:8px!important;gap:8px!important;border-radius:20px!important}
+  #home.aqh .aqh-fuse .aqh-tool{flex-direction:row!important;min-height:74px!important;padding:10px 11px!important;gap:9px!important;border:1px solid var(--hh-line)!important;background:#fff!important;text-align:start!important}
+  #home.aqh .aqh-fuse .aqh-tool+.aqh-tool,#home.aqh .aqh-fuse .aqh-tool:nth-child(3){border:1px solid var(--hh-line)!important;border-radius:16px!important}
+  #home.aqh .aqh-fuse .aqh-tool-ico{width:36px!important;height:36px;flex:none}
+  #home.aqh .aqh-fuse .aqh-tool b{font-size:.84rem!important;line-height:1.35}
+  #home.aqh .aqh-tool small{font-size:.66rem;line-height:1.5}
+  #home.aqh .aqh-fuse .aqh-tool-login{grid-column:1/-1;min-height:64px!important;justify-content:center!important;border:1px solid var(--hh-gold)!important}
+  #home.aqh .aqh-fuse .aqh-tool-login .aqh-tool-t{text-align:start}
+}
+
+/* ---------- 2) قراءاتك المحفوظة + نشاطك الأخير ---------- */
+.aqh-mine{padding:clamp(22px,3vw,40px) 0 clamp(6px,2vw,18px)}
+.aqh-mine-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,20px)}
+@media(max-width:760px){.aqh-mine-grid{grid-template-columns:1fr}}
+.aqh-mcard{padding:18px 16px 16px;border-radius:22px;background:linear-gradient(180deg,#FFFDF8,#FBF4E6);border:1px solid var(--hh-line);box-shadow:0 12px 28px rgba(94,34,52,.08)}
+.aqh-mcard header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px;padding:0 0 10px;border-bottom:1px dashed var(--hh-line)}
+.aqh-mcard h3{display:flex;align-items:center;gap:9px;margin:0;font:700 1.1rem 'Amiri','Cairo',serif;color:var(--hh-wine)}
+.aqh-mcard h3 svg{width:30px;height:30px;padding:6px;box-sizing:border-box;border-radius:50%;background:linear-gradient(135deg,#FBF1DC,#F1DFB8);border:1px solid var(--hh-gold);color:var(--hh-wine2)}
+.aqh-mcard header a{font:600 .8rem 'Cairo',sans-serif;color:#9A6A2E;text-decoration:none}
+.aqh-mcard header a:hover{color:var(--hh-wine)}
+.aqh-mlist{display:grid;gap:9px}
+.aqh-mi{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:#fff;border:1px solid var(--hh-line);text-decoration:none;transition:transform .2s,box-shadow .2s,border-color .2s}
+.aqh-mi:hover{transform:translateY(-2px);border-color:var(--hh-gold);box-shadow:0 8px 18px rgba(94,34,52,.12)}
+.aqh-mi-ic{flex:none;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#FBF1DC,#F1DFB8);border:1px solid var(--hh-gold);color:var(--hh-wine2)}
+.aqh-mi-ic svg{width:20px;height:20px}
+.aqh-mi-t{display:grid;gap:2px;min-width:0}
+.aqh-mi-t b{font:700 .92rem/1.4 'Cairo',sans-serif;color:var(--hh-wine);overflow-wrap:anywhere}
+.aqh-mi-t small{font:500 .74rem 'Cairo',sans-serif;color:var(--hh-mut)}
+.aqh-mempty{display:grid;justify-items:start;gap:10px;padding:14px;border-radius:14px;border:1px dashed var(--hh-line);background:rgba(255,255,255,.6)}
+.aqh-mempty p{margin:0;font:500 .88rem/1.9 'Cairo',sans-serif;color:var(--hh-mut)}
+.aqh-mbtn{display:inline-flex;align-items:center;min-height:38px;padding:0 18px;border-radius:999px;background:linear-gradient(135deg,#7A3449,var(--hh-wine));border:1px solid var(--hh-gold);color:#FFF6E4!important;font:700 .84rem 'Cairo',sans-serif;text-decoration:none}
+
+/* ---------- 3) صفحات المراكز (الحسابات الفردية + التوافق) ---------- */
+section#individual,section#relationships{background:linear-gradient(180deg,#FFFBF2,#F8EFDD 60%,#FFFBF2)!important}
+#individual .amb,#relationships .amb{display:none!important}
+.rhub .rh-head h2{color:var(--hh-wine)!important}
+.rhub .rh-eyebrow{color:#9A6A2E!important}
+.rhub .rh-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important}
+@media(max-width:900px){.rhub .rh-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:560px){.rhub .rh-grid{grid-template-columns:1fr!important}}
+.rhub .rh-card{position:relative;display:flex!important;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 18px!important;border-radius:22px!important;background:linear-gradient(180deg,#FFFEFB,#FBF4E6)!important;border:1px solid var(--hh-line)!important;box-shadow:0 10px 26px rgba(94,34,52,.08)!important;text-decoration:none;color:var(--hh-ink)!important;transition:transform .25s,box-shadow .25s,border-color .25s}
+.rhub a.rh-card:hover{transform:translateY(-4px);border-color:var(--hh-gold)!important;box-shadow:0 18px 36px rgba(94,34,52,.16)!important}
+.rhub .rh-ico{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#FBF1DC,#F1DFB8)!important;border:1px solid var(--hh-gold)!important;color:var(--hh-wine2)!important}
+.rhub .rh-ico svg{width:30px;height:30px}
+.rhub .rh-card h3{margin:4px 0 0!important;font:700 1.15rem 'Amiri','Cairo',serif!important;color:var(--hh-wine)!important}
+.rhub .rh-card p{margin:0!important;font:500 .88rem/1.9 'Cairo',sans-serif!important;color:var(--hh-mut)!important}
+.rhub .rh-go{margin-top:auto;padding-top:6px;font:700 .84rem 'Cairo',sans-serif;color:#9A6A2E!important}
+.rhub a.rh-card:hover .rh-go{color:var(--hh-wine)!important}
+.rhub .rh-card.is-soon{opacity:.72;cursor:default;background:linear-gradient(180deg,#FBF7EE,#F3EBDA)!important;border-style:dashed!important;box-shadow:none!important}
+.rhub .rh-soon{display:inline-block;padding:3px 12px;border-radius:999px;background:#F1DFB8;border:1px solid var(--hh-gold);color:var(--hh-wine)!important}
+.rhub .rh-note{color:var(--hh-mut)!important}
+
+/* ---------- 4) أيقونة/خلفية: لا خلفية متحركة تحت الفوتر ---------- */
+#aqh-cta.aqh-final{margin-bottom:0}
+
+/* تثبيت ألوان زر الدخول فوق قواعد الموبايل والـreveal */
+html body #home.aqh .aqh-fuse .aqh-tools a.aqh-tool-login{background:linear-gradient(135deg,#7A3449,#5E2234 75%)!important;border:1px solid #C5A059!important;opacity:1!important}
+html body #home.aqh .aqh-fuse .aqh-tools a.aqh-tool-login b{color:#FFF6E4!important}
+html body #home.aqh .aqh-fuse .aqh-tools a.aqh-tool-login small{color:#EBD7B4!important}
+html body #home.aqh .aqh-fuse .aqh-tools a.aqh-tool-login .aqh-tool-ico{background:rgba(255,236,196,.14)!important;border-color:rgba(232,207,152,.85)!important;color:#E8CF98!important}

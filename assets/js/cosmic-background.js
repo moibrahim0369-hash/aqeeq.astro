@@ -286,17 +286,10 @@
     }
   }
 
-  resize();
-  window.addEventListener('resize', function () {
-    resize();
-    if (reducedMotion) frame(0);
-  }, { passive: true });
-
-  if (reducedMotion) {
-    frame(0);
-  } else {
-    requestAnimationFrame(frame);
-  }
+  /* الخلفية الفلكية المتحركة ملغاة بقرار التصميم: نزيل الكانفس والتظليل ولا نشغّل حلقة الرسم.
+     دوال رسم الكوكبات تبقى لأن صفحة الأبراج تستخدمها كشكل ثابت. */
+  if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
+  if (tint && tint.parentNode) tint.parentNode.removeChild(tint);
 
   /* ============================================================================
      لوحة كوكبة البرج التفاعلية في قسم الأبراج (#signs) بالهوية العاجية والذهبية
