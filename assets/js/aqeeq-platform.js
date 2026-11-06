@@ -950,7 +950,7 @@
       {
         id: 'mresult',
         type: 'matrix',
-        typeLabel: 'مصفوفة القدر',
+        typeLabel: 'مصفوفة القدر (٢٢ أركانا)',
         route: '#matrix',
         getMeta: () => {
           const name = document.getElementById('m-name')?.value?.trim() || 'مصفوفة القدر';
