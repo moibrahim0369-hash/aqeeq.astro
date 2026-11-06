@@ -24,8 +24,8 @@
 #matrix.mxp .aq-section-pill.active svg{color:#e8cd92}
 /* العنوان */
 #matrix.mxp .mxp-head{padding-top:clamp(120px,28vw,190px)!important;margin-bottom:6px;text-align:center}
-#matrix.mxp .mxp-head .eyebrow{display:block;font-size:.66rem!important;letter-spacing:.2em;color:#7a5a22!important;font-weight:600}
-#matrix.mxp .mxp-head h2{font-family:'Amiri','IBM Plex Sans Arabic',serif!important;font-weight:700!important;color:var(--b)!important;font-size:clamp(2rem,8.6vw,3.2rem)!important;line-height:1.25!important;margin:6px 0 4px!important}
+#matrix.mxp .mxp-head .eyebrow{display:block;font-size:.72rem!important;letter-spacing:.34em;color:#7a5a22!important;font-weight:600}
+#matrix.mxp .mxp-head h2{font-family:'El Messiri','Amiri',serif!important;font-weight:700!important;letter-spacing:.01em;color:var(--b)!important;font-size:clamp(2rem,8.6vw,3.2rem)!important;line-height:1.25!important;margin:6px 0 4px!important}
 #matrix.mxp .mxp-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:2px auto 10px;color:var(--g)}
 #matrix.mxp .mxp-orn i{height:1px;width:clamp(50px,18vw,120px);background:linear-gradient(90deg,transparent,currentColor)}
 #matrix.mxp .mxp-orn i:last-child{transform:scaleX(-1)}
