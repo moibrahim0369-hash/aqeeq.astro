@@ -1,0 +1,45 @@
+/* خريطة السماء العالمية: نفس لغة البانر الذهبي المطفي */
+#sky .swc{margin:0 0 22px;padding:22px 20px;border-radius:20px;color:#3A1A20;background:linear-gradient(135deg,#D9C08A,#CBAE74 55%,#BE9F65);border:1px solid rgba(74,21,33,.18);box-shadow:0 10px 30px rgba(74,21,33,.16)}
+#sky .swc-head{text-align:center;margin-bottom:14px}
+#sky .swc-eyebrow{display:inline-block;font-size:.72rem;letter-spacing:.18em;color:#6B2234;font-weight:700}
+#sky .swc-head h3{margin:4px 0 4px;font-family:'El Messiri','Amiri',serif;font-size:1.55rem;color:#4A1521}
+#sky .swc-head p{margin:0;font-size:.88rem;color:#4A2A2E;opacity:.9}
+#sky .swc-ctl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px;align-items:end;margin-bottom:12px}
+#sky .swc-f{display:flex;flex-direction:column;gap:4px;font-size:.78rem;color:#4A1521;font-weight:700}
+#sky .swc-f input,#sky .swc-f select{width:100%;min-height:42px;padding:8px 10px;border-radius:10px;border:1px solid rgba(74,21,33,.28);background:rgba(255,246,222,.7);color:#3A1A20;font:inherit;font-weight:600}
+#sky .swc-f input:focus,#sky .swc-f select:focus,#sky .swc-go:focus-visible,#sky .swc-quick button:focus-visible{outline:2px solid #4A1521;outline-offset:2px}
+#sky .swc-go{min-height:42px;padding:0 20px;border:0;border-radius:10px;background:linear-gradient(#7A2A3E,#4A1521);color:#F6DDA8;font:inherit;font-weight:700;cursor:pointer}
+#sky .swc-quick{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+#sky .swc-quick button{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(74,21,33,.35);background:rgba(255,246,222,.45);color:#4A1521;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
+#sky .swc-quick button.is-on{background:#4A1521;color:#F6DDA8;border-color:#4A1521}
+#sky .swc-err{margin:0 0 10px;padding:8px 12px;border-radius:10px;background:rgba(156,47,47,.14);color:#6E1717;font-size:.85rem;font-weight:700}
+#sky .swc-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:20px;align-items:start}
+#sky .swc-wheel svg{display:block;width:100%;max-width:460px;margin:0 auto;height:auto}
+#sky .swc-cap{margin:8px 0 0;text-align:center;font-size:.84rem;font-weight:700;color:#4A1521}
+#sky .swc-list{list-style:none;margin:0;padding:0}
+#sky .swc-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto minmax(86px,auto);gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid rgba(74,21,33,.2);cursor:pointer;border-radius:8px;transition:background .2s}
+#sky .swc-row:hover,#sky .swc-row.is-sel{background:rgba(74,21,33,.1)}
+#sky .swc-row b{font-size:.92rem;color:#3A1A20}
+#sky .swc-row em{font-style:normal;display:inline-block;margin-inline-start:4px;padding:0 5px;border-radius:6px;background:#C0553A;color:#fff;font-size:.68rem;font-weight:700}
+#sky .swc-deg{font-variant-numeric:tabular-nums;direction:ltr;font-weight:700;color:#4A1521;font-size:.9rem}
+#sky .swc-sg{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;color:#4A2A2E}
+#sky .swc-sg svg{width:18px;height:18px;color:#6B2234}
+#sky .swc-ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:radial-gradient(#7A2A3E,#4A1521);color:#F6DDA8}
+#sky .swc-ic svg{width:18px;height:18px}
+#sky .swc-ax{font-size:.68rem;font-weight:700;letter-spacing:.02em}
+#sky .swc-moon{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(255,246,222,.4)}
+#sky .swc-moon b{display:block;font-size:.9rem;color:#3A1A20}
+#sky .swc-moon small{font-size:.82rem;color:#4A2A2E}
+#sky .swc-pl{cursor:pointer;outline:none}
+#sky .swc-pl .swc-dot{transition:r .2s,fill .2s}
+#sky .swc-pl:hover .swc-dot,#sky .swc-pl.is-sel .swc-dot,#sky .swc-pl:focus-visible .swc-dot{fill:#7A2A3E;r:15}
+@media (max-width:760px){
+  #sky .swc{padding:16px 12px;border-radius:16px}
+  #sky .swc-ctl{grid-template-columns:1fr 1fr}
+  #sky .swc-city{grid-column:1/-1}
+  #sky .swc-go{grid-column:1/-1}
+  #sky .swc-body{grid-template-columns:minmax(0,1fr)}
+  #sky .swc-row{grid-template-columns:30px minmax(0,1fr) auto;gap:8px}
+  #sky .swc-sg{grid-column:2/-1;margin-top:-4px}
+}
+@media (prefers-reduced-motion:reduce){#sky .swc *{transition:none!important}}
