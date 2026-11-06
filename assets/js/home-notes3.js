@@ -12,6 +12,7 @@
     path: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M2 19 9 7l4 6 3-4 6 10Z"/></svg>',
     love: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="12" r="5.5"/><circle cx="15" cy="12" r="5.5" stroke-opacity=".75"/></svg>',
     sign: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.500"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>',
+    grid: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="3.500" y="3.500" width="7" height="7" rx="1.500"/><rect x="13.500" y="3.500" width="7" height="7" rx="1.500"/><rect x="3.500" y="13.500" width="7" height="7" rx="1.500"/><path d="M13.500 17h7M17 13.500v7"/></svg>',
     book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6C9.500 4.500 5.500 4.500 3 5.500v13c2.500-1 6.500-1 9 .5 2.500-1.500 6.500-1.500 9-.5v-13c-2.500-1-6.500-1-9 .5ZM12 6v13"/></svg>'
   };
 
@@ -20,7 +21,7 @@
     var head = $('#aqh-articles .aqh-articles-head'), all = $('#aqh-all-articles'), sec = $('#aqh-articles');
     if (!head || !all || !sec || sec.getAttribute('data-hn')) return;
     sec.setAttribute('data-hn', '1');
-    var wrap = document.createElement('div'); wrap.className = 'aqh-all-wrap'; wrap.appendChild(all); sec.appendChild(wrap);
+    var wrap = document.createElement('div'); wrap.className = 'aqh-all-wrap'; var ico=document.createElement('span'); ico.className='aqh-all-ico'; ico.innerHTML=SVG.grid; all.appendChild(ico); wrap.appendChild(all); sec.appendChild(wrap);
     var badge = document.createElement('span'); badge.className = 'aqh-new-badge'; badge.hidden = true; badge.setAttribute('role', 'img'); badge.setAttribute('aria-label', 'محتوى مميز جديد');
     badge.innerHTML = SVG.star + '<span>محتوى مميز جديد</span>'; head.appendChild(badge);
     try {
