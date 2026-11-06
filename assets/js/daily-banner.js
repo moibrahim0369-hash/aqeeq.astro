@@ -115,10 +115,11 @@
   var MOON_TXT = ['طاقة اندفاع وبداية، تناسب المبادرة واتخاذ الخطوة الأولى', 'ميل للثبات والراحة، تناسب الاستقرار والاهتمام بالتفاصيل الحسية', 'فضول وكثرة حديث، تناسب التواصل والتعلم وتبادل الأفكار', 'حساسية أعلى ورغبة في الأمان، تناسب البيت والعائلة والاهتمام بالنفس', 'حضور وثقة وطاقة دافئة، تناسب الظهور والإبداع والتعبير الصادق', 'تركيز وترتيب، تناسب إنجاز المهام الصغيرة وتنظيم الأولويات', 'ميل للتوازن والعلاقات، تناسب الحوار الهادئ واتخاذ القرارات بروية', 'عمق ومشاعر مكثفة، تناسب مراجعة الداخل وإنهاء ما أرهقك', 'تفاؤل وتطلع للأمام، تناسب التخطيط والسفر وتوسيع الأفق', 'جدية والتزام، تناسب العمل المنظم وبناء الأهداف طويلة المدى', 'تفكير مختلف وروح مستقلة، تناسب الأفكار الجديدة والعمل الجماعي', 'خيال وحدس عاليان، تناسب الهدوء والتأمل والإصغاء لما بداخلك'];
   function phaseTxt(el) { if (el < 11.25 || el >= 348.75) return 'القمر في المحاق: وقت للسكون ونية بداية جديدة.'; if (el < 168.75) return 'القمر في طور النمو: وقت مناسب للبناء والتقدم بما بدأته.'; if (el < 191.25) return 'القمر بدر: ذروة الوضوح والمشاعر، وفرصة لحصاد ما زرعته.'; return 'القمر في طور التناقص: وقت للتهدئة والتخفف من الأعباء وإنهاء المعلّق.'; }
   var NUM_NOTE = { 1: 'ابدأ بخطوة واحدة واضحة ولا تؤجلها.', 2: 'اختر التعاون والإنصات، فالتوازن يسبق القرار.', 3: 'عبّر عن نفسك بصدق، فالكلمة اليوم تفتح الأبواب.', 4: 'رتّب أولوياتك وابنِ بثبات خطوة بعد خطوة.', 5: 'كن مرناً مع التغيير، وجرّب طريقاً جديداً بحذر.', 6: 'اعتنِ بمن حولك وبنفسك، فالانسجام يبدأ من البيت.', 7: 'خصّص وقتاً للهدوء والتأمل، فالإجابة تأتي من الداخل.', 8: 'وازن بين الطموح والمسؤولية، وركّز على الإنجاز الواقعي.', 9: 'أنهِ ما استنفد وقته وسامح، لتفسح مكاناً لبداية جديدة.', 11: 'أصغِ لحدسك اليوم، فهو أصدق من الضجيج حولك.', 22: 'فكّر بعيد المدى، فاليوم يناسب وضع أساس لشيء كبير.', 33: 'العطاء الصادق هو بوصلتك اليوم، فلا تنسَ نفسك فيه.' };
+  var WEEK_LINE = ['الأحد: ابدأ أسبوعك بنية واضحة وخطوة صغيرة ثابتة.', 'الاثنين: اهتم بمشاعرك وبيتك قبل أي التزام جديد.', 'الثلاثاء: وجّه طاقتك لإنهاء مهمة مؤجلة بحسم.', 'الأربعاء: يوم مناسب للحديث والتواصل وتصحيح سوء الفهم.', 'الخميس: انظر للأمام وخطط لما تريد توسيعه.', 'الجمعة: يوم للامتنان والصحبة وتجديد الصلة بمن تحب.', 'السبت: رتّب ما تراكم وخفف الأعباء استعداداً لأسبوع جديد.'];
   function renderNumerology() {
     var n = themeNum(), th = txt('aq-obs-focus');
     setF('numDay', n ? 'الرقم ' + n : '—');
-    setF('theme', th || '—'); setF('themeNote', NUM_NOTE[+n] || ''); setF('themeSrc', n ? 'مصدر الرسالة: علم الأعداد — رقم اليوم ' + n : '');
+    setF('theme', th || '—'); setF('themeNote', NUM_NOTE[+n] || ''); setF('themeDay', WEEK_LINE[new Date().getDay()]); setF('themeSrc', n ? 'مصدر الرسالة: علم الأعداد — رقم اليوم ' + n : '');
   }
   function renderSky() {
     if (!engine()) { errState = true; setF('headline', 'تعذر حساب بيانات السماء حاليًا'); return; }
@@ -154,8 +155,32 @@
     var pl = ['mercury', 'venus', 'mars', 'jupiter', 'saturn'].map(function (k) { var b = body(c, k); if (!b) return ''; return '<span class="dbn-pl"><b>' + planetGlyph(k) + ' ' + planetName(k) + '</b> ' + signName(b.sign) + ' ' + deg(b.lon) + '°' + (b.retro ? ' <em>متراجع</em>' : '') + '</span>'; }).join('');
     setF('planets', pl, true);
   }
-  /* السماء الآن: مواقع الكواكب الحية (نفس محرك Astro) */
+  /* السماء الآن: مواقع الكواكب الحية (نفس محرك Astro) + سطر تأثير مختصر تحت كل صف + ضغط الصف يفتح تفاصيل الكوكب في صفحة السماء */
   var LIVE_SETS = [['sun', 'moon', 'mercury'], ['venus', 'mars', 'jupiter'], ['saturn', 'uranus', 'neptune'], ['pluto', 'phase']];
+  var ORDER = ['mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  var FX = {
+    mercury: ['تواصل أوضح وقرارات أسهل.', 'راجع رسائلك وأوراقك قبل الإرسال أو التوقيع.'],
+    venus: ['انسجام وجاذبية في العلاقات والذوق.', 'وقت لإعادة النظر في العلاقات وما تقدّره.'],
+    mars: ['طاقة ودافع وجرأة في التنفيذ.', 'خفّف الاندفاع وأعد ترتيب خططك.'],
+    jupiter: ['فرص ونمو وتفاؤل في المجال الذي يمر به.', 'نمو داخلي وإعادة تقييم للأهداف الكبيرة.'],
+    saturn: ['صبر والتزام ونتائج ثابتة بالتنظيم.', 'راجع مسؤولياتك وأساساتك قبل المضي قدماً.'],
+    uranus: ['تغيير مفاجئ وأفكار جديدة تكسر الروتين.', 'تحرر داخلي من قيد قديم دون استعجال.'],
+    neptune: ['حدس وخيال وإلهام فني وروحي.', 'احذر الأوهام وابحث عن الوضوح قبل القرار.'],
+    pluto: ['تحوّل عميق وقوة داخلية بطيئة الأثر.', 'مواجهة هادئة لما يجب أن تتركه خلفك.']
+  };
+  var SUN_SHORT = ['ثقة ومبادرة وبداية جديدة.', 'ثبات وراحة وحب للتفاصيل الحسية.', 'فضول وتواصل وتعلم متجدد.', 'حنين واهتمام بالبيت والمشاعر.', 'حضور وكرم وتعبير إبداعي.', 'تركيز وترتيب وخدمة الآخرين.', 'توازن وعلاقات وبحث عن العدل.', 'عمق وتحول ومواجهة صادقة للداخل.', 'تفاؤل وتطلع وسعة أفق.', 'جدية والتزام وبناء طويل المدى.', 'تفكير مستقل وأفكار جديدة للمجموع.', 'خيال وحدس ورحمة وهدوء داخلي.'];
+  var ASP_FX = { conj: 'طاقتان تمتزجان فتتضاعف قوتهما.', sext: 'فرصة هادئة تحتاج مبادرة بسيطة.', square: 'احتكاك يحرّك الأمور ويطلب قراراً.', trine: 'انسياب وسهولة يدعمان الطرفين.', opp: 'شدّ بين طرفين يطلب توازناً.' };
+  var ASP_DEF = [['conj', 0, 'اقتران'], ['sext', 60, 'تسديس'], ['square', 90, 'تربيع'], ['trine', 120, 'تثليث'], ['opp', 180, 'مقابلة']];
+  function moonShort(si) { return MOON_TXT[si].split('،')[0] + '.'; }
+  function phaseShort(el) { if (el < 11.25 || el >= 348.75) return 'سكون ونية بداية جديدة.'; if (el < 168.75) return 'نمو وبناء وتقدم فيما بدأته.'; if (el < 191.25) return 'ذروة وضوح ومشاعر وحصاد.'; return 'تهدئة وتخفف وإنهاء المعلّق.'; }
+  function lvRow(k, b, fx) {
+    return '<div class="dbn-lv k-' + k + (b.retro ? ' is-retro' : '') + '" data-planet="' + k + '" role="link" tabindex="0" title="تفاصيل ' + planetName(k) + ' في صفحة السماء"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'مباشر') + '</i><p class="dbn-fx">' + fx + '</p></div>';
+  }
+  function fxOf(k, b) {
+    if (k === 'sun') return SUN_SHORT[b.sign];
+    if (k === 'moon') return moonShort(b.sign);
+    return FX[k][b.retro ? 1 : 0];
+  }
   function renderLive() {
     if (!engine()) return;
     var c; try { c = chartAt(Date.now()); } catch (e) { return; }
@@ -164,14 +189,65 @@
         if (k === 'phase') {
           var sn = body(c, 'sun'), mn = body(c, 'moon'); if (!sn || !mn) return '';
           var el = mod(mn.lon - sn.lon), il = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
-          return '<div class="dbn-lv k-moon"><span class="dbn-lv-g">' + icon('moon') + '</span><b>مرحلة القمر</b><small>' + phaseOf(el) + ' · ' + il + '%</small><i>إضاءة</i></div>';
+          return '<div class="dbn-lv k-moon" data-planet="moon" role="link" tabindex="0" title="تفاصيل القمر في صفحة السماء"><span class="dbn-lv-g">' + icon('moon') + '</span><b>مرحلة القمر</b><small>' + phaseOf(el) + ' · ' + il + '%</small><i>إضاءة</i><p class="dbn-fx">' + phaseShort(el) + '</p></div>';
         }
         var b = body(c, k); if (!b) return '';
-        return '<div class="dbn-lv k-' + k + (b.retro ? ' is-retro' : '') + '"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'مباشر') + '</i></div>';
+        return lvRow(k, b, fxOf(k, b));
       }).join('');
       setF('live' + (i + 1), h, true);
     });
+    /* المتراجعة / المباشرة */
+    var all = ORDER.map(function (k) { return { k: k, b: body(c, k) }; }).filter(function (x) { return x.b; });
+    function listSlide(f, arr, emptyTxt, moreTxt) {
+      var h = arr.slice(0, 3).map(function (x) { return lvRow(x.k, x.b, fxOf(x.k, x.b)); }).join('');
+      if (!arr.length) h = '<p class="dbn-desc">' + emptyTxt + '</p>';
+      else if (arr.length > 3) { var r = arr.length - 3, nt = r === 1 ? 'كوكب آخر' : (r === 2 ? 'كوكبان آخران' : r + ' كواكب أخرى'); h += '<p class="dbn-more">' + moreTxt.replace('{n}', nt) + '</p>'; }
+      setF(f, h, true);
+    }
+    listSlide('liveRetro', all.filter(function (x) { return x.b.retro; }), 'لا توجد كواكب متراجعة الآن، فالحركة كلها مباشرة.', 'و{n} متراجع، وتجد التفاصيل كلها في صفحة السماء.');
+    listSlide('liveDirect', all.filter(function (x) { return !x.b.retro; }), 'كل الكواكب متراجعة الآن.', 'و{n} مباشر، وتجد التفاصيل كلها في صفحة السماء.');
+    /* أبرز الزوايا */
+    var pk = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'], bs = pk.map(function (k) { var b = body(c, k); return b ? { k: k, b: b } : null; }).filter(Boolean), found = [];
+    for (var i = 0; i < bs.length; i++) for (var j = i + 1; j < bs.length; j++) {
+      var A = bs[i], B = bs[j], d = Math.abs(mod(A.b.lon - B.b.lon)); d = d > 180 ? 360 - d : d;
+      var lim = (A.k === 'sun' || A.k === 'moon' || B.k === 'sun' || B.k === 'moon') ? 8 : 6;
+      for (var q = 0; q < ASP_DEF.length; q++) { var o = Math.abs(d - ASP_DEF[q][1]); if (o <= lim) { found.push({ A: A, B: B, t: ASP_DEF[q], o: o }); break; } }
+    }
+    found.sort(function (x, y) { return x.o - y.o; });
+    setF('liveAsp', found.length ? found.slice(0, 3).map(function (x) {
+      var hard = x.t[0] === 'square' || x.t[0] === 'opp';
+      return '<div class="dbn-lv k-' + x.A.k + '" data-planet="' + x.A.k + '" data-target="asp" role="link" tabindex="0" title="الزوايا بين الكواكب في صفحة السماء"><span class="dbn-lv-g">' + planetGlyph(x.A.k) + '</span><b>' + planetName(x.A.k) + ' ' + x.t[2] + ' ' + planetName(x.B.k) + '</b><small>' + (hard ? 'زاوية متوترة' : 'زاوية داعمة') + ' · فارق ' + x.o.toFixed(1) + '°</small><i>' + (hard ? 'تحدٍّ' : 'دعم') + '</i><p class="dbn-fx">' + ASP_FX[x.t[0]] + '</p></div>';
+    }).join('') : '<p class="dbn-desc">لا توجد زوايا قوية بين الكواكب في هذه اللحظة.</p>', true);
+    /* موسم الشمس */
+    var su = body(c, 'sun');
+    if (su) {
+      var left = Math.max(1, Math.round((30 - (mod(su.lon) % 30)) / 0.9856));
+      setF('liveSeason', lvRow('sun', su, SUN_SHORT[su.sign]) + '<p class="dbn-desc">موسم ' + signName(su.sign) + ' مستمر، وتنتقل الشمس إلى ' + signName((su.sign + 1) % 12) + ' بعد نحو ' + left + ' ' + (left > 10 ? 'يوماً' : 'أيام') + '.</p>', true);
+    }
   }
+  /* ضغط الكوكب في البانر: افتح صفحة السماء على تفاصيله (التراجع والتأثير) */
+  function openPlanet(k, target) {
+    var sd = document.getElementById('sky-date');
+    if (sd && sd.value) { sd.value = ''; sd.dispatchEvent(new Event('change', { bubbles: true })); }
+    if (location.hash !== '#sky') location.hash = '#sky';
+    var n = 0;
+    (function go() {
+      var chip = document.querySelector('#sky-chips .chip[data-k="' + k + '"]'), t = document.getElementById(target === 'asp' ? 'sky-asp' : 'sky-chips');
+      if (chip && t && t.offsetParent !== null) {
+        if (target !== 'asp' && chip.getAttribute('aria-pressed') !== 'true') chip.click();
+        setTimeout(function () { try { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { t.scrollIntoView(); } }, 120);
+      } else if (n++ < 25) setTimeout(go, 120);
+    })();
+  }
+  root.addEventListener('click', function (e) {
+    var r = e.target.closest('[data-planet]'); if (!r || !root.contains(r)) return;
+    openPlanet(r.getAttribute('data-planet'), r.getAttribute('data-target'));
+  });
+  root.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var r = e.target.closest && e.target.closest('[data-planet]'); if (!r) return;
+    e.preventDefault(); openPlanet(r.getAttribute('data-planet'), r.getAttribute('data-target'));
+  });
   function refresh() { renderStatic(); renderNumerology(); renderSky(); renderLive(); }
   refresh();
   /* تحديث البيانات: مؤقت مستقل عن مؤقت الشرائح، كل دقيقة، ويُعيد الرسم فقط عند تغير القيم */
