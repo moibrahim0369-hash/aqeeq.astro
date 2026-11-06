@@ -1,0 +1,25 @@
+/* صفحة الحساب بعد الدخول: بطاقة واحدة نظيفة بدل بطاقات داخل بطاقات */
+html body #account .acct-user-card{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important}
+html body #account #account-profile-completion.profile-completion{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:14px 0 0!important}
+html body #account #profile-completion-form.cform{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important}
+html body #account .acct-avatar-badge{margin-bottom:6px}
+html body #account .acct-user-header{padding-bottom:12px;border-bottom:1px dashed #E6D8BD;margin-bottom:14px}
+html body #account #profile-onboarding-banner{position:relative;margin:0 0 14px!important;padding:14px 44px 14px 14px!important;border:1px solid #E6D8BD!important;border-radius:14px!important;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;box-shadow:none!important}
+html body #account #profile-onboarding-banner h3,html body #account #profile-onboarding-banner strong{font:700 1rem 'Amiri','Cairo',serif;color:#5E2234}
+html body #account #profile-onboarding-banner p{font:500 .84rem/1.9 'Cairo',sans-serif;color:#4d433e;margin:6px 0 0}
+html body #account #profile-close-btn{position:absolute;top:10px;inset-inline-end:10px}
+html body #account .profile-photo-row{margin:0 0 16px!important;padding:12px!important;border-radius:14px!important;background:#FBF4E6!important;border:1px solid #E6D8BD!important}
+html body #account .profile-privacy-note{margin:14px 0!important;padding:12px 14px!important;border-radius:12px!important;background:#FBF4E6!important;border:1px solid #E6D8BD!important;box-shadow:none!important;font-size:.8rem}
+html body #account #profile-completion-form .field{margin-bottom:14px}
+/* أزرار الأسفل منظمة */
+html body #account #acct-user>.btn,html body #account #acct-user>.acct-actions{margin-top:12px}
+html body #account #acct-buy{width:100%;min-height:50px;border-radius:999px!important;background:linear-gradient(135deg,#7A3449,#5E2234)!important;border:1px solid #C5A059!important;color:#FFF6E4!important;font-weight:700;box-shadow:0 8px 20px rgba(94,34,52,.25)!important;opacity:1!important}
+html body #account #acct-signout{display:block;width:auto;margin:14px auto 0;min-height:40px;padding:0 22px;border-radius:999px!important;background:transparent!important;border:1px solid #E6D8BD!important;color:#6b5b52!important;box-shadow:none!important;font-weight:600}
+html body #account #acct-signout:hover{border-color:#C5A059!important;color:#5E2234!important}
+/* لوحة المرصد الشخصي: مسافات أنظف */
+html body #account #aq-personal-observatory-hub{margin-top:18px;gap:14px}
+
+/* حساب المالك: كل شيء مفتوح */
+html[data-admin="1"] .fy-lock,html[data-admin="1"] #acct-buy{display:none!important}
+.aq-admin-chip{display:inline-flex;align-items:center;gap:7px;margin-top:6px;padding:5px 12px;border-radius:999px;background:linear-gradient(135deg,#7A3449,#5E2234);border:1px solid #C5A059;color:#FFF6E4!important;font:700 .74rem 'Cairo',sans-serif;text-decoration:none}
+.aq-admin-chip svg{width:15px;height:15px;stroke:#E8CF98}

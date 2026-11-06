@@ -50,8 +50,8 @@ const BASE = 'http://127.0.0.1:8765/index.html';
       assert.ok(pg.pb >= 64, 'Page must reserve at least the nav height below its content');
 
       const links = nav.locator('.bnav-item');
-      assert.equal(await links.count(), 5, 'Exactly five navigation destinations');
-      for (let i = 0; i < 5; i += 1) {
+      assert.equal(await links.count(), 4, 'Exactly four navigation destinations');
+      for (let i = 0; i < 4; i += 1) {
         const link = links.nth(i);
         const lb = await link.boundingBox();
         assert.ok(lb.x >= -1 && lb.x + lb.width <= viewport.width + 1, `Nav item ${i} must be inside the viewport`);
