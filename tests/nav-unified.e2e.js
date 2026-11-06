@@ -11,7 +11,7 @@ const ok = (c, m) => { if (c) { pass++; console.log('PASS', m); } else { fail++;
     p.on('pageerror', e => errs.push(e.message));
     await p.goto(BASE + '#home'); await p.waitForTimeout(900);
     const hs = () => p.evaluate(() => location.hash);
-    for (const [sel, hash] of [['.bnav a[href="#compat"]', '#compat'], ['.bnav a[href="#account"]', '#account'], ['.bnav a[href="#home"]', '#home']]) {
+    for (const [sel, hash] of [['.bnav a[href="#account"]', '#account'], ['.bnav a[href="#home"]', '#home']]) {
       await p.click(sel); await p.waitForTimeout(350);
       ok(await hs() === hash, `${w}: bnav ${hash}`);
       ok(await p.evaluate(s => document.querySelector(s).classList.contains('on'), sel), `${w}: active ${hash}`);

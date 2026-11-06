@@ -77,3 +77,6 @@ html body #lifepath .lpj-top{padding-top:0!important}
 /* مسافة الهيدر العلوية */
 html body section .aq-section-topbar{margin-top:10px!important}
 html body section:is(#compat,#chart).sec>.wrap{padding-top:78px!important}
+
+/* ---------- خصوصية الخروج: لا تعبئة تلقائية لزائر غير مسجل ---------- */
+html[data-auth="out"] body section .aq-autofill-bar,html[data-auth="out"] body section .lpx-card .aq-autofill-bar,html[data-auth="out"] body #matrix .mxp-card .aq-autofill-bar,html[data-auth="out"] body section#lifepath.lpx .lpx-card .aq-autofill-bar,html[data-auth="out"] .aq-autofill-bar{display:none!important}
