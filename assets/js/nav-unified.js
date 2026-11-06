@@ -73,3 +73,9 @@
   window.addEventListener('hashchange', function () { setTimeout(sync, 0); });
   sync(); setTimeout(sync, 400);
 })();
+
+/* قسم التاروت مخفي مؤقتاً: أي رابط قديم له يرجّع للرئيسية بدل صفحة فاضية. */
+(function () {
+  function guard() { if (location.hash === '#tarot-chamber') location.replace('#home'); }
+  window.addEventListener('hashchange', guard); guard();
+})();
