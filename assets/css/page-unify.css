@@ -1,0 +1,79 @@
+/* ============================================================
+   توحيد الصفحات: رأس مسار الحياة الكريمي، تبويبات بأيقونات، رجوع/الرئيسية،
+   إخفاء التعريفات بعد الحساب، وكتلة "تابع من هنا". كريمي/ذهبي + نبيتي.
+   ============================================================ */
+:root{--pu-wine:#5E2234;--pu-wine2:#7A3449;--pu-gold:#C5A059;--pu-gold2:#E8CF98;--pu-line:#E6D8BD;--pu-mut:#6b5b52;--pu-ink:#2C2523}
+
+/* ---------- مسار الحياة: رأس خفيف بدل المربع الأحمر ---------- */
+html body section#lifepath.lpx .lpx-head{background:transparent!important;border:0!important;box-shadow:none!important;padding:6px 4px 0!important;margin:6px 0 18px!important;min-height:0!important;max-width:none!important;text-align:center!important;overflow:visible}
+html body section#lifepath.lpx .lpx-head h2{color:var(--pu-wine)!important;text-shadow:none!important;max-width:none!important;margin:0 auto!important;font-size:clamp(2rem,7vw,3rem)!important}
+html body section#lifepath.lpx .lpx-head .intro{color:var(--pu-mut)!important;max-width:34em!important;margin:12px auto 0!important;text-align:center!important;font-size:clamp(.95rem,3.4vw,1.05rem)!important}
+html body section#lifepath.lpx .lpx-head .lpx-orn{color:var(--pu-gold)!important;max-width:240px!important;width:70%!important;margin:10px auto 0!important}
+html body section#lifepath.lpx .lpx-head .lpj-crumb{display:none!important}
+html body section#lifepath>.wrap>.aq-section-topbar{display:flex!important}
+html body section#lifepath .sheet-x{display:none!important}
+/* بعد الحساب: لا عنوان مكرر ولا رأس */
+html body section#lifepath:has(.lpj-top) .lpx-head{display:none!important}
+html body #lifepath .lpj-top .lpj-crumb,html body #lifepath .lpj-top .lpj-back{display:none!important}
+
+/* ---------- تبويبات قراءة فردية / توافق المسارات ---------- */
+#lifepath .lpx-tab{display:inline-flex!important;align-items:center;justify-content:center;gap:7px}
+#lifepath .lpx-tab::before{content:"";width:16px;height:16px;flex:none;background:currentColor;-webkit-mask:var(--ti) center/contain no-repeat;mask:var(--ti) center/contain no-repeat}
+#lifepath #lp-start-discover{--ti:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4.500 20.500a7.500 7.500 0 0 1 15 0'/%3E%3C/svg%3E")}
+#lifepath #lp-start-compare{--ti:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 19c4 0 3-5 8-5s4-5 8-5'/%3E%3Ccircle cx='4' cy='19' r='1.400'/%3E%3Ccircle cx='20' cy='9' r='1.400'/%3E%3Cpath d='M4 5c4 0 3 5 8 5'/%3E%3C/svg%3E")}
+
+/* ---------- إخفاء التعريفات بعد الحساب (تظهر قبله فقط) ---------- */
+#lifepath:has(#lpresult:not([hidden])) .lpk,
+#lifepath:has(#syn-result:not([hidden])) .lpk,
+#matrix:has(#mresult:not([hidden])) .lpk,
+#chart:has(#result:not([hidden])) .lpk,
+#compat:has(#cp-out:not([hidden])) .lpk{display:none!important}
+
+/* ---------- شريط التنقل العلوي الموحد ---------- */
+html body section .aq-section-topbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px!important;padding:0 0 12px!important;border-bottom:1px solid var(--pu-line)!important;position:relative!important;z-index:5}
+html body section .aq-section-topbar .aq-nav-actions{display:flex;gap:8px;flex:none}
+.aq-nav-btn{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 15px;border-radius:999px;border:1px solid var(--pu-gold);background:#FFFDF8;color:var(--pu-wine);font:700 .8rem 'Cairo',sans-serif;cursor:pointer;text-decoration:none;transition:background .2s,color .2s,transform .2s}
+.aq-nav-btn:hover{background:var(--pu-wine);color:#fff;transform:translateY(-1px)}
+.aq-nav-btn.is-home{background:linear-gradient(135deg,var(--pu-wine2),var(--pu-wine));color:#FFF6E4;box-shadow:0 5px 14px rgba(94,34,52,.25)}
+.aq-nav-btn.is-home:hover{background:linear-gradient(135deg,#8A3C54,#6A2A3C)}
+.aq-nav-btn .pill-i{width:16px;height:16px;stroke:currentColor}
+html body section .aq-section-topbar .aq-section-quick-links{display:flex!important;flex-wrap:wrap!important;gap:8px!important;overflow:visible!important}
+html body section .aq-section-topbar .aq-section-pill{display:inline-flex!important;align-items:center;gap:7px;padding:8px 15px!important;font:700 .8rem 'Cairo',sans-serif!important;white-space:nowrap;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;border:1px solid var(--pu-line)!important;border-radius:999px!important;color:var(--pu-wine)!important;box-shadow:0 2px 8px rgba(94,34,52,.07);height:auto!important;min-height:0!important}
+html body section .aq-section-topbar .aq-section-pill:hover{transform:translateY(-1px);border-color:var(--pu-gold)!important;box-shadow:0 6px 16px rgba(94,34,52,.14)}
+html body section .aq-section-topbar .aq-section-pill.active{background:linear-gradient(135deg,#7A3449,var(--pu-wine) 70%)!important;border-color:var(--pu-gold)!important;color:#FFF8EA!important;box-shadow:0 6px 16px rgba(94,34,52,.28)}
+html body section .aq-section-topbar .aq-section-pill .pill-i{width:16px!important;height:16px!important;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+html body section .aq-section-topbar .aq-section-pill:not(.active) .pill-i{stroke:#9A6A2E}
+html body section .aq-section-topbar .aq-section-pill.active .pill-i{stroke:var(--pu-gold2)}
+html body section#chart.ntx .aq-section-topbar{margin:0 0 14px!important}
+
+/* ---------- تابع من هنا ---------- */
+.aq-related{margin:clamp(28px,5vw,44px) auto 8px;width:min(980px,100% - 32px);padding:6px 0 24px}
+.aq-related h3{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 14px;font:700 1.15rem 'Amiri','Cairo',serif;color:var(--pu-wine)}
+.aq-related h3 span{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--pu-gold))}
+.aq-related h3 span:last-child{transform:scaleX(-1)}
+.aq-rel-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:720px){.aq-rel-grid{grid-template-columns:1fr}}
+.aq-rel{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:16px;background:linear-gradient(180deg,#FFFEFB,#FBF4E6);border:1px solid var(--pu-line);text-decoration:none;box-shadow:0 6px 16px rgba(94,34,52,.07);transition:transform .2s,box-shadow .2s,border-color .2s}
+.aq-rel:hover{transform:translateY(-2px);border-color:var(--pu-gold);box-shadow:0 12px 24px rgba(94,34,52,.14)}
+.aq-rel-i{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#FBF1DC,#F1DFB8);border:1px solid var(--pu-gold);color:var(--pu-wine2)}
+.aq-rel-i .pill-i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.aq-rel-t{display:grid;gap:2px;min-width:0}
+.aq-rel-t b{font:700 .95rem/1.35 'Cairo',sans-serif;color:var(--pu-wine)}
+.aq-rel-t small{font:500 .76rem/1.5 'Cairo',sans-serif;color:var(--pu-mut)}
+/* مسار الحياة بعد الحساب له أدواته الخاصة أسفله */
+#lifepath:has(.lpj-bottom) .aq-related{display:none}
+
+/* ---------- الهوم: السماء الآن — النقطة الحمراء النابضة + سطر تعريفي ---------- */
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-eyebrow{display:block;margin:0 0 4px;font:600 .74rem 'Cairo',sans-serif;letter-spacing:.02em;color:#9A6A2E}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-pulse{width:10px!important;height:10px!important;flex:none;border-radius:50%;background:#D9362B!important;box-shadow:0 0 0 0 rgba(217,54,43,.55);animation:puLive 1.8s ease-out infinite!important}
+@keyframes puLive{0%{box-shadow:0 0 0 0 rgba(217,54,43,.55)}100%{box-shadow:0 0 0 10px rgba(217,54,43,0)}}
+@media(prefers-reduced-motion:reduce){html body #home.aqh .aqh-skyb #aqh-energy .dbn-pulse{animation:none!important}}
+
+/* مسار الحياة: تعويض ارتفاع الهيدر + إخفاء أزرار مكررة بعد الحساب */
+html body section#lifepath.lpx.sec:target>.wrap{padding-top:82px!important}
+html body #lifepath .lpa-nav a.lpa-navbtn{display:none!important}
+html body #lifepath .lpj-top{padding-top:0!important}
+
+/* مسافة الهيدر العلوية */
+html body section .aq-section-topbar{margin-top:10px!important}
+html body section:is(#compat,#chart).sec>.wrap{padding-top:78px!important}

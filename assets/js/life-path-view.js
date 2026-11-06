@@ -144,7 +144,7 @@
 
     var tabsBar = '<div class="lpd-tabs" role="tablist">' + [['ov', 'النظرة العامة'], ['st', 'المراحل'], ['ls', 'الدروس'], ['tm', 'التوقيت']].map(function (t, k) { return '<button type="button" role="tab" data-lpd-tab="' + t[0] + '" aria-selected="' + (k === 0) + '">' + t[1] + '</button>'; }).join('') + '</div>';
     var panels = '<div class="lpd-panel" data-lpd-panel="ov">' + how + '</div><div class="lpd-panel" data-lpd-panel="st" hidden>' + stagePanel + '</div><div class="lpd-panel" data-lpd-panel="ls" hidden>' + pcs + '</div><div class="lpd-panel" data-lpd-panel="tm" hidden>' + timing + '</div>';
-    var top = '<div class="lpj-top lpj-wrap lpd">' + crumb + chips + intro + '<div class="lpd-main">' + timeline + metrics + '</div>' + tri + tabsBar + panels + '<div id="lpj-interp" tabindex="-1">' + interpHead + '</div></div>';
+    var top = '<div class="lpj-top lpj-wrap lpd">' + crumb + chips + tabsBar + panels + '<div id="lpj-interp" tabindex="-1">' + interpHead + '</div></div>';
 
     var rf = pr(curP && curP.value), refl = rf && rf.reflection;
     var tools = [['#matrix', I.matrix, 'مصفوفة القدر', 'خريطتك الرقمية الهندسية'], ['#chart', I.chart, 'الخريطة الفلكية', 'مواضع الكواكب لحظة ميلادك'], ['#life-path-synastry', I.pair, 'توافق مسارات الحياة', 'قراءة الشراكات بين رقمين'], ['#featured-content/pinnacles-cycles', I.read, 'اقرأ عن القمم والدورات', 'من المحتوى المميز']];
