@@ -102,6 +102,7 @@
       '</g>' +
       '<circle cx="60" cy="60" r="50" fill="none" stroke="#8E877C" stroke-opacity=".55" stroke-width="1"/>';
   }
+  window.AqeeqMoon = moonSvg;
   function themeNum() { var m = /(\d+)/.exec(txt('aq-obs-daynum')); return m ? m[1] : ''; }
   function txt(id) { var n = document.getElementById(id); return n ? (n.textContent || '').trim() : ''; }
   var last = { key: '', ingKey: '' }, ing = null, errState = false;
@@ -225,6 +226,7 @@
       setF('liveSeason', lvRow('sun', su, SUN_SHORT[su.sign]) + '<p class="dbn-desc">موسم ' + signName(su.sign) + ' مستمر، وتنتقل الشمس إلى ' + signName((su.sign + 1) % 12) + ' بعد نحو ' + left + ' ' + (left > 10 ? 'يوماً' : 'أيام') + '.</p>', true);
     }
   }
+  window.AqeeqFX = { FX: FX, SUN_SHORT: SUN_SHORT, ASP_FX: ASP_FX, moonShort: moonShort, phaseShort: phaseShort };
   /* ضغط الكوكب في البانر: افتح صفحة السماء على تفاصيله (التراجع والتأثير) */
   function openPlanet(k, target) {
     var sd = document.getElementById('sky-date');

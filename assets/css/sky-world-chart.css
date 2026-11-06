@@ -1,45 +1,120 @@
-/* خريطة السماء العالمية: نفس لغة البانر الذهبي المطفي */
-#sky .swc{margin:0 0 22px;padding:22px 20px;border-radius:20px;color:#3A1A20;background:linear-gradient(135deg,#D9C08A,#CBAE74 55%,#BE9F65);border:1px solid rgba(74,21,33,.18);box-shadow:0 10px 30px rgba(74,21,33,.16)}
-#sky .swc-head{text-align:center;margin-bottom:14px}
-#sky .swc-eyebrow{display:inline-block;font-size:.72rem;letter-spacing:.18em;color:#6B2234;font-weight:700}
-#sky .swc-head h3{margin:4px 0 4px;font-family:'El Messiri','Amiri',serif;font-size:1.55rem;color:#4A1521}
-#sky .swc-head p{margin:0;font-size:.88rem;color:#4A2A2E;opacity:.9}
-#sky .swc-ctl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px;align-items:end;margin-bottom:12px}
-#sky .swc-f{display:flex;flex-direction:column;gap:4px;font-size:.78rem;color:#4A1521;font-weight:700}
-#sky .swc-f input,#sky .swc-f select{width:100%;min-height:42px;padding:8px 10px;border-radius:10px;border:1px solid rgba(74,21,33,.28);background:rgba(255,246,222,.7);color:#3A1A20;font:inherit;font-weight:600}
-#sky .swc-f input:focus,#sky .swc-f select:focus,#sky .swc-go:focus-visible,#sky .swc-quick button:focus-visible{outline:2px solid #4A1521;outline-offset:2px}
-#sky .swc-go{min-height:42px;padding:0 20px;border:0;border-radius:10px;background:linear-gradient(#7A2A3E,#4A1521);color:#F6DDA8;font:inherit;font-weight:700;cursor:pointer}
+/* خريطة السماء العالمية + صفحة التفاصيل: كريمي فاتح بنفس لغة الرئيسية، وعجلة بشكل خريطة الميلاد */
+:root{--swc-ink:#3A1A20;--swc-bur:#6B2234;--swc-bur-d:#4A1521;--swc-gold:#B8965A;--swc-line:rgba(184,150,90,.45);--swc-soft:#4E7FB0;--swc-hard:#C0554A}
+#sky #sky-chips,#sky .sky-ctl,#sky #sky-moon,#sky .amb,#world .amb{display:none!important}
+section#sky,section#world{background:linear-gradient(180deg,rgba(250,247,240,0) 0%,rgba(240,226,200,.3) 50%,rgba(250,247,240,0) 100%),#FAF7F0!important}
+#sky .swc-f select,#sky .swc-f input{background-color:#fff!important}
+#sky .swc,#world .wld-card,#world .wld-keys>div{color:var(--swc-ink)}
+#sky .swc{margin:0 0 24px;padding:clamp(18px,2.6vw,28px);border-radius:22px;background:linear-gradient(160deg,#FFFBF2 0%,#F8EFDD 100%);border:1px solid rgba(184,150,90,.5);box-shadow:0 12px 30px rgba(100,43,60,.1),inset 0 0 0 4px rgba(255,255,255,.55)}
+#sky .swc-head{text-align:center;margin-bottom:16px}
+#sky .swc-eyebrow{display:inline-block;font:700 .74rem 'Cairo',sans-serif;letter-spacing:.14em;color:var(--swc-gold)}
+#sky .swc-head h3{margin:4px 0;font:700 clamp(1.35rem,2.4vw,1.7rem) 'El Messiri','Amiri',serif;color:var(--swc-bur-d)}
+#sky .swc-head p{margin:0;font:500 .9rem/1.8 'Cairo',sans-serif;color:#6B4A3E}
+#sky .swc-ctl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px;align-items:end;margin-bottom:14px}
+#sky .swc-f{display:flex;flex-direction:column;gap:5px;font:700 .78rem 'Cairo',sans-serif;color:var(--swc-bur-d)}
+#sky .swc-f input,#sky .swc-f select{width:100%;min-height:44px;padding:8px 12px;border-radius:12px;border:1px solid var(--swc-line);background:#fff;color:var(--swc-ink);font:600 .92rem 'Cairo',sans-serif;box-shadow:0 1px 0 rgba(255,255,255,.8) inset}
+#sky .swc-f input:focus,#sky .swc-f select:focus,#sky .swc-go:focus-visible,#sky .swc-quick button:focus-visible,#sky .swc-pc:focus-visible{outline:2px solid var(--swc-bur);outline-offset:2px}
+#sky .swc-go{min-height:44px;padding:0 20px;border:0;border-radius:12px;background:linear-gradient(#7A2A3E,#4A1521);color:#F6DDA8;font:700 .92rem 'Cairo',sans-serif;cursor:pointer;box-shadow:0 8px 18px rgba(74,21,33,.22)}
 #sky .swc-quick{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
-#sky .swc-quick button{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid rgba(74,21,33,.35);background:rgba(255,246,222,.45);color:#4A1521;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer}
-#sky .swc-quick button.is-on{background:#4A1521;color:#F6DDA8;border-color:#4A1521}
-#sky .swc-err{margin:0 0 10px;padding:8px 12px;border-radius:10px;background:rgba(156,47,47,.14);color:#6E1717;font-size:.85rem;font-weight:700}
-#sky .swc-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:20px;align-items:start}
-#sky .swc-wheel svg{display:block;width:100%;max-width:460px;margin:0 auto;height:auto}
-#sky .swc-cap{margin:8px 0 0;text-align:center;font-size:.84rem;font-weight:700;color:#4A1521}
-#sky .swc-list{list-style:none;margin:0;padding:0}
-#sky .swc-row{display:grid;grid-template-columns:34px minmax(0,1fr) auto minmax(86px,auto);gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid rgba(74,21,33,.2);cursor:pointer;border-radius:8px;transition:background .2s}
-#sky .swc-row:hover,#sky .swc-row.is-sel{background:rgba(74,21,33,.1)}
-#sky .swc-row b{font-size:.92rem;color:#3A1A20}
-#sky .swc-row em{font-style:normal;display:inline-block;margin-inline-start:4px;padding:0 5px;border-radius:6px;background:#C0553A;color:#fff;font-size:.68rem;font-weight:700}
-#sky .swc-deg{font-variant-numeric:tabular-nums;direction:ltr;font-weight:700;color:#4A1521;font-size:.9rem}
-#sky .swc-sg{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;color:#4A2A2E}
-#sky .swc-sg svg{width:18px;height:18px;color:#6B2234}
-#sky .swc-ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:radial-gradient(#7A2A3E,#4A1521);color:#F6DDA8}
-#sky .swc-ic svg{width:18px;height:18px}
-#sky .swc-ax{font-size:.68rem;font-weight:700;letter-spacing:.02em}
-#sky .swc-moon{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 12px;border-radius:12px;background:rgba(255,246,222,.4)}
-#sky .swc-moon b{display:block;font-size:.9rem;color:#3A1A20}
-#sky .swc-moon small{font-size:.82rem;color:#4A2A2E}
-#sky .swc-pl{cursor:pointer;outline:none}
-#sky .swc-pl .swc-dot{transition:r .2s,fill .2s}
-#sky .swc-pl:hover .swc-dot,#sky .swc-pl.is-sel .swc-dot,#sky .swc-pl:focus-visible .swc-dot{fill:#7A2A3E;r:15}
-@media (max-width:760px){
-  #sky .swc{padding:16px 12px;border-radius:16px}
+#sky .swc-quick button{min-height:36px;padding:0 16px;border-radius:999px;border:1px solid var(--swc-line);background:#fff;color:var(--swc-bur-d);font:700 .82rem 'Cairo',sans-serif;cursor:pointer}
+#sky .swc-quick button.is-on{background:var(--swc-bur);color:#F6DDA8;border-color:var(--swc-bur)}
+#sky .swc-err{margin:0 0 10px;padding:8px 12px;border-radius:10px;background:rgba(192,85,74,.12);color:#8A2C24;font:700 .85rem 'Cairo',sans-serif}
+#sky .swc-body{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(16px,3vw,32px);align-items:center}
+.swc-cw{display:block;width:100%;max-width:540px;height:auto;margin-inline:auto;filter:drop-shadow(0 10px 18px rgba(100,43,60,.16))}
+.swc-legend{display:flex;justify-content:center;gap:18px;margin:8px 0 0;font:600 .78rem 'Cairo',sans-serif;color:#6B4A3E}
+.swc-legend span::before{content:"";display:inline-block;width:22px;height:2px;margin-inline-end:6px;vertical-align:middle;background:var(--swc-soft)}
+.swc-legend .lg-hard::before{background:var(--swc-hard)}
+#sky .swc-cap{margin:8px 0 0;text-align:center;font:700 .84rem 'Cairo',sans-serif;color:var(--swc-bur-d)}
+.swc-pl{cursor:pointer;outline:none}
+.swc-pl .swc-hit{transition:fill-opacity .2s}
+.swc-pl:hover .swc-hit,.swc-pl.is-sel .swc-hit,.swc-pl:focus-visible .swc-hit{fill-opacity:.14}
+/* القمر الحقيقي للتاريخ المختار */
+.swc-moon{display:flex;align-items:center;gap:16px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.7);border:1px solid var(--swc-line)}
+.swc-moon-fig{flex:0 0 96px;width:96px;filter:drop-shadow(0 4px 8px rgba(60,40,40,.25))}
+.swc-moon-svg{display:block;width:100%;height:auto}
+.swc-moon-txt{display:grid;gap:3px;min-width:0}
+.swc-moon-txt small{font:600 .74rem 'Cairo',sans-serif;color:var(--swc-gold)}
+.swc-moon-txt b{font:700 1.25rem 'El Messiri','Cairo',sans-serif;color:var(--swc-bur-d)}
+.swc-moon-txt span{font:500 .86rem/1.6 'Cairo',sans-serif;color:#5A3A32}
+/* كواكب جنب العجلة */
+.swc-pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.swc-pc{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;border:1px solid var(--swc-line);background:#fff;cursor:pointer;text-align:start;font:inherit;transition:background .2s,transform .2s}
+.swc-pc:hover,.swc-pc.is-sel{background:#FBF2DE;transform:translateY(-1px)}
+.swc-pc-g{flex:0 0 auto;width:26px;height:26px;color:var(--swc-bur);filter:drop-shadow(0 2px 2px rgba(100,43,60,.25))}
+.swc-pc-t{display:grid;min-width:0}
+.swc-pc-t b{font:700 .88rem 'Cairo',sans-serif;color:var(--swc-ink)}
+.swc-pc-t em{font-style:normal;margin-inline-start:3px;padding:0 5px;border-radius:6px;background:#B8473E;color:#fff;font-size:.64rem}
+.swc-pc-t small{font:500 .76rem 'Cairo',sans-serif;color:#7A5A4C;white-space:nowrap}
+/* صفحة التفاصيل */
+#world .wld{display:grid;gap:18px;margin-top:8px}
+#world .wld-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(16px,3vw,28px);align-items:start}
+#world .wld-chart{padding:clamp(14px,2vw,22px);border-radius:22px;background:linear-gradient(160deg,#FFFBF2,#F8EFDD);border:1px solid rgba(184,150,90,.5);box-shadow:0 12px 30px rgba(100,43,60,.1)}
+#world .wld-aside{display:grid;gap:14px}
+#world .wld-keys{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#world .wld-keys>div{padding:12px 14px;border-radius:14px;background:#fff;border:1px solid var(--swc-line);display:grid;gap:3px}
+#world .wld-keys small{font:600 .74rem 'Cairo',sans-serif;color:var(--swc-gold)}
+#world .wld-keys b{display:flex;align-items:center;gap:6px;font:700 .92rem/1.5 'Cairo',sans-serif;color:var(--swc-ink)}
+#world .wld-card{padding:clamp(16px,2.2vw,24px);border-radius:20px;background:linear-gradient(160deg,#FFFDF8,#FAF3E4);border:1px solid var(--swc-line);box-shadow:0 8px 22px rgba(100,43,60,.07)}
+#world .wld-card h3{margin:0 0 12px;font:700 1.25rem 'El Messiri','Cairo',serif;color:var(--swc-bur-d)}
+#world .wld-card h4{margin:14px 0 8px;font:700 .95rem 'Cairo',sans-serif;color:var(--swc-bur-d)}
+#world .wld-card h4:first-child{margin-top:0}
+#world .wld-bar{display:grid;grid-template-columns:70px minmax(0,1fr) 42px;gap:10px;align-items:center;margin:6px 0;font:600 .84rem 'Cairo',sans-serif;color:#5A3A32}
+#world .wld-bar i{display:block;height:9px;border-radius:99px;background:rgba(184,150,90,.2);overflow:hidden}
+#world .wld-bar u{display:block;height:100%;border-radius:99px;background:var(--swc-bur)}
+#world .wld-bar u.e0{background:#B8473E}#world .wld-bar u.e1{background:#9A7B3F}#world .wld-bar u.e2{background:#7C8A9A}#world .wld-bar u.e3{background:#3F5E8A}
+#world .wld-bar b{text-align:end;color:var(--swc-ink)}
+#world .wld-tbl,#world .wld-asp{display:grid;gap:0}
+#world .wld-tr{display:grid;grid-template-columns:40px minmax(120px,1.3fr) 80px minmax(110px,1fr) minmax(110px,1fr) 70px;grid-template-areas:"i b d s h t" ". p p p p p";align-items:center;gap:2px 12px;padding:10px 4px;border-bottom:1px solid var(--swc-line)}
+#world .wld-tr:last-child{border-bottom:0}
+#world .wld-ic{grid-area:i;display:grid;place-items:center}
+#world .wld-g{width:28px;height:28px;color:var(--swc-bur);filter:drop-shadow(0 2px 2px rgba(100,43,60,.25))}
+#world .wld-tr[data-k="sun"] .wld-ic{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#FFE9A3,#F2C14E 55%,#D99A2B);box-shadow:0 4px 9px rgba(180,120,20,.35)}
+#world .wld-tr[data-k="sun"] .wld-g{width:24px;height:24px;color:#7A2A12;filter:none}
+#world .wld-tr b{grid-area:b;font:700 1rem 'Cairo',sans-serif;color:var(--swc-ink)}
+#world .wld-tr b em{font-style:normal;margin-inline-start:4px;padding:0 6px;border-radius:6px;background:#B8473E;color:#fff;font-size:.68rem}
+#world .wld-deg{grid-area:d;direction:ltr;text-align:start;font:700 .92rem 'Cairo',sans-serif;color:var(--swc-bur-d);font-variant-numeric:tabular-nums}
+#world .wld-sgn{grid-area:s;display:flex;align-items:center;gap:6px;font:600 .9rem 'Cairo',sans-serif;color:#5A3A32}
+#world .wld-sg{width:20px;height:20px;color:var(--swc-bur);flex:0 0 auto}
+#world .wld-hs{grid-area:h;font:500 .86rem 'Cairo',sans-serif;color:#7A5A4C}
+#world .wld-st{grid-area:t;font:700 .78rem 'Cairo',sans-serif;color:#4E7A5A}
+#world .wld-tr.is-retro .wld-st{color:#B8473E}
+#world .wld-tr p{grid-area:p;margin:0;font:500 .84rem/1.7 'Cairo',sans-serif;color:#7A5A4C}
+#world .wld-houses{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#world .wld-h{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding:10px 12px;border-radius:14px;background:#fff;border:1px solid var(--swc-line)}
+#world .wld-hn{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(#7A2A3E,#4A1521);color:#F6DDA8;font:700 .9rem 'Cairo',sans-serif}
+#world .wld-h b{display:block;font:700 .92rem 'Cairo',sans-serif;color:var(--swc-ink)}
+#world .wld-h small{font:500 .78rem 'Cairo',sans-serif;color:#7A5A4C}
+#world .wld-hc{display:flex;align-items:center;gap:6px;font:700 .86rem 'Cairo',sans-serif;color:var(--swc-bur-d);direction:rtl}
+#world .wld-h p{grid-column:2/-1;margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px;font:600 .8rem/1.6 'Cairo',sans-serif;color:#5A3A32}
+#world .wld-hg{width:18px;height:18px;color:var(--swc-bur)}
+#world .wld-a{display:grid;grid-template-columns:30px 30px minmax(0,1fr);grid-template-areas:"a c b" ". . s" ". . p";align-items:center;gap:2px 10px;padding:10px 4px;border-bottom:1px solid var(--swc-line);border-inline-start:3px solid var(--swc-soft);padding-inline-start:12px}
+#world .wld-a:last-child{border-bottom:0}
+#world .wld-a.is-hard{border-inline-start-color:var(--swc-hard)}
+#world .wld-a.is-neu{border-inline-start-color:#9A9088}
+#world .wld-ai{display:grid;place-items:center;grid-area:a}
+#world .wld-ai+b+.wld-ai{grid-area:c}
+#world .wld-a b{grid-area:b;font:700 .95rem 'Cairo',sans-serif;color:var(--swc-ink)}
+#world .wld-a small{grid-area:s;font:600 .78rem 'Cairo',sans-serif;color:var(--swc-soft)}
+#world .wld-a.is-hard small{color:#B8473E}
+#world .wld-a.is-neu small{color:#7A7068}
+#world .wld-a p{grid-area:p;margin:0;font:500 .84rem/1.7 'Cairo',sans-serif;color:#7A5A4C}
+#world .wld-none,#world .wld-note{margin:0;font:500 .86rem/1.8 'Cairo',sans-serif;color:#7A5A4C;text-align:center}
+@media (max-width:860px){
   #sky .swc-ctl{grid-template-columns:1fr 1fr}
-  #sky .swc-city{grid-column:1/-1}
-  #sky .swc-go{grid-column:1/-1}
-  #sky .swc-body{grid-template-columns:minmax(0,1fr)}
-  #sky .swc-row{grid-template-columns:30px minmax(0,1fr) auto;gap:8px}
-  #sky .swc-sg{grid-column:2/-1;margin-top:-4px}
+  #sky .swc-city,#sky .swc-go{grid-column:1/-1}
+  #sky .swc-body,#world .wld-top{grid-template-columns:minmax(0,1fr)}
+  #world .wld-tr{grid-template-columns:36px minmax(0,1fr) auto;grid-template-areas:"i b d" ". s t" ". h h" ". p p"}
+  #world .wld-houses{grid-template-columns:1fr}
+  #world .wld-keys{grid-template-columns:1fr 1fr}
 }
-@media (prefers-reduced-motion:reduce){#sky .swc *{transition:none!important}}
+@media (max-width:480px){.swc-moon{gap:12px;padding:12px}.swc-moon-fig{flex-basis:80px;width:80px}#world .wld-bar{grid-template-columns:62px minmax(0,1fr) 38px}}
+@media (prefers-reduced-motion:reduce){#sky .swc *,#world *{transition:none!important}}
+
+/* رموز الكواكب والأبراج الموحدة في قسم الرصد */
+#sky .sg,#world .sg{display:inline-flex;align-items:center;justify-content:center;color:var(--swc-bur)!important;opacity:1!important;filter:none!important}
+#sky .sg-svg,#world .sg-svg{width:1.35em;height:1.35em;flex:0 0 auto;color:var(--swc-bur);filter:drop-shadow(0 1px 1px rgba(100,43,60,.22))}
+#sky .sky-asp-item .lpa-t{display:block;flex:1 1 0;min-width:0;font:700 .98rem/2 'Cairo',sans-serif}
+#sky .sky-asp-item .lpa-t .sg{vertical-align:-.32em;margin-inline:3px}
+#sky .sky-asp-item .lpa-t b{color:var(--swc-gold);font-weight:700}
+#sky .sky-asp-item .lpa-sum{gap:10px;padding:12px 14px}
+#sky .sky-asp-item .lpa-sub{font:600 .76rem 'Cairo',sans-serif;color:#7A5A4C;white-space:nowrap}
+@media (max-width:600px){#sky .sky-asp-item .lpa-sum{flex-wrap:wrap}#sky .sky-asp-item .lpa-sub{order:5;flex:1 1 100%;padding-inline-start:46px;white-space:normal}}
