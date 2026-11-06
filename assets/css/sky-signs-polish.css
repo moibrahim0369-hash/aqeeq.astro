@@ -1,0 +1,197 @@
+/* ============================================================
+   تنسيق موحد: المشهد الفلكي الآن + صفات وتوقعات الأبراج
+   كريمي/ذهبي مع نبيتي ملكي، يغلب القواعد القديمة بالتخصيص
+   ============================================================ */
+:root{--sp-wine:#5E2234;--sp-wine2:#6A2A3C;--sp-gold:#C5A059;--sp-gold2:#E8CF98;--sp-cream:#FFFBF2;--sp-cream2:#F8EFDD;--sp-line:#E6D8BD;--sp-ink:#2C2523;--sp-brown:#4A2C1F;--sp-brown2:#6B3F28}
+
+/* ---------- 1) شريط التبويبات العلوي ---------- */
+#sky .aq-section-pill,#signs .aq-section-pill,#world .aq-section-pill{display:inline-flex!important;align-items:center;gap:7px;padding:8px 15px!important;font:700 .8rem 'Cairo',sans-serif!important;white-space:nowrap;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;border:1px solid var(--sp-line)!important;color:var(--sp-wine)!important;box-shadow:0 2px 8px rgba(94,34,52,.07);transition:transform .2s,box-shadow .2s,border-color .2s!important}
+#sky .aq-section-pill:hover,#signs .aq-section-pill:hover,#world .aq-section-pill:hover{transform:translateY(-1px);border-color:var(--sp-gold)!important;box-shadow:0 6px 16px rgba(94,34,52,.14)}
+#sky .aq-section-pill.active,#signs .aq-section-pill.active,#world .aq-section-pill.active{background:linear-gradient(135deg,#7A3449,var(--sp-wine) 70%)!important;border-color:var(--sp-gold)!important;color:#FFF8EA!important;box-shadow:0 6px 16px rgba(94,34,52,.28)}
+.pill-i{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#sky .aq-section-pill.active .pill-i,#signs .aq-section-pill.active .pill-i,#world .aq-section-pill.active .pill-i{stroke:var(--sp-gold2)}
+#sky .aq-section-pill:not(.active) .pill-i,#signs .aq-section-pill:not(.active) .pill-i,#world .aq-section-pill:not(.active) .pill-i{stroke:#9A6A2E}
+#sky .aq-section-quick-links,#signs .aq-section-quick-links,#world .aq-section-quick-links{flex-wrap:wrap;gap:8px}
+#sky .aq-back-home-btn,#signs .aq-back-home-btn,#world .aq-back-home-btn{display:inline-flex;align-items:center;gap:6px;background:#FFFDF8!important;border:1px solid var(--sp-gold)!important;color:var(--sp-wine)!important;border-radius:999px!important;font-weight:700}
+#sky .aq-back-home-btn:hover,#signs .aq-back-home-btn:hover,#world .aq-back-home-btn:hover{background:var(--sp-wine)!important;color:#fff!important}
+
+/* ---------- 2) أسهم التاريخ ---------- */
+.swc-dw{display:flex;align-items:stretch;gap:6px}
+.swc-dw input{flex:1 1 auto;min-width:0;text-align:center}
+.swc-step{flex:0 0 42px;display:grid;place-items:center;border:1px solid var(--sp-line);background:linear-gradient(180deg,#FFFDF8,#F8EFDD);color:var(--sp-wine);border-radius:12px;cursor:pointer;transition:background .2s,border-color .2s,transform .15s;padding:0}
+.swc-step svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.swc-step:hover{border-color:var(--sp-gold);background:#F6E8CC}
+.swc-step:active{transform:scale(.92);background:var(--sp-wine);color:var(--sp-gold2)}
+.swc-step:focus-visible{outline:2px solid var(--sp-wine);outline-offset:2px}
+
+/* ---------- 3) تباين الأيقونات عند التحديد ---------- */
+#sky .sky-pick-ic,#sky .sky-cta-ic{color:var(--sp-wine2)!important;background:linear-gradient(135deg,#FBF1DC,#F3E3C0)!important;border-color:var(--sp-gold)!important}
+#sky .sky-pick-ic .sg,#sky .sky-cta-ic .sg,#sky .sky-pick-ic svg{color:var(--sp-wine2)!important}
+#sky .sky-sg{background:#fff!important;border-color:var(--sp-line)!important}
+#sky .sky-sg .sg,#sky .sky-sg .sg-svg{color:var(--sp-wine2)!important;filter:none!important}
+#sky .sky-sg.is-on,#sky .sky-sg[aria-pressed=true]{background:linear-gradient(160deg,#7A3449,var(--sp-wine))!important;border-color:var(--sp-gold)!important;color:#FFF8EA!important;box-shadow:0 8px 18px rgba(94,34,52,.3)!important}
+#sky .sky-sg.is-on .sg,#sky .sky-sg.is-on .sg-svg,#sky .sky-sg[aria-pressed=true] .sg,#sky .sky-sg[aria-pressed=true] .sg-svg{color:var(--sp-gold2)!important;stroke:currentColor}
+#sky .swc-pc.is-sel{background:linear-gradient(180deg,#FFF6E2,#F8E6C2);border-color:var(--sp-gold)}
+#sky .swc-pc .swc-pc-g,#sky .swc-pc.is-sel .swc-pc-g{color:var(--sp-wine2)!important;filter:none}
+#sky .sky-panel h3,#sky #sky-panel h3{color:var(--sp-wine)}
+
+/* ---------- 4) أهم الاسبكتات (أكورديون) ---------- */
+#sky .sky-asp{background:linear-gradient(180deg,#FFFDF8,#FBF4E6)!important;border:1px solid var(--sp-line)!important;border-radius:20px!important;padding:20px 18px!important;box-shadow:0 10px 28px rgba(94,34,52,.07)!important}
+#sky .asp-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+#sky .asp-head .ph{margin:0!important;color:var(--sp-wine)!important}
+#sky .asp-leg{display:inline-flex;gap:8px;font-size:.75rem}
+#sky .asp-leg i,#sky .asp-tone{font-style:normal;font-weight:700;padding:2px 10px;border-radius:999px;font-size:.72rem}
+#sky .k-soft{background:#E9F1E2;color:#3d6a45;border:1px solid #b6cfa9}
+#sky .k-hard{background:#FBE7E9;color:#8a2f3c;border:1px solid #e3b0b6}
+#sky .sky-asp-list{display:grid;gap:10px}
+#sky .sky-asp-item{border-radius:16px!important;border:1px solid var(--sp-line)!important;background:#fff!important;box-shadow:0 3px 10px rgba(94,34,52,.05)!important;border-inline-start-width:5px!important}
+#sky .sky-asp-item.is-light{border-inline-start-color:#6E9A62!important}
+#sky .sky-asp-item.is-shadow{border-inline-start-color:#B5424F!important}
+#sky .sky-asp-item[open]{border-color:var(--sp-gold)!important;box-shadow:0 12px 26px rgba(94,34,52,.12)!important}
+#sky .asp-sum{display:flex;align-items:center;gap:12px;padding:12px 14px!important;min-height:64px}
+#sky .asp-sum .lpa-ic{display:none!important}
+#sky .asp-pair{flex:none;display:inline-flex;align-items:center}
+#sky .asp-pg{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#FBF1DC,#F1DFB8);border:1px solid var(--sp-gold);box-shadow:0 2px 6px rgba(94,34,52,.12)}
+#sky .asp-pg+.asp-pg{margin-inline-start:-9px}
+#sky .asp-pg .sg{width:auto!important}
+#sky .asp-pg .sg-svg{width:22px;height:22px;color:var(--sp-wine2)!important;filter:none}
+#sky .asp-sum .lpa-t{display:grid!important;gap:3px;min-width:0}
+#sky .asp-names{font:700 .98rem/1.5 'Cairo',sans-serif;color:var(--sp-wine);overflow-wrap:anywhere}
+#sky .asp-names b{color:#9A6A2E;font-weight:800;margin-inline:4px}
+#sky .asp-sum .lpa-sub{display:flex!important;align-items:center;gap:8px;color:#6b5b52}
+#sky .sky-asp-item .lpa-body{padding:10px 16px 16px!important;border-top:1px dashed var(--sp-line)!important;background:#FFFCF6!important;line-height:1.95}
+#sky .sky-asp-item .lpa-body p{margin:0;color:var(--sp-ink)}
+#sky .sky-asp>.sub{margin:14px 0 0;color:#6b5b52}
+
+/* ---------- 5) كارت توقعات الأبراج (نبضة) ---------- */
+.zdc{position:relative;display:flex;align-items:center;gap:16px;margin:18px 0;padding:18px 20px;border-radius:20px;text-decoration:none;color:#FFF3DC;overflow:hidden;background:radial-gradient(120% 140% at 85% 0%,#7A4A30 0%,var(--sp-brown) 55%,#33190F 100%);border:1px solid rgba(232,207,152,.7);box-shadow:0 14px 30px rgba(74,44,31,.35),inset 0 1px 0 rgba(255,235,190,.25);animation:zdcBeat 2.6s ease-in-out infinite;transition:transform .25s}
+.zdc::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,226,160,.18) 50%,transparent 65%);transform:translateX(120%);animation:zdcShine 5s ease-in-out infinite}
+.zdc:hover{transform:translateY(-2px)}
+.zdc:focus-visible{outline:3px solid var(--sp-gold2);outline-offset:3px}
+.zdc-ic{position:relative;flex:none;width:58px;height:58px;display:grid;place-items:center;border-radius:50%;background:rgba(255,236,196,.1);border:1px solid rgba(232,207,152,.75);animation:zdcGlow 2.6s ease-in-out infinite}
+.zdc-ic svg{width:36px;height:36px;fill:none;stroke:var(--sp-gold2);stroke-width:1.5;stroke-linecap:round}
+.zdc-ic .zdc-core{fill:var(--sp-gold2);stroke:none}
+.zdc-t{flex:1;min-width:0;display:grid;gap:4px}
+.zdc-t b{font:700 1.15rem/1.5 'Amiri','Cairo',serif;color:#FFF3DC}
+.zdc-t small{font:500 .86rem/1.7 'Cairo',sans-serif;color:#EBD7B4}
+.zdc-go{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--sp-gold2);color:var(--sp-brown)}
+.zdc-go svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@keyframes zdcBeat{0%,100%{box-shadow:0 14px 30px rgba(74,44,31,.35),0 0 0 0 rgba(197,160,89,.5)}50%{box-shadow:0 16px 34px rgba(74,44,31,.4),0 0 0 9px rgba(197,160,89,0)}}
+@keyframes zdcGlow{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(232,207,152,.45)}50%{transform:scale(1.07);box-shadow:0 0 16px 2px rgba(232,207,152,.35)}}
+@keyframes zdcShine{0%,55%{transform:translateX(120%)}100%{transform:translateX(-120%)}}
+@media(prefers-reduced-motion:reduce){.zdc,.zdc::before,.zdc-ic{animation:none!important}}
+@media(max-width:560px){.zdc{padding:15px 14px;gap:12px}.zdc-ic{width:50px;height:50px}.zdc-t b{font-size:1.02rem}.zdc-t small{font-size:.8rem}.zdc-go{width:34px;height:34px}}
+
+/* ---------- 6) صفحة صفات وتوقعات الأبراج ---------- */
+section#signs{background:linear-gradient(180deg,#FFFBF2,#F8EFDD 60%,#FFFBF2)!important}
+#signs .amb{display:none!important}
+#signs .center h2{color:var(--sp-wine)!important}
+#signs .picker{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:10px!important;margin:18px 0!important}
+@media(max-width:800px){#signs .picker{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important}}
+@media(max-width:420px){#signs .picker{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+#signs .picker button{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:76px;padding:10px 4px!important;border-radius:14px!important;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;border:1px solid var(--sp-line)!important;color:var(--sp-wine)!important;font:700 .86rem 'Cairo',sans-serif!important;box-shadow:0 3px 10px rgba(94,34,52,.07)!important;transition:transform .2s,box-shadow .2s,border-color .2s,background .2s!important}
+#signs .picker button .sg{width:30px;height:30px;display:grid;place-items:center;color:var(--sp-wine2)!important;font-size:1.6rem;filter:none!important;opacity:1!important}
+#signs .picker button .sg svg{width:28px;height:28px;stroke:currentColor}
+#signs .picker button:hover{border-color:var(--sp-gold)!important;transform:translateY(-2px);box-shadow:0 10px 20px rgba(94,34,52,.15)!important}
+#signs .picker button[aria-pressed=true]{background:linear-gradient(160deg,#7A3449,var(--sp-wine))!important;border-color:var(--sp-gold)!important;color:#FFF8EA!important;box-shadow:0 10px 22px rgba(94,34,52,.32)!important}
+#signs .picker button[aria-pressed=true] .sg,#signs .picker button[aria-pressed=true] .sg svg{color:var(--sp-gold2)!important}
+#signs .signs-back{display:none;align-items:center;gap:8px;min-height:42px;padding:0 18px;margin:0 0 14px;border-radius:999px;background:#FFFDF8!important;border:1px solid var(--sp-gold)!important;color:var(--sp-wine)!important;font:700 .86rem 'Cairo',sans-serif;cursor:pointer}
+#signs .signs-back:hover{background:var(--sp-wine)!important;color:#fff!important}
+#signs.signs-detail .signs-back{display:inline-flex}
+#signs .arch{background:#FFFDF8!important;border:1px solid var(--sp-line)!important;border-radius:24px!important;box-shadow:0 14px 36px rgba(94,34,52,.09)!important;padding:20px 18px!important;text-align:start!important;color:var(--sp-ink)}
+#signs .arch .sign-intro{display:none!important}
+
+/* بطاقة الهوية + الكوكبة الثابتة */
+#signs .zp-hero{display:grid;grid-template-columns:1fr minmax(120px,210px);gap:16px;align-items:center;padding:18px;border-radius:20px;background:radial-gradient(120% 140% at 15% 0%,#7A4A30 0%,var(--sp-brown) 58%,#33190F 100%);border:1px solid rgba(232,207,152,.7);color:#FFF3DC;margin:0 0 16px}
+#signs .zp-id{display:flex;align-items:center;gap:14px;min-width:0}
+#signs .zp-glyph{flex:none;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:rgba(255,236,196,.1);border:1px solid rgba(232,207,152,.8);color:var(--sp-gold2)!important}
+#signs .zp-glyph svg{width:42px;height:42px;stroke:var(--sp-gold2)!important;color:var(--sp-gold2)!important}
+#signs .zp-glyph,#signs .zp-glyph *{filter:none!important}
+#signs .zp-hero h3{margin:0 0 2px;font:700 1.9rem/1.2 'Amiri','Cairo',serif;color:#FFF3DC!important}
+#signs .zp-hero .dates{margin:0 0 8px;color:#EBD7B4!important;font-size:.9rem}
+#signs .zp-tags{display:flex;flex-wrap:wrap;gap:6px}
+#signs .zp-tags span{padding:3px 11px;border-radius:999px;background:rgba(255,236,196,.12);border:1px solid rgba(232,207,152,.5);color:#FFEFD0;font:600 .76rem 'Cairo',sans-serif}
+#signs .zp-const{margin:0;text-align:center}
+#signs .zp-const svg{width:100%;max-width:210px;height:auto;display:block;margin:0 auto;filter:none}
+#signs .zp-const .const-line{animation:none!important;stroke-dashoffset:0!important;stroke-dasharray:none;stroke:rgba(232,207,152,.9);stroke-width:1.3}
+#signs .zp-const .const-star{animation:none!important;transform:none;fill:#FFEFD0}
+#signs .zp-const .const-halo{fill:rgba(232,207,152,.22)}
+#signs .zp-const svg circle[fill="none"]{stroke:rgba(232,207,152,.4)}
+#signs .zp-const figcaption{margin-top:2px;color:#EBD7B4;font:600 .72rem 'Cairo',sans-serif;letter-spacing:.04em}
+@media(max-width:560px){#signs .zp-hero{grid-template-columns:1fr 112px;gap:8px;padding:14px 12px}#signs .zp-glyph{width:52px;height:52px}#signs .zp-glyph svg{width:32px;height:32px}#signs .zp-hero h3{font-size:1.5rem}#signs .zp-id{gap:10px}}
+
+/* الأقسام */
+#signs .zp-sec{margin:0 0 18px;padding:18px 16px;border-radius:20px;background:linear-gradient(180deg,#FFFEFB,#FBF4E6);border:1px solid var(--sp-line)}
+#signs .zp-h{display:flex;align-items:center;gap:10px;margin:0 0 12px!important;padding:0 0 10px;border-bottom:1px dashed var(--sp-line);font:700 1.2rem 'Amiri','Cairo',serif!important;color:var(--sp-wine)!important;text-align:start}
+#signs .zp-h svg{width:26px;height:26px;flex:none;padding:5px;border-radius:50%;background:linear-gradient(135deg,#FBF1DC,#F1DFB8);border:1px solid var(--sp-gold);fill:none;stroke:var(--sp-wine2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;box-sizing:content-box}
+#signs .zp-sub{margin:0 0 12px;color:#6b5b52!important;line-height:1.9}
+#signs .zp-overall{margin:0 0 14px;color:var(--sp-ink)!important;font-size:1.02rem;line-height:2}
+#signs .zp-trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:16px}
+@media(max-width:700px){#signs .zp-trio{grid-template-columns:1fr}}
+#signs .zp-fc{padding:14px;border-radius:16px;background:#fff;border:1px solid var(--sp-line);border-top:3px solid var(--sp-gold);box-shadow:0 3px 10px rgba(94,34,52,.05)}
+#signs .zp-fc h5{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:700 1rem 'Cairo',sans-serif;color:var(--sp-wine)!important}
+#signs .zp-fc h5 svg{width:20px;height:20px;fill:none;stroke:#9A6A2E;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#signs .zp-fc p{margin:0;color:var(--sp-ink)!important;line-height:1.9;font-size:.94rem}
+#signs .zd-daily{border:0!important;background:none!important;padding:0!important;margin:0!important}
+#signs .zd-daily .ph{color:var(--sp-wine)!important;margin:6px 0 10px}
+#signs .zd-stack,#signs .zd-daily{display:grid;gap:10px}
+
+/* الأكورديون داخل الصفحة */
+#signs details.lpa-card{border-radius:16px!important;border:1px solid var(--sp-line)!important;background:#fff!important;box-shadow:0 3px 10px rgba(94,34,52,.05)!important;border-inline-start:5px solid var(--sp-gold)!important}
+#signs details.lpa-card.is-light{border-inline-start-color:#6E9A62!important}
+#signs details.lpa-card.is-shadow,#signs details.lpa-card.is-rx{border-inline-start-color:#B5424F!important}
+#signs details.lpa-card[open]{border-color:var(--sp-gold)!important;box-shadow:0 12px 26px rgba(94,34,52,.12)!important}
+#signs details.lpa-card[open]>.lpa-sum{background:linear-gradient(90deg,#FBF1DC,#FFFDF8)!important}
+#signs .lpa-sum{color:var(--sp-wine)!important;gap:12px}
+#signs .lpa-ic{width:38px!important;height:38px!important;flex:none;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#FBF1DC,#F1DFB8)!important;border:1px solid var(--sp-gold)!important;color:var(--sp-wine2)!important;font-weight:700}
+#signs .lpa-ic .sg,#signs .lpa-ic svg{color:var(--sp-wine2)!important;stroke:currentColor;filter:none!important;width:22px;height:22px}
+#signs .is-light>.lpa-sum .lpa-ic{background:#E9F1E2!important;color:#3d6a45!important;border-color:#a9c79b!important}
+#signs .is-shadow>.lpa-sum .lpa-ic{background:#FBE7E9!important;color:#8a2f3c!important;border-color:#e3b0b6!important}
+#signs .lpa-chev{color:var(--sp-gold)!important}
+#signs .lpa-body{border-top:1px dashed var(--sp-line)!important;background:#FFFCF6!important;color:var(--sp-ink)!important;line-height:1.95}
+#signs .lpa-body p{color:var(--sp-ink)!important;margin:8px 0 0}
+#signs .lpa-body ul{margin:8px 0 0;padding-inline-start:20px}
+#signs .zp-trn{display:block;font:700 1rem/1.5 'Cairo',sans-serif;color:var(--sp-wine)}
+#signs .rxb{display:inline-block;margin-inline-start:6px;padding:1px 9px;border-radius:999px;background:#B5424F;color:#fff!important;font:700 .68rem 'Cairo',sans-serif;font-style:normal;vertical-align:middle}
+#signs .zp-rx{padding:10px 12px;border-radius:12px;background:#FBEDEE;border:1px solid #e8c0c5;color:#7a2a36!important}
+#signs .zp-ing{color:#7a5a22!important;font-weight:600}
+#signs .zp-glance{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+#signs .zp-glance span{padding:6px 13px;border-radius:999px;background:#fff;border:1px solid var(--sp-line);color:var(--sp-ink);font:500 .82rem 'Cairo',sans-serif}
+#signs .zp-glance span b{color:var(--sp-wine)}
+#signs .zp-glance span.is-rx{background:#FBEDEE;border-color:#e8c0c5}
+#signs .transit-live{margin:0 0 6px;padding:0;border:0;background:none}
+#signs .transit-live h4{color:var(--sp-wine)!important}
+#signs .transit-live .tl-lead{font-weight:700;color:var(--sp-wine)!important}
+
+/* موسوعة البرج */
+#signs .sx{padding:0;border:0;background:none}
+#signs .sec-icons{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:9px;margin:4px 0 14px}
+#signs .sec-ico{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:84px;padding:10px 6px!important;border-radius:14px!important;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;border:1px solid var(--sp-line)!important;color:var(--sp-wine)!important;cursor:pointer;box-shadow:0 3px 10px rgba(94,34,52,.06);transition:transform .2s,box-shadow .2s,background .2s}
+#signs .sec-ico span{font-size:1.35rem;color:#9A6A2E!important;filter:none!important;line-height:1}
+#signs .sec-ico small{color:var(--sp-wine)!important;font:700 .74rem/1.4 'Cairo',sans-serif;text-align:center}
+#signs .sec-ico:hover{transform:translateY(-2px);border-color:var(--sp-gold)!important;box-shadow:0 10px 20px rgba(94,34,52,.14)}
+#signs .sec-ico[aria-pressed=true]{background:linear-gradient(160deg,#7A3449,var(--sp-wine))!important;border-color:var(--sp-gold)!important}
+#signs .sec-ico[aria-pressed=true] span{color:var(--sp-gold2)!important}
+#signs .sec-ico[aria-pressed=true] small{color:#FFF8EA!important}
+#signs .sec-body h4{color:var(--sp-wine)!important;font:700 1.15rem 'Amiri','Cairo',serif}
+#signs .sign-detail{color:var(--sp-ink)}
+#signs .sign-detail p{color:var(--sp-ink)!important;line-height:2}
+#signs .sign-detail .sx-card{padding:14px 16px;margin:10px 0;border-radius:14px;background:linear-gradient(180deg,#FFFEFB,#FBF1DC)!important;border:1px solid var(--sp-line)!important;border-inline-start:4px solid var(--sp-gold)!important}
+#signs .sign-detail .sx-card h5{margin:0 0 4px;color:var(--sp-wine)!important;font:700 1rem 'Cairo',sans-serif}
+#signs .sign-detail .sx-card p{margin:0;color:var(--sp-ink)!important}
+#signs .sign-disclaimer{padding:10px 14px;border-inline-start:3px solid var(--sp-gold);background:#FBF4E6;color:#6b5b52!important;font-size:.86rem}
+@media(max-width:560px){#signs .zp-sec{padding:14px 12px}#signs .arch{padding:14px 10px!important}}
+
+/* تصحيح شبكة نموذج الخريطة بعد إضافة أسهم التاريخ */
+#sky .swc-f{min-width:0}
+#sky .swc-f input,#sky .swc-f select{min-width:0;max-width:100%;box-sizing:border-box}
+@media(max-width:860px){#sky .swc-datef{grid-column:1/-1}#sky .swc-city{grid-column:auto!important}}
+
+/* قراءة عطارد المكتوبة داخل العبور */
+#signs .tl-points{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px}
+#signs .tl-points li{margin:0;padding:12px 14px;border-radius:12px;background:#fff;border:1px solid var(--sp-line);border-inline-start:4px solid var(--sp-gold);line-height:1.9;color:var(--sp-ink)}
+#signs .tl-points li b,#signs .lpa-body p b{color:var(--sp-wine)!important}
+#signs .tl-points li i{color:#7a5a22;font-style:normal;font-weight:700}
+#signs .tl-close{padding:12px 14px;border-radius:12px;background:#FBF1DC;border:1px solid var(--sp-line);color:var(--sp-ink)!important}
+#signs .transit-why{margin-top:8px}
+#signs .transit-why summary{cursor:pointer;color:#7a5a22;font-weight:700}

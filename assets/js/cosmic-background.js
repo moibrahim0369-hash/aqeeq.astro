@@ -341,6 +341,13 @@
     }
     if (!meta) return;
 
+    var slot = panel.querySelector('.zp-const');
+    if (slot) {
+      if (slot.getAttribute('data-sign') === meta.id) return;
+      slot.setAttribute('data-sign', meta.id);
+      slot.innerHTML = buildConstellationSVG(meta) + '<figcaption>' + meta.ar + ' · ' + meta.en + '</figcaption>';
+      return;
+    }
     var existing = panel.querySelector('.sign-constellation-stage');
     if (existing && existing.getAttribute('data-sign') === meta.id) return;
     if (existing) existing.remove();
