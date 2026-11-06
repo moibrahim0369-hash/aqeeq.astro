@@ -94,55 +94,64 @@ section#lifepath.lpx .lpx-head .lpj-crumb,section#lifepath.lpx .lpx-head .lpj-cr
 section#lifepath.lpx .lpx-head .lpj-crumb li:last-child{color:#fff!important;font-weight:700}
 
 /* ===== قسم التعريف أسفل الحاسبة: مسار الحياة + بصمة الاسم ===== */
-#lifepath .lpk{max-width:960px;display:grid;gap:26px;margin:40px auto 0;padding:0 16px}
-#lifepath .lpk-in{background:linear-gradient(180deg,#FBF4E6,#F3E6CF);border:1px solid rgba(156,70,50,.35);border-radius:22px;padding:clamp(20px,4vw,40px);box-shadow:0 14px 34px rgba(74,44,32,.13);position:relative;overflow:hidden}
-#lifepath .lpk-in::before{content:"";position:absolute;inset-inline:0;top:0;height:6px;background:linear-gradient(90deg,#4A1521,#9C4632 45%,#C0553A 70%,#C5A059)}
-#lifepath .lpk-hero{text-align:center;margin:6px 0 24px}
-#lifepath .lpk-eyebrow{display:inline-block;padding:4px 14px;border-radius:999px;background:#F4DFC6;border:1px solid rgba(192,85,58,.5);color:#7a3a28;font:700 .78rem 'Cairo',sans-serif}
-#lifepath .lpk h2{margin:12px 0 14px;color:#4A1521!important;font:700 clamp(1.7rem,5.5vw,2.6rem)/1.4 'Amiri','Cairo',serif!important}
-#lifepath .lpk blockquote{margin:0 auto;max-width:44em;padding:14px 18px;border-inline-start:4px solid #C0553A;border-radius:12px;background:rgba(253,251,247,.8);color:#4A2C20;font:400 1.12rem/2 'Amiri','Cairo',serif;text-align:start}
-#lifepath .lpk-sec{margin:0 0 26px}
-#lifepath .lpk h3{margin:0 0 12px;color:#4A1521!important;font:700 clamp(1.3rem,4vw,1.65rem)/1.5 'Amiri','Cairo',serif;padding-inline-start:12px;border-inline-start:4px solid #C0553A}
-#lifepath .lpk p{margin:0 0 12px;color:#2C2523!important;line-height:1.95;font-size:1rem}
-#lifepath .lpk-ask{padding:14px 16px;border-radius:14px;background:#FDFBF7;border:1px solid rgba(156,70,50,.35);color:#6B2234!important;font:700 1.12rem/1.9 'Amiri','Cairo',serif;text-align:center}
-#lifepath .lpk-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-#lifepath .lpk-card{background:#FDFBF7;border:1px solid rgba(156,70,50,.3);border-radius:16px;padding:18px 16px;box-shadow:0 6px 18px rgba(74,44,32,.09);transition:border-color .2s,box-shadow .2s,transform .2s}
-#lifepath .lpk-card:hover{border-color:#C0553A;box-shadow:0 12px 26px rgba(156,70,50,.2);transform:translateY(-2px)}
-#lifepath .lpk-ic{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#F7E3C9,#EFCFAE);border:1px solid rgba(192,85,58,.55);color:#9C4632}
-#lifepath .lpk-ic svg{width:24px;height:24px}
-#lifepath .lpk-card h4{margin:10px 0 2px;color:#4A1521;font:700 1.12rem 'Amiri','Cairo',serif}
-#lifepath .lpk-card small{display:block;margin-bottom:8px;color:#7a3a28;font-size:.78rem;direction:ltr;text-align:start}
-#lifepath .lpk-card p{font-size:.94rem;margin:0 0 8px}
-#lifepath .lpk-how{padding:8px 10px;border-radius:10px;background:#F6EAD6;font-size:.88rem!important}
-#lifepath .lpk-acc{margin:0 0 10px;background:#FDFBF7;border:1px solid rgba(156,70,50,.3);border-inline-start:5px solid #9C4632;border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
-#lifepath .lpk-acc:nth-of-type(even){border-inline-start-color:#C0553A}
-#lifepath .lpk-acc[open],#lifepath .lpk-acc:hover{border-color:#C0553A;box-shadow:0 8px 20px rgba(156,70,50,.16)}
-#lifepath .lpk-acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;min-height:52px;color:#4A1521;font:700 1.02rem/1.6 'Amiri','Cairo',serif}
-#lifepath .lpk-acc summary::-webkit-details-marker{display:none}
-#lifepath .lpk-acc summary::after{content:"";flex:none;width:9px;height:9px;border:solid #C0553A;border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .25s}
-#lifepath .lpk-acc[open] summary::after{transform:rotate(-135deg)}
-#lifepath .lpk-acc summary:focus-visible{outline:3px solid rgba(192,85,58,.6);outline-offset:-3px}
-#lifepath .lpk-acc-b{padding:2px 16px 14px;border-top:1px dashed #E2D9CC}
-#lifepath .lpk-nums{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
-#lifepath .lpk-nums>div{padding:14px;border-radius:14px;background:#FDFBF7;border:1px solid rgba(156,70,50,.3)}
-#lifepath .lpk-nums b{display:block;color:#9C4632;margin-bottom:4px}
-#lifepath .lpk-nums span{color:#2C2523;line-height:1.85;font-size:.94rem}
-#lifepath .lpk-vs{display:grid;gap:12px}
-#lifepath .lpk-vs-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:12px;align-items:start;padding:14px;border-radius:14px;background:#FDFBF7;border:1px solid rgba(156,70,50,.3)}
-#lifepath .lpk-vs-row>b{color:#4A1521;font:700 1.05rem 'Amiri','Cairo',serif}
-#lifepath .lpk-vs-row p{margin:0!important;font-size:.93rem!important}
-#lifepath .lpk-vs-row em{display:block;font-style:normal;font-weight:700;color:#9C4632;font-size:.8rem;margin-bottom:2px}
-#lifepath .lpk-end{text-align:center;padding:20px 14px;border-radius:18px;background:radial-gradient(400px 180px at 50% 0%,rgba(192,85,58,.45),transparent 70%),linear-gradient(135deg,#4A1521,#6B2234 60%,#8A3A2B);border:1px solid rgba(197,160,89,.65)}
-#lifepath .lpk-end h3{color:#FBF3E4!important;border:0;padding:0;margin:0 0 8px}
-#lifepath .lpk-end p{color:#F1E4CE!important;max-width:42em;margin:0 auto 16px}
-#lifepath .lpk-cta{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 24px;border-radius:999px;background:linear-gradient(135deg,#C0553A,#9C4632);border:1px solid #E8CD92;color:#FDF3E1!important;font:700 1rem 'Cairo',sans-serif;text-decoration:none;text-align:center;transition:box-shadow .2s,transform .2s}
-#lifepath .lpk-cta:hover,#lifepath .lpk-cta:focus-visible{box-shadow:0 12px 26px rgba(0,0,0,.3);transform:translateY(-1px);outline:0}
+:is(#lifepath,#matrix) .lpk{max-width:960px;display:grid;gap:26px;margin:40px auto 0;padding:0 16px}
+:is(#lifepath,#matrix) .lpk-in{background:linear-gradient(180deg,#FBF4E6,#F3E6CF);border:1px solid rgba(156,70,50,.35);border-radius:22px;padding:clamp(20px,4vw,40px);box-shadow:0 14px 34px rgba(74,44,32,.13);position:relative;overflow:hidden}
+:is(#lifepath,#matrix) .lpk-in::before{content:"";position:absolute;inset-inline:0;top:0;height:6px;background:linear-gradient(90deg,#4A1521,#9C4632 45%,#C0553A 70%,#C5A059)}
+:is(#lifepath,#matrix) .lpk-hero{text-align:center;margin:6px 0 24px}
+:is(#lifepath,#matrix) .lpk-eyebrow{display:inline-block;padding:4px 14px;border-radius:999px;background:#F4DFC6;border:1px solid rgba(192,85,58,.5);color:#7a3a28;font:700 .78rem 'Cairo',sans-serif}
+:is(#lifepath,#matrix) .lpk h2{margin:12px 0 14px;color:#4A1521!important;font:700 clamp(1.7rem,5.5vw,2.6rem)/1.4 'Amiri','Cairo',serif!important}
+:is(#lifepath,#matrix) .lpk blockquote{margin:0 auto;max-width:44em;padding:14px 18px;border-inline-start:4px solid #C0553A;border-radius:12px;background:rgba(253,251,247,.8);color:#4A2C20;font:400 1.12rem/2 'Amiri','Cairo',serif;text-align:start}
+:is(#lifepath,#matrix) .lpk-sec{margin:0 0 26px}
+:is(#lifepath,#matrix) .lpk h3{margin:0 0 12px;color:#4A1521!important;font:700 clamp(1.3rem,4vw,1.65rem)/1.5 'Amiri','Cairo',serif;padding-inline-start:12px;border-inline-start:4px solid #C0553A}
+:is(#lifepath,#matrix) .lpk p{margin:0 0 12px;color:#2C2523!important;line-height:1.95;font-size:1rem}
+:is(#lifepath,#matrix) .lpk-ask{padding:14px 16px;border-radius:14px;background:#FDFBF7;border:1px solid rgba(156,70,50,.35);color:#6B2234!important;font:700 1.12rem/1.9 'Amiri','Cairo',serif;text-align:center}
+:is(#lifepath,#matrix) .lpk-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+:is(#lifepath,#matrix) .lpk-card{background:#FDFBF7;border:1px solid rgba(156,70,50,.3);border-radius:16px;padding:18px 16px;box-shadow:0 6px 18px rgba(74,44,32,.09);transition:border-color .2s,box-shadow .2s,transform .2s}
+:is(#lifepath,#matrix) .lpk-card:hover{border-color:#C0553A;box-shadow:0 12px 26px rgba(156,70,50,.2);transform:translateY(-2px)}
+:is(#lifepath,#matrix) .lpk-ic{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#F7E3C9,#EFCFAE);border:1px solid rgba(192,85,58,.55);color:#9C4632}
+:is(#lifepath,#matrix) .lpk-ic svg{width:24px;height:24px}
+:is(#lifepath,#matrix) .lpk-card h4{margin:10px 0 2px;color:#4A1521;font:700 1.12rem 'Amiri','Cairo',serif}
+:is(#lifepath,#matrix) .lpk-card small{display:block;margin-bottom:8px;color:#7a3a28;font-size:.78rem;direction:ltr;text-align:start}
+:is(#lifepath,#matrix) .lpk-card p{font-size:.94rem;margin:0 0 8px}
+:is(#lifepath,#matrix) .lpk-how{padding:8px 10px;border-radius:10px;background:#F6EAD6;font-size:.88rem!important}
+:is(#lifepath,#matrix) .lpk-acc{margin:0 0 10px;background:#FDFBF7;border:1px solid rgba(156,70,50,.3);border-inline-start:5px solid #9C4632;border-radius:14px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+:is(#lifepath,#matrix) .lpk-acc:nth-of-type(even){border-inline-start-color:#C0553A}
+:is(#lifepath,#matrix) .lpk-acc[open],:is(#lifepath,#matrix) .lpk-acc:hover{border-color:#C0553A;box-shadow:0 8px 20px rgba(156,70,50,.16)}
+:is(#lifepath,#matrix) .lpk-acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;min-height:52px;color:#4A1521;font:700 1.02rem/1.6 'Amiri','Cairo',serif}
+:is(#lifepath,#matrix) .lpk-acc summary::-webkit-details-marker{display:none}
+:is(#lifepath,#matrix) .lpk-acc summary::after{content:"";flex:none;width:9px;height:9px;border:solid #C0553A;border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .25s}
+:is(#lifepath,#matrix) .lpk-acc[open] summary::after{transform:rotate(-135deg)}
+:is(#lifepath,#matrix) .lpk-acc summary:focus-visible{outline:3px solid rgba(192,85,58,.6);outline-offset:-3px}
+:is(#lifepath,#matrix) .lpk-acc-b{padding:2px 16px 14px;border-top:1px dashed #E2D9CC}
+:is(#lifepath,#matrix) .lpk-nums{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+:is(#lifepath,#matrix) .lpk-nums>div{padding:14px;border-radius:14px;background:#FDFBF7;border:1px solid rgba(156,70,50,.3)}
+:is(#lifepath,#matrix) .lpk-nums b{display:block;color:#9C4632;margin-bottom:4px}
+:is(#lifepath,#matrix) .lpk-nums span{color:#2C2523;line-height:1.85;font-size:.94rem}
+:is(#lifepath,#matrix) .lpk-vs{display:grid;gap:12px}
+:is(#lifepath,#matrix) .lpk-vs-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:12px;align-items:start;padding:14px;border-radius:14px;background:#FDFBF7;border:1px solid rgba(156,70,50,.3)}
+:is(#lifepath,#matrix) .lpk-vs-row>b{color:#4A1521;font:700 1.05rem 'Amiri','Cairo',serif}
+:is(#lifepath,#matrix) .lpk-vs-row p{margin:0!important;font-size:.93rem!important}
+:is(#lifepath,#matrix) .lpk-vs-row em{display:block;font-style:normal;font-weight:700;color:#9C4632;font-size:.8rem;margin-bottom:2px}
+:is(#lifepath,#matrix) .lpk-end{text-align:center;padding:20px 14px;border-radius:18px;background:radial-gradient(400px 180px at 50% 0%,rgba(192,85,58,.45),transparent 70%),linear-gradient(135deg,#4A1521,#6B2234 60%,#8A3A2B);border:1px solid rgba(197,160,89,.65)}
+:is(#lifepath,#matrix) .lpk-end h3{color:#FBF3E4!important;border:0;padding:0;margin:0 0 8px}
+:is(#lifepath,#matrix) .lpk-end p{color:#F1E4CE!important;max-width:42em;margin:0 auto 16px}
+:is(#lifepath,#matrix) .lpk-cta{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 24px;border-radius:999px;background:linear-gradient(135deg,#C0553A,#9C4632);border:1px solid #E8CD92;color:#FDF3E1!important;font:700 1rem 'Cairo',sans-serif;text-decoration:none;text-align:center;transition:box-shadow .2s,transform .2s}
+:is(#lifepath,#matrix) .lpk-cta:hover,:is(#lifepath,#matrix) .lpk-cta:focus-visible{box-shadow:0 12px 26px rgba(0,0,0,.3);transform:translateY(-1px);outline:0}
 @media(max-width:768px){
-  #lifepath .lpk{padding:0 12px}
-  #lifepath .lpk-cards,#lifepath .lpk-nums,#lifepath .lpk-vs-row{display:flex!important;flex-direction:column!important;grid-template-columns:1fr!important;width:100%!important;gap:12px!important}
-  #lifepath .lpk-card,#lifepath .lpk-vs-row{width:100%;box-sizing:border-box}
+  :is(#lifepath,#matrix) .lpk{padding:0 12px}
+  :is(#lifepath,#matrix) .lpk-cards,:is(#lifepath,#matrix) .lpk-nums,:is(#lifepath,#matrix) .lpk-vs-row{display:flex!important;flex-direction:column!important;grid-template-columns:1fr!important;width:100%!important;gap:12px!important}
+  :is(#lifepath,#matrix) .lpk-card,:is(#lifepath,#matrix) .lpk-vs-row{width:100%;box-sizing:border-box}
 }
-@media(prefers-reduced-motion:reduce){#lifepath .lpk-card,#lifepath .lpk-acc{transition:none}}
+@media(prefers-reduced-motion:reduce){:is(#lifepath,#matrix) .lpk-card,:is(#lifepath,#matrix) .lpk-acc{transition:none}}
+/* matrix: قوائم، بطاقتان/أربع بطاقات، صفوف الجانبين */
+:is(#lifepath,#matrix) .lpk ul{margin:0 0 12px;padding:0;list-style:none;display:grid;gap:8px}
+:is(#lifepath,#matrix) .lpk ul li{position:relative;padding-inline-start:22px;color:#2C2523;line-height:1.9;font-size:.97rem}
+:is(#lifepath,#matrix) .lpk ul li::before{content:"";position:absolute;inset-inline-start:2px;top:.78em;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#C0553A,#C5A059)}
+:is(#lifepath,#matrix) .lpk-cards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+:is(#lifepath,#matrix) .lpk-q{margin:0 0 6px;color:#6B2234!important;font-weight:700}
+:is(#lifepath,#matrix) .lpk-vs-row .is-neg em{color:#8A3A2B}
+:is(#lifepath,#matrix) .lpk-vs-row .is-pos em{color:#5E6B3A}
+@media(max-width:768px){:is(#lifepath,#matrix) .lpk-cards.two{display:flex!important;flex-direction:column!important}}
 
 /* ===== تبويب توافق المسارات: نفس روح الفردي (عنابي، طوبي، عقيق) ===== */
 #lifepath .lpx-compat form.syn-form{background:#FDFBF7!important;border:1px solid rgba(156,70,50,.4)!important;box-shadow:0 18px 40px rgba(74,21,33,.18)!important;position:relative;overflow:hidden}
