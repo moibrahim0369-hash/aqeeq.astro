@@ -83,6 +83,7 @@
 <link rel="stylesheet" href="assets/css/lifepath-vivid.css?v=20261106i">
 <link rel="stylesheet" href="assets/css/sky-world-chart.css?v=20261107e">
 <link rel="stylesheet" href="assets/css/sky-banner.css?v=20261106m">
+<link rel="stylesheet" href="assets/css/sky-signs-polish.css?v=20261107c">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -874,8 +875,8 @@
 <div class="aq-section-topbar">
   <a href="#sky" class="aq-back-home-btn">← العودة لصفحة السماء</a>
   <div class="aq-section-quick-links">
-    <a href="#sky" class="aq-section-pill">المرصد الفلكي للسماء</a>
-    <a href="#world" class="aq-section-pill active">الخريطة العالمية</a>
+    <a href="#sky" class="aq-section-pill"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>المشهد الفلكي الآن</a>
+    <a href="#world" class="aq-section-pill active"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>الخريطة العالمية</a>
   </div>
 </div>
 <div class="center">
@@ -892,21 +893,21 @@
 <div class="aq-section-topbar">
   <a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a>
   <div class="aq-section-quick-links">
-    <a href="#sky" class="aq-section-pill active">المرصد الفلكي للسماء</a>
-    <a href="#astro-maps" class="aq-section-pill">العبور والتقويم الفلكي</a>
-    <a href="#signs" class="aq-section-pill">دليل الأبراج الاثني عشر</a>
+    <a href="#sky" class="aq-section-pill active"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>المشهد الفلكي الآن</a>
+    <a href="#astro-maps" class="aq-section-pill"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17c3-8 6-8 9-3s6 4 9-6"/><circle cx="3" cy="17" r="1.2"/><circle cx="21" cy="8" r="1.2"/></svg>العبور والتقويم الفلكي</a>
+    <a href="#signs" class="aq-section-pill"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M7 4.5C8 9 8 15 7 19.5M17 4.5C16 9 16 15 17 19.5M5 9.5c4.5 1.2 9.5 1.200 14 0M5 14.500c4.500-1.200 9.5-1.200 14 0"/></svg>صفات وتوقعات الأبراج</a>
   </div>
 </div>
 <div class="center">
-  <span class="eyebrow" dir="ltr">THE CELESTIAL OBSERVATORY · REAL-TIME EPHEMERIS</span>
-  <h2>مرصد السماء وحركة الكواكب</h2>
+  <span class="eyebrow" dir="ltr">THE SKY NOW · REAL-TIME EPHEMERIS</span>
+  <h2>المشهد الفلكي الآن</h2>
   <p class="intro">رصد حي لمواضع الكواكب الحقيقية، أطوار القمر، حالات التراجع، والاتصالات الفلكية لأي تاريخ تختاره.</p>
 </div>
 <section class="swc" id="swc" aria-labelledby="swc-h">
   <header class="swc-head"><span class="swc-eyebrow">خريطة السماء العالمية</span><h3 id="swc-h">السماء كما تبدو في أي مكان بالعالم</h3>
   <p>خريطة لحظة السماء بإحداثيات حقيقية لأي تاريخ ووقت وأي مدينة في العالم، وهي ليست خريطة شخصية.</p></header>
   <form class="swc-ctl" id="swc-form" novalidate>
-    <label class="swc-f"><span>التاريخ</span><input id="swc-date" type="date" min="1900-01-01" max="2100-12-31" required></label>
+    <div class="swc-f swc-datef"><span>التاريخ</span><div class="swc-dw"><button type="button" class="swc-step" data-step="-1" aria-label="اليوم السابق"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><input id="swc-date" type="date" min="1900-01-01" max="2100-12-31" required aria-label="التاريخ"><button type="button" class="swc-step" data-step="1" aria-label="اليوم التالي"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button></div></div>
     <label class="swc-f"><span>الوقت</span><input id="swc-time" type="time" required></label>
     <label class="swc-f swc-city"><span>المدينة</span><select id="swc-city"></select></label>
     <button class="swc-go" type="submit">عرض الخريطة بالتفاصيل</button>
@@ -920,6 +921,11 @@
     <div class="swc-side"><div class="swc-moon" id="swc-moon"></div><div class="swc-pgrid" id="swc-pgrid" aria-label="مواقع الكواكب"></div></div>
   </div>
 </section>
+<a class="zdc" id="zdc" href="#signs" aria-label="توقعات الأبراج وما لا تعرفه عن برجك">
+  <span class="zdc-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7M10.6 10.6l5 5M32.4 32.4l5 5M10.6 37.4l5-5M32.4 15.6l5-5"/><circle cx="24" cy="24" r="2.6" class="zdc-core"/></svg></span>
+  <span class="zdc-t"><b>توقعات الأبراج وما لا تعرفه عن برجك</b><small>صفات برجك، توقعه الكامل الآن، والعبورات التي تؤثر عليك اليوم بالتفصيل</small></span>
+  <span class="zdc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span>
+</a>
 <div class="sky-ctl">
 <div class="field" style="flex:1;min-width:220px;margin:0;"><label for="sky-date">تاريخ الرصد الفلكي</label><input id="sky-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <button class="btn ghost sm" id="sky-today" type="button">العودة لتاريخ اليوم</button>
@@ -948,15 +954,15 @@
 <div class="aq-section-topbar">
   <a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a>
   <div class="aq-section-quick-links">
-    <a href="#signs" class="aq-section-pill active">قراءات الأبراج الاثني عشر</a>
-    <a href="#sky" class="aq-section-pill">حركة السماء الآن</a>
-    <a href="#chart" class="aq-section-pill">خريطة الميلاد الشخصية</a>
+    <a href="#signs" class="aq-section-pill active"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M7 4.5C8 9 8 15 7 19.5M17 4.5C16 9 16 15 17 19.5M5 9.5c4.5 1.2 9.5 1.200 14 0M5 14.500c4.500-1.200 9.5-1.200 14 0"/></svg>صفات وتوقعات الأبراج</a>
+    <a href="#sky" class="aq-section-pill"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>المشهد الفلكي الآن</a>
+    <a href="#chart" class="aq-section-pill"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 3v5.5M12 15.5V21M3 12h5.5M15.5 12H21"/></svg>خريطة الميلاد الشخصية</a>
   </div>
 </div>
 <div class="center">
 <span class="period eyebrow" id="period"></span>
-<h2>دليل وقراءات الأبراج</h2>
-<p class="intro">اختر برجك لاستعراض خصائصه الأساسية وقراءته الدورية. للحصول على قراءة شخصية دقيقة، استخدم حاسبة خريطة الميلاد.</p>
+<h2>صفات الأبراج وتوقعاتها الحقيقية</h2>
+<p class="intro">اختر برجك لتقرأ صفاته وتوقعه الكامل الآن، ثم العبورات الفلكية الجارية وتأثير كل واحد منها عليك. للقراءة الشخصية الدقيقة استخدم حاسبة خريطة الميلاد.</p>
 </div>
 <button class="signs-back" id="signs-back" type="button" aria-label="الرجوع لكل الأبراج"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" transform="scale(-1 1) translate(-24 0)"/></svg><span>جميع الأبراج</span></button>
 <div aria-label="اختيار البرج" class="picker" id="picker" role="group"></div>
@@ -3366,13 +3372,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     }
     found.sort((x, y) => x.orb - y.orb);
     const top = found.slice(0, 12);
-    const head = `<h4 class="ph">أهم الاسبكتات بين الكواكب دلوقتي</h4>`;
+    const head = `<div class="asp-head"><h4 class="ph">أهم الاسبكتات بين الكواكب دلوقتي</h4><span class="asp-leg"><i class="k-soft">داعم</i><i class="k-hard">متوتر</i></span></div>`;
     if (!top.length) { $("#sky-asp").innerHTML = head + `<p class="sub">مفيش اسبكتات مؤثرة في اليوم ده (حسب أوربات 6° وخاصة 8° للشمس والقمر).</p>`; return; }
     const AM = { conj: "المجالان يمتزجان في طاقة واحدة مكثفة، فيصعب الفصل بينهما.", sext: "فرصة هادئة للتعاون، تحتاج مبادرة بسيطة منك لتستثمرها.", square: "احتكاك يحرّك الأمور، ويكشف خلافًا داخليًا يحتاج قرارًا واضحًا.", trine: "انسجام وتدفق طبيعي، وانتبه فقط من الاعتياد على السهولة.", opp: "شدّ بين طرفين يحتاج توازنًا واعيًا بدل الانحياز لأحدهما." };
     $("#sky-asp").innerHTML = head + `<div class="sky-asp-list">` + top.map((x, ix) => {
       const hard = ["square", "opp"].includes(x.k), tone = hard ? "متوتر" : "داعم";
       const rA = x.A.retro ? " (راجع)" : "", rB = x.B.retro ? " (راجع)" : "";
-      return `<details class="lpa-card ${hard ? "is-shadow" : "is-light"} sky-asp-item"${ix === 0 ? " open" : ""}><summary class="lpa-sum"><span class="lpa-ic">${hard ? "−" : "+"}</span><span class="lpa-t"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span> ${PLANETS[x.A.key].n}${rA} <b>${x.name}</b> <span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span> ${PLANETS[x.B.key].n}${rB}</span><small class="lpa-sub">${tone} · أوربة ${x.orb.toFixed(1)}°</small><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p></div></details>`;
+      return `<details class="lpa-card ${hard ? "is-shadow" : "is-light"} sky-asp-item"${ix === 0 ? " open" : ""}><summary class="lpa-sum asp-sum"><span class="asp-pair"><span class="asp-pg"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span></span><span class="asp-pg"><span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span></span></span><span class="lpa-t"><span class="asp-names">${PLANETS[x.A.key].n}${rA} <b>${x.name}</b> ${PLANETS[x.B.key].n}${rB}</span><small class="lpa-sub"><i class="asp-tone ${hard ? "k-hard" : "k-soft"}">${tone}</i> أوربة ${x.orb.toFixed(1)}°</small></span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p></div></details>`;
     }).join("") + `</div><p class="sub">الاسبكتات دي حسابية بين مواقع الكواكب في السما، وتأثيرها على برجك الشخصي بيتحدد بخريطتك.</p>`;
   }
   function renderSkyPanel(ch, ms) {
@@ -3633,7 +3639,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     { t: "النمو والتطور الشخصي", g: "↗" }, { t: "التاريخ والأساطير والرموز", g: "⌛" }, { t: "التقاليد الروحية والباطنية", g: "✵" }
   ];
   function signSections(i) {
-    return `<div class="sx"><h4>موسوعة البرج</h4>
+    return `<div class="sx"><h4 class="zp-h">${ZI.book}<span>موسوعة البرج</span></h4>
       <div class="sec-icons" role="group" aria-label="أقسام البرج">${SIGN_SECS.map((x, j) => `<button type="button" class="sec-ico" data-sec="${j}"><span aria-hidden="true">${x.g}</span><small>${x.t}</small></button>`).join("")}</div>
       <div class="sec-body" id="sec-body" aria-live="polite"><p class="sub">اختار أي فصل من الموسوعة عشان تفتح القراءة التفصيلية.</p></div></div>`;
   }
@@ -3722,16 +3728,50 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     return `<p class="mercury-status-note" role="status">عطارد مباشر حالياً. القراءة التفصيلية لتراجع عطارد هتكون متاحة في الفترة القادمة.</p>`;
   }
   const signsSec = $("#signs");
+  const ZI = {
+    star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.4 5.6 6 .6-4.5 4 1.4 5.9L12 16l-5.300 3.100 1.400-5.900-4.500-4 6-.6z"/></svg>',
+    heart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.500-4.600-7.500-10A4.300 4.300 0 0 1 12 7.500 4.300 4.300 0 0 1 19.500 10c0 5.400-7.500 10-7.500 10z"/></svg>',
+    work: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.500" y="7.500" width="17" height="12" rx="2"/><path d="M9 7.500V5.500A1.500 1.500 0 0 1 10.500 4h3A1.500 1.500 0 0 1 15 5.500v2M3.500 13h17"/></svg>',
+    coin: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.500"/><path d="M14.800 9.200c-.5-.8-1.500-1.200-2.800-1.200-1.600 0-2.700.8-2.700 2 0 2.800 5.600 1.400 5.600 4.200 0 1.200-1.200 2-2.900 2-1.300 0-2.400-.5-3-1.400M12 6.500V8M12 16v1.500"/></svg>',
+    tip: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.500 10.900c.6.5 1 1.200 1 2V16h5v-.1c0-.8.4-1.500 1-2A6 6 0 0 0 12 3z"/></svg>',
+    orbit: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="9.500" ry="4.200" transform="rotate(-25 12 12)"/></svg>',
+    book: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.500A1.500 1.500 0 0 1 5.500 4H11v15H5.500A1.500 1.500 0 0 0 4 20.500zM20 5.500A1.500 1.500 0 0 0 18.500 4H13v15h5.500a1.500 1.500 0 0 1 1.500 1.500z"/></svg>'
+  };
+  function signTransits(i) {
+    try {
+      const ms = Date.now(), now = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false });
+      const nb = k => now.bodies.find(b => b.key === k), hOf = k => ((nb(k).sign - i + 12) % 12) + 1;
+      const dfmt = t => new Date(t).toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" });
+      const keys = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"].map((k, n) => ({ k, n })).sort((a, b) => (nb(b.k).retro ? 1 : 0) - (nb(a.k).retro ? 1 : 0) || a.n - b.n).map(x => x.k);
+      const sunH = hOf("sun"), moonH = hOf("moon"), rx = keys.filter(k => nb(k).retro).map(k => PLANETS[k].n);
+      const glance = `<div class="zp-glance"><span><b>الشمس</b> في بيتك ${HOUSES[sunH - 1].n}</span><span><b>القمر</b> في بيتك ${HOUSES[moonH - 1].n}</span><span class="${rx.length ? "is-rx" : ""}"><b>التراجع</b> ${rx.length ? rx.join("، ") : "مفيش كوكب راجع"}</span></div>`;
+      const items = keys.map((k, ix) => {
+        const b = nb(k), h = hOf(k), S = SIGNS[b.sign], ing = nextIngress(k, ms);
+        let body = "";
+        if (k === "mercury" && mercuryRetrogradeInScorpioNow()) body += transitBlockFor(i);
+        body += `<p>${deepHouse(k, h, "transit")}</p>`;
+        if (b.retro) body += `<p class="zp-rx">${retroText(k)}</p>`;
+        if (ing) body += `<p class="zp-ing">${PLANETS[k].n} ${ing.sign === (b.sign + 11) % 12 ? "هيرجع لبرج" : "هيدخل برج"} ${SIGNS[ing.sign].n} تقريبًا يوم ${dfmt(ing.ms)}.</p>`;
+        return `<details class="lpa-card zd-acc zp-tr${b.retro ? " is-rx" : ""}"${ix === 0 ? " open" : ""}><summary class="lpa-sum"><span class="lpa-ic"><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span></span><span class="lpa-t"><span class="zp-trn">${PLANETS[k].n} في ${S.n}${b.retro ? ' <i class="rxb">راجع</i>' : ""}</span><small class="lpa-sub">يؤثر على بيتك ${HOUSES[h - 1].n} · ${HOUSES[h - 1].area}</small></span><span class="lpa-chev"></span></summary><div class="lpa-body">${body}</div></details>`;
+      }).join("");
+      return `<section class="zp-sec zp-trs"><h4 class="zp-h">${ZI.orbit}<span>العبورات الحالية وتأثيرها عليك</span></h4><p class="zp-sub">دي حركة الكواكب الحقيقية في السما دلوقتي، مقروءة من بيوت برجك. افتح أي عبور لتشوف تأثيره بالتفصيل.</p>${glance}<div class="zd-stack">${items}</div></section>`;
+    } catch (e) { return ""; }
+  }
   function selectSign(i) {
     const s = SIGNS[i], f = FORECASTS[i];
     signsSec.classList.add("signs-detail");
     if (signsSec.scrollTo) signsSec.scrollTo(0, 0);
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
-    panel.innerHTML = `${mercurySignIntro(i)}
-      <div class="arch-g" aria-hidden="true">${gl(s.g)}</div><h3>${s.n}</h3><p class="dates">${s.d}</p>
-      <p class="trait">برج ${ELEMENTS[s.el].adj} يحكمه ${PLANETS[s.ruler].n}</p><p class="overall">${f.overall}</p>
-      <div class="fcs"><div class="fc"><h4>الحب</h4><p>${f.love}</p></div><div class="fc"><h4>الشغل</h4><p>${f.work}</p></div><div class="fc"><h4>الفلوس</h4><p>${f.money}</p></div></div>
-      ${dailySign(i)}${signExtra(s, f, i)}${signSections(i)}`;
+    panel.innerHTML = `<header class="zp-hero"><div class="zp-id"><span class="zp-glyph" aria-hidden="true">${gl(s.g)}</span><div><h3>${s.n}</h3><p class="dates">${s.d}</p>
+        <div class="zp-tags"><span>برج ${ELEMENTS[s.el].adj}</span><span>${MODALITIES[s.mod].n}</span><span>يحكمه ${PLANETS[s.ruler].n}</span></div></div></div>
+        <figure class="zp-const" aria-hidden="true"></figure></header>
+      <section class="zp-sec zp-full"><h4 class="zp-h">${ZI.star}<span>التوقع الكامل الآن</span></h4>
+        <p class="zp-overall">${f.overall}</p>
+        <div class="zp-trio"><article class="zp-fc"><h5>${ZI.heart}الحب</h5><p>${f.love}</p></article><article class="zp-fc"><h5>${ZI.work}الشغل</h5><p>${f.work}</p></article><article class="zp-fc"><h5>${ZI.coin}الفلوس</h5><p>${f.money}</p></article></div>
+        ${dailySign(i)}</section>
+      ${signTransits(i)}
+      <section class="zp-sec"><h4 class="zp-h">${ZI.tip}<span>إرشادات اليوم</span></h4>${signExtra(s, f, i)}</section>
+      <section class="zp-sec">${signSections(i)}</section>`;
     panel.querySelectorAll('.sec-ico').forEach(b => b.addEventListener('click', () => openSignSec(i, +b.dataset.sec)));
     signIntro(i);
     openSignSec(i, 0);
@@ -3801,13 +3841,6 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const acc = (ic, t, body, cls, open, sub) => `<details class="lpa-card ${cls || ""} zd-acc"${open ? " open" : ""}><summary class="lpa-sum"><span class="lpa-ic">${ic}</span><span class="lpa-t">${t}</span>${sub ? `<small class="lpa-sub">${sub}</small>` : ""}<span class="lpa-chev"></span></summary><div class="lpa-body">${body}</div></details>`;
     let o = `<div class="fcs zd-daily"><h4 class="ph">توقعات النهاردة، ${dt}</h4>`;
     o += acc(gl("☽"), `طاقة يومك (القمر في بيتك ${HOUSES[mh - 1].n})`, `<p>${moonDay(mh)}</p>`, "", true);
-    let pl = "", rx = [];
-    ["mercury", "venus", "mars"].forEach(k => {
-      const h = hOf(k), b = nb(k);
-      if (b.retro) rx.push(PLANETS[k].n);
-      pl += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span> ${PLANETS[k].n} في بيتك ${HOUSES[h - 1].n}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4><p>${deepHouse(k, h, "transit")}</p>${b.retro ? `<p class="sub">${retroText(k)}</p>` : ""}</article>`;
-    });
-    o += acc("☿", "حركة الكواكب في بيتك", pl, "", false, rx.length ? `تراجع: ${rx.join("، ")}` : "كلها مباشرة");
     return o + `${NOTE_SYM}</div>`;
   }
 
@@ -5083,7 +5116,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
-<script src="assets/js/sky-world-chart.js?v=20261107c" defer></script>
+<script src="assets/js/sky-world-chart.js?v=20261107d" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
@@ -5104,7 +5137,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/lp-accordion.js?v=20261106b" defer></script>
 <script src="assets/js/daily-banner.js?v=20261106q" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
-<script src="assets/js/cosmic-background.js" defer></script>
+<script src="assets/js/cosmic-background.js?v=20261107a" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
 </body>
 </html>
