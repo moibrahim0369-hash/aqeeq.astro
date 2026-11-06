@@ -18,11 +18,11 @@ ok(w+' sky: chips carousel scrolls',await p.evaluate(()=>{const c=document.getEl
 /* الأبراج */
 await p.goto(U+'#signs');await p.waitForTimeout(1200);
 await p.evaluate(()=>document.querySelector('#picker button').click());await p.waitForTimeout(500);
-ok(w+' signs: accordions for day energy/retro',await p.locator('#panel .zd-daily details.lpa-card').count()>=2);
+ok(w+' signs: accordions for day energy/retro',await p.locator('#panel .zd-daily details.lpa-card').count()>=1&&await p.locator('#panel .zp-trs details.lpa-card').count()>=5);
 ok(w+' signs: advice in accordion',await p.locator('#panel .zd-stack details.lpa-card').count()>=3);
 const bad=await p.evaluate(()=>{const lum=c=>{const m=c.match(/\d+(\.\d+)?/g).map(Number);return(.299*m[0]+.587*m[1]+.114*m[2])};return [...document.querySelectorAll('#panel .zd-acc summary .lpa-t,#panel .zd-acc .lpa-body p,#panel .zd-acc .lpa-body li,#signs #period')].filter(e=>e.offsetParent&&lum(getComputedStyle(e).color)>150).length});
 ok(w+' signs: no pale text',bad===0);
-ok(w+' signs: picker cards ivory 12px',await p.evaluate(()=>{const b=document.querySelectorAll('#signs .picker button')[5],s=getComputedStyle(b);return s.borderRadius==='12px'&&/253, ?251, ?247/.test(s.backgroundColor)}));
+ok(w+' signs: picker cards ivory 14px, wine glyph',await p.evaluate(()=>{const b=document.querySelectorAll('#signs .picker button')[5],s=getComputedStyle(b);return s.borderRadius==='14px'&&/gradient/.test(s.backgroundImage)&&/106, ?42, ?60/.test(getComputedStyle(b.querySelector('.sg')).color)}));
 /* الخرائط المتقدمة */
 await p.goto(U+'#astro-maps');await p.waitForTimeout(1500);
 ok(w+' maps: ivory background',await p.evaluate(()=>/253, ?251, ?247/.test(getComputedStyle(document.getElementById('astro-maps')).backgroundColor)));
