@@ -10,6 +10,8 @@
     { eye: 'من الرموز إلى الوضوح', h: 'المعرفة تبدأ من الداخل', p: 'رحلة وعي عميقة تجمع بين علم الفلك والرموز القديمة لمساعدتك على فهم ذاتك وعلاقاتك وإمكاناتك الحقيقية.', cta: 'ابدأ رحلتك الآن', href: '#chart', img: 'assets/images/home/hero-bust.jpg', pos: '40% 40%', hs: '18vw' },
     { eye: 'السماء مرآة لداخلك', h: 'رموز تساعدك على رؤية أوسع', p: 'اكتشف ذاتك من خلال علم الرموز والفلك، وأعد اكتشاف احتمالاتك.', cta: 'اكتشف المنصة', href: '#sky', img: 'assets/images/home/hero-bust.jpg', pos: '40% 40%', hs: '18vw' }
   ];
+  /* تثبيت البانر على شريحة «ابدأ رحلتك» بقرار التصميم: لا تبديل تلقائي ولا بداية عشوائية */
+  return;
   var copy = document.getElementById('home-intro');
   if (!copy) return;
   var eye = copy.querySelector('.aqh-eyebrow'), h = copy.querySelector('.aqh-title'), p = copy.querySelector('.aqh-lead'),
