@@ -62,8 +62,8 @@ html body #home.aqh .aqh-skyb #aqh-energy :is(.dbn-arrow,.dbn-toggle) svg{color:
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-progress{background:linear-gradient(90deg,#9C4632,#4A1521)!important}
 
 @media(max-width:760px){
-  html body #home.aqh .aqh-skyb{grid-template-columns:minmax(0,1fr) 112px!important;gap:10px;padding:12px 12px!important;border-radius:18px!important}
-  html body #home.aqh .skb-chart{width:108px}
+  html body #home.aqh .aqh-skyb{grid-template-columns:minmax(0,1fr) 140px!important;gap:10px;padding:12px 12px!important;border-radius:18px!important}
+  html body #home.aqh .skb-chart{width:136px}
   html body #home.aqh .aqh-skyb-wheel .aqh-wheel-box .aqh-sky-link{padding:5px 6px;font-size:.62rem;gap:4px}
   html body #home.aqh .aqh-skyb-wheel .aqh-sky-link svg{width:12px;height:12px}
   html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv{grid-template-columns:36px minmax(0,1fr) auto;padding:7px 0!important;column-gap:9px}
