@@ -191,7 +191,6 @@
             '<a href="#chart" class="profile-quick-pill" data-quick-calc="chart">خريطة الميلاد</a>' +
             '<a href="#lifepath" class="profile-quick-pill" data-quick-calc="lifepath">مسار الحياة</a>' +
             '<a href="#matrix" class="profile-quick-pill" data-quick-calc="matrix">مصفوفة القدر</a>' +
-            '<a href="#tarot-chamber" class="profile-quick-pill">محراب التاروت</a>' +
           '</div>' +
         '</div>' +
       '</div>' +

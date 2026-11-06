@@ -408,14 +408,13 @@
       { t: 'مصفوفة القدر', k: 'ماتريكس اركانا الشاكرات الذيل الكارمي', h: '#matrix' },
       { t: 'مسار الحياة', k: 'علم الارقام رقم المسار القمم', h: '#lifepath' },
       { t: 'التوافق', k: 'سينسترى علاقة شريك', h: '#compat' },
-      { t: 'التاروت', k: 'محراب بطاقات فرشة', h: '#tarot-chamber' },
       { t: 'السماء', k: 'ترانزيت عبور مرصد كواكب', h: '#sky' },
       { t: 'حسابي', k: 'تسجيل دخول ملف شخصي ارشيف', h: '#account' }
     ];
     btn.addEventListener('click', function () {
       var box = openLayer({
         kind: 'search', titleId: 'aqh-search-title', opener: btn,
-        html: closeBtn + '<div class="aqh-search-body"><h3 id="aqh-search-title">بحث في الموقع</h3><label class="aqh-sr" for="aqh-q">ابحث عن قسم أو محتوى</label><input id="aqh-q" type="search" placeholder="مثال: مصفوفة، تاروت، ترانزيت…" autocomplete="off"><ul class="aqh-results" role="listbox" aria-label="النتائج"></ul></div>'
+        html: closeBtn + '<div class="aqh-search-body"><h3 id="aqh-search-title">بحث في الموقع</h3><label class="aqh-sr" for="aqh-q">ابحث عن قسم أو محتوى</label><input id="aqh-q" type="search" placeholder="مثال: مصفوفة، ترانزيت، توافق…" autocomplete="off"><ul class="aqh-results" role="listbox" aria-label="النتائج"></ul></div>'
       });
       var inp = $('#aqh-q', box), ul = $('.aqh-results', box);
       function items(q) {

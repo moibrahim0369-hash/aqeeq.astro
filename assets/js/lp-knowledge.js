@@ -33,3 +33,13 @@
     setTimeout(function () { var f = sec.querySelector('#f-name'); if (f && f.offsetParent) f.focus({ preventScroll: true }); }, 450);
   });
 })();
+/* التوافق: زر قسم التعريف يرجّع لأعلى الفورم. عرض فقط. */
+(function () {
+  'use strict';
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-cp-cta]'); if (!a) return;
+    e.preventDefault();
+    var sec = document.getElementById('compat'); if (!sec) return;
+    sec.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
