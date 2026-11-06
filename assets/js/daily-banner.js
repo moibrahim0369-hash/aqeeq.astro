@@ -82,7 +82,7 @@
       '<radialGradient id="' + u + 'b" cx="38%" cy="34%" r="80%"><stop offset="0" stop-color="#F7F2E7"/><stop offset=".5" stop-color="#CFC7B8"/><stop offset=".85" stop-color="#8B8377"/><stop offset="1" stop-color="#5E574E"/></radialGradient>' +
       '<radialGradient id="' + u + 'l" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient>' +
       '<radialGradient id="' + u + 'h" cx="50%" cy="50%" r="50%"><stop offset=".78" stop-color="#E6C98F" stop-opacity="0"/><stop offset=".9" stop-color="#E6C98F" stop-opacity=".2"/><stop offset="1" stop-color="#E6C98F" stop-opacity="0"/></radialGradient>' +
-      '<radialGradient id="' + u + 'e" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#6D7482"/><stop offset="1" stop-color="#3C414C"/></radialGradient>' +
+      '<radialGradient id="' + u + 'e" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C0868A"/><stop offset="1" stop-color="#7C4150"/></radialGradient>' +
       '<clipPath id="' + u + 'c"><circle cx="60" cy="60" r="50"/></clipPath>' +
       '<filter id="' + u + 'n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="11" result="t"/><feColorMatrix in="t" type="matrix" values="0 0 0 0 .32  0 0 0 0 .30  0 0 0 0 .28  0 0 0 .6 -.14"/></filter>' +
       '<filter id="' + u + 'm" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.4"/></filter>' +
@@ -97,9 +97,9 @@
       '<g fill="#FBF7EE" opacity=".7"><circle cx="78" cy="84" r="1.7"/><circle cx="35" cy="64" r="1.3"/><circle cx="52" cy="52" r="1.2"/><circle cx="84" cy="50" r="1.1"/></g>' + rays +
       '<rect width="120" height="120" filter="url(#' + u + 'n)" opacity=".75"/>' +
       '<circle cx="60" cy="60" r="50" fill="url(#' + u + 'l)"/>' +
-      '<g mask="url(#' + u + 'k)"><circle cx="60" cy="60" r="50" fill="url(#' + u + 'e)" opacity=".92"/><rect width="120" height="120" fill="#0F0A10" opacity=".7"/></g>' +
+      '<g mask="url(#' + u + 'k)"><circle cx="60" cy="60" r="50" fill="url(#' + u + 'e)" opacity=".92"/><rect width="120" height="120" fill="#2A0F1A" opacity=".05"/></g>' +
       '</g>' +
-      '<circle cx="60" cy="60" r="50" fill="none" stroke="#F2E7CF" stroke-opacity=".22" stroke-width=".8"/>';
+      '<circle cx="60" cy="60" r="50" fill="none" stroke="#F6DDA8" stroke-opacity=".7" stroke-width="1.4"/>';
   }
   function themeNum() { var m = /(\d+)/.exec(txt('aq-obs-daynum')); return m ? m[1] : ''; }
   function txt(id) { var n = document.getElementById(id); return n ? (n.textContent || '').trim() : ''; }
@@ -158,12 +158,17 @@
     setF('planets', pl, true);
   }
   /* السماء الآن: مواقع الكواكب الحية (نفس محرك Astro) */
-  var LIVE_SETS = [['sun', 'moon', 'mercury', 'venus'], ['mars', 'jupiter', 'saturn'], ['uranus', 'neptune', 'pluto']];
+  var LIVE_SETS = [['sun', 'moon', 'mercury'], ['venus', 'mars', 'jupiter'], ['saturn', 'uranus', 'neptune'], ['pluto', 'phase']];
   function renderLive() {
     if (!engine()) return;
     var c; try { c = chartAt(Date.now()); } catch (e) { return; }
     LIVE_SETS.forEach(function (set, i) {
       var h = set.map(function (k) {
+        if (k === 'phase') {
+          var sn = body(c, 'sun'), mn = body(c, 'moon'); if (!sn || !mn) return '';
+          var el = mod(mn.lon - sn.lon), il = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
+          return '<div class="dbn-lv"><span class="dbn-lv-g">' + icon('moon') + '</span><b>مرحلة القمر</b><small>' + phaseOf(el) + ' · ' + il + '%</small><i>إضاءة</i></div>';
+        }
         var b = body(c, k); if (!b) return '';
         return '<div class="dbn-lv' + (b.retro ? ' is-retro' : '') + '"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'مباشر') + '</i></div>';
       }).join('');
