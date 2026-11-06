@@ -63,7 +63,7 @@ html body #home.aqh .aqh-skyb #aqh-energy .dbn-s3-tag{color:#9A7A3F!important}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-dn{color:#6B2234!important}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-cta{background:rgba(255,255,255,.55)!important;border:1px solid rgba(100,43,60,.55)!important;color:#4A1521!important}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-cta :is(span,svg){color:#4A1521!important}
-html body #home.aqh .aqh-skyb #aqh-energy :is(.dbn-s1-moon,.dbn-s2-moon){width:72px!important;flex:0 0 72px!important;background:none!important;border:0!important;filter:drop-shadow(0 4px 8px rgba(74,21,33,.3))}
+html body #home.aqh .aqh-skyb #aqh-energy :is(.dbn-s1-moon,.dbn-s2-moon){width:72px!important;flex:0 0 72px!important;background:none!important;border:0!important;filter:drop-shadow(0 3px 6px rgba(60,40,40,.25));margin:0!important}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-moonsvg{background:none!important}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-s2 .dbn-moonlist{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}
 
