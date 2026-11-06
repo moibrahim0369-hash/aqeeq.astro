@@ -82,7 +82,7 @@
 <link rel="stylesheet" href="assets/css/paywall-modal.css?v=20261106a">
 <link rel="stylesheet" href="assets/css/lifepath-vivid.css?v=20261106i">
 <link rel="stylesheet" href="assets/css/sky-world-chart.css?v=20261106a">
-<link rel="stylesheet" href="assets/css/sky-banner.css?v=20261106l">
+<link rel="stylesheet" href="assets/css/sky-banner.css?v=20261106m">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -282,6 +282,30 @@
               <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-live-now" data-content-type="sky-event" data-slug="live"><span>اكتشف السماء الآن</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
             </div>
           </section>
+          <section class="dbn-slide dbn-live-s" role="group" aria-roledescription="شريحة" aria-label="المتراجعة الآن" aria-hidden="true">
+            <div class="dbn-copy">
+              <h2 class="dbn-title"><i class="dbn-pulse" aria-hidden="true"></i><span>المتراجعة الآن</span></h2>
+              <div class="dbn-live" data-f="liveRetro"></div>
+            </div>
+          </section>
+          <section class="dbn-slide dbn-live-s" role="group" aria-roledescription="شريحة" aria-label="المباشرة الآن" aria-hidden="true">
+            <div class="dbn-copy">
+              <h2 class="dbn-title"><i class="dbn-pulse" aria-hidden="true"></i><span>المباشرة الآن</span></h2>
+              <div class="dbn-live" data-f="liveDirect"></div>
+            </div>
+          </section>
+          <section class="dbn-slide dbn-live-s" role="group" aria-roledescription="شريحة" aria-label="أبرز الزوايا الآن" aria-hidden="true">
+            <div class="dbn-copy">
+              <h2 class="dbn-title"><i class="dbn-pulse" aria-hidden="true"></i><span>أبرز الزوايا الآن</span></h2>
+              <div class="dbn-live" data-f="liveAsp"></div>
+            </div>
+          </section>
+          <section class="dbn-slide dbn-live-s" role="group" aria-roledescription="شريحة" aria-label="موسم الشمس" aria-hidden="true">
+            <div class="dbn-copy">
+              <h2 class="dbn-title"><i class="dbn-pulse" aria-hidden="true"></i><span>موسم الشمس</span></h2>
+              <div class="dbn-live" data-f="liveSeason"></div>
+            </div>
+          </section>
           <!-- 1: طاقة اليوم (مرجع: الشريط العاجي بالتاريخ والقمر) -->
           <section class="dbn-slide dbn-s1" role="group" aria-roledescription="شريحة" aria-label="1 من 7: طاقة اليوم">
             <div class="dbn-s1-main">
@@ -319,6 +343,7 @@
               <h2 class="dbn-title"><span>رسالة اليوم</span></h2>
               <p class="dbn-theme dbn-theme-lg" data-f="theme">—</p>
               <p class="dbn-note" data-f="themeNote"></p>
+              <p class="dbn-note" data-f="themeDay"></p>
               <small class="dbn-src-note" data-f="themeSrc"></small>
               <a class="aqh-outline-btn dbn-cta" href="#sky" data-content-id="sky-moon" data-content-type="moon" data-slug="moon"><span>تفاصيل اليوم</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
             </div>
@@ -342,13 +367,16 @@
           </section>
         </div>
         <div class="dbn-ctrl">
-          <button type="button" class="dbn-toggle" data-dbn="toggle" aria-pressed="false" aria-label="إيقاف التبديل التلقائي"><svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
           <button type="button" class="dbn-arrow" data-dbn="prev" aria-label="الشريحة السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <div class="dbn-dots" role="group" aria-label="اختيار الشريحة">
             <button type="button" class="dbn-dot is-on" aria-label="السماء الآن 1" aria-current="true"></button>
             <button type="button" class="dbn-dot" aria-label="السماء الآن 2"></button>
             <button type="button" class="dbn-dot" aria-label="السماء الآن 3"></button>
             <button type="button" class="dbn-dot" aria-label="السماء الآن 4"></button>
+            <button type="button" class="dbn-dot" aria-label="المتراجعة الآن"></button>
+            <button type="button" class="dbn-dot" aria-label="المباشرة الآن"></button>
+            <button type="button" class="dbn-dot" aria-label="أبرز الزوايا الآن"></button>
+            <button type="button" class="dbn-dot" aria-label="موسم الشمس"></button>
             <button type="button" class="dbn-dot" aria-label="الشريحة 1 من 7: طاقة اليوم"></button>
             <button type="button" class="dbn-dot" aria-label="الشريحة 2 من 7: إشارة اليوم"></button>
             <button type="button" class="dbn-dot" aria-label="الشريحة 3 من 7: التاريخ"></button>
@@ -5055,7 +5083,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/natal-dashboard.js?v=20261109b" defer></script>
 <script src="assets/js/life-path-view.js?v=20261105e" defer></script>
 <script src="assets/js/lp-accordion.js?v=20261106b" defer></script>
-<script src="assets/js/daily-banner.js?v=20261106o" defer></script>
+<script src="assets/js/daily-banner.js?v=20261106q" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
