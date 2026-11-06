@@ -1,8 +1,8 @@
-.cmp-fab{position:fixed;z-index:2200;inset-inline-start:14px;bottom:calc(78px + env(safe-area-inset-bottom,0px));width:50px;height:50px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;color:#642B3C;background:radial-gradient(circle at 35% 30%,#FFF8E6,#EAD09B);border:1px solid #B78A52;box-shadow:0 8px 20px rgba(80,40,30,.28);animation:cmpPulse 3.2s ease-out infinite}
+.cmp-fab{position:fixed;z-index:2200;inset-inline-start:14px;bottom:calc(98px + env(safe-area-inset-bottom,0px));width:50px;height:50px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;color:#642B3C;background:radial-gradient(circle at 35% 30%,#FFF8E6,#EAD09B);border:1px solid #B78A52;box-shadow:0 8px 20px rgba(80,40,30,.28);animation:cmpPulse 3.2s ease-out infinite}
 .cmp-fab svg{width:25px;height:25px}
 @keyframes cmpPulse{0%{box-shadow:0 8px 20px rgba(80,40,30,.28),0 0 0 0 rgba(183,138,82,.5)}70%,100%{box-shadow:0 8px 20px rgba(80,40,30,.28),0 0 0 14px rgba(183,138,82,0)}}
 @media(min-width:1100px){.cmp-fab{bottom:24px}}
-.cmp-panel{position:fixed;z-index:2250;inset-inline-start:14px;bottom:calc(138px + env(safe-area-inset-bottom,0px));width:min(360px,calc(100vw - 28px));max-height:min(72vh,540px);display:flex;flex-direction:column;direction:rtl;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#FFF9EE,#F6E8D0);border:1px solid rgba(183,138,82,.8);box-shadow:0 24px 60px rgba(40,10,25,.4);opacity:0;transform:translateY(12px) scale(.98);transition:opacity .2s,transform .25s}
+.cmp-panel{position:fixed;z-index:2250;inset-inline-start:14px;bottom:calc(158px + env(safe-area-inset-bottom,0px));width:min(360px,calc(100vw - 28px));max-height:min(72vh,540px);display:flex;flex-direction:column;direction:rtl;border-radius:22px;overflow:hidden;background:linear-gradient(180deg,#FFF9EE,#F6E8D0);border:1px solid rgba(183,138,82,.8);box-shadow:0 24px 60px rgba(40,10,25,.4);opacity:0;transform:translateY(12px) scale(.98);transition:opacity .2s,transform .25s}
 .cmp-panel.is-open{opacity:1;transform:none}
 .cmp-panel[hidden]{display:none}
 @media(min-width:1100px){.cmp-panel{bottom:84px}}
