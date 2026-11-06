@@ -1,0 +1,94 @@
+/* مسار الحياة: طبقة ألوان «حيّة» من دائرة الألوان المعتمدة (عنابي، طوبي، عقيق، بيج). عرض فقط.
+   --vv-wine عنابي | --vv-brick طوبي | --vv-agate عقيق (كارنيليان) | --vv-sand/--vv-beige بيج | --vv-brown بني */
+section#lifepath{--vv-wine:#4A1521;--vv-wine2:#6B2234;--vv-brick:#9C4632;--vv-agate:#C0553A;--vv-gold:#C5A059;--vv-sand:#E7D5B8;--vv-beige:#F1E4CE;--vv-brown:#4A2C20;--vv-ink:#2C2523;--vv-card:#FDFBF7}
+
+/* الخلفية: بيج دافئ بدرجتين مع وهج طوبي وعنابي بدل الكريمي المسطح */
+section#lifepath.lpx.sec:target{background:radial-gradient(900px 420px at 85% -5%,rgba(156,70,50,.22),transparent 70%),radial-gradient(800px 460px at 0% 35%,rgba(107,34,52,.14),transparent 70%),linear-gradient(180deg,#EBDCC3 0%,#F1E4CE 38%,#E9D7BA 100%)!important}
+
+/* الهيرو: شريط عنابي غني بحافة طوبية وذهبية */
+section#lifepath.lpx .lpx-head{position:relative;margin:6px 0 26px!important;padding:clamp(22px,4vw,40px) clamp(18px,4vw,44px)!important;border-radius:24px;background:radial-gradient(520px 260px at 12% 0%,rgba(192,85,58,.55),transparent 70%),linear-gradient(135deg,#4A1521 0%,#6B2234 55%,#8A3A2B 100%)!important;border:1px solid rgba(197,160,89,.65);box-shadow:0 18px 40px rgba(74,21,33,.28),inset 0 0 0 5px rgba(197,160,89,.14);overflow:hidden}
+section#lifepath.lpx .lpx-head h2{color:#FBF3E4!important;text-shadow:0 2px 14px rgba(0,0,0,.25)}
+section#lifepath.lpx .lpx-head .intro{color:#F1E4CE!important}
+section#lifepath.lpx .lpx-head .eyebrow{color:#E8C98A!important}
+section#lifepath.lpx .lpx-head .cpx-orn,section#lifepath.lpx .lpx-head .lpx-orn{color:#E8C98A}
+section#lifepath.lpx .lpx-head .lpj-empty-note{background:rgba(253,251,247,.1)!important;border:1px dashed rgba(232,201,138,.7)!important;color:#F6E9D2!important}
+section#lifepath.lpx .lpx-head .lpj-empty-note svg{color:#E8C98A}
+section#lifepath.lpx .lpx-head svg{color:#E8C98A}
+section#lifepath.lpx .lpx-head [class*=art] svg *{stroke:#E8C98A}
+
+/* التبويبات: العنابي→الطوبي */
+section#lifepath.lpx .lpx-cards{background:rgba(253,251,247,.9)!important;border:1px solid rgba(156,70,50,.35)!important;box-shadow:0 8px 22px rgba(74,21,33,.14)!important}
+section#lifepath.lpx .lp-start-card{color:var(--vv-wine)!important}
+section#lifepath.lpx .lp-start-card.is-active{background:linear-gradient(135deg,#6B2234,#9C4632)!important;color:#FDF3E1!important;border-color:var(--vv-gold)!important;box-shadow:0 8px 20px rgba(156,70,50,.4)!important}
+section#lifepath.lpx .lp-start-card.is-active *{color:#FDF3E1!important}
+
+/* بطاقة الإدخال: عاجية بشريط علوي ملوّن */
+section#lifepath.lpx .lpx-card{background:#FDFBF7!important;border:1px solid rgba(156,70,50,.4)!important;box-shadow:0 18px 40px rgba(74,21,33,.18)!important;position:relative;overflow:hidden}
+section#lifepath.lpx .lpx-card::before{content:"";position:absolute;inset-inline:0;top:0;height:6px;background:linear-gradient(90deg,#4A1521,#9C4632 45%,#C0553A 70%,#C5A059)}
+section#lifepath.lpx .lpx-card .aq-autofill-bar{background:linear-gradient(135deg,#F3E2C8,#EAD3B0)!important;border:1px solid rgba(156,70,50,.35)!important}
+section#lifepath.lpx .lpx-card .btn,section#lifepath.lpx .lpx-card .aq-autofill-btn{background:linear-gradient(135deg,#6B2234 0%,#9C4632 100%)!important;border:1px solid var(--vv-gold)!important;color:#FDF3E1!important}
+section#lifepath.lpx .lpx-card .btn:hover,section#lifepath.lpx .lpx-card .aq-autofill-btn:hover{background:linear-gradient(135deg,#7A2A3E,#C0553A)!important;box-shadow:0 12px 26px rgba(156,70,50,.4)!important}
+section#lifepath.lpx .lpx-fi{background:#F4DFC6!important;border:1px solid rgba(192,85,58,.5)!important;color:var(--vv-agate)!important}
+section#lifepath.lpx .lpx-card input:focus,section#lifepath.lpx .lpx-card select:focus{border-color:var(--vv-agate)!important;box-shadow:0 0 0 4px rgba(192,85,58,.18)!important}
+
+/* النتائج: عناوين عنابية، كروت عاجية بشريط جانبي ملوّن بالتناوب */
+#lifepath #lpresult .lpj-hero h2,#lifepath #lpresult h2{color:var(--vv-wine)!important}
+#lifepath #lpresult .lpj-card,#lifepath #lpresult .lpj-panel,#lifepath #lpresult .lpd-card{background:#FDFBF7!important;border:1px solid rgba(156,70,50,.28)!important;box-shadow:0 8px 22px rgba(74,44,32,.12)!important}
+#lifepath #lpresult .lpj-top .lpj-chip,#lifepath #lpresult .lpj-hmeta>*{background:#FDFBF7!important;border:1px solid rgba(156,70,50,.35)!important}
+#lifepath .lpa-navbtn{background:linear-gradient(135deg,#FDFBF7,#F4E6D0)!important;border:1px solid rgba(156,70,50,.45)!important;color:var(--vv-wine)!important}
+#lifepath .lpa-navbtn:hover{border-color:var(--vv-agate)!important;box-shadow:0 8px 18px rgba(156,70,50,.25)!important}
+#lifepath details.lpa-card{border:1px solid rgba(156,70,50,.28)!important;border-inline-start:5px solid var(--vv-brick)!important;box-shadow:0 6px 18px rgba(74,44,32,.1)!important}
+#lifepath details.lpa-card:nth-of-type(3n+2){border-inline-start-color:var(--vv-agate)!important}
+#lifepath details.lpa-card:nth-of-type(3n){border-inline-start-color:var(--vv-wine2)!important}
+#lifepath details.lpa-card.is-light{border-inline-start-color:#5E8A57!important}
+#lifepath details.lpa-card.is-shadow{border-inline-start-color:#A3263E!important}
+#lifepath details.lpa-card[open]{border-color:var(--vv-agate)!important;box-shadow:0 12px 28px rgba(156,70,50,.22)!important}
+#lifepath details.lpa-card[open]>.lpa-sum{background:linear-gradient(90deg,#F6E7D0,#FDFBF7)!important}
+#lifepath .lpa-sum:hover{background:#F6E7D0!important}
+#lifepath .lpa-sum,#lifepath .lp-sec-title b{color:var(--vv-wine)!important}
+#lifepath .lp-sec-icon,#lifepath .lpa-ic{background:linear-gradient(135deg,#F7E3C9,#EFCFAE)!important;border:1px solid rgba(192,85,58,.55)!important;color:var(--vv-brick)!important}
+#lifepath .lpa-chev{color:var(--vv-agate)!important}
+#lifepath .is-light>.lpa-sum .lpa-ic{background:#E6F0DE!important;color:#3d6a45!important;border-color:#9bb98f!important}
+#lifepath .is-shadow>.lpa-sum .lpa-ic{background:#F8DDE0!important;color:#8a2f3c!important;border-color:#dba0a8!important}
+#lifepath .lpa-badge.is-deep{background:linear-gradient(135deg,#F7E3C9,#F0D2A8)!important;color:var(--vv-brown)!important;border-color:var(--vv-agate)!important}
+
+/* الخط الزمني للمراحل */
+#lifepath #lpresult .lpj-node.on,#lifepath #lpresult .lpj-node.cur,#lifepath #lpresult .lpj-node[aria-current]{background:linear-gradient(135deg,#C0553A,#9C4632)!important;color:#fff!important;border-color:var(--vv-gold)!important;box-shadow:0 0 0 6px rgba(192,85,58,.2)!important}
+#lifepath #lpresult .lpj-tag{background:linear-gradient(135deg,#C0553A,#9C4632)!important;color:#fff!important}
+#lifepath #lpresult .lpj-tl::before,#lifepath #lpresult .lpj-tl::after{background:linear-gradient(90deg,#C0553A,#C5A059)!important}
+
+/* السيو والفوتر الحاضن */
+#lifepath .seo-in{background:linear-gradient(180deg,#F6EAD6,#EFDFC4)!important;border:1px solid rgba(156,70,50,.35)!important}
+#lifepath .seo-in h2{color:var(--vv-wine)!important}
+
+/* رسمة المسار فوق الشريط العنابي بألوان ذهبية */
+section#lifepath .lpx-art{z-index:3!important}
+section#lifepath .lpx-path-art circle[stroke="#B78A52"]{stroke:#E8CD92!important;stroke-opacity:.8!important}
+section#lifepath .lpx-path-art path[stroke="#70263F"]{stroke:#E8A07F!important;stroke-opacity:1!important}
+section#lifepath .lpx-path-art g[fill="#FFFDFA"]{fill:#FBF3E4!important;stroke:#E8CD92!important}
+section#lifepath .lpx-path-art text{fill:#4A1521!important}
+
+/* صفحة النتيجة: ترويسة عنابية، بطاقات بشريط علوي، تبويبات ملوّنة */
+#lifepath #lpresult .lpj-intro{padding:clamp(18px,3vw,30px) clamp(16px,3vw,34px);margin:14px 0 18px;border-radius:22px;background:radial-gradient(420px 200px at 10% 0%,rgba(192,85,58,.5),transparent 70%),linear-gradient(135deg,#4A1521,#6B2234 60%,#8A3A2B);border:1px solid rgba(197,160,89,.65);box-shadow:0 14px 32px rgba(74,21,33,.25),inset 0 0 0 4px rgba(197,160,89,.13)}
+#lifepath #lpresult .lpj-intro h1{color:#FBF3E4!important;margin:0 0 6px}
+#lifepath #lpresult .lpj-intro p{color:#F1E4CE!important;margin:0}
+#lifepath #lpresult :is(.lpd-jr,.lpd-read,.lpd-card){position:relative;overflow:hidden}
+#lifepath #lpresult :is(.lpd-jr,.lpd-read,.lpd-card)::before{content:"";position:absolute;inset-inline:0;top:0;height:5px;background:linear-gradient(90deg,#4A1521,#9C4632 50%,#C0553A 75%,#C5A059)}
+#lifepath #lpresult .lpd-card:nth-child(2)::before{background:linear-gradient(90deg,#C0553A,#C5A059,#9C4632)}
+#lifepath #lpresult .lpd-card:nth-child(3)::before{background:linear-gradient(90deg,#6B2234,#C0553A,#C5A059)}
+#lifepath #lpresult :is(.lpd-jr,.lpd-read,.lpd-card) :is(h3,h2){color:var(--vv-wine)!important}
+#lifepath #lpresult .lpd-sub{color:#5a4338!important}
+#lifepath #lpresult .lpd-tabs{background:#F1E1C6!important;border:1px solid rgba(156,70,50,.35)!important;border-radius:999px;padding:4px}
+#lifepath #lpresult .lpd-tabs button{color:var(--vv-wine)!important;border-radius:999px!important;transition:background .2s,box-shadow .2s}
+#lifepath #lpresult .lpd-tabs button:hover{background:#F8E9D1!important}
+#lifepath #lpresult .lpd-tabs button[aria-selected=true],#lifepath #lpresult .lpd-tabs button.on,#lifepath #lpresult .lpd-tabs button.active{background:linear-gradient(135deg,#6B2234,#9C4632)!important;color:#FDF3E1!important;box-shadow:0 6px 16px rgba(156,70,50,.35)}
+#lifepath #lpresult .lpd-chip{background:linear-gradient(135deg,#FDFBF7,#F6E7D0)!important;border:1px solid rgba(156,70,50,.4)!important}
+#lifepath #lpresult .lpd-ci{background:linear-gradient(135deg,#F7E3C9,#EFCFAE)!important;color:var(--vv-brick)!important;border:1px solid rgba(192,85,58,.5)!important}
+#lifepath #lpresult .lpj-btn.ghost{background:#FDFBF7!important;border:1px solid rgba(156,70,50,.5)!important;color:var(--vv-wine)!important}
+#lifepath #lpresult .lpj-btn.ghost:hover{background:var(--vv-agate)!important;color:#fff!important;border-color:var(--vv-agate)!important}
+#lifepath #lpresult .lpj-node{opacity:1!important;border-color:rgba(156,70,50,.6)!important;color:var(--vv-wine)!important;background:#FDFBF7!important}
+#lifepath #lpresult .lpj-st{opacity:.85}
+#lifepath #lpresult .lpd-bar,#lifepath #lpresult [class*=lpd-d-fg]{stroke:var(--vv-agate)!important}
+#lifepath #lpresult .lpj-crumb,#lifepath #lpresult .lpj-crumb *{color:#6b4a3c!important}
+section#lifepath.lpx .lpx-head .lpj-crumb,section#lifepath.lpx .lpx-head .lpj-crumb *{color:#F1E4CE!important}
+section#lifepath.lpx .lpx-head .lpj-crumb li:last-child{color:#fff!important;font-weight:700}
