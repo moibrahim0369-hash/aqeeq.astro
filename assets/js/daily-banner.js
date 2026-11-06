@@ -175,7 +175,38 @@
       setF('live' + (i + 1), h, true);
     });
   }
-  function refresh() { renderStatic(); renderNumerology(); renderSky(); renderLive(); }
+  /* خريطة حيّة: مواقع الكواكب الحقيقية (خطوط الطول البروجية من محرك Astro) على العجلة الثابتة.
+     الحمل ٠° عند الجهة اليسرى، والأبراج تزيد عكس عقارب الساعة كالخرائط الفلكية التقليدية. */
+  var CH_KEYS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  var CH_COL = { 0: '#9C2F2F', 60: '#3D6B5A', 90: '#9C2F2F', 120: '#3D6B5A', 180: '#9C2F2F' };
+  function pt(r, lon) { var th = (270 - lon) * Math.PI / 180; return [200 + r * Math.sin(th), 200 - r * Math.cos(th)]; }
+  function renderChart() {
+    var gP = document.getElementById('skb-planets'), gA = document.getElementById('skb-aspects');
+    if (!gP || !gA || !engine()) return;
+    var c; try { c = chartAt(Date.now()); } catch (e) { return; }
+    var items = CH_KEYS.map(function (k) { var b = body(c, k); return b ? { k: k, lon: mod(b.lon), retro: !!b.retro, sign: b.sign } : null; }).filter(Boolean);
+    items.sort(function (a, b) { return a.lon - b.lon; });
+    var lastLon = -99, lvl = 0;
+    items.forEach(function (it) { lvl = (it.lon - lastLon < 11) ? (lvl + 1) % 3 : 0; it.r = 138 - lvl * 16; lastLon = it.lon; });
+    var asp = '';
+    for (var i = 0; i < items.length; i++) for (var j = i + 1; j < items.length; j++) {
+      var d = Math.abs(items[i].lon - items[j].lon); if (d > 180) d = 360 - d;
+      var hit = [[60, 4], [90, 5], [120, 6], [180, 6]].filter(function (a) { return Math.abs(d - a[0]) <= a[1]; })[0];
+      if (!hit) continue;
+      var p1 = pt(92, items[i].lon), p2 = pt(92, items[j].lon);
+      asp += '<path d="M' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + 'L' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1) + '" stroke="' + CH_COL[hit[0]] + '" stroke-opacity=".6"/>';
+    }
+    gA.innerHTML = asp;
+    gP.innerHTML = items.map(function (it) {
+      var p = pt(it.r, it.lon), q = pt(92, it.lon), g = GL[it.k] || '';
+      return '<g class="skb-pl"><title>' + planetName(it.k) + ' · ' + signName(it.sign) + ' ' + deg(it.lon) + '°' + (it.retro ? ' · متراجع' : '') + '</title>' +
+        '<path d="M' + q[0].toFixed(1) + ' ' + q[1].toFixed(1) + 'L' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + '" stroke="#4A1521" stroke-width=".8" stroke-opacity=".5"/>' +
+        '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="12" fill="#4A1521" stroke="#C5A059" stroke-width="1"/>' +
+        '<path transform="translate(' + (p[0] - 8).toFixed(1) + ' ' + (p[1] - 8).toFixed(1) + ') scale(.667)" d="' + g + '" stroke="#F6DDA8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+        (it.retro ? '<circle cx="' + (p[0] + 9).toFixed(1) + '" cy="' + (p[1] - 9).toFixed(1) + '" r="5" fill="#C0553A"/><text x="' + (p[0] + 9).toFixed(1) + '" y="' + (p[1] - 6.6).toFixed(1) + '" font-size="7" font-weight="700" text-anchor="middle" fill="#fff" font-family="Cairo,sans-serif">R</text>' : '') + '</g>';
+    }).join('');
+  }
+  function refresh() { renderStatic(); renderNumerology(); renderSky(); renderLive(); renderChart(); }
   refresh();
   /* تحديث البيانات: مؤقت مستقل عن مؤقت الشرائح، كل دقيقة، ويُعيد الرسم فقط عند تغير القيم */
   var dataTimer = setInterval(function () { if (!document.hidden) refresh(); }, 60000);
