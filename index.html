@@ -85,6 +85,7 @@
 <link rel="stylesheet" href="assets/css/sky-banner.css?v=20261106m">
 <link rel="stylesheet" href="assets/css/sky-signs-polish.css?v=20261107c">
 <link rel="stylesheet" href="assets/css/home-hub.css?v=20261107c">
+<link rel="stylesheet" href="assets/css/home-polish2.css?v=20261107a">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -103,6 +104,7 @@
     </a>
     <nav class="tnav nav-links aqh-nav" aria-label="التنقل الرئيسي للمنصة">
       <a href="#home" class="aq-nav-active"><span data-i18n-ar="الرئيسية" data-i18n-en="Home">الرئيسية</span></a>
+      <a href="#sky" class="aqh-nav-sky"><span data-i18n-ar="السماء الآن" data-i18n-en="Sky Now">السماء الآن</span></a>
       <div class="aqh-drop">
         <button type="button" class="aqh-drop-btn" aria-expanded="false" aria-haspopup="true"><span data-i18n-ar="اكتشف ذاتك" data-i18n-en="Discover Yourself">اكتشف ذاتك</span></button>
         <div class="aqh-drop-menu" role="menu">
@@ -121,7 +123,7 @@
     <div class="hd-act aq-header-tools aqh-tools">
       <a class="aqh-invest-ico" href="#invest" aria-label="استثمر في ذاتك"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3 7 9l5 12M15 3l2 6-5 12"/></svg></a>
       <button type="button" class="aqh-burger" id="aqh-burger" aria-label="فتح القائمة" aria-expanded="false" aria-controls="aqh-menu"><span></span><span></span><span></span></button>
-      <a class="aqh-join" href="#account"><span data-i18n-ar="انضم الآن" data-i18n-en="Join now">انضم الآن</span></a>
+      <a class="aqh-join" href="#account"><svg class="aqh-join-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.1 5.2 5.4.4-4.1 3.500 1.300 5.3L12 14.5 7.300 17.400l1.300-5.3L4.500 8.600l5.4-.4z"/></svg><span data-i18n-ar="انضم الآن" data-i18n-en="Join now">انضم الآن</span></a>
       <button type="button" class="aqh-icon" data-aqh-search aria-label="بحث في الموقع" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button>
       <a class="aqh-icon aqh-icon-account" href="#account" aria-label="حسابي / تسجيل الدخول" title="حسابي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20c1-4 4-6 7.5-6s6.500 2 7.5 6"/></svg></a>
       <button type="button" class="aq-lang-switch" id="aq-lang-toggle" title="تغيير اتجاه ولغة الواجهة">AR / EN</button>
@@ -163,7 +165,7 @@
           <a href="#chart" class="aq-btn-burgundy aqh-cta" data-i18n-ar="ابدأ رحلتك" data-i18n-en="Begin Your Journey"><span>ابدأ رحلتك</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
           <a href="#invest" class="aqh-cta aqh-cta-gold" id="aqh-invest-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3 7 9l5 12M15 3l2 6-5 12"/></svg><span data-i18n-ar="استثمر في ذاتك" data-i18n-en="Invest in Yourself">استثمر في ذاتك</span></a>
         </div>
-        <p class="aqh-invest-line" data-i18n-ar="نفسك غالية، لا تحرمها من الوعي" data-i18n-en="You are worth it. Do not deny yourself awareness.">نفسك غالية، لا تحرمها من الوعي</p>
+        <p class="aqh-invest-line" data-i18n-ar="نفسك غالية، لا تحرمها من معرفتك" data-i18n-en="You are worth it. Do not deny yourself knowledge.">نفسك غالية، لا تحرمها من معرفتك</p>
         <ul class="aqh-values" aria-label="ما تمنحه الرحلة">
           <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 26C6 12 14 6 26 6c0 12-6 20-20 20ZM6 26 18 14"/></svg><span>وعي أعمق</span></li>
           <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="16" cy="16" r="5.5"/><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M25 7l-3 3M10 22l-3 3"/></svg><span>قرارات أكثر اتزانًا</span></li>
@@ -178,29 +180,29 @@
   <div class="aqh-fuse" id="aqh-fuse">
     <div class="aqh-wrap aqh-systems-shell" id="explore-systems">
       <div class="aqh-systems aqh-stagger" id="services-catalog">
-        <a class="aqh-system aqh-reveal" href="#chart" id="cat-discover">
+        <a class="aqh-system aqh-reveal is-chart" href="#chart" id="cat-discover">
           <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><ellipse cx="48" cy="48" rx="42" ry="22" transform="rotate(-28 48 48)"/><ellipse cx="48" cy="48" rx="30" ry="15" transform="rotate(-28 48 48)" stroke-opacity=".6"/><circle cx="48" cy="48" r="8" fill="currentColor" fill-opacity=".85"/><circle cx="19" cy="62" r="2.6" fill="currentColor"/><circle cx="79" cy="33" r="2.6" fill="currentColor"/></svg></span>
-          <span class="aqh-system-body"><h3>الخريطة الفلكية</h3><p>تحليل شامل لخريطتك الفلكية يكشف لك شخصيتك، مواهبك وتحدياتك.</p></span>
+          <span class="aqh-system-body"><h3>الخريطة الفلكية</h3><p>اعرف شخصيتك ونقاط قوتك من موضع الكواكب لحظة ميلادك.</p></span>
           <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
         </a>
-        <a class="aqh-system aqh-reveal" href="#lifepath">
+        <a class="aqh-system aqh-reveal is-path" href="#lifepath">
           <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M6 74 34 24l18 28 10-14 28 36Z" fill="currentColor" fill-opacity=".16"/><path d="M34 24l8 14-8 6-6-10M62 38l6 10-8-2" stroke-opacity=".7"/><path d="M10 86c18-8 34 6 52-2s22-6 26-4" stroke-linecap="round"/></svg></span>
-          <span class="aqh-system-body"><h3>مسار الحياة</h3><p>افهم رحلتك، محطاتك، ودروسك الكارمية لتسير في اتجاهك الحقيقي.</p></span>
+          <span class="aqh-system-body"><h3>مسار الحياة</h3><p>اكتشف رقم مسارك ومحطات رحلتك والاتجاه الذي يناسبك.</p></span>
           <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
         </a>
         <a class="aqh-system aqh-reveal" href="#matrix">
           <span class="aqh-system-ico"><svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M48 14 82 48 48 82 14 48Z"/><path d="M48 14v68M14 48h68" stroke-opacity=".7"/><circle cx="48" cy="14" r="7" fill="#fbf8f2"/><circle cx="82" cy="48" r="7" fill="#fbf8f2"/><circle cx="48" cy="82" r="7" fill="#fbf8f2"/><circle cx="14" cy="48" r="7" fill="#fbf8f2"/><circle cx="48" cy="48" r="7" fill="#fbf8f2"/></svg></span>
-          <span class="aqh-system-body"><h3>مصفوفة القدر</h3><p>اكتشاف الأنماط والطاقات التي تشكل حياتك من خلال تاريخ ميلادك.</p></span>
+          <span class="aqh-system-body"><h3>مصفوفة القدر</h3><p>اقرأ مصفوفة قدرك لتعرف طاقاتك ومواهبك ودروسك من تاريخ ميلادك.</p></span>
           <span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span>
         </a>
       </div>
 
       <div class="aqh-tools aqh-stagger" id="aqh-tools">
-        <a class="aqh-tool aqh-reveal" href="#signs"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5 5M33 33l5 5M10 38l5-5M33 15l5-5"/></svg></span><span class="aqh-tool-t"><b>توقعات برجك</b><small>اعرف توقعات برجك الآن</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-        <a class="aqh-tool aqh-reveal" href="#individual"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="16" r="8"/><path d="M8 42c1.500-9 8-14 16-14s14.500 5 16 14"/><path d="M24 11l1.200 2.600 2.800.3-2.100 1.900.6 2.800-2.500-1.400-2.500 1.400.6-2.800-2.100-1.900 2.800-.3z" stroke-width="1.2"/></svg></span><span class="aqh-tool-t"><b>الحسابات الفردية</b><small>خريطتك، مسار حياتك، ومصفوفة قدرك</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-reveal" href="#signs"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l5 5M33 33l5 5M10 38l5-5M33 15l5-5"/></svg></span><span class="aqh-tool-t"><b>برجك الآن</b><small>اكتشف الآن</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-reveal" href="#individual"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="16" r="8"/><path d="M8 42c1.500-9 8-14 16-14s14.500 5 16 14"/><path d="M24 11l1.200 2.600 2.800.3-2.100 1.900.6 2.800-2.500-1.400-2.500 1.400.6-2.800-2.100-1.900 2.800-.3z" stroke-width="1.2"/></svg></span><span class="aqh-tool-t"><b>خرائطك الشخصية</b><small>اعرف خريطتك الفلكية والقدرية والمسارية</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
         <a class="aqh-tool aqh-reveal" href="#relationships"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="24" r="12"/><circle cx="30" cy="24" r="12" stroke-opacity=".75"/></svg></span><span class="aqh-tool-t"><b>التوافق</b><small>اعرف التوافق بينك وبينه</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
         <a class="aqh-tool aqh-reveal" data-soon="مكتبة عقيق قيد التجهيز" href="#dream-library"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 12C19 8 11 8 5 11v27c6-3 14-3 19 1 5-4 13-4 19-1V11c-6-3-14-3-19 1ZM24 12v27"/></svg></span><span class="aqh-tool-t"><b>مكتبة عقيق</b><small>قيد التجهيز</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-        <a class="aqh-tool aqh-tool-login aqh-reveal" id="aqh-login-tool" href="#account"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="24" r="8"/><path d="M25 24h18M36 24v7M42 24v5"/></svg></span><span class="aqh-tool-t"><b>تسجيل الدخول</b><small>احفظ قراءاتك واستلم التنبيهات</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-tool-login aqh-reveal" id="aqh-login-tool" href="#account"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="24" r="8"/><path d="M25 24h18M36 24v7M42 24v5"/></svg></span><span class="aqh-tool-t"><b>حسابي</b><small>سجّل الآن لتعرف أكثر عن نفسك، أنت مميز</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
       </div>
       <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
       <div class="grp hidden-feature" id="cat-tarot" hidden style="display:none !important;"></div>
@@ -407,17 +409,10 @@
           <button type="button" class="aqh-car-btn aqh-car-next" aria-label="المحتوى التالي" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
           <div class="aqh-car-msg" role="status" hidden></div>
         </div>
+        <div class="aqh-row2" id="aqh-row2" hidden><div class="aqh-track aqh-track2" id="aqh-track2" tabindex="0" role="region" aria-label="اختيارات من المحتوى — مرّر أفقيًا"></div></div>
       </section>
     </div>
   </div>
-
-  <!-- محفوظاتك ونشاطك -->
-  <section class="aqh-mine" id="aqh-mine" aria-labelledby="aqh-mine-h">
-    <div class="aqh-wrap aqh-mine-grid">
-      <article class="aqh-mcard" id="aqh-saved"><header><h3 id="aqh-mine-h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>قراءاتك المحفوظة</h3><a href="#account">عرض الكل</a></header><div class="aqh-mlist" data-list="saved"></div></article>
-      <article class="aqh-mcard" id="aqh-activity"><header><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>نشاطك الأخير</h3></header><div class="aqh-mlist" data-list="activity"></div></article>
-    </div>
-  </section>
 
 
   <!-- 7. الأقسام الختامية -->
@@ -1344,7 +1339,7 @@
 <section class="sec alt rhub" id="individual" aria-labelledby="ind-h"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="aq-section-topbar"><a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a></div>
-<div class="center rh-head"><span class="rh-eyebrow">INDIVIDUAL READINGS</span><h2 id="ind-h">الحسابات الفردية</h2><p class="intro">كل أدوات قراءة نفسك في مكان واحد: ادخل تاريخ ميلادك مرة واحدة واختر القراءة التي تناسبك.</p></div>
+<div class="center rh-head"><span class="rh-eyebrow">INDIVIDUAL READINGS</span><h2 id="ind-h">خرائطك الشخصية</h2><p class="intro">كل أدوات قراءة نفسك في مكان واحد: ادخل تاريخ ميلادك مرة واحدة واختر القراءة التي تناسبك.</p></div>
 <div class="rh-grid">
 <a class="rh-card" href="#chart"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="7"/><path d="M24 7v6M24 35v6M7 24h6M35 24h6"/></svg></span><h3>الخريطة الفلكية</h3><p>خريطة ميلادك الكاملة: الكواكب والبيوت والزوايا وقراءتها بالتفصيل.</p><span class="rh-go">احسب خريطتي <b aria-hidden="true">←</b></span></a>
 <a class="rh-card" href="#lifepath"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="38" r="4"/><circle cx="36" cy="10" r="4"/><path d="M12 34v-6a8 8 0 0 1 8-8h8a8 8 0 0 0 8-8v-2"/></svg></span><h3>مسار الحياة</h3><p>محطات رحلتك ودروسك الكارمية والاتجاه الذي يناسبك الآن.</p><span class="rh-go">اكتشف مساري <b aria-hidden="true">←</b></span></a>
@@ -1387,10 +1382,11 @@
 <div class="wrap">
 <div class="brand"><img class="aq-foot-mark" src="assets/images/brand/logo-mark-160.png" width="44" height="44" alt="" aria-hidden="true" decoding="async"><span data-brand=""></span></div>
 <p class="tg" data-tagline=""></p>
-<p>القراءات للتأمل والترفيه، وهي مش بديل عن استشارة طبية أو قانونية أو مالية.</p>
 <div class="aq-soc aq-soc-lt" role="list" aria-label="تابع محمد ابراهيم"><a role="listitem" href="https://www.instagram.com/mohamed.ibrahim.astro" target="_blank" rel="noopener noreferrer" aria-label="تابع محمد ابراهيم على إنستجرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8" fill="currentColor"/></svg><span>إنستجرام</span></a><a role="listitem" href="https://www.facebook.com/share/1CAhkAJ2NC/" target="_blank" rel="noopener noreferrer" aria-label="تابع محمد ابراهيم على فيسبوك"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 8.5h2.5V5H14c-2.2 0-3.5 1.5-3.5 3.6V11H8v3.4h2.5V21H14v-6.6h2.5l.5-3.4H14V9.2c0-.5.2-.7.6-.7z"/></svg><span>فيسبوك</span></a><a role="listitem" href="https://wa.me/message/BWFSU4ZT25WKA1" target="_blank" rel="noopener noreferrer" aria-label="تواصل مع محمد ابراهيم عبر واتساب"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/><path d="M9.2 9c.2 2.6 2.4 4.8 5 5l1-1.2-1.8-.9-.7.6c-.8-.3-1.5-1-1.8-1.8l.6-.7-.9-1.8z"/></svg><span>واتساب</span></a></div>
 <div class="foot-act"><button class="btn ghost sm" id="share-site" type="button"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4.2M8.6 13.4l6.8 4.2"/></svg><span>شارك الموقع</span></button><button class="btn ghost sm" hidden id="install-app" type="button"><span>ثبّت التطبيق</span></button></div>
-<p class="copy">© 2026 عقيق، محمد ابراهيم. جميع الحقوق محفوظة. كل النصوص والقراءات والتصاميم والحسابات في الموقع ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها أو استخدامها في تطبيقات أو مواقع أخرى بدون إذن كتابي.</p>
+<div class="foot-about"><h4>نبذة عن عقيق أسترو</h4><p>عقيق أسترو منصة عربية تجمع الفلك والأرقام والرموز لتساعدك على قراءة خريطتك الداخلية بلغة بسيطة قريبة منك. نقدّم خريطة الميلاد الفلكية، ومصفوفة القدر، ومسار الحياة، وتوافق العلاقات، وتوقعات الأبراج والسماء الآن، مع مقالات تشرح كل رمز ومعنى خطوة بخطوة.</p></div>
+<p class="foot-dis">القراءات للتأمل والترفيه، وليست بديلاً عن الاستشارة النفسية أو الطبية أو القانونية أو المالية.</p>
+<p class="copy">© 2026 عقيق، محمد ابراهيم. جميع الحقوق والنشر والتصميم محفوظة. كل النصوص والقراءات والتصاميم والحسابات في الموقع ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها أو استخدامها في تطبيقات أو مواقع أخرى بدون إذن كتابي.</p>
 </div>
 </footer>
 <nav aria-label="التنقل السفلي" class="bnav" id="aqn-bnav">
@@ -5146,7 +5142,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/hero-rotate.js?v=20261107g" defer></script>
 <script src="assets/js/nav-unified.js?v=20261108b" defer></script>
 <script src="assets/js/home-v2.js?v=20261106e" defer></script>
-<script src="assets/js/home-hub.js?v=20261107a" defer></script>
+<script src="assets/js/home-hub.js?v=20261107b" defer></script>
 <script src="assets/js/featured-content.js?v=20261106b" defer></script>
 <script src="assets/js/content-links.js?v=20261106a" defer></script>
 <script src="assets/js/natal-view.js?v=20261106b" defer></script>

@@ -5,7 +5,7 @@
   var ACT_KEY = 'aqeeq_activity_v1';
   var LABELS = {
     chart: 'الخريطة الفلكية', lifepath: 'مسار الحياة', matrix: 'مصفوفة القدر', compat: 'خريطة التوافق',
-    relationships: 'مركز التوافق', individual: 'الحسابات الفردية', signs: 'صفات وتوقعات الأبراج',
+    relationships: 'مركز التوافق', individual: 'خرائطك الشخصية', signs: 'صفات وتوقعات الأبراج',
     sky: 'المشهد الفلكي الآن', world: 'الخريطة الفلكية العالمية', 'astro-maps': 'العبور والتقويم الفلكي',
     'featured-content': 'المحتوى المميز', 'lifepath-compat': 'توافق مسارات الحياة'
   };
@@ -35,8 +35,8 @@
     var a = document.getElementById('aqh-login-tool'); if (!a) return;
     var on = loggedIn(), b = a.querySelector('b'), s = a.querySelector('small');
     a.classList.toggle('is-in', on);
-    if (b) b.textContent = on ? 'حسابي' : 'تسجيل الدخول';
-    if (s) s.textContent = on ? 'قراءاتك المحفوظة وبياناتك' : 'احفظ قراءاتك واستلم التنبيهات';
+    if (b) b.textContent = 'حسابي';
+    if (s) s.textContent = on ? 'قراءاتك المحفوظة وبياناتك' : 'سجّل الآن لتعرف أكثر عن نفسك، أنت مميز';
   }
 
   /* ---------- سجل النشاط ---------- */
