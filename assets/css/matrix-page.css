@@ -276,3 +276,93 @@
 @media(min-width:1025px) and (max-width:1300px){#matrix.mxp .mxp-bust{width:46%}}
 @media(min-width:1025px){#matrix.mxp .mxp-bust{width:44%!important;height:470px!important;object-position:27% 6%!important;
  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 60%,transparent 90%),linear-gradient(180deg,#000 0,#000 74%,transparent 100%)!important;mask-image:linear-gradient(90deg,#000 0,#000 60%,transparent 90%),linear-gradient(180deg,#000 0,#000 74%,transparent 100%)!important}}
+/* ===== نسخة الكريمي العميق + خريطتنا الأصلية ===== */
+#matrix.mxp{--ah:430px;--hh:66px;
+ background:
+  radial-gradient(520px 380px at 8% 14%,rgba(214,150,140,.38),transparent 70%),
+  radial-gradient(560px 420px at 96% 30%,rgba(240,200,120,.42),transparent 70%),
+  radial-gradient(640px 460px at 50% 78%,rgba(205,140,130,.28),transparent 70%),
+  radial-gradient(circle at 18% 22%,rgba(168,128,60,.55) 0 1.6px,transparent 2.4px) 0 0/230px 210px,
+  radial-gradient(circle at 70% 60%,rgba(168,128,60,.45) 0 1.2px,transparent 2px) 0 0/310px 270px,
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1500' height='1100'%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0032 .006' numOctaves='5' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .82 0 0 0 0 .52 0 0 0 0 .5 0 0 0 2.2 -.95'/%3E%3C/filter%3E%3Crect width='1500' height='1100' filter='url(%23c)'/%3E%3C/svg%3E") center 380px/1500px 1100px repeat-y,
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
+  linear-gradient(180deg,#F1E4C9 0,#EBDABA 30%,#E5D0AB 62%,#EADAB9 100%)!important;
+ background-attachment:local!important;background-repeat:no-repeat,no-repeat,no-repeat,repeat,repeat,repeat-y,repeat,no-repeat!important}
+#matrix.mxp .mxp-art{display:block!important;top:var(--hh)!important;height:var(--ah)!important;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 60%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 60%,transparent 100%)}
+#matrix.mxp .mxp-art::before,#matrix.mxp .mxp-art::after{display:none!important}
+#matrix.mxp .mxp-mnt{position:absolute;inset:0;width:100%;height:100%;display:block}
+#matrix.mxp .mxp-head{display:grid!important;grid-template-columns:1fr;justify-items:center;padding-top:0!important;gap:0}
+#matrix.mxp .mxp-head::before{display:none!important}
+#matrix.mxp .mxp-mapbox{width:min(66vw,250px);margin:2px auto 0;animation:mxBob 7s ease-in-out infinite}
+@keyframes mxBob{50%{transform:translateY(-6px)}}
+#matrix.mxp .mxp-map{display:block;width:100%;height:auto;overflow:visible}
+#matrix.mxp .mx-dial{transform-origin:400px 400px;animation:mxSpin2 240s linear infinite}
+@keyframes mxSpin2{to{transform:rotate(360deg)}}
+#matrix.mxp .mx-core{transform-origin:400px 400px;animation:mxPl2 4s ease-in-out infinite}
+@keyframes mxPl2{50%{transform:scale(1.07)}}
+#matrix.mxp .mxp-htext{display:flex;flex-direction:column;align-items:center;margin-top:4px}
+#matrix.mxp .mxp-head .eyebrow{order:0;color:#8a6a30!important;text-shadow:none;letter-spacing:.4em;margin:6px 0 0!important}
+#matrix.mxp .mxp-head h2{order:1;-webkit-text-fill-color:#5a1f33!important;color:#5a1f33!important;text-shadow:0 2px 0 rgba(255,246,222,.8),0 8px 22px rgba(140,70,60,.18);font-weight:700!important;font-size:clamp(2.2rem,9.4vw,3.6rem)!important;margin:0!important}
+#matrix.mxp .mxp-head .mxp-orn{order:2;display:flex!important;align-items:center;justify-content:center;gap:10px;width:auto;margin:2px auto 8px;color:#B08A46}
+#matrix.mxp .mxp-head .mxp-orn i{height:1px;width:clamp(50px,18vw,120px);background:linear-gradient(90deg,transparent,currentColor)}
+#matrix.mxp .mxp-head .mxp-orn i:last-child{transform:scaleX(-1)}
+#matrix.mxp .mxp-head .mxp-orn b{width:9px;height:9px;background:currentColor;transform:rotate(45deg)}
+#matrix.mxp .mxp-head .intro{order:3;color:#3a2a2c!important;text-shadow:none;font-weight:500}
+#matrix.mxp .mxp-wrap{padding-top:8px!important}
+/* الكارت */
+#matrix.mxp .mxp-card{margin-top:clamp(22px,4vw,30px)!important;background:radial-gradient(120% 90% at 50% 0%,rgba(255,252,240,.95),transparent 72%),linear-gradient(180deg,#FCF5E4,#F4E7CC)!important;
+ box-shadow:0 0 0 5px rgba(255,246,222,.75),0 0 0 6.5px #d9b979,0 0 50px rgba(230,170,110,.4),0 28px 56px rgba(110,50,40,.28)!important}
+@media(min-width:900px){
+ #matrix.mxp .mxp-card{max-width:1000px;display:grid;grid-template-columns:repeat(3,1fr);gap:0 22px;align-items:end;padding:34px 34px 28px!important}
+ #matrix.mxp .mxp-card>.mxp-moons{grid-column:auto}
+ #matrix.mxp .mxp-card .field{margin:0!important}
+ #matrix.mxp .mxp-card .ferr,#matrix.mxp .mxp-card .btn{grid-column:1/-1}
+ #matrix.mxp .mxp-card::before,#matrix.mxp .mxp-card::after{display:none!important}}
+/* المزايا */
+#matrix.mxp .mxp-fico{background:radial-gradient(circle at 35% 30%,#fffaf0,#f1deb4)}
+#matrix.mxp .mxp-feats b{color:#4a1a2b}
+@media(max-width:759px){
+ #matrix.mxp .mxp-feats{grid-template-columns:1fr;gap:12px}
+ #matrix.mxp .mxp-feats li{grid-template-columns:auto 1fr;grid-template-areas:"i t" "i s";justify-items:start;text-align:start;align-items:center;column-gap:14px;padding:10px 14px;border-radius:18px;background:linear-gradient(180deg,rgba(255,250,236,.85),rgba(246,232,205,.85));border:1px solid rgba(185,154,91,.45);box-shadow:0 8px 20px rgba(120,70,50,.12)}
+ #matrix.mxp .mxp-feats .mxp-fico{grid-area:i;width:56px;height:56px}
+ #matrix.mxp .mxp-feats b{grid-area:t}#matrix.mxp .mxp-feats small{grid-area:s;max-width:none}}
+/* ماذا تكشف: ورق عميق بدل النبيتي */
+#matrix.mxp .mxp-rev-panel{background:radial-gradient(90% 120% at 0% 100%,rgba(214,140,120,.28),transparent 60%),radial-gradient(70% 90% at 100% 0%,rgba(244,200,120,.4),transparent 60%),linear-gradient(160deg,#F7ECD2,#ECD9B2)!important;
+ border:1.5px solid #c9a35d!important;box-shadow:0 0 0 5px rgba(255,246,222,.7),0 0 0 6.5px #d9b979,0 24px 50px rgba(110,60,40,.25)!important;overflow:hidden}
+#matrix.mxp .mxp-rev-panel::after{content:"";position:absolute;inset-inline-end:-70px;bottom:-70px;width:260px;height:260px;border-radius:50%;opacity:.5;pointer-events:none;
+ background:radial-gradient(circle,transparent 58%,rgba(176,138,70,.55) 59% 60%,transparent 61%),radial-gradient(circle,transparent 40%,rgba(176,138,70,.4) 41% 42%,transparent 43%),radial-gradient(circle,transparent 24%,rgba(176,138,70,.35) 25% 26%,transparent 27%)}
+#matrix.mxp .mxp-rev-panel h3{color:#4a1a2b!important;background:rgba(255,248,230,.6)!important;border-color:#c9a35d!important}
+#matrix.mxp .mxp-rev-panel h3 svg{color:#B08A46!important}
+#matrix.mxp .mxp-checks li{color:#2f2326!important}
+#matrix.mxp .mxp-checks li::before{border-color:#B08A46!important;background-color:rgba(255,248,230,.7)!important;filter:none}
+#matrix.mxp .mxp-badge{background:linear-gradient(160deg,#F4DFA6,#CFA24F)!important;color:#4a1a2b!important}
+#matrix.mxp .mxp-badge b,#matrix.mxp .mxp-badge small{color:#4a1a2b!important}
+@media(min-width:900px){#matrix.mxp{--ah:520px;--hh:73px}
+ #matrix.mxp .mxp-head{grid-template-columns:minmax(300px,420px) 1fr;justify-items:stretch;align-items:center;gap:40px;max-width:1000px;margin:0 auto;padding-top:8px!important}
+ #matrix.mxp .mxp-mapbox{width:100%;margin:0}
+ #matrix.mxp .mxp-htext{align-items:flex-start;text-align:start;margin:0;grid-column:2;grid-row:1}
+ #matrix.mxp .mxp-mapbox{grid-column:1;grid-row:1}
+ #matrix.mxp .mxp-head .intro{text-align:start!important;margin:0!important}
+ #matrix.mxp .mxp-head .eyebrow,#matrix.mxp .mxp-head h2{text-align:start!important}
+ #matrix.mxp .mxp-head .mxp-orn{margin-inline:0}}
+@media(prefers-reduced-motion:reduce){#matrix.mxp .mx-dial,#matrix.mxp .mx-core,#matrix.mxp .mxp-mapbox{animation:none}}
+#matrix.mxp:has(#mresult:not([hidden])){background:linear-gradient(rgba(244,235,215,.8),rgba(244,235,215,.88)),url("../images/home/matrix-sunset.jpg") center top/cover no-repeat!important;background-attachment:local!important}
+#matrix.mxp .mxp-head .eyebrow{width:auto!important;text-align:start!important;padding-inline-start:0}
+#matrix.mxp{background:
+  radial-gradient(520px 380px at 8% 14%,rgba(226,160,120,.26),transparent 70%),
+  radial-gradient(560px 420px at 96% 30%,rgba(240,200,120,.42),transparent 70%),
+  radial-gradient(640px 460px at 50% 78%,rgba(222,160,110,.22),transparent 70%),
+  radial-gradient(circle at 18% 22%,rgba(168,128,60,.55) 0 1.6px,transparent 2.4px) 0 0/230px 210px,
+  radial-gradient(circle at 70% 60%,rgba(168,128,60,.45) 0 1.2px,transparent 2px) 0 0/310px 270px,
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1500' height='1100'%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0032 .006' numOctaves='5' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .72 0 0 0 1.7 -.75'/%3E%3C/filter%3E%3Crect width='1500' height='1100' filter='url(%23c)'/%3E%3C/svg%3E") center 380px/1500px 1100px repeat-y,
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
+  linear-gradient(180deg,#F1E4C9 0,#EBDABA 30%,#E5D0AB 62%,#EADAB9 100%)!important;
+ background-attachment:local!important;background-repeat:no-repeat,no-repeat,no-repeat,repeat,repeat,repeat-y,repeat,no-repeat!important}
+#matrix.mxp:has(#mresult:not([hidden])){background:linear-gradient(rgba(244,235,215,.8),rgba(244,235,215,.88)),url("../images/home/matrix-sunset.jpg") center top/cover no-repeat!important;background-attachment:local!important}
+@media(min-width:900px){
+ #matrix.mxp .mxp-htext{grid-column:1!important;align-items:flex-start}
+ #matrix.mxp .mxp-mapbox{grid-column:2!important}
+ #matrix.mxp .mxp-head{grid-template-columns:1fr minmax(300px,420px)!important}}
+#matrix.mxp .mxp-checks li::before{background-color:#C9A35D!important;border-color:#B08A46!important}
+#matrix.mxp .mxp-rev-panel{overflow:visible!important}
+#matrix.mxp .mxp-rev-panel::after{inset-inline-end:14px;bottom:14px;width:190px;height:190px;opacity:.38}
