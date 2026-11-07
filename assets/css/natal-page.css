@@ -87,7 +87,7 @@ section#chart.ntx.sec,section#chart.ntx.sec:target{background:
  radial-gradient(500px 360px at 5% 8%,rgba(228,170,130,.16),transparent 70%),radial-gradient(520px 380px at 97% 20%,rgba(240,205,130,.22),transparent 70%),
  radial-gradient(260px 260px at 4% 78%,rgba(190,170,150,.35),transparent 70%),radial-gradient(240px 240px at 98% 84%,rgba(190,170,150,.3),transparent 70%),
  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
- linear-gradient(180deg,#F9F3E8,#F5ECDD 60%,#F2E8D6)!important;background-attachment:local!important}
+ linear-gradient(180deg,#F3EADC 0,#F7F1E6 35%,#F7F3EC 100%)!important;background-attachment:local!important}
 section#chart.ntx .ntx-wrap{display:grid;grid-template-columns:1fr 46%;column-gap:6px;align-items:start}
 section#chart.ntx .ntx-wrap>*{grid-column:1/-1}
 section#chart.ntx .ntx-art{position:relative;grid-column:2;grid-row:1;inset:auto;left:auto;width:100%;aspect-ratio:1;z-index:1;margin:8px 0 0}

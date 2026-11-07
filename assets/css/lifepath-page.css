@@ -136,7 +136,7 @@ html[dir=rtl] #lifepath .lpx-compat .syn-rel select{padding-right:44px!important
 section#lifepath.lpx{background:
  radial-gradient(500px 360px at 4% 10%,rgba(228,170,130,.18),transparent 70%),radial-gradient(520px 380px at 98% 26%,rgba(240,205,130,.26),transparent 70%),
  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
- linear-gradient(180deg,#F8F1E4,#F3E8D6 60%,#F1E5D1)!important;background-attachment:local!important}
+ linear-gradient(180deg,#F3EADC 0,#F7F1E6 35%,#F7F3EC 100%)!important;background-attachment:local!important}
 .lpx-art{position:absolute;inset:0 0 auto 0;height:300px;pointer-events:none;overflow:hidden;z-index:0}
 .lpx-crescent{position:absolute;width:130px;inset-inline-end:2%;top:26px;opacity:.8}
 .lpx-t1,.lpx-t2{display:none;position:absolute;font-size:.9rem;line-height:1.9;color:#a08550}
