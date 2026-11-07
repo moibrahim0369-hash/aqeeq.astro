@@ -165,3 +165,21 @@
 #matrix .aqm-tab{flex:1;text-align:center;border-radius:999px!important;border:0!important;padding:10px 6px!important;color:#5a4a42!important;font-weight:600}
 #matrix .aqm-tab.is-active{background:linear-gradient(135deg,#7a3449,#4a1a2b)!important;color:#fff!important;box-shadow:0 4px 12px rgba(74,26,43,.3)}
 #matrix .aqm-tab::after,#matrix .aqm-tab::before{display:none!important}
+
+/* ===== نسخة 3: بلا شعار، رأس مضغوط، خلفية غروب بأقواس رخامية لعمق بصري ===== */
+#matrix.mxp{--ah:0px;
+  background:linear-gradient(rgba(244,235,215,.74),rgba(244,235,215,.84)),url("../images/home/matrix-sunset.jpg") center top/cover no-repeat!important}
+#matrix.mxp .mxp-art{display:none!important}
+#matrix.mxp .mxp-head{padding-top:10px!important;margin-bottom:0}
+#matrix.mxp .mxp-head h2{font-size:clamp(1.7rem,7vw,2.5rem)!important;margin:2px 0 2px!important}
+#matrix.mxp .mxp-head .intro{font-size:clamp(.86rem,3.4vw,.98rem)!important;line-height:1.75!important}
+#matrix.mxp .mxp-orn{margin:0 auto 6px}
+#matrix.mxp .mxp-card{margin-top:clamp(16px,3.5vw,24px)!important;background:rgba(255,255,255,.96)!important;backdrop-filter:blur(2px)}
+#matrix.mxp .mxp-card{box-shadow:0 0 0 5px rgba(244,235,215,.85),0 0 0 6px rgba(185,154,91,.55),0 30px 64px rgba(74,26,43,.28)!important}
+#matrix.mxp .mxp-feats li,#matrix.mxp .mxp-feats small{color:#3d3236}
+#matrix.mxp:has(#mresult:not([hidden])){background:linear-gradient(rgba(244,235,215,.8),rgba(244,235,215,.88)),url("../images/home/matrix-sunset.jpg") center top/cover no-repeat!important}
+/* نسخة 3 - تنظيف */
+#matrix.mxp .mxp-head .eyebrow{display:none!important}
+#matrix.mxp .mxp-head{padding-top:4px!important}
+#matrix.mxp .mxp-head .intro{margin-top:4px!important}
+#matrix.mxp{background:linear-gradient(rgba(247,238,216,.80),rgba(247,238,216,.88)),url("../images/home/matrix-sunset.jpg") center top/cover no-repeat!important}
