@@ -162,3 +162,6 @@ html body #home.aqh .aqh-system:active,html body #home.aqh .aqh-tool:active,html
 html body #home.aqh .aqh-band-arts .aqh-article p.aqh-hook,html body #home.aqh .aqh-band-arts .aqh-article p.aqh-intro{display:-webkit-box!important;margin:0!important}
 html body #home.aqh .aqh-band-arts .aqh-article{padding-bottom:62px!important}
 html body #home.aqh .aqh-band-arts .aqh-article p.aqh-intro{font-size:.86rem;line-height:1.75}
+
+/* ازاحة نص الهيرو لليمين بعيدا عن التمثال (ديسكتوب/تابلت فقط) */
+@media(min-width:761px){html body #home.aqh .aqh-hero{--hs:clamp(46px,18vw - 10px,220px)!important}}
