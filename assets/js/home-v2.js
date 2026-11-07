@@ -350,13 +350,13 @@
     function fmt(a) { var parts = []; if (a.category) parts.push(esc(a.category)); if (a.date) parts.push(esc(a.date)); if (a.readMinutes) parts.push(a.readMinutes + ' دقائق قراءة'); return parts.join(' · '); }
     function card(a) {
       return '<article class="aqh-article" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || '') + '" loading="lazy" decoding="async" draggable="false">' +
-        '<div class="aqh-article-txt"><time>' + fmt(a) + '</time><h3><a class="aqh-article-link" href="#featured-content/' + esc(a.slug) + '" data-slug="' + esc(a.slug) + '">' + esc(a.title) + '</a></h3><p>' + esc(a.intro) + '</p></div>' +
+        '<div class="aqh-article-txt"><time>' + fmt(a) + '</time><h3><a class="aqh-article-link" href="#featured-content/' + esc(a.slug) + '" data-slug="' + esc(a.slug) + '">' + esc(a.title) + '</a></h3>' + (a.hook ? '<p class="aqh-hook">' + esc(a.hook) + '</p>' : '') + '<p class="aqh-intro">' + esc(a.intro) + '</p></div>' +
         '<span class="aqh-go" aria-hidden="true">' + ARROW + '</span></article>';
     }
     function load() {
       state('loading'); track.innerHTML = '<div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div><div class="aqh-article-skel" aria-hidden="true"><i></i><i></i><i class="s"></i></div>';
       fetch(SRC, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (j) {
-        ARTICLES = ((j && j.articles) || []).map(function (a) { return { id: a.id, slug: a.slug, category: a.category, title: a.title, date: a.publishedAt, readMinutes: a.readingTime, image: a.coverImage, imageAlt: a.coverAlt, intro: a.excerpt, featured: a.featured }; });
+        ARTICLES = ((j && j.articles) || []).map(function (a) { return { id: a.id, slug: a.slug, category: a.category, title: a.title, date: a.publishedAt, readMinutes: a.readingTime, image: a.coverImage, imageAlt: a.coverAlt, intro: a.excerpt, hook: a.hook, featured: a.featured }; });
         if (!ARTICLES.length) { track.innerHTML = ''; state('empty', '<p>لا يوجد محتوى حاليًا.</p>'); return; }
         /* الصف الأول: أحدث المقالات. الصف الثاني: اختيار عشوائي مرتب من بقية المقالات (بدون تكرار الصف الأول) */
         ARTICLES = ARTICLES.map(function (a, n) { return { a: a, n: n }; }).sort(function (x, y) { return String(y.a.date).localeCompare(String(x.a.date)) || y.n - x.n; }).map(function (x) { return x.a; });

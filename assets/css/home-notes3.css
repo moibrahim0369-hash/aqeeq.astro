@@ -145,3 +145,20 @@ html body nav.bnav .bnav-item.on::before{display:none}
 /* الشريط العلوي: لمسة جمالية خفيفة (خط ذهبي وظل ناعم) */
 html body .aqh-header{box-shadow:0 8px 24px rgba(94,50,40,.10)!important;border-bottom:0!important;position:relative}
 html body .aqh-header::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(183,138,82,.75) 20%,rgba(183,138,82,.75) 80%,transparent);pointer-events:none}
+
+/* ===== اللمسات الأخيرة (تجريبي) ===== */
+html body #home.aqh .aqh-hero .aqh-cta-gold{background:linear-gradient(135deg,#DFBA73 0%,#C59B4B 50%,#9E7428 100%)!important;color:#4A1525!important;font-weight:700!important;border:1px solid rgba(255,255,255,.4)!important;box-shadow:0 4px 18px rgba(197,155,75,.38),inset 0 1px 0 rgba(255,255,255,.5)!important}
+html body #home.aqh .aqh-hero .aqh-cta-gold svg{color:#4A1525!important}
+html body #home.aqh .aqh-system-body p,html body #home.aqh .aqh-tool small,html body #home.aqh .aqh-tool p,html body #home.aqh .aqh-tool [data-soon]{color:#4E4342!important}
+html body #home.aqh .aqh-fuse .aqh-system .aqh-go{background:rgba(112,38,63,.1)!important;border:1px solid rgba(112,38,63,.45)!important;color:#70263F!important}
+html body #home.aqh .aqh-fuse .aqh-system .aqh-go svg{color:#70263F!important}
+html body #home.aqh .aqh-article .aqh-hook{color:#70263F;font-weight:600;font-size:.92rem;line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html body #home.aqh .aqh-article .aqh-intro{color:#4E4342;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+html body #home.aqh .aqh-article h3{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:4px!important}
+html body #home.aqh .aqh-article-txt{gap:8px!important}
+html body{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
+html body #home.aqh .aqh-system,html body #home.aqh .aqh-tool,html body #home.aqh .aqh-article,html body #home.aqh .aqh-cta,html body #home.aqh .aqh-cta-gold,html body nav.bnav .bnav-item{transition:transform .15s ease,box-shadow .2s!important}
+html body #home.aqh .aqh-system:active,html body #home.aqh .aqh-tool:active,html body #home.aqh .aqh-article:active,html body #home.aqh .aqh-cta:active,html body #home.aqh .aqh-cta-gold:active,html body nav.bnav .bnav-item:active{transform:scale(.98)!important}
+html body #home.aqh .aqh-band-arts .aqh-article p.aqh-hook,html body #home.aqh .aqh-band-arts .aqh-article p.aqh-intro{display:-webkit-box!important;margin:0!important}
+html body #home.aqh .aqh-band-arts .aqh-article{padding-bottom:62px!important}
+html body #home.aqh .aqh-band-arts .aqh-article p.aqh-intro{font-size:.86rem;line-height:1.75}
