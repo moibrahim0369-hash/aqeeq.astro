@@ -82,3 +82,75 @@ section#chart.ntx .ntx-card .btn:focus-visible{outline:3px solid rgba(183,138,82
 
 .ntx-wrap:has(#result:not([hidden])) .ntx-art{display:none}
 .ntx-wrap:has(#result:not([hidden])) .ntx-head{min-height:0}
+/* ===== مطابقة المرجع: الخريطة الفلكية ===== */
+section#chart.ntx.sec,section#chart.ntx.sec:target{background:
+ radial-gradient(500px 360px at 5% 8%,rgba(228,170,130,.16),transparent 70%),radial-gradient(520px 380px at 97% 20%,rgba(240,205,130,.22),transparent 70%),
+ radial-gradient(260px 260px at 4% 78%,rgba(190,170,150,.35),transparent 70%),radial-gradient(240px 240px at 98% 84%,rgba(190,170,150,.3),transparent 70%),
+ url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
+ linear-gradient(180deg,#F9F3E8,#F5ECDD 60%,#F2E8D6)!important;background-attachment:local!important}
+section#chart.ntx .ntx-wrap{display:grid;grid-template-columns:1fr 46%;column-gap:6px;align-items:start}
+section#chart.ntx .ntx-wrap>*{grid-column:1/-1}
+section#chart.ntx .ntx-art{position:relative;grid-column:2;grid-row:1;inset:auto;left:auto;width:100%;aspect-ratio:1;z-index:1;margin:8px 0 0}
+section#chart.ntx .ntx-head{grid-column:1;grid-row:1;margin-top:0!important}
+.ntx-wheel2{display:block;width:118%;max-width:none;margin-inline-start:-14%;height:auto;overflow:visible;--wf:#6a2a3e;--wg:#E0C58A;--wl:#d9b979;--wi:#4d1a2b;--wd:#5a1f33}
+.ntx-wheel2 .nw-disc{fill:#F6EAD2;stroke:#C9A35D;stroke-width:1.5}
+.ntx-wheel2 .nw-ring{fill:var(--wf)}
+.ntx-wheel2 .nw-in{fill:var(--wi);fill-opacity:.55}
+.ntx-wheel2 .nw-tk{stroke:#D9B979;stroke-width:.7;stroke-opacity:.9}
+.ntx-wheel2 .nw-l{fill:none;stroke:var(--wl);stroke-width:.9;stroke-opacity:.8}
+.ntx-wheel2 .nw-g{fill:var(--wg);font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',serif;text-anchor:middle;dominant-baseline:central}
+.ntx-wheel2 .sg{font-size:21px}.ntx-wheel2 .pg{font-size:14px}
+.ntx-wheel2 .nw-disc{animation:none}
+.ntx-const{position:absolute;inset-inline-end:62%;top:-10px;width:60%;opacity:.8;pointer-events:none}
+.ntx-c1,.ntx-c2{display:none;position:absolute;font-size:.6rem;letter-spacing:.22em;line-height:1.9;color:#8a6a30;font-weight:600}
+section#chart.ntx .ntx-head{text-align:start}
+section#chart.ntx .ntx-head .eyebrow{color:#8a6a30!important;letter-spacing:.2em;font-size:.58rem!important}
+section#chart.ntx .ntx-head h2{font-size:clamp(1.9rem,8.4vw,3rem)!important;line-height:1.2!important}
+.ntx-sub{margin:4px 0 0;font-family:'El Messiri','Amiri',serif;font-size:clamp(1rem,4.2vw,1.6rem);font-weight:600;color:#B08A46}
+section#chart.ntx .ntx-head .intro{margin:12px 0 0!important;font-size:clamp(.8rem,3.3vw,1rem)!important;line-height:1.85!important}
+.ntx-mini{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:14px 0 0;padding:0}
+.ntx-mini li{display:grid;justify-items:center;gap:5px;text-align:center;font-size:.68rem;line-height:1.4;color:#4a1a2b}
+.ntx-mini span{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;border:1.3px solid #c9a35d;color:#B08A46;background:rgba(255,250,236,.8)}
+.ntx-mini svg{width:22px;height:22px}
+.ntx-feats,.ntx-moons{display:none!important}
+/* الكارت */
+section#chart.ntx form.ntx-card{max-width:1180px!important;grid-row:2;background:linear-gradient(180deg,#FFFCF6,#FBF5E9)!important;border:1px solid #e3d3b3!important;box-shadow:0 0 0 4px rgba(255,251,240,.9),0 0 0 5px #e6d4ad,0 22px 46px rgba(120,70,50,.14)!important;margin-top:18px!important}
+section#chart.ntx .ntx-gem{display:none}
+.ntx-chead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px;margin:0 0 16px;border-radius:16px;background:linear-gradient(180deg,rgba(255,250,236,.9),rgba(246,232,205,.6));border:1px solid rgba(185,154,91,.35)}
+.ntx-chic{display:grid;place-items:center;width:42px;height:42px;color:#8a5a22;flex:none}.ntx-chic svg{width:30px;height:30px}
+.ntx-chead>div{flex:1 1 180px;display:grid;gap:2px}.ntx-chead b{font-family:'Amiri',serif;font-size:1.25rem;color:#4a1a2b}.ntx-chead small{font-size:.8rem;color:#6a5a52}
+.ntx-secure{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;font-size:.78rem;color:#4a3a3e;background:rgba(255,250,236,.85);border:1px solid rgba(185,154,91,.45)}
+.ntx-secure svg{width:17px;height:17px;color:#8a5a22}
+.ntx-pans{display:grid;grid-template-columns:1fr;gap:0}
+.ntx-pan .ntx-grp{display:none}
+.ntx-cfoot{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 0;font-size:.8rem;color:#7a6a5a}
+.ntx-cfoot i{height:1px;width:48px;background:linear-gradient(90deg,transparent,#B08A46)}.ntx-cfoot i:last-child{transform:scaleX(-1)}
+section#chart.ntx .ntx-card .btn{background:linear-gradient(180deg,#8a3a50,#5a1f33 55%,#3e1322)!important;border:1px solid #d9b979!important;border-radius:999px!important;max-width:460px}
+@media(min-width:900px){
+ section#chart.ntx>.wrap{width:min(1180px,100% - 48px)!important}
+ section#chart.ntx .ntx-wrap{grid-template-columns:1fr 1fr;column-gap:30px}
+ section#chart.ntx .ntx-art{grid-column:2;margin-top:0}
+ .ntx-wheel2{width:100%;margin:0;--wf:#F3E8D2;--wg:#8a5a22;--wl:#C9A35D;--wi:#EFE0C0}
+ .ntx-wheel2 .nw-in{fill-opacity:.7}
+ .ntx-const{inset-inline-end:auto;left:-14%;top:20px;width:34%}
+ .ntx-c1{display:block;left:0;top:0}.ntx-c2{display:block;right:-12%;top:20px;text-align:end}
+ section#chart.ntx .ntx-head{padding-top:20px;align-self:center}
+ section#chart.ntx .ntx-head h2{font-size:clamp(3rem,5vw,4.6rem)!important}
+ .ntx-sub{font-size:clamp(1.5rem,2.4vw,2.1rem)}
+ section#chart.ntx .ntx-head .intro{font-size:1.05rem!important}
+ .ntx-mini{display:none}
+ .ntx-pans{grid-template-columns:repeat(4,1fr);gap:16px}
+ .ntx-pan{padding:16px 16px 6px;border-radius:16px;border:1px solid rgba(185,154,91,.35);background:rgba(255,251,240,.6)}
+ .ntx-pan::before{content:attr(data-t);display:block;font-family:'Amiri',serif;font-size:1.1rem;font-weight:700;color:#4a1a2b;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid rgba(185,154,91,.3)}
+ section#chart.ntx .ntx-card .ntx-dt,section#chart.ntx .ntx-card .ntx-set{grid-template-columns:1fr}
+ section#chart.ntx .ntx-card .btn{max-width:420px}}
+@media(max-width:899px){.ntx-pan+.ntx-pan{margin-top:6px}.ntx-pan .field label:not(.chk){padding-top:8px;border-top:1px solid rgba(185,154,91,.25)}}
+section#chart.ntx .ntx-art{aspect-ratio:auto!important;height:auto!important;overflow:visible}
+section#chart.ntx .ntx-wrap{grid-template-columns:1fr 40%}
+section#chart.ntx .ntx-head h2{font-size:clamp(1.5rem,6.6vw,2.6rem)!important;word-break:normal!important;overflow-wrap:normal!important}
+.ntx-wheel2{width:112%;margin-inline-start:-6%}
+@media(min-width:900px){
+ section#chart.ntx .ntx-wrap{grid-template-columns:1fr 1fr}
+ .ntx-wheel2{width:84%;margin:0 auto}
+ section#chart.ntx .ntx-head h2{font-size:clamp(2.6rem,4.4vw,4rem)!important}}
+@media(max-width:899px){section#chart.ntx .ntx-wrap{grid-template-columns:1fr 44%}.ntx-wheel2{width:128%;margin-inline-start:-14%}section#chart.ntx .ntx-head .intro{font-size:.78rem!important}}
