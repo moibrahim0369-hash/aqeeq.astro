@@ -82,3 +82,44 @@
 #matrix.mxp .aq-section-quick-links{flex-wrap:nowrap!important}
 @media(min-width:1025px){#matrix.mxp .mxp-head{max-width:600px;margin-right:5%!important;margin-left:auto!important}}
 #matrix.mxp.sec:target{overflow-x:hidden!important}
+
+/* ===== تلميع نهائي: غلاف نظيف بلا تمويه، تباين أبيض/كريمي، زر ذهبي (بصري فقط) ===== */
+#matrix.mxp{--ah:clamp(250px,64vw,340px);
+  background:linear-gradient(180deg,#F6EFE2,#F4ECDD)!important}
+/* غلاف مستطيل صريح: لا قناع ولا طبقة ضباب */
+#matrix.mxp .mxp-art{height:var(--ah)!important;border-bottom:3px solid #B99A5B;box-shadow:0 12px 28px rgba(74,26,43,.18)}
+#matrix.mxp .mxp-statue{-webkit-mask-image:none!important;mask-image:none!important;filter:none!important;object-position:34% 38%!important}
+#matrix.mxp .mxp-art::after{background:linear-gradient(180deg,rgba(74,26,43,.16),rgba(74,26,43,0) 38%)!important}
+#matrix.mxp .mxp-ring{display:none!important}
+/* العنوان تحت الغلاف مباشرة وبمنتصف متناسق */
+#matrix.mxp .mxp-head{padding-top:calc(var(--ah) + 22px)!important;max-width:none!important;margin-inline:auto!important}
+#matrix.mxp .mxp-head .eyebrow{color:#7a5a22!important}
+/* بطاقة النموذج: بيضاء بظل ممتد وتتداخل مع الغلاف بشكل أنيق */
+#matrix.mxp .mxp-card{background:#fff!important;border:1px solid rgba(185,154,91,.7)!important;
+  box-shadow:0 0 0 5px #F6EFE2,0 0 0 6px rgba(185,154,91,.5),0 28px 60px rgba(74,26,43,.22)!important}
+#matrix.mxp .mxp-moons{background:#fff!important}
+#matrix.mxp .mxp-card input,#matrix.mxp .mxp-card select{background:#F5F1EA!important;border:1.5px solid rgba(100,43,60,.45)!important;color:#1f1a1d!important;font-weight:600}
+#matrix.mxp .mxp-card input::placeholder{color:#7b6f72!important;font-weight:500}
+#matrix.mxp .mxp-card .btn{width:86%!important;max-width:380px!important;min-height:58px;box-shadow:0 14px 28px rgba(100,43,60,.38),inset 0 1px 0 rgba(255,255,255,.28)!important}
+/* بطاقة ماذا تكشف: أيقونات أكبر تتناسب مع النص */
+#matrix.mxp .mxp-rev-panel h3 svg{width:34px!important;height:34px!important}
+#matrix.mxp .mxp-checks li{padding-inline-start:42px;font-size:1.04rem}
+#matrix.mxp .mxp-checks li::before{width:28px!important;height:28px!important;top:0!important}
+#matrix.mxp .mxp-fico{width:72px;height:72px}
+/* تعريفات وأسئلة: بطاقات بيضاء ناصعة بمسافات */
+:is(#matrix) .lpk-card,:is(#matrix) .lpk-acc{background:#fff!important;box-shadow:0 8px 22px rgba(74,26,43,.1)!important}
+:is(#matrix) .lpk-acc{margin:0 0 14px!important}
+:is(#matrix) .lpk-acc[open],:is(#matrix) .lpk-acc:hover{box-shadow:0 12px 28px rgba(74,26,43,.16)!important}
+/* الزر السفلي: ذهبي فاخر بدل البرتقالي */
+:is(#matrix) .lpk-cta{background:linear-gradient(135deg,#DFBA73 0%,#C59B4B 50%,#9E7428 100%)!important;color:#4A1525!important;border:1px solid rgba(255,255,255,.45)!important;box-shadow:0 6px 20px rgba(197,155,75,.4),inset 0 1px 0 rgba(255,255,255,.5)!important}
+@media(min-width:761px){#matrix.mxp{--ah:clamp(340px,34vw,440px)}
+  #matrix.mxp .mxp-statue{object-position:32% 30%!important}}
+/* ضبط موضع الغلاف تحت شريط الموقع العلوي */
+#matrix.mxp{--hh:66px}
+#matrix.mxp .mxp-art{top:var(--hh)!important;inset-inline:0!important;bottom:auto!important}
+#matrix.mxp .mxp-statue{object-position:17% 40%!important}
+#matrix.mxp .mxp-head{padding-top:calc(var(--ah) - 36px)!important}
+@media(min-width:761px){#matrix.mxp{--hh:73px}#matrix.mxp .mxp-statue{object-position:32% 30%!important}
+  #matrix.mxp .mxp-head{padding-top:calc(var(--ah) - 50px)!important}}
+#matrix.mxp .mxp-head .eyebrow{width:100%!important;margin-inline:auto!important;text-align:center!important}
+@media(min-width:1025px){#matrix.mxp .mxp-head{margin-inline:auto!important}}
