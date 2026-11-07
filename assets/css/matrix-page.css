@@ -408,7 +408,7 @@
   radial-gradient(circle at 18% 22%,rgba(168,128,60,.4) 0 1.4px,transparent 2.2px) 0 0/240px 220px,
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1500' height='1100'%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0032 .006' numOctaves='5' seed='5' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .72 0 0 0 1.5 -.7'/%3E%3C/filter%3E%3Crect width='1500' height='1100' filter='url(%23c)'/%3E%3C/svg%3E") center 300px/1500px 1100px repeat-y,
   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),
-  linear-gradient(180deg,#F8F1E4 0,#F4EADA 40%,#F1E5D1 100%)!important;
+  linear-gradient(180deg,#F3EADC 0,#F7F1E6 35%,#F7F3EC 100%)!important;
  background-attachment:local!important;background-repeat:no-repeat,no-repeat,repeat,repeat-y,repeat,no-repeat!important}
 #matrix.mxp .mxp-art{opacity:.45}
 #matrix.mxp .mxp-const,#matrix.mxp .mxp-corner{display:none!important}
