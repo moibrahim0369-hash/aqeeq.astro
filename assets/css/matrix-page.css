@@ -366,3 +366,37 @@
 #matrix.mxp .mxp-checks li::before{background-color:#C9A35D!important;border-color:#B08A46!important}
 #matrix.mxp .mxp-rev-panel{overflow:visible!important}
 #matrix.mxp .mxp-rev-panel::after{inset-inline-end:14px;bottom:14px;width:190px;height:190px;opacity:.38}
+/* ===== مطابقة روح صفحة الخريطة الفلكية ===== */
+#matrix.mxp .mxp-const{position:absolute;inset-inline-start:0;top:10px;width:min(100%,640px);height:auto;opacity:.9}
+#matrix.mxp .mxp-corner{display:none;position:absolute;font-size:.62rem;letter-spacing:.22em;line-height:1.9;color:#8a6a30;font-weight:600}
+@media(min-width:900px){#matrix.mxp .mxp-corner{display:block}#matrix.mxp .mxp-c1{inset-inline-start:4%;top:60px}#matrix.mxp .mxp-c2{inset-inline-end:3%;top:70px;text-align:end}}
+#matrix.mxp .mxp-chead{display:flex;align-items:center;gap:12px;padding:12px 14px;margin:2px 0 18px;border-radius:16px;background:linear-gradient(180deg,rgba(255,250,236,.9),rgba(246,232,205,.7));border:1px solid rgba(185,154,91,.4);grid-column:1/-1;flex-wrap:wrap}
+#matrix.mxp .mxp-chic{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#8a5a22;background:radial-gradient(circle at 35% 30%,#fffaf0,#f1deb4);box-shadow:inset 0 0 0 1px rgba(185,154,91,.6)}
+#matrix.mxp .mxp-chic svg{width:22px;height:22px}
+#matrix.mxp .mxp-chead>div{flex:1 1 180px;display:grid;gap:2px}
+#matrix.mxp .mxp-chead b{font-family:'Amiri',serif;font-size:1.2rem;color:#4a1a2b}
+#matrix.mxp .mxp-chead small{font-size:.8rem;color:#6a5a52}
+#matrix.mxp .mxp-secure{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;font-size:.78rem;color:#4a3a3e;background:rgba(255,250,236,.8);border:1px solid rgba(185,154,91,.45)}
+#matrix.mxp .mxp-secure svg{width:17px;height:17px;color:#8a5a22}
+#matrix.mxp .mxp-cfoot{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0 0;font-size:.8rem;color:#7a6a5a}
+#matrix.mxp .mxp-cfoot i{height:1px;width:48px;background:linear-gradient(90deg,transparent,#B08A46)}
+#matrix.mxp .mxp-cfoot i:last-child{transform:scaleX(-1)}
+@media(min-width:900px){#matrix.mxp .mxp-card .field{padding:14px 16px 16px;border-radius:16px;background:rgba(255,251,240,.55);border:1px solid rgba(185,154,91,.4)}
+ #matrix.mxp .mxp-card{align-items:stretch!important}}
+@media(max-width:899px){
+ #matrix.mxp .mxp-head{grid-template-columns:44% 1fr!important;align-items:center;gap:10px;justify-items:stretch}
+ #matrix.mxp .mxp-mapbox{width:100%!important;margin:0!important;grid-column:1;grid-row:1}
+ #matrix.mxp .mxp-htext{grid-column:2;grid-row:1;align-items:flex-start;text-align:start;margin:0}
+ #matrix.mxp .mxp-head h2{font-size:clamp(1.7rem,7.4vw,2.3rem)!important;text-align:start!important}
+ #matrix.mxp .mxp-head .eyebrow{text-align:start!important;font-size:.58rem!important;letter-spacing:.24em}
+ #matrix.mxp .mxp-head .mxp-orn{margin-inline:0}
+ #matrix.mxp .mxp-head .intro{font-size:.82rem!important;line-height:1.75!important;text-align:start!important;margin:0!important}
+ #matrix.mxp{--ah:360px}}
+#matrix.mxp .mxp-const{inset-inline-start:auto;inset-inline-end:0;opacity:.7}
+@media(min-width:900px){#matrix.mxp .mxp-c1{inset-inline-start:auto;inset-inline-end:3%;top:84px;text-align:end}#matrix.mxp .mxp-c2{inset-inline-end:auto;inset-inline-start:3%;top:190px;text-align:start}}
+@media(max-width:899px){
+ #matrix.mxp .mxp-head{grid-template-columns:1fr 40%!important}
+ #matrix.mxp .mxp-htext{grid-column:1!important}
+ #matrix.mxp .mxp-mapbox{grid-column:2!important}
+ #matrix.mxp .mxp-head .intro{font-size:.78rem!important}}
+@media(min-width:900px){#matrix.mxp .mxp-c2{top:112px!important}}
