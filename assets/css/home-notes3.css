@@ -123,7 +123,7 @@ html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all>svg{display:none}
 @media(min-width:761px){
   html body #home.aqh .aqh-hero .hw-statue{height:auto!important;aspect-ratio:2560/400!important;width:100%!important;object-fit:cover!important;object-position:left top!important;
     filter:none!important;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 90%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0,#000 90%,transparent 100%)!important}
-  html body #home.aqh .aqh-hero{background:linear-gradient(180deg,rgba(247,243,236,0) 0,rgba(247,243,236,0) 78%,#F7F3EC 100%),url(../images/home/hero-plate-fill.jpg) center top/100% 100% no-repeat,#EEE7DF!important}
+  html body #home.aqh .aqh-hero{--hf:clamp(330px,28vw + 100px,440px);background:linear-gradient(180deg,rgba(247,243,236,0) 0,rgba(247,243,236,0) 30%,rgba(247,243,236,.55) 62%,#F7F3EC 92%) center top/100% var(--hf) no-repeat,url(../images/home/hero-plate-fill.jpg) center top/100% var(--hf) no-repeat,#F7F3EC!important}
   html body #home.aqh .aqh-hero .aqh-hero-copy::before{display:none!important}
   html body #home.aqh .aqh-hero .aqh-hero-copy,html body #home.aqh .aqh-hero .aqh-lead,html body #home.aqh .aqh-hero .aqh-eyebrow{text-shadow:none!important}
   html body #home.aqh .aqh-hero .aqh-title{text-shadow:none!important;-webkit-text-stroke:0!important}
