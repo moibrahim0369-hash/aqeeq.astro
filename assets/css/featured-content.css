@@ -393,3 +393,15 @@ button.fc-row-t:hover .fc-row-ic{background:var(--fc-wine);color:var(--fc-gold)}
 .fc-cta{background:linear-gradient(135deg,#FBF4E6,#F6EAD6)!important;border-color:rgba(183,138,82,.5)!important}
 #fc-cta-slot{margin-top:26px}
 .fc-foot{background:linear-gradient(180deg,#4A1521,#351B28)!important}
+
+/* ===== أيقونات عنابية هادئة + عنوان أنيق + رفع الصفحة ===== */
+.fc-wrap{padding-top:112px!important}
+@media(max-width:700px){.fc-wrap{padding-top:96px!important}}
+.fc-crumb{margin-bottom:14px!important}
+.fc-hero::before{content:"مجلة عقيق";display:block;font-size:.78rem;letter-spacing:.42em;color:#9a6f2f;font-weight:700;margin-bottom:6px}
+.fc-hero h1{font-size:clamp(2.7rem,7vw,4.2rem)!important;background:linear-gradient(180deg,#70263F 0,#4A1521 70%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:none;filter:drop-shadow(0 2px 0 rgba(255,248,230,.8))}
+.fc-hero h1::before,.fc-hero h1::after{background:linear-gradient(90deg,transparent,#B78A52)!important;flex-basis:150px!important}
+.fc-hero h1::after{background:linear-gradient(270deg,transparent,#B78A52)!important}
+.fc-row-ic,.fc-cta-ico,.fc-news-ico{background:rgba(112,38,63,.09)!important;border:1px solid rgba(112,38,63,.28)!important;color:#70263F!important}
+button.fc-row-t:hover .fc-row-ic{background:#70263F!important;color:#F1DDB0!important}
+.fc-row-all{border-color:rgba(112,38,63,.3)!important;color:#70263F!important}
