@@ -239,3 +239,40 @@
 #matrix.mxp:has(#mresult:not([hidden])){background:linear-gradient(rgba(244,235,215,.8),rgba(244,235,215,.88)),url("../images/home/matrix-sunset.jpg") center top/cover no-repeat!important}
 #matrix.mxp{background-attachment:local!important;background-repeat:no-repeat!important}
 #matrix.mxp:has(#mresult:not([hidden])){background-attachment:local!important}
+/* ===== نسخة التمثال الليلي + سحاب عميق ===== */
+#matrix.mxp{--ah:470px;--hh:66px;
+ background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1500' height='1100'%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0028 .0055' numOctaves='5' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .94 0 0 0 2.4 -.95'/%3E%3C/filter%3E%3Crect width='1500' height='1100' filter='url(%23c)'/%3E%3C/svg%3E") center 520px/1500px 1100px repeat-y,
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='700'%3E%3Cfilter id='c' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .012' numOctaves='4' seed='8' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .78 0 0 0 0 .56 0 0 0 0 .66 0 0 0 2.2 -.85'/%3E%3C/filter%3E%3Crect width='900' height='700' filter='url(%23c)'/%3E%3C/svg%3E") 0 700px/1500px 1100px repeat-y,
+  linear-gradient(180deg,#0c0820 0,#1b0e2c 260px,#3d1a40 440px,#8a5a74 600px,#d9bcb6 760px,#EBDCD2 900px,#E6D5C2 100%)!important;
+ background-attachment:local!important;background-repeat:no-repeat,no-repeat,no-repeat!important}
+#matrix.mxp{background-repeat:repeat-y,repeat-y,no-repeat!important}
+#matrix.mxp .mxp-art{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 72%,transparent 100%)}
+#matrix.mxp .mxp-bust{position:absolute;left:0;top:0;width:100%;height:300px;object-fit:cover;object-position:30% 12%;display:block;
+ filter:brightness(.8) contrast(1.06) saturate(.85) hue-rotate(-6deg);
+ -webkit-mask-image:linear-gradient(90deg,#000 0,#000 58%,transparent 80%),linear-gradient(180deg,#000 0,#000 70%,transparent 100%);-webkit-mask-composite:source-in;
+ mask-image:linear-gradient(90deg,#000 0,#000 58%,transparent 80%),linear-gradient(180deg,#000 0,#000 70%,transparent 100%);mask-composite:intersect}
+#matrix.mxp .mxp-art::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(40,14,50,.35),transparent 55%);pointer-events:none}
+#matrix.mxp .mxp-head{padding-top:clamp(206px,52vw,230px)!important}
+#matrix.mxp .mxp-head .eyebrow{order:1;margin-top:2px!important}
+#matrix.mxp .mxp-head h2{order:2;background:none!important;-webkit-text-fill-color:#fff3de!important;color:#fff3de!important;filter:none!important;text-shadow:0 2px 18px rgba(0,0,0,.65),0 0 30px rgba(255,200,140,.25);font-weight:500!important}
+#matrix.mxp .mxp-head .mxp-orn{order:3}#matrix.mxp .mxp-head .intro{order:4}
+#matrix.mxp .mxp-phases{display:none}
+#matrix.mxp .mxp-head::before{inset:30% 0 0}
+/* المربع بارز */
+#matrix.mxp .mxp-card{background:radial-gradient(120% 80% at 50% 0%,rgba(255,252,238,.95),transparent 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .36 0 0 0 0 .18 0 0 0 .10 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,#FBF3E0,#F3E6CC)!important;
+ border:2px solid #d9b979!important;
+ box-shadow:0 0 0 6px rgba(30,10,36,.55),0 0 0 7.5px #e3c47f,0 0 70px rgba(244,190,120,.45),0 40px 80px rgba(20,6,30,.6)!important}
+#matrix.mxp .mxp-moons{top:-14px;width:120px;height:auto;border-radius:12px;background:#F6EAD0;border:1px solid #d9b979;padding:0 8px;box-shadow:none;color:#b08a46}
+#matrix.mxp .mxp-moons svg{width:100%;height:auto}
+#matrix.mxp .mxp-card .btn{min-height:60px;font-size:1.4rem!important}
+/* ماذا تكشف بدون ميدالية */
+#matrix.mxp .mxp-reveal{grid-template-columns:1fr!important}
+#matrix.mxp .mxp-rev-panel{padding-top:34px!important}
+@media(min-width:760px){#matrix.mxp .mxp-rev-panel{padding-inline-start:120px!important}}
+@media(min-width:1025px){#matrix.mxp{--ah:560px;--hh:73px}
+ #matrix.mxp .mxp-bust{width:50%;height:100%;object-position:28% 8%;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 62%,transparent 92%),linear-gradient(180deg,#000 0,#000 78%,transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 62%,transparent 92%),linear-gradient(180deg,#000 0,#000 78%,transparent 100%)}
+ #matrix.mxp .mxp-head{padding-top:250px!important}}
+@media(min-width:1025px) and (max-width:1300px){#matrix.mxp .mxp-bust{width:46%}}
+@media(min-width:1025px){#matrix.mxp .mxp-bust{width:44%!important;height:470px!important;object-position:27% 6%!important;
+ -webkit-mask-image:linear-gradient(90deg,#000 0,#000 60%,transparent 90%),linear-gradient(180deg,#000 0,#000 74%,transparent 100%)!important;mask-image:linear-gradient(90deg,#000 0,#000 60%,transparent 90%),linear-gradient(180deg,#000 0,#000 74%,transparent 100%)!important}}
