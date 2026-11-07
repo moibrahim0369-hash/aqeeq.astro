@@ -122,11 +122,12 @@ html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all>svg{display:none}
 /* التمثال على الديسكتوب والتابلت: الصورة الطويلة خلف النص بنفس ترتيب الموبايل، من غير تمويه */
 @media(min-width:761px){
   html body #home.aqh .aqh-hero{--hf:clamp(300px,25vw + 85px,380px);background:#F7F3EC!important}
-  html body #home.aqh .aqh-hero .hw-statue{height:var(--hf)!important;aspect-ratio:auto!important;width:100%!important;object-fit:cover!important;object-position:-420px top!important;filter:none!important;
-    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 94%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0,#000 94%,transparent 100%)!important}
+  html body #home.aqh .aqh-hero .hw-statue{height:calc(var(--hf)*1.16)!important;aspect-ratio:auto!important;width:100%!important;object-fit:cover!important;object-position:-460px top!important;filter:none!important;clip-path:inset(0 0 14% 0);
+    -webkit-mask-image:linear-gradient(180deg,#000 0,#000 80%,transparent 86%)!important;mask-image:linear-gradient(180deg,#000 0,#000 80%,transparent 86%)!important}
+  html body #home.aqh .aqh-hero{--hs:46px}
   html body #home.aqh .aqh-hero .aqh-fuse{margin-top:6px!important}
-  @media(min-width:900px){html body #home.aqh .aqh-hero .hw-statue{object-position:-230px top!important}}
-  @media(min-width:1100px){html body #home.aqh .aqh-hero .hw-statue{object-position:-130px top!important}}
+  @media(min-width:900px){html body #home.aqh .aqh-hero .hw-statue{object-position:-260px top!important}}
+  @media(min-width:1100px){html body #home.aqh .aqh-hero .hw-statue{object-position:-150px top!important}}
   html body #home.aqh .aqh-hero .aqh-hero-copy::before{display:none!important}
   html body #home.aqh .aqh-hero .aqh-hero-copy,html body #home.aqh .aqh-hero .aqh-lead,html body #home.aqh .aqh-hero .aqh-eyebrow,html body #home.aqh .aqh-hero .aqh-title{text-shadow:none!important;-webkit-text-stroke:0!important}
 }
@@ -140,3 +141,7 @@ html body nav.bnav .bnav-item.on{color:#4A1A2B!important;background:none!importa
 html body nav.bnav .bnav-item.on .bnav-icon{background:linear-gradient(160deg,#7A3449,#4F1D2E);border-color:#C5A059;box-shadow:0 8px 16px rgba(79,29,46,.4),0 0 0 3px rgba(197,160,89,.28)}
 html body nav.bnav .bnav-item.on svg{color:#F1D79C!important}
 html body nav.bnav .bnav-item.on::before{display:none}
+
+/* الشريط العلوي: لمسة جمالية خفيفة (خط ذهبي وظل ناعم) */
+html body .aqh-header{box-shadow:0 8px 24px rgba(94,50,40,.10)!important;border-bottom:0!important;position:relative}
+html body .aqh-header::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(183,138,82,.75) 20%,rgba(183,138,82,.75) 80%,transparent);pointer-events:none}
