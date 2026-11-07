@@ -370,3 +370,26 @@ button.fc-row-t:hover .fc-row-ic{background:var(--fc-wine);color:var(--fc-gold)}
   .fc-news-form input,.fc-news-form .fc-news-btn{width:100%;height:48px}
   .fc-news-txt{text-align:center}
 }
+
+/* ===== لمسة عمق وتناسق (جولة الواجهة الأخيرة) ===== */
+.fc-page{background:linear-gradient(180deg,#EADFD0 0,#F1E8DA 220px,#F7F3EC 520px)!important}
+.fc-page::before{content:"";position:absolute;inset:0 0 auto 0;height:520px;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 60% 70% at 85% 8%,rgba(217,185,121,.32),transparent 70%),radial-gradient(ellipse 50% 60% at 8% 0,rgba(112,38,63,.14),transparent 72%)}
+.fc-wrap,.fc-foot{position:relative;z-index:1}
+.fc-hero{position:relative;padding:8px 0 30px!important}
+.fc-hero h1{color:#4A1521}
+.fc-hero p{color:#6a4a3a}
+.fc-hero::after{display:block!important;content:"";width:9px;height:9px;margin:16px auto 0;transform:rotate(45deg);background:#C9A062;box-shadow:0 0 0 5px rgba(201,160,98,.22)}
+.fc-news{background:linear-gradient(135deg,#F6EAD6 0,#FBF4E6 55%,#F1DFC0 100%)!important;border:1px solid rgba(183,138,82,.55)!important;color:#3a1726;box-shadow:0 14px 34px rgba(94,50,40,.12),inset 0 1px 0 #fff}
+.fc-news-art{color:#B78A52!important}
+.fc-news-art.a1,.fc-news-art.a2{opacity:.18!important}
+.fc-news-ico{border-color:#B78A52!important;color:#642B3C!important;background:radial-gradient(circle at 35% 30%,#FFF8E6,#EAD09B)!important}
+.fc-news-txt h2{color:#4A1521!important}
+.fc-news-txt p{color:#6a4a3a!important}
+.fc-news-form input{border-color:rgba(183,138,82,.6)!important;background:#fffdf8!important}
+.fc-news-form .fc-news-btn{background:linear-gradient(135deg,#7a2f46,#4A1521)!important;color:#F7F3EC!important}
+.fc-news-form .fc-news-btn:hover{background:#351B28!important}
+.fc-news-msg.is-ok{color:#2f6b45!important}.fc-news-msg.is-err{color:#a3342f!important}
+.fc-cta{background:linear-gradient(135deg,#FBF4E6,#F6EAD6)!important;border-color:rgba(183,138,82,.5)!important}
+#fc-cta-slot{margin-top:26px}
+.fc-foot{background:linear-gradient(180deg,#4A1521,#351B28)!important}

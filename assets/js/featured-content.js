@@ -127,7 +127,7 @@
     h += '<div class="fc-sub"><p class="fc-count" id="fc-count" role="status" aria-live="polite"></p>' +
       '<div class="fc-search" role="search"><label for="fc-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">ابحث في المحتوى</label>' + ICO.search +
       '<input id="fc-q" type="search" autocomplete="off" placeholder="ابحث بالعنوان أو التصنيف أو الكلمة" value="' + esc(st.q) + '"><button type="button" data-fc-clear aria-label="مسح البحث"' + (st.q ? '' : ' hidden') + '>' + ICO.x + '</button></div></div>';
-    h += '<div class="fc-list" id="fc-grid"></div><nav class="fc-pager" id="fc-more" aria-label="ترقيم الصفحات"></nav>';
+    h += '<div class="fc-list" id="fc-grid"></div><nav class="fc-pager" id="fc-more" aria-label="ترقيم الصفحات"></nav><div id="fc-cta-slot"></div>';
     h += '<div class="fc-back-cta"><a class="fc-btn" href="#home"><span>العودة إلى الرئيسية</span>' + ARROW + '</a></div>';
     h += newsletterHTML();
     host.innerHTML = h; paintGrid(); bindTools(); bindNewsletter(); if (showPick) startQuote(); else clearInterval(quoteT);
@@ -233,7 +233,7 @@
       h += '<section class="fc-row" aria-label="' + esc(r.k) + '">' + rowHead(r.k, r.ico, r.items.length, true) +
         '<div class="fc-track-wrap"><button type="button" class="fc-nav fc-nav-p" data-nav="1" aria-label="السابق" hidden>' + PGP + '</button>' +
         '<div class="fc-track" tabindex="0" role="region" aria-label="' + esc(r.k) + ' — مرّر أفقيًا">' + r.items.map(function (a, i) { return mini(a, i); }).join('') + '</div>' +
-        '<button type="button" class="fc-nav fc-nav-n" data-nav="-1" aria-label="التالي" hidden>' + PGN + '</button></div>' + rowCtas(r) + '</section>';
+        '<button type="button" class="fc-nav fc-nav-n" data-nav="-1" aria-label="التالي" hidden>' + PGN + '</button></div></section>';
     });
     g.innerHTML = h; wireTracks(g);
   }
@@ -251,7 +251,8 @@
     });
   }
   function paintGrid() {
-    var all = filtered(), g = $('#fc-grid'), pg = $('#fc-more'), cnt = $('#fc-count'); if (!g) return;
+    var all = filtered(), g = $('#fc-grid'), pg = $('#fc-more'), cnt = $('#fc-count'), slot = $('#fc-cta-slot'); if (!g) return;
+    if (slot) slot.innerHTML = '';
     if (st.cat === 'الكل' && !st.q) { paintRows(g, pg, cnt); return; }
     g.removeAttribute('data-mode'); g.className = 'fc-list';
     var items = all;
@@ -264,6 +265,11 @@
     g.innerHTML = items.slice((st.page - 1) * PAGE, st.page * PAGE).map(function (a, i) { return card(a, i); }).join('');
     cnt.textContent = (groupOf(st.cat) ? st.cat + ' · ' : '') + countText(all.length);
     pg.innerHTML = pagerHTML(pages);
+    if (slot && !st.q) {
+      var ks = ROW_CTA[st.cat] || [CAT_CTA[st.cat]];
+      var out = ks.filter(Boolean).map(function (k) { return ctaCard(k, 'row'); }).join('');
+      if (out) slot.innerHTML = '<div class="fc-cta-row">' + out + '</div>';
+    }
   }
   function bindTools() {
     var f = $('#fc-filters'), q = $('#fc-q'), t;
