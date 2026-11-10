@@ -1,0 +1,469 @@
+/* AQEQ ASTRO — Internal pages polish
+   Visual-only layer. Intentionally scoped to targeted .sec pages; #home is untouched.
+*/
+:where(section.sec:target:not(#home)) {
+  --ip-wine: #642B3C;
+  --ip-gold: #D9B979;
+  --ip-line: rgba(183, 138, 82, .38);
+  --ip-ink: #29252A;
+}
+
+/* Keep the first viewport focused: navigation close to the page content. */
+section.sec:target:not(#home) > .wrap {
+  padding-top: 12px !important;
+}
+section.sec:target:not(#home) .center .intro,
+section.sec:target:not(#home) .lpx-head .intro,
+section.sec:target:not(#home) .ntx-head .intro {
+  max-width: 46rem !important;
+  margin-top: 10px !important;
+  line-height: 1.8 !important;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+/* One consistent, usable internal-page navigation rail. */
+section.sec:target:not(#home) > .wrap > .aq-section-topbar,
+section.sec:target:not(#home) .aq-section-topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 40 !important;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  margin: 0 -2px 14px !important;
+  padding: 6px 2px 10px !important;
+  border-bottom: 1px solid var(--ip-line) !important;
+  background: color-mix(in srgb, #F7F3EC 90%, transparent) !important;
+  backdrop-filter: blur(10px);
+}
+section.sec:target:not(#home) .aq-section-topbar .aq-nav-actions {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  gap: 6px !important;
+  order: 0;
+}
+section.sec:target:not(#home) .aq-section-topbar .aq-section-quick-links {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  padding: 2px 1px 4px !important;
+}
+section.sec:target:not(#home) .aq-section-quick-links::-webkit-scrollbar { display: none; }
+section.sec:target:not(#home) .aq-section-topbar .aq-section-pill,
+section.sec:target:not(#home) .aq-section-topbar .aq-nav-btn {
+  flex: 0 0 auto !important;
+  min-height: 36px !important;
+  white-space: nowrap !important;
+  scroll-snap-align: start;
+}
+section.sec:target:not(#home) .aq-section-topbar .aq-nav-btn {
+  padding-inline: 10px !important;
+  font-size: .76rem !important;
+}
+section.sec:target:not(#home) .aq-section-topbar .aq-section-pill {
+  padding: 7px 11px !important;
+  font-size: .74rem !important;
+}
+
+/* Hide editorial essays before the user starts a calculation; reveal them below results. */
+section#chart:not(:has(#result:not([hidden]))) .lpk,
+section#matrix:not(:has(#mresult:not([hidden]))) .lpk,
+section#lifepath:not(:has(#lpresult:not([hidden]))) .lpk {
+  display: none !important;
+}
+section#chart:has(#result:not([hidden])) .lpk,
+section#matrix:has(#mresult:not([hidden])) .lpk,
+section#lifepath:has(#lpresult:not([hidden])) .lpk {
+  display: block !important;
+  margin-top: 24px !important;
+}
+
+/* Make the calculation card the visual priority without recoloring adjacent iOS-like controls. */
+section#chart.ntx form.ntx-card,
+section#lifepath.lpx .lpx-card,
+section#matrix.mxp .mxp-card {
+  scroll-margin-top: 78px;
+}
+section#chart.ntx form.ntx-card,
+section#lifepath.lpx .lpx-card,
+section#matrix.mxp .mxp-card {
+  position: relative;
+  z-index: 3;
+}
+section#chart.ntx form.ntx-card .btn,
+section#lifepath.lpx .lpx-card .btn,
+section#matrix.mxp .mxp-card .btn {
+  min-height: 56px !important;
+}
+
+/* Accordion controls: preserve the existing text and colors, add unmistakable affordances. */
+section.sec:target:not(#home) details.lpk-acc > summary,
+section.sec:target:not(#home) details.acc > summary,
+section.sec:target:not(#home) details.lp-section > summary,
+section.sec:target:not(#home) details.lpa-card > summary {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  min-height: 58px !important;
+  padding-inline-end: 48px !important;
+  cursor: pointer !important;
+  list-style: none !important;
+}
+section.sec:target:not(#home) details.lpk-acc > summary::-webkit-details-marker,
+section.sec:target:not(#home) details.acc > summary::-webkit-details-marker,
+section.sec:target:not(#home) details.lp-section > summary::-webkit-details-marker,
+section.sec:target:not(#home) details.lpa-card > summary::-webkit-details-marker { display: none !important; }
+section.sec:target:not(#home) details.lpk-acc > summary::before,
+section.sec:target:not(#home) details.acc > summary::before,
+section.sec:target:not(#home) details.lp-section > summary::before {
+  content: "";
+  position: absolute;
+  inset-inline-end: 14px;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  transform: translateY(-50%);
+  border: 1px solid var(--ip-gold);
+  border-radius: 50%;
+  background: rgba(217, 185, 121, .14);
+  box-shadow: inset 0 0 0 4px rgba(255, 253, 248, .5);
+}
+section.sec:target:not(#home) details.lpk-acc > summary::after,
+section.sec:target:not(#home) details.acc > summary::after,
+section.sec:target:not(#home) details.lp-section > summary::after,
+section.sec:target:not(#home) details.lpa-card > summary::after {
+  content: "+";
+  position: absolute;
+  inset-inline-end: 14px;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  color: var(--ip-wine);
+  font: 500 1.1rem/1 Arial, sans-serif;
+  transition: transform .22s ease, color .22s ease;
+}
+section.sec:target:not(#home) details.lpk-acc[open] > summary::after,
+section.sec:target:not(#home) details.acc[open] > summary::after,
+section.sec:target:not(#home) details.lp-section[open] > summary::after,
+section.sec:target:not(#home) details.lpa-card[open] > summary::after {
+  content: "−";
+  color: var(--ip-gold);
+}
+section.sec:target:not(#home) details.lpk-acc > summary > span:first-child,
+section.sec:target:not(#home) details.lp-section > summary .lp-sec-title,
+section.sec:target:not(#home) details.lpa-card > summary .lpa-t {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+section.sec:target:not(#home) details.lpk-acc > summary:hover,
+section.sec:target:not(#home) details.acc > summary:hover,
+section.sec:target:not(#home) details.lp-section > summary:hover,
+section.sec:target:not(#home) details.lpa-card > summary:hover {
+  filter: brightness(.985);
+}
+section.sec:target:not(#home) details.lpk-acc > summary:focus-visible,
+section.sec:target:not(#home) details.acc > summary:focus-visible,
+section.sec:target:not(#home) details.lp-section > summary:focus-visible,
+section.sec:target:not(#home) details.lpa-card > summary:focus-visible {
+  outline: 2px solid var(--ip-wine);
+  outline-offset: -3px;
+}
+
+/* Keep the seven life-path sections readable and scannable. */
+#lpresult .lp-sections-intro {
+  max-width: 920px;
+  margin-inline: auto;
+}
+#lpresult .lp-sections-intro p.note { display: none !important; }
+#lpresult .lp-sections-intro p:first-child { margin-bottom: 0 !important; }
+#lpresult details.lp-section .lp-sec-body { max-width: 78ch; margin-inline: auto; }
+
+/* On mobile, keep action pills visible and easy to swipe, never wrapping into tall empty space. */
+@media (max-width: 760px) {
+  section.sec:target:not(#home) > .wrap { width: min(100% - 20px, 1080px) !important; }
+  section.sec:target:not(#home) .aq-section-topbar { margin-inline: -4px !important; }
+  section.sec:target:not(#home) .aq-section-topbar .aq-nav-actions { max-width: 116px; overflow-x: auto; scrollbar-width: none; }
+  section.sec:target:not(#home) .aq-section-topbar .aq-nav-actions::-webkit-scrollbar { display: none; }
+  section.sec:target:not(#home) .aq-section-topbar .aq-nav-btn { padding-inline: 9px !important; }
+  section#chart.ntx .ntx-head,
+  section#lifepath.lpx .lpx-head { margin-bottom: 12px !important; }
+  section#chart.ntx .ntx-head .intro,
+  section#lifepath.lpx .lpx-head .intro { -webkit-line-clamp: 2; }
+  section.sec:target:not(#home) details.lpk-acc > summary,
+  section.sec:target:not(#home) details.acc > summary,
+  section.sec:target:not(#home) details.lp-section > summary,
+  section.sec:target:not(#home) details.lpa-card > summary { min-height: 54px !important; padding-inline-end: 44px !important; }
+  section.sec:target:not(#home) details.lpk-acc > summary::before,
+  section.sec:target:not(#home) details.acc > summary::before,
+  section.sec:target:not(#home) details.lp-section > summary::before,
+  section.sec:target:not(#home) details.lpk-acc > summary::after,
+  section.sec:target:not(#home) details.acc > summary::after,
+  section.sec:target:not(#home) details.lp-section > summary::after { inset-inline-end: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section.sec:target:not(#home) * { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}
+
+/* ================================================================
+   Unified internal results: one calm editorial system for every tool
+   ================================================================ */
+section.sec:target:not(#home) .result,
+section.sec:target:not(#home) [aria-live="polite"] {
+  scroll-margin-top: 82px;
+}
+section.sec:target:not(#home) .chart-summary-card,
+section.sec:target:not(#home) .summary-card,
+section.sec:target:not(#home) .cp-res,
+section.sec:target:not(#home) .result > .panel,
+section.sec:target:not(#home) .result > .lpa-card,
+section.sec:target:not(#home) .result > .chart-summary-card {
+  border-color: rgba(183, 138, 82, .42) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 10px 30px rgba(53, 27, 40, .07) !important;
+}
+section.sec:target:not(#home) .chart-summary-card {
+  display: grid !important;
+  gap: 16px !important;
+  padding: clamp(16px, 3vw, 24px) !important;
+  background: linear-gradient(145deg, #fffdf9, #f8f0e4) !important;
+}
+section.sec:target:not(#home) .chart-summary-title {
+  color: var(--ip-wine, #642B3C) !important;
+  font-family: 'Amiri', serif !important;
+  line-height: 1.35 !important;
+}
+section.sec:target:not(#home) .chart-summary-meta,
+section.sec:target:not(#home) .chart-summary-info p {
+  color: #6c5d58 !important;
+  line-height: 1.8 !important;
+}
+section.sec:target:not(#home) .chart-summary-badge,
+section.sec:target:not(#home) .cp-result-kicker {
+  color: #8a6a30 !important;
+  letter-spacing: .04em;
+  font-weight: 700 !important;
+}
+section.sec:target:not(#home) .chart-summary-actions,
+section.sec:target:not(#home) .result-top-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+section.sec:target:not(#home) .btn-return-home,
+section.sec:target:not(#home) .btn-edit-chart {
+  min-height: 40px !important;
+  border-radius: 999px !important;
+  border-color: var(--ip-gold, #D9B979) !important;
+  color: var(--ip-wine, #642B3C) !important;
+  background: #fffdf8 !important;
+}
+section.sec:target:not(#home) .btn-return-home:hover,
+section.sec:target:not(#home) .btn-edit-chart:hover {
+  color: #fff !important;
+  background: var(--ip-wine, #642B3C) !important;
+}
+
+/* Result tab systems: clearer hierarchy, same brand colors. */
+section.sec:target:not(#home) .tabs,
+section.sec:target:not(#home) [role="tablist"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+  margin-block: 16px !important;
+  padding: 6px !important;
+  border: 1px solid rgba(183, 138, 82, .32) !important;
+  border-radius: 16px !important;
+  background: rgba(255, 253, 248, .8) !important;
+}
+section.sec:target:not(#home) .tabs button,
+section.sec:target:not(#home) [role="tablist"] [role="tab"] {
+  min-height: 42px !important;
+  flex: 1 1 auto !important;
+  border: 1px solid transparent !important;
+  border-radius: 11px !important;
+  color: #6c5d58 !important;
+  background: transparent !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+section.sec:target:not(#home) .tabs button[aria-selected="true"],
+section.sec:target:not(#home) [role="tablist"] [role="tab"][aria-selected="true"] {
+  color: #fff !important;
+  background: linear-gradient(135deg, #7a3449, #642b3c) !important;
+  border-color: var(--ip-gold, #D9B979) !important;
+  box-shadow: 0 5px 14px rgba(100, 43, 60, .2) !important;
+}
+section.sec:target:not(#home) .tabs button:focus-visible,
+section.sec:target:not(#home) [role="tablist"] [role="tab"]:focus-visible {
+  outline: 2px solid var(--ip-wine, #642B3C) !important;
+  outline-offset: 2px !important;
+}
+
+/* Matrix result: diagram first, readable panels below. */
+section#matrix:target #mresult {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+section#matrix:target #mresult .panel,
+section#matrix:target #mresult .mxd,
+section#matrix:target #mresult .chart-summary-card {
+  background: #fffdf9 !important;
+  color: #29252A !important;
+}
+section#matrix:target #mresult .panel > h3,
+section#matrix:target #mresult .panel > h4,
+section#matrix:target #mresult .mxd > summary {
+  color: #642B3C !important;
+}
+section#matrix:target #mresult .mxb {
+  color: #3c3234 !important;
+  line-height: 1.95 !important;
+}
+section#matrix:target #mresult .chart-summary-actions { justify-content: flex-start; }
+
+/* Natal result: wheel and key metrics form a deliberate two-column editorial layout. */
+section#chart:target #result {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+section#chart:target #result .big3 {
+  gap: 10px !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, #4a2535, #351b28) !important;
+}
+section#chart:target #result .big3 .b3 {
+  border-radius: 13px !important;
+}
+section#chart:target #result .tabs + .panel,
+section#chart:target #result .panel {
+  color: #30272a;
+  line-height: 1.9;
+}
+
+/* Life path result: make the dashboard scannable before the long reading. */
+section#lifepath:target #lpresult {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+section#lifepath:target #lpresult .lpd-chips,
+section#lifepath:target #lpresult .lpd-main,
+section#lifepath:target #lpresult .lpd-tri,
+section#lifepath:target #lpresult .lpj-tools {
+  gap: 12px !important;
+}
+section#lifepath:target #lpresult .lpd-chip,
+section#lifepath:target #lpresult .lpd-card,
+section#lifepath:target #lpresult .lpj-tool,
+section#lifepath:target #lpresult .lpj-pc > .lpj-card {
+  border-color: rgba(183, 138, 82, .38) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 22px rgba(74, 21, 33, .055) !important;
+}
+section#lifepath:target #lpresult .lpd-card h3,
+section#lifepath:target #lpresult .lpj-pc h3,
+section#lifepath:target #lpresult .lpj-bottom h2 {
+  color: #642B3C !important;
+}
+section#lifepath:target #lpresult .lpj-btn,
+section#lifepath:target #lpresult .lpd-tabs button {
+  border-radius: 999px !important;
+}
+section#lifepath:target #lpresult .lpj-st,
+section#lifepath:target #lpresult .lpj-row {
+  min-height: 70px !important;
+  border-radius: 14px !important;
+}
+
+/* Sky / signs / advanced maps: data cards, not a wall of text. */
+section#sky:target .sky-panel,
+section#sky:target .sky-asp,
+section#sky:target .sky-pick,
+section#sky:target .sky-cta,
+section#signs:target .sky-signcard,
+section#astro-maps:target #eam-content {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+section#sky:target .sky-card,
+section#sky:target .sky-pick,
+section#sky:target .sky-cta,
+section#sky:target .sky-signcard,
+section#astro-maps:target .eam-tabs,
+section#astro-maps:target #eam-content > * {
+  border-radius: 16px !important;
+  border-color: rgba(183, 138, 82, .38) !important;
+  box-shadow: 0 8px 22px rgba(53, 27, 40, .055) !important;
+}
+section#sky:target .sky-signs {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px !important;
+}
+section#sky:target .sky-sg {
+  min-height: 58px !important;
+  border-radius: 12px !important;
+}
+section#astro-maps:target .eam-tabs {
+  overflow-x: auto;
+  flex-wrap: nowrap !important;
+  scrollbar-width: none;
+}
+section#astro-maps:target .eam-tabs::-webkit-scrollbar { display: none; }
+section#astro-maps:target .eam-tabs button { flex: 0 0 auto !important; white-space: nowrap; }
+
+/* Compatibility result: establish an obvious reading order. */
+section#relationships:target #relation-output,
+section#compat:target #cp-out {
+  max-width: 1180px;
+  margin-inline: auto;
+}
+section#relationships:target .result-points,
+section#compat:target .cp-indicators {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px !important;
+}
+section#relationships:target .result-point,
+section#compat:target .cp-indicators article {
+  border: 1px solid rgba(183, 138, 82, .32) !important;
+  border-radius: 14px !important;
+  background: #fffdf9 !important;
+  padding: 14px !important;
+}
+
+/* Desktop spacing; compact stacked rhythm on mobile. */
+@media (min-width: 900px) {
+  section.sec:target:not(#home) .chart-summary-card { grid-template-columns: 1fr auto; align-items: center; }
+  section.sec:target:not(#home) .chart-summary-card > *:first-child { grid-column: 1; }
+  section.sec:target:not(#home) .chart-summary-card .chart-summary-actions { grid-column: 2; grid-row: 1 / span 2; }
+  section#chart:target #result:has(> .wheel-wrap) { gap: 22px 28px !important; }
+  section#lifepath:target #lpresult .lpd-tri { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 760px) {
+  section.sec:target:not(#home) .chart-summary-card { grid-template-columns: 1fr !important; }
+  section.sec:target:not(#home) .chart-summary-card .chart-summary-actions { grid-column: 1 !important; grid-row: auto !important; }
+  section.sec:target:not(#home) [role="tablist"] { overflow-x: auto; flex-wrap: nowrap !important; scrollbar-width: none; }
+  section.sec:target:not(#home) [role="tablist"]::-webkit-scrollbar { display: none; }
+  section.sec:target:not(#home) [role="tablist"] [role="tab"] { flex: 0 0 auto !important; white-space: nowrap; padding-inline: 14px; }
+  section#sky:target .sky-signs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  section#relationships:target .result-points,
+  section#compat:target .cp-indicators { grid-template-columns: 1fr !important; }
+  section#lifepath:target #lpresult .lpd-tri { grid-template-columns: 1fr !important; }
+}
