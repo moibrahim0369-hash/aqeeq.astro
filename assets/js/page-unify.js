@@ -44,7 +44,7 @@
     lifepath: [['#matrix', I.matrix, 'مصفوفة القدر', 'خريطتك الرقمية الهندسية'], ['#lifepath-compat', I.lpcompat, 'توافق المسارات', 'قراءة الشراكات بين رقمين'], ['#featured-content/pinnacles-cycles', I.read, 'اقرأ عن القمم والدورات', 'من المحتوى المميز']],
     chart: [['#matrix', I.matrix, 'مصفوفة القدر', 'الأنماط والطاقات في ميلادك'], ['#astro-maps', I.maps, 'خرائط متقدمة', 'العودة الشمسية والعبور'], ['#featured-content/how-to-start-natal-chart', I.read, 'كيف تبدأ قراءة خريطتك', 'دليل مبسّط']],
     compat: [['#lifepath-compat', I.lpcompat, 'توافق المسارات', 'قراءة الشراكات القدرية'], ['#chart', I.chart, 'خريطتك الفلكية', 'ابدأ بخريطتك أنت'], ['#featured-content/venus-in-chart', I.read, 'اقرأ عن لغة العلاقات', 'ماذا تقول الزهرة عنك']],
-    sky: [['#signs', I.signs, 'صفات وتوقعات الأبراج', 'قراءة كل برج'], ['#astro-maps', I.maps, 'العبور والتقويم', 'ماذا يمرّ عليك الآن'], ['#featured-content/how-to-read-the-sky', I.read, 'كيف تقرأ السماء', 'دعوة للتأمل']],
+    sky: [['#featured-content/how-to-read-the-sky', I.read, 'كيف تقرأ السماء', 'دعوة للتأمل']],
     signs: [['#sky', I.sky, 'السماء الآن', 'مواضع الكواكب الحقيقية'], ['#chart', I.chart, 'خريطتك الفلكية', 'برجك الشمسي والقمري والطالع'], ['#featured-content/natal-trinity', I.read, 'الثالوث الأساسي', 'الشمس والقمر والطالع']],
     'astro-maps': [['#sky', I.sky, 'السماء الآن', 'حركة الكواكب الحية'], ['#chart', I.chart, 'خريطة الميلاد', 'الأساس لكل الخرائط'], ['#featured-content/understanding-transits', I.read, 'كيف تفهم العبور', 'بهدوء ودون مبالغة']],
     'for-you': [['#chart', I.chart, 'خريطتك الفلكية', 'ابدأ منها'], ['#sky', I.sky, 'السماء الآن', 'ما يجري فوقك'], ['#featured-content/moon-phases', I.read, 'إيقاع القمر', 'مقال من المحتوى المميز']],
@@ -56,7 +56,7 @@
       var sec = document.getElementById(id); if (!sec) return; if (id === 'matrix' || id === 'chart' || id === 'lifepath') { var old = sec.querySelector('.aq-related'); if (old) old.remove(); } else if (sec.querySelector('.aq-related')) return;
       var box = document.createElement('nav'); var T = id === 'matrix' ? 'تابع رحلتك' : 'تابع من هنا';
       box.className = 'aq-related'; box.setAttribute('aria-label', T);
-      box.innerHTML = '<h3><span></span>' + T + '<span></span></h3><div class="aq-rel-grid">' + REL[id].map(function (r) {
+      box.innerHTML = '<h3><span></span>' + T + '<span></span></h3><div class="aq-rel-grid">' + REL[id].filter(function (r) { return r[0] !== '#astro-maps'; }).map(function (r) {
         return '<a class="aq-rel" href="' + r[0] + '"><span class="aq-rel-i">' + ic(r[1]) + '</span><span class="aq-rel-t"><b>' + r[2] + '</b><small>' + r[3] + '</small></span></a>';
       }).join('') + '</div>' ;
       if (id === 'matrix' && !sec.querySelector('.aq-mx-about')) {

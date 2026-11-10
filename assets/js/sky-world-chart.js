@@ -47,7 +47,7 @@
   var NODE_G = 'M4 18h5a6 6 0 1 1 6 0h5';
   var GLY = {};
   var $ = function (id) { return document.getElementById(id); };
-  var dateI = $('swc-date'), timeI = $('swc-time'), citySel = $('swc-city'), capEl = $('swc-cap'), moonEl = $('swc-moon'), gridEl = $('swc-pgrid'), errEl = $('swc-err');
+  var dateI = $('swc-date'), timeI = $('swc-time'), citySel = $('swc-city'), capEl = $('swc-cap'), moonEl = $('swc-moon'), gridEl = $('swc-pgrid'), hintEl = $('swc-hint'), errEl = $('swc-err');
   var live = true, cur = null, sel = null;
 
   var ci = 0; GROUPS.forEach(function (g) { var og = document.createElement('optgroup'); og.label = g[0]; g[1].forEach(function (c) { var o = document.createElement('option'); o.value = ci++; o.textContent = c[0]; og.appendChild(o); }); citySel.appendChild(og); });
@@ -99,7 +99,7 @@
       var p0 = pt(i * 30, R1), p1 = pt(i * 30 + 30, R1), p2_ = pt(i * 30 + 30, R2), p3 = pt(i * 30, R2);
       o += '<path d="M' + f(p0[0]) + ' ' + f(p0[1]) + 'A' + R1 + ' ' + R1 + ' 0 0 0 ' + f(p1[0]) + ' ' + f(p1[1]) + 'L' + f(p2_[0]) + ' ' + f(p2_[1]) + 'A' + R2 + ' ' + R2 + ' 0 0 1 ' + f(p3[0]) + ' ' + f(p3[1]) + 'Z" fill="' + (i % 2 ? '#6A2A3C' : '#5E2234') + '" stroke="#C5A059" stroke-width=".9"/>';
       var g = pt(i * 30 + 15, (R1 + R2) / 2), d = GLY['s' + i];
-      if (d) o += '<path transform="translate(' + f(g[0] - 15) + ' ' + f(g[1] - 15) + ') scale(1.25)" d="' + d + '" fill="none" stroke="#F3DFA8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>';
+      if (d) o += '<path transform="translate(' + f(g[0] - 16.8) + ' ' + f(g[1] - 16.8) + ') scale(1.4)" d="' + d + '" fill="none" stroke="#F3DFA8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>';
     }
     o += '<circle cx="' + cx + '" cy="' + cx + '" r="' + R2 + '" fill="url(#swcC)" stroke="#C5A059" stroke-width="1.2"/><circle cx="' + cx + '" cy="' + cx + '" r="' + R3 + '" fill="#FFFDF8" stroke="#C5A059" stroke-width="1"/>';
     var tk = ''; for (var a = 0; a < 360; a += 5) tk += ln(pt(a, R2), pt(a, R2 - (a % 10 ? 4 : 8)));
@@ -123,13 +123,14 @@
     o += as;
     /* كواكب: تباعد بسيط لمنع التداخل */
     var arr = st.items.concat(st.node ? [st.node] : []).map(function (it) { return { it: it, disp: it.lon }; }).sort(function (a, b) { return a.it.lon - b.it.lon; });
-    for (var rep = 0; rep < 60; rep++) { var mv = false; for (var k = 0; k < arr.length; k++) { var A = arr[k], B = arr[(k + 1) % arr.length], gap = mod(B.disp - A.disp); if (gap < 9.5 && arr.length > 1) { var ps = (9.5 - gap) / 2 + .01; A.disp = mod(A.disp - ps); B.disp = mod(B.disp + ps); mv = true; } } if (!mv) break; }
+    for (var rep = 0; rep < 60; rep++) { var mv = false; for (var k = 0; k < arr.length; k++) { var A = arr[k], B = arr[(k + 1) % arr.length], gap = mod(B.disp - A.disp); if (gap < 12 && arr.length > 1) { var ps = (12 - gap) / 2 + .01; A.disp = mod(A.disp - ps); B.disp = mod(B.disp + ps); mv = true; } } if (!mv) break; }
     arr.forEach(function (x) {
-      var it = x.it, p = pt(x.disp, RP), t1 = pt(it.lon, R2), t2 = pt(it.lon, R2 - 11), g = it.k === 'node' ? NODE_G : (GLY[it.k] || '');
-      o += '<g class="swc-pl" data-k="' + it.k + '" tabindex="0" role="button"><title>' + it.n + ' · ' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + (it.retro ? ' · متراجع' : '') + '</title>' + ln(t1, t2, 'stroke="#6B2234" stroke-width="1.4"') +
-        '<circle class="swc-hit" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="17" fill="#6B2234" fill-opacity="0"/>' +
-        '<path transform="translate(' + f(p[0] - 13) + ' ' + f(p[1] - 13) + ') scale(1.083)" d="' + g + '" fill="none" stroke="#4A1521" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>' +
-        (it.retro ? '<text x="' + f(p[0] + 13) + '" y="' + f(p[1] - 8) + '" font-size="10" font-weight="700" fill="#B8473E" font-family="Cairo,sans-serif">R</text>' : '') + '</g>';
+      var it = x.it, p = pt(x.disp, RP), t1 = pt(it.lon, R2), t2 = pt(it.lon, R2 - 11), g = it.k === 'node' ? NODE_G : (GLY[it.k] || ''), tap = it.k !== 'node';
+      o += '<g class="swc-pl' + (tap ? '' : ' is-static') + '" data-k="' + it.k + '"' + (tap ? ' tabindex="0" role="button"' : '') + '><title>' + it.n + ' · ' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + (it.retro ? ' · متراجع' : '') + '</title>' + ln(t1, t2, 'stroke="#6B2234" stroke-width="1.4"') +
+        '<circle class="swc-hit" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="19" fill="#6B2234" fill-opacity="0"/>' +
+        '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="16.5" fill="#FFFDF7" fill-opacity=".92" stroke="#C5A059" stroke-width="1.1"/>' +
+        '<path class="swc-glyph" transform="translate(' + f(p[0] - 14) + ' ' + f(p[1] - 14) + ') scale(1.167)" d="' + g + '" fill="none" stroke="#4A1521" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+        (it.retro ? '<circle cx="' + f(p[0] + 13) + '" cy="' + f(p[1] - 13) + '" r="7.5" fill="#B8473E" stroke="#FFFDF7" stroke-width="1.2"/><text x="' + f(p[0] + 13) + '" y="' + f(p[1] - 9.8) + '" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff" font-family="Cairo,sans-serif">R</text>' : '') + '</g>';
     });
     return o;
   }
@@ -140,13 +141,29 @@
     return { el: el, il: il, age: age, svg: '<svg class="swc-moon-svg" viewBox="0 0 120 120" role="img" aria-label="القمر: ' + phaseName(el) + '، إضاءة ' + il + '%">' + mk + '</svg>', ph: phaseName(el), moon: moon, sun: sun };
   }
 
+  function joinAr(a) { return a.length < 2 ? a.join('') : a.length === 2 ? a[0] + ' و' + a[1] : a.slice(0, -1).join('، ') + ' و' + a[a.length - 1]; }
+  /* جملة تحت القمر: تتبدل مع درجات الكواكب وحالات التراجع الفعلية في اللحظة المختارة */
+  function hintHTML(st) {
+    var retro = st.items.filter(function (r) { return r.retro && r.k !== 'sun' && r.k !== 'moon'; }), edge = null;
+    st.items.forEach(function (it) { var d = it.lon % 30; if (!edge && it.k !== 'moon' && (d >= 29 || d < 1)) edge = it; });
+    var lead, sub;
+    if (edge) { lead = edge.n + (edge.lon % 30 >= 29 ? ' في آخر درجات ' : ' في أولى درجات ') + SIGNS_AR[edge.sign]; sub = 'لحظة انتقال دقيقة. اضغط عليه لتعرف ماذا يتبدّل، وعلى أي كوكب آخر لتعرف حالته.'; }
+    else if (retro.length) { lead = joinAr(retro.map(function (r) { return r.n; })) + (retro.length > 1 ? ' متراجعون الآن' : ' متراجع الآن'); sub = 'اضغط على أي كوكب بالأسفل لتعرف ماذا يعني موقعه، وهل هو متراجع أم يسير في حركته المباشرة.'; }
+    else { lead = 'كل الكواكب تسير في حركتها المباشرة'; sub = 'اضغط على أي كوكب بالأسفل لتقرأ ماذا يعني موقعه الآن.'; }
+    return '<span class="swc-hint-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V8.500a1.500 1.500 0 0 1 3 0V11m0 0v-.5a1.500 1.500 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.200a5 5 0 0 1-4-2L4.500 15.500a1.500 1.500 0 0 1 2.300-1.900L9 16"/></svg></span><span class="swc-hint-t"><b>' + lead + '</b><small>' + sub + '</small></span>';
+  }
+
   function renderCard(st) {
     svg.innerHTML = wheel(st);
     var m = moonBlock(st);
     moonEl.innerHTML = '<div class="swc-moon-fig">' + m.svg + '</div><div class="swc-moon-txt"><small>القمر في التاريخ المختار</small><b>' + m.ph + '</b><span>القمر في ' + SIGNS_AR[m.moon.sign] + ' ' + dm(m.moon.lon) + '</span><span>إضاءة ' + m.il + '% · عمره ' + m.age + ' يوم</span><span>الشمس في ' + SIGNS_AR[m.sun.sign] + ' ' + dm(m.sun.lon) + '</span></div>';
     gridEl.innerHTML = st.items.map(function (it) {
-      return '<button type="button" class="swc-pc' + (it.retro ? ' is-retro' : '') + '" data-k="' + it.k + '">' + path(it.k, 'swc-pc-g') + '<span class="swc-pc-t"><b>' + it.n + (it.retro ? ' <em>R</em>' : '') + '</b><small>' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + '</small></span></button>';
+      var fixed = it.k === 'sun' || it.k === 'moon';
+      return '<button type="button" class="swc-pc' + (it.retro ? ' is-retro' : '') + '" data-k="' + it.k + '"><span class="swc-pc-m">' + path(it.k, 'swc-pc-g') + '</span><span class="swc-pc-t"><b>' + it.n + '</b><small>' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + '</small></span>' +
+        (fixed ? '' : '<i class="swc-pc-st ' + (it.retro ? 'is-retro' : 'is-direct') + '">' + (it.retro ? 'متراجع' : 'مباشر') + '</i>') +
+        '<span class="swc-pc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></button>';
     }).join('');
+    hintEl.innerHTML = hintHTML(st);
     capEl.textContent = dateTxt(st) + (live ? ' · مباشر' : '');
   }
 
@@ -203,14 +220,34 @@
     [].forEach.call(svg.querySelectorAll('.swc-pl'), function (g) { g.classList.toggle('is-sel', g.getAttribute('data-k') === k); });
     [].forEach.call(gridEl.querySelectorAll('.swc-pc'), function (r) { r.classList.toggle('is-sel', r.getAttribute('data-k') === k); });
   }
-  /* الضغط على كوكب يفتح تفاصيله في قسم الرصد أسفل الكارت (بنفس التاريخ المختار) */
+  /* الضغط على كوكب يفتح قراءته في ورقة سفلية مرتبة بدل النزول لآخر الصفحة */
+  var sheet = null, root = document.documentElement;
+  function ensureSheet() {
+    if (sheet) return sheet;
+    sheet = document.createElement('div'); sheet.className = 'aqm-sheet swp-sheet'; sheet.hidden = true;
+    sheet.innerHTML = '<div class="aqm-sheet-scrim" data-swpc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="قراءة الكوكب"><span class="aqm-sheet-grip"></span>' +
+      '<button type="button" class="aqm-sheet-x" data-swpc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
+      '<div class="aqm-sheet-body swp-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-close" data-swpc>إغلاق</button></div></div>';
+    document.body.appendChild(sheet);
+    if ('MutationObserver' in window) new MutationObserver(function () { queueUp(); }).observe(sheet, { childList: true, subtree: true });
+    sheet.addEventListener('click', function (e) { if (e.target.closest('[data-swpc]')) closeSheet(); else if (e.target.closest('a[href]')) closeSheet(); });
+    sheet.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
+    return sheet;
+  }
+  function showSheet() {
+    var s = ensureSheet(), body = s.querySelector('.swp-body'), panel = document.getElementById('sky-panel');
+    if (panel && panel.parentNode !== body) body.appendChild(panel);
+    body.scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
+    queueUp();
+  }
+  function closeSheet() { if (!sheet || sheet.hidden) return; var s = sheet; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
   function openPlanet(k) {
     if (k === 'node') return;
     highlight(k);
     var n = 0;
     (function go() {
-      var chip = document.querySelector('#sky-chips .chip[data-k="' + k + '"]'), t = document.getElementById('sky-chips');
-      if (chip && t) { if (chip.getAttribute('aria-pressed') !== 'true') chip.click(); setTimeout(function () { try { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { t.scrollIntoView(); } }, 120); }
+      var chip = document.querySelector('#sky-chips .chip[data-k="' + k + '"]');
+      if (chip) { if (chip.getAttribute('aria-pressed') !== 'true') chip.click(); showSheet(); }
       else if (n++ < 20) setTimeout(go, 120);
     })();
   }
@@ -249,7 +286,7 @@
   }
   function upgradeGlyphs() {
     var G = window.AqeeqGL, M = charMap(); if (!G) return;
-    [].forEach.call(document.querySelectorAll('#sky .sg:not([data-sv]),#world .sg:not([data-sv])'), function (el) {
+    [].forEach.call(document.querySelectorAll('#sky .sg:not([data-sv]),#world .sg:not([data-sv]),.swp-sheet .sg:not([data-sv])'), function (el) {
       var key = M[(el.textContent || '').replace(/[\uFE0E\uFE0F\s]/g, '')];
       el.setAttribute('data-sv', '1');
       if (key && G[key]) el.innerHTML = '<svg class="sg-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + G[key] + '"/></svg>';
