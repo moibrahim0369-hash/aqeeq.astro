@@ -1,0 +1,10 @@
+/* منتقي (يوم / شهر / سنة) و(ساعة / دقيقة / ص م) — موحّد في كل الموقع */
+input.aq-dsx-src{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;left:0;top:0}
+.aq-dsx{display:grid!important;gap:8px;width:100%;margin-top:4px;direction:rtl}
+.aq-dsx-date{grid-template-columns:1fr 1.3fr 1.1fr}
+.aq-dsx-time{grid-template-columns:1.1fr 1.1fr 1.3fr}
+.aq-dsx select{width:100%!important;min-width:0!important;min-height:40px!important;border:1.5px solid #D9BD86!important;border-radius:11px!important;background:#fff!important;color:#4A1428!important;-webkit-text-fill-color:#4A1428;font-size:.9rem!important;font-weight:700!important;padding:0 2px!important;text-align:center!important;text-align-last:center!important;-webkit-appearance:none;appearance:none;background-image:none!important;box-shadow:none!important;font-family:inherit}
+.aq-dsx select:required:invalid,.aq-dsx select[value=""]{color:#9a8b7a!important;-webkit-text-fill-color:#9a8b7a;font-weight:500!important}
+.aq-dsx select:focus{outline:2px solid rgba(201,163,93,.55)!important;border-color:#B98A3E!important;box-shadow:0 0 0 3px rgba(201,163,93,.22)!important}
+.aq-dsx select:active{transform:scale(.97)}
+.aq-dsx select:has(option[value=""]:checked){color:#9a8b7a!important;-webkit-text-fill-color:#9a8b7a;font-weight:500!important}
