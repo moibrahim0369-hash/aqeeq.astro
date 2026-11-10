@@ -234,6 +234,7 @@
   window.AqeeqFX = { FX: FX, SUN_SHORT: SUN_SHORT, ASP_FX: ASP_FX, moonShort: moonShort, phaseShort: phaseShort };
   /* ضغط الكوكب في البانر: افتح صفحة السماء على تفاصيله (التراجع والتأثير) */
   function openPlanet(k, target) {
+    if (target !== 'asp' && window.AqForecast && window.AqForecast.open(k)) return;
     var sd = document.getElementById('sky-date');
     if (sd && sd.value) { sd.value = ''; sd.dispatchEvent(new Event('change', { bubbles: true })); }
     if (location.hash !== '#sky') location.hash = '#sky';

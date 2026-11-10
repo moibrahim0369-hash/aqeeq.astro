@@ -40,6 +40,7 @@
       'الاستسلام هنا ليس انهزامًا بل ثقة: يسمح الوعي للاوعي أن يعيد التكوين استعدادًا لدورة جديدة.',
       ['تميل إلى النوم المبكر وتقل رغبتك في الخروج.', 'ترتب غرفتك أو هاتفك دون سبب.', 'تودع شخصًا أو فكرة بصمت.']]
   ];
+  window.AqMoonPhase = function (ms) { try { var c = calc(ms); return { p: PH[c.ph], il: Math.round(c.il * 100) }; } catch (e) { return null; } };
   function phBody(p) {
     return '<p>' + p[2] + '</p>' +
       '<div class="mn-q"><b>أسئلة تخصك</b><p>' + p[5][0] + '</p><p>' + p[5][1] + '</p></div>' +

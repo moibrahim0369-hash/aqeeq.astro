@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="assets/css/natal-page.css?v=20261110e">
 <link rel="stylesheet" href="assets/css/geo-picker.css?v=20261110c">
 <link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
-<link rel="stylesheet" href="assets/css/page-art.css?v=20261116m">
+<link rel="stylesheet" href="assets/css/page-art.css?v=20261116n">
 <link rel="stylesheet" href="assets/css/date-time-selects.css?v=20261112a">
 <link rel="stylesheet" href="assets/css/natal-dashboard.css?v=20261109a">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
@@ -3404,6 +3404,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <div class="swp-row"><b>في الواقع</b><ul><li>${ex[0]}</li><li>${ex[1]}</li><li>${ex[2]}</li></ul></div></div>
       <p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>`;
   }
+  window.AqSky = { skyCard, PLANETS, SIGNS, HOUSES, gl, HQ, HEX, PF, PQ };
   const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
 
   /* ---------- كارت منازل القمر: اسم الطور + شكل القمر الحقيقي ---------- */
@@ -5237,14 +5238,14 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/matrix-sheet.js?v=20261110n" defer></script>
 <script src="assets/js/lifepath-sheet.js?v=20261114b" defer></script>
 <script src="assets/js/chart-sheet.js?v=20261114a" defer></script>
-<script src="assets/js/moon-sheet.js?v=20261116a" defer></script>
+<script src="assets/js/moon-sheet.js?v=20261116b" defer></script>
 <script>(function(){function g(){if(location.hash==="#astro-maps")location.replace("#home")}g();addEventListener("hashchange",g)})();</script>
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js?v=20261106a"></script>
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
-<script src="assets/js/sky-world-chart.js?v=20261116c" defer></script>
+<script src="assets/js/sky-world-chart.js?v=20261116d" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
@@ -5274,7 +5275,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/natal-dashboard.js?v=20261109b" defer></script>
 <script src="assets/js/life-path-view.js?v=20261107a" defer></script>
 <script src="assets/js/lp-accordion.js?v=20261106b" defer></script>
-<script src="assets/js/daily-banner.js?v=20261110c" defer></script>
+<script src="assets/js/sign-forecast-sheet.js?v=20261116a" defer></script>
+<script src="assets/js/daily-banner.js?v=20261116a" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js?v=20261107a" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
