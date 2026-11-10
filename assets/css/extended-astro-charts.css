@@ -52,3 +52,5 @@
 .eam-event>div:last-child b{color:#d8c47f}
 .eam-event>div:last-child span,.eam-event-date{color:#aab1be;font-size:.78rem;line-height:1.65}
 @media(max-width:480px){.eam-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.eam-tabs [role=tab]{white-space:normal;min-height:44px;line-height:1.35}.eam-event{grid-template-columns:1fr;gap:.35rem;padding:.75rem}.eam-pillar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eam-pillar{padding:.72rem .5rem}}
+.vx-wrap{margin-top:1rem}.vx p{line-height:1.95;margin:.4rem 0}.vx h4{margin-bottom:.4rem}
+.vx .eam-table{min-width:0}.vx-on th,.vx-on td{color:#e8c98f!important;font-weight:700}
