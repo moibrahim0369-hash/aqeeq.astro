@@ -515,3 +515,24 @@
 /* ألوان أهدأ + جبال خفيفة خلف اللوحة */
 #matrix.mxp .mxp-rev-panel{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 260' preserveAspectRatio='none'%3E%3Cpath d='M0 260V170l90-60 70 40 110-90 100 80 90-50 120 100 110-70 100 60 130-110 120 90 160-70v220z' fill='%23E0C58A' fill-opacity='.10'/%3E%3Cpath d='M0 260V210l120-50 100 40 140-70 130 70 110-40 150 60 130-50 120 40 200-40v100z' fill='%23E0C58A' fill-opacity='.08'/%3E%3C/svg%3E") center bottom/100% 55% no-repeat,radial-gradient(60% 120% at 6% 50%,rgba(214,150,140,.12),transparent 70%),linear-gradient(160deg,#7a4452,#5e3041 60%,#4c2535)!important}
 section.sec:target#matrix .aq-section-topbar,section.sec:target#lifepath .aq-section-topbar,section.sec:target#chart .aq-section-topbar{position:static!important;background:none!important;backdrop-filter:none!important;border-bottom:0!important}
+/* ===== لوحة "ماذا تكشف" بالكريمي بدل العنابي ===== */
+#matrix.mxp .mxp-rev-panel{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 260' preserveAspectRatio='none'%3E%3Cpath d='M0 260V170l90-60 70 40 110-90 100 80 90-50 120 100 110-70 100 60 130-110 120 90 160-70v220z' fill='%23B8935A' fill-opacity='.10'/%3E%3Cpath d='M0 260V210l120-50 100 40 140-70 130 70 110-40 150 60 130-50 120 40 200-40v100z' fill='%23B8935A' fill-opacity='.09'/%3E%3C/svg%3E") center bottom/100% 60% no-repeat,linear-gradient(180deg,#FFFCF6,#F8F0E1)!important;border:1px solid #e3d3b3!important;box-shadow:0 0 0 4px rgba(255,251,240,.9),0 0 0 5px #e6d4ad,0 18px 40px rgba(120,70,50,.12)!important}
+#matrix.mxp .mxp-rev-panel h3{color:#4a1a2b!important}
+#matrix.mxp .mxp-rev-panel h3 span{color:#4a1a2b!important}
+#matrix.mxp .mxp-checks li{color:#4a3a3e!important;border-inline-start-color:rgba(185,154,91,.4)!important}
+#matrix.mxp .mxp-checks li::before{border-color:#B08A46!important;color:#B08A46!important;background:rgba(255,250,236,.9)!important}
+#matrix.mxp .mxp-rev-tag{color:#9a7a3a!important;opacity:.9}
+#matrix.mxp .mxp-rev-orb{opacity:.55;filter:sepia(.2) hue-rotate(-10deg) saturate(.6) brightness(1.5)}
+#matrix.mxp .mxp-rev-orb{display:none!important}
+#matrix.mxp .mxp-topbar,#matrix.mxp .aq-section-topbar{position:static!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;padding:6px 0 10px!important}
+@media(min-width:900px){
+ #matrix.mxp form.mxp-card{grid-column:1/-1;max-width:none!important;width:100%;display:grid!important;grid-template-columns:repeat(3,1fr);gap:6px 22px;align-items:end;padding:22px 30px 18px!important}
+ #matrix.mxp form.mxp-card>*{grid-column:1/-1}
+ #matrix.mxp form.mxp-card>.field{grid-column:auto}
+ #matrix.mxp form.mxp-card .mxp-ctitle{display:none}
+ #matrix.mxp form.mxp-card .btn{justify-self:center;width:min(420px,100%)}
+ #matrix.mxp .mxp-cfoot{text-align:center}}
+html body section.sec:target#matrix>.wrap>.aq-section-topbar,html body section.sec:target#matrix .aq-section-topbar.mxp-topbar{position:static!important;background:transparent!important;border-bottom:0!important;backdrop-filter:none!important;box-shadow:none!important;margin:0 0 10px!important}
+#matrix.mxp .mxp-checks li::before{background:none!important;background-color:rgba(255,250,236,.9)!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B08A46' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:center!important;background-size:62%!important}
+#matrix.mxp form.mxp-card .btn{white-space:nowrap}
+@media(max-width:520px){#matrix.mxp form.mxp-card .btn{font-size:1rem!important;padding-inline:16px!important}}
