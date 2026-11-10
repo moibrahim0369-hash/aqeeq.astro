@@ -31,7 +31,8 @@
       '<span class="aqm-sheet-grip" aria-hidden="true"></span>' +
       '<button type="button" class="aqm-sheet-x" data-lps-close aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
       '<div class="aqm-sheet-head"><span class="aqm-sheet-ic"></span><div><h3 id="lps-title"></h3><p class="aqm-sheet-sub"></p></div></div>' +
-      '<div class="aqm-sheet-body lps-body"></div></div>';
+      '<div class="aqm-sheet-body lps-body"></div>' +
+      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-close" data-lps-close>إغلاق</button></div></div>';
     document.body.appendChild(sheet);
     sheet.addEventListener('click', function (e) {
       if (e.target.closest('[data-lps-close]')) { closeSheet(); return; }
@@ -52,9 +53,9 @@
     $('#lps-title', s).textContent = title;
     $('.aqm-sheet-sub', s).textContent = sub || '';
     var b = $('.lps-body', s); b.innerHTML = html; b.scrollTop = 0;
-    s.hidden = false; root.classList.add('aqm-sheet-open');
+    s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
   }
-  function closeSheet() { if (!sheet) return; sheet.hidden = true; root.classList.remove('aqm-sheet-open'); }
+  function closeSheet() { if (!sheet || sheet.hidden) return; sheet.classList.add('is-closing'); var sh = sheet; setTimeout(function () { sh.hidden = true; sh.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
 
   /* ---------- بيانات المراحل من DOM المحرك ---------- */
   function rowsOf(card) { return $$('.lpj-row', card).map(function (b) { return { i: Number(b.getAttribute('data-i')), st: b.getAttribute('data-status'), v: ($('.v', b) || {}).textContent, lbl: ($('.tx > b', b) || {}).textContent, per: ($('.tx > span', b) || {}).textContent, el: b }; }); }
