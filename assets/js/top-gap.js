@@ -3,7 +3,7 @@
   var r = document.documentElement;
   function set() {
     var h = document.querySelector('.aqh-header'); var v = 0;
-    if (h) { var b = h.getBoundingClientRect(); var cs = getComputedStyle(h); if (cs.display !== 'none' && cs.visibility !== 'hidden') v = Math.max(0, Math.min(120, Math.round(b.bottom))); }
+    if (h) { var b = h.getBoundingClientRect(); var cs = getComputedStyle(h); if (cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity) > 0.1 && b.bottom > 4) { var hit = document.elementFromPoint(Math.max(2, window.innerWidth / 2), Math.min(b.bottom - 4, 40)); if (hit && hit.closest && hit.closest('.aqh-header')) v = Math.max(0, Math.min(120, Math.round(b.bottom))); } }
     r.style.setProperty('--aq-hdr', v + 'px');
   }
   ['resize', 'hashchange', 'scroll', 'load', 'orientationchange'].forEach(function (e) { window.addEventListener(e, set, { passive: true }); });
