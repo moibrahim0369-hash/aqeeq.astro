@@ -982,7 +982,7 @@
       {
         id: 'cp-out',
         type: 'compat',
-        typeLabel: 'توافق الخرائط الفلكية (Synastry)',
+        typeLabel: 'توافق الخرائط الفلكية',
         route: '#compat',
         getMeta: () => {
           const n1 = document.getElementById('cp1_name')?.value?.trim() || 'الشخص الأول';

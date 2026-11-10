@@ -314,11 +314,11 @@
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 24px;">
             <div style="background: rgba(212, 175, 55, 0.06); padding: 18px; border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.2);">
-              <h4 style="color: var(--tarot-gold); margin-bottom: 10px;">المعنى المستقيم (Upright)</h4>
+              <h4 style="color: var(--tarot-gold); margin-bottom: 10px;">المعنى المستقيم</h4>
               <p style="font-size: 0.95rem; line-height: 1.8;">${card.core_meaning && card.core_meaning.upright ? card.core_meaning.upright.replace(/\n/g, '<br>') : 'متضمن في التحليل الشامل.'}</p>
             </div>
             <div style="background: rgba(255, 107, 74, 0.06); padding: 18px; border-radius: 12px; border: 1px solid rgba(255, 107, 74, 0.2);">
-              <h4 style="color: #ff9179; margin-bottom: 10px;">المعنى المقلوب (Reversed)</h4>
+              <h4 style="color: #ff9179; margin-bottom: 10px;">المعنى المقلوب</h4>
               <p style="font-size: 0.95rem; line-height: 1.8;">${card.core_meaning && card.core_meaning.reversed ? card.core_meaning.reversed.replace(/\n/g, '<br>') : 'متضمن في التحليل الشامل.'}</p>
             </div>
           </div>
@@ -331,7 +331,7 @@
           <p>${card.deep_psychology && card.deep_psychology.text ? card.deep_psychology.text.replace(/\n/g, '<br>') : 'التحليل النفسي الأصلي موثق في التقرير الكامل.'}</p>
           ${card.deep_psychology && card.deep_psychology.shadow ? `
             <div style="background: rgba(255, 107, 74, 0.08); padding: 18px; border-radius: 12px; border: 1px solid rgba(255, 107, 74, 0.25); margin-top: 20px;">
-              <h4 style="color: #ff9179; margin-bottom: 8px;"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14.500A8 8 0 1 1 9.500 5 6.500 6.500 0 0 0 19 14.500z"/></svg> تشريح طاقة الظل (Shadow Aspect)</h4>
+              <h4 style="color: #ff9179; margin-bottom: 8px;"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14.500A8 8 0 1 1 9.500 5 6.500 6.500 0 0 0 19 14.500z"/></svg> تشريح طاقة الظل</h4>
               <p style="font-size: 0.95rem; line-height: 1.8;">${card.deep_psychology.shadow.replace(/\n/g, '<br>')}</p>
             </div>
           ` : ''}
@@ -380,12 +380,12 @@
           <p>${card.inquiry_meditation ? card.inquiry_meditation.replace(/\n/g, '<br>') : 'أسئلة تفكيك الوعي موجودة في المخطوطة.'}</p>
 
           ${card.card_combinations ? `
-            <h3>تفسير الكارت مع الكروت الأخرى (Combinations)</h3>
+            <h3>تفسير الكارت مع الكروت الأخرى</h3>
             <p>${card.card_combinations.replace(/\n/g, '<br>')}</p>
           ` : ''}
 
           ${card.positional_spreads ? `
-            <h3>دلالة الكارت حسب موقعه في السحب (Positional Spreads)</h3>
+            <h3>دلالة الكارت حسب موقعه في السحب</h3>
             <p>${card.positional_spreads.replace(/\n/g, '<br>')}</p>
           ` : ''}
         `;

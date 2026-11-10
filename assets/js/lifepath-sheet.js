@@ -13,7 +13,10 @@
     stages: sv('<path d="M3 20h4v-5h4v-5h4V5h6"/><path d="M3 20h18"/>'),
     peaks: sv('<path d="M2.5 19.5 9 8l4 6 3-4 5.500 9.500z"/>'),
     chal: sv('<path d="M12 3l8 3.500v5.500c0 4.500-3.300 7.800-8 9-4.700-1.200-8-4.500-8-9V6.500z"/><path d="M9 12l2.200 2.200L15.500 10"/>'),
-    name: sv('<path d="M7 11c0-3 1.800-5 5-5s5 2 5 5"/><path d="M5 13c0-5 3-8.500 7-8.500s7 3.500 7 8.500"/><path d="M9 20c-1.500-2-2-4-2-6.500M12 21c-1-2-1.500-4.500-1.500-7.500M15 20c1-1.800 1.600-4 1.600-6.500"/>'),
+    name: sv('<path d="M3.500 11.500C4.200 7 7.600 3.500 12 3.500s7.800 3.500 8.500 8"/><path d="M5.500 14c0-4.200 2.800-7.500 6.500-7.500s6.500 3.300 6.500 7.500"/><path d="M8.500 15c0-2.800 1.500-5 3.500-5s3.500 2.200 3.500 5"/><path d="M11 16c0-1.100.4-1.900 1-1.900s1 .8 1 1.900"/><path d="M6.500 19.500c.6-1.500.9-3 .9-4.500M9.500 21c.7-1.600 1.100-3.400 1.100-5.200M13 21.200c.4-1.500.6-3.200.6-5M16.500 20c.4-1.600.6-3.200.6-5M19 17.500c.2-1.100.3-2.200.3-3.200"/>'),
+    heart: sv('<path d="M12 20s-7.500-4.600-7.500-10.200A4.200 4.200 0 0 1 12 7.300a4.200 4.200 0 0 1 7.500 2.500C19.500 15.400 12 20 12 20z"/>'),
+    mask: sv('<path d="M4 7.500c0-1 .8-2 2-2h12c1.200 0 2 1 2 2V11c0 4.500-3.500 7.500-8 8.500C7.500 18.500 4 15.500 4 11z"/><path d="M8 10.500c.8-.6 1.700-.6 2.500 0M13.500 10.500c.8-.6 1.700-.6 2.500 0M9 14.500c1.700 1.200 4.300 1.200 6 0"/>'),
+    route: sv('<circle cx="6" cy="19" r="2.200"/><circle cx="18" cy="5" r="2.200"/><path d="M6 16.800V14a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7.200"/>'),
     chev: sv('<path d="M15 6l-6 6 6 6"/>', 2),
     back: sv('<path d="M5 12h14M13 6l6 6-6 6"/>', 2),
     light: sv('<circle cx="12" cy="12" r="4"/><path d="M12 3v2.500M12 18.500V21M3 12h2.500M18.500 12H21M5.600 5.600l1.800 1.800M16.600 16.600l1.800 1.800M5.600 18.400l1.800-1.800M16.600 7.400l1.800-1.800"/>'),
@@ -101,6 +104,19 @@
     }
     var c = n.cloneNode(true);
     var hd = $('.aqeq-name-heading', c); if (hd) { var k = $('.aqeq-name-kicker', hd), p = $('p', hd); if (k) k.remove(); if (p) p.remove(); }
+    $$('.aqeq-name-group', c).forEach(function (g, gi) {
+      var h = $('header', g), t = $('h4', h), sb = $('p', h), nn = $('.aqeq-name-number', h);
+      if (!h || !t) return;
+      var tt = t.textContent, key = /الروح|الرغبة/.test(tt) ? 'heart' : /الشخص|الصورة|المظهر|القناع/.test(tt) ? 'mask' : 'route';
+      h.innerHTML = '<span class="lpc-ic lpn-gi c' + (gi % 4 + 1) + '">' + IC[key] + '</span><div class="lpn-gt"><h4>' + esc(tt) + '</h4><p>' + esc(sb ? sb.textContent : '') + '</p></div><span class="lpn-num"><small>الرقم</small><b>' + esc(nn ? nn.textContent : '') + '</b></span>';
+      $$('.aqeq-reading-card', g).forEach(function (card, ci) {
+        var hh = $('h5', card), body = $('.aqeq-reading-content', card);
+        var d = document.createElement('details'); d.className = 'lpn-card'; if (ci === 0) d.open = true;
+        d.innerHTML = '<summary><span class="lpn-idx">' + (ci + 1) + '</span><b>' + esc(hh ? hh.textContent : '') + '</b><span class="lpn-chev">' + IC.chev + '</span></summary><div class="lpn-b"></div>';
+        if (body) $('.lpn-b', d).appendChild(body);
+        card.replaceWith(d);
+      });
+    });
     return '<div class="lps-name">' + c.innerHTML + '</div>';
   }
   function openTile(kind) {
