@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="assets/css/natal-page.css?v=20261110e">
 <link rel="stylesheet" href="assets/css/geo-picker.css?v=20261110c">
 <link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
-<link rel="stylesheet" href="assets/css/page-art.css?v=20261116l">
+<link rel="stylesheet" href="assets/css/page-art.css?v=20261116m">
 <link rel="stylesheet" href="assets/css/date-time-selects.css?v=20261112a">
 <link rel="stylesheet" href="assets/css/natal-dashboard.css?v=20261109a">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
@@ -3464,14 +3464,18 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     }
     found.sort((x, y) => x.orb - y.orb);
     const top = found.slice(0, 12);
-    const head = `<div class="asp-head"><h4 class="ph">أهم الاسبكتات بين الكواكب دلوقتي</h4><span class="asp-leg"><i class="k-soft">داعم</i><i class="k-hard">متوتر</i></span></div>`;
-    if (!top.length) { $("#sky-asp").innerHTML = head + `<p class="sub">مفيش اسبكتات مؤثرة في اليوم ده (حسب أوربات 6° وخاصة 8° للشمس والقمر).</p>`; return; }
-    const AM = { conj: "المجالان يمتزجان في طاقة واحدة مكثفة، فيصعب الفصل بينهما.", sext: "فرصة هادئة للتعاون، تحتاج مبادرة بسيطة منك لتستثمرها.", square: "احتكاك يحرّك الأمور، ويكشف خلافًا داخليًا يحتاج قرارًا واضحًا.", trine: "انسجام وتدفق طبيعي، وانتبه فقط من الاعتياد على السهولة.", opp: "شدّ بين طرفين يحتاج توازنًا واعيًا بدل الانحياز لأحدهما." };
+    const head = `<div class="asp-head"><h4 class="ph">الأسبكتات بين الكواكب الآن</h4><span class="asp-leg"><i class="k-soft">داعم</i><i class="k-hard">متوتر</i><i class="k-neu">اندماج</i></span></div><p class="ax-sub">الأسبكتات هي الزوايا التي تصنعها الكواكب مع بعضها، وكل زاوية تصنع حوارًا بين مجالين في حياتك.</p>`;
+    if (!top.length) { $("#sky-asp").innerHTML = head + `<p class="sub">لا توجد أسبكتات مؤثرة في هذه اللحظة، فالسماء هادئة نسبيًا.</p>`; return; }
+    const AM = { conj: "يلتقي المجالان في نقطة واحدة فيمتزجان، ويصعب الفصل بينهما، فيشتدّ أثرهما معًا.", sext: "فرصة هادئة للتعاون بين المجالين، وتحتاج منك مبادرة بسيطة لتستثمرها.", square: "احتكاك يحرّك الأمور ويكشف خلافًا داخليًا، ويطلب منك قرارًا واضحًا.", trine: "انسجام وتدفق طبيعي بين المجالين، وعليك فقط ألا تعتاد السهولة فتؤجل.", opp: "شدّ بين طرفين، وكل طرف يطلب منك الانحياز إليه، والحل في التوازن الواعي." };
+    const AQ = { conj: "هل تشعر أن أمرين في حياتك لم يعودا منفصلين؟", sext: "هل ظهرت فرصة صغيرة تتردد في الإمساك بها؟", square: "هل تشعر بشدٍّ داخلي بين ما تريده وما تفعله فعلًا؟", trine: "هل تسير أمور كثيرة بسهولة غريبة حتى صرت تشك فيها؟", opp: "هل تشعر أنك بين طرفين، كل منهما يسحبك إلى جهة؟" };
+    const AR = { conj: "تفكّر في أمر فتجده يمسّ شعورك مباشرة، ولا تستطيع الفصل بينهما.", sext: "يعرض عليك أحدهم تعاونًا بسيطًا، أو تخطر لك فكرة تحتاج إلى رسالة واحدة فقط.", square: "خلاف صغير يتضخم، أو رغبة في الحسم تصطدم بخوف من العواقب.", trine: "تنجز شيئًا دون جهد يُذكر، ثم تؤجل ما بعده لأن الأمر بدا مضمونًا.", opp: "تحتار بين الالتزام والحرية، أو بين ما يريده الآخرون وما تريده أنت." };
+    const AG = { conj: '<circle cx="8.500" cy="15.500" r="3.600"/><path d="M11 13 18.500 5.500"/>', sext: '<path d="M12 4v16M5.100 8l13.800 8M5.100 16l13.800-8"/>', square: '<rect x="5.500" y="5.500" width="13" height="13" rx="1.200"/>', trine: '<path d="M12 5 19.500 18h-15z"/>', opp: '<circle cx="7" cy="17" r="3"/><circle cx="17" cy="7" r="3"/><path d="M9.200 14.800 14.800 9.200"/>' };
     $("#sky-asp").innerHTML = head + `<div class="sky-asp-list">` + top.map((x, ix) => {
-      const hard = ["square", "opp"].includes(x.k), tone = hard ? "متوتر" : "داعم";
-      const rA = x.A.retro ? " (راجع)" : "", rB = x.B.retro ? " (راجع)" : "";
-      return `<details class="lpa-card ${hard ? "is-shadow" : "is-light"} sky-asp-item"${ix === 0 ? " open" : ""}><summary class="lpa-sum asp-sum"><span class="asp-pair"><span class="asp-pg"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span></span><span class="asp-pg"><span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span></span></span><span class="lpa-t"><span class="asp-names">${PLANETS[x.A.key].n}${rA} <b>${x.name}</b> ${PLANETS[x.B.key].n}${rB}</span><small class="lpa-sub"><i class="asp-tone ${hard ? "k-hard" : "k-soft"}">${tone}</i> أوربة ${x.orb.toFixed(1)}°</small></span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p></div></details>`;
-    }).join("") + `</div><p class="sub">الاسبكتات دي حسابية بين مواقع الكواكب في السما، وتأثيرها على برجك الشخصي بيتحدد بخريطتك.</p>`;
+      const hard = ["square", "opp"].includes(x.k), neu = x.k === "conj", tc = neu ? "n" : hard ? "h" : "s", tone = neu ? "اندماج" : hard ? "متوتر" : "داعم";
+      const rb = r => r ? ` <em class="ax-r">راجع</em>` : "";
+      const retroNote = (x.A.retro || x.B.retro) ? `<p class="ax-note">ومع تراجع ${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")}، يتجه هذا الحوار إلى الداخل، فراجع قبل أن تقرر.</p>` : "";
+      return `<details class="ax axt-${tc}"${ix === 0 ? " open" : ""}><summary class="ax-s"><span class="ax-pair"><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span></span><span class="ax-ln"><svg viewBox="0 0 24 24" aria-hidden="true">${AG[x.k]}</svg></span><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span></span></span><span class="ax-t"><b>${PLANETS[x.A.key].n} <u>${x.name}</u> ${PLANETS[x.B.key].n}</b><small><i class="ax-tone">${tone}</i><span>أوربة ${x.orb.toFixed(1)}°</span>${(x.A.retro || x.B.retro) ? `<em class="ax-r">${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")} راجع</em>` : ""}</small></span><span class="ax-chev" aria-hidden="true"></span></summary><div class="ax-b"><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p><p class="ax-q">${AQ[x.k]}</p><p><b>في الواقع:</b> ${AR[x.k]}</p>${retroNote}</div></details>`;
+    }).join("") + `</div><p class="ax-sub">هذه زوايا حسابية بين مواقع الكواكب في السماء، أما أثرها على برجك أنت فيتحدد بخريطتك الشخصية.</p>`;
   }
   function renderSkyPanel(ch, ms) {
     const k = skyKey, p = PLANETS[k], bd = ch.bodies.find(x => x.key === k), S = SIGNS[bd.sign];
@@ -5233,14 +5237,14 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/matrix-sheet.js?v=20261110n" defer></script>
 <script src="assets/js/lifepath-sheet.js?v=20261114b" defer></script>
 <script src="assets/js/chart-sheet.js?v=20261114a" defer></script>
-<script src="assets/js/moon-sheet.js?v=20261110g" defer></script>
+<script src="assets/js/moon-sheet.js?v=20261116a" defer></script>
 <script>(function(){function g(){if(location.hash==="#astro-maps")location.replace("#home")}g();addEventListener("hashchange",g)})();</script>
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js?v=20261106a"></script>
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
-<script src="assets/js/sky-world-chart.js?v=20261116b" defer></script>
+<script src="assets/js/sky-world-chart.js?v=20261116c" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
