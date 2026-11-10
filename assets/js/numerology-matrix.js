@@ -1039,9 +1039,31 @@
     }
   }
 
+  /* واجهة الأكورديون: الاسم القياسي للقسم + سؤال افتتاحي + تسميات الأرقام (عرض فقط) */
+  const SECTION_UI = {
+    center: ['الجوهر والمركز', 'أين تجد سكونك وقوتك حين تعود إلى نفسك؟', ['المركز']],
+    karmic_tail: ['الذيل الكارمي', 'ما الذي يتكرر في حياتك ولا تفهم سببه؟', ['الذيل ١', 'الذيل ٢', 'الذيل ٣']],
+    purposes: ['المهمة والغاية', 'ما الذي جئت لتحققه في كل مرحلة من حياتك؟', ['غاية شخصية', 'غاية اجتماعية', 'غاية روحية', 'غاية كونية']],
+    personal: ['الشخصية', 'كيف يراك الناس في أول لقاء؟', ['جوهر الشخصية']],
+    talents: ['المواهب', 'ما الهبة التي وُلدت بها دون أن تتعلمها؟', ['موهبة السماء']],
+    father_line: ['خط الأب', 'ما الذي ورثته من جهة الأب؟', ['موهبة الأب', 'كارما الأب', 'محصلة الأب']],
+    mother_line: ['خط الأم', 'ما الذي ورثته من جهة الأم؟', ['موهبة الأم', 'كارما الأم', 'محصلة الأم']],
+    ancestral_programs: ['الأجداد', 'ما الذي ورثته من أسرتك ولم تخترْه؟', ['مركز الأجداد', 'المركز المشترك']],
+    love_line: ['العلاقات والحب', 'ماذا تبحث عنه حقًّا في الشريك؟', ['نقطة القلب', 'التوازن', 'مدخل القلب']],
+    money_line: ['المال والعمل', 'أين يتعثر تدفق الوفرة في حياتك؟', ['نقطة المال', 'التوازن', 'مدخل المادة']],
+    chakras: ['الشاكرات', 'أي مركز في جسدك يحمل ما لا تقوله؟', ['الجسد', 'الطاقة', 'المشاعر']],
+    composite_programs: ['البرامج المركبة', 'أي نمط يجمع طاقتين في تصرفاتك؟', ['برنامج الروح', 'برنامج المادة']],
+    children_line: ['الأبناء', 'ما الرسالة التي يحملها الأبناء إليك؟', ['طاقة الطفل', 'مفتاح التواصل']],
+    age_cycles: ['دورات العمر', 'ما الذي تطلبه منك كل محطة من عمرك؟', ['سن 20', 'سن 40', 'سن 60']],
+    transformation_rx: ['روشتة التحول', 'كيف تنتقل من الظل إلى النور؟', ['التوازن', 'المفتاح الروحي', 'المفتاح المادي']]
+  };
+
   function buildAccordionItem(item) {
-    const { id, icon, title, subtitle, arcanaList, contentKey, slots } = item;
-    const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}">${a.num} · ${a.name}</span>`).join(' ');
+    const { id, icon, arcanaList, contentKey, slots } = item;
+    const ui = SECTION_UI[id];
+    const title = ui ? ui[0] : item.title;
+    const subtitle = ui ? ui[1] : item.subtitle;
+    const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}"><b class="aqm-bn">${a.num}</b><span class="aqm-bl">${ui && ui[2][i] ? ui[2][i] : a.name}</span></span>`).join(' ');
     // Pending Content: any of the five slots empty means the section is not complete textually
     const isPending = !slots || Object.values(slots).some(v => !String(v || '').trim());
     const pendingHtml = '';
