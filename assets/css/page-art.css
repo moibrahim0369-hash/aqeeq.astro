@@ -389,3 +389,10 @@ html body section#chart.ntx .ntx-pan:first-child .field input::placeholder{font-
 @media(max-width:760px){
 html body :is(#chart,#lifepath) .aq-section-topbar :is(.aq-nav-btn,.aq-section-pill,a,button){min-height:46px!important;padding:0 18px!important;font-size:.98rem!important;font-weight:800!important;border-radius:16px!important;gap:8px!important;white-space:nowrap}
 }
+/* ===== unified icon tiles: one burgundy tone, bold cream line icon ===== */
+html body :is(section#matrix.mxp form.mxp-card .field,section#chart.ntx .field) :is(.mxp-fi,.ntx-fi),
+html body section#matrix.mxp form.mxp-card .field:is(:has(#m-name),:has(#m-gender),:has(#m-date)) .mxp-fi,
+html body section#chart.ntx .field:is(:has(#f-name),:has(#f-gender),:has(#f-date),:has(#f-time),:has(#f-zodiac-sys),:has(#f-hs)) .ntx-fi{
+background:linear-gradient(150deg,#8A3350,#5A1A2C)!important;border:1.2px solid #C8A15A!important;
+box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 5px 12px rgba(74,18,36,.28)!important}
+html body :is(section#matrix.mxp,section#chart.ntx) .field :is(.mxp-fi,.ntx-fi) svg{color:#FFF3D6!important;stroke:#FFF3D6!important;stroke-width:2!important}
