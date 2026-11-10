@@ -316,3 +316,76 @@ html body .aq-mx-num b{flex:none;width:36px;height:36px;border-radius:50%;displa
 html body .aq-mx-num strong{display:block;font-size:1.02rem;color:#4A1224;margin-bottom:3px}
 html body .aq-mx-num p{margin:0;font-size:.9rem;line-height:1.9;color:#5E463A}
 html body .aq-gold-t b{font-size:1.04rem}
+/* ===================== CHART (natal) mobile ===================== */
+@media(max-width:760px){
+html body section#chart.ntx .ntx-wrap{display:block!important;position:relative;padding-top:0!important}
+html body section#chart.ntx .ntx-art{position:absolute!important;left:0!important;right:0!important;top:-6px!important;width:100%!important;height:330px!important;aspect-ratio:auto!important;margin:0!important;grid-column:auto!important;display:flex!important;justify-content:center;align-items:flex-start;opacity:.28;z-index:0;overflow:hidden}
+html body section#chart.ntx .ntx-art .ntx-wheel2{width:330px!important;height:330px!important;flex:none}
+html body section#chart.ntx .ntx-art :is(.ntx-const,.ntx-c1,.ntx-c2){display:none!important}
+html body section#chart.ntx .ntx-head{position:relative;z-index:1;text-align:center!important;padding:0!important;display:block!important}
+html body section#chart.ntx .ntx-crumb,html body section#chart.ntx .ntx-mini{display:none!important}
+html body section#chart.ntx .ntx-head :is(.eyebrow,h2,.ntx-sub,.ntx-orn,.intro){max-width:none!important;width:auto!important;margin-inline:auto!important;text-align:center!important}
+html body section#chart.ntx .ntx-head .eyebrow{display:block;font-size:.68rem!important;letter-spacing:.2em;color:#9a7a45!important;margin-top:4px!important}
+html body section#chart.ntx .ntx-head h2{font-size:clamp(2.1rem,10.5vw,2.7rem)!important;font-weight:900!important;line-height:1.2!important;margin:6px 0 4px!important;background:linear-gradient(180deg,#8B2A45,#4A1224);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 6px rgba(248,243,232,.9))}
+html body section#chart.ntx .ntx-head .ntx-sub{font-family:Amiri,"Noto Naskh Arabic",serif!important;font-size:1.08rem!important;font-weight:700!important;line-height:1.7;color:#7a5530!important;margin:0 0 6px!important;text-shadow:0 0 10px #F8F3E8,0 0 4px #F8F3E8}
+html body section#chart.ntx .ntx-head .ntx-orn{display:flex!important;justify-content:center;margin:2px auto 8px!important}
+html body section#chart.ntx .ntx-head .intro{font-size:.9rem!important;line-height:1.9!important;color:#6a5646!important;margin:0 8px 14px!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+html body section#chart.ntx form.ntx-card{position:relative;z-index:1;margin-inline:-6px!important;padding:0 16px 18px!important;border:1.5px solid #6B1D33!important;border-radius:22px!important;background:#fff!important;box-shadow:0 16px 36px rgba(74,18,36,.2)!important;overflow:visible!important}
+html body section#chart.ntx .ntx-chead{margin:0 -16px 16px!important;padding:16px 14px 14px!important;background:linear-gradient(180deg,#FFFBF1,#F8EDD6)!important;border-bottom:1px solid #D9BD86!important;border-radius:20px 20px 0 0;display:block!important;text-align:center}
+html body section#chart.ntx .ntx-chead .ntx-chic{display:none!important}
+html body section#chart.ntx .ntx-chead b{display:block;font-size:1.08rem;color:#5A1A2C;font-weight:800}
+html body section#chart.ntx .ntx-chead small{display:block;font-size:.78rem;color:#7a6a58;margin-top:2px}
+html body section#chart.ntx .ntx-secure{display:inline-flex!important;margin:10px auto 0!important;font-size:.74rem!important;padding:5px 12px!important}
+html body section#chart.ntx .ntx-pans{display:flex!important;flex-direction:column;gap:6px;padding:0!important}
+html body section#chart.ntx .ntx-pan{border:0!important;background:none!important;box-shadow:none!important;padding:0!important;margin:0!important}
+html body section#chart.ntx .ntx-grp{display:flex;align-items:center;gap:8px;margin:8px 2px 10px!important;font-size:.82rem;font-weight:800;color:#8a6a3a}
+html body section#chart.ntx .ntx-grp i{width:7px;height:7px;transform:rotate(45deg);background:#C8A15A;display:inline-block}
+html body section#chart.ntx .ntx-pan:first-child{display:grid!important;grid-template-columns:1fr 1fr;column-gap:14px}
+html body section#chart.ntx .ntx-pan:first-child .ntx-grp{grid-column:1/-1}
+html body section#chart.ntx .ntx-pan:first-child .field{margin:0 0 14px!important;padding:12px!important;grid-template-columns:42px minmax(0,1fr)!important;column-gap:8px!important}
+html body section#chart.ntx .ntx-pan:first-child .field:has(#f-name){grid-column:1;grid-row:2}
+html body section#chart.ntx .ntx-pan:first-child .field:has(#f-gender){grid-column:2;grid-row:2}
+html body section#chart.ntx .ntx-pan:first-child .field label{font-size:.74rem!important}
+html body section#chart.ntx .ntx-pan:first-child .field select{font-size:.8rem!important;padding-inline:0!important}
+html body section#chart.ntx .field:not(.ntx-place){margin-bottom:14px!important}
+html body section#chart.ntx .ntx-dt{display:grid!important;grid-template-columns:1fr!important;gap:0!important}
+html body section#chart.ntx .ntx-set{display:grid!important;grid-template-columns:1fr!important;gap:0!important}
+html body section#chart.ntx form.ntx-card .btn{margin-top:8px!important;min-height:52px}
+}
+/* chart icon tones */
+html body section#chart.ntx .field:has(#f-name) .ntx-fi{background:linear-gradient(150deg,#9B3D5C,#5A1A2C)!important}
+html body section#chart.ntx .field:has(#f-gender) .ntx-fi{background:linear-gradient(150deg,#BE6A45,#7E3521)!important}
+html body section#chart.ntx .field:has(#f-date) .ntx-fi{background:linear-gradient(150deg,#D4AE68,#97692A)!important}
+html body section#chart.ntx .field:has(#f-time) .ntx-fi{background:linear-gradient(150deg,#A8523C,#6A2418)!important}
+html body section#chart.ntx .field:has(#f-zodiac-sys) .ntx-fi{background:linear-gradient(150deg,#9B3D5C,#5A1A2C)!important}
+html body section#chart.ntx .field:has(#f-hs) .ntx-fi{background:linear-gradient(150deg,#D4AE68,#97692A)!important}
+html body section#chart.ntx .field .ntx-fi svg{color:#FFF3D6!important;stroke:#FFF3D6!important}
+@media(prefers-reduced-motion:no-preference){
+html body section#chart.ntx .field .ntx-fi{animation:aqBreathe 3.8s ease-in-out infinite!important}
+html body section#chart.ntx .field:nth-of-type(2n) .ntx-fi{animation-delay:-1.6s!important}
+html body section#chart.ntx .field{transition:transform .18s ease,border-color .25s,box-shadow .25s}
+html body section#chart.ntx .field:active{transform:scale(.975)}
+html body section#chart.ntx .field:focus-within{border-color:#6B1D33!important;box-shadow:0 0 0 3px rgba(107,29,51,.14)!important}
+html body section#chart.ntx form.ntx-card .btn{position:relative;overflow:hidden}
+html body section#chart.ntx form.ntx-card .btn::after{content:"";position:absolute;top:0;bottom:0;left:0;width:34%;background:linear-gradient(90deg,transparent,rgba(255,236,190,.55),transparent);animation:aqSheen 4.8s ease-in-out infinite;pointer-events:none}
+html body section#chart.ntx form.ntx-card .btn:active{transform:scale(.95);animation:aqRipple .6s ease-out 1}
+html body section#chart.ntx .ntx-head>*{animation:aqUp .7s both}
+html body section#chart.ntx form.ntx-card{animation:aqUp .8s .4s both}
+}
+@media(max-width:760px){
+html body section#chart.ntx .ntx-art{opacity:.16!important}
+html body section#chart.ntx .field .aq-ds{gap:8px!important;grid-template-columns:1fr 1.15fr 1.1fr!important}
+html body section#chart.ntx .field .aq-ds select{border:1.5px solid #D9BD86!important;background:#fff!important;border-radius:11px!important;min-height:40px!important;font-size:.86rem!important;padding-inline:2px 14px!important;text-align:center;text-align-last:center;box-shadow:none!important}
+html body section#chart.ntx .ntx-pan:first-child .field{grid-template-columns:34px minmax(0,1fr)!important;column-gap:6px!important;padding:10px 8px!important}
+html body section#chart.ntx .ntx-pan:first-child .field .ntx-fi{width:34px!important;height:34px!important;min-width:34px}
+html body section#chart.ntx .ntx-pan:first-child .field .ntx-fi svg{width:18px!important;height:18px!important}
+html body section#chart.ntx .ntx-pan:first-child .field input{font-size:.85rem!important}
+}
+html body section#chart.ntx .ntx-card .ntx-pan .field:not(.ntx-place):not(.zz) .aq-ds select:not([multiple]):not(.zz){border:1.5px solid #D9BD86!important;background:#fff!important;border-radius:11px!important;min-height:40px!important;box-shadow:none!important;padding:0 6px!important}
+@media(max-width:760px){
+html body section#chart.ntx .ntx-card .ntx-pan .field:not(.ntx-place):not(.zz) .aq-ds select:not([multiple]):not(.zz){font-size:.78rem!important;padding:0 0 0 10px!important}
+html body section#chart.ntx .ntx-pan:first-child .field input::placeholder{font-size:.76rem}
+}
+@media(max-width:760px){
+html body :is(#chart,#lifepath) .aq-section-topbar :is(.aq-nav-btn,.aq-section-pill,a,button){min-height:46px!important;padding:0 18px!important;font-size:.98rem!important;font-weight:800!important;border-radius:16px!important;gap:8px!important;white-space:nowrap}
+}
