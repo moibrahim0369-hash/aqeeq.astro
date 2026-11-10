@@ -226,3 +226,4 @@ html body input.aq-ds-src{left:0!important;right:auto!important;top:0!important}
 html body #matrix.mxp .mxp-head::after{display:none!important}
 html body #matrix.mxp .mxp-head{contain:paint}
 @media(max-width:760px){html body #matrix.mxp .mxp-head::before{width:190px;height:190px;top:62%;opacity:.55}}
+html body .aq-related .aq-phil{margin:14px 6px 0;text-align:center;font-family:Amiri,"Noto Naskh Arabic",serif;font-size:.92rem;line-height:1.85;color:#6B4A32}
