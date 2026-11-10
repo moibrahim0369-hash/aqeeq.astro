@@ -293,6 +293,7 @@
     });
   }
   var upQ = 0;
+  window.AqUpGlyphs = function () { queueUp(); };
   function queueUp() { if (upQ) return; upQ = requestAnimationFrame(function () { upQ = 0; upgradeGlyphs(); }); }
   if ('MutationObserver' in window) { var skyEl = document.getElementById('sky'); if (skyEl) new MutationObserver(queueUp).observe(skyEl, { childList: true, subtree: true }); }
 

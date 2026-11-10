@@ -1554,3 +1554,22 @@ html body #sky .ax-pl .sg-svg{width:19px;height:19px}
 html body #sky .ax-ln{width:27px;height:27px}
 html body #sky .ax-t b{white-space:nowrap;font-size:.98rem}
 html body #sky .ax-t small{flex-wrap:wrap}
+
+/* نافذة توقعات الأبراج من الرئيسية */
+.fc-sheet .fc-head{display:flex;align-items:center;gap:14px;margin:4px 0 8px}
+.fc-sheet .fc-medal{position:relative;flex:none;width:64px;height:64px;display:grid;place-items:center;border-radius:50%;color:#F3DFA8;background:radial-gradient(circle at 34% 28%,#9A3F5C,#5E2234 62%,#3F1424);border:1.5px solid #D6B574;box-shadow:0 10px 22px rgba(94,34,52,.34),0 0 0 6px rgba(197,160,89,.14),inset 0 1px 0 rgba(255,255,255,.28)}
+.fc-sheet .fc-medal>svg{position:absolute;inset:0;width:100%;height:100%;animation:swcSpin 40s linear infinite}
+.fc-sheet .fc-medal .sg{position:relative;display:grid;place-items:center}
+.fc-sheet .fc-medal .sg-svg{width:28px;height:28px;color:#F3DFA8!important}
+.fc-sheet .fc-ey{display:block;font:700 .74rem 'Cairo',sans-serif;letter-spacing:.08em;color:#A8863F}
+.fc-sheet .fc-head h3{margin:2px 0 0;font:700 1.35rem/1.45 'El Messiri','Amiri',serif;color:#4A1224}
+.fc-sheet .fc-lead{margin:0 0 12px;font:500 .9rem/1.95 'Cairo',sans-serif;color:#5a4a42}
+.fc-sheet .fc-now{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 14px;border-radius:14px;background:linear-gradient(180deg,#FFFDF7,#F8EDD5);border:1.3px solid #D2AE6C;margin:0 0 14px}
+.fc-sheet .fc-dot{width:9px;height:9px;border-radius:50%;background:#B33A4D;box-shadow:0 0 0 4px rgba(179,58,77,.18)}
+.fc-sheet .fc-now b{font:700 .95rem 'Cairo',sans-serif;color:#4A1224}
+.fc-sheet .fc-now i{font-style:normal;font:700 .72rem 'Cairo',sans-serif;padding:1px 9px;border-radius:999px;background:#F5E8C6;color:#8A6A24}
+.fc-sheet .fc-now small{margin-inline-start:auto;font:500 .78rem 'Cairo',sans-serif;color:#7a6a58}
+@keyframes swcSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.fc-sheet .fc-medal>svg{animation:none}}
+html body .swp-sheet .sky-card .swp-hook p{color:#FFF3DC!important}
+html body .swp-sheet .sky-card .swp-hook .swp-lbl{color:#E8CF98!important}
