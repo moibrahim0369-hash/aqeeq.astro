@@ -52,3 +52,8 @@ html body :is(section#matrix.mxp,section#lifepath.lpx,section#chart.ntx){backgro
 html body :is(section#matrix.mxp,section#lifepath.lpx,section#chart.ntx){background-position:0 0,center -70px,0 0!important}
 html body section.sec:target:is(#matrix,#lifepath)>.wrap>.aq-section-topbar{margin-top:-36px!important}
 }
+/* ===== فن المصفوفة: جبال مرسومة + شمس + هلال + مدارات وكواكب + كوكبات ===== */
+html body :is(section#matrix.mxp,section#matrix.mxp:target),html:root body section.sec.mxp#matrix:target{background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.7) 4%,rgba(248,243,232,0) 14%),url("../art/matrix-art-wide.svg"),linear-gradient(180deg,#F8F3E8,#F6EFE2 60%,#F8F3E8)!important;background-size:100% 100%,100% auto,auto!important;background-position:0 0,center 60px,0 0!important;background-repeat:no-repeat!important;background-attachment:local,local,local!important}
+@media(max-width:899px){
+html body :is(section#matrix.mxp,section#matrix.mxp:target),html:root body section.sec.mxp#matrix:target{background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.7) 4%,rgba(248,243,232,0) 12%),url("../art/matrix-art-tall.svg"),linear-gradient(180deg,#F8F3E8,#F6EFE2 60%,#F8F3E8)!important;background-size:100% 100%,100% auto,auto!important;background-position:0 0,center 40px,0 0!important}
+}
