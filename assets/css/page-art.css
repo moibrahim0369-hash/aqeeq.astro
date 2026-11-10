@@ -1,0 +1,30 @@
+/* فن موحد لكل صفحات الأدوات: كريمي + ضباب + جبال ناعمة + شريط علوي مختصر */
+html body section#matrix.mxp,html body section#matrix.mxp:target,html:root body section.sec.mxp#matrix:target,html body section#lifepath.lpx,html body section#lifepath.lpx:target,html:root body section.sec.lpx#lifepath,html:root body section.sec.lpx#lifepath:target{background-color:#F8F3E8!important;background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.82) 8%,rgba(248,243,232,0) 26%),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%20420%22%20preserveAspectRatio=%22xMidYMax%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22a%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23c4a387%22/%3E%3Cstop%20offset=%22.75%22%20stop-color=%22%23e6d3b8%22%20stop-opacity=%22.6%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23F6EFE2%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22b%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23b8937a%22/%3E%3Cstop%20offset=%22.7%22%20stop-color=%22%23e4cfb2%22%20stop-opacity=%22.6%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23F6EFE2%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20d=%22M0%20420V230L110%20170%20190%20215%20300%20120%20400%20200%20500%20250%20580%20300V420Z%22%20fill=%22url%28%23a%29%22%20opacity=%22.7%22/%3E%3Cpath%20d=%22M620%20420V300L720%20230%20800%20280%20920%20140%201020%20230%201110%20190%201200%20240V420Z%22%20fill=%22url%28%23a%29%22%20opacity=%22.75%22/%3E%3Cpath%20d=%22M0%20420V320L140%20250%20230%20300%20330%20240%20460%20330V420Z%22%20fill=%22url%28%23b%29%22%20opacity=%22.8%22/%3E%3Cpath%20d=%22M700%20420V330L850%20260%20940%20310%201060%20240%201200%20320V420Z%22%20fill=%22url%28%23b%29%22%20opacity=%22.8%22/%3E%3C/svg%3E"),linear-gradient(180deg,#F8F3E8,#F6EFE2 60%,#F8F3E8)!important;background-repeat:no-repeat!important;background-size:100% 100%,max(100%,900px) 430px,auto!important;background-position:0 0,center 20px,0 0!important;background-attachment:local,local,local!important}
+html body section#chart.ntx,html body section#chart.ntx:target,html:root body section.sec.ntx#chart:target{background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.82) 8%,rgba(248,243,232,0) 26%),url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%201200%20420%22%20preserveAspectRatio=%22xMidYMax%20slice%22%3E%3Cdefs%3E%3ClinearGradient%20id=%22a%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23c4a387%22/%3E%3Cstop%20offset=%22.75%22%20stop-color=%22%23e6d3b8%22%20stop-opacity=%22.6%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23F6EFE2%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3ClinearGradient%20id=%22b%22%20x1=%220%22%20y1=%220%22%20x2=%220%22%20y2=%221%22%3E%3Cstop%20offset=%220%22%20stop-color=%22%23b8937a%22/%3E%3Cstop%20offset=%22.7%22%20stop-color=%22%23e4cfb2%22%20stop-opacity=%22.6%22/%3E%3Cstop%20offset=%221%22%20stop-color=%22%23F6EFE2%22%20stop-opacity=%220%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath%20d=%22M0%20420V230L110%20170%20190%20215%20300%20120%20400%20200%20500%20250%20580%20300V420Z%22%20fill=%22url%28%23a%29%22%20opacity=%22.7%22/%3E%3Cpath%20d=%22M620%20420V300L720%20230%20800%20280%20920%20140%201020%20230%201110%20190%201200%20240V420Z%22%20fill=%22url%28%23a%29%22%20opacity=%22.75%22/%3E%3Cpath%20d=%22M0%20420V320L140%20250%20230%20300%20330%20240%20460%20330V420Z%22%20fill=%22url%28%23b%29%22%20opacity=%22.8%22/%3E%3Cpath%20d=%22M700%20420V330L850%20260%20940%20310%201060%20240%201200%20320V420Z%22%20fill=%22url%28%23b%29%22%20opacity=%22.8%22/%3E%3C/svg%3E"),linear-gradient(180deg,#F3EADC 0,#F7F1E6 35%,#F7F3EC 100%)!important;background-repeat:no-repeat!important;background-size:100% 100%,max(100%,900px) 430px,auto!important;background-position:0 0,center 20px,0 0!important;background-attachment:local,local,local!important}
+html body:has(:is(#matrix,#lifepath,#chart):target) .amb{display:none!important}
+@media(max-width:899px){
+/* شريط علوي: رجوع + اسم الصفحة فقط */
+html body :is(#matrix,#lifepath,#chart) .aq-section-topbar .aq-nav-btn.is-home,html body :is(#matrix,#lifepath,#chart) .aq-section-topbar .aq-section-pill:not(.active){display:none!important}
+html body section:is(#matrix,#lifepath,#chart){padding-top:70px!important}
+/* هيرو المصفوفة: الشعار جنب العنوان */
+html body #matrix.mxp .mxp-head{display:grid!important;grid-template-columns:minmax(0,1fr) 70px;column-gap:14px;align-items:center;text-align:right!important;padding-top:6px!important}
+html body #matrix.mxp .mxp-head>*{grid-column:1;text-align:right!important;margin-inline:0!important}
+html body #matrix.mxp .mxp-head .mxp-emblem{grid-column:2;grid-row:1/3;width:70px;height:70px;margin:0}
+html body #matrix.mxp .mxp-head .mxp-sub{grid-column:1/-1!important;margin-top:6px!important}
+html body #matrix.mxp .mxp-head .intro{grid-column:1/-1!important;margin-top:8px!important;font-size:.9rem!important;line-height:1.8!important}
+html body #matrix.mxp .mxp-head h2{font-size:clamp(2rem,10vw,2.5rem)!important;margin:2px 0!important;white-space:nowrap}
+html body #matrix.mxp .mxp-head .mxp-sub{font-size:.82rem!important;margin:0!important}
+html body #matrix.mxp .mxp-hero{gap:14px!important}
+}
+@media(max-width:899px){
+html body #matrix.mxp .mxp-head{grid-template-columns:minmax(0,1fr) 84px!important}
+html body #matrix.mxp .mxp-head .mxp-emblem{width:84px!important;height:84px!important}
+html body #lifepath.lpx .lpx-head .eyebrow{color:#9a7435!important;font-size:.7rem!important;letter-spacing:.1em!important;text-align:center}
+}
+@media(max-width:899px){
+html body #matrix.mxp .mxp-head .mxp-tag{grid-row:1}
+html body #matrix.mxp .mxp-head h2{grid-row:2;grid-column:1}
+html body #matrix.mxp .mxp-head .mxp-sub{grid-row:3}
+html body #matrix.mxp .mxp-head .intro{grid-row:4}
+html body #matrix.mxp .mxp-head .mxp-emblem{grid-row:1/3!important}
+}
