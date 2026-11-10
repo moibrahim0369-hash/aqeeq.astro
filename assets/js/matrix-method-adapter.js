@@ -147,18 +147,18 @@
     // Bottom-Left (70 yo): سلالة الأم السفلى (كارما الأم والمشاعر والروح)
     const I = reduceArcana(D + A);
 
-    // 4. الخطوط الجيلية والأسلاف (Ancestral Lines):
-    // خط الأب (Paternal): من F إلى H
+    // 4. الخطوط الجيلية والأسلاف:
+    // خط الأب: من F إلى H
     const fatherCombined = reduceArcana(F + H);
-    // خط الأم (Maternal): من G إلى I
+    // خط الأم: من G إلى I
     const motherCombined = reduceArcana(G + I);
-    // المركز الكارمي للأسلاف (Ancestral Center):
+    // المركز الكارمي للأسلاف:
     // يُحسب من مجموع الزوايا الأربع كاملًا ثم يُختزل مرة واحدة (مطابق للموقع الأصلي: 22+20+13+15 = 70 → 7)
     const ancestralCenter = reduceArcana(F + G + H + I);
     // المركز المشترك الإجمالي:
     const commonCenter = reduceArcana(ancestralCenter + E);
 
-    // 5. نقاط المحاور المتقاطعة إلى المركز (Intermediate Axis Points):
+    // 5. نقاط المحاور المتقاطعة إلى المركز:
     const A2 = reduceArcana(A + E); // النقطة الداخلية على المحور الأفقي (الجانب الشخصي)
     const B2 = reduceArcana(B + E); // النقطة الداخلية على المحور الرأسي (الجانب الروحي)
     const C2 = reduceArcana(C + E); // النقطة الداخلية على المحور الأفقي (الجانب المالي)
@@ -171,7 +171,7 @@
     const H2 = reduceArcana(H + E); // نقطة وسيطة لكارما الأب
     const I2 = reduceArcana(I + E); // نقطة وسيطة لكارما الأم
 
-    // 6. خطوط المال والعلاقات وقناة الوفرة (Love & Money Channel):
+    // 6. خطوط المال والعلاقات وقناة الوفرة:
     // في منهج ناتاليا لاديني: الخط الممتد في الربع السفلي الأيمن:
     // نقطة الالتقاء بين مدخل القلب (تحت المركز D2) ومدخل المال (C2):
     const balancePoint = reduceArcana(D2 + C2);
@@ -180,7 +180,7 @@
     // - مدخل المال (نقطة الدولار Money Point) = reduce(الالتقاء + C2):
     const moneyPoint = reduceArcana(balancePoint + C2);
 
-    // 7. غايات ومهام الحياة (The 4 Life Purposes / Tasks):
+    // 7. غايات ومهام الحياة:
     // السماء والأرض:
     const sky = reduceArcana(B + D);   // السماء (الروحي)
     const earth = reduceArcana(A + C); // الأرض (المادي)
@@ -193,7 +193,7 @@
     // الغرض الرابع (الكوني / الكوكبي):
     const planetaryPurpose = reduceArcana(socialPurpose + spiritualPurpose);
 
-    // 8. خريطة دورات الأعمار (Age Cycles 0 - 80 years):
+    // 8. خريطة دورات الأعمار:
     // تتوزع حول محيط النجمة الثمانية باتجاه عقارب الساعة بدءاً من 0 عند A (يسار):
     const ageMap = {
       0: A,
@@ -231,7 +231,7 @@
       80: A
     };
 
-    // 9. طاقة السنة الحالية (Personal Year Energy):
+    // 9. طاقة السنة الحالية:
     const currentYear = new Date().getFullYear();
     const yearEnergy = reduceArcana(A + B + reduceArcana(digitSum(currentYear)));
 
@@ -244,13 +244,13 @@
     const aT = axisTriple(A), bT = axisTriple(B);
     const chakraRow = (name, symbol, physics, energy) => ({ name, symbol, physics, energy, emotions: reduceArcana(physics + energy) });
     const chakras = {
-      sahasrara: chakraRow('التاج (Sahasrara)', '🟣', A, B),
-      ajna: chakraRow('العين الثالثة (Ajna)', '🔵', aT.x2, bT.x2),
-      vishuddha: chakraRow('الحلق (Vishuddha)', '🔷', aT.x1, bT.x1),
-      anahata: chakraRow('القلب (Anahata)', '🟢', aT.x3, bT.x3),
-      manipura: chakraRow('الضفيرة الشمسية (Manipura)', '🟡', E, E),
-      svadhisthana: chakraRow('العجز (Svadhisthana)', '🟠', C2, D2),
-      muladhara: chakraRow('الجذر (Muladhara)', '🔴', C, D)
+      sahasrara: chakraRow('التاج', '🟣', A, B),
+      ajna: chakraRow('العين الثالثة', '🔵', aT.x2, bT.x2),
+      vishuddha: chakraRow('الحلق', '🔷', aT.x1, bT.x1),
+      anahata: chakraRow('القلب', '🟢', aT.x3, bT.x3),
+      manipura: chakraRow('الضفيرة الشمسية', '🟡', E, E),
+      svadhisthana: chakraRow('العجز', '🟠', C2, D2),
+      muladhara: chakraRow('الجذر', '🔴', C, D)
     };
 
     const chakraRows = Object.values(chakras);
@@ -266,10 +266,10 @@
       anchors: { A, B, C, D, E },
       corners: { F, G, H, I },
       nodes: {
-        north: B, // في الإحداثيات الهندسية: B هي القمة (North)
-        east: C,  // C هي اليمين (East)
-        south: D, // D هي القاعدة (South)
-        west: A,  // A هي اليسار (West)
+        north: B, // في الإحداثيات الهندسية: B هي القمة
+        east: C,  // C هي اليمين
+        south: D, // D هي القاعدة
+        west: A,  // A هي اليسار
         northEast: G,
         southEast: H,
         southWest: I,
