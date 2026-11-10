@@ -511,3 +511,7 @@
  #matrix.mxp .mxp-rev-tag{left:34px!important;right:auto!important;top:50%!important;transform:translateY(-50%)}
  #matrix.mxp .mxp-rev-panel h3{font-size:1.8rem!important}
  #matrix.mxp .mxp-checks li{font-size:.9rem!important;padding-inline-start:44px!important}}
+#matrix.mxp .mxp-sub{font-size:clamp(.95rem,3.6vw,1.35rem);line-height:1.5}
+/* ألوان أهدأ + جبال خفيفة خلف اللوحة */
+#matrix.mxp .mxp-rev-panel{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 260' preserveAspectRatio='none'%3E%3Cpath d='M0 260V170l90-60 70 40 110-90 100 80 90-50 120 100 110-70 100 60 130-110 120 90 160-70v220z' fill='%23E0C58A' fill-opacity='.10'/%3E%3Cpath d='M0 260V210l120-50 100 40 140-70 130 70 110-40 150 60 130-50 120 40 200-40v100z' fill='%23E0C58A' fill-opacity='.08'/%3E%3C/svg%3E") center bottom/100% 55% no-repeat,radial-gradient(60% 120% at 6% 50%,rgba(214,150,140,.12),transparent 70%),linear-gradient(160deg,#7a4452,#5e3041 60%,#4c2535)!important}
+section.sec:target#matrix .aq-section-topbar,section.sec:target#lifepath .aq-section-topbar,section.sec:target#chart .aq-section-topbar{position:static!important;background:none!important;backdrop-filter:none!important;border-bottom:0!important}
