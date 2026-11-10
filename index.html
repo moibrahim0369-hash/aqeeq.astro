@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="assets/css/natal-page.css?v=20261110e">
 <link rel="stylesheet" href="assets/css/geo-picker.css?v=20261110c">
 <link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
-<link rel="stylesheet" href="assets/css/page-art.css?v=20261116h">
+<link rel="stylesheet" href="assets/css/page-art.css?v=20261116k">
 <link rel="stylesheet" href="assets/css/date-time-selects.css?v=20261112a">
 <link rel="stylesheet" href="assets/css/natal-dashboard.css?v=20261109a">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
@@ -3443,13 +3443,30 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       const back = ing.sign === (bd.sign + 11) % 12;
       ingTxt = `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true"><span class="sg">${gl(SIGNS[ing.sign].g)}</span></span><span>${p.n} ${back ? "يعود إلى برج" : "ينتقل إلى برج"} <b>${SIGNS[ing.sign].n}</b> تقريبًا يوم ${dfmt(ing.ms)}.</span></p>`;
     }
-    const mv = k === "sun" || k === "moon" ? "" : (bd.retro
-      ? `<div class="swp-mv is-retro"><b><i aria-hidden="true">℞</i>حالة التراجع: ${p.n} متراجع الآن</b><p>${retroText(k).replace(/^[^:]*:\s*/, "")}</p></div>`
-      : `<div class="swp-mv is-direct"><b><i aria-hidden="true">›</i>حالة الحركة: مباشرة</b><p>${p.n} يسير للأمام في مساره المعتاد، فيظهر أثره بوضوح ودون حاجة إلى مراجعة.</p></div>`);
+    const PSY = {
+      sun: ["الشمس عند يونغ هي صورة الذات: ما تصير إليه حين تتوقف عن إثبات نفسك للآخرين.", "أين تتصرف هذه الأيام كما يُنتظر منك، لا كما تشعر في داخلك؟", "لديك طاقة أكبر مما تُظهره، وحاجة هادئة إلى أن يُرى جهدك دون أن تطلب ذلك."],
+      moon: ["القمر هو الطفل الداخلي في نفسك: ما يطمئنه وما يُخيفه، قبل أن يتدخل العقل.", "ما الشعور الذي تؤجله هذه الأيام لأنك لا تجد له وقتًا؟", "تبدو متماسكًا للآخرين، لكنك تحتاج أحيانًا إلى من يسألك عن حالك ويصدّق إجابتك."],
+      mercury: ["عطارد هو الحوار الداخلي: الصوت الذي يصف لك ما يحدث قبل أن تعيشه.", "ما الجملة التي تكررها في رأسك كثيرًا، وهل هي حقيقة أم عادة؟", "تفكر في أمور أكثر مما تقول، وتعيد صياغة كلام قيل لك قبل أيام."],
+      venus: ["الزهرة عند يونغ قريبة من الأنيما والأنيموس: صورة ما ننجذب إليه لأنه يشبه جزءًا غائبًا فينا.", "ما الذي تطلبه من الآخرين، وهو في الحقيقة شيء لم تمنحه لنفسك بعد؟", "تعطي في العلاقات أكثر مما تعترف به، وتنتظر أن يلاحظ أحدهم ذلك دون أن تشير إليه."],
+      mars: ["المريخ هو الطاقة التي تدفعك للفعل، وهو أيضًا الظل حين تُكبت: الغضب الذي لم يجد صيغة مقبولة.", "ما الذي تريده فعلًا، ولا تطلبه خوفًا من أن تبدو متطلبًا؟", "حين تصمت طويلًا ثم تنفجر، فالأمر لا يتعلق بالموقف الأخير بل بما سبقه."],
+      jupiter: ["المشتري هو المعنى: السؤال الذي يجعل تعبك مفهومًا ورحلتك مستحقة.", "أي جزء من حياتك يحتاج إلى معنى أكبر، لا إلى مجهود أكبر؟", "تؤمن بأن الأمور ستتحسن، وفي الوقت نفسه تخاف أن يكون تفاؤلك ساذجًا."],
+      saturn: ["زحل هو الأنا العليا والحد: الصوت الذي يقول لك ما الذي عليك أن تكونه لتستحق.", "من الذي ما زلت تحاول إرضاءه، وهو لم يعد يحاسبك منذ زمن؟", "تحمل مسؤوليات كثيرة، وتتمنى سرًّا أن يخفف أحدهم عنك دون أن تضطر إلى الطلب."],
+      uranus: ["أورانوس هو الدافع إلى الاستقلال: الجزء الذي لا يقبل أن يكون نسخة من أحد.", "ما الذي صار ضيقًا عليك، وتتظاهر بأنه ما زال مناسبًا؟", "تحتاج إلى مساحة تخصك، حتى في أقرب العلاقات إليك."],
+      neptune: ["نبتون هو اللاوعي الجمعي: الحلم والإلهام والرغبة في الذوبان في ما هو أكبر منك.", "ما الصورة المثالية التي تتمسك بها، وما الذي تتجنب رؤيته بسببها؟", "تشعر بما لا يقوله الناس، وهذا يُرهقك أحيانًا أكثر مما تعترف."],
+      pluto: ["بلوتو هو الظل العميق: ما دُفن في النفس لأنه مخيف، وهو نفسه مصدر القوة حين يُعترف به.", "ما الذي تتشبث به، وأنت تعرف في أعماقك أنه انتهى؟", "مررت بتحولات لم يعرف الناس عنها شيئًا، وما زلت تحمل أثرها في طريقة ثقتك."]
+    };
+    const ELF = ["يظهر الأثر في الجسد والحماس قبل أن يصل إلى الكلام: ستشعر به كاندفاع أو ضيق في الحركة.", "يظهر الأثر في الملموس: العمل والمال والروتين وطريقة اعتنائك بنفسك.", "يظهر الأثر في الأفكار والمحادثات التي لا تتوقف في رأسك، وفي حاجتك إلى أن تفهم قبل أن تشعر.", "يظهر الأثر في المشاعر والأحلام وما لا تقوله، وستلتقط أجواء الآخرين أسرع من المعتاد."];
+    const ps = PSY[k], fl = ELF[S.el];
+    const mv = (k === "sun" || k === "moon" ? "" : (bd.retro
+      ? `<div class="swp-mv is-retro"><b><i aria-hidden="true">℞</i>حالة التراجع: ${p.n} متراجع الآن</b><p>${retroText(k).replace(/^[^:]*:\s*/, "")}</p><p>في علم النفس العميق، التراجع دعوة إلى الداخل: يلتفت ${p.theme} إلى الوراء بدل الأمام، فتعود إليك مواقف قديمة لا لتؤلمك بل لتكتمل.</p></div>`
+      : `<div class="swp-mv is-direct"><b><i aria-hidden="true">›</i>حالة الحركة: مباشرة</b><p>${p.n} يسير للأمام في مساره المعتاد، فيظهر أثره بوضوح ودون حاجة إلى مراجعة.</p></div>`))
+      + `<div class="swp-psy"><h4 class="swp-h2">قراءة من الداخل</h4><p>${ps[0]}</p><p>${fl}</p></div>`
+      + `<div class="swp-barn"><h4 class="swp-h2">قد تجد نفسك هذه الأيام</h4><p>${ps[2]}</p><p>${S.shadow ? "وحين تتعب، قد يظهر لديك ميل إلى " + S.shadow + "، وهو ليس عيبًا بل إشارة إلى حاجة لم تُلبَّ." : ""}</p></div>`
+      + `<div class="swp-q"><h4 class="swp-h2">سؤال للتأمل</h4><p>${bd.retro ? "ما الذي يعود إليك الآن ليُراجَع، ولماذا الآن بالذات؟" : ps[1]}</p></div>`;
     let o = `<div class="swp-hero"><span class="swp-med${bd.retro ? " is-retro" : ""}" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div class="swp-ht"><small>${skyDateInput.value ? "السماء في التاريخ المختار" : "السماء الآن"}</small><h3>${p.n} في ${S.n}</h3>
       <div class="swp-pills"><i class="swp-pill ${bd.retro ? "is-retro" : "is-direct"}">${bd.retro ? "متراجع" : (k === "sun" || k === "moon" ? "في حركته" : "مباشر")}</i><i class="swp-pill is-sign"><span class="swp-pill-g" aria-hidden="true"><span class="sg">${gl(S.g)}</span></span>${nd(dInt)}° ${nd(dMin)}′ ${S.n}</i></div></div></div>
       <div class="swp-deg" role="img" aria-label="الدرجة ${dInt} من 30"><div class="swp-track"><span class="swp-dot" style="--p:${(deg / 30 * 100).toFixed(1)}%"></span></div><div class="swp-scale"><span>٠°</span><span>١٠°</span><span>٢٠°</span><span>٣٠°</span></div><p><b>${stage[0]}</b> · ${stage[1]}</p></div>
-      <p class="swp-read">في هذه الفترة يظهر أثر ${p.n} في ${p.theme} بأسلوب ${S.way}. الأجواء العامة تساعد على ${S.strength}، لكن انتبه من ${S.shadow}.</p>
+      <p class="swp-read">يمرّ ${p.n} الآن في ${S.n}، فيمنح ${p.theme} طابعًا ${S.way}. الأجواء تساعدك على ${S.strength}، وتذكّرك بلطف أن تنتبه من ${S.shadow}، فهو الوجه الذي يظهر حين تتعب.</p>
       ${mv}${ingTxt}
       <h4 class="swp-h">أثره على بيتك</h4><p class="swp-sub">يتحدد التأثير حسب البيت الذي يمر عليه ${p.n} من برجك (نظام البيوت الكاملة).</p>`;
     o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لترى أثر ${p.n} في بيتك بالتحديد</small></div></div>
@@ -5180,7 +5197,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
-<script src="assets/js/sky-world-chart.js?v=20261116a" defer></script>
+<script src="assets/js/sky-world-chart.js?v=20261116b" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
