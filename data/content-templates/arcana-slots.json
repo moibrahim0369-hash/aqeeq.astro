@@ -1,0 +1,11 @@
+{
+  "_note": "قالب خانات نص الأركانا. المصدر الخام يُملأ هنا ثم يُكتب النص النهائي بصوت عقيق. لا يُستخدم في الواجهة بعد.",
+  "slots": ["essence", "light", "shadow", "talent", "money", "relationships", "family_father", "family_mother", "children", "body", "karmic_lesson", "practical_advice"],
+  "slot_labels_ar": {
+    "essence": "الجوهر", "light": "النور", "shadow": "الظل", "talent": "الموهبة",
+    "money": "المال", "relationships": "العلاقات", "family_father": "جذور الأب",
+    "family_mother": "جذور الأم", "children": "الأطفال", "body": "الجسد والصحة",
+    "karmic_lesson": "الدرس الكارمي", "practical_advice": "نصيحة عملية"
+  },
+  "arcana": {}
+}
