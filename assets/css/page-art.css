@@ -615,3 +615,6 @@ html:root body section#lifepath#lifepath.lpx .lpx-tabbox>.lpx-tabs,html:root bod
 html:root body section#lifepath#lifepath.lpx .aq-section-quick-links,html:root body section#lifepath#lifepath.lpx .aq-section-quick-links a{background-color:transparent!important;box-shadow:none!important;filter:none!important}
 html:root body section#lifepath#lifepath.lpx .aq-section-quick-links a.active{background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important}
 html:root body section#lifepath#lifepath.lpx .aq-section-quick-links::before,html:root body section#lifepath#lifepath.lpx .aq-section-quick-links::after{display:none!important}
+/* الصفحة تظهر فورًا بلا حركة دخول */
+html body #matrix.mxp .mxp-head>.mxp-tag,html body #matrix.mxp .mxp-head>.mxp-sub,html body #matrix.mxp .mxp-head>.mxp-titlerow,html body section#matrix.mxp form.mxp-card,html body section#matrix.mxp .mxp-axes,html body section#chart.ntx .ntx-head>*,html body section#chart.ntx form.ntx-card{animation:none!important;opacity:1!important;transform:none!important}
+html body section.sec#matrix,html body section.sec#chart,html body section.sec#lifepath,html body section.sec:target#matrix,html body section.sec:target#chart,html body section.sec:target#lifepath{animation:none!important}
