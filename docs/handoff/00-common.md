@@ -19,3 +19,10 @@
 - الكوميت ينتهي بـ:
   Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
   Claude-Session: <رابط الجلسة الحالية>
+
+## وقفنا عند (10 نوفمبر 2026)
+- اتنشر: صفحات #about #terms #privacy #disclaimer #contact (assets/js/site-pages.js + css/site-pages.css) مربوطة بالقائمة الجانبية والفوتر.
+- اتنشر: إضافات الخريطة الفيدية (assets/js/vedic-extras.js) تُستدعى من الوضع النجمي في extended-astro-charts.js.
+- اتنشر: توسيع الرفيق (assets/data/companion.json + بحث بأطول كلمة مطابقة في companion.js).
+- ملاحظة: نصوص بلوتو اللي بعتها المستخدم هي عينة للصياغة فقط، ما تتحطش حرفيًا.
+- أي ميزة جديدة تتسجل في companion.json كمان.
