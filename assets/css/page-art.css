@@ -164,3 +164,25 @@ html body .field .aq-ds{display:grid!important}
 html body :is(#matrix,#lifepath,#chart) form .field .aq-ds select{border:1.5px solid #D9BD86!important;background:#fff!important;border-radius:11px!important;min-height:40px!important;padding:0 4px!important;font-size:.92rem!important}
 html body :is(#matrix,#lifepath,#chart) form .field .aq-ds select:focus{border-color:#B98A3E!important;box-shadow:0 0 0 3px rgba(201,163,93,.22)!important}
 html body section#matrix.mxp form.mxp-card .field{border:1.5px solid #E0C38C!important;background:#FFFEFB!important;box-shadow:0 2px 8px rgba(150,110,50,.08)!important}
+/* ===== final matrix hero ===== */
+@media(max-width:760px){
+html body section:is(#matrix,#lifepath,#chart){padding-top:38px!important}
+html body section.sec:target:is(#matrix,#lifepath)>.wrap>.aq-section-topbar{margin-top:-30px!important}
+html body #matrix.mxp .aq-section-topbar :is(.aq-nav-btn,.aq-section-pill,a,button){min-height:46px!important;padding:0 20px!important;font-size:1.02rem!important;font-weight:800!important;border-radius:16px!important;gap:9px!important}
+html body #matrix.mxp .aq-section-topbar svg{width:20px!important;height:20px!important}
+html body #matrix.mxp .mxp-head .mxp-tag{font-size:.7rem!important;margin-top:2px!important}
+html body #matrix.mxp .mxp-head .mxp-sub{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;font-family:Amiri,"Noto Naskh Arabic",serif!important;font-size:1.28rem!important;font-weight:700!important;line-height:1.5;color:#7a5530!important;margin:4px 0 2px!important;padding:0 4px}
+html body #matrix.mxp .mxp-head .mxp-sub::before,html body #matrix.mxp .mxp-head .mxp-sub::after{content:"";flex:0 0 18px;height:1px;background:linear-gradient(90deg,transparent,#C8A15A)}
+html body #matrix.mxp .mxp-head .mxp-sub::after{transform:scaleX(-1)}
+html body #matrix.mxp .mxp-titlerow h2{font-size:clamp(2.5rem,13.5vw,3.3rem)!important;font-weight:900!important;line-height:1.15!important;letter-spacing:0;background:linear-gradient(180deg,#8B2A45 0%,#4A1224 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#4A1224!important;text-shadow:none!important;filter:drop-shadow(0 2px 6px rgba(248,243,232,.9))}
+html body #matrix.mxp .mxp-titlerow h2::after{-webkit-text-fill-color:#C8A15A;margin-top:0!important}
+html body section#matrix.mxp form.mxp-card{margin-inline:-6px!important;padding:0 16px 16px!important;overflow:hidden;border:1.5px solid #6B1D33!important;border-radius:22px!important;background:#fff!important;box-shadow:0 16px 36px rgba(74,18,36,.22),0 2px 0 #C8A15A inset!important}
+html body section#matrix.mxp form.mxp-card .mxp-moons{display:none!important}
+html body section#matrix.mxp form.mxp-card .mxp-ctitle{margin:0 -16px 16px!important;padding:15px 16px!important;background:linear-gradient(135deg,#7A2540,#3F0F20)!important;color:#F6E4B4!important;font-size:1.12rem!important;font-weight:800!important;text-align:center;border-bottom:2px solid #C8A15A}
+html body section#matrix.mxp form.mxp-card .field{background:#FBF7F0!important;border:1.5px solid #D9C9AE!important}
+}
+@media(max-width:760px){
+html body #matrix.mxp .mxp-head .mxp-sub{font-size:1.06rem!important;white-space:nowrap}
+html body #matrix.mxp .mxp-head .mxp-sub::before,html body #matrix.mxp .mxp-head .mxp-sub::after{display:none!important}
+html body #matrix.mxp .mxp-titlerow h2{font-size:clamp(2.4rem,12.5vw,3.1rem)!important}
+}
