@@ -1063,7 +1063,7 @@
     const ui = SECTION_UI[id];
     const title = ui ? ui[0] : item.title;
     const subtitle = ui ? ui[1] : item.subtitle;
-    const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}"><b class="aqm-bn">${a.num}</b><span class="aqm-bl">${ui && ui[2][i] ? ui[2][i] : a.name}</span></span>`).join(' ');
+    const badgesHtml = arcanaList.map((a, i) => `<span class="aqm-badge-arcana aqm-tone-${i % 4}"><b class="aqm-bn">${a.num}</b><span class="aqm-bl">${a.name}</span></span>`).join(' ');
     // Pending Content: any of the five slots empty means the section is not complete textually
     const isPending = !slots || Object.values(slots).some(v => !String(v || '').trim());
     const pendingHtml = '';
