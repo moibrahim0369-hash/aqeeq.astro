@@ -92,10 +92,11 @@
     var hint = document.createElement('p'); hint.className = 'aqm-hint';
     hint.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/></svg><span>اضغط على أي قسم لعرض تفسيره</span>';
     tabs.parentNode.insertBefore(panel, tabs.nextSibling);
-    if (!host.querySelector('.aqm-ov-btn')) {
-      var ov = document.createElement('button'); ov.type = 'button'; ov.className = 'aqm-ov-btn'; ov.setAttribute('data-aqm-overview', '');
-      ov.innerHTML = '<span class="aqm-ov-bi">' + OV_ICO + '</span><span class="aqm-ov-bt"><b>قراءة خريطتك كاملة</b><small>نظرة جامعة على كل خطوطك وأرقامك</small></span><span class="aqm-ov-bg" aria-hidden="true">›</span>';
-      tabs.parentNode.insertBefore(ov, tabs);
+    if (!host.querySelector('.aqm-cue')) {
+      var cue = document.createElement('button'); cue.type = 'button'; cue.className = 'aqm-cue'; cue.setAttribute('aria-label', 'انتقل إلى القراءة');
+      cue.innerHTML = '<span>قراءتك بالأسفل</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8l6 6 6-6"/><path d="M6 14l6 6 6-6" opacity=".5"/></svg>';
+      cue.addEventListener('click', function () { tabs.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      tabs.parentNode.insertBefore(cue, tabs);
     }
     var pr = document.createElement('div'); pr.className = 'aqm-mp aqm-mp-read'; pr.appendChild(hint); if (read) pr.appendChild(read);
     var pc = document.createElement('div'); pc.className = 'aqm-mp aqm-mp-chak'; if (chak) pc.appendChild(chak);
