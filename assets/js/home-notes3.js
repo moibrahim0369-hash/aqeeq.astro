@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var SVG = {
     star: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1l1.6 8.4L22 12l-8.4 2.6L12 23l-1.6-8.4L2 12l8.4-2.6z"/></svg>',
     eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.600 6.500-10 6.500S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>',
@@ -49,25 +50,51 @@
 
   /* --- نافذة ابدأ رحلتك --- */
   var modal, lastFocus;
-  var ITEMS = [
-    ['#chart', 'chart', 'الخريطة الفلكية', 'شخصيتك لحظة ميلادك'],
-    ['#matrix', 'matrix', 'مصفوفة القدر', 'طاقاتك ودروسك'],
-    ['#lifepath', 'path', 'مسار الحياة', 'محطات رحلتك'],
-    ['#relationships', 'love', 'التوافق', 'بينك وبين من تحب'],
-    ['#signs', 'sign', 'برجك الآن', 'ماذا تقول السماء'],
-    ['#featured-content', 'book', 'المقالات', 'شروحات خطوة بخطوة']
+  var G = 'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+  SVG.sun = '<svg viewBox="0 0 24 24" ' + G + '><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>';
+  SVG.sky = '<svg viewBox="0 0 24 24" ' + G + '><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>';
+  SVG.gem = '<svg viewBox="0 0 24 24" ' + G + '><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6M12 21 9 9M12 21l3-12"/></svg>';
+  SVG.lib = '<svg viewBox="0 0 24 24" ' + G + '><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg>';
+  var TABS = [
+    ['الخرائط', 'خرائط تقرأ نفسك بعمق', [
+      ['#chart', 'chart', 'الخريطة الفلكية', 'شخصيتك لحظة ميلادك'],
+      ['#matrix', 'matrix', 'المصفوفة', 'طاقاتك ودروسك'],
+      ['#lifepath', 'path', 'مسار الحياة', 'محطات رحلتك'],
+      ['#relationships', 'love', 'التوافق', 'بينك وبين من تحب']]],
+    ['التوقعات', 'ما تقوله السماء الآن', [
+      ['#sky', 'sky', 'السماء الآن', 'الكواكب والقمر لحظة بلحظة'],
+      ['#signs', 'sign', 'برجك الآن', 'ماذا يخبئ لك اليوم'],
+      ['', 'sun', 'العودة الشمسية', 'طاقة سنتك الجديدة', 1]]],
+    ['الإلهام', 'اقرأ، تأمل، ثم ابدأ', [
+      ['#featured-content', 'book', 'المقالات', 'شروحات خطوة بخطوة'],
+      ['', 'lib', 'مكتبة عقيق', 'قيد التجهيز', 1],
+      ['#invest', 'gem', 'استثمر في ذاتك', 'جلسات ومرافقة']]]
   ];
+  var tabIdx = 0;
+  function tile(i) {
+    return i[4] ? '<span class="hn-tile is-soon" aria-disabled="true"><i>' + SVG[i[1]] + '</i><span><b>' + i[2] + '</b><small>' + i[3] + '</small></span><em>قريباً</em></span>'
+      : '<a class="hn-tile" href="' + i[0] + '"><i>' + SVG[i[1]] + '</i><span><b>' + i[2] + '</b><small>' + i[3] + '</small></span></a>';
+  }
   function build() {
     modal = document.createElement('div'); modal.className = 'hn-modal'; modal.hidden = true;
     modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true'); modal.setAttribute('aria-labelledby', 'hn-t');
     modal.innerHTML = '<div class="hn-card"><span class="hn-eye">' + SVG.eye + '</span>' +
-      '<h2 id="hn-t">رحلتك تبدأ من الداخل</h2>' +
-      '<p>في عقيق أسترو نقرأ الفلك كمرآة للنفس، لا كتوقعات فقط. نمنحك أدوات تساعدك على فهم نفسك واختيار طريقك بوعي.</p>' +
-      '<ul class="hn-focus"><li>العمق النفسي</li><li>تشريح الخريطة</li><li>الطاقات</li><li>التوقيتات</li></ul>' +
-      '<div class="hn-grid">' + ITEMS.map(function (i) { return '<a class="hn-tile" href="' + i[0] + '"><i>' + SVG[i[1]] + '</i><span><b>' + i[2] + '</b><small>' + i[3] + '</small></span></a>'; }).join('') + '</div>' +
+      '<h2 id="hn-t">أين تريد أن تبدأ؟</h2>' +
+      '<p>اختر بابك، واسحب لتكتشف بقية الأقسام.</p>' +
+      '<div class="hn-tabs" role="tablist">' + TABS.map(function (t, n) { return '<button type="button" role="tab" data-hn-tab="' + n + '" class="' + (n === 0 ? 'is-on' : '') + '">' + t[0] + '</button>'; }).join('') + '</div>' +
+      '<div class="hn-track">' + TABS.map(function (t) { return '<section class="hn-pane"><p class="hn-sub">' + t[1] + '</p><div class="hn-grid">' + t[2].map(tile).join('') + '</div></section>'; }).join('') + '</div>' +
+      '<div class="hn-dots">' + TABS.map(function (t, n) { return '<i class="' + (n === 0 ? 'is-on' : '') + '"></i>'; }).join('') + '</div>' +
       '<button type="button" class="hn-close">' + SVG.x + '<span>إغلاق النافذة</span></button></div>';
     document.body.appendChild(modal);
-    modal.addEventListener('click', function (e) { if (e.target === modal || e.target.closest('.hn-close') || e.target.closest('.hn-tile')) close(); });
+    var track = $('.hn-track', modal);
+    function mark(n) { tabIdx = n; $$('.hn-tabs button', modal).forEach(function (b, k) { b.classList.toggle('is-on', k === n); }); $$('.hn-dots i', modal).forEach(function (d, k) { d.classList.toggle('is-on', k === n); }); }
+    var tm; track.addEventListener('scroll', function () { clearTimeout(tm); tm = setTimeout(function () { mark(Math.max(0, Math.min(2, Math.round(Math.abs(track.scrollLeft) / track.clientWidth)))); }, 60); }, { passive: true });
+    modal.addEventListener('click', function (e) {
+      var tb = e.target.closest('[data-hn-tab]');
+      if (tb) { var n = +tb.getAttribute('data-hn-tab'); mark(n); $$('.hn-pane', modal)[n].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }); return; }
+      if (e.target.closest('.is-soon')) return;
+      if (e.target === modal || e.target.closest('.hn-close') || e.target.closest('a.hn-tile')) close();
+    });
   }
   function open() {
     if (!modal) build();

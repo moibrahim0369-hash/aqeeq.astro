@@ -165,3 +165,20 @@ html body #home.aqh .aqh-band-arts .aqh-article p.aqh-intro{font-size:.86rem;lin
 
 /* ازاحة نص الهيرو لليمين بعيدا عن التمثال (ديسكتوب/تابلت فقط) */
 @media(min-width:761px){html body #home.aqh .aqh-hero{--hs:clamp(46px,18vw - 10px,220px)!important}}
+
+/* نافذة ابدأ رحلتك: تبويبات + سحب بين الأقسام */
+.hn-card>p{margin-bottom:10px!important}
+.hn-tabs{display:flex;gap:4px;padding:4px;margin:0 0 10px;border-radius:999px;background:rgba(160,122,58,.14)}
+.hn-tabs button{flex:1;min-height:36px;border:0;border-radius:999px;background:transparent;font:700 .84rem 'Cairo',sans-serif;color:#6a4a3a;cursor:pointer;transition:background .2s,color .2s}
+.hn-tabs button.is-on{background:linear-gradient(160deg,#7A3449,#5b2234);color:#fff;box-shadow:0 4px 10px rgba(91,34,52,.25)}
+.hn-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;direction:rtl;margin:0 -4px}
+.hn-track::-webkit-scrollbar{display:none}
+.hn-pane{flex:0 0 100%;scroll-snap-align:start;padding:0 4px;box-sizing:border-box}
+.hn-sub{margin:0 0 8px;font:600 .8rem 'Cairo',sans-serif;color:#8a6a2f}
+.hn-pane .hn-grid{margin:0 0 8px;min-height:150px;align-content:start}
+.hn-tile{position:relative}
+.hn-tile.is-soon{opacity:.6;cursor:default}
+.hn-tile em{position:absolute;bottom:4px;left:8px;font:700 .6rem 'Cairo',sans-serif;font-style:normal;color:#7a5522;background:rgba(217,185,121,.5);border-radius:999px;padding:1px 7px}
+.hn-dots{display:flex;gap:6px;justify-content:center;margin:2px 0 12px}
+.hn-dots i{width:6px;height:6px;border-radius:50%;background:rgba(160,122,58,.35);transition:width .2s,background .2s}
+.hn-dots i.is-on{width:18px;border-radius:4px;background:#7A3449}
