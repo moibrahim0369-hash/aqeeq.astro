@@ -29,8 +29,8 @@
   function card(i) {
     var D = window.AqSky, k = curK, bd = bodyOf(k), d = dayIdx();
     var P = D.PLANETS[k], sg = D.SIGNS[i], hh = ((bd.sign - i + 12) % 12) + 1, H = D.HOUSES[hh - 1], pf = D.PF[k], q = D.HQ[hh - 1], ex = D.HEX[hh - 1], mp = moonPh();
-    var qs = [q[(d + i) % 2]];
-    if (mp) { qs.push(mp.p[5][d % 2]); qs.push(D.PQ[k]); } else qs.push(D.PQ[k]);
+    var qs = [D.PQH[k][hh - 1], q[(d + i) % 2]];
+    if (mp) qs.push(mp.p[5][d % 2]);
     var exs = [ex[d % 3], ex[(d + 1) % 3]];
     if (mp) exs.push(mp.p[7][d % 3]);
     var phase = mp ? '<div class="swp-row"><b>طور القمر اليوم · ' + mp.p[0] + ' · إضاءة ' + nd(mp.il) + '%</b><p>' + mp.p[6] + '</p></div>' : '';
