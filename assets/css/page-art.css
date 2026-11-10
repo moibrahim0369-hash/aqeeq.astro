@@ -1224,3 +1224,15 @@ html body #chart,html body #matrix,html body #lifepath,html body #sky,html body 
 /* رسائل الخطأ داخل النموذج: نبيذية أنيقة بدل الوردي الباهت */
 html body :is(#m-err,#merr,#mform .aqm-err,#mform .err,#lform .err,#cform .err,.form-err,[id$="-err"],[id$="err"]):not([hidden]){display:flex;align-items:center;gap:8px;margin:8px 0;padding:9px 12px;border-radius:12px;background:#FBEFF1;border:1px solid rgba(138,31,58,.35);border-inline-start:4px solid #8A1F3A;color:#6A1630!important;font:600 .88rem/1.6 'Cairo',sans-serif}
 html body :is(#m-err,#merr,[id$="-err"]):not([hidden])::before{content:"!";flex:0 0 20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#8A1F3A;color:#fff;font-weight:700;font-size:.78rem}
+
+/* كارت السماء الآن: إزالة صف العنوان والكرة، وزر عنابي واضح يدعو للضغط */
+html body #home.aqh #aqh-skyb .skb-cta{display:none!important}
+html body #home.aqh .aqh-skyb-wheel .aqh-wheel-box .aqh-sky-link{display:flex!important;width:100%!important;justify-content:space-between!important;gap:10px;padding:10px 16px!important;margin:8px 0 0!important;position:relative}
+html body #home.aqh .aqh-sky-link .aqh-sl-t{display:grid;gap:1px;flex:1;text-align:start}
+html body #home.aqh .aqh-sky-link .aqh-sl-t b{font-size:.98rem;font-weight:700;color:#FBEFD2}
+html body #home.aqh .aqh-sky-link .aqh-sl-t small{font-size:.72rem;color:rgba(251,239,210,.82)}
+html body #home.aqh .aqh-sky-link .aqh-sl-go{width:22px!important;height:22px!important;flex:0 0 22px;color:#F6DDA8;animation:aqhNudge 1.8s ease-in-out infinite}
+@keyframes aqhNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-5px)}}
+@keyframes aqhRing{0%{box-shadow:0 0 0 0 rgba(106,32,56,.35)}70%,100%{box-shadow:0 0 0 12px rgba(106,32,56,0)}}
+html body #home.aqh .aqh-skyb-wheel .aqh-wheel-box .aqh-sky-link{animation:aqhRing 2.6s ease-out infinite}
+@media(prefers-reduced-motion:reduce){html body #home.aqh .aqh-sky-link .aqh-sl-go,html body #home.aqh .aqh-skyb-wheel .aqh-wheel-box .aqh-sky-link{animation:none}}
