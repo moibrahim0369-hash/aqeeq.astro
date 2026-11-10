@@ -77,9 +77,9 @@
       var nx = (x + .5 - R) / R, ny = (y + .5 - R) / R, rr = nx * nx + ny * ny; if (rr >= 1.02) continue;
       var nz = Math.sqrt(Math.max(0, 1 - rr)), dot = nx * sx + nz * sz;
       var lit = Math.max(0, Math.min(1, (dot + .06) / .3)); lit = lit * lit * (3 - 2 * lit);
-      var alb = Math.max(.05, Math.min(1, TEX[y * N + x])), sh = .1 + lit * (.55 + .45 * Math.pow(Math.max(dot, 0), .35));
+      var alb = Math.max(.05, Math.min(1, TEX[y * N + x])), sh = .26 + lit * .8 * (.55 + .45 * Math.pow(Math.max(dot, 0), .35));
       var k = alb * sh, i4 = (y * N + x) * 4, edge = rr > .98 ? Math.max(0, (1.02 - rr) / .04) : 1;
-      D[i4] = Math.min(255, k * 262 + (1 - lit) * 6); D[i4 + 1] = Math.min(255, k * 252 + (1 - lit) * 8); D[i4 + 2] = Math.min(255, k * 232 + (1 - lit) * 14); D[i4 + 3] = 255 * edge;
+      D[i4] = Math.min(255, k * 262 + (1 - lit) * 4); D[i4 + 1] = Math.min(255, k * 252 + (1 - lit) * 10); D[i4 + 2] = Math.min(255, k * 238 + (1 - lit) * 22); D[i4 + 3] = 255 * edge;
     }
     cx.putImageData(im, 0, 0);
     var u = cv.toDataURL('image/png'); MCACHE[key] = u; return u;

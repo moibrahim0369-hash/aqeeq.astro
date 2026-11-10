@@ -72,6 +72,10 @@
   /* رسم القمر من الاستطالة (الفرق بين خطي طول القمر والشمس) */
   var moonSeq = 0;
   function moonSvg(elong) {
+    if (typeof window.AqeeqMoonImg === 'function') { try { return '<circle cx="60" cy="60" r="50" fill="#0b0a12"/><image href="' + window.AqeeqMoonImg(elong) + '" x="10" y="10" width="100" height="100"/><circle cx="60" cy="60" r="50" fill="none" stroke="#8E877C" stroke-opacity=".35" stroke-width=".8"/>'; } catch (er) {} }
+    return moonSvgOld(elong);
+  }
+  function moonSvgOld(elong) {
     var c = Math.cos(elong * Math.PI / 180), rx = Math.abs(c) * 50, waxing = elong < 180;
     var sweep = c > 0 ? 0 : 1;
     var lit = 'M60 10 A50 50 0 0 1 60 110 A' + rx.toFixed(2) + ' 50 0 0 ' + sweep + ' 60 10Z';
