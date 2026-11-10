@@ -467,3 +467,8 @@ html body section#chart.ntx form.ntx-card .ntx-pan:nth-child(3){margin:0!importa
 html body section#chart.ntx form.ntx-card .aq-autofill-bar{flex-wrap:nowrap!important}
 html body section#chart.ntx form.ntx-card .aq-autofill-bar > span{font-size:.78rem!important;line-height:1.4;flex:1;min-width:0}
 }
+/* chart (mobile): celestial scatter on top, planets + orbits at the foot (no mountains) */
+@media(max-width:820px){
+html body section#chart.ntx,html body section#chart.ntx:target,html:root body section.sec.ntx#chart:target{background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.6) 3%,rgba(248,243,232,0) 10%),url("../art/chart-top.svg"),url("../art/chart-foot.svg"),linear-gradient(180deg,#F5EDDF,#F7F1E6 40%,#F7F3EC)!important;background-size:100% 100%,100% auto,100% auto,auto!important;background-position:0 0,center 0,center bottom,0 0!important;background-repeat:no-repeat!important;background-attachment:local!important}
+html:root body section#chart#chart.ntx{padding-bottom:300px!important}
+}
