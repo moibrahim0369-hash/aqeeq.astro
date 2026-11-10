@@ -29,16 +29,14 @@
   function card(i) {
     var D = window.AqSky, k = curK, bd = bodyOf(k), d = dayIdx();
     var P = D.PLANETS[k], sg = D.SIGNS[i], hh = ((bd.sign - i + 12) % 12) + 1, H = D.HOUSES[hh - 1], pf = D.PF[k], q = D.HQ[hh - 1], ex = D.HEX[hh - 1], mp = moonPh();
-    var qs = [D.PQH[k][hh - 1], q[(d + i) % 2]];
+    var Rr = window.AqReadings, tr = Rr && Rr.TR[k][hh - 1];
+    var qs = [tr ? D.PQH[k][hh - 1] : D.PQ[k], q[(d + i) % 2]];
     if (mp) qs.push(mp.p[5][d % 2]);
-    var exs = [ex[d % 3], ex[(d + 1) % 3]];
-    if (mp) exs.push(mp.p[7][d % 3]);
+    var R = window.AqReadings, txt = R && R.PH[k] ? (R.TR[k][hh - 1] || R.PH[k][hh - 1]) : '', rt = bd.retro && R && R.RT[k] ? '<p class="swp-rt">' + R.RT[k] + '</p>' : '';
     var phase = mp ? '<div class="swp-row"><b>طور القمر اليوم · ' + mp.p[0] + ' · إضاءة ' + nd(mp.il) + '%</b><p>' + mp.p[6] + '</p></div>' : '';
     return '<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">' + D.gl(P.g) + '</span></span><div><h4>' + P.n + ' في بيتك ' + H.n + '</h4><small>' + sg.n + ' · مجال ' + H.area + '</small></div></header>' +
       '<div class="swp-hook"><b class="swp-lbl">أسئلة تخصك اليوم</b><p>' + qs.join('</p><p>') + '</p></div>' +
-      '<div class="swp-anat"><div class="swp-row"><b>نفسيًا</b><p>' + pf[0] + ' وحين يمرّ على بيتك ' + H.n + ' يتجه هذا كله إلى ' + H.area + '.</p></div>' +
-      '<div class="swp-row"><b>طاقيًا</b><p>' + pf[1] + (bd.retro ? ' ومع التراجع تتجه إلى الداخل، فتبدو أبطأ وأعمق وأكثر حساسية.' : '') + '</p></div>' + phase +
-      '<div class="swp-row"><b>في الواقع</b><ul><li>' + exs.join('</li><li>') + '</li></ul></div></div>' +
+      '<div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b><p>' + txt + '</p>' + rt + '</div>' + phase + '</div>' +
       '<p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>';
   }
   function pick(i) {

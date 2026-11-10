@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="assets/css/natal-page.css?v=20261110e">
 <link rel="stylesheet" href="assets/css/geo-picker.css?v=20261110c">
 <link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
-<link rel="stylesheet" href="assets/css/page-art.css?v=20261116o">
+<link rel="stylesheet" href="assets/css/page-art.css?v=20261116p">
 <link rel="stylesheet" href="assets/css/date-time-selects.css?v=20261112a">
 <link rel="stylesheet" href="assets/css/natal-dashboard.css?v=20261109a">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
@@ -3399,10 +3399,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function skyCard(k, bd, i) {
     const P = PLANETS[k], sg = SIGNS[i], hh = ((bd.sign - i + 12) % 12) + 1, H = HOUSES[hh - 1], pf = PF[k], q = HQ[hh - 1], ex = HEX[hh - 1];
     return `<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">${gl(P.g)}</span></span><div><h4>${P.n} في بيتك ${H.n}</h4><small>${sg.n} · مجال ${H.area}</small></div></header>
-      <div class="swp-hook"><b class="swp-lbl">أسئلة تخصك</b><p>${PQH[k][hh - 1]}</p><p>${q[(Math.floor(Date.now() / 864e5) + i) % 2]}</p></div>
-      <div class="swp-anat"><div class="swp-row"><b>نفسيًا</b><p>${pf[0]} وحين يمرّ على بيتك ${H.n} يتجه هذا كله إلى ${H.area}.</p></div>
-      <div class="swp-row"><b>طاقيًا</b><p>${pf[1]}${bd.retro ? " ومع التراجع تتجه إلى الداخل، فتبدو أبطأ وأعمق وأكثر حساسية." : ""}</p></div>
-      <div class="swp-row"><b>في الواقع</b><ul><li>${ex[0]}</li><li>${ex[1]}</li><li>${ex[2]}</li></ul></div></div>
+      <div class="swp-hook"><b class="swp-lbl">أسئلة تخصك</b><p>${(window.AqReadings && window.AqReadings.TR[k][hh - 1]) ? PQH[k][hh - 1] : PQ[k]}</p><p>${q[(Math.floor(Date.now() / 864e5) + i) % 2]}</p></div>
+      <div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b><p>${window.AqReadings ? (window.AqReadings.TR[k][hh - 1] || window.AqReadings.PH[k][hh - 1]) : ""}</p>${bd.retro && window.AqReadings && window.AqReadings.RT[k] ? `<p class="swp-rt">${window.AqReadings.RT[k]}</p>` : ""}</div></div>
       <p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>`;
   }
   window.AqSky = { skyCard, PLANETS, SIGNS, HOUSES, gl, HQ, HEX, PF, PQ, PQH };
@@ -3509,8 +3507,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const mv = (k === "sun" || k === "moon" ? "" : (bd.retro
       ? `<div class="swp-mv is-retro"><b><i aria-hidden="true">℞</i>حالة التراجع: ${p.n} متراجع الآن</b><p>${retroText(k).replace(/^[^:]*:\s*/, "")}</p><p>في علم النفس العميق، التراجع دعوة إلى الداخل: يلتفت ${p.theme} إلى الوراء بدل الأمام، فتعود إليك مواقف قديمة لا لتؤلمك بل لتكتمل.</p></div>`
       : `<div class="swp-mv is-direct"><b><i aria-hidden="true">›</i>حالة الحركة: مباشرة</b><p>${p.n} يسير للأمام في مساره المعتاد، فيظهر أثره بوضوح ودون حاجة إلى مراجعة.</p></div>`))
-      + `<div class="swp-psy"><h4 class="swp-h2">قراءة من الداخل</h4><p>${ps[0]}</p><p>${fl}</p></div>`
-      + `<div class="swp-barn"><h4 class="swp-h2">قد تجد نفسك هذه الأيام</h4><p>${ps[2]}</p><p>${S.shadow ? "وحين تتعب، قد يظهر لديك ميل إلى " + S.shadow + "، وهو ليس عيبًا بل إشارة إلى حاجة لم تُلبَّ." : ""}</p></div>`
+      + `<div class="swp-psy swp-story">${(window.AqReadings && window.AqReadings.PL[k]) ? `<h4 class="swp-h2">${window.AqReadings.PL[k][0]}</h4><p>${window.AqReadings.PL[k][1]}</p><p>${window.AqReadings.PL[k][2]}</p><p><b>ما يطلبه منك:</b> ${window.AqReadings.PL[k][3]}</p>` : ""}</div>`
       + `<div class="swp-q"><h4 class="swp-h2">سؤال للتأمل</h4><p>${bd.retro ? "ما الذي يعود إليك الآن ليُراجَع، ولماذا الآن بالذات؟" : ps[1]}</p></div>`;
     let o = `<div class="swp-hero"><span class="swp-med${bd.retro ? " is-retro" : ""}" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div class="swp-ht"><small>${skyDateInput.value ? "السماء في التاريخ المختار" : "السماء الآن"}</small><h3>${p.n} في ${S.n}</h3>
       <div class="swp-pills"><i class="swp-pill ${bd.retro ? "is-retro" : "is-direct"}">${bd.retro ? "متراجع" : (k === "sun" || k === "moon" ? "في حركته" : "مباشر")}</i><i class="swp-pill is-sign"><span class="swp-pill-g" aria-hidden="true"><span class="sg">${gl(S.g)}</span></span>${nd(dInt)}° ${nd(dMin)}′ ${S.n}</i></div></div></div>
@@ -5276,7 +5273,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/natal-dashboard.js?v=20261109b" defer></script>
 <script src="assets/js/life-path-view.js?v=20261107a" defer></script>
 <script src="assets/js/lp-accordion.js?v=20261106b" defer></script>
-<script src="assets/js/sign-forecast-sheet.js?v=20261116b" defer></script>
+<script src="assets/js/sky-readings.js?v=20261116b" defer></script>
+<script src="assets/js/sign-forecast-sheet.js?v=20261116d" defer></script>
 <script src="assets/js/daily-banner.js?v=20261116a" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js?v=20261107a" defer></script>
