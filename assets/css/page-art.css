@@ -116,3 +116,17 @@ html body #matrix .aq-related .aq-rel-grid>a :is(span,i):first-child{transform:s
 html body #matrix .aq-related .aq-rel-grid>a b,html body #matrix .aq-related .aq-rel-grid>a strong{font-size:.95rem!important}
 html body #matrix .aq-related .aq-rel-grid>a small,html body #matrix .aq-related .aq-rel-grid>a p{font-size:.76rem!important;margin:0!important}
 }
+/* ===== تناسق: أيقونات زجاجية هادئة + كارت أخف + نتيجة بنفس الضباب ===== */
+html body :is(#matrix,#lifepath,#chart) form :is(.mxp-fi,.lpx-fi,.ntx-fi){background:linear-gradient(150deg,rgba(255,255,255,.95),rgba(246,232,203,.9))!important;border:1.2px solid #CDA460!important;box-shadow:0 1px 0 #fff inset,0 5px 12px rgba(150,110,50,.16)!important}
+html body :is(#matrix,#lifepath,#chart) form :is(.mxp-fi,.lpx-fi,.ntx-fi)::after{background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))!important}
+html body :is(#matrix,#lifepath,#chart) form :is(.mxp-fi,.lpx-fi,.ntx-fi) svg{color:#7A2E48!important;stroke:#7A2E48!important;stroke-width:1.6!important;filter:none!important}
+html body section#matrix.mxp:has(#mresult:not([hidden])),html:root body section.sec.mxp#matrix:target:has(#mresult:not([hidden])){background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.7) 120px,rgba(248,243,232,0) 520px),url("../art/matrix-art-wide.svg"),linear-gradient(180deg,#F8F3E8,#F6EFE2)!important;background-size:100% 700px,100% auto,auto!important;background-position:0 0,center 40px,0 0!important;background-repeat:no-repeat!important;background-attachment:local!important}
+html body #matrix.mxp #mresult{background:transparent!important}
+html body #matrix.mxp #mresult :is(.panel,.mxd,.chart-summary-card){background:linear-gradient(180deg,rgba(255,254,250,.92),rgba(253,248,238,.9))!important;border:1px solid rgba(214,188,140,.7)!important;border-radius:18px!important;box-shadow:0 8px 22px rgba(120,90,50,.08)!important}
+html body #matrix.mxp #mresult .btn,html body #matrix.mxp #mresult button.btn{min-height:42px!important;padding:8px 18px!important;font-size:.92rem!important;border-radius:14px!important;width:auto!important;box-shadow:0 5px 14px rgba(90,26,48,.18)!important}
+@media(max-width:899px){
+html body #matrix.mxp form.mxp-card{padding:10px 12px 8px!important;box-shadow:0 10px 26px rgba(120,90,50,.10)!important}
+html body #matrix.mxp form.mxp-card .btn{min-height:44px!important;width:78%!important;margin:2px auto 0!important;font-size:.98rem!important;box-shadow:0 6px 14px rgba(90,26,48,.2)!important}
+}
+html body #matrix.mxp #mresult .chart-summary-card :is(button,a.btn,.btn){min-height:40px!important;padding:6px 14px!important;font-size:.86rem!important;border-radius:14px!important;box-shadow:none!important}
+html body #matrix.mxp #mresult .chart-summary-card :is(button,a.btn,.btn):last-child{box-shadow:0 5px 12px rgba(90,26,48,.16)!important}
