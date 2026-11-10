@@ -1022,17 +1022,17 @@ html body #home.aqh .aqh-fuse .aqh-system .aqh-system-ico svg{width:84px!importa
 html body section:is(#chart,#matrix,#lifepath,#individual){position:relative;isolation:isolate}
 html body section:is(#chart,#matrix,#lifepath,#individual)::before,html body section:is(#chart,#matrix,#lifepath,#individual)::after{content:"";position:absolute;left:0!important;right:0!important;width:100%!important;max-width:none!important;z-index:-1;pointer-events:none;background-repeat:no-repeat}
 /* الخريطة الفلكية: اليدان والشمس والقمر أعلى، وشمس ذهبية صغيرة أسفل */
-html body section#chart::before{top:64px;height:200px;background-image:url(../art/motifs/hands-top.png);background-size:100% auto;background-position:top center;opacity:.16}
-html body section#chart::after{bottom:30px;height:140px;background-image:url(../art/motifs/sun-rays.png),url(../art/motifs/sun-gold.png);background-size:110px auto,64px auto;background-position:right 16px bottom 0,left 24px bottom 36px;opacity:.16}
+html body section#chart::before{top:64px;height:200px;background-image:url(../art/motifs/zodiac-arc.svg);background-size:100% auto;background-position:top center;background-repeat:no-repeat;opacity:.2}
+html body section#chart::after{bottom:30px;height:150px;background-image:url(../art/motifs/orbit-lines.svg);background-size:100% auto;background-position:bottom center;background-repeat:no-repeat;opacity:.16}
 /* المصفوفة: رموز باطنية (مفاتيح، عين، كف، بلورة) أعلى، وكف وشمس أسفل */
-html body section#matrix::before{top:60px;height:520px;background-image:url(../art/motifs/pattern.png);background-size:min(100%,430px) auto;background-position:top center;opacity:.075;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 45%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 45%,transparent 100%)}
-html body section#matrix::after{bottom:30px;height:170px;background-image:url(../art/motifs/hamsa.png),url(../art/motifs/sun-rays.png);background-size:80px auto,100px auto;background-position:left 20px bottom 0,right 22px bottom 20px;opacity:.14}
+html body section#matrix::before{top:60px;height:420px;background-image:url(../art/motifs/octagram.svg);background-size:min(100%,420px) auto;background-position:top center;background-repeat:no-repeat;opacity:.14;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 100%)}
+html body section#matrix::after{bottom:30px;height:120px;background-image:url(../art/motifs/diamond-lattice.svg);background-size:100% auto;background-position:bottom center;background-repeat:no-repeat;opacity:.12}
 /* مسار الحياة: سلسلة الكواكب جانباً، ونجوم، وقمر منقوش أسفل */
-html body section#lifepath::before{top:64px;height:520px;background-image:url(../art/motifs/planets.png),url(../art/motifs/stars-field.png);background-size:44px auto,100% auto;background-position:right 12px top 10px,top center;opacity:.17}
-html body section#lifepath::after{bottom:30px;height:170px;background-image:url(../art/motifs/moon-etch.png);background-size:130px auto;background-position:left 20px bottom 0;opacity:.14}
+html body section#lifepath::before{top:64px;height:400px;background-image:url(../art/motifs/winding-path.svg);background-size:min(100%,400px) auto;background-position:top center;background-repeat:no-repeat;opacity:.18;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 55%,transparent 100%)}
+html body section#lifepath::after{bottom:30px;height:130px;background-image:url(../art/motifs/peaks-line.svg);background-size:100% auto;background-position:bottom center;background-repeat:no-repeat;opacity:.16}
 /* خرائطك الشخصية */
-html body section#individual::before{top:70px;height:520px;background-image:url(../art/motifs/stars-field.png);background-size:100% auto;background-position:top center;opacity:.2}
-html body section#individual::after{bottom:20px;height:150px;background-image:url(../art/motifs/hands-bottom.png);background-size:100% auto;background-position:bottom center;opacity:.14}
+html body section#individual::before{top:70px;height:240px;background-image:url(../art/motifs/constellation.svg);background-size:100% auto;background-position:top center;background-repeat:no-repeat;opacity:.2}
+html body section#individual::after{bottom:20px;height:200px;background-image:url(../art/motifs/crescent-orbit.svg);background-size:100% auto;background-position:bottom center;background-repeat:no-repeat;opacity:.15}
 
 /* ===== الرئيسية على الموبايل: صفحة مضغوطة ومتناسقة (السماء الآن، المحتوى المميز، الفوتر) ===== */
 @media(max-width:820px){
