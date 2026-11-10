@@ -1034,3 +1034,51 @@ html body section#lifepath::after{bottom:30px;height:170px;background-image:url(
 /* خرائطك الشخصية */
 html body section#individual::before{top:70px;height:520px;background-image:url(../art/motifs/stars-field.png);background-size:100% auto;background-position:top center;opacity:.2}
 html body section#individual::after{bottom:20px;height:150px;background-image:url(../art/motifs/hands-bottom.png);background-size:100% auto;background-position:bottom center;opacity:.14}
+
+/* ===== الرئيسية على الموبايل: صفحة مضغوطة ومتناسقة (السماء الآن، المحتوى المميز، الفوتر) ===== */
+@media(max-width:820px){
+  /* السماء الآن: صفوف مدمجة */
+  html body #aqh-skyb{gap:8px!important}
+  html body #aqh-skyb .aqh-skyb-wheel{padding-top:4px!important}
+  html body #aqh-skyb .skb-cta{gap:8px!important}
+  html body #aqh-skyb .skb-cta p{display:none!important}
+  html body #aqh-energy .dbn-slide{min-height:0!important;height:auto!important}
+  html body #aqh-energy .dbn-stage{min-height:0!important}
+  html body #aqh-energy .dbn-lv{padding:4px 4px!important;min-height:0!important}
+  html body #aqh-energy .dbn-lv .dbn-lv-g{width:30px!important;height:30px!important}
+  html body #aqh-energy .dbn-lv .dbn-fx{font-size:.7rem!important;line-height:1.35!important;margin:0!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  html body #aqh-energy .dbn-ctrl{margin-top:4px!important}
+  /* المحتوى المميز: كروت أصغر وأقرب لبعض */
+  html body #aqh-articles .aqh-articles-head{margin-bottom:6px!important}
+  html body #aqh-articles .aqh-article{flex:0 0 76%!important;min-height:0!important;height:auto!important;padding-bottom:8px!important}
+  html body #aqh-articles .aqh-article>img,html body #aqh-articles .aqh-article img:first-child{height:104px!important;object-fit:cover}
+  html body #aqh-articles .aqh-article .aqh-intro{display:none!important}
+  html body #aqh-articles .aqh-article h3{font-size:.92rem!important;line-height:1.5!important;margin:2px 0!important}
+  html body #aqh-articles .aqh-article .aqh-hook{font-size:.78rem!important;line-height:1.5!important;margin:2px 0!important}
+  html body #aqh-articles .aqh-article .aqh-go{height:24px!important;width:24px!important}
+  html body #aqh-articles .aqh-track{gap:10px!important;scroll-snap-type:x mandatory}
+  html body #aqh-articles .aqh-article{scroll-snap-align:start}
+  html body #aqh-articles .aqh-row2{margin-top:8px!important}
+  html body #aqh-articles .aqh-all-wrap{margin-top:8px!important}
+  /* الفوتر: أصغر وفي أسطر قليلة */
+  html body footer.foot .wrap{padding-top:10px!important;gap:6px!important}
+  html body footer.foot .tg{margin:0!important;font-size:.8rem!important}
+  html body footer.foot .aq-soc{gap:6px!important;flex-wrap:nowrap!important}
+  html body footer.foot .aq-soc a{padding:5px 9px!important;font-size:.72rem!important}
+  html body footer.foot .foot-act{gap:6px!important;margin-top:4px!important}
+  html body footer.foot .foot-act .btn{padding:6px 12px!important;font-size:.76rem!important;min-height:0!important}
+  html body footer.foot .foot-about{padding:10px 12px!important;margin-top:6px!important}
+  html body footer.foot .foot-about h4{font-size:.88rem!important;margin:0 0 4px!important}
+  html body footer.foot .foot-about p{font-size:.76rem!important;line-height:1.7!important;margin:0!important}
+  html body footer.foot .foot-dis,html body footer.foot .copy{font-size:.66rem!important;line-height:1.6!important;margin:4px 0!important}
+}
+@media(max-width:820px){
+  html body #aqh-articles .aqh-article .aqh-article-txt .aqh-intro,html body #aqh-articles .aqh-article p.aqh-intro{display:none!important}
+  html body #aqh-articles .aqh-article>img,html body #aqh-articles .aqh-article>a>img,html body #aqh-articles .aqh-article img{height:104px!important;max-height:104px!important;width:100%!important;object-fit:cover!important;aspect-ratio:auto!important}
+  html body #aqh-articles .aqh-article{gap:4px!important}
+  html body #aqh-skyb{padding-top:0!important;margin-top:0!important}
+  html body #aqh-energy{padding-top:6px!important}
+}
+@media(max-width:820px){html body #home.aqh .aqh-band-arts .aqh-article p.aqh-intro{display:none!important}}
+@media(max-width:820px){html body #home.aqh section#aqh-articles.aqh-band-arts .aqh-article.aqh-article p.aqh-intro,html body #home.aqh .aqh-band-arts#aqh-articles .aqh-article.aqh-article .aqh-article-txt p.aqh-intro{display:none!important}}
+@media(max-width:820px){html body #home.aqh .aqh-band-arts section#aqh-articles .aqh-article p.aqh-intro{display:none!important}}
