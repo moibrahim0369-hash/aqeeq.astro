@@ -1189,3 +1189,12 @@ html body .mn-leg button.is-on{border-color:#6A2038;background:#fff}
 /* التوافق: اليدان اللتان تتلامس أصابعهما، مرة واحدة فقط في الموقع */
 html body section#relationships{position:relative;isolation:isolate}
 html body section#relationships::before{content:"";position:absolute;left:0;right:0;top:56px;width:100%;height:180px;z-index:-1;pointer-events:none;background:url(../art/motifs/hands-top.png) top center/100% auto no-repeat;opacity:.17;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 60%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 60%,transparent 100%)}
+
+/* ===== المصفوفة: أرقام ذهبية بدل الأحمر، أيقونات زجاجية أفتح، وتقليل الفراغ العلوي ===== */
+html body .aqm-bn{background:linear-gradient(150deg,#FFF9E8,#E9CE93)!important;color:#4A3210!important;box-shadow:0 2px 5px rgba(120,84,30,.28),inset 0 1px 0 #fff!important;border:1px solid rgba(190,150,80,.7)}
+html body .aqm-acc-badges .aqm-badge-arcana{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(250,240,218,.7))!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(200,161,90,.7)!important;color:#3F2A1A!important}
+html body #mresult .aqm-acc-icon{width:44px!important;height:44px!important;flex:0 0 44px!important;border-radius:15px!important;background:linear-gradient(155deg,rgba(255,255,255,.95),rgba(255,247,226,.75) 55%,rgba(244,226,186,.7))!important;border:1px solid rgba(200,161,90,.75)!important;box-shadow:0 4px 12px rgba(160,122,58,.18),inset 0 1px 0 #fff,inset 0 -6px 10px rgba(244,226,186,.4)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:none!important}
+html body #mresult .aqm-acc-icon svg{width:23px!important;height:23px!important;stroke:#7A2E48!important;stroke-width:1.7!important}
+html body #mresult .aqm-header{gap:8px!important;padding-top:12px!important;padding-bottom:12px!important}
+html body #mresult .aqm-header .aqm-meta-info{margin:0!important;padding-top:0!important;gap:8px!important}
+html body #mresult .aqm-dash{gap:14px!important}
