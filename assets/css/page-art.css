@@ -130,3 +130,37 @@ html body #matrix.mxp form.mxp-card .btn{min-height:44px!important;width:78%!imp
 }
 html body #matrix.mxp #mresult .chart-summary-card :is(button,a.btn,.btn){min-height:40px!important;padding:6px 14px!important;font-size:.86rem!important;border-radius:14px!important;box-shadow:none!important}
 html body #matrix.mxp #mresult .chart-summary-card :is(button,a.btn,.btn):last-child{box-shadow:0 5px 12px rgba(90,26,48,.16)!important}
+/* ===== منتقي التاريخ الواضح ===== */
+.aq-ds{display:grid;grid-template-columns:.8fr 1.25fr 1fr;gap:6px;grid-column:2;grid-row:2;width:100%;margin-top:3px}
+.aq-ds select{width:100%;min-height:40px!important;border:1.5px solid #D9BD86!important;border-radius:11px!important;background:#fff!important;color:#4A1428!important;-webkit-text-fill-color:#4A1428;font-size:.95rem!important;font-weight:600!important;padding:0 6px!important;text-align:center;text-align-last:center;-webkit-appearance:auto;appearance:auto;box-shadow:none!important}
+.aq-ds select:required:invalid{color:#9a8b7a!important;-webkit-text-fill-color:#9a8b7a;font-weight:500!important}
+.aq-ds select:focus{outline:2px solid rgba(201,163,93,.55)!important;border-color:#C9A35D!important}
+input.aq-ds-src{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;left:50%;bottom:0}
+.field{position:relative}
+html body :is(#matrix,#lifepath,#chart) form .field:has(.aq-ds){grid-template-columns:46px minmax(0,1fr)!important}
+@media(min-width:900px){html body #chart form .ntx-pan .field:has(.aq-ds){grid-template-columns:42px minmax(0,1fr)!important}html body #chart .aq-ds select{font-size:.85rem!important;padding:0 2px!important}}
+/* حقول أوضح كمربعات إدخال */
+html body :is(#matrix,#lifepath,#chart) form .field:not(.ntx-place){border:1.5px solid #E0C38C!important;background:#FFFEFB!important}
+html body #matrix.mxp form.mxp-card{border:1.5px solid #D9BD86!important;background:linear-gradient(180deg,#FFFFFF,#FDF8EC)!important;box-shadow:0 14px 34px rgba(110,80,40,.16),0 0 0 6px rgba(248,243,232,.7)!important}
+/* وضوح النص فوق الخلفية */
+html body #matrix.mxp .mxp-head :is(.mxp-tag,.mxp-sub,h2){text-shadow:0 0 14px #F8F3E8,0 0 6px #F8F3E8,0 0 2px #F8F3E8}
+@media(max-width:899px){
+/* قوائم أصغر وأنيقة */
+html body #matrix.mxp .mxp-axes{margin:2px 0 0!important}
+html body #matrix.mxp .mxp-axes h4{font-size:.88rem!important;margin:0 0 6px!important}
+html body #matrix.mxp .mxp-axes ul{gap:5px!important}
+html body #matrix.mxp .mxp-axes li{padding:6px 12px!important;font-size:.74rem!important;line-height:1.4!important;border-radius:12px!important;align-items:center!important}
+html body #matrix.mxp .mxp-axes li b{display:inline!important;font-size:.8rem!important;margin-inline-end:6px}
+html body #matrix.mxp .mxp-axes li b::after{content:" — ";color:#C9A35D}
+html body #matrix .aq-related .aq-rel-grid>a{padding:6px 12px!important;border-radius:14px!important}
+html body #matrix .aq-related .aq-rel-grid>a .aq-rel-i{width:34px!important;height:34px!important}
+html body #matrix .aq-related .aq-rel-grid>a b{font-size:.88rem!important}
+html body #matrix .aq-related .aq-rel-grid>a small{font-size:.7rem!important}
+html body #matrix .aq-related>h3{font-size:1.05rem!important;margin-bottom:8px!important}
+html body section:is(#matrix,#lifepath,#chart){padding-top:52px!important}
+}
+html body .field .aq-ds select{grid-column:auto!important;grid-row:auto!important;min-width:0}
+html body .field .aq-ds{display:grid!important}
+html body :is(#matrix,#lifepath,#chart) form .field .aq-ds select{border:1.5px solid #D9BD86!important;background:#fff!important;border-radius:11px!important;min-height:40px!important;padding:0 4px!important;font-size:.92rem!important}
+html body :is(#matrix,#lifepath,#chart) form .field .aq-ds select:focus{border-color:#B98A3E!important;box-shadow:0 0 0 3px rgba(201,163,93,.22)!important}
+html body section#matrix.mxp form.mxp-card .field{border:1.5px solid #E0C38C!important;background:#FFFEFB!important;box-shadow:0 2px 8px rgba(150,110,50,.08)!important}
