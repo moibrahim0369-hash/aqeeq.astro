@@ -36,6 +36,8 @@
     var bb = s.querySelector('.aqm-sheet-badges'); bb.innerHTML = bd ? bd.innerHTML : '';
     s.querySelector('.aqm-sheet-nums').style.display = bb.children.length ? '' : 'none';
     var sb = s.querySelector('.aqm-sheet-body'); sb.innerHTML = body ? body.innerHTML : ''; sb.scrollTop = 0;
+    /* إبراز الكلمات المفتاحية (العبارة قبل النقطتين في بداية الفقرة) */
+    [].forEach.call(sb.querySelectorAll('p.aqm-g-p, li.aqm-g-li'), function (n) { var f = n.firstChild; if (!f || f.nodeType !== 3) return; var m = /^\s*([^:：\n]{2,28})([:：])/.exec(f.nodeValue); if (!m) return; var kw = document.createElement('b'); kw.className = 'aqm-kw'; kw.textContent = m[1] + m[2]; f.nodeValue = f.nodeValue.slice(m[0].length); n.insertBefore(kw, f); });
     var nx = nextItem(), nb = s.querySelector('[data-next]');
     if (nx) { var nt = nx.querySelector('.aqm-acc-title'); nb.querySelector('b').textContent = nt ? nt.textContent : ''; nb.hidden = false; } else nb.hidden = true;
   }
