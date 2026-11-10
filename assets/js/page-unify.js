@@ -40,7 +40,7 @@
   });
   /* روابط ختامية لكل صفحة: أدوات مرتبطة + مقال/قراءة */
   var REL = {
-    matrix: [['#featured-content/matrix-22-arcana', I.read, 'اقرأ عن المصفوفة', 'هندسة الـ22 أركانًا'], ['#featured-content', I.read, 'المحتوى المميز', 'مقالات تعمّق فهمك لنفسك']],
+    matrix: [['#lifepath', I.lifepath, 'مسار الحياة', 'مراحل رحلتك وقممك الأربع'], ['#chart', I.chart, 'الخريطة الفلكية', 'مواضع الكواكب لحظة ميلادك'], ['#featured-content/matrix-22-arcana', I.read, 'اقرأ عن المصفوفة', 'هندسة الـ22 أركانًا'], ['#featured-content', I.read, 'المحتوى المميز', 'مقالات تعمّق فهمك لنفسك']],
     lifepath: [['#matrix', I.matrix, 'مصفوفة القدر', 'خريطتك الرقمية الهندسية'], ['#lifepath-compat', I.lpcompat, 'توافق المسارات', 'قراءة الشراكات بين رقمين'], ['#featured-content/pinnacles-cycles', I.read, 'اقرأ عن القمم والدورات', 'من المحتوى المميز']],
     chart: [['#matrix', I.matrix, 'مصفوفة القدر', 'الأنماط والطاقات في ميلادك'], ['#astro-maps', I.maps, 'خرائط متقدمة', 'العودة الشمسية والعبور'], ['#featured-content/how-to-start-natal-chart', I.read, 'كيف تبدأ قراءة خريطتك', 'دليل مبسّط']],
     compat: [['#lifepath-compat', I.lpcompat, 'توافق المسارات', 'قراءة الشراكات القدرية'], ['#chart', I.chart, 'خريطتك الفلكية', 'ابدأ بخريطتك أنت'], ['#featured-content/venus-in-chart', I.read, 'اقرأ عن لغة العلاقات', 'ماذا تقول الزهرة عنك']],
@@ -54,11 +54,18 @@
   function related() {
     Object.keys(REL).forEach(function (id) {
       var sec = document.getElementById(id); if (!sec || sec.querySelector('.aq-related')) return;
-      var box = document.createElement('nav'); var T = id === 'matrix' ? 'استثمر في ذاتك' : 'تابع من هنا';
+      var box = document.createElement('nav'); var T = id === 'matrix' ? 'تابع رحلتك' : 'تابع من هنا';
       box.className = 'aq-related'; box.setAttribute('aria-label', T);
       box.innerHTML = '<h3><span></span>' + T + '<span></span></h3><div class="aq-rel-grid">' + REL[id].map(function (r) {
         return '<a class="aq-rel" href="' + r[0] + '"><span class="aq-rel-i">' + ic(r[1]) + '</span><span class="aq-rel-t"><b>' + r[2] + '</b><small>' + r[3] + '</small></span></a>';
-      }).join('') + '</div>' + (id === 'matrix' ? '<p class="aq-phil">مصفوفة القدر ليست تنبؤًا بالحظ، بل مرآة هندسية تقرأ بها اثنتين وعشرين طاقة في ميلادك، لتفهم أنماطك وتختار خطواتك بوعي.</p>' : '');
+      }).join('') + '</div>' ;
+      if (id === 'matrix' && !sec.querySelector('.aq-mx-about')) {
+        var ab = document.createElement('div'); ab.className = 'aq-mx-about';
+        ab.innerHTML = '<section class="aq-mx-def"><h3><span></span>ما هي مصفوفة القدر؟<span></span></h3><p>مصفوفة القدر خريطة هندسية تُبنى من يوم ميلادك وشهره وسنته، فتتحول الأرقام إلى ثماني نقاط كبرى تحيط بمركز واحد. كل نقطة تحمل طاقة من الاثنتين والعشرين طاقة، وتحكي جانبًا من حياتك: من أنت في الداخل، وكيف تحب، وكيف تكسب، وأين تتعثر.</p><p>هي ليست تنبؤًا بالمستقبل، بل مرآة تريك الأنماط التي تتكرر معك والمواهب التي لم تستخدمها بعد، لتفهم نفسك أولًا ثم تختار خطوتك بوعي.</p></section>'
+          + '<ol class="aq-mx-steps"><li><b>١</b><span>أدخل تاريخ ميلادك</span></li><li><b>٢</b><span>شاهد خريطتك الهندسية</span></li><li><b>٣</b><span>اقرأ كل محور بعمق</span></li></ol>'
+          + '<section class="aq-mx-gold"><h3><span></span>استثمر في ذاتك<span></span></h3><a class="aq-gold" href="#featured-content/matrix-22-arcana"><span class="aq-gold-i">' + ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.2 1.2-1.8 2.500-1.800s2.500.7 2.500 1.800-1.200 1.600-2.500 1.900-2.500.8-2.500 2 1.200 1.800 2.500 1.800 2.500-.6 2.500-1.800"/>') + '</span><span class="aq-gold-t"><b>افتح شفرة المال</b><small>اعرف أين تتعثر وفرتك ومن أين يأتيك الرزق</small></span></a><a class="aq-gold" href="#featured-content/matrix-22-arcana"><span class="aq-gold-i">' + ic('<circle cx="12" cy="12" r="9"/><path d="M8.500 12a3.500 3.500 0 0 1 6-2.400M15.500 12a3.500 3.500 0 0 1-6 2.400"/>') + '</span><span class="aq-gold-t"><b>حرّر الدين الكارمي</b><small>افهم الدرس الذي يتكرر في علاقاتك وقراراتك</small></span></a></section>';
+        var ft0 = sec.querySelector(':scope > footer'); if (ft0) sec.insertBefore(ab, ft0); else sec.appendChild(ab);
+      }
       var ft = sec.querySelector(':scope > footer'); if (ft) sec.insertBefore(box, ft); else sec.appendChild(box);
     });
   }
