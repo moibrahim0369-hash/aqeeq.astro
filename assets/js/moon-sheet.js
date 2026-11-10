@@ -35,8 +35,58 @@
     o.full = il >= 0.985; o.supr = o.full && dist < 361500; o.peri = dist < 362000;
     return o;
   }
+  /* قمر واقعي: خامة بحار وفوهات مولَّدة مرة واحدة، ثم إضاءة الطور بحساب لامبرت من زاوية الاستطالة الفعلية. */
+  var TEX = null, TN = 320;
+  function rng(s) { return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+  function buildTex() {
+    var N = TN, R = N / 2, r = rng(20261110), v = new Float32Array(N * N), i, x, y;
+    var hv = function (a, b) { var h = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return h - Math.floor(h); };
+    var vn = function (px, py) { var ix = Math.floor(px), iy = Math.floor(py), fx = px - ix, fy = py - iy; fx = fx * fx * (3 - 2 * fx); fy = fy * fy * (3 - 2 * fy); return (hv(ix, iy) * (1 - fx) + hv(ix + 1, iy) * fx) * (1 - fy) + (hv(ix, iy + 1) * (1 - fx) + hv(ix + 1, iy + 1) * fx) * fy; };
+    var MARIA = [[-.27, -.38, .3, .22], [.1, -.36, .17, .14], [.26, -.1, .21, .17], [.66, -.3, .11, .08], [.55, .16, .15, .12], [-.62, -.08, .3, .4], [-.2, .45, .21, .13], [-.5, .52, .11, .1], [-.05, -.76, .36, .06], [0, -.12, .1, .08], [.43, -.45, .1, .07]];
+    for (y = 0; y < N; y++) for (x = 0; x < N; x++) {
+      var nx = (x - R) / R, ny = (y - R) / R, m = 0;
+      MARIA.forEach(function (a) { var dx = (nx - a[0]) / a[2], dy = (ny - a[1]) / a[3], d = Math.sqrt(dx * dx + dy * dy), warp = vn(x / 30, y / 30) * .18; m = Math.max(m, Math.max(0, Math.min(1, (1 - d + warp - .1) * 2.2))); });
+      var g = vn(x / 40, y / 40) * .5 + vn(x / 14, y / 14) * .3 + vn(x / 5, y / 5) * .2;
+      v[y * N + x] = .8 - m * .36 + (g - .5) * .16;
+    }
+    function crater(cx, cy, rad, str) {
+      var x0 = Math.max(0, Math.floor(cx - rad * 2.6)), x1 = Math.min(N - 1, Math.ceil(cx + rad * 2.6)), y0 = Math.max(0, Math.floor(cy - rad * 2.6)), y1 = Math.min(N - 1, Math.ceil(cy + rad * 2.6));
+      for (var yy = y0; yy <= y1; yy++) for (var xx = x0; xx <= x1; xx++) {
+        var dx = xx - cx, dy = yy - cy, d = Math.sqrt(dx * dx + dy * dy) / rad, dl = 0;
+        if (d < 1) dl = -.1 * str * (1 - d * d) + (dx * -.5 + dy * -.5) / rad * .06 * str * (d > .5 ? 1 : 0);
+        else if (d < 1.25) dl = .13 * str * (1 - (d - 1) / .25);
+        else if (d < 2.4) dl = .05 * str * (1 - (d - 1.25) / 1.15);
+        v[yy * N + xx] += dl;
+      }
+    }
+    for (i = 0; i < 420; i++) { var a = r() * 6.2832, d2 = Math.sqrt(r()) * .97, rad = 1.2 + Math.pow(r(), 3.2) * 13; crater(R + Math.cos(a) * d2 * R, R + Math.sin(a) * d2 * R, rad, .3 + r() * .5); }
+    /* تيخو وكوبرنيكوس بأشعتهما */
+    var tx = R + -.12 * R, ty = R + .72 * R; crater(tx, ty, 7, 1.6);
+    for (i = 0; i < 22; i++) { var ang = r() * 6.2832, len = 40 + r() * 90; for (var t = 12; t < len; t += 1) { var px = Math.round(tx + Math.cos(ang) * t), py = Math.round(ty + Math.sin(ang) * t); if (px > 0 && py > 0 && px < N && py < N && (px - R) * (px - R) + (py - R) * (py - R) < R * R) v[py * N + px] += .07 * (1 - t / len); } }
+    crater(R + -.38 * R, R + -.05 * R, 7, 1.4);
+    return v;
+  }
+  var MCACHE = {};
+  function moonImg(el) {
+    var key = Math.round(el * 2); if (MCACHE[key]) return MCACHE[key];
+    if (!TEX) TEX = buildTex();
+    var N = TN, R = N / 2, cv = document.createElement('canvas'); cv.width = cv.height = N;
+    var cx = cv.getContext('2d'), im = cx.createImageData(N, N), D = im.data, e = el * Math.PI / 180;
+    var sx = Math.sin(e), sz = -Math.cos(e), x, y;
+    for (y = 0; y < N; y++) for (x = 0; x < N; x++) {
+      var nx = (x + .5 - R) / R, ny = (y + .5 - R) / R, rr = nx * nx + ny * ny; if (rr >= 1.02) continue;
+      var nz = Math.sqrt(Math.max(0, 1 - rr)), dot = nx * sx + nz * sz;
+      var lit = Math.max(0, Math.min(1, (dot + .06) / .3)); lit = lit * lit * (3 - 2 * lit);
+      var alb = Math.max(.05, Math.min(1, TEX[y * N + x])), sh = .1 + lit * (.55 + .45 * Math.pow(Math.max(dot, 0), .35));
+      var k = alb * sh, i4 = (y * N + x) * 4, edge = rr > .98 ? Math.max(0, (1.02 - rr) / .04) : 1;
+      D[i4] = Math.min(255, k * 262 + (1 - lit) * 6); D[i4 + 1] = Math.min(255, k * 252 + (1 - lit) * 8); D[i4 + 2] = Math.min(255, k * 232 + (1 - lit) * 14); D[i4 + 3] = 255 * edge;
+    }
+    cx.putImageData(im, 0, 0);
+    var u = cv.toDataURL('image/png'); MCACHE[key] = u; return u;
+  }
+  window.AqeeqMoonImg = moonImg;
   function moonSvg(c, size) {
-    var inner = typeof window.AqeeqMoon === 'function' ? window.AqeeqMoon(c.el) : '<circle cx="60" cy="60" r="50" fill="#d9d2c3"/>';
+    var inner; try { inner = '<defs><radialGradient id="mnHalo" cx="50%" cy="50%" r="50%"><stop offset=".8" stop-color="#fff3cf" stop-opacity=".0"/><stop offset="1" stop-color="#fff3cf" stop-opacity="0"/></radialGradient></defs><circle cx="60" cy="60" r="50" fill="#0b0a12"/><image href="' + moonImg(c.el) + '" x="10" y="10" width="100" height="100"/>'; } catch (er) { inner = typeof window.AqeeqMoon === 'function' ? window.AqeeqMoon(c.el) : '<circle cx="60" cy="60" r="50" fill="#d9d2c3"/>'; }
     var over = '';
     if (c.lunar) over = '<defs><radialGradient id="mnCop" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C2542B" stop-opacity=".78"/><stop offset=".7" stop-color="#8E2D1E" stop-opacity=".82"/><stop offset="1" stop-color="#4A1812" stop-opacity=".9"/></radialGradient></defs><circle cx="60" cy="60" r="50" fill="url(#mnCop)" style="mix-blend-mode:multiply"/>';
     if (c.solar) over = '<circle cx="60" cy="60" r="50" fill="#14090c"/><g stroke="#F6DCA0" stroke-opacity=".55" stroke-width=".8" stroke-linecap="round">' + (function () { var s = ''; for (var i = 0; i < 36; i++) { var a = i * 10 * Math.PI / 180, r1 = 52, r2 = 52 + (i % 3 ? 5 : 9); s += '<line x1="' + (60 + r1 * Math.cos(a)).toFixed(1) + '" y1="' + (60 + r1 * Math.sin(a)).toFixed(1) + '" x2="' + (60 + r2 * Math.cos(a)).toFixed(1) + '" y2="' + (60 + r2 * Math.sin(a)).toFixed(1) + '"/>'; } return s; })() + '</g><circle cx="60" cy="60" r="51" fill="none" stroke="#F6DCA0" stroke-opacity=".7" stroke-width="1.2"/>';
