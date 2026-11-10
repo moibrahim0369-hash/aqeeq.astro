@@ -599,3 +599,19 @@ html body section#lifepath.lpx.sec:target>.wrap{padding-top:30px!important}
 @media(max-width:820px){
 html:root body section#lifepath#lifepath.lpx.sec:target>.wrap#x,html:root body section#lifepath#lifepath.lpx.sec:target>.wrap{padding-top:30px!important}
 }
+/* lifepath: individual only, clean pill, cream quote card */
+html body section#lifepath.lpx .lpx-tabs,html body section#lifepath.lpx #lpcompat{display:none!important}
+html body section#lifepath.lpx .aq-section-topbar,html body section#lifepath.lpx .aq-section-topbar *{box-shadow:none!important}
+html body section#lifepath.lpx .aq-section-topbar{background:transparent!important;filter:none!important;border:0!important}
+html body section#lifepath.lpx .aq-section-topbar::before,html body section#lifepath.lpx .aq-section-topbar::after{display:none!important}
+html body section#lifepath.lpx .aq-section-topbar .aq-section-pill.active{background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important;box-shadow:0 3px 10px rgba(74,18,36,.22)!important}
+html body section#lifepath.lpx .lpx-quote{background:linear-gradient(160deg,#FFFDF7 0%,#F7EBCF 100%)!important;border:1.3px solid #D2AE6C!important;box-shadow:0 10px 26px rgba(122,46,72,.12),inset 0 1px 0 #fff!important}
+html body section#lifepath.lpx .lpx-quote::after{border-color:rgba(184,143,70,.28)!important;box-shadow:0 0 0 22px rgba(184,143,70,.07),0 0 0 44px rgba(184,143,70,.045)!important}
+html body section#lifepath.lpx .lpx-q1{color:#5A1A2E!important}
+html body section#lifepath.lpx .lpx-q2{color:#6B4A3A!important}
+html body section#lifepath.lpx .lpx-quote i{background:linear-gradient(90deg,#B88F46,transparent)!important}
+html body section#lifepath.lpx .lpx-qm{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFF3D6' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><path d='M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.500Z'/><path d='M17 4v3M15.500 5.500h3'/></svg>") center/28px no-repeat,linear-gradient(135deg,#8A3350,#6A2038 60%,#4A1224)!important;border:1.2px solid #C8A15A!important}
+html:root body section#lifepath#lifepath.lpx .lpx-tabbox>.lpx-tabs,html:root body section#lifepath#lifepath.lpx #lp-start{display:none!important}
+html:root body section#lifepath#lifepath.lpx .aq-section-quick-links,html:root body section#lifepath#lifepath.lpx .aq-section-quick-links a{background-color:transparent!important;box-shadow:none!important;filter:none!important}
+html:root body section#lifepath#lifepath.lpx .aq-section-quick-links a.active{background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important}
+html:root body section#lifepath#lifepath.lpx .aq-section-quick-links::before,html:root body section#lifepath#lifepath.lpx .aq-section-quick-links::after{display:none!important}
