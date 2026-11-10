@@ -146,11 +146,11 @@
   function hintHTML(st) {
     var retro = st.items.filter(function (r) { return r.retro && r.k !== 'sun' && r.k !== 'moon'; }), edge = null;
     st.items.forEach(function (it) { var d = it.lon % 30; if (!edge && it.k !== 'moon' && (d >= 29 || d < 1)) edge = it; });
-    var lead, sub;
-    if (edge) { lead = edge.n + (edge.lon % 30 >= 29 ? ' في آخر درجات ' : ' في أولى درجات ') + SIGNS_AR[edge.sign]; sub = 'لحظة انتقال دقيقة. اضغط عليه لتعرف ماذا يتبدّل، وعلى أي كوكب آخر لتعرف حالته.'; }
-    else if (retro.length) { lead = joinAr(retro.map(function (r) { return r.n; })) + (retro.length > 1 ? ' متراجعون الآن' : ' متراجع الآن'); sub = 'اضغط على أي كوكب بالأسفل لتعرف ماذا يعني موقعه، وهل هو متراجع أم يسير في حركته المباشرة.'; }
-    else { lead = 'كل الكواكب تسير في حركتها المباشرة'; sub = 'اضغط على أي كوكب بالأسفل لتقرأ ماذا يعني موقعه الآن.'; }
-    return '<span class="swc-hint-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v15M5.500 12.500 12 19l6.500-6.500"/></svg></span><span class="swc-hint-t"><b>' + lead + '</b><small>' + sub + '</small></span>';
+    var lead;
+    if (edge) lead = edge.n + (edge.lon % 30 >= 29 ? ' يغادر ' : ' يدخل ') + SIGNS_AR[edge.sign] + ' · اضغط عليه';
+    else if (retro.length) lead = joinAr(retro.map(function (r) { return r.n; })) + (retro.length > 2 ? ' متراجعون' : retro.length === 2 ? ' متراجعان' : ' متراجع') + ' · اضغط لتفتح القراءة';
+    else lead = 'اضغط على أي كوكب لتفتح قراءته';
+    return '<span class="swc-hint-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v15M5.500 12.500 12 19l6.500-6.500"/></svg></span><span class="swc-hint-t"><b>' + lead + '</b></span>';
   }
 
   function renderCard(st) {
