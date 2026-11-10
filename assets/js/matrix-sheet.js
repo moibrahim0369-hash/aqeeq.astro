@@ -14,14 +14,20 @@
       '<button type="button" class="aqm-sheet-x" data-close aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
       '<div class="aqm-sheet-head"><span class="aqm-sheet-ic"></span><div><h3 id="aqm-sheet-title"></h3><p class="aqm-sheet-sub"></p></div></div>' +
       '<div class="aqm-sheet-nums"><span class="aqm-sheet-lbl">الأرقام المرتبطة بهذا القسم</span><div class="aqm-sheet-badges"></div></div>' +
-      '<div class="aqm-sheet-body"></div></div>';
+      '<div class="aqm-sheet-body"></div>' +
+      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-next hidden><span class="aqm-foot-l"><small>القسم التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-close>إغلاق</button></div></div>';
     document.body.appendChild(sheet);
-    sheet.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) close(); });
+    sheet.addEventListener('click', function (e) {
+      if (e.target.closest('[data-next]')) { var n = nextItem(); if (n) { var sb = sheet.querySelector('.aqm-sheet-body'); sheet.classList.add('is-swap'); setTimeout(function () { fill(n); sheet.classList.remove('is-swap'); }, 160); } return; }
+      if (e.target.closest('[data-close]')) close();
+    });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) close(); });
     return sheet;
   }
-  function open(item) {
-    var s = ensureSheet();
+  var cur = null;
+  function nextItem() { if (!cur) return null; var all = [].slice.call(document.querySelectorAll('#mresult .aqm-acc-item')), i = all.indexOf(cur); return i > -1 && i < all.length - 1 ? all[i + 1] : null; }
+  function fill(item) {
+    var s = ensureSheet(); cur = item;
     var q = function (sel) { return item.querySelector(sel); };
     var ic = q('.aqm-acc-icon'), t = q('.aqm-acc-title'), st = q('.aqm-acc-subtitle'), bd = q('.aqm-acc-badges'), body = q('.aqm-acc-body');
     s.querySelector('.aqm-sheet-ic').innerHTML = ic ? ic.innerHTML : '';
@@ -30,12 +36,18 @@
     var bb = s.querySelector('.aqm-sheet-badges'); bb.innerHTML = bd ? bd.innerHTML : '';
     s.querySelector('.aqm-sheet-nums').style.display = bb.children.length ? '' : 'none';
     var sb = s.querySelector('.aqm-sheet-body'); sb.innerHTML = body ? body.innerHTML : ''; sb.scrollTop = 0;
+    var nx = nextItem(), nb = s.querySelector('[data-next]');
+    if (nx) { var nt = nx.querySelector('.aqm-acc-title'); nb.querySelector('b').textContent = nt ? nt.textContent : ''; nb.hidden = false; } else nb.hidden = true;
+  }
+  function open(item) {
+    var s = ensureSheet(); fill(item);
     lastFocus = document.activeElement;
-    s.hidden = false; document.documentElement.classList.add('aqm-sheet-open');
+    s.classList.remove('is-closing'); s.hidden = false; document.documentElement.classList.add('aqm-sheet-open');
     var x = s.querySelector('.aqm-sheet-x'); if (x) x.focus();
   }
   function close() {
-    if (!sheet) return; sheet.hidden = true; document.documentElement.classList.remove('aqm-sheet-open');
+    if (!sheet || sheet.hidden) return; sheet.classList.add('is-closing');
+    var sh = sheet; setTimeout(function () { sh.hidden = true; sh.classList.remove('is-closing'); document.documentElement.classList.remove('aqm-sheet-open'); }, 230);
     if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {}
   }
 
@@ -88,7 +100,7 @@
       var sec = document.getElementById('matrix');
       [60, 450, 900].forEach(function (d) { setTimeout(function () { if (sec) sec.scrollTop = 0; }, d); });
     }
-    wasShown = shown;
+    wasShown = shown; document.documentElement.classList.toggle('mxr-on', shown);
     if (!mq.matches) return;
     if (shown) setup(h);
   }
