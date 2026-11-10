@@ -40,7 +40,7 @@
   }
   function termsMenu() {
     say('اختر مصطلحًا:');
-    chips(D.terms.slice(0, 5).map(function (t) { return { label: t.t, run: function () { say(t.t, 'me'); explain(t); } }; }));
+    chips(D.terms.slice(0, 8).map(function (t) { return { label: t.t, run: function () { say(t.t, 'me'); explain(t); } }; }));
   }
   function explain(t) { say(esc(t.a) + (t.hash ? '<br>' + link(t.hash, 'افتح الأداة') : '')); menu(); }
   function article() {
@@ -53,7 +53,7 @@
     var n = norm(q); if (!n) return;
     say(esc(q), 'me');
     var hit = null;
-    D.terms.forEach(function (t) { if (!hit && t.k.some(function (k) { return n.indexOf(norm(k)) > -1; })) hit = t; });
+    var best = 0; D.terms.forEach(function (t) { t.k.forEach(function (k) { var nk = norm(k); if ((nk.length > 3 ? n.indexOf(nk) > -1 : (' ' + n + ' ').indexOf(' ' + nk + ' ') > -1) && nk.length > best) { best = nk.length; hit = t; } }); });
     if (hit) explain(hit); else { say(esc(D.fallback)); menu(); }
   }
 
