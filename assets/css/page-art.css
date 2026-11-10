@@ -227,3 +227,39 @@ html body #matrix.mxp .mxp-head::after{display:none!important}
 html body #matrix.mxp .mxp-head{contain:paint}
 @media(max-width:760px){html body #matrix.mxp .mxp-head::before{width:190px;height:190px;top:62%;opacity:.55}}
 html body .aq-related .aq-phil{margin:14px 6px 0;text-align:center;font-family:Amiri,"Noto Naskh Arabic",serif;font-size:.92rem;line-height:1.85;color:#6B4A32}
+/* order: name + gender first, date last, then button */
+html body section#matrix.mxp form.mxp-card .field:has(#m-name){order:1!important;grid-column:2/3!important;margin:0 0 12px!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender){order:1!important;grid-column:1/2!important;margin:0 0 12px!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-date){order:2!important;grid-column:1/-1!important;margin:0 0 14px!important}
+html body section#matrix.mxp form.mxp-card .ferr{order:3}
+html body section#matrix.mxp form.mxp-card .btn{order:4;grid-column:1/-1}
+html body section#matrix.mxp form.mxp-card .mxp-cfoot{order:5;grid-column:1/-1}
+html body section#matrix.mxp form.mxp-card .field :is(.mxp-fi){width:48px!important;height:48px!important;min-width:48px;margin-inline-end:4px}
+html body section#matrix.mxp form.mxp-card .field:is(:has(#m-name),:has(#m-gender)){grid-template-columns:44px minmax(0,1fr)!important;column-gap:10px!important;padding:10px 12px!important;min-height:68px!important}
+html body section#matrix.mxp form.mxp-card .field:is(:has(#m-name),:has(#m-gender)) .mxp-fi{width:42px!important;height:42px!important;min-width:42px}
+@media(prefers-reduced-motion:no-preference){
+@keyframes aqBreathe{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(200,161,90,.0),0 4px 10px rgba(74,18,36,.25)}50%{transform:scale(1.09);box-shadow:0 0 0 7px rgba(200,161,90,.22),0 6px 14px rgba(74,18,36,.3)}}
+@keyframes aqRipple{from{box-shadow:0 0 0 0 rgba(200,161,90,.55)}to{box-shadow:0 0 0 16px rgba(200,161,90,0)}}
+html body section#matrix.mxp form.mxp-card .field .mxp-fi{animation:aqBreathe 3.8s ease-in-out infinite!important}
+html body section#matrix.mxp form.mxp-card .field:nth-of-type(2) .mxp-fi{animation-delay:-1.2s!important}
+html body section#matrix.mxp form.mxp-card .field:nth-of-type(3) .mxp-fi{animation-delay:-2.4s!important}
+html body section#matrix.mxp form.mxp-card .field{transition:transform .18s ease,border-color .25s,box-shadow .25s}
+html body section#matrix.mxp form.mxp-card .field:active{transform:scale(.975)}
+html body section#matrix.mxp form.mxp-card .field:focus-within .mxp-fi{animation:aqRipple .7s ease-out 1,aqBreathe 3.8s 0.7s ease-in-out infinite!important}
+html body section#matrix.mxp form.mxp-card .btn:active{transform:scale(.95);animation:aqRipple .6s ease-out 1}
+html body section#matrix.mxp form.mxp-card .aq-ds select{transition:transform .15s,border-color .2s,box-shadow .2s}
+html body section#matrix.mxp form.mxp-card .aq-ds select:active,html body section#matrix.mxp form.mxp-card .aq-ds select:focus{transform:scale(.96);border-color:#6B1D33!important;box-shadow:0 0 0 3px rgba(107,29,51,.15)!important}
+}
+html body section#matrix.mxp form.mxp-card .field:has(#m-name){grid-column:1/2!important;grid-row:1!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender){grid-column:2/3!important;grid-row:1!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-date){grid-row:2!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender) select{font-size:.92rem!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender) label span:last-child{font-size:.7rem!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-date) .mxp-fi{width:44px!important;height:44px!important;min-width:44px}
+html body section#matrix.mxp form.mxp-card .mxp-ctitle{grid-row:1!important;grid-column:1/-1!important}
+html body section#matrix.mxp form.mxp-card .field:is(:has(#m-name),:has(#m-gender)){grid-row:2!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-date){grid-row:3!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender) select{font-size:.8rem!important;padding-inline:0!important;text-overflow:clip;width:100%}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender){grid-template-columns:34px minmax(0,1fr)!important;column-gap:6px!important;padding:10px 8px!important}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender) .mxp-fi{width:34px!important;height:34px!important;min-width:34px}
+html body section#matrix.mxp form.mxp-card .field:has(#m-gender) .mxp-fi svg{width:18px!important;height:18px!important}
