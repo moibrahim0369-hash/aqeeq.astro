@@ -53,7 +53,7 @@
   };
   function related() {
     Object.keys(REL).forEach(function (id) {
-      var sec = document.getElementById(id); if (!sec) return; if (id === 'matrix' || id === 'chart') { var old = sec.querySelector('.aq-related'); if (old) old.remove(); } else if (sec.querySelector('.aq-related')) return;
+      var sec = document.getElementById(id); if (!sec) return; if (id === 'matrix' || id === 'chart' || id === 'lifepath') { var old = sec.querySelector('.aq-related'); if (old) old.remove(); } else if (sec.querySelector('.aq-related')) return;
       var box = document.createElement('nav'); var T = id === 'matrix' ? 'تابع رحلتك' : 'تابع من هنا';
       box.className = 'aq-related'; box.setAttribute('aria-label', T);
       box.innerHTML = '<h3><span></span>' + T + '<span></span></h3><div class="aq-rel-grid">' + REL[id].map(function (r) {
@@ -66,7 +66,7 @@
           + '<section class="aq-mx-gold"><h3><span></span>استثمر في ذاتك<span></span></h3><a class="aq-gold" href="#featured-content/matrix-22-arcana"><span class="aq-gold-i">' + ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.2 1.2-1.8 2.500-1.800s2.500.7 2.500 1.800-1.200 1.600-2.500 1.900-2.500.8-2.500 2 1.200 1.800 2.500 1.800 2.500-.6 2.500-1.800"/>') + '</span><span class="aq-gold-t"><b>افتح مسارات المال من مصفوفتك</b><small>اعرف أين تتعثر وفرتك وكيف تُفتح لك أبواب الرزق</small></span></a><a class="aq-gold" href="#featured-content/matrix-22-arcana"><span class="aq-gold-i">' + ic('<circle cx="12" cy="12" r="9"/><path d="M8.500 12a3.500 3.500 0 0 1 6-2.400M15.500 12a3.500 3.500 0 0 1-6 2.400"/>') + '</span><span class="aq-gold-t"><b>فكّ الدين الكارمي من مصفوفتك</b><small>افهم الدرس الذي يتكرر في علاقاتك وقراراتك وتحرّر منه</small></span></a></section>';
         var ft0 = sec.querySelector(':scope > footer'); if (ft0) sec.insertBefore(ab, ft0); else sec.appendChild(ab);
       }
-      if (id === 'matrix' || id === 'chart') return;
+      if (id === 'matrix' || id === 'chart' || id === 'lifepath') return;
       var ft = sec.querySelector(':scope > footer'); if (ft) sec.insertBefore(box, ft); else sec.appendChild(box);
     });
   }
