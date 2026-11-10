@@ -51,6 +51,28 @@
     if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {}
   }
 
+  /* قراءة الخريطة كاملة: فهرس جامع بالأقسام وأرقامها */
+  var OV_ICO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 9-9 9-9-9z"/><path d="M12 8l4 4-4 4-4-4z"/></svg>';
+  function openOverview() {
+    var s = ensureSheet(), items = [].slice.call(document.querySelectorAll('#mresult .aqm-acc-item'));
+    cur = null;
+    s.querySelector('.aqm-sheet-ic').innerHTML = OV_ICO;
+    s.querySelector('#aqm-sheet-title').textContent = 'خريطتك كاملة';
+    s.querySelector('.aqm-sheet-sub').textContent = 'اضغط على أي قسم لتقرأ تفسيره';
+    s.querySelector('.aqm-sheet-nums').style.display = 'none';
+    s.querySelector('[data-next]').hidden = true;
+    var h = '<p class="aqm-ov-soon">الوصف الجامع لخريطتك قيد الإضافة.</p><ol class="aqm-ov-list">' + items.map(function (it, i) {
+      var t = it.querySelector('.aqm-acc-title'), q = it.querySelector('.aqm-acc-subtitle'), b = it.querySelector('.aqm-acc-badges'), ic = it.querySelector('.aqm-acc-icon');
+      return '<li><button type="button" class="aqm-ov-row" data-ov="' + i + '"><span class="aqm-ov-ic">' + (ic ? ic.innerHTML : '') + '</span><span class="aqm-ov-tx"><b>' + (t ? t.textContent : '') + '</b><small>' + (q ? q.textContent : '') + '</small><span class="aqm-ov-b">' + (b ? b.innerHTML : '') + '</span></span></button></li>';
+    }).join('') + '</ol>';
+    var sb = s.querySelector('.aqm-sheet-body'); sb.innerHTML = h; sb.scrollTop = 0;
+    sb.querySelectorAll('[data-ov]').forEach(function (r) { r.addEventListener('click', function () { var it = items[Number(r.getAttribute('data-ov'))]; if (it) fill(it); }); });
+    lastFocus = document.activeElement; s.classList.remove('is-closing'); s.hidden = false; document.documentElement.classList.add('aqm-sheet-open');
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('[data-aqm-overview]')) { e.preventDefault(); openOverview(); }
+  });
+
   /* اعتراض النقر على رأس الأكورديون على الهاتف */
   document.addEventListener('click', function (e) {
     if (!mq.matches) return;
@@ -70,6 +92,11 @@
     var hint = document.createElement('p'); hint.className = 'aqm-hint';
     hint.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/></svg><span>اضغط على أي قسم لعرض تفسيره</span>';
     tabs.parentNode.insertBefore(panel, tabs.nextSibling);
+    if (!host.querySelector('.aqm-ov-btn')) {
+      var ov = document.createElement('button'); ov.type = 'button'; ov.className = 'aqm-ov-btn'; ov.setAttribute('data-aqm-overview', '');
+      ov.innerHTML = '<span class="aqm-ov-bi">' + OV_ICO + '</span><span class="aqm-ov-bt"><b>قراءة خريطتك كاملة</b><small>نظرة جامعة على كل خطوطك وأرقامك</small></span><span class="aqm-ov-bg" aria-hidden="true">›</span>';
+      tabs.parentNode.insertBefore(ov, tabs);
+    }
     var pr = document.createElement('div'); pr.className = 'aqm-mp aqm-mp-read'; pr.appendChild(hint); if (read) pr.appendChild(read);
     var pc = document.createElement('div'); pc.className = 'aqm-mp aqm-mp-chak'; if (chak) pc.appendChild(chak);
     var pl = document.createElement('div'); pl.className = 'aqm-mp aqm-mp-lines'; if (lines) pl.appendChild(lines);
