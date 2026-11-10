@@ -150,7 +150,7 @@
     if (edge) { lead = edge.n + (edge.lon % 30 >= 29 ? ' في آخر درجات ' : ' في أولى درجات ') + SIGNS_AR[edge.sign]; sub = 'لحظة انتقال دقيقة. اضغط عليه لتعرف ماذا يتبدّل، وعلى أي كوكب آخر لتعرف حالته.'; }
     else if (retro.length) { lead = joinAr(retro.map(function (r) { return r.n; })) + (retro.length > 1 ? ' متراجعون الآن' : ' متراجع الآن'); sub = 'اضغط على أي كوكب بالأسفل لتعرف ماذا يعني موقعه، وهل هو متراجع أم يسير في حركته المباشرة.'; }
     else { lead = 'كل الكواكب تسير في حركتها المباشرة'; sub = 'اضغط على أي كوكب بالأسفل لتقرأ ماذا يعني موقعه الآن.'; }
-    return '<span class="swc-hint-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V8.500a1.500 1.500 0 0 1 3 0V11m0 0v-.5a1.500 1.500 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.200a5 5 0 0 1-4-2L4.500 15.500a1.500 1.500 0 0 1 2.300-1.900L9 16"/></svg></span><span class="swc-hint-t"><b>' + lead + '</b><small>' + sub + '</small></span>';
+    return '<span class="swc-hint-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v15M5.500 12.500 12 19l6.500-6.500"/></svg></span><span class="swc-hint-t"><b>' + lead + '</b><small>' + sub + '</small></span>';
   }
 
   function renderCard(st) {

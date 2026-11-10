@@ -1274,9 +1274,13 @@ html body #sky .swc{display:flex;flex-direction:column}
 html body #sky .swc-head{order:1}
 html body #sky .swc-body{display:contents}
 html body #sky .swc-wheel{order:2;margin:4px -6px 0}
-html body #sky .swc-ctl{order:3}
-html body #sky .swc-err{order:4}
-html body #sky .swc-side{order:5}
+html body #sky .swc-side{display:contents}
+html body #sky .swc-moon{order:3}
+html body #sky .swc-hint{order:4}
+html body #sky .swc-pgrid{order:5}
+html body #sky .swc-ctl{order:6;margin-top:18px}
+html body #sky .swc-err{order:7}
+html body #sky .swc-moon,html body #sky .swc-hint,html body #sky .swc-pgrid{margin-top:12px}
 }
 html body #sky .swc-wheel{position:relative}
 html body #sky .swc-wheel::before{content:"";position:absolute;inset:6% 4%;border-radius:50%;background:radial-gradient(circle,rgba(232,207,152,.4),rgba(232,207,152,0) 68%);z-index:0;pointer-events:none}
@@ -1435,3 +1439,25 @@ html body #sky .swc-adv-in{grid-template-columns:repeat(3,1fr)}
 html body #sky .swc-go{grid-column:1/-1}
 html body #sky .swc-body{align-items:start}
 }
+
+/* تلميح الضغط تحت الخريطة: أكبر وأوضح */
+html body #sky .swc-tap{gap:10px;margin:12px auto 0;padding:12px 20px;font:700 1rem/1.5 'Cairo',sans-serif;color:#5E2234;background:rgba(94,34,52,.09);border:1.5px dashed #B8965A;border-radius:18px;text-align:center}
+html body #sky .swc-tap svg{width:24px;height:24px}
+/* السهم بدل اليد في بطاقة التلميح */
+html body #sky .swc-hint-ic svg{animation:swcDown 1.6s ease-in-out infinite}
+@keyframes swcDown{0%,100%{transform:translateY(-2px)}50%{transform:translateY(4px)}}
+@media(prefers-reduced-motion:reduce){html body #sky .swc-hint-ic svg{animation:none}}
+/* مقاطع القراءة العميقة داخل الورقة */
+.swp-sheet .swp-h2{display:flex;align-items:center;gap:8px;margin:0 0 6px;font:700 1rem 'El Messiri','Cairo',serif;color:#4A1224}
+.swp-sheet .swp-h2::before{content:"";flex:none;width:8px;height:8px;transform:rotate(45deg);background:#C5A059;border-radius:1px}
+.swp-sheet .swp-psy,.swp-sheet .swp-barn,.swp-sheet .swp-q{margin:0 0 14px;padding:13px 15px;border-radius:16px}
+.swp-sheet .swp-psy p,.swp-sheet .swp-barn p,.swp-sheet .swp-q p{margin:0 0 6px;font:500 .95rem/2.05 'Cairo',sans-serif;color:#33241d}
+.swp-sheet .swp-psy p:last-child,.swp-sheet .swp-barn p:last-child{margin:0}
+.swp-sheet .swp-psy{background:linear-gradient(180deg,#FFFDF8,#F8EFDD);border:1px solid rgba(210,174,108,.7)}
+.swp-sheet .swp-barn{background:rgba(255,255,255,.75);border:1px solid rgba(210,174,108,.5)}
+.swp-sheet .swp-barn p:empty{display:none}
+.swp-sheet .swp-q{background:linear-gradient(135deg,#7A3048,#5E2234);border:1px solid #D6B574;box-shadow:0 8px 18px rgba(94,34,52,.22)}
+.swp-sheet .swp-q .swp-h2{color:#F3DFA8}
+.swp-sheet .swp-q p{color:#FFF3DC;font:600 1.02rem/2 'El Messiri','Cairo',serif}
+@media(max-width:860px){html body #sky .swc-side{display:contents}}
+@media(max-width:860px){html body #sky .swc-pgrid{margin-top:12px}}
