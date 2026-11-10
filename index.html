@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="assets/css/natal-page.css?v=20261110e">
 <link rel="stylesheet" href="assets/css/geo-picker.css?v=20261110c">
 <link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
-<link rel="stylesheet" href="assets/css/page-art.css?v=20261115s">
+<link rel="stylesheet" href="assets/css/page-art.css?v=20261116h">
 <link rel="stylesheet" href="assets/css/date-time-selects.css?v=20261112a">
 <link rel="stylesheet" href="assets/css/natal-dashboard.css?v=20261109a">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
@@ -941,32 +941,30 @@
 </div>
 <div class="center">
   <span class="eyebrow" dir="ltr">THE SKY NOW · REAL-TIME EPHEMERIS</span>
-  <h2>المشهد الفلكي الآن</h2>
-  <p class="intro">رصد حي لمواضع الكواكب الحقيقية، أطوار القمر، حالات التراجع، والاتصالات الفلكية لأي تاريخ تختاره.</p>
+  <h2>كيف تبدو السماء فوقك الآن؟</h2>
+  <p class="intro">خريطة حقيقية لمواضع الكواكب والقمر لحظة بلحظة. اضغط على أي كوكب لتعرف ماذا يعني موقعه، وهل هو متراجع أم يسير في طريقه المعتاد.</p>
 </div>
 <section class="swc" id="swc" aria-labelledby="swc-h">
-  <header class="swc-head"><span class="swc-eyebrow">خريطة السماء العالمية</span><h3 id="swc-h">السماء كما تبدو في أي مكان بالعالم</h3>
-  <p>خريطة لحظة السماء بإحداثيات حقيقية لأي تاريخ ووقت وأي مدينة في العالم، وهي ليست خريطة شخصية.</p></header>
+  <header class="swc-head"><span class="swc-medal" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle class="sm-ring" cx="32" cy="32" r="25" stroke-dasharray="2 4.2"/><circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="10"/><path d="M32 5v8M32 51v8M5 32h8M51 32h8"/><path d="M32 22l2.6 7.4L42 32l-7.400 2.600L32 42l-2.600-7.400L22 32l7.400-2.600z" fill="currentColor" stroke="none"/><circle cx="48.500" cy="15.500" r="2.700" fill="currentColor" stroke="none"/></svg></span><span class="swc-eyebrow">بإحداثيات حقيقية لأي مكان وزمان</span><h3 id="swc-h">خريطة السماء العالمية</h3>
+  <p>اختر أي تاريخ أو مدينة في العالم لترى السماء كما كانت أو ستكون. هذه ليست خريطتك الشخصية.</p></header>
   <form class="swc-ctl" id="swc-form" novalidate>
+    <div class="swc-quick" role="group" aria-label="اختصارات التاريخ"><button type="button" data-off="0" class="is-on">الآن</button><button type="button" data-off="1">غدًا</button><button type="button" data-off="7">بعد أسبوع</button><button type="button" data-off="30">بعد شهر</button></div>
+    <details class="swc-adv"><summary><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.500" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.500 10h17"/></svg><span>غيّر التاريخ أو الوقت أو المدينة</span><i class="swc-adv-ch" aria-hidden="true"></i></summary><div class="swc-adv-in">
     <div class="swc-f swc-datef"><span>التاريخ</span><div class="swc-dw"><button type="button" class="swc-step" data-step="-1" aria-label="اليوم السابق"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><input id="swc-date" type="date" min="1900-01-01" max="2100-12-31" required aria-label="التاريخ"><button type="button" class="swc-step" data-step="1" aria-label="اليوم التالي"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button></div></div>
     <label class="swc-f"><span>الوقت</span><input id="swc-time" type="time" required></label>
     <label class="swc-f swc-city"><span>المدينة</span><select id="swc-city"></select></label>
+    </div></details>
     <button class="swc-go" type="submit">عرض الخريطة بالتفاصيل</button>
-    <div class="swc-quick" role="group" aria-label="اختصارات التاريخ"><button type="button" data-off="0" class="is-on">الآن</button><button type="button" data-off="1">غدًا</button><button type="button" data-off="7">بعد أسبوع</button><button type="button" data-off="30">بعد شهر</button></div>
   </form>
   <p class="swc-err" id="swc-err" role="alert" hidden></p>
   <div class="swc-body">
     <div class="swc-wheel"><svg id="swc-svg" class="swc-cw" viewBox="-14 -14 568 568" role="img" aria-label="خريطة السماء العالمية"></svg>
       <div class="swc-legend" aria-hidden="true"><span class="lg-soft">اتصال منسجم</span><span class="lg-hard">اتصال متوتر</span></div>
-      <p class="swc-cap" id="swc-cap" aria-live="polite"></p></div>
-    <div class="swc-side"><div class="swc-moon" id="swc-moon"></div><div class="swc-pgrid" id="swc-pgrid" aria-label="مواقع الكواكب"></div></div>
+      <p class="swc-cap" id="swc-cap" aria-live="polite"></p>
+      <p class="swc-tap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V8.500a1.500 1.500 0 0 1 3 0V11m0 0v-.5a1.500 1.500 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.200a5 5 0 0 1-4-2L4.500 15.500a1.500 1.500 0 0 1 2.300-1.900L9 16"/></svg><span>اضغط على أي كوكب في الخريطة لتقرأ تأثيره</span></p></div>
+    <div class="swc-side"><div class="swc-moon" id="swc-moon"></div><div class="swc-hint" id="swc-hint"></div><div class="swc-pgrid" id="swc-pgrid" aria-label="مواقع الكواكب"></div></div>
   </div>
 </section>
-<a class="zdc" id="zdc" href="#signs" aria-label="توقعات الأبراج وما لا تعرفه عن برجك">
-  <span class="zdc-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7M10.6 10.6l5 5M32.4 32.4l5 5M10.6 37.4l5-5M32.4 15.6l5-5"/><circle cx="24" cy="24" r="2.6" class="zdc-core"/></svg></span>
-  <span class="zdc-t"><b>توقعات الأبراج وما لا تعرفه عن برجك</b><small>صفات برجك، توقعه الكامل الآن، والعبورات التي تؤثر عليك اليوم بالتفصيل</small></span>
-  <span class="zdc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span>
-</a>
 <div class="sky-ctl">
 <div class="field" style="flex:1;min-width:220px;margin:0;"><label for="sky-date">تاريخ الرصد الفلكي</label><input id="sky-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <button class="btn ghost sm" id="sky-today" type="button">العودة لتاريخ اليوم</button>
@@ -975,18 +973,11 @@
 <div aria-label="اختيار الكوكب" class="chips" id="sky-chips" role="group"></div>
 <div aria-live="polite" class="sky-panel" id="sky-panel"></div>
 <div aria-live="polite" class="sky-asp" id="sky-asp"></div>
-<div class="aq-observatory-subgrid">
-  <div class="aq-obs-feature-box">
-    <h3>العبور الفلكي وحركة الأبراج (Zodiac Transits)</h3>
-    <p>تتبع تأثير عبور الكواكب الحالية على خريطة ميلادك الشخصية، وحساب خريطة العودة الشمسية والتوجيهات السنوية.</p>
-    <a href="#astro-maps" class="aq-btn-ivory-outline">افتح العبور والخرائط المتقدمة ←</a>
-  </div>
-  <div class="aq-obs-feature-box">
-    <h3>التقويم الفلكي والكسوف والعقد القمرية</h3>
-    <p>استعرض مواسم الكسوف والخسوف وحركة العقدتين الشمالية والجنوبية والنظام الفيدي (Sidereal) ضمن وحدة الخرائط التكميلية.</p>
-    <a href="#astro-maps" class="aq-btn-ivory-outline">استعرض أحداث التقويم الفلكي ←</a>
-  </div>
-</div>
+<a class="zdc" id="zdc" href="#signs" aria-label="توقعات الأبراج وما لا تعرفه عن برجك">
+  <span class="zdc-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7M10.6 10.6l5 5M32.4 32.4l5 5M10.6 37.4l5-5M32.4 15.6l5-5"/><circle cx="24" cy="24" r="2.6" class="zdc-core"/></svg></span>
+  <span class="zdc-t"><b>توقعات الأبراج وما لا تعرفه عن برجك</b><small>صفات برجك، توقعه الكامل الآن، والعبورات التي تؤثر عليك اليوم بالتفصيل</small></span>
+  <span class="zdc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span>
+</a>
 </div>
 </section>
 <section class="sec" id="signs">
@@ -2362,8 +2353,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     return `${p.theme} بتتركز في مجال ${H.area}. ده المكان الي بتلاقي فيه ${p.give}، وخد بالك من ${p.watch}.`;
   }
   const retroText = k => k === "mercury"
-    ? "عطارد راجع: انتبه للتواصل والأوراق والسفر، وراجع قبل ما توقّع أو ترسل."
-    : `${PLANETS[k].n} راجع: وقت مراجعة وإعادة تقييم في ${PLANETS[k].theme}، فراجع قبل ما تبدأ حاجة جديدة.`;
+    ? "عطارد راجع: انتبه للتواصل والأوراق والسفر، وراجع كل شيء قبل أن توقّع أو ترسل."
+    : `${PLANETS[k].n} راجع: وقت مراجعة وإعادة تقييم في ${PLANETS[k].theme}، فراجع قبل أن تبدأ أمرًا جديدًا.`;
 
   /* ---------- الزوايا والأنماط ---------- */
   function natalAspects(ch) {
@@ -3365,7 +3356,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   try { const v = localStorage.getItem("aq-sky-sign"); if (v !== null && +v >= 0 && +v < 12) skySign = +v; } catch (e) { }
   function skyCard(k, bd, i) {
     const P = PLANETS[k], sg = SIGNS[i], h = ((bd.sign - i + 12) % 12) + 1, H = HOUSES[h - 1], S = HOUSE_SIT[h - 1];
-    return `<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true">${gl(P.g)}</span><div><h4>${P.n} في بيتك ${H.n}</h4><small>${sg.n} · مجال ${H.area}</small></div></header>
+    return `<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">${gl(P.g)}</span></span><div><h4>${P.n} في بيتك ${H.n}</h4><small>${sg.n} · مجال ${H.area}</small></div></header>
       <details class="lpa-card sky-acc" open><summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">الدلالة النفسية</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${planetInHouse(k, h, "transit")}</p><p>ممكن يظهر ده في مواقف زي: ${S[0]}، أو ${S[1]}، أو ${S[2]}.</p></div></details>
       <details class="lpa-card is-shadow sky-acc"><summary class="lpa-sum"><span class="lpa-ic">−</span><span class="lpa-t">الفخاخ التي تنتبه لها</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>الجانب الصعب (${P.watch}) بيزيد لو ${HOUSE_TRIG[h - 1]}.</p></div></details>
       <details class="lpa-card is-light sky-acc"><summary class="lpa-sum"><span class="lpa-ic">+</span><span class="lpa-t">طاقة التحول والنصيحة</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${HOUSE_ADV[h - 1]}.</p><p>تتوقع فيه ${P.give}.</p></div></details></article>`;
@@ -3442,19 +3433,29 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function renderSkyPanel(ch, ms) {
     const k = skyKey, p = PLANETS[k], bd = ch.bodies.find(x => x.key === k), S = SIGNS[bd.sign];
     const ing = nextIngress(k, ms), dfmt = t => new Date(t).toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" });
+    const deg = bd.lon % 30, dInt = Math.floor(deg), dMin = Math.floor((deg - dInt) * 60), nd = n => n.toLocaleString("ar-EG");
+    const stage = deg < 10 ? ["بداية الدخول", "الطاقة جديدة وما زالت تتشكل، وأثرها يبدأ بالظهور تدريجيًا."]
+      : deg < 20 ? ["منتصف الرحلة", "الطاقة مستقرة وواضحة، وهذا أصفى وقت لتقرأ أثرها في يومك."]
+      : deg < 29 ? ["أواخر البرج", "الطاقة ناضجة وتقترب من التبدّل، فخذ ما بدأته إلى خواتيمه."]
+      : ["على أعتاب برج جديد", "آخر درجات البرج، وتغيّر الأجواء قريب جدًا."];
     let ingTxt = "";
     if (ing) {
       const back = ing.sign === (bd.sign + 11) % 12;
-      ingTxt = `<p class="sub">${p.n} ${back ? "هيرجع لبرج" : "هيدخل برج"} ${SIGNS[ing.sign].n} تقريبًا يوم ${dfmt(ing.ms)}.</p>`;
+      ingTxt = `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true"><span class="sg">${gl(SIGNS[ing.sign].g)}</span></span><span>${p.n} ${back ? "يعود إلى برج" : "ينتقل إلى برج"} <b>${SIGNS[ing.sign].n}</b> تقريبًا يوم ${dfmt(ing.ms)}.</span></p>`;
     }
-    let o = `<h3>${p.n} في ${S.n}</h3>
-      <p>الفترة دي ${p.theme} بتتحرك بأسلوب ${S.way}. الأجواء العامة بتساعد على ${S.strength}، لكن انتبه من ${S.shadow}.</p>
-      ${bd.retro ? `<p class="sub">${retroText(k)}</p>` : ""}${ingTxt}
-      <h4 class="ph">تأثيره على كل برج</h4><p class="sub">التأثير بيتحدد حسب البيت الي ${p.n} بيعدي عليه من برجك (نظام البيوت الكاملة).</p>`;
-    o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true">${gl(p.g)}</span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لترى أثر ${p.n} في بيتك بالتحديد</small></div></div>
+    const mv = k === "sun" || k === "moon" ? "" : (bd.retro
+      ? `<div class="swp-mv is-retro"><b><i aria-hidden="true">℞</i>حالة التراجع: ${p.n} متراجع الآن</b><p>${retroText(k).replace(/^[^:]*:\s*/, "")}</p></div>`
+      : `<div class="swp-mv is-direct"><b><i aria-hidden="true">›</i>حالة الحركة: مباشرة</b><p>${p.n} يسير للأمام في مساره المعتاد، فيظهر أثره بوضوح ودون حاجة إلى مراجعة.</p></div>`);
+    let o = `<div class="swp-hero"><span class="swp-med${bd.retro ? " is-retro" : ""}" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div class="swp-ht"><small>${skyDateInput.value ? "السماء في التاريخ المختار" : "السماء الآن"}</small><h3>${p.n} في ${S.n}</h3>
+      <div class="swp-pills"><i class="swp-pill ${bd.retro ? "is-retro" : "is-direct"}">${bd.retro ? "متراجع" : (k === "sun" || k === "moon" ? "في حركته" : "مباشر")}</i><i class="swp-pill is-sign"><span class="swp-pill-g" aria-hidden="true"><span class="sg">${gl(S.g)}</span></span>${nd(dInt)}° ${nd(dMin)}′ ${S.n}</i></div></div></div>
+      <div class="swp-deg" role="img" aria-label="الدرجة ${dInt} من 30"><div class="swp-track"><span class="swp-dot" style="--p:${(deg / 30 * 100).toFixed(1)}%"></span></div><div class="swp-scale"><span>٠°</span><span>١٠°</span><span>٢٠°</span><span>٣٠°</span></div><p><b>${stage[0]}</b> · ${stage[1]}</p></div>
+      <p class="swp-read">في هذه الفترة يظهر أثر ${p.n} في ${p.theme} بأسلوب ${S.way}. الأجواء العامة تساعد على ${S.strength}، لكن انتبه من ${S.shadow}.</p>
+      ${mv}${ingTxt}
+      <h4 class="swp-h">أثره على بيتك</h4><p class="swp-sub">يتحدد التأثير حسب البيت الذي يمر عليه ${p.n} من برجك (نظام البيوت الكاملة).</p>`;
+    o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لترى أثر ${p.n} في بيتك بالتحديد</small></div></div>
       <div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">${SIGNS.map((sg, i) => `<button type="button" class="sky-sg${i === skySign ? " is-on" : ""}" data-i="${i}" aria-pressed="${i === skySign}"><span class="sg" aria-hidden="true">${gl(sg.g)}</span><span>${sg.n}</span></button>`).join("")}</div>
       <div class="sky-signcard" id="sky-signcard" aria-live="polite">${skySign == null ? `<p class="sky-pick-empty">اختر برجك من الشريط لتظهر لك قراءة ${p.n} في بيتك، بدل قراءة كل الأبراج دفعة واحدة.</p>` : skyCard(k, bd, skySign)}</div></div>`;
-    o += `<aside class="sky-cta"><span class="sky-cta-ic" aria-hidden="true">${gl("✦")}</span><p>العبور العام يصف طقس السماء، وخريطتك الشخصية تحدد أين تمطر. اكتشف تأثير ${p.n} على بيوتك بدقة في صفحة (لك).</p><a class="btn" href="#for-you">افتح صفحة لك</a></aside>`;
+    o += `<aside class="sky-cta"><span class="sky-cta-ic" aria-hidden="true"><span class="sg">${gl("✦")}</span></span><p>العبور العام يصف طقس السماء، وخريطتك الشخصية تحدد أين تمطر. اكتشف تأثير ${p.n} على بيوتك بدقة في صفحة (لك).</p><a class="btn" href="#for-you">افتح صفحة لك</a></aside>`;
     $("#sky-panel").innerHTML = o;
     $$("#sky-panel .sky-sg").forEach(btn => btn.addEventListener("click", () => {
       skySign = +btn.dataset.i; try { localStorage.setItem("aq-sky-sign", skySign); } catch (e) { }
@@ -5179,7 +5180,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
-<script src="assets/js/sky-world-chart.js?v=20261107d" defer></script>
+<script src="assets/js/sky-world-chart.js?v=20261116a" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
@@ -5196,7 +5197,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/hero-rotate.js?v=20261107k" defer></script>
 <script src="assets/js/nav-unified.js?v=20261108j" defer></script>
 <script src="assets/js/session-guard.js?v=20261107b"></script>
-<script src="assets/js/page-unify.js?v=20261112d" defer></script>
+<script src="assets/js/page-unify.js?v=20261116a" defer></script>
 <script src="assets/js/chart-adv.js?v=20261112a" defer></script>
 <script src="assets/js/home-notes3.js?v=20261110y" defer></script>
 <script src="assets/js/companion.js?v=20261106a" defer></script>
