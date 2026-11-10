@@ -1,0 +1,163 @@
+/* مسار الحياة — نتيجة الجوال: بلاطات دائرية + نافذة سفلية + توحيد الأكورديونات.
+   عرض فقط: يقرأ ما رسمه المحرك الحالي ولا يحسب أي قيمة. */
+(function () {
+  'use strict';
+  var sec = document.getElementById('lifepath'), res = document.getElementById('lpresult');
+  if (!sec || !res) return;
+  var root = document.documentElement, lastKey = '', sheet = null;
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return [].slice.call((r || document).querySelectorAll(s)); }
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function sv(d, w) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 1.6) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; }
+  var IC = {
+    stages: sv('<path d="M3 20h4v-5h4v-5h4V5h6"/><path d="M3 20h18"/>'),
+    peaks: sv('<path d="M2.5 19.5 9 8l4 6 3-4 5.500 9.500z"/>'),
+    chal: sv('<path d="M12 3l8 3.500v5.500c0 4.500-3.300 7.800-8 9-4.700-1.200-8-4.500-8-9V6.500z"/><path d="M9 12l2.200 2.200L15.500 10"/>'),
+    name: sv('<path d="M7 11c0-3 1.800-5 5-5s5 2 5 5"/><path d="M5 13c0-5 3-8.500 7-8.500s7 3.500 7 8.500"/><path d="M9 20c-1.500-2-2-4-2-6.500M12 21c-1-2-1.500-4.500-1.500-7.500M15 20c1-1.800 1.600-4 1.600-6.500"/>'),
+    chev: sv('<path d="M15 6l-6 6 6 6"/>', 2),
+    back: sv('<path d="M5 12h14M13 6l6 6-6 6"/>', 2),
+    light: sv('<circle cx="12" cy="12" r="4"/><path d="M12 3v2.500M12 18.500V21M3 12h2.500M18.500 12H21M5.600 5.600l1.800 1.800M16.600 16.600l1.800 1.800M5.600 18.400l1.800-1.800M16.600 7.400l1.800-1.800"/>'),
+    shadow: sv('<path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/>'),
+    star: sv('<path d="M12 3l2.200 6 6 2.200-6 2.200L12 19.500l-2.200-6-6-2.200 6-2.200z"/>')
+  };
+  var STT = { past: 'مرحلة مضت', current: 'أنت هنا', future: 'مرحلة قادمة' };
+
+  /* ---------- النافذة السفلية ---------- */
+  function ensureSheet() {
+    if (sheet) return sheet;
+    sheet = document.createElement('div'); sheet.className = 'aqm-sheet lps-sheet'; sheet.hidden = true;
+    sheet.innerHTML = '<div class="aqm-sheet-scrim" data-lps-close></div>' +
+      '<div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="lps-title">' +
+      '<span class="aqm-sheet-grip" aria-hidden="true"></span>' +
+      '<button type="button" class="aqm-sheet-x" data-lps-close aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
+      '<div class="aqm-sheet-head"><span class="aqm-sheet-ic"></span><div><h3 id="lps-title"></h3><p class="aqm-sheet-sub"></p></div></div>' +
+      '<div class="aqm-sheet-body lps-body"></div></div>';
+    document.body.appendChild(sheet);
+    sheet.addEventListener('click', function (e) {
+      if (e.target.closest('[data-lps-close]')) { closeSheet(); return; }
+      var r = e.target.closest('[data-lps-row]');
+      if (r) { showStage(Number(r.getAttribute('data-lps-row')), r.getAttribute('data-lps-from')); return; }
+      if (e.target.closest('[data-lps-list]')) { openTile(sheet.getAttribute('data-kind')); return; }
+      var o = e.target.closest('[data-lps-open]');
+      if (o) { var i = o.getAttribute('data-lps-open'); closeSheet(); var b = $('#lpj-stage [data-lpj-open="' + i + '"]', res); if (b) b.click(); return; }
+      if (e.target.closest('[data-lps-name]')) { closeSheet(); var ed = $('#btn-edit-lp', res); if (ed) ed.click(); setTimeout(function () { var n = document.getElementById('lp-name'); if (n) n.focus(); }, 250); }
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && sheet && !sheet.hidden) closeSheet(); });
+    return sheet;
+  }
+  function openSheet(kind, ico, title, sub, html) {
+    var s = ensureSheet();
+    s.setAttribute('data-kind', kind);
+    $('.aqm-sheet-ic', s).innerHTML = ico;
+    $('#lps-title', s).textContent = title;
+    $('.aqm-sheet-sub', s).textContent = sub || '';
+    var b = $('.lps-body', s); b.innerHTML = html; b.scrollTop = 0;
+    s.hidden = false; root.classList.add('aqm-sheet-open');
+  }
+  function closeSheet() { if (!sheet) return; sheet.hidden = true; root.classList.remove('aqm-sheet-open'); }
+
+  /* ---------- بيانات المراحل من DOM المحرك ---------- */
+  function rowsOf(card) { return $$('.lpj-row', card).map(function (b) { return { i: Number(b.getAttribute('data-i')), st: b.getAttribute('data-status'), v: ($('.v', b) || {}).textContent, lbl: ($('.tx > b', b) || {}).textContent, per: ($('.tx > span', b) || {}).textContent, el: b }; }); }
+  function pcCards() { var pc = $('#lpj-pc', res); return pc ? { p: $('.lpj-card:not(.ch)', pc), c: $('.lpj-card.ch', pc) } : null; }
+  function stageTitles(P) {
+    /* يقرأ عنوان كل مرحلة من بطاقة المرحلة التي يرسمها العرض الحالي ثم يعيد التحديد */
+    var out = [], cur = P.filter(function (r) { return r.st === 'current'; })[0] || P[0];
+    P.forEach(function (r) { r.el.click(); var h = $('#lpj-stage h3', res); out[r.i] = h ? h.textContent.replace(/^\s*المرحلة\s*\d+\s*[—–-]\s*/, '').trim() : ''; });
+    if (cur) cur.el.click();
+    return out;
+  }
+
+  function listHTML(kind) {
+    var cards = pcCards(); if (!cards || !cards.p) return '<p class="lps-empty">تعذر تجهيز هذه القراءة حاليًا.</p>';
+    var P = rowsOf(cards.p), C = cards.c ? rowsOf(cards.c) : [], h = '';
+    if (kind === 'stages') {
+      var T = stageTitles(P);
+      h = '<ol class="lps-list">' + P.map(function (r) {
+        return '<li><button type="button" class="lps-row" data-st="' + r.st + '" data-lps-row="' + r.i + '" data-lps-from="stages"><span class="lps-n">' + (r.i + 1) + '</span><span class="lps-tx"><b>' + esc(T[r.i] || r.lbl) + '</b><small>' + esc(r.per) + '</small></span><em class="lps-tag">' + STT[r.st] + '</em><span class="lps-go">' + IC.chev + '</span></button></li>';
+      }).join('') + '</ol>';
+    } else {
+      var arr = kind === 'peaks' ? P : C;
+      h = '<ol class="lps-list lps-vals">' + arr.map(function (r) {
+        return '<li><button type="button" class="lps-row" data-st="' + r.st + '" data-lps-row="' + r.i + '" data-lps-from="' + kind + '"><span class="lps-v">' + esc(r.v) + '</span><span class="lps-tx"><b>' + esc(r.lbl) + '</b><small>' + esc(r.per) + '</small></span><em class="lps-tag">' + STT[r.st] + '</em><span class="lps-go">' + IC.chev + '</span></button></li>';
+      }).join('') + '</ol>';
+    }
+    return h;
+  }
+  function showStage(i, from) {
+    var cards = pcCards(); if (!cards || !cards.p) return;
+    var r = rowsOf(cards.p).filter(function (x) { return x.i === i; })[0]; if (r) r.el.click();
+    var st = $('#lpj-stage', res); if (!st) return;
+    var c = st.cloneNode(true); c.removeAttribute('id');
+    $$('[data-lpj-open]', c).forEach(function (b) { var n = b.getAttribute('data-lpj-open'); b.removeAttribute('data-lpj-open'); b.setAttribute('data-lps-open', n); });
+    var body = $('.lps-body', ensureSheet());
+    body.innerHTML = '<button type="button" class="lps-back" data-lps-list>' + IC.back + '<span>الرجوع إلى القائمة</span></button><div class="lps-detail">' + c.innerHTML + '</div>';
+    body.scrollTop = 0;
+  }
+  function nameHTML() {
+    var n = $('.aqeq-name-readings', res);
+    if (!n || n.classList.contains('is-empty')) {
+      return '<div class="lps-noname"><p>أضف اسمك ليظهر لك هنا ما تكشفه أرقام اسمك عن رغبة روحك وصورتك أمام الناس ومسارك الداخلي.</p><button type="button" class="lps-cta" data-lps-name>أضف اسمك الآن</button></div>';
+    }
+    var c = n.cloneNode(true);
+    var hd = $('.aqeq-name-heading', c); if (hd) { var k = $('.aqeq-name-kicker', hd), p = $('p', hd); if (k) k.remove(); if (p) p.remove(); }
+    return '<div class="lps-name">' + c.innerHTML + '</div>';
+  }
+  function openTile(kind) {
+    if (kind === 'name') { openSheet('name', IC.name, 'بصمة الاسم', 'ثلاث زوايا من أرقام اسمك', nameHTML()); return; }
+    var meta = {
+      stages: [IC.stages, 'مراحل العمر', 'اضغط على أي مرحلة لتقرأ تفاصيلها'],
+      peaks: [IC.peaks, 'القمم', 'القمم الأربع وفتراتها الزمنية'],
+      chal: [IC.chal, 'التحديات', 'التحديات الأربعة وفتراتها الزمنية']
+    }[kind];
+    openSheet(kind, meta[0], meta[1], meta[2], listHTML(kind));
+  }
+
+  /* ---------- البلاطات ---------- */
+  function buildTiles() {
+    var d = document.createElement('section'); d.className = 'lpt-tiles'; d.setAttribute('aria-label', 'تفاصيل رحلتك');
+    var T = [['stages', 'مراحل العمر', 'اكتشف مراحلك', IC.stages], ['peaks', 'القمم', 'اصعد قممك', IC.peaks], ['chal', 'التحديات', 'واجه دروسك', IC.chal], ['name', 'بصمة الاسم', 'اقرأ اسمك', IC.name]];
+    d.innerHTML = '<h3 class="lpt-h">رحلتك بين يديك</h3><p class="lpt-sub">اضغط على أي دائرة لتفتح تفاصيلها</p><div class="lpt-row">' +
+      T.map(function (t, k) { return '<button type="button" class="lpt-tile" data-lpt="' + t[0] + '"><span class="lpt-c c' + (k + 1) + '">' + t[3] + '</span><span class="lpt-t">' + t[1] + '</span><span class="lpt-s">' + t[2] + '</span></button>'; }).join('') + '</div>';
+    d.addEventListener('click', function (e) { var b = e.target.closest('[data-lpt]'); if (b) openTile(b.getAttribute('data-lpt')); });
+    return d;
+  }
+
+  /* ---------- توحيد الأكورديونات ---------- */
+  function fixAccordions() {
+    $$('.lpa-ic', res).forEach(function (ic) {
+      if (ic.getAttribute('data-lpf')) return;
+      var tx = ic.textContent.trim(), card = ic.closest('details');
+      if (tx === '+' || (card && card.classList.contains('is-light'))) ic.innerHTML = IC.light;
+      else if (tx === '−' || tx === '-' || (card && card.classList.contains('is-shadow'))) ic.innerHTML = IC.shadow;
+      else if (!ic.querySelector('svg')) ic.innerHTML = IC.star;
+      ic.setAttribute('data-lpf', '1');
+    });
+    $$('.lp-sec-title b', res).forEach(function (b) {
+      if (b.querySelector('.lps-en')) return;
+      for (var n = b.firstChild; n; n = n.nextSibling) {
+        if (n.nodeType === 3) {
+          var m = n.nodeValue.match(/^([\s\S]*?)\s*\(([A-Za-z][^)]*)\)\s*$/);
+          if (m) { var en = document.createElement('span'); en.className = 'lps-en'; en.textContent = m[2]; n.nodeValue = m[1]; b.insertBefore(en, n.nextSibling); break; }
+        }
+      }
+    });
+  }
+
+  /* ---------- التشغيل ---------- */
+  function run() {
+    var has = !res.hidden && res.querySelector('.numbadge') && res.querySelector('.lp-sections');
+    root.classList.toggle('lpr-on', !!has);
+    if (!has) { lastKey = ''; return; }
+    var num = $('.numbadge', res), key = (num ? num.textContent : '') + '|' + (($('#lp-date') || {}).value || '') + '|' + (($('#lp-name') || {}).value || '');
+    if (!res.querySelector('.lpt-tiles')) {
+      var sm = $('.chart-summary-card', res);
+      var t = buildTiles();
+      if (sm && sm.nextSibling) res.insertBefore(t, sm.nextSibling); else res.insertBefore(t, res.firstChild);
+    }
+    fixAccordions();
+    if (key !== lastKey) { lastKey = key; sec.scrollTop = 0; closeSheet(); }
+  }
+  var q;
+  new MutationObserver(function () { clearTimeout(q); q = setTimeout(run, 60); }).observe(res, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
+  run();
+})();
