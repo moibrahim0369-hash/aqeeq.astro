@@ -971,3 +971,7 @@ html.ndr-on body section#chart .ntx-wrap{padding-top:0!important}
 html.ndr-on body section#chart .ntx-after{margin-top:-10px!important}
 html.ndr-on body section#chart .aq-section-topbar{margin-bottom:0!important}
 }
+@media(max-width:820px){
+html.lpr-on body #lpresult .aq-reading-action-bar,html.ndr-on body #result .aq-reading-action-bar,html.ndr-on body .aq-reading-action-bar{display:none!important}
+html.lpr-on body section#lifepath .lpx-after{margin-top:-26px!important}
+}
