@@ -77,7 +77,7 @@
       var nx = (x + .5 - R) / R, ny = (y + .5 - R) / R, rr = nx * nx + ny * ny; if (rr >= 1.02) continue;
       var nz = Math.sqrt(Math.max(0, 1 - rr)), dot = nx * sx + nz * sz;
       var lit = Math.max(0, Math.min(1, (dot + .06) / .3)); lit = lit * lit * (3 - 2 * lit);
-      var alb = Math.max(.05, Math.min(1, TEX[y * N + x])), sh = .26 + lit * .8 * (.55 + .45 * Math.pow(Math.max(dot, 0), .35));
+      var alb = Math.max(.05, Math.min(1, TEX[y * N + x])), sh = .3 + lit * .75 * (.55 + .45 * Math.pow(Math.max(dot, 0), .35));
       var k = alb * sh, i4 = (y * N + x) * 4, edge = rr > .98 ? Math.max(0, (1.02 - rr) / .04) : 1;
       D[i4] = Math.min(255, k * 262 + (1 - lit) * 4); D[i4 + 1] = Math.min(255, k * 252 + (1 - lit) * 10); D[i4 + 2] = Math.min(255, k * 238 + (1 - lit) * 22); D[i4 + 3] = 255 * edge;
     }
@@ -85,6 +85,7 @@
     var u = cv.toDataURL('image/png'); MCACHE[key] = u; return u;
   }
   window.AqeeqMoonImg = moonImg;
+  function mInner(el) { try { return '<image href="' + moonImg(el) + '" x="10" y="10" width="100" height="100"/>'; } catch (e) { return window.AqeeqMoon ? window.AqeeqMoon(el) : ''; } }
   function moonSvg(c, size) {
     var inner; try { inner = '<defs><radialGradient id="mnHalo" cx="50%" cy="50%" r="50%"><stop offset=".8" stop-color="#fff3cf" stop-opacity=".0"/><stop offset="1" stop-color="#fff3cf" stop-opacity="0"/></radialGradient></defs><circle cx="60" cy="60" r="50" fill="#0b0a12"/><image href="' + moonImg(c.el) + '" x="10" y="10" width="100" height="100"/>'; } catch (er) { inner = typeof window.AqeeqMoon === 'function' ? window.AqeeqMoon(c.el) : '<circle cx="60" cy="60" r="50" fill="#d9d2c3"/>'; }
     var over = '';
@@ -123,23 +124,30 @@
       '<div class="mn-card"><small>ماذا يعني هذا الطور لك</small><p>' + p[2] + '</p><div class="mn-do"><span><b>تناسبك:</b> ' + p[3] + '</span><span><b>تجنّب:</b> ' + p[4] + '</span></div></div>' +
       '<div class="mn-facts">' + nextEv(c) + '</div>';
   }
+  var DAYS = [0, 4, 7, 11, 15, 18, 22, 26];
   function compassView() {
-    var c = calc(base + off * 864e5), cur = c.ph, S = 340, C = S / 2, R = 122, o = '';
+    var c = calc(base + off * 864e5), cur = c.ph, S = 340, C = S / 2, R = 122, i;
     var ring = '<circle cx="' + C + '" cy="' + C + '" r="' + (R + 34) + '" fill="none" stroke="#A07A3A" stroke-opacity=".35"/><circle cx="' + C + '" cy="' + C + '" r="' + (R - 34) + '" fill="none" stroke="#A07A3A" stroke-opacity=".25"/>';
+    var arrow = '<path d="M' + (C + 24) + ' ' + (C - R - 44) + ' l14 6 -14 6" fill="none" stroke="#A07A3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>';
     var nodes = '';
-    for (var i = 0; i < 8; i++) {
-      var a = (i * 45 - 90) * Math.PI / 180, x = C + R * Math.cos(a), y = C + R * Math.sin(a), el = i * 45, fake = { el: el };
-      var inner = window.AqeeqMoon ? window.AqeeqMoon(el) : '';
+    for (i = 0; i < 8; i++) {
+      var a = (i * 45 - 90) * Math.PI / 180, x = C + R * Math.cos(a), y = C + R * Math.sin(a), el = i * 45;
       var act = (pick == null ? cur : pick) === i;
-      nodes += '<g class="mn-node' + (act ? ' is-on' : '') + (i === cur ? ' is-cur' : '') + '" data-mn-ph="' + i + '" role="button" tabindex="0" aria-label="' + PH[i][0] + '" transform="translate(' + (x - 25).toFixed(1) + ' ' + (y - 25).toFixed(1) + ') scale(.4167)">' + (act ? '<circle cx="60" cy="60" r="62" fill="none" stroke="#6A2038" stroke-width="3"/>' : '') + inner + '</g>' +
+      nodes += '<g class="mn-node' + (act ? ' is-on' : '') + (i === cur ? ' is-cur' : '') + '" data-mn-ph="' + i + '" role="button" tabindex="0" aria-label="' + PH[i][0] + '" transform="translate(' + (x - 25).toFixed(1) + ' ' + (y - 25).toFixed(1) + ') scale(.4167)"><circle cx="60" cy="60" r="50" fill="#0b0a12"/>' + (act ? '<circle cx="60" cy="60" r="62" fill="none" stroke="#6A2038" stroke-width="3"/>' : '') + mInner(el) + '</g>' +
+        '<circle cx="' + (x + 20).toFixed(1) + '" cy="' + (y - 20).toFixed(1) + '" r="8" fill="#6A2038"/><text x="' + (x + 20).toFixed(1) + '" y="' + (y - 16.5).toFixed(1) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">' + (i + 1) + '</text>' +
         '<text x="' + x.toFixed(1) + '" y="' + (y + 40).toFixed(1) + '" text-anchor="middle" class="mn-nl">' + PH[i][1] + '</text>';
     }
-    var mid = '<g transform="translate(' + (C - 40) + ' ' + (C - 40) + ') scale(.667)">' + (window.AqeeqMoon ? window.AqeeqMoon(c.el) : '') + '</g>';
+    var mid = '<g transform="translate(' + (C - 40) + ' ' + (C - 40) + ') scale(.667)"><circle cx="60" cy="60" r="50" fill="#0b0a12"/>' + mInner(c.el) + '</g>' +
+      '<text x="' + C + '" y="' + (C + 58) + '" text-anchor="middle" class="mn-nl" style="font-size:11px">اليوم ' + num(Math.max(1, Math.round(c.age))) + ' من 30</text>';
     var sel = pick == null ? cur : pick, p = PH[sel];
-    return '<svg class="mn-wheel" viewBox="0 0 ' + S + ' ' + S + '" role="group" aria-label="بوصلة أطوار القمر">' + ring + mid + nodes + '</svg>' +
+    var list = '<h4 class="mn-lt">الأطوار الثمانية بالترتيب</h4><ol class="mn-leg">';
+    for (i = 0; i < 8; i++) list += '<li><button type="button" data-mn-ph="' + i + '" class="' + (i === cur ? 'is-cur' : '') + (i === sel ? ' is-on' : '') + '"><b>' + (i + 1) + '</b><span><strong>' + PH[i][0] + '</strong><small>' + PH[i][1] + ' · حوالي اليوم ' + num(DAYS[i] + 1) + '</small></span>' + (i === cur ? '<em>الآن</em>' : '') + '</button></li>';
+    list += '</ol>';
+    return '<p class="mn-intro">القمر يكمل دورة كل 29 يوماً تقريباً: يبدأ بالمحاق (ظلام)، يكبر حتى البدر، ثم يصغر ويعود. لكل طور طاقة مختلفة، والأرقام تبيّن الترتيب مع اتجاه عقارب الساعة. الطور المؤطَّر بدائرة هو الذي تختاره، وكلمة «الآن» في القائمة تحته تدل على طور اليوم.</p>' +
+      '<svg class="mn-wheel" viewBox="0 0 ' + S + ' ' + S + '" role="group" aria-label="بوصلة أطوار القمر">' + ring + mid + nodes + '</svg>' +
       '<p class="mn-hint">اضغط أي طور لتقرأ معناه</p>' +
       '<div class="mn-card"><small>' + (sel === cur ? 'الطور الحالي' : 'طور القمر') + ' · ' + p[1] + '</small><h4>' + p[0] + '</h4><p>' + p[2] + '</p><div class="mn-do"><span><b>تناسبك:</b> ' + p[3] + '</span><span><b>تجنّب:</b> ' + p[4] + '</span></div>' +
-      (sel !== cur ? '<button type="button" class="mn-go" data-mn-go="' + sel + '">اعرض أقرب موعد لهذا الطور</button>' : '') + '</div>';
+      (sel !== cur ? '<button type="button" class="mn-go" data-mn-go="' + sel + '">اعرض أقرب موعد لهذا الطور</button>' : '') + '</div>' + list;
   }
   function render() {
     var s = ensure(), b = $('.aqm-sheet-body', s), st = b.scrollTop;
