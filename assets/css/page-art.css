@@ -1461,3 +1461,27 @@ html body #sky .swc-hint-ic svg{animation:swcDown 1.6s ease-in-out infinite}
 .swp-sheet .swp-q p{color:#FFF3DC;font:600 1.02rem/2 'El Messiri','Cairo',serif}
 @media(max-width:860px){html body #sky .swc-side{display:contents}}
 @media(max-width:860px){html body #sky .swc-pgrid{margin-top:12px}}
+
+/* بطاقات البيت: أسئلة وتشريح ومواقف */
+.swp-sheet .swp-hook{padding:14px 15px;border-radius:16px;background:linear-gradient(135deg,#7A3048,#5E2234);border:1px solid #D6B574;box-shadow:0 8px 18px rgba(94,34,52,.2)}
+.swp-sheet .swp-lbl{display:block;margin:0 0 6px;font:700 .72rem 'Cairo',sans-serif;letter-spacing:.08em;color:#E8CF98}
+.swp-sheet .sky-card .swp-hook p{margin:0 0 8px;font:600 1rem/1.95 'El Messiri','Cairo',serif;color:#FFF3DC}
+.swp-sheet .sky-card .swp-hook p:last-child{margin:0}
+.swp-sheet .swp-anat{display:grid;gap:8px}
+.swp-sheet .swp-row{padding:11px 14px;border-radius:14px;background:rgba(255,255,255,.8);border:1px solid rgba(210,174,108,.55)}
+.swp-sheet .swp-row b{display:block;margin:0 0 3px;font:700 .85rem 'Cairo',sans-serif;color:#A8863F}
+.swp-sheet .sky-card .swp-row p{margin:0;font:500 .93rem/2 'Cairo',sans-serif;color:#33241d}
+.swp-sheet .swp-row ul{margin:0;padding:0;list-style:none}
+.swp-sheet .swp-row li{position:relative;padding-inline-start:16px;font:500 .93rem/1.95 'Cairo',sans-serif;color:#33241d}
+.swp-sheet .swp-row li::before{content:"";position:absolute;inset-inline-start:0;top:.95em;width:6px;height:6px;border-radius:50%;background:#C5A059}
+.swp-sheet .sky-card .swp-tease{margin:2px 0 0;padding:0 4px;text-align:center;font:600 .9rem/1.9 'El Messiri','Cairo',serif;color:#6A2038}
+.swp-sheet .swp-go{display:flex;align-items:center;gap:14px;margin:16px 0 4px;padding:16px;border-radius:20px;text-decoration:none;color:#FFF3DC;background:linear-gradient(135deg,#7A3048 0%,#5E2234 55%,#43121F 100%);border:1.3px solid #D6B574;box-shadow:0 14px 28px rgba(94,34,52,.28),inset 0 1px 0 rgba(255,255,255,.2)}
+.swp-sheet .swp-go-ic{flex:none;width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:rgba(255,236,196,.1);border:1px solid rgba(232,207,152,.7)}
+.swp-sheet .swp-go-ic svg{width:34px;height:34px;fill:none;stroke:#E8CF98;stroke-width:1.5;stroke-linecap:round}
+.swp-sheet .swp-go-ic .swp-core{fill:#E8CF98;stroke:none}
+.swp-sheet .swp-go-t{flex:1;min-width:0;display:grid;gap:3px}
+.swp-sheet .swp-go-t b{font:700 1.08rem/1.5 'El Messiri','Cairo',serif;color:#FFF3DC}
+.swp-sheet .swp-go-t small{font:500 .82rem/1.7 'Cairo',sans-serif;color:#EBD7B4}
+.swp-sheet .swp-go-ar{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:rgba(255,236,196,.14);border:1px solid rgba(232,207,152,.7);color:#F3DFA8;animation:aqhRing 2.6s ease-out infinite}
+.swp-sheet .swp-go-ar svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media(prefers-reduced-motion:reduce){.swp-sheet .swp-go-ar{animation:none}}

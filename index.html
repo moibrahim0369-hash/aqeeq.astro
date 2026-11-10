@@ -56,7 +56,7 @@
 <link rel="stylesheet" href="assets/css/natal-page.css?v=20261110e">
 <link rel="stylesheet" href="assets/css/geo-picker.css?v=20261110c">
 <link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
-<link rel="stylesheet" href="assets/css/page-art.css?v=20261116k">
+<link rel="stylesheet" href="assets/css/page-art.css?v=20261116l">
 <link rel="stylesheet" href="assets/css/date-time-selects.css?v=20261112a">
 <link rel="stylesheet" href="assets/css/natal-dashboard.css?v=20261109a">
 <link rel="stylesheet" href="assets/css/social.css?v=20261106a">
@@ -3354,12 +3354,55 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const skyDateInput = $("#sky-date");
   let skyKey = "mars", skySign = null;
   try { const v = localStorage.getItem("aq-sky-sign"); if (v !== null && +v >= 0 && +v < 12) skySign = +v; } catch (e) { }
+  const HQ = [
+    ["هل أساء أحدهم فهمك مؤخرًا، فصرت تشرح نفسك أكثر مما ينبغي؟", "هل تشعر أن الصورة التي يراها الناس عنك ليست التي تعيشها؟"],
+    ["هل تقيس قيمتك بما تنجزه أو تملكه، ثم تتعجب من شعورك بالفراغ؟", "هل أنفقت مؤخرًا لتُسكت شعورًا ما، لا لحاجتك إلى الشيء؟"],
+    ["هل كتبت رسالة طويلة ثم حذفتها لأن الصمت بدا أسلم؟", "هل تدور في رأسك محادثة لم تحدث أبدًا، وتعدّل ردّك فيها كل ليلة؟"],
+    ["هل تشتاق إلى مكان أو زمن بعينه، ولا تعرف هل تشتاق إليه أم إلى نفسك فيه؟", "هل تلاحظ أنك تتصرف في بيتك كما كنت تتصرف وأنت صغير؟"],
+    ["هل تؤجل شيئًا تحبه لأنه «غير مفيد»، ثم تلاحظ أن حماسك خفت؟", "هل تقدّم الحب بطريقة تنتظر الاعتراف أكثر مما تنتظر العودة؟"],
+    ["هل يرهقك جسدك الآن بما يتجاهله عقلك؟", "هل تنشغل بالمهام لأنها تمنحك عذرًا لتتجنب سؤالًا أكبر؟"],
+    ["هل اشتقت إلى شخص ولا تعرف السبب؟", "هل عاد إلى حياتك في هذه الفترة أشخاص كنت قد أخرجتهم منها منذ زمن؟"],
+    ["هل تشعر أن شيئًا ينتهي بداخلك دون أن يلاحظ أحد؟", "هل تحتفظ بسرٍّ ثقيل أو بشعور لم تقله لأحد؟"],
+    ["هل تشعر أن حياتك الحالية ضيقة عليك، وأن هناك طريقًا آخر تؤجله؟", "هل تفقد إيمانك بفكرة تمسكت بها قبل سنوات؟"],
+    ["هل تنجح في نظر الناس، وتشعر في الوقت نفسه أنك لست حيث تريد؟", "هل تحمل عبء أن تكون «القوي» في محيطك، ولا يسألك أحد كيف حالك؟"],
+    ["هل ابتعد عنك صديق، وتظاهرت بأن الأمر لا يعنيك؟", "هل تشعر بالغربة بين أشخاص يعرفونك جيدًا؟"],
+    ["هل تحتاج إلى عزلة لا تستطيع شرحها، وربما لُمت عليها؟", "هل تستيقظ بقلق لا سبب ظاهرًا له، وكأن شيئًا قديمًا يطرق الباب؟"]
+  ];
+  const HEX = [
+    ["تغيّر شكلك أو طريقة ظهورك فجأة دون سبب واضح.", "تُفاجأ بأن الناس يعاملونك بشكل مختلف عمّا تشعر به.", "تبدأ جملك كثيرًا بـ«لا أقصد كذا، لكن…»."],
+    ["تشتري شيئًا لا تحتاجه بعد يوم مرهق.", "تقارن دخلك بدخل أصدقائك دون أن تقصد.", "يعود إليك ملف مالي مؤجل فتضطر إلى مواجهته."],
+    ["رسالة قديمة تعود إلى هاتفك فتوقظ مشاعر نائمة.", "تفكر في شيء تقوله لأحدهم ثم تؤجله أيامًا.", "تنتقل بين مهام كثيرة ولا تنهي شيئًا."],
+    ["ترتّب غرفتك أو تغيّر مكان الأثاث دون سبب.", "مكالمة مع أحد أفراد العائلة تعيدك إلى دورك القديم.", "تشتاق إلى طعام أو رائحة من طفولتك."],
+    ["تنجذب فجأة إلى شخص أو هواية.", "تشعر برغبة في اللعب وسط يوم جاد.", "ترسل رسالة ثم تندم، أو لا ترسلها وتندم أكثر."],
+    ["أرق خفيف أو صداع يظهر مع كثرة المهام.", "تعيد ترتيب جدولك ثلاث مرات في أسبوع.", "يلاحظ زميل تعبك قبل أن تعترف به."],
+    ["شخص يعود إلى حياتك بعد غياب طويل.", "خلاف صغير يكشف احتياجًا أكبر.", "تجد نفسك تعطي أكثر مما تأخذ في علاقة قريبة."],
+    ["حلم يتكرر أو ذكرى تعود بتفاصيل غريبة.", "التزام مالي مشترك أو قديم يعود إلى الواجهة.", "نهاية هادئة لشيء لم يُعلن عنه أحد."],
+    ["تبحث فجأة عن دورة أو سفرة أو فكرة جديدة.", "محادثة عميقة مع غريب تغيّر رأيك.", "تشعر بأنك أكبر من مكانك الحالي."],
+    ["عرض أو مسؤولية جديدة في العمل.", "شعور بأنك تُقاس بما تنجزه فقط.", "لحظة تسأل فيها: هل هذا الطريق لي فعلًا؟"],
+    ["صديق قديم يتصل بعد انقطاع.", "مجموعة جديدة تجذبك وأخرى تفقد معناها.", "حلم كبير تعود إلى تذكّره بعد أن نسيته."],
+    ["رغبة في الانسحاب من الضوضاء.", "أحلام غريبة أو حدس قوي لا تجد له تفسيرًا.", "ذكرى أو شخص كنت قد تجاوزته يعود إلى خاطرك."]
+  ];
+  const PF = {
+    sun: ["يضيء الموضع الذي تريد أن تُرى فيه، ويسألك: من أنت خارج الأدوار؟", "طاقة مشرقة تحتاج إلى مكان تظهر فيه دون أن تُرهقك."],
+    moon: ["يحرّك حاجتك إلى الأمان، ويكشف ما تشعر به قبل أن تفسّره.", "طاقة متقلبة ناعمة، تتأثر بما حولك أكثر مما تظن."],
+    mercury: ["يوقظ حوارك الداخلي، فتعيد ترتيب الأفكار والكلمات مرارًا.", "طاقة سريعة متنقلة، تحتاج إلى تفريغ بالكتابة أو الحديث."],
+    venus: ["يلمس ما تحبه وما تظن أنك تستحقه، ويكشف كم تعطي وكم تطلب.", "طاقة جذب ودفء، تتأثر بالتقدير أكثر من أي شيء."],
+    mars: ["يشعل دافع الفعل، وحين يُكبت يتحول إلى توتر أو غضب مؤجل.", "طاقة حارّة تحتاج إلى حركة جسدية أو قرار واضح."],
+    jupiter: ["يوسّع الأفق ويعيد إليك الأمل، لكنه يغريك بالمبالغة.", "طاقة سخية متفائلة، تنمو حين تجد معنى لما تفعله."],
+    saturn: ["يطرح سؤال الجدية والحدود: ما الذي عليك تحمله وما الذي تحمله بلا داعٍ؟", "طاقة ثقيلة هادئة، تبني ببطء وتُرهق حين تُحمّل فوق طاقتها."],
+    uranus: ["يهزّ العادة القديمة ليولد منها شيء أصدق، فتشعر بقلق التغيير.", "طاقة كهربائية مفاجئة، تحتاج إلى مساحة حرية."],
+    neptune: ["يذيب الحدود، فيمنحك حدسًا وإلهامًا، وقد يُضبّب الرؤية.", "طاقة شفافة حالمة، تلتقط ما حولها دون أن تقصد."],
+    pluto: ["ينزل إلى العمق ليخرج ما دُفن، فيبدأ تحوّل بطيء لا يُرى من الخارج.", "طاقة عميقة مكثفة، تعمل في الخفاء قبل أن تظهر نتائجها."]
+  };
+  const PQ = { sun: "هل تعيش حياتك أم تؤدي دورًا كُتب لك؟", moon: "هل تقول «لا بأس» وأنت لست بخير؟", mercury: "هل تعرف ما تريد قوله، وتخاف من وقعه؟", venus: "هل تعطي بسخاء، وتشعر أنك لا تُرى؟", mars: "هل تؤجل غضبًا ما إلى أن يخرج في غير موضعه؟", jupiter: "هل تتفاءل لتتجنب أن تحزن؟", saturn: "هل تُحاسب نفسك أشد مما يحاسبك أحد؟", uranus: "هل تتظاهر بالرضا عن شيء بدأ يخنقك؟", neptune: "هل تفضّل الصورة الجميلة على الحقيقة الواضحة؟", pluto: "هل تعرف شيئًا عن نفسك لم تجرؤ على قوله بصوت عالٍ؟" };
   function skyCard(k, bd, i) {
-    const P = PLANETS[k], sg = SIGNS[i], h = ((bd.sign - i + 12) % 12) + 1, H = HOUSES[h - 1], S = HOUSE_SIT[h - 1];
+    const P = PLANETS[k], sg = SIGNS[i], hh = ((bd.sign - i + 12) % 12) + 1, H = HOUSES[hh - 1], pf = PF[k], q = HQ[hh - 1], ex = HEX[hh - 1];
     return `<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">${gl(P.g)}</span></span><div><h4>${P.n} في بيتك ${H.n}</h4><small>${sg.n} · مجال ${H.area}</small></div></header>
-      <details class="lpa-card sky-acc" open><summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">الدلالة النفسية</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${planetInHouse(k, h, "transit")}</p><p>ممكن يظهر ده في مواقف زي: ${S[0]}، أو ${S[1]}، أو ${S[2]}.</p></div></details>
-      <details class="lpa-card is-shadow sky-acc"><summary class="lpa-sum"><span class="lpa-ic">−</span><span class="lpa-t">الفخاخ التي تنتبه لها</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>الجانب الصعب (${P.watch}) بيزيد لو ${HOUSE_TRIG[h - 1]}.</p></div></details>
-      <details class="lpa-card is-light sky-acc"><summary class="lpa-sum"><span class="lpa-ic">+</span><span class="lpa-t">طاقة التحول والنصيحة</span><span class="lpa-chev"></span></summary><div class="lpa-body"><p>${HOUSE_ADV[h - 1]}.</p><p>تتوقع فيه ${P.give}.</p></div></details></article>`;
+      <div class="swp-hook"><b class="swp-lbl">أسئلة تخصك</b><p>${q[0]}</p><p>${q[1]}</p><p>${PQ[k]}</p></div>
+      <div class="swp-anat"><div class="swp-row"><b>نفسيًا</b><p>${pf[0]} وحين يمرّ على بيتك ${H.n} يتجه هذا كله إلى ${H.area}.</p></div>
+      <div class="swp-row"><b>طاقيًا</b><p>${pf[1]}${bd.retro ? " ومع التراجع تتجه إلى الداخل، فتبدو أبطأ وأعمق وأكثر حساسية." : ""}</p></div>
+      <div class="swp-row"><b>في الواقع</b><ul><li>${ex[0]}</li><li>${ex[1]}</li><li>${ex[2]}</li></ul></div></div>
+      <p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>`;
   }
   const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
 
@@ -3468,11 +3511,11 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <div class="swp-deg" role="img" aria-label="الدرجة ${dInt} من 30"><div class="swp-track"><span class="swp-dot" style="--p:${(deg / 30 * 100).toFixed(1)}%"></span></div><div class="swp-scale"><span>٠°</span><span>١٠°</span><span>٢٠°</span><span>٣٠°</span></div><p><b>${stage[0]}</b> · ${stage[1]}</p></div>
       <p class="swp-read">يمرّ ${p.n} الآن في ${S.n}، فيمنح ${p.theme} طابعًا ${S.way}. الأجواء تساعدك على ${S.strength}، وتذكّرك بلطف أن تنتبه من ${S.shadow}، فهو الوجه الذي يظهر حين تتعب.</p>
       ${mv}${ingTxt}
-      <h4 class="swp-h">أثره على بيتك</h4><p class="swp-sub">يتحدد التأثير حسب البيت الذي يمر عليه ${p.n} من برجك (نظام البيوت الكاملة).</p>`;
-    o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لترى أثر ${p.n} في بيتك بالتحديد</small></div></div>
+      <h4 class="swp-h">أين يلمسك هذا الكوكب؟</h4><p class="swp-sub">يمرّ ${p.n} على بيت مختلف في حياة كل برج. اختر برجك أو طالعك لتعرف أين.</p>`;
+    o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لتقرأ ما يخصك</small></div></div>
       <div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">${SIGNS.map((sg, i) => `<button type="button" class="sky-sg${i === skySign ? " is-on" : ""}" data-i="${i}" aria-pressed="${i === skySign}"><span class="sg" aria-hidden="true">${gl(sg.g)}</span><span>${sg.n}</span></button>`).join("")}</div>
-      <div class="sky-signcard" id="sky-signcard" aria-live="polite">${skySign == null ? `<p class="sky-pick-empty">اختر برجك من الشريط لتظهر لك قراءة ${p.n} في بيتك، بدل قراءة كل الأبراج دفعة واحدة.</p>` : skyCard(k, bd, skySign)}</div></div>`;
-    o += `<aside class="sky-cta"><span class="sky-cta-ic" aria-hidden="true"><span class="sg">${gl("✦")}</span></span><p>العبور العام يصف طقس السماء، وخريطتك الشخصية تحدد أين تمطر. اكتشف تأثير ${p.n} على بيوتك بدقة في صفحة (لك).</p><a class="btn" href="#for-you">افتح صفحة لك</a></aside>`;
+      <div class="sky-signcard" id="sky-signcard" aria-live="polite">${skySign == null ? `<p class="sky-pick-empty">اختر برجك، لنخبرك أين يلمس ${p.n} حياتك فعلًا، وما الذي قد تشعر به الآن دون أن تعرف السبب.</p>` : skyCard(k, bd, skySign)}</div></div>`;
+    o += `<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>`;
     $("#sky-panel").innerHTML = o;
     $$("#sky-panel .sky-sg").forEach(btn => btn.addEventListener("click", () => {
       skySign = +btn.dataset.i; try { localStorage.setItem("aq-sky-sign", skySign); } catch (e) { }
