@@ -192,3 +192,6 @@ section#lifepath.lpx .lpx-crescent{top:92px!important;left:2%!important}
 section#lifepath.lpx .lpx-t1{top:150px!important;left:calc(2% + 180px)!important}
 section#lifepath.lpx .lpx-t2{top:160px!important}
 @media(max-width:899px){section#lifepath.lpx .lpx-crescent{top:74px!important;width:70px}}
+/* نص تعريفي: eyebrow */
+#lifepath.lpx .lpx-head .eyebrow{display:block;width:auto;text-align:start;direction:ltr;color:#8a6a30;letter-spacing:.2em;font-size:.6rem;margin:0 0 6px}
+#lifepath.lpx .lpx-head h2{line-height:1.2}
