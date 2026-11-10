@@ -427,3 +427,10 @@ html body #mresult .aqm-acc-item{border:1.2px solid #E3CD9F!important;border-rad
 html body #mresult .aqm-acc-item.open{border-color:#C8A15A!important}
 html body #mresult .aq-reading-action-bar{position:relative}
 @media(prefers-reduced-motion:no-preference){html body #mresult .aqm-acc-icon{animation:aqHalo 6s ease-in-out infinite}}
+/* matrix: gold royal CTA, header corners match the card, no onward-links block */
+html body section#matrix.mxp .aq-related{display:none!important}
+html body section#matrix.mxp form.mxp-card{overflow:hidden!important}
+html body section#matrix.mxp form.mxp-card .mxp-ctitle{border-radius:18px 18px 0 0!important}
+html body section#matrix.mxp form.mxp-card .btn{background:linear-gradient(135deg,#EBD08F 0%,#D6AC59 55%,#C59B4B 100%)!important;color:#4A1224!important;border:1.3px solid #F6E2B0!important;box-shadow:0 10px 22px rgba(150,105,40,.38),inset 0 1px 0 rgba(255,255,255,.7)!important;font-weight:800!important}
+html body section#matrix.mxp form.mxp-card .btn svg{color:#4A1224!important;stroke:#4A1224!important}
+html body section#matrix.mxp form.mxp-card .btn::after{background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent)!important}
