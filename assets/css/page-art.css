@@ -396,3 +396,22 @@ html body section#chart.ntx .field:is(:has(#f-name),:has(#f-gender),:has(#f-date
 background:linear-gradient(150deg,#8A3350,#5A1A2C)!important;border:1.2px solid #C8A15A!important;
 box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 5px 12px rgba(74,18,36,.28)!important}
 html body :is(section#matrix.mxp,section#chart.ntx) .field :is(.mxp-fi,.ntx-fi) svg{color:#FFF3D6!important;stroke:#FFF3D6!important;stroke-width:2!important}
+/* ===== light glass icon tiles (cream + burgundy line), soft halo instead of pulse ===== */
+html body :is(section#matrix.mxp form.mxp-card .field,section#chart.ntx .field) :is(.mxp-fi,.ntx-fi),
+html body section#matrix.mxp form.mxp-card .field:is(:has(#m-name),:has(#m-gender),:has(#m-date)) .mxp-fi,
+html body section#chart.ntx .field:is(:has(#f-name),:has(#f-gender),:has(#f-date),:has(#f-time),:has(#f-zodiac-sys),:has(#f-hs)) .ntx-fi{
+background:linear-gradient(160deg,#FFFDF7,#F4E6C6)!important;border:1.2px solid #D2AE6C!important;
+box-shadow:0 1px 0 #fff inset,0 5px 12px rgba(150,110,50,.18)!important;animation:none!important}
+html body :is(section#matrix.mxp,section#chart.ntx) .field :is(.mxp-fi,.ntx-fi) svg{color:#7A2E48!important;stroke:#7A2E48!important;stroke-width:1.8!important}
+@keyframes aqHalo{0%,100%{box-shadow:0 1px 0 #fff inset,0 5px 12px rgba(150,110,50,.18),0 0 0 0 rgba(200,161,90,0)}50%{box-shadow:0 1px 0 #fff inset,0 5px 12px rgba(150,110,50,.18),0 0 0 6px rgba(200,161,90,.16)}}
+@media(prefers-reduced-motion:no-preference){
+html body :is(section#matrix.mxp form.mxp-card .field,section#chart.ntx .field) :is(.mxp-fi,.ntx-fi){animation:aqHalo 6s ease-in-out infinite!important}
+html body :is(section#matrix.mxp form.mxp-card,section#chart.ntx) .field:nth-of-type(2n) :is(.mxp-fi,.ntx-fi){animation-delay:-3s!important}}
+/* investment cards: cream glass card + gold glass icon */
+html body .aq-gold{background:linear-gradient(160deg,rgba(255,253,246,.96),rgba(247,234,204,.92))!important;border:1.3px solid #D8B873!important;box-shadow:0 8px 20px rgba(150,105,40,.16),inset 0 1px 0 #fff!important;color:#4A1224!important}
+html body .aq-gold::after{opacity:.5}
+html body .aq-gold-i{width:50px;height:50px;border-radius:15px;background:linear-gradient(160deg,#F3DC9E 0%,#D9AE5A 55%,#B98A3A 100%)!important;color:#4A1224!important;border:1px solid rgba(255,244,210,.9);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -6px 10px rgba(150,100,30,.28),0 6px 14px rgba(150,105,40,.3)!important;position:relative}
+html body .aq-gold-i::before{content:"";position:absolute;left:4px;right:4px;top:3px;height:42%;border-radius:11px 11px 14px 14px;background:linear-gradient(180deg,rgba(255,255,255,.65),rgba(255,255,255,0));pointer-events:none}
+html body .aq-gold-i svg{position:relative;stroke:#4A1224!important}
+html body .aq-gold-t small{color:#6B4A3A!important}
+html body section#matrix.mxp form.mxp-card .field .mxp-fi svg,html body section#chart.ntx .field .ntx-fi svg{color:#7A2E48!important;stroke:#7A2E48!important;stroke-width:1.8!important}
