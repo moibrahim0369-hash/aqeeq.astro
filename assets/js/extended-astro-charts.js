@@ -76,7 +76,7 @@
     else if(mode==='profections')controls='<label class="field"><span>التاريخ السنوي</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
     else if(mode==='eclipses')controls='<label class="field"><span>السنة</span><select id="eam-year">'+yearOptions()+'</select></label>';
     else if(mode==='nodes')controls='<label class="field"><span>تاريخ قراءة العقد</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
-    else controls='<p class="eam-method">النطاق النجمي محسوب بطريقة Lahiri المتوسطة؛ تُطرح قيمة الأيانامشا من المواقع الاستوائية وتُزاح معها رؤوس البيوت.</p>';
+    else controls='<p class="eam-method">النطاق النجمي محسوب بطريقة لاهيري المتوسطة؛ تُطرح قيمة الأيانامشا من المواقع الاستوائية وتُزاح معها رؤوس البيوت.</p>';
     const labels={transit:'احسب العبور',solar:'احسب العودة الشمسية',profections:'احسب سيد السنة',eclipses:'اعرض الكسوف والخسوف',nodes:'احسب محور العقد',sidereal:'اعرض الخريطة الفيدية'};
     content.innerHTML='<div class="eam-control"><div><span class="eam-kicker">'+esc(title)+'</span><p>'+esc(description)+'</p></div><div class="eam-controls">'+controls+'<button class="btn" type="button" id="eam-calculate">'+labels[mode]+'</button></div></div><p class="eam-status" id="eam-status" role="status" aria-live="polite"></p><div id="eam-result" class="eam-result" hidden></div>';
     $('#eam-now',content)?.addEventListener('click',()=>$('#eam-date',content).value=nowLocal());
@@ -218,13 +218,13 @@
       if(mode==='transit'){
         const value=$('#eam-date',content).value,date=value?new Date(value):new Date();if(Number.isNaN(date.getTime()))throw new Error('تاريخ ووقت العبور غير صالحين.');
         const t=currentTransit(natal,date),lines=t.aspects;
-        result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Transit Chart · '+esc(dateStamp(date))+'</span><h3>العبور فوق خريطة الميلاد</h3><p class="eam-note">الحلقة الخارجية لمواضع العبور، والداخلية لمواضع الميلاد.</p></header><div class="eam-wheel" id="eam-wheel"></div>'+transitHouseTable(t.chart,natal)+aspectLines(lines,'اتصالات العبور بخريطة الميلاد');
+        result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">خريطة العبور · '+esc(dateStamp(date))+'</span><h3>العبور فوق خريطة الميلاد</h3><p class="eam-note">الحلقة الخارجية لمواضع العبور، والداخلية لمواضع الميلاد.</p></header><div class="eam-wheel" id="eam-wheel"></div>'+transitHouseTable(t.chart,natal)+aspectLines(lines,'اتصالات العبور بخريطة الميلاد');
         window.AqeeqAstroWheel?.renderSynastryWheel($('#eam-wheel',result),natal.ch,t.chart,t.aspects);
         window.AqeeqGender?.apply(result,natal.gender);
         mountCopy(result,'خريطة العبور · '+dateStamp(date));
       }else if(mode==='solar'){
         const year=Number($('#eam-year',content).value),utc=solarReturnUtc(natal,year),ch=engineChart(utc,natal),aspects=chartAspects(ch);
-        renderChart(result,'Solar Return · '+year,'العودة الشمسية للحظات عودة الشمس إلى موضع الميلاد',ch,'<p class="eam-note">لحظة العودة: '+esc(new Date(utc).toISOString().replace('T',' ').replace('Z',' UTC'))+'. البيوت محسوبة لمكان الميلاد المسجل.</p>',aspects);
+        renderChart(result,'العودة الشمسية · '+year,'العودة الشمسية للحظات عودة الشمس إلى موضع الميلاد',ch,'<p class="eam-note">لحظة العودة: '+esc(new Date(utc).toISOString().replace('T',' ').replace('Z',' UTC'))+'. البيوت محسوبة لمكان الميلاد المسجل.</p>',aspects);
       }else if(mode==='profections'){
         renderProfections(result,natal,$('#eam-date',content).value);
       }else if(mode==='eclipses'){
@@ -233,7 +233,8 @@
         renderNodes(result,natal,$('#eam-date',content).value);
       }else{
         const ch=siderealChart(natal),aspects=chartAspects(ch);
-        renderChart(result,'Sidereal · Lahiri','الخريطة الفيدية بالنطاق النجمي',ch,'<p class="eam-note">أيانامشا Lahiri المتوسط: '+ch.ayanamsa.toFixed(4)+'°. قد تختلف قيم الأيانامشا والتقاليد الفيدية الأخرى، وهذه الأداة لا تحسب الداشا أو النكشاترا.</p>',aspects);
+        renderChart(result,'النطاق النجمي · لاهيري','الخريطة الفيدية بالنطاق النجمي',ch,'<p class="eam-note">أيانامشا لاهيري المتوسط: '+ch.ayanamsa.toFixed(4)+'°. قد تختلف قيم الأيانامشا والتقاليد الفيدية الأخرى.</p>',aspects);
+        try{window.AqVedic?.render(result,ch,natal,{saturnSign(){const now=engineChart(Date.now(),natal),s=(now.bodies||[]).find(b=>b.key==='saturn');return s?Math.floor(norm(s.lon-ayanamsa(now.jde))/30):null;}});}catch(e){console.warn(e);}
       }
       status.textContent='اكتمل الحساب. يمكنك نسخ تفاصيل الخريطة من الزر أسفل النتيجة.';
     }catch(error){status.textContent=error?.message||'تعذر حساب الخريطة؛ راجع البيانات وحاول مرة أخرى.';result.hidden=true;}
