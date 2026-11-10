@@ -40,7 +40,7 @@
   });
   /* روابط ختامية لكل صفحة: أدوات مرتبطة + مقال/قراءة */
   var REL = {
-    matrix: [['#lifepath', I.lifepath, 'مسار الحياة', 'مراحل رحلتك وقممك الأربع'], ['#chart', I.chart, 'الخريطة الفلكية', 'مواضع الكواكب لحظة ميلادك'], ['#featured-content/matrix-22-arcana', I.read, 'اقرأ عن المصفوفة', 'هندسة الـ22 أركانًا']],
+    matrix: [['#featured-content/matrix-22-arcana', I.read, 'اقرأ عن المصفوفة', 'هندسة الـ22 أركانًا'], ['#featured-content', I.read, 'المحتوى المميز', 'مقالات تعمّق فهمك لنفسك']],
     lifepath: [['#matrix', I.matrix, 'مصفوفة القدر', 'خريطتك الرقمية الهندسية'], ['#lifepath-compat', I.lpcompat, 'توافق المسارات', 'قراءة الشراكات بين رقمين'], ['#featured-content/pinnacles-cycles', I.read, 'اقرأ عن القمم والدورات', 'من المحتوى المميز']],
     chart: [['#matrix', I.matrix, 'مصفوفة القدر', 'الأنماط والطاقات في ميلادك'], ['#astro-maps', I.maps, 'خرائط متقدمة', 'العودة الشمسية والعبور'], ['#featured-content/how-to-start-natal-chart', I.read, 'كيف تبدأ قراءة خريطتك', 'دليل مبسّط']],
     compat: [['#lifepath-compat', I.lpcompat, 'توافق المسارات', 'قراءة الشراكات القدرية'], ['#chart', I.chart, 'خريطتك الفلكية', 'ابدأ بخريطتك أنت'], ['#featured-content/venus-in-chart', I.read, 'اقرأ عن لغة العلاقات', 'ماذا تقول الزهرة عنك']],
@@ -54,11 +54,11 @@
   function related() {
     Object.keys(REL).forEach(function (id) {
       var sec = document.getElementById(id); if (!sec || sec.querySelector('.aq-related')) return;
-      var box = document.createElement('nav');
-      box.className = 'aq-related'; box.setAttribute('aria-label', 'تابع من هنا');
-      box.innerHTML = '<h3><span></span>تابع من هنا<span></span></h3><div class="aq-rel-grid">' + REL[id].map(function (r) {
+      var box = document.createElement('nav'); var T = id === 'matrix' ? 'استثمر في ذاتك' : 'تابع من هنا';
+      box.className = 'aq-related'; box.setAttribute('aria-label', T);
+      box.innerHTML = '<h3><span></span>' + T + '<span></span></h3><div class="aq-rel-grid">' + REL[id].map(function (r) {
         return '<a class="aq-rel" href="' + r[0] + '"><span class="aq-rel-i">' + ic(r[1]) + '</span><span class="aq-rel-t"><b>' + r[2] + '</b><small>' + r[3] + '</small></span></a>';
-      }).join('') + '</div>';
+      }).join('') + '</div>' + (id === 'matrix' ? '<p class="aq-phil">مصفوفة القدر ليست تنبؤًا بالحظ، بل مرآة هندسية تقرأ بها اثنتين وعشرين طاقة في ميلادك، لتفهم أنماطك وتختار خطواتك بوعي.</p>' : '');
       var ft = sec.querySelector(':scope > footer'); if (ft) sec.insertBefore(box, ft); else sec.appendChild(box);
     });
   }
