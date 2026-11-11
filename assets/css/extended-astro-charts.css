@@ -54,3 +54,10 @@
 @media(max-width:480px){.eam-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.eam-tabs [role=tab]{white-space:normal;min-height:44px;line-height:1.35}.eam-event{grid-template-columns:1fr;gap:.35rem;padding:.75rem}.eam-pillar-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eam-pillar{padding:.72rem .5rem}}
 .vx-wrap{margin-top:1rem}.vx p{line-height:1.95;margin:.4rem 0}.vx h4{margin-bottom:.4rem}
 .vx .eam-table{min-width:0}.vx-on th,.vx-on td{color:#e8c98f!important;font-weight:700}
+
+/* موبايل: جداول البطاقات الفيدية بصف واحد لكل سطر، بدون كسر التواريخ */
+@media(max-width:480px){
+html body .vx .eam-table{font-size:.72rem!important}
+html body .vx .eam-table th,html body .vx .eam-table td{padding:.55rem .4rem!important;white-space:nowrap!important}
+html body .vx .eam-table th{white-space:normal!important;line-height:1.5}
+}
