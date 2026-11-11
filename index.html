@@ -2927,15 +2927,21 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       const anglesKnown = P1.known && P2.known &&
         Number.isFinite(P1.ch.asc) && Number.isFinite(P2.ch.asc) &&
         Number.isFinite(P1.ch.mc) && Number.isFinite(P2.ch.mc);
+      const ascMid = anglesKnown ? midpointLongitude(P1.ch.asc, P2.ch.asc) : null;
+      // منتصف القوس الأقصر لرأس بيت قد يقع في النصف المقابل للدائرة فيختل ترتيب البيوت؛
+      // نختار من النقطتين المتقابلتين الأقرب لموضع البيت المتوقع بعد الطالع المركّب.
       const cusps = anglesKnown && Array.isArray(P1.ch.cusps) && Array.isArray(P2.ch.cusps)
-        ? P1.ch.cusps.map((cusp, i) => midpointLongitude(cusp, P2.ch.cusps[i]))
+        ? P1.ch.cusps.map((cusp, i) => {
+            const m = midpointLongitude(cusp, P2.ch.cusps[i]);
+            return Math.abs(Astro.d180(m - (ascMid + 30 * i))) > 90 ? Astro.norm(m + 180) : m;
+          })
         : null;
       return {
         positions,
         aspects: aspects.sort((a, b) => a.orb - b.orb),
         anglesKnown,
-        asc: anglesKnown ? midpointLongitude(P1.ch.asc, P2.ch.asc) : null,
-        mc: anglesKnown ? midpointLongitude(P1.ch.mc, P2.ch.mc) : null,
+        asc: ascMid,
+        mc: anglesKnown ? (cusps ? cusps[9] : midpointLongitude(P1.ch.mc, P2.ch.mc)) : null,
         cusps
       };
     };
@@ -5224,10 +5230,10 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
   <script src="assets/js/data-payload.js"></script>
   <script src="app.js?v=20261106a"></script>
   <script src="assets/js/gender-language.js"></script>
-  <script src="assets/js/personal-transits.js"></script>
+  <script src="assets/js/personal-transits.js?v=20261111c"></script>
 <script src="assets/js/life-path-data.js"></script>
 <script src="assets/js/destiny-matrix-data.js?v=20261104a"></script>
-<script src="assets/js/age-map.js"></script>
+<script src="assets/js/age-map.js?v=20261111c"></script>
 <script src="assets/js/matrix-loader.js?v=20261110a"></script>
 <script src="assets/js/matrix-report-map.js"></script>
 <script src="assets/js/matrix-method-adapter.js"></script>
@@ -5238,8 +5244,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/moon-sheet.js?v=20261116b" defer></script>
 <script>(function(){function g(){if(location.hash==="#astro-maps")location.replace("#home")}g();addEventListener("hashchange",g)})();</script>
 <script src="assets/js/astro-wheel.js"></script>
-<script src="assets/js/extended-astro-charts.js?v=20261118a"></script>
-<script src="assets/js/vedic-extras.js?v=20261118a" defer></script>
+<script src="assets/js/extended-astro-charts.js?v=20261111c"></script>
+<script src="assets/js/vedic-extras.js?v=20261111c" defer></script>
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
