@@ -1,0 +1,17 @@
+/* توحيد الخلفية الكريمية والحدود المعتمدة في مصفوفة القدر على باقي الصفحات (بدون صور خلفية مكررة) */
+html body section.sec:not(#_a):not(#_b):is(#compat,#energy-compatibility,#relationships,#individual,#invest,#services,#for-you,#world,#sky,#signs){background-color:#F8F3E8!important}
+html body section.sec:not(#_a):not(#_b):is(#compat,#energy-compatibility,#relationships,#individual,#invest,#services){background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.88) 14%,rgba(248,243,232,0) 34%)!important}
+/* التوافق الطاقي: من داكن إلى كريمي بنفس بطاقة المصفوفة */
+html body section#energy-compatibility,html body section#energy-compatibility .wrap{color:#3a2a2e!important}
+html body section#energy-compatibility h2{color:#70263f!important}
+html body section#energy-compatibility .eyebrow{color:#9a7436!important}
+html body section#energy-compatibility .intro,html body section#energy-compatibility p{color:#5b4a4f!important}
+html body section#energy-compatibility article.rd,html body section#energy-compatibility .rd-row,html body section#energy-compatibility details{background:rgba(255,253,250,.92)!important;border:1px solid rgba(183,138,82,.55)!important;border-radius:22px!important;box-shadow:0 14px 34px rgba(74,26,43,.08)!important;color:#3a2a2e!important}
+html body section#energy-compatibility article.rd h3,html body section#energy-compatibility article.rd summary{color:#70263f!important}
+html body section#energy-compatibility article.rd small{color:#9a7436!important}
+html body section#energy-compatibility article.rd p{color:#4a3a3f!important}
+html body section#energy-compatibility .lp-sec-title b{color:#70263f!important}
+html body section#energy-compatibility .lp-sec-title small{color:#9a7436!important}
+html body section#energy-compatibility .lp-sec-body p,html body section#energy-compatibility .lp-sec-body b{color:#4a3a3f!important}
+html body section#energy-compatibility .lp-sec-icon{background:rgba(255,253,250,.9)!important;border:1px solid rgba(183,138,82,.45)!important;color:#70263f!important}
+html body section#energy-compatibility .lp-sec-icon svg{stroke:#70263f!important;color:#70263f!important}
