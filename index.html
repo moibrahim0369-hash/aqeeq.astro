@@ -4045,7 +4045,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     ["A", "B", "C", "D", "F", "G", "H", "I"].forEach(k => { P[k + "2"] = redArc(P[k] + E); });
     P.mid = OUTER.map((k, i) => redArc(P[k] + P[OUTER[(i + 1) % 8]]));
     P.sky = redArc(B + D); P.earth = redArc(A + C); P.self = redArc(P.sky + P.earth);
-    P.year = redArc(A + B + redArc(digSum(new Date().getFullYear())));
+    // طاقة السنة شخصية: تبدأ من عيد الميلاد وتستمر حتى عيد الميلاد التالي.
+    const _t = new Date(), _cy = _t.getFullYear() - ((_t.getMonth() + 1 < m || (_t.getMonth() + 1 === m && _t.getDate() < d)) ? 1 : 0);
+    P.year = redArc(A + B + redArc(digSum(_cy)));
     return P;
   }
   function lifePath(d, m, y) {
@@ -4283,7 +4285,10 @@ if (typeof window !== 'undefined') window.Astro = Astro;
 
   function compatHTML(P1, P2) {
     const R = {};
-    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
+    // منهج لاديني: تُجمع الأركان الأربعة الأساسية فقط، ثم يُعاد توليد باقي خريطة التوافق منها.
+    ['A', 'B', 'C', 'D'].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
+    R.E = redArc(R.A + R.B + R.C + R.D);
+    R.F = redArc(R.A + R.B); R.G = redArc(R.B + R.C); R.H = redArc(R.C + R.D); R.I = redArc(R.D + R.A);
     const e = getDMD(R.E);
     const a = getDMD(R.A);
     const b = getDMD(R.B);
@@ -5236,7 +5241,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/age-map.js?v=20261111c"></script>
 <script src="assets/js/matrix-loader.js?v=20261110a"></script>
 <script src="assets/js/matrix-report-map.js"></script>
-<script src="assets/js/matrix-method-adapter.js"></script>
+<script src="assets/js/matrix-method-adapter.js?v=20261111d"></script>
 <script src="assets/js/numerology-matrix.js?v=20261110k"></script>
 <script src="assets/js/matrix-sheet.js?v=20261110n" defer></script>
 <script src="assets/js/lifepath-sheet.js?v=20261117b" defer></script>
@@ -5244,8 +5249,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/moon-sheet.js?v=20261116b" defer></script>
 <script>(function(){function g(){if(location.hash==="#astro-maps")location.replace("#home")}g();addEventListener("hashchange",g)})();</script>
 <script src="assets/js/astro-wheel.js"></script>
-<script src="assets/js/extended-astro-charts.js?v=20261111c"></script>
-<script src="assets/js/vedic-extras.js?v=20261111c" defer></script>
+<script src="assets/js/extended-astro-charts.js?v=20261111d"></script>
+<script src="assets/js/vedic-extras.js?v=20261111d" defer></script>
 <script src="assets/js/section-footer.js?v=20261106b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>

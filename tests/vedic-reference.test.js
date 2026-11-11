@@ -69,3 +69,15 @@ assert.ok(ds[0].s <= birth && birth < ds[0].e);
 const k = V.dashas(0, birth);
 assert.equal(k[0].lord, 0); assert.equal(k[0].s, birth, 'Moon at 0° Aries starts Ketu at birth');
 console.log('vedic reference tests passed');
+
+// قرارات 11 نوفمبر: راهو بالعقدة المتوسطة، وطاقة السنة من عيد الميلاد
+const vsrc = fs.readFileSync(path.join(root, 'assets/js/vedic-extras.js'), 'utf8');
+assert.ok(vsrc.includes("['node', 'راهو']") && !vsrc.includes("'truenode', 'راهو'"), 'Rahu uses the mean node');
+const M = require(path.join(root, 'assets/js/matrix-method-adapter.js'));
+const before = M.calculateDestinyMatrix('1999-09-25', new Date(2026, 8, 24)).yearEnergy;
+const onDay = M.calculateDestinyMatrix('1999-09-25', new Date(2026, 8, 25)).yearEnergy;
+assert.equal(before.year, 2025); assert.equal(onDay.year, 2026);
+assert.equal(before.number, M.reduceArcana(7 + 9 + 9)); assert.equal(onDay.number, M.reduceArcana(7 + 9 + 10));
+assert.equal(M.calculateDestinyMatrix('2000-02-29', new Date(2027, 1, 28)).yearEnergy.year, 2026);
+assert.equal(M.calculateDestinyMatrix('2000-02-29', new Date(2027, 2, 1)).yearEnergy.year, 2027);
+console.log('decision tests passed');

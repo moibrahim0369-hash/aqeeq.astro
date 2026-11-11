@@ -66,10 +66,12 @@
   ];
   var SGT = ['مبادر', 'ثابت', 'متحرك الفكر', 'حنون', 'واثق', 'دقيق', 'متوازن', 'عميق', 'باحث', 'جاد', 'مستقل', 'حالم'];
   var D = [['d9', 'التقسيم التاسع D9', 'عمق العلاقات والقدر الروحي', 9], ['d10', 'التقسيم العاشر D10', 'المهنة والمكانة', 10], ['d7', 'التقسيم السابع D7', 'الأبناء والإبداع', 7]];
-  var PL = [['sun', 'الشمس'], ['moon', 'القمر'], ['mars', 'المريخ'], ['mercury', 'عطارد'], ['jupiter', 'المشتري'], ['venus', 'الزهرة'], ['saturn', 'زحل'], ['truenode', 'راهو']];
+  var PL = [['sun', 'الشمس'], ['moon', 'القمر'], ['mars', 'المريخ'], ['mercury', 'عطارد'], ['jupiter', 'المشتري'], ['venus', 'الزهرة'], ['saturn', 'زحل'], ['node', 'راهو']];
   function norm(x) { return ((x % 360) + 360) % 360; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function body(ch, k) { var l = ch.bodies || []; for (var i = 0; i < l.length; i++) if (String(l[i].key).toLowerCase() === k || (k === 'truenode' && l[i].key === 'node')) return l[i]; return null; }
+  function body(ch, k) { var l = ch.bodies || []; for (var i = 0; i < l.length; i++) if (String(l[i].key).toLowerCase() === k) return l[i];
+    /* راهو وكيتو بالعقدة المتوسطة (المعيار الكلاسيكي)؛ الحقيقية احتياط فقط لو المتوسطة غير موجودة */
+    if (k === 'node') return body(ch, 'truenode'); return null; }
   function div(lon, n) {
     var sg = Math.floor(norm(lon) / 30), pos = norm(lon) % 30, part = Math.floor(pos / (30 / n));
     var start;
@@ -101,7 +103,7 @@
     var ds = dashas(moon.lon, birthMs), cm = cur(ds, now), ca = cur(antars(cm), now);
     var asc = ch.known ? Math.floor(ch.asc / 30) : null;
     var hs = function (b) { return asc === null || !b ? null : ((Math.floor(b.lon / 30) - asc + 12) % 12); };
-    var lordKey = ['truenode', 'venus', 'sun', 'moon', 'mars', 'truenode', 'jupiter', 'saturn', 'mercury'][ca.lord];
+    var lordKey = ['node', 'venus', 'sun', 'moon', 'mars', 'node', 'jupiter', 'saturn', 'mercury'][ca.lord];
     var lb = body(ch, lordKey); if (lb && ca.lord === 0) lb = { lon: norm(lb.lon + 180) };
     var lh = hs(lb);
     var yr = '<p>أنت الآن في فترة ' + LORDS[cm.lord] + ' الكبرى، وفي داخلها فترة ' + LORDS[ca.lord] + ' الصغرى، من ' + dt(ca.s) + ' إلى ' + dt(ca.e) + '.</p><p>' + LT[ca.lord] + '</p>';
