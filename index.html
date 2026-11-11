@@ -58,6 +58,7 @@
 <link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
 <link rel="stylesheet" href="assets/css/page-art.css?v=20261116p">
 <link rel="stylesheet" href="assets/css/lifepath-final.css?v=20261117c">
+<link rel="stylesheet" href="assets/css/lifepath-compat.css?v=20261111a">
 <link rel="stylesheet" href="assets/css/site-pages.css?v=20261118b">
 <link rel="stylesheet" href="assets/css/date-time-selects.css?v=20261112a">
 <link rel="stylesheet" href="assets/css/natal-dashboard.css?v=20261109a">
@@ -649,10 +650,6 @@
   <p class="intro">هل تشعر أنك تبذل طاقة هائلة في اتجاه، بينما صوت خفي يخبرك أن وجهتك الحقيقية في مكان آخر؟ تاريخ ميلادك يحمل شفرة اتجاهك الأكبر: إيقاع سنواتك ومحطات التحول والرسالة التي جئت لتؤديها.</p>
 </div>
 <div class="lpx-tabbox" id="lpx-tabbox" data-tab="discover">
-<div class="lpx-tabs" id="lp-start" role="tablist" aria-label="نوع الحساب">
-  <button class="lpx-tab is-active" id="lp-start-discover" type="button" role="tab" aria-selected="true" aria-controls="lpform"><span>قراءة فردية</span></button>
-  <button class="lpx-tab" id="lp-start-compare" type="button" role="tab" aria-selected="false" aria-controls="lpcompat"><span>توافق المسارات</span></button>
-</div>
 <form class="cform lpx-card" id="lpform" novalidate="">
 <span class="lpx-corner lpx-c1" aria-hidden="true"></span><span class="lpx-corner lpx-c2" aria-hidden="true"></span>
 <div class="field"><label for="lp-name"><span class="lpx-fi"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/></svg></span>الاسم (اختياري)</label><input autocomplete="off" id="lp-name" maxlength="40" placeholder="اكتب اسمك لعرض قراءة الاسم مع مسار الحياة" type="text"/></div>
@@ -661,15 +658,6 @@
 <p class="ferr" hidden="" id="lperr" role="alert"></p>
 <button class="btn" type="submit"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15.500 8.500-2 5-5 2 2-5z"/></svg><span>اكتشف شفرة مسارك الآن</span></button>
 </form>
-<div class="lpx-compat" id="lpcompat" role="tabpanel" aria-labelledby="lp-start-compare">
-<form id="synastry-form" class="syn-form" novalidate>
-<div class="syn-person"><h3>٠١ / الطرف الأول</h3><div class="field"><label for="syn-name-a">الاسم</label><input id="syn-name-a" maxlength="80" autocomplete="name" required placeholder="اسم الطرف الأول"></div><div class="field"><label for="syn-gender-a">الجنس (اختياري)</label><select id="syn-gender-a" data-gender-select data-gender-group="syn-a"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-a">تاريخ الميلاد</label><input id="syn-date-a" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
-<div class="lps-join" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke-width="1.4"><circle cx="24" cy="32" r="14" stroke="#70263F"/><circle cx="40" cy="32" r="14" stroke="#8E7E9E"/><circle cx="32" cy="32" r="2.500" fill="#B78A52" stroke="none"/></svg></div>
-<div class="syn-person"><h3>٠٢ / الطرف الثاني</h3><div class="field"><label for="syn-name-b">الاسم</label><input id="syn-name-b" maxlength="80" autocomplete="off" required placeholder="اسم الطرف الثاني"></div><div class="field"><label for="syn-gender-b">الجنس (اختياري)</label><select id="syn-gender-b" data-gender-select data-gender-group="syn-b"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-b">تاريخ الميلاد</label><input id="syn-date-b" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
-<div class="field syn-rel"><label for="syn-type">نوع العلاقة</label><select id="syn-type" required><option value="romantic">عاطفية / زواج</option><option value="family">أهل / إخوة</option><option value="business">عمل / شراكة مهنية</option></select></div>
-<p id="syn-error" class="ferr" role="alert" hidden></p><button class="btn" type="submit"><span>حساب توافق المسارات</span><svg viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" width="30" height="19"><circle cx="11" cy="10" r="7.500"/><circle cx="21" cy="10" r="7.500"/></svg></button>
-</form><div id="syn-result" class="syn-result" aria-live="polite" hidden></div>
-</div>
 </div>
 <div class="lpx-after">
 <div aria-live="polite" class="result" hidden="" id="lpresult" data-view-result="lifepath"></div>
@@ -742,6 +730,37 @@
 </section>
 </div>
 </aside></div>
+</section>
+<section class="sec lpx lpc" id="lifepath-compat">
+<div class="wrap">
+<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
+<div class="aq-section-topbar">
+  <a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a>
+  <div class="aq-section-quick-links">
+    <a href="#chart" class="aq-section-pill">خريطة الميلاد</a>
+    <a href="#matrix" class="aq-section-pill">مصفوفة القدر</a>
+    <a href="#lifepath" class="aq-section-pill">مسار الحياة</a>
+    <a href="#lifepath-compat" class="aq-section-pill active">توافق المسارات</a>
+  </div>
+</div>
+<div class="lpx-wrap">
+<div class="center lpx-head">
+  <nav aria-label="مسار التنقل"><ol class="lpj-crumb"><li><a href="#home">الرئيسية</a></li><li><a href="#relationships">التوافق</a></li><li aria-current="page">توافق مسارات الحياة</li></ol></nav>
+  <span class="eyebrow" dir="ltr">AQEQ ASTRO · LIFE PATH COMPATIBILITY</span>
+  <h2>توافق مسارات الحياة</h2>
+  <p class="intro">لكل شخص إيقاع داخلي يتحرك به، وحين يلتقي إيقاعان تظهر مساحات تناغم ومساحات احتكاك. أدخل تاريخ ميلاد الطرفين لترى كيف يلتقي مساراكما.</p>
+</div>
+<div class="lpx-compat" id="lpcompat">
+<form id="synastry-form" class="syn-form" novalidate>
+<div class="syn-person"><h3>٠١ / الطرف الأول</h3><div class="field"><label for="syn-name-a">الاسم</label><input id="syn-name-a" maxlength="80" autocomplete="name" required placeholder="اسم الطرف الأول"></div><div class="field"><label for="syn-gender-a">الجنس (اختياري)</label><select id="syn-gender-a" data-gender-select data-gender-group="syn-a"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-a">تاريخ الميلاد</label><input id="syn-date-a" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
+<div class="lps-join" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke-width="1.4"><circle cx="24" cy="32" r="14" stroke="#70263F"/><circle cx="40" cy="32" r="14" stroke="#8E7E9E"/><circle cx="32" cy="32" r="2.500" fill="#B78A52" stroke="none"/></svg></div>
+<div class="syn-person"><h3>٠٢ / الطرف الثاني</h3><div class="field"><label for="syn-name-b">الاسم</label><input id="syn-name-b" maxlength="80" autocomplete="off" required placeholder="اسم الطرف الثاني"></div><div class="field"><label for="syn-gender-b">الجنس (اختياري)</label><select id="syn-gender-b" data-gender-select data-gender-group="syn-b"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-b">تاريخ الميلاد</label><input id="syn-date-b" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
+<div class="field syn-rel"><label for="syn-type">نوع العلاقة</label><select id="syn-type" required><option value="romantic">عاطفية / زواج</option><option value="family">أهل / إخوة</option><option value="business">عمل / شراكة مهنية</option></select></div>
+<p id="syn-error" class="ferr" role="alert" hidden></p><button class="btn" type="submit"><span>حساب توافق المسارات</span><svg viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" width="30" height="19"><circle cx="11" cy="10" r="7.500"/><circle cx="21" cy="10" r="7.500"/></svg></button>
+</form><div id="syn-result" class="syn-result" aria-live="polite" hidden></div>
+</div>
+</div>
+</div>
 </section>
 <section class="sec ntx" id="chart">
 <div class="wrap">
@@ -4753,34 +4772,8 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     }
   }
   const lpStart = $("#lp-start"), lpForm = $("#lpform"), lpResult = $("#lpresult");
-  $("#lp-start-discover").addEventListener("click", () => {
-    if (window.setLpTab) window.setLpTab("discover");
-    if (lpResult) { lpResult.hidden = true; lpResult.style.display = "none"; }
-    if (lpForm) { lpForm.hidden = false; lpForm.style.display = "block"; }
-    lpForm.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
-    $("#lp-date").focus({preventScroll:true});
-  });
-  /* تبويبات مسار الحياة: قراءة فردية / توافق المسارات داخل صندوق إدخال واحد */
-  const lpBox = $("#lpx-tabbox");
-  function setLpTab(tab, opts) {
-    if (!lpBox) return;
-    tab = tab === "compat" ? "compat" : "discover";
-    lpBox.dataset.tab = tab;
-    $("#lp-start-discover").classList.toggle("is-active", tab === "discover");
-    $("#lp-start-compare").classList.toggle("is-active", tab === "compat");
-    $("#lp-start-discover").setAttribute("aria-selected", String(tab === "discover"));
-    $("#lp-start-compare").setAttribute("aria-selected", String(tab === "compat"));
-    if (opts && opts.focus) { const f = tab === "compat" ? $("#syn-name-a") : $("#lp-date"); if (f) f.focus({preventScroll:true}); }
-  }
-  window.setLpTab = setLpTab;
-  $("#lp-start-compare").addEventListener("click", () => setLpTab("compat", {focus:true}));
-  function lpHashAlias() {
-    const h = location.hash;
-    if (h === "#life-path-synastry" || h === "#lifepath-compat") {
-      setLpTab("compat");
-      location.replace("#lifepath");
-    }
-  }
+  /* توافق المسارات صفحة مستقلة (#lifepath-compat)؛ الرابط القديم يحوّل إليها */
+  function lpHashAlias() { if (location.hash === "#life-path-synastry") location.replace("#lifepath-compat"); }
   window.addEventListener("hashchange", lpHashAlias);
   lpHashAlias();
 
