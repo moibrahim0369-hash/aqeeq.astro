@@ -54,15 +54,6 @@
         + '<article class="sp-body">' + d.b + '</article>' + nav(k) + '</div>';
       main.appendChild(s);
     });
-    var body = document.querySelector('#aqh-menu .aqn-dr-body');
-    if (body && !body.querySelector('[data-sp]')) {
-      var cap = document.createElement('p'); cap.className = 'aqn-dr-cap'; cap.setAttribute('data-sp', ''); cap.textContent = 'عن الموقع';
-      body.appendChild(cap);
-      LINKS.forEach(function (l) {
-        var a = document.createElement('a'); a.href = '#' + l[0]; a.setAttribute('data-sp', '');
-        a.innerHTML = svg(PAGES[l[0]].ic) + '<span>' + l[1] + '</span>'; body.appendChild(a);
-      });
-    }
     var fn = document.querySelector('.fc-foot nav');
     [].forEach.call(document.querySelectorAll('[data-fc-legal]'), function (a) {
       var k = a.getAttribute('data-fc-legal'); a.removeAttribute('data-fc-legal'); a.setAttribute('href', '#' + k);
