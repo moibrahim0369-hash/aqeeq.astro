@@ -109,3 +109,11 @@ html body nav.aqh-menu .aqn-acc-panel{padding:2px 8px 8px;border-top:1px solid v
 html body nav.aqh-menu .aqn-acc-panel[hidden]{display:none}
 html body nav.aqh-menu .aqn-acc-panel a{padding:10px 12px!important;font-size:.95rem!important}
 html.aqn-lock .cmp-fab{opacity:0!important;pointer-events:none!important}
+
+/* مسافات أريح للمس داخل القائمة */
+html body nav.aqh-menu .aqn-dr-body{padding:10px 14px 18px}
+html body nav.aqh-menu .aqn-dr-body>a{gap:16px;padding:14px 14px!important;min-height:48px}
+html body nav.aqh-menu .aqn-acc{margin:8px 0}
+html body nav.aqh-menu .aqn-acc-btn{padding:15px 16px;min-height:50px;gap:14px}
+html body nav.aqh-menu .aqn-acc-panel{padding:6px 10px 10px}
+html body nav.aqh-menu .aqn-acc-panel a{padding:13px 14px!important;min-height:46px;margin:3px 0}
