@@ -82,3 +82,55 @@ assert.equal(M.calculateDestinyMatrix('2000-02-29', new Date(2027, 1, 28)).yearE
 assert.equal(M.calculateDestinyMatrix('2000-02-29', new Date(2027, 2, 1)).yearEnergy.year, 2027);
 console.log('decision tests passed');
 assert.equal(before.label, '2025–2026'); assert.equal(onDay.label, '2026–2027');
+
+// ===== التقسيمات الأساسية D1 D2 D7 D9 D10 D12 D60: مقارنة بصياغة مستقلة لقواعد باراشارا على كامل الدائرة =====
+const START_BY_ELEMENT = [0, 9, 6, 3]; // نار→الحمل، تراب→الجدي، هواء→الميزان، ماء→السرطان
+function refVarga(lon, n) {
+  const sg = Math.floor(lon / 30), pos = lon - sg * 30, odd = sg % 2 === 0;
+  const part = Math.min(n - 1, Math.floor(pos * n / 30));
+  if (n === 1) return sg;
+  if (n === 2) return odd ? (pos < 15 ? 4 : 3) : (pos < 15 ? 3 : 4);
+  if (n === 7) return ((odd ? sg : sg + 6) + part) % 12;
+  if (n === 9) return (START_BY_ELEMENT[sg % 4] + part) % 12;
+  if (n === 10) return ((odd ? sg : sg + 8) + part) % 12;
+  return (sg + part) % 12; // D12, D60
+}
+let sweep = 0;
+for (const n of [1, 2, 7, 9, 10, 12, 60]) for (let k = 0; k < 36000; k++) {
+  const lon = k / 100 + 0.003; // يتجنب حدود الأقسام بالضبط
+  assert.equal(V.div(lon, n), refVarga(lon, n), 'D' + n + ' at ' + lon); sweep++;
+}
+// قيم كلاسيكية صريحة
+assert.equal(V.div(10, 2), 4); assert.equal(V.div(20, 2), 3);     // الحمل: الأسد ثم السرطان
+assert.equal(V.div(40, 2), 3); assert.equal(V.div(50, 2), 4);     // الثور: السرطان ثم الأسد
+assert.equal(V.div(0.1, 12), 0); assert.equal(V.div(29, 12), 11); assert.equal(V.div(35, 12), 3);
+assert.equal(V.div(0.2, 60), 0); assert.equal(V.div(29.9, 60), 11); assert.equal(V.div(130, 60), 0);
+const SGN = ['Ar', 'Ta', 'Ge', 'Cn', 'Le', 'Vi', 'Li', 'Sc', 'Sg', 'Cp', 'Aq', 'Pi'];
+for (const r of REF) console.log(r.id + ' Moon: ' + [1, 2, 7, 9, 10, 12, 60].map(n => 'D' + n + '=' + SGN[V.div(r.moon, n)]).join(' '));
+console.log('varga sweep checks: ' + sweep);
+
+// ===== شجرة فيمشوتاري: مها داشا → أنتار داشا على التواريخ الأربعة =====
+const YRS = [7, 20, 6, 10, 7, 18, 16, 19, 17];
+for (const r of REF) {
+  const b = Date.parse(r.utc), md = V.dashas(r.moon, b);
+  assert.equal(md[0].lord, Math.floor(r.moon / seg) % 9, r.id + ': first lord rules the Moon nakshatra');
+  assert.ok(md[0].s <= b && b < md[0].e, r.id + ': birth inside first maha dasha');
+  for (let i = 0; i < 9; i++) {
+    const m = md[i];
+    assert.equal(m.lord, (md[0].lord + i) % 9);
+    assert.ok(Math.abs((m.e - m.s) / DAY - YRS[m.lord]) < 1e-9, r.id + ': maha length');
+    if (i) assert.equal(m.s, md[i - 1].e, r.id + ': maha dashas contiguous');
+    const an = V.antars(m);
+    assert.equal(an.length, 9); assert.equal(an[0].lord, m.lord, 'antar starts with the maha lord'); assert.equal(an[0].s, m.s);
+    for (let j = 0; j < 9; j++) {
+      assert.equal(an[j].lord, (m.lord + j) % 9);
+      assert.ok(Math.abs((an[j].e - an[j].s) / DAY - YRS[m.lord] * YRS[an[j].lord] / 120) < 1e-6, r.id + ': antar length');
+      if (j) assert.ok(Math.abs(an[j].s - an[j - 1].e) < 1, r.id + ': antars contiguous');
+    }
+    assert.ok(Math.abs(an[8].e - m.e) < 1000, r.id + ': antars fill the maha dasha');
+  }
+  assert.ok(Math.abs((md[8].e - md[0].s) / DAY - 120) < 1e-9);
+  const iso = t => new Date(t).toISOString().slice(0, 10);
+  console.log(r.id + ' dasha: ' + md.slice(0, 3).map(m => ['Ke', 'Ve', 'Su', 'Mo', 'Ma', 'Ra', 'Ju', 'Sa', 'Me'][m.lord] + ' ' + iso(m.s) + '→' + iso(m.e)).join(' | '));
+}
+console.log('varga + dasha tree tests passed');
