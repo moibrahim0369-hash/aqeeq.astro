@@ -52,8 +52,13 @@
       s.innerHTML = '<div class="wrap sp-wrap"><a class="sp-back" href="#home">' + svg('<path d="M9 6l6 6-6 6"/>') + '<span>الرئيسية</span></a>'
         + '<header class="sp-head"><span class="sp-ic">' + svg(d.ic) + '</span><h1>' + d.t + '</h1><p>' + d.sub + '</p></header>'
         + '<article class="sp-body">' + d.b + '</article>' + nav(k) + '</div>';
-      main.appendChild(s);
+      var x = document.createElement('button'); x.type = 'button'; x.className = 'sp-x'; x.setAttribute('aria-label', 'إغلاق');
+      x.innerHTML = svg('<path d="M6 6l12 12M18 6L6 18"/>');
+      x.addEventListener('click', function () { if (window.__spNav) history.back(); else location.hash = '#home'; });
+      s.insertBefore(x, s.firstChild);
+      (/^(terms|privacy|disclaimer)$/.test(k) ? document.body : main).appendChild(s);
     });
+    window.addEventListener('hashchange', function () { window.__spNav = true; });
     var fn = document.querySelector('.fc-foot nav');
     [].forEach.call(document.querySelectorAll('[data-fc-legal]'), function (a) {
       var k = a.getAttribute('data-fc-legal'); a.removeAttribute('data-fc-legal'); a.setAttribute('href', '#' + k);

@@ -17,3 +17,13 @@ html body .sp-nav,html body .sp-foot{display:flex;flex-wrap:wrap;gap:8px 14px;ju
 html body .sp-nav a,html body .sp-foot a{font-size:.88rem;color:#8a6a4a;text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid rgba(193,154,98,.35)}
 html body .sp-nav a.on{background:#70263F;color:#fff;border-color:#70263F}
 html body .sp-foot{margin:12px 0}
+
+/* ---- الشروط والخصوصية وإخلاء المسؤولية: نافذة كاملة فوق كل شيء ---- */
+html body section#terms.sp-page:target,html body section#privacy.sp-page:target,html body section#disclaimer.sp-page:target{position:fixed!important;inset:0!important;z-index:4000!important;display:block!important;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;scroll-behavior:smooth;background:linear-gradient(180deg,#FBF6EE,#F1E6D6)!important;animation:none!important}
+html:has(#terms.sp-page:target),html:has(#privacy.sp-page:target),html:has(#disclaimer.sp-page:target){overflow:hidden}
+html body .sp-x{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));inset-inline-start:14px;z-index:4010;width:44px;height:44px;display:none;place-items:center;border:1px solid rgba(112,38,63,.22);border-radius:14px;background:rgba(251,246,238,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#70263f;cursor:pointer;box-shadow:0 6px 18px rgba(112,38,63,.14)}
+html body .sp-x svg{width:22px;height:22px}
+html body section.sp-page:target .sp-x{display:grid}
+html body section#terms.sp-page:target .sp-wrap,html body section#privacy.sp-page:target .sp-wrap,html body section#disclaimer.sp-page:target .sp-wrap{padding-top:78px!important;padding-bottom:calc(48px + env(safe-area-inset-bottom,0px))!important}
+html body section#terms.sp-page:target .sp-back,html body section#privacy.sp-page:target .sp-back,html body section#disclaimer.sp-page:target .sp-back{display:none}
+html:has(#terms.sp-page:target) .cmp-fab,html:has(#privacy.sp-page:target) .cmp-fab,html:has(#disclaimer.sp-page:target) .cmp-fab{display:none!important}
