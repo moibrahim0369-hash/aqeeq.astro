@@ -90,7 +90,7 @@
 <link rel="stylesheet" href="assets/css/lifepath-vivid.css?v=20261106i">
 <link rel="stylesheet" href="assets/css/sky-world-chart.css?v=20261107e">
 <link rel="stylesheet" href="assets/css/sky-banner.css?v=20261106m">
-<link rel="stylesheet" href="assets/css/sky-signs-polish.css?v=20261107c">
+<link rel="stylesheet" href="assets/css/sky-signs-polish.css?v=20261119a">
 <link rel="stylesheet" href="assets/css/home-hub.css?v=20261107c">
 <link rel="stylesheet" href="assets/css/home-polish2.css?v=20261107a">
 <link rel="stylesheet" href="assets/css/page-unify.css?v=20261107b">
@@ -3908,10 +3908,46 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       return `<section class="zp-sec zp-trs"><h4 class="zp-h">${ZI.orbit}<span>العبورات الحالية وتأثيرها عليك</span></h4><p class="zp-sub">دي حركة الكواكب الحقيقية في السما دلوقتي، مقروءة من بيوت برجك. افتح أي عبور لتشوف تأثيره بالتفصيل.</p>${glance}<div class="zd-stack">${items}</div></section>`;
     } catch (e) { return ""; }
   }
+  /* نافذة زجاجية سفلية لقراءة البرج (نفس نمط نوافذ مسار الحياة) */
+  let sgSheet = null, sgBody = null, sgCur = 0;
+  const sgMark = document.createComment("sg-panel"); panel.parentNode.insertBefore(sgMark, panel);
+  function sgClose() {
+    if (!sgSheet || sgSheet.hidden) return;
+    const sh = sgSheet; sh.classList.add("is-closing");
+    setTimeout(() => { sh.hidden = true; sh.classList.remove("is-closing"); document.documentElement.classList.remove("aqm-sheet-open"); sgMark.parentNode.insertBefore(panel, sgMark); }, 230);
+  }
+  /* ينسخ قواعد #signs لنطاق النافذة حتى تحتفظ القراءة بنفس تنسيق الصفحة */
+  function sgScopeCss() {
+    const st = document.createElement("style"); document.head.appendChild(st); const out = st.sheet, VARS = [];
+    const conv = t => t.split(",").map(x => x.trim()).filter(x => /#signs[\w.\-:]*\s+\S/.test(x)).map(x => x.replace(/(?:section)?#signs[\w.\-:]*/g, "#sgs-sheet")).join(",");
+    const walk = (rules, tgt) => { for (const r of rules) {
+      try {
+        if (r.type === 1 && r.selectorText && r.selectorText.indexOf("#signs") > -1) {
+          const sel = /#panel\s*$/.test(r.selectorText) ? "" : conv(r.selectorText); if (sel) tgt.insertRule(sel + "{" + r.style.cssText + "}", tgt.cssRules.length);
+          else { for (let k = 0; k < r.style.length; k++) { const n = r.style[k]; if (n.indexOf("--") === 0) VARS.push(n + ":" + r.style.getPropertyValue(n)); } }
+        } else if (r.type === 4) {
+          const before = tgt.cssRules.length; tgt.insertRule("@media " + r.conditionText + "{}", before);
+          walk(r.cssRules, tgt.cssRules[before]);
+        }
+      } catch (e) {}
+    } };
+    [].forEach.call(document.styleSheets, ss => { try { if (ss.ownerNode && ss.ownerNode.tagName === "LINK" && /sky-|signs|zodiac|page-art|aqeeq-design|lifepath|field-cards|internal-pages|cosmic/.test(ss.href || "")) walk(ss.cssRules, out); else if (ss.ownerNode && ss.ownerNode.tagName === "STYLE" && ss.ownerNode !== st) walk(ss.cssRules, out); } catch (e) {} });
+    if (VARS.length) out.insertRule("#sgs-sheet{" + VARS.join(";") + "}", out.cssRules.length);
+  }
+  function sgOpen(i) {
+    if (!sgSheet) {
+      sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
+      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="قراءة البرج"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>البرج التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
+      document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
+      sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) selectSign((sgCur + 1) % 12); });
+      sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
+    }
+    sgCur = i; sgBody.appendChild(panel); sgBody.scrollTop = 0;
+    sgSheet.hidden = false; document.documentElement.classList.add("aqm-sheet-open");
+  }
+  window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); });
   function selectSign(i) {
     const s = SIGNS[i], f = FORECASTS[i];
-    signsSec.classList.add("signs-detail");
-    if (signsSec.scrollTo) signsSec.scrollTo(0, 0);
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
     panel.innerHTML = `<header class="zp-hero"><div class="zp-id"><span class="zp-glyph" aria-hidden="true">${gl(s.g)}</span><div><h3>${s.n}</h3><p class="dates">${s.d}</p>
         <div class="zp-tags"><span>برج ${ELEMENTS[s.el].adj}</span><span>${MODALITIES[s.mod].n}</span><span>يحكمه ${PLANETS[s.ruler].n}</span></div></div></div>
@@ -3926,6 +3962,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     panel.querySelectorAll('.sec-ico').forEach(b => b.addEventListener('click', () => openSignSec(i, +b.dataset.sec)));
     signIntro(i);
     openSignSec(i, 0);
+    sgOpen(i);
   }
   SIGNS.forEach((s, i) => {
     const b = document.createElement("button"); b.type = "button"; b.className = "sign";
