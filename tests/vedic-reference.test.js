@@ -81,3 +81,4 @@ assert.equal(before.number, M.reduceArcana(7 + 9 + 9)); assert.equal(onDay.numbe
 assert.equal(M.calculateDestinyMatrix('2000-02-29', new Date(2027, 1, 28)).yearEnergy.year, 2026);
 assert.equal(M.calculateDestinyMatrix('2000-02-29', new Date(2027, 2, 1)).yearEnergy.year, 2027);
 console.log('decision tests passed');
+assert.equal(before.label, '2025–2026'); assert.equal(onDay.label, '2026–2027');

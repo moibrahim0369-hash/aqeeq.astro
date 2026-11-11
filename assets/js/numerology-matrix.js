@@ -1691,7 +1691,7 @@
             <span class="aqm-meta-pill">الميلاد: ${dateStr}</span>
             <span class="aqm-meta-pill">المركز: ${getInfo(P.anchors.E).name} (${P.anchors.E})</span>
             <span class="aqm-meta-pill">الجوهر: ${getInfo(P.anchors.A).name} (${P.anchors.A})</span>
-            <span class="aqm-meta-pill">سنة ${P.yearEnergy.year}: طاقة ${P.yearEnergy.number}</span>
+            <span class="aqm-meta-pill">سنة ${P.yearEnergy.label || P.yearEnergy.year}: طاقة ${P.yearEnergy.number}</span>
           </div>
           <div class="aqm-actions">
             <button class="aqm-btn" type="button" id="aqm-btn-edit">تعديل البيانات</button>
