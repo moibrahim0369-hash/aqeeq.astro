@@ -22,3 +22,6 @@
 .cmp-form input{flex:1;min-width:0;padding:9px 12px;border-radius:999px;border:1px solid rgba(183,138,82,.6);background:#fff;font:500 .86rem 'Cairo',sans-serif;color:#3d2a2c}
 .cmp-form button{width:38px;height:38px;border-radius:50%;border:0;background:#642B3C;color:#fff;display:grid;place-items:center;cursor:pointer;padding:0}.cmp-form button svg{width:17px;height:17px}
 @media(prefers-reduced-motion:reduce){.cmp-fab{animation:none}.cmp-panel{transition:none}}
+
+html body .cmp-fab{transition:transform .25s ease,opacity .25s ease}
+html body .cmp-fab.cmp-fab-hide{transform:translateY(24px)!important;opacity:0!important;pointer-events:none!important}
