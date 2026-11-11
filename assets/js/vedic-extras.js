@@ -94,7 +94,7 @@
   function table(head, rows) { return '<div class="eam-table-wrap"><table class="eam-table"><thead><tr>' + head.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' + rows.join('') + '</tbody></table></div>'; }
   function render(result, ch, natal, helpers) {
     var moon = body(ch, 'moon'); if (!moon) return;
-    var now = Date.now(), birthMs = (ch.jde - 2440587.5) * 864e5;
+    var now = Date.now(), birthMs = (natal && isFinite(natal.utcMs)) ? natal.utcMs : (ch.jde - 2440587.5) * 864e5;
     var n = Math.floor(moon.lon / (360 / 27)), pada = Math.floor((moon.lon % (360 / 27)) / (360 / 108)) + 1, nk = NK[n];
     var h = '';
     h += '<section class="eam-card vx"><h4>منزلك القمري</h4><p><b>' + nk[0] + '</b> · القدم ' + pada + ' · قمرك في برج ' + SG[Math.floor(moon.lon / 30)] + ' · حاكم المنزل ' + LORDS[n % 9] + '</p><p>' + nk[1] + '</p></section>';
