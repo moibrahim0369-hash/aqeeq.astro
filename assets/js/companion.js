@@ -64,6 +64,16 @@
     document.body.appendChild(fab); document.body.appendChild(panel);
     log = panel.querySelector('.cmp-log'); input = panel.querySelector('input');
     fab.addEventListener('click', function () { panel.hidden ? open() : close(); });
+    /* يختفي عند النزول ويظهر عند الصعود، حتى لا يغطي النص */
+    var lastY = {}, tick = false;
+    document.addEventListener('scroll', function (e) {
+      var t = e.target === document ? window : e.target, k = t === window ? 'w' : (t.id || t.className || 'x');
+      var y = t === window ? window.scrollY : t.scrollTop, d = y - (lastY[k] || 0);
+      if (Math.abs(d) < 8) return; lastY[k] = y;
+      if (!panel.hidden) return;
+      fab.classList.toggle('cmp-fab-hide', d > 0 && y > 60);
+    }, { passive: true, capture: true });
+    window.addEventListener('hashchange', function () { fab.classList.remove('cmp-fab-hide'); });
     panel.querySelector('.cmp-x').addEventListener('click', close);
     panel.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); var v = input.value; input.value = ''; ask(v); });
     panel.addEventListener('click', function (e) { if (e.target.closest('[data-cmp-go]')) { e.preventDefault(); go(e.target.closest('[data-cmp-go]').getAttribute('href')); } });
