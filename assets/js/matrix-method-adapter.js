@@ -318,7 +318,7 @@
       },
       intermediate: { A2, B2, C2, D2, D3, F2, G2, H2, I2 },
       ageMap,
-      yearEnergy: { year: currentYear, number: yearEnergy },
+      yearEnergy: { year: currentYear, endYear: currentYear + 1, label: currentYear + '–' + (currentYear + 1), number: yearEnergy },
       chakras: { rows: chakras, totals },
       ancestralPrograms: {
         fatherLine: { top: F, bottom: H, combined: fatherCombined },
