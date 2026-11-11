@@ -32,6 +32,24 @@
     menu.addEventListener('keydown', function (e) { trap(menu, e); });
     var sb = $('[data-aqn-search]', menu), hs = $('[data-aqh-search]');
     if (sb && hs) sb.addEventListener('click', function () { closeDrawer(); setTimeout(function () { hs.click(); }, 280); });
+    /* أقسام منسدلة: قسم واحد مفتوح، ويُفتح تلقائيًا القسم الذي فيه الصفحة الحالية */
+    var accs = $$('.aqn-acc', menu);
+    var setAcc = function (acc, open) {
+      var b = $('.aqn-acc-btn', acc), p = $('.aqn-acc-panel', acc);
+      b.setAttribute('aria-expanded', open ? 'true' : 'false'); p.hidden = !open;
+    };
+    accs.forEach(function (acc) {
+      $('.aqn-acc-btn', acc).addEventListener('click', function () {
+        var willOpen = $('.aqn-acc-panel', acc).hidden;
+        accs.forEach(function (o) { setAcc(o, o === acc && willOpen); });
+      });
+    });
+    var autoOpen = function () {
+      var cur = null;
+      accs.forEach(function (acc) { var on = !!$('a.on', acc); acc.classList.toggle('has-on', on); if (on) cur = acc; });
+      accs.forEach(function (o) { setAcc(o, o === cur); });
+    };
+    new MutationObserver(function () { if (!menu.hidden) autoOpen(); }).observe(menu, { attributes: true, attributeFilter: ['hidden'] });
     var lb = $('[data-aqn-lang]', menu), lt = $('#aq-lang-toggle');
     if (lb && lt) lb.addEventListener('click', function () { lt.click(); });
   }

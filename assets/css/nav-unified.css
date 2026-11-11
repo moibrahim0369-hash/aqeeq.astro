@@ -97,3 +97,15 @@ html.aqn-lock,html.aqn-lock body{overflow:hidden}
   html body .aqh-header .aqh-icon{width:30px;height:30px}
   html body .aqh-header .aqh-tools{gap:4px!important}
 }
+
+/* ---------- القائمة الجانبية: أقسام منسدلة ---------- */
+html body nav.aqh-menu .aqn-acc{margin:4px 0;border:1px solid var(--aqn-line);border-radius:14px;background:#fff;overflow:hidden}
+html body nav.aqh-menu .aqn-acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 14px;border:0;background:none;color:var(--aqn-ink);font:600 1rem 'IBM Plex Sans Arabic',system-ui,sans-serif;cursor:pointer;text-align:start}
+html body nav.aqh-menu .aqn-acc-btn svg{width:20px;height:20px;flex:none;color:var(--aqn-burg);transition:transform .25s}
+html body nav.aqh-menu .aqn-acc-btn[aria-expanded=true]{color:var(--aqn-burg)}
+html body nav.aqh-menu .aqn-acc-btn[aria-expanded=true] svg{transform:rotate(180deg)}
+html body nav.aqh-menu .aqn-acc.has-on .aqn-acc-btn{background:rgba(112,38,63,.05)}
+html body nav.aqh-menu .aqn-acc-panel{padding:2px 8px 8px;border-top:1px solid var(--aqn-line)}
+html body nav.aqh-menu .aqn-acc-panel[hidden]{display:none}
+html body nav.aqh-menu .aqn-acc-panel a{padding:10px 12px!important;font-size:.95rem!important}
+html.aqn-lock .cmp-fab{opacity:0!important;pointer-events:none!important}
