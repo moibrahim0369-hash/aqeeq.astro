@@ -114,7 +114,7 @@
   /**
    * حساب مصفوفة القدر المتكاملة وفق مدرسة Natalia Ladini 22 Arcana
    */
-  function calculateDestinyMatrix(birthDate) {
+  function calculateDestinyMatrix(birthDate, today) {
     const { year, month, day } = normalizeBirthDate(birthDate);
 
     // 1. الأركان الأربعة الأساسية (المربع الشخصي / Personal Diamond):
@@ -232,7 +232,10 @@
     };
 
     // 9. طاقة السنة الحالية:
-    const currentYear = new Date().getFullYear();
+    // طاقة شخصية تبدأ من عيد الميلاد حتى عيد الميلاد التالي (وليست بالسنة التقويمية من 1 يناير).
+    const now = today instanceof Date && !Number.isNaN(today.getTime()) ? today : new Date();
+    const beforeBirthday = now.getMonth() + 1 < month || (now.getMonth() + 1 === month && now.getDate() < day);
+    const currentYear = now.getFullYear() - (beforeBirthday ? 1 : 0);
     const yearEnergy = reduceArcana(A + B + reduceArcana(digitSum(currentYear)));
 
     // 10. جدول الشاكرات السبع (7 Chakras Energy Card).
