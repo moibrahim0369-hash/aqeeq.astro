@@ -196,7 +196,10 @@
   }
   function ayanamsa(jde){
     const T=(jde-2415020)/36525;
-    return (22*3600+27*60+37.65+5025.75*T+1.11*T*T)/3600;
+    const mean=(22*3600+27*60+37.65+5025.75*T+1.11*T*T)/3600;
+    // المواقع الاستوائية ظاهرية (فيها ترنّح خط الطول)، فيُضاف الترنّح للأيانامشا ليطابق الموضع النجمي مرجع Swiss Ephemeris.
+    let dpsi=0;try{const n=Astro._nut((jde-2451545)/36525);if(n&&Number.isFinite(n.dpsi))dpsi=n.dpsi;}catch(_){}
+    return mean+dpsi;
   }
   function siderealChart(natal){
     const offset=ayanamsa(natal.ch.jde),ch={...natal.ch,ayanamsa:offset,sidereal:true};
@@ -233,7 +236,7 @@
         renderNodes(result,natal,$('#eam-date',content).value);
       }else{
         const ch=siderealChart(natal),aspects=chartAspects(ch);
-        renderChart(result,'النطاق النجمي · لاهيري','الخريطة الفيدية بالنطاق النجمي',ch,'<p class="eam-note">أيانامشا لاهيري المتوسط: '+ch.ayanamsa.toFixed(4)+'°. قد تختلف قيم الأيانامشا والتقاليد الفيدية الأخرى.</p>',aspects);
+        renderChart(result,'النطاق النجمي · لاهيري','الخريطة الفيدية بالنطاق النجمي',ch,'<p class="eam-note">أيانامشا لاهيري: '+ch.ayanamsa.toFixed(4)+'°. قد تختلف قيم الأيانامشا والتقاليد الفيدية الأخرى.</p>',aspects);
         try{window.AqVedic?.render(result,ch,natal,{saturnSign(){const now=engineChart(Date.now(),natal),s=(now.bodies||[]).find(b=>b.key==='saturn');return s?Math.floor(norm(s.lon-ayanamsa(now.jde))/30):null;}});}catch(e){console.warn(e);}
       }
       status.textContent='اكتمل الحساب. يمكنك نسخ تفاصيل الخريطة من الزر أسفل النتيجة.';
