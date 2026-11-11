@@ -24,13 +24,13 @@
    */
   function calculateAgeMap(anchors, corners) {
     const age0 = anchors.A;      // نقطة اليسار (يوم الميلاد / سن 0 وسن 80)
-    const age10 = corners.I || corners.F; // الركن العلوي الأيسر
+    const age10 = corners.F || corners.I; // الركن العلوي الأيسر F = A+B (مطابق للمحرك المعتمد matrix-method-adapter)
     const age20 = anchors.B;     // نقطة الأعلى (شهر الميلاد / سن 20)
     const age30 = corners.G;     // الركن العلوي الأيمن / سن 30
     const age40 = anchors.C;     // نقطة اليمين (سنة الميلاد / سن 40)
     const age50 = corners.H;     // الركن السفلي الأيمن / سن 50
     const age60 = anchors.D;     // نقطة الأسفل (الذيل الكارمي / سن 60)
-    const age70 = corners.F || corners.I; // الركن السفلي الأيسر / سن 70
+    const age70 = corners.I || corners.F; // الركن السفلي الأيسر I = D+A / سن 70
 
     // حساب النقاط الوسيطة (كل 5 سنوات و 2.5 سنة)
     const map = {

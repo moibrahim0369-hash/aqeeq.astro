@@ -56,7 +56,9 @@
     const eps=23.439291111*rad, ey=Y*Math.cos(eps), ez=Y*Math.sin(eps);
     const dx=X-earth.x, dy=ey-earth.y, dz=ez-earth.z;
     const eclY=dy*Math.cos(eps)+dz*Math.sin(eps);
-    return norm(Math.atan2(eclY,dx)/rad);
+    // العناصر على كسوف J2000 بينما بقية الخريطة على اعتدال التاريخ؛ نضيف المبادرة العامة حتى لا ينزاح كيرون ~0.37° في 2026.
+    const Tc=(jd-2451545)/36525, prec=(5028.796195*Tc+1.1054348*Tc*Tc)/3600;
+    return norm(Math.atan2(eclY,dx)/rad+prec);
   }
   function normalizeNatal(input) {
     return (input||[]).map(p=>{const key=canonicalBodyKey(p.key||p.name);return key?({key,name:p.name||BODY_AR[key]||key,lon:norm(p.lon ?? p.longitude),speed:Number(p.speed)||0,retro:!!p.retro}):null;}).filter(p=>p&&Number.isFinite(p.lon));
@@ -98,7 +100,7 @@
     let phaseAngle=null,illumination=null;
     if(window.Astronomy){try{phaseAngle=window.Astronomy.MoonPhase(new window.Astronomy.AstroTime(date)); illumination=window.Astronomy.Illumination(window.Astronomy.Body.Moon,new window.Astronomy.AstroTime(date)).phase_fraction;}catch(_){}}
     const moon=transits.find(p=>p.key==='Moon');
-    return {date,transits,natal,aspects,moon:{...moon,...signInfo(moon.lon),phaseAngle,illumination:illumination==null?null:Math.round(illumination*100),phaseName:phaseAngle==null?'':phaseAngle<45?'هلال متزايد':phaseAngle<135?'تربيع أول':phaseAngle<225?'أحدب متزايد':phaseAngle<315?'بدر متناقص':'هلال متناقص'},chart};
+    return {date,transits,natal,aspects,moon:{...moon,...signInfo(moon.lon),phaseAngle,illumination:illumination==null?null:Math.round(illumination*100),phaseName:phaseAngle==null?'':['محاق','هلال متزايد','تربيع أول','أحدب متزايد','بدر','أحدب متناقص','تربيع أخير','هلال متناقص'][Math.floor(((phaseAngle+22.5)%360)/45)]},chart};
   }
   const cardText = a => {
     const domain={Sun:'الهوية والاتجاه',Moon:'العاطفة والاحتياجات',Mercury:'التواصل والتفكير',Venus:'العلاقات والقيم',Mars:'الطاقة والمبادرة',Jupiter:'النمو والفرص',Saturn:'المسؤولية والحدود',Uranus:'التغيير والاستقلال',Neptune:'الخيال والحدس',Pluto:'التحول والعمق'}[a.transit.key]||'المجال الشخصي';
