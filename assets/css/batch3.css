@@ -206,3 +206,18 @@ html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d):is(:hover,:activ
 html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child:not(#_c),html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child *{opacity:1!important;color:#5E2234!important;stroke:#5E2234!important;-webkit-text-stroke:.4px #5E2234}
 html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child:not(#_c){font-size:34px!important;line-height:1}
 html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child svg{width:34px!important;height:34px!important}
+/* v7: بانر 2027 نبيتي مميز + شعاع يدور على الإطار */
+@property --b3a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes b3spin{to{--b3a:360deg}}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e){background:linear-gradient(135deg,#4A1521,#6A2038 60%,#5E2234)!important;border:1.5px solid #C5A059!important;color:#FFF6E4!important;box-shadow:0 10px 28px rgba(74,21,33,.38),inset 0 0 0 1px rgba(232,207,152,.25);padding:20px 18px!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e) b:not(#_c){color:#FFF6E4!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e) small:not(#_c){color:rgba(255,246,228,.88)!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e) em.y27-year:not(#_c):not(#_f){color:#E8CF98!important;-webkit-text-fill-color:#E8CF98!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e) .aqh-tool-ico:not(#_c){width:60px!important;height:60px!important;background:linear-gradient(135deg,#FFF0C2,#C5A059)!important;color:#5E2234!important;border:2px solid #F3DFA8!important;box-shadow:0 0 18px rgba(232,207,152,.55)}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e) .aqh-tool-ico svg{width:28px;height:28px}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e)::after{background:linear-gradient(110deg,transparent 35%,rgba(255,226,150,.28) 50%,transparent 65%)}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d):not(#_e)::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2.5px;background:conic-gradient(from var(--b3a),transparent 0 62%,#E8CF98 80%,#FFFFFF 90%,#E8CF98 96%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);mask-composite:exclude;animation:b3spin 3.2s linear infinite!important;animation-iteration-count:infinite!important;pointer-events:none}
+/* شريط الكارما: ستايل مختلف */
+html body .b3-rot-a:not(#_a):not(#_b){background:linear-gradient(180deg,#FFFFFF,#FBF3E4)!important;border:1px solid #E3CFA3!important;border-inline-start:5px solid #C5A059!important;box-shadow:0 6px 18px rgba(94,34,52,.1)!important}
+html body .b3-rot-t b:not(#_c){font-family:'Amiri',serif;font-size:17px!important}
+html body a.aqh-tool-y27 .aqh-tool-ico:not(#_a):not(#_b):not(#_c):not(#_d){flex:none!important;min-width:60px!important;max-width:60px!important;height:60px!important;border-radius:50%!important}

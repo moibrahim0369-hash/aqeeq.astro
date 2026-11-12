@@ -10,7 +10,7 @@
 
   /* ---------- 1) شريط العروض: يتبدل كل 3 ثوان ---------- */
   var ROT = [
-    { t: 'اكتشف ذيلك الكارمي', s: 'تقرير مميز: الدرس الذي يعود إليك وروشتة توازنه', href: '#karmic', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' }
+    { t: 'ما الكارما التي تحملها؟', s: 'اعرف ذيلك الكارمي من مصفوفة القدر، وما يريده منك', href: '#karmic', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' }
   ];
   function buildRot() {
     var host = $('#b3-rot'); if (!host) return; if (ROT.length < 2) host.classList.add('one');
