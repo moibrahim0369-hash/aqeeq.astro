@@ -85,3 +85,8 @@ html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_
 html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) .y27-intro .intro,
 html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) .y27-intro p{margin:10px 0 0!important;line-height:1.7!important}
 html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form{margin-top:14px!important;margin-bottom:0!important}
+
+/* topbar: رجوع + الرئيسية فقط في كل الصفحات */
+html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .aq-section-topbar .aq-section-pill{display:none!important}
+html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .aq-section-topbar{justify-content:flex-start!important;gap:10px!important}
+html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .aq-section-topbar .aq-nav-actions{justify-content:flex-start!important;gap:10px!important;width:auto!important;flex:0 0 auto!important}
