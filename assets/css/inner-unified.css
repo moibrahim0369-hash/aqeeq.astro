@@ -22,8 +22,8 @@ html body section.sec:is(#chart,#matrix,#lifepath,#lifepath-compat,#compat,#sky,
 html body section.sec:is(#year2027,#karmic,#invest):not(#_a):not(#_b):not(#_c) :is(.y27-art,.y27-orn-moon,.inv-moon,.sheet-moon){display:none!important}
 html body section.sec:is(#year2027,#karmic,#invest):not(#_a):not(#_b):not(#_c)>.wrap::before,html body section.sec:is(#year2027,#karmic,#invest):not(#_a):not(#_b):not(#_c)>.wrap::after{display:none!important;content:none!important;background:none!important}
 /* date selects: room for full "اليوم" */
-html body section.sec:not(#_a):not(#_b):not(#_c) :is(.aq-ds,.aq-dsx-date){grid-template-columns:1fr 1fr 1fr!important;gap:5px!important}
-html body section.sec:not(#_a):not(#_b):not(#_c) :is(.aq-ds,.aq-dsx-date) select{padding-inline:4px 4px!important;font-size:.8rem!important;text-align:center!important;text-align-last:center!important;background-image:none!important;-webkit-appearance:none!important;appearance:none!important;text-overflow:clip!important;min-width:0!important;background-position:left 6px center!important}
+html body section.sec:not(#_a):not(#_b):not(#_c) :is(.aq-ds,.aq-dsx){grid-template-columns:1fr 1fr 1fr!important;gap:5px!important}
+html body section.sec:not(#_a):not(#_b):not(#_c) :is(.aq-ds,.aq-dsx) select{padding-inline:4px 4px!important;font-size:.8rem!important;text-align:center!important;text-align-last:center!important;background-image:none!important;-webkit-appearance:none!important;appearance:none!important;text-overflow:clip!important;min-width:0!important;background-position:left 6px center!important}
 /* paid report cards */
 .b3-vcard{position:relative;border:1px solid #C5A059!important;box-shadow:0 14px 32px rgba(74,26,43,.18)!important}
 .b3-vimg{position:relative;display:block;aspect-ratio:4/3;background-size:cover;background-position:center}
@@ -66,3 +66,4 @@ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .e
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .eam-control>div:first-child{display:none!important}
 html body section.sec#astro-maps[data-eam-page="sidereal"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .eam-control,html body section.sec#astro-maps[data-eam-page="sidereal"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .eam-status:empty{display:none!important}
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .eam-hero{display:flex;flex-direction:column;align-items:center}
+html body section.sec:not(#_a):not(#_b):not(#_c) form .field :is(.aq-ds,.aq-dsx) select:not(#_d):not(#_e){grid-column:auto!important;grid-row:auto!important}
