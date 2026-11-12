@@ -74,7 +74,7 @@
   }
   function mount(host, ch, natal) {
     if (!host || !window.AqVedic) return;
-    var cur = 9;
+    var cur = 1;
     function draw() {
       var v = VARGAS.filter(function (x) { return x[0] === cur; })[0], map = build(ch, cur), title = 'مخطط ' + v[1] + ' · ' + v[2];
       var sig = v[4] ? map.items.filter(function (x) { return x.key === v[4]; })[0] : null;
@@ -86,7 +86,7 @@
         '<p class="vc-note">' + esc(note) + ' الأرقام الذهبية أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. ℞ يعني راجع.</p>' +
         '<ul class="vc-rows">' + houseRows(map) + '</ul>' +
         (sig ? '<p class="vc-sig">' + esc(sig.name) + ' الدال هنا في ' + SG[sig.sign] + ' (البيت ' + (sig.house + 1) + ').</p>' : '');
-      host.querySelectorAll('.vc-chip').forEach(function (b) { b.addEventListener('click', function () { cur = +b.dataset.n; draw(); }); });
+      host.querySelectorAll('.vc-chip').forEach(function (b) { b.addEventListener('click', function () { cur = +b.dataset.n; draw(); var on = host.querySelector('.vc-chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' }); }); });
     }
     draw();
   }

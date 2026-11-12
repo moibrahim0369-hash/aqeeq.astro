@@ -80,3 +80,40 @@ html body section.sec:is(#astro-maps,#sky,#world,#signs,#compat,#for-you,#invest
 }
 html body .aq-section-topbar .aq-section-pill:not(#_a):not(#_b):not(#_c),html body .aq-section-topbar .aq-nav-btn:not(#_a):not(#_b):not(#_c){box-shadow:none!important;filter:none!important}
 html body .aq-section-topbar .aq-nav-actions:not(#_a):not(#_b):not(#_c){background:none!important;box-shadow:none!important;border:0!important;-webkit-mask-image:none!important;mask-image:none!important}
+
+/* ===== v20261126a: batch 1 — unified rows, cards, forms, review-open ===== */
+/* one scrollable row: map tabs + vedic divisions */
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .eam-tabs{display:flex!important;flex-wrap:nowrap!important;grid-template-columns:none!important;justify-content:flex-start!important;gap:8px!important;width:auto!important;margin:14px 0 16px!important;padding:4px 2px 8px!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch;scrollbar-width:none;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;scroll-snap-type:x proximity}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .eam-tabs::-webkit-scrollbar,html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-chips::-webkit-scrollbar{display:none}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .eam-tabs button{flex:0 0 auto!important;white-space:nowrap!important;min-height:42px!important;padding:8px 16px!important;border-radius:999px!important;border:1px solid var(--ur-line)!important;background:#FFFDF8!important;color:#6A2038!important;font:700 .9rem 'Cairo',sans-serif!important;box-shadow:none!important;scroll-snap-align:center}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .eam-tabs button[aria-selected=true]{background:#6A2038!important;border-color:#C5A059!important;color:#FFF3D6!important}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-chips{display:flex!important;flex-wrap:nowrap!important;grid-template-columns:none!important;gap:8px!important;overflow-x:auto!important;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0 8px!important;margin:8px 0 12px!important}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-chip{flex:0 0 auto!important;min-width:74px;min-height:52px;padding:6px 12px!important;border-radius:14px!important;background:#FFFDF8;border:1px solid var(--ur-line)!important;box-shadow:none!important}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-chip.on{background:#6A2038!important;border-color:#C5A059!important;color:#FFF3D6!important}
+html body section.sec#astro-maps .vx-top{margin:0 0 14px}
+/* follow-on cards + section icons: the personal-maps look (cream card, burgundy disc, gold line) */
+html body section.sec .aq-related .aq-rel:not(#_a){background:linear-gradient(180deg,#FFFDF8,#FBF3E4)!important;border:1px solid var(--ur-line)!important;border-radius:20px!important;box-shadow:none!important}
+html body section.sec .aq-related .aq-rel-i:not(#_a){width:48px!important;height:48px!important;border-radius:50%!important;background:#6A2038!important;border:1px solid #C5A059!important;color:#E8CF98!important;box-shadow:none!important;display:grid!important;place-items:center!important}
+html body section.sec .aq-related .aq-rel-i svg:not(#_a){width:22px!important;height:22px!important;stroke:#E8CF98!important;fill:none!important}
+html body :is(#signs,#sgs-sheet,.sgs-sheet) .zp-sec .zp-h > svg:not(#_a):not(#_b),html body :is(#signs,#sgs-sheet,.sgs-sheet) .zp-sec .zp-h .tx-ic:not(#_a):not(#_b){border-radius:50%!important;background:#6A2038!important;border:1px solid #C5A059!important;stroke:#E8CF98!important;color:#E8CF98!important}
+html body section.sec#astro-maps .eam-card:not(#_a),html body section.sec#astro-maps .eam-panel:not(#_a){background:#FFFDF8!important;border:1px solid var(--ur-line)!important;border-radius:20px!important;box-shadow:none!important}
+/* inputs: one cream box, thin gold frame */
+html body section.sec:is(#astro-maps,#compat,#chart,#matrix,#lifepath,#lifepath-compat) :is(.eam-form,.eam-panel,form) :is(select,input[type=text],input[type=number],input[type=date],input[type=time]):not(#_a){background-color:#FFFDF8!important;border:1px solid #D9BD86!important;border-radius:12px!important;min-height:44px;box-shadow:none!important;color:#3A1A24!important}
+html body section.sec:is(#astro-maps,#compat,#chart,#matrix,#lifepath,#lifepath-compat) :is(select,input):focus-visible{outline:2px solid #C5A059!important;outline-offset:1px}
+/* review mode: nothing locked, no soon badges */
+html.aq-review-open body .fy-lock,html.aq-review-open body .lpa-badge,html.aq-review-open body .syn-lock-overlay,html.aq-review-open body .rh-card.is-soon{display:none!important}
+html.aq-review-open body .syn-premium-content{filter:none!important;max-height:none!important;opacity:1!important;pointer-events:auto!important}
+/* top pills: always one scrollable row */
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar:not(#_d){display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:8px!important}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(.aq-section-quick-links,.aq-nav-actions):not(#_d){display:flex!important;flex:1 1 auto!important;flex-wrap:nowrap!important;width:auto!important;min-width:0!important;gap:8px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:4px 0!important}
+html body section.sec .aq-section-topbar :is(.aq-section-quick-links,.aq-nav-actions)::-webkit-scrollbar{display:none}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(.aq-section-pill,.aq-nav-btn,.aq-back-home-btn):not(#_d){flex:0 0 auto!important;white-space:nowrap!important;width:auto!important;max-width:none!important}
+html body section.sec#compat:not(#_a):not(#_b):not(#_c) .aq-section-topbar:not(#_d){margin-top:64px!important}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar:not(#_d){max-width:100%!important;min-width:0!important;overflow:hidden!important;box-sizing:border-box}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-nav-actions .aq-section-quick-links:not(#_d),html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links .aq-nav-actions:not(#_d){overflow:visible!important;flex:0 0 auto!important}
+/* final: the bar itself is the single scroller */
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar:not(#_d):not(#_e){overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-block:4px!important}
+html body section.sec .aq-section-topbar::-webkit-scrollbar{display:none}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(.aq-section-quick-links,.aq-nav-actions):not(#_d):not(#_e){flex:0 0 auto!important;overflow:visible!important;padding:0!important}
+html body section.sec#compat:not(#_a):not(#_b) .aq-section-topbar .aq-nav-btn.is-home:not(#_c){display:none!important}
+html body section.sec#compat:not(#_a):not(#_b) .aq-section-topbar .aq-section-quick-links:not(#_c):not(#_d):not(#_e){margin:0!important;position:static!important;transform:none!important}
