@@ -59,7 +59,7 @@
   const gchart=ms=>Astro.chart({utcMs:ms,lat:30,lon:31,known:false});
   const nowLocal=()=>{const d=new Date(),local=new Date(d.getTime()-d.getTimezoneOffset()*60000);return local.toISOString().slice(0,16);};
   function context(){return window.AqeeqChartContext?.getNatal?.()||window.AqeeqChartContext?.getOrPrefill?.()||null;}
-  function readyMessage(){return '<div class="eam-empty eam-invite"><span>✦</span><h3>ابدأ بخريطة الميلاد</h3><p>احسب خريطتك أولاً، ثم ارجع هنا لإنشاء خريطة العبور أو العودة الشمسية أو العرض الفيدي.</p><a class="btn ghost sm" href="#chart">اذهب إلى خريطة الميلاد</a></div>';}
+  function readyMessage(){return '<p class="eam-hint">هذا القسم يعتمد على بياناتك. اكتبها في النموذج بالأعلى أو اضغط «تعبئة من حسابي» ثم «افتح خرائطي».</p>';}
   function setMode(next){
     mode=next;
     section.querySelectorAll('[data-eam-mode]').forEach(b=>{const active=b.dataset.eamMode===mode;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
@@ -270,5 +270,40 @@
   section.querySelector('.eam-tabs')?.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();const buttons=[...section.querySelectorAll('[data-eam-mode]')],current=buttons.indexOf(event.target.closest('[data-eam-mode]'));const step=event.key==='ArrowLeft'?1:-1;buttons[(current+step+buttons.length)%buttons.length].click();buttons[(current+step+buttons.length)%buttons.length].focus();});
   document.addEventListener('aqeeq:natal-ready',renderControls);
   window.addEventListener('hashchange',()=>{if(location.hash==='#astro-maps'&&content.querySelector('.eam-invite'))renderControls();});
-  setMode('eclipses');
+
+  /* نموذج بيانات الميلاد داخل البانر: يفتح الخريطة المختارة فوراً بنفس الصفحة */
+  (function(){
+    const form=$('#eam-form'),city=$('#eam-b-city'),err=$('#eam-b-err'),ok=$('#eam-b-ok');
+    if(!form||!city)return;
+    const CTX=()=>window.AqeeqChartContext;
+    const loadCities=()=>{if(!CTX()?.cityOptionsHTML)return;const cur=city.value;city.innerHTML=CTX().cityOptionsHTML();city.querySelector('option[value="manual"]')?.remove();if(cur&&city.querySelector('option[value="'+cur+'"]'))city.value=cur;};
+    loadCities();setTimeout(loadCities,1200);city.addEventListener('pointerdown',loadCities);
+    const unk=$('#eam-b-unknown'),time=$('#eam-b-time');
+    unk.addEventListener('change',()=>{time.disabled=unk.checked;});
+    const say=(el,t)=>{[err,ok].forEach(x=>{x.hidden=true;});if(t){el.textContent=t;el.hidden=false;}};
+    const setDate=v=>{const d=$('#eam-b-date');d.value=v;d.dispatchEvent(new Event('input',{bubbles:true}));d.dispatchEvent(new Event('change',{bubbles:true}));};
+    $('#eam-b-fill').addEventListener('click',()=>{
+      loadCities();const n=CTX()?.getOrPrefill?.();
+      if(!n){say(err,'لا توجد بيانات ميلاد محفوظة في حسابك على هذا الجهاز. اكتبها هنا مرة واحدة.');return;}
+      const p=x=>String(x).padStart(2,'0');
+      setDate(n.y+'-'+p(n.m)+'-'+p(n.d));
+      unk.checked=!n.known;time.disabled=!n.known;time.value=n.known?p(n.hh)+':'+p(n.mm):'';
+      const i=CTX().cityIndexByName?.(n.placeName);if(i>=0)city.value=String(i);
+      const g=$('#eam-b-gender');if(g&&n.gender)g.value=n.gender;
+      say(ok,'تمت التعبئة من بياناتك المحفوظة. اضغط «افتح خرائطي».');
+    });
+    form.addEventListener('submit',e=>{
+      e.preventDefault();say(err,'');
+      const v=$('#eam-b-date').value;if(!v){say(err,'اكتب تاريخ الميلاد.');return;}
+      const [y,m,d]=v.split('-').map(Number);let hh=12,mm=0;
+      if(!unk.checked){if(!time.value){say(err,'اكتب وقت الميلاد أو علّم «لا أعرف وقت ميلادي».');return;}[hh,mm]=time.value.split(':').map(Number);}
+      try{
+        CTX().setFromInput({y,m,d,hh,mm,known:!unk.checked,cityIdx:city.value,gender:$('#eam-b-gender').value});
+        say(ok,'تم حفظ البيانات لهذه الجلسة وفتحت الخرائط بالأسفل.');
+        setMode(mode);calculate();
+        content.scrollIntoView({behavior:'smooth',block:'start'});
+      }catch(x){say(err,x.message||'تعذر حساب الخريطة.');}
+    });
+  })();
+  setMode('sidereal');
 })();

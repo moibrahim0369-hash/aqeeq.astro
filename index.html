@@ -102,7 +102,7 @@
 <link rel="stylesheet" href="assets/css/page-bg-unify.css?v=20261119b">
 <link rel="stylesheet" href="assets/css/page-art-fade.css?v=20261120a">
 <link rel="stylesheet" href="assets/css/page-celestial.css?v=20261122g">
-<link rel="stylesheet" href="assets/css/internal-fixes.css?v=20261123b">
+<link rel="stylesheet" href="assets/css/internal-fixes.css?v=20261123c">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -908,7 +908,16 @@
     <a href="#sky" class="aq-section-pill">حركة السماء الآن</a>
   </div>
 </div>
-<div class="center"><span class="eyebrow" dir="ltr">EXTENDED ASTROLOGICAL CHARTS</span><h2>الخرائط الفلكية المتقدمة</h2><p class="intro">الكسوف والخسوف والعقد القمرية والسماء الفيدية متاحة للجميع مباشرة. أما العبور الشخصي والعودة الشمسية والتوجيهات السنوية فتحتاج بيانات ميلادك.</p></div>
+<div class="center eam-hero"><span class="eyebrow" dir="ltr">EXTENDED ASTROLOGICAL CHARTS</span><h2>الخرائط الفلكية المتقدمة</h2><p class="intro">أدخل بيانات ميلادك هنا لتفتح الخريطة الفيدية والعبور والعودة الشمسية في مكانها مباشرة.</p>
+<form class="eam-form" id="eam-form" novalidate autocomplete="off">
+<div class="eam-f-row"><label class="eam-f"><span>تاريخ الميلاد</span><input id="eam-b-date" type="date"></label></div>
+<div class="eam-f-row eam-f-2"><label class="eam-f"><span>وقت الميلاد</span><input id="eam-b-time" type="time"></label><label class="eam-f"><span>صيغة الخطاب</span><select id="eam-b-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></label></div>
+<label class="eam-chk"><input id="eam-b-unknown" type="checkbox"> لا أعرف وقت ميلادي</label>
+<div class="eam-f-row"><label class="eam-f"><span>مكان الميلاد</span><select id="eam-b-city"></select></label></div>
+<p class="eam-f-err" id="eam-b-err" role="alert" hidden></p>
+<div class="eam-f-actions"><button class="btn" type="submit">افتح خرائطي</button><button class="btn ghost" type="button" id="eam-b-fill">تعبئة من حسابي</button></div>
+<p class="eam-f-ok" id="eam-b-ok" hidden></p>
+</form></div>
 <div class="eam-tabs" role="tablist" aria-label="أنواع الخرائط الإضافية">
 <button type="button" role="tab" aria-selected="true" data-eam-mode="transit">العبور</button>
 <button type="button" role="tab" aria-selected="false" data-eam-mode="solar" tabindex="-1">العودة الشمسية</button>
@@ -2584,7 +2593,23 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       return { ch, name: p.name || "", y, m, d, hh, mm, known, placeName: c.n, lat: c.lat, lon: c.lon, utcMs, gender: "" };
     } catch (e) { return null; }
   }
-  window.AqeeqChartContext = { getNatal: () => LAST, getOrPrefill: () => LAST || (LAST = natalFromProfile()) };
+  /* إدخال بيانات الميلاد من نموذج صفحة الخرائط المتقدمة: يبني نفس سياق الخريطة ويُعلن aqeeq:natal-ready. */
+  function setFromInput(o) {
+    const c = CITIES[+o.cityIdx];
+    if (!c || !c.tz || !o.y || !o.m || !o.d) throw new Error("اختر التاريخ والمدينة.");
+    if (o.y < 1900 || o.y > 2100) throw new Error("السنة لازم تكون بين 1900 و 2100.");
+    const known = !!o.known, hh = known ? o.hh : 12, mm = known ? o.mm : 0;
+    const utcMs = Astro.localToUtcMs(o.y, o.m, o.d, hh, mm, c.tz);
+    const ch = Astro.chart({ utcMs, lat: c.lat, lon: c.lon, hs: "placidus", known });
+    LAST = { ch, name: o.name || "", y: o.y, m: o.m, d: o.d, hh, mm, known, placeName: c.n, lat: c.lat, lon: c.lon, utcMs, gender: o.gender || "" };
+    document.dispatchEvent(new Event("aqeeq:natal-ready"));
+    return LAST;
+  }
+  function cityIndexByName(name) {
+    const q = String(name || "").trim().toLocaleLowerCase("ar"); if (!q) return -1;
+    return CITIES.findIndex(x => x.tz && x.n.trim().toLocaleLowerCase("ar") === q);
+  }
+  window.AqeeqChartContext = { getNatal: () => LAST, getOrPrefill: () => LAST || (LAST = natalFromProfile()), setFromInput, cityIndexByName, cityOptionsHTML: () => citySel.innerHTML };
   $("#cform").addEventListener("submit", e => { e.preventDefault(); calc(); });
 
   function isolateResultView(activeView) {
@@ -5327,7 +5352,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/chart-sheet.js?v=20261114a" defer></script>
 <script src="assets/js/moon-sheet.js?v=20261116b" defer></script>
 <script src="assets/js/astro-wheel.js"></script>
-<script src="assets/js/extended-astro-charts.js?v=20261122b"></script>
+<script src="assets/js/extended-astro-charts.js?v=20261123a"></script>
 <script src="assets/js/vedic-extras.js?v=20261111f" defer></script>
 <script src="assets/js/section-footer.js?v=20261122b"></script>
 <script src="assets/js/paywall-modal.js?v=20261106b"></script>
@@ -5341,7 +5366,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/geo-picker.js?v=20261110a" defer></script>
 <script src="assets/js/page-story.js?v=20261112b" defer></script>
 <script src="assets/js/top-gap.js?v=20261111b" defer></script>
-<script src="assets/js/date-selects.js?v=20261112c" defer></script>
+<script src="assets/js/date-selects.js?v=20261123a" defer></script>
 <script src="account-profile.js" type="module"></script>
 <script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
