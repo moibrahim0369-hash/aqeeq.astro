@@ -255,3 +255,35 @@ html body :is(#year2027,#karmic) form .btn:not(#_a):not(#_b){display:flex;align-
 .y27-gc small{display:block;font-size:12px;color:var(--b3-mut)}.y27-gc b{display:block;font-size:15.5px;color:var(--b3-wine);margin-top:3px;line-height:1.6}
 .y27-gc-g{background:linear-gradient(160deg,#fff,#E7F2E3);border-color:#7FA67D}.y27-gc-g b{color:#2F5A32}
 .y27-gc-s{background:linear-gradient(160deg,#fff,#F8E3DF);border-color:#C9786E}.y27-gc-s b{color:#8E2A22}
+/* v10: خلفية بعمق + رفع المحتوى + بطاقات كريمية (2027 / الكارما / العلاقات) */
+html body section.sec:is(#year2027,#karmic,#relationships):not(#_a):not(#_b){background:radial-gradient(520px 380px at 4% 6%,rgba(228,170,130,.24),transparent 70%),radial-gradient(540px 400px at 98% 20%,rgba(240,205,130,.3),transparent 70%),radial-gradient(520px 420px at 50% 100%,rgba(138,51,80,.12),transparent 70%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .3 0 0 0 0 .15 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,#EFE2CC 0,#F5EBDA 38%,#F3E8D6 100%)!important;background-attachment:local!important}
+html body section.sec:is(#year2027,#karmic,#relationships):not(#_a)>.wrap:not(#_b){padding-top:10px!important}
+html body section.sec:is(#year2027,#karmic):not(#_a) .aq-section-topbar:not(#_b){display:inline-flex!important;width:auto!important;margin:0 0 8px!important;vertical-align:middle}
+html body section.sec:is(#year2027,#karmic):not(#_a) .b3-vip-link:not(#_b){display:inline-flex!important;margin:0 0 8px 0!important;vertical-align:middle}
+html body section.sec:is(#year2027,#karmic):not(#_a) .y27-intro:not(#_b){padding-top:0!important;margin-top:0!important;position:relative;isolation:isolate}
+html body section.sec:is(#year2027,#karmic):not(#_a) .y27-intro:not(#_b)::before{content:"";position:absolute;inset:-6px -18px -4px;z-index:-1;background:radial-gradient(ellipse at center,rgba(246,237,222,.92) 0,rgba(246,237,222,.75) 55%,rgba(246,237,222,0) 100%)}
+html body :is(#year2027,#karmic) .y27-intro .intro:not(#_a):not(#_b){font:500 .98rem/2 'Cairo',sans-serif!important;color:#4A3A34!important}
+html body :is(#year2027,#karmic) .y27-intro .eyebrow:not(#_a):not(#_b){font:700 .84rem 'Cairo',sans-serif!important;color:#9A6A2E!important}
+:is(#year2027,#karmic) .y27-art{height:430px!important;inset:0 0 auto 0!important;color:rgba(122,52,73,.12)!important;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+:is(#year2027,#karmic) .y27-art .a4{display:none}
+html body :is(#year2027,#karmic) .y27-form:not(#_a):not(#_b):not(#_c){background:linear-gradient(180deg,#FFFCF5,#FBF4E6)!important;border:1px solid #E1CFA9!important;box-shadow:0 0 0 4px rgba(255,251,240,.9),0 0 0 5px #E6D4AD,0 22px 46px rgba(120,70,50,.16)!important}
+html body :is(#year2027,#karmic) .y27-form :is(input:not([type=checkbox]),select):not(#_a):not(#_b){background:#fff!important;border:1px solid #E1CFA9!important;border-radius:14px!important;min-height:48px;padding:0 12px!important;color:#4A1224!important;font:600 1rem 'Cairo',sans-serif!important}
+html body :is(#year2027,#karmic) .y27-form label:not(#_a):not(#_b){color:#6B4A3A!important;font:700 .9rem 'Cairo',sans-serif!important}
+/* مركز العلاقات */
+html body section.rhub:not(#_a) .rh-head:not(#_b){margin-top:0!important}
+html body section.rhub:not(#_a) .rh-head h2:not(#_b){font:700 1.9rem/1.5 'Amiri',serif!important;color:#5E2234!important}
+html body section.rhub:not(#_a) .rh-head .intro:not(#_b){font:500 .96rem/2 'Cairo',sans-serif!important;color:#4A3A34!important}
+html body section.rhub:not(#_a) .rh-card:not(#_b){background:linear-gradient(180deg,#FFFCF5,#FAF1E0)!important;border:1px solid #E1CFA9!important;box-shadow:0 10px 24px rgba(120,70,50,.13)!important}
+html body section.rhub:not(#_a) .rh-ico:not(#_b){background:linear-gradient(160deg,#FFFDF7,#F4E6C6)!important;border:1.2px solid #D2AE6C!important;color:#6A2038!important;border-radius:16px!important;box-shadow:0 1px 0 #fff inset,0 5px 12px rgba(150,110,50,.18)!important}
+html body section.rhub:not(#_a) .rh-ico svg:not(#_b){stroke:#6A2038!important;color:#6A2038!important}
+/* v10b: صف علوي واحد + هالة ناعمة + خانات تاريخ أوسع */
+html body section.sec:is(#year2027,#karmic):not(#_a)>.wrap:not(#_b):not(#_c){display:flex!important;flex-wrap:wrap;align-content:flex-start;gap:0 8px;padding-top:76px!important}
+html body section.sec:is(#year2027,#karmic):not(#_a)>.wrap:not(#_b)>*:not(#_c){flex:0 0 100%;min-width:0}
+html body section.sec:is(#year2027,#karmic):not(#_a)>.wrap:not(#_b)>:is(.aq-section-topbar,.b3-vip-link):not(#_c){flex:0 0 auto!important;width:auto!important;margin:0 0 10px!important}
+html body section.sec:is(#year2027,#karmic):not(#_a) .y27-intro:not(#_b)::before{inset:-14px -10px -10px;background:radial-gradient(ellipse at center,rgba(246,237,222,.9) 0,rgba(246,237,222,.7) 50%,rgba(246,237,222,0) 78%)!important;-webkit-mask-image:radial-gradient(ellipse at center,#000 40%,transparent 80%);mask-image:radial-gradient(ellipse at center,#000 40%,transparent 80%)}
+html body :is(#year2027,#karmic) .y27-form .aq-ds:not(#_a){display:grid!important;grid-template-columns:1fr 1.5fr 1.2fr;gap:6px}
+html body :is(#year2027,#karmic) .y27-form .aq-ds select:not(#_a):not(#_b){width:100%!important;min-width:0!important;padding:0 4px!important;font-size:.86rem!important;text-align:center;text-align-last:center}
+html body section.rhub:not(#_a)>.wrap:not(#_b){padding-top:76px!important}
+html body section.sec:is(#year2027,#karmic):not(#_a) .b3-vip-link:not(#_b):not(#_c){font-size:.78rem!important;padding:7px 10px!important;gap:5px}
+html body section#karmic h2:not(#_a):not(#_b):not(#_c):not(#_d){font:700 2.2rem/1.5 'Amiri',serif!important;color:#5E2234!important}
+:is(#year2027,#karmic) .y27-art{color:rgba(122,52,73,.17)!important}
