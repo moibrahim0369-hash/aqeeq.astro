@@ -27,3 +27,12 @@ html:has(.fc-page:is(:target,.fc-open)) header.top{background:#F7F3EC!important;
   .fc-page .fc-nav{display:none!important}
   .fc-page .fc-card h3,.fc-page .fc-mini h3{-webkit-line-clamp:3!important}
 }
+
+/* الخرائط المتقدمة: خلفية كريمي دافئة بلا توهج، وتبويبات شبكة 3×2 بلا قص */
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c){background:#F7F3EB!important;background-image:none!important}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c)::before,html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c)::after{display:none!important}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-tabs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;overflow:visible!important;border-radius:22px!important;padding:6px!important;width:100%!important}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-tabs button{flex:none!important;white-space:normal!important;min-height:46px;padding:8px 4px!important;font-size:.86rem;line-height:1.35;text-align:center}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links{flex-wrap:nowrap!important;overflow-x:auto!important;min-width:0!important;width:100%!important;scrollbar-width:none}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links::-webkit-scrollbar{display:none}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links>a{flex:0 0 auto!important;white-space:nowrap!important}
