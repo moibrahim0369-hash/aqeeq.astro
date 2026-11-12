@@ -108,3 +108,30 @@ html body a.aqh-tool-y27:not(#_a):not(#_b) small:not(#_c){color:rgba(255,246,228
 html body a.aqh-tool-y27:not(#_a):not(#_b) .y27-year:not(#_c){-webkit-text-fill-color:transparent!important;font-size:30px!important}
 html body .b3-rot-t b:not(#_c){color:var(--b3-wine)!important;font-size:15px!important}
 html body .b3-rot-t small:not(#_c){color:var(--b3-mut)!important}
+/* v2: بانر وصفحة 2027 */
+html body a.aqh-tool-y27 .y27-year:not(#_c){font-size:12.5px!important;letter-spacing:.3px;font-weight:700;padding:0!important;border:0!important;margin-bottom:4px;display:block;-webkit-text-fill-color:#E8CF98!important;background:none!important;color:#E8CF98!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b) b:not(#_c){font-size:22px!important}
+#year2027 .y27-intro .intro{font-size:15px;margin:6px 0 0}
+#year2027 .y27-form{background:rgba(255,255,255,.82);border:1px solid var(--b3-gold);border-radius:22px;padding:18px 16px;box-shadow:0 8px 28px rgba(94,34,52,.1);margin:14px 0 18px}
+#year2027.y27-has .y27-explain{display:none}
+.y27-explain h3{margin:6px 0 10px;font-size:17px;color:var(--b3-wine);text-align:center}
+.y27-ex{display:flex;gap:12px;align-items:flex-start;padding:12px;margin-bottom:8px;border-radius:16px;background:rgba(255,255,255,.6);border:1px solid var(--b3-line)}
+.y27-ex>b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--b3-wine2),var(--b3-wine));color:var(--b3-gold2);font-size:14px}
+.y27-ex strong{display:block;font-size:14.5px;color:var(--b3-wine)}.y27-ex p{margin:3px 0 0;font-size:13px;line-height:1.85;color:var(--b3-mut)}
+html body section#year2027:not(#_a):not(#_b){background:radial-gradient(ellipse at 15% 0,rgba(197,160,89,.18),transparent 55%),radial-gradient(ellipse at 90% 100%,rgba(122,52,73,.12),transparent 55%),linear-gradient(180deg,#FBF3E4,#F3E6CC)!important}
+/* v2: شريط التقارير المميزة */
+html body .b3-rot-a:not(#_a){background:linear-gradient(135deg,#FFF9EA,#F0DDB0)!important;border:1.5px solid var(--b3-gold)!important;box-shadow:0 4px 14px rgba(197,160,89,.25)}
+html body .b3-rot-ic:not(#_a){width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--b3-wine2),var(--b3-wine))!important;color:var(--b3-gold2)!important;border:2px solid var(--b3-gold)!important;box-shadow:0 0 0 3px rgba(197,160,89,.2)}
+html body .b3-rot-ic svg{width:22px;height:22px}
+html body .b3-zod-ic:not(#_a){width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--b3-wine2),var(--b3-wine))!important;color:var(--b3-gold2)!important;border:2px solid var(--b3-gold)!important}
+/* صفحة استثمر في ذاتك */
+html body section#invest:not(#_a):not(#_b){background:radial-gradient(ellipse at 85% 0,rgba(197,160,89,.2),transparent 50%),radial-gradient(ellipse at 10% 95%,rgba(122,52,73,.14),transparent 55%),linear-gradient(180deg,#FBF3E4,#F2E4C8)!important}
+.b3-q{text-align:center;font-size:19px;font-weight:700;color:var(--b3-wine);margin:10px 0 4px}
+.b3-card summary{display:block!important;padding:0!important}
+.b3-art{position:relative;display:flex;align-items:center;justify-content:center;height:96px;color:rgba(232,207,152,.95);background:linear-gradient(135deg,#5E2234,#8A3F4E)}
+.b3-art svg{opacity:.9}
+.b3-art em{position:absolute;top:10px;inset-inline-start:10px;font-style:normal;font-size:11px;font-weight:700;color:#4A1521;background:linear-gradient(135deg,#F3DFA8,#C5A059);padding:2px 10px;border-radius:10px}
+.b3-art-love{background:linear-gradient(135deg,#7A2E44,#B0566B)}.b3-art-path{background:linear-gradient(135deg,#6B4A2A,#A9793F)}.b3-art-chart{background:linear-gradient(135deg,#3F2A45,#7A4F78)}
+.b3-ctw{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.b3-card{border-color:var(--b3-gold)!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b) em.y27-year:not(#_c):not(#_d){font-size:13px!important;-webkit-text-fill-color:#E8CF98!important;color:#E8CF98!important;background:none!important;font-weight:700}

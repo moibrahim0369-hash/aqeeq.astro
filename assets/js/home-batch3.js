@@ -10,10 +10,10 @@
 
   /* ---------- 1) شريط العروض: يتبدل كل 3 ثوان ---------- */
   var ROT = [
-    { t: 'اكتشف ذيلك الكارمي', s: 'الدرس الذي يعود إليك مرة بعد مرة', href: '#invest', k: 'karmic', ic: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/>' },
-    { t: 'رسالة برجك اليوم', s: 'اختر برجك واقرأ رسالتك', href: '#signs', ic: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/>' },
-    { t: 'مسار علاقاتك', s: 'لماذا تتكرر نفس القصة في قلبك؟', href: '#invest', k: 'love', ic: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.400A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>' },
-    { t: 'خريطتك الفلكية كاملة', s: 'طالعك وقمرك وبيوتك في مكان واحد', href: '#invest', k: 'chart', ic: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.500"/><path d="M12 3.500v6M12 14.500v6"/>' }
+    { t: 'اكتشف ذيلك الكارمي', s: 'تقرير مميز: الدرس الذي يعود إليك وروشتة توازنه', href: '#invest', k: 'karmic', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' },
+    { t: 'مسار علاقاتك', s: 'تقرير مميز: لماذا تتكرر نفس القصة في قلبك؟', href: '#invest', k: 'love', ic: '<path d="M12 20s-7-4.400-7-10a4 4 0 0 1 7-2.400A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>' },
+    { t: 'مسار حياتك', s: 'تقرير مميز: إلى أين يقودك رقم ميلادك؟', href: '#invest', k: 'path', ic: '<path d="M3 20 10 6l4 8 3-4 4 10z"/>' },
+    { t: 'خريطتك الفلكية كاملة', s: 'تقرير مميز: طالعك وقمرك وبيوتك بقراءة شخصية', href: '#invest', k: 'chart', ic: '<circle cx="12" cy="12" r="8.500"/><circle cx="12" cy="12" r="2.500"/><path d="M12 3.500v6M12 14.500v6"/>' }
   ];
   function buildRot() {
     var host = $('#b3-rot'); if (!host) return;
@@ -37,7 +37,7 @@
   function buildZodiac() {
     var band = $('#aqh-band'); if (!band || $('#b3-zod')) return;
     var a = document.createElement('a'); a.id = 'b3-zod'; a.className = 'b3-zod'; a.href = '#signs';
-    a.innerHTML = '<span class="b3-zod-ic">' + svg('<circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.600 5.600l12.800 12.800M18.400 5.600 5.600 18.400" stroke-opacity=".55"/>', 28) + '</span><span class="b3-zod-t"><em>رسالة برجك اليوم</em><b>ما الذي تريد السماء أن تقوله لبرجك اليوم؟</b><small>اختر برجك واقرأ رسالتك وتوقعك اليومي</small></span><span class="b3-rot-go">' + svg(ARROW, 18) + '</span>';
+    a.innerHTML = '<span class="b3-zod-ic">' + svg('<circle cx="12" cy="12" r="9" stroke-opacity=".5"/><circle cx="12" cy="3" r="1" fill="currentColor"/><circle cx="21" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="21" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><path d="M12 8l1.100 2.900L16 12l-2.900 1.100L12 16l-1.100-2.900L8 12l2.900-1.100z"/>', 30) + '</span><span class="b3-zod-t"><em>رسالة برجك اليوم</em><b>ما الذي تريد السماء أن تقوله لبرجك اليوم؟</b><small>اختر برجك واقرأ رسالتك وتوقعك اليومي</small></span><span class="b3-rot-go">' + svg(ARROW, 18) + '</span>';
     band.parentNode.insertBefore(a, band.nextSibling);
   }
 
@@ -116,7 +116,7 @@
     grid.parentNode.insertBefore(box, grid);
     var list = box.querySelector('.b3-rl');
     list.innerHTML = REPORTS.map(function (r) {
-      return '<details class="b3-card" data-k="' + r.k + '"><summary><span class="b3-ic">' + svg(r.ic, 22) + '</span><span class="b3-ct"><b>' + r.t + '</b><small>' + r.hook + '</small></span><span class="b3-ch" aria-hidden="true"></span></summary><div class="b3-cb"></div></details>';
+      return '<details class="b3-card" data-k="' + r.k + '"><summary><span class="b3-art b3-art-' + r.k + '">' + svg(r.ic, 54) + '<em>تقرير مميز</em></span><span class="b3-ctw"><span class="b3-ct"><b>' + r.t + '</b><small>' + r.hook + '</small></span><span class="b3-ch" aria-hidden="true"></span></span></summary><div class="b3-cb"></div></details>';
     }).join('');
     function fill(card) {
       var r = REPORTS.filter(function (x) { return x.k === card.dataset.k; })[0], body = card.querySelector('.b3-cb'), ds = $('#iv-date').value, err = box.querySelector('.b3-rerr');
