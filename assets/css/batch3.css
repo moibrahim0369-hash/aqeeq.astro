@@ -234,3 +234,24 @@ html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d):is(:active,.on,.
 /* النوافذ: بدون ضبابية ثقيلة لتخفيف الهنج */
 html body .aqm-sheet-panel:not(#_a):not(#_b):not(#_c){-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:linear-gradient(180deg,#FFFDF7,#F8EFD9)!important}
 html body .aqm-sheet-scrim:not(#_a){-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* v9: صفحتا 2027 والذيل بأسلوب مسار الحياة */
+:is(#year2027,#karmic){position:relative}
+:is(#year2027,#karmic) .y27-art{position:absolute;inset:0;pointer-events:none;color:rgba(122,52,73,.22);overflow:hidden;z-index:0}
+:is(#year2027,#karmic) .y27-art svg{width:100%;height:100%;min-height:100%}
+:is(#year2027,#karmic) .y27-art .a2{color:rgba(197,160,89,.55)}.y27-art .a3{color:rgba(197,160,89,.7)}
+:is(#year2027,#karmic) .wrap{position:relative;z-index:1}
+:is(#year2027,#karmic) .y27-intro{text-align:center;padding:6px 4px 4px}
+:is(#year2027,#karmic) .y27-intro .eyebrow{display:block;font-size:13px;color:#9A7424;letter-spacing:.3px}
+html body :is(#year2027,#karmic) .y27-intro h2:not(#_a){font-family:'Amiri',serif;font-size:2.2rem;line-height:1.5;color:#5E2234!important;margin:6px 0 4px}
+.y27-orn{display:flex;align-items:center;gap:10px;justify-content:center;color:#C5A059;margin:2px 0 8px}.y27-orn i{flex:1;max-width:120px;height:1px;background:linear-gradient(90deg,transparent,#C5A059)}.y27-orn i:last-child{transform:scaleX(-1)}
+html body :is(#year2027,#karmic) .y27-intro .intro:not(#_a){font-size:1.05rem;line-height:2;color:#4A3A34!important;text-align:center}
+html body :is(#year2027,#karmic) .y27-form:not(#_a):not(#_b){background:#FFFDF9;border:2px solid #6A2038;border-radius:30px;padding:18px 14px;box-shadow:0 14px 34px rgba(94,34,52,.14)}
+html body :is(#year2027,#karmic) form .mxp-fi:not(#_a):not(#_b):not(#_c){background:linear-gradient(160deg,#FFFDF7,#F4E6C6)!important;border:1px solid #D2AE6C!important;color:#6A2038!important;box-shadow:0 3px 8px rgba(94,34,52,.1)!important}
+html body :is(#year2027,#karmic) form .mxp-fi svg:not(#_a){stroke:#6A2038!important}
+html body :is(#year2027,#karmic) form .btn:not(#_a):not(#_b){display:flex;align-items:center;justify-content:center;gap:10px;min-height:60px;border-radius:22px;font-size:1.2rem;font-weight:700;background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important;border:1.5px solid #C8A15A!important;color:#FFF3D6!important;box-shadow:0 10px 22px rgba(74,18,36,.3)}
+/* نظرة سريعة */
+.y27-glance{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:6px 0 14px}
+.y27-gc{padding:12px 12px;border-radius:18px;background:linear-gradient(160deg,#fff,#FBF3E4);border:1px solid var(--b3-gold);text-align:center}
+.y27-gc small{display:block;font-size:12px;color:var(--b3-mut)}.y27-gc b{display:block;font-size:15.5px;color:var(--b3-wine);margin-top:3px;line-height:1.6}
+.y27-gc-g{background:linear-gradient(160deg,#fff,#E7F2E3);border-color:#7FA67D}.y27-gc-g b{color:#2F5A32}
+.y27-gc-s{background:linear-gradient(160deg,#fff,#F8E3DF);border-color:#C9786E}.y27-gc-s b{color:#8E2A22}
