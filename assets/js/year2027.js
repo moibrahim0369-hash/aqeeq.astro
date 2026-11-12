@@ -119,6 +119,13 @@
     var lords = []; R.periods.forEach(function (p) { if (lords.indexOf(p.lord) < 0) lords.push(p.lord); });
     var ch2 = lords.map(function (l) { return '<div class="y27-seg"><span class="y27-when">في فترة ' + T.LORDS[l] + '</span><p><b>التزم:</b> ' + DO[l] + '</p><p><b>تجنّب:</b> ' + DONT[l] + '</p></div>'; }).join('');
     h += acc('ميثاقك لعام 2027: ما تلتزم به وما تتجنبه', 'g', IC.check, ch2, false);
+    var satAct = R.segs.saturn.some(function (x) { var d = (x.sign - R.moonSign + 12) % 12; return d === 11 || d === 0 || d === 1; });
+    var glance = '<div class="y27-glance">' +
+      '<div class="y27-gc"><small>الفترة الحاكمة</small><b>' + T.LORDS[first.lord] + '</b></div>' +
+      '<div class="y27-gc ' + (satAct ? 'y27-gc-s' : 'y27-gc-g') + '"><small>ثقل زحل</small><b>' + (satAct ? 'حاضر في سنتك' : 'خفيف في سنتك') + '</b></div>' +
+      '<div class="y27-gc y27-gc-g"><small>باب الفرصة</small><b>' + HAREA[R.hOf(R.segs.jupiter[0].sign)] + '</b></div>' +
+      '<div class="y27-gc y27-gc-s"><small>ما يستحق الحذر</small><b>' + HAREA[R.hOf(R.segs.saturn[0].sign)] + '</b></div></div>';
+    h = glance + h;
     var basis = R.known ? '' : '<p class="y27-note">وقت الميلاد غير معروف، فالبيوت محسوبة من برج القمر بدل الطالع، والقراءة أدق كلما عرفت وقتك.</p>';
     return '<header class="y27-rhead"><span class="y27-kick">قراءة سنتك · 2027</span><h3>' + (name ? esc(name) + '، هذا ما تحمله لك 2027' : 'هذا ما تحمله لك 2027') + '</h3><p>تقرأ هذه الصفحة حركة الكواكب فوق خريطتك بنظام الفلك الفيدي (النطاق النجمي). هي قراءة للتأمل وفهم الفترة، وليست حكمًا نهائيًا.</p></header>' + basis + h +
       '<p class="y27-note">قراءة رمزية مبنية على حساب فلكي لخريطتك. الفترات والتواريخ تتغير بتغير بياناتك.</p>' +
