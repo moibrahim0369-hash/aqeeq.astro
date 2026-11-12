@@ -269,3 +269,45 @@ html body section.sec#sky:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-sect
 html body section.sec#signs:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links{flex-wrap:nowrap!important;overflow-x:auto!important;min-width:0!important;width:100%!important;scrollbar-width:none}
 html body section.sec#signs:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links::-webkit-scrollbar{display:none}
 html body section.sec#signs:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links>a{flex:0 0 auto!important;white-space:nowrap!important}
+
+/* ===== توحيد الأكورديونات والبطاقات داخل الأبراج (صفحة + نافذة) ===== */
+html body :is(#signs,#sgs-sheet):not(#_a) details.lpa-card,
+html body :is(#signs,#sgs-sheet):not(#_a) details.tx{border:1px solid #E9DDC6!important;border-radius:16px!important;background:#FFFEFB!important;box-shadow:none!important;border-inline-start-width:1px!important;overflow:hidden;transition:border-color .25s,background .25s!important}
+html body :is(#signs,#sgs-sheet):not(#_a) details.lpa-card[open],
+html body :is(#signs,#sgs-sheet):not(#_a) details.tx[open]{border-color:#D8BE86!important;box-shadow:0 8px 20px rgba(94,34,52,.07)!important}
+html body :is(#signs,#sgs-sheet):not(#_a) details.lpa-card[open]>.lpa-sum{background:transparent!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-sum,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-s{display:flex!important;align-items:center;gap:12px!important;padding:12px 14px!important;min-height:60px}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-ic,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-ic{flex:0 0 38px!important;width:38px!important;height:38px!important;border-radius:12px!important;display:grid!important;place-items:center;background:#F8F0DF!important;border:1px solid #EBDDBC!important;color:#7A2A3E!important;box-shadow:none!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-ic svg,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-ic svg{width:19px!important;height:19px!important;fill:none!important;stroke:#7A2A3E!important;stroke-width:1.6!important;stroke-linecap:round;stroke-linejoin:round}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-ic .sg{font-size:1.15rem;line-height:1;color:#7A2A3E!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .is-light>.lpa-sum .lpa-ic,
+html body :is(#signs,#sgs-sheet):not(#_a) .is-shadow>.lpa-sum .lpa-ic{background:#F8F0DF!important;border-color:#EBDDBC!important;color:#7A2A3E!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-t,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-t{flex:1 1 auto;min-width:0;font:700 .98rem/1.55 'Cairo',sans-serif!important;color:#5E2234!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-sub{display:block;margin-top:3px;font:500 .8rem/1.6 'Cairo',sans-serif;color:#7b6a60}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-chev{flex:0 0 28px!important;width:28px!important;height:28px!important;border-radius:50%;background:#FFF8E8!important;border:1px solid #D8BE86;display:grid;place-items:center;transform:none!important;color:inherit!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-chev>*{display:none!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-chev::after{content:none!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-chev::before{content:"";display:block;width:6px;height:6px;border-right:2px solid #7A2A3E;border-bottom:2px solid #7A2A3E;transform:rotate(45deg) translate(-1px,-1px);transition:transform .3s cubic-bezier(.3,.8,.3,1)}
+html body :is(#signs,#sgs-sheet):not(#_a) details.lpa-card[open] .lpa-chev::before{transform:rotate(225deg) translate(-1px,-1px)}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-body,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-b{border-top:1px solid #F0E6D0!important;background:#FFFDF8!important;padding:6px 16px 16px!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .rxb{display:inline-block;margin-inline-start:6px;padding:1px 9px;border-radius:999px;background:#F7E4E4;color:#8F3A46;font:600 .7rem/1.7 'Cairo',sans-serif;font-style:normal;vertical-align:middle}
+html body :is(#signs,#sgs-sheet):not(#_a) .zd-stack,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-list{display:grid;gap:10px}
+/* التوقع الكامل: بطاقة واحدة مرتبة بدل ثلاث بطاقات بأشرطة */
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-trio{display:block!important;margin:12px 0 18px;padding:2px 16px;border-radius:18px;background:#FFFEFB;border:1px solid #E9DDC6}
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-fc{padding:14px 0!important;border:0!important;border-top:0!important;border-bottom:1px solid #F0E6D0!important;border-radius:0!important;background:none!important;box-shadow:none!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-fc:last-child{border-bottom:0!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-fc h5{display:flex;align-items:center;gap:10px;margin:0 0 6px!important;font:700 .98rem 'Cairo',sans-serif;color:#5E2234!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-fc h5 svg{width:32px!important;height:32px!important;padding:7px;box-sizing:border-box;border-radius:10px;background:#F8F0DF;border:1px solid #EBDDBC;fill:none!important;stroke:#7A2A3E!important;stroke-width:1.6!important;stroke-linecap:round;stroke-linejoin:round}
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-fc p{margin:0!important;padding-inline-start:42px;color:#33241d!important;line-height:1.9;font-size:.93rem}
+/* بطاقات المعلومات داخل الأقسام: بدون شريط جانبي */
+html body :is(#signs,#sgs-sheet):not(#_a) .sx-card,
+html body :is(#signs,#sgs-sheet):not(#_a) .sign-detail .sx-card{margin:10px 0 0!important;padding:12px 14px!important;border-radius:14px!important;border:1px solid #EADFC6!important;border-inline-start:1px solid #EADFC6!important;border-inline-end:1px solid #EADFC6!important;background:#FAF4E6!important;box-shadow:none!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .sx-card h5{margin:0 0 4px!important;font:700 .8rem 'Cairo',sans-serif!important;color:#9A7433!important;letter-spacing:0}
+html body :is(#signs,#sgs-sheet):not(#_a) .sx-card p{margin:0!important;font-size:.92rem;line-height:1.8;color:#33241d!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-sec{background:#FFFEFB!important;border:1px solid #EBDFC8!important;box-shadow:none!important}
