@@ -108,12 +108,12 @@
   function buildReports() {
     var inv = $('#invest'), grid = inv && $('.inv-grid', inv); if (!grid || $('#b3-vip')) return;
     var cards = [
-      { t: 'ما سيحدث في 2027', q: 'ما الفصول التي ستُغلق في حياتك العام القادم؟', href: '#year2027', cls: 'a', ic: '<path d="M12 3l1.800 5.200L19 10l-5.200 1.800L12 17l-1.800-5.200L5 10l5.200-1.800z"/>' },
-      { t: 'الذيل الكارمي', q: 'ما الدرس الذي يعود إليك كلما ظننت أنك تجاوزته؟', href: '#karmic', cls: 'b', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' }
+      { t: 'ما سيحدث في 2027', q: 'ما الفصول التي ستُغلق في حياتك العام القادم؟', href: '#year2027', cls: 'a', img: 'assets/images/content/photo-transits.jpg', ic: '<path d="M12 3l1.800 5.200L19 10l-5.200 1.800L12 17l-1.800-5.200L5 10l5.200-1.800z"/>' },
+      { t: 'الذيل الكارمي', q: 'ما الدرس الذي يعود إليك كلما ظننت أنك تجاوزته؟', href: '#karmic', cls: 'b', img: 'assets/images/content/photo-mirror-dim.jpg', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' }
     ];
     var box = document.createElement('section'); box.id = 'b3-vip'; box.className = 'b3-vip';
     box.innerHTML = '<div class="b3-vip-track" tabindex="0" role="region" aria-label="التقارير المميزة، مرّر أفقيًا">' + cards.map(function (c) {
-      return '<a class="b3-vcard" href="' + c.href + '"><span class="b3-vart b3-vart-' + c.cls + '">' + svg(c.ic, 56) + '<em>تقرير مميز</em></span><span class="b3-vtx"><b>' + c.t + '</b><small>' + c.q + '</small></span></a>';
+      return '<a class="b3-vcard" href="' + c.href + '"><span class="b3-vimg" style="background-image:url(' + c.img + ')"><em>تقرير مدفوع</em><i class="b3-vic">' + svg(c.ic, 26) + '</i></span><span class="b3-vtx"><b>' + c.t + '</b><small>' + c.q + '</small><u>معاينة مجانية ثم التقرير الكامل</u></span></a>';
     }).join('') + '</div><p class="b3-vsoon">تقارير أخرى قيد التجهيز.</p>';
     grid.parentNode.insertBefore(box, grid);
   }
