@@ -47,3 +47,17 @@ html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifep
 html body section.sec#matrix:target:not(#_a):not(#_b):not(#_c){padding-top:70px!important}
 html body section.sec#matrix:target:not(#_a):not(#_b):not(#_c) .aq-section-topbar{padding-bottom:0!important;margin-bottom:0!important}
 html body section.sec#matrix:target:not(#_a):not(#_b):not(#_c) .mxp-head{margin-top:-8px!important}
+
+/* ===== شريط علوي موحد: رجوع + الصفحة الحالية بعنوان + أيقونات للصفحات المرتبطة ===== */
+:root{--aq-top-pad:calc(var(--aq-hdr,67px) + 9px)}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c){padding-top:var(--aq-top-pad)!important}
+html body section.sec#matrix:target:not(#_a):not(#_b):not(#_c){padding-top:var(--aq-top-pad)!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:8px!important;overflow-x:auto!important;overflow-y:hidden;scrollbar-width:none;padding:2px 2px 6px!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar::-webkit-scrollbar{display:none}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(.aq-nav-actions,.aq-section-quick-links){display:contents!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar .is-home{display:none!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar [data-aq-back]{order:-2;flex:0 0 auto!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-pill.active{order:-1;flex:0 0 auto!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-pill:not(.active){display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 38px!important;width:38px!important;min-width:38px!important;padding:0!important;font-size:0!important;gap:0!important;border-radius:50%!important;background:#FFFDF8!important;border:1px solid #D8BE86!important;color:#7A2A3E!important;box-shadow:none!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-pill:not(.active) span{display:none!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-pill:not(.active) svg{width:18px!important;height:18px!important;margin:0!important;stroke:#7A2A3E!important}

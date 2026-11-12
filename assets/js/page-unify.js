@@ -24,6 +24,7 @@
     [].forEach.call(document.querySelectorAll('.aq-section-topbar'), function (bar) {
       if (bar.getAttribute('data-unified')) return; bar.setAttribute('data-unified', '1');
       [].forEach.call(bar.querySelectorAll('.aq-section-pill'), function (a) {
+        a.setAttribute('title', a.textContent.trim()); a.setAttribute('aria-label', a.textContent.trim());
         if (a.querySelector('svg')) { var s = a.querySelector('svg'); s.classList.add('pill-i'); s.removeAttribute('width'); s.removeAttribute('height'); return; }
         var p = BYHREF[a.getAttribute('href')]; if (p) a.insertAdjacentHTML('afterbegin', ic(p));
       });
