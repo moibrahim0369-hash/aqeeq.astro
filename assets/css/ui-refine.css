@@ -42,7 +42,7 @@ html body :is(#signs,#sgs-sheet,.sgs-sheet):not(#_a) .zp-sec .zp-h .tx-ic{margin
 html body .sgs-sheet .zp-hero{background-color:#4A2C1F!important;transform:translateZ(0);-webkit-transform:translateZ(0);backface-visibility:hidden;isolation:isolate}
 html body .sgs-sheet .zp-hero .zp-const,html body .sgs-sheet .zp-hero svg{transform:translateZ(0)}
 /* خلفية الأبراج: تلاشي ناعم من الأعلى بدل حد قاطع */
-html body :is(#signs,#sky,#world) :is(.aqa-art,.amb){-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 110px,#000 100%);mask-image:linear-gradient(180deg,transparent 0,#000 110px,#000 100%)}
+html body :is(#signs,#sky,#world) .aqa-art{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 90px,#000 30%,transparent 88%);mask-image:linear-gradient(180deg,transparent 0,#000 90px,#000 30%,transparent 88%)}
 html body :is(#signs,#sky,#world,section.rhub) .aq-section-topbar{border:0!important;box-shadow:none!important;background:transparent!important}
 html body :is(#signs,#sky,#world,section.rhub) .aq-section-topbar::after,html body :is(#signs,#sky,#world,section.rhub) .aq-section-topbar::before{display:none!important}
 html body section.rhub .wrap>.aq-section-topbar+*{border-top:0!important}
