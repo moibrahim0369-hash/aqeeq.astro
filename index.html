@@ -102,6 +102,7 @@
 <link rel="stylesheet" href="assets/css/page-bg-unify.css?v=20261119b">
 <link rel="stylesheet" href="assets/css/page-art-fade.css?v=20261120a">
 <link rel="stylesheet" href="assets/css/ui-refine.css?v=20261128a">
+<link rel="stylesheet" href="assets/css/batch3.css?v=20261129c">
 <link rel="stylesheet" href="assets/css/page-celestial.css?v=20261122g">
 <link rel="stylesheet" href="assets/css/internal-fixes.css?v=20261123d">
 </head>
@@ -222,7 +223,8 @@
         <a class="aqh-tool aqh-reveal" href="#individual"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="16" r="8"/><path d="M8 42c1.500-9 8-14 16-14s14.500 5 16 14"/><path d="M24 11l1.200 2.600 2.800.3-2.100 1.900.6 2.800-2.500-1.400-2.500 1.400.6-2.800-2.100-1.900 2.800-.3z" stroke-width="1.2"/></svg></span><span class="aqh-tool-t"><b>خرائطك الشخصية</b><small>خريطتك الفلكية والقدرية والمسارية</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
         <a class="aqh-tool aqh-reveal" href="#relationships"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="24" r="12"/><circle cx="30" cy="24" r="12" stroke-opacity=".75"/></svg></span><span class="aqh-tool-t"><b>التوافق</b><small>اعرف التوافق بينك وبينه</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
         <a class="aqh-tool aqh-reveal" data-soon="مكتبة عقيق قيد التجهيز" href="#dream-library"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 12C19 8 11 8 5 11v27c6-3 14-3 19 1 5-4 13-4 19-1V11c-6-3-14-3-19 1ZM24 12v27"/></svg></span><span class="aqh-tool-t"><b>مكتبة عقيق</b><small>قيد التجهيز</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
-        <a class="aqh-tool aqh-tool-login aqh-reveal" id="aqh-login-tool" href="#account"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="24" r="8"/><path d="M25 24h18M36 24v7M42 24v5"/></svg></span><span class="aqh-tool-t"><b>حسابي</b><small>سجّل الآن لتعرف أكثر عن نفسك، أنت مميز</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-tool-y27 aqh-reveal" id="aqh-y27" href="#year2027"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 5l3.6 10.4L38 19l-10.400 3.600L24 33l-3.600-10.400L10 19l10.400-3.600z"/><path d="M38 31l1.500 3.500L43 36l-3.500 1.500L38 41l-1.500-3.500L33 36l3.500-1.500z"/></svg></span><span class="aqh-tool-t"><em class="y27-year">2027</em><b>ما سيحدث في 2027</b><small>ما الفصول التي ستُغلق في حياتك العام القادم، وأي الأبواب ستُفتح لك؟</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <div class="b3-rot" id="b3-rot" aria-live="off"></div>
       </div>
       <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
       <div class="grp hidden-feature" id="cat-tarot" hidden style="display:none !important;"></div>
@@ -1255,6 +1257,22 @@
 </ul>
 <ol class="inv-steps" aria-label="خطوات الشراء"><li><b>1</b><strong>سجّل دخولك</strong><small>وأكمل بياناتك الشخصية وبيانات الميلاد</small></li><li><b>2</b><strong>اختر ما يناسبك</strong><small>تقرير أو قراءة أو كورس</small></li><li><b>3</b><strong>حوّل المبلغ</strong><small>محفظة أو إنستاباي أو PayPal</small></li><li><b>4</b><strong>نؤكد ويصلك طلبك</strong><small>التقرير على بريد حسابك</small></li></ol>
 <p class="inv-note">الدفع بتحويل مباشر من تطبيقك، ولا نطلب بيانات بطاقتك. القراءات للتأمل وفهم الذات وليست بديلًا عن استشارة مختصة.</p>
+</div></section>
+<section class="sec alt y27" id="year2027" aria-labelledby="y27-h"><div class="wrap">
+<a aria-label="إغلاق" class="sheet-x" href="#home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></a>
+<div class="aq-section-topbar"><a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a></div>
+<div class="y27-printhead" aria-hidden="true"><b>عقيق أسترو</b><span>قراءة سنة 2027</span><span id="y27-name-print"></span></div>
+<div class="y27-intro center"><span class="eyebrow">قراءة سنتك</span><h2 id="y27-h">ما سيحدث في 2027</h2><p class="intro">ما الفصول التي ستُغلق في حياتك العام القادم، وأي الأبواب ستُفتح لك؟ اكتب بياناتك لتقرأ سنتك من حركة الكواكب فوق خريطتك.</p></div>
+<form class="y27-form" id="y27-form" novalidate autocomplete="off">
+<div class="field"><label for="y27-name"><span>اسمك</span></label><input id="y27-name" type="text" maxlength="40" autocomplete="off"></div>
+<div class="field"><label for="y27-date"><span>تاريخ الميلاد</span></label><input id="y27-date" type="date" min="1900-01-01" max="2100-12-31"></div>
+<div class="field"><label for="y27-time"><span>وقت الميلاد</span></label><input id="y27-time" type="time"><label class="y27-chk"><input id="y27-unknown" type="checkbox"> لا أعرف وقت ميلادي</label></div>
+<div class="field"><label for="y27-city"><span>بلد أو مدينة الميلاد</span></label><select id="y27-city"></select></div>
+<p class="ferr" id="y27-err" role="alert" hidden></p>
+<button class="btn" type="submit">اعرض قراءة 2027</button>
+</form>
+<div class="y27-result" id="y27-result" hidden aria-live="polite"></div>
+<div class="y27-editrow"><button type="button" class="y27-link" id="y27-edit">تعديل البيانات</button></div>
 </div></section>
 <section class="sec alt pay" id="pay" aria-labelledby="pay-h"><div class="wrap"><a aria-label="إغلاق" class="sheet-x" href="#home"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></a>
 <header class="pay-head"><span class="eyebrow" dir="ltr">دفع آمن</span><h2 id="pay-h">إتمام الدفع</h2><div class="inv-orn" aria-hidden="true"><i></i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.600 8.400L22 12l-8.400 1.600L12 22l-1.600-8.400L2 12l8.400-1.600z"/></svg><i></i></div><p class="intro">اختر طريقة الدفع، حوّل المبلغ، ثم اكتب رقم العملية. نراجع التحويل ونفعّل طلبك في حسابك.</p></header>
@@ -5357,6 +5375,8 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/vedic-extras.js?v=20261126a" defer></script>
 <script src="assets/js/vedic-chart.js?v=20261128a" defer></script>
 <script src="assets/js/astro-result-view.js?v=20261128a" defer></script>
+<script src="assets/js/year2027.js?v=20261129a" defer></script>
+<script src="assets/js/home-batch3.js?v=20261129a" defer></script>
 <script src="assets/js/section-footer.js?v=20261122b"></script>
 <script src="assets/js/paywall-modal.js?v=20261126a"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>

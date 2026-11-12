@@ -315,5 +315,6 @@
       }catch(x){say(err,x.message||'تعذر حساب الخريطة.');}
     });
   })();
+  window.AqEam={engineChart,siderealChart,ayanamsa,norm};
   setMode('sidereal');
 })();
