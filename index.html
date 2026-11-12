@@ -1019,9 +1019,10 @@
 </div>
 <div class="center">
 <span class="period eyebrow" id="period"></span>
-<h2>صفات الأبراج وتوقعاتها الحقيقية</h2>
-<p class="intro">اختر برجك لتقرأ صفاته وتوقعه الكامل الآن، ثم العبورات الفلكية الجارية وتأثير كل واحد منها عليك. للقراءة الشخصية الدقيقة استخدم حاسبة خريطة الميلاد.</p>
+<h2>توقعات الأبراج الآن</h2>
+<p class="intro">اختر برجك ليظهر توقعه الكامل الآن، ثم العبورات الجارية وتأثير كل واحد منها عليك. للقراءة الشخصية الدقيقة استخدم حاسبة خريطة الميلاد.</p>
 </div>
+<div class="sg-seg" id="sg-seg" role="group" aria-label="نوع القراءة"><button type="button" data-mode="forecast" aria-pressed="true">توقعات اليوم</button><button type="button" data-mode="traits" aria-pressed="false">صفات الأبراج</button></div>
 <button class="signs-back" id="signs-back" type="button" aria-label="الرجوع لكل الأبراج"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" transform="scale(-1 1) translate(-24 0)"/></svg><span>جميع الأبراج</span></button>
 <div aria-label="اختيار البرج" class="picker" id="picker" role="group"></div>
 <article aria-live="polite" class="arch" id="panel"></article>
@@ -3369,7 +3370,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   /* ---------- السما دلوقتي ---------- */
   const signAt = (key, ms) => Math.floor(Astro.lonOf(key, Astro.jdFromMs(ms) + Astro.deltaT(Astro.yearOf(Astro.jdFromMs(ms))) / 86400) / 30);
   const HORIZON = { moon: 4, sun: 35, mercury: 130, venus: 150, mars: 330, jupiter: 480, saturn: 1100, uranus: 3000, neptune: 6000, pluto: 9500 };
+  const _ingMemo = {};
   function nextIngress(key, ms) {
+    const dk = key + ':' + Math.floor(ms / 864e5);
+    if (dk in _ingMemo) return _ingMemo[dk];
+    return (_ingMemo[dk] = _nextIngressRaw(key, ms));
+  }
+  function _nextIngressRaw(key, ms) {
     const step = key === "moon" ? 0.125 : 1, s0 = signAt(key, ms);
     let t = ms;
     for (let i = 0; i * step <= HORIZON[key]; i++) {
@@ -3949,29 +3956,54 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     sgSheet.hidden = false; document.documentElement.classList.add("aqm-sheet-open");
   }
   window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); });
+  function signHero(i) {
+    const s = SIGNS[i];
+    return `<header class="zp-hero"><div class="zp-id"><span class="zp-glyph" aria-hidden="true">${gl(s.g)}</span><div><h3>${s.n}</h3><p class="dates">${s.d}</p>
+        <div class="zp-tags"><span>برج ${ELEMENTS[s.el].adj}</span><span>${MODALITIES[s.mod].n}</span><span>يحكمه ${PLANETS[s.ruler].n}</span></div></div></div>
+        <figure class="zp-const" aria-hidden="true"></figure></header>`;
+  }
+  let signsMode = "forecast";
+  const segBtns = [].slice.call(document.querySelectorAll("#sg-seg [data-mode]"));
+  const signsH2 = document.querySelector("#signs .center h2"), signsIntro = document.querySelector("#signs .center .intro");
+  const MODE_TXT = {
+    forecast: ["توقعات الأبراج الآن", "اختر برجك ليظهر توقعه الكامل الآن، ثم العبورات الجارية وتأثير كل واحد منها عليك."],
+    traits: ["صفات الأبراج", "اختر برجك لتقرأ شخصيته وحبه وعمله وجانبه الخفي، فصلًا بعد فصل."]
+  };
+  function setMode(m) {
+    signsMode = m; signsSec.setAttribute("data-mode", m);
+    segBtns.forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === m ? "true" : "false"));
+    if (signsH2) signsH2.textContent = MODE_TXT[m][0];
+    if (signsIntro) signsIntro.textContent = MODE_TXT[m][1];
+    sgClose(); pbtns.forEach(b => b.setAttribute("aria-pressed", "false")); panel.innerHTML = "";
+  }
+  segBtns.forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+  function showTraits(i) {
+    pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+    panel.innerHTML = `${signHero(i)}<section class="zp-sec">${signSections(i)}</section>`;
+    panel.querySelectorAll(".sec-ico").forEach(b => b.addEventListener("click", () => openSignSec(i, +b.dataset.sec)));
+    openSignSec(i, 0);
+    if (panel.scrollIntoView) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
   function selectSign(i) {
     const s = SIGNS[i], f = FORECASTS[i];
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
-    panel.innerHTML = `<header class="zp-hero"><div class="zp-id"><span class="zp-glyph" aria-hidden="true">${gl(s.g)}</span><div><h3>${s.n}</h3><p class="dates">${s.d}</p>
-        <div class="zp-tags"><span>برج ${ELEMENTS[s.el].adj}</span><span>${MODALITIES[s.mod].n}</span><span>يحكمه ${PLANETS[s.ruler].n}</span></div></div></div>
-        <figure class="zp-const" aria-hidden="true"></figure></header>
+    panel.innerHTML = `${signHero(i)}
       <section class="zp-sec zp-full"><h4 class="zp-h">${ZI.star}<span>التوقع الكامل الآن</span></h4>
         <p class="zp-overall">${f.overall}</p>
         <div class="zp-trio"><article class="zp-fc"><h5>${ZI.heart}الحب</h5><p>${f.love}</p></article><article class="zp-fc"><h5>${ZI.work}الشغل</h5><p>${f.work}</p></article><article class="zp-fc"><h5>${ZI.coin}الفلوس</h5><p>${f.money}</p></article></div>
         ${dailySign(i)}</section>
       ${signTransits(i)}
       <section class="zp-sec"><h4 class="zp-h">${ZI.tip}<span>إرشادات اليوم</span></h4>${signExtra(s, f, i)}</section>
-      <section class="zp-sec">${signSections(i)}</section>`;
-    panel.querySelectorAll('.sec-ico').forEach(b => b.addEventListener('click', () => openSignSec(i, +b.dataset.sec)));
-    signIntro(i);
-    openSignSec(i, 0);
+      <section class="zp-sec zp-more"><button type="button" class="zp-traits-btn" data-traits="${i}">${ZI.book}<span>اقرأ صفات ${s.n} وشخصيته</span></button></section>`;
+    panel.querySelector(".zp-traits-btn").addEventListener("click", () => { sgClose(); setMode("traits"); showTraits(i); });
     sgOpen(i);
   }
   SIGNS.forEach((s, i) => {
     const b = document.createElement("button"); b.type = "button"; b.className = "sign";
     b.innerHTML = `<span class="sg" aria-hidden="true">${gl(s.g)}</span><span>${s.n}</span>`;
-    b.addEventListener("click", () => selectSign(i)); picker.appendChild(b); pbtns.push(b);
+    b.addEventListener("click", () => (signsMode === "traits" ? showTraits(i) : selectSign(i))); picker.appendChild(b); pbtns.push(b);
   });
+  (function () { const ks = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"]; let n = 0; const step = () => { if (n >= ks.length) return; try { nextIngress(ks[n++], Date.now()); } catch (e) {} setTimeout(step, 150); }; window.addEventListener("load", () => setTimeout(step, 2500)); })();
   $("#signs-back").addEventListener("click", () => { signsSec.classList.remove("signs-detail"); if (signsSec.scrollTo) signsSec.scrollTo(0, 0); });
   window.addEventListener("hashchange", () => { if (location.hash !== "#signs") signsSec.classList.remove("signs-detail"); });
   const glyphs = $("#glyphs");
@@ -3981,7 +4013,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     g.setAttribute("class", "wg"); g.setAttribute("role", "button"); g.setAttribute("tabindex", "0"); g.setAttribute("aria-label", "توقعات برج " + s.n);
     g.style.setProperty("--i", i);
     g.innerHTML = `<circle class="hit" cx="${x}" cy="${y}" r="21"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central">${gl(s.g)}</text>`;
-    const go = () => { selectSign(i); location.hash = "#signs"; };
+    const go = () => { if (signsMode !== "forecast") setMode("forecast"); selectSign(i); location.hash = "#signs"; };
     g.addEventListener("click", go);
     g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
     glyphs.appendChild(g);
