@@ -311,3 +311,22 @@ html body :is(#signs,#sgs-sheet):not(#_a) .sign-detail .sx-card{margin:10px 0 0!
 html body :is(#signs,#sgs-sheet):not(#_a) .sx-card h5{margin:0 0 4px!important;font:700 .8rem 'Cairo',sans-serif!important;color:#9A7433!important;letter-spacing:0}
 html body :is(#signs,#sgs-sheet):not(#_a) .sx-card p{margin:0!important;font-size:.92rem;line-height:1.8;color:#33241d!important}
 html body :is(#signs,#sgs-sheet):not(#_a) .zp-sec{background:#FFFEFB!important;border:1px solid #EBDFC8!important;box-shadow:none!important}
+
+/* أيقونات مميزة بألوان الهوية + شارة التراجع واضحة */
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-ic,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-ic{flex:0 0 40px!important;width:40px!important;height:40px!important;border-radius:13px!important;border:0!important;background:linear-gradient(145deg,#8A3148,#5E2234)!important;box-shadow:0 4px 10px rgba(94,34,52,.22)!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-ic svg,
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-ic svg{width:20px!important;height:20px!important;stroke:#F6E7C8!important;stroke-width:1.7!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-ic .sg,
+html body :is(#signs,#sgs-sheet):not(#_a) .lpa-ic{color:#F6E7C8!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .is-light>.lpa-sum .lpa-ic,
+html body :is(#signs,#sgs-sheet):not(#_a) .is-shadow>.lpa-sum .lpa-ic{background:linear-gradient(145deg,#8A3148,#5E2234)!important;border:0!important;color:#F6E7C8!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-list>.tx:nth-child(4n+2) .tx-ic,
+html body :is(#signs,#sgs-sheet):not(#_a) .zd-stack>.lpa-card:nth-child(4n+2) .lpa-ic{background:linear-gradient(145deg,#C4673F,#9C4526)!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-list>.tx:nth-child(4n+3) .tx-ic,
+html body :is(#signs,#sgs-sheet):not(#_a) .zd-stack>.lpa-card:nth-child(4n+3) .lpa-ic{background:linear-gradient(145deg,#B8924A,#8E6C2C)!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .tx-list>.tx:nth-child(4n) .tx-ic,
+html body :is(#signs,#sgs-sheet):not(#_a) .zd-stack>.lpa-card:nth-child(4n) .lpa-ic{background:linear-gradient(145deg,#A5503F,#7A2F2A)!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .rxb{margin-inline-start:8px;padding:2px 11px!important;border-radius:999px;background:linear-gradient(145deg,#C24A58,#9C2F3E)!important;color:#fff!important;font:700 .74rem/1.7 'Cairo',sans-serif!important;box-shadow:0 2px 6px rgba(156,47,62,.3)}
+html body :is(#signs,#sgs-sheet):not(#_a) .zp-glance span.is-rx{background:#FBE9EA!important;border-color:#D9939B!important}
+html body :is(#signs,#sgs-sheet):not(#_a) .tl-points li{border:1px solid #EADFC6!important;border-inline-start:1px solid #EADFC6!important;border-inline-end:1px solid #EADFC6!important;box-shadow:none!important;background:#FAF4E6!important;border-radius:14px!important}
