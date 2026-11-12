@@ -117,3 +117,69 @@ html body section.sec .aq-section-topbar::-webkit-scrollbar{display:none}
 html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(.aq-section-quick-links,.aq-nav-actions):not(#_d):not(#_e){flex:0 0 auto!important;overflow:visible!important;padding:0!important}
 html body section.sec#compat:not(#_a):not(#_b) .aq-section-topbar .aq-nav-btn.is-home:not(#_c){display:none!important}
 html body section.sec#compat:not(#_a):not(#_b) .aq-section-topbar .aq-section-quick-links:not(#_c):not(#_d):not(#_e){margin:0!important;position:static!important;transform:none!important}
+
+/* ===== v20261127a: matrix modes (pair / child) + year picker ===== */
+html body #matrix .mxm-switch{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin:6px 0 14px;padding:2px 0 6px}
+html body #matrix .mxm-switch::-webkit-scrollbar{display:none}
+html body #matrix .mxm-switch button{flex:0 0 auto;min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--ur-line);background:#FFFDF8;color:#6A2038;font:700 .92rem 'Cairo',sans-serif;white-space:nowrap;cursor:pointer}
+html body #matrix .mxm-switch button[aria-selected=true]{background:#6A2038;border-color:#C5A059;color:#FFF3D6}
+html body #matrix .mxm-off{display:none!important}
+html body #matrix:not([data-mxm=solo]):not(:not([data-mxm])) :is(.mxp-axes,.mxp-feats,.mxp-reveal,.mxp-en){display:none!important}
+html body #matrix .mxm-panel{margin:0 0 18px}
+html body #matrix .mxm-form{display:grid;gap:12px;padding:16px;border-radius:20px;background:#FFFDF8;border:1px solid var(--ur-line)}
+html body #matrix .mxm-lead{margin:0;color:#4b3a33;line-height:1.9;font-size:.95rem}
+html body #matrix .mxm-grp{display:grid;gap:10px;padding:12px;border-radius:16px;background:#FBF3E4;border:1px solid #EBDCBB}
+html body #matrix .mxm-grp h4{margin:0;color:#6A2038;font:800 1rem 'Cairo',sans-serif}
+html body #matrix .mxm-form .field{display:grid!important;grid-template-columns:1fr!important;gap:6px;margin:0;padding:0;background:none!important;border:0!important;box-shadow:none!important}
+html body #matrix .mxm-form .field label{color:#6b4a3a;font:700 .86rem 'Cairo',sans-serif}
+html body #matrix .mxm-form .field input[type=text]{width:100%;box-sizing:border-box;padding:0 12px;font:600 1rem 'Cairo',sans-serif}
+html body #matrix .mxm-form .aq-ds{display:grid;grid-template-columns:1fr 1.3fr 1.2fr;gap:8px}
+html body #matrix .mxm-form .aq-ds-src{display:none!important}
+html body #matrix .mxm-form .btn{width:100%;min-height:50px;border-radius:14px}
+html body #matrix .mxm-result{margin-top:16px;display:grid;gap:12px}
+html body #matrix .mxm-sum{padding:16px;border-radius:20px;background:#FFFDF8;border:1px solid var(--ur-line)}
+html body #matrix .mxm-sum h3{margin:0 0 4px;color:#6A2038;font:800 1.2rem 'Cairo',sans-serif}
+html body #matrix .mxm-sum p{margin:0 0 12px;color:#5b4a42;line-height:1.8;font-size:.9rem}
+html body #matrix .mxm-tab{display:grid;gap:6px}
+html body #matrix .mxm-row{display:grid;grid-template-columns:minmax(64px,1.2fr) repeat(5,1fr);gap:6px;align-items:center}
+html body #matrix .mxm-row span{color:#6A2038;font:700 .88rem 'Cairo',sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #matrix .mxm-row b{display:grid;place-items:center;min-height:38px;border-radius:10px;background:#FBF3E4;border:1px solid #EBDCBB;color:#3A1A24;font:800 1rem 'Cairo',sans-serif}
+html body #matrix .mxm-row i{font:600 .7rem 'Cairo',sans-serif;color:#9a7a55;text-align:center;font-style:normal}
+html body #matrix .mxm-sep{height:1px;background:#E3CFA3;margin:4px 0}
+html body #matrix .mxm-sep + .mxm-row b{background:#6A2038;border-color:#C5A059;color:#FFF3D6}
+html body #matrix .mxm-acc{border-radius:20px;background:#FFFDF8;border:1px solid var(--ur-line);overflow:hidden}
+html body #matrix .mxm-acc > summary{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none}
+html body #matrix .mxm-acc > summary::-webkit-details-marker{display:none}
+html body #matrix .mxm-ic{flex:0 0 44px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#6A2038;border:1px solid #C5A059;color:#E8CF98}
+html body #matrix .mxm-ic svg{width:21px;height:21px}
+html body #matrix .mxm-t{flex:1;color:#6A2038;font:800 1.02rem 'Cairo',sans-serif;line-height:1.5}
+html body #matrix .mxm-chev{flex:0 0 30px;width:30px;height:30px;border-radius:50%;border:1px solid #D9BD86;background:#FBF3E4;position:relative}
+html body #matrix .mxm-chev::after{content:"";position:absolute;inset:0;margin:auto;width:8px;height:8px;border-right:2px solid #6A2038;border-bottom:2px solid #6A2038;transform:translateY(-2px) rotate(45deg);transition:transform .2s ease}
+html body #matrix .mxm-acc[open] .mxm-chev::after{transform:translateY(2px) rotate(-135deg)}
+html body #matrix .mxm-body{padding:2px 16px 16px;border-top:1px solid #EFE3C8;display:grid;gap:12px}
+html body #matrix .mxm-intro{margin:12px 0 0;color:#33241d;line-height:2;font-size:.96rem}
+html body #matrix .mxm-en{display:grid;grid-template-columns:46px 1fr;gap:12px;padding:12px;border-radius:16px;background:#FBF3E4;border:1px solid #EBDCBB}
+html body #matrix .mxm-num{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#FFFDF8;border:1.5px solid #C5A059;color:#6A2038;font:800 1.1rem 'Cairo',sans-serif}
+html body #matrix .mxm-en b{display:block;color:#9a7a55;font:700 .8rem 'Cairo',sans-serif}
+html body #matrix .mxm-en b i{font-style:normal;color:#6A2038}
+html body #matrix .mxm-en strong{display:block;color:#3A1A24;font:800 1.05rem 'Cairo',sans-serif;margin:2px 0 4px}
+html body #matrix .mxm-en p{margin:0 0 4px;color:#4b3a33;line-height:1.85;font-size:.9rem}
+html body #matrix .mxm-en em{font-style:normal;font-weight:700;color:#6A2038}
+html body #matrix .mxm-note{margin:4px 0 0;text-align:center;color:#9a7a55;font-size:.8rem}
+/* year picker */
+html body #astro-maps .eam-yearpick{display:grid!important;gap:8px}
+html body #astro-maps .eam-yp{display:grid;grid-template-columns:48px 1fr 48px;gap:8px;align-items:center}
+html body #astro-maps .eam-yp-b{height:48px;border-radius:14px;border:1px solid #D9BD86;background:#FFFDF8;color:#6A2038;display:grid;place-items:center;cursor:pointer}
+html body #astro-maps .eam-yp-b svg{width:20px;height:20px}
+html body #astro-maps .eam-yp select{min-height:48px!important;text-align:center;text-align-last:center;font:800 1.1rem 'Cairo',sans-serif!important}
+html body #astro-maps .eam-yp-quick{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+html body #astro-maps .eam-yp-quick button{flex:1 0 auto;min-height:38px;padding:6px 12px;border-radius:999px;border:1px solid var(--ur-line);background:#FBF3E4;color:#6A2038;font:700 .82rem 'Cairo',sans-serif;white-space:nowrap;cursor:pointer}
+html body #matrix:not(#_a):not(#_b):not(#_c) form.mxm-form .field:not(#_d){display:grid!important;grid-template-columns:1fr!important;gap:6px!important;margin:0!important;padding:0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;min-height:0!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) form.mxm-form .field label:not(#_d){display:block!important;grid-column:auto!important;margin:0!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) form.mxm-form .aq-ds:not(#_d){display:grid!important;grid-template-columns:1fr 1.3fr 1.2fr!important;gap:8px!important;width:100%!important;grid-column:auto!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) form.mxm-form .aq-ds select:not(#_d){width:100%!important;min-width:0!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) form.mxm-form input[type=text]:not(#_d){width:100%!important;grid-column:auto!important}
+html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d) .mxm-off:not(#_e):not(#_f){display:none!important}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(.aq-section-quick-links,.aq-nav-actions):not(#_d):not(#_e):not(#_f){margin:0!important;position:static!important;transform:none!important;inset:auto!important}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar > *:not(#_d):not(#_e):not(#_f){position:static!important;margin-inline:0!important;transform:none!important}
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(.aq-section-quick-links,.aq-nav-actions):not(#_d):not(#_e):not(#_f){width:max-content!important;max-width:none!important;min-width:max-content!important}
