@@ -2,7 +2,7 @@
    القيمة تُكتب في الحقل الأصلي بصيغة YYYY-MM-DD ويُطلق عليه input/change. */
 (function () {
   'use strict';
-  var IDS = ['m-date', 'lp-date', 'f-date', 'syn-date-a', 'syn-date-b', 'eam-b-date', 'mxm-d1', 'mxm-d2', 'mxm-d3', 'y27-date', 'iv-date'];
+  var IDS = ['m-date', 'lp-date', 'f-date', 'syn-date-a', 'syn-date-b', 'eam-b-date', 'mxm-d1', 'mxm-d2', 'mxm-d3', 'y27-date', 'kt-date', 'iv-date'];
   var MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
   function opt(v, t) { var o = document.createElement('option'); o.value = v; o.textContent = t; return o; }
   function mk(ph, cls, label) {
@@ -74,7 +74,7 @@
   }
   function enhanceTime(inp) {
     if (!inp || inp.__aqds) return; inp.__aqds = true;
-    var wrap = document.createElement('div'); wrap.className = 'aq-dsx aq-dsx-time' + (inp.closest && inp.closest('#chart,#matrix,#lifepath,#year2027') ? ' aq-ds' : ''); wrap.dir = 'rtl';
+    var wrap = document.createElement('div'); wrap.className = 'aq-dsx aq-dsx-time' + (inp.closest && inp.closest('#chart,#matrix,#lifepath,#year2027,#karmic') ? ' aq-ds' : ''); wrap.dir = 'rtl';
     var h = mkx('ساعة', 'aq-dsx-h', 'الساعة', inp.required), mi = mkx('دقيقة', 'aq-dsx-mi', 'الدقيقة', false), ap = mkx('ص / م', 'aq-dsx-ap', 'صباحًا أو مساءً', inp.required);
     for (var i = 1; i <= 12; i++) h.appendChild(opt(String(i), String(i)));
     for (var j = 0; j < 60; j++) mi.appendChild(opt(String(j), pad2(j)));

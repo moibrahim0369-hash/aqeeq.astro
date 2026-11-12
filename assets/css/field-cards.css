@@ -13,7 +13,7 @@ html body form.ntx-card .ntx-pan .field:not(.ntx-place) :is(input,select){grid-c
 :is(form.mxp-card,form.lpx-card) .field:focus-within,form.ntx-card .ntx-pan .field:focus-within{border-color:#c9a35d;box-shadow:0 0 0 3px rgba(201,163,93,.18),0 8px 20px rgba(150,110,60,.08)}
 @media(min-width:900px){form.ntx-card .ntx-pan .field:not(.ntx-place){grid-template-columns:42px minmax(0,1fr);padding:10px 12px!important}
  form.ntx-card .ntx-pan :is(.ntx-fi){width:40px!important;height:40px!important}}
-html body :is(#matrix,#lifepath,#chart,#year2027) form .field:not(.ntx-place) :is(input,select){border:0!important;background:transparent!important;box-shadow:none!important;padding:2px 0 0!important;min-height:30px;border-radius:0!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form .field:not(.ntx-place) :is(input,select){border:0!important;background:transparent!important;box-shadow:none!important;padding:2px 0 0!important;min-height:30px;border-radius:0!important}
 @media(min-width:900px){html body #chart form .ntx-pan .field:not(.ntx-place) :is(input,select){font-size:.95rem}}
 html body section#chart.ntx .ntx-card .ntx-pan .field:not(.ntx-place) :is(input:not([type=checkbox]),select){border:0!important;background:transparent!important;box-shadow:none!important;min-height:30px!important;padding:2px 0 0!important;border-radius:0!important;font-size:1.02rem!important}
 html body section#chart.ntx .ntx-card .ntx-pan .field:not(.ntx-place) :is(input,select):focus{box-shadow:none!important}
@@ -22,21 +22,21 @@ html body :is(section#lifepath.lpx,section#matrix.mxp) form .field :is(input,sel
 /* ===== نسخة احترافية: أيقونات واضحة + حقول مدمجة + هيرو ===== */
 html body #matrix.mxp .mxp-emblem{display:block;width:104px;height:104px;margin:0 auto 14px;filter:drop-shadow(0 8px 18px rgba(150,110,60,.25))}
 @media(min-width:900px){html body #matrix.mxp .mxp-emblem{width:128px;height:128px}}
-html body :is(#matrix,#lifepath,#chart,#year2027) form .field:not(.ntx-place){min-height:70px;padding:10px 14px!important;margin:0 0 12px!important;border:1px solid #e3cd9f!important;background:linear-gradient(180deg,#FFFEFA,#FBF2DF)!important;box-shadow:0 1px 0 #fff inset,0 6px 16px rgba(150,100,50,.09)!important}
-html body :is(#matrix,#lifepath,#chart,#year2027) form .field:not(.ntx-place) label{font-size:.74rem!important;color:#8a7358!important;font-weight:600!important}
-html body :is(#matrix,#lifepath,#chart,#year2027) form :is(.mxp-fi,.lpx-fi,.ntx-fi){width:46px!important;height:46px!important;border-radius:14px!important;background:linear-gradient(145deg,#F7E3B8,#E4BF7C)!important;border:1px solid #c79a4b!important;color:#6b2238!important;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 4px 10px rgba(150,100,40,.25)!important;display:grid!important;place-items:center}
-html body :is(#matrix,#lifepath,#chart,#year2027) form :is(.mxp-fi,.lpx-fi,.ntx-fi) svg{width:24px!important;height:24px!important;stroke-width:1.7!important;color:#6b2238!important;stroke:#6b2238!important;opacity:1!important}
-html body :is(#matrix,#lifepath,#chart,#year2027) form .field:not(.ntx-place) :is(input,select){color:#4a1a2b!important;font-weight:600!important;font-size:1.05rem!important;-webkit-text-fill-color:#4a1a2b}
-html body :is(#matrix,#lifepath,#chart,#year2027) form .field :is(input,select)::placeholder{color:#b3a493!important;-webkit-text-fill-color:#b3a493;font-weight:400}
-html body :is(#matrix,#lifepath,#chart,#year2027) form .field input[type=date],html body :is(#matrix,#lifepath,#chart,#year2027) form .field input[type=time]{-webkit-appearance:auto!important;appearance:auto!important;background-image:none!important;min-height:34px!important;text-align:start;direction:ltr;text-align:right}
-html body :is(#matrix,#lifepath,#chart,#year2027) form .field select{background-image:none!important;-webkit-appearance:auto;appearance:auto}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form .field:not(.ntx-place){min-height:70px;padding:10px 14px!important;margin:0 0 12px!important;border:1px solid #e3cd9f!important;background:linear-gradient(180deg,#FFFEFA,#FBF2DF)!important;box-shadow:0 1px 0 #fff inset,0 6px 16px rgba(150,100,50,.09)!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form .field:not(.ntx-place) label{font-size:.74rem!important;color:#8a7358!important;font-weight:600!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form :is(.mxp-fi,.lpx-fi,.ntx-fi){width:46px!important;height:46px!important;border-radius:14px!important;background:linear-gradient(145deg,#F7E3B8,#E4BF7C)!important;border:1px solid #c79a4b!important;color:#6b2238!important;box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 4px 10px rgba(150,100,40,.25)!important;display:grid!important;place-items:center}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form :is(.mxp-fi,.lpx-fi,.ntx-fi) svg{width:24px!important;height:24px!important;stroke-width:1.7!important;color:#6b2238!important;stroke:#6b2238!important;opacity:1!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form .field:not(.ntx-place) :is(input,select){color:#4a1a2b!important;font-weight:600!important;font-size:1.05rem!important;-webkit-text-fill-color:#4a1a2b}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form .field :is(input,select)::placeholder{color:#b3a493!important;-webkit-text-fill-color:#b3a493;font-weight:400}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form .field input[type=date],html body :is(#matrix,#lifepath,#chart,#year2027) form .field input[type=time]{-webkit-appearance:auto!important;appearance:auto!important;background-image:none!important;min-height:34px!important;text-align:start;direction:ltr;text-align:right}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form .field select{background-image:none!important;-webkit-appearance:auto;appearance:auto}
 /* شريط التنقل العلوي: صف واحد قابل للتمرير بدون قص */
 @media(max-width:899px){
-html body :is(#matrix,#lifepath,#chart,#year2027) .aq-section-topbar{display:flex!important;flex-wrap:nowrap!important;align-items:center;gap:8px!important;padding:6px 2px!important;margin:0 0 6px!important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-html body :is(#matrix,#lifepath,#chart,#year2027) .aq-section-topbar::-webkit-scrollbar{display:none}
-html body :is(#matrix,#lifepath,#chart,#year2027) .aq-section-quick-links{display:flex!important;flex-wrap:nowrap!important;gap:8px!important;overflow:visible!important;margin:0!important;padding:0!important;mask:none!important;-webkit-mask:none!important}
-html body :is(#matrix,#lifepath,#chart,#year2027) .aq-section-topbar :is(a,.aq-section-pill){flex:0 0 auto!important;white-space:nowrap;font-size:.8rem!important;padding:7px 12px!important;min-height:0!important}
-html body :is(#matrix,#lifepath,#chart,#year2027) .aq-section-topbar svg{width:15px!important;height:15px!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) .aq-section-topbar{display:flex!important;flex-wrap:nowrap!important;align-items:center;gap:8px!important;padding:6px 2px!important;margin:0 0 6px!important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) .aq-section-topbar::-webkit-scrollbar{display:none}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) .aq-section-quick-links{display:flex!important;flex-wrap:nowrap!important;gap:8px!important;overflow:visible!important;margin:0!important;padding:0!important;mask:none!important;-webkit-mask:none!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) .aq-section-topbar :is(a,.aq-section-pill){flex:0 0 auto!important;white-space:nowrap;font-size:.8rem!important;padding:7px 12px!important;min-height:0!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) .aq-section-topbar svg{width:15px!important;height:15px!important}
 html body #matrix.mxp .mxp-wrap{padding-top:10px!important}
 html body #matrix.mxp .mxp-head h2{font-size:clamp(2.2rem,11vw,3rem)!important;line-height:1.25!important;margin:4px 0 8px!important;white-space:normal;word-break:keep-all}
 html body #matrix.mxp .mxp-head .intro{font-size:.95rem!important;line-height:1.9!important}
@@ -53,9 +53,9 @@ html body section.sec:target#matrix>.wrap>.aq-section-topbar>:is(.aq-nav-actions
 }
 
 /* ===== أيقونات مميزة: بلاطة عنابية زجاجية + أيقونة ذهبية مضيئة ===== */
-html body :is(#matrix,#lifepath,#chart,#year2027) form :is(.mxp-fi,.lpx-fi,.ntx-fi){position:relative;overflow:hidden;background:linear-gradient(150deg,#8E3A57 0%,#64203A 55%,#4A1428 100%)!important;border:1px solid rgba(233,200,130,.85)!important;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 -6px 10px rgba(30,5,15,.35) inset,0 8px 16px rgba(90,26,48,.32)!important}
-html body :is(#matrix,#lifepath,#chart,#year2027) form :is(.mxp-fi,.lpx-fi,.ntx-fi)::after{content:"";position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,0));border-radius:14px 14px 40% 40%;pointer-events:none}
-html body :is(#matrix,#lifepath,#chart,#year2027) form :is(.mxp-fi,.lpx-fi,.ntx-fi) svg{position:relative;z-index:1;color:#F6DB9A!important;stroke:#F6DB9A!important;stroke-width:1.8!important;filter:drop-shadow(0 0 5px rgba(246,219,154,.55))}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form :is(.mxp-fi,.lpx-fi,.ntx-fi){position:relative;overflow:hidden;background:linear-gradient(150deg,#8E3A57 0%,#64203A 55%,#4A1428 100%)!important;border:1px solid rgba(233,200,130,.85)!important;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 -6px 10px rgba(30,5,15,.35) inset,0 8px 16px rgba(90,26,48,.32)!important}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form :is(.mxp-fi,.lpx-fi,.ntx-fi)::after{content:"";position:absolute;left:0;right:0;top:0;height:46%;background:linear-gradient(180deg,rgba(255,255,255,.38),rgba(255,255,255,0));border-radius:14px 14px 40% 40%;pointer-events:none}
+html body :is(#matrix,#lifepath,#chart,#year2027,#karmic) form :is(.mxp-fi,.lpx-fi,.ntx-fi) svg{position:relative;z-index:1;color:#F6DB9A!important;stroke:#F6DB9A!important;stroke-width:1.8!important;filter:drop-shadow(0 0 5px rgba(246,219,154,.55))}
 /* بطاقة الفورم زجاجية ليظهر الفن خلفها */
 html body #matrix.mxp form.mxp-card{background:linear-gradient(180deg,rgba(255,253,248,.80),rgba(251,243,228,.82))!important;-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
 html body #matrix.mxp form.mxp-card .field{background:linear-gradient(180deg,rgba(255,255,252,.9),rgba(251,242,223,.88))!important}

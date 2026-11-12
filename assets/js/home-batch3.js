@@ -10,13 +10,10 @@
 
   /* ---------- 1) شريط العروض: يتبدل كل 3 ثوان ---------- */
   var ROT = [
-    { t: 'اكتشف ذيلك الكارمي', s: 'تقرير مميز: الدرس الذي يعود إليك وروشتة توازنه', href: '#invest', k: 'karmic', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' },
-    { t: 'مسار علاقاتك', s: 'تقرير مميز: لماذا تتكرر نفس القصة في قلبك؟', href: '#invest', k: 'love', ic: '<path d="M12 20s-7-4.400-7-10a4 4 0 0 1 7-2.400A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>' },
-    { t: 'مسار حياتك', s: 'تقرير مميز: إلى أين يقودك رقم ميلادك؟', href: '#invest', k: 'path', ic: '<path d="M3 20 10 6l4 8 3-4 4 10z"/>' },
-    { t: 'خريطتك الفلكية كاملة', s: 'تقرير مميز: طالعك وقمرك وبيوتك بقراءة شخصية', href: '#invest', k: 'chart', ic: '<circle cx="12" cy="12" r="8.500"/><circle cx="12" cy="12" r="2.500"/><path d="M12 3.500v6M12 14.500v6"/>' }
+    { t: 'اكتشف ذيلك الكارمي', s: 'تقرير مميز: الدرس الذي يعود إليك وروشتة توازنه', href: '#karmic', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' }
   ];
   function buildRot() {
-    var host = $('#b3-rot'); if (!host) return;
+    var host = $('#b3-rot'); if (!host) return; if (ROT.length < 2) host.classList.add('one');
     var i = 0, dots = ROT.map(function () { return '<i></i>'; }).join('');
     host.innerHTML = '<a class="b3-rot-a" href="#"></a><span class="b3-rot-dots">' + dots + '</span>';
     var a = host.querySelector('a'), dd = host.querySelectorAll('.b3-rot-dots i');
@@ -109,32 +106,57 @@
     return { karm: m.karmicTail.triad, love: m.loveLine.entry, lp: lp, sun: sun, name: nm };
   }
   function buildReports() {
-    var inv = $('#invest'), grid = inv && $('.inv-grid', inv); if (!grid || $('#b3-reports')) return;
-    var box = document.createElement('section'); box.id = 'b3-reports'; box.className = 'b3-reports';
-    box.innerHTML = '<h3 class="b3-rh">تقارير متعمقة</h3><p class="b3-rp">اكتب تاريخ ميلادك مرة واحدة لتظهر لك بداية كل تقرير، ثم افتح التقرير الكامل حين تريد.</p>' +
-      '<div class="field b3-rdate"><label for="iv-date"><span>تاريخ الميلاد</span></label><input id="iv-date" type="date" min="1900-01-01" max="2100-12-31"></div><div class="b3-rerr" hidden>اختر اليوم والشهر والسنة كاملة.</div><div class="b3-rl"></div>';
+    var inv = $('#invest'), grid = inv && $('.inv-grid', inv); if (!grid || $('#b3-vip')) return;
+    var cards = [
+      { t: 'ما سيحدث في 2027', q: 'ما الفصول التي ستُغلق في حياتك العام القادم؟', href: '#year2027', cls: 'a', ic: '<path d="M12 3l1.800 5.200L19 10l-5.200 1.800L12 17l-1.800-5.200L5 10l5.200-1.800z"/>' },
+      { t: 'الذيل الكارمي', q: 'ما الدرس الذي يعود إليك كلما ظننت أنك تجاوزته؟', href: '#karmic', cls: 'b', ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3.500 2"/>' }
+    ];
+    var box = document.createElement('section'); box.id = 'b3-vip'; box.className = 'b3-vip';
+    box.innerHTML = '<div class="b3-vip-track" tabindex="0" role="region" aria-label="التقارير المميزة، مرّر أفقيًا">' + cards.map(function (c) {
+      return '<a class="b3-vcard" href="' + c.href + '"><span class="b3-vart b3-vart-' + c.cls + '">' + svg(c.ic, 56) + '<em>تقرير مميز</em></span><span class="b3-vtx"><b>' + c.t + '</b><small>' + c.q + '</small></span></a>';
+    }).join('') + '</div><p class="b3-vsoon">تقارير أخرى قيد التجهيز.</p>';
     grid.parentNode.insertBefore(box, grid);
-    var list = box.querySelector('.b3-rl');
-    list.innerHTML = REPORTS.map(function (r) {
-      return '<details class="b3-card" data-k="' + r.k + '"><summary><span class="b3-art b3-art-' + r.k + '">' + svg(r.ic, 54) + '<em>تقرير مميز</em></span><span class="b3-ctw"><span class="b3-ct"><b>' + r.t + '</b><small>' + r.hook + '</small></span><span class="b3-ch" aria-hidden="true"></span></span></summary><div class="b3-cb"></div></details>';
-    }).join('');
-    function fill(card) {
-      var r = REPORTS.filter(function (x) { return x.k === card.dataset.k; })[0], body = card.querySelector('.b3-cb'), ds = $('#iv-date').value, err = box.querySelector('.b3-rerr');
-      if (r.direct) { body.innerHTML = '<p>' + r.more + '</p><div class="b3-acts"><a class="b3-b1" href="' + r.go + '">اعرض قراءة 2027</a></div>'; return; }
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(ds)) { err.hidden = false; body.innerHTML = '<p class="b3-wait">اكتب تاريخ ميلادك بالأعلى لتظهر بداية هذا التقرير.</p>'; return; }
-      err.hidden = true;
-      try { body.innerHTML = r.part(calcR(ds)) + '<p class="b3-more">' + r.more + '</p><div class="b3-acts"><a class="b3-b1" href="' + r.go + '">افتح التقرير الكامل</a><a class="b3-b2" href="#pay">تحميل PDF</a></div>'; }
-      catch (e) { body.innerHTML = '<p class="b3-wait">تعذر الحساب. راجع التاريخ.</p>'; }
-    }
-    list.addEventListener('toggle', function (e) { if (e.target.open) fill(e.target); }, true);
-    box.addEventListener('change', function (e) { if (e.target.id === 'iv-date') list.querySelectorAll('details[open]').forEach(fill); });
-    function openFromRot() { var k; try { k = sessionStorage.getItem('b3-open'); sessionStorage.removeItem('b3-open'); } catch (x) {} if (k) { var c = list.querySelector('[data-k="' + k + '"]'); if (c) { c.open = true; setTimeout(function () { try { c.scrollIntoView({ block: 'center' }); } catch (x) {} }, 150); } } }
-    window.addEventListener('hashchange', function () { if (location.hash === '#invest') openFromRot(); });
-    if (location.hash === '#invest') openFromRot();
+  }
+
+  /* صفحة الذيل الكارمي المستقلة */
+  function buildKarmic() {
+    var sec = $('#karmic'); if (!sec) return;
+    var form = $('#kt-form'), out = $('#kt-result'), err = $('#kt-err');
+    function show(m) { err.textContent = m; err.hidden = !m; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); show('');
+      var ds = ($('#kt-date').value || '').trim();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(ds)) { show('اختر اليوم والشهر والسنة كاملة.'); return; }
+      var r; try { r = calcR(ds); } catch (x) { show('تعذر الحساب. راجع التاريخ.'); return; }
+      var nm = ($('#kt-name').value || '').trim(), t = r.karm;
+      out.innerHTML = '<div class="y27-rhead"><span class="y27-kick">ذيلك الكارمي' + (nm ? ' · ' + esc(nm) : '') + '</span><h3>هذه أرقام ذيلك</h3></div>' +
+        '<div class="b3-kt-tri">' + ['الجذر', 'الفرع', 'الظهور'].map(function (l, i) { return '<div class="b3-kt-n"><small>' + l + '</small><b>' + t[i] + '</b><span>' + esc(r.name(t[i])) + '</span></div>'; }).join('') + '</div>' +
+        '<div class="y27-about"><p>' + esc(r.name(t[0])) + ' هو أول الخيط عندك. منه يبدأ الدرس الذي تعود إليه، ثم يتفرع في ' + esc(r.name(t[1])) + '، ويظهر في سلوكك اليومي بصورة ' + esc(r.name(t[2])) + '.</p></div>' +
+        '<div class="b3-lock"><b>ما لا يظهر هنا</b><p>من أين جاء هذا الدرس، وكيف يلمس علاقاتك ومالك وقراراتك، ثم روشتة عملية للتخفف من ثقله.</p><div class="b3-acts"><a class="b3-b1" href="#pay">افتح التقرير الكامل</a><a class="b3-b2" href="#pay">تحميل PDF</a></div></div>';
+      out.hidden = false; sec.classList.add('y27-has'); try { sec.scrollTo({ top: 0, behavior: 'smooth' }); } catch (x) {}
+    });
+    $('#kt-edit').addEventListener('click', function () { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); });
+  }
+
+  /* ألوان المصفوفة: أيقونات زجاجية وشارات بنغمة */
+  function toneOf(n) { n = +n; return [12, 13, 15, 16, 18].indexOf(n) >= 0 ? 's' : [10, 11, 14, 17, 19, 21].indexOf(n) >= 0 ? 'g' : 'n'; }
+  function tintMatrix() {
+    document.querySelectorAll('#matrix .aqm-acc-item').forEach(function (it) {
+      var c = { s: 0, g: 0, n: 0 };
+      it.querySelectorAll('.aqm-badge-arcana').forEach(function (b) {
+        var bn = b.querySelector('.aqm-bn'), t = toneOf(bn ? bn.textContent : 0); b.classList.remove('b3-tn-s', 'b3-tn-g', 'b3-tn-n'); b.classList.add('b3-tn-' + t); c[t]++;
+      });
+      var d = c.s > c.g && c.s >= c.n ? 's' : c.g >= c.n && c.g > 0 ? 'g' : c.n ? 'n' : 'g';
+      it.classList.remove('b3-ai-s', 'b3-ai-g', 'b3-ai-n'); it.classList.add('b3-ai-' + d);
+    });
+  }
+  function watchMatrix() {
+    var m = $('#matrix'); if (!m) return; var t;
+    new MutationObserver(function () { clearTimeout(t); t = setTimeout(tintMatrix, 60); }).observe(m, { childList: true, subtree: true });
   }
 
   function init() {
-    buildRot(); buildZodiac(); buildReports(); syncMe();
+    buildRot(); buildZodiac(); buildReports(); buildKarmic(); watchMatrix(); syncMe();
     var u = document.getElementById('acct-user'); if (u) new MutationObserver(syncMe).observe(u, { attributes: true, attributeFilter: ['hidden'] });
     document.addEventListener('aqeeq:natal-ready', syncMe);
     setTimeout(openWelcome, 4000);

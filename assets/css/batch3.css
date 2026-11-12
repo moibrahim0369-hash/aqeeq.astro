@@ -66,11 +66,11 @@ html body a.aqh-tool-y27 svg{flex:none}
 .b3-b1,.b3-b2{flex:1;min-width:130px;text-align:center;padding:11px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none}
 .b3-b1{background:linear-gradient(135deg,var(--b3-wine2),var(--b3-wine));color:#FFF6E4}.b3-b2{background:var(--b3-cream);color:var(--b3-wine);border:1px solid var(--b3-gold)}
 /* صفحة 2027 */
-#year2027 .wrap{max-width:720px}
-#year2027 .y27-printhead{display:none}
-#year2027 .y27-form{display:grid;gap:12px;margin:16px 0}
-#year2027.y27-has .y27-form,#year2027.y27-has .y27-intro{display:none}
-#year2027:not(.y27-has) .y27-editrow{display:none}
+:is(#year2027,#karmic) .wrap{max-width:720px}
+:is(#year2027,#karmic) .y27-printhead{display:none}
+:is(#year2027,#karmic) .y27-form{display:grid;gap:12px;margin:16px 0}
+:is(#year2027,#karmic).y27-has .y27-form,:is(#year2027,#karmic).y27-has .y27-intro{display:none}
+:is(#year2027,#karmic):not(.y27-has) .y27-editrow{display:none}
 .y27-chk{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:6px;color:var(--b3-mut)}
 .y27-rhead{text-align:center;padding:10px 0 14px}.y27-kick{font-size:12px;color:var(--b3-gold);font-weight:700}.y27-rhead h3{margin:4px 0 6px;font-size:21px;color:var(--b3-wine)}.y27-rhead p{margin:0;font-size:13.5px;color:var(--b3-mut);line-height:1.8}
 .y27-acc{margin:10px 0;border-radius:18px;background:rgba(255,255,255,.72);backdrop-filter:blur(6px);border:1px solid var(--b3-line);overflow:hidden}
@@ -92,16 +92,16 @@ html body a.aqh-tool-y27 svg{flex:none}
 @media print{
  body.y27-printing>*:not(#year2027):not(script){display:none!important}
  body.y27-printing #year2027{display:block!important;position:static!important;inset:auto!important;overflow:visible!important;height:auto!important;background:#fff!important;transform:none!important}
- body.y27-printing #year2027 :is(.sheet-x,.aq-section-topbar,.y27-actions,.y27-editrow,.y27-form,.y27-intro){display:none!important}
- body.y27-printing #year2027 .y27-printhead{display:flex!important;justify-content:space-between;align-items:center;border-bottom:2px solid var(--b3-gold);padding-bottom:8px;margin-bottom:12px;color:var(--b3-wine);font-weight:700}
- body.y27-printing #year2027 .y27-acc{break-inside:avoid;backdrop-filter:none;background:#fff}
- body.y27-printing #year2027 .y27-acc:not([open])>.y27-body{display:block}
+ body.y27-printing :is(#year2027,#karmic) :is(.sheet-x,.aq-section-topbar,.y27-actions,.y27-editrow,.y27-form,.y27-intro){display:none!important}
+ body.y27-printing :is(#year2027,#karmic) .y27-printhead{display:flex!important;justify-content:space-between;align-items:center;border-bottom:2px solid var(--b3-gold);padding-bottom:8px;margin-bottom:12px;color:var(--b3-wine);font-weight:700}
+ body.y27-printing :is(#year2027,#karmic) .y27-acc{break-inside:avoid;backdrop-filter:none;background:#fff}
+ body.y27-printing :is(#year2027,#karmic) .y27-acc:not([open])>.y27-body{display:block}
  body.y27-printing #year2027::after{content:"عقيق أسترو · قراءة رمزية للتأمل";display:block;text-align:center;font-size:11px;color:var(--b3-mut);margin-top:14px}
  @page{margin:14mm}
 }
-html body section#year2027:not(#_a):not(#_b){background:linear-gradient(180deg,#FBF3E4,#F6EBD5)!important;color:var(--b3-ink)!important}
-html body #year2027 .y27-rhead h3,html body #year2027 .y27-intro h2{color:var(--b3-wine)!important}
-html body #year2027 .y27-rhead p,html body #year2027 .y27-intro p{color:var(--b3-mut)!important}
+html body section:is(#year2027,#karmic):not(#_a):not(#_b){background:linear-gradient(180deg,#FBF3E4,#F6EBD5)!important;color:var(--b3-ink)!important}
+html body :is(#year2027,#karmic) .y27-rhead h3,html body :is(#year2027,#karmic) .y27-intro h2{color:var(--b3-wine)!important}
+html body :is(#year2027,#karmic) .y27-rhead p,html body :is(#year2027,#karmic) .y27-intro p{color:var(--b3-mut)!important}
 html body .aqh-tools>a.aqh-tool-y27:not(#_a):not(#_b),html body .aqh-tools>.b3-rot:not(#_a):not(#_b){grid-column:1/-1!important;width:100%!important;max-width:none!important}
 html body a.aqh-tool-y27:not(#_a):not(#_b) b:not(#_c){color:#FFF6E4!important;font-size:17px!important}
 html body a.aqh-tool-y27:not(#_a):not(#_b) small:not(#_c){color:rgba(255,246,228,.85)!important}
@@ -111,14 +111,14 @@ html body .b3-rot-t small:not(#_c){color:var(--b3-mut)!important}
 /* v2: بانر وصفحة 2027 */
 html body a.aqh-tool-y27 .y27-year:not(#_c){font-size:12.5px!important;letter-spacing:.3px;font-weight:700;padding:0!important;border:0!important;margin-bottom:4px;display:block;-webkit-text-fill-color:#E8CF98!important;background:none!important;color:#E8CF98!important}
 html body a.aqh-tool-y27:not(#_a):not(#_b) b:not(#_c){font-size:22px!important}
-#year2027 .y27-intro .intro{font-size:15px;margin:6px 0 0}
-#year2027 .y27-form{background:rgba(255,255,255,.82);border:1px solid var(--b3-gold);border-radius:22px;padding:18px 16px;box-shadow:0 8px 28px rgba(94,34,52,.1);margin:14px 0 18px}
-#year2027.y27-has .y27-explain{display:none}
+:is(#year2027,#karmic) .y27-intro .intro{font-size:15px;margin:6px 0 0}
+:is(#year2027,#karmic) .y27-form{background:rgba(255,255,255,.82);border:1px solid var(--b3-gold);border-radius:22px;padding:18px 16px;box-shadow:0 8px 28px rgba(94,34,52,.1);margin:14px 0 18px}
+:is(#year2027,#karmic).y27-has .y27-explain{display:none}
 .y27-explain h3{margin:6px 0 10px;font-size:17px;color:var(--b3-wine);text-align:center}
 .y27-ex{display:flex;gap:12px;align-items:flex-start;padding:12px;margin-bottom:8px;border-radius:16px;background:rgba(255,255,255,.6);border:1px solid var(--b3-line)}
 .y27-ex>b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--b3-wine2),var(--b3-wine));color:var(--b3-gold2);font-size:14px}
 .y27-ex strong{display:block;font-size:14.5px;color:var(--b3-wine)}.y27-ex p{margin:3px 0 0;font-size:13px;line-height:1.85;color:var(--b3-mut)}
-html body section#year2027:not(#_a):not(#_b){background:radial-gradient(ellipse at 15% 0,rgba(197,160,89,.18),transparent 55%),radial-gradient(ellipse at 90% 100%,rgba(122,52,73,.12),transparent 55%),linear-gradient(180deg,#FBF3E4,#F3E6CC)!important}
+html body section:is(#year2027,#karmic):not(#_a):not(#_b){background:radial-gradient(ellipse at 15% 0,rgba(197,160,89,.18),transparent 55%),radial-gradient(ellipse at 90% 100%,rgba(122,52,73,.12),transparent 55%),linear-gradient(180deg,#FBF3E4,#F3E6CC)!important}
 /* v2: شريط التقارير المميزة */
 html body .b3-rot-a:not(#_a){background:linear-gradient(135deg,#FFF9EA,#F0DDB0)!important;border:1.5px solid var(--b3-gold)!important;box-shadow:0 4px 14px rgba(197,160,89,.25)}
 html body .b3-rot-ic:not(#_a){width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--b3-wine2),var(--b3-wine))!important;color:var(--b3-gold2)!important;border:2px solid var(--b3-gold)!important;box-shadow:0 0 0 3px rgba(197,160,89,.2)}
@@ -146,12 +146,53 @@ html body .aqm-sheet-panel:not(#_a):not(#_b){inset-inline:10px!important;bottom:
 html body .aqm-sheet-foot:not(#_a):not(#_b){border-top:0!important;background:transparent!important;padding:8px 14px 14px!important}
 html body .aqm-foot-close:not(#_a):not(#_b),html body .aqm-foot-next:not(#_a):not(#_b){border-radius:22px!important}
 /* v3: صفحة 2027 */
-html body section#year2027:not(#_a):not(#_b){padding-top:0!important}
-html body section#year2027 .wrap:not(#_a){padding-top:6px!important}
-#year2027 .y27-form.mxp-card{background:rgba(255,253,247,.9)}
+html body section:is(#year2027,#karmic):not(#_a):not(#_b){padding-top:0!important}
+html body section:is(#year2027,#karmic) .wrap:not(#_a){padding-top:6px!important}
+:is(#year2027,#karmic) .y27-form.mxp-card{background:rgba(255,253,247,.9)}
 .y27-about{padding:14px 16px;border-radius:18px;margin-bottom:14px;background:linear-gradient(135deg,rgba(94,34,52,.07),rgba(197,160,89,.14));border:1px solid var(--b3-line)}
 .y27-about h3{margin:0 0 6px!important;text-align:start!important;font-size:16px!important}.y27-about p{margin:0;font-size:13.5px;line-height:1.95;color:var(--b3-ink)}
 html body .aqm-sheet-panel:not(#_a):not(#_b):not(#_c){inset-inline:auto!important;left:10px!important;right:10px!important;width:auto!important;max-width:none!important;margin:0!important}
 @media(min-width:821px){html body .aqm-sheet-panel:not(#_a):not(#_b):not(#_c){left:50%!important;right:auto!important;width:min(600px,94vw)!important;transform:translateX(-50%)}}
 .y27-chk{display:flex!important;align-items:center;gap:10px}.y27-chk input{width:20px!important;height:20px!important;flex:none;accent-color:#6A2038}
 html body .aqm-sheet .aqm-sheet-panel:not(#_a):not(#_b):not(#_c):not(#_d){position:absolute!important}
+/* v4: مصفوفة: أيقونات زجاجية + شارات + سهم هادئ */
+html body #matrix .aqm-acc-item .aqm-acc-icon:not(#_a):not(#_b){width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(232,207,152,.35))!important;border:1px solid rgba(197,160,89,.7)!important;backdrop-filter:blur(6px);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 4px 10px rgba(94,34,52,.12);color:#8A6A1E!important}
+html body #matrix .aqm-acc-item.b3-ai-g .aqm-acc-icon:not(#_a):not(#_b){background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(120,180,130,.38))!important;border-color:#7FA67D!important;color:#2F6B45!important}
+html body #matrix .aqm-acc-item.b3-ai-s .aqm-acc-icon:not(#_a):not(#_b){background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(210,110,100,.34))!important;border-color:#C9786E!important;color:#9A2F2F!important}
+html body #matrix .aqm-acc-item .aqm-acc-icon svg:not(#_a){stroke:currentColor!important;filter:none!important}
+html body #matrix .aqm-acc-item .aqm-acc-chevron:not(#_a):not(#_b){background:none!important;border:0!important;box-shadow:none!important;color:var(--b3-gold)!important;width:auto!important;height:auto!important;font-size:26px;font-weight:700}
+html body #matrix .aqm-badge-arcana.b3-tn-g:not(#_a):not(#_b){background:linear-gradient(135deg,#EEF7EA,#D9ECD6)!important;border-color:#7FA67D!important;color:#2F5A32!important}
+html body #matrix .aqm-badge-arcana.b3-tn-s:not(#_a):not(#_b){background:linear-gradient(135deg,#FBECE8,#F3D3CD)!important;border-color:#C9786E!important;color:#8E2A22!important}
+html body #matrix .aqm-badge-arcana.b3-tn-n:not(#_a):not(#_b){background:linear-gradient(135deg,#FBF3E2,#F2E2BC)!important;border-color:#DEC78A!important;color:#6A4A12!important}
+html body #matrix .aqm-badge-arcana .aqm-bn:not(#_a){background:rgba(255,255,255,.7)!important;color:inherit!important}
+/* نص النوافذ: خلفية كريمية مريحة */
+html body .aqm-slot:not(#_a):not(#_b),html body .aqm-sheet-body .aqm-slot:not(#_a){background:#FBF3E4!important;border:1px solid var(--b3-line)!important;box-shadow:none!important}
+html body .aqm-slot *:not(b):not(strong):not(h4):not(h5){color:#3A2A26!important}
+html body .aqm-sheet-body:not(#_a) :is(p,li){line-height:2;color:#3A2A26}
+/* استثمر في ذاتك: كروت مثل المقالات */
+html body #invest .inv-grid:not(#_a),html body #invest .b3-reports:not(#_a){display:none!important}
+.b3-vip{max-width:760px;margin:6px auto 18px}
+.b3-vip-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.b3-vip-track::-webkit-scrollbar{display:none}
+.b3-vcard{flex:0 0 74%;max-width:300px;scroll-snap-align:center;border-radius:22px;overflow:hidden;background:#FFFDFA;border:1px solid rgba(183,138,82,.45);box-shadow:0 12px 30px rgba(74,26,43,.12);text-decoration:none;color:var(--b3-ink);display:block}
+.b3-vart{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;color:rgba(232,207,152,.95);background:linear-gradient(135deg,#5E2234,#8A3F4E)}
+.b3-vart-b{background:linear-gradient(135deg,#4A2A3A,#8A4F6A)}
+.b3-vart svg{width:84px;height:84px;opacity:.92}
+.b3-vart em{position:absolute;top:12px;inset-inline-start:12px;font-style:normal;font-size:11.5px;font-weight:700;color:#4A1521;background:linear-gradient(135deg,#F3DFA8,#C5A059);padding:3px 11px;border-radius:10px}
+.b3-vtx{display:block;padding:14px 16px 16px}.b3-vtx b{display:block;font-family:'Amiri',serif;font-size:1.25rem;color:var(--b3-wine);line-height:1.6}.b3-vtx small{display:block;font-size:13px;color:var(--b3-mut);line-height:1.8;margin-top:2px}
+.b3-vsoon{text-align:center;font-size:12.5px;color:var(--b3-mut);margin:0}
+/* رابط عرض كل التقارير + صفحة الذيل */
+.b3-vip-link{display:inline-flex;align-items:center;gap:8px;margin:10px 0 2px;padding:8px 14px;border-radius:14px;background:linear-gradient(135deg,#FFF9EA,#F0DDB0);border:1px solid var(--b3-gold);color:var(--b3-wine);font-size:13px;font-weight:700;text-decoration:none}
+.b3-kt-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.b3-kt-n{text-align:center;padding:12px 6px;border-radius:16px;background:linear-gradient(160deg,#fff,var(--b3-cream));border:1px solid var(--b3-gold)}
+.b3-kt-n small{display:block;font-size:12px;color:var(--b3-mut)}.b3-kt-n b{display:block;font-size:30px;color:var(--b3-wine);line-height:1.3}.b3-kt-n span{font-size:12.5px;color:var(--b3-ink)}
+.b3-lock{margin:12px 0;padding:14px;border-radius:18px;border:1px dashed var(--b3-gold);background:rgba(255,255,255,.7)}.b3-lock b{color:var(--b3-wine)}.b3-lock p{font-size:13.5px;color:var(--b3-mut);line-height:1.9}
+.b3-rot.one .b3-rot-dots{display:none}
+/* v5: بانر 2027 متناسق مع الرئيسية (كريمي ذهبي) */
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d){background:linear-gradient(135deg,#FFF9EA,#F3E2B8 60%,#EBCF8E)!important;border:1.5px solid #C5A059!important;color:#5E2234!important;box-shadow:0 10px 26px rgba(197,160,89,.35),inset 0 0 0 1px rgba(255,255,255,.7)}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) b:not(#_c){color:#5E2234!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) small:not(#_c){color:#6b4a3a!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) em.y27-year:not(#_c):not(#_e){color:#9A7424!important;-webkit-text-fill-color:#9A7424!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) .aqh-tool-ico:not(#_c){background:linear-gradient(135deg,#7A3449,#5E2234)!important;color:#F3DFA8!important;border:2px solid #C5A059!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) .aqh-go:not(#_c){color:#9A7424!important}
+html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d)::after{background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%)}
