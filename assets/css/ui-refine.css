@@ -48,3 +48,20 @@ html body :is(#signs,#sky,#world,section.rhub) .aq-section-topbar::after,html bo
 html body section.rhub .wrap>.aq-section-topbar+*{border-top:0!important}
 html body section.rhub .aq-section-topbar{border-bottom:0!important}
 html body section.sec:is(#individual,#relationships,#signs,#sky,#world,#compat,#astro-maps,#for-you,#invest,#lifepath-compat):not(#_a):not(#_b) .aq-section-topbar:not(#_c){border:0!important;box-shadow:none!important}
+
+/* ===== v20261125: header blend, hero lock, lighter icons, full-forecast polish ===== */
+html body header.aqh-header:not(#_a){border-bottom:0!important;box-shadow:none!important;background:linear-gradient(180deg,rgba(255,253,248,.98) 0,rgba(250,244,232,.94) 70%,rgba(250,244,232,.0) 100%)!important}
+html body .sgs-sheet,html body #sgs-sheet{--sp-wine:#5E2234;--sp-gold:#C5A059;--sp-gold2:#E8CF98;--sp-brown:#4A2C1F;--sp-brown2:#6B3F28}
+html body .sgs-sheet .zp-hero:not(#_a){background:radial-gradient(120% 140% at 15% 0%,#7A4A30 0%,#4A2C1F 58%,#33190F 100%)!important;background-color:#4A2C1F!important;min-height:150px}
+html body .sgs-sheet .zp-const:not(#_a){min-height:120px;content-visibility:visible}
+html body .sgs-sheet .zp-const svg{display:block!important;opacity:1!important;visibility:visible!important}
+/* smoothness: no heavy filters/shadows/transitions on icon tiles */
+html body :is(#signs,#sky,#world,.sgs-sheet) :is(.sg,.tx-ic,.lpa-ic,.zp-h svg,.zp-fc h5 svg):not(#_a){filter:none!important;box-shadow:none!important;transition:none!important;animation:none!important;will-change:auto!important}
+html body #signs .picker .sign:not(#_a){transition:transform .12s ease!important;contain:layout paint}
+html body .sgs-sheet .aqm-sheet-body{-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+/* full forecast block */
+html body .sgs-sheet .zp-full:not(#_a){padding:16px 16px 6px;border-radius:20px;background:#FFFDF8;border:1px solid var(--ur-line);box-shadow:none}
+html body .sgs-sheet .zp-full .zp-h:not(#_a){border-bottom:1px solid #EFE3C8;padding-bottom:12px;margin-bottom:12px!important;color:#6A2038}
+html body .sgs-sheet .zp-full .zp-h svg:not(#_a){width:38px!important;height:38px!important;padding:8px!important;border-radius:12px!important;background:var(--ur-tile)!important;border:1px solid var(--ur-line)!important;stroke:#6A2038!important;fill:none!important;stroke-width:1.6!important;box-sizing:border-box}
+html body .sgs-sheet .zp-overall:not(#_a){margin:0 0 6px;padding:0;color:#33241d;line-height:2;font-size:.97rem}
+html body .sgs-sheet .zp-trio:not(#_a){display:block;margin-top:4px}
