@@ -137,5 +137,5 @@
     if (window.AqVedicChart) window.AqVedicChart.mount(top.querySelector('#vx-vargas'), ch, natal);
     if (window.AqeeqGender) window.AqeeqGender.apply(box, natal && natal.gender);
   }
-  window.AqVedic = { render: render, div: div, dashas: dashas, antars: antars, current: cur };
+  window.AqVedic = { T: { NK: NK, LT: LT, HT: HT, SS: SS, LORDS: LORDS, SG: SG }, render: render, div: div, dashas: dashas, antars: antars, current: cur };
 })();
