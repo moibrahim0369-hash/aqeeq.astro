@@ -55,6 +55,8 @@
   const section=$('#astro-maps'),content=$('#eam-content');
   if(!section||!content)return;
   let mode='transit';
+  const OPEN=new Set(['eclipses','nodes','sidereal']);
+  const gchart=ms=>Astro.chart({utcMs:ms,lat:30,lon:31,known:false});
   const nowLocal=()=>{const d=new Date(),local=new Date(d.getTime()-d.getTimezoneOffset()*60000);return local.toISOString().slice(0,16);};
   function context(){return window.AqeeqChartContext?.getNatal?.()||window.AqeeqChartContext?.getOrPrefill?.()||null;}
   function readyMessage(){return '<div class="eam-empty eam-invite"><span>✦</span><h3>ابدأ بخريطة الميلاد</h3><p>احسب خريطتك أولاً، ثم ارجع هنا لإنشاء خريطة العبور أو العودة الشمسية أو العرض الفيدي.</p><a class="btn ghost sm" href="#chart">اذهب إلى خريطة الميلاد</a></div>';}
@@ -65,7 +67,7 @@
   }
   function renderControls(){
     const ctx=context();
-    if(!ctx){content.innerHTML=readyMessage();return;}
+    if(!ctx&&!OPEN.has(mode)){content.innerHTML=readyMessage();return;}
     const titles={transit:'خريطة العبور الحالية',solar:'العودة الشمسية',profections:'التوجيهات السنوية · Annual Profections',eclipses:'خريطة الكسوف والخسوف',nodes:'العقد القمرية والعودة العقدية',sidereal:'الخريطة الفيدية · Lahiri'};
     const descriptions={transit:'قارن مواقع الكواكب الآن بخريطة ميلادك، مع تحديد بيت الميلاد الذي ينشطه كل كوكب.',solar:'لحظة عودة الشمس إلى درجتها الأصلية وخريطة السنة الشخصية الجديدة.',profections:'البرج السنوي وسيد السنة وفق نظام التوجيهات السنوية التقليدي والبيوت الكاملة.',eclipses:'أحداث الكسوف والخسوف العالمية خلال السنة، وموقعها داخل بيوت خريطة الميلاد.',nodes:'موضع العقدتين في الميلاد والعبور، ومواعيد عودة العقدة الشمالية التقريبية.',sidereal:'تُحسب الخريطة باستخدام وقت ومكان الميلاد المسجلين في خريطتك.'};
     const title=titles[mode]||titles.sidereal,description=descriptions[mode]||descriptions.sidereal;
@@ -76,7 +78,7 @@
     else if(mode==='profections')controls='<label class="field"><span>التاريخ السنوي</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
     else if(mode==='eclipses')controls='<label class="field"><span>السنة</span><select id="eam-year">'+yearOptions()+'</select></label>';
     else if(mode==='nodes')controls='<label class="field"><span>تاريخ قراءة العقد</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
-    else controls='<p class="eam-method">النطاق النجمي محسوب بطريقة لاهيري المتوسطة؛ تُطرح قيمة الأيانامشا من المواقع الاستوائية وتُزاح معها رؤوس البيوت.</p>';
+    else controls='<p class="eam-method">النطاق النجمي محسوب بطريقة لاهيري؛ تُطرح قيمة الأيانامشا من المواقع الاستوائية. من غير خريطة ميلاد تعرض السماء النجمية الآن، ومعها خريطتك إن كانت محسوبة.</p>';
     const labels={transit:'احسب العبور',solar:'احسب العودة الشمسية',profections:'احسب سيد السنة',eclipses:'اعرض الكسوف والخسوف',nodes:'احسب محور العقد',sidereal:'اعرض الخريطة الفيدية'};
     content.innerHTML='<div class="eam-control"><div><span class="eam-kicker">'+esc(title)+'</span><p>'+esc(description)+'</p></div><div class="eam-controls">'+controls+'<button class="btn" type="button" id="eam-calculate">'+labels[mode]+'</button></div></div><p class="eam-status" id="eam-status" role="status" aria-live="polite"></p><div id="eam-result" class="eam-result" hidden></div>';
     $('#eam-now',content)?.addEventListener('click',()=>$('#eam-date',content).value=nowLocal());
@@ -213,9 +215,28 @@
     window.AqeeqGender?.apply(result,context()?.gender);
     mountCopy(result,title);
   }
+  function renderEclipsesGlobal(result,year){
+    const engine=typeof Astronomy!=='undefined'?Astronomy:(window.Astronomy||globalThis.Astronomy);
+    if(!engine)throw new Error('مكتبة Astronomy Engine غير محملة.');
+    const items=[...eclipseEvents(year,engine,'solar').map(e=>({e,type:'solar'})),...eclipseEvents(year,engine,'lunar').map(e=>({e,type:'lunar'}))].sort((a,b)=>a.e.peak.date-b.e.peak.date);
+    if(!items.length)throw new Error('لم تُعثر على أحداث كسوف أو خسوف لهذه السنة.');
+    const rows=items.map(({e,type})=>{const d=e.peak.date,b=gchart(d.getTime()).bodies.find(x=>x.key===(type==='solar'?'sun':'moon'));return '<article class="eam-event"><div><span class="eam-event-date">'+esc(d.toLocaleDateString('ar-EG',{dateStyle:'medium',timeZone:'UTC'}))+'</span><h4>'+(type==='solar'?'كسوف شمسي':'خسوف قمري')+' · '+eclipseKindText(engine,e.kind,type)+'</h4></div><div><b>'+esc(b?fmt(b.lon):'غير متاح')+'</b><span>موضع الذروة في البروج</span></div></article>';}).join('');
+    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Eclipses · '+year+'</span><h3>الكسوف والخسوف في '+year+'</h3><p class="eam-note">أحداث عالمية من محرك فلكي؛ الموضع هو برج ودرجة الذروة. احسب خريطتك لترى في أي بيت من حياتك يقع كل حدث.</p></header><div class="eam-event-list">'+rows+'</div>';
+  }
+  function renderNodesGlobal(result,value){
+    const date=value?new Date(value+'T12:00:00'):new Date(),ch=gchart(date.getTime()),n=ch.bodies.find(b=>b.key==='truenode'||b.key==='node');
+    if(!n)throw new Error('بيانات العقد القمرية غير متاحة.');
+    const s=norm(n.lon+180);
+    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">Lunar Nodes · '+esc(date.toLocaleDateString('ar-EG'))+'</span><h3>محور العقدة الشمالية والجنوبية</h3><p class="eam-note">العقدتان متقابلتان دائماً وتتحركان عكس ترتيب البروج، وتقضيان نحو 18 شهراً في كل برج. احسب خريطتك لتعرف أين يقع المحور في بيوتك.</p></header><section class="eam-pillar-grid"><article class="eam-pillar"><span>العقدة الشمالية ☊ · راهو</span><strong>'+esc(fmt(n.lon))+'</strong><small>اتجاه النمو</small></article><article class="eam-pillar"><span>العقدة الجنوبية ☋ · كيتو</span><strong>'+esc(fmt(s))+'</strong><small>ما اعتدت عليه</small></article></section>';
+  }
+  function renderSiderealNow(result){
+    const now=Date.now(),ch=gchart(now),off=ayanamsa(ch.jde);
+    const rows=chartBodies(ch).map(b=>{const l=norm(b.lon-off);return '<tr><th>'+esc(GLYPHS[b.key]||'')+' '+esc(NAMES[b.key]||b.key)+'</th><td>'+esc(fmt(l))+'</td><td>'+(b.retro?'راجع ℞':'مباشر')+'</td></tr>';}).join('');
+    result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">النطاق النجمي · لاهيري</span><h3>السماء الفيدية الآن</h3><p class="eam-note">أيانامشا لاهيري: '+off.toFixed(4)+'°. هذه مواضع الكواكب الآن بالبروج النجمية؛ احسب خريطتك لتظهر خريطتك الفيدية الكاملة.</p></header><div class="eam-table-wrap"><table class="eam-table"><thead><tr><th>الكوكب</th><th>البرج والدرجة</th><th>الحركة</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+  }
   async function calculate(){
     const natal=context(),status=$('#eam-status',content),button=$('#eam-calculate',content),result=$('#eam-result',content);
-    if(!natal){renderControls();return;}
+    if(!natal&&!OPEN.has(mode)){renderControls();return;}
     status.textContent='جارٍ حساب الخريطة…';button.disabled=true;button.setAttribute('aria-busy','true');await new Promise(r=>setTimeout(r,20));
     try{
       if(mode==='transit'){
@@ -231,9 +252,11 @@
       }else if(mode==='profections'){
         renderProfections(result,natal,$('#eam-date',content).value);
       }else if(mode==='eclipses'){
-        renderEclipses(result,natal,Number($('#eam-year',content).value));
+        if(natal)renderEclipses(result,natal,Number($('#eam-year',content).value));else renderEclipsesGlobal(result,Number($('#eam-year',content).value));
       }else if(mode==='nodes'){
-        renderNodes(result,natal,$('#eam-date',content).value);
+        if(natal)renderNodes(result,natal,$('#eam-date',content).value);else renderNodesGlobal(result,$('#eam-date',content).value);
+      }else if(!natal){
+        renderSiderealNow(result);
       }else{
         const ch=siderealChart(natal),aspects=chartAspects(ch);
         renderChart(result,'النطاق النجمي · لاهيري','الخريطة الفيدية بالنطاق النجمي',ch,'<p class="eam-note">أيانامشا لاهيري: '+ch.ayanamsa.toFixed(4)+'°. قد تختلف قيم الأيانامشا والتقاليد الفيدية الأخرى.</p>',aspects);
@@ -247,5 +270,5 @@
   section.querySelector('.eam-tabs')?.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();const buttons=[...section.querySelectorAll('[data-eam-mode]')],current=buttons.indexOf(event.target.closest('[data-eam-mode]'));const step=event.key==='ArrowLeft'?1:-1;buttons[(current+step+buttons.length)%buttons.length].click();buttons[(current+step+buttons.length)%buttons.length].focus();});
   document.addEventListener('aqeeq:natal-ready',renderControls);
   window.addEventListener('hashchange',()=>{if(location.hash==='#astro-maps'&&content.querySelector('.eam-invite'))renderControls();});
-  renderControls();
+  setMode('eclipses');
 })();
