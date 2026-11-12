@@ -50,7 +50,15 @@
     if (cur.length) out.push(cur);
     return out;
   }
-  /* SVG المخطط: الخطوط ذهبية، الكواكب عنابية، الخلفية كريمية. البيت 1 في الأعلى والترتيب عكس عقارب الساعة. */
+  /* لون كل كوكب: نور أخضر، ظل أحمر، شمس ذهبية، الطالع عنابي */
+  var TONE = { sun: 'g', moon: 'n', mercury: 'n', venus: 'n', jupiter: 'n', mars: 's', saturn: 's', node: 's', ketu: 's', lagna: 'l' };
+  var TCOL = { g: ['#F8EBCB', '#C5A059', '#6E5319'], n: ['#E4F0E1', '#7FA67D', '#2F5A32'], s: ['#F8E2DE', '#C9786E', '#8E2A22'], l: ['#6A2038', '#C5A059', '#FFF3D6'] };
+  function pill(x, y, w, label, tone, retro) {
+    var c = TCOL[tone] || TCOL.g;
+    return '<g><rect x="' + (x - w / 2) + '" y="' + (y - 10) + '" width="' + w + '" height="20" rx="10" fill="' + c[0] + '" stroke="' + c[1] + '" stroke-width="1.3"/>' +
+      '<text x="' + x + '" y="' + y + '" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="800" fill="' + c[2] + '">' + esc(label) + (retro ? '<tspan font-size="9" dy="-4">℞</tspan>' : '') + '</text></g>';
+  }
+  /* SVG المخطط: كل كوكب في كبسولة ملونة، الأرقام الذهبية أرقام البروج. البيت 1 في الأعلى والترتيب عكس عقارب الساعة. */
   function svg(map, title) {
     var h = '<svg class="vc-svg" viewBox="0 0 400 400" role="img" aria-label="' + esc(title) + '" xmlns="http://www.w3.org/2000/svg">';
     h += '<title>' + esc(title) + '</title><rect x="2" y="2" width="396" height="396" rx="6" fill="' + CREAM + '" stroke="' + GOLD + '" stroke-width="2.5"/>';
@@ -58,18 +66,21 @@
     for (var i = 0; i < 12; i++) {
       var sg = (map.lagna + i) % 12, c = CENTERS[i], np = NUMPOS[i];
       h += '<text x="' + np[0] + '" y="' + np[1] + '" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="' + GOLD + '" font-weight="700">' + (sg + 1) + '</text>';
-      var here = map.items.filter(function (x) { return x.house === i; }).map(function (x) { return x.ab + (x.retro ? '℞' : ''); });
-      if (i === 0) here.unshift(map.basis === 'asc' ? 'ل' : 'ل*');
-      var ls = lines(here), fs = ls.length > 3 ? 15 : 19, lh = fs + 3, y0 = c[1] - (ls.length - 1) * lh / 2;
-      ls.forEach(function (row, r) {
-        h += '<text x="' + c[0] + '" y="' + (y0 + r * lh) + '" text-anchor="middle" dominant-baseline="middle" font-size="' + fs + '" font-weight="700" fill="' + WINE + '" direction="rtl">' + esc(row.join('  ')) + '</text>';
+      var here = map.items.filter(function (x) { return x.house === i; }).map(function (x) { return { t: x.ab, tone: TONE[x.key] || 'g', r: x.retro }; });
+      if (i === 0) here.unshift({ t: map.basis === 'asc' ? 'ط' : 'ط*', tone: 'l', r: false });
+      var k = here.length, cols = k > 3 ? 2 : 1, rows = Math.ceil(k / cols), w = 36, gx = 40, gy = 23;
+      here.forEach(function (it, j) {
+        var col = cols === 1 ? 0 : j % 2, row = cols === 1 ? j : Math.floor(j / 2);
+        var px = c[0] + (cols === 1 ? 0 : (col === 0 ? -gx / 2 : gx / 2)), py = c[1] + (row - (rows - 1) / 2) * gy;
+        h += pill(px, py, w, it.t, it.tone, it.r);
       });
     }
     return h + '</svg>';
   }
   function houseRows(map) {
     return map.items.map(function (x) {
-      return '<li><b>' + esc(x.name) + (x.retro ? ' ℞' : '') + '</b><span>' + SG[x.sign] + '</span><em>البيت ' + (x.house + 1) + '</em></li>';
+      var tn = TONE[x.key] || 'g';
+      return '<li class="vc-r vc-t-' + tn + '"><span class="vc-ab">' + esc(x.ab) + '</span><b>' + esc(x.name) + (x.retro ? ' ℞' : '') + '</b><span class="vc-sg">' + SG[x.sign] + ' · البيت ' + (x.house + 1) + '</span></li>';
     }).join('');
   }
   function mount(host, ch, natal) {
@@ -84,7 +95,7 @@
         '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b><br>' + esc(v[3]) + '</p>' +
         '<div class="vc-chartwrap">' + svg(map, title) + '</div>' +
         '<p class="vc-note">' + esc(note) + ' الأرقام الذهبية أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. ℞ يعني راجع.</p>' +
-        '<ul class="vc-rows">' + houseRows(map) + '</ul>' +
+        '<p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p><ul class="vc-rows">' + houseRows(map) + '</ul>' +
         (sig ? '<p class="vc-sig">' + esc(sig.name) + ' الدال هنا في ' + SG[sig.sign] + ' (البيت ' + (sig.house + 1) + ').</p>' : '');
       host.querySelectorAll('.vc-chip').forEach(function (b) { b.addEventListener('click', function () { cur = +b.dataset.n; draw(); var on = host.querySelector('.vc-chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' }); }); });
     }
