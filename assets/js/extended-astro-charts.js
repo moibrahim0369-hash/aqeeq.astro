@@ -71,18 +71,28 @@
     const titles={transit:'خريطة العبور الحالية',solar:'العودة الشمسية',profections:'التوجيهات السنوية',eclipses:'خريطة الكسوف والخسوف',nodes:'العقد القمرية والعودة العقدية',sidereal:'الخريطة الفيدية · لاهيري'};
     const descriptions={transit:'قارن مواقع الكواكب الآن بخريطة ميلادك، مع تحديد بيت الميلاد الذي ينشطه كل كوكب.',solar:'لحظة عودة الشمس إلى درجتها الأصلية وخريطة السنة الشخصية الجديدة.',profections:'البرج السنوي وسيد السنة وفق نظام التوجيهات السنوية التقليدي والبيوت الكاملة.',eclipses:'أحداث الكسوف والخسوف العالمية خلال السنة، وموقعها داخل بيوت خريطة الميلاد.',nodes:'موضع العقدتين في الميلاد والعبور، ومواعيد عودة العقدة الشمالية التقريبية.',sidereal:'تُحسب الخريطة باستخدام وقت ومكان الميلاد المسجلين في خريطتك.'};
     const title=titles[mode]||titles.sidereal,description=descriptions[mode]||descriptions.sidereal;
-    const yearOptions=()=>Array.from({length:8},(_,i)=>new Date().getFullYear()+i).map(y=>'<option value="'+y+'" '+(y===new Date().getFullYear()?'selected':'')+'>'+y+'</option>').join('');
+    const nowY=new Date().getFullYear();
+    const birthY=(()=>{const v=(document.getElementById('eam-b-date')||{}).value||'';const y=Number(v.slice(0,4));return y>1800?y:nowY-80;})();
+    const yearOptions=()=>{const from=Math.min(birthY,nowY-80),to=nowY+30;let h='';for(let y=to;y>=from;y--)h+='<option value="'+y+'" '+(y===nowY?'selected':'')+'>'+y+'</option>';return h;};
+    const yearPicker=(label)=>'<div class="field eam-yearpick"><span>'+label+'</span><div class="eam-yp"><button type="button" class="eam-yp-b" data-yp="-1" aria-label="السنة السابقة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button><select id="eam-year" aria-label="'+label+'">'+yearOptions()+'</select><button type="button" class="eam-yp-b" data-yp="1" aria-label="السنة التالية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button></div><div class="eam-yp-quick"><button type="button" data-yq="-1">السنة الماضية</button><button type="button" data-yq="0">هذه السنة</button><button type="button" data-yq="1">السنة القادمة</button></div></div>';
     let controls='';
     if(mode==='transit')controls='<label class="field"><span>تاريخ ووقت العبور · بتوقيت جهازك</span><input id="eam-date" type="datetime-local" value="'+nowLocal()+'"></label><button type="button" class="btn ghost sm" id="eam-now">الآن</button>';
-    else if(mode==='solar')controls='<label class="field"><span>سنة العودة الشمسية</span><select id="eam-year">'+yearOptions()+'</select></label>';
+    else if(mode==='solar')controls=yearPicker('سنة العودة الشمسية');
     else if(mode==='profections')controls='<label class="field"><span>التاريخ السنوي</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
-    else if(mode==='eclipses')controls='<label class="field"><span>السنة</span><select id="eam-year">'+yearOptions()+'</select></label>';
+    else if(mode==='eclipses')controls=yearPicker('السنة');
     else if(mode==='nodes')controls='<label class="field"><span>تاريخ قراءة العقد</span><input id="eam-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></label>';
     else controls='<p class="eam-method">النطاق النجمي محسوب بطريقة لاهيري؛ تُطرح قيمة الأيانامشا من المواقع الاستوائية. من غير خريطة ميلاد تعرض السماء النجمية الآن، ومعها خريطتك إن كانت محسوبة.</p>';
     const labels={transit:'احسب العبور',solar:'احسب العودة الشمسية',profections:'احسب سيد السنة',eclipses:'اعرض الكسوف والخسوف',nodes:'احسب محور العقد',sidereal:'اعرض الخريطة الفيدية'};
     content.innerHTML='<div class="eam-control"><div><span class="eam-kicker">'+esc(title)+'</span><p>'+esc(description)+'</p></div><div class="eam-controls">'+controls+'<button class="btn" type="button" id="eam-calculate">'+labels[mode]+'</button></div></div><p class="eam-status" id="eam-status" role="status" aria-live="polite"></p><div id="eam-result" class="eam-result" hidden></div>';
     $('#eam-now',content)?.addEventListener('click',()=>$('#eam-date',content).value=nowLocal());
     $('#eam-calculate',content)?.addEventListener('click',calculate);
+    const ysel=$('#eam-year',content);
+    if(ysel){
+      const setY=(y)=>{if(!ysel.querySelector('option[value="'+y+'"]'))return;ysel.value=String(y);calculate();};
+      content.querySelectorAll('[data-yp]').forEach(b=>b.addEventListener('click',()=>setY(Number(ysel.value)+Number(b.dataset.yp))));
+      content.querySelectorAll('[data-yq]').forEach(b=>b.addEventListener('click',()=>setY(nowY+Number(b.dataset.yq))));
+      ysel.addEventListener('change',()=>calculate());
+    }
   }
   function mapAspects(aspects){
     const kinds={conjunction:'conj',sextile:'sext',square:'sq',trine:'tri',opposition:'opp'};return aspects.map(a=>({a:mapKey(a.natal.key),b:mapKey(a.transit.key),asp:{k:kinds[a.key]||a.key,name:a.name},name:a.name,orb:a.orb,angle:Math.abs(delta(a.transit.lon,a.natal.lon))}));

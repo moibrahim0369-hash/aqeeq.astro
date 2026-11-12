@@ -101,7 +101,7 @@
 <link rel="stylesheet" href="assets/css/companion.css?v=20261119a">
 <link rel="stylesheet" href="assets/css/page-bg-unify.css?v=20261119b">
 <link rel="stylesheet" href="assets/css/page-art-fade.css?v=20261120a">
-<link rel="stylesheet" href="assets/css/ui-refine.css?v=20261126f">
+<link rel="stylesheet" href="assets/css/ui-refine.css?v=20261127b">
 <link rel="stylesheet" href="assets/css/page-celestial.css?v=20261122g">
 <link rel="stylesheet" href="assets/css/internal-fixes.css?v=20261123d">
 </head>
@@ -1428,7 +1428,7 @@
 <a class="rh-card" href="#compat" data-rh="synastry"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="24" r="12"/><circle cx="30" cy="24" r="12" stroke-opacity=".75"/><circle cx="24" cy="24" r="1.8" fill="currentColor"/></svg></span><h3>خريطة التوافق الفلكي</h3><p>قارن بين خريطتين فلكيتين لترى مواضع الانسجام ومواضع التحدي بين الكواكب.</p><span class="rh-go">افتح الحاسبة <b aria-hidden="true">←</b></span></a>
 <a class="rh-card" href="#compat" data-rh="composite"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="16"/><path d="M24 8a16 16 0 0 1 0 32a16 16 0 0 1 0-32z" stroke-opacity=".7"/><circle cx="24" cy="24" r="3" fill="currentColor"/></svg></span><h3>الخريطة المركّبة</h3><p>خريطة العلاقة نفسها كيان ثالث، تُحسب من منتصف مواضع الشريكين، وتظهر ضمن نتيجة حاسبة التوافق.</p><span class="rh-go">افتح الحاسبة <b aria-hidden="true">←</b></span></a>
 <a class="rh-card" href="#lifepath-compat" data-rh="lifepath"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="38" r="4"/><circle cx="36" cy="10" r="4"/><path d="M12 34v-6a8 8 0 0 1 8-8h8a8 8 0 0 0 8-8v-0"/></svg></span><h3>توافق مسارات الحياة</h3><p>مقارنة رقمية بين مساري حياة الشريكين في الرؤية والقيم والإيقاع اليومي، للعلاقات العاطفية والعائلية والمهنية.</p><span class="rh-go">افتح الحاسبة <b aria-hidden="true">←</b></span></a>
-<div class="rh-card is-soon" aria-disabled="true"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6l11 11-11 11L6 17z"/><path d="M31 20l11 11-11 11-11-11z"/></svg></span><h3>توافق مصفوفة القدر</h3><p>مقارنة طاقتي الشريكين وما يجمعهما من دروس.</p><span class="rh-go rh-soon">قريبًا</span></div>
+<a class="rh-card" href="#matrix" data-rh="matrix" data-mxm-go="pair"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6l11 11-11 11L6 17z"/><path d="M31 20l11 11-11 11-11-11z"/></svg></span><h3>توافق مصفوفة القدر</h3><p>مصفوفة الشراكة: ما يجمعكما من انسجام ودروس.</p><span class="rh-go">افتح الحاسبة </span></a>
 </div>
 <p class="rh-note">قراءات رمزية للتأمل وفهم العلاقة، وليست حكماً على أحد ولا بديلاً عن استشارة مختصة.</p>
 </div></section>
@@ -5346,13 +5346,14 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/matrix-report-map.js"></script>
 <script src="assets/js/matrix-method-adapter.js?v=20261111e"></script>
 <script src="assets/js/numerology-matrix.js?v=20261111e"></script>
+<script src="assets/js/matrix-modes.js?v=20261127a" defer></script>
 <script src="assets/js/matrix-sheet.js?v=20261110n" defer></script>
 <script src="assets/js/lifepath-sheet.js?v=20261117b" defer></script>
 <script src="assets/js/chart-sheet.js?v=20261114a" defer></script>
 <script src="assets/js/moon-sheet.js?v=20261116b" defer></script>
 <script src="assets/js/astro-wheel.js"></script>
 <script>window.AQ_REVIEW_OPEN=true;document.documentElement.classList.add("aq-review-open");</script>
-<script src="assets/js/extended-astro-charts.js?v=20261126a"></script>
+<script src="assets/js/extended-astro-charts.js?v=20261127a"></script>
 <script src="assets/js/vedic-extras.js?v=20261126a" defer></script>
 <script src="assets/js/vedic-chart.js?v=20261126a" defer></script>
 <script src="assets/js/section-footer.js?v=20261122b"></script>
@@ -5367,7 +5368,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/geo-picker.js?v=20261110a" defer></script>
 <script src="assets/js/page-story.js?v=20261112b" defer></script>
 <script src="assets/js/top-gap.js?v=20261111b" defer></script>
-<script src="assets/js/date-selects.js?v=20261123a" defer></script>
+<script src="assets/js/date-selects.js?v=20261127a" defer></script>
 <script src="account-profile.js" type="module"></script>
 <script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
