@@ -1,0 +1,33 @@
+/* تحديث أيقونات الأبراج والكواكب ونوافذها بأسلوب مسطح أنيق، وتنظيم صفحتي خرائطك الشخصية والتوافق */
+:root{--ur-wine:#6A2038;--ur-gold:#C5A059;--ur-tile:#FBF3E4;--ur-line:#E3CFA3}
+/* بطاقات الأبراج */
+html body #signs .picker .sign{background:#fff!important;border:1px solid #EADFC9!important;border-radius:20px!important;box-shadow:0 2px 8px rgba(94,34,52,.05)!important;gap:10px}
+html body #signs .picker .sign .sg{width:58px!important;height:58px!important;border-radius:50%!important;display:grid!important;place-items:center;background:var(--ur-tile)!important;border:1px solid var(--ur-line)!important;box-shadow:none!important;color:var(--ur-wine)!important;filter:none!important;text-shadow:none!important}
+html body #signs .picker .sign .sg svg{width:30px;height:30px;stroke:currentColor;stroke-width:1.5}
+html body #signs .picker .sign:is(.is-on,.on,.active,[aria-pressed=true]){background:linear-gradient(160deg,#7A3449,#5E2234)!important;border-color:var(--ur-gold)!important}
+html body #signs .picker .sign:is(.is-on,.on,.active,[aria-pressed=true]) .sg{background:rgba(255,248,234,.1)!important;border-color:rgba(232,207,152,.6)!important;color:#F3DFA8!important}
+/* أيقونات أكورديون الأبراج: كريمي بإطار ذهبي بدل الدوائر الداكنة اللامعة */
+html body :is(#signs,.sgs-sheet) .lpa-card .lpa-sum .lpa-ic:not(#_a):not(#_b){width:42px!important;height:42px!important;border-radius:14px!important;display:grid!important;place-items:center;background:var(--ur-tile)!important;border:1px solid var(--ur-line)!important;box-shadow:none!important;color:var(--ur-wine)!important;filter:none!important}
+html body :is(#signs,.sgs-sheet) .lpa-card .lpa-sum .lpa-ic:not(#_a) svg{width:22px!important;height:22px!important;stroke:currentColor!important;fill:none;stroke-width:1.6}
+html body :is(#signs,.sgs-sheet) .lpa-card .lpa-sum .lpa-ic:not(#_a) .sg{display:grid;place-items:center;color:inherit!important;background:none!important;box-shadow:none!important}
+html body :is(#signs,.sgs-sheet) .lpa-card{border-radius:18px!important;box-shadow:none!important;border:1px solid #EADFC9!important}
+html body .sgs-sheet .lpa-chev{box-shadow:none!important}
+/* خرائطك الشخصية والتوافق */
+html body section.rhub>.wrap{padding-top:6px!important}
+html body section.rhub .aq-section-topbar{margin:0 0 4px!important}
+html body section.rhub .rh-head{margin:0 0 12px!important}
+html body section#individual::before{opacity:.28!important;height:150px!important;top:40px!important}
+html body section#individual::after{opacity:.35!important}
+html body section#relationships::before{opacity:.07!important;filter:grayscale(.5)!important}
+html body section.rhub .rh-grid{gap:12px!important}
+html body section.rhub .rh-card{border-radius:20px!important;padding:14px 12px 12px!important;background:linear-gradient(180deg,#FFFDF8,#FBF3E2)!important;border:1px solid #E3CFA3!important;box-shadow:0 6px 18px rgba(94,34,52,.07)!important}
+html body section.rhub .rh-ico{width:56px!important;height:56px!important;border-radius:50%!important;background:linear-gradient(145deg,#7A3449,#5E2234)!important;border:1px solid var(--ur-gold)!important;color:#F3DFA8!important;box-shadow:0 6px 14px rgba(94,34,52,.22)!important}
+html body section.rhub .rh-ico svg{width:30px!important;height:30px!important;stroke-width:1.5!important}
+html body section.rhub .rh-card h3{color:#4A1224!important}
+html body #signs .picker .sign .sg,html body #signs .picker .sign .sg svg{opacity:1!important}
+html body #signs .picker .sign .sg svg{stroke:#6A2038!important;stroke-width:1.6!important;color:#6A2038!important}
+html body #signs .picker .sign:is(.is-on,.on,.active,[aria-pressed=true]) .sg svg{stroke:#F3DFA8!important}
+html body section#relationships .rh-head h2{font-size:1.45rem!important;line-height:1.5!important}
+html body section#relationships .rh-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+html body section#relationships .rh-card.is-soon{opacity:.8}
+html body section#relationships::after{content:"";position:absolute;left:0;right:0;bottom:70px;height:210px;z-index:-1;pointer-events:none;background:url(../art/motifs/orbit-lines.svg) center bottom/100% auto no-repeat;opacity:.28}

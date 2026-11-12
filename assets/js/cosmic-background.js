@@ -338,7 +338,7 @@
     if (slot) {
       if (slot.getAttribute('data-sign') === meta.id) return;
       slot.setAttribute('data-sign', meta.id);
-      slot.innerHTML = buildConstellationSVG(meta) + '<figcaption>' + meta.ar + ' · ' + meta.en + '</figcaption>';
+      slot.innerHTML = buildConstellationSVG(meta) + '<figcaption>' + meta.ar + '</figcaption>';
       return;
     }
     var existing = panel.querySelector('.sign-constellation-stage');
