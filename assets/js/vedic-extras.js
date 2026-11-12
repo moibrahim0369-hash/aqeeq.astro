@@ -109,7 +109,7 @@
     var moon = body(ch, 'moon'); if (!moon) return;
     var now = Date.now(), birthMs = (natal && isFinite(natal.utcMs)) ? natal.utcMs : (ch.jde - 2440587.5) * 864e5;
     var n = Math.floor(moon.lon / (360 / 27)), pada = Math.floor((moon.lon % (360 / 27)) / (360 / 108)) + 1, nk = NK[n];
-    var h = '<section class="eam-card vx vc-card" id="vx-vargas"></section>';
+    var h = '';
     h += '<section class="eam-card vx"><h4>منزلك القمري</h4><p><b>' + nk[0] + '</b> · القدم ' + pada + ' · قمرك في برج ' + SG[Math.floor(moon.lon / 30)] + ' · حاكم المنزل ' + LORDS[n % 9] + '</p><p>' + nk[1] + '</p></section>';
     var ds = dashas(moon.lon, birthMs), cm = cur(ds, now), ca = cur(antars(cm), now);
     var asc = ch.known ? Math.floor(ch.asc / 30) : null;
@@ -132,7 +132,9 @@
     h += '<p class="eam-note">الحسابات على نظام لاهيري وبيوت البرج الكامل. هذه قراءة للتأمل وتختلف من مدرسة لأخرى، وليست حكمًا نهائيًا.</p>';
     var box = document.createElement('div'); box.className = 'vx-wrap'; box.innerHTML = h;
     var host = result.querySelector('.eam-copy-anchor') || result; host.insertBefore(box, result.querySelector('.aq-copy-map-btn'));
-    if (window.AqVedicChart) window.AqVedicChart.mount(box.querySelector('#vx-vargas'), ch, natal);
+    var top = document.createElement('div'); top.className = 'vx-wrap vx-top'; top.innerHTML = '<section class="eam-card vx vc-card" id="vx-vargas"></section>';
+    var head = result.querySelector('.eam-result-head'); if (head && head.parentNode) head.parentNode.insertBefore(top, head.nextSibling); else result.insertBefore(top, result.firstChild);
+    if (window.AqVedicChart) window.AqVedicChart.mount(top.querySelector('#vx-vargas'), ch, natal);
     if (window.AqeeqGender) window.AqeeqGender.apply(box, natal && natal.gender);
   }
   window.AqVedic = { render: render, div: div, dashas: dashas, antars: antars, current: cur };

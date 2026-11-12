@@ -90,6 +90,7 @@
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('[data-paywall], .fy-lock-btn, .lpa-badge.is-deep');
     if (!t) return;
+    if (window.AQ_REVIEW_OPEN && !t.hasAttribute('data-paywall')) return; /* مراجعة: الشارات لا تفتح نافذة الدفع */
     e.preventDefault(); e.stopPropagation();
     var ctx = t.getAttribute('data-paywall');
     if (!ctx && t.classList.contains('is-deep')) { var b = t.closest('b'); ctx = b ? b.textContent.replace(/قراءة متعمقة/, '').trim() : ''; }
