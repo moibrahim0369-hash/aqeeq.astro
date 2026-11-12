@@ -336,7 +336,7 @@
 
     var slot = panel.querySelector('.zp-const');
     if (slot) {
-      if (slot.getAttribute('data-sign') === meta.id) return;
+      if (slot.getAttribute('data-sign') === meta.id && slot.querySelector('svg')) return;
       slot.setAttribute('data-sign', meta.id);
       slot.innerHTML = buildConstellationSVG(meta) + '<figcaption>' + meta.ar + '</figcaption>';
       return;
@@ -364,7 +364,12 @@
     if (!panel) return;
     injectSignConstellation();
     var obs = new MutationObserver(function () { injectSignConstellation(); });
-    obs.observe(panel, { childList: true });
+    obs.observe(panel, { childList: true, subtree: true });
+    var tk = 0;
+    document.addEventListener('scroll', function () {
+      if (tk) return;
+      tk = requestAnimationFrame(function () { tk = 0; var z = document.querySelector('#panel .zp-const'); if (z && !z.querySelector('svg')) injectSignConstellation(); });
+    }, { capture: true, passive: true });
   }
 
   if (document.readyState === 'loading') {
