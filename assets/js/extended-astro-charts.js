@@ -60,8 +60,21 @@
   const nowLocal=()=>{const d=new Date(),local=new Date(d.getTime()-d.getTimezoneOffset()*60000);return local.toISOString().slice(0,16);};
   function context(){return window.AqeeqChartContext?.getNatal?.()||window.AqeeqChartContext?.getOrPrefill?.()||null;}
   function readyMessage(){return '<p class="eam-hint">هذا القسم يعتمد على بياناتك. اكتبها في النموذج بالأعلى أو اضغط «تعبئة من حسابي» ثم «افتح خرائطي».</p>';}
+  const PAGE={
+    sidereal:{e:'الخريطة الفيدية',h:'خريطتك الفيدية',i:'احسب خريطتك بالنطاق النجمي لاهيري: الطالع والمنزل القمري وفترات الداشا، كل ذلك لخريطتك وحدها.',b:'اعرض خريطتي الفيدية',p:'الخريطة الفيدية'},
+    transit:{e:'العبور الفلكي',h:'العبور فوق خريطتك',i:'قارن مواقع الكواكب في أي لحظة بخريطة ميلادك، لترى أي بيت ينشطه كل كوكب.',b:'احسب العبور',p:'العبور'},
+    solar:{e:'العودة الشمسية',h:'عودتك الشمسية',i:'خريطة سنتك الشخصية الجديدة، من لحظة رجوع الشمس إلى درجتها يوم ميلادك.',b:'احسب عودتي الشمسية',p:'العودة الشمسية'},
+    profections:{e:'التوجيهات السنوية',h:'سيد سنتك',i:'البرج السنوي وسيد السنة والبيت الذي تتجه إليه طاقتك هذا العام.',b:'احسب سيد السنة',p:'التوجيهات السنوية'},
+    eclipses:{e:'الكسوف والخسوف',h:'الكسوف والخسوف في خريطتك',i:'أحداث الكسوف والخسوف خلال السنة وأين تقع في بيوت خريطتك.',b:'اعرض الكسوف والخسوف',p:'الكسوف والخسوف'},
+    nodes:{e:'العقد القمرية',h:'محور العقد القمرية',i:'العقدة الشمالية والجنوبية وموقعهما في خريطتك، والعودة العقدية.',b:'احسب محور العقد',p:'العقد القمرية'}
+  };
+  function applyPage(m){
+    const c=PAGE[m]||PAGE.sidereal;section.dataset.eamPage=m;
+    const e=$('.eam-hero .eyebrow'),h=$('.eam-hero h2'),i=$('.eam-hero .intro'),b=$('.eam-f-actions .btn[type="submit"]'),pl=$('.aq-section-pill.active');
+    if(e){e.removeAttribute('dir');e.textContent=c.e;}if(h)h.textContent=c.h;if(i)i.textContent=c.i;if(b)b.textContent=c.b;if(pl)pl.textContent=c.p;
+  }
   function setMode(next){
-    mode=next;
+    mode=next;applyPage(mode);
     section.querySelectorAll('[data-eam-mode]').forEach(b=>{const active=b.dataset.eamMode===mode;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});
     renderControls();
   }
