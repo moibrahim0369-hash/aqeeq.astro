@@ -1,4 +1,4 @@
-(function(){var M={matrix:'matrix',chart:'chart',sky:'sky',lifepath:'lifepath','lifepath-compat':'lifepath'},T=640;
+(function(){var M={matrix:'matrix',chart:'chart',sky:'sky',lifepath:'lifepath','lifepath-compat':'lifepath','astro-maps':'chart',signs:'sky'},T=640;
 function u(n){return 'url('+new URL('assets/art/'+n+'.svg',document.baseURI).href+')';}
 function size(s,f){var h=s.scrollHeight-T-8;f.style.height=(h>0?h:0)+'px';}
 Object.keys(M).forEach(function(id){var s=document.getElementById(id);if(!s||s.querySelector(':scope>.aqa-art'))return;
