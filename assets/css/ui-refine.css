@@ -31,3 +31,6 @@ html body section#relationships .rh-head h2{font-size:1.45rem!important;line-hei
 html body section#relationships .rh-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
 html body section#relationships .rh-card.is-soon{opacity:.8}
 html body section#relationships::after{content:"";position:absolute;left:0;right:0;bottom:70px;height:210px;z-index:-1;pointer-events:none;background:url(../art/motifs/orbit-lines.svg) center bottom/100% auto no-repeat;opacity:.28}
+html body .sgs-sheet .zp-fc h5 svg{width:40px!important;height:40px!important;padding:5px!important;box-sizing:border-box;border-radius:13px!important;background:var(--ur-tile)!important;border:1px solid var(--ur-line)!important;color:var(--ur-wine)!important;stroke:currentColor!important;stroke-width:1.6!important;box-shadow:none!important}
+html body .sgs-sheet .zp-glyph{width:60px!important;height:60px!important}
+html body .sgs-sheet .zp-glyph svg{width:34px!important;height:34px!important;stroke-width:1.5!important}
