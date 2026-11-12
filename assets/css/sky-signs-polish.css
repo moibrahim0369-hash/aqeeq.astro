@@ -205,3 +205,19 @@ html body .sgs-sheet .sgs-foot{display:flex;gap:10px;padding:10px 0 calc(8px + e
 html body .sgs-sheet .sgs-foot button{flex:1;min-height:46px;border-radius:999px;font:700 .95rem 'IBM Plex Sans Arabic',sans-serif;cursor:pointer}
 html body .sgs-sheet .aqm-foot-next{background:linear-gradient(160deg,#7A2E48,#4A1224);color:#FFF3D6;border:1px solid #C8A15A}
 html body .sgs-sheet .aqm-foot-close{background:#FFFDF8;color:#6A2038;border:1px solid #D2AE6C}
+
+/* تبويب توقعات/صفات + حركة فتح البرج */
+#signs .sg-seg{display:flex;gap:6px;padding:4px;margin:0 auto 16px;width:min(100%,360px);border:1px solid rgba(169,132,63,.45);border-radius:999px;background:rgba(255,253,248,.85)}
+#signs .sg-seg button{flex:1;min-height:40px;border:0;border-radius:999px;background:transparent;color:#70263F;font:700 .92rem 'IBM Plex Sans Arabic',system-ui,sans-serif;cursor:pointer;transition:background .2s,color .2s}
+#signs .sg-seg button[aria-pressed=true]{background:linear-gradient(#7A2A3E,#4A1521);color:#F6DDA8}
+html body section#signs[data-mode="traits"] #panel{display:block!important}
+#signs .picker .sign{transition:transform .16s ease,box-shadow .2s}
+#signs .picker .sign:active{transform:scale(.94)}
+.sgs-sheet .zp-traits-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;border-radius:14px;border:1px solid rgba(169,132,63,.55);background:#FFFDF8;color:#70263F;font:700 .95rem 'IBM Plex Sans Arabic',system-ui,sans-serif;cursor:pointer}
+.sgs-sheet .zp-traits-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6}
+@keyframes sgPop{from{opacity:0;transform:scale(.6) rotate(-12deg)}to{opacity:1;transform:none}}
+@keyframes sgUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sgs-sheet:not([hidden]) .zp-glyph{animation:sgPop .5s cubic-bezier(.2,.9,.3,1.2) both}
+.sgs-sheet:not([hidden]) .zp-sec{animation:sgUp .42s ease both}
+.sgs-sheet:not([hidden]) .zp-sec:nth-of-type(2){animation-delay:.06s}.sgs-sheet:not([hidden]) .zp-sec:nth-of-type(3){animation-delay:.12s}.sgs-sheet:not([hidden]) .zp-sec:nth-of-type(4){animation-delay:.18s}
+@media(prefers-reduced-motion:reduce){.sgs-sheet .zp-glyph,.sgs-sheet .zp-sec{animation:none!important}}
