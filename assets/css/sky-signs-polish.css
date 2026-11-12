@@ -330,3 +330,49 @@ html body :is(#signs,#sgs-sheet):not(#_a) .zd-stack>.lpa-card:nth-child(4n) .lpa
 html body :is(#signs,#sgs-sheet):not(#_a) .rxb{margin-inline-start:8px;padding:2px 11px!important;border-radius:999px;background:linear-gradient(145deg,#C24A58,#9C2F3E)!important;color:#fff!important;font:700 .74rem/1.7 'Cairo',sans-serif!important;box-shadow:0 2px 6px rgba(156,47,62,.3)}
 html body :is(#signs,#sgs-sheet):not(#_a) .zp-glance span.is-rx{background:#FBE9EA!important;border-color:#D9939B!important}
 html body :is(#signs,#sgs-sheet):not(#_a) .tl-points li{border:1px solid #EADFC6!important;border-inline-start:1px solid #EADFC6!important;border-inline-end:1px solid #EADFC6!important;box-shadow:none!important;background:#FAF4E6!important;border-radius:14px!important}
+
+
+/* ===== شيت البرج: الهيرو (الكوكبة والرمز) + زر الإغلاق ثابت ===== */
+:is(#signs,#sgs-sheet) .zp-hero{display:grid;grid-template-columns:1fr minmax(120px,210px);gap:16px;align-items:center;padding:18px;border-radius:20px;background:radial-gradient(120% 140% at 15% 0%,#7A4A30 0%,var(--sp-brown) 58%,#33190F 100%);border:1px solid rgba(232,207,152,.7);color:#FFF3DC;margin:0 0 16px}
+:is(#signs,#sgs-sheet) .zp-id{display:flex;align-items:center;gap:14px;min-width:0}
+:is(#signs,#sgs-sheet) .zp-glyph{flex:none;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:rgba(255,236,196,.1);border:1px solid rgba(232,207,152,.8);color:var(--sp-gold2)!important}
+:is(#signs,#sgs-sheet) .zp-glyph svg{width:42px;height:42px;stroke:var(--sp-gold2)!important;color:var(--sp-gold2)!important}
+:is(#signs,#sgs-sheet) .zp-glyph,:is(#signs,#sgs-sheet) .zp-glyph *{filter:none!important}
+:is(#signs,#sgs-sheet) .zp-hero h3{margin:0 0 2px;font:700 1.9rem/1.2 'Amiri','Cairo',serif;color:#FFF3DC!important}
+:is(#signs,#sgs-sheet) .zp-hero .dates{margin:0 0 8px;color:#EBD7B4!important;font-size:.9rem}
+:is(#signs,#sgs-sheet) .zp-tags{display:flex;flex-wrap:wrap;gap:6px}
+:is(#signs,#sgs-sheet) .zp-tags span{padding:3px 11px;border-radius:999px;background:rgba(255,236,196,.12);border:1px solid rgba(232,207,152,.5);color:#FFEFD0;font:600 .76rem 'Cairo',sans-serif}
+:is(#signs,#sgs-sheet) .zp-const{margin:0;text-align:center}
+:is(#signs,#sgs-sheet) .zp-const svg{width:100%;max-width:210px;height:auto;display:block;margin:0 auto;filter:none}
+:is(#signs,#sgs-sheet) .zp-const .const-line{animation:none!important;stroke-dashoffset:0!important;stroke-dasharray:none;stroke:rgba(232,207,152,.9);stroke-width:1.3}
+:is(#signs,#sgs-sheet) .zp-const .const-star{animation:none!important;transform:none;fill:#FFEFD0}
+:is(#signs,#sgs-sheet) .zp-const .const-halo{fill:rgba(232,207,152,.22)}
+:is(#signs,#sgs-sheet) .zp-const svg circle[fill="none"]{stroke:rgba(232,207,152,.4)}
+:is(#signs,#sgs-sheet) .zp-const figcaption{margin-top:2px;color:#EBD7B4;font:600 .72rem 'Cairo',sans-serif;letter-spacing:.04em}
+@media(max-width:560px){#sgs-sheet .zp-hero{grid-template-columns:1fr 112px;gap:8px;padding:14px 12px}#sgs-sheet .zp-glyph{width:52px;height:52px}#sgs-sheet .zp-glyph svg{width:32px;height:32px}#sgs-sheet .zp-hero h3{font-size:1.5rem}}
+html body .sgs-sheet .aqm-sheet-panel{position:relative}
+html body .sgs-sheet .aqm-sheet-x{position:absolute!important;z-index:90!important;top:12px!important;inset-inline-start:auto!important;inset-inline-end:14px!important;left:auto!important;width:38px!important;height:38px!important;border-radius:50%!important;background:linear-gradient(160deg,#7A2E48,#4A1224)!important;border:1px solid #C8A15A!important;color:#F6E7C8!important;box-shadow:0 6px 16px rgba(74,18,36,.3)!important}
+html body .sgs-sheet .aqm-sheet-x svg{width:16px;height:16px;stroke:#F6E7C8}
+html body .sgs-sheet .sgs-body{position:relative;z-index:1}
+
+/* ===== أيقونات التوقعات (الكواكب): دوائر داكنة بتفاصيل ذهبية ===== */
+html body :is(#signs,#sgs-sheet):not(#_a):not(#_b) .zd-stack>.lpa-card .lpa-ic{flex:0 0 42px!important;width:42px!important;height:42px!important;border-radius:50%!important;background:radial-gradient(circle at 30% 25%,#7C2F46,#4A1224 80%)!important;border:1px solid #C8A15A!important;box-shadow:inset 0 0 0 3px rgba(246,231,200,.08),0 4px 10px rgba(74,18,36,.22)!important;color:#F6D58A!important}
+html body :is(#signs,#sgs-sheet):not(#_a):not(#_b) .zd-stack>.lpa-card .lpa-ic :is(.sg,svg){color:#F6D58A!important;stroke:#F6D58A!important;fill:none}
+html body :is(#signs,#sgs-sheet):not(#_a):not(#_b) .zd-stack>.lpa-card .lpa-ic .sg{font-size:1.25rem;stroke:none;fill:#F6D58A}
+html body :is(#signs,#sgs-sheet):not(#_a):not(#_b) .zd-stack>.lpa-card:nth-child(n) .lpa-ic{background:radial-gradient(circle at 30% 25%,#7C2F46,#4A1224 80%)!important}
+html body :is(#signs,#sgs-sheet):not(#_a):not(#_b) .zd-stack>.lpa-card:has(.rxb) .lpa-ic{border-color:#E08A6A!important;box-shadow:inset 0 0 0 3px rgba(224,138,106,.18),0 4px 10px rgba(74,18,36,.22)!important}
+
+/* ===== شبكة الأبراج: رمز داخل دائرة بلون العنصر ===== */
+html body #signs .picker .sign{background:#fff!important;border:1px solid #E9DDC6!important;border-radius:20px!important;box-shadow:0 6px 16px rgba(94,34,52,.06)!important;display:grid!important;justify-items:center;align-content:center;gap:9px;padding:14px 6px!important;color:#4A1224!important}
+html body #signs .picker .sign .sg{display:grid!important;place-items:center;width:52px;height:52px;border-radius:50%;font-size:1.7rem!important;line-height:1;color:#F6E7C8!important;background:radial-gradient(circle at 30% 25%,#8A3148,#4A1224 85%);border:1px solid #C8A15A;box-shadow:inset 0 0 0 3px rgba(246,231,200,.08),0 4px 10px rgba(74,18,36,.2)}
+html body #signs .picker .sign:nth-child(4n+1) .sg{background:radial-gradient(circle at 30% 25%,#D0764A,#9A3F22 85%)}
+html body #signs .picker .sign:nth-child(4n+2) .sg{background:radial-gradient(circle at 30% 25%,#C7A053,#8A6A26 85%)}
+html body #signs .picker .sign:nth-child(4n+3) .sg{background:radial-gradient(circle at 30% 25%,#A24B63,#6A2038 85%)}
+html body #signs .picker .sign[aria-pressed="true"]{background:linear-gradient(160deg,#7A2E48,#4A1224)!important;border-color:#C8A15A!important;color:#FFF3D6!important}
+html body #signs .picker .sign[aria-pressed="true"] .sg{border-color:#F6D58A}
+
+/* ===== السماء/الصفات: ما يفصل الخلفية عن المحتوى ===== */
+html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c) :is(.aq-section-topbar,.aq-section-quick-links){overflow:visible!important}
+html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-pill.active{box-shadow:0 3px 8px rgba(94,34,52,.2)!important}
+html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c) .center{background:none!important;border:0!important;box-shadow:none!important}
+html body :is(#signs,#sgs-sheet):not(#_a):not(#_b):not(#_c) .zd-stack>.lpa-card .lpa-ic .sg{font-size:1.6rem!important;line-height:1;display:block;font-weight:400}
