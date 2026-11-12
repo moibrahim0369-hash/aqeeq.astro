@@ -1,0 +1,29 @@
+/* إصلاحات الصفحات الداخلية: شريط الأزرار العلوي، الفوتر الموحد، محتوى مميز على الموبايل */
+/* 1) شريط رجوع/الرئيسية: ثابت في أعلى الصفحة فقط (لا يطفو وسط الكروت) ولا تتداخل أزراره */
+html body section.sec:not(#home):not(#_a):not(#_b) .aq-section-topbar{position:static!important;background:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;overflow:visible!important}
+html body section.sec:is(#for-you,#compat,#individual,#relationships,#invest,#world,#sky,#signs,#energy-compatibility,#astro-maps,#lifepath-compat):not(#_a):not(#_b) .aq-section-topbar{flex-wrap:wrap!important;gap:8px!important;row-gap:8px!important}
+html body section.sec:is(#for-you,#compat,#individual,#relationships,#invest,#world,#sky,#signs,#energy-compatibility,#astro-maps,#lifepath-compat):not(#_a):not(#_b) .aq-section-topbar :is(.aq-nav-actions,.aq-section-quick-links){display:flex!important;flex:0 1 auto!important;flex-wrap:wrap!important;min-width:0!important;gap:8px!important;margin:0!important}
+html body section.sec:is(#for-you,#compat,#individual,#relationships,#invest,#world,#sky,#signs,#energy-compatibility,#astro-maps,#lifepath-compat):not(#_a):not(#_b) .aq-section-topbar :is(a,button){margin:0!important;flex:0 0 auto!important;white-space:nowrap}
+html body section.sec:is(#for-you,#compat,#individual,#relationships,#invest,#world,#sky,#signs,#energy-compatibility,#astro-maps,#lifepath-compat):not(#_a):not(#_b) .aq-section-topbar .aq-nav-actions{flex-wrap:nowrap!important;overflow:visible!important;min-width:max-content!important;flex:0 0 auto!important}
+html body section.sec:is(#for-you,#compat,#individual,#relationships,#invest,#world,#sky,#signs,#energy-compatibility,#astro-maps,#lifepath-compat):not(#_a):not(#_b) .aq-section-topbar .aq-section-quick-links{flex:1 1 100%!important}
+/* 2) فوتر موحد خفيف (روابط قانونية + حقوق) في آخر كل صفحة؛ يلغي نسخة الفوتر الكبيرة المكررة */
+section.sec>footer.sec-foot{display:none!important}
+footer.aqf{display:block;margin:40px auto 0;padding:22px 18px 8px;max-width:760px;text-align:center;border-top:1px solid rgba(169,132,63,.35);color:#6B5A5E;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif}
+footer.aqf .aq-soc{display:flex;justify-content:center;gap:10px;margin:0 0 14px;flex-wrap:wrap}
+footer.aqf nav.sp-foot{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0 0 12px}
+footer.aqf nav.sp-foot a{font-size:.84rem;font-weight:600;color:#70263F;text-decoration:none}
+footer.aqf .foot-dis,footer.aqf .copy{font-size:.74rem;line-height:1.9;margin:0 0 8px;color:#85747A}
+section.sec:has(>footer.aqf){padding-bottom:0!important}
+section.sec>footer.aqf{margin-bottom:104px}
+/* 3) محتوى مميز: لا ظل/تدرج مقصوص تحت الهيدر، وبطاقات مرتبة على الموبايل */
+html:has(.fc-page:is(:target,.fc-open)) header.top{background:#F7F3EC!important;box-shadow:none!important;border-bottom:1px solid rgba(169,132,63,.3)!important}
+@media(max-width:700px){
+  .fc-page .fc-pick{min-height:0!important}
+  .fc-page .fc-pick-img{height:150px!important}
+  .fc-page .fc-pick-txt{padding:14px 18px 16px!important;gap:8px!important;min-height:0!important}
+  .fc-page .fc-pick h2{font-size:1.28rem!important;line-height:1.55!important}
+  .fc-page .fc-pick p{-webkit-line-clamp:2!important;font-size:.92rem!important;line-height:1.8!important}
+  .fc-page .fc-track .fc-mini{flex:0 0 80%!important}
+  .fc-page .fc-nav{display:none!important}
+  .fc-page .fc-card h3,.fc-page .fc-mini h3{-webkit-line-clamp:3!important}
+}
