@@ -94,3 +94,19 @@ html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .aq-section-t
 html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .aq-section-topbar .aq-nav-actions{justify-content:center!important}
 html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .aq-section-topbar .aq-nav-actions{margin:0 auto!important}
 html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .aq-section-topbar{width:100%!important;flex:0 0 100%!important;margin-left:auto!important;margin-right:auto!important}
+
+/* ===== match lifepath: card, autofill bar, ornament ===== */
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form{background:linear-gradient(#fff,#fdf8ec)!important;border:1px solid #6b1d33!important;border-radius:22px!important;box-shadow:0 14px 34px rgba(74,18,36,.16)!important;padding:14px 12px!important;outline:0!important}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form::before,
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form::after{display:none!important;content:none!important}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form .aq-autofill-bar{flex-wrap:nowrap!important;gap:8px!important;padding:6px 8px!important;margin:0 0 12px!important;border-radius:12px!important;background:linear-gradient(160deg,#fffdf7,#f7ebcf)!important;border:1px solid #d2ae6c!important}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form .aq-autofill-bar span{font-size:.72rem!important;line-height:1.5!important;color:#5a2336!important;flex:1 1 auto}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form .aq-autofill-btn{padding:6px 10px!important;font-size:.74rem!important;min-height:0!important;border-radius:10px!important;flex:0 0 auto;white-space:nowrap}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) .y27-intro .y27-orn{display:flex!important;align-items:center;gap:8px;width:235px;max-width:70%;color:#E8C98A}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) .y27-intro .y27-orn i{display:block!important;flex:1;height:1px;background:linear-gradient(90deg,transparent,currentColor)}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) .y27-intro .y27-orn i:last-child{transform:scaleX(-1)}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) .y27-intro .y27-orn svg{width:16px!important;height:16px!important;flex:none}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form .y27-chk{margin:0 0 10px!important;padding:0!important;min-height:0!important}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) form.y27-form .field{margin-bottom:12px!important}
+html body section.sec:is(#year2027,#karmic,#astro-maps):not(#_a):not(#_b):not(#_c):not(#_d) .y27-intro{margin-bottom:10px!important}
+html body section.sec:is(#year2027,#karmic):not(#_a):not(#_b):not(#_c):not(#_d) .b3-vip-link{display:none!important}
