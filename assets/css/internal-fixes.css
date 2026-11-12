@@ -42,3 +42,8 @@ html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifep
 html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c)>.wrap{padding-top:0!important;margin-top:0!important}
 html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c) .aq-section-topbar{margin-top:0!important;padding-top:0!important;align-items:center!important;row-gap:8px!important}
 html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(a,button){min-height:38px!important;height:38px!important;box-sizing:border-box!important}
+
+/* المصفوفة: رفع المحتوى لاستغلال الفراغ العلوي */
+html body section.sec#matrix:target:not(#_a):not(#_b):not(#_c){padding-top:70px!important}
+html body section.sec#matrix:target:not(#_a):not(#_b):not(#_c) .aq-section-topbar{padding-bottom:0!important;margin-bottom:0!important}
+html body section.sec#matrix:target:not(#_a):not(#_b):not(#_c) .mxp-head{margin-top:-8px!important}

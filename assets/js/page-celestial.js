@@ -1,5 +1,5 @@
 (function(){var M={matrix:'matrix',chart:'chart',sky:'sky',lifepath:'lifepath','lifepath-compat':'lifepath','astro-maps':'chart',signs:'sky'},T=698;
-function u(n){return 'url('+new URL('assets/art/'+n+'.svg',document.baseURI).href+')';}
+function u(n){return 'url('+new URL('assets/art/'+n+'.svg?v=20261122h',document.baseURI).href+')';}
 function size(s,f){var k=[].filter.call(s.children,function(c){return !/aqa-(art|flow)/.test(c.className)}),l=k[k.length-1],h=l?(l.offsetTop+l.offsetHeight):s.scrollHeight;h=h-T-8;f.style.height=(h>0?h:0)+'px';}
 Object.keys(M).forEach(function(id){var s=document.getElementById(id);if(!s||s.querySelector(':scope>.aqa-art'))return;
 var m=id==='lifepath-compat'?' aqa-mirror':'';
