@@ -66,3 +66,26 @@ html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifep
 html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c):not(#_d) :is(.aq-section-topbar,.aq-nav-actions,.aq-section-quick-links){position:relative!important;top:auto!important;background:transparent!important;background-image:none!important;border:0!important;border-bottom:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;filter:none!important;-webkit-mask-image:none!important;mask-image:none!important}
 html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar::before,
 html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar::after{content:none!important;display:none!important}
+
+/* ===== الخرائط المتقدمة: بانر موحد + نموذج بيانات + جداول بلا تمرير أفقي ===== */
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-hero{padding:6px 0 4px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-hero .intro{font-size:.95rem;line-height:1.9;margin:6px 0 14px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-form{display:grid;gap:10px;text-align:right;background:#fff;border:1px solid #E9DDC6;border-radius:20px;padding:14px;box-shadow:0 6px 18px rgba(90,24,40,.06)}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f-row{display:grid;gap:10px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f-2{grid-template-columns:1fr 1fr}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f{display:grid;gap:5px;min-width:0}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f>span{font-size:.8rem;color:#7A5A4A;font-weight:600}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-form :is(input[type=time],input[type=date],select){width:100%;min-width:0;min-height:44px;box-sizing:border-box;border:1px solid #E3D5B8;border-radius:12px;background:#FBF8F1;color:#4A1521;padding:0 10px;font:inherit}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-form .aq-ds{display:grid;grid-template-columns:1fr 1.3fr 1.1fr;gap:8px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-form .aq-ds-src{display:none!important}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-chk{display:flex;align-items:center;gap:8px;font-size:.88rem;color:#5A1828}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f-actions{display:grid;grid-template-columns:1.2fr 1fr;gap:8px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f-actions .btn{min-height:46px;margin:0;width:100%}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f-err{color:#9C2F3E;font-size:.86rem;margin:0}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-f-ok{color:#4F6B3A;font-size:.86rem;margin:0}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-hint{margin:8px 2px;padding:10px 12px;border-radius:14px;background:#FBF3E4;color:#6B4A3A;font-size:.88rem;line-height:1.8}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-table-wrap{overflow:visible;border:1px solid #E9DDC6;border-radius:16px;background:#fff}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-table{width:100%;min-width:0!important;table-layout:auto;color:#4A1521;font-size:.78rem}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-table :is(th,td){white-space:normal!important;padding:.55rem .45rem;border-bottom:1px solid #F0E6D2;color:#4A1521}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-table thead{background:#FBF3E4;color:#8E6C2C}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-chk input[type=checkbox]{width:20px!important;height:20px!important;min-height:0!important;flex:0 0 20px;margin:0;padding:0;accent-color:#5A1828}
