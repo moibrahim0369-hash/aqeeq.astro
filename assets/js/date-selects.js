@@ -74,7 +74,7 @@
   }
   function enhanceTime(inp) {
     if (!inp || inp.__aqds) return; inp.__aqds = true;
-    var wrap = document.createElement('div'); wrap.className = 'aq-dsx aq-dsx-time' + (inp.closest && inp.closest('#chart,#matrix,#lifepath') ? ' aq-ds' : ''); wrap.dir = 'rtl';
+    var wrap = document.createElement('div'); wrap.className = 'aq-dsx aq-dsx-time' + (inp.closest && inp.closest('#chart,#matrix,#lifepath,#year2027') ? ' aq-ds' : ''); wrap.dir = 'rtl';
     var h = mkx('ساعة', 'aq-dsx-h', 'الساعة', inp.required), mi = mkx('دقيقة', 'aq-dsx-mi', 'الدقيقة', false), ap = mkx('ص / م', 'aq-dsx-ap', 'صباحًا أو مساءً', inp.required);
     for (var i = 1; i <= 12; i++) h.appendChild(opt(String(i), String(i)));
     for (var j = 0; j < 60; j++) mi.appendChild(opt(String(j), pad2(j)));

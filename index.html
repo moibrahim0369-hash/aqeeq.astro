@@ -55,7 +55,7 @@
 <link rel="stylesheet" href="assets/css/natal-view.css?v=20261106b">
 <link rel="stylesheet" href="assets/css/natal-page.css?v=20261110e">
 <link rel="stylesheet" href="assets/css/geo-picker.css?v=20261110c">
-<link rel="stylesheet" href="assets/css/field-cards.css?v=20261110h">
+<link rel="stylesheet" href="assets/css/field-cards.css?v=20261130c">
 <link rel="stylesheet" href="assets/css/page-art.css?v=20261119a">
 <link rel="stylesheet" href="assets/css/lifepath-final.css?v=20261117c">
 <link rel="stylesheet" href="assets/css/lifepath-compat.css?v=20261111a">
@@ -102,7 +102,7 @@
 <link rel="stylesheet" href="assets/css/page-bg-unify.css?v=20261119b">
 <link rel="stylesheet" href="assets/css/page-art-fade.css?v=20261120a">
 <link rel="stylesheet" href="assets/css/ui-refine.css?v=20261128a">
-<link rel="stylesheet" href="assets/css/batch3.css?v=20261130b">
+<link rel="stylesheet" href="assets/css/batch3.css?v=20261130e">
 <link rel="stylesheet" href="assets/css/page-celestial.css?v=20261122g">
 <link rel="stylesheet" href="assets/css/internal-fixes.css?v=20261123d">
 </head>
@@ -1263,15 +1263,15 @@
 <div class="aq-section-topbar"><a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a></div>
 <div class="y27-printhead" aria-hidden="true"><b>عقيق أسترو</b><span>قراءة سنة 2027</span><span id="y27-name-print"></span></div>
 <div class="y27-intro center"><span class="eyebrow">من علم الفلك الفيدي</span><h2 id="y27-h">ما سيحدث في 2027</h2><p class="intro">أي فصل في حياتك يوشك أن يُغلق، وأي باب يوشك أن يُفتح؟</p></div>
-<form class="y27-form" id="y27-form" novalidate autocomplete="off">
-<div class="field"><label for="y27-name"><span>اسمك</span></label><input id="y27-name" type="text" maxlength="40" autocomplete="off"></div>
-<div class="field"><label for="y27-date"><span>تاريخ الميلاد</span></label><input id="y27-date" type="date" min="1900-01-01" max="2100-12-31"></div>
-<div class="field"><label for="y27-time"><span>وقت الميلاد</span></label><input id="y27-time" type="time"><label class="y27-chk"><input id="y27-unknown" type="checkbox"> لا أعرف وقت ميلادي</label></div>
-<div class="field"><label for="y27-city"><span>بلد أو مدينة الميلاد</span></label><select id="y27-city"></select></div>
+<form class="y27-form cform mxp-card" id="y27-form" novalidate autocomplete="off">
+<div class="field"><label for="y27-name"><span class="mxp-fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c.9-3.6 3.6-5.4 7-5.4s6.1 1.8 7 5.4"/></svg></span><span>اسمك</span></label><input id="y27-name" type="text" maxlength="40" autocomplete="off"></div>
+<div class="field"><label for="y27-date"><span class="mxp-fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="14" rx="3"/><path d="M4 10h16M9 3.5v4M15 3.5v4"/></svg></span><span>تاريخ الميلاد</span></label><input id="y27-date" type="date" min="1900-01-01" max="2100-12-31"></div>
+<div class="field"><label for="y27-time"><span class="mxp-fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.500V12l3 2"/></svg></span><span>وقت الميلاد</span></label><input id="y27-time" type="time"></div><label class="y27-chk"><input id="y27-unknown" type="checkbox"> لا أعرف وقت ميلادي</label>
+<div class="field"><label for="y27-city"><span class="mxp-fi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.500-5.600-6.500-11a6.500 6.500 0 0 1 13 0c0 5.400-6.500 11-6.500 11z"/><circle cx="12" cy="10" r="2.400"/></svg></span><span>بلد أو مدينة الميلاد</span></label><select id="y27-city"></select></div>
 <p class="ferr" id="y27-err" role="alert" hidden></p>
 <button class="btn" type="submit">اعرض قراءة 2027</button>
 </form>
-<div class="y27-explain"><h3>كيف تُقرأ سنتك؟</h3>
+<div class="y27-explain"><div class="y27-about"><h3>ما الفلك الفيدي؟</h3><p>هو علم هندي قديم يقرأ السماء كما هي في مكانها الحقيقي، ويرى أن عمرك يمرّ بفترات يحكم كل منها كوكب. لا يخبرك بما سيحدث لك حتمًا، بل يريك أي طاقة تحيط بك الآن، فتختار كيف تتحرك داخلها.</p></div><h3>كيف تُقرأ سنتك؟</h3>
 <div class="y27-ex"><b>1</b><div><strong>الداشا: الفترة التي تحكمك</strong><p>الفلك الفيدي يقسم عمرك إلى فترات يحكم كل منها كوكب. كوكب فترتك الآن يحدد ما يشغل بالك وما تنجذب إليه هذه السنة.</p></div></div>
 <div class="y27-ex"><b>2</b><div><strong>ساديه ساتي: ثقل زحل</strong><p>حين يمر زحل قرب قمرك تشعر بأن الأمور أبطأ وأثقل، ثم تخف. نخبرك إن كانت سنتك فيها هذا العبور ومتى ينتهي.</p></div></div>
 <div class="y27-ex"><b>3</b><div><strong>العلاقات والعمل والمال</strong><p>نقرأ أين يمر المشتري وراهو فوق خريطتك لنعرف أي الأبواب أقرب، وما الذي يستحق الحذر.</p></div></div></div>
@@ -5393,7 +5393,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/geo-picker.js?v=20261110a" defer></script>
 <script src="assets/js/page-story.js?v=20261112b" defer></script>
 <script src="assets/js/top-gap.js?v=20261111b" defer></script>
-<script src="assets/js/date-selects.js?v=20261127a" defer></script>
+<script src="assets/js/date-selects.js?v=20261130d" defer></script>
 <script src="account-profile.js" type="module"></script>
 <script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
