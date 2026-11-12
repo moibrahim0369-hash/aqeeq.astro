@@ -196,3 +196,13 @@ html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) em.y27-year:not(#_c):not(#_e
 html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) .aqh-tool-ico:not(#_c){background:linear-gradient(135deg,#7A3449,#5E2234)!important;color:#F3DFA8!important;border:2px solid #C5A059!important}
 html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d) .aqh-go:not(#_c){color:#9A7424!important}
 html body a.aqh-tool-y27:not(#_a):not(#_b):not(#_d)::after{background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%)}
+/* v6: كروت الأبراج: كريمية فاتحة، وتصير نبيتي عند الضغط */
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d){background:linear-gradient(180deg,#FFFFFF,#FBF3E4)!important;border:1px solid #E3CFA3!important;box-shadow:0 2px 8px rgba(94,34,52,.06)!important;color:#5E2234!important;transition:background .15s,transform .15s}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) *:not(#_c){color:#5E2234!important}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child:not(#_c){background:none!important;border:0!important;color:#6A2038!important}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child:not(#_c) *{color:#6A2038!important}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d):is(:hover,:active,:focus-visible,.on,.active,[aria-pressed=true]):not(#_c){background:linear-gradient(160deg,#7A2E48,#4A1524)!important;border-color:#C5A059!important;box-shadow:0 6px 16px rgba(74,21,36,.3)!important;transform:scale(.97)}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d):is(:hover,:active,:focus-visible,.on,.active,[aria-pressed=true]):not(#_c) *{color:#F3DFA8!important}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child:not(#_c),html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child *{opacity:1!important;color:#5E2234!important;stroke:#5E2234!important;-webkit-text-stroke:.4px #5E2234}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child:not(#_c){font-size:34px!important;line-height:1}
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_d) span:first-child svg{width:34px!important;height:34px!important}
