@@ -135,3 +135,23 @@ html body section#invest:not(#_a):not(#_b){background:radial-gradient(ellipse at
 .b3-ctw{display:flex;align-items:center;gap:10px;padding:12px 14px}
 .b3-card{border-color:var(--b3-gold)!important}
 html body a.aqh-tool-y27:not(#_a):not(#_b) em.y27-year:not(#_c):not(#_d){font-size:13px!important;-webkit-text-fill-color:#E8CF98!important;color:#E8CF98!important;background:none!important;font-weight:700}
+/* v3: كروت الأبراج النبيتي */
+html body #signs .picker button.sign:not(#_a):not(#_b){background:linear-gradient(160deg,#7A2E48,#5E2234 60%,#4A1524)!important;border:1.5px solid var(--b3-gold)!important;box-shadow:0 6px 16px rgba(74,21,36,.28)!important;color:#FFF3D6!important}
+html body #signs .picker button.sign:not(#_a):not(#_b) *:not(#_c){color:#FFF3D6!important}
+html body #signs .picker button.sign:not(#_a):not(#_b) span:first-child:not(#_c){background:rgba(232,207,152,.12)!important;border:1.5px solid rgba(232,207,152,.7)!important;color:#E8CF98!important}
+html body #signs .picker button.sign:not(#_a):not(#_b) span:first-child:not(#_c) *{color:#E8CF98!important}
+html body #signs .picker button.sign:not(#_a):not(#_b):is(:hover,.on,.active,[aria-pressed=true]):not(#_c){border-color:#F3DFA8!important;box-shadow:0 0 0 3px rgba(197,160,89,.35),0 8px 20px rgba(74,21,36,.35)!important}
+/* v3: النافذة المنبثقة بانحناء من كل الجهات */
+html body .aqm-sheet-panel:not(#_a):not(#_b){inset-inline:10px!important;bottom:calc(10px + env(safe-area-inset-bottom))!important;max-height:88vh!important;border-radius:28px!important;border:1px solid rgba(197,160,89,.7)!important;overflow:hidden}
+html body .aqm-sheet-foot:not(#_a):not(#_b){border-top:0!important;background:transparent!important;padding:8px 14px 14px!important}
+html body .aqm-foot-close:not(#_a):not(#_b),html body .aqm-foot-next:not(#_a):not(#_b){border-radius:22px!important}
+/* v3: صفحة 2027 */
+html body section#year2027:not(#_a):not(#_b){padding-top:0!important}
+html body section#year2027 .wrap:not(#_a){padding-top:6px!important}
+#year2027 .y27-form.mxp-card{background:rgba(255,253,247,.9)}
+.y27-about{padding:14px 16px;border-radius:18px;margin-bottom:14px;background:linear-gradient(135deg,rgba(94,34,52,.07),rgba(197,160,89,.14));border:1px solid var(--b3-line)}
+.y27-about h3{margin:0 0 6px!important;text-align:start!important;font-size:16px!important}.y27-about p{margin:0;font-size:13.5px;line-height:1.95;color:var(--b3-ink)}
+html body .aqm-sheet-panel:not(#_a):not(#_b):not(#_c){inset-inline:auto!important;left:10px!important;right:10px!important;width:auto!important;max-width:none!important;margin:0!important}
+@media(min-width:821px){html body .aqm-sheet-panel:not(#_a):not(#_b):not(#_c){left:50%!important;right:auto!important;width:min(600px,94vw)!important;transform:translateX(-50%)}}
+.y27-chk{display:flex!important;align-items:center;gap:10px}.y27-chk input{width:20px!important;height:20px!important;flex:none;accent-color:#6A2038}
+html body .aqm-sheet .aqm-sheet-panel:not(#_a):not(#_b):not(#_c):not(#_d){position:absolute!important}
