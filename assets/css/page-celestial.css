@@ -13,7 +13,7 @@ html body section.sec:is(#matrix,#chart,#sky,#lifepath,#lifepath-compat,#astro-m
   background:var(--aqa-img) 50% 0/min(100%,420px) 560px repeat-y;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 90px);mask-image:linear-gradient(180deg,transparent 0,#000 90px)}
 @media(min-width:760px){.aqa-flow{background-size:420px 560px;background-position:50% 0}}
 .aqa-flow.aqa-mirror{transform:scaleX(-1)}
-html body section.sec#lifepath:not(#_a):not(#_b):not(#_c)>.aqa-art,html body section.sec#lifepath-compat:not(#_a):not(#_b):not(#_c)>.aqa-art{opacity:.4}
+html body section.sec#lifepath:not(#_a):not(#_b):not(#_c)>.aqa-art,html body section.sec#lifepath-compat:not(#_a):not(#_b):not(#_c)>.aqa-art{opacity:.25}
 
 /* لا مساحة فاضية بعد الفوتر */
 html body section.sec:has(>footer.aqf):not(#_a):not(#_b):not(#_c){padding-bottom:0!important;min-height:0!important}
