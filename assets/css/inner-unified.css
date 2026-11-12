@@ -67,3 +67,10 @@ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .e
 html body section.sec#astro-maps[data-eam-page="sidereal"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .eam-control,html body section.sec#astro-maps[data-eam-page="sidereal"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .eam-status:empty{display:none!important}
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .eam-hero{display:flex;flex-direction:column;align-items:center}
 html body section.sec:not(#_a):not(#_b):not(#_c) form .field :is(.aq-ds,.aq-dsx) select:not(#_d):not(#_e){grid-column:auto!important;grid-row:auto!important}
+/* unified autofill bar (same look as life-path) */
+html body section.sec:is(#year2027,#karmic,#astro-maps) form .aq-autofill-bar:not(#_a):not(#_b):not(#_c){display:flex!important;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:0 0 4px!important;padding:12px 14px!important;border-radius:14px!important;background:linear-gradient(135deg,#F3E2C8,#EAD3B0)!important;border:1px solid rgba(156,70,50,.35)!important;color:#4A3A34;font-size:.85rem;line-height:1.7}
+html body section.sec:is(#year2027,#karmic,#astro-maps) form .aq-autofill-bar .aq-af-note{display:block;font-size:.74rem;color:#8A5A2E}
+html body section.sec:is(#year2027,#karmic,#astro-maps) form .aq-autofill-btn:not(#_a):not(#_b):not(#_c){border-radius:10px!important;background:linear-gradient(135deg,#7f3a52,#5E2234)!important;color:#fff!important;border:1px solid rgba(228,196,134,.6)!important;padding:9px 15px!important;font:600 .85rem 'Cairo',sans-serif;min-height:40px}
+html body section#astro-maps #eam-b-fill:not(#_a):not(#_b){display:none!important}
+/* back + home always visible on every inner page */
+html body section.sec:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-nav-btn.is-home:not(#_d){display:inline-flex!important}
