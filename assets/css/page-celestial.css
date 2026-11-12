@@ -1,16 +1,16 @@
 /* فن سماوي بخطوط ذهبية: طبقة مطلقة داخل الصفحة (تتحرك مع التمرير) تتلاشى في الكريمي، بلا fixed */
-html body section.sec:is(#matrix,#chart,#sky,#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c){background-image:none!important;background-color:#F8F3E8!important}
-html body section.sec:is(#matrix,#chart,#sky,#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c)::before,
-html body section.sec:is(#matrix,#chart,#sky,#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c)::after{display:none!important}
-.aqa-art{position:absolute;top:58px;left:0;right:0;height:640px;z-index:-1;pointer-events:none;overflow:hidden;opacity:.8;
+html body section.sec:is(#matrix,#chart,#sky,#lifepath,#lifepath-compat,#astro-maps,#signs):not(#_a):not(#_b):not(#_c){background-image:none!important;background-color:#F8F3E8!important}
+html body section.sec:is(#matrix,#chart,#sky,#lifepath,#lifepath-compat,#astro-maps,#signs):not(#_a):not(#_b):not(#_c)::before,
+html body section.sec:is(#matrix,#chart,#sky,#lifepath,#lifepath-compat,#astro-maps,#signs):not(#_a):not(#_b):not(#_c)::after{display:none!important}
+.aqa-art{position:absolute;top:58px;left:0;right:0;height:640px;z-index:-1;pointer-events:none;overflow:hidden;opacity:.3;
   background:var(--aqa-img) 50% 0/auto 100% no-repeat;
   -webkit-mask-image:linear-gradient(180deg,#000 0,#000 58%,transparent 98%);
   mask-image:linear-gradient(180deg,#000 0,#000 58%,transparent 98%);}
 @media(min-width:760px){.aqa-art{background-size:min(100%,860px) auto}}
 .aqa-art.aqa-mirror{transform:scaleX(-1)}
 
-.aqa-flow{position:absolute;top:640px;left:0;right:0;height:0;z-index:-1;pointer-events:none;overflow:hidden;opacity:.4;
+.aqa-flow{position:absolute;top:640px;left:0;right:0;height:0;z-index:-1;pointer-events:none;overflow:hidden;opacity:.14;
   background:var(--aqa-img) 50% 0/min(100%,420px) 560px repeat-y;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 90px);mask-image:linear-gradient(180deg,transparent 0,#000 90px)}
 @media(min-width:760px){.aqa-flow{background-size:420px 560px;background-position:50% 0}}
 .aqa-flow.aqa-mirror{transform:scaleX(-1)}
-html body section.sec#lifepath:not(#_a):not(#_b):not(#_c)>.aqa-art,html body section.sec#lifepath-compat:not(#_a):not(#_b):not(#_c)>.aqa-art{opacity:1}
+html body section.sec#lifepath:not(#_a):not(#_b):not(#_c)>.aqa-art,html body section.sec#lifepath-compat:not(#_a):not(#_b):not(#_c)>.aqa-art{opacity:.4}
