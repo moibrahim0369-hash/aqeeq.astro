@@ -221,3 +221,29 @@ html body section#signs[data-mode="traits"] #panel{display:block!important}
 .sgs-sheet:not([hidden]) .zp-sec{animation:sgUp .42s ease both}
 .sgs-sheet:not([hidden]) .zp-sec:nth-of-type(2){animation-delay:.06s}.sgs-sheet:not([hidden]) .zp-sec:nth-of-type(3){animation-delay:.12s}.sgs-sheet:not([hidden]) .zp-sec:nth-of-type(4){animation-delay:.18s}
 @media(prefers-reduced-motion:reduce){.sgs-sheet .zp-glyph,.sgs-sheet .zp-sec{animation:none!important}}
+
+/* السماء الآن: روابط التنقل في صف واحد قابل للتمرير */
+html body section#sky .aq-section-quick-links{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:8px;flex:1 1 100%;max-width:100%;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+html body section#sky .aq-section-quick-links::-webkit-scrollbar{display:none}
+html body section#sky .aq-section-quick-links>.aq-section-pill{flex:0 0 auto;white-space:nowrap}
+
+/* سهم الأكورديون: شارة دائرية ثابتة */
+html body #sky .ax-s{grid-template-columns:auto minmax(0,1fr) 30px!important}
+html body #sky .ax-t{min-width:0}
+html body #sky .ax-chev{flex:0 0 30px;width:30px!important;height:30px!important;border-radius:50%;background:#FFF8E8;border:1px solid #C9A85C;display:grid;place-items:center;justify-self:end;box-shadow:0 1px 4px rgba(94,34,52,.08)}
+html body #sky .ax-chev::before{position:static!important;inset:auto!important;display:block;width:7px;height:7px;border:0!important;border-inline:0!important;border-right:2px solid #7A2A3E!important;border-bottom:2px solid #7A2A3E!important;transform:rotate(45deg) translate(-1px,-1px)!important;transition:transform .35s cubic-bezier(.3,.8,.3,1)!important}
+html body #sky .ax[open] .ax-chev::before{transform:rotate(225deg) translate(-1px,-1px)!important}
+
+/* السماء الآن: روابط التنقل في صف واحد قابل للتمرير */
+html body section#sky .aq-section-quick-links{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;gap:8px;flex:1 1 100%;max-width:100%;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+html body section#sky .aq-section-quick-links::-webkit-scrollbar{display:none}
+html body section#sky .aq-section-quick-links>.aq-section-pill{flex:0 0 auto;white-space:nowrap}
+
+/* سهم الأكورديون: شارة دائرية ثابتة */
+html body #sky .ax-s{grid-template-columns:auto minmax(0,1fr) 30px!important}
+html body #sky .ax-t{min-width:0}
+html body #sky .ax-chev{flex:0 0 30px;width:30px!important;height:30px!important;border-radius:50%;background:#FFF8E8;border:1px solid #C9A85C;display:grid;place-items:center;justify-self:end;box-shadow:0 1px 4px rgba(94,34,52,.08)}
+html body #sky .ax-chev::before{position:static!important;inset:auto!important;display:block;width:7px;height:7px;border:0!important;border-right:2px solid #7A2A3E!important;border-bottom:2px solid #7A2A3E!important;transform:rotate(45deg) translate(-1px,-1px)!important;transition:transform .35s cubic-bezier(.3,.8,.3,1)!important}
+html body #sky .ax[open] .ax-chev::before{transform:rotate(225deg) translate(-1px,-1px)!important}
+html body section.sec#sky:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links{flex-wrap:nowrap!important;overflow-x:auto!important;min-width:0!important;width:100%!important}
+html body section.sec#sky:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links>a{flex:0 0 auto!important;white-space:nowrap!important}
