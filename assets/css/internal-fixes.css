@@ -36,3 +36,9 @@ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-tabs button{fle
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links{flex-wrap:nowrap!important;overflow-x:auto!important;min-width:0!important;width:100%!important;scrollbar-width:none}
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links::-webkit-scrollbar{display:none}
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-quick-links>a{flex:0 0 auto!important;white-space:nowrap!important}
+
+/* توحيد أعلى الصفحات: الشريط العلوي تحت الهيدر مباشرة بمسافة ثابتة */
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c){padding-top:76px!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c)>.wrap{padding-top:0!important;margin-top:0!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c) .aq-section-topbar{margin-top:0!important;padding-top:0!important;align-items:center!important;row-gap:8px!important}
+html body section.sec:is(#lifepath,#sky,#chart,#matrix,#astro-maps,#signs,#lifepath-compat):target:not(#_a):not(#_b):not(#_c) .aq-section-topbar :is(a,button){min-height:38px!important;height:38px!important;box-sizing:border-box!important}
