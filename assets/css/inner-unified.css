@@ -35,3 +35,24 @@ html body section.sec:not(#_a):not(#_b):not(#_c) :is(.aq-ds,.aq-dsx-date) select
 /* invest = VIP */
 #invest .inv-head::before{content:"VIP";display:inline-block;margin-bottom:6px;padding:2px 12px;border-radius:10px;font-size:11px;letter-spacing:2px;font-weight:700;color:#4A1521;background:linear-gradient(135deg,#F3DFA8,#C5A059)}
 #invest .inv-card{border:1px solid #C5A059!important;background:linear-gradient(180deg,#FFFDF7,#FBF3E2)!important}
+/* header stays pinned on inner pages even if the home page was scrolled */
+html body:has(section.sec:is(#chart,#matrix,#lifepath,#lifepath-compat,#compat,#sky,#signs,#relationships,#year2027,#karmic,#invest,#for-you,#astro-maps,#individual):target) header.top:not(#_a):not(#_b):not(#_c){position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:70!important}
+/* eyebrow pills (line above the title) */
+html body section.sec:not(#_a):not(#_b):not(#_c) :is(.eyebrow,.rh-eyebrow){display:inline-flex!important;align-items:center;gap:8px;margin:0 auto 8px!important;padding:5px 14px!important;border-radius:999px;border:1px solid rgba(197,160,89,.65);background:linear-gradient(135deg,#FFF9EA,#F3E3BC);color:#6A4A1E!important;font-size:.8rem!important;font-weight:700;letter-spacing:.3px}
+html body section.sec:not(#_a):not(#_b):not(#_c) :is(.eyebrow,.rh-eyebrow)::before{content:"✦";font-size:.75rem;color:#B48A3E}
+html body section.sec:is(#year2027,#karmic):not(#_a):not(#_b):not(#_c) .eyebrow::before{content:"VIP";font-size:.66rem;letter-spacing:1.5px;color:#FFF3D6;background:#5E2234;padding:1px 8px;border-radius:8px}
+html body section.sec:is(#year2027,#karmic,#individual):not(#_a):not(#_b):not(#_c) :is(.y27-intro,.rh-head){display:flex;flex-direction:column;align-items:center;text-align:center}
+html body section.sec:is(#year2027,#karmic,#invest):not(#_a):not(#_b):not(#_c) .eyebrow{align-self:center}
+/* four personal maps: distinct, recognisable tiles */
+#individual .rh-card{position:relative;overflow:hidden}
+#individual .rh-card::before{content:"";position:absolute;top:0;inset-inline:0;height:4px;background:var(--rc,#5E2234)}
+#individual .rh-card .rh-ico{background:var(--rc,#5E2234)!important;color:#FFF3D6!important;border-color:rgba(255,243,214,.5)!important;box-shadow:0 8px 18px rgba(74,26,43,.22)!important}
+#individual .rh-card h3::before{display:block;margin-bottom:4px;font-family:'Cairo',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.5px;color:var(--rc,#5E2234)}
+#individual .rh-card:nth-child(1){--rc:#5E2234}#individual .rh-card:nth-child(1) h3::before{content:"خريطة الميلاد"}
+#individual .rh-card:nth-child(2){--rc:#9C5A3C}#individual .rh-card:nth-child(2) h3::before{content:"الأرقام والطاقات"}
+#individual .rh-card:nth-child(3){--rc:#A4455A}#individual .rh-card:nth-child(3) h3::before{content:"رحلة العمر"}
+#individual .rh-card:nth-child(4){--rc:#A8802F}#individual .rh-card:nth-child(4) h3::before{content:"النجوم الفيدية"}
+html body section#individual:not(#_a):not(#_b):not(#_c) .rh-card .rh-ico:not(#_d){background:var(--rc,#5E2234)!important;color:#FFF3D6!important;border-color:rgba(255,243,214,.5)!important}
+html body section#individual:not(#_a):not(#_b):not(#_c) .rh-card .rh-ico svg:not(#_d){stroke:#FFF3D6!important;color:#FFF3D6!important}
+html body section#individual:not(#_a):not(#_b):not(#_c)>.wrap:not(#_d){padding-top:8px!important}
+html body section#individual:not(#_a):not(#_b):not(#_c) .aq-section-topbar:not(#_d){margin-top:0!important;padding-top:0!important}
