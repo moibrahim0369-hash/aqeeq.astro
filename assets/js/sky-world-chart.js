@@ -164,7 +164,7 @@
         '<span class="swc-pc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></button>';
     }).join('');
     hintEl.innerHTML = hintHTML(st);
-    capEl.textContent = dateTxt(st) + (live ? ' · مباشر' : '');
+    capEl.textContent = dateTxt(st) + (live ? ' · العبور الحالي' : '');
   }
 
   /* ---------- صفحة التفاصيل #world ---------- */

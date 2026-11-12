@@ -180,7 +180,7 @@
   function moonShort(si) { return MOON_Q[si]; }
   function phaseShort(el) { if (el < 11.25 || el >= 348.75) return 'وقت السكون: ما نيتك الجديدة؟'; if (el < 78.75) return 'بداية تتشكل: ما الذي تريد أن ينمو؟'; if (el < 101.25) return 'لحظة قرار: ما الذي تلتزم به؟'; if (el < 168.75) return 'الطاقة تعلو: أكمل ما بدأته.'; if (el < 191.25) return 'ذروة وضوح: ما الذي ظهر لك أخيراً؟'; if (el < 258.75) return 'وقت الامتنان: ما الذي تعلّمته؟'; if (el < 281.25) return 'وقت التخلي: ما الذي تتركه؟'; return 'الطاقة تهدأ، فاسمح لنفسك بالراحة.'; }
   function lvRow(k, b, fx) {
-    return '<div class="dbn-lv k-' + k + (b.retro ? ' is-retro' : '') + '" data-planet="' + k + '" role="link" tabindex="0" title="تفاصيل ' + planetName(k) + ' في صفحة السماء"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'مباشر') + '</i><p class="dbn-fx">' + fx + '</p></div>';
+    return '<div class="dbn-lv k-' + k + (b.retro ? ' is-retro' : '') + '" data-planet="' + k + '" role="link" tabindex="0" title="تفاصيل ' + planetName(k) + ' في صفحة السماء"><span class="dbn-lv-g">' + planetGlyph(k) + '</span><b>' + planetName(k) + (b.retro ? ' <em>R</em>' : '') + '</b><small>' + signName(b.sign) + ' ' + deg(b.lon) + '°</small><i>' + (b.retro ? 'متراجع' : 'حركة مباشرة') + '</i><p class="dbn-fx">' + fx + '</p></div>';
   }
   function fxOf(k, b) {
     if (k === 'sun') return SUN_SHORT[b.sign];

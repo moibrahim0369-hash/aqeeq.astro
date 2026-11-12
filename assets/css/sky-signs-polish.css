@@ -376,3 +376,17 @@ html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c) :is(.aq-section
 html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c) .aq-section-topbar .aq-section-pill.active{box-shadow:0 3px 8px rgba(94,34,52,.2)!important}
 html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c) .center{background:none!important;border:0!important;box-shadow:none!important}
 html body :is(#signs,#sgs-sheet):not(#_a):not(#_b):not(#_c) .zd-stack>.lpa-card .lpa-ic .sg{font-size:1.6rem!important;line-height:1;display:block;font-weight:400}
+
+/* ===== العبور الحالي: بلا نبض، نافذة الكوكب، صف الأسبكتات ===== */
+html body #home.aqh #aqh-energy .dbn-title .dbn-pulse,html body .fc-sheet .fc-dot{display:none!important;animation:none!important}
+html body .fc-sheet .aqm-sheet-panel{position:relative}
+html body .fc-sheet .aqm-sheet-x{position:absolute!important;z-index:90!important;width:38px!important;height:38px!important;border-radius:50%!important;background:linear-gradient(160deg,#7A2E48,#4A1224)!important;border:1px solid #C8A15A!important;color:#F6E7C8!important;box-shadow:0 6px 16px rgba(74,18,36,.3)!important}
+html body .fc-sheet .aqm-sheet-x svg{stroke:#F6E7C8}
+html body .fc-sheet .fc-about{margin:4px 0 12px;padding:14px 16px;border-radius:18px;background:#fff;border:1px solid #E9DDC6}
+html body .fc-sheet .fc-about h4{margin:0 0 6px;font:700 1.02rem 'Cairo',sans-serif;color:#5A1828}
+html body .fc-sheet .fc-about p{margin:0;font:500 .92rem/1.9 'Cairo',sans-serif;color:#4A3A34}
+html body .fc-sheet .fc-now{padding-inline-start:16px}
+html body #sky .ax-s{grid-template-columns:auto minmax(0,1fr) 30px!important;gap:10px!important}
+html body #sky .ax-t b{display:flex!important;flex-wrap:wrap;align-items:center;gap:2px 4px;white-space:normal!important;overflow-wrap:anywhere}
+html body #sky .ax-t b u{margin-inline:0!important}
+html body #sky .ax-chev{align-self:center}
