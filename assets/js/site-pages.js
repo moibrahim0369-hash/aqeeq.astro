@@ -68,5 +68,10 @@
       var dis = f.querySelector('.foot-dis'); f.insertBefore(n, dis || null);
     }
   }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-am]'); if (!a) return;
+    var m = a.getAttribute('data-am'), n = 0;
+    var t = setInterval(function () { var b = document.querySelector('[data-eam-mode="' + m + '"]'); if (b) { b.click(); clearInterval(t); } else if (++n > 20) clearInterval(t); }, 150);
+  });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build); else build();
 })();

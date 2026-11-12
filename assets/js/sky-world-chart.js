@@ -286,7 +286,7 @@
   }
   function upgradeGlyphs() {
     var G = window.AqeeqGL, M = charMap(); if (!G) return;
-    [].forEach.call(document.querySelectorAll('#sky .sg:not([data-sv]),#world .sg:not([data-sv]),.swp-sheet .sg:not([data-sv])'), function (el) {
+    [].forEach.call(document.querySelectorAll('#sky .sg:not([data-sv]),#world .sg:not([data-sv]),.swp-sheet .sg:not([data-sv]),#signs .sg:not([data-sv]),.sgs-sheet .sg:not([data-sv]),.sgs-sheet .lpa-ic:not([data-sv]),.sgs-sheet .zp-glyph:not([data-sv])'), function (el) {
       var key = M[(el.textContent || '').replace(/[\uFE0E\uFE0F\s]/g, '')];
       el.setAttribute('data-sv', '1');
       if (key && G[key]) el.innerHTML = '<svg class="sg-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + G[key] + '"/></svg>';
@@ -295,7 +295,7 @@
   var upQ = 0;
   window.AqUpGlyphs = function () { queueUp(); };
   function queueUp() { if (upQ) return; upQ = requestAnimationFrame(function () { upQ = 0; upgradeGlyphs(); }); }
-  if ('MutationObserver' in window) { var skyEl = document.getElementById('sky'); if (skyEl) new MutationObserver(queueUp).observe(skyEl, { childList: true, subtree: true }); }
+  if ('MutationObserver' in window) { var skyEl = document.getElementById('sky'); if (skyEl) new MutationObserver(queueUp).observe(skyEl, { childList: true, subtree: true }); new MutationObserver(queueUp).observe(document.body, { childList: true, subtree: true }); queueUp(); }
 
   function init() { try { setInputs(nowLocal(CITIES[0])); render(); onWorld(); upgradeGlyphs(); } catch (e) { errEl.textContent = 'تعذر حساب الخريطة حالياً.'; errEl.hidden = false; } }
   window.addEventListener('load', init);
