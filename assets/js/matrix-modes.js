@@ -87,7 +87,7 @@
 
   function energyHtml(n, label, extra) {
     var a = AD().getArcanaInfo(n);
-    return '<div class="mxm-en"><span class="mxm-num">' + n + '</span><div><b>' + esc(label) + (extra ? ' <i>' + esc(extra) + '</i>' : '') + '</b>' +
+    return '<div class="mxm-en"><span class="mxm-num mxm-tn-' + ([12, 13, 15, 16, 18].indexOf(+n) >= 0 ? 's' : [10, 11, 14, 17, 19, 21].indexOf(+n) >= 0 ? 'g' : 'n') + '">' + n + '</span><div><b>' + esc(label) + (extra ? ' <i>' + esc(extra) + '</i>' : '') + '</b>' +
       '<strong>' + esc(a.name) + '</strong><p>' + esc(a.archetype) + '.</p>' +
       '<p><em>في حالتها الصافية:</em> ' + esc(a.light) + '.</p><p><em>حين تختل:</em> ' + esc(a.shadow) + '.</p></div></div>';
   }
@@ -131,7 +131,7 @@
     var sec = document.getElementById('matrix'), form = document.getElementById('mform'), res = document.getElementById('mresult');
     if (!sec || !form || document.getElementById('mxm-switch') || !AD()) return;
     var sw = document.createElement('div'); sw.id = 'mxm-switch'; sw.className = 'mxm-switch'; sw.setAttribute('role', 'tablist');
-    sw.innerHTML = '<button type="button" role="tab" data-mxm="solo" aria-selected="true">مصفوفتك الفردية</button><button type="button" role="tab" data-mxm="pair" aria-selected="false">توافق الشريكين</button><button type="button" role="tab" data-mxm="child" aria-selected="false">مصفوفة الطفل</button>';
+    sw.innerHTML = '<button type="button" role="tab" data-mxm="solo" aria-selected="true"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.8 3.4-6 7-6s6.4 2.2 7 6"/></svg></span><span class="mxm-slb">مصفوفتك</span></button><button type="button" role="tab" data-mxm="pair" aria-selected="false"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8.5" r="3"/><circle cx="16" cy="9.5" r="2.6"/><path d="M2.8 19c.5-3.2 2.7-5 5.7-5s5.2 1.8 5.7 5M14.6 14.4c3 0 5.2 1.6 5.8 4.6"/></svg></span><span class="mxm-slb">توافق الشريكين</span></button><button type="button" role="tab" data-mxm="child" aria-selected="false"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3"/><path d="M6.5 20c.3-3 2.5-5 5.5-5s5.2 2 5.5 5"/><path d="M9.5 3.6c.8-1 4.2-1 5 0"/></svg></span><span class="mxm-slb">مصفوفة الطفل</span></button>';
     form.parentNode.insertBefore(sw, form);
 
     var pair = document.createElement('div'); pair.id = 'mxm-pair'; pair.className = 'mxm-panel'; pair.hidden = true;
