@@ -287,3 +287,10 @@ html body section.rhub:not(#_a)>.wrap:not(#_b){padding-top:76px!important}
 html body section.sec:is(#year2027,#karmic):not(#_a) .b3-vip-link:not(#_b):not(#_c){font-size:.78rem!important;padding:7px 10px!important;gap:5px}
 html body section#karmic h2:not(#_a):not(#_b):not(#_c):not(#_d){font:700 2.2rem/1.5 'Amiri',serif!important;color:#5E2234!important}
 :is(#year2027,#karmic) .y27-art{color:rgba(122,52,73,.17)!important}
+/* v11: لون كريمي ثابت واحد + رسم خفيف بلون واحد + هيدر كريمي */
+html body section.sec:is(#year2027,#karmic,#relationships):not(#_a):not(#_b):not(#_c){background:linear-gradient(180deg,#F5EDDF 0,#F7F1E6 40%,#F7F3EC 100%)!important;background-attachment:local!important}
+:is(#year2027,#karmic) .y27-art{color:rgba(170,135,80,.2)!important;height:380px!important}
+:is(#year2027,#karmic) .y27-art .a2,:is(#year2027,#karmic) .y27-art .a3{color:rgba(170,135,80,.3)!important}
+html body section.sec:is(#year2027,#karmic):not(#_a) .y27-intro:not(#_b)::before{background:radial-gradient(ellipse at center,rgba(247,241,230,.9) 0,rgba(247,241,230,.7) 50%,rgba(247,241,230,0) 78%)!important}
+html body:has(section.sec:is(#year2027,#karmic,#relationships):target) header.top:not(#_a):not(#_b){background-image:linear-gradient(rgba(245,237,223,.98) 0,rgba(245,237,223,.9) 70%,rgba(245,237,223,0) 100%)!important}
+html body section.sec:is(#year2027,#karmic):not(#_a) .y27-form:not(#_b):not(#_c):not(#_d){background:#FBF5E8!important}
