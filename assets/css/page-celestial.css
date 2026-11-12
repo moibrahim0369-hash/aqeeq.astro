@@ -17,4 +17,4 @@ html body section.sec#lifepath:not(#_a):not(#_b):not(#_c)>.aqa-art,html body sec
 
 /* لا مساحة فاضية بعد الفوتر */
 html body section.sec:has(>footer.aqf):not(#_a):not(#_b):not(#_c){padding-bottom:0!important;min-height:0!important}
-html body section.sec>footer.aqf{margin-bottom:96px}
+html body section.sec>footer.aqf{margin-bottom:84px}

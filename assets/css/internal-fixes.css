@@ -14,7 +14,7 @@ footer.aqf nav.sp-foot{display:flex;flex-wrap:wrap;justify-content:center;gap:6p
 footer.aqf nav.sp-foot a{font-size:.84rem;font-weight:600;color:#70263F;text-decoration:none}
 footer.aqf .foot-dis,footer.aqf .copy{font-size:.74rem;line-height:1.9;margin:0 0 8px;color:#85747A}
 section.sec:has(>footer.aqf){padding-bottom:0!important}
-section.sec>footer.aqf{margin-bottom:104px}
+section.sec>footer.aqf{margin-bottom:84px}
 /* 3) محتوى مميز: لا ظل/تدرج مقصوص تحت الهيدر، وبطاقات مرتبة على الموبايل */
 html:has(.fc-page:is(:target,.fc-open)) header.top{background:#F7F3EC!important;box-shadow:none!important;border-bottom:1px solid rgba(169,132,63,.3)!important}
 @media(max-width:700px){

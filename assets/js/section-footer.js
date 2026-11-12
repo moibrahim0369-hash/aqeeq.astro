@@ -17,4 +17,16 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(build, 500); });
   else setTimeout(build, 500);
+  /* الفوتر يرتاح فوق الشريط السفلي: في الصفحات القصيرة يلزق بالأسفل بمسافة ثابتة */
+  function settle() {
+    [].forEach.call(document.querySelectorAll('section.sec > footer.aqf'), function (f) {
+      var s = f.parentNode; if (!s.clientHeight) return;
+      f.style.marginTop = '40px';
+      var need = s.clientHeight - (f.offsetTop + f.offsetHeight + 84);
+      if (need > 0) f.style.marginTop = (40 + need) + 'px';
+    });
+  }
+  window.addEventListener('hashchange', function () { setTimeout(settle, 150); setTimeout(settle, 900); });
+  window.addEventListener('resize', settle);
+  setTimeout(settle, 1200); setTimeout(settle, 3000);
 })();
