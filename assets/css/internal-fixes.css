@@ -89,3 +89,20 @@ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-table{width:100
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-table :is(th,td){white-space:normal!important;padding:.55rem .45rem;border-bottom:1px solid #F0E6D2;color:#4A1521}
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-table thead{background:#FBF3E4;color:#8E6C2C}
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .eam-chk input[type=checkbox]{width:20px!important;height:20px!important;min-height:0!important;flex:0 0 20px;margin:0;padding:0;accent-color:#5A1828}
+
+/* ===== المخطط الهندي والتقسيمات ===== */
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-card{background:#fff;border:1px solid #E9DDC6;border-radius:20px;padding:14px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:8px 0 12px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chip{display:grid;gap:1px;justify-items:center;min-height:48px;padding:6px 2px;border:1px solid #E3D5B8;border-radius:12px;background:#FBF8F1;color:#5A1828;font:inherit;cursor:pointer}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chip b{font-size:.92rem;letter-spacing:.02em}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chip span{font-size:.72rem;color:#8A6A55}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chip.on{background:linear-gradient(135deg,#8A3148,#5E2234);border-color:#5A1828;color:#F7F3EB}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chip.on span{color:#F0DDB0}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-intro{margin:0 0 10px;line-height:1.85;font-size:.9rem;color:#4A1521}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chartwrap{width:100%;max-width:380px;margin:0 auto;aspect-ratio:1/1}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-svg{display:block;width:100%;height:100%}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-note{margin:10px 0;font-size:.78rem;line-height:1.8;color:#7A5A4A}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-rows{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-rows li{display:grid;grid-template-columns:1.1fr 1fr .9fr;gap:6px;align-items:center;padding:9px 10px;border:1px solid #F0E6D2;border-radius:12px;background:#FDFBF7;font-size:.86rem;color:#4A1521}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-rows li em{font-style:normal;color:#8E6C2C;text-align:left}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-sig{margin:10px 0 0;font-size:.86rem;color:#5A1828;line-height:1.8}

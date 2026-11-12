@@ -109,7 +109,7 @@
     var moon = body(ch, 'moon'); if (!moon) return;
     var now = Date.now(), birthMs = (natal && isFinite(natal.utcMs)) ? natal.utcMs : (ch.jde - 2440587.5) * 864e5;
     var n = Math.floor(moon.lon / (360 / 27)), pada = Math.floor((moon.lon % (360 / 27)) / (360 / 108)) + 1, nk = NK[n];
-    var h = '';
+    var h = '<section class="eam-card vx vc-card" id="vx-vargas"></section>';
     h += '<section class="eam-card vx"><h4>منزلك القمري</h4><p><b>' + nk[0] + '</b> · القدم ' + pada + ' · قمرك في برج ' + SG[Math.floor(moon.lon / 30)] + ' · حاكم المنزل ' + LORDS[n % 9] + '</p><p>' + nk[1] + '</p></section>';
     var ds = dashas(moon.lon, birthMs), cm = cur(ds, now), ca = cur(antars(cm), now);
     var asc = ch.known ? Math.floor(ch.asc / 30) : null;
@@ -129,18 +129,10 @@
     h += '<section class="eam-card vx"><h4>قراءة سنتك الحالية</h4>' + yr + '</section>';
     h += '<section class="eam-card vx"><h4>رحلة الفترات الكبرى</h4>' + table(['الفترة', 'من', 'إلى'], ds.map(function (x) { return '<tr' + (x === cm ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === cm ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
     h += '<section class="eam-card vx"><h4>داخل فترة ' + LORDS[cm.lord] + '</h4>' + table(['الفترة الصغرى', 'من', 'إلى'], antars(cm).map(function (x) { return '<tr' + (x === ca ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === ca ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
-    D.forEach(function (d) {
-      var rows = [];
-      if (ch.known) rows.push('<tr><th>الطالع</th><td>' + SG[div(ch.asc, d[3])] + '</td></tr>');
-      PL.forEach(function (p) { var b = body(ch, p[0]); if (b) rows.push('<tr><th>' + p[1] + '</th><td>' + SG[div(b.lon, d[3])] + '</td></tr>'); });
-      var intro = d[4];
-      var v = body(ch, d[5]), vs = v ? div(v.lon, d[3]) : null;
-      var tail = vs === null ? '' : '<p>' + d[6] + ' هنا في ' + SG[vs] + ': ميل ' + SGT[vs] + ' في هذا الباب.</p>';
-      h += '<section class="eam-card vx"><h4>' + d[1] + ' · ' + d[2] + '</h4><p>' + intro + '</p>' + table(['النقطة', 'البرج'], rows) + tail + '</section>';
-    });
     h += '<p class="eam-note">الحسابات على نظام لاهيري وبيوت البرج الكامل. هذه قراءة للتأمل وتختلف من مدرسة لأخرى، وليست حكمًا نهائيًا.</p>';
     var box = document.createElement('div'); box.className = 'vx-wrap'; box.innerHTML = h;
     var host = result.querySelector('.eam-copy-anchor') || result; host.insertBefore(box, result.querySelector('.aq-copy-map-btn'));
+    if (window.AqVedicChart) window.AqVedicChart.mount(box.querySelector('#vx-vargas'), ch, natal);
     if (window.AqeeqGender) window.AqeeqGender.apply(box, natal && natal.gender);
   }
   window.AqVedic = { render: render, div: div, dashas: dashas, antars: antars, current: cur };
