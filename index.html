@@ -90,7 +90,7 @@
 <link rel="stylesheet" href="assets/css/lifepath-vivid.css?v=20261106i">
 <link rel="stylesheet" href="assets/css/sky-world-chart.css?v=20261107e">
 <link rel="stylesheet" href="assets/css/sky-banner.css?v=20261106m">
-<link rel="stylesheet" href="assets/css/sky-signs-polish.css?v=20261122y">
+<link rel="stylesheet" href="assets/css/sky-signs-polish.css?v=20261122z">
 <link rel="stylesheet" href="assets/css/home-hub.css?v=20261107c">
 <link rel="stylesheet" href="assets/css/home-polish2.css?v=20261107a">
 <link rel="stylesheet" href="assets/css/page-unify.css?v=20261107b">
@@ -3949,7 +3949,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
       sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="قراءة البرج"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>البرج التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
       document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
-      sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) selectSign((sgCur + 1) % 12); });
+      sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) (signsMode === "traits" ? showTraits : selectSign)((sgCur + 1) % 12); });
       sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
     }
     sgCur = i; sgBody.appendChild(panel); sgBody.scrollTop = 0;
@@ -3969,20 +3969,31 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     forecast: ["توقعات الأبراج الآن", "اختر برجك ليظهر توقعه الكامل الآن، ثم العبورات الجارية وتأثير كل واحد منها عليك."],
     traits: ["صفات الأبراج", "اختر برجك لتقرأ شخصيته وحبه وعمله وجانبه الخفي، فصلًا بعد فصل."]
   };
-  function setMode(m) {
-    signsMode = m; signsSec.setAttribute("data-mode", m);
+  function updatePeriod() {
+    const el = document.getElementById("period"); if (!el) return;
+    el.textContent = signsMode === "traits" ? "أطلس الأبراج الاثني عشر" : new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+  }
+  function setMode(m, keep) {
+    signsMode = m; signsSec.setAttribute("data-mode", m); updatePeriod();
     segBtns.forEach(b => b.setAttribute("aria-pressed", b.dataset.mode === m ? "true" : "false"));
     if (signsH2) signsH2.textContent = MODE_TXT[m][0];
     if (signsIntro) signsIntro.textContent = MODE_TXT[m][1];
+    if (keep) return;
     sgClose(); pbtns.forEach(b => b.setAttribute("aria-pressed", "false")); panel.innerHTML = "";
   }
+  updatePeriod();
   segBtns.forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode)));
+  function traitsHTML(i) {
+    const s = SIGNS[i];
+    const acc = SIGN_SECS.map((x, j) => `<details class="tx"${j === 0 ? " open" : ""}><summary class="tx-s"><span class="tx-ic" aria-hidden="true">${x.g}</span><span class="tx-t">${x.t}</span><span class="tx-chev" aria-hidden="true"></span></summary><div class="tx-b sign-detail">${signSectionContent(i, j)}</div></details>`).join("");
+    const mini = [["القوة", s.strength], ["نقطة المراجعة", s.shadow], ["نية للتأمل", s.growth], ["حدود مهمة", "قراءة رمزية عامة لبرج الشمس، ولا تختصر شخصيتك في برج واحد."]]
+      .map(m => `<article class="tx-m"><b>${m[0]}</b><p>${m[1]}</p></article>`).join("");
+    return `${signHero(i)}<section class="zp-sec"><h4 class="zp-h">${ZI.book}<span>موسوعة ${s.n}</span></h4><div class="tx-list">${acc}</div></section><section class="zp-sec"><div class="tx-mini">${mini}</div></section>`;
+  }
   function showTraits(i) {
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
-    panel.innerHTML = `${signHero(i)}<section class="zp-sec">${signSections(i)}</section>`;
-    panel.querySelectorAll(".sec-ico").forEach(b => b.addEventListener("click", () => openSignSec(i, +b.dataset.sec)));
-    openSignSec(i, 0);
-    if (panel.scrollIntoView) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    panel.innerHTML = traitsHTML(i);
+    sgOpen(i);
   }
   function selectSign(i) {
     const s = SIGNS[i], f = FORECASTS[i];
@@ -3995,7 +4006,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       ${signTransits(i)}
       <section class="zp-sec"><h4 class="zp-h">${ZI.tip}<span>إرشادات اليوم</span></h4>${signExtra(s, f, i)}</section>
       <section class="zp-sec zp-more"><button type="button" class="zp-traits-btn" data-traits="${i}">${ZI.book}<span>اقرأ صفات ${s.n} وشخصيته</span></button></section>`;
-    panel.querySelector(".zp-traits-btn").addEventListener("click", () => { sgClose(); setMode("traits"); showTraits(i); });
+    panel.querySelector(".zp-traits-btn").addEventListener("click", () => { setMode("traits", true); showTraits(i); });
     sgOpen(i);
   }
   SIGNS.forEach((s, i) => {
