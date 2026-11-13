@@ -211,7 +211,7 @@
   function listWrap(html) { return '<div class="nd-list il-wrap">' + html + '</div>'; }
   function inject(S, tries) {
     var box = document.querySelector('#result .nd-root');
-    if (!box) { if (tries < 15) setTimeout(function () { inject(S, tries + 1); }, 150); return; }
+    if (!box) { if (tries < 15) setTimeout(function () { inject(S, tries + 1); }, 150); else ready(); return; }
     box.querySelectorAll('.il-wrap,.il-content,.il-pointhead').forEach(function (n) { n.remove(); });
     var P = function (n) { return box.querySelector('[data-nd-panel="' + n + '"]'); };
     var ph = P('houses'), pp = P('planets'), pa = P('aspects'), po = P('overview');
@@ -232,10 +232,12 @@
     if (po && S.stelSigns) po.insertAdjacentHTML('beforeend', '<div class="nd-list il-wrap"><h4 class="il-gt">تجمّع الكواكب</h4>' + S.stelSigns + '</div>');
     var ab = box.querySelector('[data-il-addtime]');
     if (ab) ab.addEventListener('click', function () { var e = document.querySelector('.nd-edit'); if (e) e.click(); });
+    ready();
   }
+  function ready() { if (typeof window.AqeeqResultReady === 'function') window.AqeeqResultReady(); }
   function mount(S) {
     if (!document.getElementById('result') || !S) return;
-    var m = build(S); if (!m) return;
+    var m = build(S); if (!m) { ready(); return; }
     Promise.all(files(m).map(load)).then(function (lists) {
       inject(sections(m, indexOf(lists)), 0);
     });

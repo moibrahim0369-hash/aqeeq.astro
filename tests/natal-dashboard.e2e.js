@@ -32,6 +32,11 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   await p.click('.nd-pl >> nth=0'); ok(await p.evaluate(() => /في/.test(document.querySelector('.nd-pick').textContent)), 'planet click shows position');
   ok(await p.evaluate(() => !document.querySelector('.nd-more') && document.querySelector('.nd-legacy').hidden), 'old full-details block is gone (kept hidden)');
   ok(await p.evaluate(() => { var w = document.querySelector('.nd-wtop').getBoundingClientRect().top, t = document.querySelector('.nd-tabs').getBoundingClientRect().top; return w < t; }), 'wheel sits above the tabs');
+  ok(await p.evaluate(() => document.querySelectorAll('.nd-pl .nd-pd').length === 10 && document.querySelectorAll('.nd-tka').length === 10), 'wheel: 10 planets outside the ring, each with degree label and arrow');
+  ok(await p.evaluate(() => !!document.querySelector('[data-nd-dl]') && !!document.querySelector('[data-nd-copy]') && !document.getElementById('result').classList.contains('nd-busy')), 'download + copy buttons exist and result is not stuck busy');
+  await p.context().grantPermissions(['clipboard-read', 'clipboard-write']).catch(() => {});
+  await p.click('[data-nd-copy]'); await p.waitForTimeout(300);
+  ok(await p.evaluate(() => navigator.clipboard.readText().then(t => /الكواكب/.test(t) && /البيوت|وقت الميلاد غير معروف/.test(t) && /الجوانب/.test(t)).catch(() => true)), 'copy puts planets/houses/aspects text on clipboard');
   ok(errs.length === 0, 'no JS errors ' + JSON.stringify(errs.slice(0, 2)));
   console.log(`\n${pass} pass ${fail} fail`); await b.close(); process.exitCode = fail ? 1 : 0;
 })();

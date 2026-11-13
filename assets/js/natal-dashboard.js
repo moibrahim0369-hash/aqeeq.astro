@@ -49,62 +49,95 @@
 
   function el(tag, attrs, html) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (html != null) e.textContent = html; return e; }
 
+  /* عجلة الميلاد: حلقة أبراج فاتحة، الكواكب خارج الحلقة بسهم يشير إلى موضعها الدقيق، ودرجة كل كوكب بجانبه */
+  var WELC = ['#9a2f43', '#8a5a3b', '#a0782a', '#3b4a96'];
+  var WHEEL_CSS = '.nd-wheel{font-family:"Noto Sans Symbols","Noto Sans Symbols 2","Segoe UI Symbol","DejaVu Sans",sans-serif}' +
+    '.nd-bgc{fill:#FFFDF9}.nd-seg{fill:#F7EFE1;stroke:none}.nd-seg-alt{fill:#EFE3CF}' +
+    '.nd-c-out{fill:none;stroke:#70263F;stroke-width:1.6}.nd-c{fill:none;stroke:#B78A52;stroke-width:1}.nd-c-dash{stroke-dasharray:2 4;stroke:#CDB28A}' +
+    '.nd-sg{font-size:25px;text-anchor:middle}.nd-sd{stroke:#CDB28A;stroke-width:1}.nd-tkm{stroke:#B78A52;stroke-width:.8;fill:none}' +
+    '.nd-hl{stroke:#CDB28A;stroke-width:1}.nd-hl-ax{stroke:#70263F;stroke-width:1.8}' +
+    '.nd-hn{fill:#7a6a70;font:600 14px "IBM Plex Sans Arabic",Arial,sans-serif;text-anchor:middle}' +
+    '.nd-ax{fill:#35252B;font:700 16px "IBM Plex Sans Arabic",Arial,sans-serif}.nd-axa{fill:#70263F}' +
+    '.nd-al{stroke-width:1.5;stroke-linecap:round}.nd-asp{opacity:.9}' +
+    '.nd-pc{fill:#FFFFFF;stroke:#B78A52;stroke-width:1.6}.nd-pg{fill:#70263F;font-size:21px;text-anchor:middle}' +
+    '.nd-pd{fill:#4a3a42;font:600 12.5px "IBM Plex Sans Arabic",Arial,sans-serif;text-anchor:middle;paint-order:stroke;stroke:#FFFDF9;stroke-width:3px;stroke-linejoin:round}' +
+    '.nd-rx{fill:#c23b3b;font:700 11px Arial,sans-serif}.nd-tk{stroke:#70263F;stroke-width:1.4;fill:none}.nd-tka{fill:#70263F}' +
+    '.nd-pl{cursor:pointer;outline:0}.nd-pl:hover .nd-pc,.nd-pl:focus-visible .nd-pc,.nd-pl.on .nd-pc{fill:#F6E8CC;stroke:#70263F;stroke-width:2.2}';
+
   function wheelSVG(ch, planets, asps, known) {
-    var C = 260, asc = known ? ch.asc : 0;
+    var C = 300, RO = 212, RS = 174, RH = 138, RP = 252, RT = 232, RD = 281;
+    var asc = known ? ch.asc : 0;
     var ang = function (lon) { return (180 - (norm(lon) - asc)) * Math.PI / 180; };
     var pt = function (lon, r) { var a = ang(lon); return [C + r * Math.cos(a), C + r * Math.sin(a)]; };
-    var svg = el('svg', { viewBox: '-36 -6 592 532', class: 'nd-wheel', role: 'img', 'aria-label': 'عجلة الخريطة الفلكية' });
+    var f1 = function (n) { return n.toFixed(1); };
+    var svg = el('svg', { viewBox: '-8 -6 616 612', class: 'nd-wheel', role: 'img', 'aria-label': 'عجلة الخريطة الفلكية', xmlns: NS });
+    var st = document.createElementNS(NS, 'style'); st.textContent = WHEEL_CSS; svg.appendChild(st);
     var g0 = el('g', { class: 'nd-w-in' }); svg.appendChild(g0);
-    g0.appendChild(el('circle', { cx: C, cy: C, r: 236, class: 'nd-c-out' }));
+    g0.appendChild(el('circle', { cx: C, cy: C, r: RO, class: 'nd-bgc' }));
     // حلقة الأبراج
-    var band = '';
+    var band = '', ticks = '', p = function (a, r) { return f1(C + r * Math.cos(a)) + ' ' + f1(C + r * Math.sin(a)); };
     for (var s = 0; s < 12; s++) {
-      var a1 = ang(s * 30), a2 = ang(s * 30 + 30), r1 = 232, r2 = 196, large = 0;
-      var p = function (a, r) { return (C + r * Math.cos(a)).toFixed(1) + ' ' + (C + r * Math.sin(a)).toFixed(1); };
-      band += '<path class="nd-seg" d="M' + p(a1, r1) + 'A' + r1 + ' ' + r1 + ' 0 ' + large + ' 0 ' + p(a2, r1) + 'L' + p(a2, r2) + 'A' + r2 + ' ' + r2 + ' 0 ' + large + ' 1 ' + p(a1, r2) + 'Z"/>';
+      var a1 = ang(s * 30), a2 = ang(s * 30 + 30);
+      band += '<path class="nd-seg' + (s % 2 ? ' nd-seg-alt' : '') + '" d="M' + p(a1, RO) + 'A' + RO + ' ' + RO + ' 0 0 0 ' + p(a2, RO) + 'L' + p(a2, RS) + 'A' + RS + ' ' + RS + ' 0 0 1 ' + p(a1, RS) + 'Z"/>';
+      band += '<line class="nd-sd" x1="' + f1(C + RS * Math.cos(a1)) + '" y1="' + f1(C + RS * Math.sin(a1)) + '" x2="' + f1(C + RO * Math.cos(a1)) + '" y2="' + f1(C + RO * Math.sin(a1)) + '"/>';
     }
-    var bg = document.createElementNS(NS, 'g'); bg.innerHTML = band; g0.appendChild(bg);
-    for (var s2 = 0; s2 < 12; s2++) { var m = pt(s2 * 30 + 15, 214); g0.appendChild(el('text', { x: m[0].toFixed(1), y: (m[1] + 9).toFixed(1), class: 'nd-sg', 'text-anchor': 'middle' }, gl(SG[s2][1]))); }
-    g0.appendChild(el('circle', { cx: C, cy: C, r: 196, class: 'nd-c' })); g0.appendChild(el('circle', { cx: C, cy: C, r: 150, class: 'nd-c' })); g0.appendChild(el('circle', { cx: C, cy: C, r: 128, class: 'nd-c nd-c-dash' }));
+    for (var d = 0; d < 360; d += 5) { var ta = ang(d), tl = d % 10 === 0 ? 9 : 5; ticks += 'M' + p(ta, RS) + 'L' + p(ta, RS + tl); }
+    var bg = document.createElementNS(NS, 'g'); bg.innerHTML = band + '<path class="nd-tkm" d="' + ticks + '"/>'; g0.appendChild(bg);
+    for (var s2 = 0; s2 < 12; s2++) { var m = pt(s2 * 30 + 15, (RO + RS) / 2); g0.appendChild(el('text', { x: f1(m[0]), y: f1(m[1] + 8.5), class: 'nd-sg', fill: WELC[SG[s2][2]] }, gl(SG[s2][1]))); }
+    g0.appendChild(el('circle', { cx: C, cy: C, r: RO, class: 'nd-c-out' })); g0.appendChild(el('circle', { cx: C, cy: C, r: RS, class: 'nd-c' }));
+    g0.appendChild(el('circle', { cx: C, cy: C, r: RH, class: 'nd-c' })); g0.appendChild(el('circle', { cx: C, cy: C, r: RH - 22, class: 'nd-c nd-c-dash' }));
     // البيوت
     if (known && ch.cusps) {
       ch.cusps.forEach(function (c, i) {
-        var a = pt(c, 196), b = pt(c, 150); g0.appendChild(el('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1), class: 'nd-hl' + (i % 3 === 0 ? ' nd-hl-ax' : '') }));
-        var nx = ch.cusps[(i + 1) % 12], mid = norm(c) + d360(nx - c) / 2, q = pt(mid, 133);
-        g0.appendChild(el('text', { x: q[0].toFixed(1), y: (q[1] + 5).toFixed(1), class: 'nd-hn', 'text-anchor': 'middle' }, String(i + 1)));
+        var a = pt(c, RS), b = pt(c, RH); g0.appendChild(el('line', { x1: f1(a[0]), y1: f1(a[1]), x2: f1(b[0]), y2: f1(b[1]), class: 'nd-hl' + (i % 3 === 0 ? ' nd-hl-ax' : '') }));
+        var nx = ch.cusps[(i + 1) % 12], mid = norm(c) + norm(nx - c) / 2, q = pt(mid, (RS + RH) / 2);
+        g0.appendChild(el('text', { x: f1(q[0]), y: f1(q[1] + 5), class: 'nd-hn' }, String(i + 1)));
       });
     } else {
-      for (var h = 0; h < 12; h++) { var a = pt(h * 30, 196), b = pt(h * 30, 150); g0.appendChild(el('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1), class: 'nd-hl' })); }
+      for (var h = 0; h < 12; h++) { var a = pt(h * 30, RS), b = pt(h * 30, RH); g0.appendChild(el('line', { x1: f1(a[0]), y1: f1(a[1]), x2: f1(b[0]), y2: f1(b[1]), class: 'nd-hl' })); }
     }
-    function d360(x) { return norm(x); }
     // خطوط الجوانب
     var ag = el('g', { class: 'nd-asp' }); svg.appendChild(ag);
     asps.forEach(function (x, i) {
-      var p1 = pt(x.a.lon, 128), p2 = pt(x.b.lon, 128), len = Math.hypot(p1[0] - p2[0], p1[1] - p2[1]);
-      var l = el('line', { x1: p1[0].toFixed(1), y1: p1[1].toFixed(1), x2: p2[0].toFixed(1), y2: p2[1].toFixed(1), stroke: ASPCOL[x.A.t], class: 'nd-al' });
-      l.style.setProperty('--len', len.toFixed(0)); l.style.setProperty('--i', i); ag.appendChild(l);
+      var p1 = pt(x.a.lon, RH - 22), p2 = pt(x.b.lon, RH - 22);
+      ag.appendChild(el('line', { x1: f1(p1[0]), y1: f1(p1[1]), x2: f1(p2[0]), y2: f1(p2[1]), stroke: ASPCOL[x.A.t], class: 'nd-al' }));
     });
-    // الكواكب مع تباعد
+    // الكواكب خارج الحلقة مع تباعد، وسهم صغير يشير إلى الموضع الدقيق
     var pos = planets.map(function (b) { return { b: b, lon: norm(b.lon), disp: norm(b.lon) }; }).sort(function (x, y) { return x.lon - y.lon; });
-    for (var it = 0; it < 40; it++) for (var i = 0; i < pos.length; i++) {
-      var nx = pos[(i + 1) % pos.length], dd = norm(nx.disp - pos[i].disp);
-      if (dd < 11 && pos.length > 1) { var push = (11 - dd) / 2; pos[i].disp = norm(pos[i].disp - push); nx.disp = norm(nx.disp + push); }
+    var MIN = 13, axes = known ? [ch.asc, ch.asc + 180, ch.mc, ch.mc + 180].map(norm) : [];
+    /* نفك التزاحم بدفع كل كوكب بعيدًا عن جاره (الفرق الموقّع بين الاثنين) مع ثبات الترتيب، ونبعدها عن المحاور */
+    for (var it = 0; it < 200; it++) {
+      var moved = false;
+      for (var i = 0; i < pos.length; i++) {
+        var nx = pos[(i + 1) % pos.length]; if (nx === pos[i]) continue;
+        var dd = norm(nx.disp - pos[i].disp); if (dd > 180) dd -= 360;
+        if (dd < MIN) { var push = (MIN - dd) / 2 + .01; pos[i].disp = norm(pos[i].disp - push); nx.disp = norm(nx.disp + push); moved = true; }
+      }
+      axes.forEach(function (A) { pos.forEach(function (o) { var df = ((o.disp - A + 540) % 360) - 180; if (Math.abs(df) < 8.5) { o.disp = norm(A + (df >= 0 ? 8.5 : -8.5)); moved = true; } }); });
+      if (!moved) break;
     }
     var pg = el('g', { class: 'nd-pls' }); svg.appendChild(pg);
     pos.forEach(function (o, i) {
-      var t1 = pt(o.lon, 196), t2 = pt(o.lon, 188), q = pt(o.disp, 170);
-      pg.appendChild(el('line', { x1: t1[0].toFixed(1), y1: t1[1].toFixed(1), x2: t2[0].toFixed(1), y2: t2[1].toFixed(1), class: 'nd-tk' }));
+      var t1 = pt(o.lon, RO), t2 = pt(o.disp, RT - 2), q = pt(o.disp, RP), dp = pt(o.disp, RD);
+      var ar = ang(o.lon), ax = C + RO * Math.cos(ar), ay = C + RO * Math.sin(ar), ux = Math.cos(ar), uy = Math.sin(ar);
+      var tri = f1(ax) + ',' + f1(ay) + ' ' + f1(ax + ux * 9 - uy * 3.6) + ',' + f1(ay + uy * 9 + ux * 3.6) + ' ' + f1(ax + ux * 9 + uy * 3.6) + ',' + f1(ay + uy * 9 - ux * 3.6);
+      pg.appendChild(el('line', { x1: f1(t1[0]), y1: f1(t1[1]), x2: f1(t2[0]), y2: f1(t2[1]), class: 'nd-tk' }));
+      pg.appendChild(el('polygon', { points: tri, class: 'nd-tka' }));
       var gp = el('g', { class: 'nd-pl', tabindex: '0', role: 'button', 'data-k': o.b.k, 'aria-label': o.b.n }); gp.style.setProperty('--i', i);
-      gp.appendChild(el('circle', { cx: q[0].toFixed(1), cy: q[1].toFixed(1), r: 16, class: 'nd-pc' }));
-      gp.appendChild(el('text', { x: q[0].toFixed(1), y: (q[1] + 7).toFixed(1), class: 'nd-pg', 'text-anchor': 'middle' }, gl(o.b.g)));
-      if (o.b.retro) gp.appendChild(el('text', { x: (q[0] + 14).toFixed(1), y: (q[1] + 18).toFixed(1), class: 'nd-rx', 'text-anchor': 'middle' }, 'R'));
+      gp.appendChild(el('circle', { cx: f1(q[0]), cy: f1(q[1]), r: 16.5, class: 'nd-pc' }));
+      gp.appendChild(el('text', { x: f1(q[0]), y: f1(q[1] + 7.5), class: 'nd-pg' }, gl(o.b.g)));
+      if (o.b.retro) gp.appendChild(el('text', { x: f1(q[0] + 15), y: f1(q[1] - 10), class: 'nd-rx', 'text-anchor': 'middle' }, 'R'));
+      gp.appendChild(el('text', { x: f1(dp[0]), y: f1(dp[1] + 4.5), class: 'nd-pd' }, Math.floor(norm(o.b.lon) % 30) + '°'));
       pg.appendChild(gp);
     });
-    // محاور
+    // المحاور: أسهم عند الحلقة وأسماؤها خارجها
     if (known) {
-      [['ASC', 'asc', -14, 4, 'end'], ['MC', 'mc', 0, -10, 'middle'], ['DSC', 'asc', 14, 4, 'start'], ['IC', 'mc', 0, 18, 'middle']].forEach(function (L) {
-        var lon = L[0] === 'DSC' ? ch.asc + 180 : L[0] === 'IC' ? ch.mc + 180 : (L[1] === 'asc' ? ch.asc : ch.mc), q = pt(lon, 236);
-        svg.appendChild(el('text', { x: (q[0] + L[2]).toFixed(1), y: (q[1] + L[3]).toFixed(1), class: 'nd-ax', 'text-anchor': L[4] }, L[0]));
+      [['ASC', ch.asc], ['DSC', ch.asc + 180], ['MC', ch.mc], ['IC', ch.mc + 180]].forEach(function (L) {
+        var q = pt(L[1], RO), ar = ang(L[1]), ux = Math.cos(ar), uy = Math.sin(ar);
+        var tri = f1(q[0] + ux * 13) + ',' + f1(q[1] + uy * 13) + ' ' + f1(q[0] - uy * 5) + ',' + f1(q[1] + ux * 5) + ' ' + f1(q[0] + uy * 5) + ',' + f1(q[1] - ux * 5);
+        svg.appendChild(el('polygon', { points: tri, class: 'nd-axa' }));
+        var lp = pt(L[1], RO + 34);
+        svg.appendChild(el('text', { x: f1(lp[0]), y: f1(lp[1] + 5.5), class: 'nd-ax', 'text-anchor': 'middle' }, L[0]));
       });
     }
     return svg;
@@ -168,6 +201,8 @@
       '<section class="nd-wcard"><header><div><h4>خريطة الميلاد الفلكية</h4><small>نظام البيوت: ' + esc(hs) + '</small></div><div class="nd-coords" dir="ltr"><span>' + Math.abs(lat).toFixed(4) + '° ' + ns + '</span><span>' + Math.abs(lon).toFixed(4) + '° ' + ew + '</span></div></header>' +
       '<div class="nd-wslot"></div><p class="nd-pick" aria-live="polite">اضغط على أي كوكب لعرض موضعه.</p>' +
       '<ul class="nd-legend"><li><i style="background:' + ASPCOL.h + '"></i>اتصال منسجم</li><li><i style="background:' + ASPCOL.t + '"></i>اتصال متوتر</li><li><i style="background:' + ASPCOL.n + '"></i>اتصال محايد</li></ul>' +
+      '<div class="nd-tools"><button type="button" class="nd-tool" data-nd-dl>' + ic('<path d="M12 4v11M7.500 11l4.500 4.500 4.500-4.500M5 19.500h14"/>') + '<span>تنزيل الصورة</span></button>' +
+      '<button type="button" class="nd-tool" data-nd-copy>' + ic('<rect x="8.500" y="8.500" width="11" height="11" rx="2.200"/><path d="M15.500 8.500v-2a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/>') + '<span>نسخ البيانات</span></button></div>' +
       '</section></div></div>';
     // لوحات القوائم
     h += '<div class="nd-main nd-list" data-nd-panel="planets" hidden><div class="nd-rows">' + planets.map(function (p, i) { var f = fmtLon(p.lon); return '<div class="nd-row" style="--i:' + i + '"><span class="nd-rg">' + gl(p.g) + '</span><b>' + p.n + (p.retro ? ' <em>R</em>' : '') + '</b><span>' + gl(SG[f.s][1]) + ' ' + SG[f.s][0] + ' ' + f.txt + '</span><span class="nd-rh">' + (known && p.house ? 'البيت ' + p.house : '—') + '</span></div>'; }).join('') + '</div></div>';
@@ -213,6 +248,76 @@
     tabs.innerHTML = defs.map(function (t) { return '<button type="button" role="tab" data-nd-tab="' + t[0] + '" aria-selected="' + (t[0] === first) + '">' + t[2] + '<span>' + t[1] + '</span></button>'; }).join('');
   }
 
+  /* ---------- نسخ البيانات وتنزيل الصورة ---------- */
+  function plainLon(lon) { var s = Math.floor(norm(lon) / 30), r = norm(lon) - s * 30, d = Math.floor(r), m = Math.floor((r - d) * 60); return SG[s][0] + ' ' + d + '°' + n2(m) + '′'; }
+  var XN = { node: 'العقدة الشمالية (متوسطة)', truenode: 'العقدة الشمالية (حقيقية)', lilith: 'ليليث' };
+  function chartText(S, data) {
+    var ch = data.ch, known = data.known, L = [];
+    var hs = ch.hs === 'placidus' ? 'بلاسيدوس' : ch.hs === 'whole' || ch.hs === 'whole-fallback' ? 'البيوت الكاملة' : ch.hs === 'equal' ? 'البيوت المتساوية' : ch.hs === 'porphyry' ? 'بورفيري' : (ch.hs || '');
+    L.push('خريطة الميلاد الفلكية' + (S.name ? ' — ' + S.name : ''));
+    L.push('تاريخ الميلاد: ' + S.y + '/' + n2(S.m) + '/' + n2(S.d));
+    L.push('وقت الميلاد: ' + (S.known ? n2(S.hh) + ':' + n2(S.mm) : 'غير معروف'));
+    if (S.placeName) L.push('مكان الميلاد: ' + S.placeName);
+    L.push('الإحداثيات: ' + Math.abs(Number(S.lat)).toFixed(4) + '° ' + (Number(S.lat) >= 0 ? 'N' : 'S') + ' · ' + Math.abs(Number(S.lon)).toFixed(4) + '° ' + (Number(S.lon) >= 0 ? 'E' : 'W'));
+    if (known) L.push('نظام البيوت: ' + hs);
+    L.push('', 'الكواكب');
+    data.planets.forEach(function (p) { L.push(p.n + ': ' + plainLon(p.lon) + (p.retro ? ' (متراجع)' : '') + (known && p.house ? ' — البيت ' + p.house : '')); });
+    Object.keys(XN).forEach(function (k) { var b = bodyOf(ch, k); if (b) L.push(XN[k] + ': ' + plainLon(b.lon) + (known && b.house ? ' — البيت ' + b.house : '')); });
+    if (known) {
+      L.push('', 'الزوايا');
+      L.push('الطالع (ASC): ' + plainLon(ch.asc)); L.push('وسط السماء (MC): ' + plainLon(ch.mc));
+      L.push('الغروب (DSC): ' + plainLon(ch.asc + 180)); L.push('قاع السماء (IC): ' + plainLon(ch.mc + 180));
+      L.push('', 'البيوت');
+      ch.cusps.forEach(function (c, i) { L.push('البيت ' + (i + 1) + ' (' + HA[i] + '): ' + plainLon(c)); });
+    } else L.push('', 'ملاحظة: وقت الميلاد غير معروف، لذلك لا طالع ولا بيوت في هذه الخريطة.');
+    L.push('', 'الجوانب');
+    if (data.asps.length) data.asps.slice().sort(function (a, b) { return a.orb - b.orb; }).forEach(function (x) { L.push(x.a.n + ' ' + x.A.n + ' ' + x.b.n + ' — فارق ' + x.orb.toFixed(1) + '°'); });
+    else L.push('لا جوانب رئيسية ضمن الحدود المعتادة.');
+    L.push('', 'عقيق أسترو (Aqeq Astro)');
+    return L.join('\n');
+  }
+  function copyText(t) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
+    return new Promise(function (res, rej) {
+      var a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', ''); a.style.cssText = 'position:fixed;top:0;inset-inline-start:0;opacity:0';
+      document.body.appendChild(a); a.select(); a.setSelectionRange(0, t.length);
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {} a.remove(); ok ? res() : rej(new Error('copy'));
+    });
+  }
+  function flash(btn, txt) {
+    var sp = btn.querySelector('span'); if (!sp) return; var old = btn.getAttribute('data-l') || sp.textContent; btn.setAttribute('data-l', old);
+    sp.textContent = txt; btn.classList.add('is-done'); clearTimeout(btn._t);
+    btn._t = setTimeout(function () { sp.textContent = old; btn.classList.remove('is-done'); }, 1900);
+  }
+  function savePNG(box, S, data, btn) {
+    var src = box.querySelector('.nd-wheel'); if (!src) return Promise.resolve();
+    var svg = src.cloneNode(true); svg.setAttribute('width', 1232); svg.setAttribute('height', 1224);
+    var url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml;charset=utf-8' }));
+    var fonts = document.fonts && document.fonts.load ? Promise.all([document.fonts.load('700 56px Amiri'), document.fonts.load('600 30px "IBM Plex Sans Arabic"')]).catch(function () {}) : Promise.resolve();
+    return fonts.then(function () { return new Promise(function (res, rej) { var im = new Image(); im.onload = function () { res(im); }; im.onerror = rej; im.src = url; }); }).then(function (im) {
+      var W = 1400, H = 1790, cv = document.createElement('canvas'); cv.width = W; cv.height = H; var x = cv.getContext('2d');
+      var g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#FBF6EC'); g.addColorStop(1, '#F3E9D8'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+      x.strokeStyle = '#D2AE6C'; x.lineWidth = 3; x.strokeRect(28, 28, W - 56, H - 56);
+      x.direction = 'rtl'; x.textAlign = 'center';
+      x.fillStyle = '#4A1A2B'; x.font = '700 62px Amiri, "IBM Plex Sans Arabic", serif'; x.fillText(S.name ? 'خريطة ' + S.name : 'خريطة الميلاد الفلكية', W / 2, 130);
+      x.fillStyle = '#6a5760'; x.font = '600 30px "IBM Plex Sans Arabic", Amiri, sans-serif';
+      x.fillText(S.y + '/' + n2(S.m) + '/' + n2(S.d) + '  ·  ' + (S.known ? n2(S.hh) + ':' + n2(S.mm) : 'وقت غير معروف'), W / 2, 190);
+      if (S.placeName) x.fillText(S.placeName, W / 2, 238);
+      x.drawImage(im, 84, 280, 1232, 1224);
+      var lg = [[ASPCOL.h, 'اتصال منسجم'], [ASPCOL.t, 'اتصال متوتر'], [ASPCOL.n, 'اتصال محايد']], lx = W / 2 + 330;
+      x.font = '600 26px "IBM Plex Sans Arabic", sans-serif'; x.textAlign = 'right';
+      lg.forEach(function (l, i) { var xr = lx - i * 330; x.strokeStyle = l[0]; x.lineWidth = 5; x.beginPath(); x.moveTo(xr, 1562); x.lineTo(xr - 56, 1562); x.stroke(); x.fillStyle = '#4a3a42'; x.fillText(l[1], xr - 70, 1572); });
+      x.textAlign = 'center'; x.fillStyle = '#70263F'; x.font = '700 30px Amiri, serif'; x.fillText('عقيق أسترو  ·  Aqeq Astro', W / 2, 1700);
+      URL.revokeObjectURL(url);
+      return new Promise(function (res) {
+        cv.toBlob(function (b) {
+          var a = document.createElement('a'), u = URL.createObjectURL(b); a.href = u; a.download = 'aqeeq-natal-chart-' + S.y + '-' + n2(S.m) + '-' + n2(S.d) + '.png';
+          document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 4000); res();
+        }, 'image/png');
+      });
+    });
+  }
+
   function render(S) {
     if (!S || !S.ch || !S.ch.bodies) return;
     var old = root.querySelector('.nd-root'); if (old) old.remove();
@@ -241,6 +346,9 @@
         box.querySelectorAll('[data-nd-panel]').forEach(function (p) { var on = p.getAttribute('data-nd-panel') === t.getAttribute('data-nd-tab'); p.hidden = !on; if (on) { p.classList.remove('nd-anim'); void p.offsetWidth; p.classList.add('nd-anim'); } });
       });
     });
+    var dl = box.querySelector('[data-nd-dl]'), cp = box.querySelector('[data-nd-copy]');
+    if (dl) dl.addEventListener('click', function () { if (dl.disabled) return; dl.disabled = true; flash(dl, 'جارٍ تجهيز الصورة…'); savePNG(box, S, data, dl).then(function () { flash(dl, 'تم تنزيل الصورة'); }, function () { flash(dl, 'تعذر التنزيل، حاول مرة أخرى'); }).then(function () { dl.disabled = false; }); });
+    if (cp) cp.addEventListener('click', function () { copyText(chartText(S, data)).then(function () { flash(cp, 'تم نسخ البيانات'); }, function () { flash(cp, 'تعذر النسخ'); }); });
     // حركة النسب
     requestAnimationFrame(function () { requestAnimationFrame(function () {
       box.classList.add('nd-go');
@@ -249,5 +357,11 @@
     }); });
   }
 
-  window.addEventListener('aqeeq:chart-rendered', function (e) { setTimeout(function () { render(e.detail || (window.AqeeqChartContext && window.AqeeqChartContext.getNatal())); }, 30); });
+  /* نخفي النتيجة أثناء تركيبها (اللوحة ثم النصوص) ونظهرها مرة واحدة، فلا تقفز الصفحة ولا تختفي الأقسام */
+  function unbusy() { clearTimeout(unbusy.t); root.classList.remove('nd-busy'); }
+  window.AqeeqResultReady = unbusy;
+  window.addEventListener('aqeeq:chart-rendered', function (e) {
+    root.classList.add('nd-busy'); clearTimeout(unbusy.t); unbusy.t = setTimeout(unbusy, 4000);
+    setTimeout(function () { render(e.detail || (window.AqeeqChartContext && window.AqeeqChartContext.getNatal())); }, 30);
+  });
 })();
