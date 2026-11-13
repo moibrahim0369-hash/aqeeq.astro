@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '24';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '25';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -51,7 +51,7 @@
   /* أقسام المصفوفة (Schema v2): sections/<name>.json — 22 مدخل أو أقل مع missingIds.
      قائمة بيضاء بالأسماء عشان ما يتحمّلش أي مسار تاني. */
   const SECTION_NAMES = ['center', 'talents', 'love_line', 'money_line', 'father_line', 'mother_line',
-    'ancestral_programs', 'purposes', 'children_line', 'transformation_rx', 'composite_programs'];
+    'ancestral_programs', 'purposes', 'children_line', 'transformation_rx', 'composite_programs', 'age_cycles'];
   function section(name) {
     if (SECTION_NAMES.indexOf(name) === -1) return Promise.reject(new RangeError('قسم غير معروف: ' + name));
     return load('sections/' + name + '.json', d => d && d.schemaVersion === 2 && d.section === name && Array.isArray(d.entries));

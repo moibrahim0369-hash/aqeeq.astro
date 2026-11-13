@@ -8,7 +8,7 @@ const sectionsDir = path.join(root, 'assets', 'data', 'matrix', 'sections');
 const loaderSource = fs.readFileSync(path.join(root, 'assets', 'js', 'matrix-loader.js'), 'utf8');
 
 const NAMES = ['center', 'talents', 'love_line', 'money_line', 'father_line', 'mother_line',
-  'ancestral_programs', 'purposes', 'children_line', 'transformation_rx', 'composite_programs'];
+  'ancestral_programs', 'purposes', 'children_line', 'transformation_rx', 'composite_programs', 'age_cycles'];
 const read = name => JSON.parse(fs.readFileSync(path.join(sectionsDir, name + '.json'), 'utf8'));
 
 function makeLoader() {

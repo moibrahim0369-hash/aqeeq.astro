@@ -77,6 +77,7 @@ const SECTION_DEEP = {
   mother_line: { text: ['theme', 'potential', 'challenge', 'practice'], list: ['questions'] },
   purposes: { text: ['mission', 'maturityTest'], list: [] },
   children_line: { text: ['family'], list: [] },
+  age_cycles: { text: ['stage', 'light', 'shadow', 'practice'], list: [] },
   transformation_rx: { text: [], list: ['protocol'] },
   ancestral_programs: { text: ['roots', 'path'], list: [] }
 };
