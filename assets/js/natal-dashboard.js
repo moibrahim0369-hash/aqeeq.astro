@@ -64,14 +64,14 @@
       band += '<path class="nd-seg" d="M' + p(a1, r1) + 'A' + r1 + ' ' + r1 + ' 0 ' + large + ' 0 ' + p(a2, r1) + 'L' + p(a2, r2) + 'A' + r2 + ' ' + r2 + ' 0 ' + large + ' 1 ' + p(a1, r2) + 'Z"/>';
     }
     var bg = document.createElementNS(NS, 'g'); bg.innerHTML = band; g0.appendChild(bg);
-    for (var s2 = 0; s2 < 12; s2++) { var m = pt(s2 * 30 + 15, 214); g0.appendChild(el('text', { x: m[0].toFixed(1), y: (m[1] + 7).toFixed(1), class: 'nd-sg', 'text-anchor': 'middle' }, gl(SG[s2][1]))); }
+    for (var s2 = 0; s2 < 12; s2++) { var m = pt(s2 * 30 + 15, 214); g0.appendChild(el('text', { x: m[0].toFixed(1), y: (m[1] + 9).toFixed(1), class: 'nd-sg', 'text-anchor': 'middle' }, gl(SG[s2][1]))); }
     g0.appendChild(el('circle', { cx: C, cy: C, r: 196, class: 'nd-c' })); g0.appendChild(el('circle', { cx: C, cy: C, r: 150, class: 'nd-c' })); g0.appendChild(el('circle', { cx: C, cy: C, r: 128, class: 'nd-c nd-c-dash' }));
     // البيوت
     if (known && ch.cusps) {
       ch.cusps.forEach(function (c, i) {
         var a = pt(c, 196), b = pt(c, 150); g0.appendChild(el('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1), class: 'nd-hl' + (i % 3 === 0 ? ' nd-hl-ax' : '') }));
-        var nx = ch.cusps[(i + 1) % 12], mid = norm(c) + d360(nx - c) / 2, q = pt(mid, 140);
-        g0.appendChild(el('text', { x: q[0].toFixed(1), y: (q[1] + 4).toFixed(1), class: 'nd-hn', 'text-anchor': 'middle' }, String(i + 1)));
+        var nx = ch.cusps[(i + 1) % 12], mid = norm(c) + d360(nx - c) / 2, q = pt(mid, 138);
+        g0.appendChild(el('text', { x: q[0].toFixed(1), y: (q[1] + 5).toFixed(1), class: 'nd-hn', 'text-anchor': 'middle' }, String(i + 1)));
       });
     } else {
       for (var h = 0; h < 12; h++) { var a = pt(h * 30, 196), b = pt(h * 30, 150); g0.appendChild(el('line', { x1: a[0].toFixed(1), y1: a[1].toFixed(1), x2: b[0].toFixed(1), y2: b[1].toFixed(1), class: 'nd-hl' })); }
@@ -88,16 +88,16 @@
     var pos = planets.map(function (b) { return { b: b, lon: norm(b.lon), disp: norm(b.lon) }; }).sort(function (x, y) { return x.lon - y.lon; });
     for (var it = 0; it < 40; it++) for (var i = 0; i < pos.length; i++) {
       var nx = pos[(i + 1) % pos.length], dd = norm(nx.disp - pos[i].disp);
-      if (dd < 9 && pos.length > 1) { var push = (9 - dd) / 2; pos[i].disp = norm(pos[i].disp - push); nx.disp = norm(nx.disp + push); }
+      if (dd < 11 && pos.length > 1) { var push = (11 - dd) / 2; pos[i].disp = norm(pos[i].disp - push); nx.disp = norm(nx.disp + push); }
     }
     var pg = el('g', { class: 'nd-pls' }); svg.appendChild(pg);
     pos.forEach(function (o, i) {
-      var t1 = pt(o.lon, 196), t2 = pt(o.lon, 190), q = pt(o.disp, 172);
+      var t1 = pt(o.lon, 196), t2 = pt(o.lon, 188), q = pt(o.disp, 167);
       pg.appendChild(el('line', { x1: t1[0].toFixed(1), y1: t1[1].toFixed(1), x2: t2[0].toFixed(1), y2: t2[1].toFixed(1), class: 'nd-tk' }));
       var gp = el('g', { class: 'nd-pl', tabindex: '0', role: 'button', 'data-k': o.b.k, 'aria-label': o.b.n }); gp.style.setProperty('--i', i);
-      gp.appendChild(el('circle', { cx: q[0].toFixed(1), cy: q[1].toFixed(1), r: 14, class: 'nd-pc' }));
-      gp.appendChild(el('text', { x: q[0].toFixed(1), y: (q[1] + 6).toFixed(1), class: 'nd-pg', 'text-anchor': 'middle' }, gl(o.b.g)));
-      if (o.b.retro) gp.appendChild(el('text', { x: (q[0] + 12).toFixed(1), y: (q[1] + 15).toFixed(1), class: 'nd-rx', 'text-anchor': 'middle' }, 'R'));
+      gp.appendChild(el('circle', { cx: q[0].toFixed(1), cy: q[1].toFixed(1), r: 19, class: 'nd-pc' }));
+      gp.appendChild(el('text', { x: q[0].toFixed(1), y: (q[1] + 8).toFixed(1), class: 'nd-pg', 'text-anchor': 'middle' }, gl(o.b.g)));
+      if (o.b.retro) gp.appendChild(el('text', { x: (q[0] + 16).toFixed(1), y: (q[1] + 20).toFixed(1), class: 'nd-rx', 'text-anchor': 'middle' }, 'R'));
       pg.appendChild(gp);
     });
     // محاور

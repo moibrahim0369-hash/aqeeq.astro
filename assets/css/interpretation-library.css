@@ -1,5 +1,5 @@
 /* مكتبة التفسيرات: أكورديونات الخريطة الفلكية. ألوان الموقع: عنابي، عقيق، بيج. */
-#il-root.il{margin:22px 0 8px;padding:0 2px;color:#4A1428;font-family:inherit}
+#il-root.il,.il{margin:0;padding:0 2px;color:#4A1428;font-family:inherit}
 .il-head{text-align:center;margin:0 0 16px}
 .il-eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.04em;color:#8A3350;background:#F6E9D8;border:1px solid #E6CFA6;border-radius:999px;padding:3px 12px;margin-bottom:8px}
 .il-head h3{margin:0 0 6px;font-size:1.35rem;color:#4A1428}
@@ -43,3 +43,6 @@ details[open]>summary .il-chev{transform:rotate(180deg)}
 .il-simple .il-pl{margin-top:8px}
 .il-addtime{margin-top:14px;line-height:1.9}
 .il-addbtn{display:inline-block;margin-top:8px;padding:8px 16px;border:1.3px solid #D2AE6C;border-radius:14px;background:linear-gradient(180deg,#FFFDF7,#F7EBCF);color:#6A2038;font:700 .88rem 'Cairo',sans-serif;cursor:pointer}
+
+.il-list{display:grid;gap:10px}
+.il-gt{margin:18px 0 10px}

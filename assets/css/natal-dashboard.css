@@ -30,15 +30,15 @@
 /* العجلة */
 .nd-c-out{fill:#fff;stroke:rgba(183,138,82,.6);stroke-width:1}
 .nd-seg{fill:var(--b);stroke:#e4c486;stroke-width:.6}.nd-seg:nth-child(even){fill:#7c3149}
-.nd-sg{fill:#F3DDB0;font-size:20px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
+.nd-sg{fill:#F3DDB0;font-size:27px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
 .nd-c{fill:none;stroke:rgba(183,138,82,.7);stroke-width:1}.nd-c-dash{stroke-dasharray:2 4;stroke:rgba(183,138,82,.5)}
-.nd-hl{stroke:rgba(183,138,82,.5);stroke-width:.8}.nd-hl-ax{stroke:var(--b);stroke-width:1.3}
-.nd-hn{fill:#7a6a70;font-size:11px}.nd-ax{fill:var(--ink);font:600 13px 'IBM Plex Sans Arabic',sans-serif}
-.nd-pc{fill:#fff;stroke:rgba(183,138,82,.8);stroke-width:1}.nd-pg{fill:var(--b);font-size:18px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
-.nd-rx{fill:#d04b4b;font:700 8px sans-serif}.nd-tk{stroke:var(--b);stroke-width:1.2}
+.nd-hl{stroke:rgba(183,138,82,.7);stroke-width:1}.nd-hl-ax{stroke:var(--b);stroke-width:1.3}
+.nd-hn{fill:#6a5760;font-size:15px;font-weight:600}.nd-ax{fill:var(--ink);font:700 17px 'IBM Plex Sans Arabic',sans-serif}
+.nd-pc{fill:#fff;stroke:#B78A52;stroke-width:1.6}.nd-pg{fill:var(--b);font-size:25px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
+.nd-rx{fill:#c23b3b;font:700 11px sans-serif}.nd-tk{stroke:var(--b);stroke-width:1.8}
 .nd-pl{cursor:pointer;outline:0;transform-box:fill-box;transform-origin:center}
 .nd-pl:hover .nd-pc,.nd-pl:focus-visible .nd-pc,.nd-pl.on .nd-pc{fill:#F6E8CC;stroke:var(--b);stroke-width:2}
-.nd-asp{opacity:.85}.nd-al{stroke-width:1.1;stroke-linecap:round}
+.nd-asp{opacity:.85}.nd-al{stroke-width:1.5;stroke-linecap:round}
 .nd-wheel .nd-w-in{opacity:0;transform-origin:260px 260px;transform:scale(.92) rotate(-12deg)}
 .nd-go .nd-wheel .nd-w-in{animation:ndSpin .9s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes ndSpin{to{opacity:1;transform:none}}
@@ -120,3 +120,7 @@ html.ndr-on body #result .nd-title p{margin-top:0!important}
 html.ndr-on body #result .nd-wtop{padding-top:0!important;margin-top:-4px}
 html.ndr-on body #result .nd-wtop>header{margin-bottom:4px!important}
 html.ndr-on body #result .nd-chips{order:5}
+
+html.ndr-on body #result .nd-wtop{padding:10px 6px 12px!important}
+html.ndr-on body #result .nd-wslot{max-width:none;margin:0}
+html.ndr-on body #result .nd-wcard header{padding:0 8px}
