@@ -12,7 +12,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
     await p.fill('#f-date', date);
     if (unknown) await p.check('#f-unknown'); else { await p.uncheck('#f-unknown'); await p.fill('#f-time', time); }
     await p.click('#cform button[type=submit]'); await p.waitForSelector('.nd-root', { timeout: 15000 }); await p.waitForTimeout(1800);
-    return p.evaluate(() => ({ pct: [...document.querySelectorAll('.nd-el b')].map(x => parseInt(x.textContent)), tiles: [...document.querySelectorAll('.nd-tile em')].map(x => x.textContent), pl: document.querySelectorAll('.nd-pl').length, al: document.querySelectorAll('.nd-al').length, axes: document.querySelectorAll('[data-nd-panel=overview] .il-simple').length, strong: document.querySelectorAll('[data-nd-panel=aspects] .il-asp').length, cusps: document.querySelectorAll('.nd-hl').length, sw: document.documentElement.scrollWidth <= innerWidth }));
+    return p.evaluate(() => ({ pct: [...document.querySelectorAll('.nd-el b')].map(x => parseInt(x.textContent)), tiles: [...document.querySelectorAll('.nd-tile em')].map(x => x.textContent), pl: document.querySelectorAll('.nd-pl').length, al: document.querySelectorAll('.nd-al').length, axes: document.querySelectorAll('[data-nd-panel=overview] .il-row').length, strong: document.querySelectorAll('[data-nd-panel=aspects] .il-row').length, cusps: document.querySelectorAll('.nd-hl').length, sw: document.documentElement.scrollWidth <= innerWidth }));
   };
   const A = await run('1990-05-17', '14:30'), B = await run('1999-09-25', '03:10'), C = await run('1985-12-02', '', true);
   for (const [n, r] of [['A', A], ['B', B]]) {
@@ -25,9 +25,9 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   ok(C.pct.reduce((a, b) => a + b, 0) === 100, `unknown time: % sum 100 (${C.pct})`);
   // tabs + planet pick
   await p.click('[data-nd-tab=planets]'); await p.waitForTimeout(300);
-  ok(await p.evaluate(() => document.querySelectorAll('[data-nd-panel=planets] details').length === 10 && !document.querySelector('[data-nd-panel=planets]').hidden), 'planets tab lists 10');
+  ok(await p.evaluate(() => document.querySelectorAll('[data-nd-panel=planets] .nd-row').length === 10 && !document.querySelector('[data-nd-panel=planets]').hidden), 'planets tab lists 10');
   await p.click('[data-nd-tab=aspects]'); await p.waitForTimeout(300);
-  ok(await p.evaluate(() => document.querySelectorAll('[data-nd-panel=aspects] .il-asp').length > 0), 'aspects tab lists rows');
+  ok(await p.evaluate(() => document.querySelectorAll('[data-nd-panel=aspects] .il-row').length > 0), 'aspects tab lists rows');
   await p.click('[data-nd-tab=overview]'); await p.waitForTimeout(300);
   await p.click('.nd-pl >> nth=0'); ok(await p.evaluate(() => /في/.test(document.querySelector('.nd-pick').textContent)), 'planet click shows position');
   ok(await p.evaluate(() => !document.querySelector('.nd-more') && document.querySelector('.nd-legacy').hidden), 'old full-details block is gone (kept hidden)');

@@ -124,3 +124,12 @@ html.ndr-on body #result .nd-chips{order:5}
 html.ndr-on body #result .nd-wtop{padding:10px 6px 12px!important}
 html.ndr-on body #result .nd-wslot{max-width:none;margin:0}
 html.ndr-on body #result .nd-wcard header{padding:0 8px}
+
+/* مربعات المكان والوقت والتاريخ: بنفس لغة الصفوف الذهبية */
+html.ndr-on body #result .nd-chip{background:linear-gradient(180deg,#FFFDF7,#F7EBCF)!important;border:1.3px solid #D2AE6C!important;box-shadow:0 8px 18px rgba(74,18,36,.12)!important}
+html.ndr-on body #result .nd-chip-t small{color:#8A6A4E}
+html.ndr-on body #result .nd-chip-t b{font:700 .95rem 'Amiri',serif;color:#4A1224}
+html.ndr-on body #result .nd-wrap-pad{display:none}
+html.ndr-on body #result .il-wrap .il-gt{margin:6px 0 10px}
+html.ndr-on body #result .il-pointhead{margin:18px 0 10px}
+html.ndr-on body #result [data-nd-panel] .il-note{margin:10px 0 0}

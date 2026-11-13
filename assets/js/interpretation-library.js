@@ -9,7 +9,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261113e';
+  var VERSION = '20261113f';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -128,7 +128,7 @@
   function det(cls, sum, body, open) { return '<details class="' + cls + '"' + (open ? ' open' : '') + '><summary>' + sum + '</summary><div class="il-body">' + body + '</div></details>'; }
   var CHEV = '<svg class="il-chev" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  function bodyBlock(m, ix, key, withHouse) {
+  function bodyBlock(m, ix, key, withHouse, bare) {
     var it = m.items[key], h = '';
     var where = SIGN_AR[it.sign] + (it.retro ? ' · راجع' : '') + (it.house ? ' · البيت ' + ORD[it.house - 1] : '');
     if (it.house) {
@@ -137,61 +137,71 @@
     }
     else if (withHouse === false) h += entry(ix, idSignOnly(key, it.sign), true);
     if (it.retro) h += sub('الرجعية', entry(ix, idModifier(key, 'retrograde'), false));
+    if (bare) return h;
     return '<article class="il-pl"><h4>' + esc(LABEL[key]) + '<small>' + esc(where) + '</small></h4>' + h + '</article>';
   }
 
-  /* أقسام جاهزة تُحقن داخل تبويبات صفحة النتيجة: كل نص في مكان واحد فقط */
+  /* صفوف تفتح النافذة السفلية (chart-sheet.js): الصف يحمل قالبًا فيه نص التفسير بمكانه */
+  function svg(p) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>'; }
+  var ASP_ICO = { conjunction: '<circle cx="12" cy="12" r="4.5"/><path d="M12 3v3M12 18v3"/>', sextile: '<path d="M12 3v18M4.5 7.5l15 9M19.5 7.5l-15 9"/>', square: '<rect x="5" y="5" width="14" height="14"/>', trine: '<path d="M12 4 21 19H3z"/>', opposition: '<circle cx="6.5" cy="12" r="3.5"/><circle cx="17.5" cy="12" r="3.5"/><path d="M10 12h4"/>' };
+  var PT_GLYPH = { north_node: '☊', south_node: '☋', lilith: '⚸', fortune: '⊗' };
+  var ANG_ABBR = { asc: 'AC', dsc: 'DC', mc: 'MC', ic: 'IC' };
+  function tpl(html) { return '<template class="il-content"><div class="il">' + html + '</div></template>'; }
+  function row(i, rg, title, mid, rh, content, cls) {
+    return '<div class="nd-row il-row" role="button" tabindex="0" style="--i:' + i + '"><span class="nd-rg' + (cls || '') + '">' + rg + '</span><b>' + esc(title) + '</b><span>' + esc(mid) + '</span><span class="nd-rh">' + esc(rh) + '</span>' + tpl(content) + '</div>';
+  }
+  function rows(list) { return '<div class="nd-rows">' + list.join('') + '</div>'; }
+
   function sections(m, ix) {
-    var S = { houses: '', planets: '', points: '', aspects: '', angles: '', note: '' };
+    var S = { aspects: '', points: '', angles: '', note: '', planetTpl: {}, houseTpl: {} };
     var asps = m.aspects.slice().sort(function (x, y) { return x.orb - y.orb; });
-    S.aspects = asps.length ? '<div class="il-list">' + asps.map(function (a) {
-      var title = LABEL[a.first] + ' ' + a.n + ' ' + LABEL[a.second];
-      return det('il-house il-simple il-asp', '<span class="il-ht"><strong>' + esc(title) + '</strong><small dir="ltr">' + a.orb.toFixed(1) + '°</small></span>' + CHEV, entry(ix, idAspect(a.first, a.type, a.second), true));
-    }).join('') + '</div>' : '';
+    S.aspects = asps.length ? rows(asps.map(function (a, i) {
+      return row(i, svg(ASP_ICO[a.type]), LABEL[a.first] + ' · ' + LABEL[a.second], a.n, 'فارق ' + a.orb.toFixed(1) + '°', entry(ix, idAspect(a.first, a.type, a.second), true));
+    })) : '';
+    PLANETS.forEach(function (k) {
+      var it = m.items[k]; if (!it) return;
+      var extra = '';
+      if (!m.known && k === 'moon' && Math.min(it.lon % 30, 30 - (it.lon % 30)) < 7) extra = '<p class="il-note">القمر يقطع نحو ثلاث عشرة درجة في اليوم، وموضعه هنا قريب من حدّ برجين، فبرجه الدقيق يحتاج ساعة ميلادك.</p>';
+      S.planetTpl[k] = tpl(extra + bodyBlock(m, ix, k, m.known ? undefined : false, true));
+    });
     if (!m.known) {
-      var ks = PLANETS.filter(function (k) { return m.items[k]; });
-      S.planets = '<div class="il-list">' + ks.map(function (k) {
-        var it = m.items[k], edge = k === 'moon' && Math.min(it.lon % 30, 30 - (it.lon % 30)) < 7;
-        var extra = edge ? '<p class="il-note">القمر يقطع نحو ثلاث عشرة درجة في اليوم، وموضعه هنا قريب من حدّ برجين، فبرجه الدقيق يحتاج ساعة ميلادك.</p>' : '';
-        return det('il-house il-simple', '<span class="il-ht"><strong>' + esc(LABEL[k]) + ' في ' + esc(SIGN_AR[it.sign]) + '</strong>' + (it.retro ? '<small>راجع</small>' : '') + '</span>' + CHEV, extra + bodyBlock(m, ix, k, false));
-      }).join('') + '</div>';
       S.note = '<p class="il-note il-addtime">ظهرت لك كواكبك في أبراجها، أما البيوت والطالع فتحتاج ساعة ميلادك. إن عرفتها أضفها، وستظهر لك أقسام جديدة بحياتك الواقعية: العمل والعلاقات والبيت والمال. <button type="button" class="il-addbtn" data-il-addtime>أضف ساعة الميلاد</button></p>';
       return S;
     }
-    S.houses = '<div class="il-list">' + m.houses.map(function (H) {
-      var chips = H.occupants.length ? H.occupants.map(function (k) { return '<i>' + esc(LABEL[k]) + '</i>'; }).join('') : '<i class="il-empty">بيت خالٍ من الكواكب</i>';
-      var sum = '<b class="il-num">' + H.n + '</b><span class="il-ht"><strong>البيت ' + ORD[H.n - 1] + ' · ' + esc(HOUSE_AR[H.n - 1]) + '</strong><small>' + esc(SIGN_AR[H.sign]) + ' على رأس البيت</small><span class="il-chips">' + chips + '</span></span>' + CHEV;
-      var body = sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + H.occupants.map(function (k) { return bodyBlock(m, ix, k); }).join('');
-      return det('il-house', sum, body);
-    }).join('') + '</div>';
-    S.angles = '<div class="il-list">' + m.angles.map(function (A) {
-      return det('il-house il-simple', '<span class="il-ht"><strong>' + esc(A.label) + ' في ' + esc(SIGN_AR[A.sign]) + '</strong></span>' + CHEV, entry(ix, idAngle(A.body, A.sign), true));
-    }).join('') + '</div>';
+    m.houses.forEach(function (H) {
+      S.houseTpl[H.n] = tpl(sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + H.occupants.map(function (k) { return bodyBlock(m, ix, k); }).join(''));
+    });
+    S.angles = rows(m.angles.map(function (A, i) {
+      return row(i, ANG_ABBR[A.body], A.label, SIGN_AR[A.sign], '', entry(ix, idAngle(A.body, A.sign), true), ' nd-hnum');
+    }));
     var pts = POINTS.filter(function (k) { return m.items[k]; });
-    if (pts.length) S.points = '<h4 class="il-gt">العقد القمرية والنقاط الحساسة</h4><div class="il-list">' + pts.map(function (k) {
+    if (pts.length) S.points = rows(pts.map(function (k, i) {
       var it = m.items[k];
-      return det('il-house il-simple', '<span class="il-ht"><strong>' + esc(LABEL[k]) + '</strong><small>' + esc(SIGN_AR[it.sign] + (it.house ? ' · البيت ' + ORD[it.house - 1] : '')) + '</small></span>' + CHEV, bodyBlock(m, ix, k));
-    }).join('') + '</div>';
+      return row(i, PT_GLYPH[k], LABEL[k], SIGN_AR[it.sign], it.house ? 'البيت ' + it.house : '', bodyBlock(m, ix, k, undefined, true));
+    }));
     return S;
   }
 
   /* ---------- الربط بالصفحة ---------- */
-  function wrap(html) { return html ? '<div class="il" dir="rtl">' + html + '</div>' : ''; }
+  function listWrap(html) { return '<div class="nd-list il-wrap">' + html + '</div>'; }
   function inject(S, tries) {
     var box = document.querySelector('#result .nd-root');
     if (!box) { if (tries < 15) setTimeout(function () { inject(S, tries + 1); }, 150); return; }
-    box.querySelectorAll('.il').forEach(function (n) { n.remove(); });
+    box.querySelectorAll('.il-wrap,.il-content,.il-pointhead').forEach(function (n) { n.remove(); });
     var P = function (n) { return box.querySelector('[data-nd-panel="' + n + '"]'); };
     var ph = P('houses'), pp = P('planets'), pa = P('aspects'), po = P('overview');
-    if (ph && S.houses) ph.innerHTML = wrap(S.houses);
-    if (pa) pa.innerHTML = wrap(S.aspects) || '<p class="nd-warn">لا جوانب رئيسية ضمن الحدود المعتادة.</p>';
-    if (pp) {
-      if (S.note) pp.innerHTML = wrap(S.planets + S.note);
-      else if (S.points) pp.insertAdjacentHTML('beforeend', wrap(S.points));
-    }
+    if (pp) pp.querySelectorAll('.nd-row').forEach(function (r) {
+      var nm = ((r.querySelector('b') || {}).textContent || '').replace(/\s*R\s*$/, '').trim();
+      var key = Object.keys(LABEL).filter(function (k) { return LABEL[k] === nm; })[0];
+      if (key && S.planetTpl[key]) r.insertAdjacentHTML('beforeend', S.planetTpl[key]);
+    });
+    if (ph) ph.querySelectorAll('.nd-row').forEach(function (r, i) { if (S.houseTpl[i + 1]) r.insertAdjacentHTML('beforeend', S.houseTpl[i + 1]); });
+    if (pa) pa.innerHTML = S.aspects || '<p class="nd-warn">لا جوانب رئيسية ضمن الحدود المعتادة.</p>';
+    if (pp && S.points) pp.insertAdjacentHTML('beforeend', '<h4 class="il-gt il-pointhead">العقد القمرية والنقاط الحساسة</h4>' + S.points);
+    if (pp && S.note) pp.insertAdjacentHTML('beforeend', '<div class="il-wrap">' + S.note + '</div>');
     if (po && S.angles) {
       var card = [].slice.call(po.querySelectorAll('.nd-card')).filter(function (c) { return /محاور/.test((c.querySelector('h4') || {}).textContent || ''); })[0];
-      var html = wrap('<h4 class="il-gt">محاور الخريطة</h4>' + S.angles);
+      var html = '<div class="nd-list il-wrap"><h4 class="il-gt">محاور الخريطة</h4>' + S.angles + '</div>';
       if (card) card.outerHTML = html; else po.insertAdjacentHTML('beforeend', html);
     }
     var ab = box.querySelector('[data-il-addtime]');
