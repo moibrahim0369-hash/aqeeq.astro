@@ -36,6 +36,23 @@
     Object.keys(p1).forEach(function (k) { if (typeof p1[k] === 'number' && typeof p2[k] === 'number') c[k] = r(p1[k] + p2[k]); });
     return { a: p1, b: p2, c: c };
   }
+  /* مصفوفة الشراكة الكاملة بنفس بنية محرك المصفوفة الفردية، لتُرسم بنفس رسم الموقع (generateMatrixSVG) */
+  function pairFull(d1, d2) {
+    var r = AD().reduceArcana, m1 = AD().calculateDestinyMatrix(d1), m2 = AD().calculateDestinyMatrix(d2);
+    function sum(a, b, key) {
+      if (typeof a === 'number' && typeof b === 'number') return key === 'year' || key === 'month' || key === 'day' ? a : r(a + b);
+      if (Array.isArray(a) && Array.isArray(b)) return a.map(function (x, i) { return sum(x, b[i]); });
+      if (a && b && typeof a === 'object' && typeof b === 'object') { var o = {}; Object.keys(a).forEach(function (k) { o[k] = k in b ? sum(a[k], b[k], k) : a[k]; }); return o; }
+      return a;
+    }
+    var P = sum(m1, m2);
+    var axis = function (m, X) { var mid = r(X + m.anchors.E); return { mid: mid, outer: r(X + mid), inner: r(mid + m.anchors.E) }; };
+    var diag = function (m, X) { var inner = r(X + m.anchors.E); return { inner: inner, outer: r(X + inner) }; };
+    function pairOfFn(fn, k1, k2, ks) { var o = {}; ks.forEach(function (k) { var x = fn(m1, k1[k]), y = fn(m2, k2[k]); o[k] = {}; Object.keys(x).forEach(function (f) { o[k][f] = r(x[f] + y[f]); }); }); return o; }
+    P.pairAxis = pairOfFn(axis, { left: m1.anchors.A, top: m1.anchors.B, right: m1.anchors.C, bottom: m1.anchors.D }, { left: m2.anchors.A, top: m2.anchors.B, right: m2.anchors.C, bottom: m2.anchors.D }, ['left', 'top', 'right', 'bottom']);
+    P.pairDiag = pairOfFn(diag, m1.corners, m2.corners, ['F', 'G', 'H', 'I']);
+    return P;
+  }
   function ageOf(birth, now) {
     now = now || new Date();
     var y = now.getFullYear() - birth.year;
@@ -112,7 +129,9 @@
 
   function renderPair(host, d1, d2, n1, n2) {
     var R = pairOf(d1, d2), c = R.c;
-    host.innerHTML = '<div class="mxm-sum"><h3>مصفوفة الشراكة</h3><p>أرقام العلاقة ناتجة من جمع أركان مصفوفتيكما ثم اختزالها إلى طاقات المصفوفة.</p>' +
+    var map = '';
+    try { var N = window.AqeeqNumerology; if (N && N.generateMatrixSVG) map = '<div class="aqm-canvas-wrap mxm-map">' + N.generateMatrixSVG(pairFull(d1, d2)).replace(/>undefined</g, '>—<').replace(/data-arcana="undefined"/g, 'data-arcana=""') + '</div>'; } catch (e) { map = ''; }
+    host.innerHTML = map + '<div class="mxm-sum"><h3>مصفوفة الشراكة</h3><p>أرقام العلاقة ناتجة من جمع أركان مصفوفتيكما ثم اختزالها إلى طاقات المصفوفة.</p>' +
       '<div class="mxm-tab">' + HEADROW + cornerRow(n1 || 'أنت', R.a) + cornerRow(n2 || 'شريكك', R.b) + '<div class="mxm-sep"></div>' + cornerRow('الشراكة', c) + '</div></div>' +
       accHtml(PAIR, function (k) { return { n: c[k] }; }) +
       '<p class="mxm-note">قراءة العلاقة بين شريكين أيًّا كانت صلتهما، والأرقام محسوبة من تاريخي الميلاد.</p>';
@@ -206,7 +225,7 @@
       } catch (x) { err.textContent = 'تعذّر الحساب. راجع التاريخين وحاول مرة أخرى.'; err.hidden = false; }
     });
   }
-  window.AqMatrixModes = { fromCorners: fromCorners, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair };
+  window.AqMatrixModes = { fromCorners: fromCorners, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
     var boot = function () { build(); buildCompatPage(); var n = 0; (function t() { buildCompatPage(); if (++n < 12 && !(document.getElementById('mxc-form') || {}).__mxc) setTimeout(t, 400); })(); };

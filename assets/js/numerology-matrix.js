@@ -169,8 +169,8 @@
     // الجمع الاختزالي 22 من المحرك نفسه (لا تغيير في منطق الحساب): تُستخدم فقط لرسم النقاط الأفقية اليسرى
     const reduce22 = n => (window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter).reduceArcana(n);
     // نقاط المحاور بالمعادلة القياسية الموحّدة: X2 = X+E، الخارجية = X+X2، الداخلية = X2+E
-    const ax = axisPoints(P, reduce22);
-    const dg = diagonalPoints(P, reduce22);
+    const ax = P.pairAxis || axisPoints(P, reduce22);   // مصفوفة الشراكة تمرّر نقاطها المجموعة لكل موضع
+    const dg = P.pairDiag || diagonalPoints(P, reduce22);
     const hP3 = ax.left.outer, hP1 = ax.left.mid, hP2 = ax.left.inner;
     const tB = ax.top.outer, tTop3 = ax.top.inner;
     const mP1 = ax.right.mid, mP2 = ax.right.outer;   // الداخلية اليمنى = نقطة المال (تُرسم في موضعها الخاص)

@@ -639,6 +639,26 @@ html body #matrix-compat .mxm-en em{font-style:normal;font-weight:700;color:#6A2
 html body #matrix-compat .mxm-note{margin:4px 0 0;text-align:center;color:#9a7a55;font-size:.8rem}
 html body #matrix-compat .mxm-num.mxm-tn-s{background:#F8E2DE;border-color:#C9786E;color:#8E2A22}
 html body #matrix-compat .mxm-num.mxm-tn-g{background:#E4F0E1;border-color:#7FA67D;color:#2F5A32}
+/* رسم المصفوفة (.aqm-*) المحصور في #matrix */
+#matrix-compat .aqm-canvas-wrap{
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(43, 24, 16, 0.08), 0 2px 6px rgba(43, 24, 16, 0.04);
+  border: 1px solid rgba(197, 164, 109, 0.25);
+}
+#matrix-compat .aqm-workspace{ display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, .75fr); gap: 24px; align-items: start; margin-bottom: 28px; }
+#matrix-compat .aqm-workspace .aqm-canvas-wrap{ margin: 0; position: relative; overflow: hidden; }
+#matrix-compat .aqm-workspace .aqm-svg{ transition: transform var(--motion-base, .3s) var(--ease-standard, ease); }
+#matrix-compat .aqm-svg .aqm-node{ cursor: pointer; transition: opacity var(--motion-fast, .18s) ease; }
+#matrix-compat .aqm-svg .aqm-node:focus-visible{ outline: none; opacity: .75; }
+#matrix-compat .aqm-svg.has-focus .aqm-node:not(.is-active){ opacity: .55; }
+#matrix-compat .aqm-canvas-wrap{ background: var(--mx-white) !important; border: 1px solid var(--mx-border) !important; border-radius: 22px !important; box-shadow: none !important; }
+#matrix-compat .aqm-workspace .aqm-svg-wrap,#matrix-compat .aqm-canvas-wrap .aqm-svg{ background: var(--mx-cream); border-radius: 18px; }
+#matrix-compat .aqm-dash > .aqm-canvas-wrap{ margin: 0; position: relative; min-width: 0; }
+#matrix-compat .aqm-svg .aqm-node:focus-visible{outline:none!important}
+#matrix-compat .aqm-svg.has-focus .aqm-node:not(.is-active){opacity:.72}
 /* إخفاء الفورم والشرح بعد الحساب، وزر حساب جديد */
 html body #matrix-compat :is(form#mxc-form,#mxc-explain)[hidden]:not(#_a):not(#_b):not(#_c):not(#_d){display:none!important}
 html body #matrix-compat .mxc-again:not(#_a):not(#_b){width:100%;min-height:50px;border-radius:14px;margin-top:6px}
+html body #matrix-compat .mxm-map{margin:0 0 12px;padding:8px;border-radius:20px;background:#FFFDF8;border:1px solid #EBDCBB}
+html body #matrix-compat .mxm-map svg{width:100%;height:auto;display:block}
