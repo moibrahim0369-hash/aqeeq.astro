@@ -64,8 +64,26 @@
     return pl.map(function (p) { return '<button type="button" class="yp-pl" data-pl="' + p.id + '"><span class="yp-chip blue">' + p.nn + '</span><small>' + p.nn + ' في ' + p.sign + '</small><b>عنوان الصفة قيد الكتابة</b></button>'; }).join('');
   }
   function back(label) { return '<button type="button" class="yp-back" data-back>' + SVG('<path d="M9 6l6 6-6 6"/>') + label + '</button>'; }
+  function avatar(u, name) {
+    var im = $('#profile-summary-avatar img'), m = u.user_metadata || {}, src = (im && im.getAttribute('src')) || m.avatar_url || m.picture || '';
+    return src ? '<img src="' + esc(src) + '" alt="">' : esc(String(name).charAt(0));
+  }
+  var isOwner = function () { return !!(window.AqSession && window.AqSession.isAdmin); };
+  function planChip() {
+    return '<span class="yp-plan' + (isOwner() ? ' owner' : '') + '">' + SVG(isOwner() ? '<path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/>' : '<circle cx="12" cy="12" r="8.500"/><path d="M12 8v8M8 12h8"/>') + (isOwner() ? 'المالك · كل شيء مفتوح' : 'الخطة المجانية') + '</span>';
+  }
+  function isPrivate() { try { return localStorage.getItem('aqeeq_private_v1') === '1'; } catch (_) { return false; } }
+  function settingsHtml() {
+    var u = user() || {};
+    return back('رجوع') + '<div class="yp-set"><h3>الإعدادات</h3>' +
+      '<div class="yp-set-g"><p class="yp-lab">حسابك</p><div class="yp-set-row"><div><b dir="ltr">' + esc(u.email || '') + '</b><small>نوع الاشتراك</small></div>' + planChip() + '</div></div>' +
+      '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>نص مؤقت: ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
+      '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
+      '<button type="button" class="yp-out" data-signout>تسجيل الخروج</button></div>';
+  }
   function bodyHtml() {
     var v = ST.view, list;
+    if (v && v.set) return settingsHtml();
     if (v && v.cyc) {
       list = allCycles() || []; var c = list.filter(function (x) { return x.id + '|' + x.start === v.cyc; })[0];
       if (c) return back('رجوع') + '<div class="yp-det"><small>' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small><h3>دورة ' + c.tn + ' مع ' + c.nn + '</h3><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span>' +
@@ -86,14 +104,31 @@
     if (sec) sec.classList.toggle('yp-on', !!u);
     if (!u) return;
     var name = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || (u.email || '').split('@')[0] || 'حسابك';
-    var st = host.querySelector('.yp-scroll') ? host.querySelector('.yp-scroll').scrollTop : 0;
-    host.innerHTML = '<div class="yp"><header class="yp-head"><div class="yp-who"><span class="yp-av">' + esc(String(name).charAt(0)) + '</span><div><h2>' + esc(name) + '</h2><small>مساحتك الشخصية</small></div></div>' +
-      '<a class="yp-gear" href="#account" aria-label="الإعدادات">' + SVG('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900l2.100 2.100M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100"/>') + '</a></header>' +
+    var pn = $('#account-profile-completion'), home = $('#acct-user');
+    if (pn && home && host.contains(pn)) home.appendChild(pn);
+    host.innerHTML = '<div class="yp"><header class="yp-head"><div class="yp-who"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' +
+      '<button type="button" class="yp-gear' + (ST.view && ST.view.set ? ' on' : '') + '" data-set aria-label="الإعدادات">' + SVG('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900l2.100 2.100M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100"/>') + '</button></header>' +
       '<div class="yp-tabs" role="tablist"><button type="button" role="tab" data-tab="transits" aria-selected="' + (ST.tab === 'transits' && !ST.view) + '">عبوراتك</button><button type="button" role="tab" data-tab="pattern" aria-selected="' + (ST.tab === 'pattern' && !ST.view) + '">نمطك</button></div>' +
       '<div class="yp-body">' + bodyHtml() + '</div></div>';
+    if (ST.view && ST.view.set) {
+      var slot = $('#yp-prof-slot');
+      if (pn && slot) slot.appendChild(pn);
+      else if (slot && (ST.tries = (ST.tries || 0) + 1) < 20) setTimeout(function () { if (ST.view && ST.view.set && !$('#yp-prof-slot #account-profile-completion')) render(); }, 400);
+    }
+  }
+  /* بعد الدخول: «حسابي» يفتح صفحتك الكاملة بدل النافذة المنبثقة (إلا شاشة كلمة المرور الجديدة أو الرجوع من الدفع) */
+  function route() {
+    if (location.hash !== '#account' || !user()) return;
+    var rec = $('#acct-recovery'); if (rec && !rec.hidden) return;
+    if (/[?&](order|order_id|code)=/.test(location.search)) return;
+    var card = $('#acct-user');
+    if (card && card.getAttribute('data-profile-complete') === 'false') ST.view = { set: true };
+    location.replace('#for-you'); render();
   }
   document.addEventListener('click', function (e) {
-    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all]'); if (!t) return;
+    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout]'); if (!t) return;
+    if (t.hasAttribute('data-signout')) { var so = $('#acct-signout'); if (so) so.click(); return; }
+    if (t.hasAttribute('data-set')) { ST.view = ST.view && ST.view.set ? null : { set: true }; ST.tries = 0; render(); window.scrollTo(0, 0); return; }
     if (t.hasAttribute('data-tab')) { ST.tab = t.getAttribute('data-tab'); ST.view = null; }
     else if (t.hasAttribute('data-dom')) ST.view = { dom: t.getAttribute('data-dom'), from: ST.view };
     else if (t.hasAttribute('data-cyc')) ST.view = { cyc: t.getAttribute('data-cyc'), from: ST.view };
@@ -102,8 +137,12 @@
     else if (t.hasAttribute('data-back')) ST.view = (ST.view && ST.view.from) || null;
     render(); var s = $('#for-you'); if (s) s.scrollTop = 0;
   });
-  document.addEventListener('change', function (e) { if (e.target && e.target.id === 'yp-year') { ST.year = +e.target.value; render(); } });
-  document.addEventListener('aq:session', render);
-  window.addEventListener('hashchange', function () { if (location.hash === '#for-you') render(); });
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render); else render();
+  document.addEventListener('change', function (e) {
+    if (e.target && e.target.id === 'yp-year') { ST.year = +e.target.value; render(); }
+    if (e.target && e.target.id === 'yp-private') { try { localStorage.setItem('aqeeq_private_v1', e.target.checked ? '1' : '0'); } catch (_) {} }
+  });
+  document.addEventListener('aq:session', function () { route(); render(); });
+  document.addEventListener('aq:admin', render);
+  window.addEventListener('hashchange', function () { route(); if (location.hash === '#for-you') render(); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { route(); render(); }); else { route(); render(); }
 })();

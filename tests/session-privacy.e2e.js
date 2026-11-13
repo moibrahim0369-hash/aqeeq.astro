@@ -13,7 +13,7 @@ window.aqeeqSupabase={auth:{onAuthStateChange(cb){window.__cbs.push(cb);setTimeo
   await p.addInitScript(INIT(true, true));
   await p.goto(BASE + '/index.html#home'); await p.waitForTimeout(1500);
   const order = await p.$$eval('#aqn-bnav .bnav-item', (e) => e.map((x) => x.textContent.trim()));
-  ok(JSON.stringify(order) === JSON.stringify(['لك', 'الرئيسية', 'اكتشف ذاتك', 'حسابي']), 'logged in bar order: ' + order.join(','));
+  ok(JSON.stringify(order) === JSON.stringify(['الرئيسية', 'اكتشف ذاتك', 'حسابي']), 'logged in bar order: ' + order.join(','));
   ok(await p.evaluate(() => document.documentElement.getAttribute('data-admin') === '1'), 'admin flag set');
   ok((await p.textContent('.aqh-join span')).trim() === 'حسابي', 'join button becomes account');
   await p.evaluate(() => { localStorage.setItem('aqeeq_profile_cache_v1', '{"date":"1990-01-01"}'); localStorage.setItem('aqeeq_saved_readings_v1', '[1]'); localStorage.setItem('aqeeq_activity_v1', '[1]'); });
