@@ -59,18 +59,18 @@
     '.nd-hn{fill:#7a6a70;font:600 14px "IBM Plex Sans Arabic",Arial,sans-serif;text-anchor:middle}' +
     '.nd-ax{fill:#35252B;font:700 16px "IBM Plex Sans Arabic",Arial,sans-serif}.nd-axa{fill:#70263F}' +
     '.nd-al{stroke-width:1.5;stroke-linecap:round}.nd-asp{opacity:.9}' +
-    '.nd-pc{fill:#FFFFFF;stroke:#B78A52;stroke-width:1.6}.nd-pg{fill:#70263F;font-size:21px;text-anchor:middle}' +
-    '.nd-pd{fill:#4a3a42;font:600 12.5px "IBM Plex Sans Arabic",Arial,sans-serif;text-anchor:middle;paint-order:stroke;stroke:#FFFDF9;stroke-width:3px;stroke-linejoin:round}' +
-    '.nd-rx{fill:#c23b3b;font:700 11px Arial,sans-serif}.nd-tk{stroke:#70263F;stroke-width:1.4;fill:none}.nd-tka{fill:#70263F}' +
+    '.nd-pc{fill:#FFFFFF;stroke:#70263F;stroke-width:2}.nd-pg{fill:#70263F;font-size:27px;text-anchor:middle}' +
+    '.nd-pd{fill:#4a3a42;font:700 14px "IBM Plex Sans Arabic",Arial,sans-serif;text-anchor:middle;paint-order:stroke;stroke:#FFFDF9;stroke-width:3px;stroke-linejoin:round}' +
+    '.nd-rx{fill:#c23b3b;font:700 11px Arial,sans-serif}.nd-tk{stroke:#70263F;stroke-width:2.2;fill:none}.nd-tka{fill:#70263F}.nd-tkh{stroke:#FFFDF9;stroke-width:5.5;fill:none;stroke-linecap:round}.nd-tkhp{fill:#FFFDF9;stroke-linejoin:round}' +
     '.nd-pl{cursor:pointer;outline:0}.nd-pl:hover .nd-pc,.nd-pl:focus-visible .nd-pc,.nd-pl.on .nd-pc{fill:#F6E8CC;stroke:#70263F;stroke-width:2.2}';
 
   function wheelSVG(ch, planets, asps, known) {
-    var C = 300, RO = 212, RS = 174, RH = 138, RP = 252, RT = 232, RD = 281;
+    var C = 300, RO = 212, RS = 174, RH = 138, RP = 256, RD = 290;
     var asc = known ? ch.asc : 0;
     var ang = function (lon) { return (180 - (norm(lon) - asc)) * Math.PI / 180; };
     var pt = function (lon, r) { var a = ang(lon); return [C + r * Math.cos(a), C + r * Math.sin(a)]; };
     var f1 = function (n) { return n.toFixed(1); };
-    var svg = el('svg', { viewBox: '-8 -6 616 612', class: 'nd-wheel', role: 'img', 'aria-label': 'عجلة الخريطة الفلكية', xmlns: NS });
+    var svg = el('svg', { viewBox: '-16 -12 632 624', class: 'nd-wheel', role: 'img', 'aria-label': 'عجلة الخريطة الفلكية', xmlns: NS });
     var st = document.createElementNS(NS, 'style'); st.textContent = WHEEL_CSS; svg.appendChild(st);
     var g0 = el('g', { class: 'nd-w-in' }); svg.appendChild(g0);
     g0.appendChild(el('circle', { cx: C, cy: C, r: RO, class: 'nd-bgc' }));
@@ -113,21 +113,26 @@
         var dd = norm(nx.disp - pos[i].disp); if (dd > 180) dd -= 360;
         if (dd < MIN) { var push = (MIN - dd) / 2 + .01; pos[i].disp = norm(pos[i].disp - push); nx.disp = norm(nx.disp + push); moved = true; }
       }
-      axes.forEach(function (A) { pos.forEach(function (o) { var df = ((o.disp - A + 540) % 360) - 180; if (Math.abs(df) < 8.5) { o.disp = norm(A + (df >= 0 ? 8.5 : -8.5)); moved = true; } }); });
+      axes.forEach(function (A) { pos.forEach(function (o) { var df = ((o.disp - A + 540) % 360) - 180; if (Math.abs(df) < 10) { o.disp = norm(A + (df >= 0 ? 10 : -10)); moved = true; } }); });
       if (!moved) break;
     }
     var pg = el('g', { class: 'nd-pls' }); svg.appendChild(pg);
+    var PR = 21;
     pos.forEach(function (o, i) {
-      var t1 = pt(o.lon, RO), t2 = pt(o.disp, RT - 2), q = pt(o.disp, RP), dp = pt(o.disp, RD);
-      var ar = ang(o.lon), ax = C + RO * Math.cos(ar), ay = C + RO * Math.sin(ar), ux = Math.cos(ar), uy = Math.sin(ar);
-      var tri = f1(ax) + ',' + f1(ay) + ' ' + f1(ax + ux * 9 - uy * 3.6) + ',' + f1(ay + uy * 9 + ux * 3.6) + ' ' + f1(ax + ux * 9 + uy * 3.6) + ',' + f1(ay + uy * 9 - ux * 3.6);
-      pg.appendChild(el('line', { x1: f1(t1[0]), y1: f1(t1[1]), x2: f1(t2[0]), y2: f1(t2[1]), class: 'nd-tk' }));
-      pg.appendChild(el('polygon', { points: tri, class: 'nd-tka' }));
+      var q = pt(o.disp, RP), dp = pt(o.disp, RD), tip = pt(o.lon, RS - 10);
+      var ex = q[0] - tip[0], ey = q[1] - tip[1], el2 = Math.hypot(ex, ey) || 1, ux = ex / el2, uy = ey / el2;   /* من الطرف نحو الكوكب */
+      var st = [q[0] - ux * PR, q[1] - uy * PR];
+      var hl = 15, hw = 6.5, bx = tip[0] + ux * hl, by = tip[1] + uy * hl;
+      var tri = f1(tip[0]) + ',' + f1(tip[1]) + ' ' + f1(bx - uy * hw) + ',' + f1(by + ux * hw) + ' ' + f1(bx + uy * hw) + ',' + f1(by - ux * hw);
       var gp = el('g', { class: 'nd-pl', tabindex: '0', role: 'button', 'data-k': o.b.k, 'aria-label': o.b.n }); gp.style.setProperty('--i', i);
-      gp.appendChild(el('circle', { cx: f1(q[0]), cy: f1(q[1]), r: 16.5, class: 'nd-pc' }));
-      gp.appendChild(el('text', { x: f1(q[0]), y: f1(q[1] + 7.5), class: 'nd-pg' }, gl(o.b.g)));
-      if (o.b.retro) gp.appendChild(el('text', { x: f1(q[0] + 15), y: f1(q[1] - 10), class: 'nd-rx', 'text-anchor': 'middle' }, 'R'));
-      gp.appendChild(el('text', { x: f1(dp[0]), y: f1(dp[1] + 4.5), class: 'nd-pd' }, Math.floor(norm(o.b.lon) % 30) + '°'));
+      gp.appendChild(el('line', { x1: f1(st[0]), y1: f1(st[1]), x2: f1(bx), y2: f1(by), class: 'nd-tkh' }));
+      gp.appendChild(el('line', { x1: f1(st[0]), y1: f1(st[1]), x2: f1(bx), y2: f1(by), class: 'nd-tk' }));
+      gp.appendChild(el('polygon', { points: tri, class: 'nd-tkh nd-tkhp' }));
+      gp.appendChild(el('polygon', { points: tri, class: 'nd-tka' }));
+      gp.appendChild(el('circle', { cx: f1(q[0]), cy: f1(q[1]), r: PR, class: 'nd-pc' }));
+      gp.appendChild(el('text', { x: f1(q[0]), y: f1(q[1] + 9), class: 'nd-pg' }, gl(o.b.g)));
+      if (o.b.retro) gp.appendChild(el('text', { x: f1(q[0] + 19), y: f1(q[1] - 12), class: 'nd-rx', 'text-anchor': 'middle' }, 'R'));
+      gp.appendChild(el('text', { x: f1(dp[0]), y: f1(dp[1] + 5), class: 'nd-pd' }, Math.floor(norm(o.b.lon) % 30) + '°'));
       pg.appendChild(gp);
     });
     // المحاور: أسهم عند الحلقة وأسماؤها خارجها
@@ -136,7 +141,7 @@
         var q = pt(L[1], RO), ar = ang(L[1]), ux = Math.cos(ar), uy = Math.sin(ar);
         var tri = f1(q[0] + ux * 13) + ',' + f1(q[1] + uy * 13) + ' ' + f1(q[0] - uy * 5) + ',' + f1(q[1] + ux * 5) + ' ' + f1(q[0] + uy * 5) + ',' + f1(q[1] - ux * 5);
         svg.appendChild(el('polygon', { points: tri, class: 'nd-axa' }));
-        var lp = pt(L[1], RO + 34);
+        var lp = pt(L[1], RO + 36);
         svg.appendChild(el('text', { x: f1(lp[0]), y: f1(lp[1] + 5.5), class: 'nd-ax', 'text-anchor': 'middle' }, L[0]));
       });
     }
