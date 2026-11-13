@@ -200,3 +200,11 @@ html body :is(#cp1-manual,#cp2-manual,#manual,.cp-two)[hidden]{display:none!impo
 html body .geo-pk .geo-note{color:#6b4a2a;font-size:.78rem}
 html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g) :is(#cp1-manual,#cp2-manual,#manual)[hidden]{display:none!important}
 html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g) :is(#cp1-manual,#cp2-manual,#manual)[hidden] *{display:none!important}
+/* التوافق الفلكي: بانر الحساب مكان الرسمة */
+html body section#compat:not(#_a):not(#_b) .cpx-art{display:none!important}
+html body section#compat:not(#_a):not(#_b) .aq-autofill-bar.aq-af-out:not(#_c):not(#_d){display:flex!important;align-items:center;justify-content:space-between;gap:10px;max-width:760px;box-sizing:border-box;margin:6px auto 16px!important;padding:12px 14px!important;border-radius:18px!important;background:linear-gradient(160deg,#fffdf7,#f7ebcf)!important;border:1px solid #d2ae6c!important;box-shadow:0 8px 22px rgba(74,18,36,.10)}
+html body section#compat .aq-autofill-bar.aq-af-out span{font-size:.8rem;line-height:1.6;color:#5a2336;flex:1 1 auto}
+html body section#compat .aq-autofill-bar.aq-af-out .aq-af-note{display:block;font-size:.72rem;color:#8A5A2E}
+html body section#compat .aq-autofill-bar.aq-af-out .aq-autofill-btn{padding:9px 14px!important;font-size:.8rem!important;min-height:0!important;border-radius:12px!important;background:linear-gradient(135deg,#7f3a52,#5a1f33)!important;color:#fff!important;border:1px solid rgba(228,196,134,.6)!important;white-space:nowrap;flex:0 0 auto}
+html body section#compat .aq-autofill-bar.aq-af-out:not(#_c):not(#_d):not(#_e){flex-direction:row!important;flex-wrap:nowrap!important}
+html body section#compat .aq-autofill-bar.aq-af-out span{min-width:0}
