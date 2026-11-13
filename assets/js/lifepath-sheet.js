@@ -246,6 +246,7 @@
     if (q) push('q', IC.heart, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.heart, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); });
     var box = document.createElement('section'); box.className = 'lpg'; box.setAttribute('aria-label', 'قراءة مسارك');
     box.innerHTML = html;
+    var _n = 0, _l = null; Array.prototype.forEach.call(box.children, function (c) { if (c.classList.contains('lpg-h')) { if (_n % 2 && _l) _l.classList.add('lpg-wide'); _n = 0; _l = null; } else { _n++; _l = c; } }); if (_n % 2 && _l) _l.classList.add('lpg-wide');
     box.addEventListener('click', function (e) { var b = e.target.closest('[data-lpg]'); if (b && items[b.getAttribute('data-lpg')]) items[b.getAttribute('data-lpg')](); });
     return box;
   }
