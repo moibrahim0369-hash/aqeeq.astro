@@ -54,3 +54,4 @@ section#for-you.yp-on #fy-body{max-width:640px;margin:8px auto 0;display:block}
 .yp-txt{padding:18px;border-radius:18px;background:var(--cream);border:1px solid var(--line)}.yp-txt small{color:#7a5a4c}.yp-txt p{margin:8px 0 0;line-height:2;color:var(--ink)}
 .yp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--wine);color:#fff;text-decoration:none;font:700 .95rem 'Cairo',sans-serif}
 .yp-det .yp-chip{justify-self:start}
+.yp-more{display:block;width:100%;min-height:46px;margin-top:12px;border-radius:999px;border:1px solid var(--wine);background:transparent;color:var(--wine);font:700 .95rem 'Cairo',sans-serif;cursor:pointer}
