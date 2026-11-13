@@ -21,8 +21,18 @@
     back: sv('<path d="M5 12h14M13 6l6 6-6 6"/>', 2),
     light: sv('<circle cx="12" cy="12" r="4"/><path d="M12 3v2.500M12 18.500V21M3 12h2.500M18.500 12H21M5.600 5.600l1.800 1.800M16.600 16.600l1.800 1.800M5.600 18.400l1.800-1.800M16.600 7.400l1.800-1.800"/>'),
     shadow: sv('<path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/>'),
-    star: sv('<path d="M12 3l2.200 6 6 2.200-6 2.200L12 19.500l-2.200-6-6-2.200 6-2.200z"/>')
+    star: sv('<path d="M12 3l2.200 6 6 2.200-6 2.200L12 19.500l-2.200-6-6-2.200 6-2.200z"/>'),
+    mirror: sv('<ellipse cx="12" cy="9.500" rx="5.500" ry="6.500"/><path d="M12 16v5M9 21h6"/>'),
+    lock: sv('<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'),
+    magnet: sv('<path d="M6 3v8a6 6 0 0 0 12 0V3h-4v8a2 2 0 0 1-4 0V3z"/><path d="M6 7h4M14 7h4"/>'),
+    person: sv('<circle cx="12" cy="7.500" r="3.200"/><path d="M5.500 21v-1.500a6.500 6.500 0 0 1 13 0V21"/>'),
+    body: sv('<circle cx="12" cy="5" r="2.200"/><path d="M12 8v6M7.500 10.500 12 12l4.500-1.500M9.500 21 12 14l2.500 7"/>'),
+    scale: sv('<path d="M12 4v16M6 20h12M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/>'),
+    cross: sv('<path d="M9 4h6v5h5v6h-5v5H9v-5H4V9h5z"/>'),
+    ask: sv('<circle cx="12" cy="12" r="9"/><path d="M9.500 9.500a2.500 2.500 0 1 1 3.500 2.300c-.7.400-1 1-1 1.700M12 17v.01"/>')
   };
+  var TIC = [[/المراية/, 'mirror'], [/البلوكات/, 'lock'], [/الشفرة العاطفية/, 'heart'], [/مغناطيس/, 'magnet'], [/جرح الطفولة/, 'person'], [/البصمة الجسدية/, 'body'], [/جدول المقارنة/, 'scale'], [/روشتة/, 'cross'], [/خريطة التحول/, 'route']];
+  function icFor(t, fb) { for (var i = 0; i < TIC.length; i++) if (TIC[i][0].test(t)) return IC[TIC[i][1]]; return fb; }
   var STT = { past: 'مرحلة مضت', current: 'أنت هنا', future: 'مرحلة قادمة' };
 
   /* ---------- النافذة السفلية ---------- */
@@ -210,7 +220,7 @@
   function hookOf(t, fb) { for (var i = 0; i < HOOK.length; i++) if (HOOK[i][0].test(t)) return HOOK[i][1]; return fb || ''; }
   function gRow(k, ico, title, sub, grp, tone) {
     sub = hookOf(title, sub);
-    return '<button type="button" class="lpg-row' + (tone ? ' b3-ai-' + tone : '') + '" data-lpg="' + k + '" style="--i:' + grp + '"><span class="lpg-ic">' + ico + '</span><span class="lpg-tx"><b>' + esc(title) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span><span class="lpg-go">' + IC.chev + '</span></button>';
+    return '<button type="button" class="lpg-row' + (tone ? ' b3-ai-' + tone : '') + '" data-lpg="' + k + '" style="--i:' + grp + '"><span class="lpg-ic">' + ico + '</span><span class="lpg-tx"><b>' + esc(title) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + (tone ? '<i class="lpg-chip lpg-chip-' + tone + '">' + (tone === 'g' ? 'نقطة قوة' : 'منطقة ظل') + '</i>' : '') + '</span><span class="lpg-go">' + IC.chev + '</span></button>';
   }
   function buildGold() {
     var items = [], html = '', n = 0;
@@ -218,7 +228,7 @@
     function push(k, ico, t, sub, fn, tone) { items[k] = fn; gOrder.push(k); gTitles[k] = t; html += gRow(k, ico, t, sub, n++, tone); }
     var dets = $$('.panel .lp-sections > details', res).concat($$('.aq-lp-blueprint-summary details', res).filter(function (x) { return !SKIP_BP.test(x.textContent.slice(0, 80)); }));
     var made = dets.map(function (x, i) {
-      var t = gTitle(x), sub = gSub(x), k = 'd:' + i, ic = x.classList.contains('is-shadow') ? IC.shadow : x.classList.contains('is-light') ? IC.light : IC.star;
+      var t = gTitle(x), sub = gSub(x), k = 'd:' + i, ic = icFor(t, x.classList.contains('is-shadow') ? IC.shadow : x.classList.contains('is-light') ? IC.light : IC.star);
       if (t.length > 70) { t = t.slice(0, 70); }
       var tone = x.classList.contains('is-shadow') ? 's' : x.classList.contains('is-light') ? 'g' : '';
       return { t: t, k: k, ic: ic, sub: sub, tone: tone, fn: function () {
@@ -233,6 +243,7 @@
     var g2 = take(/المراية|البلوكات|الشفرة العاطفية|مغناطيس|البصمة الجسدية|جدول المقارنة|جرح الطفولة/);
     var g3 = take(/روشتة|خريطة التحول/);
     var rest = made.filter(function (m, i) { return !used[i]; });
+    html += '<p class="lpg-hint"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/></svg><span>اضغط على أي قسم لعرض تفسيره</span></p>';
     html += '<h4 class="lpg-h">أساس شخصيتك<small>من أنت؟</small></h4>';
     g1.forEach(pushMade);
     push('t:name', IC.name, 'بصمة الاسم', 'اقرأ اسمك', function () { openTile('name'); });
@@ -243,7 +254,7 @@
     push('t:stages', IC.stages, 'مراحل العمر الأربع', 'القمة والتحدي لكل مرحلة جواها', function () { openTile('stages'); });
     g3.forEach(pushMade);
     var q = $('.lpj-bottom .lpj-reflect', res);
-    if (q) push('q', IC.heart, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.heart, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); });
+    if (q) push('q', IC.ask, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.ask, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); });
     var box = document.createElement('section'); box.className = 'lpg'; box.setAttribute('aria-label', 'قراءة مسارك');
     box.innerHTML = html;
     var _n = 0, _l = null; Array.prototype.forEach.call(box.children, function (c) { if (c.classList.contains('lpg-h')) { if (_n % 2 && _l) _l.classList.add('lpg-wide'); _n = 0; _l = null; } else { _n++; _l = c; } }); if (_n % 2 && _l) _l.classList.add('lpg-wide');
