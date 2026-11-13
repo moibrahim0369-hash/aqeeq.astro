@@ -34,7 +34,21 @@
       [].slice.call(l.childNodes).forEach(function (n) { if (n.nodeType === 3 && n.textContent.trim()) { var s = document.createElement('span'); s.textContent = n.textContent.trim(); l.replaceChild(s, n); } });
     });
   }
+  function collapse(fs) {
+    if (fs.querySelector('.cp-more')) return;
+    var id = (fs.querySelector('input[type=date]') || {}).id || ''; var pre = id.split('-')[0];
+    var g = function (x) { return document.getElementById(pre + '-' + x); };
+    var up = function (el, sel) { return el && el.closest(sel); };
+    var timeF = up(g('time'), '.field'), chk = up(g('unknown'), 'label.chk'), note = fs.querySelector('.cp-note'),
+        cityF = up(g('city'), '.field'), man = g('manual');
+    if (!timeF || !cityF) return;
+    var d = document.createElement('details'); d.className = 'cp-more';
+    d.innerHTML = '<summary>وقت ومكان الميلاد <small>(اضغط لإدخال الوقت)</small></summary>';
+    [timeF, chk, note, cityF, man].forEach(function (el) { if (el) d.appendChild(el); });
+    fs.appendChild(d);
+  }
   function run() {
+    [].forEach.call(document.querySelectorAll('#cp-form fieldset.cp-person'), collapse);
     ['cp-form', 'synastry-form'].forEach(function (id) {
       var f = document.getElementById(id); if (!f) return;
       f.classList.add('y27-form'); wrapLabelText(f); icons(f);
@@ -43,6 +57,13 @@
     if (mp) { if (!mp.id) mp.id = 'mxm-pair-form'; wrapLabelText(mp); icons(mp); }
     if (window.AqAutofillBuild) window.AqAutofillBuild();
   }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('#cp-form button[type=submit]'); if (!b) return;
+    [].forEach.call(document.querySelectorAll('#cp-form details.cp-more'), function (d) {
+      var t = d.querySelector('input[type=time]'), u = d.querySelector('input[type=checkbox]');
+      if (t && !t.value && !(u && u.checked)) d.open = true;
+    });
+  }, true);
   var n = 0; (function tick() { run(); if (++n < 12) setTimeout(tick, 400); })();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
 })();

@@ -156,7 +156,8 @@ html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) form.mxm
 html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) form.mxm-form .field:has(.mxp-fi)>:is(input,select,.aq-ds,.aq-dsx,.geo-picker,div):not(label):not(#_a):not(#_b){grid-column:2;grid-row:2;min-width:0;margin:0!important}
 html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) form.mxm-form .cp-two{display:block!important}
 html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) form.mxm-form .mxm-grp,
-html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) .mxm-grp>h4,
+html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) .mxm-grp>h4{background:linear-gradient(135deg,#7f3a52,#5a1f33)!important;color:#fff!important;border-radius:12px!important;padding:8px 14px!important;margin:0 0 10px!important;font-size:.95rem!important;width:100%;box-sizing:border-box}
+html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) form.mxm-form .mxm-grp{display:block!important;border:0!important;background:transparent!important;padding:0!important;margin:0 0 6px!important}
 
 /* autofill bar in compat forms */
 html body :is(section#compat,section#lifepath-compat,#matrix) :is(form.cp-form,form.syn-form,form.mxm-form) .aq-autofill-bar:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){display:flex!important;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:8px;padding:6px 8px!important;margin:0 0 12px!important;border-radius:12px!important;background:linear-gradient(160deg,#fffdf7,#f7ebcf)!important;border:1px solid #d2ae6c!important}
@@ -176,3 +177,20 @@ html body section.sec#invest:not(#_a):not(#_b):not(#_c) .inv-head{text-align:cen
 html body section.sec#invest:not(#_a):not(#_b):not(#_c) .inv-head h2{font-size:clamp(1.7rem,7vw,2.2rem)!important;margin:0!important;text-align:center!important}
 html body section.sec#invest:not(#_a):not(#_b):not(#_c) :is(.b3-vip,.b3-vip h3,.b3-vip p){text-align:center!important}
 html body section.sec#invest:not(#_a):not(#_b):not(#_c) .inv-note{text-align:center}
+
+/* compat: فورم مضغوط — الاسم والجنس في صف، الوقت بجانب التاريخ، حقول الإحداثيات اليدوية مخفية */
+html body section#compat:not(#_a):not(#_b):not(#_c) fieldset.cp-person .cp-note{display:none!important}
+html body section#compat:not(#_a):not(#_b):not(#_c) fieldset.cp-person .field:has(.mxp-fi){margin:0 0 8px!important;padding:8px 10px!important}
+html body section#compat:not(#_a):not(#_b):not(#_c) fieldset.cp-person .chk{margin:0 0 8px!important;padding:8px 12px!important}
+html body section#compat:not(#_a):not(#_b):not(#_c) fieldset.cp-person>legend{margin:0 0 8px!important}
+html body section#compat:not(#_a):not(#_b):not(#_c) form.cp-form{padding:12px 10px!important}
+
+html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more{border:1px dashed #d2ae6c;border-radius:14px;padding:0 10px 4px;margin:0 0 8px;background:#fffaf0}
+html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more>summary{cursor:pointer;list-style:none;padding:12px 4px;font-weight:700;font-size:.86rem;color:#5a2336;display:flex;align-items:center;justify-content:space-between}
+html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more>summary::-webkit-details-marker{display:none}
+html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more>summary::after{content:"+";font-size:1.2rem;color:#8A5A2E}
+html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more[open]>summary::after{content:"−"}
+html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more>summary small{font-weight:400;color:#8A5A2E;font-size:.74rem}
+html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more .cp-note{display:block!important;font-size:.76rem;margin:0 0 8px}
+html body section#compat:not(#_a):not(#_b):not(#_c):not(#_d) fieldset.cp-person>*:not(legend){margin-inline:0!important}
+html body section#compat:not(#_a):not(#_b):not(#_c):not(#_d) fieldset.cp-person>.cp-two,html body section#compat:not(#_a):not(#_b):not(#_c):not(#_d) fieldset.cp-person>details{margin-bottom:8px!important}
