@@ -160,6 +160,41 @@
     });
   }
 
+
+  /* ---------- قائمة الصفوف الذهبية الموحّدة ---------- */
+  var SKIP_BP = /الجوهر والرسالة|فخ الظل/;
+  function gTitle(d) { var t = $('.lpc-tx b', $('summary', d)) || $('b', $('summary', d)); var sm = $('summary', d); var tx = t ? t.textContent : (sm ? sm.textContent : ''); return tx.replace(/\s+/g, ' ').replace(/\s*متاح (مجاناً|مجانًا|بالكامل|للأعضاء).*$/, '').replace(/^[+−-]\s*/, '').trim(); }
+  function gSub(d) { var a = $$('.lpc-tx small', d).map(function (x) { return x.textContent.replace(/\s+/g, ' ').trim(); }).filter(function (x) { return x && !/^متاح/.test(x); }); return a[0] || ''; }
+  function gRow(k, ico, title, sub, grp) {
+    return '<button type="button" class="lpg-row" data-lpg="' + k + '" style="--i:' + grp + '"><span class="lpg-ic">' + ico + '</span><span class="lpg-tx"><b>' + esc(title) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span><span class="lpg-go">' + IC.chev + '</span></button>';
+  }
+  function buildGold() {
+    var items = [], html = '', n = 0;
+    function push(k, ico, t, sub, fn) { items[k] = fn; html += gRow(k, ico, t, sub, n++); }
+    var d = $('.daily', res);
+    if (d) push('daily', IC.light, ($('h4', d) || {}).textContent || 'رسالة اليوم', 'ما يناسبك اليوم', function () { openSheet('daily', IC.light, 'رسالة اليوم', '', '<div class="lps-daily">' + d.innerHTML + '</div>'); });
+    html += '<h4 class="lpg-h">رحلتك عبر السنين</h4>'; 
+    push('t:stages', IC.stages, 'مراحل العمر', 'اكتشف مراحلك', function () { openTile('stages'); });
+    push('t:peaks', IC.peaks, 'القمم', 'اصعد قممك', function () { openTile('peaks'); });
+    push('t:chal', IC.chal, 'التحديات', 'واجه دروسك', function () { openTile('chal'); });
+    push('t:name', IC.name, 'بصمة الاسم', 'اقرأ اسمك', function () { openTile('name'); });
+    html += '<h4 class="lpg-h">قراءة مسارك</h4>';
+    $$('.panel .lp-sections > details', res).concat($$('.aq-lp-blueprint-summary details', res).filter(function (x) { return !SKIP_BP.test(x.textContent.slice(0, 80)); })).forEach(function (x, i) {
+      var t = gTitle(x), sub = gSub(x), k = 'd:' + i, ic = x.classList.contains('is-shadow') ? IC.shadow : x.classList.contains('is-light') ? IC.light : IC.star;
+      if (t.length > 70) { t = t.slice(0, 70); }
+      push(k, ic, t, sub, function () {
+        var b = $('.lp-sec-body, .lpa-body', x); if (!b) return;
+        openSheet(k, ic, t, sub, '<div class="lps-detail lps-read">' + b.innerHTML + '</div>');
+      });
+    });
+    var q = $('.lpj-bottom .lpj-reflect', res);
+    if (q) { html += '<h4 class="lpg-h">للتأمل</h4>'; push('q', IC.heart, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.heart, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); }); }
+    var box = document.createElement('section'); box.className = 'lpg'; box.setAttribute('aria-label', 'قراءة مسارك');
+    box.innerHTML = html;
+    box.addEventListener('click', function (e) { var b = e.target.closest('[data-lpg]'); if (b && items[b.getAttribute('data-lpg')]) items[b.getAttribute('data-lpg')](); });
+    return box;
+  }
+
   /* ---------- التشغيل ---------- */
   function run() {
     var has = !res.hidden && res.querySelector('.numbadge') && res.querySelector('.lp-sections');
@@ -171,8 +206,14 @@
       var t = buildTiles();
       if (sm && sm.nextSibling) res.insertBefore(t, sm.nextSibling); else res.insertBefore(t, res.firstChild);
     }
+    var sig = $$('.panel .lp-sections > details, .aq-lp-blueprint-summary details', res).length + '|' + (res.querySelector('.lpj-reflect') ? 1 : 0) + '|' + (res.querySelector('.daily') ? 1 : 0), cg = res.querySelector('.lpg');
+    if (cg && cg.getAttribute('data-sig') !== sig) { cg.remove(); cg = null; }
+    if (!cg && res.querySelector('.panel .lp-sections > details')) {
+      var sm2 = $('.chart-summary-card', res), g = buildGold(); g.setAttribute('data-k', key); g.setAttribute('data-sig', sig);
+      if (sm2 && sm2.nextSibling) res.insertBefore(g, sm2.nextSibling); else res.insertBefore(g, res.firstChild);
+    }
     fixAccordions();
-    if (key !== lastKey) { lastKey = key; sec.scrollTop = 0; closeSheet(); }
+    if (key !== lastKey) { lastKey = key; sec.scrollTop = 0; closeSheet(); var og = res.querySelector('.lpg'); if (og && og.getAttribute('data-k') !== key) { og.remove(); run(); } }
   }
   var q;
   new MutationObserver(function () { clearTimeout(q); q = setTimeout(run, 60); }).observe(res, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
