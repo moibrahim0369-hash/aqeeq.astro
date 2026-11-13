@@ -1,7 +1,7 @@
 /* فوتر موحد خفيف في نهاية الصفحات الداخلية: روابط قانونية + حقوق. يُبنى مرة واحدة (استنساخ ثابت، بلا نقل ديناميكي). */
 (function () {
   'use strict';
-  var IDS = ['matrix', 'lifepath', 'lifepath-compat', 'matrix-compat', 'chart', 'astro-maps', 'for-you', 'sky', 'signs', 'compat', 'individual', 'relationships', 'energy-compatibility', 'world', 'invest'];
+  var IDS = ['matrix', 'lifepath', 'lifepath-compat', 'matrix-compat', 'matrix-child', 'chart', 'astro-maps', 'for-you', 'sky', 'signs', 'compat', 'individual', 'relationships', 'energy-compatibility', 'world', 'invest'];
   function build() {
     var orig = document.querySelector('body > footer.foot'); if (!orig) return;
     var soc = orig.querySelector('.aq-soc'), nav = orig.querySelector('nav.sp-foot'), dis = orig.querySelector('.foot-dis'), cp = orig.querySelector('.copy');

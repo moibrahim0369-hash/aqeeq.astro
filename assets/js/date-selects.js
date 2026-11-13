@@ -2,7 +2,7 @@
    القيمة تُكتب في الحقل الأصلي بصيغة YYYY-MM-DD ويُطلق عليه input/change. */
 (function () {
   'use strict';
-  var IDS = ['m-date', 'lp-date', 'f-date', 'syn-date-a', 'syn-date-b', 'eam-b-date', 'mxm-d1', 'mxm-d2', 'mxm-d3', 'mxc-d1', 'mxc-d2', 'y27-date', 'kt-date', 'iv-date'];
+  var IDS = ['m-date', 'lp-date', 'f-date', 'syn-date-a', 'syn-date-b', 'eam-b-date', 'mxm-d1', 'mxm-d2', 'mxm-d3', 'mxc-d1', 'mxc-d2', 'mxk-d', 'y27-date', 'kt-date', 'iv-date'];
   var MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
   function opt(v, t) { var o = document.createElement('option'); o.value = v; o.textContent = t; return o; }
   function mk(ph, cls, label) {
