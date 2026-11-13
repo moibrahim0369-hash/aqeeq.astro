@@ -133,6 +133,39 @@
         '<div class="mxm-body"><p class="mxm-intro">' + esc(s.intro) + '</p>' + body + '</div></details>';
     }).join('');
   }
+  /* أكورديون الشراكة: نفس بنية بطاقات المصفوفة الفردية (.aqm-acc-item) وتفتح في نافذة القراءة نفسها على الهاتف */
+  var PAIR_SUB = ['ما الذي جمعكما في الأصل؟', 'كيف يراكما الناس حين تقفان معًا؟', 'أين ينفتح رزقكما وأين ينغلق؟', 'أين يتكرر الخلاف بينكما بنفس الشكل؟', 'ما الذي تحمله علاقتكما من القديم؟', 'أين ترتاح علاقتكما حين تخلوان؟', 'ما الخطوة الصغيرة التي تحمي العلاقة؟', 'أي موضع إن أُهمل صنع مسافة بينكما؟', 'ما الذي يرمّم ما انكسر بينكما؟', 'ماذا تبنيانه معًا أمام الناس؟', 'ما الطاقة الكامنة التي تنضج بالصبر؟'];
+  var SLOT_IC = {
+    p: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>',
+    d: '<path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5V19c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z"/><path d="M12 6v13.5"/>',
+    s: '<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/>',
+    c: '<path d="M12 4L21 19H3z"/><path d="M12 10v4M12 16.5v.5"/>'
+  };
+  function slotIc(k) { return '<svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + SLOT_IC[k] + '</svg>'; }
+  function slot(cls, k, title, inner) { return '<section class="aqm-slot ' + cls + '">' + (title ? '<h4 class="aqm-slot-title">' + slotIc(k) + ' ' + title + '</h4>' : '') + '<div class="aqm-slot-p">' + inner + '</div></section>'; }
+  function pairAccHtml(specs, get) {
+    return '<div class="aqm-accordion-container mxc-acc">' + specs.map(function (sp, i) {
+      var badges = '', body = slot('aqm-slot-primary', 'p', 'عن هذا القسم', '<p>' + esc(sp.intro) + '</p>');
+      sp.pts.forEach(function (p, j) {
+        var v = get(p[0]), a = AD().getArcanaInfo(v.n);
+        badges += '<span class="aqm-badge-arcana aqm-tone-' + (j % 4) + '"><b class="aqm-bn">' + v.n + '</b><span class="aqm-bl">' + esc(p[1]) + '</span></span> ';
+        body += slot('aqm-slot-detailed', 'd', esc(p[1]) + ' · ' + v.n + ' ' + esc(a.name), '<p>' + esc(a.archetype) + '.</p>') +
+          slot('aqm-slot-strengths', 's', 'في حالتها الصافية', '<p>' + esc(a.light) + '.</p>') +
+          slot('aqm-slot-challenges', 'c', 'حين تختل', '<p>' + esc(a.shadow) + '.</p>');
+      });
+      return '<div class="aqm-acc-item" id="mxc-sec-' + i + '" data-section-id="pair-' + i + '"><button class="aqm-acc-header" type="button" aria-expanded="false">' +
+        '<div class="aqm-acc-header-left"><span class="aqm-acc-icon" aria-hidden="true">' + ico(sp.i) + '</span><div class="aqm-acc-title-group"><h3 class="aqm-acc-title">' + esc(sp.t) + '</h3><p class="aqm-acc-subtitle">' + esc(PAIR_SUB[i] || '') + '</p></div></div>' +
+        '<div class="aqm-acc-badges">' + badges + '</div><span class="aqm-acc-chevron" aria-hidden="true">›</span></button>' +
+        '<div class="aqm-acc-body">' + '<div class="aqm-content-grid">' + body + '</div></div></div>';
+    }).join('') + '</div>';
+  }
+  function bindAcc(host) {
+    if (host.__mxcAcc) return; host.__mxcAcc = true;
+    host.addEventListener('click', function (e) {
+      var h = e.target.closest && e.target.closest('.aqm-acc-header'); if (!h || !host.contains(h)) return;
+      var it = h.closest('.aqm-acc-item'), open = it.classList.toggle('open'); h.setAttribute('aria-expanded', String(open));
+    });
+  }
   function cornerRow(title, P) {
     return '<div class="mxm-row"><span>' + esc(title) + '</span>' + ['A', 'B', 'C', 'D', 'E'].map(function (k) { return '<b>' + P[k] + '</b>'; }).join('') + '</div>';
   }
@@ -144,9 +177,9 @@
     try { var N = window.AqeeqNumerology; if (N && N.generateMatrixSVG) map = '<div class="aqm-canvas-wrap mxm-map">' + N.generateMatrixSVG(pairFull(d1, d2)).replace(/>undefined</g, '>—<').replace(/data-arcana="undefined"/g, 'data-arcana=""') + '</div>'; } catch (e) { map = ''; }
     host.innerHTML = map + '<div class="mxm-sum"><h3>مصفوفة الشراكة</h3><p>أرقام العلاقة ناتجة من جمع أركان مصفوفتيكما ثم اختزالها إلى طاقات المصفوفة.</p>' +
       '<div class="mxm-tab">' + HEADROW + cornerRow(n1 || 'أنت', R.a) + cornerRow(n2 || 'شريكك', R.b) + '<div class="mxm-sep"></div>' + cornerRow('الشراكة', c) + '</div></div>' +
-      accHtml(PAIR, function (k) { return { n: c[k] }; }) +
+      pairAccHtml(PAIR, function (k) { return { n: c[k] }; }) +
       '<p class="mxm-note">قراءة العلاقة بين شريكين أيًّا كانت صلتهما، والأرقام محسوبة من تاريخي الميلاد.</p>';
-    host.hidden = false;
+    host.hidden = false; bindAcc(host);
   }
   function renderChild(host, d, name) {
     var P = ofDate(d), age = ageOf(P.birth), ae = ageEnergy(P, age);
