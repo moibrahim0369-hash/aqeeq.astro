@@ -55,3 +55,17 @@ section#for-you.yp-on #fy-body{max-width:640px;margin:8px auto 0;display:block}
 .yp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--wine);color:#fff;text-decoration:none;font:700 .95rem 'Cairo',sans-serif}
 .yp-det .yp-chip{justify-self:start}
 .yp-more{display:block;width:100%;min-height:46px;margin-top:12px;border-radius:999px;border:1px solid var(--wine);background:transparent;color:var(--wine);font:700 .95rem 'Cairo',sans-serif;cursor:pointer}
+
+/* ضبط الموبايل: الاسم داخل الحدود، السفر بالزمن في سطر واحد، والعنوان في صف مرتب */
+html body section#for-you .yp-head:not(#_a){margin:4px 0 16px}
+html body section#for-you .yp-who:not(#_a){flex:1;min-width:0}
+html body section#for-you .yp-who>div:not(#_a){min-width:0}
+html body section#for-you .yp-who h2:not(#_a){font:700 1.2rem/1.4 'Amiri','Cairo',serif!important;margin:0!important;color:var(--wine)!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:start!important;letter-spacing:0}
+html body section#for-you .yp-who small:not(#_a){display:block;font-size:.8rem}
+html body section#for-you .yp-tt:not(#_a){flex-wrap:nowrap;align-items:center}
+html body section#for-you .yp-tt-l:not(#_a){flex:0 0 auto;white-space:nowrap;font-size:.88rem;padding:0 6px 0 4px}
+html body section#for-you .yp-tt-l select:not(#_a){font-size:.95rem}
+html body section#for-you .yp-tt-d:not(#_a){flex:1;min-width:0;text-align:end}
+html body section#for-you .yp-tt-d b:not(#_a){font-size:1.1rem}
+html body section#for-you .yp-tt-d small:not(#_a){display:block;font-size:.76rem;line-height:1.5}
+html body section#for-you .yp-cy-t small:not(#_a){line-height:1.6}
