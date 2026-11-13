@@ -27,27 +27,20 @@
 .nd-legend{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;list-style:none;margin:8px 0 0;padding:0;font-size:.78rem;color:#6f6168}
 .nd-legend i{display:inline-block;width:22px;height:2px;margin-inline-end:6px;vertical-align:middle}
 .nd-warn{margin:10px 0 0;padding:10px 12px;border:1px dashed rgba(183,138,82,.6);border-radius:10px;background:rgba(237,227,213,.5);font-size:.84rem;line-height:1.7;color:#5b4a52}
-/* العجلة */
-.nd-c-out{fill:#fff;stroke:rgba(183,138,82,.6);stroke-width:1}
-.nd-seg{fill:var(--b);stroke:#e4c486;stroke-width:.6}.nd-seg:nth-child(even){fill:#7c3149}
-.nd-sg{fill:#F3DDB0;font-size:27px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
-.nd-c{fill:none;stroke:rgba(183,138,82,.7);stroke-width:1}.nd-c-dash{stroke-dasharray:2 4;stroke:rgba(183,138,82,.5)}
-.nd-hl{stroke:rgba(183,138,82,.7);stroke-width:1}.nd-hl-ax{stroke:var(--b);stroke-width:1.3}
-.nd-hn{fill:#6a5760;font-size:15px;font-weight:600}.nd-ax{fill:var(--ink);font:700 17px 'IBM Plex Sans Arabic',sans-serif}
-.nd-pc{fill:#fff;stroke:#B78A52;stroke-width:1.6}.nd-pg{fill:var(--b);font-size:21px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
-.nd-rx{fill:#c23b3b;font:700 11px sans-serif}.nd-tk{stroke:var(--b);stroke-width:1.8}
-.nd-pl{cursor:pointer;outline:0;transform-box:fill-box;transform-origin:center}
-.nd-pl:hover .nd-pc,.nd-pl:focus-visible .nd-pc,.nd-pl.on .nd-pc{fill:#F6E8CC;stroke:var(--b);stroke-width:2}
-.nd-asp{opacity:.85}.nd-al{stroke-width:1.5;stroke-linecap:round}
-.nd-wheel .nd-w-in{opacity:0;transform-origin:260px 260px;transform:scale(.92) rotate(-12deg)}
-.nd-go .nd-wheel .nd-w-in{animation:ndSpin .9s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes ndSpin{to{opacity:1;transform:none}}
-.nd-wheel .nd-pl{opacity:0}
-.nd-go .nd-wheel .nd-pl{animation:ndPop .5s cubic-bezier(.2,1.3,.4,1) forwards;animation-delay:calc(450ms + var(--i)*70ms)}
-@keyframes ndPop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
-.nd-wheel .nd-al{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
-.nd-go .nd-wheel .nd-al{animation:ndDraw .9s ease forwards;animation-delay:calc(900ms + var(--i)*45ms)}
-@keyframes ndDraw{to{stroke-dashoffset:0}}
+/* العجلة: أنماطها داخل الـSVG نفسه كي تُصدَّر كصورة كما تظهر. هنا الظهور فقط */
+.nd-wheel{opacity:0}.nd-go .nd-wheel{animation:ndFade .45s ease forwards}
+@keyframes ndFade{to{opacity:1}}
+.nd-pl:focus-visible{outline:2px solid #70263F;outline-offset:2px;border-radius:50%}
+/* أزرار تنزيل الصورة ونسخ البيانات */
+.nd-tools{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 2px}
+.nd-tool{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:6px 10px;border:1.3px solid #D2AE6C;border-radius:14px;background:linear-gradient(180deg,#FFFDF7,#F7EBCF);color:#6A2038;font:600 .86rem/1.3 'IBM Plex Sans Arabic',system-ui,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,box-shadow .15s}
+.nd-tool svg{flex:0 0 auto;width:20px;height:20px}.nd-tool:active{transform:scale(.97)}.nd-tool:disabled{opacity:.7;cursor:progress}
+.nd-tool.is-done{background:#70263F;color:#FFF3D6;border-color:#70263F}
+@media(max-width:360px){.nd-tools{grid-template-columns:1fr}}
+/* أثناء تركيب النتيجة: مؤشر هادئ بدل محتوى يقفز */
+#result.nd-busy>*,html body #result.nd-busy.nd-on>*,html.ndr-on body #result.nd-busy.nd-on>*{display:none!important}
+#result.nd-busy::before{content:"";display:block;width:34px;height:34px;margin:22vh auto;border:3px solid rgba(183,138,82,.35);border-top-color:#70263F;border-radius:50%;animation:ndSpinLoad .8s linear infinite}
+@keyframes ndSpinLoad{to{transform:rotate(360deg)}}
 /* نظرة عامة */
 .nd-over{padding:clamp(18px,3vw,26px);border-radius:18px;background:linear-gradient(160deg,#6a2a3d,var(--bd));color:#F7F2EA;border:1px solid rgba(228,196,134,.45);box-shadow:0 16px 36px rgba(74,26,43,.3)}
 .nd-over h4{margin:0 0 6px;font:700 1.7rem 'Amiri',serif;color:#fff}.nd-over>p{margin:0 0 16px;font-size:.92rem;line-height:1.9;color:#eadccf}
