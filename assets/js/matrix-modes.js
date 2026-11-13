@@ -179,9 +179,30 @@
     });
     fromHash();
   }
-  window.AqMatrixModes = { fromCorners: fromCorners, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy };
+  /* توافق المصفوفة كصفحة مستقلة #matrix-compat: نفس حساب وقراءة وضع الشريكين، بلا لمس صفحة المصفوفة */
+  function buildCompatPage() {
+    var sec = document.getElementById('matrix-compat'), form = document.getElementById('mxc-form'), out = document.getElementById('mxc-result');
+    if (!sec || !form || !out || form.__mxc || !AD()) return;
+    form.__mxc = true;
+    var err = document.getElementById('mxc-error'), explain = document.getElementById('mxc-explain');
+    function val(id) { return (document.getElementById(id) || {}).value || ''; }
+    function show(on) { form.hidden = on; if (explain) explain.hidden = on; out.hidden = !on; }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); err.hidden = true;
+      var d1 = val('mxc-d1'), d2 = val('mxc-d2');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(d1) || !/^\d{4}-\d{2}-\d{2}$/.test(d2)) { err.textContent = 'اختر تاريخ الميلاد كاملًا لكل طرف: اليوم والشهر والسنة.'; err.hidden = false; return; }
+      try {
+        renderPair(out, d1, d2, val('mxc-n1').trim(), val('mxc-n2').trim());
+        var back = document.createElement('button'); back.type = 'button'; back.className = 'btn mxc-again'; back.textContent = 'حساب جديد';
+        back.addEventListener('click', function () { show(false); sec.scrollTop = 0; });
+        out.appendChild(back); show(true); sec.scrollTop = 0;
+      } catch (x) { err.textContent = 'تعذّر الحساب. راجع التاريخين وحاول مرة أخرى.'; err.hidden = false; }
+    });
+  }
+  window.AqMatrixModes = { fromCorners: fromCorners, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build); else build();
+    var boot = function () { build(); buildCompatPage(); var n = 0; (function t() { buildCompatPage(); if (++n < 12 && !(document.getElementById('mxc-form') || {}).__mxc) setTimeout(t, 400); })(); };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   }
 })();
