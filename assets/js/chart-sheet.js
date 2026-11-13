@@ -56,12 +56,14 @@
     var panel = row.closest('[data-nd-panel]'), kind = panel ? panel.getAttribute('data-nd-panel') : '';
     var name = ($('b', row) || {}).textContent || '', mid = row.children[2] ? row.children[2].textContent.trim() : '', last = ($('.nd-rh', row) || {}).textContent || '';
     var g = $('.nd-rg', row);
+    var t = row.querySelector('template.il-content'), extra = t ? t.innerHTML : '';
+    if (row.classList.contains('il-row')) { openSheet(g ? g.innerHTML : ICO.planet, name, [mid, last].filter(Boolean).join(' · '), extra); return; }
     if (kind === 'aspects') {
       var a = AS[mid] || ['اتصال', 'علاقة زاوية بين الطاقتين.'];
       openSheet(g ? g.innerHTML : ICO.asp, name, mid + ' · ' + last,
-        '<div class="ndr-facts">' + fact('نوع الاتصال', esc(mid)) + fact('الفارق', esc(last.replace('فارق', '').trim())) + '</div><h4>' + esc(a[0]) + '</h4><p>' + esc(a[1]) + '</p>' + pending('التفسير المفصل لاتصالك هذا قيد الإضافة.'));
+        '<div class="ndr-facts">' + fact('نوع الاتصال', esc(mid)) + fact('الفارق', esc(last.replace('فارق', '').trim())) + '</div><h4>' + esc(a[0]) + '</h4><p>' + esc(a[1]) + '</p>' + (extra || pending('التفسير المفصل لاتصالك هذا قيد الإضافة.')));
     } else if (kind === 'houses') {
-      openSheet(ICO.house, name, mid, '<div class="ndr-facts">' + fact('البيت', esc(name)) + fact('البرج', esc(mid)) + '</div>' + pending('تفسير هذا البيت قيد الإضافة.'));
+      openSheet(ICO.house, name, mid, '<div class="ndr-facts">' + fact('البيت', esc(name)) + fact('البرج', esc(mid)) + '</div>' + (extra || pending('تفسير هذا البيت قيد الإضافة.')));
     } else {
       var house = last && last !== '—' ? last : 'يظهر مع وقت الميلاد';
       openSheet(g ? '<span class="ndr-gl">' + g.innerHTML + '</span>' : ICO.planet, name, mid,
@@ -70,7 +72,7 @@
   }
   document.addEventListener('click', function (e) {
     var row = e.target.closest && e.target.closest('#result .nd-list .nd-row'); if (!row) return;
-    if (!window.matchMedia('(max-width:820px)').matches) return;
+    if (!row.querySelector('template.il-content') && !window.matchMedia('(max-width:820px)').matches) return;
     rowClick(row);
   });
 
