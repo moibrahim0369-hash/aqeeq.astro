@@ -9,7 +9,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261114a';
+  var VERSION = '20261114b';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -196,6 +196,17 @@
     return S;
   }
 
+  /* ---------- نتيجة تقريبية لتاريخ ناقص: كواكب بطيئة في أبراجها فقط (نصوص sign_only) ---------- */
+  var GLY = { sun: '☉', moon: '☽', mercury: '☿', venus: '♀', mars: '♂', jupiter: '♃', saturn: '♄', uranus: '♅', neptune: '♆', pluto: '♇' };
+  function partial(list) {
+    return Promise.all(list.map(function (x) { return load(x.key); })).then(function (lists) {
+      var ix = indexOf(lists);
+      return rows(list.map(function (x, i) {
+        return row(i, GLY[x.key], LABEL[x.key], SIGN_AR[x.sign], '', entry(ix, idSignOnly(x.key, x.sign), true));
+      }));
+    });
+  }
+
   /* ---------- الربط بالصفحة ---------- */
   function listWrap(html) { return '<div class="nd-list il-wrap">' + html + '</div>'; }
   function inject(S, tries) {
@@ -235,6 +246,6 @@
     });
   }
 
-  return { boot: boot, build: build, sections: sections, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idStellium: idStellium, idBlend: idBlend, idSignOnly: idSignOnly,
+  return { partial: partial, boot: boot, build: build, sections: sections, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idStellium: idStellium, idBlend: idBlend, idSignOnly: idSignOnly,
     SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, POINTS: POINTS, ASPECTS: ASPECTS };
 });
