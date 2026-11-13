@@ -145,12 +145,8 @@
   }
 
   function render(m, ix) {
-    var out = '<header class="il-head"><span class="il-eyebrow">تفسير خريطتك</span><h3>اقرأ خريطتك بيتًا بيتًا</h3>' +
-      '<p>افتح أي بيت لترى الكواكب التي تسكنه، ثم افتح الزوايا والعقد القمرية لتكتمل الصورة.</p></header>';
-    if (!m.known) {
-      out += '<p class="il-note">وقت الميلاد غير معروف، لذلك لا تظهر البيوت ولا الزوايا. أضف وقت ميلادك لتظهر القراءة كاملة.</p>';
-      return out;
-    }
+    var out = '';
+    if (!m.known) return out;
     out += '<section class="il-group"><h4 class="il-gt">البيوت الاثنا عشر</h4>' + m.houses.map(function (H) {
       var chips = H.occupants.length ? H.occupants.map(function (k) { return '<i>' + esc(LABEL[k]) + '</i>'; }).join('') : '<i class="il-empty">بيت خالٍ من الكواكب</i>';
       var sum = '<b class="il-num">' + H.n + '</b><span class="il-ht"><strong>البيت ' + ORD[H.n - 1] + ' · ' + esc(HOUSE_AR[H.n - 1]) + '</strong><small>' + esc(SIGN_AR[H.sign]) + ' على رأس البيت</small><span class="il-chips">' + chips + '</span></span>' + CHEV;

@@ -104,3 +104,19 @@ html.ndr-on body #result .nd-stack>*{order:0!important}
 .nd-edit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:46px;margin:0;padding:0 16px;border:1.3px solid #D2AE6C;border-radius:16px;background:linear-gradient(180deg,#FFFDF7,#F7EBCF);color:#6A2038;font:600 .92rem 'IBM Plex Sans Arabic',sans-serif;cursor:pointer}
 .nd-edit svg{width:18px;height:18px;flex:0 0 auto}
 html.ndr-on body #result .nd-edit{order:1}
+
+/* v20261113c: أيقونات المربعات الثلاثة، زر التعديل كأيقونة جانبية، رفع الخريطة */
+html.ndr-on body aside.seo-authority-block.lpk{display:none!important}
+html.ndr-on body #result .nd-chip-i{display:grid!important;width:34px;height:34px;margin:0 auto 4px;background:linear-gradient(160deg,#FFFDF7,#F1DFB4);border:1.2px solid #D2AE6C;color:#6A2038}
+html.ndr-on body #result .nd-chip-i svg{width:18px;height:18px}
+html.ndr-on body #result .nd-chip{align-items:center!important;justify-content:flex-start;gap:2px!important;padding:10px 6px!important}
+html.ndr-on body #result .nd-chip-t{justify-items:center;width:100%}
+html.ndr-on body #result .nd-title{position:relative;padding:4px 54px 0!important;min-height:52px}
+html.ndr-on body #result .nd-title .nd-edit{position:absolute;top:2px;inset-inline-end:0;width:44px;height:44px;min-height:0;padding:0;border-radius:50%;border:1.3px solid #D2AE6C;background:linear-gradient(145deg,#8A3350,#4A1224);color:#FFF3D6;box-shadow:0 6px 14px rgba(74,18,36,.28);display:grid;place-items:center}
+html.ndr-on body #result .nd-title .nd-edit svg{width:20px;height:20px}
+html.ndr-on body #result .nd-root{gap:8px!important}
+html.ndr-on body #result .nd-title h3{font-size:1.3rem!important}
+html.ndr-on body #result .nd-title p{margin-top:0!important}
+html.ndr-on body #result .nd-wtop{padding-top:0!important;margin-top:-4px}
+html.ndr-on body #result .nd-wtop>header{margin-bottom:4px!important}
+html.ndr-on body #result .nd-chips{order:5}
