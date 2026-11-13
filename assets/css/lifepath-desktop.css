@@ -1,0 +1,52 @@
+/* مسار الحياة (قبل الحساب) على الديسكتوب: نفس تصميم الموبايل بعرض مناسب */
+@media(min-width:821px){
+html body section#lifepath.lpx,html body section#lifepath.lpx:target,html:root body section.sec.lpx#lifepath:target{background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.6) 3%,rgba(248,243,232,0) 10%),url("../art/lifepath-top.svg"),url("../art/lifepath-foot.svg"),linear-gradient(180deg,#F5EDDF,#F7F1E6 40%,#F7F3EC)!important;background-size:100% 100%,100% auto,100% auto,auto!important;background-position:0 0,center 0,center bottom,0 0!important;background-repeat:no-repeat!important;background-attachment:local!important}
+html body section#lifepath.lpx .lpx-art,html body section#lifepath.lpx .lpx-moons{opacity:.0!important;display:none!important}
+html body section#lifepath.lpx .aq-section-topbar,html body section#lifepath.lpx .aq-section-topbar *{background-color:transparent!important;backdrop-filter:none!important}
+html body section#lifepath.lpx .lpx-head{position:relative;isolation:isolate;margin-top:-6px}
+html body section#lifepath.lpx .lpx-head::before{content:"";position:absolute;inset:-14px -22px -10px;z-index:-1;border-radius:50%;background:radial-gradient(ellipse at center,rgba(251,247,239,.78) 0,rgba(251,247,239,.62) 55%,rgba(251,247,239,0) 100%);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 78%);mask-image:radial-gradient(ellipse at center,#000 30%,transparent 78%)}
+html body section#lifepath.lpx .lpx-head h2{font-size:clamp(1.9rem,9.2vw,2.4rem)!important;margin:2px 0!important;line-height:1.25!important}
+html body section#lifepath.lpx .lpx-head p{font-size:.94rem!important;line-height:1.75!important;margin:6px 0 0!important}
+html body section#lifepath.lpx form#lpform{display:grid!important;grid-template-columns:1fr 1fr;column-gap:8px;row-gap:12px;padding:14px 12px 14px!important;background:linear-gradient(180deg,#fff,#FDF8EC)!important;border:1.5px solid #6B1D33!important;border-radius:22px!important;box-shadow:0 14px 34px rgba(74,18,36,.16)!important}
+html body section#lifepath.lpx form#lpform > *{grid-column:1/-1}
+html body section#lifepath.lpx form#lpform .field:has(#lp-name){grid-column:1;grid-row:2}
+html body section#lifepath.lpx form#lpform .field:has(#lp-gender){grid-column:2;grid-row:2}
+html body section#lifepath.lpx form#lpform .field:has(.aq-ds){grid-row:3}
+html body section#lifepath.lpx form#lpform .aq-autofill-bar{grid-row:1;display:flex!important;flex-direction:row!important;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px!important;border-radius:12px!important;margin:0!important}
+html body section#lifepath.lpx form#lpform .aq-autofill-bar > span{font-size:.72rem!important;flex:1;min-width:0}
+html body section#lifepath.lpx form#lpform .aq-autofill-bar .aq-autofill-btn{padding:6px 10px!important;font-size:.74rem!important;min-height:0!important;width:auto!important;margin:0!important}
+html body section#lifepath.lpx form#lpform .lpx-corner{display:none!important}
+html body section#lifepath.lpx form#lpform .field{background:linear-gradient(180deg,#FFFEFA,#FBF4E4)!important;border:1.2px solid #E3CD9F!important;border-radius:18px!important;padding:10px 12px!important;margin:0!important;min-height:0!important}
+html body section#lifepath.lpx form#lpform .field:is(:has(#lp-name),:has(#lp-gender)) label{font-size:.78rem!important}
+html body section#lifepath.lpx form#lpform .btn{grid-row:4;background:linear-gradient(135deg,#8A3350 0%,#6A2038 55%,#4A1224 100%)!important;color:#FFF3D6!important;border:1.3px solid #C8A15A!important;box-shadow:0 10px 22px rgba(74,18,36,.32),inset 0 1px 0 rgba(255,255,255,.18)!important;min-height:52px;margin-top:2px!important}
+html body section#lifepath.lpx form#lpform .btn svg{color:#F3D58E!important;stroke:#F3D58E!important}
+html body section#lifepath.lpx form#lpform .lpx-fi{background:linear-gradient(160deg,#FFFDF7,#F4E6C6)!important;border:1.2px solid #D2AE6C!important;box-shadow:0 1px 0 #fff inset,0 5px 12px rgba(150,110,50,.18)!important}
+html body section#lifepath.lpx form#lpform .lpx-fi svg{color:#7A2E48!important;stroke:#7A2E48!important;stroke-width:1.8!important}
+html body section#lifepath.lpx .lpx-feats li :is(.ico,.lpx-ico,span:first-child){background:linear-gradient(160deg,#FFFDF7,#F4E6C6)!important;border:1.2px solid #D2AE6C!important;color:#7A2E48!important;box-shadow:0 1px 0 #fff inset,0 5px 12px rgba(150,110,50,.18)!important}
+html body section#lifepath.lpx .lpx-feats svg{stroke:#7A2E48!important;color:#7A2E48!important}
+html body section#lifepath.lpx form#lpform .field:has(#lp-name),html body section#lifepath.lpx form#lpform .field:has(#lp-gender){grid-column:1/-1!important}
+html body section#lifepath.lpx form#lpform .field:has(#lp-name){grid-row:2}
+html body section#lifepath.lpx form#lpform .field:has(#lp-gender){grid-row:3}
+html body section#lifepath.lpx form#lpform .field:has(.aq-ds){grid-row:4}
+html body section#lifepath.lpx form#lpform .btn{grid-row:5}
+html body section#lifepath.lpx form#lpform .field .lpx-fi{width:42px!important;height:42px!important;min-width:42px}
+html body section#lifepath.lpx form#lpform .aq-ds{gap:8px!important}
+html body section#lifepath.lpx form#lpform .aq-ds select{font-size:.86rem!important;padding-inline:10px 22px!important;min-width:0}
+html body section#lifepath.lpx form#lpform .aq-ds{display:grid!important;grid-template-columns:1fr 1.3fr 1.1fr!important;gap:8px!important;width:100%}
+html body section#lifepath.lpx form#lpform .aq-ds select{width:100%!important;min-width:0!important;max-width:none!important;font-size:.8rem!important;padding-inline:8px 20px!important;text-overflow:clip}
+html body section#lifepath.lpx form#lpform .aq-ds select{padding:0 18px 0 4px!important;text-align:center!important;text-align-last:center!important;background-position:left 6px center!important;background-size:10px!important;font-size:.76rem!important}
+html body section#lifepath.lpx form#lpform .aq-ds select{padding:0 2px!important;background-image:none!important;-webkit-appearance:none;appearance:none;text-indent:0!important}
+html body section#lifepath.lpx{padding-top:calc(var(--aq-hdr,66px) + 2px)!important}
+html body section#lifepath.lpx>.aq-section-topbar{margin-top:-40px!important}
+html body section#lifepath.lpx form#lpform .aq-autofill-bar{background:linear-gradient(160deg,#FFFDF7,#F7EBCF)!important;border:1px solid #D2AE6C!important}
+html body section#lifepath.lpx form#lpform .aq-autofill-bar .aq-autofill-btn{background:linear-gradient(135deg,#8A3350 0%,#6A2038 55%,#4A1224 100%)!important;color:#FFF3D6!important;border:1.3px solid #C8A15A!important;box-shadow:0 4px 12px rgba(74,18,36,.28)!important}
+html body section#lifepath.lpx form#lpform .aq-autofill-bar>span{color:#5A2336!important}
+html body section#lifepath.lpx.sec:target>.wrap{padding-top:30px!important}
+
+html body section#lifepath.lpx .lpx-wrap{max-width:680px!important;margin-inline:auto}
+html body section#lifepath.lpx .lpx-tabbox{max-width:680px!important;margin-inline:auto}
+html body section#lifepath.lpx .lpx-after,html body section#lifepath.lpx .lpx-after>*{max-width:680px!important;margin-inline:auto!important;box-sizing:border-box}
+html body section#lifepath.lpx .lpx-after>.lpx-quote,html body section#lifepath.lpx .lpx-quote{width:100%!important;float:none!important}
+html body section#lifepath.lpx .lpx-bottom{display:block!important;grid-template-columns:none!important;max-width:680px!important;margin-inline:auto!important;padding-inline:0!important}
+html body section#lifepath.lpx .lpx-bottom>*{position:static!important;max-width:100%!important;margin-inline:0!important;margin-bottom:18px}
+}
