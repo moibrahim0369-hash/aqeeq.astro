@@ -342,8 +342,11 @@
         ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange, 'axis_right_mid')}
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white, 'axis_right_outer')}
         <!-- مركز الأجداد والمركز المشترك على المحور الأيمن (مطابق للأصل: 7 ثم 15) -->
-        ${nodeG('aqm-node-ancestral', 'ancestral_programs', 'مركز الأجداد (مجموع الزوايا الأربع)', generational.ancestralCenter, [466, 400], 14, '', null, 'ancestral_center')}
-        ${nodeG('aqm-node-ancestral', 'ancestral_programs', 'المركز المشترك (مركز الأجداد + المركز)', generational.commonCenter, [497, 400], 14, '', null, 'common_center')}
+        ${P.pairAxis
+          ? nodeG('aqm-node-money', 'money_line', 'الشراكة — النقطة الداخلية على المحور الأيمن', ax.right.inner, [466, 400], 19, '', T.lgreen, 'axis_right_inner')
+            + nodeG('aqm-node-karmic', 'karmic_tail', 'الشراكة — القناة الكارمية الداخلية', ax.bottom.inner, [400, 468], 19, '', T.lgreen, 'axis_bottom_inner')
+          : nodeG('aqm-node-ancestral', 'ancestral_programs', 'مركز الأجداد (مجموع الزوايا الأربع)', generational.ancestralCenter, [466, 400], 14, '', null, 'ancestral_center')
+            + nodeG('aqm-node-ancestral', 'ancestral_programs', 'المركز المشترك (مركز الأجداد + المركز)', generational.commonCenter, [497, 400], 14, '', null, 'common_center')}
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol, 'axis_top_outer')}
         ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky, 'axis_top_mid')}
