@@ -25,7 +25,7 @@
     return sheet;
   }
   var cur = null;
-  function nextItem() { if (!cur) return null; var all = [].slice.call(document.querySelectorAll('#mresult .aqm-acc-item')), i = all.indexOf(cur); return i > -1 && i < all.length - 1 ? all[i + 1] : null; }
+  function nextItem() { if (!cur) return null; var all = [].slice.call(cur.parentNode.querySelectorAll('.aqm-acc-item')), i = all.indexOf(cur); return i > -1 && i < all.length - 1 ? all[i + 1] : null; }
   function fill(item) {
     var s = ensureSheet(); cur = item;
     var q = function (sel) { return item.querySelector(sel); };
@@ -78,7 +78,7 @@
   /* اعتراض النقر على رأس الأكورديون على الهاتف */
   document.addEventListener('click', function (e) {
     if (!mq.matches) return;
-    var h = e.target.closest && e.target.closest('#mresult .aqm-acc-header');
+    var h = e.target.closest && e.target.closest('#mresult .aqm-acc-header, .mxc-acc .aqm-acc-header');
     if (!h) return;
     e.preventDefault(); e.stopPropagation();
     open(h.closest('.aqm-acc-item'));
