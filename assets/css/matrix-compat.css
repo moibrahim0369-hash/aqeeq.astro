@@ -735,9 +735,6 @@ html body #matrix-compat .mxc-pick-h,html body #matrix-child .mxc-pick-h{display
 html body #matrix-compat .mxc-pick-h b,html body #matrix-child .mxc-pick-h b{display:block;color:#6B1D2F;font-size:15px}
 html body #matrix-compat .mxc-pick-h small,html body #matrix-child .mxc-pick-h small{display:block;color:#7A6A62;font-size:12px}
 html body #matrix-compat .mxc-pick-x,html body #matrix-child .mxc-pick-x{position:absolute;top:8px;left:10px;width:28px;height:28px;border-radius:50%;border:1px solid #E3CFA4;background:#fff;color:#6B1D2F;font-size:18px;line-height:1;cursor:pointer}
-html body #matrix-compat .mxc-acc .aqm-acc-icon:not(#_a):not(#_b):not(#_c),html body #matrix-child .mxc-acc .aqm-acc-icon:not(#_a):not(#_b):not(#_c){background:linear-gradient(145deg,#fff,#F7EEDC)!important;border:1px solid #E3CFA4!important;color:#6B1D2F!important}
-html body #matrix-compat .mxc-acc .aqm-acc-icon svg:not(#_a):not(#_b),html body #matrix-child .mxc-acc .aqm-acc-icon svg:not(#_a):not(#_b){stroke:#6B1D2F!important;color:#6B1D2F!important}
-html body #matrix-compat .mxc-acc .aqm-badge-arcana:not(#_a):not(#_b),html body #matrix-child .mxc-acc .aqm-badge-arcana:not(#_a):not(#_b){background:#FBF5E8!important;border-color:#E3CFA4!important;color:#6B1D2F!important}
 html body #matrix-compat .mxc-acc .aqm-slot-title .aq-ic:not(#_a),html body #matrix-child .mxc-acc .aqm-slot-title .aq-ic:not(#_a){color:#6B1D2F!important;stroke:#6B1D2F!important}
 
 /* صف أيقونات الدخول في صفحة المصفوفة */
