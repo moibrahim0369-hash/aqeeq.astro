@@ -47,3 +47,10 @@ details[open]>summary .il-chev{transform:rotate(180deg)}
 .il-list{display:grid;gap:10px}
 .il-gt{margin:18px 0 10px}
 .il-blend{margin-top:12px}.il-blend .il-entry+.il-entry{margin-top:10px}
+.pd-box{margin:0 0 14px;display:grid;gap:8px}
+.pd-l{font-weight:600;color:var(--ink,#3a2420);font-size:.92rem}
+.pd-box select,.pd-box input{min-height:48px;border:1px solid rgba(183,138,82,.4);border-radius:12px;background:rgba(237,227,213,.4);padding:0 12px;font:inherit;color:inherit}
+.pd-part{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pd-part[hidden]{display:none}
+.pd-root .nd-title p{line-height:1.8}
+.pd-add{margin:14px auto 0;display:block}
