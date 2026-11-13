@@ -179,7 +179,36 @@
       '<div class="mxm-tab">' + HEADROW + cornerRow(n1 || 'أنت', R.a) + cornerRow(n2 || 'شريكك', R.b) + '<div class="mxm-sep"></div>' + cornerRow('الشراكة', c) + '</div></div>' +
       pairAccHtml(PAIR, function (k) { return { n: c[k] }; }) +
       '<p class="mxm-note">قراءة العلاقة بين شريكين أيًّا كانت صلتهما، والأرقام محسوبة من تاريخي الميلاد.</p>';
-    host.hidden = false; bindAcc(host);
+    host.hidden = false; bindAcc(host); bindMap(host, pairFull(d1, d2));
+  }
+  /* الضغط على رقم العمر أو على أي عقدة في خريطة الشريكين يعرض معناه تحت الخريطة مباشرة */
+  function bindMap(host, P) {
+    var map = host.querySelector('.mxm-map'); if (!map) return;
+    var card = document.createElement('div'); card.className = 'mxc-pick'; card.hidden = true; card.setAttribute('aria-live', 'polite');
+    map.parentNode.insertBefore(card, map.nextSibling);
+    function fmt(a) { return String(Math.round(a * 100) / 100); }
+    function show(head, sub, n) {
+      var a = AD().getArcanaInfo(n);
+      card.innerHTML = '<button type="button" class="mxc-pick-x" aria-label="إغلاق">×</button><div class="mxc-pick-h"><span class="mxm-num">' + n + '</span><div><b>' + esc(head) + '</b><small>' + esc(sub) + '</small></div></div>' +
+        '<p><strong>' + esc(a.name) + '</strong> — ' + esc(a.archetype) + '.</p><p><em>في حالتها الصافية:</em> ' + esc(a.light) + '.</p><p><em>حين تختل:</em> ' + esc(a.shadow) + '.</p>';
+      card.hidden = false;
+    }
+    map.querySelectorAll('[data-age], .aqm-svg-age-label, .aqm-node').forEach(function (el) { el.style.cursor = 'pointer'; });
+    map.addEventListener('click', function (e) {
+      var t = e.target; if (!t.closest) return;
+      var x = t.closest('.mxc-pick-x'); if (x) { card.hidden = true; return; }
+      var ageEl = t.closest('[data-age]'), lab = t.closest('.aqm-svg-age-label'), node = t.closest('.aqm-node');
+      if (ageEl) {
+        var age = parseFloat(ageEl.getAttribute('data-age')), v = parseInt(ageEl.textContent, 10);
+        if (v) show('محطة عمر ' + fmt(age), 'الطاقة التي تمرّ بها العلاقة عند هذا العمر', v);
+      } else if (lab) {
+        var k = /^0/.test(lab.textContent) ? 0 : parseFloat(lab.textContent), n = P.ageMap[k];
+        if (n) show('محطة عمر ' + (k === 0 ? '0 / 80' : fmt(k)), 'بداية مرحلة جديدة في عمر العلاقة', n);
+      } else if (node) {
+        var nv = parseInt(node.getAttribute('data-arcana'), 10);
+        if (nv) show(node.getAttribute('data-title') || 'نقطة في الخريطة', 'نقطة من خريطة الشراكة', nv);
+      }
+    });
   }
   function renderChild(host, d, name) {
     var P = ofDate(d), age = ageOf(P.birth), ae = ageEnergy(P, age);
