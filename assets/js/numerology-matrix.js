@@ -942,7 +942,7 @@
     const specs = {
       father_line: { file: 'father_line', fields: LINE_FIELDS, items: [[P.corners.F, 'مواهب الأب العليا (F) — ما ورثته من الأب روحيًا وفكريًا'], [P.corners.H, 'كارما الأب السفلية (H) — ما ورثته من الأب ماديًا وسلوكيًا'], [P.generational.father.combined, 'محصلة خط الأب']] },
       mother_line: { file: 'mother_line', fields: LINE_FIELDS, items: [[P.corners.G, 'مواهب الأم العليا (G) — ما ورثته من الأم روحيًا وفكريًا'], [P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] },
-      talents: { file: 'talents', fields: [['channel', 'قناة الاتصال', ''], ['gift', 'قطب النور', 'light'], ['trap', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [[P.anchors.B, 'المواهب والروح (B) — هبتك الفطرية']] },
+      talents: { file: 'talents', fields: [['channel', 'قناة الاتصال', ''], ['gift', 'قطب النور', 'light'], ['trap', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [[P.anchors.B, 'موهبة من الله (السماء) — B', ''], [P.corners.G, 'موهبة من الأم — G', 'fromMother'], [P.corners.F, 'موهبة من الأب — F', 'fromFather']] },
       ancestral_programs: { file: 'ancestral_programs', fields: [['roots', 'الجذر والموروث', ''], ['fallPatterns', 'أنماط السقوط التلقائي', 'shadowlist'], ['path', 'مسار التحرر', 'light']], items: [[P.ancestralPrograms.ancestralCenter, 'مركز الأجداد — الجذر الذي تتشكل منه برمجتك العائلية'], [P.ancestralPrograms.commonCenter, 'المركز المشترك — ما يجمع تراثك العائلي بجوهرك']] },
       children_line: { file: 'children_line', fields: [['family', 'الأسرة والتربية', '']], items: [[P.childrenLine.childEnergy, 'طاقة الطفل'], [P.childrenLine.generationKey, 'مفتاح التواصل بين الأجيال']] },
       transformation_rx: { file: 'transformation_rx', fields: [['protocol', 'خطوات التحول', 'lightlist'], ['reflectiveQuestions', 'أسئلة للتأمل', 'list']], items: [[P.transformationKeys.balancePoint, 'نقطة التوازن'], [P.transformationKeys.skyAxis, 'المفتاح الروحي'], [P.transformationKeys.earthAxis, 'المفتاح المادي']] }
@@ -956,9 +956,9 @@
       grid.innerHTML = '<section class="aqm-slot aqm-slot-gemini" data-slot="gemini"><p class="aqm-slot-p aqm-xr-loading">جارٍ التحميل…</p></section>';
       const ids = spec.items.map(i => Number(i[0]));
       Promise.all([loader.section(spec.file).catch(() => ({ entries: [] })), ...ids.map(id => loader.arcana(id).catch(() => null))]).then(([data, ...arr]) => {
-        const html = spec.items.map(([n, label], i) => {
+        const html = spec.items.map(([n, label, sub], i) => {
           n = Number(n);
-          const e = (data.entries || []).find(x => x.id === n); const c = arcCore(arr[i]); const d = (e && e.deep) || {};
+          const e0 = (data.entries || []).find(x => x.id === n); const e = sub ? (e0 && e0[sub]) : e0; const c = arcCore(arr[i]); const d = (e && e.deep) || {};
           const gd = g && e && e.genderDynamic && e.genderDynamic[g] ? poleLi('بصيغتك', e.genderDynamic[g], '') : '';
           const lead = (e && e.summary) || c.psychology || '';
           const rows = e
@@ -1045,7 +1045,7 @@
     karmic_tail: ['الذيل الكارمي', 'ما الذي يتكرر في حياتك ولا تفهم سببه؟', ['الذيل ١', 'الذيل ٢', 'الذيل ٣']],
     purposes: ['المهمة والغاية', 'ما الذي جئت لتحققه في كل مرحلة من حياتك؟', ['غاية شخصية', 'غاية اجتماعية', 'غاية روحية', 'غاية كونية']],
     personal: ['الشخصية', 'كيف يراك الناس في أول لقاء؟', ['جوهر الشخصية']],
-    talents: ['المواهب', 'ما الهبة التي وُلدت بها دون أن تتعلمها؟', ['موهبة السماء']],
+    talents: ['المواهب', 'ما الهبة التي وُلدت بها، وما الذي وصلك منها من الله ومن أمك ومن أبيك؟', ['موهبة من الله', 'موهبة من الأم', 'موهبة من الأب']],
     father_line: ['خط الأب', 'ما الذي ورثته من جهة الأب؟', ['موهبة الأب', 'كارما الأب', 'محصلة الأب']],
     mother_line: ['خط الأم', 'ما الذي ورثته من جهة الأم؟', ['موهبة الأم', 'كارما الأم', 'محصلة الأم']],
     ancestral_programs: ['الأجداد', 'ما الذي ورثته من أسرتك ولم تخترْه؟', ['مركز الأجداد', 'المركز المشترك']],
