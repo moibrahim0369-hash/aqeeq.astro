@@ -35,10 +35,11 @@
       '<button type="button" class="aqm-sheet-x" data-lps-close aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
       '<div class="aqm-sheet-head"><span class="aqm-sheet-ic"></span><div><h3 id="lps-title"></h3><p class="aqm-sheet-sub"></p></div></div>' +
       '<div class="aqm-sheet-body lps-body"></div>' +
-      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-close" data-lps-close>إغلاق</button></div></div>';
+      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-lps-next hidden><span class="aqm-foot-l"><small>القسم التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-lps-close>إغلاق</button></div></div>';
     document.body.appendChild(sheet);
     sheet.addEventListener('click', function (e) {
       if (e.target.closest('[data-lps-close]')) { closeSheet(); return; }
+      if (e.target.closest('[data-lps-next]')) { goNext(); return; }
       var r = e.target.closest('[data-lps-row]');
       if (r) { showStage(Number(r.getAttribute('data-lps-row')), r.getAttribute('data-lps-from')); return; }
       if (e.target.closest('[data-lps-list]')) { openTile(sheet.getAttribute('data-kind')); return; }
@@ -57,6 +58,20 @@
     $('.aqm-sheet-sub', s).textContent = sub || '';
     var b = $('.lps-body', s); b.innerHTML = html; b.scrollTop = 0;
     s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
+    syncNext(kind);
+  }
+  /* زر «القسم التالي»: يتبع ترتيب الصفوف في القائمة نفسها */
+  var gOrder = [], gItems = {}, gTitles = {};
+  function keyOf(kind) { return /^(stages|peaks|chal|name)$/.test(kind) ? 't:' + kind : kind; }
+  function syncNext(kind) {
+    var b = $('[data-lps-next]', sheet), i = gOrder.indexOf(keyOf(kind)), nk = i > -1 ? gOrder[i + 1] : null;
+    if (!b) return;
+    if (nk) { $('b', b).textContent = gTitles[nk] || ''; b.hidden = false; } else b.hidden = true;
+  }
+  function goNext() {
+    var i = gOrder.indexOf(keyOf(sheet.getAttribute('data-kind'))), nk = i > -1 ? gOrder[i + 1] : null;
+    if (!nk || !gItems[nk]) return;
+    sheet.classList.add('is-swap'); setTimeout(function () { gItems[nk](); sheet.classList.remove('is-swap'); }, 160);
   }
   function closeSheet() { if (!sheet || sheet.hidden) return; sheet.classList.add('is-closing'); var sh = sheet; setTimeout(function () { sh.hidden = true; sh.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
 
@@ -165,12 +180,13 @@
   var SKIP_BP = /الجوهر والرسالة|فخ الظل/;
   function gTitle(d) { var t = $('.lpc-tx b', $('summary', d)) || $('b', $('summary', d)); var sm = $('summary', d); var tx = t ? t.textContent : (sm ? sm.textContent : ''); return tx.replace(/\s+/g, ' ').replace(/\s*متاح (مجاناً|مجانًا|بالكامل|للأعضاء).*$/, '').replace(/^[+−-]\s*/, '').trim(); }
   function gSub(d) { var a = $$('.lpc-tx small', d).map(function (x) { return x.textContent.replace(/\s+/g, ' ').trim(); }).filter(function (x) { return x && !/^متاح/.test(x); }); return a[0] || ''; }
-  function gRow(k, ico, title, sub, grp) {
-    return '<button type="button" class="lpg-row" data-lpg="' + k + '" style="--i:' + grp + '"><span class="lpg-ic">' + ico + '</span><span class="lpg-tx"><b>' + esc(title) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span><span class="lpg-go">' + IC.chev + '</span></button>';
+  function gRow(k, ico, title, sub, grp, tone) {
+    return '<button type="button" class="lpg-row' + (tone ? ' b3-ai-' + tone : '') + '" data-lpg="' + k + '" style="--i:' + grp + '"><span class="lpg-ic">' + ico + '</span><span class="lpg-tx"><b>' + esc(title) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span><span class="lpg-go">' + IC.chev + '</span></button>';
   }
   function buildGold() {
     var items = [], html = '', n = 0;
-    function push(k, ico, t, sub, fn) { items[k] = fn; html += gRow(k, ico, t, sub, n++); }
+    gOrder = []; gItems = items; gTitles = {};
+    function push(k, ico, t, sub, fn, tone) { items[k] = fn; gOrder.push(k); gTitles[k] = t; html += gRow(k, ico, t, sub, n++, tone); }
     var d = $('.daily', res);
     if (d) push('daily', IC.light, ($('h4', d) || {}).textContent || 'رسالة اليوم', 'ما يناسبك اليوم', function () { openSheet('daily', IC.light, 'رسالة اليوم', '', '<div class="lps-daily">' + d.innerHTML + '</div>'); });
     html += '<h4 class="lpg-h">رحلتك عبر السنين</h4>'; 
@@ -185,7 +201,7 @@
       push(k, ic, t, sub, function () {
         var b = $('.lp-sec-body, .lpa-body', x); if (!b) return;
         openSheet(k, ic, t, sub, '<div class="lps-detail lps-read">' + b.innerHTML + '</div>');
-      });
+      }, x.classList.contains('is-shadow') ? 's' : x.classList.contains('is-light') ? 'g' : '');
     });
     var q = $('.lpj-bottom .lpj-reflect', res);
     if (q) { html += '<h4 class="lpg-h">للتأمل</h4>'; push('q', IC.heart, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.heart, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); }); }
@@ -193,6 +209,34 @@
     box.innerHTML = html;
     box.addEventListener('click', function (e) { var b = e.target.closest('[data-lpg]'); if (b && items[b.getAttribute('data-lpg')]) items[b.getAttribute('data-lpg')](); });
     return box;
+  }
+
+  /* ---------- رأس النتيجة بنفس مظهر خرائط الشريكين والطفل ---------- */
+  var HIC = {
+    edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
+    save: '<path d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z"/>',
+    add: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
+  };
+  function hIc(k) { return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + HIC[k] + '</svg>'; }
+  function setField(id, v) { var e = document.getElementById(id); if (!e) return; e.value = v; e.dispatchEvent(new Event('input', { bubbles: true })); e.dispatchEvent(new Event('change', { bubbles: true })); }
+  function headFix() {
+    var c = $('.chart-summary-card', res); if (!c || c.classList.contains('lpr-head')) return;
+    var ed = $('#btn-edit-lp', c), badge = ($('.chart-summary-badge', c) || {}).textContent || '', title = ($('.chart-summary-title', c) || {}).textContent || '';
+    var meta = $$('.chart-summary-meta > span:not(.meta-sep)', c).map(function (m) { return m.textContent.replace(/[☉✧]/g, '').replace(/\s+/g, ' ').trim(); }).filter(Boolean);
+    c.innerHTML = '<span class="lph-k">' + esc(badge.replace(/\s+/g, ' ').trim()) + '</span><h3 class="lph-t">' + esc(title.trim()) + '</h3>' +
+      '<div class="lph-m">' + meta.map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('') + '</div>' +
+      '<div class="lph-tools"><button type="button" data-lph="edit" aria-label="تعديل البيانات">' + hIc('edit') + '<span>تعديل</span></button>' +
+      '<button type="button" data-lph="save" aria-label="حفظ الخريطة">' + hIc('save') + '<span>حفظ</span></button>' +
+      '<button type="button" data-lph="new" aria-label="مسار جديد">' + hIc('add') + '<span>مسار جديد</span></button></div>';
+    if (ed) { ed.hidden = true; ed.style.display = 'none'; c.appendChild(ed); }
+    c.classList.add('lpr-head');
+    c.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-lph]'); if (!b) return;
+      var a = b.getAttribute('data-lph'), eb = $('#btn-edit-lp', c);
+      if (a === 'edit' && eb) eb.click();
+      else if (a === 'new' && eb) { eb.click(); setTimeout(function () { setField('lp-name', ''); setField('lp-date', ''); }, 60); }
+      else if (a === 'save') { var sb = $('.aq-save-reading-btn', res); if (sb) { sb.click(); b.classList.add('is-saved'); $('span', b).textContent = 'تم الحفظ'; } }
+    });
   }
 
   /* ---------- التشغيل ---------- */
@@ -212,7 +256,7 @@
       var sm2 = $('.chart-summary-card', res), g = buildGold(); g.setAttribute('data-k', key); g.setAttribute('data-sig', sig);
       if (sm2 && sm2.nextSibling) res.insertBefore(g, sm2.nextSibling); else res.insertBefore(g, res.firstChild);
     }
-    fixAccordions();
+    fixAccordions(); headFix();
     if (key !== lastKey) { lastKey = key; sec.scrollTop = 0; closeSheet(); var og = res.querySelector('.lpg'); if (og && og.getAttribute('data-k') !== key) { og.remove(); run(); } }
   }
   var q;
