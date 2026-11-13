@@ -21,7 +21,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
     ok(r.sw, `${n}: no hscroll`);
   }
   ok(JSON.stringify(A.pct) !== JSON.stringify(B.pct) && JSON.stringify(A.tiles) !== JSON.stringify(B.tiles), 'percentages and tiles differ between charts');
-  ok(C.axes === 0 && C.tiles[0] === 'غير محدد' && C.pl === 10, 'unknown time: no axes, ascendant "غير محدد", planets still shown');
+  ok(C.axes === 0 && !C.tiles.includes('غير محدد') && C.tiles.length === 2 && C.pl === 10, 'unknown time: no axes, no ascendant tile, planets still shown');
   ok(C.pct.reduce((a, b) => a + b, 0) === 100, `unknown time: % sum 100 (${C.pct})`);
   // tabs + planet pick
   await p.click('[data-nd-tab=planets]'); await p.waitForTimeout(300);
