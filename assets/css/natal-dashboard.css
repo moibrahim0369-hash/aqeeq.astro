@@ -34,7 +34,7 @@
 .nd-c{fill:none;stroke:rgba(183,138,82,.7);stroke-width:1}.nd-c-dash{stroke-dasharray:2 4;stroke:rgba(183,138,82,.5)}
 .nd-hl{stroke:rgba(183,138,82,.7);stroke-width:1}.nd-hl-ax{stroke:var(--b);stroke-width:1.3}
 .nd-hn{fill:#6a5760;font-size:15px;font-weight:600}.nd-ax{fill:var(--ink);font:700 17px 'IBM Plex Sans Arabic',sans-serif}
-.nd-pc{fill:#fff;stroke:#B78A52;stroke-width:1.6}.nd-pg{fill:var(--b);font-size:25px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
+.nd-pc{fill:#fff;stroke:#B78A52;stroke-width:1.6}.nd-pg{fill:var(--b);font-size:21px;font-family:'Noto Sans Symbols','Segoe UI Symbol','DejaVu Sans',sans-serif}
 .nd-rx{fill:#c23b3b;font:700 11px sans-serif}.nd-tk{stroke:var(--b);stroke-width:1.8}
 .nd-pl{cursor:pointer;outline:0;transform-box:fill-box;transform-origin:center}
 .nd-pl:hover .nd-pc,.nd-pl:focus-visible .nd-pc,.nd-pl.on .nd-pc{fill:#F6E8CC;stroke:var(--b);stroke-width:2}
