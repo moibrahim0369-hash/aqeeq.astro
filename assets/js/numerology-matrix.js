@@ -892,9 +892,9 @@
           html += `<h4 class="aqm-slot-title aqm-g-tail-title">${t ? gInline(t.title.replace(/^عقيق أسترو \|\s*/, '')) : 'الذيل الكارمي ' + escapeHtml(code)}</h4>`;
           html += t ? geminiBlocksHtml(t.blocks) : await composeTailFallback(tailTriad).catch(() => '');
         }
-        const ref = d && d.reference && d.reference.blocks && d.reference.blocks.length ? d.reference : null;
-        if (ref) {
-          html += `<h4 class="aqm-slot-title aqm-g-deeper-title">قراءة أعمق للطاقة ${n}</h4>` + geminiBlocksHtml(ref.blocks, cfg.pos);
+        const refBlocks = d && d.reference && Array.isArray(d.reference.blocks) ? d.reference.blocks.filter(b => (b.pos || 'core') === cfg.pos) : [];
+        if (refBlocks.length) {
+          html += `<h4 class="aqm-slot-title aqm-g-deeper-title">قراءة أعمق للطاقة ${n}</h4>` + geminiBlocksHtml(refBlocks, cfg.pos);
         }
         grid.querySelector('[data-slot="gemini"]').innerHTML = html;
       }).catch(() => {
