@@ -88,3 +88,16 @@
 .nd-more>summary::-webkit-details-marker{display:none}.nd-more>summary::after{content:"";width:10px;height:10px;border-inline-end:2px solid var(--g);border-bottom:2px solid var(--g);transform:rotate(45deg);transition:transform .25s}
 .nd-more[open]>summary::after{transform:rotate(-135deg)}.nd-more-body{padding:0 8px 16px}
 @media (prefers-reduced-motion:reduce){.nd-wheel .nd-w-in,.nd-wheel .nd-pl{opacity:1!important;animation:none!important;transform:none!important}.nd-wheel .nd-al{animation:none!important;stroke-dashoffset:0}.nd-bar i{transition:none}.nd-row,.nd-anim{animation:none}}
+
+/* ترتيب جديد: العجلة فوق، التبويبات (بأيقونات) تحتها، ولوحات كل تبويب تحت */
+.nd-legacy{display:none!important}
+.nd-stack{display:grid;gap:16px}
+.nd-tabs{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;overflow:visible!important}
+.nd-tabs button{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:60px!important;padding:8px 2px!important;font-size:.76rem!important;line-height:1.3;border-radius:16px!important}
+.nd-tabs button svg{flex:0 0 auto;width:22px;height:22px}
+html.ndr-on body #result .nd-wtop{order:2!important}
+html.ndr-on body #result .nd-tabs{order:3!important}
+html.ndr-on body #result .nd-main{order:4!important}
+html.ndr-on body #result #il-root{order:8}
+@media(max-width:340px){.nd-tabs button{font-size:.68rem!important}}
+html.ndr-on body #result .nd-stack>*{order:0!important}
