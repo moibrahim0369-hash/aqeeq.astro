@@ -6,84 +6,84 @@
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house2",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house3",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house4",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house5",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house6",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house7",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house8",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house9",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house10",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house11",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.sun.house12",
    "file": "data/interpretations/sun.json",
    "layer": "core",
    "where": "الشمس في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house1",
