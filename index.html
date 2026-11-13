@@ -107,6 +107,7 @@
 <link rel="stylesheet" href="assets/css/page-art-fade.css?v=20261120a">
 <link rel="stylesheet" href="assets/css/ui-refine.css?v=20261128a">
 <link rel="stylesheet" href="assets/css/batch3.css?v=20261130u">
+<link rel="stylesheet" href="assets/css/compat-fix.css?v=20261114a">
 <link rel="stylesheet" href="assets/css/sky-sheet-fix.css?v=20261114b">
 <link rel="stylesheet" href="assets/css/inner-unified.css?v=46">
 <link rel="stylesheet" href="assets/css/you-page.css?v=7">
@@ -3190,20 +3191,20 @@ if (typeof window !== 'undefined') window.Astro = Astro;
           <div class="cp-overview-copy"><span class="cp-result-kicker">الصورة العامة</span><p>${overall}</p></div>
           <div class="cp-indicators">${Object.keys(R.cat).map(k => '<article><strong>'+R.cat[k].t+'</strong><span>'+R.cat[k].level+'</span></article>').join("")}</div>
         </section>
-        <section class="sx cp-wheel-section"><div class="cp-section-heading"><div><span class="cp-result-kicker">01 · SYNASTRY</span><h4>تراكب الخريطتين</h4></div><span class="cp-section-caption">مواضع واتصالات</span></div><div id="cp-bi-wheel" class="aq-wheel-host" aria-label="عجلة التوافق الثنائية"></div></section>
+        <section class="sx cp-wheel-section"><div class="cp-section-heading"><div><span class="cp-result-kicker">01 · التراكب</span><h4>تراكب الخريطتين</h4></div><span class="cp-section-caption">مواضع واتصالات</span></div><div id="cp-bi-wheel" class="aq-wheel-host" aria-label="عجلة التوافق الثنائية"></div></section>
         <div class="cp-details-stack">
-          <details class="lpa-card is-light cp-acc"><summary class="lpa-sum"><span class="lpa-ic">+</span><span class="lpa-t">اتصالات الانسجام</span><small class="lpa-sub">${allPos.length} اتصال</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${allPos.map(line).join("") || "<li>لا توجد اتصالات منسجمة ضمن المحاور المحددة.</li>"}</ul></div></details>
-          <details class="lpa-card is-shadow cp-acc"><summary class="lpa-sum"><span class="lpa-ic">−</span><span class="lpa-t">نقاط تحتاج إلى تفاهم</span><small class="lpa-sub">${allNeg.length} اتصال</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${allNeg.map(line).join("") || "<li>لا توجد اتصالات ضاغطة بارزة ضمن المحاور المحددة.</li>"}</ul></div></details>
-          <details class="lpa-card  cp-acc"><summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">أقرب اتصالات الكواكب</span><small class="lpa-sub">حتى 6 اتصالات</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${top.map(line).join("") || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul></div></details>
+          <details class="lpa-card is-light cp-acc"><summary class="lpa-sum"><span class="lpa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span><span class="lpa-t">اتصالات الانسجام</span><small class="lpa-sub">${allPos.length} اتصال</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${allPos.map(line).join("") || "<li>لا توجد اتصالات منسجمة ضمن المحاور المحددة.</li>"}</ul></div></details>
+          <details class="lpa-card is-shadow cp-acc"><summary class="lpa-sum"><span class="lpa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0z"/></svg></span><span class="lpa-t">نقاط تحتاج إلى تفاهم</span><small class="lpa-sub">${allNeg.length} اتصال</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${allNeg.map(line).join("") || "<li>لا توجد اتصالات ضاغطة بارزة ضمن المحاور المحددة.</li>"}</ul></div></details>
+          <details class="lpa-card  cp-acc"><summary class="lpa-sum"><span class="lpa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-30 12 12)"/></svg></span><span class="lpa-t">أقرب اتصالات الكواكب</span><small class="lpa-sub">حتى 6 اتصالات</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${top.map(line).join("") || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul></div></details>
           <details class="lpa-card cp-acc cp-composite">
-            <summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">الخريطة المركّبة</span><small class="lpa-sub">مواضع مشتركة واتصالات</small><span class="lpa-chev"></span></summary>
+            <summary class="lpa-sum"><span class="lpa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg></span><span class="lpa-t">الخريطة المركّبة</span><small class="lpa-sub">مواضع مشتركة واتصالات</small><span class="lpa-chev"></span></summary>
             <div class="lpa-body cp-accordion-body"><p class="cp-note">مواضع الكواكب هي منتصفات القوس الأقصر بين خريطتي الميلاد. هذه قراءة رمزية وليست قياسًا لنجاح العلاقة.</p>
               <div id="cp-composite-wheel" class="aq-wheel-host" aria-label="عجلة الخريطة المركبة"></div>
               <div class="cp-composite-grid">${compositePositions}</div><h5>اتصالات داخل الخريطة المركّبة</h5>
               <ul>${compositeAspects || "<li>لا توجد اتصالات رئيسية ضمن الأورب المحدد.</li>"}</ul>${compositeAngles}${compositeCusps}
             </div>
           </details>
-          <details class="lpa-card  cp-acc"><summary class="lpa-sum"><span class="lpa-ic">✦</span><span class="lpa-t">اقتراحات للحوار والتعامل</span><small class="lpa-sub">نصائح عملية</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${tips.map(t => '<li>'+esc(t)+'</li>').join("")}</ul></div></details>
+          <details class="lpa-card  cp-acc"><summary class="lpa-sum"><span class="lpa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span><span class="lpa-t">اقتراحات للحوار والتعامل</span><small class="lpa-sub">نصائح عملية</small><span class="lpa-chev"></span></summary><div class="lpa-body cp-accordion-body"><ul>${tips.map(t => '<li>'+esc(t)+'</li>').join("")}</ul></div></details>
         </div>
         <p class="cp-result-disclaimer">القراءة الفلكية هنا للتأمل والحوار، ولا تحكم على نجاح العلاقة أو مستقبلها.</p>
       </div>`;
@@ -3215,7 +3216,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       out.hidden = true;
       status.hidden = false;
       status.dataset.state = "loading";
-      status.textContent = "بنحسب خريطتي الميلاد ونبني Composite…";
+      status.textContent = "بنحسب خريطتي الميلاد ونبني الخريطة المركّبة…";
       const submitButton = form.querySelector('button[type="submit"]');
       if (submitButton) {
         submitButton.disabled = true;
@@ -3237,7 +3238,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
         const cpIntro = document.querySelector("#compat .center");
         if (cpIntro) { cpIntro.hidden = true; cpIntro.style.display = "none"; }
         status.dataset.state = "done";
-        status.textContent = "اكتمل حساب الخريطتين والـ Composite.";
+        status.textContent = "اكتمل حساب الخريطتين والخريطة المركّبة.";
         out.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (ex) {
         status.hidden = true;
