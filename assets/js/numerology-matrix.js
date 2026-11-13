@@ -961,6 +961,7 @@
       mother_line: { file: 'mother_line', fields: LINE_FIELDS, items: [[P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] },
       talents: { file: 'talents', fields: [['channel', 'قناة الاتصال', ''], ['gift', 'قطب النور', 'light'], ['trap', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [[P.anchors.B, 'موهبة من الله (السماء) — B', ''], [P.corners.G, 'موهبة من الأم — G', 'fromMother'], [P.corners.F, 'موهبة من الأب — F', 'fromFather']] },
       ancestral_programs: { file: 'ancestral_programs', fields: [['roots', 'الجذر والموروث', ''], ['fallPatterns', 'أنماط السقوط التلقائي', 'shadowlist'], ['path', 'مسار التحرر', 'light']], items: [[P.ancestralPrograms.ancestralCenter, 'مركز الأجداد — الجذر الذي تتشكل منه برمجتك العائلية'], [P.ancestralPrograms.commonCenter, 'المركز المشترك — ما يجمع تراثك العائلي بجوهرك']] },
+      age_cycles: { file: 'age_cycles', fields: [['stage', 'طابع المرحلة', ''], ['light', 'قطب النور', 'light'], ['shadow', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [0, 10, 20, 30, 40, 50, 60, 70].map(a => [(P.ageMap && (P.ageMap[a] || P.ageMap[String(a)])) || P.anchors.A, 'محطة سن ' + a + ' — الفترة من ' + a + ' إلى ' + (a + 10) + ' سنة']) },
       children_line: { file: 'children_line', fields: [['family', 'الأسرة والتربية', '']], items: [[P.childrenLine.childEnergy, 'طاقة الطفل'], [P.childrenLine.generationKey, 'مفتاح التواصل بين الأجيال']] },
       transformation_rx: { file: 'transformation_rx', fields: [['protocol', 'خطوات التحول', 'lightlist'], ['reflectiveQuestions', 'أسئلة للتأمل', 'list']], items: [[P.transformationKeys.balancePoint, 'نقطة التوازن'], [P.transformationKeys.skyAxis, 'المفتاح الروحي'], [P.transformationKeys.earthAxis, 'المفتاح المادي']] }
     };
@@ -1071,7 +1072,7 @@
     chakras: ['الشاكرات', 'أي مركز في جسدك يحمل ما لا تقوله؟', ['الجسد', 'الطاقة', 'المشاعر']],
     composite_programs: ['البرامج المركبة', 'أي نمط يجمع طاقتين في تصرفاتك؟', ['برنامج الروح', 'برنامج المادة']],
     children_line: ['الأبناء', 'ما الرسالة التي يحملها الأبناء إليك؟', ['طاقة الطفل', 'مفتاح التواصل']],
-    age_cycles: ['دورات العمر', 'ما الذي تطلبه منك كل محطة من عمرك؟', ['سن 20', 'سن 40', 'سن 60']],
+    age_cycles: ['دورات العمر', 'ما الذي تطلبه منك كل محطة من عمرك؟', ['سن 0', 'سن 10', 'سن 20', 'سن 30', 'سن 40', 'سن 50', 'سن 60', 'سن 70']],
     transformation_rx: ['روشتة التحول', 'كيف تنتقل من الظل إلى النور؟', ['التوازن', 'المفتاح الروحي', 'المفتاح المادي']]
   };
 
@@ -1528,11 +1529,7 @@
         icon: '⏳',
         title: 'دورات الحياة ومحطاتها — الخريطة الزمنية (0 - 80 سنة) وطاقة العام',
         subtitle: 'المحطات العمرية على المحيط الخارجي ودورة الطاقات المؤثرة على كل مرحلة',
-        arcanaList: [
-          { num: (P.ageMap && P.ageMap['20']) || (P.ageStations && P.ageStations['20']) || A, name: 'سن 20' },
-          { num: (P.ageMap && P.ageMap['40']) || (P.ageStations && P.ageStations['40']) || C, name: 'سن 40' },
-          { num: (P.ageMap && P.ageMap['60']) || (P.ageStations && P.ageStations['60']) || D, name: 'سن 60' }
-        ],
+        arcanaList: [0, 10, 20, 30, 40, 50, 60, 70].map(a => ({ num: (P.ageMap && (P.ageMap[a] || P.ageMap[String(a)])) || A, name: 'سن ' + a })),
         contentKey: 'matrix.section.age_cycles',
         slots: {
           primary: `تتوزع محطات مصفوفتك الزمنية عبر حلقة الأعمار: محطة سن 20 <strong>(${(P.ageMap && P.ageMap['20']) || (P.ageStations && P.ageStations['20']) || A})</strong>، محطة سن 40 <strong>(${(P.ageMap && P.ageMap['40']) || (P.ageStations && P.ageStations['40']) || C})</strong>، ومحطة سن 60 <strong>(${(P.ageMap && P.ageMap['60']) || (P.ageStations && P.ageStations['60']) || D})</strong>.`,
