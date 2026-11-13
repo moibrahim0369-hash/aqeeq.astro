@@ -7,7 +7,8 @@
     { form: 'eam-form', click: 'eam-b-fill' },
     { form: 'cp-form', outside: true, date: 'cp1-date', time: 'cp1-time', unk: 'cp1-unknown', city: 'cp1-city', name: 'cp1-name' },
     { form: 'synastry-form', date: 'syn-date-a', name: 'syn-name-a' },
-    { form: 'mxm-pair-form', date: 'mxm-d1', name: 'mxm-n1' }
+    { form: 'mxm-pair-form', date: 'mxm-d1', name: 'mxm-n1' },
+    { form: 'mxc-form', date: 'mxc-d1', name: 'mxc-n1' }
   ];
   function ctx() { return window.AqeeqChartContext; }
   function fire(el) { ['input', 'change'].forEach(function (t) { el.dispatchEvent(new Event(t, { bubbles: true })); }); }
