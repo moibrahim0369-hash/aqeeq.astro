@@ -167,3 +167,12 @@ html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) form.mxm
 html body section.sec:is(#compat,#lifepath-compat) .cp-explain{max-width:760px;margin:18px auto 0}
 html body section.sec:is(#compat,#lifepath-compat) .cp-explain .y27-about-note{font-size:.82rem;color:#8A5A2E;text-align:center;margin:12px 0 0}
 html body section.sec:is(#compat,#lifepath-compat) .cp-explain{box-sizing:border-box;width:100%;padding:0 16px!important}
+/* compat: إلغاء الفراغ المزدوج أعلى الصفحة + توسيط الرسمة */
+html body section.sec#compat:not(#_a):not(#_b):not(#_c) .aq-section-topbar:not(#_d):not(#_e){margin-top:0!important}
+html body section.sec#compat:not(#_a):not(#_b):not(#_c) .cpx-art{justify-self:center;margin-inline:auto!important}
+html body section.sec#compat:not(#_a):not(#_b):not(#_c) .cpx-art svg{display:block;margin:0 auto}
+/* invest: رأس مركزي بنفس إيقاع باقي الصفحات */
+html body section.sec#invest:not(#_a):not(#_b):not(#_c) .inv-head{text-align:center!important;display:flex;flex-direction:column;align-items:center;margin:0 0 6px!important}
+html body section.sec#invest:not(#_a):not(#_b):not(#_c) .inv-head h2{font-size:clamp(1.7rem,7vw,2.2rem)!important;margin:0!important;text-align:center!important}
+html body section.sec#invest:not(#_a):not(#_b):not(#_c) :is(.b3-vip,.b3-vip h3,.b3-vip p){text-align:center!important}
+html body section.sec#invest:not(#_a):not(#_b):not(#_c) .inv-note{text-align:center}
