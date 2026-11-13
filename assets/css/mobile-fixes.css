@@ -1,0 +1,6 @@
+/* إصلاحات مظهر الموبايل المشتركة (مظهر فقط) */
+
+/* 1) حسابي: أزرار تصفية المكتبة صف أفقي قابل للتمرير بدل التفاف الحروف */
+.aq-lib-filters{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 2px 6px;margin-bottom:14px}
+.aq-lib-filters::-webkit-scrollbar{display:none}
+.aq-lib-filters .aq-lib-filter-btn{flex:0 0 auto;min-width:max-content;white-space:nowrap;writing-mode:horizontal-tb;text-orientation:mixed;padding:9px 16px;line-height:1.4}
