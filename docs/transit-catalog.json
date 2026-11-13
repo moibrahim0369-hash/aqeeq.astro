@@ -1,0 +1,3548 @@
+{
+ "cycles": [
+  {
+   "id": "jupiter|conj|sun",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|sun",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|sun",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|sun",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|sun",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|conj|moon",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|moon",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|moon",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|moon",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|moon",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|conj|mercury",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|mercury",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|mercury",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|mercury",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|mercury",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|conj|venus",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|venus",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|venus",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|venus",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|venus",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|conj|mars",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|mars",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|mars",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|mars",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|mars",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|conj|saturn",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|saturn",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|saturn",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|saturn",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|saturn",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|conj|asc",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|asc",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|asc",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|asc",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|asc",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|conj|mc",
+   "transit": "المشتري",
+   "aspect": "اقتران",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sext|mc",
+   "transit": "المشتري",
+   "aspect": "تسديس",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|sq|mc",
+   "transit": "المشتري",
+   "aspect": "تربيع",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|tri|mc",
+   "transit": "المشتري",
+   "aspect": "تثليث",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "jupiter|opp|mc",
+   "transit": "المشتري",
+   "aspect": "مقابلة",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|conj|sun",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|sext|sun",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|sq|sun",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|tri|sun",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|opp|sun",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|conj|moon",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|sext|moon",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|sq|moon",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|tri|moon",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|opp|moon",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|conj|mercury",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|sext|mercury",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|sq|mercury",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|tri|mercury",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|opp|mercury",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|conj|venus",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|sext|venus",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|sq|venus",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|tri|venus",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|opp|venus",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|conj|mars",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|sext|mars",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|sq|mars",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|tri|mars",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|opp|mars",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|conj|jupiter",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|sext|jupiter",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|sq|jupiter",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|tri|jupiter",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|opp|jupiter",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|conj|asc",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|sext|asc",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|sq|asc",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|tri|asc",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|opp|asc",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "saturn|conj|mc",
+   "transit": "زحل",
+   "aspect": "اقتران",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|sext|mc",
+   "transit": "زحل",
+   "aspect": "تسديس",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|sq|mc",
+   "transit": "زحل",
+   "aspect": "تربيع",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|tri|mc",
+   "transit": "زحل",
+   "aspect": "تثليث",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|opp|mc",
+   "transit": "زحل",
+   "aspect": "مقابلة",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|conj|sun",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|sext|sun",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|sq|sun",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|tri|sun",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|opp|sun",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|conj|moon",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sext|moon",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sq|moon",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|tri|moon",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|opp|moon",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|conj|mercury",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sext|mercury",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sq|mercury",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|tri|mercury",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|opp|mercury",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|conj|venus",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|sext|venus",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|sq|venus",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|tri|venus",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|opp|venus",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|conj|mars",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|sext|mars",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|sq|mars",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|tri|mars",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|opp|mars",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|conj|jupiter",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|sext|jupiter",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|sq|jupiter",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|tri|jupiter",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|opp|jupiter",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "uranus|conj|saturn",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sext|saturn",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sq|saturn",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|tri|saturn",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|opp|saturn",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|conj|asc",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|sext|asc",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|sq|asc",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|tri|asc",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|opp|asc",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "uranus|conj|mc",
+   "transit": "أورانوس",
+   "aspect": "اقتران",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sext|mc",
+   "transit": "أورانوس",
+   "aspect": "تسديس",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|sq|mc",
+   "transit": "أورانوس",
+   "aspect": "تربيع",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|tri|mc",
+   "transit": "أورانوس",
+   "aspect": "تثليث",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "uranus|opp|mc",
+   "transit": "أورانوس",
+   "aspect": "مقابلة",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|conj|sun",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|sext|sun",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|sq|sun",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|tri|sun",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|opp|sun",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|conj|moon",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sext|moon",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sq|moon",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|tri|moon",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|opp|moon",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|conj|mercury",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sext|mercury",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sq|mercury",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|tri|mercury",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|opp|mercury",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|conj|venus",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|sext|venus",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|sq|venus",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|tri|venus",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|opp|venus",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|conj|mars",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|sext|mars",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|sq|mars",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|tri|mars",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|opp|mars",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|conj|jupiter",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|sext|jupiter",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|sq|jupiter",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|tri|jupiter",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|opp|jupiter",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "neptune|conj|saturn",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sext|saturn",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sq|saturn",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|tri|saturn",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|opp|saturn",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|conj|asc",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|sext|asc",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|sq|asc",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|tri|asc",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|opp|asc",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "neptune|conj|mc",
+   "transit": "نبتون",
+   "aspect": "اقتران",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sext|mc",
+   "transit": "نبتون",
+   "aspect": "تسديس",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|sq|mc",
+   "transit": "نبتون",
+   "aspect": "تربيع",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|tri|mc",
+   "transit": "نبتون",
+   "aspect": "تثليث",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "neptune|opp|mc",
+   "transit": "نبتون",
+   "aspect": "مقابلة",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|conj|sun",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|sext|sun",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|sq|sun",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|tri|sun",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|opp|sun",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|conj|moon",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sext|moon",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sq|moon",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|tri|moon",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|opp|moon",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|conj|mercury",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sext|mercury",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sq|mercury",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|tri|mercury",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|opp|mercury",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|conj|venus",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|sext|venus",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|sq|venus",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|tri|venus",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|opp|venus",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|conj|mars",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|sext|mars",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|sq|mars",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|tri|mars",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|opp|mars",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|conj|jupiter",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|sext|jupiter",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|sq|jupiter",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|tri|jupiter",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|opp|jupiter",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "pluto|conj|saturn",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sext|saturn",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sq|saturn",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|tri|saturn",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|opp|saturn",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|conj|asc",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|sext|asc",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|sq|asc",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|tri|asc",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|opp|asc",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "pluto|conj|mc",
+   "transit": "بلوتو",
+   "aspect": "اقتران",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sext|mc",
+   "transit": "بلوتو",
+   "aspect": "تسديس",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|sq|mc",
+   "transit": "بلوتو",
+   "aspect": "تربيع",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|tri|mc",
+   "transit": "بلوتو",
+   "aspect": "تثليث",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "pluto|opp|mc",
+   "transit": "بلوتو",
+   "aspect": "مقابلة",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|conj|sun",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|sext|sun",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|sq|sun",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|tri|sun",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|opp|sun",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|conj|moon",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sext|moon",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sq|moon",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|tri|moon",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|opp|moon",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|conj|mercury",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sext|mercury",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sq|mercury",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|tri|mercury",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|opp|mercury",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|conj|venus",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|sext|venus",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|sq|venus",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|tri|venus",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|opp|venus",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|conj|mars",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|sext|mars",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|sq|mars",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|tri|mars",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|opp|mars",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|conj|jupiter",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|sext|jupiter",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|sq|jupiter",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|tri|jupiter",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|opp|jupiter",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "chiron|conj|saturn",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sext|saturn",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sq|saturn",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|tri|saturn",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|opp|saturn",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|conj|asc",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|sext|asc",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|sq|asc",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|tri|asc",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|opp|asc",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "chiron|conj|mc",
+   "transit": "كيرون",
+   "aspect": "اقتران",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sext|mc",
+   "transit": "كيرون",
+   "aspect": "تسديس",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|sq|mc",
+   "transit": "كيرون",
+   "aspect": "تربيع",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|tri|mc",
+   "transit": "كيرون",
+   "aspect": "تثليث",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "chiron|opp|mc",
+   "transit": "كيرون",
+   "aspect": "مقابلة",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|conj|sun",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "truenode|opp|sun",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "الشمس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "truenode|conj|moon",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|opp|moon",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "القمر",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|conj|mercury",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|opp|mercury",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "عطارد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|conj|venus",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "truenode|opp|venus",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "الزهرة",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "truenode|conj|mars",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "truenode|opp|mars",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "المريخ",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "truenode|conj|jupiter",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "truenode|opp|jupiter",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "المشتري",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "truenode|conj|saturn",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|opp|saturn",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "زحل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|conj|asc",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "truenode|opp|asc",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "الطالع",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "truenode|conj|mc",
+   "transit": "العقدة الشمالية",
+   "aspect": "اقتران",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "truenode|opp|mc",
+   "transit": "العقدة الشمالية",
+   "aspect": "مقابلة",
+   "natal": "وسط السماء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  }
+ ],
+ "placements": [
+  {
+   "id": "sun|0",
+   "natal": "الشمس",
+   "sign": "الحمل",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|1",
+   "natal": "الشمس",
+   "sign": "الثور",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|2",
+   "natal": "الشمس",
+   "sign": "الجوزاء",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|3",
+   "natal": "الشمس",
+   "sign": "السرطان",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|4",
+   "natal": "الشمس",
+   "sign": "الأسد",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|5",
+   "natal": "الشمس",
+   "sign": "العذراء",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|6",
+   "natal": "الشمس",
+   "sign": "الميزان",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|7",
+   "natal": "الشمس",
+   "sign": "العقرب",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|8",
+   "natal": "الشمس",
+   "sign": "القوس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|9",
+   "natal": "الشمس",
+   "sign": "الجدي",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|10",
+   "natal": "الشمس",
+   "sign": "الدلو",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "sun|11",
+   "natal": "الشمس",
+   "sign": "الحوت",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "moon|0",
+   "natal": "القمر",
+   "sign": "الحمل",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|1",
+   "natal": "القمر",
+   "sign": "الثور",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|2",
+   "natal": "القمر",
+   "sign": "الجوزاء",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|3",
+   "natal": "القمر",
+   "sign": "السرطان",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|4",
+   "natal": "القمر",
+   "sign": "الأسد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|5",
+   "natal": "القمر",
+   "sign": "العذراء",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|6",
+   "natal": "القمر",
+   "sign": "الميزان",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|7",
+   "natal": "القمر",
+   "sign": "العقرب",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|8",
+   "natal": "القمر",
+   "sign": "القوس",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|9",
+   "natal": "القمر",
+   "sign": "الجدي",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|10",
+   "natal": "القمر",
+   "sign": "الدلو",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "moon|11",
+   "natal": "القمر",
+   "sign": "الحوت",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|0",
+   "natal": "عطارد",
+   "sign": "الحمل",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|1",
+   "natal": "عطارد",
+   "sign": "الثور",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|2",
+   "natal": "عطارد",
+   "sign": "الجوزاء",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|3",
+   "natal": "عطارد",
+   "sign": "السرطان",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|4",
+   "natal": "عطارد",
+   "sign": "الأسد",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|5",
+   "natal": "عطارد",
+   "sign": "العذراء",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|6",
+   "natal": "عطارد",
+   "sign": "الميزان",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|7",
+   "natal": "عطارد",
+   "sign": "العقرب",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|8",
+   "natal": "عطارد",
+   "sign": "القوس",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|9",
+   "natal": "عطارد",
+   "sign": "الجدي",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|10",
+   "natal": "عطارد",
+   "sign": "الدلو",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mercury|11",
+   "natal": "عطارد",
+   "sign": "الحوت",
+   "domains": [
+    "هويتك ومصيرك",
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "venus|0",
+   "natal": "الزهرة",
+   "sign": "الحمل",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|1",
+   "natal": "الزهرة",
+   "sign": "الثور",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|2",
+   "natal": "الزهرة",
+   "sign": "الجوزاء",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|3",
+   "natal": "الزهرة",
+   "sign": "السرطان",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|4",
+   "natal": "الزهرة",
+   "sign": "الأسد",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|5",
+   "natal": "الزهرة",
+   "sign": "العذراء",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|6",
+   "natal": "الزهرة",
+   "sign": "الميزان",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|7",
+   "natal": "الزهرة",
+   "sign": "العقرب",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|8",
+   "natal": "الزهرة",
+   "sign": "القوس",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|9",
+   "natal": "الزهرة",
+   "sign": "الجدي",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|10",
+   "natal": "الزهرة",
+   "sign": "الدلو",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "venus|11",
+   "natal": "الزهرة",
+   "sign": "الحوت",
+   "domains": [
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|0",
+   "natal": "المريخ",
+   "sign": "الحمل",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|1",
+   "natal": "المريخ",
+   "sign": "الثور",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|2",
+   "natal": "المريخ",
+   "sign": "الجوزاء",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|3",
+   "natal": "المريخ",
+   "sign": "السرطان",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|4",
+   "natal": "المريخ",
+   "sign": "الأسد",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|5",
+   "natal": "المريخ",
+   "sign": "العذراء",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|6",
+   "natal": "المريخ",
+   "sign": "الميزان",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|7",
+   "natal": "المريخ",
+   "sign": "العقرب",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|8",
+   "natal": "المريخ",
+   "sign": "القوس",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|9",
+   "natal": "المريخ",
+   "sign": "الجدي",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|10",
+   "natal": "المريخ",
+   "sign": "الدلو",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mars|11",
+   "natal": "المريخ",
+   "sign": "الحوت",
+   "domains": [
+    "عملك وبيتك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "jupiter|0",
+   "natal": "المشتري",
+   "sign": "الحمل",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|1",
+   "natal": "المشتري",
+   "sign": "الثور",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|2",
+   "natal": "المشتري",
+   "sign": "الجوزاء",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|3",
+   "natal": "المشتري",
+   "sign": "السرطان",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|4",
+   "natal": "المشتري",
+   "sign": "الأسد",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|5",
+   "natal": "المشتري",
+   "sign": "العذراء",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|6",
+   "natal": "المشتري",
+   "sign": "الميزان",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|7",
+   "natal": "المشتري",
+   "sign": "العقرب",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|8",
+   "natal": "المشتري",
+   "sign": "القوس",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|9",
+   "natal": "المشتري",
+   "sign": "الجدي",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|10",
+   "natal": "المشتري",
+   "sign": "الدلو",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "jupiter|11",
+   "natal": "المشتري",
+   "sign": "الحوت",
+   "domains": [
+    "هويتك ومصيرك"
+   ]
+  },
+  {
+   "id": "saturn|0",
+   "natal": "زحل",
+   "sign": "الحمل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|1",
+   "natal": "زحل",
+   "sign": "الثور",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|2",
+   "natal": "زحل",
+   "sign": "الجوزاء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|3",
+   "natal": "زحل",
+   "sign": "السرطان",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|4",
+   "natal": "زحل",
+   "sign": "الأسد",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|5",
+   "natal": "زحل",
+   "sign": "العذراء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|6",
+   "natal": "زحل",
+   "sign": "الميزان",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|7",
+   "natal": "زحل",
+   "sign": "العقرب",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|8",
+   "natal": "زحل",
+   "sign": "القوس",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|9",
+   "natal": "زحل",
+   "sign": "الجدي",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|10",
+   "natal": "زحل",
+   "sign": "الدلو",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "saturn|11",
+   "natal": "زحل",
+   "sign": "الحوت",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "asc|0",
+   "natal": "الطالع",
+   "sign": "الحمل",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|1",
+   "natal": "الطالع",
+   "sign": "الثور",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|2",
+   "natal": "الطالع",
+   "sign": "الجوزاء",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|3",
+   "natal": "الطالع",
+   "sign": "السرطان",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|4",
+   "natal": "الطالع",
+   "sign": "الأسد",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|5",
+   "natal": "الطالع",
+   "sign": "العذراء",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|6",
+   "natal": "الطالع",
+   "sign": "الميزان",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|7",
+   "natal": "الطالع",
+   "sign": "العقرب",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|8",
+   "natal": "الطالع",
+   "sign": "القوس",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|9",
+   "natal": "الطالع",
+   "sign": "الجدي",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|10",
+   "natal": "الطالع",
+   "sign": "الدلو",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "asc|11",
+   "natal": "الطالع",
+   "sign": "الحوت",
+   "domains": [
+    "هويتك ومصيرك",
+    "علاقاتك"
+   ]
+  },
+  {
+   "id": "mc|0",
+   "natal": "وسط السماء",
+   "sign": "الحمل",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|1",
+   "natal": "وسط السماء",
+   "sign": "الثور",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|2",
+   "natal": "وسط السماء",
+   "sign": "الجوزاء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|3",
+   "natal": "وسط السماء",
+   "sign": "السرطان",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|4",
+   "natal": "وسط السماء",
+   "sign": "الأسد",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|5",
+   "natal": "وسط السماء",
+   "sign": "العذراء",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|6",
+   "natal": "وسط السماء",
+   "sign": "الميزان",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|7",
+   "natal": "وسط السماء",
+   "sign": "العقرب",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|8",
+   "natal": "وسط السماء",
+   "sign": "القوس",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|9",
+   "natal": "وسط السماء",
+   "sign": "الجدي",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|10",
+   "natal": "وسط السماء",
+   "sign": "الدلو",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  },
+  {
+   "id": "mc|11",
+   "natal": "وسط السماء",
+   "sign": "الحوت",
+   "domains": [
+    "عملك وبيتك"
+   ]
+  }
+ ]
+}

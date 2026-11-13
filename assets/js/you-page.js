@@ -9,7 +9,7 @@
     { id: 'self', t: 'هويتك ومصيرك', s: 'من أنت وإلى أين تمضي', i: '<circle cx="12" cy="8" r="3.500"/><path d="M5 20a7 7 0 0 1 14 0"/>' },
     { id: 'work', t: 'عملك وبيتك', s: 'مسارك المهني وأمانك الداخلي', i: '<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/>' }
   ];
-  var ST = { tab: 'transits', year: new Date().getFullYear(), view: null, memo: null };
+  var ST = { all: false, tab: 'transits', year: new Date().getFullYear(), view: null, memo: null };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var user = function () { return (window.AqSession && window.AqSession.user) || null; };
   var natal = function () { try { var n = window.AqeeqChartContext && window.AqeeqChartContext.getOrPrefill(); return n && n.ch ? n.ch : null; } catch (e) { return null; } };
@@ -41,10 +41,11 @@
   }
   function cyclesHtml(list, cap) {
     var s = split(list), h = '';
-    if (cap) { s.cur = s.cur.slice(0, 8); s.up = s.up.slice(0, 4); }
+    var more = '';
+    if (cap && !ST.all && (s.cur.length > 6 || s.up.length > 3)) { s.cur = s.cur.slice(0, 6); s.up = s.up.slice(0, 3); more = '<button type="button" class="yp-more" data-all>عرض كل الدورات</button>'; }
     h += '<p class="yp-lab">دورات جارية</p>' + (s.cur.length ? '<div class="yp-list">' + s.cur.map(function (c) { return cardHtml(c, false); }).join('') + '</div>' : '<div class="yp-empty"><p>لا توجد دورة جارية في هذا التاريخ.</p></div>');
     if (s.up.length) h += '<p class="yp-lab">دورات قادمة</p><div class="yp-list">' + s.up.map(function (c) { return cardHtml(c, true); }).join('') + '</div>';
-    return h;
+    return h + more;
   }
   function domainCards(label) {
     return '<p class="yp-lab">' + label + '</p><div class="yp-doms">' + DOMAINS.map(function (d) {
@@ -54,7 +55,7 @@
   function needNatal() { return '<div class="yp-empty">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<p>أدخل بيانات ميلادك مرة واحدة لتظهر عبورات خريطتك.</p><a class="yp-btn" href="#chart">احسب خريطتك</a></div>'; }
   function timeTravel() {
     var now = new Date().getFullYear(), o = '';
-    for (var y = now - 3; y <= now + 6; y++) o += '<option value="' + y + '"' + (y === ST.year ? ' selected' : '') + '>' + y + '</option>';
+    for (var y = now - 1; y <= now + 2; y++) o += '<option value="' + y + '"' + (y === ST.year ? ' selected' : '') + '>' + y + '</option>';
     return '<div class="yp-tt"><label class="yp-tt-l"><span class="yp-tt-i">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '</span>السفر بالزمن<select id="yp-year" aria-label="اختر السنة">' + o + '</select></label><div class="yp-tt-d"><b>' + (ST.year === now ? 'اليوم' : 'سنة ' + ST.year) + '</b><small>دورات مؤقتة تغيّر فيك شيئًا</small></div></div>';
   }
   function placeCards(dom) {
@@ -74,7 +75,7 @@
     if (v && v.pl) return back('رجوع') + '<div class="yp-det"><small>صفة ثابتة في خريطتك</small><h3>' + esc(v.pl) + '</h3><div class="yp-txt"><small>الخلاصة</small><p>نص هذه الصفة قيد الكتابة.</p></div></div>';
     if (v && v.dom) {
       var d = domOf(v.dom); list = allCycles();
-      var mine = list ? list.filter(function (c) { return c.dom === v.dom; }) : [];
+      var mine = list ? list.filter(function (c) { return c.doms.indexOf(v.dom) >= 0; }) : [];
       return back('رجوع') + '<div class="yp-dh"><h3>' + d.t + '</h3><small>' + d.s + '</small></div>' + (list ? cyclesHtml(mine) : needNatal()) + '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>';
     }
     if (ST.tab === 'transits') { list = allCycles(); return timeTravel() + (list ? cyclesHtml(list, true) : needNatal()) + domainCards('حسب مجال حياتك'); }
@@ -92,11 +93,12 @@
       '<div class="yp-body">' + bodyHtml() + '</div></div>';
   }
   document.addEventListener('click', function (e) {
-    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back]'); if (!t) return;
+    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all]'); if (!t) return;
     if (t.hasAttribute('data-tab')) { ST.tab = t.getAttribute('data-tab'); ST.view = null; }
     else if (t.hasAttribute('data-dom')) ST.view = { dom: t.getAttribute('data-dom'), from: ST.view };
     else if (t.hasAttribute('data-cyc')) ST.view = { cyc: t.getAttribute('data-cyc'), from: ST.view };
     else if (t.hasAttribute('data-pl')) { var id = t.getAttribute('data-pl'), p = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === id; })[0]; ST.view = { pl: p.nn + ' في ' + p.sign, from: ST.view }; }
+    else if (t.hasAttribute('data-all')) ST.all = true;
     else if (t.hasAttribute('data-back')) ST.view = (ST.view && ST.view.from) || null;
     render(); var s = $('#for-you'); if (s) s.scrollTop = 0;
   });
