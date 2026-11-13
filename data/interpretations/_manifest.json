@@ -1,5 +1,5 @@
 {
- "total": 617,
+ "total": 881,
  "entries": [
   {
    "id": "natal.core.sun.house1",
@@ -4318,6 +4318,1854 @@
    "file": "data/interpretations/ic.json",
    "layer": "angle",
    "where": "قاع السماء في الحوت",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house1.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 1 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house2.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 2 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house3.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 3 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house4.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 4 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house5.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 5 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house6.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 6 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house7.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 7 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house8.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 8 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house9.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 9 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house10.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 10 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house11.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 11 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.aries",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحمل على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.taurus",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الثور على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.gemini",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجوزاء على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.cancer",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج السرطان على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.leo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الأسد على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.virgo",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العذراء على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.libra",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الميزان على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.scorpio",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج العقرب على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.sagittarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج القوس على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.capricorn",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الجدي على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.aquarius",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الدلو على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_cusp.house12.pisces",
+   "file": "data/interpretations/house_cusp.json",
+   "layer": "house_cusp",
+   "where": "برج الحوت على رأس البيت 12 (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.aries",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.taurus",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.gemini",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.cancer",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.leo",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.virgo",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.libra",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.scorpio",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.sagittarius",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.capricorn",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.aquarius",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.sun.pisces",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_only",
+   "where": "الشمس في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.aries",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.taurus",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.gemini",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.cancer",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.leo",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.virgo",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.libra",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.scorpio",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.sagittarius",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.capricorn",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.aquarius",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.moon.pisces",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_only",
+   "where": "القمر في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.aries",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.taurus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.gemini",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.cancer",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.leo",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.virgo",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.libra",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.scorpio",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.sagittarius",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.capricorn",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.aquarius",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mercury.pisces",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_only",
+   "where": "عطارد في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.aries",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.taurus",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.gemini",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.cancer",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.leo",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.virgo",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.libra",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.scorpio",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.sagittarius",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.capricorn",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.aquarius",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.venus.pisces",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_only",
+   "where": "الزهرة في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.aries",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.taurus",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.gemini",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.cancer",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.leo",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.virgo",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.libra",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.scorpio",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.sagittarius",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.capricorn",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.aquarius",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.mars.pisces",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_only",
+   "where": "المريخ في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.aries",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.taurus",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.gemini",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.cancer",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.leo",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.virgo",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.libra",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.scorpio",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.sagittarius",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.capricorn",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.aquarius",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.jupiter.pisces",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_only",
+   "where": "المشتري في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.aries",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.taurus",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.gemini",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.cancer",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.leo",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.virgo",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.libra",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.scorpio",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.sagittarius",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.capricorn",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.aquarius",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.saturn.pisces",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_only",
+   "where": "زحل في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.aries",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.taurus",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.gemini",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.cancer",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.leo",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.virgo",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.libra",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.scorpio",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.sagittarius",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.capricorn",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.aquarius",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.uranus.pisces",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_only",
+   "where": "أورانوس في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.aries",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.taurus",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.gemini",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.cancer",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.leo",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.virgo",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.libra",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.scorpio",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.sagittarius",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.capricorn",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.aquarius",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.neptune.pisces",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_only",
+   "where": "نبتون في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.aries",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.taurus",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.gemini",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.cancer",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.leo",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.virgo",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.libra",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.scorpio",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.sagittarius",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.capricorn",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.aquarius",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.pluto.pisces",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_only",
+   "where": "بلوتو في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
    "status": "missing"
   }
  ]

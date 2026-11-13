@@ -41,3 +41,5 @@ details[open]>summary .il-chev{transform:rotate(180deg)}
 .il-note{margin:12px 0 0;font-size:.92rem;line-height:1.9;color:#6b4a52}
 .il-simple .il-body{padding-top:4px}
 .il-simple .il-pl{margin-top:8px}
+.il-addtime{margin-top:14px;line-height:1.9}
+.il-addbtn{display:inline-block;margin-top:8px;padding:8px 16px;border:1.3px solid #D2AE6C;border-radius:14px;background:linear-gradient(180deg,#FFFDF7,#F7EBCF);color:#6A2038;font:700 .88rem 'Cairo',sans-serif;cursor:pointer}
