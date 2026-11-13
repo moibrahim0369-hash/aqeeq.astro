@@ -9,7 +9,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261113f';
+  var VERSION = '20261114a';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -41,6 +41,8 @@
   function idAspect(first, type, second) { return 'natal.aspect.' + first + '.' + type + '.' + second; }
   function idCusp(house, sign) { return 'natal.house_cusp.house' + house + '.' + SIGN_EN[sign]; }
   function idSignOnly(body, sign) { return 'natal.sign_only.' + body + '.' + SIGN_EN[sign]; }
+  function idStellium(kind, v) { return 'natal.stellium.' + (kind === 'house' ? 'house' + v : SIGN_EN[v]); }
+  function idBlend(planet, house) { return 'natal.house_blend.' + planet + '.house' + house; }
   function idAngle(angle, sign) { return 'natal.angle.' + angle + '.' + SIGN_EN[sign]; }
 
   /* ---------- نموذج الخريطة ---------- */
@@ -80,7 +82,13 @@
     var angles = known ? [['asc', ch.asc], ['dsc', ch.asc + 180], ['mc', ch.mc], ['ic', ch.mc + 180]].map(function (p) {
       return { body: p[0], label: LABEL[p[0]], sign: Math.floor(norm(p[1]) / 30) };
     }) : [];
-    return { known: known, items: items, aspects: asp, houses: houses, angles: angles };
+    var stel = { houses: [], signs: [] };
+    houses.forEach(function (H) { if (H.occupants.length >= 3) stel.houses.push(H.n); });
+    for (var sg = 0; sg < 12; sg++) {
+      var inSign = PLANETS.filter(function (k) { return items[k] && items[k].sign === sg; });
+      if (inSign.length >= 3) stel.signs.push({ sign: sg, bodies: inSign });
+    }
+    return { known: known, items: items, aspects: asp, houses: houses, angles: angles, stellium: stel };
   }
 
   /* ---------- الفهرس والتحميل ---------- */
@@ -89,7 +97,8 @@
     var f = {};
     Object.keys(m.items).forEach(function (k) { f[k] = 1; });
     m.angles.forEach(function (a) { f[a.body] = 1; });
-    if (m.known) f.house_cusp = 1;
+    if (m.known) { f.house_cusp = 1; f.house_blend = 1; }
+    if (m.stellium.houses.length || m.stellium.signs.length) f.stellium = 1;
     return Object.keys(f);
   }
   function load(body) {
@@ -164,12 +173,17 @@
       if (!m.known && k === 'moon' && Math.min(it.lon % 30, 30 - (it.lon % 30)) < 7) extra = '<p class="il-note">القمر يقطع نحو ثلاث عشرة درجة في اليوم، وموضعه هنا قريب من حدّ برجين، فبرجه الدقيق يحتاج ساعة ميلادك.</p>';
       S.planetTpl[k] = tpl(extra + bodyBlock(m, ix, k, m.known ? undefined : false, true));
     });
+    S.stelSigns = m.stellium.signs.length ? rows(m.stellium.signs.map(function (g, i) {
+      return row(i, svg('<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8" stroke-dasharray="2 3"/>'), 'تجمّع في ' + SIGN_AR[g.sign], g.bodies.length + ' كواكب', '', entry(ix, idStellium('sign', g.sign), true));
+    })).replace(/class="nd-row il-row"/g, 'class="nd-row il-row il-st"') : '';
     if (!m.known) {
       S.note = '<p class="il-note il-addtime">ظهرت لك كواكبك في أبراجها، أما البيوت والطالع فتحتاج ساعة ميلادك. إن عرفتها أضفها، وستظهر لك أقسام جديدة بحياتك الواقعية: العمل والعلاقات والبيت والمال. <button type="button" class="il-addbtn" data-il-addtime>أضف ساعة الميلاد</button></p>';
       return S;
     }
     m.houses.forEach(function (H) {
-      S.houseTpl[H.n] = tpl(sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + H.occupants.map(function (k) { return bodyBlock(m, ix, k); }).join(''));
+      var st = H.occupants.length >= 3 ? sub('تجمّع في البيت', entry(ix, idStellium('house', H.n), true)) : '';
+      var bl = H.occupants.length ? '<div class="il-blend">' + H.occupants.map(function (k) { return entry(ix, idBlend(k, H.n), false); }).join('') + '</div>' : '';
+      S.houseTpl[H.n] = tpl(sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + st + bl);
     });
     S.angles = rows(m.angles.map(function (A, i) {
       return row(i, ANG_ABBR[A.body], A.label, SIGN_AR[A.sign], '', entry(ix, idAngle(A.body, A.sign), true), ' nd-hnum');
@@ -204,6 +218,7 @@
       var html = '<div class="nd-list il-wrap"><h4 class="il-gt">محاور الخريطة</h4>' + S.angles + '</div>';
       if (card) card.outerHTML = html; else po.insertAdjacentHTML('beforeend', html);
     }
+    if (po && S.stelSigns) po.insertAdjacentHTML('beforeend', '<div class="nd-list il-wrap"><h4 class="il-gt">تجمّع الكواكب</h4>' + S.stelSigns + '</div>');
     var ab = box.querySelector('[data-il-addtime]');
     if (ab) ab.addEventListener('click', function () { var e = document.querySelector('.nd-edit'); if (e) e.click(); });
   }
@@ -220,6 +235,6 @@
     });
   }
 
-  return { boot: boot, build: build, sections: sections, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idSignOnly: idSignOnly,
+  return { boot: boot, build: build, sections: sections, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idStellium: idStellium, idBlend: idBlend, idSignOnly: idSignOnly,
     SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, POINTS: POINTS, ASPECTS: ASPECTS };
 });

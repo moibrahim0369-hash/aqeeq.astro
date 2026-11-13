@@ -1,5 +1,5 @@
 {
- "total": 881,
+ "total": 1025,
  "entries": [
   {
    "id": "natal.core.sun.house1",
@@ -6166,6 +6166,1014 @@
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
    "where": "بلوتو في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house1",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 1 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house2",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 2 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house3",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 3 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house4",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 4 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house5",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 5 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house6",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 6 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house7",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 7 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house8",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 8 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house9",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 9 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house10",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 10 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house11",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 11 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.house12",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في البيت 12 (يظهر أعلى أكورديون البيت؛ نص واحد للتجمّع بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.aries",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الحمل (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.taurus",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الثور (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.gemini",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الجوزاء (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.cancer",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج السرطان (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.leo",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الأسد (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.virgo",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج العذراء (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.libra",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الميزان (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.scorpio",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج العقرب (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.sagittarius",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج القوس (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.capricorn",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الجدي (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.aquarius",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الدلو (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.stellium.pisces",
+   "file": "data/interpretations/stellium.json",
+   "layer": "stellium",
+   "where": "تجمّع 3 كواكب فأكثر في برج الحوت (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.sun.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الشمس في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.moon.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام القمر في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mercury.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام عطارد في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.venus.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام الزهرة في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.mars.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المريخ في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.jupiter.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام المشتري في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.saturn.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام زحل في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.uranus.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام أورانوس في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.neptune.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام نبتون في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house1",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 1 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house2",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 2 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house3",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 3 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house4",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 4 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house5",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 5 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house6",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 6 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house7",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 7 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house8",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 8 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house9",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 9 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house10",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 10 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house11",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 11 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.house_blend.pluto.house12",
+   "file": "data/interpretations/house_blend.json",
+   "layer": "house_blend",
+   "where": "إسهام بلوتو في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
    "status": "missing"
   }
  ]
