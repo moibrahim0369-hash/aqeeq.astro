@@ -75,7 +75,7 @@
   }
   /* زر «القسم التالي»: يتبع ترتيب الصفوف في القائمة نفسها */
   var gOrder = [], gItems = {}, gTitles = {};
-  function keyOf(kind) { return /^(stages|peaks|chal|name)$/.test(kind) ? 't:' + kind : kind; }
+  function keyOf(kind) { return /^(stages|peaks|chal|name|extra)$/.test(kind) ? 't:' + kind : kind; }
   function syncNext(kind) {
     var b = $('[data-lps-next]', sheet), i = gOrder.indexOf(keyOf(kind)), nk = i > -1 ? gOrder[i + 1] : null;
     if (!b) return;
@@ -166,6 +166,7 @@
       return '<div class="lps-noname"><p>أضف اسمك ليظهر لك هنا ما تكشفه أرقام اسمك عن رغبة روحك وصورتك أمام الناس ومسارك الداخلي.</p><button type="button" class="lps-cta" data-lps-name>أضف اسمك الآن</button></div>';
     }
     var c = n.cloneNode(true);
+    $$('.aqeq-extra-numbers,.aqeq-pc-wrap', c).forEach(function (x) { x.remove(); });
     var hd = $('.aqeq-name-heading', c); if (hd) { var k = $('.aqeq-name-kicker', hd), p = $('p', hd); if (k) k.remove(); if (p) p.remove(); }
     $$('.aqeq-name-group', c).forEach(function (g, gi) {
       var h = $('header', g), t = $('h4', h), sb = $('p', h), nn = $('.aqeq-name-number', h);
@@ -182,6 +183,44 @@
     });
     return '<div class="lps-name">' + c.innerHTML + '</div>';
   }
+  /* الأرقام المكملة: السنة الشخصية + يوم الميلاد + النضج + القمم والتحديات (كلها من تاريخ الميلاد) */
+  function acc(idx, title, bodyEl) {
+    var d = document.createElement('details'); d.className = 'lpn-card';
+    d.innerHTML = '<summary><span class="lpn-idx">' + idx + '</span><b>' + esc(title) + '</b><span class="lpn-chev">' + IC.chev + '</span></summary><div class="lpn-b"></div>';
+    tidyName(bodyEl); $('.lpn-b', d).appendChild(bodyEl); return d;
+  }
+  function extraHTML() {
+    var n = $('.aqeq-name-readings', res), ex = n && $('.aqeq-extra-numbers', n);
+    if (!ex) return '<div class="lps-noname"><p>الأرقام المكملة بتظهر بعد حساب تاريخ ميلادك.</p></div>';
+    var out = document.createElement('div'); out.className = 'lps-name lps-extra';
+    function group(ic, title, sub, num, items) {
+      var g = document.createElement('section'); g.className = 'aqeq-name-group';
+      g.innerHTML = '<header><span class="lpc-ic lpn-gi c' + ((out.children.length) % 4 + 1) + '">' + IC[ic] + '</span><div class="lpn-gt"><h4>' + esc(title) + '</h4><p>' + esc(sub) + '</p></div>' + (num ? '<span class="lpn-num"><small>الرقم</small><b>' + esc(num) + '</b></span>' : '') + '</header>';
+      items.forEach(function (it, i) { g.appendChild(acc(i + 1, it[0], it[1])); });
+      out.appendChild(g);
+    }
+    function secs(root, sel, ttlSel, bodySel) {
+      return $$(sel, root).map(function (x) {
+        var t = $(ttlSel, x), b = document.createElement('div');
+        if (bodySel) { var src = $(bodySel, x); if (src) b.innerHTML = src.innerHTML; } else { $$('p', x).forEach(function (p) { b.appendChild(p.cloneNode(true)); }); }
+        return [t ? t.textContent.trim() : '', b];
+      });
+    }
+    var py = $('.aqeq-personal-year', ex);
+    if (py) group('ask', 'السنة الشخصية', ($('h5', py) || {}).textContent || '', ($('.aqeq-extra-number', py) || {}).textContent, secs(py, '.aqeq-personal-year-section', 'h5', '.aqeq-extra-copy'));
+    [['.aqeq-extra-birthday', 'person', 'رقم يوم الميلاد'], ['.aqeq-extra-maturity', 'scale', 'رقم النضج']].forEach(function (a) {
+      var el = $(a[0], ex); if (!el) return;
+      group(a[1], a[2], ($('h5', el) || {}).textContent || '', ($('.aqeq-extra-number', el) || {}).textContent, secs(el, '.aqeq-extra-deep-section', 'h5'));
+    });
+    var pc = $('.aqeq-pc-wrap', n);
+    if (pc) $$('.aqeq-pc-card', pc).forEach(function (card) {
+      var t = $('h4', card), sub = $('h5', card), num = $('.aqeq-extra-number,.aqeq-pc-num,.aqeq-pc-card-head span:last-child', card);
+      var items = $$('section,.aqeq-pc-sec', card).filter(function (x) { return $('h5,h6', x) && $('p', x); }).map(function (x) { var b = document.createElement('div'); $$('p,ul', x).forEach(function (q) { b.appendChild(q.cloneNode(true)); }); return [($('h5,h6', x) || {}).textContent.trim(), b]; });
+      if (!items.length) { var b = document.createElement('div'); $$('p,ul', card).forEach(function (q) { b.appendChild(q.cloneNode(true)); }); if (b.children.length) items = [[sub ? sub.textContent.trim() : (t ? t.textContent.trim() : ''), b]]; }
+      if (items.length) group(/تحدي/.test(t ? t.textContent : '') ? 'cross' : 'peaks', t ? t.textContent.trim() : '', sub && items.length > 1 ? sub.textContent.trim() : '', '', items);
+    });
+    return out.outerHTML;
+  }
   function stagesHTML() {
     var cards = pcCards(); if (!cards || !cards.p) return '<p class="lps-empty">تعذر تجهيز هذه القراءة حاليًا.</p>';
     var P = rowsOf(cards.p), cur = P.filter(function (r) { return r.st === 'current'; })[0] || P[0], h = '';
@@ -197,6 +236,7 @@
     return '<div class="lps-stages">' + h + '</div>';
   }
   function openTile(kind) {
+    if (kind === 'extra') { openSheet('extra', IC.scale, 'الأرقام المكملة', 'من تاريخ ميلادك', extraHTML()); return; }
     if (kind === 'name') { openSheet('name', IC.name, 'بصمة الاسم', 'ثلاث زوايا من أرقام اسمك', nameHTML()); return; }
     openSheet('stages', IC.stages, 'مراحل العمر الأربع', 'القمة والتحدي داخل كل مرحلة', stagesHTML());
   }
@@ -285,6 +325,7 @@
     html += '<h4 class="lpg-h">أساس شخصيتك<small>من أنت؟</small></h4>';
     g1.forEach(pushMade);
     push('t:name', IC.name, 'بصمة الاسم', 'اقرأ اسمك', function () { openTile('name'); });
+    push('t:extra', IC.scale, 'الأرقام المكملة', 'السنة الشخصية، يوم الميلاد، النضج، القمم والتحديات', function () { openTile('extra'); });
     g1b.forEach(pushMade);
     html += '<h4 class="lpg-h">الظل والعلاقات والمال<small>كيف تعيش؟</small></h4>';
     g2.concat(rest).forEach(pushMade);
