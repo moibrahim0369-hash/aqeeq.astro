@@ -830,8 +830,8 @@ html body #home.aqh .aqh-fuse .aqh-system:nth-child(3) .aqh-go{color:#4A1224!imp
 @media(max-width:1024px){html body #home.aqh .aqh-fuse .aqh-system .aqh-go{padding:5px 8px!important;bottom:10px}html body #home.aqh .aqh-fuse .aqh-system .aqh-go b{font-size:.64rem}}
 
 /* ===== Shared glass bottom sheet (v2) ===== */
-.aqm-sheet-scrim{background:rgba(58,14,28,.42)!important;-webkit-backdrop-filter:blur(5px)!important;backdrop-filter:blur(5px)!important;animation:aqScrimIn .22s ease both;touch-action:none}
-.aqm-sheet-panel{background:linear-gradient(180deg,rgba(255,253,247,.9),rgba(250,241,220,.94))!important;-webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);border:1.3px solid rgba(210,174,108,.9)!important;border-bottom:0!important;box-shadow:0 -18px 50px rgba(58,14,28,.38),inset 0 1px 0 rgba(255,255,255,.9)!important;max-height:88vh!important;padding:10px 16px 0!important;animation:aqSheetIn .34s cubic-bezier(.2,.9,.3,1.05) both!important;overscroll-behavior:contain}
+.aqm-sheet-scrim{background:rgba(58,14,28,.42)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;animation:aqScrimIn .22s ease both;touch-action:none}
+.aqm-sheet-panel{background:linear-gradient(180deg,rgba(255,253,247,.9),rgba(250,241,220,.94))!important;-webkit-backdrop-filter:none;backdrop-filter:none;border:1.3px solid rgba(210,174,108,.9)!important;border-bottom:0!important;box-shadow:0 -18px 50px rgba(58,14,28,.38),inset 0 1px 0 rgba(255,255,255,.9)!important;max-height:88vh!important;padding:10px 16px 0!important;animation:aqSheetIn .34s cubic-bezier(.2,.9,.3,1.05) both!important;overscroll-behavior:contain}
 .aqm-sheet.is-closing .aqm-sheet-panel{animation:aqSheetOut .22s ease-in both!important}
 .aqm-sheet.is-closing .aqm-sheet-scrim{animation:aqScrimOut .22s ease-in both}
 .aqm-sheet.is-swap .aqm-sheet-body,.aqm-sheet.is-swap .aqm-sheet-head{opacity:0;transform:translateY(8px);transition:opacity .15s,transform .15s}

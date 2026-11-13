@@ -340,6 +340,9 @@
       var p = data.planets.filter(function (x) { return x.k === k; })[0]; if (!p) return;
       var f = fmtLon(p.lon); pick.innerHTML = '<b>' + p.n + '</b> في ' + SG[f.s][0] + ' ' + f.txt + (data.known && p.house ? ' · البيت ' + p.house + ' (' + HA[p.house - 1] + ')' : '') + (p.retro ? ' · تراجع' : '');
       box.querySelectorAll('.nd-pl').forEach(function (n) { n.classList.toggle('on', n.getAttribute('data-k') === k); });
+      /* الضغط على كوكب في العجلة يفتح قراءته مباشرة، كأنك ضغطت صفه في قائمة الكواكب */
+      var rows = box.querySelectorAll('[data-nd-panel="planets"] .nd-row');
+      for (var r = 0; r < rows.length; r++) { var nm = ((rows[r].querySelector('b') || {}).textContent || '').replace(/\s*R\s*$/, '').trim(); if (nm === p.n) { rows[r].click(); break; } }
     };
     slot.addEventListener('click', function (e) { var g = e.target.closest('.nd-pl'); if (g) show(g.getAttribute('data-k')); });
     slot.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('nd-pl')) { e.preventDefault(); show(e.target.getAttribute('data-k')); } });

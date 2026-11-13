@@ -29,7 +29,8 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   await p.click('[data-nd-tab=aspects]'); await p.waitForTimeout(300);
   ok(await p.evaluate(() => document.querySelectorAll('[data-nd-panel=aspects] .il-row').length > 0), 'aspects tab lists rows');
   await p.click('[data-nd-tab=overview]'); await p.waitForTimeout(300);
-  await p.click('.nd-pl >> nth=0'); ok(await p.evaluate(() => /في/.test(document.querySelector('.nd-pick').textContent)), 'planet click shows position');
+  await p.click('.nd-pl >> nth=0'); await p.waitForTimeout(400); ok(await p.evaluate(() => /في/.test(document.querySelector('.nd-pick').textContent) && !document.querySelector('.ndr-sheet').hidden), 'planet click shows position and opens its reading');
+  await p.click('.ndr-sheet .aqm-foot-close'); await p.waitForTimeout(400);
   ok(await p.evaluate(() => !document.querySelector('.nd-more') && document.querySelector('.nd-legacy').hidden), 'old full-details block is gone (kept hidden)');
   ok(await p.evaluate(() => { var w = document.querySelector('.nd-wtop').getBoundingClientRect().top, t = document.querySelector('.nd-tabs').getBoundingClientRect().top; return w < t; }), 'wheel sits above the tabs');
   ok(await p.evaluate(() => document.querySelectorAll('.nd-pl .nd-pd').length === 10 && document.querySelectorAll('.nd-tka').length === 10), 'wheel: 10 planets outside the ring, each with degree label and arrow');
