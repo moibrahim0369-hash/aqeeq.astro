@@ -101,3 +101,6 @@ html.ndr-on body #result .nd-main{order:4!important}
 html.ndr-on body #result #il-root{order:8}
 @media(max-width:340px){.nd-tabs button{font-size:.68rem!important}}
 html.ndr-on body #result .nd-stack>*{order:0!important}
+.nd-edit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:46px;margin:0;padding:0 16px;border:1.3px solid #D2AE6C;border-radius:16px;background:linear-gradient(180deg,#FFFDF7,#F7EBCF);color:#6A2038;font:600 .92rem 'IBM Plex Sans Arabic',sans-serif;cursor:pointer}
+.nd-edit svg{width:18px;height:18px;flex:0 0 auto}
+html.ndr-on body #result .nd-edit{order:1}
