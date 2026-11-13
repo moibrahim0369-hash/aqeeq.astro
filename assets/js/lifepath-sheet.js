@@ -126,7 +126,7 @@
       h.innerHTML = '<span class="lpc-ic lpn-gi c' + (gi % 4 + 1) + '">' + IC[key] + '</span><div class="lpn-gt"><h4>' + esc(tt) + '</h4><p>' + esc(sb ? sb.textContent : '') + '</p></div><span class="lpn-num"><small>الرقم</small><b>' + esc(nn ? nn.textContent : '') + '</b></span>';
       $$('.aqeq-reading-card', g).forEach(function (card, ci) {
         var hh = $('h5', card), body = $('.aqeq-reading-content', card);
-        var d = document.createElement('details'); d.className = 'lpn-card'; if (ci === 0) d.open = true;
+        var d = document.createElement('details'); d.className = 'lpn-card'; d.open = true;
         d.innerHTML = '<summary><span class="lpn-idx">' + (ci + 1) + '</span><b>' + esc(hh ? hh.textContent : '') + '</b><span class="lpn-chev">' + IC.chev + '</span></summary><div class="lpn-b"></div>';
         if (body) $('.lpn-b', d).appendChild(body);
         card.replaceWith(d);
@@ -134,14 +134,23 @@
     });
     return '<div class="lps-name">' + c.innerHTML + '</div>';
   }
+  function stagesHTML() {
+    var cards = pcCards(); if (!cards || !cards.p) return '<p class="lps-empty">تعذر تجهيز هذه القراءة حاليًا.</p>';
+    var P = rowsOf(cards.p), cur = P.filter(function (r) { return r.st === 'current'; })[0] || P[0], h = '';
+    P.forEach(function (r) {
+      r.el.click();
+      var st = $('#lpj-stage', res), ttl = st && $('h3', st), chips = st ? $$('.lpj-chip', st).map(function (c) { return c.textContent.trim(); }) : [], ana = '';
+      var ob = st && $('[data-lpj-open]', st);
+      if (ob) { ob.click(); var ov = document.querySelector('.lpj-ov'); if (ov) { var pn = $('.lpj-panel', ov); if (pn) { var cl = pn.cloneNode(true); $$('[data-lpj-close],.lpj-x', cl).forEach(function (n) { n.remove(); }); var h3 = $('h3', cl); if (h3) { var pp = h3.nextElementSibling; if (pp && pp.tagName === 'P') pp.remove(); h3.remove(); } ana = cl.innerHTML; } var xb = $('[data-lpj-close]', ov); if (xb) xb.click(); else ov.remove(); } }
+      var name = ttl ? ttl.textContent.replace(/^\s*المرحلة\s*\d+\s*[—–-]\s*/, '').trim() : r.lbl;
+      h += '<details class="lps-stage" data-st="' + r.st + '"' + (r === cur ? ' open' : '') + '><summary><span class="lps-n">' + (r.i + 1) + '</span><span class="lps-tx"><b>' + esc(name) + '</b><small>' + esc(chips.join(' · ')) + (r.st === 'current' ? ' · أنت هنا' : '') + '</small></span><span class="lpn-chev">' + IC.chev + '</span></summary><div class="lps-sbody lpj">' + (ana || '<p class="lps-empty">لا يوجد تحليل لهذه المرحلة.</p>') + '</div></details>';
+    });
+    if (cur) cur.el.click();
+    return '<div class="lps-stages">' + h + '</div>';
+  }
   function openTile(kind) {
     if (kind === 'name') { openSheet('name', IC.name, 'بصمة الاسم', 'ثلاث زوايا من أرقام اسمك', nameHTML()); return; }
-    var meta = {
-      stages: [IC.stages, 'مراحل العمر', 'اضغط على أي مرحلة لتقرأ تفاصيلها'],
-      peaks: [IC.peaks, 'القمم', 'القمم الأربع وفتراتها الزمنية'],
-      chal: [IC.chal, 'التحديات', 'التحديات الأربعة وفتراتها الزمنية']
-    }[kind];
-    openSheet(kind, meta[0], meta[1], meta[2], listHTML(kind));
+    openSheet('stages', IC.stages, 'مراحل العمر الأربع', 'القمة والتحدي داخل كل مرحلة', stagesHTML());
   }
 
   /* ---------- البلاطات ---------- */
@@ -207,22 +216,34 @@
     var items = [], html = '', n = 0;
     gOrder = []; gItems = items; gTitles = {};
     function push(k, ico, t, sub, fn, tone) { items[k] = fn; gOrder.push(k); gTitles[k] = t; html += gRow(k, ico, t, sub, n++, tone); }
-    html += '<h4 class="lpg-h">رحلتك عبر السنين</h4>'; 
-    push('t:stages', IC.stages, 'مراحل العمر', 'اكتشف مراحلك', function () { openTile('stages'); });
-    push('t:peaks', IC.peaks, 'القمم', 'اصعد قممك', function () { openTile('peaks'); });
-    push('t:chal', IC.chal, 'التحديات', 'واجه دروسك', function () { openTile('chal'); });
-    push('t:name', IC.name, 'بصمة الاسم', 'اقرأ اسمك', function () { openTile('name'); });
-    html += '<h4 class="lpg-h">قراءة مسارك</h4>';
-    $$('.panel .lp-sections > details', res).concat($$('.aq-lp-blueprint-summary details', res).filter(function (x) { return !SKIP_BP.test(x.textContent.slice(0, 80)); })).forEach(function (x, i) {
+    var dets = $$('.panel .lp-sections > details', res).concat($$('.aq-lp-blueprint-summary details', res).filter(function (x) { return !SKIP_BP.test(x.textContent.slice(0, 80)); }));
+    var made = dets.map(function (x, i) {
       var t = gTitle(x), sub = gSub(x), k = 'd:' + i, ic = x.classList.contains('is-shadow') ? IC.shadow : x.classList.contains('is-light') ? IC.light : IC.star;
       if (t.length > 70) { t = t.slice(0, 70); }
-      push(k, ic, t, sub, function () {
-        var b = $('.lp-sec-body, .lpa-body', x); if (!b) return;
-        openSheet(k, ic, t, sub, '<div class="lps-detail lps-read">' + b.innerHTML + '</div>');
-      }, x.classList.contains('is-shadow') ? 's' : x.classList.contains('is-light') ? 'g' : '');
+      var tone = x.classList.contains('is-shadow') ? 's' : x.classList.contains('is-light') ? 'g' : '';
+      return { t: t, k: k, ic: ic, sub: sub, tone: tone, fn: function () {
+        var bd = $('.lp-sec-body, .lpa-body', x); if (!bd) return;
+        openSheet(k, ic, t, sub, '<div class="lps-detail lps-read">' + bd.innerHTML + '</div>');
+      } };
     });
+    function pushMade(m) { push(m.k, m.ic, m.t, m.sub, m.fn, m.tone); }
+    var used = {};
+    function take(re) { var out = []; made.forEach(function (m, i) { if (!used[i] && re.test(m.t)) { used[i] = 1; out.push(m); } }); return out; }
+    var g1 = take(/شفرة الروح/), g1b = take(/طاقة النور/);
+    var g2 = take(/المراية|البلوكات|الشفرة العاطفية|مغناطيس|البصمة الجسدية|جدول المقارنة|جرح الطفولة/);
+    var g3 = take(/روشتة|خريطة التحول/);
+    var rest = made.filter(function (m, i) { return !used[i]; });
+    html += '<h4 class="lpg-h">أساس شخصيتك<small>من أنت؟</small></h4>';
+    g1.forEach(pushMade);
+    push('t:name', IC.name, 'بصمة الاسم', 'اقرأ اسمك', function () { openTile('name'); });
+    g1b.forEach(pushMade);
+    html += '<h4 class="lpg-h">الظل والعلاقات والمال<small>كيف تعيش؟</small></h4>';
+    g2.concat(rest).forEach(pushMade);
+    html += '<h4 class="lpg-h">رحلتك عبر السنين<small>التوقيت الزمني</small></h4>';
+    push('t:stages', IC.stages, 'مراحل العمر الأربع', 'القمة والتحدي لكل مرحلة جواها', function () { openTile('stages'); });
+    g3.forEach(pushMade);
     var q = $('.lpj-bottom .lpj-reflect', res);
-    if (q) { html += '<h4 class="lpg-h">للتأمل</h4>'; push('q', IC.heart, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.heart, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); }); }
+    if (q) push('q', IC.heart, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.heart, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); });
     var box = document.createElement('section'); box.className = 'lpg'; box.setAttribute('aria-label', 'قراءة مسارك');
     box.innerHTML = html;
     box.addEventListener('click', function (e) { var b = e.target.closest('[data-lpg]'); if (b && items[b.getAttribute('data-lpg')]) items[b.getAttribute('data-lpg')](); });
