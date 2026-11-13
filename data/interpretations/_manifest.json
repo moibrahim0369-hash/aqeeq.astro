@@ -1,0 +1,4324 @@
+{
+ "total": 617,
+ "entries": [
+  {
+   "id": "natal.core.sun.house1",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house2",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house3",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house4",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house5",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house6",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house7",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house8",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house9",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house10",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house11",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.sun.house12",
+   "file": "data/interpretations/sun.json",
+   "layer": "core",
+   "where": "الشمس في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house1",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house2",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house3",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house4",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house5",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house6",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house7",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house8",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house9",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house10",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house11",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.moon.house12",
+   "file": "data/interpretations/moon.json",
+   "layer": "core",
+   "where": "القمر في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house1",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house2",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house3",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house4",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house5",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house6",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house7",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house8",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house9",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house10",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house11",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mercury.house12",
+   "file": "data/interpretations/mercury.json",
+   "layer": "core",
+   "where": "عطارد في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house1",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house2",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house3",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house4",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house5",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house6",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house7",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house8",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house9",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house10",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house11",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.venus.house12",
+   "file": "data/interpretations/venus.json",
+   "layer": "core",
+   "where": "الزهرة في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house1",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house2",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house3",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house4",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house5",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house6",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house7",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house8",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house9",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house10",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house11",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.mars.house12",
+   "file": "data/interpretations/mars.json",
+   "layer": "core",
+   "where": "المريخ في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house1",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house2",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house3",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house4",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house5",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house6",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house7",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house8",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house9",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house10",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house11",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.jupiter.house12",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "core",
+   "where": "المشتري في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house1",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house2",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house3",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house4",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house5",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house6",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house7",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house8",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house9",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house10",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house11",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.saturn.house12",
+   "file": "data/interpretations/saturn.json",
+   "layer": "core",
+   "where": "زحل في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house1",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house2",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house3",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house4",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house5",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house6",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house7",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house8",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house9",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house10",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house11",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.uranus.house12",
+   "file": "data/interpretations/uranus.json",
+   "layer": "core",
+   "where": "أورانوس في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house1",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house2",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house3",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house4",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house5",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house6",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house7",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house8",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house9",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house10",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house11",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.neptune.house12",
+   "file": "data/interpretations/neptune.json",
+   "layer": "core",
+   "where": "نبتون في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house1",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house2",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house3",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house4",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house5",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house6",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house7",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house8",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house9",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house10",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house11",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.pluto.house12",
+   "file": "data/interpretations/pluto.json",
+   "layer": "core",
+   "where": "بلوتو في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house1",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house2",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house3",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house4",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house5",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house6",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house7",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house8",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house9",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house10",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house11",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.north_node.house12",
+   "file": "data/interpretations/north_node.json",
+   "layer": "core",
+   "where": "العقدة الشمالية في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house1",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house2",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house3",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house4",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house5",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house6",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house7",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house8",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house9",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house10",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house11",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.south_node.house12",
+   "file": "data/interpretations/south_node.json",
+   "layer": "core",
+   "where": "العقدة الجنوبية في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house1",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house2",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house3",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house4",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house5",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house6",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house7",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house8",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house9",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house10",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house11",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.lilith.house12",
+   "file": "data/interpretations/lilith.json",
+   "layer": "core",
+   "where": "ليليث في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house1",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house2",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house3",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house4",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house5",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house6",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house7",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house8",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house9",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house10",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house11",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.fortune.house12",
+   "file": "data/interpretations/fortune.json",
+   "layer": "core",
+   "where": "نقطة الحظ في البيت 12 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.aries",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.taurus",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.gemini",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.cancer",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.leo",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.virgo",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.libra",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.scorpio",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.sagittarius",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.capricorn",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.aquarius",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.sun.pisces",
+   "file": "data/interpretations/sun.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على الشمس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.sun.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.aries",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.taurus",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.gemini",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.cancer",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.leo",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.virgo",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.libra",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.scorpio",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.sagittarius",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.capricorn",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.aquarius",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.moon.pisces",
+   "file": "data/interpretations/moon.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على القمر (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.moon.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.aries",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.taurus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.gemini",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.cancer",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.leo",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.virgo",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.libra",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.scorpio",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.sagittarius",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.capricorn",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.aquarius",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mercury.pisces",
+   "file": "data/interpretations/mercury.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على عطارد (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mercury.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.aries",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.taurus",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.gemini",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.cancer",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.leo",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.virgo",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.libra",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.scorpio",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.sagittarius",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.capricorn",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.aquarius",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.venus.pisces",
+   "file": "data/interpretations/venus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على الزهرة (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.venus.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.aries",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.taurus",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.gemini",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.cancer",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.leo",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.virgo",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.libra",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.scorpio",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.sagittarius",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.capricorn",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.aquarius",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.mars.pisces",
+   "file": "data/interpretations/mars.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على المريخ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.mars.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.aries",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.taurus",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.gemini",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.cancer",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.leo",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.virgo",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.libra",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.scorpio",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.sagittarius",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.capricorn",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.aquarius",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.jupiter.pisces",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على المشتري (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.jupiter.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.aries",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.taurus",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.gemini",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.cancer",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.leo",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.virgo",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.libra",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.scorpio",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.sagittarius",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.capricorn",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.aquarius",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.saturn.pisces",
+   "file": "data/interpretations/saturn.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على زحل (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.saturn.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.aries",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.taurus",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.gemini",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.cancer",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.leo",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.virgo",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.libra",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.scorpio",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.sagittarius",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.capricorn",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.aquarius",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.uranus.pisces",
+   "file": "data/interpretations/uranus.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على أورانوس (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.uranus.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.aries",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.taurus",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.gemini",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.cancer",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.leo",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.virgo",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.libra",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.scorpio",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.sagittarius",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.capricorn",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.aquarius",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.neptune.pisces",
+   "file": "data/interpretations/neptune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على نبتون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.neptune.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.aries",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.taurus",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.gemini",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.cancer",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.leo",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.virgo",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.libra",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.scorpio",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.sagittarius",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.capricorn",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.aquarius",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.pluto.pisces",
+   "file": "data/interpretations/pluto.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على بلوتو (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.pluto.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.aries",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.taurus",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.gemini",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.cancer",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.leo",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.virgo",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.libra",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.scorpio",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.sagittarius",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.capricorn",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.aquarius",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.north_node.pisces",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على العقدة الشمالية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.north_node.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.aries",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.taurus",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.gemini",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.cancer",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.leo",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.virgo",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.libra",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.scorpio",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.sagittarius",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.capricorn",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.aquarius",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.south_node.pisces",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على العقدة الجنوبية (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.south_node.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.aries",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.taurus",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.gemini",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.cancer",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.leo",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.virgo",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.libra",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.scorpio",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.sagittarius",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.capricorn",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.aquarius",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.lilith.pisces",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على ليليث (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.lilith.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.aries",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.taurus",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.gemini",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.cancer",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.leo",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.virgo",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.libra",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.scorpio",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.sagittarius",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.capricorn",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.aquarius",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.fortune.pisces",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.mercury.retrograde",
+   "file": "data/interpretations/mercury.json",
+   "layer": "modifier",
+   "where": "عطارد الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.venus.retrograde",
+   "file": "data/interpretations/venus.json",
+   "layer": "modifier",
+   "where": "الزهرة الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.mars.retrograde",
+   "file": "data/interpretations/mars.json",
+   "layer": "modifier",
+   "where": "المريخ الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.jupiter.retrograde",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "modifier",
+   "where": "المشتري الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.saturn.retrograde",
+   "file": "data/interpretations/saturn.json",
+   "layer": "modifier",
+   "where": "زحل الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.uranus.retrograde",
+   "file": "data/interpretations/uranus.json",
+   "layer": "modifier",
+   "where": "أورانوس الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.neptune.retrograde",
+   "file": "data/interpretations/neptune.json",
+   "layer": "modifier",
+   "where": "نبتون الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.modifier.pluto.retrograde",
+   "file": "data/interpretations/pluto.json",
+   "layer": "modifier",
+   "where": "بلوتو الراجع",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.moon",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال القمر (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.moon\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.moon",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي القمر (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.moon\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.moon",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع القمر (يظهر تحت الكوكبين؛ الحقل aspect = \"square.moon\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.moon",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث القمر (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.moon\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.moon",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة القمر (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.moon\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.mercury",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.mercury",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.mercury",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"square.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.mercury",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.mercury",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.venus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.venus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.venus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"square.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.venus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.venus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.mars",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.mars",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.mars",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"square.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.mars",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.mars",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.jupiter",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.jupiter",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.jupiter",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"square.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.jupiter",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.jupiter",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.saturn",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.saturn",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.saturn",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"square.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.saturn",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.saturn",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.uranus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.uranus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.uranus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"square.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.uranus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.uranus",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.neptune",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.neptune",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.neptune",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.neptune",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.neptune",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.pluto",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.pluto",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.square.pluto",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.trine.pluto",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.pluto",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.mercury",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.mercury",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.mercury",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"square.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.mercury",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.mercury",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.mercury\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.venus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.venus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.venus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"square.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.venus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.venus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.mars",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.mars",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.mars",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"square.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.mars",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.mars",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.jupiter",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.jupiter",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.jupiter",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"square.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.jupiter",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.jupiter",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.saturn",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.saturn",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.saturn",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"square.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.saturn",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.saturn",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.uranus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.uranus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.uranus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"square.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.uranus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.uranus",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.neptune",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.neptune",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.neptune",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.neptune",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.neptune",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.pluto",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.pluto",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.square.pluto",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.trine.pluto",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.pluto",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.venus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.venus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.square.venus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"square.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.venus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.venus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.venus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.mars",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.mars",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.square.mars",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"square.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.mars",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.mars",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.jupiter",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.jupiter",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.square.jupiter",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"square.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.jupiter",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.jupiter",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.saturn",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.saturn",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.square.saturn",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"square.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.saturn",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.saturn",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.uranus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.uranus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.square.uranus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"square.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.uranus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.uranus",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.neptune",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.neptune",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.square.neptune",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.neptune",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.neptune",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.pluto",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.pluto",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.square.pluto",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.pluto",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.pluto",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.conjunction.mars",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة اتصال المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.sextile.mars",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة سداسي المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.square.mars",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تربيع المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"square.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.trine.mars",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تثليث المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.opposition.mars",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة مقابلة المريخ (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.mars\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.conjunction.jupiter",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة اتصال المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.sextile.jupiter",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة سداسي المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.square.jupiter",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تربيع المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"square.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.trine.jupiter",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تثليث المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.opposition.jupiter",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة مقابلة المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.conjunction.saturn",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة اتصال زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.sextile.saturn",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة سداسي زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.square.saturn",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تربيع زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"square.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.trine.saturn",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تثليث زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.opposition.saturn",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة مقابلة زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.conjunction.uranus",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة اتصال أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.sextile.uranus",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة سداسي أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.square.uranus",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تربيع أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"square.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.trine.uranus",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تثليث أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.opposition.uranus",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة مقابلة أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.conjunction.neptune",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.sextile.neptune",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.square.neptune",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.trine.neptune",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.opposition.neptune",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.conjunction.pluto",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.sextile.pluto",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.square.pluto",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.trine.pluto",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.venus.opposition.pluto",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.conjunction.jupiter",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ اتصال المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.sextile.jupiter",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ سداسي المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.square.jupiter",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تربيع المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"square.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.trine.jupiter",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تثليث المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.opposition.jupiter",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ مقابلة المشتري (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.jupiter\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.conjunction.saturn",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ اتصال زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.sextile.saturn",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ سداسي زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.square.saturn",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تربيع زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"square.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.trine.saturn",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تثليث زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.opposition.saturn",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ مقابلة زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.conjunction.uranus",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ اتصال أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.sextile.uranus",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ سداسي أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.square.uranus",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تربيع أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"square.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.trine.uranus",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تثليث أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.opposition.uranus",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ مقابلة أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.conjunction.neptune",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.sextile.neptune",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.square.neptune",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.trine.neptune",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.opposition.neptune",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.conjunction.pluto",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.sextile.pluto",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.square.pluto",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.trine.pluto",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.mars.opposition.pluto",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.conjunction.saturn",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري اتصال زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.sextile.saturn",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري سداسي زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.square.saturn",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تربيع زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"square.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.trine.saturn",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تثليث زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.opposition.saturn",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري مقابلة زحل (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.saturn\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.conjunction.uranus",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري اتصال أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.sextile.uranus",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري سداسي أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.square.uranus",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تربيع أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"square.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.trine.uranus",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تثليث أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.opposition.uranus",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري مقابلة أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.conjunction.neptune",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.sextile.neptune",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.square.neptune",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.trine.neptune",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.opposition.neptune",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.conjunction.pluto",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.sextile.pluto",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.square.pluto",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.trine.pluto",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.jupiter.opposition.pluto",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.conjunction.uranus",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل اتصال أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.sextile.uranus",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل سداسي أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.square.uranus",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تربيع أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"square.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.trine.uranus",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تثليث أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.opposition.uranus",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل مقابلة أورانوس (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.uranus\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.conjunction.neptune",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.sextile.neptune",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.square.neptune",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.trine.neptune",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.opposition.neptune",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.conjunction.pluto",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.sextile.pluto",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.square.pluto",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.trine.pluto",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.saturn.opposition.pluto",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.conjunction.neptune",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس اتصال نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.sextile.neptune",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس سداسي نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.square.neptune",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس تربيع نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"square.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.trine.neptune",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس تثليث نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.opposition.neptune",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس مقابلة نبتون (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.neptune\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.conjunction.pluto",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.sextile.pluto",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.square.pluto",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.trine.pluto",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.uranus.opposition.pluto",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.neptune.conjunction.pluto",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون اتصال بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.neptune.sextile.pluto",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون سداسي بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.neptune.square.pluto",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون تربيع بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"square.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.neptune.trine.pluto",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون تثليث بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.aspect.neptune.opposition.pluto",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.aries",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الحمل",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.taurus",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الثور",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.gemini",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الجوزاء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.cancer",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في السرطان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.leo",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الأسد",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.virgo",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في العذراء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.libra",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الميزان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.scorpio",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في العقرب",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.sagittarius",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في القوس",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.capricorn",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الجدي",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.aquarius",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الدلو",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.asc.pisces",
+   "file": "data/interpretations/asc.json",
+   "layer": "angle",
+   "where": "الطالع في الحوت",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.aries",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الحمل",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.taurus",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الثور",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.gemini",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الجوزاء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.cancer",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في السرطان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.leo",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الأسد",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.virgo",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في العذراء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.libra",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الميزان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.scorpio",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في العقرب",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.sagittarius",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في القوس",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.capricorn",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الجدي",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.aquarius",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الدلو",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.dsc.pisces",
+   "file": "data/interpretations/dsc.json",
+   "layer": "angle",
+   "where": "الهابط في الحوت",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.aries",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الحمل",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.taurus",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الثور",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.gemini",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الجوزاء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.cancer",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في السرطان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.leo",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الأسد",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.virgo",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في العذراء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.libra",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الميزان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.scorpio",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في العقرب",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.sagittarius",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في القوس",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.capricorn",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الجدي",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.aquarius",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الدلو",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.mc.pisces",
+   "file": "data/interpretations/mc.json",
+   "layer": "angle",
+   "where": "وسط السماء في الحوت",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.aries",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الحمل",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.taurus",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الثور",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.gemini",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الجوزاء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.cancer",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في السرطان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.leo",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الأسد",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.virgo",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في العذراء",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.libra",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الميزان",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.scorpio",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في العقرب",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.sagittarius",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في القوس",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.capricorn",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الجدي",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.aquarius",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الدلو",
+   "status": "missing"
+  },
+  {
+   "id": "natal.angle.ic.pisces",
+   "file": "data/interpretations/ic.json",
+   "layer": "angle",
+   "where": "قاع السماء في الحوت",
+   "status": "missing"
+  }
+ ]
+}
