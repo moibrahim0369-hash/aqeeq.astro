@@ -49,7 +49,7 @@
   }
   function run() {
     [].forEach.call(document.querySelectorAll('#cp-form fieldset.cp-person'), collapse);
-    ['cp-form', 'synastry-form', 'mxc-form'].forEach(function (id) {
+    ['cp-form', 'synastry-form', 'mxc-form', 'mxk-form'].forEach(function (id) {
       var f = document.getElementById(id); if (!f) return;
       f.classList.add('y27-form'); wrapLabelText(f); icons(f);
     });

@@ -7,7 +7,7 @@
     chart: 'الخريطة الفلكية', lifepath: 'مسار الحياة', matrix: 'مصفوفة القدر', compat: 'خريطة التوافق',
     relationships: 'مركز التوافق', individual: 'خرائطك الشخصية', signs: 'صفات وتوقعات الأبراج',
     sky: 'المشهد الفلكي الآن', world: 'الخريطة الفلكية العالمية', 'astro-maps': 'العبور والتقويم الفلكي',
-    'featured-content': 'المحتوى المميز', 'lifepath-compat': 'توافق مسارات الحياة', 'matrix-compat': 'توافق مصفوفة القدر'
+    'featured-content': 'المحتوى المميز', 'lifepath-compat': 'توافق مسارات الحياة', 'matrix-compat': 'توافق مصفوفة القدر', 'matrix-child': 'مصفوفة الطفل'
   };
   var ICONS = {
     saved: '<path d="M6 3h12v18l-6-4-6 4z"/>',

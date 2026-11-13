@@ -19,7 +19,7 @@
     read: '<path d="M4 5.500C6.500 4.500 9.500 4.500 12 6c2.500-1.500 5.500-1.500 8-.5V19c-2.500-1-5.500-1-8 .5-2.500-1.500-5.500-1.500-8-.5z"/><path d="M12 6v13.500"/>',
     indiv: '<circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/>'
   };
-  var BYHREF = { '#chart': I.chart, '#astro-maps': I.maps, '#sky': I.sky, '#for-you': I.foryou, '#compat': I.compat, '#lifepath-compat': I.lpcompat, '#matrix-compat': I.compat, '#lifepath': I.lifepath, '#matrix': I.matrix, '#signs': I.signs, '#world': I.world };
+  var BYHREF = { '#chart': I.chart, '#astro-maps': I.maps, '#sky': I.sky, '#for-you': I.foryou, '#compat': I.compat, '#lifepath-compat': I.lpcompat, '#matrix-compat': I.compat, '#matrix-child': I.matrix, '#lifepath': I.lifepath, '#matrix': I.matrix, '#signs': I.signs, '#world': I.world };
   function topbars() {
     [].forEach.call(document.querySelectorAll('.aq-section-topbar'), function (bar) {
       if (bar.getAttribute('data-unified')) return; bar.setAttribute('data-unified', '1');

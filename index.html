@@ -109,7 +109,7 @@
 <link rel="stylesheet" href="assets/css/page-celestial.css?v=20261122g">
 <link rel="stylesheet" href="assets/css/internal-fixes.css?v=20261123d">
 <link rel="stylesheet" href="assets/css/mobile-fixes.css?v=3">
-<link rel="stylesheet" href="assets/css/matrix-compat.css?v=20261113f">
+<link rel="stylesheet" href="assets/css/matrix-compat.css?v=20261113l">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -135,6 +135,7 @@
           <a role="menuitem" href="#for-you" class="aqh-foryou">لك</a>
           <a role="menuitem" href="#chart">الخريطة الفلكية</a>
           <a role="menuitem" href="#matrix">مصفوفة القدر</a>
+          <a role="menuitem" href="#matrix-child">مصفوفة الطفل</a>
           <a role="menuitem" href="#lifepath">مسار الحياة</a>
           <a role="menuitem" href="#compat">التوافق</a>
           <a role="menuitem" href="#sky">السماء</a>
@@ -161,7 +162,7 @@
   <div class="aqn-dr-head"><span class="aqn-dr-title" dir="ltr">AQEQ ASTRO</span><button type="button" class="aqn-dr-close" data-aqn-close aria-label="إغلاق القائمة"><svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
   <div class="aqn-dr-body">
     <a href="#home"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7v9a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.500-1.500z"/><path d="M9.500 21v-6h5v6"/></svg><span>الرئيسية</span></a>
-    <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>الخرائط والمسارات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#chart">الخريطة الفلكية</a><a href="#matrix">مصفوفة القدر</a><a href="#lifepath">مسار الحياة</a><a href="#astro-maps">الفيدي والداشا</a></div></div>
+    <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>الخرائط والمسارات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#chart">الخريطة الفلكية</a><a href="#matrix">مصفوفة القدر</a><a href="#matrix-child">مصفوفة الطفل</a><a href="#lifepath">مسار الحياة</a><a href="#astro-maps">الفيدي والداشا</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>التوافق والعلاقات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#compat">خريطة التوافق الفلكية</a><a href="#matrix-compat">توافق مصفوفة القدر</a><a href="#lifepath-compat">توافق مسار الحياة بالأرقام</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>السماء والتوقعات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#sky">السماء الآن</a><a href="#world">حركة الكواكب</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>استثمر في ذاتك والمحتوى</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#featured-content">المقالات</a><a href="#dream-library">مكتبة عقيق</a><a href="#invest">الجلسات والتقارير المدفوعة</a></div></div>
@@ -807,6 +808,34 @@
 <div class="y27-ex"><b>1</b><div><strong>أدخل التاريخين كاملين</strong><p>اليوم والشهر والسنة لكل طرف، والاسم اختياري لتظهر القراءة باسميكما.</p></div></div>
 <div class="y27-ex"><b>2</b><div><strong>اقرأ المصفوفة الثالثة بهدوء</strong><p>الأرقام لا تحكم على العلاقة. هي تسمّي ما يتكرر بينكما لتتعاملا معه بوعي.</p></div></div></div>
 </div>
+</div>
+</div>
+</section>
+<section class="sec lpx lpc" id="matrix-child">
+<div class="wrap">
+<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
+<div class="aq-section-topbar">
+  <a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a>
+  <div class="aq-section-quick-links">
+    <a href="#matrix-child" class="aq-section-pill active">مصفوفة الطفل</a>
+  </div>
+</div>
+<div class="lpx-wrap">
+<div class="center lpx-head">
+  <nav aria-label="مسار التنقل"><ol class="lpj-crumb"><li><a href="#home">الرئيسية</a></li><li><a href="#matrix">مصفوفة القدر</a></li><li aria-current="page">مصفوفة الطفل</li></ol></nav>
+  <span class="eyebrow" dir="ltr">عقيق أسترو · مصفوفة الطفل</span>
+  <h2>مصفوفة الطفل</h2>
+  <p class="intro">أدخل تاريخ ميلاد الطفل لتقرأ طباعه ومواهبه وما يحتاجه من أهله، من خريطته الرقمية الخاصة.</p>
+</div>
+<div class="lpx-compat" id="mxcompat">
+<form id="mxk-form" class="syn-form" novalidate>
+<div class="syn-person"><h3>بيانات الطفل</h3><div class="field"><label for="mxk-n">اسم الطفل (اختياري)</label><input id="mxk-n" maxlength="80" autocomplete="off" placeholder="اسم الطفل"></div><div class="field"><label for="mxk-d">تاريخ الميلاد</label><input id="mxk-d" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
+<p id="mxk-error" class="ferr" role="alert" hidden></p><button class="btn" type="submit"><span>احسب مصفوفة الطفل</span><svg viewBox="0 0 32 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" width="30" height="19"><circle cx="11" cy="10" r="7.500"/><circle cx="21" cy="10" r="7.500"/></svg></button>
+</form><div id="mxk-result" class="mxm-result" aria-live="polite" hidden></div>
+<div class="y27-explain cp-explain" id="mxk-explain"><div class="y27-about"><h3>ما مصفوفة الطفل؟</h3><p>هي خريطة ميلاد الطفل الرقمية. تُحسب من يوم الميلاد وشهره وسنته، وتتحول إلى طاقات المصفوفة الاثنتين والعشرين، ومنها تُقرأ طباعه الظاهرة وما يختبئ خلفها، ومواهبه، وما يحتاجه من أهله.</p></div>
+<h3>كيف تستفيد منها؟</h3>
+<div class="y27-ex"><b>1</b><div><strong>أدخل تاريخ الميلاد كاملًا</strong><p>اليوم والشهر والسنة، والاسم اختياري ليظهر في القراءة.</p></div></div>
+<div class="y27-ex"><b>2</b><div><strong>اقرأها بهدوء</strong><p>الأرقام تصف ميلًا وطبعًا، ولا تحكم على الطفل. هي تساعدك على فهمه والتعامل معه بوعي.</p></div></div></div>
 </div>
 </div>
 </section>
@@ -5423,7 +5452,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/matrix-report-map.js"></script>
 <script src="assets/js/matrix-method-adapter.js?v=20261111e"></script>
 <script src="assets/js/numerology-matrix.js?v=20261113c"></script>
-<script src="assets/js/matrix-modes.js?v=20261113i" defer></script>
+<script src="assets/js/matrix-modes.js?v=20261113l" defer></script>
 <script src="assets/js/matrix-sheet.js?v=20261113b" defer></script>
 <script src="assets/js/lifepath-sheet.js?v=20261118a" defer></script>
 <script src="assets/js/chart-sheet.js?v=20261114b" defer></script>
@@ -5436,7 +5465,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/astro-result-view.js?v=20261128a" defer></script>
 <script src="assets/js/year2027.js?v=20261130n" defer></script>
 <script src="assets/js/home-batch3.js?v=20261130l" defer></script>
-<script src="assets/js/section-footer.js?v=20261113a"></script>
+<script src="assets/js/section-footer.js?v=20261113k"></script>
 <script src="assets/js/paywall-modal.js?v=20261126a"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
 <script src="assets/js/sky-world-chart.js?v=20261125a" defer></script>
@@ -5448,15 +5477,15 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/geo-picker.js?v=20261113c" defer></script>
 <script src="assets/js/page-story.js?v=20261112b" defer></script>
 <script src="assets/js/top-gap.js?v=20261111b" defer></script>
-<script src="assets/js/date-selects.js?v=20261113a" defer></script>
+<script src="assets/js/date-selects.js?v=20261113k" defer></script>
 <script src="account-profile.js" type="module"></script>
 <script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
 <script src="assets/js/hero-live.js?v=20261106e" defer></script>
 <script src="assets/js/hero-rotate.js?v=20261107k" defer></script>
-<script src="assets/js/nav-unified.js?v=20261113a" defer></script>
+<script src="assets/js/nav-unified.js?v=20261113k" defer></script>
 <script src="assets/js/session-guard.js?v=20261107b"></script>
-<script src="assets/js/page-unify.js?v=20261113a" defer></script>
+<script src="assets/js/page-unify.js?v=20261113k" defer></script>
 <script src="assets/js/chart-adv.js?v=20261112a" defer></script>
 <script src="assets/js/home-notes3.js?v=20261126a" defer></script>
 <script src="assets/js/companion.js?v=20261119a" defer></script>
@@ -5464,7 +5493,7 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/you-cycles.js?v=3" defer></script>
 <script src="assets/js/you-page.js?v=6" defer></script>
 <script src="assets/js/home-v2.js?v=20261107f" defer></script>
-<script src="assets/js/home-hub.js?v=20261113a" defer></script>
+<script src="assets/js/home-hub.js?v=20261113k" defer></script>
 <script src="assets/js/featured-content.js?v=20261107c" defer></script>
 <script src="assets/js/content-links.js?v=20261106a" defer></script>
 <script src="assets/js/natal-view.js?v=20261106b" defer></script>
@@ -5476,13 +5505,13 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/lifepath-chapters.js?v=20261117e" defer></script>
 <script src="assets/js/site-pages.js?v=20261125a" defer></script>
 <script src="assets/js/autofill-bars.js?v=20261113a" defer></script>
-<script src="assets/js/compat-polish.js?v=20261113a" defer></script>
+<script src="assets/js/compat-polish.js?v=20261113k" defer></script>
 <script src="assets/js/sky-readings.js?v=20261120a" defer></script>
 <script src="assets/js/sign-forecast-sheet.js?v=20261123a" defer></script>
 <script src="assets/js/daily-banner.js?v=20261123a" defer></script>
 <script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
 <script src="assets/js/cosmic-background.js?v=20261125a" defer></script>
 <script src="assets/js/pro-wheel.js" defer></script>
-<script src="assets/js/page-celestial.js?v=20261113a" defer></script>
+<script src="assets/js/page-celestial.js?v=20261113k" defer></script>
 </body>
 </html>

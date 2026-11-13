@@ -143,13 +143,13 @@
   };
   function slotIc(k) { return '<svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + SLOT_IC[k] + '</svg>'; }
   function slot(cls, k, title, inner) { return '<section class="aqm-slot ' + cls + '">' + (title ? '<h4 class="aqm-slot-title">' + slotIc(k) + ' ' + title + '</h4>' : '') + '<div class="aqm-slot-p">' + inner + '</div></section>'; }
-  function pairAccHtml(specs, get) {
+  function pairAccHtml(specs, get, subs) {
     return '<div class="aqm-accordion-container mxc-acc">' + specs.map(function (sp, i) {
       var badges = '', body = slot('aqm-slot-primary', 'p', 'عن هذا القسم', '<p>' + esc(sp.intro) + '</p>');
       sp.pts.forEach(function (p, j) {
         var v = get(p[0]), a = AD().getArcanaInfo(v.n);
         badges += '<span class="aqm-badge-arcana aqm-tone-' + (j % 4) + '"><b class="aqm-bn">' + v.n + '</b><span class="aqm-bl">' + esc(p[1]) + '</span></span> ';
-        body += slot('aqm-slot-detailed', 'd', esc(p[1]) + ' · ' + v.n + ' ' + esc(a.name), '<p>' + esc(a.archetype) + '.</p>') +
+        body += slot('aqm-slot-detailed', 'd', esc(p[1]) + ' · ' + v.n + ' ' + esc(a.name) + (v.x ? ' · ' + esc(v.x) : ''), '<p>' + esc(a.archetype) + '.</p>') +
           slot('aqm-slot-strengths', 's', 'في حالتها الصافية', '<p>' + esc(a.light) + '.</p>') +
           slot('aqm-slot-challenges', 'c', 'حين تختل', '<p>' + esc(a.shadow) + '.</p>');
       });
@@ -183,7 +183,8 @@
     host.hidden = false; bindAcc(host); bindMap(host, pairFull(d1, d2));
   }
   /* الضغط على رقم العمر أو على أي عقدة في خريطة الشريكين يعرض معناه تحت الخريطة مباشرة */
-  function bindMap(host, P) {
+  function bindMap(host, P, W) {
+    W = W || { age: 'الطاقة التي تمرّ بها العلاقة عند هذا العمر', dec: 'بداية مرحلة جديدة في عمر العلاقة', node: 'نقطة من خريطة الشراكة' };
     var map = host.querySelector('.mxm-map'); if (!map) return;
     var card = document.createElement('div'); card.className = 'mxc-pick'; card.hidden = true; card.setAttribute('aria-live', 'polite');
     map.parentNode.insertBefore(card, map.nextSibling);
@@ -201,77 +202,47 @@
       var ageEl = t.closest('[data-age]'), lab = t.closest('.aqm-svg-age-label'), node = t.closest('.aqm-node');
       if (ageEl) {
         var age = parseFloat(ageEl.getAttribute('data-age')), v = parseInt(ageEl.textContent, 10);
-        if (v) show('محطة عمر ' + fmt(age), 'الطاقة التي تمرّ بها العلاقة عند هذا العمر', v);
+        if (v) show('محطة عمر ' + fmt(age), W.age, v);
       } else if (lab) {
         var k = /^0/.test(lab.textContent) ? 0 : parseFloat(lab.textContent), n = P.ageMap[k];
-        if (n) show('محطة عمر ' + (k === 0 ? '0 / 80' : fmt(k)), 'بداية مرحلة جديدة في عمر العلاقة', n);
+        if (n) show('محطة عمر ' + (k === 0 ? '0 / 80' : fmt(k)), W.dec, n);
       } else if (node) {
         var nv = parseInt(node.getAttribute('data-arcana'), 10);
-        if (nv) show(node.getAttribute('data-title') || 'نقطة في الخريطة', 'نقطة من خريطة الشراكة', nv);
+        if (nv) show(node.getAttribute('data-title') || 'نقطة في الخريطة', W.node, nv);
       }
     });
   }
+  var CHILD_SUB = ['كيف يرى الدنيا من الداخل؟', 'ما الذي يطمئنه ويهدّئه؟', 'ماذا ورث من أبيه وأمه؟', 'ما الموهبة التي وُلد بها؟', 'كيف يثبت نفسه بين الناس؟', 'إلى أين يسير في حياته؟', 'ما المخاوف التي لا يحكيها؟', 'ما الذي ينتظره هذا العام؟'];
   function renderChild(host, d, name) {
-    var P = ofDate(d), age = ageOf(P.birth), ae = ageEnergy(P, age);
-    host.innerHTML = '<div class="mxm-sum"><h3>' + (name ? 'مصفوفة ' + esc(name) : 'مصفوفة الطفل') + '</h3><p>العمر الآن: ' + age + (age === 1 ? ' سنة' : ' سنوات') + '. الأرقام محسوبة من تاريخ ميلاد الطفل.</p>' +
-      '<div class="mxm-tab">' + HEADROW + cornerRow(name || 'الطفل', P) + '</div></div>' +
-      accHtml(CHILD, function (k) {
+    var P = ofDate(d), age = ageOf(P.birth), ae = ageEnergy(P, age), full = null, map = '';
+    try { full = AD().calculateDestinyMatrix(d); var N = window.AqeeqNumerology; if (N && N.generateMatrixSVG) map = '<div class="aqm-canvas-wrap mxm-map">' + N.generateMatrixSVG(full).replace(/>undefined</g, '>—<').replace(/data-arcana="undefined"/g, 'data-arcana=""') + '</div>'; } catch (e) { map = ''; }
+    var sum = '<div class="mxm-sum mxm-sum-end"><h3>أرقام الطفل</h3><p>العمر الآن: ' + age + (age === 1 ? ' سنة' : ' سنوات') + '. الأرقام محسوبة من تاريخ ميلاد الطفل.</p>' +
+      '<div class="mxm-tab">' + HEADROW + cornerRow(name || 'الطفل', P) + '</div></div>';
+    host.innerHTML = map +
+      pairAccHtml(CHILD, function (k) {
         if (k === '__year') return { n: P.yearEnergy.number, x: P.yearEnergy.label };
         if (k === '__age') return { n: ae.number, x: 'من عمر ' + ae.age };
         return { n: P[k] };
-      }) +
+      }, CHILD_SUB) + sum +
       '<p class="mxm-note">النصوص داخل الأقسام تمهيدية، والأرقام محسوبة من تاريخ الميلاد.</p>';
-    host.hidden = false;
+    host.hidden = false; bindAcc(host); if (full) bindMap(host, full, { age: 'الطاقة التي يمرّ بها الطفل عند هذا العمر', dec: 'بداية مرحلة جديدة في عمره', node: 'نقطة من خريطة الطفل' });
   }
 
   function field(id, label, type) {
     return '<div class="field"><label for="' + id + '"><span>' + label + '</span></label><input id="' + id + '" type="' + type + '"' + (type === 'date' ? ' min="1900-01-01" max="2100-12-31"' : ' autocomplete="off"') + '></div>';
   }
+  /* صفحة المصفوفة الفردية: صف أيقونات صغير يفتح صفحتي مصفوفة الطفل وتوافق الشريكين المستقلتين (لا تغيير في حساب الفردية) */
   function build() {
-    var sec = document.getElementById('matrix'), form = document.getElementById('mform'), res = document.getElementById('mresult');
-    if (!sec || !form || document.getElementById('mxm-switch') || !AD()) return;
-    var sw = document.createElement('div'); sw.id = 'mxm-switch'; sw.className = 'mxm-switch'; sw.setAttribute('role', 'tablist');
-    sw.innerHTML = '<button type="button" role="tab" data-mxm="solo" aria-selected="true"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.8 3.4-6 7-6s6.4 2.2 7 6"/></svg></span><span class="mxm-slb">مصفوفتك</span></button><button type="button" role="tab" data-mxm="child" aria-selected="false"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3"/><path d="M6.5 20c.3-3 2.5-5 5.5-5s5.2 2 5.5 5"/><path d="M9.5 3.6c.8-1 4.2-1 5 0"/></svg></span><span class="mxm-slb">مصفوفة الطفل</span></button>';
-    form.parentNode.insertBefore(sw, form);
-
-    var child = document.createElement('div'); child.id = 'mxm-child'; child.className = 'mxm-panel'; child.hidden = true;
-    child.innerHTML = '<form class="mxm-form" novalidate><p class="mxm-lead">أدخل تاريخ ميلاد الطفل لتقرأ طباعه ومواهبه وما يحتاجه من أهله.</p>' +
-      '<div class="mxm-grp">' + field('mxm-n3', 'اسم الطفل (اختياري)', 'text') + field('mxm-d3', 'تاريخ ميلاد الطفل', 'date') + '</div>' +
-      '<p class="ferr" hidden role="alert"></p><button class="btn" type="submit">احسب مصفوفة الطفل</button></form><div class="mxm-result" hidden aria-live="polite"></div>';
-    form.parentNode.insertBefore(child, form.nextSibling);
-
-    function setMode(m) {
-      sw.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.mxm === m)); });
-      sec.setAttribute('data-mxm', m);
-      form.classList.toggle('mxm-off', m !== 'solo'); child.hidden = m !== 'child';
-      sec.querySelectorAll('.mxp-head, .aq-mx-about').forEach(function (el) { el.classList.toggle('mxm-off', m !== 'solo'); });
-      if (res) res.classList.toggle('mxm-off', m !== 'solo');
-      var on = sw.querySelector('[aria-selected=true]'); if (on && on.scrollIntoView) { try { on.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {} }
-    }
-    sw.addEventListener('click', function (e) { var b = e.target.closest('[data-mxm]'); if (b) setMode(b.dataset.mxm); });
-
-    function bind(panel, ids, fn) {
-      var f = panel.querySelector('form'), err = panel.querySelector('.ferr'), out = panel.querySelector('.mxm-result');
-      f.addEventListener('submit', function (e) {
-        e.preventDefault(); err.hidden = true;
-        var vals = ids.map(function (id) { return (document.getElementById(id) || {}).value || ''; });
-        if (vals.some(function (v) { return !/^\d{4}-\d{2}-\d{2}$/.test(v); })) { err.textContent = 'اختر تاريخ الميلاد كاملًا: اليوم والشهر والسنة.'; err.hidden = false; return; }
-        try { fn(out, vals); out.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        catch (x) { err.textContent = 'تعذّر الحساب. راجع التاريخ وحاول مرة أخرى.'; err.hidden = false; }
-      });
-    }
-    bind(child, ['mxm-d3'], function (out, v) { renderChild(out, v[0], document.getElementById('mxm-n3').value.trim()); });
-
-    function fromHash() {
-      var m = /[?&]mode=(child)/.exec(location.hash) || /^#matrix-(child)$/.exec(location.hash);
-      if (m) setMode(m[1]);
-    }
-    window.AqMatrixModes.setMode = setMode;
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest('[data-mxm-go]'); if (!a) return;
-      setTimeout(function () { setMode(a.getAttribute('data-mxm-go')); var s = document.getElementById('matrix'); if (s) s.scrollTop = 0; }, 60);
-    });
-    fromHash();
+    var sec = document.getElementById('matrix'), form = document.getElementById('mform');
+    if (!sec || !form || document.getElementById('mxm-links')) return;
+    var ic = {
+      child: '<circle cx="12" cy="7.5" r="3"/><path d="M6.5 20c.3-3 2.5-5 5.5-5s5.2 2 5.5 5"/><path d="M9.5 3.6c.8-1 4.2-1 5 0"/>',
+      pair: '<circle cx="8.5" cy="8.5" r="3"/><circle cx="16" cy="9.5" r="2.6"/><path d="M2.8 19c.5-3.2 2.7-5 5.7-5s5.2 1.8 5.7 5M14.6 14.4c3 0 5.2 1.6 5.8 4.6"/>'
+    };
+    function lk(href, k, label) { return '<a class="mxm-link" href="' + href + '" aria-label="' + label + '"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ic[k] + '</svg></span><span class="mxm-slb">' + label + '</span></a>'; }
+    var row = document.createElement('div'); row.id = 'mxm-links'; row.className = 'mxm-links';
+    row.innerHTML = lk('#matrix-child', 'child', 'مصفوفة الطفل') + lk('#matrix-compat', 'pair', 'توافق الشريكين');
+    form.parentNode.insertBefore(row, form);
   }
   function fmtDate(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d); return m ? m[3] + '/' + m[2] + '/' + m[1] : d; }
   var HI = {
@@ -280,77 +251,93 @@
     add: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
   };
   function hIc(k) { return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + HI[k] + '</svg>'; }
-  function personHead(n1, d1, n2, d2) {
-    return '<header class="mxc-head"><span class="mxc-kicker">توافق مصفوفة القدر</span>' +
-      '<div class="mxc-ppl"><div class="mxc-p"><b>' + esc(n1 || 'الطرف الأول') + '</b><small>' + esc(fmtDate(d1)) + '</small></div><span class="mxc-join" aria-hidden="true">+</span>' +
-      '<div class="mxc-p"><b>' + esc(n2 || 'الطرف الثاني') + '</b><small>' + esc(fmtDate(d2)) + '</small></div></div>' +
+  function personHead(kicker, people) {
+    var ppl = people.map(function (q) { return '<div class="mxc-p"><b>' + esc(q.n || q.label) + '</b><small>' + esc(fmtDate(q.d)) + '</small></div>'; }).join('<span class="mxc-join" aria-hidden="true">+</span>');
+    return '<header class="mxc-head"><span class="mxc-kicker">' + esc(kicker) + '</span><div class="mxc-ppl">' + ppl + '</div>' +
       '<div class="mxc-tools"><button type="button" data-mxc="edit" aria-label="تعديل البيانات" title="تعديل البيانات">' + hIc('edit') + '<span>تعديل</span></button>' +
       '<button type="button" data-mxc="save" aria-label="حفظ الخريطة" title="حفظ الخريطة">' + hIc('save') + '<span>حفظ</span></button>' +
       '<button type="button" data-mxc="new" aria-label="خريطة جديدة" title="خريطة جديدة">' + hIc('add') + '<span>خريطة جديدة</span></button></div></header>';
   }
-  /* توافق المصفوفة كصفحة مستقلة #matrix-compat: نفس حساب وقراءة وضع الشريكين، بلا لمس صفحة المصفوفة */
-  function buildCompatPage() {
-    var sec = document.getElementById('matrix-compat'), form = document.getElementById('mxc-form'), out = document.getElementById('mxc-result');
+  /* صفحة خريطة مستقلة (توافق الشريكين / مصفوفة الطفل): نفس البنية والسلوك، والاختلاف في الحقول والعرض فقط */
+  function buildMapPage(cfg) {
+    var sec = document.getElementById(cfg.sec), form = document.getElementById(cfg.form), out = document.getElementById(cfg.out);
     if (!sec || !form || !out || form.__mxc || !AD()) return;
     form.__mxc = true;
-    var err = document.getElementById('mxc-error'), explain = document.getElementById('mxc-explain'), head = sec.querySelector('.lpx-head');
+    var err = document.getElementById(cfg.err), explain = document.getElementById(cfg.explain), head = sec.querySelector('.lpx-head');
     function val(id) { return (document.getElementById(id) || {}).value || ''; }
     function setVal(id, v) { var e = document.getElementById(id); if (!e) return; e.value = v; e.dispatchEvent(new Event('input', { bubbles: true })); e.dispatchEvent(new Event('change', { bubbles: true })); }
     function show(on) { form.hidden = on; if (explain) explain.hidden = on; if (head) head.hidden = on; out.hidden = !on; }
     var cur = null;
     function editDialog() {
       var dlg = document.createElement('div'); dlg.className = 'mxc-modal'; dlg.setAttribute('role', 'dialog'); dlg.setAttribute('aria-modal', 'true');
-      dlg.innerHTML = '<div class="mxc-modal-card"><h3>تعديل بيانات الشريكين</h3>' +
-        '<div class="mxc-modal-grp"><h4>الطرف الأول</h4><label>الاسم (اختياري)<input type="text" maxlength="40" id="mxc-e-n1" autocomplete="off"></label><label>تاريخ الميلاد<input type="date" id="mxc-e-d1" min="1900-01-01" max="2100-12-31"></label></div>' +
-        '<div class="mxc-modal-grp"><h4>الطرف الثاني</h4><label>الاسم (اختياري)<input type="text" maxlength="40" id="mxc-e-n2" autocomplete="off"></label><label>تاريخ الميلاد<input type="date" id="mxc-e-d2" min="1900-01-01" max="2100-12-31"></label></div>' +
-        '<p class="ferr" id="mxc-e-err" hidden>اختر تاريخ الميلاد كاملًا لكل طرف.</p>' +
+      dlg.innerHTML = '<div class="mxc-modal-card"><h3>' + esc(cfg.editTitle) + '</h3>' + cur.map(function (q, i) {
+        return '<div class="mxc-modal-grp"><h4>' + esc(q.label) + '</h4><label>الاسم (اختياري)<input type="text" maxlength="40" id="mxc-e-n' + i + '" autocomplete="off"></label><label>تاريخ الميلاد<input type="date" id="mxc-e-d' + i + '" min="1900-01-01" max="2100-12-31"></label></div>';
+      }).join('') + '<p class="ferr" id="mxc-e-err" hidden>اختر تاريخ الميلاد كاملًا.</p>' +
         '<div class="mxc-modal-act"><button type="button" class="btn-lite" data-x>إلغاء</button><button type="button" class="btn" data-ok>تحديث الخريطة</button></div></div>';
       document.body.appendChild(dlg);
-      var g = function (id) { return dlg.querySelector('#' + id); };
-      g('mxc-e-n1').value = cur.n1; g('mxc-e-d1').value = cur.d1; g('mxc-e-n2').value = cur.n2; g('mxc-e-d2').value = cur.d2;
+      cur.forEach(function (q, i) { dlg.querySelector('#mxc-e-n' + i).value = q.n; dlg.querySelector('#mxc-e-d' + i).value = q.d; });
       var close = function () { dlg.remove(); document.removeEventListener('keydown', onKey, true); };
       var onKey = function (e) { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
       document.addEventListener('keydown', onKey, true);
       dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
       dlg.querySelector('[data-x]').addEventListener('click', close);
       dlg.querySelector('[data-ok]').addEventListener('click', function () {
-        var a = g('mxc-e-d1').value, b = g('mxc-e-d2').value;
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(a) || !/^\d{4}-\d{2}-\d{2}$/.test(b)) { g('mxc-e-err').hidden = false; return; }
-        setVal('mxc-n1', g('mxc-e-n1').value); setVal('mxc-d1', a); setVal('mxc-n2', g('mxc-e-n2').value); setVal('mxc-d2', b);
+        var ok = cur.every(function (q, i) { return /^\d{4}-\d{2}-\d{2}$/.test(dlg.querySelector('#mxc-e-d' + i).value); });
+        if (!ok) { dlg.querySelector('#mxc-e-err').hidden = false; return; }
+        cfg.fields.forEach(function (f, i) { setVal(f.n, dlg.querySelector('#mxc-e-n' + i).value); setVal(f.d, dlg.querySelector('#mxc-e-d' + i).value); });
         close(); if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
       });
-      g('mxc-e-n1').focus();
+      dlg.querySelector('#mxc-e-n0').focus();
     }
     out.addEventListener('click', function (e) {
       var b = e.target.closest && e.target.closest('[data-mxc]'); if (!b || !cur) return;
       var a = b.getAttribute('data-mxc');
       if (a === 'edit') editDialog();
-      else if (a === 'new') { ['mxc-n1', 'mxc-d1', 'mxc-n2', 'mxc-d2'].forEach(function (id) { setVal(id, ''); }); show(false); window.scrollTo(0, 0); sec.scrollTop = 0; }
+      else if (a === 'new') { cfg.fields.forEach(function (f) { setVal(f.n, ''); setVal(f.d, ''); }); show(false); window.scrollTo(0, 0); sec.scrollTop = 0; }
       else if (a === 'save') {
         var P = window.AqeeqPlatform;
         if (P && typeof P.saveReading === 'function') {
-          P.saveReading({ type: 'matrix-compat', typeLabel: 'توافق مصفوفة القدر', title: (cur.n1 || 'الطرف الأول') + ' + ' + (cur.n2 || 'الطرف الثاني'), subtitle: fmtDate(cur.d1) + ' × ' + fmtDate(cur.d2), route: '#matrix-compat', inputs: { name1: cur.n1, date1: cur.d1, name2: cur.n2, date2: cur.d2 } });
+          var m = cfg.saveMeta(cur); P.saveReading({ type: m.type, typeLabel: m.typeLabel, title: m.title, subtitle: m.subtitle, route: '#' + cfg.sec, inputs: m.inputs });
           b.classList.add('is-saved'); b.querySelector('span').textContent = 'تم الحفظ';
         }
       }
     });
     form.addEventListener('submit', function (e) {
       e.preventDefault(); err.hidden = true;
-      var d1 = val('mxc-d1'), d2 = val('mxc-d2');
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(d1) || !/^\d{4}-\d{2}-\d{2}$/.test(d2)) { err.textContent = 'اختر تاريخ الميلاد كاملًا لكل طرف: اليوم والشهر والسنة.'; err.hidden = false; return; }
+      var people = cfg.fields.map(function (f) { return { n: val(f.n).trim(), d: val(f.d), label: f.label }; });
+      if (people.some(function (q) { return !/^\d{4}-\d{2}-\d{2}$/.test(q.d); })) { err.textContent = cfg.badDate; err.hidden = false; return; }
       try {
-        var n1 = val('mxc-n1').trim(), n2 = val('mxc-n2').trim();
-        renderPair(out, d1, d2, n1, n2);
-        cur = { n1: n1, d1: d1, n2: n2, d2: d2 };
-        out.insertAdjacentHTML('afterbegin', personHead(n1, d1, n2, d2));
+        cfg.render(out, people);
+        cur = people;
+        out.insertAdjacentHTML('afterbegin', personHead(cfg.kicker, people));
         show(true); window.scrollTo(0, 0); sec.scrollTop = 0;
-      } catch (x) { err.textContent = 'تعذّر الحساب. راجع التاريخين وحاول مرة أخرى.'; err.hidden = false; }
+      } catch (x) { err.textContent = 'تعذّر الحساب. راجع التاريخ وحاول مرة أخرى.'; err.hidden = false; }
+    });
+  }
+  function buildCompatPage() {
+    buildMapPage({
+      sec: 'matrix-compat', form: 'mxc-form', out: 'mxc-result', err: 'mxc-error', explain: 'mxc-explain',
+      fields: [{ n: 'mxc-n1', d: 'mxc-d1', label: 'الطرف الأول' }, { n: 'mxc-n2', d: 'mxc-d2', label: 'الطرف الثاني' }],
+      kicker: 'توافق مصفوفة القدر', editTitle: 'تعديل بيانات الشريكين',
+      badDate: 'اختر تاريخ الميلاد كاملًا لكل طرف: اليوم والشهر والسنة.',
+      render: function (out, p) { renderPair(out, p[0].d, p[1].d, p[0].n, p[1].n); },
+      saveMeta: function (p) { return { type: 'matrix-compat', typeLabel: 'توافق مصفوفة القدر', title: (p[0].n || p[0].label) + ' + ' + (p[1].n || p[1].label), subtitle: fmtDate(p[0].d) + ' × ' + fmtDate(p[1].d), inputs: { name1: p[0].n, date1: p[0].d, name2: p[1].n, date2: p[1].d } }; }
+    });
+  }
+  function buildChildPage() {
+    buildMapPage({
+      sec: 'matrix-child', form: 'mxk-form', out: 'mxk-result', err: 'mxk-error', explain: 'mxk-explain',
+      fields: [{ n: 'mxk-n', d: 'mxk-d', label: 'الطفل' }],
+      kicker: 'مصفوفة الطفل', editTitle: 'تعديل بيانات الطفل',
+      badDate: 'اختر تاريخ ميلاد الطفل كاملًا: اليوم والشهر والسنة.',
+      render: function (out, p) { renderChild(out, p[0].d, p[0].n); },
+      saveMeta: function (p) { return { type: 'matrix-child', typeLabel: 'مصفوفة الطفل', title: p[0].n || 'مصفوفة الطفل', subtitle: fmtDate(p[0].d), inputs: { name: p[0].n, date: p[0].d } }; }
     });
   }
   window.AqMatrixModes = { fromCorners: fromCorners, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
-    var boot = function () { build(); buildCompatPage(); var n = 0; (function t() { buildCompatPage(); if (++n < 12 && !(document.getElementById('mxc-form') || {}).__mxc) setTimeout(t, 400); })(); };
+    var boot = function () { build(); buildCompatPage(); buildChildPage(); var n = 0; (function t() { buildCompatPage(); buildChildPage(); if (++n < 12 && !((document.getElementById('mxc-form') || {}).__mxc && (document.getElementById('mxk-form') || {}).__mxc)) setTimeout(t, 400); })(); };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   }
 })();
