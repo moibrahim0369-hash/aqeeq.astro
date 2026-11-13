@@ -77,10 +77,12 @@
 
   /* اعتراض النقر على رأس الأكورديون على الهاتف */
   document.addEventListener('click', function (e) {
-    if (!mq.matches) return;
     var h = e.target.closest && e.target.closest('#mresult .aqm-acc-header, .mxc-acc .aqm-acc-header');
     if (!h) return;
+    var pair = !!h.closest('.mxc-acc');
+    if (!pair && !mq.matches) return;
     e.preventDefault(); e.stopPropagation();
+    ensureSheet().classList.toggle('is-pair', pair);
     open(h.closest('.aqm-acc-item'));
   }, true);
 

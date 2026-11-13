@@ -715,6 +715,30 @@ html body #matrix-compat .mxm-map{margin:0 0 12px;padding:8px;border-radius:20px
 html body #matrix-compat .mxm-map svg{width:100%;height:auto;display:block}
 html body #matrix-compat .mxm-map [data-age],html body #matrix-compat .mxm-map .aqm-svg-age-label,html body #matrix-compat .mxm-map .aqm-node{cursor:pointer}
 html body #matrix-compat .mxm-map [data-age]:hover,html body #matrix-compat .mxm-map .aqm-svg-age-label:hover{fill:#8B263E;font-weight:800}
+.aqm-sheet.is-pair .aqm-sheet-panel{width:min(720px,100%);margin-inline:auto}
+@media(min-width:821px){.aqm-sheet.is-pair .aqm-sheet-panel{bottom:4vh;border-radius:24px;border-bottom:1.3px solid rgba(210,174,108,.9)!important;max-height:88vh}}
+.aqm-sheet.is-pair .aqm-slot,.aqm-sheet.is-pair .aqm-slot-primary,.aqm-sheet.is-pair .aqm-slot-detailed,.aqm-sheet.is-pair .aqm-slot-strengths,.aqm-sheet.is-pair .aqm-slot-challenges{background:#FBF4E4!important;border-color:#E6D3A9!important;box-shadow:none!important}
+.aqm-sheet.is-pair .aqm-sheet-nums{background:#FBF4E4!important;border-color:#E6D3A9!important}
+html body #matrix-compat .mxc-head{margin:0 0 14px;padding:16px 16px 12px;border-radius:22px;background:linear-gradient(160deg,#FFFDF8,#F7EEDC);border:1px solid #E3CFA4;box-shadow:0 6px 18px rgba(94,34,52,.08);text-align:center}
+html body #matrix-compat .mxc-kicker{display:block;font-size:12px;color:#8A6A1E;letter-spacing:.02em;margin-bottom:10px}
+html body #matrix-compat .mxc-ppl{display:flex;align-items:center;justify-content:center;gap:12px}
+html body #matrix-compat .mxc-p{flex:1;min-width:0;padding:10px 8px;border-radius:16px;background:#FBF4E4;border:1px solid #E6D3A9}
+html body #matrix-compat .mxc-p b{display:block;color:#6B1D2F;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body #matrix-compat .mxc-p small{display:block;color:#7A6A62;font-size:12.5px;margin-top:2px}
+html body #matrix-compat .mxc-join{color:#B88F46;font-size:20px;font-weight:700}
+html body #matrix-compat .mxc-tools{display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+html body #matrix-compat .mxc-tools button{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;border:1px solid #E3CFA4;background:#fff8ea;color:#6B1D2F;font:inherit;font-size:13px;cursor:pointer}
+html body #matrix-compat .mxc-tools button.is-saved{background:#6B1D2F;color:#fff8ea;border-color:#6B1D2F}
+html body #matrix-compat .mxm-sum-end{margin-top:14px}
+.mxc-modal{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;background:rgba(40,20,26,.45);padding:16px}
+.mxc-modal-card{width:min(440px,100%);max-height:92vh;overflow:auto;padding:18px;border-radius:22px;background:#FBF4E4;border:1px solid #E3CFA4;color:#3A2A30;direction:rtl}
+.mxc-modal-card h3{margin:0 0 10px;color:#6B1D2F;font-size:17px}
+.mxc-modal-grp{margin:0 0 12px;padding:10px;border-radius:16px;background:#FFFAEF;border:1px solid #EBDCBB}
+.mxc-modal-grp h4{margin:0 0 6px;color:#8A6A1E;font-size:13px}
+.mxc-modal-grp label{display:block;font-size:13px;margin:6px 0 0}
+.mxc-modal-grp input{display:block;width:100%;margin-top:4px;padding:9px 10px;border-radius:12px;border:1px solid #E3CFA4;background:#fff;font:inherit}
+.mxc-modal-act{display:flex;gap:8px;justify-content:flex-start;margin-top:8px}
+.mxc-modal-act .btn-lite{padding:10px 16px;border-radius:999px;border:1px solid #E3CFA4;background:#fff8ea;color:#6B1D2F;font:inherit;cursor:pointer}
 html body #matrix-compat .mxc-pick{position:relative;margin:0 0 14px;padding:14px 16px 12px;border-radius:18px;background:linear-gradient(160deg,#FFFDF8,#F7EEDC);border:1px solid #E3CFA4;box-shadow:0 6px 18px rgba(94,34,52,.10);font-size:14px;line-height:1.8;color:#3A2A30}
 html body #matrix-compat .mxc-pick[hidden]{display:none}
 html body #matrix-compat .mxc-pick p{margin:6px 0 0}

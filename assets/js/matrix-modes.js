@@ -175,9 +175,10 @@
     var R = pairOf(d1, d2), c = R.c;
     var map = '';
     try { var N = window.AqeeqNumerology; if (N && N.generateMatrixSVG) map = '<div class="aqm-canvas-wrap mxm-map">' + N.generateMatrixSVG(pairFull(d1, d2)).replace(/>undefined</g, '>—<').replace(/data-arcana="undefined"/g, 'data-arcana=""') + '</div>'; } catch (e) { map = ''; }
-    host.innerHTML = map + '<div class="mxm-sum"><h3>مصفوفة الشراكة</h3><p>أرقام العلاقة ناتجة من جمع أركان مصفوفتيكما ثم اختزالها إلى طاقات المصفوفة.</p>' +
-      '<div class="mxm-tab">' + HEADROW + cornerRow(n1 || 'أنت', R.a) + cornerRow(n2 || 'شريكك', R.b) + '<div class="mxm-sep"></div>' + cornerRow('الشراكة', c) + '</div></div>' +
-      pairAccHtml(PAIR, function (k) { return { n: c[k] }; }) +
+    var sum = '<div class="mxm-sum mxm-sum-end"><h3>أرقام الشراكة</h3><p>أرقام العلاقة ناتجة من جمع أركان مصفوفتيكما ثم اختزالها إلى طاقات المصفوفة.</p>' +
+      '<div class="mxm-tab">' + HEADROW + cornerRow(n1 || 'أنت', R.a) + cornerRow(n2 || 'شريكك', R.b) + '<div class="mxm-sep"></div>' + cornerRow('الشراكة', c) + '</div></div>';
+    host.innerHTML = map +
+      pairAccHtml(PAIR, function (k) { return { n: c[k] }; }) + sum +
       '<p class="mxm-note">قراءة العلاقة بين شريكين أيًّا كانت صلتهما، والأرقام محسوبة من تاريخي الميلاد.</p>';
     host.hidden = false; bindAcc(host); bindMap(host, pairFull(d1, d2));
   }
@@ -230,24 +231,19 @@
     var sec = document.getElementById('matrix'), form = document.getElementById('mform'), res = document.getElementById('mresult');
     if (!sec || !form || document.getElementById('mxm-switch') || !AD()) return;
     var sw = document.createElement('div'); sw.id = 'mxm-switch'; sw.className = 'mxm-switch'; sw.setAttribute('role', 'tablist');
-    sw.innerHTML = '<button type="button" role="tab" data-mxm="solo" aria-selected="true"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.8 3.4-6 7-6s6.4 2.2 7 6"/></svg></span><span class="mxm-slb">مصفوفتك</span></button><button type="button" role="tab" data-mxm="pair" aria-selected="false"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8.5" r="3"/><circle cx="16" cy="9.5" r="2.6"/><path d="M2.8 19c.5-3.2 2.7-5 5.7-5s5.2 1.8 5.7 5M14.6 14.4c3 0 5.2 1.6 5.8 4.6"/></svg></span><span class="mxm-slb">توافق الشريكين</span></button><button type="button" role="tab" data-mxm="child" aria-selected="false"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3"/><path d="M6.5 20c.3-3 2.5-5 5.5-5s5.2 2 5.5 5"/><path d="M9.5 3.6c.8-1 4.2-1 5 0"/></svg></span><span class="mxm-slb">مصفوفة الطفل</span></button>';
+    sw.innerHTML = '<button type="button" role="tab" data-mxm="solo" aria-selected="true"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.6-3.8 3.4-6 7-6s6.4 2.2 7 6"/></svg></span><span class="mxm-slb">مصفوفتك</span></button><button type="button" role="tab" data-mxm="child" aria-selected="false"><span class="mxm-sic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3"/><path d="M6.5 20c.3-3 2.5-5 5.5-5s5.2 2 5.5 5"/><path d="M9.5 3.6c.8-1 4.2-1 5 0"/></svg></span><span class="mxm-slb">مصفوفة الطفل</span></button>';
     form.parentNode.insertBefore(sw, form);
 
-    var pair = document.createElement('div'); pair.id = 'mxm-pair'; pair.className = 'mxm-panel'; pair.hidden = true;
-    pair.innerHTML = '<form class="mxm-form" novalidate><p class="mxm-lead">أدخل تاريخي الميلاد لتظهر مصفوفة الشراكة وما تحمله من انسجام ودروس.</p>' +
-      '<div class="mxm-grp"><h4>أنت</h4>' + field('mxm-n1', 'الاسم (اختياري)', 'text') + field('mxm-d1', 'تاريخ الميلاد', 'date') + '</div>' +
-      '<div class="mxm-grp"><h4>الطرف الآخر</h4>' + field('mxm-n2', 'الاسم (اختياري)', 'text') + field('mxm-d2', 'تاريخ الميلاد', 'date') + '</div>' +
-      '<p class="ferr" hidden role="alert"></p><button class="btn" type="submit">احسب مصفوفة الشراكة</button></form><div class="mxm-result" hidden aria-live="polite"></div>';
     var child = document.createElement('div'); child.id = 'mxm-child'; child.className = 'mxm-panel'; child.hidden = true;
     child.innerHTML = '<form class="mxm-form" novalidate><p class="mxm-lead">أدخل تاريخ ميلاد الطفل لتقرأ طباعه ومواهبه وما يحتاجه من أهله.</p>' +
       '<div class="mxm-grp">' + field('mxm-n3', 'اسم الطفل (اختياري)', 'text') + field('mxm-d3', 'تاريخ ميلاد الطفل', 'date') + '</div>' +
       '<p class="ferr" hidden role="alert"></p><button class="btn" type="submit">احسب مصفوفة الطفل</button></form><div class="mxm-result" hidden aria-live="polite"></div>';
-    form.parentNode.insertBefore(pair, form.nextSibling); pair.parentNode.insertBefore(child, pair.nextSibling);
+    form.parentNode.insertBefore(child, form.nextSibling);
 
     function setMode(m) {
       sw.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.mxm === m)); });
       sec.setAttribute('data-mxm', m);
-      form.classList.toggle('mxm-off', m !== 'solo'); pair.hidden = m !== 'pair'; child.hidden = m !== 'child';
+      form.classList.toggle('mxm-off', m !== 'solo'); child.hidden = m !== 'child';
       sec.querySelectorAll('.mxp-head, .aq-mx-about').forEach(function (el) { el.classList.toggle('mxm-off', m !== 'solo'); });
       if (res) res.classList.toggle('mxm-off', m !== 'solo');
       var on = sw.querySelector('[aria-selected=true]'); if (on && on.scrollIntoView) { try { on.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (e) {} }
@@ -264,11 +260,10 @@
         catch (x) { err.textContent = 'تعذّر الحساب. راجع التاريخ وحاول مرة أخرى.'; err.hidden = false; }
       });
     }
-    bind(pair, ['mxm-d1', 'mxm-d2'], function (out, v) { renderPair(out, v[0], v[1], document.getElementById('mxm-n1').value.trim(), document.getElementById('mxm-n2').value.trim()); });
     bind(child, ['mxm-d3'], function (out, v) { renderChild(out, v[0], document.getElementById('mxm-n3').value.trim()); });
 
     function fromHash() {
-      var m = /[?&]mode=(pair|child)/.exec(location.hash) || /^#matrix-(pair|child)$/.exec(location.hash);
+      var m = /[?&]mode=(child)/.exec(location.hash) || /^#matrix-(child)$/.exec(location.hash);
       if (m) setMode(m[1]);
     }
     window.AqMatrixModes.setMode = setMode;
@@ -278,23 +273,77 @@
     });
     fromHash();
   }
+  function fmtDate(d) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d); return m ? m[3] + '/' + m[2] + '/' + m[1] : d; }
+  var HI = {
+    edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
+    save: '<path d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z"/>',
+    add: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
+  };
+  function hIc(k) { return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + HI[k] + '</svg>'; }
+  function personHead(n1, d1, n2, d2) {
+    return '<header class="mxc-head"><span class="mxc-kicker">توافق مصفوفة القدر</span>' +
+      '<div class="mxc-ppl"><div class="mxc-p"><b>' + esc(n1 || 'الطرف الأول') + '</b><small>' + esc(fmtDate(d1)) + '</small></div><span class="mxc-join" aria-hidden="true">+</span>' +
+      '<div class="mxc-p"><b>' + esc(n2 || 'الطرف الثاني') + '</b><small>' + esc(fmtDate(d2)) + '</small></div></div>' +
+      '<div class="mxc-tools"><button type="button" data-mxc="edit" aria-label="تعديل البيانات" title="تعديل البيانات">' + hIc('edit') + '<span>تعديل</span></button>' +
+      '<button type="button" data-mxc="save" aria-label="حفظ الخريطة" title="حفظ الخريطة">' + hIc('save') + '<span>حفظ</span></button>' +
+      '<button type="button" data-mxc="new" aria-label="خريطة جديدة" title="خريطة جديدة">' + hIc('add') + '<span>خريطة جديدة</span></button></div></header>';
+  }
   /* توافق المصفوفة كصفحة مستقلة #matrix-compat: نفس حساب وقراءة وضع الشريكين، بلا لمس صفحة المصفوفة */
   function buildCompatPage() {
     var sec = document.getElementById('matrix-compat'), form = document.getElementById('mxc-form'), out = document.getElementById('mxc-result');
     if (!sec || !form || !out || form.__mxc || !AD()) return;
     form.__mxc = true;
-    var err = document.getElementById('mxc-error'), explain = document.getElementById('mxc-explain');
+    var err = document.getElementById('mxc-error'), explain = document.getElementById('mxc-explain'), head = sec.querySelector('.lpx-head');
     function val(id) { return (document.getElementById(id) || {}).value || ''; }
-    function show(on) { form.hidden = on; if (explain) explain.hidden = on; out.hidden = !on; }
+    function setVal(id, v) { var e = document.getElementById(id); if (!e) return; e.value = v; e.dispatchEvent(new Event('input', { bubbles: true })); e.dispatchEvent(new Event('change', { bubbles: true })); }
+    function show(on) { form.hidden = on; if (explain) explain.hidden = on; if (head) head.hidden = on; out.hidden = !on; }
+    var cur = null;
+    function editDialog() {
+      var dlg = document.createElement('div'); dlg.className = 'mxc-modal'; dlg.setAttribute('role', 'dialog'); dlg.setAttribute('aria-modal', 'true');
+      dlg.innerHTML = '<div class="mxc-modal-card"><h3>تعديل بيانات الشريكين</h3>' +
+        '<div class="mxc-modal-grp"><h4>الطرف الأول</h4><label>الاسم (اختياري)<input type="text" maxlength="40" id="mxc-e-n1" autocomplete="off"></label><label>تاريخ الميلاد<input type="date" id="mxc-e-d1" min="1900-01-01" max="2100-12-31"></label></div>' +
+        '<div class="mxc-modal-grp"><h4>الطرف الثاني</h4><label>الاسم (اختياري)<input type="text" maxlength="40" id="mxc-e-n2" autocomplete="off"></label><label>تاريخ الميلاد<input type="date" id="mxc-e-d2" min="1900-01-01" max="2100-12-31"></label></div>' +
+        '<p class="ferr" id="mxc-e-err" hidden>اختر تاريخ الميلاد كاملًا لكل طرف.</p>' +
+        '<div class="mxc-modal-act"><button type="button" class="btn-lite" data-x>إلغاء</button><button type="button" class="btn" data-ok>تحديث الخريطة</button></div></div>';
+      document.body.appendChild(dlg);
+      var g = function (id) { return dlg.querySelector('#' + id); };
+      g('mxc-e-n1').value = cur.n1; g('mxc-e-d1').value = cur.d1; g('mxc-e-n2').value = cur.n2; g('mxc-e-d2').value = cur.d2;
+      var close = function () { dlg.remove(); document.removeEventListener('keydown', onKey, true); };
+      var onKey = function (e) { if (e.key === 'Escape') { e.stopPropagation(); close(); } };
+      document.addEventListener('keydown', onKey, true);
+      dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+      dlg.querySelector('[data-x]').addEventListener('click', close);
+      dlg.querySelector('[data-ok]').addEventListener('click', function () {
+        var a = g('mxc-e-d1').value, b = g('mxc-e-d2').value;
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(a) || !/^\d{4}-\d{2}-\d{2}$/.test(b)) { g('mxc-e-err').hidden = false; return; }
+        setVal('mxc-n1', g('mxc-e-n1').value); setVal('mxc-d1', a); setVal('mxc-n2', g('mxc-e-n2').value); setVal('mxc-d2', b);
+        close(); if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+      });
+      g('mxc-e-n1').focus();
+    }
+    out.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-mxc]'); if (!b || !cur) return;
+      var a = b.getAttribute('data-mxc');
+      if (a === 'edit') editDialog();
+      else if (a === 'new') { ['mxc-n1', 'mxc-d1', 'mxc-n2', 'mxc-d2'].forEach(function (id) { setVal(id, ''); }); show(false); window.scrollTo(0, 0); sec.scrollTop = 0; }
+      else if (a === 'save') {
+        var P = window.AqeeqPlatform;
+        if (P && typeof P.saveReading === 'function') {
+          P.saveReading({ type: 'matrix-compat', typeLabel: 'توافق مصفوفة القدر', title: (cur.n1 || 'الطرف الأول') + ' + ' + (cur.n2 || 'الطرف الثاني'), subtitle: fmtDate(cur.d1) + ' × ' + fmtDate(cur.d2), route: '#matrix-compat', inputs: { name1: cur.n1, date1: cur.d1, name2: cur.n2, date2: cur.d2 } });
+          b.classList.add('is-saved'); b.querySelector('span').textContent = 'تم الحفظ';
+        }
+      }
+    });
     form.addEventListener('submit', function (e) {
       e.preventDefault(); err.hidden = true;
       var d1 = val('mxc-d1'), d2 = val('mxc-d2');
       if (!/^\d{4}-\d{2}-\d{2}$/.test(d1) || !/^\d{4}-\d{2}-\d{2}$/.test(d2)) { err.textContent = 'اختر تاريخ الميلاد كاملًا لكل طرف: اليوم والشهر والسنة.'; err.hidden = false; return; }
       try {
-        renderPair(out, d1, d2, val('mxc-n1').trim(), val('mxc-n2').trim());
-        var back = document.createElement('button'); back.type = 'button'; back.className = 'btn mxc-again'; back.textContent = 'حساب جديد';
-        back.addEventListener('click', function () { show(false); sec.scrollTop = 0; });
-        out.appendChild(back); show(true); sec.scrollTop = 0;
+        var n1 = val('mxc-n1').trim(), n2 = val('mxc-n2').trim();
+        renderPair(out, d1, d2, n1, n2);
+        cur = { n1: n1, d1: d1, n2: n2, d2: d2 };
+        out.insertAdjacentHTML('afterbegin', personHead(n1, d1, n2, d2));
+        show(true); window.scrollTo(0, 0); sec.scrollTop = 0;
       } catch (x) { err.textContent = 'تعذّر الحساب. راجع التاريخين وحاول مرة أخرى.'; err.hidden = false; }
     });
   }
