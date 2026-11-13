@@ -1028,18 +1028,28 @@
     /* البرامج المركبة: مدخل جاهز بالكود (مباشر ثم معكوس)، وإلا تركيب من نصوص الأركانا الثلاث */
     const cMount = mount('composite_programs');
     if (cMount) {
-      const triads = [['البرنامج الشخصي', P.compositePrograms.personalTriad], ['البرنامج الروحي', P.compositePrograms.spiritualTriad], ['البرنامج المادي', P.compositePrograms.materialTriad]]
-        .filter(t => Array.isArray(t[1]) && t[1].length === 3).map(([l, t]) => [l, t.map(Number)]);
+      const triads = [['البرنامج الشخصي', P.compositePrograms.personalTriad, 'personal'], ['البرنامج الروحي', P.compositePrograms.spiritualTriad, 'spiritual'], ['البرنامج المادي', P.compositePrograms.materialTriad, 'material']]
+        .filter(t => Array.isArray(t[1]) && t[1].length === 3).map(([l, t, k]) => [l, t.map(Number), k]);
       const ids = [...new Set(triads.flatMap(t => t[1]))].filter(n => n >= 1 && n <= 22);
       Promise.all([loader.section('composite_programs').catch(() => ({ entries: [] })), ...ids.map(id => loader.arcana(id).catch(() => null))]).then(([data, ...arr]) => {
         const byId = {}; ids.forEach((id, i) => { byId[id] = arr[i]; });
-        const html = triads.map(([label, t]) => {
+        const html = triads.map(([label, t, kind]) => {
           const code = t.join('-'), rev = [...t].reverse().join('-');
           const hit = (data.entries || []).find(e => e.code === code) || (data.entries || []).find(e => e.code === rev);
           const badges = t.map(badge).join(' ');
+          const roles = data.roles || {};
           let body;
           if (hit) {
-            body = `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(hit.summary)}</p>` + poleUl([poleLi('مسار التحرر', hit.deep && hit.deep.remedy, 'light')]);
+            const d = hit.deep || {};
+            body = `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(hit.summary)}</p>` + poleUl([poleLi('كيف يعمل هذا البرنامج', d.pattern, ''), poleLi('مشهد من اليوم', d.daily, 'shadow'), poleLi('مسار التحرر', d.remedy, 'light')]);
+          } else if (t.every(n => roles[n])) {
+            const intro = data.intro && data.intro[kind];
+            const nm = n => arcanaName(n);
+            body = (intro ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(intro)}</p>` : '') + poleUl([
+              poleLi('الطبقة الظاهرة — ' + t[0] + ' · ' + nm(t[0]), roles[t[0]].outer, ''),
+              poleLi('الطبقة الوسيطة — ' + t[1] + ' · ' + nm(t[1]), roles[t[1]].middle, 'shadow'),
+              poleLi('القلب — ' + t[2] + ' · ' + nm(t[2]), roles[t[2]].core, 'light')
+            ]);
           } else {
             const cs = t.map(n => arcCore(byId[n]));
             const lead = cs[0].psychology || '';
