@@ -107,7 +107,7 @@
 <link rel="stylesheet" href="assets/css/page-art-fade.css?v=20261120a">
 <link rel="stylesheet" href="assets/css/ui-refine.css?v=20261128a">
 <link rel="stylesheet" href="assets/css/batch3.css?v=20261130u">
-<link rel="stylesheet" href="assets/css/compat-fix.css?v=20261114a">
+<link rel="stylesheet" href="assets/css/compat-fix.css?v=20261114b">
 <link rel="stylesheet" href="assets/css/sky-sheet-fix.css?v=20261114b">
 <link rel="stylesheet" href="assets/css/inner-unified.css?v=46">
 <link rel="stylesheet" href="assets/css/you-page.css?v=7">
@@ -3175,9 +3175,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
           <div class="chart-summary-badge">توافق الخريطتين الفلكي</div>
           <h3 class="chart-summary-title">${esc(P1.name)} × ${esc(P2.name)}</h3>
           <p class="chart-summary-meta">
-            <span><span class="meta-glyph">●</span> ${esc(P1.name)}: 📅 ${P1.date} · 📍 ${esc(P1.placeName)}</span>
+            <span><span class="meta-glyph">●</span> ${esc(P1.name)}: ${P1.date} · ${esc(P1.placeName)}</span>
             <span class="meta-sep">•</span>
-            <span><span class="meta-glyph">●</span> ${esc(P2.name)}: 📅 ${P2.date} · 📍 ${esc(P2.placeName)}</span>
+            <span><span class="meta-glyph">●</span> ${esc(P2.name)}: ${P2.date} · ${esc(P2.placeName)}</span>
           </p>
         </div>
         <div class="chart-summary-actions">
