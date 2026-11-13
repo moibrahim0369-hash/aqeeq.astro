@@ -1,0 +1,17 @@
+/* شاشة الكوكب في صفحة السما: وضوح النص، أيقونات متناسقة، شيل التمويه */
+html body .swp-sheet .swp-q:not(#_a):not(#_b){box-shadow:none!important}
+html body .swp-sheet .swp-q .swp-h2:not(#_a):not(#_b):not(#_c){color:#F3DFA8!important}
+html body .swp-sheet .swp-q p:not(#_a):not(#_b):not(#_c){color:#FFF3DC!important;font:600 1.02rem/2 'El Messiri','Cairo',serif!important}
+html body .swp-sheet .swp-go:not(#_a):not(#_b){box-shadow:none!important}
+html body .swp-sheet .swp-go-t b:not(#_a):not(#_b){color:#FFF3DC!important}
+html body .swp-sheet .swp-go-t small:not(#_a):not(#_b){color:#EBD7B4!important}
+/* بطاقة العبور: أيقونة بلاطة كريمي فاتحة بخط عنابي */
+html body .swp-sheet .swp-ing:not(#_a):not(#_b){gap:12px}
+html body .swp-sheet .swp-ing-ic:not(#_a):not(#_b){flex:none;width:42px;height:42px;border-radius:14px;display:grid!important;place-items:center;background:linear-gradient(145deg,#FFFDF6,#F3E3C0);border:1px solid rgba(200,161,90,.8)}
+html body .swp-sheet .swp-ing-ic .sg,html body .swp-sheet .swp-ing-ic .sg-svg{width:24px;height:24px;color:#6A2038;display:block}
+/* الشريط السفلي: خلفية صلبة بدل التمويه فوق النص */
+html body .swp-sheet .aqm-sheet-foot:not(#_a):not(#_b){background:#F8EFD9!important;border-top:1px solid rgba(210,174,108,.6)!important;padding:10px 14px calc(12px + env(safe-area-inset-bottom))!important;box-shadow:none!important}
+html body .swp-sheet .swp-body:not(#_a):not(#_b){padding-top:6px!important}
+/* الشريط العلوي: يفضل ثابت وواضح وقت فتح الشاشة بدون تمويه */
+html body:has(.swp-sheet) .aqh-header:not(#_a):not(#_b){-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:#F4EBDA!important;box-shadow:none!important}
+html body .swp-sheet .swp-story:empty:not(#_a){display:none!important}
