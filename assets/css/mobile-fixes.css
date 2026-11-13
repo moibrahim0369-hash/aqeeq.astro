@@ -10,3 +10,12 @@
   html body #home.aqh .aqh-hero .b3-me:not([hidden]){position:static;margin:calc(var(--hh,206px) + 8px) 14px 12px;max-width:none}
   html body #home.aqh .aqh-hero:has(.b3-me:not([hidden])) .aqh-hero-grid{padding-top:0!important}
 }
+
+/* 3) حسابي: المكتبة على الموبايل — الشبكة ما تعديش عرض البطاقة، ومسافات أهدى */
+html body .aq-lib-grid:not(#_a){grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
+@media (max-width:760px){
+  html body .aq-library-panel:not(#_a){padding:18px 14px}
+  html body .aq-library-title:not(#_a){font-size:1.2rem;line-height:1.5;align-items:flex-start}
+  html body .aq-library-title:not(#_a) svg{flex:0 0 auto;margin-top:.35em}
+  html body .aq-lib-grid:not(#_a)>div[style*="grid-column"]{padding:24px 14px!important}
+}
