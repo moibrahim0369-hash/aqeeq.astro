@@ -957,8 +957,8 @@
     const gender = host.dataset.aqmGender || '';
     const g = gender === 'male' || gender === 'female' ? gender : '';
     const specs = {
-      father_line: { file: 'father_line', fields: LINE_FIELDS, items: [[P.corners.H, 'كارما الأب السفلية (H) — ما ورثته من الأب ماديًا وسلوكيًا'], [P.generational.father.combined, 'محصلة خط الأب']] },
-      mother_line: { file: 'mother_line', fields: LINE_FIELDS, items: [[P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] },
+      father_line: { file: 'father_line', fields: LINE_FIELDS, items: [[P.corners.F, 'مواهب الأب العليا (F) — ما ورثته من الأب روحيًا وفكريًا'], [P.corners.H, 'كارما الأب السفلية (H) — ما ورثته من الأب ماديًا وسلوكيًا'], [P.generational.father.combined, 'محصلة خط الأب']] },
+      mother_line: { file: 'mother_line', fields: LINE_FIELDS, items: [[P.corners.G, 'مواهب الأم العليا (G) — ما ورثته من الأم روحيًا وفكريًا'], [P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] },
       talents: { file: 'talents', fields: [['channel', 'قناة الاتصال', ''], ['gift', 'قطب النور', 'light'], ['trap', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [[P.anchors.B, 'موهبة من الله (السماء) — B', ''], [P.corners.G, 'موهبة من الأم — G', 'fromMother'], [P.corners.F, 'موهبة من الأب — F', 'fromFather']] },
       ancestral_programs: { file: 'ancestral_programs', fields: [['roots', 'الجذر والموروث', ''], ['fallPatterns', 'أنماط السقوط التلقائي', 'shadowlist'], ['path', 'مسار التحرر', 'light']], items: [[P.ancestralPrograms.ancestralCenter, 'مركز الأجداد — الجذر الذي تتشكل منه برمجتك العائلية'], [P.ancestralPrograms.commonCenter, 'المركز المشترك — ما يجمع تراثك العائلي بجوهرك']] },
       age_cycles: { file: 'age_cycles', fields: [['stage', 'طابع المرحلة', ''], ['light', 'قطب النور', 'light'], ['shadow', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [0, 10, 20, 30, 40, 50, 60, 70].map(a => [(P.ageMap && (P.ageMap[a] || P.ageMap[String(a)])) || P.anchors.A, 'محطة سن ' + a + ' — الفترة من ' + a + ' إلى ' + (a + 10) + ' سنة']) },
@@ -1064,8 +1064,8 @@
     purposes: ['المهمة والغاية', 'ما الذي جئت لتحققه في كل مرحلة من حياتك؟', ['غاية شخصية', 'غاية اجتماعية', 'غاية روحية', 'غاية كونية']],
     personal: ['الشخصية', 'كيف يراك الناس في أول لقاء؟', ['جوهر الشخصية']],
     talents: ['المواهب', 'ما الهبة التي وُلدت بها، وما الذي وصلك منها من الله ومن أمك ومن أبيك؟', ['موهبة من الله', 'موهبة من الأم', 'موهبة من الأب']],
-    father_line: ['خط الأب', 'ما الذي ورثته من جهة الأب؟', ['كارما الأب', 'محصلة الأب']],
-    mother_line: ['خط الأم', 'ما الذي ورثته من جهة الأم؟', ['كارما الأم', 'محصلة الأم']],
+    father_line: ['خط الأب', 'ما الذي ورثته من جهة الأب؟', ['مواهب الأب', 'كارما الأب', 'محصلة الأب']],
+    mother_line: ['خط الأم', 'ما الذي ورثته من جهة الأم؟', ['مواهب الأم', 'كارما الأم', 'محصلة الأم']],
     ancestral_programs: ['الأجداد', 'ما الذي ورثته من أسرتك ولم تخترْه؟', ['مركز الأجداد', 'المركز المشترك']],
     love_line: ['العلاقات والحب', 'ماذا تبحث عنه حقًّا في الشريك؟', ['نقطة القلب', 'التوازن', 'مدخل القلب']],
     money_line: ['المال والعمل', 'أين يتعثر تدفق الوفرة في حياتك؟', ['نقطة المال', 'التوازن', 'مدخل المادة']],

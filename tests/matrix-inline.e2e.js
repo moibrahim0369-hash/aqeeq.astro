@@ -39,7 +39,7 @@ const DATES = ['1998-11-11', '1999-09-25', '1980-01-13', '1980-07-13', '1980-10-
     ok(r.unified.join() === '3,2,2,3', `${date}@${vw}: unified sections ${r.unified}`);
     ok(r.personal.n === 1 && r.personal.len > 200 && r.personal.light && r.personal.shadow, `${tag}: personal section ${JSON.stringify(r.personal)}`);
     ok(r.composite.length === 3 && r.composite.every(c => c.len > 150 && c.badges === 3 && c.light), `${tag}: composite section ${JSON.stringify(r.composite)}`);
-    ok(r.lines.every(l => l === 2), `${date}@${vw}: father/mother line entries ${r.lines}`);
+    ok(r.lines.every(l => l === 3), `${date}@${vw}: father/mother line entries ${r.lines}`);
     ok(r.slots.every(l => l > 300), `${tag}: a section has no inline text ${r.slots}`);
     await p.evaluate(() => document.querySelector('.aqm-svg .aqm-node[data-section="love_line"]').dispatchEvent(new MouseEvent('click', { bubbles: true })));
     await p.waitForTimeout(500);
