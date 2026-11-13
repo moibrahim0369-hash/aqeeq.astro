@@ -178,8 +178,34 @@
       '<section class="nd-card"><h4>أقوى الجوانب</h4>' + (top.length ? top.map(function (x) { return '<div class="nd-asrow"><span class="nd-sc">' + x.score.toFixed(1) + '</span><span class="nd-as" style="color:' + ASPCOL[x.A.t] + '">' + aspIcon(x.A.k) + '</span><span class="nd-an">' + x.a.n + ' · ' + x.b.n + '</span><em>' + x.A.n + '</em></div>'; }).join('') : '<p class="nd-warn">لا جوانب بارزة في هذه الخريطة.</p>') + '</section>' +
       '<section class="nd-card"><h4>توزيع العناصر</h4>' + [0, 1, 2, 3].map(function (e) { return '<div class="nd-el"><span class="nd-eln">' + ELN[e] + '</span><span class="nd-bar"><i style="--c:' + ELC[e] + '" data-w="' + pc.el[e] + '"></i></span><b data-pct="' + pc.el[e] + '">0%</b></div>'; }).join('') +
       '<div class="nd-md">' + MDN.map(function (m, i) { return '<span><small>' + m + '</small><b>' + pc.md[i] + '%</b></span>'; }).join('') + '</div></section></div>';
-    h += '<section class="nd-how"><span class="nd-how-i">' + ic('<path d="M4 5.500C6.500 4.500 9.500 4.500 12 6c2.500-1.500 5.500-1.500 8-.5V19c-2.500-1-5.500-1-8 .5-2.500-1.500-5.500-1.500-8-.5z"/><path d="M12 6v13.500"/>') + '</span><div><h4>كيف نقرأ خريطة الولادة؟</h4><p>خريطة الولادة هي خريطة فلكية تمثل مواقع الكواكب في لحظة ميلادك من منظور الأرض. نقرأ منها شخصيتك ودوافعك وأين تتجه طاقتك من خلال الكواكب والأبراج والبيوت والجوانب بينها.</p></div><button type="button" class="nd-how-btn" data-nd-more>دليل القراءة التفصيلي ' + arrow() + '</button></section>';
     return { html: h, ch: ch, planets: planets, asps: asps, known: known };
+  }
+
+  /* ترتيب الصفحة: العجلة فوق، التبويبات تحتها، وكل لوحة في تبويبها (نظرة عامة، الكواكب، البيوت، الجوانب، التوزيع) */
+  function arrange(box) {
+    var map = box.querySelector('[data-nd-panel="map"]'), wcard = box.querySelector('.nd-wcard'), over = box.querySelector('.nd-over');
+    var bottom = box.querySelector('.nd-bottom'), tabs = box.querySelector('.nd-tabs');
+    if (!map || !wcard || !over || !bottom || !tabs) return;
+    var cards = bottom.querySelectorAll(':scope > .nd-card');
+    function stack(name, kids) {
+      var d = document.createElement('div'); d.className = 'nd-main nd-stack'; d.setAttribute('data-nd-panel', name); d.hidden = name !== 'overview';
+      kids.forEach(function (k) { if (k) d.appendChild(k); }); return d;
+    }
+    var pOver = stack('overview', [over, cards[0]]), pDist = stack('dist', [cards[2]]);
+    var pAsp = box.querySelector('[data-nd-panel="aspects"]'); if (pAsp && cards[1]) pAsp.insertBefore(cards[1], pAsp.firstChild);
+    wcard.classList.add('nd-wtop'); tabs.parentNode.insertBefore(wcard, tabs);
+    tabs.insertAdjacentElement('afterend', pOver);
+    if (pAsp) pAsp.insertAdjacentElement('afterend', pDist); else tabs.parentNode.appendChild(pDist);
+    map.remove(); bottom.remove();
+    var I = function (p) { return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>'; };
+    var defs = [
+      ['overview', 'نظرة عامة', I('<rect x="4" y="4" width="7" height="7" rx="1.800"/><rect x="13" y="4" width="7" height="7" rx="1.800"/><rect x="4" y="13" width="7" height="7" rx="1.800"/><rect x="13" y="13" width="7" height="7" rx="1.800"/>')],
+      ['planets', 'الكواكب', I('<circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="3.500" transform="rotate(-22 12 12)"/>')],
+      ['houses', 'البيوت', I('<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/>')],
+      ['aspects', 'الجوانب', I('<path d="M12 4l8.500 15h-17z"/><circle cx="12" cy="4" r="1.200"/><circle cx="20.500" cy="19" r="1.200"/><circle cx="3.500" cy="19" r="1.200"/>')],
+      ['dist', 'التوزيع', I('<path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.400A9 9 0 0 1 20.600 9H15z"/>')]
+    ];
+    tabs.innerHTML = defs.map(function (t) { return '<button type="button" role="tab" data-nd-tab="' + t[0] + '" aria-selected="' + (t[0] === 'overview') + '">' + t[2] + '<span>' + t[1] + '</span></button>'; }).join('');
   }
 
   function render(S) {
@@ -187,14 +213,12 @@
     var old = root.querySelector('.nd-root'); if (old) old.remove();
     var data; try { data = build(S); } catch (e) { if (window.console) console.warn('natal-dashboard', e); return; }
     var box = document.createElement('div'); box.className = 'nd-root'; box.innerHTML = data.html;
-    // نلف المحتوى القديم داخل تفاصيل قابلة للفتح (يبقى كما هو بكل تفاعلاته)
-    var wrap = document.createElement('details'); wrap.className = 'nd-more';
-    wrap.innerHTML = '<summary><span>التفاصيل الكاملة والتفسير</span></summary>';
-    var body = document.createElement('div'); body.className = 'nd-more-body';
-    while (root.firstChild) body.appendChild(root.firstChild);
-    wrap.appendChild(body);
-    root.appendChild(box); root.appendChild(wrap);
+    // المحتوى القديم (التفاصيل الكاملة والتفسير) لم يعد يُعرض؛ يبقى مخفيًا كي لا تنكسر الطبقات التي تقرأ منه
+    var legacy = document.createElement('div'); legacy.className = 'nd-legacy'; legacy.hidden = true;
+    while (root.firstChild) legacy.appendChild(root.firstChild);
+    root.appendChild(box); root.appendChild(legacy);
     root.classList.add('nd-on');
+    arrange(box);
     var slot = box.querySelector('.nd-wslot'); slot.appendChild(wheelSVG(data.ch, data.planets, data.asps, data.known));
     var pick = box.querySelector('.nd-pick');
     var show = function (k) {
@@ -212,7 +236,6 @@
         box.querySelectorAll('[data-nd-panel]').forEach(function (p) { var on = p.getAttribute('data-nd-panel') === t.getAttribute('data-nd-tab'); p.hidden = !on; if (on) { p.classList.remove('nd-anim'); void p.offsetWidth; p.classList.add('nd-anim'); } });
       });
     });
-    box.querySelector('[data-nd-more]').addEventListener('click', function () { wrap.open = true; wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
     // حركة النسب
     requestAnimationFrame(function () { requestAnimationFrame(function () {
       box.classList.add('nd-go');

@@ -28,10 +28,10 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   ok(await p.evaluate(() => document.querySelectorAll('[data-nd-panel=planets] .nd-row').length === 10 && !document.querySelector('[data-nd-panel=planets]').hidden), 'planets tab lists 10');
   await p.click('[data-nd-tab=aspects]'); await p.waitForTimeout(300);
   ok(await p.evaluate(() => document.querySelectorAll('[data-nd-panel=aspects] .nd-row').length > 0), 'aspects tab lists rows');
-  await p.click('[data-nd-tab=map]'); await p.waitForTimeout(300);
+  await p.click('[data-nd-tab=overview]'); await p.waitForTimeout(300);
   await p.click('.nd-pl >> nth=0'); ok(await p.evaluate(() => /في/.test(document.querySelector('.nd-pick').textContent)), 'planet click shows position');
-  await p.click('[data-nd-more]'); await p.waitForTimeout(500);
-  ok(await p.evaluate(() => document.querySelector('.nd-more').open && !!document.querySelector('#result .wheel-wrap')), 'detailed guide opens legacy details');
+  ok(await p.evaluate(() => !document.querySelector('.nd-more') && document.querySelector('.nd-legacy').hidden), 'old full-details block is gone (kept hidden)');
+  ok(await p.evaluate(() => { var w = document.querySelector('.nd-wtop').getBoundingClientRect().top, t = document.querySelector('.nd-tabs').getBoundingClientRect().top; return w < t; }), 'wheel sits above the tabs');
   ok(errs.length === 0, 'no JS errors ' + JSON.stringify(errs.slice(0, 2)));
   console.log(`\n${pass} pass ${fail} fail`); await b.close(); process.exitCode = fail ? 1 : 0;
 })();
