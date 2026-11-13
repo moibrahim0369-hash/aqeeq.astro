@@ -168,3 +168,36 @@ html body .lps-sheet[data-kind="chal"] .aqm-sheet-ic{color:#94702C}
 .lpc-reflect b{font:700 .72rem 'Cairo',sans-serif;letter-spacing:.08em;color:#9a7435}
 .lpc-reflect span{font:700 1.05rem/1.9 'Amiri',serif;color:#4A1224}
 .lpc-remind{font-size:.8rem!important;line-height:1.9;color:#7a5f50;padding:0 6px;margin:0 0 6px!important}
+
+/* ===== مسار الحياة بعد الحساب: ترتيب موحّد بصفوف ذهبية (نفس لغة الخريطة الفلكية) ===== */
+html.lpr-on body #lpresult>.lpt-tiles,
+html.lpr-on body #lpresult>.daily,
+html.lpr-on body #lpresult>.aq-lp-blueprint-summary,
+html.lpr-on body #lpresult>.panel,
+html.lpr-on body #lpresult>.lpj-bottom,
+html.lpr-on body #lpresult>.result-top-bar,
+html.lpr-on body #lpresult>.aq-reading-action-bar{display:none!important}
+html.lpr-on body section#lifepath:has(#lpresult:not([hidden])) aside.seo-authority-block.lpk,
+html.lpr-on body section#lifepath:has(#lpresult:not([hidden])) .lpx-bottom,
+html.lpr-on body section#lifepath:has(#lpresult:not([hidden])) .aq-mx-about{display:none!important}
+html.lpr-on body #lpresult>.lpg{order:2;display:grid;gap:10px;padding:0 2px}
+.lpg-h{margin:10px 6px 0;font-size:.95rem;color:#6b2b3a;font-weight:700;display:flex;align-items:center;gap:10px}
+.lpg-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(200,161,90,.7),transparent)}
+.lpg-row{display:flex;align-items:center;gap:12px;width:100%;text-align:right;padding:12px 14px;border-radius:16px;cursor:pointer;font:inherit;color:inherit;
+  background:linear-gradient(180deg,#FFFDF7,#F7EBCF);border:1.3px solid #D2AE6C;box-shadow:0 1px 0 #fff inset,0 6px 14px rgba(74,18,36,.07);
+  animation:lpgIn .4s ease both;animation-delay:calc(var(--i)*30ms)}
+.lpg-row:active{transform:scale(.985)}
+.lpg-ic{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid #D2AE6C;color:#7A2E48}
+.lpg-ic svg{width:22px;height:22px}
+.lpg-tx{flex:1;min-width:0;display:grid;gap:2px}.lpg-tx b{font-size:1rem;color:#4a1224;line-height:1.35}.lpg-tx small{color:#7a6a70;font-size:.8rem;line-height:1.4}
+.lpg-go{flex:none;color:#9a7a3c}.lpg-go svg{width:18px;height:18px}
+@keyframes lpgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lpg-row{animation:none}}
+.lps-read{line-height:1.9}.lps-daily{line-height:1.9}
+
+/* رأس النتيجة: مضغوط، وزر التعديل أيقونة */
+html.lpr-on body #lpresult .chart-summary-card{position:relative;padding:16px 16px 14px!important;text-align:center}
+html.lpr-on body #lpresult .chart-summary-title{font-size:1.18rem!important;line-height:1.5;margin:6px 0!important;text-shadow:none!important}
+html.lpr-on body #lpresult .chart-summary-actions{position:absolute;top:12px;inset-inline-end:12px;margin:0!important}
+html.lpr-on body #lpresult .btn-edit-lp{font-size:0!important;width:40px;height:40px;min-width:0!important;padding:0!important;border-radius:50%!important;display:grid;place-items:center;gap:0!important}
+html.lpr-on body #lpresult .btn-edit-lp svg{width:18px;height:18px;margin:0!important}
