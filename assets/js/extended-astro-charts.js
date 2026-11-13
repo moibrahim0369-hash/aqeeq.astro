@@ -319,7 +319,7 @@
       const p=x=>String(x).padStart(2,'0');
       setDate(n.y+'-'+p(n.m)+'-'+p(n.d));
       unk.checked=!n.known;time.disabled=!n.known;time.value=n.known?p(n.hh)+':'+p(n.mm):'';
-      const i=CTX().cityIndexByName?.(n.placeName);if(i>=0)city.value=String(i);
+      const i=CTX().cityIndexByName?.(n.placeName);if(i>=0){city.value=String(i);city.dispatchEvent(new Event('change',{bubbles:true}));}
       const g=$('#eam-b-gender');if(g&&n.gender)g.value=n.gender;
       say(ok,'تمت التعبئة من بياناتك المحفوظة. اضغط «افتح خرائطي».');
     });

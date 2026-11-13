@@ -50,13 +50,13 @@
   function attach(sel, opts) {
     if (!sel || sel.__geo) return; sel.__geo = 1; opts = opts || {};
     var host = document.createElement("div"); host.className = "geo-pk";
-    host.innerHTML = '<div class="geo-srch"><input type="search" class="geo-q" autocomplete="off" placeholder="ابحث: مدينة أو دولة (عربي أو English)"><ul class="geo-res" role="listbox" hidden></ul></div>' +
+    host.innerHTML = '<div class="geo-srch"><input type="search" class="geo-q" autocomplete="off" placeholder="اكتب اسم بلدك أو محافظتك أو مدينتك"><ul class="geo-res" role="listbox" hidden></ul></div>' +
       '<div class="geo-row"><label><span>الدولة</span><select class="geo-c"></select></label><label><span>المحافظة / المنطقة</span><select class="geo-r"></select></label></div>' +
       '<small class="geo-note" aria-live="polite"></small>';
     sel.parentNode.insertBefore(host, sel); sel.style.display = "none";
     var lbl = sel.parentNode.querySelector('label[for="' + sel.id + '"]'); if (lbl) lbl.style.display = "none";
     var q = host.querySelector(".geo-q"), res = host.querySelector(".geo-res"), cs = host.querySelector(".geo-c"), rs = host.querySelector(".geo-r"), note = host.querySelector(".geo-note");
-    cs.innerHTML = GEO.map(function (g, i) { return '<option value="' + i + '">' + esc(g.name) + "</option>"; }).join("") + '<option value="manual">مكان تاني (إدخال يدوي)</option>';
+    cs.innerHTML = GEO.map(function (g, i) { return '<option value="' + i + '">' + esc(g.name) + "</option>"; }).join("");
     function fillRegions(ci, pick) {
       var g = GEO[ci]; var c = countryOf(g.name);
       var regs = g.regions.slice(); if (R[g.name]) regs = Object.keys(R[g.name]);
@@ -67,11 +67,11 @@
     function apply() {
       if (cs.value === "manual") { sel.value = "manual"; sel.dispatchEvent(new Event("change", { bubbles: true })); note.textContent = "اكتب خط العرض والطول وفرق التوقيت يدويًا."; return; }
       var g = GEO[+cs.value], r = resolve(g, rs.value || "");
-      if (!r) { sel.value = "manual"; sel.dispatchEvent(new Event("change", { bubbles: true })); note.textContent = "مفيش إحداثيات جاهزة للدولة دي. اكتبها يدويًا (خط العرض والطول وفرق التوقيت)."; return; }
+      if (!r) { note.textContent = "لم نجد هذا المكان، اكتب اسم أقرب مدينة كبيرة."; return; }
       var cities = window.__aqCITIES(), ct = cities[r.idx];
       if (!sel.querySelector('option[value="' + r.idx + '"]')) { var o = document.createElement("option"); o.value = r.idx; o.textContent = ct.n; sel.appendChild(o); }
       sel.value = String(r.idx); sel.dispatchEvent(new Event("change", { bubbles: true }));
-      note.textContent = r.approx ? "الإحداثيات تقريبية (مركز الدولة). لدقة أعلى اكتب المدينة في البحث أو استخدم الإدخال اليدوي." : "";
+      note.textContent = "تم اختيار: " + ct.n + (g.name && norm(g.name) !== norm(ct.n) ? " — " + g.name : "");
     }
     cs.addEventListener("change", function () { if (cs.value === "manual") { rs.innerHTML = ""; apply(); return; } fillRegions(+cs.value); apply(); });
     rs.addEventListener("change", apply);
@@ -83,6 +83,7 @@
         var regs = R[g.name] ? Object.keys(R[g.name]) : g.regions;
         regs.forEach(function (r) { var disp = R[g.name] ? R[g.name][r].n : r; out.push({ t: disp, sub: g.name + (disp !== r ? " — " + r : ""), k: norm(r) + " " + norm(disp) + " " + norm(EN[r] || "") + " " + norm(EN[disp] || ""), gi: gi, r: r }); });
       });
+      (window.__aqCITIES() || []).forEach(function (ct, ci) { if (ct.__gk || !ct.n) return; out.push({ t: ct.n, sub: ct.g || "", k: norm(ct.n) + " " + norm(ct.g || ""), ci: ci }); });
       return out;
     }
     var IDX = null;
@@ -96,13 +97,19 @@
     }
     q.addEventListener("input", search);
     q.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); var f = res.querySelector("li[data-i]"); if (f) f.dispatchEvent(new Event("mousedown", { bubbles: true })); } });
-    res.addEventListener("mousedown", function (e) { var li = e.target.closest("li[data-i]"); if (!li) return; e.preventDefault(); var h = res.__hits[+li.dataset.i]; cs.value = String(h.gi); fillRegions(h.gi, h.r); apply(); q.value = h.t; res.hidden = true; });
+    res.addEventListener("mousedown", function (e) { var li = e.target.closest("li[data-i]"); if (!li) return; e.preventDefault(); var h = res.__hits[+li.dataset.i];
+      if (h.ci != null) { if (!sel.querySelector('option[value="' + h.ci + '"]')) { var o2 = document.createElement("option"); o2.value = h.ci; o2.textContent = h.t; sel.appendChild(o2); } sel.value = String(h.ci); sel.dispatchEvent(new Event("change", { bubbles: true })); q.value = h.t; note.textContent = "تم اختيار: " + h.t + (h.sub ? " — " + h.sub : ""); res.hidden = true; return; }
+      cs.value = String(h.gi); fillRegions(h.gi, h.r); apply(); q.value = h.t; res.hidden = true; });
     document.addEventListener("click", function (e) { if (!host.contains(e.target)) res.hidden = true; });
+    sel.addEventListener("change", function () {
+      var o = sel.options[sel.selectedIndex]; if (!o || sel.value === "manual") return;
+      var ct = window.__aqCITIES()[+sel.value]; if (ct && document.activeElement !== q) { q.value = ct.n; note.textContent = "تم اختيار: " + ct.n + (ct.g ? " — " + ct.g : ""); }
+    });
     /* افتراضي: مصر / القاهرة (أو اللي اتحفظ) */
     fillRegions(0, "القاهرة"); apply();
   }
   window.AqeeqGeoPicker = { attach: attach };
-  function boot() { ["f-city", "cp1-city", "cp2-city"].forEach(function (id) { attach(document.getElementById(id)); }); }
+  function boot() { ["f-city", "cp1-city", "cp2-city", "y27-city", "eam-b-city"].forEach(function (id) { attach(document.getElementById(id)); }); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 0); }); else setTimeout(boot, 0);
   setTimeout(boot, 1500);
 })();
