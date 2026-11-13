@@ -180,15 +180,33 @@
   var SKIP_BP = /الجوهر والرسالة|فخ الظل/;
   function gTitle(d) { var t = $('.lpc-tx b', $('summary', d)) || $('b', $('summary', d)); var sm = $('summary', d); var tx = t ? t.textContent : (sm ? sm.textContent : ''); return tx.replace(/\s+/g, ' ').replace(/\s*متاح (مجاناً|مجانًا|بالكامل|للأعضاء).*$/, '').replace(/^[+−-]\s*/, '').trim(); }
   function gSub(d) { var a = $$('.lpc-tx small', d).map(function (x) { return x.textContent.replace(/\s+/g, ' ').trim(); }).filter(function (x) { return x && !/^متاح/.test(x); }); return a[0] || ''; }
+  var HOOK = [
+    [/مراحل العمر/, 'السنين اللي فاتت مش صدفة.. دي مراحل ليها سبب'],
+    [/^القمم/, 'الأوقات اللي بتلمع فيها حياتك بتتحدد من هنا'],
+    [/^التحديات/, 'الدروس اللي بتتكرر معاك لحد ما تفهمها'],
+    [/بصمة الاسم/, 'اسمك بيقول عنك أكتر مما تتخيل'],
+    [/شفرة الروح/, 'اللي جواك قبل ما الدنيا تشكلك'],
+    [/المراية المزدوجة/, 'اللي بتحبه وبتكرهه في الناس.. هو أنت'],
+    [/البلوكات/, 'ليه بتقف عند نفس النقطة كل مرة'],
+    [/الشفرة العاطفية/, 'ليه بتحب بالطريقة دي وبتتوجع بنفس الشكل'],
+    [/مغناطيس المال/, 'الباب اللي الرزق بيجيلك منه'],
+    [/روشتة/, 'خطوات صغيرة تفرق من أول أسبوع'],
+    [/جرح الطفولة/, 'الحاجة اللي لسه شايلها من زمان وفاكر إنك نسيتها'],
+    [/طاقة النور/, 'قوتك اللي الناس شايفاها فيك وأنت لسه مش واخد بالك'],
+    [/البصمة الجسدية/, 'الطاقة اللي جسمك بيشيلها من غير ما تحس'],
+    [/جدول المقارنة/, 'أنت في أحسن حالاتك وأنت في أصعبها.. جنب بعض'],
+    [/خريطة التحول/, 'من التحدي للحل.. خطوة خطوة'],
+    [/سؤال للتأمل/, 'سؤال هيفضل معاك بعد ما تقفل الصفحة']
+  ];
+  function hookOf(t, fb) { for (var i = 0; i < HOOK.length; i++) if (HOOK[i][0].test(t)) return HOOK[i][1]; return fb || ''; }
   function gRow(k, ico, title, sub, grp, tone) {
+    sub = hookOf(title, sub);
     return '<button type="button" class="lpg-row' + (tone ? ' b3-ai-' + tone : '') + '" data-lpg="' + k + '" style="--i:' + grp + '"><span class="lpg-ic">' + ico + '</span><span class="lpg-tx"><b>' + esc(title) + '</b>' + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span><span class="lpg-go">' + IC.chev + '</span></button>';
   }
   function buildGold() {
     var items = [], html = '', n = 0;
     gOrder = []; gItems = items; gTitles = {};
     function push(k, ico, t, sub, fn, tone) { items[k] = fn; gOrder.push(k); gTitles[k] = t; html += gRow(k, ico, t, sub, n++, tone); }
-    var d = $('.daily', res);
-    if (d) push('daily', IC.light, ($('h4', d) || {}).textContent || 'رسالة اليوم', 'ما يناسبك اليوم', function () { openSheet('daily', IC.light, 'رسالة اليوم', '', '<div class="lps-daily">' + d.innerHTML + '</div>'); });
     html += '<h4 class="lpg-h">رحلتك عبر السنين</h4>'; 
     push('t:stages', IC.stages, 'مراحل العمر', 'اكتشف مراحلك', function () { openTile('stages'); });
     push('t:peaks', IC.peaks, 'القمم', 'اصعد قممك', function () { openTile('peaks'); });
