@@ -81,7 +81,6 @@ section#matrix:not(:has(#mresult:not([hidden]))) .lpk,
 section#lifepath:not(:has(#lpresult:not([hidden]))) .lpk {
   display: none !important;
 }
-section#chart:has(#result:not([hidden])) .lpk,
 section#matrix:has(#mresult:not([hidden])) .lpk,
 section#lifepath:has(#lpresult:not([hidden])) .lpk {
   display: block !important;

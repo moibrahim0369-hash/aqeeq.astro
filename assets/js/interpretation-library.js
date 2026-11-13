@@ -9,7 +9,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261113d';
+  var VERSION = '20261113e';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -137,60 +137,71 @@
     }
     else if (withHouse === false) h += entry(ix, idSignOnly(key, it.sign), true);
     if (it.retro) h += sub('الرجعية', entry(ix, idModifier(key, 'retrograde'), false));
-    var mine = m.aspects.filter(function (a) { return a.first === key || a.second === key; });
-    if (mine.length) {
-      h += '<div class="il-asps"><h5>الجوانب</h5>' + mine.map(function (a) {
-        var other = a.first === key ? a.second : a.first;
-        var title = LABEL[key] + ' ' + a.n + ' ' + LABEL[other];
-        return det('il-asp', '<span>' + esc(title) + '</span><em dir="ltr">' + a.orb.toFixed(1) + '°</em>' + CHEV, entry(ix, idAspect(a.first, a.type, a.second), true));
-      }).join('') + '</div>';
-    }
     return '<article class="il-pl"><h4>' + esc(LABEL[key]) + '<small>' + esc(where) + '</small></h4>' + h + '</article>';
   }
 
-  function render(m, ix) {
-    var out = '';
+  /* أقسام جاهزة تُحقن داخل تبويبات صفحة النتيجة: كل نص في مكان واحد فقط */
+  function sections(m, ix) {
+    var S = { houses: '', planets: '', points: '', aspects: '', angles: '', note: '' };
+    var asps = m.aspects.slice().sort(function (x, y) { return x.orb - y.orb; });
+    S.aspects = asps.length ? '<div class="il-list">' + asps.map(function (a) {
+      var title = LABEL[a.first] + ' ' + a.n + ' ' + LABEL[a.second];
+      return det('il-house il-simple il-asp', '<span class="il-ht"><strong>' + esc(title) + '</strong><small dir="ltr">' + a.orb.toFixed(1) + '°</small></span>' + CHEV, entry(ix, idAspect(a.first, a.type, a.second), true));
+    }).join('') + '</div>' : '';
     if (!m.known) {
       var ks = PLANETS.filter(function (k) { return m.items[k]; });
-      out += '<section class="il-group"><h4 class="il-gt">الكواكب في أبراجها</h4>' + ks.map(function (k) {
+      S.planets = '<div class="il-list">' + ks.map(function (k) {
         var it = m.items[k], edge = k === 'moon' && Math.min(it.lon % 30, 30 - (it.lon % 30)) < 7;
         var extra = edge ? '<p class="il-note">القمر يقطع نحو ثلاث عشرة درجة في اليوم، وموضعه هنا قريب من حدّ برجين، فبرجه الدقيق يحتاج ساعة ميلادك.</p>' : '';
         return det('il-house il-simple', '<span class="il-ht"><strong>' + esc(LABEL[k]) + ' في ' + esc(SIGN_AR[it.sign]) + '</strong>' + (it.retro ? '<small>راجع</small>' : '') + '</span>' + CHEV, extra + bodyBlock(m, ix, k, false));
-      }).join('') + '</section>';
-      out += '<p class="il-note il-addtime">ظهرت لك كواكبك في أبراجها، أما البيوت والطالع فتحتاج ساعة ميلادك. إن عرفتها أضفها، وستظهر لك أقسام جديدة بحياتك الواقعية: العمل والعلاقات والبيت والمال. <button type="button" class="il-addbtn" data-il-addtime>أضف ساعة الميلاد</button></p>';
-      return out;
+      }).join('') + '</div>';
+      S.note = '<p class="il-note il-addtime">ظهرت لك كواكبك في أبراجها، أما البيوت والطالع فتحتاج ساعة ميلادك. إن عرفتها أضفها، وستظهر لك أقسام جديدة بحياتك الواقعية: العمل والعلاقات والبيت والمال. <button type="button" class="il-addbtn" data-il-addtime>أضف ساعة الميلاد</button></p>';
+      return S;
     }
-    out += '<section class="il-group"><h4 class="il-gt">البيوت الاثنا عشر</h4>' + m.houses.map(function (H) {
+    S.houses = '<div class="il-list">' + m.houses.map(function (H) {
       var chips = H.occupants.length ? H.occupants.map(function (k) { return '<i>' + esc(LABEL[k]) + '</i>'; }).join('') : '<i class="il-empty">بيت خالٍ من الكواكب</i>';
       var sum = '<b class="il-num">' + H.n + '</b><span class="il-ht"><strong>البيت ' + ORD[H.n - 1] + ' · ' + esc(HOUSE_AR[H.n - 1]) + '</strong><small>' + esc(SIGN_AR[H.sign]) + ' على رأس البيت</small><span class="il-chips">' + chips + '</span></span>' + CHEV;
       var body = sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + H.occupants.map(function (k) { return bodyBlock(m, ix, k); }).join('');
       return det('il-house', sum, body);
-    }).join('') + '</section>';
-
-    out += '<section class="il-group"><h4 class="il-gt">الزوايا</h4>' + m.angles.map(function (A) {
+    }).join('') + '</div>';
+    S.angles = '<div class="il-list">' + m.angles.map(function (A) {
       return det('il-house il-simple', '<span class="il-ht"><strong>' + esc(A.label) + ' في ' + esc(SIGN_AR[A.sign]) + '</strong></span>' + CHEV, entry(ix, idAngle(A.body, A.sign), true));
-    }).join('') + '</section>';
-
+    }).join('') + '</div>';
     var pts = POINTS.filter(function (k) { return m.items[k]; });
-    if (pts.length) out += '<section class="il-group"><h4 class="il-gt">العقد القمرية والنقاط الحساسة</h4>' + pts.map(function (k) {
+    if (pts.length) S.points = '<h4 class="il-gt">العقد القمرية والنقاط الحساسة</h4><div class="il-list">' + pts.map(function (k) {
       var it = m.items[k];
       return det('il-house il-simple', '<span class="il-ht"><strong>' + esc(LABEL[k]) + '</strong><small>' + esc(SIGN_AR[it.sign] + (it.house ? ' · البيت ' + ORD[it.house - 1] : '')) + '</small></span>' + CHEV, bodyBlock(m, ix, k));
-    }).join('') + '</section>';
-    return out;
+    }).join('') + '</div>';
+    return S;
   }
 
   /* ---------- الربط بالصفحة ---------- */
+  function wrap(html) { return html ? '<div class="il" dir="rtl">' + html + '</div>' : ''; }
+  function inject(S, tries) {
+    var box = document.querySelector('#result .nd-root');
+    if (!box) { if (tries < 15) setTimeout(function () { inject(S, tries + 1); }, 150); return; }
+    box.querySelectorAll('.il').forEach(function (n) { n.remove(); });
+    var P = function (n) { return box.querySelector('[data-nd-panel="' + n + '"]'); };
+    var ph = P('houses'), pp = P('planets'), pa = P('aspects'), po = P('overview');
+    if (ph && S.houses) ph.innerHTML = wrap(S.houses);
+    if (pa) pa.innerHTML = wrap(S.aspects) || '<p class="nd-warn">لا جوانب رئيسية ضمن الحدود المعتادة.</p>';
+    if (pp) {
+      if (S.note) pp.innerHTML = wrap(S.planets + S.note);
+      else if (S.points) pp.insertAdjacentHTML('beforeend', wrap(S.points));
+    }
+    if (po && S.angles) {
+      var card = [].slice.call(po.querySelectorAll('.nd-card')).filter(function (c) { return /محاور/.test((c.querySelector('h4') || {}).textContent || ''); })[0];
+      var html = wrap('<h4 class="il-gt">محاور الخريطة</h4>' + S.angles);
+      if (card) card.outerHTML = html; else po.insertAdjacentHTML('beforeend', html);
+    }
+    var ab = box.querySelector('[data-il-addtime]');
+    if (ab) ab.addEventListener('click', function () { var e = document.querySelector('.nd-edit'); if (e) e.click(); });
+  }
   function mount(S) {
-    var res = document.getElementById('result'); if (!res || !S) return;
+    if (!document.getElementById('result') || !S) return;
     var m = build(S); if (!m) return;
     Promise.all(files(m).map(load)).then(function (lists) {
-      var ix = indexOf(lists), old = document.getElementById('il-root');
-      if (old) old.remove();
-      var sec = document.createElement('section'); sec.id = 'il-root'; sec.className = 'il'; sec.setAttribute('dir', 'rtl');
-      sec.innerHTML = render(m, ix);
-      res.appendChild(sec);
-      var ab = sec.querySelector('[data-il-addtime]');
-      if (ab) ab.addEventListener('click', function () { var e = document.querySelector('.nd-edit'); if (e) e.click(); });
+      inject(sections(m, indexOf(lists)), 0);
     });
   }
   function boot() {
@@ -199,6 +210,6 @@
     });
   }
 
-  return { boot: boot, build: build, render: render, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idSignOnly: idSignOnly,
+  return { boot: boot, build: build, sections: sections, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idSignOnly: idSignOnly,
     SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, POINTS: POINTS, ASPECTS: ASPECTS };
 });
