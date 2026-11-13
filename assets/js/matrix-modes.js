@@ -51,6 +51,17 @@
     function pairOfFn(fn, k1, k2, ks) { var o = {}; ks.forEach(function (k) { var x = fn(m1, k1[k]), y = fn(m2, k2[k]); o[k] = {}; Object.keys(x).forEach(function (f) { o[k][f] = r(x[f] + y[f]); }); }); return o; }
     P.pairAxis = pairOfFn(axis, { left: m1.anchors.A, top: m1.anchors.B, right: m1.anchors.C, bottom: m1.anchors.D }, { left: m2.anchors.A, top: m2.anchors.B, right: m2.anchors.C, bottom: m2.anchors.D }, ['left', 'top', 'right', 'bottom']);
     P.pairDiag = pairOfFn(diag, m1.corners, m2.corners, ['F', 'G', 'H', 'I']);
+    // حلقة الأعمار: تُشتق من أركان الشراكة نفسها (لا من جمع نقاط الشخصين)، 7 محطات بين كل ركنين
+    var ring = [P.anchors.A, P.corners.F, P.anchors.B, P.corners.G, P.anchors.C, P.corners.H, P.anchors.D, P.corners.I];
+    var offs = [1.25, 2.5, 3.75, 5, 6.25, 7.5, 8.75], ages = [], ageMap = {};
+    ring.forEach(function (p, i) {
+      var q = ring[(i + 1) % 8], mid = r(p + q), L = r(p + mid), R = r(mid + q);
+      var vals = [r(p + L), L, r(L + mid), mid, r(mid + R), R, r(R + q)];
+      ageMap[i * 10] = p; ageMap[i * 10 + 2.5] = L; ageMap[i * 10 + 5] = mid; ageMap[i * 10 + 7.5] = R;
+      offs.forEach(function (o, j) { ages.push({ age: i * 10 + o, value: vals[j] }); });
+    });
+    ageMap[80] = ring[0];
+    P.ageMap = ageMap; P.pairAges = ages;
     return P;
   }
   function ageOf(birth, now) {
