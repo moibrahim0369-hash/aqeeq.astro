@@ -69,3 +69,47 @@ html body section#for-you .yp-tt-d:not(#_a){flex:1;min-width:0;text-align:end}
 html body section#for-you .yp-tt-d b:not(#_a){font-size:1.1rem}
 html body section#for-you .yp-tt-d small:not(#_a){display:block;font-size:.76rem;line-height:1.5}
 html body section#for-you .yp-cy-t small:not(#_a){line-height:1.6}
+
+/* شارة الاشتراك تحت الاسم */
+.yp-plan{display:inline-flex;align-items:center;gap:5px;margin-top:4px;padding:3px 10px;border-radius:999px;background:#F1E6D3;border:1px solid var(--line);color:#7a5a4c;font:700 .74rem/1.6 'Cairo',sans-serif;white-space:nowrap}
+.yp-plan svg{width:14px;height:14px}
+.yp-plan.owner{background:linear-gradient(135deg,#7A3449,#5E2234);border-color:#C5A059;color:#FFF6E4}
+.yp-plan.owner svg{stroke:#E8CF98}
+html body section#for-you button.yp-gear:not(#_a){cursor:pointer;padding:0}
+html body section#for-you button.yp-gear.on:not(#_a){background:var(--wine);color:#fff;border-color:var(--wine)}
+/* الإعدادات داخل الصفحة (بدل النافذة المنبثقة) */
+.yp-set{display:grid;gap:6px}
+.yp-set>h3{margin:2px 0 4px;color:var(--wine);font:700 1.5rem 'Amiri','Cairo',serif}
+.yp-set-g{display:grid;gap:8px}
+.yp-set-g>.yp-lab{margin:14px 4px 2px}
+.yp-set-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:18px;border:1px solid var(--line);background:var(--cream)}
+.yp-set-row>div{min-width:0;display:grid;gap:2px}
+.yp-set-row b{color:var(--ink);font:700 .95rem 'Cairo',sans-serif;overflow-wrap:anywhere}
+.yp-set-row small{color:#7a5a4c;font-size:.78rem;line-height:1.6}
+.yp-set-row .yp-plan{margin:0}
+.yp-sw{cursor:pointer}
+.yp-sw input{position:absolute;opacity:0;width:1px;height:1px}
+.yp-sw-t{flex:none;position:relative;width:48px;height:28px;border-radius:999px;background:#E2D3BC;transition:background .2s}
+.yp-sw-t::after{content:"";position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+.yp-sw input:checked+.yp-sw-t{background:var(--wine)}
+.yp-sw input:checked+.yp-sw-t::after{transform:translateX(-20px)}
+.yp-sw input:focus-visible+.yp-sw-t{outline:2px solid #C5A059;outline-offset:2px}
+.yp-out{display:block;margin:22px auto 0;min-height:44px;padding:0 26px;border-radius:999px;border:1px solid var(--line);background:transparent;color:#6b5b52;font:700 .92rem 'Cairo',sans-serif;cursor:pointer}
+/* بطاقة البيانات ونموذج التعديل جوه الإعدادات */
+html body #yp-prof-slot #account-profile-completion:not(#_a){display:block!important;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+html body #yp-prof-slot .profile-quick-launch:not(#_a),html body #yp-prof-slot #profile-close-btn:not(#_a){display:none!important}
+html body #yp-prof-slot .profile-summary-card:not(#_a){margin:0!important;padding:16px!important;border-radius:18px!important;border:1px solid var(--line)!important;background:var(--cream)!important;box-shadow:none!important}
+html body #yp-prof-slot .profile-summary-top:not(#_a){display:grid!important;gap:12px}
+html body #yp-prof-slot .profile-summary-identity:not(#_a){display:flex;align-items:center;gap:12px;min-width:0}
+html body #yp-prof-slot .profile-summary-Titles:not(#_a){min-width:0}
+html body #yp-prof-slot #profile-summary-name:not(#_a){margin:0;font:700 1.15rem/1.4 'Amiri','Cairo',serif;color:var(--wine)}
+html body #yp-prof-slot #profile-summary-email:not(#_a){margin:0;font-size:.8rem;color:#7a5a4c;overflow-wrap:anywhere}
+html body #yp-prof-slot .profile-avatar-circle:not(#_a){flex:none;width:56px;height:56px}
+html body #yp-prof-slot #profile-edit-btn:not(#_a){width:100%;min-height:44px;border-radius:999px!important;border:1px solid var(--wine)!important;background:transparent!important;color:var(--wine)!important;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700}
+html body #yp-prof-slot .profile-summary-grid:not(#_a){display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+html body #yp-prof-slot .profile-summary-item:not(#_a){padding:10px 12px;border-radius:14px;background:#fff;border:1px solid var(--line)}
+html body #yp-prof-slot .profile-summary-item:last-child:not(#_a){grid-column:1/-1}
+html body #yp-prof-slot #profile-form-wrapper:not(#_a){padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--cream)}
+html body #yp-prof-slot #profile-onboarding-banner:not(#_a){padding:12px 14px!important}
+.yp-av{overflow:hidden}.yp-av img{width:100%;height:100%;object-fit:cover;display:block}
+html body section#for-you .yp-set-g:first-of-type .yp-set-row:not(#_a){flex-wrap:wrap}

@@ -37,14 +37,14 @@
     var home = bar.querySelector('[data-nav="home"]'), disc = $('#aqn-discover-btn'), acc = bar.querySelector('[data-nav="account"]');
     var compat = bar.querySelector('[data-nav="compat"]'); if (compat) compat.remove();
     var old = $('#aq-you-item', bar); if (old) old.remove();
-    var it = user ? item('aq-you-item', '#for-you', 'لك', ICON_FORYOU) : item('aq-you-item', '#', 'أنت', ICON_YOU, 'button');
+    /* بعد الدخول: «حسابي» هو صفحتك الكاملة (#for-you) بدل نافذة منبثقة، فلا حاجة لزر «لك» منفصل */
+    if (acc) { acc.setAttribute('href', user ? '#for-you' : '#account'); acc.classList.toggle('on', location.hash === acc.getAttribute('href')); }
+    if (user) { closeYou(); return; }
+    var it = item('aq-you-item', '#', 'أنت', ICON_YOU, 'button');
     it.id = 'aq-you-item'; it.setAttribute('data-nav', 'you');
-    if (!user) it.addEventListener('click', openYou);
-    if (user) bar.insertBefore(it, home); else bar.insertBefore(it, disc);
-    var on = location.hash === '#for-you' && user; it.classList.toggle('on', !!on);
-    if (user) closeYou();
+    it.addEventListener('click', openYou);
+    bar.insertBefore(it, disc);
   }
-  window.addEventListener('hashchange', function () { var it = $('#aq-you-item'); if (it && user) it.classList.toggle('on', location.hash === '#for-you'); });
   var fy = document.querySelector('#aqn-sheet .aqn-grid a[href="#for-you"]'); if (fy) fy.remove();
 
   /* ---------------- جرس الإشعارات ---------------- */
