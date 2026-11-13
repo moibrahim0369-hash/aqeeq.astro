@@ -5,7 +5,7 @@
     { form: 'y27-form', date: 'y27-date', time: 'y27-time', unk: 'y27-unknown', city: 'y27-city', name: 'y27-name' },
     { form: 'kt-form', date: 'kt-date', name: 'kt-name' },
     { form: 'eam-form', click: 'eam-b-fill' },
-    { form: 'cp-form', date: 'cp1-date', time: 'cp1-time', unk: 'cp1-unknown', city: 'cp1-city', name: 'cp1-name' },
+    { form: 'cp-form', outside: true, date: 'cp1-date', time: 'cp1-time', unk: 'cp1-unknown', city: 'cp1-city', name: 'cp1-name' },
     { form: 'synastry-form', date: 'syn-date-a', name: 'syn-name-a' },
     { form: 'mxm-pair-form', date: 'mxm-d1', name: 'mxm-n1' }
   ];
@@ -25,14 +25,14 @@
   }
   function build() {
     CFG.forEach(function (c) {
-      var f = document.getElementById(c.form); if (!f || f.querySelector('.aq-autofill-bar')) return;
+      var f = document.getElementById(c.form); if (!f || f.querySelector('.aq-autofill-bar') || (f.previousElementSibling && f.previousElementSibling.classList.contains('aq-autofill-bar'))) return;
       var bar = document.createElement('div'); bar.className = 'aq-autofill-bar';
       bar.innerHTML = '<span>استخدام بيانات الميلاد المحفوظة في ملفك الشخصي<small class="aq-af-note" role="status"></small></span><button type="button" class="aq-autofill-btn">تعبئة تلقائية من حسابي</button>';
       var note = bar.querySelector('.aq-af-note');
       bar.querySelector('button').addEventListener('click', function () {
         if (c.click) { var b = document.getElementById(c.click); if (b) b.click(); } else fill(c, note);
       });
-      f.insertBefore(bar, f.firstChild);
+      if (c.outside) { bar.classList.add('aq-af-out'); f.parentNode.insertBefore(bar, f); } else f.insertBefore(bar, f.firstChild);
     });
   }
   window.AqAutofillBuild = build;
