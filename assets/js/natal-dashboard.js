@@ -157,8 +157,8 @@
       chip(ic('<path d="M12 21s7-6 7-11.500A7 7 0 0 0 5 9.500C5 15 12 21 12 21z"/><circle cx="12" cy="9.500" r="2.500"/>'), 'مكان الميلاد', S.placeName || '—') +
       chip(ic('<circle cx="12" cy="12" r="8.500"/><path d="M12 7.500V12l3 2"/>'), 'وقت الميلاد', timeTxt) +
       chip(ic('<rect x="3.500" y="5" width="17" height="15" rx="2.500"/><path d="M3.500 10h17M8 3v4M16 3v4"/>'), 'تاريخ الميلاد', dateTxt) + '</div>';
-    h += '<div class="nd-title"><h3>' + (S.name ? 'خريطة ' + esc(S.name) : 'خريطة الولادة') + '</h3><p>صورة السماء لحظة وصولك إلى العالم</p></div>';
-    h += '<button type="button" class="btn-edit-chart nd-edit">' + ic('<path d="M4 20h4L19 9a2.800 2.800 0 0 0-4-4L4 16z"/><path d="M13.500 6.500l4 4"/>') + '<span>تعديل البيانات / خريطة جديدة</span></button>';
+    h += '<div class="nd-title"><h3>' + (S.name ? 'خريطة ' + esc(S.name) : 'خريطة الولادة') + '</h3><p>صورة السماء لحظة وصولك إلى العالم</p>';
+    h += '<button type="button" class="btn-edit-chart nd-edit" aria-label="تعديل البيانات / خريطة جديدة" title="تعديل البيانات / خريطة جديدة">' + ic('<path d="M4 20h4L19 9a2.800 2.800 0 0 0-4-4L4 16z"/><path d="M13.500 6.500l4 4"/>') + '</button></div>';
     h += '<div class="nd-tabs" role="tablist">' + [['map', 'الخريطة'], ['planets', 'الكواكب'], ['houses', 'البيوت'], ['aspects', 'الجوانب']].map(function (t) { return '<button type="button" role="tab" data-nd-tab="' + t[0] + '" aria-selected="' + (t[0] === 'map') + '">' + t[1] + '</button>'; }).join('') + '</div>';
     // لوحة الخريطة
     h += '<div class="nd-main" data-nd-panel="map"><div class="nd-grid">' +
@@ -189,7 +189,7 @@
     if (!map || !wcard || !over || !bottom || !tabs) return;
     var cards = bottom.querySelectorAll(':scope > .nd-card');
     function stack(name, kids) {
-      var d = document.createElement('div'); d.className = 'nd-main nd-stack'; d.setAttribute('data-nd-panel', name); d.hidden = name !== 'overview';
+      var d = document.createElement('div'); d.className = 'nd-main nd-stack'; d.setAttribute('data-nd-panel', name); d.hidden = true;
       kids.forEach(function (k) { if (k) d.appendChild(k); }); return d;
     }
     var pOver = stack('overview', [over, cards[0]]), pDist = stack('dist', [cards[2]]);
@@ -200,13 +200,14 @@
     map.remove(); bottom.remove();
     var I = function (p) { return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>'; };
     var defs = [
-      ['overview', 'نظرة عامة', I('<rect x="4" y="4" width="7" height="7" rx="1.800"/><rect x="13" y="4" width="7" height="7" rx="1.800"/><rect x="4" y="13" width="7" height="7" rx="1.800"/><rect x="13" y="13" width="7" height="7" rx="1.800"/>')],
-      ['planets', 'الكواكب', I('<circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="3.500" transform="rotate(-22 12 12)"/>')],
       ['houses', 'البيوت', I('<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/>')],
+      ['planets', 'الكواكب', I('<circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="3.500" transform="rotate(-22 12 12)"/>')],
       ['aspects', 'الجوانب', I('<path d="M12 4l8.500 15h-17z"/><circle cx="12" cy="4" r="1.200"/><circle cx="20.500" cy="19" r="1.200"/><circle cx="3.500" cy="19" r="1.200"/>')],
-      ['dist', 'التوزيع', I('<path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.400A9 9 0 0 1 20.600 9H15z"/>')]
+      ['dist', 'التوزيع', I('<path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.400A9 9 0 0 1 20.600 9H15z"/>')],
+      ['overview', 'نظرة عامة', I('<rect x="4" y="4" width="7" height="7" rx="1.800"/><rect x="13" y="4" width="7" height="7" rx="1.800"/><rect x="4" y="13" width="7" height="7" rx="1.800"/><rect x="13" y="13" width="7" height="7" rx="1.800"/>')]
     ];
-    tabs.innerHTML = defs.map(function (t) { return '<button type="button" role="tab" data-nd-tab="' + t[0] + '" aria-selected="' + (t[0] === 'overview') + '">' + t[2] + '<span>' + t[1] + '</span></button>'; }).join('');
+    var ph = box.querySelector('[data-nd-panel="houses"]'); if (ph) ph.hidden = false;
+    tabs.innerHTML = defs.map(function (t) { return '<button type="button" role="tab" data-nd-tab="' + t[0] + '" aria-selected="' + (t[0] === 'houses') + '">' + t[2] + '<span>' + t[1] + '</span></button>'; }).join('');
   }
 
   function render(S) {
