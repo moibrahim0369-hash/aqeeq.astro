@@ -49,4 +49,7 @@ html body section#lifepath.lpx .lpx-after,html body section#lifepath.lpx .lpx-af
 html body section#lifepath.lpx .lpx-after>.lpx-quote,html body section#lifepath.lpx .lpx-quote{width:100%!important;float:none!important}
 html body section#lifepath.lpx .lpx-bottom{display:block!important;grid-template-columns:none!important;max-width:680px!important;margin-inline:auto!important;padding-inline:0!important}
 html body section#lifepath.lpx .lpx-bottom>*{position:static!important;max-width:100%!important;margin-inline:0!important;margin-bottom:18px}
+html.lpr-on body section#lifepath.lpx .lpx-bottom,html.lpr-on body section#lifepath.lpx .lpx-feats{display:none!important}
+html body section#lifepath.lpx form#lpform[style*="display: none"],html body section#lifepath.lpx form#lpform[hidden]{display:none!important}
+html.lpr-on body section#lifepath.lpx .lpx-tabbox{background:none!important;border:0!important;box-shadow:none!important;padding:0!important;max-width:1000px!important}
 }
