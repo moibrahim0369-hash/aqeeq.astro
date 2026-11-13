@@ -305,6 +305,19 @@
         return;
       }
 
+      if (item.type === 'matrix-compat' || item.type === 'matrix-child') {
+        const child = item.type === 'matrix-child';
+        location.hash = child ? '#matrix-child' : '#matrix-compat';
+        setTimeout(() => {
+          const put = (id, v) => { const e = document.getElementById(id); if (!e) return; e.value = v || ''; e.dispatchEvent(new Event('input', { bubbles: true })); e.dispatchEvent(new Event('change', { bubbles: true })); };
+          if (child) { put('mxk-n', item.inputs.name); put('mxk-d', item.inputs.date); }
+          else { put('mxc-n1', item.inputs.name1); put('mxc-d1', item.inputs.date1); put('mxc-n2', item.inputs.name2); put('mxc-d2', item.inputs.date2); }
+          const form = document.getElementById(child ? 'mxk-form' : 'mxc-form');
+          if (form) form.requestSubmit();
+        }, 250);
+        return;
+      }
+
       if (item.type === 'matrix') {
         location.hash = '#matrix';
         setTimeout(() => {
