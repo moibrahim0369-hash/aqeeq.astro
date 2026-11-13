@@ -713,3 +713,16 @@ html body #matrix-compat :is(form#mxc-form,#mxc-explain)[hidden]:not(#_a):not(#_
 html body #matrix-compat .mxc-again:not(#_a):not(#_b){width:100%;min-height:50px;border-radius:14px;margin-top:6px}
 html body #matrix-compat .mxm-map{margin:0 0 12px;padding:8px;border-radius:20px;background:#FFFDF8;border:1px solid #EBDCBB}
 html body #matrix-compat .mxm-map svg{width:100%;height:auto;display:block}
+html body #matrix-compat .mxm-map [data-age],html body #matrix-compat .mxm-map .aqm-svg-age-label,html body #matrix-compat .mxm-map .aqm-node{cursor:pointer}
+html body #matrix-compat .mxm-map [data-age]:hover,html body #matrix-compat .mxm-map .aqm-svg-age-label:hover{fill:#8B263E;font-weight:800}
+html body #matrix-compat .mxc-pick{position:relative;margin:0 0 14px;padding:14px 16px 12px;border-radius:18px;background:linear-gradient(160deg,#FFFDF8,#F7EEDC);border:1px solid #E3CFA4;box-shadow:0 6px 18px rgba(94,34,52,.10);font-size:14px;line-height:1.8;color:#3A2A30}
+html body #matrix-compat .mxc-pick[hidden]{display:none}
+html body #matrix-compat .mxc-pick p{margin:6px 0 0}
+html body #matrix-compat .mxc-pick-h{display:flex;align-items:center;gap:10px}
+html body #matrix-compat .mxc-pick-h b{display:block;color:#6B1D2F;font-size:15px}
+html body #matrix-compat .mxc-pick-h small{display:block;color:#7A6A62;font-size:12px}
+html body #matrix-compat .mxc-pick-x{position:absolute;top:8px;left:10px;width:28px;height:28px;border-radius:50%;border:1px solid #E3CFA4;background:#fff;color:#6B1D2F;font-size:18px;line-height:1;cursor:pointer}
+html body #matrix-compat .mxc-acc .aqm-acc-icon:not(#_a):not(#_b):not(#_c){background:linear-gradient(145deg,#fff,#F7EEDC)!important;border:1px solid #E3CFA4!important;color:#6B1D2F!important}
+html body #matrix-compat .mxc-acc .aqm-acc-icon svg:not(#_a):not(#_b){stroke:#6B1D2F!important;color:#6B1D2F!important}
+html body #matrix-compat .mxc-acc .aqm-badge-arcana:not(#_a):not(#_b){background:#FBF5E8!important;border-color:#E3CFA4!important;color:#6B1D2F!important}
+html body #matrix-compat .mxc-acc .aqm-slot-title .aq-ic:not(#_a){color:#6B1D2F!important;stroke:#6B1D2F!important}
