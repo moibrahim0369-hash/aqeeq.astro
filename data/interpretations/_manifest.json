@@ -90,84 +90,84 @@
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house2",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house3",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house4",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house5",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house6",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house7",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house8",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house9",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house10",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house11",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.moon.house12",
    "file": "data/interpretations/moon.json",
    "layer": "core",
    "where": "القمر في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.mercury.house1",
