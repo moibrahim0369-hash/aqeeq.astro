@@ -137,7 +137,7 @@
     var pair = document.createElement('div'); pair.id = 'mxm-pair'; pair.className = 'mxm-panel'; pair.hidden = true;
     pair.innerHTML = '<form class="mxm-form" novalidate><p class="mxm-lead">أدخل تاريخي الميلاد لتظهر مصفوفة الشراكة وما تحمله من انسجام ودروس.</p>' +
       '<div class="mxm-grp"><h4>أنت</h4>' + field('mxm-n1', 'الاسم (اختياري)', 'text') + field('mxm-d1', 'تاريخ الميلاد', 'date') + '</div>' +
-      '<div class="mxm-grp"><h4>شريكك</h4>' + field('mxm-n2', 'الاسم (اختياري)', 'text') + field('mxm-d2', 'تاريخ الميلاد', 'date') + '</div>' +
+      '<div class="mxm-grp"><h4>الطرف الآخر</h4>' + field('mxm-n2', 'الاسم (اختياري)', 'text') + field('mxm-d2', 'تاريخ الميلاد', 'date') + '</div>' +
       '<p class="ferr" hidden role="alert"></p><button class="btn" type="submit">احسب مصفوفة الشراكة</button></form><div class="mxm-result" hidden aria-live="polite"></div>';
     var child = document.createElement('div'); child.id = 'mxm-child'; child.className = 'mxm-panel'; child.hidden = true;
     child.innerHTML = '<form class="mxm-form" novalidate><p class="mxm-lead">أدخل تاريخ ميلاد الطفل لتقرأ طباعه ومواهبه وما يحتاجه من أهله.</p>' +
