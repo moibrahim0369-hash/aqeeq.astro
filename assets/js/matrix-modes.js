@@ -143,17 +143,19 @@
   };
   function slotIc(k) { return '<svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + SLOT_IC[k] + '</svg>'; }
   function slot(cls, k, title, inner) { return '<section class="aqm-slot ' + cls + '">' + (title ? '<h4 class="aqm-slot-title">' + slotIc(k) + ' ' + title + '</h4>' : '') + '<div class="aqm-slot-p">' + inner + '</div></section>'; }
+  function toneOf(n) { n = +n; return [12, 13, 15, 16, 18].indexOf(n) >= 0 ? 's' : [10, 11, 14, 17, 19, 21].indexOf(n) >= 0 ? 'g' : 'n'; }
   function pairAccHtml(specs, get, subs) {
     return '<div class="aqm-accordion-container mxc-acc">' + specs.map(function (sp, i) {
-      var badges = '', body = slot('aqm-slot-primary', 'p', 'عن هذا القسم', '<p>' + esc(sp.intro) + '</p>');
+      var badges = '', tc = { s: 0, g: 0, n: 0 }, body = slot('aqm-slot-primary', 'p', 'عن هذا القسم', '<p>' + esc(sp.intro) + '</p>');
       sp.pts.forEach(function (p, j) {
         var v = get(p[0]), a = AD().getArcanaInfo(v.n);
-        badges += '<span class="aqm-badge-arcana aqm-tone-' + (j % 4) + '"><b class="aqm-bn">' + v.n + '</b><span class="aqm-bl">' + esc(p[1]) + '</span></span> ';
+        tc[toneOf(v.n)]++; badges += '<span class="aqm-badge-arcana aqm-tone-' + (j % 4) + ' b3-tn-' + toneOf(v.n) + '"><b class="aqm-bn">' + v.n + '</b><span class="aqm-bl">' + esc(p[1]) + '</span></span> ';
         body += slot('aqm-slot-detailed', 'd', esc(p[1]) + ' · ' + v.n + ' ' + esc(a.name) + (v.x ? ' · ' + esc(v.x) : ''), '<p>' + esc(a.archetype) + '.</p>') +
           slot('aqm-slot-strengths', 's', 'في حالتها الصافية', '<p>' + esc(a.light) + '.</p>') +
           slot('aqm-slot-challenges', 'c', 'حين تختل', '<p>' + esc(a.shadow) + '.</p>');
       });
-      return '<div class="aqm-acc-item" id="mxc-sec-' + i + '" data-section-id="pair-' + i + '"><button class="aqm-acc-header" type="button" aria-expanded="false">' +
+      var dom = tc.s > tc.g && tc.s >= tc.n ? 's' : tc.g >= tc.n && tc.g > 0 ? 'g' : tc.n ? 'n' : 'g';
+      return '<div class="aqm-acc-item b3-ai-' + dom + '" id="mxc-sec-' + i + '" data-section-id="pair-' + i + '"><button class="aqm-acc-header" type="button" aria-expanded="false">' +
         '<div class="aqm-acc-header-left"><span class="aqm-acc-icon" aria-hidden="true">' + ico(sp.i) + '</span><div class="aqm-acc-title-group"><h3 class="aqm-acc-title">' + esc(sp.t) + '</h3><p class="aqm-acc-subtitle">' + esc(PAIR_SUB[i] || '') + '</p></div></div>' +
         '<div class="aqm-acc-badges">' + badges + '</div><span class="aqm-acc-chevron" aria-hidden="true">›</span></button>' +
         '<div class="aqm-acc-body">' + '<div class="aqm-content-grid">' + body + '</div></div></div>';
