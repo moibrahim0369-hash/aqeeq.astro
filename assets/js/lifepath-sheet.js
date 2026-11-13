@@ -125,6 +125,41 @@
     body.innerHTML = '<button type="button" class="lps-back" data-lps-list>' + IC.back + '<span>الرجوع إلى القائمة</span></button><div class="lps-detail">' + c.innerHTML + '</div>';
     body.scrollTop = 0;
   }
+  /* ترتيب نص بصمة الاسم: نفس الكلام بالحرف، بس مقسّم عناوين وسطور وخطوات */
+  function tidyName(root) {
+    var kids = [].slice.call(root.children), out = document.createDocumentFragment(), steps = null, lst = null, prevH = '', first = true;
+    function flush() { steps = null; lst = null; }
+    kids.forEach(function (k) {
+      var tx = (k.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!tx || /^[═─━\-=\s]{4,}$/.test(tx)) return;
+      if (k.tagName === 'UL') {
+        if (!lst) { lst = document.createElement('ul'); lst.className = 'lpn-lst' + (/تتصادم/.test(prevH) ? ' is-clash' : ''); out.appendChild(lst); }
+        [].forEach.call(k.children, function (li) {
+          var t = li.textContent.trim(), m = t.match(/^مع\s*(\d+)\s*[:：]\s*([\s\S]*)$/), n = document.createElement('li');
+          if (m) n.innerHTML = '<i>' + m[1] + '</i><span>' + esc(m[2]) + '</span>'; else n.textContent = t;
+          lst.appendChild(n);
+        });
+        return;
+      }
+      lst = null;
+      var st = tx.match(/^(\d+)\s*[.\-)]\s*([\s\S]+)$/);
+      if (st && k.tagName === 'P') {
+        if (!steps) { steps = document.createElement('ol'); steps.className = 'lpn-steps'; out.appendChild(steps); }
+        var li = document.createElement('li'); li.innerHTML = '<i>' + st[1] + '</i><span>' + esc(st[2]) + '</span>'; steps.appendChild(li); return;
+      }
+      steps = null;
+      if (/[:：]$/.test(tx) && tx.length < 70) { var h = document.createElement('h5'); h.className = 'lpn-h'; h.textContent = tx.replace(/[:：]$/, ''); out.appendChild(h); prevH = tx; first = false; return; }
+      var src = first ? tx.match(/^([\s\S]*?)\s*(الأصل العلمي\s*[:：][\s\S]*)$/) : null;
+      if (src && src[1]) { var p0 = document.createElement('p'); p0.className = 'lpn-p'; p0.textContent = src[1]; out.appendChild(p0); var q = document.createElement('p'); q.className = 'lpn-src'; q.textContent = src[2]; out.appendChild(q); first = false; return; }
+      var kv = tx.match(/^([^:："“”]{2,40})[:：]\s*([\s\S]+)$/);
+      if (kv && k.tagName === 'P') {
+        var e = document.createElement('p'); e.className = 'lpn-kv' + (/الخوف|الجرح|الظل|المشكلة|الدفاع|يزعج/.test(kv[1]) ? ' is-sh' : /مفتاحك|الحقيقة|تعرف إنك|الأمان/.test(kv[1]) ? ' is-key' : '');
+        e.innerHTML = '<b>' + esc(kv[1]) + '</b><span>' + esc(kv[2]) + '</span>'; out.appendChild(e); prevH = kv[1]; first = false; return;
+      }
+      var pp = document.createElement('p'); pp.className = 'lpn-p'; pp.textContent = tx; out.appendChild(pp); first = false;
+    });
+    root.innerHTML = ''; root.appendChild(out);
+  }
   function nameHTML() {
     var n = $('.aqeq-name-readings', res);
     if (!n || n.classList.contains('is-empty')) {
@@ -139,9 +174,9 @@
       h.innerHTML = '<span class="lpc-ic lpn-gi c' + (gi % 4 + 1) + '">' + IC[key] + '</span><div class="lpn-gt"><h4>' + esc(tt) + '</h4><p>' + esc(sb ? sb.textContent : '') + '</p></div><span class="lpn-num"><small>الرقم</small><b>' + esc(nn ? nn.textContent : '') + '</b></span>';
       $$('.aqeq-reading-card', g).forEach(function (card, ci) {
         var hh = $('h5', card), body = $('.aqeq-reading-content', card);
-        var d = document.createElement('details'); d.className = 'lpn-card'; d.open = true;
+        var d = document.createElement('details'); d.className = 'lpn-card';
         d.innerHTML = '<summary><span class="lpn-idx">' + (ci + 1) + '</span><b>' + esc(hh ? hh.textContent : '') + '</b><span class="lpn-chev">' + IC.chev + '</span></summary><div class="lpn-b"></div>';
-        if (body) $('.lpn-b', d).appendChild(body);
+        if (body) { tidyName(body); $('.lpn-b', d).appendChild(body); }
         card.replaceWith(d);
       });
     });
