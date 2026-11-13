@@ -29,6 +29,7 @@
     body: sv('<circle cx="12" cy="5" r="2.200"/><path d="M12 8v6M7.500 10.500 12 12l4.500-1.500M9.500 21 12 14l2.500 7"/>'),
     scale: sv('<path d="M12 4v16M6 20h12M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/>'),
     cross: sv('<path d="M9 4h6v5h5v6h-5v5H9v-5H4V9h5z"/>'),
+    about: sv('<rect x="3" y="5" width="18" height="14" rx="2.500"/><circle cx="9" cy="11" r="2"/><path d="M6 16.500c.5-1.600 1.700-2.400 3-2.400s2.500.8 3 2.400M14.500 10h3.500M14.500 13.500h2.500"/>'),
     ask: sv('<circle cx="12" cy="12" r="9"/><path d="M9.500 9.500a2.500 2.500 0 1 1 3.500 2.300c-.7.400-1 1-1 1.700M12 17v.01"/>')
   };
   var TIC = [[/المراية/, 'mirror'], [/البلوكات/, 'lock'], [/الشفرة العاطفية/, 'heart'], [/مغناطيس/, 'magnet'], [/جرح الطفولة/, 'person'], [/البصمة الجسدية/, 'body'], [/جدول المقارنة/, 'scale'], [/روشتة/, 'cross'], [/خريطة التحول/, 'route']];
@@ -272,11 +273,33 @@
   };
   function hIc(k) { return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + HIC[k] + '</svg>'; }
   function setField(id, v) { var e = document.getElementById(id); if (!e) return; e.value = v; e.dispatchEvent(new Event('input', { bubbles: true })); e.dispatchEvent(new Event('change', { bubbles: true })); }
+  /* نبذة عنك: أرقام فقط (قراءة من المحرك الحالي، بدون نصوص تفسير) */
+  function openAbout() {
+    var num = (($('.numbadge', res) || {}).textContent || '').trim();
+    var date = (($('#lp-date') || {}).value || '').split('-').reverse().join('/');
+    var nmv = (($('#lp-name') || {}).value || '').trim();
+    var kw = ($('.lph-m span:last-child', res) || {}).textContent || '';
+    function tiles(rows, pre) { return '<div class="lpa-grid">' + rows.map(function (r) { return '<div class="lpa-t"><b>' + esc(r.v) + '</b><span>' + esc(r.lbl) + '</span><small>' + esc(r.per) + '</small></div>'; }).join('') + '</div>'; }
+    var h = '<div class="lpa-wrap"><div class="lpa-hero"><span class="lpa-big">' + esc(num) + '</span><span class="lpa-cap"><small>رقم مسار حياتك</small>' + (kw && kw !== date ? '<b>' + esc(kw) + '</b>' : '') + '</span></div>' +
+      '<div class="lpa-meta">' + (nmv ? '<span>' + esc(nmv) + '</span>' : '') + (date ? '<span>' + esc(date) + '</span>' : '') + '</div>';
+    var pc = pcCards();
+    if (pc && pc.p) h += '<section class="lpa-sec"><h4>القمم الأربع</h4>' + tiles(rowsOf(pc.p)) + '</section>';
+    if (pc && pc.c) h += '<section class="lpa-sec"><h4>التحديات الأربعة</h4>' + tiles(rowsOf(pc.c)) + '</section>';
+    var ng = $$('.aqeq-name-group', res).map(function (g) { var t = $('h4', g), n = $('.aqeq-name-number', g); return t && n ? { v: n.textContent.trim(), lbl: t.textContent.trim(), per: '' } : null; }).filter(Boolean);
+    if (ng.length) h += '<section class="lpa-sec"><h4>بصمة الاسم</h4>' + tiles(ng) + '</section>';
+    var cur = $('#lpj-stage', res), cs = cur ? $$('.lpj-chip', cur).map(function (x) { return x.textContent.trim(); }) : [];
+    h += '</div>';
+    openSheet('about', IC.about, 'نبذة عنك', 'أرقامك في مكان واحد', h);
+  }
   function headFix() {
     var c = $('.chart-summary-card', res); if (!c || c.classList.contains('lpr-head')) return;
     var ed = $('#btn-edit-lp', c), badge = ($('.chart-summary-badge', c) || {}).textContent || '', title = ($('.chart-summary-title', c) || {}).textContent || '';
     var meta = $$('.chart-summary-meta > span:not(.meta-sep)', c).map(function (m) { return m.textContent.replace(/[☉✧]/g, '').replace(/\s+/g, ' ').trim(); }).filter(Boolean);
-    c.innerHTML = '<span class="lph-k">' + esc(badge.replace(/\s+/g, ' ').trim()) + '</span><h3 class="lph-t">' + esc(title.trim()) + '</h3>' +
+    var num = (($('.numbadge', res) || {}).textContent || '').trim(), nm = (title.match(/^\s*مسار\s+(.*?)\s*:/) || [])[1] || '';
+    if (nm && /^(مسارك|حياتك)$/.test(nm)) nm = '';
+    c.innerHTML = '<button type="button" class="lph-about" data-lph="about" aria-label="نبذة عنك">' + IC.about + '<span>نبذة عنك</span></button>' +
+      '<span class="lph-k">مسار الحياة</span>' +
+      '<div class="lph-id"><span class="lph-n">' + esc(num) + '</span><span class="lph-cap"><small>رقم مسار حياتك</small>' + (nm ? '<b>' + esc(nm) + '</b>' : '') + '</span></div>' +
       '<div class="lph-m">' + meta.map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('') + '</div>' +
       '<div class="lph-tools"><button type="button" data-lph="edit" aria-label="تعديل البيانات">' + hIc('edit') + '<span>تعديل</span></button>' +
       '<button type="button" data-lph="save" aria-label="حفظ الخريطة">' + hIc('save') + '<span>حفظ</span></button>' +
@@ -286,7 +309,8 @@
     c.addEventListener('click', function (e) {
       var b = e.target.closest('[data-lph]'); if (!b) return;
       var a = b.getAttribute('data-lph'), eb = $('#btn-edit-lp', c);
-      if (a === 'edit' && eb) eb.click();
+      if (a === 'about') openAbout();
+      else if (a === 'edit' && eb) eb.click();
       else if (a === 'new' && eb) { eb.click(); setTimeout(function () { setField('lp-name', ''); setField('lp-date', ''); }, 60); }
       else if (a === 'save') { var sb = $('.aq-save-reading-btn', res); if (sb) { sb.click(); b.classList.add('is-saved'); $('span', b).textContent = 'تم الحفظ'; } }
     });
