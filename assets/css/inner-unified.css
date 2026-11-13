@@ -194,3 +194,9 @@ html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more>summary smal
 html body section#compat:not(#_a):not(#_b):not(#_c) details.cp-more .cp-note{display:block!important;font-size:.76rem;margin:0 0 8px}
 html body section#compat:not(#_a):not(#_b):not(#_c):not(#_d) fieldset.cp-person>*:not(legend){margin-inline:0!important}
 html body section#compat:not(#_a):not(#_b):not(#_c):not(#_d) fieldset.cp-person>.cp-two,html body section#compat:not(#_a):not(#_b):not(#_c):not(#_d) fieldset.cp-person>details{margin-bottom:8px!important}
+/* مكان الميلاد: حقل بحث واحد بالاسم، بلا دولة/محافظة منفصلة ولا إحداثيات */
+html body section.sec:not(#chart) .geo-pk .geo-row{display:none!important}
+html body :is(#cp1-manual,#cp2-manual,#manual,.cp-two)[hidden]{display:none!important}
+html body .geo-pk .geo-note{color:#6b4a2a;font-size:.78rem}
+html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g) :is(#cp1-manual,#cp2-manual,#manual)[hidden]{display:none!important}
+html body section.sec:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g) :is(#cp1-manual,#cp2-manual,#manual)[hidden] *{display:none!important}
