@@ -164,3 +164,6 @@ html body :is(section#compat,section#lifepath-compat,#matrix) :is(form.cp-form,f
 html body :is(section#compat,section#lifepath-compat,#matrix) :is(form.cp-form,form.syn-form,form.mxm-form) .aq-af-note{display:block;font-size:.7rem;color:#8A5A2E}
 html body :is(section#compat,section#lifepath-compat,#matrix) :is(form.cp-form,form.syn-form,form.mxm-form) .aq-autofill-btn{padding:6px 10px!important;font-size:.74rem!important;min-height:0!important;border-radius:10px!important;background:linear-gradient(135deg,#7f3a52,#5a1f33)!important;color:#fff!important;border:1px solid rgba(228,196,134,.6)!important;white-space:nowrap;flex:0 0 auto}
 html body #matrix:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) form.mxm-form .field:has(.mxp-fi)>.aq-ds{display:grid!important;grid-template-columns:1fr 1.3fr 1.2fr;gap:8px;width:100%}
+html body section.sec:is(#compat,#lifepath-compat) .cp-explain{max-width:760px;margin:18px auto 0}
+html body section.sec:is(#compat,#lifepath-compat) .cp-explain .y27-about-note{font-size:.82rem;color:#8A5A2E;text-align:center;margin:12px 0 0}
+html body section.sec:is(#compat,#lifepath-compat) .cp-explain{box-sizing:border-box;width:100%;padding:0 16px!important}
