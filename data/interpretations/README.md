@@ -29,3 +29,20 @@
 
 ## التحقق
 `node scripts/validate-interpretations.js` يفحص كل الملفات (الهيكل، تفرّد المفاتيح، اكتمال المعتمد).
+
+## الطبقات والمفاتيح (ما تعرضه الصفحة فعلًا)
+| الطبقة | المفتاح (id) | الملف | يظهر في |
+|---|---|---|---|
+| core | `natal.core.<body>.house<1..12>` | `<body>.json` | الكوكب داخل أكورديون بيته (summary ثم text) |
+| sign_tint | `natal.sign_tint.<body>.<sign>` (أو `…<body>.house<n>.<sign>` للتخصيص بالبيت) | `<body>.json` | تحت النص الأساسي: "لون البرج" |
+| modifier | `natal.modifier.<planet>.retrograde` | `<planet>.json` | تحت النص إذا الكوكب راجع |
+| aspect | `natal.aspect.<أول>.<نوع>.<ثاني>` والحقل `aspect = "<نوع>.<ثاني>"` | ملف الكوكب الأول | أكورديون "الجوانب" تحت كل من الكوكبين |
+| angle | `natal.angle.<asc/dsc/mc/ic>.<sign>` | `asc.json` ... | مجموعة "الزوايا" |
+
+- bodies: sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, north_node, south_node, lilith, fortune.
+- العقد/ليليث/نقطة الحظ: طبقة core بالبيت، وتظهر في مجموعة "العقد القمرية والنقاط الحساسة".
+- الأبراج: aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces.
+- الجوانب: conjunction sextile square trine opposition، والجسم الأول هو الأسبق في الترتيب (sun, moon, mercury ...).
+- `_manifest.json`: قائمة كل المفاتيح المطلوبة (617) وأين تُكتب وأين تظهر وحالتها. أعد توليده بـ `node scripts/gen-interpretation-manifest.js`.
+- المكان الفارغ يظهر في الصفحة كخانة منقّطة بمفتاحه ما دام `SHOW_EMPTY_SLOTS = true` في `assets/js/interpretation-library.js`؛ اقلبه إلى false عند الإطلاق.
+- وقت الميلاد المجهول: لا بيوت ولا زوايا، تظهر رسالة.

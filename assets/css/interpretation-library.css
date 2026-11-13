@@ -1,0 +1,43 @@
+/* مكتبة التفسيرات: أكورديونات الخريطة الفلكية. ألوان الموقع: عنابي، عقيق، بيج. */
+#il-root.il{margin:22px 0 8px;padding:0 2px;color:#4A1428;font-family:inherit}
+.il-head{text-align:center;margin:0 0 16px}
+.il-eyebrow{display:inline-block;font-size:.78rem;letter-spacing:.04em;color:#8A3350;background:#F6E9D8;border:1px solid #E6CFA6;border-radius:999px;padding:3px 12px;margin-bottom:8px}
+.il-head h3{margin:0 0 6px;font-size:1.35rem;color:#4A1428}
+.il-head p{margin:0;font-size:.95rem;line-height:1.8;color:#6b4a52}
+.il-group{margin:0 0 18px}
+.il-gt{margin:0 0 10px;font-size:1.05rem;color:#6A2038;padding-inline-start:10px;border-inline-start:3px solid #B98A3E}
+.il-house{background:#FFFBF2;border:1px solid #E6CFA6;border-radius:16px;margin:0 0 10px;overflow:hidden;box-shadow:0 1px 0 rgba(106,32,56,.04)}
+.il-house[open]{border-color:#C9A35D;box-shadow:0 6px 18px rgba(106,32,56,.08)}
+.il-house>summary,.il-asp>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:13px 14px}
+.il-house>summary::-webkit-details-marker,.il-asp>summary::-webkit-details-marker{display:none}
+.il-num{flex:0 0 auto;width:36px;height:36px;border-radius:12px;background:#F6E9D8;border:1px solid #E6CFA6;color:#6A2038;display:grid;place-items:center;font-size:1.05rem}
+.il-ht{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.il-ht strong{font-size:1rem;line-height:1.5}
+.il-ht small{font-size:.82rem;color:#8a6a58}
+.il-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
+.il-chips i{font-style:normal;font-size:.78rem;padding:2px 9px;border-radius:999px;background:#8A3350;color:#FFF3D6}
+.il-chips i.il-empty{background:transparent;color:#9a8b7a;border:1px dashed #D9BD86}
+.il-chev{flex:0 0 auto;color:#8A3350;transition:transform .2s}
+details[open]>summary .il-chev{transform:rotate(180deg)}
+.il-body{padding:2px 14px 14px;border-top:1px solid #F0E2C8}
+.il-pl{margin:12px 0 0;padding:12px;background:#FBF4E6;border:1px solid #EBD9B4;border-radius:13px}
+.il-pl h4{margin:0 0 8px;font-size:1.02rem;color:#6A2038;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.il-pl h4 small{font-size:.8rem;color:#8a6a58;font-weight:500}
+.il-sum{margin:0 0 8px;font-size:.98rem;line-height:1.9;color:#4A1428;font-weight:600}
+.il-text p{margin:0 0 10px;line-height:2;font-size:.98rem}
+.il-text .il-h{margin:14px 0 6px;font-size:.98rem;color:#8A3350}
+.il-ul{margin:0 0 10px;padding-inline-start:20px;line-height:2;font-size:.98rem}
+.il-sub{margin-top:12px;padding-top:10px;border-top:1px dashed #E0C99A}
+.il-sub h5,.il-asps h5{margin:0 0 6px;font-size:.88rem;color:#8A3350}
+.il-asps{margin-top:12px;padding-top:10px;border-top:1px dashed #E0C99A}
+.il-asp{background:#fff;border:1px solid #EBD9B4;border-radius:12px;margin:0 0 8px}
+.il-asp>summary{padding:10px 12px;font-size:.92rem}
+.il-asp>summary span{flex:1}
+.il-asp>summary em{font-style:normal;font-size:.78rem;color:#8a6a58}
+.il-asp .il-body{border-top:1px solid #F0E2C8;padding-top:10px}
+.il-slot{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border:1.5px dashed #D9BD86;border-radius:11px;background:rgba(255,251,242,.6)}
+.il-slot span{font-size:.88rem;color:#8a6a58}
+.il-slot code{font-size:.74rem;color:#6A2038;background:#F6E9D8;border-radius:6px;padding:2px 7px;align-self:flex-start;word-break:break-all}
+.il-note{margin:12px 0 0;font-size:.92rem;line-height:1.9;color:#6b4a52}
+.il-simple .il-body{padding-top:4px}
+.il-simple .il-pl{margin-top:8px}
