@@ -4,3 +4,9 @@
 .aq-lib-filters{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 2px 6px;margin-bottom:14px}
 .aq-lib-filters::-webkit-scrollbar{display:none}
 .aq-lib-filters .aq-lib-filter-btn{flex:0 0 auto;min-width:max-content;white-space:nowrap;writing-mode:horizontal-tb;text-orientation:mixed;padding:9px 16px;line-height:1.4}
+
+/* 2) الرئيسية بعد الدخول: البطاقة تحت التمثال في التدفق العادي بدون تراكب ولا فراغ */
+@media (max-width:760px){
+  html body #home.aqh .aqh-hero .b3-me:not([hidden]){position:static;margin:calc(var(--hh,206px) + 8px) 14px 12px;max-width:none}
+  html body #home.aqh .aqh-hero:has(.b3-me:not([hidden])) .aqh-hero-grid{padding-top:0!important}
+}
