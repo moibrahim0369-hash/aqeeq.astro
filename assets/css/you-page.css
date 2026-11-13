@@ -1,0 +1,56 @@
+/* صفحة «أنت» (بعد الدخول): كريمي وعنابي وطوبي */
+section#for-you.yp-on .center,section#for-you.yp-on .aq-section-topbar .aq-section-quick-links{display:none!important}
+section#for-you.yp-on #fy-body{max-width:640px;margin:8px auto 0;display:block}
+.yp{--wine:#6b1f2e;--brick:#9a4a32;--cream:#FBF5EA;--line:#E2D3BC;--ink:#3a2a26;color:var(--ink);padding:4px 2px 90px}
+.yp-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 0 18px}
+.yp-who{display:flex;align-items:center;gap:12px;min-width:0}
+.yp-av{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--wine);color:#fff;font:700 1.2rem 'Cairo',sans-serif}
+.yp-who h2{margin:0;color:var(--wine);font:700 1.25rem/1.4 'Amiri','Cairo',serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yp-who small{color:#7a5a4c}
+.yp-gear{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--cream);border:1px solid var(--line);color:var(--wine)}
+.yp-gear svg{width:22px;height:22px}
+.yp-tabs{display:flex;gap:6px;padding:4px;border-radius:999px;background:#F1E6D3;border:1px solid var(--line);margin-bottom:18px}
+.yp-tabs button{flex:1;min-height:44px;border:0;border-radius:999px;background:transparent;color:#7a5a4c;font:700 1rem 'Cairo',sans-serif;cursor:pointer}
+.yp-tabs button[aria-selected=true]{background:var(--wine);color:#fff}
+.yp-lab{margin:20px 4px 10px;color:var(--wine);font:700 .9rem 'Cairo',sans-serif;letter-spacing:.02em}
+.yp-tt{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.yp-tt-l{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px 0 6px;border-radius:999px;border:1px solid var(--wine);color:var(--wine);font:700 .95rem 'Cairo',sans-serif;background:var(--cream)}
+.yp-tt-i{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#F1E6D3}
+.yp-tt-i svg{width:18px;height:18px}
+.yp-tt-l select{border:0;background:transparent;color:var(--wine);font:700 1rem 'Cairo',sans-serif;padding:0 4px}
+.yp-tt-d{text-align:left}.yp-tt-d b{display:block;color:var(--wine);font:700 1.2rem 'Cairo',sans-serif}.yp-tt-d small{color:#7a5a4c}
+.yp-empty{display:grid;justify-items:center;gap:8px;text-align:center;padding:26px 18px;border:1px dashed var(--line);border-radius:18px;background:var(--cream);color:#7a5a4c}
+.yp-empty svg{width:34px;height:34px;color:var(--brick)}.yp-empty p{margin:0;line-height:1.9}
+.yp-doms{display:grid;gap:10px}
+.yp-dom{display:flex;align-items:center;gap:14px;width:100%;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--cream);text-align:right;cursor:pointer;color:var(--ink);box-shadow:0 4px 14px rgba(74,21,33,.05)}
+.yp-dom-i{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--wine);color:#fff}
+.yp-dom-i svg{width:24px;height:24px}
+.yp-dom-t{flex:1;min-width:0}.yp-dom-t b{display:block;color:var(--wine);font:700 1.1rem 'Cairo',sans-serif}.yp-dom-t small{color:#7a5a4c;line-height:1.7}
+.yp-dom-go{color:var(--brick)}.yp-dom-go svg{width:20px;height:20px}
+.yp-list{display:grid;gap:12px}
+.yp-chip{display:inline-block;align-self:flex-start;padding:6px 12px;border-radius:10px 10px 10px 0;background:linear-gradient(135deg,var(--brick),var(--wine));color:#fff;font:700 .8rem 'Cairo',sans-serif}
+.yp-chip.blue{background:linear-gradient(135deg,#8a5a4a,#6b3a30)}
+.yp-cy{display:flex;align-items:center;gap:14px;width:100%;padding:16px;border-radius:20px;border:1px solid var(--line);background:var(--cream);text-align:right;color:var(--ink);cursor:pointer;position:relative;box-shadow:0 4px 14px rgba(74,21,33,.05);flex-wrap:wrap}
+.yp-cy>.yp-chip{position:absolute;top:0;right:14px;border-radius:0 0 10px 10px}
+.yp-cy-t{flex:1;min-width:0;padding-top:22px;display:grid;gap:4px}
+.yp-cy-t b{color:var(--wine);font:700 1.1rem/1.5 'Amiri','Cairo',serif}.yp-cy-t small{color:#7a5a4c;font-size:.82rem}
+.yp-cy.up{background:linear-gradient(135deg,#6b1f2e,#4a1521);color:#fff;border-color:#4a1521}
+.yp-cy.up .yp-cy-t b{color:#fff}.yp-cy.up .yp-cy-t small{color:#e9d9c8}
+.yp-cy.up>.yp-chip{background:rgba(255,255,255,.18)}
+.yp-ring{position:relative;flex:none;width:86px;height:86px}
+.yp-ring svg{width:100%;height:100%}.yp-ring .bg{fill:none;stroke:#e2d3bc;stroke-width:5;stroke-dasharray:1 5;stroke-linecap:round}
+.yp-ring .fg{fill:none;stroke:var(--wine);stroke-width:6;stroke-linecap:round}
+.yp-ring span{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.1;color:var(--wine)}
+.yp-ring b{font:700 1.5rem 'Cairo',sans-serif}.yp-ring i{font-style:normal;font-size:.7rem;color:#7a5a4c}
+.yp-ring.up .bg{stroke:rgba(255,255,255,.45)}.yp-ring.up .fg{stroke:#f3dcc0}.yp-ring.up span,.yp-ring.up i{color:#fff}
+.yp-pl{display:grid;gap:6px;width:100%;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--cream);text-align:right;color:var(--ink);cursor:pointer}
+.yp-pl small{color:#7a5a4c}.yp-pl b{color:var(--wine);font:700 1.2rem/1.5 'Amiri','Cairo',serif}
+.yp-back{display:inline-flex;align-items:center;gap:6px;min-height:44px;border:0;background:transparent;color:var(--wine);font:700 .95rem 'Cairo',sans-serif;cursor:pointer}
+.yp-back svg{width:18px;height:18px}
+.yp-dh h3{margin:4px 0;color:var(--wine);font:700 1.5rem 'Amiri','Cairo',serif}.yp-dh small{color:#7a5a4c}
+.yp-det{display:grid;gap:12px}.yp-det>small{color:#7a5a4c}.yp-det h3{margin:0;color:var(--wine);font:700 1.6rem/1.4 'Amiri','Cairo',serif}
+.yp-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-radius:18px;background:#F6EEDF;border:1px solid var(--line)}
+.yp-meta i{display:block;font-style:normal;font-size:.75rem;color:#7a5a4c;margin-top:8px}.yp-meta b{display:block;color:var(--wine);font:700 .95rem 'Cairo',sans-serif}
+.yp-txt{padding:18px;border-radius:18px;background:var(--cream);border:1px solid var(--line)}.yp-txt small{color:#7a5a4c}.yp-txt p{margin:8px 0 0;line-height:2;color:var(--ink)}
+.yp-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;background:var(--wine);color:#fff;text-decoration:none;font:700 .95rem 'Cairo',sans-serif}
+.yp-det .yp-chip{justify-self:start}
