@@ -66,8 +66,10 @@
     $('.aqm-sheet-ic', s).innerHTML = ico;
     $('#lps-title', s).textContent = title;
     $('.aqm-sheet-sub', s).textContent = sub || '';
-    var b = $('.lps-body', s); b.innerHTML = html; b.scrollTop = 0;
+    var b = $('.lps-body', s); b.style.scrollBehavior = 'auto'; b.innerHTML = html; b.scrollTop = 0;
     s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
+    var top0 = function () { b.style.scrollBehavior = 'auto'; try { b.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (e) { b.scrollTop = 0; } b.scrollTop = 0; var pn = $('.aqm-sheet-panel', s); if (pn) pn.scrollTop = 0; };
+    top0(); requestAnimationFrame(top0); setTimeout(top0, 60); setTimeout(top0, 260);
     syncNext(kind);
   }
   /* زر «القسم التالي»: يتبع ترتيب الصفوف في القائمة نفسها */

@@ -81,3 +81,16 @@ html.lpr-on body section.sec#lifepath:has(#lpresult:not([hidden])):not(#_a):not(
 .lpg-chip-s{background:#F7E4E4;border-color:#D4A0A0;color:#7A2A2A}
 html.lpr-on body #lpresult .lpg-row{border-width:1.5px;box-shadow:0 1px 0 #fff inset,0 8px 18px rgba(74,18,36,.10)}
 html.lpr-on body #lpresult .lpg-ic{background:linear-gradient(160deg,#FFFDF7,#F4E6C6)}
+
+/* ===== بانر مسار الحياة: عنابي غني بإطار ذهبي (بدل الأبيض والخط الأزرق) ===== */
+html.lpr-on body #lpresult>.chart-summary-card.lpr-head{background:radial-gradient(70% 90% at 100% 0%,rgba(200,161,90,.20),transparent 62%),linear-gradient(160deg,#6A2038,#4A1224 62%,#3A0E1C)!important;border:1.4px solid #C8A15A!important;box-shadow:0 14px 30px rgba(58,14,28,.30),0 1px 0 rgba(255,243,214,.15) inset!important;overflow:hidden}
+html.lpr-on body #lpresult>.chart-summary-card.lpr-head::before{content:none!important;display:none!important}
+html.lpr-on body #lpresult>.chart-summary-card.lpr-head::after{content:"";position:absolute;inset-inline-start:-46px;bottom:-52px;width:170px;height:170px;border-radius:50%;border:1px solid rgba(224,197,138,.22);box-shadow:0 0 0 18px rgba(224,197,138,.05);pointer-events:none}
+html.lpr-on body #lpresult .lpr-head .lph-k{color:#E0C58A!important}
+html.lpr-on body #lpresult .lpr-head .lph-t{color:#FFF3D6!important}
+html.lpr-on body #lpresult .lpr-head .lph-m span{background:rgba(255,243,214,.10)!important;border-color:rgba(224,197,138,.45)!important;color:#F6E7C4!important}
+html.lpr-on body #lpresult .lpr-head .lph-tools button{background:rgba(255,243,214,.10)!important;border-color:rgba(224,197,138,.5)!important;color:#FFF3D6!important}
+html.lpr-on body #lpresult .lpr-head .lph-tools button svg{color:#E9CE8E!important;stroke:#E9CE8E!important}
+html.lpr-on body #lpresult .lpr-head .lph-tools button.is-saved{background:#E9CE8E!important;color:#4A1224!important;border-color:#E9CE8E!important}
+html.lpr-on body #lpresult .lpr-head .lph-tools button.is-saved svg{color:#4A1224!important;stroke:#4A1224!important}
+html.lpr-on body #lpresult>.gender-voice-note,html.lpr-on body #lpresult .gender-voice-note{display:none!important}
