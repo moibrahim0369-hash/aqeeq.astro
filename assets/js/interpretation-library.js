@@ -9,7 +9,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261113a';
+  var VERSION = '20261113d';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -39,6 +39,8 @@
   function idTint(body, sign, house) { return 'natal.sign_tint.' + body + (house ? '.house' + house : '') + '.' + SIGN_EN[sign]; }
   function idModifier(body, mod) { return 'natal.modifier.' + body + '.' + mod; }
   function idAspect(first, type, second) { return 'natal.aspect.' + first + '.' + type + '.' + second; }
+  function idCusp(house, sign) { return 'natal.house_cusp.house' + house + '.' + SIGN_EN[sign]; }
+  function idSignOnly(body, sign) { return 'natal.sign_only.' + body + '.' + SIGN_EN[sign]; }
   function idAngle(angle, sign) { return 'natal.angle.' + angle + '.' + SIGN_EN[sign]; }
 
   /* ---------- نموذج الخريطة ---------- */
@@ -87,6 +89,7 @@
     var f = {};
     Object.keys(m.items).forEach(function (k) { f[k] = 1; });
     m.angles.forEach(function (a) { f[a.body] = 1; });
+    if (m.known) f.house_cusp = 1;
     return Object.keys(f);
   }
   function load(body) {
@@ -132,6 +135,7 @@
       h += entry(ix, idCore(key, it.house), true);
       h += sub('لون البرج: ' + SIGN_AR[it.sign], entry(ix, [idTint(key, it.sign, it.house), idTint(key, it.sign)], false));
     }
+    else if (withHouse === false) h += entry(ix, idSignOnly(key, it.sign), true);
     if (it.retro) h += sub('الرجعية', entry(ix, idModifier(key, 'retrograde'), false));
     var mine = m.aspects.filter(function (a) { return a.first === key || a.second === key; });
     if (mine.length) {
@@ -146,11 +150,20 @@
 
   function render(m, ix) {
     var out = '';
-    if (!m.known) return out;
+    if (!m.known) {
+      var ks = PLANETS.filter(function (k) { return m.items[k]; });
+      out += '<section class="il-group"><h4 class="il-gt">الكواكب في أبراجها</h4>' + ks.map(function (k) {
+        var it = m.items[k], edge = k === 'moon' && Math.min(it.lon % 30, 30 - (it.lon % 30)) < 7;
+        var extra = edge ? '<p class="il-note">القمر يقطع نحو ثلاث عشرة درجة في اليوم، وموضعه هنا قريب من حدّ برجين، فبرجه الدقيق يحتاج ساعة ميلادك.</p>' : '';
+        return det('il-house il-simple', '<span class="il-ht"><strong>' + esc(LABEL[k]) + ' في ' + esc(SIGN_AR[it.sign]) + '</strong>' + (it.retro ? '<small>راجع</small>' : '') + '</span>' + CHEV, extra + bodyBlock(m, ix, k, false));
+      }).join('') + '</section>';
+      out += '<p class="il-note il-addtime">ظهرت لك كواكبك في أبراجها، أما البيوت والطالع فتحتاج ساعة ميلادك. إن عرفتها أضفها، وستظهر لك أقسام جديدة بحياتك الواقعية: العمل والعلاقات والبيت والمال. <button type="button" class="il-addbtn" data-il-addtime>أضف ساعة الميلاد</button></p>';
+      return out;
+    }
     out += '<section class="il-group"><h4 class="il-gt">البيوت الاثنا عشر</h4>' + m.houses.map(function (H) {
       var chips = H.occupants.length ? H.occupants.map(function (k) { return '<i>' + esc(LABEL[k]) + '</i>'; }).join('') : '<i class="il-empty">بيت خالٍ من الكواكب</i>';
       var sum = '<b class="il-num">' + H.n + '</b><span class="il-ht"><strong>البيت ' + ORD[H.n - 1] + ' · ' + esc(HOUSE_AR[H.n - 1]) + '</strong><small>' + esc(SIGN_AR[H.sign]) + ' على رأس البيت</small><span class="il-chips">' + chips + '</span></span>' + CHEV;
-      var body = H.occupants.length ? H.occupants.map(function (k) { return bodyBlock(m, ix, k); }).join('') : '<p class="il-note">لا كوكب في هذا البيت. يُقرأ من برج رأس البيت ومن موضع حاكمه.</p>';
+      var body = sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + H.occupants.map(function (k) { return bodyBlock(m, ix, k); }).join('');
       return det('il-house', sum, body);
     }).join('') + '</section>';
 
@@ -176,6 +189,8 @@
       var sec = document.createElement('section'); sec.id = 'il-root'; sec.className = 'il'; sec.setAttribute('dir', 'rtl');
       sec.innerHTML = render(m, ix);
       res.appendChild(sec);
+      var ab = sec.querySelector('[data-il-addtime]');
+      if (ab) ab.addEventListener('click', function () { var e = document.querySelector('.nd-edit'); if (e) e.click(); });
     });
   }
   function boot() {
@@ -184,6 +199,6 @@
     });
   }
 
-  return { boot: boot, build: build, render: render, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle,
+  return { boot: boot, build: build, render: render, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idSignOnly: idSignOnly,
     SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, POINTS: POINTS, ASPECTS: ASPECTS };
 });

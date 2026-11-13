@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* يفحص data/interpretations/*.json: الهيكل، صحة المفتاح لكل طبقة، التفرّد، واكتمال المعتمد.
-   الطبقات: core, sign_tint, modifier, aspect, angle (انظر README). */
+   الطبقات: core, sign_tint, modifier, aspect, angle, house_cusp, sign_only (انظر README). */
 const fs = require('fs');
 const path = require('path');
 const dir = path.join(__dirname, '..', 'data', 'interpretations');
@@ -37,6 +37,15 @@ function expectedId(o, at) {
       if (PLANETS.indexOf(o.body) >= PLANETS.indexOf(second)) return bad('الجسم الأول يجب أن يسبق الثاني في الترتيب (sun, moon, mercury ...)');
       return `natal.aspect.${o.body}.${type}.${second}`;
     }
+    case 'house_cusp':
+      if (o.body !== 'house_cusp') return bad('body يجب أن يكون house_cusp');
+      if (!Number.isInteger(o.house) || o.house < 1 || o.house > 12) return bad('house');
+      if (!SIGNS.includes(o.sign)) return bad('sign');
+      return `natal.house_cusp.house${o.house}.${o.sign}`;
+    case 'sign_only':
+      if (!PLANETS.includes(o.body)) return bad('body غير معروف');
+      if (!SIGNS.includes(o.sign)) return bad('sign');
+      return `natal.sign_only.${o.body}.${o.sign}`;
     case 'angle':
       if (!ANGLES.includes(o.body)) return bad('body غير معروف');
       if (!SIGNS.includes(o.sign)) return bad('sign');

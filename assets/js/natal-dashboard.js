@@ -163,19 +163,19 @@
     // لوحة الخريطة
     h += '<div class="nd-main" data-nd-panel="map"><div class="nd-grid">' +
       '<section class="nd-over"><h4>نظرة عامة</h4><p>تقدم خريطة ولادتك صورة فريدة للطاقة الكونية لحظة ميلادك، مما يكشف عن ملامح شخصيتك ودوافعك العميقة ومسارك في الحياة.</p>' +
-      '<div class="nd-tiles">' + tile(ic('<path d="M12 4v16M12 4l-5 5M12 4l5 5"/>'), 'الطالع', aSign, !known) + tile(ic('<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>'), 'الشمس', sSign) + tile(ic('<path d="M15.500 4.500a8 8 0 1 0 4 14 9 9 0 0 1-4-14z"/>'), 'القمر', mSign) + '</div>' +
+      '<div class="nd-tiles">' + (known ? tile(ic('<path d="M12 4v16M12 4l-5 5M12 4l5 5"/>'), 'الطالع', aSign, false) : '') + tile(ic('<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>'), 'الشمس', sSign) + tile(ic('<path d="M15.500 4.500a8 8 0 1 0 4 14 9 9 0 0 1-4-14z"/>'), 'القمر', mSign) + '</div>' +
       '<div class="nd-sum"><h5>' + ic('<circle cx="12" cy="12" r="8.500"/><circle cx="12" cy="12" r="3"/>') + 'خلاصة سريعة</h5><p>' + esc(summary) + '</p></div></section>' +
       '<section class="nd-wcard"><header><div><h4>خريطة الميلاد الفلكية</h4><small>نظام البيوت: ' + esc(hs) + '</small></div><div class="nd-coords" dir="ltr"><span>' + Math.abs(lat).toFixed(4) + '° ' + ns + '</span><span>' + Math.abs(lon).toFixed(4) + '° ' + ew + '</span></div></header>' +
       '<div class="nd-wslot"></div><p class="nd-pick" aria-live="polite">اضغط على أي كوكب لعرض موضعه.</p>' +
       '<ul class="nd-legend"><li><i style="background:' + ASPCOL.h + '"></i>اتصال منسجم</li><li><i style="background:' + ASPCOL.t + '"></i>اتصال متوتر</li><li><i style="background:' + ASPCOL.n + '"></i>اتصال محايد</li></ul>' +
-      (known ? '' : '<p class="nd-warn">وقت الميلاد غير معروف: لا طالع ولا بيوت دقيقة. مواضع الكواكب في الأبراج تبقى صحيحة تقريبًا.</p>') + '</section></div></div>';
+      '</section></div></div>';
     // لوحات القوائم
     h += '<div class="nd-main nd-list" data-nd-panel="planets" hidden><div class="nd-rows">' + planets.map(function (p, i) { var f = fmtLon(p.lon); return '<div class="nd-row" style="--i:' + i + '"><span class="nd-rg">' + gl(p.g) + '</span><b>' + p.n + (p.retro ? ' <em>R</em>' : '') + '</b><span>' + gl(SG[f.s][1]) + ' ' + SG[f.s][0] + ' ' + f.txt + '</span><span class="nd-rh">' + (known && p.house ? 'البيت ' + p.house : '—') + '</span></div>'; }).join('') + '</div></div>';
-    h += '<div class="nd-main nd-list" data-nd-panel="houses" hidden>' + (known ? '<div class="nd-rows">' + ch.cusps.map(function (c, i) { var f = fmtLon(c); return '<div class="nd-row" style="--i:' + i + '"><span class="nd-rg nd-hnum">' + (i + 1) + '</span><b>البيت ' + (i + 1) + '</b><span>' + gl(SG[f.s][1]) + ' ' + SG[f.s][0] + ' ' + f.txt + '</span><span class="nd-rh">' + HA[i] + '</span></div>'; }).join('') + '</div>' : '<p class="nd-warn">البيوت تحتاج وقت الميلاد. أضف الوقت وأعد الحساب.</p>') + '</div>';
+    h += (!known ? '' : '<div class="nd-main nd-list" data-nd-panel="houses" hidden>' + (known ? '<div class="nd-rows">' + ch.cusps.map(function (c, i) { var f = fmtLon(c); return '<div class="nd-row" style="--i:' + i + '"><span class="nd-rg nd-hnum">' + (i + 1) + '</span><b>البيت ' + (i + 1) + '</b><span>' + gl(SG[f.s][1]) + ' ' + SG[f.s][0] + ' ' + f.txt + '</span><span class="nd-rh">' + HA[i] + '</span></div>'; }).join('') + '</div>' : '') + '</div>');
     h += '<div class="nd-main nd-list" data-nd-panel="aspects" hidden><div class="nd-rows">' + (asps.length ? asps.slice().sort(function (a, b) { return a.orb - b.orb; }).map(function (x, i) { return '<div class="nd-row" style="--i:' + i + '"><span class="nd-rg" style="color:' + ASPCOL[x.A.t] + '">' + aspIcon(x.A.k) + '</span><b>' + x.a.n + ' · ' + x.b.n + '</b><span>' + x.A.n + '</span><span class="nd-rh">فارق ' + x.orb.toFixed(1) + '°</span></div>'; }).join('') : '<p class="nd-warn">لا جوانب رئيسية ضمن الحدود المعتادة.</p>') + '</div></div>';
     // البطاقات السفلية
     h += '<div class="nd-bottom">' +
-      '<section class="nd-card"><h4>محاور الخريطة</h4>' + (known ? axes.map(function (a) { var f = fmtLon(a[2]); return '<div class="nd-axrow"><span class="nd-axb">' + a[0] + '</span><span class="nd-axt"><b>' + SG[f.s][0] + ' ' + gl(SG[f.s][1]) + '</b><small>' + a[1] + '</small></span><span class="nd-axd">' + f.txt + '</span></div>'; }).join('') : '<p class="nd-warn">تظهر المحاور عند معرفة وقت الميلاد.</p>') + '</section>' +
+      (!known ? '' : '<section class="nd-card"><h4>محاور الخريطة</h4>' + (known ? axes.map(function (a) { var f = fmtLon(a[2]); return '<div class="nd-axrow"><span class="nd-axb">' + a[0] + '</span><span class="nd-axt"><b>' + SG[f.s][0] + ' ' + gl(SG[f.s][1]) + '</b><small>' + a[1] + '</small></span><span class="nd-axd">' + f.txt + '</span></div>'; }).join('') : '') + '</section>') +
       '<section class="nd-card"><h4>أقوى الجوانب</h4>' + (top.length ? top.map(function (x) { return '<div class="nd-asrow"><span class="nd-sc">' + x.score.toFixed(1) + '</span><span class="nd-as" style="color:' + ASPCOL[x.A.t] + '">' + aspIcon(x.A.k) + '</span><span class="nd-an">' + x.a.n + ' · ' + x.b.n + '</span><em>' + x.A.n + '</em></div>'; }).join('') : '<p class="nd-warn">لا جوانب بارزة في هذه الخريطة.</p>') + '</section>' +
       '<section class="nd-card"><h4>توزيع العناصر</h4>' + [0, 1, 2, 3].map(function (e) { return '<div class="nd-el"><span class="nd-eln">' + ELN[e] + '</span><span class="nd-bar"><i style="--c:' + ELC[e] + '" data-w="' + pc.el[e] + '"></i></span><b data-pct="' + pc.el[e] + '">0%</b></div>'; }).join('') +
       '<div class="nd-md">' + MDN.map(function (m, i) { return '<span><small>' + m + '</small><b>' + pc.md[i] + '%</b></span>'; }).join('') + '</div></section></div>';
@@ -187,7 +187,8 @@
     var map = box.querySelector('[data-nd-panel="map"]'), wcard = box.querySelector('.nd-wcard'), over = box.querySelector('.nd-over');
     var bottom = box.querySelector('.nd-bottom'), tabs = box.querySelector('.nd-tabs');
     if (!map || !wcard || !over || !bottom || !tabs) return;
-    var cards = bottom.querySelectorAll(':scope > .nd-card');
+    var all = [].slice.call(bottom.querySelectorAll(':scope > .nd-card')), known = !!box.querySelector('[data-nd-panel="houses"]');
+    var cards = known ? all : [null].concat(all);
     function stack(name, kids) {
       var d = document.createElement('div'); d.className = 'nd-main nd-stack'; d.setAttribute('data-nd-panel', name); d.hidden = true;
       kids.forEach(function (k) { if (k) d.appendChild(k); }); return d;
@@ -206,8 +207,10 @@
       ['dist', 'التوزيع', I('<path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.400A9 9 0 0 1 20.600 9H15z"/>')],
       ['overview', 'نظرة عامة', I('<rect x="4" y="4" width="7" height="7" rx="1.800"/><rect x="13" y="4" width="7" height="7" rx="1.800"/><rect x="4" y="13" width="7" height="7" rx="1.800"/><rect x="13" y="13" width="7" height="7" rx="1.800"/>')]
     ];
-    var ph = box.querySelector('[data-nd-panel="houses"]'); if (ph) ph.hidden = false;
-    tabs.innerHTML = defs.map(function (t) { return '<button type="button" role="tab" data-nd-tab="' + t[0] + '" aria-selected="' + (t[0] === 'houses') + '">' + t[2] + '<span>' + t[1] + '</span></button>'; }).join('');
+    var first = known ? 'houses' : 'planets';
+    if (!known) defs = defs.filter(function (t) { return t[0] !== 'houses'; });
+    var ph = box.querySelector('[data-nd-panel="' + first + '"]'); if (ph) ph.hidden = false;
+    tabs.innerHTML = defs.map(function (t) { return '<button type="button" role="tab" data-nd-tab="' + t[0] + '" aria-selected="' + (t[0] === first) + '">' + t[2] + '<span>' + t[1] + '</span></button>'; }).join('');
   }
 
   function render(S) {

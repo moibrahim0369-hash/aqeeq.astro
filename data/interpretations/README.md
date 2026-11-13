@@ -39,10 +39,13 @@
 | aspect | `natal.aspect.<أول>.<نوع>.<ثاني>` والحقل `aspect = "<نوع>.<ثاني>"` | ملف الكوكب الأول | أكورديون "الجوانب" تحت كل من الكوكبين |
 | angle | `natal.angle.<asc/dsc/mc/ic>.<sign>` | `asc.json` ... | مجموعة "الزوايا" |
 
+| house_cusp | `natal.house_cusp.house<1..12>.<sign>` (144) | `house_cusp.json` (body = `house_cusp`, مع `house` و`sign`) | داخل أكورديون البيت: "برج رأس البيت"، وهو نص البيت الخالي من الكواكب |
+| sign_only | `natal.sign_only.<planet>.<sign>` (120: الكواكب العشرة × 12) | `<planet>.json` (مع `sign`) | الميلاد بلا ساعة: الكوكب في برجه بدون بيت. نص مستقل لا يشير إلى بيت |
+
 - bodies: sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, north_node, south_node, lilith, fortune.
 - العقد/ليليث/نقطة الحظ: طبقة core بالبيت، وتظهر في مجموعة "العقد القمرية والنقاط الحساسة".
 - الأبراج: aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces.
 - الجوانب: conjunction sextile square trine opposition، والجسم الأول هو الأسبق في الترتيب (sun, moon, mercury ...).
 - `_manifest.json`: قائمة كل المفاتيح المطلوبة (617) وأين تُكتب وأين تظهر وحالتها. أعد توليده بـ `node scripts/gen-interpretation-manifest.js`.
 - المكان الفارغ يظهر في الصفحة كخانة منقّطة بمفتاحه ما دام `SHOW_EMPTY_SLOTS = true` في `assets/js/interpretation-library.js`؛ اقلبه إلى false عند الإطلاق.
-- وقت الميلاد المجهول: لا بيوت ولا زوايا، تظهر رسالة.
+- وقت الميلاد المجهول: لا بيوت ولا زوايا ولا أي ذكر لبيت. يظهر قسم "الكواكب في أبراجها" بنصوص `sign_only` + الرجعية + الجوانب، وفي آخره جملة واحدة هادئة تدعو لإضافة الساعة.
