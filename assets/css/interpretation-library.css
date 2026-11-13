@@ -46,3 +46,4 @@ details[open]>summary .il-chev{transform:rotate(180deg)}
 
 .il-list{display:grid;gap:10px}
 .il-gt{margin:18px 0 10px}
+.il-blend{margin-top:12px}.il-blend .il-entry+.il-entry{margin-top:10px}

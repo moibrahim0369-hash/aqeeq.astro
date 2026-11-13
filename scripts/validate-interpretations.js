@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* يفحص data/interpretations/*.json: الهيكل، صحة المفتاح لكل طبقة، التفرّد، واكتمال المعتمد.
-   الطبقات: core, sign_tint, modifier, aspect, angle, house_cusp, sign_only (انظر README). */
+   الطبقات: core, sign_tint, modifier, aspect, angle, house_cusp, sign_only, stellium, house_blend (انظر README). */
 const fs = require('fs');
 const path = require('path');
 const dir = path.join(__dirname, '..', 'data', 'interpretations');
@@ -46,6 +46,19 @@ function expectedId(o, at) {
       if (!PLANETS.includes(o.body)) return bad('body غير معروف');
       if (!SIGNS.includes(o.sign)) return bad('sign');
       return `natal.sign_only.${o.body}.${o.sign}`;
+    case 'stellium':
+      if (o.body !== 'stellium') return bad('body يجب أن يكون stellium');
+      if (o.house != null) {
+        if (!Number.isInteger(o.house) || o.house < 1 || o.house > 12) return bad('house');
+        return `natal.stellium.house${o.house}`;
+      }
+      if (!SIGNS.includes(o.sign)) return bad('sign أو house مطلوب');
+      return `natal.stellium.${o.sign}`;
+    case 'house_blend':
+      if (o.body !== 'house_blend') return bad('body يجب أن يكون house_blend');
+      if (!PLANETS.includes(o.planet)) return bad('planet');
+      if (!Number.isInteger(o.house) || o.house < 1 || o.house > 12) return bad('house');
+      return `natal.house_blend.${o.planet}.house${o.house}`;
     case 'angle':
       if (!ANGLES.includes(o.body)) return bad('body غير معروف');
       if (!SIGNS.includes(o.sign)) return bad('sign');

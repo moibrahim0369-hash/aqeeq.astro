@@ -41,6 +41,8 @@
 
 | house_cusp | `natal.house_cusp.house<1..12>.<sign>` (144) | `house_cusp.json` (body = `house_cusp`, مع `house` و`sign`) | داخل أكورديون البيت: "برج رأس البيت"، وهو نص البيت الخالي من الكواكب |
 | sign_only | `natal.sign_only.<planet>.<sign>` (120: الكواكب العشرة × 12) | `<planet>.json` (مع `sign`) | الميلاد بلا ساعة: الكوكب في برجه بدون بيت. نص مستقل لا يشير إلى بيت |
+| stellium | `natal.stellium.house<1..12>` و`natal.stellium.<sign>` (24) | `stellium.json` (body = `stellium`؛ `house` للبيت و`sign` للبرج، والآخر null) | يظهر فقط حين يجتمع 3 كواكب فأكثر في بيت واحد (أعلى أكورديون البيت) أو برج واحد (تبويب الكواكب). نص واحد للتجمّع كله، بلا أسماء كواكب |
+| house_blend | `natal.house_blend.<planet>.house<1..12>` (120: الكواكب العشرة × 12) | `house_blend.json` (body = `house_blend`، مع `planet` و`house`) | قراءة البيت الموحّدة: تظهر بعد نص رأس البيت كقراءة واحدة متصلة من إسهامات كواكب البيت، بلا اسم أي كوكب ولا بطاقات منفصلة. كل نص يُكتب بحيث يتصل بما قبله وما بعده. كروت الكواكب نفسها (core + sign_tint + retrograde) تبقى في نافذة الكوكب فقط |
 
 - bodies: sun, moon, mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, north_node, south_node, lilith, fortune.
 - العقد/ليليث/نقطة الحظ: طبقة core بالبيت، وتظهر في مجموعة "العقد القمرية والنقاط الحساسة".
