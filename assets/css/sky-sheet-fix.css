@@ -15,3 +15,4 @@ html body .swp-sheet .swp-body:not(#_a):not(#_b){padding-top:6px!important}
 /* الشريط العلوي: يفضل ثابت وواضح وقت فتح الشاشة بدون تمويه */
 html body:has(.swp-sheet) .aqh-header:not(#_a):not(#_b){-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:#F4EBDA!important;box-shadow:none!important}
 html body .swp-sheet .swp-story:empty:not(#_a){display:none!important}
+@media(min-width:821px){html body .swp-sheet .aqm-sheet-panel:not(#_a):not(#_b):not(#_c):not(#_d){left:0!important;right:0!important;transform:none!important;margin-inline:auto!important;width:min(720px,calc(100% - 32px))!important;max-width:720px!important;border-radius:24px!important;bottom:4vh!important;max-height:88vh!important;border-bottom:1.3px solid rgba(210,174,108,.9)!important}}
