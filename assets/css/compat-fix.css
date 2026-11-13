@@ -14,3 +14,13 @@ html body #compat .lpa-sum .lpa-ic svg{width:24px;height:24px;stroke:#7A2E48;col
 html body #compat .lpa-sum .lpa-t:not(#_a):not(#_b){flex:1;min-width:0;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;text-align:start;font:700 1.02rem/1.5 'Amiri',serif!important;color:#4A1224!important;display:block}
 html body #compat .lpa-sum .lpa-sub:not(#_a){flex:none;font:500 .76rem/1.4 'Cairo',sans-serif;color:#8a6a4a;max-width:38%;text-align:end}
 html body #compat details.lpa-card .lpa-body{padding:12px 14px 14px;font-size:.95rem;line-height:1.95;color:#3a2a22}
+/* منع تكرار العنوان والتواريخ: كارت الملخص فوق كفاية */
+html body #compat .cp-result-head h3:not(#_a):not(#_b),html body #compat .cp-result-head .cp-meta:not(#_a):not(#_b),html body #compat .cp-result-head>span:not(#_a):not(#_b){display:none!important}
+html body #compat .cp-result-head:not(#_a):not(#_b){padding:4px 2px 10px!important;margin:0 0 8px!important;border:0!important;background:none!important}
+/* نصوص باهتة: غامقة وواضحة */
+html body #compat .cp-gender-meta:not(#_a):not(#_b),html body #compat .cp-section-caption:not(#_a):not(#_b){color:#6B5446!important;font-size:.82rem!important}
+html body #compat .cp-res .cp-note,html body #compat .cp-res small,html body #compat .cp-res .cp-foot,html body #compat .cp-res>p:last-child,html body #compat .cp-disclaimer:not(#_a){color:#6B5446!important}
+html body #compat .cp-indicators article:not(#_a):not(#_b){background:#FFFDF7!important;border:1px solid #D2AE6C!important;border-radius:14px;padding:10px 12px!important}
+html body #compat .cp-indicators strong:not(#_a):not(#_b){color:#4A1224!important;font-size:.9rem!important}
+html body #compat .cp-indicators span:not(#_a):not(#_b){display:inline-block;margin-top:4px;padding:2px 10px;border-radius:99px;background:#F4E6C6;color:#6A2038!important;font:700 .78rem/1.6 'Cairo',sans-serif!important}
+html body #compat .chart-summary-meta:not(#_a):not(#_b){color:#4A3028!important}
