@@ -227,6 +227,19 @@
       if (en) ageLabels += `<text x="${r2(pe[0])}" y="${r2(pe[1])}" class="aqm-svg-age-energy" data-age="${y}">${en}</text>`;
     }
 
+    // مصفوفة الشراكة: أرقام الأعمار كل 10 سنين خارج الحلقة + 7 محطات بين كل ركنين داخلها
+    if (P.pairAges) {
+      ageLabels = '';
+      for (let y = 0; y < 80; y += 10) {
+        const p = polar(378, ageDeg(y));
+        ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-label">${y === 0 ? '0/80' : y}</text>`;
+      }
+      P.pairAges.forEach(a => {
+        const p = polar(312, ageDeg(a.age));
+        ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-energy aqm-svg-age-station" data-age="${a.age}">${a.value}</text>`;
+      });
+    }
+
     // أسهم خطوط الأسلاف (خط الأب: F → H، خط الأم: G → I)
     const [fatherA, fatherB] = shorten(pos.northWest, pos.southEast, 26);
     const [motherA, motherB] = shorten(pos.northEast, pos.southWest, 26);
@@ -264,6 +277,7 @@
           svg.aqm-svg .aqm-svg-money-channel { stroke: #C5A46D; stroke-width: 1.5; stroke-dasharray: 2, 6; stroke-linecap: round; fill: none; }
           svg.aqm-svg .aqm-svg-age-label { fill: #5E4A52; font-size: 13px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
           svg.aqm-svg .aqm-svg-age-energy { fill: #8B263E; font-size: 15px; font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+          svg.aqm-svg .aqm-svg-age-station { font-size: 11px; font-weight: 700; }
           svg.aqm-svg .aqm-svg-watermark { fill: #B89758; opacity: 0.17; font-size: 22px; font-weight: 700; text-anchor: end; letter-spacing: .5px; pointer-events: none; }
           svg.aqm-svg .aqm-svg-money-sign { fill: #5E7D52; font-size: 18px; font-weight: 700; }
           svg.aqm-svg .aqm-node-bg { fill: #FFFFFF; stroke: #C5A46D; stroke-width: 1.5; }
