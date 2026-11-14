@@ -296,11 +296,14 @@
     var name = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || (u.email || '').split('@')[0] || 'حسابك';
     var pn = $('#account-profile-completion'), home = $('#acct-user');
     if (pn && home && host.contains(pn)) home.appendChild(pn);
-    var inSub = ST.view && !ST.view.set;
-    host.innerHTML = '<div class="yp yp-t-' + curTab() + '"><div class="yp-bg" aria-hidden="true"><svg width="100%" height="100%" viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9A4A32" stroke-width="1">' + (BGART[curTab()] || '') + '</svg></div>' +
-      '<header class="yp-head"><div class="yp-who"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' +
+    var inSub = ST.view && !ST.view.set, cur = curTab(), tt = TABS.filter(function (x) { return x[0] === cur; })[0];
+    var barT = inSub ? (ST.view.cyc ? 'تفاصيل الدورة' : ST.view.dom ? (domOf(ST.view.dom) || {}).t || 'المجال' : 'صفة في نمطك') : tt[1];
+    var ARR = SVG('<path d="M9 6l6 6-6 6"/>');
+    var who = cur === 'settings' ? '<div class="yp-who yp-who-card"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' : '';
+    host.innerHTML = '<div class="yp yp-t-' + cur + (inSub ? ' yp-sub' : '') + '"><div class="yp-bg" aria-hidden="true"><svg width="100%" height="100%" viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9A4A32" stroke-width="1">' + (BGART[cur] || '') + '</svg></div>' +
+      '<header class="yp-bar"><button type="button" class="yp-bar-b" ' + (inSub ? 'data-back' : 'data-home') + ' aria-label="رجوع">' + ARR + '</button><h1>' + esc(barT) + '</h1>' +
       '<a class="yp-gear" href="#chart" aria-label="الخريطة">' + SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.500"/><path d="M12 3v5.500M12 15.500V21M4.200 7.500l4.700 2.700M15.100 13.800l4.700 2.700M4.200 16.500l4.700-2.700M15.100 10.200l4.700-2.700"/>') + '<span>الخريطة</span></a></header>' +
-      tabsHtml() + (inSub ? '' : pageHead()) +
+      (inSub ? '' : tabsHtml() + '<p class="yp-sub1">' + tt[3] + '</p>' + who) +
       '<div class="yp-body">' + (ST.view && ST.view.set ? settingsHtml() : bodyHtml()) + '</div></div>';
     if (ST.view && ST.view.set) {
       var slot = $('#yp-prof-slot');
@@ -333,7 +336,8 @@
     ST.date = dt.getTime(); ttClose(); render();
   });
   document.addEventListener('click', function (e) {
-    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout],#for-you [data-read],#for-you [data-save],#for-you [data-share]'); if (!t) return;
+    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-home],#for-you [data-all],#for-you [data-set],#for-you [data-signout],#for-you [data-read],#for-you [data-save],#for-you [data-share]'); if (!t) return;
+    if (t.hasAttribute('data-home')) { if (history.length > 1) history.back(); else location.hash = ''; return; }
     if (t.hasAttribute('data-save')) { var sid = t.getAttribute('data-save'), L = saved(), k = L.indexOf(sid); if (k >= 0) L.splice(k, 1); else L.push(sid); try { localStorage.setItem(SAVE_KEY, JSON.stringify(L)); } catch (x) {} render(); return; }
     if (t.hasAttribute('data-share')) { var tt = t.getAttribute('data-share') + ' — عقيق أسترو'; try { if (navigator.share) navigator.share({ title: tt, url: location.origin + location.pathname }); else if (navigator.clipboard) { navigator.clipboard.writeText(tt + ' ' + location.origin + location.pathname); t.querySelector('span').textContent = 'تم النسخ'; } } catch (x) {} return; }
     if (t.hasAttribute('data-read')) {
