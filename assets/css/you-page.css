@@ -221,9 +221,9 @@ html:has(#for-you.yp-on:target) footer.foot,html:has(#for-you.yp-on:target) .fc-
 section#for-you{scrollbar-width:none}section#for-you::-webkit-scrollbar{display:none}
 
 /* ===== الهوية الجديدة: رملي/طوبي/عنابي، تابات زجاجية، عناوين كبيرة، خلفية حية ===== */
-html body section#for-you.yp-on:not(#_a),html body section#for-you.yp-on:target:not(#_a){background:radial-gradient(520px 420px at 100% 0,rgba(181,83,47,.40),transparent 70%),radial-gradient(460px 520px at 0 38%,rgba(107,31,46,.24),transparent 72%),radial-gradient(560px 460px at 100% 100%,rgba(201,156,98,.38),transparent 70%),linear-gradient(180deg,#F7ECD6,#F1E2C6 62%,#E9D3AE)!important;background-attachment:fixed!important}
+html body section.sec#for-you.yp-on:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e),html body section.sec#for-you.yp-on:target:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){background-color:#F1E2C6!important;background-image:radial-gradient(520px 420px at 100% 0,rgba(181,83,47,.34),transparent 70%),radial-gradient(460px 520px at 0 42%,rgba(107,31,46,.20),transparent 72%),radial-gradient(560px 460px at 100% 100%,rgba(201,156,98,.38),transparent 70%),linear-gradient(180deg,#F7ECD6,#F1E2C6 62%,#E9D3AE)!important;background-attachment:scroll!important;background-size:auto!important;background-repeat:no-repeat!important}
 html body section#for-you .yp:not(#_a){position:relative;--cream:#F3E8D2;--line:#D9C8AB;--ink:#3A2A26;--brick:#B5532F;isolation:isolate}
-html body section#for-you .yp-bg:not(#_a){position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9}
+html body section#for-you .yp-bg:not(#_a){position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.32;overflow:hidden}
 html body section#for-you .yp-bg svg:not(#_a){width:100%;height:100%}
 html body section#for-you .yp-head:not(#_a){position:relative;z-index:1}
 /* التابات الزجاجية بأيقونات */
@@ -276,3 +276,11 @@ html body .yp-nfp-i svg:not(#_a){width:20px;height:20px}
 html body #yp-nfp .yp-btn:not(#_a){width:100%}
 html body .yp-nf-pv:not(#_a){justify-self:start}
 html body #yp-nfp .yp-btn:not(#_a):not(#_b){display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;border:0;border-radius:999px;background:linear-gradient(180deg,#8A3A2A,#6B1F2E)!important;color:#FBF5EA!important;font:700 1rem 'Cairo',sans-serif;cursor:pointer;margin-top:6px}
+
+/* بطاقات معتمة (لا خطوط خلفية تظهر من خلفها) وإخفاء مستطيل شريط البطاقات الفاتح */
+html body section#for-you .yp-cy:not(#_a):not(#_b),html body section#for-you .yp-dom:not(#_a):not(#_b),html body section#for-you .yp-pl:not(#_a):not(#_b),html body section#for-you .yp-txt:not(#_a):not(#_b),html body section#for-you .yp-set-row:not(#_a):not(#_b){background:linear-gradient(180deg,#F5EAD3,#EBD8B8)!important}
+html body section#for-you .yp-cy.up:not(#_a):not(#_b){background:linear-gradient(135deg,#6B1F2E,#4a1521)!important}
+html body section#for-you .yp-lens:not(#_a):not(#_b){background:none!important;box-shadow:none!important;border:0!important}
+html body section#for-you .yp-tabs:not(#_a):not(#_b){background:rgba(250,240,220,.78)!important;border-color:rgba(255,255,255,.7)!important}
+html body section#for-you .yp-lc:not(#_a):not(#_b){box-shadow:0 4px 10px rgba(74,21,33,.18)!important}
+html body section#for-you .yp-lens:not(#_a):not(#_b){padding:2px 2px 12px!important}
