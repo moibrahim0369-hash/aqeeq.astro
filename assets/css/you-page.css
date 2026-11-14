@@ -165,3 +165,29 @@ html body section#for-you .yp-tt-l:not(#_a){min-height:40px;font-size:.82rem}
 html body section#for-you .yp-gear:not(#_a){width:auto;height:40px;padding:0 14px 0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;flex:none;font:700 .85rem 'Cairo',sans-serif}
 html body section#for-you .yp-gear span:not(#_a){line-height:1}
 section#for-you.yp-on .aq-related{display:none!important}
+
+/* تفاصيل الدورة: سطر فلكي، مراحل، زر القراءة */
+.yp-al{color:#7a5a4c;font-size:.84rem}
+.yp-ph{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.yp-ph>div{padding:10px 8px;border-radius:14px;background:#F6EEDF;border:1px solid var(--line);text-align:center;display:grid;gap:2px}
+.yp-ph b{color:var(--wine);font:700 .88rem 'Cairo',sans-serif}.yp-ph small{color:#7a5a4c;font-size:.72rem;line-height:1.5}
+.yp-hd{display:block;color:var(--wine);font:700 1.05rem/1.8 'Amiri','Cairo',serif}
+.yp-cta{display:block;width:100%;min-height:50px;margin-top:6px;border:0;border-radius:999px;background:linear-gradient(135deg,#7f3a52,#542033);color:#fff;font:700 1rem 'Cairo',sans-serif;cursor:pointer;box-shadow:0 8px 20px rgba(74,21,33,.25)}
+/* قارئ الرؤية: شريحة لكل فقرة */
+html.yp-rd-open{overflow:hidden}
+.yp-rd{position:fixed;inset:0;z-index:3000;display:flex;flex-direction:column;background:linear-gradient(170deg,#4a1a2b,#2a0f19);color:#fff;padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.yp-rd-top{display:flex;align-items:center;gap:12px}
+.yp-rd-x{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer}
+.yp-rd-x svg{width:20px;height:20px}
+.yp-rd-k{min-width:0}.yp-rd-k small{display:block;color:rgba(255,255,255,.7);font-size:.74rem}.yp-rd-k b{display:block;font:700 1rem/1.5 'Amiri','Cairo',serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yp-rd-track{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:14px -16px 0}
+.yp-rd-track::-webkit-scrollbar{display:none}
+.yp-rd-s{flex:0 0 100%;scroll-snap-align:center;padding:10px 26px;overflow-y:auto;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.yp-rd-s i{font-style:normal;color:#e6c995;font:700 .78rem 'Cairo',sans-serif}
+.yp-rd-s h4{margin:0;font:700 1.45rem/1.5 'Amiri','Cairo',serif;color:#f3dcc0}
+.yp-rd-s p{margin:0;font:400 1.02rem/2.1 'Cairo',sans-serif;color:rgba(255,255,255,.94)}
+.yp-rd-dots{display:flex;justify-content:center;gap:6px;margin:10px 0}
+.yp-rd-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3)}.yp-rd-dots span.on{background:#e6c995;width:20px;border-radius:6px}
+.yp-rd-nav{display:flex;gap:10px}
+.yp-rd-nav button{flex:1;min-height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font:700 .95rem 'Cairo',sans-serif;cursor:pointer}
+.yp-rd-nav .go{background:#f3dcc0;color:#4a1a2b;border-color:#f3dcc0}

@@ -7,6 +7,7 @@
   var DOMAINS = [
     { id: 'love', t: 'علاقاتك', s: 'الجذب والقرب وما يخصّ شريكك', i: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>' },
     { id: 'self', t: 'هويتك ومصيرك', s: 'من أنت وإلى أين تمضي', i: '<circle cx="12" cy="8" r="3.500"/><path d="M5 20a7 7 0 0 1 14 0"/>' },
+    { id: 'growth', t: 'نموك وصلابتك', s: 'ما يختبرك ويقوّيك مع الوقت', i: '<path d="M12 21V9"/><path d="M12 13c0-3 2-5 6-5 0 3-2 5-6 5z"/><path d="M12 16c0-2.500-1.800-4-5-4 0 2.500 1.800 4 5 4z"/>' },
     { id: 'work', t: 'عملك وبيتك', s: 'مسارك المهني وأمانك الداخلي', i: '<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/>' }
   ];
   var ST = { all: false, tab: 'lens', year: new Date().getFullYear(), view: null, memo: null };
@@ -49,9 +50,59 @@
     var frac = up ? 0.12 : Math.min(1, Math.max(0.05, (now - c.start) / (c.end - c.start))), R = 38, L = 2 * Math.PI * R;
     return '<div class="yp-ring' + (up ? ' up' : '') + '"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="bg" cx="50" cy="50" r="' + R + '"/><circle class="fg" cx="50" cy="50" r="' + R + '" stroke-dasharray="' + (L * frac).toFixed(1) + ' ' + L.toFixed(1) + '" transform="rotate(-90 50 50)"/></svg><span><i>' + (up ? 'بعد' : 'باقي') + '</i><b>' + n + '</b><i>' + u + '</i></span></div>';
   }
+
+  /* عناوين وصفية للدورات: طبيعة الكوكب العابر + مجال النقطة المتأثرة */
+  var TH = {
+    jupiter: { conj: 'بداية تتّسع', soft: 'باب مفتوح', hard: 'حماس يتجاوز حدّه' },
+    saturn: { conj: 'لحظة جدّية', soft: 'ثبات يُبنى', hard: 'اختبار للصبر' },
+    uranus: { conj: 'تغيير مفاجئ', soft: 'تحرّر مما اعتدته', hard: 'تمرّد على الثابت' },
+    neptune: { conj: 'ضباب يطلب وضوحًا', soft: 'حدس يزداد', hard: 'وهم يُختبر' },
+    pluto: { conj: 'إعادة بناء من الجذور', soft: 'قوة هادئة تتشكّل', hard: 'مواجهة ما تخفيه' },
+    truenode: { conj: 'اتجاه جديد', hard: 'شدّ بين القديم والجديد' },
+    chiron: { conj: 'جرح يطلب الالتفات', soft: 'شفاء بطيء', hard: 'حساسية قديمة تُستثار' }
+  };
+  var AREA = { sun: 'هويتك', moon: 'مشاعرك', mercury: 'تفكيرك', venus: 'علاقاتك وما تحب', mars: 'دافعك', jupiter: 'ثقتك وتوسّعك', saturn: 'مسؤولياتك', asc: 'حضورك أمام الناس', mc: 'مسارك المهني', desc: 'شريكك', ic: 'بيتك وجذورك' };
+  function titleOf(c) {
+    var cls = c.asp === 'conj' ? 'conj' : (c.asp === 'sext' || c.asp === 'tri' ? 'soft' : 'hard'), t = TH[c.t] || {};
+    return (t[cls] || t.hard || t.conj || 'دورة مؤقتة') + ' في ' + (AREA[c.n] || c.nn);
+  }
+  function astroLine(c) { return c.tn + ' ' + c.an + ' ' + c.nn + ' في خريطتك'; }
+  function slidesOf(text) {
+    return String(text || '').split(/\n\n+/).map(function (p) {
+      var m = /^\*\*(.+?)\*\*\n?([\s\S]*)$/.exec(p.trim()); return m ? { t: m[1], b: m[2].trim() } : { t: '', b: p.trim() };
+    }).filter(function (x) { return x.b || x.t; });
+  }
+  function readerOpen(title, kicker, text) {
+    var sl = slidesOf(text); if (!sl.length) return;
+    var old = document.getElementById('yp-reader'); if (old) old.remove();
+    var el = document.createElement('div'); el.id = 'yp-reader'; el.className = 'yp-rd'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
+    el.innerHTML = '<div class="yp-rd-top"><button type="button" class="yp-rd-x" data-rd-close aria-label="إغلاق">' + SVG('<path d="M6 6l12 12M18 6L6 18"/>') + '</button><div class="yp-rd-k"><small>' + esc(kicker) + '</small><b>' + esc(title) + '</b></div></div>' +
+      '<div class="yp-rd-track" tabindex="0">' + sl.map(function (x, i) { return '<section class="yp-rd-s"><i>' + (i + 1) + ' / ' + sl.length + '</i>' + (x.t ? '<h4>' + esc(x.t) + '</h4>' : '') + '<p>' + esc(x.b).replace(/\n/g, '<br>') + '</p></section>'; }).join('') + '</div>' +
+      '<div class="yp-rd-dots">' + sl.map(function (_, i) { return '<span' + (i === 0 ? ' class="on"' : '') + '></span>'; }).join('') + '</div>' +
+      '<div class="yp-rd-nav"><button type="button" data-rd="1">السابق</button><button type="button" data-rd="-1" class="go">التالي</button></div>';
+    document.body.appendChild(el); document.documentElement.classList.add('yp-rd-open');
+    var tr = el.querySelector('.yp-rd-track'), dots = el.querySelectorAll('.yp-rd-dots span');
+    function idx() { return Math.round(Math.abs(tr.scrollLeft) / tr.clientWidth); }
+    tr.addEventListener('scroll', function () { var k = idx(); dots.forEach(function (d, j) { d.classList.toggle('on', j === k); }); });
+    el.addEventListener('click', function (e) {
+      if (e.target.closest('[data-rd-close]')) { readerClose(); return; }
+      var b = e.target.closest('[data-rd]'); if (!b) return;
+      var k = Math.min(sl.length - 1, Math.max(0, idx() + (b.getAttribute('data-rd') === '-1' ? 1 : -1)));
+      tr.scrollTo({ left: -k * tr.clientWidth, behavior: 'smooth' });
+    });
+  }
+  function readerClose() { var el = document.getElementById('yp-reader'); if (el) el.remove(); document.documentElement.classList.remove('yp-rd-open'); }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') readerClose(); });
+  window.addEventListener('hashchange', readerClose);
+  function phases(c) {
+    var pk = c.peaks[0], a = pk ? pk.a : (c.start + c.end) / 2, b = pk ? Math.max(pk.b, a) : a;
+    return '<div class="yp-ph">' + [['الاقتراب', c.start, a], ['الذروة', a, b], ['الانحسار', b, c.end]].map(function (x) {
+      return '<div><b>' + x[0] + '</b><small>' + fmtM(x[1]) + (x[2] - x[1] > 20 * DAY ? ' – ' + fmtM(x[2]) : '') + '</small></div>';
+    }).join('') + '</div>';
+  }
   function cardHtml(c, up) {
     var peak = c.peaks[0] ? 'ذروتها: ' + fmtM(c.peaks[0].a) : '';
-    return '<button type="button" class="yp-cy' + (up ? ' up' : '') + '" data-cyc="' + esc(c.id + '|' + c.start) + '"><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><span class="yp-cy-t"><b>دورة ' + c.tn + ' مع ' + c.nn + '</b><small>' + fmtM(c.start) + ' – ' + fmtM(c.end) + '</small><small>' + peak + '</small></span>' + ring(c, up) + '</button>';
+    return '<button type="button" class="yp-cy' + (up ? ' up' : '') + '" data-cyc="' + esc(c.id + '|' + c.start) + '"><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><span class="yp-cy-t"><b>' + esc(titleOf(c)) + '</b><small>' + fmtM(c.start) + ' – ' + fmtM(c.end) + '</small><small>' + peak + '</small></span>' + ring(c, up) + '</button>';
   }
   function cyclesHtml(list, cap) {
     var s = split(list), h = '';
@@ -153,17 +204,21 @@
     if (v && v.set) return settingsHtml();
     if (v && v.cyc) {
       list = allCycles() || []; var c = list.filter(function (x) { return x.id + '|' + x.start === v.cyc; })[0];
-      if (c) return back('رجوع') + '<div class="yp-det"><small>' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small><h3>دورة ' + c.tn + ' مع ' + c.nn + '</h3><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span>' +
-        '<div class="yp-meta"><div><i>المدة</i><b>' + Math.max(1, Math.round((c.end - c.start) / MONTH)) + ' شهر</b><i>ذروة التأثير</i>' + (c.peaks.length ? c.peaks.map(function (p) { return '<b>' + fmtM(p.a) + (p.b - p.a > 20 * DAY ? ' – ' + fmtM(p.b) : '') + '</b>'; }).join('') : '<b>غير محددة</b>') + '</div>' + ring(c, c.start > selMs()) + '</div>' +
-        '</div>';
+      if (c) {
+        var pp0 = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === c.n; })[0], cc0 = pp0 && coreOf(pp0);
+        return back('رجوع') + '<div class="yp-det"><small>' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><h3>' + esc(titleOf(c)) + '</h3><small class="yp-al">' + esc(astroLine(c)) + '</small>' +
+          '<div class="yp-meta"><div><i>المدة</i><b>' + Math.max(1, Math.round((c.end - c.start) / MONTH)) + ' شهر</b><i>ذروة التأثير</i>' + (c.peaks.length ? c.peaks.map(function (p) { return '<b>' + fmtM(p.a) + (p.b - p.a > 20 * DAY ? ' – ' + fmtM(p.b) : '') + '</b>'; }).join('') : '<b>غير محددة</b>') + '</div>' + ring(c, c.start > selMs()) + '</div>' +
+          '<p class="yp-lab">مراحل الدورة</p>' + phases(c) +
+          (cc0 ? '<p class="yp-lab">ما تحمله ' + c.nn + ' عندك</p><div class="yp-txt"><b class="yp-hd">' + esc(headOf(cc0.e)) + '</b></div><button type="button" class="yp-cta" data-read="cyc" data-id="' + esc(c.id + '|' + c.start) + '">اقرأ الرؤية الكاملة</button>' : '') + '</div>';
+      }
     }
     if (v && v.pl) {
       var pp = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === v.id; })[0], cc = pp && coreOf(pp);
-      return back('رجوع') + '<div class="yp-det"><small>صفة ثابتة في خريطتك</small><h3>' + esc(v.pl) + (cc ? ' · البيت ' + cc.house : '') + '</h3>' + (cc ? '<div class="yp-txt il-wrap">' + window.AqeeqInterpretations.renderText(cc.e.text) + '</div>' : '') + '</div>';
+      return back('رجوع') + '<div class="yp-det"><small>صفة ثابتة في خريطتك</small><h3>' + esc(v.pl) + (cc ? ' · البيت ' + cc.house : '') + '</h3>' + (cc ? '<div class="yp-txt"><b class="yp-hd">' + esc(headOf(cc.e)) + '</b></div><button type="button" class="yp-cta" data-read="pl" data-id="' + esc(v.id) + '">اقرأ الرؤية الكاملة</button>' : '') + '</div>';
     }
     if (v && v.dom) {
       var d = domOf(v.dom); list = allCycles();
-      var mine = list ? list.filter(function (c) { return c.doms.indexOf(v.dom) >= 0; }) : [];
+      var mine = list ? list.filter(function (c) { return v.dom === 'growth' ? ['saturn', 'pluto', 'chiron', 'neptune'].indexOf(c.t) >= 0 : c.doms.indexOf(v.dom) >= 0; }) : [];
       return back('رجوع') + '<div class="yp-dh"><h3>' + d.t + '</h3><small>' + d.s + '</small></div>' + (list ? cyclesHtml(mine) : needNatal()) + (placeCards(v.dom) ? '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>' : '');
     }
     if (ST.tab === 'lens') return lensHtml();
@@ -205,7 +260,13 @@
     if (location.hash !== '#for-you') location.hash = '#for-you'; else { render(); window.scrollTo(0, 0); }
   }, true);
   document.addEventListener('click', function (e) {
-    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout]'); if (!t) return;
+    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout],#for-you [data-read]'); if (!t) return;
+    if (t.hasAttribute('data-read')) {
+      var kind = t.getAttribute('data-read'), rid = t.getAttribute('data-id'), pls = natal() ? window.AqeeqYou.placements(natal()) : [], tgt, ttl, kk;
+      if (kind === 'cyc') { var lc = (allCycles() || []).filter(function (x) { return x.id + '|' + x.start === rid; })[0]; if (!lc) return; tgt = pls.filter(function (x) { return x.id === lc.n; })[0]; ttl = titleOf(lc); kk = astroLine(lc); }
+      else { tgt = pls.filter(function (x) { return x.id === rid; })[0]; ttl = tgt ? tgt.nn + ' في ' + tgt.sign : ''; kk = 'صفة ثابتة في خريطتك'; }
+      var cx = tgt && coreOf(tgt); if (cx) readerOpen(ttl, kk, cx.e.text); return;
+    }
     if (t.hasAttribute('data-signout')) { var so = $('#acct-signout'); if (so) so.click(); return; }
     if (t.hasAttribute('data-set')) { ST.view = ST.view && ST.view.set ? null : { set: true }; ST.tries = 0; render(); window.scrollTo(0, 0); return; }
     if (t.hasAttribute('data-tab')) { ST.tab = t.getAttribute('data-tab'); ST.view = null; }
