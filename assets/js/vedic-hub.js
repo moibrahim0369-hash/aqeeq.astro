@@ -4,6 +4,28 @@
   var sec = document.getElementById('astro-maps'), content = document.getElementById('eam-content');
   if (!sec || !content) return;
   var IC = {
+    c1: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5M12 15.5v5M3.5 12h5M15.5 12h5"/>',
+    cmoon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+    csun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/>',
+    c2: '<circle cx="12" cy="12" r="8.5"/><path d="M14.5 9.2c-.4-1-1.3-1.5-2.5-1.5-1.5 0-2.5.7-2.5 1.8s1 1.5 2.5 1.8 2.5.7 2.5 1.8-1 1.8-2.5 1.8c-1.2 0-2.1-.5-2.5-1.5M12 6v1.7M12 16.3V18"/>',
+    c3: '<circle cx="8" cy="8" r="2.6"/><circle cx="16.5" cy="8.5" r="2.2"/><path d="M3.5 19c0-3.4 2-5.5 4.5-5.5s4.5 2.1 4.5 5.5M13.5 14.2c.9-.5 1.9-.7 3-.2 1.9.8 3 2.6 3 5"/>',
+    c4: '<path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/>',
+    c5: '<path d="M4 18l-1-9 5 4 4-7 4 7 5-4-1 9z"/><path d="M5 21h14"/>',
+    c6: '<path d="M3 19l6-10 4 6 3-4 5 8z"/>',
+    c7: '<path d="M12 20v-8"/><path d="M12 12c0-4 3-6 6.5-6 0 4-2.5 6-6.5 6z"/><path d="M12 15c0-3-2-5-5.5-5 0 3 2.2 5 5.5 5z"/>',
+    c8: '<path d="M20 11a8 8 0 0 0-14-4M4 4v4h4M4 13a8 8 0 0 0 14 4M20 20v-4h-4"/>',
+    c9: '<circle cx="9" cy="14.5" r="4.5"/><circle cx="15.5" cy="14.5" r="4.5"/><path d="M10.5 4.5l1.5-2 1.5 2-1.5 2.2z"/>',
+    c10: '<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V5.5h6V8M3 13.5h18"/>',
+    c11: '<path d="M4 17l5-5 4 3 7-8"/><path d="M15 7h5v5"/>',
+    c12: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>',
+    c16: '<path d="M6 4h12l3 5-9 11L3 9z"/><path d="M3 9h18M9 4l-2 5 5 11M15 4l2 5-5 11"/>',
+    c20: '<path d="M12 3c3 3.200 5 5.200 5 8a5 5 0 0 1-10 0c0-2.800 2-4.800 5-8z"/><path d="M12 21v-4"/>',
+    c24: '<path d="M3 5h6a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H3z"/><path d="M21 5h-6a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h7z"/>',
+    c27: '<path d="M13 3L5 13.500h6L10 21l8-10.500h-6z"/>',
+    c30: '<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
+    c40: '<circle cx="12" cy="9" r="4.500"/><path d="M12 13.500V21M8.500 18h7"/>',
+    c45: '<circle cx="10" cy="14" r="5"/><path d="M13.700 10.300L20 4M15 4h5v5"/>',
+    c60: '<path d="M12 12c-2-3-3-4-5-4a4 4 0 0 0 0 8c2 0 3-1 5-4s3-4 5-4a4 4 0 0 1 0 8c-2 0-3-1-5-4z"/>',
     birth: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5M12 15.5v5M3.5 12h5M15.5 12h5"/>',
     vargas: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 4l16 16M20 4L4 20M12 4l8 8-8 8-8-8z"/>',
     moonsun: '<path d="M15 5.5A6.5 6.5 0 1 0 15 18.5 5 5 0 0 1 15 5.5z"/><circle cx="18" cy="8" r="2"/>',
@@ -55,7 +77,7 @@
   function tilesHTML(admin) {
     var h = CHG.map(function (g) {
       return '<h5 class="vh-gh">' + g[0] + '</h5><div class="vh-cg' + ('') + '">' + g[1].map(function (k) {
-        var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-c" data-g="c:' + k + '"><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span><span class="vh-s">' + c[3] + '</span></button>';
+        var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-m" data-g="c:' + k + '"><span class="vh-ic">' + svg('c' + (k === 'moon' ? 'moon' : k === 'sun' ? 'sun' : k)) + '</span><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span><span class="vh-s">' + c[3] + '</span></button>';
       }).join('') + '</div>';
     }).join('');
     h += '<h5 class="vh-gh">الأزمنة والتنبؤ</h5><div class="vh-grid">' + TIMET.filter(function (id) { return id !== 'expert' || admin; }).map(function (id) {
