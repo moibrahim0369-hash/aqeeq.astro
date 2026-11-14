@@ -55,3 +55,20 @@ html body section#astro-maps.eam-view-result:not(#_a):not(#_b):not(#_c) #eam-exp
 #astro-maps .vh-ex-out h5:not(#_a):not(#_b){margin:14px 0 6px;color:#5A1828}
 #astro-maps .vh-ex-list:not(#_a):not(#_b){margin:0;padding:0;list-style:none;display:grid;gap:8px}
 #astro-maps .vh-ex-list li:not(#_a):not(#_b){display:grid;gap:2px;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #E6D9BC}
+
+/* آلة الزمن */
+#astro-maps .vh-tm:not(#_a):not(#_b){margin-top:14px;padding:16px;border:1px solid #D9C49A;border-radius:18px;background:linear-gradient(160deg,#FFFDF8,#F8EEDA)}
+#astro-maps .vh-tm h5:not(#_a):not(#_b){margin:0 0 6px;font-family:'Amiri',serif;font-size:1.2rem;color:#4A1A24}
+#astro-maps .vh-tm-lead:not(#_a):not(#_b){margin:0 0 12px;line-height:1.9;font-size:.9rem;color:#6B5547}
+#astro-maps .vh-tm-row:not(#_a):not(#_b){display:grid;grid-template-columns:1fr 1.6fr 1.2fr;gap:8px;margin-bottom:10px}
+#astro-maps .vh-tm-row select:not(#_a):not(#_b){min-height:46px;border:1px solid #D9C49A;border-radius:12px;background:#fff;color:#4A1A24;font:inherit;font-weight:700;padding:0 8px;width:100%}
+#astro-maps .vh-tm-go:not(#_a):not(#_b){width:100%;min-height:46px;border:0;border-radius:14px;background:linear-gradient(135deg,#7A2A40,#5A1828);color:#FFF3D6;font:inherit;font-weight:800;cursor:pointer}
+#astro-maps .vh-tm-out h6:not(#_a):not(#_b){margin:16px 0 8px;font-size:1rem;color:#5A1828}
+#astro-maps .vh-tm-dash:not(#_a):not(#_b){margin:0;padding:0;list-style:none;display:grid;gap:8px}
+#astro-maps .vh-tm-dash li:not(#_a):not(#_b){display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #E6D9BC}
+#astro-maps .vh-tm-dash span:not(#_a):not(#_b){font-size:.78rem;color:#8A6A55}
+#astro-maps .vh-tm-dash b:not(#_a):not(#_b){color:#4A1A24}
+#astro-maps .vh-tm-dash i:not(#_a):not(#_b){grid-column:1/-1;font-style:normal;font-size:.8rem;color:#7A5A48}
+#astro-maps .vh-tm-txt:not(#_a):not(#_b){line-height:2;font-size:.95rem;color:#3F2E28}
+#astro-maps .vh-tm-note:not(#_a):not(#_b){margin:12px 0 0;padding:10px 12px;border-radius:12px;background:#F4EBD6;font-size:.82rem;line-height:1.9;color:#6B5547}
+#astro-maps .vh-tm-err:not(#_a):not(#_b){color:#8E2A22}

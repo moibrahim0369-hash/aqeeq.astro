@@ -78,6 +78,63 @@
     });
     return d;
   }
+
+  /* آلة الزمن: الداشا النشطة (كبرى/صغرى/دقيقة) والعبورات الفيدية في أي تاريخ فوق خريطته */
+  var MON = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function fdt(ms) { return new Date(ms).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' }); }
+  function timeCard() {
+    var d = document.createElement('section'); d.className = 'vh-tm'; d.dataset.vhG = 'dasha year';
+    var now = new Date(), yr = now.getFullYear(), o = function (a, b) { return '<option value="' + a + '">' + b + '</option>'; }, i, days = '', mons = '', yrs = '';
+    for (i = 1; i <= 31; i++) days += o(i, i);
+    MON.forEach(function (m, k) { mons += o(k + 1, m); });
+    for (i = yr + 60; i >= 1920; i--) yrs += o(i, i);
+    d.innerHTML = '<h5>آلة الزمن</h5><p class="vh-tm-lead">اختر أي تاريخ، ماضيًا كان أو قادمًا، لترى الفترة التي كانت تعمل فيك وقتها ومواضع الكواكب فوق خريطتك.</p>' +
+      '<div class="vh-tm-row"><select class="vh-tm-d" aria-label="اليوم">' + days + '</select><select class="vh-tm-m" aria-label="الشهر">' + mons + '</select><select class="vh-tm-y" aria-label="السنة">' + yrs + '</select></div>' +
+      '<button type="button" class="vh-tm-go">اعرض هذا التاريخ</button><div class="vh-tm-out" aria-live="polite"></div>';
+    d.querySelector('.vh-tm-d').value = now.getDate(); d.querySelector('.vh-tm-m').value = now.getMonth() + 1; d.querySelector('.vh-tm-y').value = yr;
+    d.querySelector('.vh-tm-go').addEventListener('click', function () {
+      var out = d.querySelector('.vh-tm-out'), dd = +d.querySelector('.vh-tm-d').value, mm = +d.querySelector('.vh-tm-m').value, yy = +d.querySelector('.vh-tm-y').value;
+      var ms = Date.UTC(yy, mm - 1, dd, 12), chk = new Date(ms);
+      if (chk.getUTCDate() !== dd) { out.innerHTML = '<p class="vh-tm-err">هذا التاريخ غير موجود في الشهر المختار.</p>'; return; }
+      try { out.innerHTML = timeHTML(ms); } catch (e) { console.warn(e); out.innerHTML = '<p class="vh-tm-err">تعذر حساب هذا التاريخ.</p>'; }
+    });
+    return d;
+  }
+  function pick(list, ms) { for (var i = 0; i < list.length; i++) if (ms >= list[i].s && ms < list[i].e) return list[i]; return null; }
+  function timeHTML(ms) {
+    var V = window.AqVedic, VC = window.AqVedicChart, E = window.AqEam, L = V && V.last;
+    if (!V || !VC || !E || !L) return '<p class="vh-tm-err">احسب خريطتك أولًا.</p>';
+    var ch = L.ch, natal = L.natal, T = V.T, moonB = (ch.bodies || []).filter(function (b) { return String(b.key).toLowerCase() === 'moon'; })[0];
+    var birthMs = natal && isFinite(natal.utcMs) ? natal.utcMs : (ch.jde - 2440587.5) * 864e5;
+    if (ms < birthMs) return '<p class="vh-tm-err">هذا التاريخ قبل ميلادك، اختر تاريخًا بعده.</p>';
+    var ds = V.dashas(moonB.lon, birthMs), maha = pick(ds, ms);
+    if (!maha) return '<p class="vh-tm-err">هذا التاريخ خارج دورة الفترات المحسوبة (120 سنة).</p>';
+    var an = V.antars(maha), ant = pick(an, ms), pr = V.antars(ant), pra = pick(pr, ms);
+    var tch = E.engineChart(ms, natal), off = E.ayanamsa(tch.jde), norm = E.norm;
+    var lagna = ch.known ? Math.floor(ch.asc / 30) : Math.floor(moonB.lon / 30), basis = ch.known ? 'الطالع' : 'القمر';
+    var SG = T.SG, h = '';
+    h += '<h6>الفترة النشطة في ' + fdt(ms) + '</h6><ul class="vh-tm-dash"><li><span>الكبرى</span><b>' + T.LORDS[maha.lord] + '</b><i>' + fdt(maha.s) + ' إلى ' + fdt(maha.e) + '</i></li>' +
+      '<li><span>الصغرى</span><b>' + T.LORDS[ant.lord] + '</b><i>' + fdt(ant.s) + ' إلى ' + fdt(ant.e) + '</i></li>' +
+      '<li><span>الدقيقة</span><b>' + T.LORDS[pra.lord] + '</b><i>' + fdt(pra.s) + ' إلى ' + fdt(pra.e) + '</i></li></ul>';
+    h += '<p class="vh-tm-txt">' + esc(T.LT[ant.lord]) + '</p>';
+    var keys = [['sun', 'الشمس'], ['moon', 'القمر'], ['mars', 'المريخ'], ['mercury', 'عطارد'], ['jupiter', 'المشتري'], ['venus', 'الزهرة'], ['saturn', 'زحل'], ['node', 'راهو'], ['ketu', 'كيتو']], rows = '', sat = null, moonT = null, moonSign = Math.floor(moonB.lon / 30);
+    keys.forEach(function (k) {
+      var lon = null, retro = false, list = tch.bodies || [], j, kk;
+      if (k[0] === 'ketu') { for (j = 0; j < list.length; j++) { kk = String(list[j].key).toLowerCase(); if (kk === 'node' || kk === 'truenode') { lon = norm(list[j].lon + 180); break; } } retro = true; }
+      else { for (j = 0; j < list.length; j++) { kk = String(list[j].key).toLowerCase(); if (kk === k[0] || (k[0] === 'node' && (kk === 'node' || kk === 'truenode'))) { lon = list[j].lon; retro = k[0] === 'node' || !!list[j].retro; break; } } }
+      if (lon == null) return;
+      var sg = Math.floor(norm(lon - off) / 30), hs = (sg - lagna + 12) % 12, hm = (sg - moonSign + 12) % 12;
+      if (k[0] === 'saturn') sat = hm;
+      rows += '<tr><th>' + k[1] + (retro && k[0] !== 'node' && k[0] !== 'ketu' ? ' ℞' : '') + '</th><td>' + SG[sg] + '</td><td>' + (hs + 1) + '</td><td>' + (hm + 1) + '</td></tr>';
+    });
+    h += '<h6>العبورات الفيدية فوق خريطتك</h6><div class="eam-table-wrap"><table class="eam-table"><thead><tr><th>الكوكب</th><th>البرج</th><th>البيت من ' + basis + '</th><th>البيت من القمر</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    var SS = T.SS, idx = sat === 11 ? 0 : sat === 0 ? 1 : sat === 1 ? 2 : -1;
+    h += '<p class="vh-tm-txt">' + (idx >= 0 ? esc(SS[idx]) : 'في هذا التاريخ كان زحل خارج دائرة ساتي ساتي بالنسبة لقمرك.') + '</p>';
+    h += '<p class="vh-tm-note">هذه قراءة تحليلية محتملة لطاقة الفترة، وليست تنبؤًا بحدث بعينه. الفترة تُظهر المناخ العام، والعبورات تُظهر أين يضغط الوقت على خريطتك، وما يحدث فعلًا يتوقف على ظروفك وقراراتك.</p>';
+    return h;
+  }
+
   function build() {
     var result = content.querySelector('#eam-result');
     if (!result || result.hidden || !result.querySelector('#vx-vargas') || result.querySelector('.vh-grid')) return;
@@ -104,6 +161,7 @@
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
     result.insertBefore(bar, grid);
     if (sade) { sade.dataset.vhG = 'sade'; result.appendChild(sade); }
+    result.appendChild(timeCard());
     if (isAdmin()) result.appendChild(expertCard(result));
     function show(g, chart) {
       result.dataset.vh = g;
