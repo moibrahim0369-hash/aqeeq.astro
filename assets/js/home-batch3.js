@@ -128,11 +128,11 @@
       var ds = ($('#kt-date').value || '').trim();
       if (!/^\d{4}-\d{2}-\d{2}$/.test(ds)) { show('اختر اليوم والشهر والسنة كاملة.'); return; }
       var r; try { r = calcR(ds); } catch (x) { show('تعذر الحساب. راجع التاريخ.'); return; }
-      var nm = ($('#kt-name').value || '').trim(), t = r.karm;
+      var nm = ($('#kt-name').value || '').trim(), t = r.karm, LK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2.4"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>';
       out.innerHTML = '<div class="y27-rhead"><span class="y27-kick">ذيلك الكارمي' + (nm ? ' · ' + esc(nm) : '') + '</span><h3>هذه أرقام ذيلك</h3></div>' +
-        '<div class="b3-kt-tri">' + ['الجذر', 'الفرع', 'الظهور'].map(function (l, i) { return '<div class="b3-kt-n"><small>' + l + '</small><b>' + t[i] + '</b><span>' + esc(r.name(t[i])) + '</span></div>'; }).join('') + '</div>' +
+        '<div class="b3-kt-tri">' + ['الجذر', 'الفرع', 'الظهور'].map(function (l, i) { return '<div class="b3-kt-n"><i class="kt-step">' + (i + 1) + '</i><small>' + l + '</small><b>' + t[i] + '</b><span>' + esc(r.name(t[i])) + '</span></div>'; }).join('') + '</div>' +
         '<div class="y27-about"><p>' + esc(r.name(t[0])) + ' هو أول الخيط عندك. منه يبدأ الدرس الذي تعود إليه، ثم يتفرع في ' + esc(r.name(t[1])) + '، ويظهر في سلوكك اليومي بصورة ' + esc(r.name(t[2])) + '.</p></div>' +
-        '<div class="b3-lock"><b>ما لا يظهر هنا</b><p>من أين جاء هذا الدرس، وكيف يلمس علاقاتك ومالك وقراراتك، ثم روشتة عملية للتخفف من ثقله.</p><div class="b3-acts"><a class="b3-b1" href="#pay">افتح التقرير الكامل</a><a class="b3-b2" href="#pay">تحميل PDF</a></div></div>';
+        '<div class="b3-lock kt-lock"><div class="kt-lock-h"><span class="kt-lk kt-lk-big">'+LK+'</span><b>ما لا يظهر هنا</b></div><ul class="kt-rows"><li><span class="kt-lk">'+LK+'</span><b>من أين جاء هذا الدرس</b></li><li><span class="kt-lk">'+LK+'</span><b>كيف يلمس علاقاتك</b></li><li><span class="kt-lk">'+LK+'</span><b>كيف يلمس مالك</b></li><li><span class="kt-lk">'+LK+'</span><b>كيف يلمس قراراتك</b></li><li><span class="kt-lk">'+LK+'</span><b>روشتة عملية للتخفف من ثقله</b></li></ul><p class="kt-pdf">يصلك التقرير الكامل بصيغة PDF بعد الدفع.</p><div class="b3-acts"><a class="b3-b1" href="#pay">افتح التقرير الكامل</a><a class="b3-b2" href="#pay">تحميل PDF</a></div></div>';
       out.hidden = false; sec.classList.add('y27-has'); try { sec.scrollTo({ top: 0, behavior: 'smooth' }); } catch (x) {}
     });
     $('#kt-edit').addEventListener('click', function () { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); });
