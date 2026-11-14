@@ -23,6 +23,20 @@
     ['year', 'قراءة السنة', 'ما تعيشه الآن'],
     ['expert', 'وضع الخبير', 'ملاحظات خاصة بك وحدك']
   ];
+  var TARGET = null;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a) TARGET = a.getAttribute('data-vh') || null;
+  }, true);
+  (function cards() {
+    var first = document.querySelector('a.rh-card[data-am="sidereal"]'); if (!first) return;
+    var grid = first.parentNode, wrap = document.createElement('div');
+    wrap.innerHTML = '<h3 class="rh-sub"><span>الفلك الفيدي: كل قسم وحده</span></h3><div class="rh-grid rh-grid-w">' +
+      TILES.filter(function (t) { return t[0] !== 'expert'; }).map(function (t) {
+        return '<a class="rh-card" href="#astro-maps" data-am="sidereal" data-vh="' + t[0] + '"><span class="rh-ico">' + svg(t[0]) + '</span><h3>' + t[1] + '</h3><p>' + t[2] + '</p><span class="rh-go">افتح ←</span></a>';
+      }).join('') + '</div>';
+    var ref = grid.nextSibling; while (wrap.firstChild) grid.parentNode.insertBefore(wrap.firstChild, ref);
+  })();
   function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
   function groupOf(t) {
     if (/عجلة|جدول|اتصال/.test(t)) return 'birth';
@@ -85,9 +99,9 @@
           var n = EXPERT_N[k], v = VC.VARGAS.filter(function (x) { return x[0] === n; })[0], map = VC.build(L.ch, n), rows = '';
           map.items.forEach(function (it) {
             var t = tbl[it.key] && tbl[it.key][it.house + 1];
-            if (t) { found++; var cs = VC.codesFor(map, it).map(function (c) { return '<em class="vc-code">[' + c + ']</em>'; }).join(''); rows += '<li><b>' + esc(it.name) + ' في البيت ' + (it.house + 1) + cs + '</b><span>' + esc(t) + '</span></li>'; }
+            if (t) { found++; var cs = VC.codesFor(map, it).map(function (c) { return '<em class="vc-code">[' + c + ']</em>'; }).join(''); rows += '<li><div class="vh-ex-h"><b>' + esc(it.name) + '</b><i>البيت ' + (it.house + 1) + '</i>' + cs + '</div><span>' + esc(t) + '</span></li>'; }
           });
-          if (rows) html += '<h5>' + esc(v ? v[1] + ' · ' + v[2] : k) + '</h5><ul class="vh-ex-list">' + rows + '</ul>';
+          if (rows) html += '<details class="vh-ex-acc"' + (html ? '' : ' open') + '><summary><span>' + esc(v ? v[1] + ' · ' + v[2] : k) + '</span><em>' + map.items.filter(function (it) { return tbl[it.key] && tbl[it.key][it.house + 1]; }).length + '</em></summary><ul class="vh-ex-list">' + rows + '</ul></details>';
         });
         out.innerHTML = found ? html : '<p>لا توجد ملاحظات تنطبق على هذه الخريطة بعد.</p>';
       }, function () { out.textContent = 'تعذر فتح الملاحظات الآن.'; });
@@ -212,7 +226,9 @@
     var first = true;
     grid.addEventListener('click', function (e) { var b = e.target.closest('.vh-tile'); if (b) show(b.dataset.g); });
     bar.querySelector('.vh-back').addEventListener('click', function () { show('hub'); });
+    result.__show = show;
     show('hub');
+    if (TARGET && (TARGET !== 'sade' || sade) && (TARGET !== 'expert' || isAdmin())) { var tg = TARGET; TARGET = null; show(tg); } else TARGET = null;
     sec.classList.add('vh-on');
   }
   var timer = null;
@@ -227,7 +243,14 @@
     if (!n) return;
     filled = true; f.click();
   }
-  window.addEventListener('hashchange', function () { if (location.hash === '#astro-maps') setTimeout(prefill, 400); });
+  function go() {
+    if (!TARGET) return;
+    var r = content.querySelector('#eam-result');
+    if (r && !r.hidden && r.__show) { var tg = TARGET; TARGET = null; r.__show(tg); return; }
+    var d = document.getElementById('eam-b-date'), f = document.getElementById('eam-form');
+    if (d && d.value && f) { try { f.requestSubmit(); } catch (e) { } }
+  }
+  window.addEventListener('hashchange', function () { if (location.hash === '#astro-maps') { setTimeout(prefill, 400); setTimeout(go, 1100); } });
   document.addEventListener('DOMContentLoaded', function () { setTimeout(prefill, 1500); });
   setTimeout(prefill, 2500);
 })();
