@@ -16,3 +16,31 @@ html body section#energy-compatibility .lp-sections:not(#_a):not(#_b):not(#_c):n
 #astro-maps .vc-st:not(#_a):not(#_b){border:0;background:transparent;color:#6B3A3A;font:inherit;font-size:.86rem;font-weight:700;padding:6px 18px;border-radius:999px;cursor:pointer;min-height:34px}
 #astro-maps .vc-st.on:not(#_a):not(#_b){background:#5A1828;color:#FFF3D6}
 #astro-maps .vc-orig:not(#_a):not(#_b){font-size:.72rem;color:#9A7B55;letter-spacing:.08em;font-weight:600;direction:ltr;unicode-bidi:isolate}
+
+/* شاشة أيقونات الفلك الفيدي */
+#astro-maps .vh-grid:not(#_a):not(#_b){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 18px}
+#astro-maps .vh-tile:not(#_a):not(#_b){display:grid;justify-items:start;gap:4px;text-align:right;padding:16px 14px;border:1px solid #E3D2AE;border-radius:20px;background:linear-gradient(160deg,#FFFDF8,#F8EEDA);box-shadow:0 6px 18px rgba(90,24,40,.08);color:#4A1A24;font:inherit;cursor:pointer;min-height:136px}
+#astro-maps .vh-tile:active:not(#_a):not(#_b){transform:scale(.985)}
+#astro-maps .vh-ic:not(#_a):not(#_b){width:46px;height:46px;border-radius:14px;background:#FBF3E2;border:1px solid #E6D3A8;display:grid;place-items:center;color:#6A2038}
+#astro-maps .vh-ic svg:not(#_a):not(#_b){width:24px;height:24px}
+#astro-maps .vh-t:not(#_a):not(#_b){font-family:'Amiri',serif;font-size:1.12rem;font-weight:700;margin-top:6px}
+#astro-maps .vh-s:not(#_a):not(#_b){font-size:.8rem;line-height:1.6;color:#7A5A48}
+#astro-maps .vh-bar:not(#_a):not(#_b){display:flex;align-items:center;gap:10px;margin:8px 0 12px}
+#astro-maps .vh-back:not(#_a):not(#_b){display:inline-flex;align-items:center;gap:6px;border:1px solid #D9C49A;background:#FBF6EA;color:#5A1828;border-radius:999px;padding:7px 14px;font:inherit;font-weight:700;font-size:.86rem;cursor:pointer;min-height:36px}
+#astro-maps .vh-cur:not(#_a):not(#_b){font-family:'Amiri',serif;font-size:1.15rem;color:#4A1A24}
+#astro-maps .vh-sade:not(#_a):not(#_b){padding:16px;border:1px solid #D7E3D2;border-radius:18px;background:linear-gradient(160deg,#FBFFF8,#EEF5EA)}
+#astro-maps .vh-sade-now:not(#_a):not(#_b){margin:0 0 10px;line-height:2;font-size:1rem;color:#2D4A31}
+#astro-maps .vh-sade h5:not(#_a):not(#_b){margin:12px 0 8px;color:#5A1828;font-size:.95rem}
+#astro-maps .vh-steps:not(#_a):not(#_b){margin:0;padding:0;list-style:none;display:grid;gap:8px}
+#astro-maps .vh-steps li:not(#_a):not(#_b){padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #E6E3D4;font-size:.9rem;line-height:1.9;color:#5B5249}
+#astro-maps .vh-steps li.on:not(#_a):not(#_b){border-color:#7FA67D;background:#E4F0E1;color:#24472A}
+@media (min-width:900px){#astro-maps .vh-grid:not(#_a):not(#_b){grid-template-columns:repeat(4,minmax(0,1fr))}}
+#astro-maps #eam-result:not(#_a):not(#_b){scroll-margin-top:84px}
+
+/* بعد الحساب: لا شرح عام، المحتوى للشخص فقط */
+html body section#astro-maps.eam-view-result:not(#_a):not(#_b):not(#_c) #eam-explain{display:none!important}
+#astro-maps .vh-grid:not(#_a):not(#_b){display:flex;flex-wrap:wrap;justify-content:center}
+#astro-maps .vh-tile:not(#_a):not(#_b){flex:0 0 calc(50% - 6px)}
+@media (min-width:900px){#astro-maps .vh-tile:not(#_a):not(#_b){flex-basis:calc(25% - 9px)}}
+#astro-maps .vh-back:not(#_a):not(#_b){flex:0 0 auto;width:auto;white-space:nowrap}
+#astro-maps .vh-bar:not(#_a):not(#_b){justify-content:flex-start;flex-wrap:nowrap}

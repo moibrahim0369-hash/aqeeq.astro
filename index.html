@@ -107,7 +107,7 @@
 <link rel="stylesheet" href="assets/css/page-art-fade.css?v=20261120a">
 <link rel="stylesheet" href="assets/css/ui-refine.css?v=20261128a">
 <link rel="stylesheet" href="assets/css/batch3.css?v=20261130u">
-<link rel="stylesheet" href="assets/css/energy-fix.css?v=20261114f">
+<link rel="stylesheet" href="assets/css/energy-fix.css?v=20261114i">
 <link rel="stylesheet" href="assets/css/compat-fix.css?v=20261114b">
 <link rel="stylesheet" href="assets/css/sky-sheet-fix.css?v=20261114b">
 <link rel="stylesheet" href="assets/css/inner-unified.css?v=46">
@@ -2690,7 +2690,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   /* ملء صامت من بيانات الميلاد المحفوظة: يحسب نفس خريطة الميلاد بدون ما يغيّر شاشة الحاسبة. */
   function natalFromProfile() {
     try {
-      const p = JSON.parse(localStorage.getItem("aqeeq_profile_cache_v1") || "null");
+      let p = JSON.parse(localStorage.getItem("aqeeq_profile_cache_v1") || "null");
+      if (!p || !p.date || !p.city) p = JSON.parse(localStorage.getItem("aq-last-birth-v1") || "null");
       if (!p || !p.date || !p.city) return null;
       const [y, m, d] = String(p.date).split("-").map(Number);
       if (!y || y < 1900 || y > 2100) return null;
@@ -2701,7 +2702,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       if (!c || !c.tz) return null;
       const utcMs = Astro.localToUtcMs(y, m, d, hh, mm, c.tz);
       const ch = Astro.chart({ utcMs, lat: c.lat, lon: c.lon, hs: "placidus", known });
-      return { ch, name: p.name || "", y, m, d, hh, mm, known, placeName: c.n, lat: c.lat, lon: c.lon, utcMs, gender: "" };
+      return { ch, name: p.name || "", y, m, d, hh, mm, known, placeName: c.n, lat: c.lat, lon: c.lon, utcMs, gender: p.gender || "" };
     } catch (e) { return null; }
   }
   /* إدخال بيانات الميلاد من نموذج صفحة الخرائط المتقدمة: يبني نفس سياق الخريطة ويُعلن aqeeq:natal-ready. */
@@ -2713,6 +2714,11 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const utcMs = Astro.localToUtcMs(o.y, o.m, o.d, hh, mm, c.tz);
     const ch = Astro.chart({ utcMs, lat: c.lat, lon: c.lon, hs: "placidus", known });
     LAST = { ch, name: o.name || "", y: o.y, m: o.m, d: o.d, hh, mm, known, placeName: c.n, lat: c.lat, lon: c.lon, utcMs, gender: o.gender || "" };
+    /* حفظ آخر بيانات على هذا الجهاز كي لا يعيد كتابتها في الخرائط الأخرى */
+    try {
+      const pad = x => String(x).padStart(2, "0");
+      localStorage.setItem("aq-last-birth-v1", JSON.stringify({ date: o.y + "-" + pad(o.m) + "-" + pad(o.d), time: known ? pad(hh) + ":" + pad(mm) : "", noTime: !known, city: c.n, name: o.name || "", gender: o.gender || "" }));
+    } catch (e) { }
     document.dispatchEvent(new Event("aqeeq:natal-ready"));
     return LAST;
   }
@@ -5467,8 +5473,9 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
 <script src="assets/js/astro-wheel.js?v=20261114a"></script>
 <script>window.AQ_REVIEW_OPEN=true;document.documentElement.classList.add("aq-review-open");</script>
 <script src="assets/js/extended-astro-charts.js?v=20261113b"></script>
-<script src="assets/js/vedic-extras.js?v=20261126b" defer></script>
-<script src="assets/js/vedic-chart.js?v=20261128d" defer></script>
+<script src="assets/js/vedic-extras.js?v=20261126c" defer></script>
+<script src="assets/js/vedic-chart.js?v=20261128e" defer></script>
+<script src="assets/js/vedic-hub.js?v=20261128d" defer></script>
 <script src="assets/js/astro-result-view.js?v=20261128a" defer></script>
 <script src="assets/js/year2027.js?v=20261130n" defer></script>
 <script src="assets/js/home-batch3.js?v=20261130l" defer></script>
