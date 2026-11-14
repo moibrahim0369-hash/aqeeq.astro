@@ -7,6 +7,8 @@
   /* الكواكب: المفتاح، الاسم، الاختصار المعروض داخل المخطط */
   var PL = [['sun', 'الشمس', 'شم'], ['moon', 'القمر', 'قم'], ['mars', 'المريخ', 'مر'], ['mercury', 'عطارد', 'عط'], ['jupiter', 'المشتري', 'مش'], ['venus', 'الزهرة', 'زه'], ['saturn', 'زحل', 'زح'], ['node', 'راهو', 'را'], ['ketu', 'كيتو', 'كي']];
   var VARGAS = [
+    ['moon', 'خريطة القمر', 'العقل', 'نفس برجك الفيدي لكن البيوت تُعدّ من القمر: تُظهر مشاعرك وردود فعلك وما يهدّئك.', 'moon'],
+    ['sun', 'خريطة الشمس', 'الروح', 'البيوت تُعدّ من الشمس: تُظهر جوهرك وحضورك وما تحتاجه لتشعر بقيمتك.', 'sun'],
     [1, 'D1', 'الميلاد', 'الخريطة الأم: الجسد والشخصية والمسار العام للحياة.', null],
     [2, 'D2', 'المال', 'علاقتك بالمال: ما تجمعه بجهدك وما يأتيك بالدعم.', 'jupiter'],
     [3, 'D3', 'الإخوة', 'علاقتك بإخوتك وبشجاعتك ومبادراتك ومهاراتك العملية.', 'mars'],
@@ -24,7 +26,7 @@
     [45, 'D45', 'خط الأب', 'ما انتقل إليك من جهة الأب من إرث وأخلاق وقيم.', 'sun'],
     [60, 'D60', 'الكارما', 'الرصيد الأعمق الذي تحمله معك. يتغير كل دقيقتين تقريباً في الطالع فلا يُعتمد عليه إلا مع وقت ميلاد دقيق.', 'moon']
   ];
-  var ORIG = { 1: 'Rasi', 2: 'Hora', 3: 'Drekkana', 4: 'Chaturthamsa', 7: 'Saptamsa', 9: 'Navamsa', 10: 'Dasamsa', 12: 'Dwadasamsa', 16: 'Shodasamsa', 20: 'Vimsamsa', 24: 'Siddhamsa', 27: 'Bhamsa', 30: 'Trimsamsa', 40: 'Khavedamsa', 45: 'Akshavedamsa', 60: 'Shashtiamsa' };
+  var ORIG = { moon: 'Chandra Kundli', sun: 'Surya Kundli', 1: 'Rasi', 2: 'Hora', 3: 'Drekkana', 4: 'Chaturthamsa', 7: 'Saptamsa', 9: 'Navamsa', 10: 'Dasamsa', 12: 'Dwadasamsa', 16: 'Shodasamsa', 20: 'Vimsamsa', 24: 'Siddhamsa', 27: 'Bhamsa', 30: 'Trimsamsa', 40: 'Khavedamsa', 45: 'Akshavedamsa', 60: 'Shashtiamsa' };
   /* الرسم الجنوبي: البروج ثابتة في أماكنها (الحمل ثاني خلية في الصف الأول) ويمضي الترتيب مع عقارب الساعة */
   var SOUTH = { 11: [0, 0], 0: [1, 0], 1: [2, 0], 2: [3, 0], 3: [3, 1], 4: [3, 2], 5: [3, 3], 6: [2, 3], 7: [1, 3], 8: [0, 3], 9: [0, 2], 10: [0, 1] };
   var CENTERS = [[200, 92], [100, 40], [40, 100], [92, 200], [40, 300], [100, 360], [200, 308], [300, 360], [360, 300], [308, 200], [360, 100], [300, 40]];
@@ -47,6 +49,12 @@
   function build(ch, n) {
     var D = window.AqVedic.div, known = !!ch.known, lagna, basis = known ? 'asc' : 'moon';
     var moonLon = bodyLon(ch, 'moon');
+    if (n === 'moon' || n === 'sun') { /* خريطة القمر/الشمس: نفس أبراج D1 والطالع هو برج القمر/الشمس */
+      var bl = bodyLon(ch, n), sg0 = bl == null ? 0 : D(bl, 1); lagna = sg0; basis = n;
+      var its = [];
+      PL.forEach(function (p) { var lon = bodyLon(ch, p[0]); if (lon == null) return; var sg = D(lon, 1); its.push({ key: p[0], name: p[1], ab: p[2], sign: sg, house: (sg - lagna + 12) % 12, retro: p[0] !== 'node' && p[0] !== 'ketu' && retroOf(ch, p[0]) }); });
+      return { n: n, lagna: lagna, basis: basis, items: its };
+    }
     lagna = known ? D(ch.asc, n) : (moonLon == null ? 0 : D(moonLon, n));
     var items = [];
     PL.forEach(function (p) {
@@ -56,6 +64,7 @@
     });
     return { n: n, lagna: lagna, basis: basis, items: items };
   }
+  function lagLbl(m) { return m.n === 'moon' || m.n === 'sun' ? 'ط' : m.basis === 'asc' ? 'ط' : 'ط*'; }
   function lines(arr) {
     var out = [], cur = [];
     arr.forEach(function (a) { cur.push(a); if (cur.length === 2) { out.push(cur); cur = []; } });
@@ -79,7 +88,7 @@
       var sg = (map.lagna + i) % 12, c = CENTERS[i], np = NUMPOS[i];
       h += '<text x="' + np[0] + '" y="' + np[1] + '" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="' + GOLD + '" font-weight="700">' + (sg + 1) + '</text>';
       var here = map.items.filter(function (x) { return x.house === i; }).map(function (x) { return { t: x.ab, tone: TONE[x.key] || 'g', r: x.retro }; });
-      if (i === 0) here.unshift({ t: map.basis === 'asc' ? 'ط' : 'ط*', tone: 'l', r: false });
+      if (i === 0) here.unshift({ t: lagLbl(map), tone: 'l', r: false });
       var k = here.length, cols = k > 3 ? 2 : 1, rows = Math.ceil(k / cols), w = 36, gx = 40, gy = 23;
       here.forEach(function (it, j) {
         var col = cols === 1 ? 0 : j % 2, row = cols === 1 ? j : Math.floor(j / 2);
@@ -99,7 +108,7 @@
       h += '<text x="' + (x0 + 8) + '" y="' + (y0 + 14) + '" font-size="11" fill="' + GOLD + '" font-weight="700">' + (sg + 1) + '</text>';
       var here = map.items.filter(function (x) { return x.sign === sg; }).map(function (x) { return { t: x.ab, tone: TONE[x.key] || 'g', r: x.retro }; });
       if (house === 0) {
-        here.unshift({ t: map.basis === 'asc' ? 'ط' : 'ط*', tone: 'l', r: false });
+        here.unshift({ t: lagLbl(map), tone: 'l', r: false });
         h += '<path d="M' + x0 + ' ' + (y0 + 26) + 'L' + (x0 + 26) + ' ' + y0 + '" stroke="' + WINE + '" stroke-width="2.2" fill="none"/>';
       }
       var k = here.length, cols = k > 2 ? 2 : 1, rows = Math.ceil(k / cols), w = 34, gx = 40, gy = 22, top = y0 + 52 - (rows - 1) * gy / 2 + 6;
@@ -108,7 +117,7 @@
         h += pill(cx + (cols === 1 ? 0 : (col === 0 ? -gx / 2 : gx / 2)), top + row * gy, w, it.t, it.tone, it.r);
       });
     }
-    h += '<text x="200" y="196" text-anchor="middle" font-size="17" font-weight="800" fill="' + WINE + '">' + esc('D' + map.n) + '</text>';
+    h += '<text x="200" y="196" text-anchor="middle" font-size="17" font-weight="800" fill="' + WINE + '">' + esc(map.n === 'moon' ? 'القمر' : map.n === 'sun' ? 'الشمس' : 'D' + map.n) + '</text>';
     h += '<text x="200" y="220" text-anchor="middle" font-size="12" fill="' + GOLD + '" letter-spacing="1">' + esc(ORIG[map.n] || '') + '</text>';
     return h + '</svg>';
   }
@@ -126,7 +135,7 @@
       var v = VARGAS.filter(function (x) { return x[0] === cur; })[0], map = build(ch, cur), title = 'مخطط ' + v[1] + ' · ' + v[2];
       var sig = v[4] ? map.items.filter(function (x) { return x.key === v[4]; })[0] : null;
       var chips = VARGAS.map(function (x) { return '<button type="button" class="vc-chip' + (x[0] === cur ? ' on' : '') + '" data-n="' + x[0] + '" aria-pressed="' + (x[0] === cur) + '"><b>' + x[1] + '</b><span>' + x[2] + '</span></button>'; }).join('');
-      var note = map.basis === 'asc' ? 'الطالع في ' + SG[map.lagna] + '.' : 'وقت الميلاد غير معروف، فالمخطط يبدأ من برج القمر (' + SG[map.lagna] + ') بدل الطالع.';
+      var note = (cur === 'moon' || cur === 'sun') ? 'البيت الأول هنا هو برج ' + (cur === 'moon' ? 'القمر' : 'الشمس') + ' (' + SG[map.lagna] + ').' : map.basis === 'asc' ? 'الطالع في ' + SG[map.lagna] + '.' : 'وقت الميلاد غير معروف، فالمخطط يبدأ من برج القمر (' + SG[map.lagna] + ') بدل الطالع.';
       host.innerHTML = '<h4>المخططات الفيدية · التقسيمات</h4><div class="vc-chips" role="group" aria-label="اختيار التقسيم">' + chips + '</div>' +
         '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b> <small class="vc-orig">' + esc(ORIG[cur] || '') + '</small><br>' + esc(v[3]) + '</p>' +
         '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div>' +
@@ -135,7 +144,7 @@
         '<p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p><ul class="vc-rows">' + houseRows(map) + '</ul>' +
         (sig ? '<p class="vc-sig">' + esc(sig.name) + ' الدال هنا في ' + SG[sig.sign] + ' (البيت ' + (sig.house + 1) + ').</p>' : '');
       host.querySelectorAll('.vc-st').forEach(function (b) { b.addEventListener('click', function () { style = b.dataset.s; try { localStorage.setItem('aq-vedic-style', style); } catch (e) {} draw(); }); });
-      host.querySelectorAll('.vc-chip').forEach(function (b) { b.addEventListener('click', function () { cur = +b.dataset.n; draw(); var on = host.querySelector('.vc-chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' }); }); });
+      host.querySelectorAll('.vc-chip').forEach(function (b) { b.addEventListener('click', function () { cur = isNaN(+b.dataset.n) ? b.dataset.n : +b.dataset.n; draw(); var on = host.querySelector('.vc-chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' }); }); });
     }
     draw();
   }
