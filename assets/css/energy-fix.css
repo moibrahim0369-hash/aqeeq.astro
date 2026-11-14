@@ -241,3 +241,6 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 #astro-maps .vh-ic:not(#_a):not(#_b):not(#_c),.vh-sheet .aqm-sheet-ic:not(#_a):not(#_b):not(#_c),#astro-maps .eam-acc-ic:not(#_a):not(#_b):not(#_c){background:linear-gradient(145deg,#A0405A,#7E2C42);border:1px solid #B65A72;color:#FBF3E4;box-shadow:0 3px 8px rgba(126,44,66,.22)}
 #astro-maps .vh-ic svg:not(#_a):not(#_b):not(#_c),.vh-sheet .aqm-sheet-ic svg:not(#_a):not(#_b):not(#_c),#astro-maps .eam-acc-ic svg:not(#_a):not(#_b):not(#_c){stroke:#FBF3E4;color:#FBF3E4}
 .vh-per4 li i{font-style:normal;font-size:.78rem;font-weight:800;color:#8A3148;background:#F6E3BD;border-radius:999px;padding:2px 12px}
+
+/* بعد الحساب: لا نُظهر نتيجة الفيدي الخام قبل أن تُرتَّب في الشبكة (يمنع وميض الخرائط القديمة) */
+#astro-maps[data-eam-page="sidereal"] #eam-result:has(#vx-vargas):not(.vh-ready) { visibility: hidden !important; height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }

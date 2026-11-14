@@ -484,6 +484,7 @@
     try { history.pushState({ vhr: 1 }, ''); PUSHED++; } catch (e) { }
     if (TARGET && (TARGET !== 'expert' || isAdmin())) { var tg = TARGET; TARGET = null; show(tg); } else TARGET = null;
     sec.classList.add('vh-on');
+    result.classList.add('vh-ready');
   }
   function liveResult() { var r = content.querySelector('#eam-result'); return r && !r.hidden && r.__show && sec.classList.contains('eam-view-result') && location.hash === '#astro-maps' ? r : null; }
   window.addEventListener('click', function (e) {
@@ -500,7 +501,16 @@
     else { var b = content.querySelector('.eam-backbar button'); if (b) b.click(); }
   });
   var timer = null;
-  new MutationObserver(function () { clearTimeout(timer); timer = setTimeout(function () { try { build(); prefill(); } catch (e) { console.warn(e); } }, 320); })
+  function settle() {
+    try { build(); prefill(); } catch (e) { console.warn(e); }
+    var r = content.querySelector('#eam-result');
+    if (r && !r.classList.contains('vh-ready') && r.querySelector('#vx-vargas') && !r.hidden) r.classList.add('vh-ready');
+  }
+  new MutationObserver(function () {
+    clearTimeout(timer);
+    var r = content.querySelector('#eam-result'), pending = r && !r.classList.contains('vh-ready') && r.querySelector('#vx-vargas');
+    timer = setTimeout(settle, pending ? 30 : 320);
+  })
     .observe(content, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
   var filled = false;
   function prefill() {
