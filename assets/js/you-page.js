@@ -10,6 +10,20 @@
     { id: 'work', t: 'عملك وبيتك', s: 'مسارك المهني وأمانك الداخلي', i: '<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/>' }
   ];
   var ST = { all: false, tab: 'transits', year: new Date().getFullYear(), view: null, memo: null };
+  var TXT = ['sun', 'moon', 'mercury', 'venus', 'mars', 'saturn'];
+  function loadTexts() {
+    if (ST.ix || ST.ixLoading) return; ST.ixLoading = true;
+    Promise.all(TXT.map(function (b) { return fetch('data/interpretations/' + b + '.json?v=20261114b').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); })).then(function (ls) {
+      var ix = {}; ls.forEach(function (a) { (Array.isArray(a) ? a : []).forEach(function (e) { if (e && e.id && e.status === 'approved' && e.text) ix[e.id] = e; }); });
+      ST.ix = ix; ST.ixLoading = false; render();
+    });
+  }
+  var coreOf = function (p) {
+    var ch = natal(); if (!ch || !ST.ix || !ch.known) return null;
+    var b = ch.bodies.filter(function (x) { return x.key === p.id; })[0]; if (!b || !b.house) return null;
+    var e = ST.ix['natal.core.' + p.id + '.house' + b.house]; return e ? { e: e, house: b.house } : null;
+  };
+  var headOf = function (e) { var t = String(e.summary || ''); var i = t.indexOf(':'); t = i > -1 ? t.slice(i + 1).trim() : t; var j = t.indexOf('.'); return (j > 8 ? t.slice(0, j) : t); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var user = function () { return (window.AqSession && window.AqSession.user) || null; };
   var natal = function () { try { var n = window.AqeeqChartContext && window.AqeeqChartContext.getOrPrefill(); return n && n.ch ? n.ch : null; } catch (e) { return null; } };
@@ -61,7 +75,10 @@
   function placeCards(dom) {
     var ch = natal(); if (!ch || !window.AqeeqYou) return '';
     var pl = window.AqeeqYou.placements(ch).filter(function (p) { return !dom || p.dom === dom; });
-    return pl.map(function (p) { return '<button type="button" class="yp-pl" data-pl="' + p.id + '"><span class="yp-chip blue">' + p.nn + '</span><small>' + p.nn + ' في ' + p.sign + '</small><b>عنوان الصفة قيد الكتابة</b></button>'; }).join('');
+    return pl.map(function (p) {
+      var c = coreOf(p); if (!c) return '';
+      return '<button type="button" class="yp-pl" data-pl="' + p.id + '"><span class="yp-chip blue">' + p.nn + '</span><small>' + p.nn + ' في ' + p.sign + ' · البيت ' + c.house + '</small><b>' + esc(headOf(c.e)) + '</b></button>';
+    }).join('');
   }
   function back(label) { return '<button type="button" class="yp-back" data-back>' + SVG('<path d="M9 6l6 6-6 6"/>') + label + '</button>'; }
   function avatar(u, name) {
@@ -77,7 +94,7 @@
     var u = user() || {};
     return back('رجوع') + '<div class="yp-set"><h3>الإعدادات</h3>' +
       '<div class="yp-set-g"><p class="yp-lab">حسابك</p><div class="yp-set-row"><div><b dir="ltr">' + esc(u.email || '') + '</b><small>نوع الاشتراك</small></div>' + planChip() + '</div></div>' +
-      '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>نص مؤقت: ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
+      '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
       '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
       '<button type="button" class="yp-out" data-signout>تسجيل الخروج</button></div>';
   }
@@ -88,18 +105,22 @@
       list = allCycles() || []; var c = list.filter(function (x) { return x.id + '|' + x.start === v.cyc; })[0];
       if (c) return back('رجوع') + '<div class="yp-det"><small>' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small><h3>دورة ' + c.tn + ' مع ' + c.nn + '</h3><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span>' +
         '<div class="yp-meta"><div><i>المدة</i><b>' + Math.max(1, Math.round((c.end - c.start) / MONTH)) + ' شهر</b><i>ذروة التأثير</i>' + (c.peaks.length ? c.peaks.map(function (p) { return '<b>' + fmtM(p.a) + (p.b - p.a > 20 * DAY ? ' – ' + fmtM(p.b) : '') + '</b>'; }).join('') : '<b>غير محددة</b>') + '</div>' + ring(c, c.start > selMs()) + '</div>' +
-        '<div class="yp-txt"><small>الخلاصة</small><p>نص هذه الدورة قيد الكتابة.</p></div></div>';
+        '</div>';
     }
-    if (v && v.pl) return back('رجوع') + '<div class="yp-det"><small>صفة ثابتة في خريطتك</small><h3>' + esc(v.pl) + '</h3><div class="yp-txt"><small>الخلاصة</small><p>نص هذه الصفة قيد الكتابة.</p></div></div>';
+    if (v && v.pl) {
+      var pp = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === v.id; })[0], cc = pp && coreOf(pp);
+      return back('رجوع') + '<div class="yp-det"><small>صفة ثابتة في خريطتك</small><h3>' + esc(v.pl) + (cc ? ' · البيت ' + cc.house : '') + '</h3>' + (cc ? '<div class="yp-txt il-wrap">' + window.AqeeqInterpretations.renderText(cc.e.text) + '</div>' : '') + '</div>';
+    }
     if (v && v.dom) {
       var d = domOf(v.dom); list = allCycles();
       var mine = list ? list.filter(function (c) { return c.doms.indexOf(v.dom) >= 0; }) : [];
-      return back('رجوع') + '<div class="yp-dh"><h3>' + d.t + '</h3><small>' + d.s + '</small></div>' + (list ? cyclesHtml(mine) : needNatal()) + '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>';
+      return back('رجوع') + '<div class="yp-dh"><h3>' + d.t + '</h3><small>' + d.s + '</small></div>' + (list ? cyclesHtml(mine) : needNatal()) + (placeCards(v.dom) ? '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>' : '');
     }
     if (ST.tab === 'transits') { list = allCycles(); return timeTravel() + (list ? cyclesHtml(list, true) : needNatal()) + domainCards('حسب مجال حياتك'); }
     return natal() ? domainCards('صفاتك الثابتة حسب المجال') + '<p class="yp-lab">كل الصفات</p><div class="yp-list">' + placeCards() + '</div>' : needNatal();
   }
   function render() {
+    loadTexts();
     var u = user(), host = $('#fy-body'), sec = $('#for-you'); if (!host) return;
     if (sec) sec.classList.toggle('yp-on', !!u);
     if (!u) return;
@@ -132,7 +153,7 @@
     if (t.hasAttribute('data-tab')) { ST.tab = t.getAttribute('data-tab'); ST.view = null; }
     else if (t.hasAttribute('data-dom')) ST.view = { dom: t.getAttribute('data-dom'), from: ST.view };
     else if (t.hasAttribute('data-cyc')) ST.view = { cyc: t.getAttribute('data-cyc'), from: ST.view };
-    else if (t.hasAttribute('data-pl')) { var id = t.getAttribute('data-pl'), p = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === id; })[0]; ST.view = { pl: p.nn + ' في ' + p.sign, from: ST.view }; }
+    else if (t.hasAttribute('data-pl')) { var id = t.getAttribute('data-pl'), p = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === id; })[0]; ST.view = { pl: p.nn + ' في ' + p.sign, id: p.id, from: ST.view }; }
     else if (t.hasAttribute('data-all')) ST.all = true;
     else if (t.hasAttribute('data-back')) ST.view = (ST.view && ST.view.from) || null;
     render(); var s = $('#for-you'); if (s) s.scrollTop = 0;
