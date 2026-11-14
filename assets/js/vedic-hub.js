@@ -23,6 +23,22 @@
     ['year', 'قراءة السنة', 'ما تعيشه الآن'],
     ['expert', 'وضع الخبير', 'ملاحظات خاصة بك وحدك']
   ];
+  var CH = { moon: ['القمر', 'العقل'], sun: ['الشمس', 'الروح'], 1: ['D1', 'الميلاد'], 2: ['D2', 'المال'], 3: ['D3', 'الإخوة'], 4: ['D4', 'البيت'], 5: ['D5', 'النفوذ'], 6: ['D6', 'الضغوط'], 7: ['D7', 'الأبناء'], 8: ['D8', 'التحولات'], 9: ['D9', 'الزواج'], 10: ['D10', 'المهنة'], 11: ['D11', 'المكاسب'], 12: ['D12', 'الوالدان'], 16: ['D16', 'الراحة'], 20: ['D20', 'الروح'], 24: ['D24', 'التعليم'], 27: ['D27', 'القوة'], 30: ['D30', 'التحديات'], 40: ['D40', 'خط الأم'], 45: ['D45', 'خط الأب'], 60: ['D60', 'الكارما'] };
+  var CHG = [['الأساس', ['1', 'moon', 'sun']], ['الحياة اليومية', ['2', '3', '4', '5', '6', '7']], ['المسار والعمق', ['8', '9', '10', '11', '12']], ['التخصص الدقيق', ['16', '20', '24', '27', '30', '40', '45', '60']]];
+  var TIMET = ['dasha', 'sade', 'lunar', 'year', 'expert'];
+  var ALIAS = { birth: 'c:1', vargas: 'c:1', moonsun: 'c:moon' };
+  function tileOf(id) { return TILES.filter(function (t) { return t[0] === id; })[0]; }
+  function tilesHTML(admin) {
+    var h = CHG.map(function (g) {
+      return '<h5 class="vh-gh">' + g[0] + '</h5><div class="vh-cg' + (g[1].length === 3 ? ' vh-cg3' : '') + '">' + g[1].map(function (k) {
+        var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-c" data-g="c:' + k + '"><span class="vh-t">' + c[0] + '</span><span class="vh-s">' + c[1] + '</span></button>';
+      }).join('') + '</div>';
+    }).join('');
+    h += '<h5 class="vh-gh">الأزمنة والتنبؤ</h5><div class="vh-grid">' + TIMET.filter(function (id) { return id !== 'expert' || admin; }).map(function (id) {
+      var t = tileOf(id); return '<button type="button" class="vh-tile" data-g="' + id + '"' + (id === 'expert' ? ' data-admin="1"' : '') + '><span class="vh-ic">' + svg(id) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-s">' + t[2] + '</span></button>';
+    }).join('') + '</div>';
+    return h;
+  }
   var TARGET = null, PUSHED = 0;
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
@@ -30,7 +46,7 @@
   }, true);
   function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
   function groupOf(t) {
-    if (/عجلة|جدول|اتصال/.test(t)) return 'birth';
+    if (/عجلة|جدول|اتصال/.test(t)) return 'c:1';
     if (/منزل/.test(t)) return 'lunar';
     if (/سنتك|قراءة/.test(t)) return 'year';
     if (/فترة|الفترات/.test(t)) return 'dasha';
@@ -163,7 +179,7 @@
   }
 
   function accEl(title, ic, html, open, g) {
-    var d = document.createElement('details'); d.className = 'eam-acc eam-t-g'; if (open) d.open = true; d.dataset.vhG = g;
+    var d = document.createElement('details'); d.className = 'eam-acc eam-t-g'; d.dataset.vhG = g; if (open) d.open = true;
     d.innerHTML = '<summary><span class="eam-acc-ic">' + svg(ic) + '</span><span class="eam-acc-t">' + title + '</span><span class="eam-acc-ch" aria-hidden="true"></span></summary><div class="eam-acc-body">' + html + '</div>';
     return d;
   }
@@ -259,27 +275,67 @@
   }
   (function pre() {
     var form = document.getElementById('eam-form'); if (!form) return;
-    var nav = document.createElement('nav'); nav.className = 'vh-grid vh-pre'; nav.setAttribute('aria-label', 'أقسام الفلك الفيدي');
-    nav.innerHTML = TILES.map(function (t) {
-      return '<button type="button" class="vh-tile" data-g="' + t[0] + '"' + (t[0] === 'expert' ? ' hidden' : '') + '><span class="vh-ic">' + svg(t[0]) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-s">' + t[2] + '</span></button>';
-    }).join('');
+    var nav = document.createElement('nav'); nav.className = 'vh-hub vh-pre'; nav.setAttribute('aria-label', 'أقسام الفلك الفيدي');
+    nav.innerHTML = tilesHTML(false);
     var hint = document.createElement('p'); hint.className = 'vh-pre-hint'; hint.hidden = true;
     form.parentNode.insertBefore(nav, form); form.parentNode.insertBefore(hint, form);
     nav.addEventListener('click', function (e) {
       var b = e.target.closest('.vh-tile'); if (!b) return;
-      TARGET = b.dataset.g; hint.hidden = false; hint.textContent = 'ادخل بيانات ميلادك ثم اضغط احسب، وسنفتح لك مباشرة: ' + ((TILES.filter(function (t) { return t[0] === TARGET; })[0] || [])[1] || '');
+      TARGET = b.dataset.g; hint.hidden = false; hint.textContent = 'ادخل بيانات ميلادك ثم اضغط احسب، وسنفتح لك مباشرة: ' + (TARGET.indexOf('c:') === 0 ? CH[TARGET.slice(2)][0] + ' · ' + CH[TARGET.slice(2)][1] : (tileOf(TARGET) || [])[1] || '');
       try { form.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (x) { }
     });
     setInterval(function () {
       var on = !sec.classList.contains('eam-view-result') && !!form.offsetParent;
       nav.hidden = !on; if (!on) hint.hidden = true;
-      var ex = nav.querySelector('[data-g="expert"]'); if (ex) ex.hidden = !isAdmin();
+      
     }, 500);
   })();
 
+  var SH = null, SHC = null;
+  function sheetEnsure() {
+    if (SH) return SH;
+    SH = document.createElement('div'); SH.className = 'aqm-sheet vh-sheet'; SH.hidden = true;
+    SH.innerHTML = '<div class="aqm-sheet-scrim" data-vhc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true"><span class="aqm-sheet-grip"></span>' +
+      '<button type="button" class="aqm-sheet-x" data-vhc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
+      '<div class="aqm-sheet-head"><span class="aqm-sheet-ic"></span><div><h3></h3></div></div><div class="aqm-sheet-body"></div>' +
+      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-vhn>القسم التالي</button><button type="button" class="aqm-foot-close" data-vhc>إغلاق</button></div></div>';
+    sec.appendChild(SH);
+    SH.addEventListener('click', function (e) { if (e.target.closest('[data-vhn]')) sheetNext(); else if (e.target.closest('[data-vhc]')) sheetClose(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && SH && !SH.hidden) sheetClose(); });
+    return SH;
+  }
+  function sheetOpen(d) {
+    var s = sheetEnsure(), body = d.querySelector('.eam-acc-body'); if (!body) return;
+    if (SHC) sheetClose(true);
+    SHC = { d: d, body: body };
+    s.querySelector('.aqm-sheet-ic').innerHTML = (d.querySelector('.eam-acc-ic') || {}).innerHTML || '';
+    s.querySelector('h3').textContent = (d.querySelector('.eam-acc-t') || {}).textContent || '';
+    var sb = s.querySelector('.aqm-sheet-body'); sb.innerHTML = ''; sb.appendChild(body); sb.scrollTop = 0;
+    s.classList.remove('is-closing'); s.hidden = false; document.documentElement.classList.add('aqm-sheet-open');
+    s.querySelector('[data-vhn]').hidden = !nextAcc(d);
+  }
+  function sheetClose(quick) {
+    if (!SH || !SHC) return;
+    SHC.d.appendChild(SHC.body); var s = SH; SHC = null;
+    if (quick) return;
+    s.classList.add('is-closing');
+    setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); document.documentElement.classList.remove('aqm-sheet-open'); }, 230);
+  }
+  function nextAcc(d) {
+    var r = d.closest('#eam-result'); if (!r) return null;
+    var list = Array.prototype.filter.call(r.querySelectorAll(':scope > details.eam-acc'), function (x) { return x.style.display !== 'none' && !x.classList.contains('vh-inline'); });
+    var i = list.indexOf(d); return i >= 0 && i < list.length - 1 ? list[i + 1] : null;
+  }
+  function sheetNext() { if (!SHC) return; var n = nextAcc(SHC.d); sheetClose(true); if (n) sheetOpen(n); else sheetClose(); }
+  document.addEventListener('click', function (e) {
+    var sm = e.target.closest && e.target.closest('#eam-result > details.eam-acc > summary'); if (!sm) return;
+    var r = sm.closest('#eam-result'); if (!r || !r.__show) return;
+    var d = sm.parentNode; if (d.classList.contains('vh-inline')) return;
+    e.preventDefault(); e.stopImmediatePropagation(); sheetOpen(d);
+  }, true);
   function build() {
     var result = content.querySelector('#eam-result');
-    if (!result || result.hidden || !result.querySelector('#vx-vargas') || result.querySelector('.vh-grid')) return;
+    if (!result || result.hidden || !result.querySelector('#vx-vargas') || result.querySelector('.vh-hub')) return;
     /* الأكورديونات داخل .vx-wrap: نرفعها لمستوى النتيجة كي تُصنَّف مع أقسامها */
     Array.prototype.slice.call(result.querySelectorAll(':scope > .vx-wrap:not(.vx-top)')).forEach(function (w) {
       Array.prototype.slice.call(w.children).forEach(function (c) { result.insertBefore(c, w); });
@@ -287,51 +343,64 @@
     });
     var kids = Array.prototype.slice.call(result.children);
     kids.forEach(function (c) {
-      if (c.classList.contains('eam-result-head')) c.dataset.vhG = 'hub birth';
-      else if (c.classList.contains('vx-top')) c.dataset.vhG = 'vargas';
-      else if (c.matches('details.eam-acc')) { var t = (c.querySelector('.eam-acc-t') || {}).textContent || ''; c.dataset.vhG = groupOf(t) || 'birth'; }
+      if (c.classList.contains('eam-result-head')) c.dataset.vhG = 'hub c:1';
+      else if (c.classList.contains('vx-top')) c.dataset.vhG = 'none';
+      else if (c.matches('details.eam-acc')) { var t = (c.querySelector('.eam-acc-t') || {}).textContent || ''; c.dataset.vhG = groupOf(t) || 'c:1'; }
       else c.dataset.vhG = 'misc';
     });
     var sade = true;
-    var grid = document.createElement('nav'); grid.className = 'vh-grid'; grid.dataset.vhG = 'hub'; grid.setAttribute('aria-label', 'أقسام الفلك الفيدي');
-    grid.innerHTML = TILES.filter(function (t) { return (t[0] !== 'sade' || sade) && (t[0] !== 'expert' || isAdmin()); }).map(function (t) {
-      return '<button type="button" class="vh-tile" data-g="' + t[0] + '"><span class="vh-ic">' + svg(t[0]) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-s">' + t[2] + '</span></button>';
-    }).join('');
-    var bar = document.createElement('div'); bar.className = 'vh-bar'; bar.dataset.vhG = 'vargas birth dasha sade lunar year expert';
+    var grid = document.createElement('nav'); grid.className = 'vh-hub'; grid.dataset.vhG = 'hub'; grid.setAttribute('aria-label', 'أقسام الفلك الفيدي');
+    grid.innerHTML = tilesHTML(isAdmin());
+    var bar = document.createElement('div'); bar.className = 'vh-bar'; bar.dataset.vhG = 'bar';
     bar.innerHTML = '<button type="button" class="vh-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><span>كل الأقسام</span></button><b class="vh-cur"></b>';
     var head = result.querySelector('.eam-result-head');
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
     result.insertBefore(bar, grid);
-    var dc = d1Card(); if (dc) { var fb = result.querySelector('details.eam-acc[data-vh-g="birth"]'); result.insertBefore(dc, fb || null); }
     var tmc = timeCard(), tmw = accEl('آلة الزمن', 'dasha', '', true, 'dasha year'); tmw.querySelector('.eam-acc-body').appendChild(tmc); tmc.dataset.vhG = ''; result.appendChild(tmw);
     if (isAdmin()) { var exC = expertCard(), exw = accEl('ملاحظات الخبير', 'expert', '', true, 'expert'); exw.querySelector('.eam-acc-body').appendChild(exC); exC.dataset.vhG = ''; result.appendChild(exw); result.__ex = exC; }
+    function ensureChart(k) {
+      if (result.__ch && result.__ch[k]) return;
+      (result.__ch = result.__ch || {})[k] = 1;
+      var L = window.AqVedic && window.AqVedic.last, VC = window.AqVedicChart; if (!L || !VC) return;
+      var key = isNaN(+k) ? k : +k, c = CH[k], g = 'c:' + k;
+      if (isAdmin()) window.AqVedicExpert = { on: true };
+      var d = accEl(c[0] === 'D1' || /^D/.test(c[0]) ? c[0] + ' · ' + c[1] : 'خريطة ' + c[0], 'birth', '', true, g); d.classList.add('vh-inline');
+      var host = document.createElement('section'); host.className = 'eam-card vx vc-card'; d.querySelector('.eam-acc-body').appendChild(host);
+      var fb = k === '1' ? result.querySelector('details.eam-acc[data-vh-g="c:1"]') : null;
+      result.insertBefore(d, fb || null); VC.mount(host, L.ch, L.natal, key);
+      if (isAdmin() && /^\d+$/.test(k)) {
+        var ex = accEl('ملاحظات الخبير · ' + c[0], 'expert', '<p class="vh-tm-note">جارٍ فتح الملاحظات…</p>', false, g);
+        result.insertBefore(ex, fb || null);
+        loadNotes(function (n) {
+          var tbl = n['d' + k], map = VC.build(L.ch, +k), rows = '';
+          if (tbl) map.items.forEach(function (it) {
+            var t = tbl[it.key] && tbl[it.key][it.house + 1];
+            if (t) rows += '<li><div class="vh-ex-h"><b>' + esc(it.name) + '</b><i>البيت ' + (it.house + 1) + '</i></div><span>' + esc(t) + '</span></li>';
+          });
+          ex.querySelector('.eam-acc-body').innerHTML = rows ? '<ul class="vh-ex-list">' + rows + '</ul>' : '<p class="vh-tm-note">لا توجد ملاحظات لهذه الخريطة بعد.</p>';
+        });
+      }
+    }
     function show(g, chart) {
+      g = ALIAS[g] || g;
       if (g !== 'hub' && result.dataset.vh === 'hub') { try { history.pushState({ vh: 1 }, ''); PUSHED++; } catch (e) { } }
+      if (g.indexOf('c:') === 0 && !CH[g.slice(2)]) g = 'hub';
       if (g === 'sade' && !result.__sade) { result.__sade = 1; fillSade(result); }
+      if (g.indexOf('c:') === 0) ensureChart(g.slice(2));
       result.dataset.vh = g;
       Array.prototype.slice.call(result.children).forEach(function (c) {
+        if (c === bar) return;
         var gs = (c.dataset.vhG || '').split(' ');
-        c.style.display = (gs.indexOf(g) >= 0 || (g === 'moonsun' && gs.indexOf('vargas') >= 0)) ? '' : 'none';
+        c.style.display = gs.indexOf(g) >= 0 ? '' : 'none';
       });
-      var name = (TILES.filter(function (t) { return t[0] === g; })[0] || [])[1] || '';
+      var name = g.indexOf('c:') === 0 ? (CH[g.slice(2)][0] + ' · ' + CH[g.slice(2)][1]) : ((tileOf(g) || [])[1] || '');
       bar.querySelector('.vh-cur').textContent = g === 'hub' ? '' : name;
-      if (g !== 'hub') {
-        bar.style.display = '';
-        var ds = result.querySelectorAll('details.eam-acc');
-        var mine = Array.prototype.filter.call(ds, function (d) { return d.dataset.vhG === g; });
-        if (mine.length === 1) mine[0].open = true;
-      } else bar.style.display = 'none';
-      if (g === 'expert' && result.__ex) {
-        var was = window.AqVedicExpert && window.AqVedicExpert.on; window.AqVedicExpert = { on: true };
-        if (!was) Array.prototype.forEach.call(result.querySelectorAll('#vx-vargas'), function (h) { if (h.__draw) h.__draw(); });
-        result.__ex.__load();
-      }
-      if (g === 'moonsun') { var b = result.querySelector('.vc-chip[data-n="' + (chart || 'moon') + '"]'); if (b) b.click(); }
-      if (g === 'vargas') { var o = result.querySelector('.vc-chip[data-n="1"]'); if (o && !result.querySelector('.vc-chip.on')) o.click(); }
-      if (!first) try { result.scrollIntoView({ block: 'start' }); } catch (e) { }
-      first = false;
+      bar.style.display = g === 'hub' ? 'none' : '';
+      Array.prototype.forEach.call(result.querySelectorAll('details.eam-acc'), function (d) { if (!d.classList.contains('vh-inline')) d.open = false; });
+      if (g === 'expert' && result.__ex) { result.__ex.__load(); }
+      setTimeout(function () { try { result.scrollIntoView({ block: 'start' }); } catch (e) { } }, 30);
+      setTimeout(function () { try { result.scrollIntoView({ block: 'start' }); } catch (e) { } }, 380);
     }
-    var first = true;
     grid.addEventListener('click', function (e) { var b = e.target.closest('.vh-tile'); if (b) show(b.dataset.g); });
     bar.querySelector('.vh-back').addEventListener('click', function () { show('hub'); });
     result.__show = show;

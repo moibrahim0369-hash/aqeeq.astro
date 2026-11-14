@@ -116,3 +116,20 @@ html body section#astro-maps.eam-view-result:not(#_a):not(#_b) #eam-form{display
 #astro-maps .vc-grp .vc-chip small:not(#_a):not(#_b){display:none}
 @media(min-width:700px){#astro-maps .vc-grp:not(#_a):not(#_b){grid-template-columns:repeat(8,minmax(0,1fr))}}
 #astro-maps .vc-grp.vc-grp3:not(#_a):not(#_b){grid-template-columns:repeat(3,minmax(0,1fr))}
+#astro-maps .vh-hub:not(#_a):not(#_b){display:block;margin:0 0 14px}
+#astro-maps .vh-hub[hidden]:not(#_a):not(#_b){display:none}
+#astro-maps .vh-gh:not(#_a):not(#_b){margin:16px 4px 8px;font-size:.92rem;color:#8A3148;font-weight:700}
+#astro-maps .vh-cg:not(#_a):not(#_b){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#astro-maps .vh-cg3:not(#_a):not(#_b){grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(min-width:700px){#astro-maps .vh-cg:not(#_a):not(#_b){grid-template-columns:repeat(8,minmax(0,1fr))}#astro-maps .vh-cg3:not(#_a):not(#_b){grid-template-columns:repeat(3,minmax(0,1fr))}}
+#astro-maps .vh-tile-c:not(#_a):not(#_b){display:grid;gap:2px;justify-items:center;align-content:center;min-height:64px;padding:8px 4px;border-radius:14px;border:1px solid #E3D5B8;background:#FBF3E4;color:#4A1A24;text-align:center;cursor:pointer}
+#astro-maps .vh-tile-c .vh-t:not(#_a):not(#_b){font-size:1rem;font-weight:800;color:#5A1828}
+#astro-maps .vh-tile-c .vh-s:not(#_a):not(#_b){font-size:.74rem;color:#8A6A55}
+#eam-result:not(#_a):not(#_b){scroll-margin-top:96px}
+/* خلفية كريمية بدل الأبيض في أقسام الفيدي */
+#astro-maps :is(.eam-table-wrap,.eam-table,.eam-table tbody tr,.eam-table td,.vc-card,.vx,.vh-sade-facts li,.vc-chip,.vh-ex-acc,.vh-ex-slot):not(#_a):not(#_b):not(#_c){background-color:#FBF3E4}
+#astro-maps .eam-table thead th:not(#_a):not(#_b){background:#F1E4C8;color:#4A1A24}
+#astro-maps .eam-table tbody tr:nth-child(even) td:not(#_a):not(#_b){background:#F7EBD2}
+#astro-maps .eam-acc-body:not(#_a):not(#_b){background:#FBF3E4;color:#3A2A26}
+#astro-maps .vh-sheet .aqm-sheet-body:not(#_a):not(#_b){background:transparent}
+#astro-maps .vh-sheet .aqm-foot-next:not(#_a):not(#_b){min-height:44px;padding:0 18px;border-radius:999px;border:1px solid #C9A25A;background:#FBF3E4;color:#5A1828;font-weight:700}
