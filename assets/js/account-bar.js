@@ -35,7 +35,15 @@
   function renderBar() {
     if (!bar) return;
     var home = bar.querySelector('[data-nav="home"]'), disc = $('#aqn-mag-btn'), acc = bar.querySelector('[data-nav="account"]');
-    var compat = bar.querySelector('[data-nav="compat"]'); if (compat) compat.remove();
+    var compat = bar.querySelector('[data-nav="compat"]');
+    if (compat) {
+      compat.style.display = user ? '' : 'none';
+      if (user && !compat.getAttribute('data-we')) {
+        compat.setAttribute('data-we', '1'); compat.setAttribute('href', '#for-you');
+        var lb = compat.querySelector('.bnav-label'); if (lb) { lb.removeAttribute('data-i18n-ar'); lb.removeAttribute('data-i18n-en'); lb.textContent = 'نحن'; }
+        compat.addEventListener('click', function (e) { if (window.AqeeqYouPage) { e.preventDefault(); window.AqeeqYouPage.go('we'); } });
+      }
+    }
     var old = $('#aq-you-item', bar); if (old) old.remove();
     /* بعد الدخول: «حسابي» هو صفحتك الكاملة (#for-you) بدل نافذة منبثقة، فلا حاجة لزر «لك» منفصل */
     if (acc) { acc.setAttribute('href', '#account'); acc.classList.toggle('on', location.hash === (user ? '#for-you' : '#account')); }

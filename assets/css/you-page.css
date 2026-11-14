@@ -567,3 +567,47 @@ html body section#for-you .yp-who-t small{white-space:nowrap;overflow:hidden;tex
 html body section#for-you .yp-who-t b{font-size:1rem}
 html body section#for-you .yp-who-b .yp-av.yp-av-b:not(#_a):not(#_b):not(#_c):not(#_d){width:54px;height:54px;padding:0;gap:0;background:linear-gradient(135deg,#B5532F,#6B1F2E);flex:none;display:grid;border-radius:50%}
 html body section#for-you .yp-who-t b{white-space:normal;line-height:1.25;max-width:100%}
+
+/* ===== نحن ===== */
+html body section#for-you .yp-couple:not(#_a){display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0 16px}
+html body section#for-you .yp-wm{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:88px;max-width:130px;text-align:center}
+html body section#for-you .yp-wm b{font:700 .95rem 'Cairo',sans-serif;color:#4A1521;word-break:break-word}
+html body section#for-you .yp-wm-l{position:relative;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;background:#F3E7D3;border:2px solid #B78A52;box-shadow:0 8px 18px -10px rgba(74,21,33,.6)}
+html body section#for-you .yp-wm-l.f{border-color:#B5532F;background:#F1DCCB}
+html body section#for-you .yp-wm-l.m{border-color:#70263F;background:#EBD9D8}
+html body section#for-you .yp-wm-l img{width:42px;height:42px;object-fit:contain}
+html body section#for-you .yp-wm-l i{position:absolute;bottom:-2px;inset-inline-end:-2px;width:26px;height:26px;border-radius:50%;background:#70263F;color:#F8EFDD;display:grid;place-items:center}
+html body section#for-you .yp-wm-l.f i{background:#B5532F}
+html body section#for-you .yp-wm-l i svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html body section#for-you .yp-couple-x{display:flex;flex-direction:column;align-items:center;gap:2px;color:#B5532F}
+html body section#for-you .yp-couple-x svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round}
+html body section#for-you .yp-couple-x em{font:700 .72rem 'Cairo',sans-serif;font-style:normal;color:#9a6f2f}
+html body section#for-you .yp-wchips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
+html body section#for-you .yp-wchip:not(#_a){flex:none;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(112,38,63,.25);background:#F3E7D3;color:#4A1521;font:700 .9rem 'Cairo',sans-serif;cursor:pointer}
+html body section#for-you .yp-wchip.on{background:#70263F;color:#F8EFDD;border-color:#70263F}
+html body section#for-you .yp-wchip.add{width:44px;padding:0;display:grid;place-items:center}
+html body section#for-you .yp-wchip svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+html body section#for-you .yp-wl{display:flex;flex-direction:column;gap:10px;margin-bottom:6px}
+html body section#for-you .yp-wc{padding:16px;border-radius:20px;background:#F3E7D3;border:1px solid rgba(112,38,63,.16);color:#2B1B1F}
+html body section#for-you .yp-wc.hard{background:#F1DDCB}
+html body section#for-you .yp-wc.both{background:#EBD3D3;border-color:rgba(112,38,63,.3)}
+html body section#for-you .yp-wc h3{margin:8px 0 6px;font:700 1.05rem/1.5 'Amiri','Cairo',serif;color:#4A1521}
+html body section#for-you .yp-wc p{margin:0;font-size:.92rem;line-height:1.9;color:#3a2a26}
+html body section#for-you .yp-wb:not(#_a){display:flex;align-items:center;justify-content:center;width:100%;min-height:48px;margin-top:12px;border-radius:999px;border:1px solid rgba(112,38,63,.3);background:#EFE2CB;color:#70263F;font:700 .95rem 'Cairo',sans-serif;cursor:pointer;text-decoration:none}
+html body section#for-you .yp-wb.danger{color:#9b2c2c;background:transparent}
+html body section#for-you .yp-wf{display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:20px;background:#F3E7D3;border:1px solid rgba(112,38,63,.16)}
+html body section#for-you .yp-wf h3{margin:0;font:700 1.15rem 'Amiri',serif;color:#4A1521}
+html body section#for-you .yp-wf-s{margin:0;color:#6a5148;font-size:.86rem}
+html body section#for-you .yp-wf label,html body section#for-you .yp-wf-r>span{display:flex;flex-direction:column;gap:6px;font:700 .85rem 'Cairo',sans-serif;color:#5b3a30}
+html body section#for-you .yp-wf input[type=text],html body section#for-you .yp-wf input[type=search],html body section#for-you .yp-wf select{width:100%;min-height:46px;padding:0 12px;border-radius:12px;border:1px solid rgba(112,38,63,.25);background:#EFE2CB;color:#2B1B1F;font:600 1rem 'Cairo',sans-serif}
+html body section#for-you .yp-wf-r{display:flex;flex-direction:column;gap:6px}
+html body section#for-you .yp-wf-3{display:grid;grid-template-columns:1fr 1.2fr 1.2fr;gap:8px}
+html body section#for-you .yp-wf-k{flex-direction:row!important;align-items:center;gap:6px!important;font-weight:600!important}
+html body section#for-you .yp-seg{display:flex;gap:6px;flex-wrap:wrap}
+html body section#for-you .yp-seg button{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid rgba(112,38,63,.25);background:#EFE2CB;color:#4A1521;font:700 .88rem 'Cairo',sans-serif;cursor:pointer}
+html body section#for-you .yp-seg button.on{background:#70263F;color:#F8EFDD}
+html body section#for-you .yp-wf-city{position:relative}
+html body section#for-you #yp-w-cl{position:absolute;inset-inline:0;top:100%;z-index:5;margin:4px 0 0;padding:4px;list-style:none;border-radius:12px;background:#F8EFDD;border:1px solid rgba(112,38,63,.25);box-shadow:0 12px 24px -12px rgba(53,27,40,.5);max-height:220px;overflow:auto}
+html body section#for-you #yp-w-cl li{padding:10px 12px;border-radius:8px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;color:#2B1B1F}
+html body section#for-you #yp-w-cl li small{color:#8a6a5a}
+html body section#for-you .yp-wf-go{min-height:50px;justify-content:center}

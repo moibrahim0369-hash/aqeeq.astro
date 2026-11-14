@@ -235,6 +235,119 @@
       '<div class="yp-ibs">' + ib('data-sv', 'الحفظ', '<path d="M6 4h12v16l-6-4-6 4z"/>', 0) + ib('data-inb', 'الإشعارات', '<path d="M6 16V11a6 6 0 0 1 12 0v5l1.500 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/>', n) + ib('data-tab="settings"', 'الضبط', '<circle cx="12" cy="12" r="3"/><path d="M12 3v2.500M12 18.500V21M3 12h2.500M18.500 12H21M5.600 5.600l1.800 1.800M16.600 16.600l1.800 1.800M5.600 18.400l1.800-1.800M16.600 7.400l1.800-1.800"/>', 0) + '</div></header>';
   }
 
+
+  /* ---------- نحن: أنت والطرف الآخر (شريك/صديق...) من بياناته فقط، بدون ربط حسابات ---------- */
+  var PK = 'aqeeq_yp_partners_v1', RELS = [['partner', 'شريك'], ['friend', 'صديق'], ['family', 'من العائلة'], ['work', 'زميل عمل']];
+  function pGet() { try { return JSON.parse(localStorage.getItem(PK) || '[]'); } catch (e) { return []; } }
+  function pSet(l) { try { localStorage.setItem(PK, JSON.stringify(l)); } catch (e) {} }
+  function relName(k) { var r = RELS.filter(function (x) { return x[0] === k; })[0]; return r ? r[1] : 'شريك'; }
+  var PCH = {};
+  function pChart(p) {
+    if (PCH[p.id]) return PCH[p.id];
+    try {
+      var C = window.__aqCITIES && window.__aqCITIES(), i = window.AqeeqChartContext.cityIndexByName(p.city), c = C && C[i]; if (!c) return null;
+      var d = p.date.split('-').map(Number), known = !!p.time, t = (p.time || '12:00').split(':').map(Number);
+      var utc = Astro.localToUtcMs(d[0], d[1], d[2], t[0], t[1], c.tz);
+      return (PCH[p.id] = Astro.chart({ utcMs: utc, lat: c.lat, lon: c.lon, hs: 'placidus', known: known }));
+    } catch (e) { return null; }
+  }
+  var SYN_N = { sun: 'الشمس', moon: 'القمر', mercury: 'عطارد', venus: 'الزهرة', mars: 'المريخ', jupiter: 'المشتري', saturn: 'زحل' };
+  var SYN_ROLE = { sun: 'جوهرك وإحساسك بنفسك', moon: 'مشاعرك وما يؤمّنك', mercury: 'طريقة كلامك وتفكيرك', venus: 'حبّك وما تحب', mars: 'اندفاعك ورغبتك', jupiter: 'تفاؤلك وما يوسّعك', saturn: 'جدّيتك وحدودك' };
+  var SYN_ROLE2 = { sun: 'جوهر', moon: 'مشاعر وأمان', mercury: 'كلام وتفكير', venus: 'حب وذوق', mars: 'اندفاع ورغبة', jupiter: 'تفاؤل وتوسّع', saturn: 'جدّية وحدود' };
+  var SYN_ASP = [{ d: 0, k: 'conj', n: 'اقتران', h: 1, f: 'يلتقيان في نقطة واحدة، فيُضخَّم كل ما بينهما' }, { d: 60, k: 'sext', n: 'تسديس', h: 1, f: 'يتفاهمان بأقل جهد متى انتبهتما لذلك' }, { d: 120, k: 'tri', n: 'تثليث', h: 1, f: 'ينسجمان بلا مجهود يُذكر' }, { d: 90, k: 'sq', n: 'تربيع', h: 0, f: 'يحتكّان ويشدّ أحدهما الآخر' }, { d: 180, k: 'opp', n: 'مقابلة', h: 0, f: 'يقفان وجهًا لوجه كمرآتين' }];
+  var SYN_W = { 'sun|moon': 10, 'moon|sun': 10, 'venus|mars': 10, 'mars|venus': 10, 'moon|moon': 9, 'sun|sun': 8, 'venus|venus': 8, 'venus|sun': 8, 'sun|venus': 8, 'moon|venus': 8, 'venus|moon': 8, 'mercury|mercury': 7, 'saturn|moon': 8, 'moon|saturn': 8, 'saturn|venus': 7, 'venus|saturn': 7, 'mars|mars': 6, 'sun|mars': 6, 'mars|sun': 6, 'saturn|sun': 6, 'sun|saturn': 6, 'jupiter|sun': 6, 'sun|jupiter': 6, 'jupiter|moon': 6, 'moon|jupiter': 6 };
+  function synPairs(a, b, nm) {
+    var out = [], lon = function (ch, k) { var x = ch.bodies.filter(function (y) { return y.key === k; })[0]; return x ? x.lon : null; };
+    Object.keys(SYN_N).forEach(function (ka) { Object.keys(SYN_N).forEach(function (kb) {
+      var w = SYN_W[ka + '|' + kb]; if (!w) return;
+      var la = lon(a, ka), lb = lon(b, kb); if (la == null || lb == null) return;
+      var df = Math.abs(((la - lb + 540) % 360) - 180);
+      SYN_ASP.forEach(function (sp) { var o = Math.abs(df - sp.d); if (o <= 5) out.push({ ka: ka, kb: kb, sp: sp, o: o, sc: w - o * 0.6 }); });
+    }); });
+    out.sort(function (x, y) { return y.sc - x.sc; });
+    var seen = {}; return out.filter(function (x) { var k = x.ka + x.kb; if (seen[k]) return false; seen[k] = 1; return true; }).slice(0, 4).map(function (x) {
+      return { t: SYN_N[x.ka] + ' عندك و' + SYN_N[x.kb] + ' عند ' + nm, k: x.sp.n, h: x.sp.h,
+        b: SYN_ROLE[x.ka] + ' عندك، و' + SYN_ROLE2[x.kb] + ' ' + nm + ': ' + x.sp.f + '. ' +
+          (x.sp.h ? 'من هنا يأتي الإحساس بأن أحدكما يفهم الآخر دون شرح طويل، فاعتمدا عليه.' : 'من هنا يأتي أغلب الشدّ بينكما، ويصير قوة حقيقية لو سمّيتماه بهدوء قبل أن يتحوّل إلى عتاب.') };
+    });
+  }
+  function weCard(x) { return '<article class="yp-wc' + (x.h === 0 ? ' hard' : '') + '"><span class="yp-chip">' + esc(x.k) + '</span><h3>' + esc(x.t) + '</h3><p>' + esc(x.b) + '</p></article>'; }
+  function weCyc(c, nm, now) {
+    var left = Math.max(1, Math.round((c.end - now) / DAY));
+    return '<article class="yp-wc"><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><h3>' + esc(titleOf(c)) + '</h3><small class="yp-al">' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small><p>' + esc(nm) + ' يمرّ بهذا الآن، ويمسّ ' + (AREA[c.n] || 'حياته') + '. ' + (left > 60 ? 'هي مرحلة طويلة، فلا تحكم على مزاجه بيوم واحد.' : 'بقي منها وقت قصير، وبعدها يخفّ الضغط.') + '</p></article>';
+  }
+  function weMark(g, nm, rel) {
+    var gl = g === 'f' ? '<circle cx="12" cy="9" r="4.500"/><path d="M12 13.500V21M9 18h6"/>' : g === 'm' ? '<circle cx="10" cy="14" r="4.500"/><path d="M13.500 10.500 20 4M15 4h5v5"/>' : '';
+    return '<div class="yp-wm"><span class="yp-wm-l ' + (g || 'n') + '"><img src="assets/images/brand/logo-mark-160.png" alt="" width="40" height="40">' + (gl ? '<i>' + SVG(gl) + '</i>' : '') + '</span><b>' + esc(nm) + '</b>' + (rel ? '<small>' + esc(rel) + '</small>' : '') + '</div>';
+  }
+  function weForm() {
+    var d = '', mo = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'], sel = function (id, a, ph) { return '<select id="' + id + '" aria-label="' + ph + '"><option value="">' + ph + '</option>' + a + '</select>'; };
+    var ds = '', ms = '', ys = '', hs = '', mn = '', i;
+    for (i = 1; i <= 31; i++) ds += '<option value="' + i + '">' + i + '</option>';
+    mo.forEach(function (m, k) { ms += '<option value="' + (k + 1) + '">' + m + '</option>'; });
+    for (i = new Date().getFullYear(); i >= 1930; i--) ys += '<option value="' + i + '">' + i + '</option>';
+    for (i = 0; i < 24; i++) hs += '<option value="' + i + '">' + (i < 10 ? '0' : '') + i + '</option>';
+    for (i = 0; i < 60; i += 5) mn += '<option value="' + i + '">' + (i < 10 ? '0' : '') + i + '</option>';
+    return '<form class="yp-wf" id="yp-wf" novalidate><h3>بيانات الطرف الآخر</h3><p class="yp-wf-s">نحسب خريطته من بياناته، ولا يحتاج حسابًا عندنا.</p>' +
+      '<label>الاسم<input id="yp-w-n" type="text" maxlength="40" autocomplete="off"></label>' +
+      '<div class="yp-wf-r"><span>العلاقة</span><div class="yp-seg" id="yp-w-rel">' + RELS.map(function (r, k) { return '<button type="button" data-w-rel="' + r[0] + '"' + (k === 0 ? ' class="on"' : '') + '>' + r[1] + '</button>'; }).join('') + '</div></div>' +
+      '<div class="yp-wf-r"><span>الجنس (لشكل العلامة فقط)</span><div class="yp-seg" id="yp-w-g"><button type="button" data-w-g="m" class="on">ذكر</button><button type="button" data-w-g="f">أنثى</button></div></div>' +
+      '<div class="yp-wf-r"><span>تاريخ الميلاد</span><div class="yp-wf-3">' + sel('yp-w-d', ds, 'اليوم') + sel('yp-w-m', ms, 'الشهر') + sel('yp-w-y', ys, 'السنة') + '</div></div>' +
+      '<div class="yp-wf-r"><span>وقت الميلاد</span><div class="yp-wf-3">' + sel('yp-w-h', hs, 'الساعة') + sel('yp-w-mi', mn, 'الدقيقة') + '<label class="yp-wf-k"><input type="checkbox" id="yp-w-nt"> لا أعرفه</label></div></div>' +
+      '<div class="yp-wf-r yp-wf-city"><span>مكان الميلاد</span><input id="yp-w-c" type="search" autocomplete="off" placeholder="ابحث باسم المدينة أو المحافظة"><ul id="yp-w-cl" hidden></ul></div>' +
+      '<p class="yp-un-m err" id="yp-w-e" role="alert"></p><button type="submit" class="yp-ab yp-wf-go"><span>احسب ما بيننا</span></button></form>';
+  }
+  function weHtml() {
+    var L = pGet(), now = Date.now();
+    if (!natal()) return needNatal();
+    if (!L.length || ST.weAdd) return (L.length ? '<button type="button" class="yp-wb" data-we-cancel>رجوع</button>' : '<div class="yp-empty">' + SVG('<circle cx="9" cy="12" r="5.500"/><circle cx="15" cy="12" r="5.500"/>') + '<p>أضف شخصًا يهمّك، شريكًا أو صديقًا، لتعرف ما بينكما وما يمرّ به كلٌّ منكما.</p></div>') + weForm();
+    var p = L.filter(function (x) { return x.id === ST.weSel; })[0] || L[0], pc = pChart(p), me = natal(), nm = p.name || 'الطرف الآخر', mn = (user() || {}).user_metadata || {}, my = mn.full_name || mn.name || 'أنت';
+    var h = '<div class="yp-wchips">' + L.map(function (x) { return '<button type="button" class="yp-wchip' + (x.id === p.id ? ' on' : '') + '" data-we-sel="' + x.id + '">' + esc(x.name || 'بدون اسم') + '</button>'; }).join('') + '<button type="button" class="yp-wchip add" data-we-add aria-label="إضافة شخص">' + SVG('<path d="M12 5v14M5 12h14"/>') + '</button></div>';
+    var mg = ''; try { mg = (JSON.parse(localStorage.getItem('aq-last-birth-v1') || '{}').gender || '').charAt(0) === 'f' || /أنث/.test(JSON.parse(localStorage.getItem('aq-last-birth-v1') || '{}').gender || '') ? 'f' : /ذكر|male|^m/i.test(JSON.parse(localStorage.getItem('aq-last-birth-v1') || '{}').gender || '') ? 'm' : ''; } catch (e) {}
+    h += '<div class="yp-couple">' + weMark(mg, String(my).split(' ')[0], '') + '<span class="yp-couple-x">' + SVG('<path d="M12 20s-7-4.400-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>') + '<em>' + esc(relName(p.rel)) + '</em></span>' + weMark(p.g, nm, '') + '</div>';
+    if (!pc) return h + '<div class="yp-empty"><p>تعذّر حساب خريطة ' + esc(nm) + '. تأكد من المدينة وأعد إضافته.</p></div><button type="button" class="yp-wb danger" data-we-del="' + p.id + '">حذف</button>';
+    h += '<p class="yp-lab">ما بينكما</p><div class="yp-wl">' + (synPairs(me, pc, nm).map(weCard).join('') || '<p class="yp-un-m">لا اتصالات قوية بارزة بين الخريطتين، وهذا يعني علاقة تتشكّل بالاختيار أكثر من الانجذاب.</p>') + '</div>';
+    var pcy = []; try { pcy = window.AqeeqYou.cycles(pc, Math.floor(now / DAY) * DAY); } catch (e) {}
+    var pcur = split(pcy).cur.slice(0, 3);
+    h += '<p class="yp-lab">ما يمرّ به ' + esc(nm) + ' الآن</p><div class="yp-wl">' + (pcur.map(function (c) { return weCyc(c, nm, now); }).join('') || '<p class="yp-un-m">لا دورة كبيرة تمرّ به الآن، مرحلة هادئة نسبيًا.</p>') + '</div>';
+    var mycur = split(allCycles() || []).cur, shared = [];
+    pcur.forEach(function (c) { mycur.forEach(function (m) { if (m.t === c.t && !shared.some(function (z) { return z.t === c.t; })) shared.push({ t: c.t, tn: c.tn, mine: m, his: c }); }); });
+    if (shared.length) h += '<p class="yp-lab">عبور يمسّكما معًا</p><div class="yp-wl">' + shared.slice(0, 2).map(function (z) { return '<article class="yp-wc both"><span class="yp-chip">' + z.tn + ' يمرّ على خريطتيكما</span><h3>' + z.tn + ' يضغط عليكما في الوقت نفسه</h3><p>عندك: ' + esc(titleOf(z.mine)) + '. وعند ' + esc(nm) + ': ' + esc(titleOf(z.his)) + '. حين يمرّ الكوكب نفسه على اثنين معًا، يكثر سوء الفهم دون سبب ظاهر، فاسألا قبل أن تحكما على بعضكما.</p></article>'; }).join('') + '</div>';
+    h += '<a class="yp-wb" href="#compat">تعمّق في التوافق الكامل</a><button type="button" class="yp-wb danger" data-we-del="' + p.id + '">حذف ' + esc(nm) + '</button>';
+    return h;
+  }
+  function weCitySearch(q) {
+    var ul = $('#yp-w-cl'); if (!ul) return;
+    var C = (window.__aqCITIES && window.__aqCITIES()) || [], nz = function (t) { return String(t || '').toLowerCase().replace(/[ً-ْـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه'); }, v = nz(q), hits = [];
+    if (v.length < 2) { ul.hidden = true; return; }
+    for (var i = 0; i < C.length && hits.length < 8; i++) { var c = C[i]; if (c.tz && c.n && nz(c.n + ' ' + (c.g || '')).indexOf(v) > -1) hits.push(c); }
+    ul.innerHTML = hits.length ? hits.map(function (c) { return '<li data-city="' + esc(c.n) + '"><b>' + esc(c.n) + '</b><small>' + esc(c.g || '') + '</small></li>'; }).join('') : '<li class="none">لا نتيجة، جرّب اسمًا آخر</li>'; ul.hidden = false;
+  }
+  document.addEventListener('input', function (e) { if (e.target && e.target.id === 'yp-w-c') { e.target.removeAttribute('data-ok'); weCitySearch(e.target.value); } });
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('#for-you [data-we-add],#for-you [data-we-cancel],#for-you [data-we-sel],#for-you [data-we-del],#for-you [data-w-rel],#for-you [data-w-g],#for-you #yp-w-cl li[data-city]'); if (!t) return;
+    if (t.hasAttribute('data-w-rel') || t.hasAttribute('data-w-g')) { [].forEach.call(t.parentNode.children, function (b) { b.classList.toggle('on', b === t); }); return; }
+    if (t.hasAttribute('data-city')) { var ci = $('#yp-w-c'); ci.value = t.getAttribute('data-city'); ci.setAttribute('data-ok', '1'); $('#yp-w-cl').hidden = true; return; }
+    if (t.hasAttribute('data-we-add')) ST.weAdd = true; else if (t.hasAttribute('data-we-cancel')) ST.weAdd = false;
+    else if (t.hasAttribute('data-we-sel')) { ST.weSel = t.getAttribute('data-we-sel'); ST.weAdd = false; }
+    else if (t.hasAttribute('data-we-del')) { var id = t.getAttribute('data-we-del'); pSet(pGet().filter(function (x) { return x.id !== id; })); delete PCH[id]; ST.weSel = null; }
+    render();
+  });
+  document.addEventListener('submit', function (e) {
+    if (!e.target || e.target.id !== 'yp-wf') return; e.preventDefault();
+    var g = function (id) { return $('#' + id).value; }, err = $('#yp-w-e'), nm = g('yp-w-n').trim(), city = g('yp-w-c').trim();
+    var dd = +g('yp-w-d'), mm = +g('yp-w-m'), yy = +g('yp-w-y'), nt = $('#yp-w-nt').checked, hh = g('yp-w-h'), mi = g('yp-w-mi');
+    if (!nm) { err.textContent = 'اكتب اسمه.'; return; }
+    if (!dd || !mm || !yy) { err.textContent = 'اختر يوم وشهر وسنة الميلاد.'; return; }
+    if (!nt && (hh === '' || mi === '')) { err.textContent = 'اختر الساعة والدقيقة، أو علّم "لا أعرفه".'; return; }
+    if (window.AqeeqChartContext.cityIndexByName(city) < 0) { err.textContent = 'اختر المدينة من القائمة التي تظهر أثناء الكتابة.'; return; }
+    var pad = function (x) { return String(x).padStart(2, '0'); };
+    var P = { id: 'p' + Date.now().toString(36), name: nm, rel: ($('#yp-w-rel .on') || {}).getAttribute('data-w-rel') || 'partner', g: ($('#yp-w-g .on') || {}).getAttribute('data-w-g') || 'm', date: yy + '-' + pad(mm) + '-' + pad(dd), time: nt ? '' : pad(hh) + ':' + pad(mi), city: city };
+    if (!pChart(P)) { err.textContent = 'تعذّر الحساب، راجع التاريخ والمدينة.'; return; }
+    var L = pGet(); L.push(P); pSet(L); ST.weSel = P.id; ST.weAdd = false; render();
+  });
+  window.AqeeqYouPage = { go: function (tab) { ST.tab = tab; ST.view = null; ST.weAdd = false; if (location.hash !== '#for-you') location.hash = '#for-you'; render(); var s0 = $('#for-you'); if (s0) s0.scrollTop = 0; window.scrollTo(0, 0); } };
+
   function settingsHtml() {
     var u = user() || {};
     return '<div class="yp-set">' +
@@ -402,6 +515,7 @@
       var d = domOf(v.dom); list = allCycles();
       return '<div class="yp-dh"><span class="yp-dom-i">' + SVG(d.i) + '</span><small>' + d.s + '</small></div>' + (list ? cyclesHtml(domCycles(list, v.dom)) : needNatal()) + (placeCards(v.dom) ? '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>' : '');
     }
+    if (ST.tab === 'we') return weHtml();
     if (ST.tab === 'sky') return natal() ? skyHtml() : needNatal();
     if (ST.tab === 'transits') { list = allCycles(); return subTabs() + '<p class="yp-lab">كل ما يخصّ عبوراتك</p>' + timeTravel() + (list ? cyclesHtml(list, true) : needNatal()); }
     if (ST.tab === 'pattern') return subTabs() + '<p class="yp-lab">كل صفاتك الثابتة</p>' + (natal() ? '<div class="yp-list">' + placeCards() + '</div>' : needNatal());
@@ -424,7 +538,7 @@
     var pn = $('#account-profile-completion'), home0 = $('#acct-user');
     if (pn && home0 && host.contains(pn)) home0.appendChild(pn);
     var set = !!(ST.view && ST.view.set), inSub = !!(ST.view && !set && !ST.view.sv && !ST.view.inb), sv = !!(ST.view && ST.view.sv), inb = !!(ST.view && ST.view.inb), home = !set && !inSub && !sv && !inb && ST.tab === 'home', cur = (set || sv || inb) ? 'settings' : ST.tab;
-    var barT = sv ? 'المحفوظات' : inb ? 'إشعاراتك' : set ? 'الضبط' : inSub ? (ST.view.cyc ? 'تفاصيل الدورة' : ST.view.dom ? (domOf(ST.view.dom) || {}).t || 'المجال' : 'صفة في نمطك') : home ? 'أنت' : (ST.tab === 'sky' ? 'سماء يومك' : ST.tab === 'transits' ? 'عبوراتك' : 'نمطك');
+    var barT = sv ? 'المحفوظات' : inb ? 'إشعاراتك' : set ? 'الضبط' : inSub ? (ST.view.cyc ? 'تفاصيل الدورة' : ST.view.dom ? (domOf(ST.view.dom) || {}).t || 'المجال' : 'صفة في نمطك') : home ? 'أنت' : (ST.tab === 'we' ? 'نحن' : ST.tab === 'sky' ? 'سماء يومك' : ST.tab === 'transits' ? 'عبوراتك' : 'نمطك');
     var backA = home ? 'data-home' : (inSub || sv || inb) ? 'data-back' : 'data-tab="home"';
     var who = set ? '<div class="yp-who yp-who-card"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' : '';
     var end = home ? '<button type="button" class="yp-av yp-av-b" data-set aria-label="حسابي"><span class="yp-av-i">' + avatar(u, name) + '</span><span class="yp-av-n">' + esc(String(name).split(' ')[0]) + '</span></button>' : '<span></span>';
