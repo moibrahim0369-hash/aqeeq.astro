@@ -219,3 +219,44 @@ html body section#for-you .yp-pl b:not(#_a){font-size:1.02rem;line-height:1.7}
 /* صفحة الشخص بلا تذييل الموقع ولا شريط تمرير ظاهر */
 html:has(#for-you.yp-on:target) footer.foot,html:has(#for-you.yp-on:target) .fc-foot{display:none!important}
 section#for-you{scrollbar-width:none}section#for-you::-webkit-scrollbar{display:none}
+
+/* ===== الهوية الجديدة: رملي/طوبي/عنابي، تابات زجاجية، عناوين كبيرة، خلفية حية ===== */
+html body section#for-you.yp-on:not(#_a),html body section#for-you.yp-on:target:not(#_a){background:radial-gradient(520px 420px at 100% 0,rgba(181,83,47,.40),transparent 70%),radial-gradient(460px 520px at 0 38%,rgba(107,31,46,.24),transparent 72%),radial-gradient(560px 460px at 100% 100%,rgba(201,156,98,.38),transparent 70%),linear-gradient(180deg,#F7ECD6,#F1E2C6 62%,#E9D3AE)!important;background-attachment:fixed!important}
+html body section#for-you .yp:not(#_a){position:relative;--cream:#F3E8D2;--line:#D9C8AB;--ink:#3A2A26;--brick:#B5532F;isolation:isolate}
+html body section#for-you .yp-bg:not(#_a){position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.9}
+html body section#for-you .yp-bg svg:not(#_a){width:100%;height:100%}
+html body section#for-you .yp-head:not(#_a){position:relative;z-index:1}
+/* التابات الزجاجية بأيقونات */
+html body section#for-you .yp-tabs:not(#_a){position:relative;z-index:1;gap:4px;padding:4px;border-radius:26px;border:1px solid rgba(255,255,255,.9);background:rgba(255,252,245,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 6px 18px rgba(107,31,46,.12),inset 0 1px 0 rgba(255,255,255,.95);margin-bottom:6px}
+html body section#for-you .yp-tabs button:not(#_a){min-height:54px;border-radius:22px;font:700 .72rem 'Cairo',sans-serif;color:#7A5645;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:background .2s ease,color .2s ease;padding:0 2px}
+html body section#for-you .yp-tabs button svg:not(#_a){width:20px;height:20px}
+html body section#for-you .yp-tabs button[aria-selected=true]:not(#_a){color:#FBF5EA;background:linear-gradient(180deg,#8A3A2A,#6B1F2E);box-shadow:0 5px 12px rgba(107,31,46,.35),inset 0 1px 0 rgba(255,255,255,.3)}
+/* عنوان الصفحة */
+html body section#for-you .yp-ph1:not(#_a){position:relative;z-index:1;padding:14px 4px 6px}
+html body section#for-you .yp-ph1-r:not(#_a){display:flex;align-items:center;gap:8px}
+html body section#for-you .yp-ph1 h1:not(#_a){margin:0;font:700 1.65rem/1.4 'Cairo',sans-serif;color:#3A2A26}
+html body section#for-you .yp-ph1-u:not(#_a){display:block;height:2px;width:56px;border-radius:1px;background:linear-gradient(270deg,#B5532F,transparent);margin:2px 0 4px}
+html body section#for-you .yp-ph1 p:not(#_a){margin:0;font-size:.82rem;line-height:1.7;color:#6F5D54}
+html body section#for-you .yp-body:not(#_a){position:relative;z-index:1}
+html body section#for-you .yp-gear:not(#_a){background:rgba(255,252,245,.6);border-color:rgba(217,200,171,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html body section#for-you .yp-lab:not(#_a){color:#6B1F2E}
+/* بطاقات رملية بشريط لون */
+html body section#for-you .yp-cy:not(#_a){background:linear-gradient(180deg,rgba(243,232,210,.92),rgba(233,214,184,.88));border-color:#D9C8AB;border-right:4px solid #B5532F}
+html body section#for-you .yp-cy.up:not(#_a){background:linear-gradient(135deg,#6B1F2E,#4a1521);border-right-color:#C99C62}
+html body section#for-you .yp-dom:not(#_a),html body section#for-you .yp-pl:not(#_a),html body section#for-you .yp-txt:not(#_a),html body section#for-you .yp-set-row:not(#_a){background:linear-gradient(180deg,rgba(243,232,210,.92),rgba(233,214,184,.85));border-color:#D9C8AB}
+html body section#for-you .yp-dom:not(#_a){border-right:5px solid #B5532F}
+html body section#for-you .yp-dom:nth-child(2):not(#_a){border-right-color:#6B1F2E}
+html body section#for-you .yp-dom:nth-child(3):not(#_a){border-right-color:#A9823F}
+html body section#for-you .yp-dom:nth-child(4):not(#_a){border-right-color:#7A5645}
+html body section#for-you .yp-pl:not(#_a){border-right:4px solid #A9823F}
+html body section#for-you .yp-meta:not(#_a),html body section#for-you .yp-ph>div:not(#_a),html body section#for-you .yp-asof:not(#_a){background:rgba(233,214,184,.8);border-color:#D9C8AB}
+html body section#for-you .yp-empty:not(#_a){background:rgba(243,232,210,.7);border-color:#BBA98F}
+html body section#for-you .yp-dom-i:not(#_a){background:linear-gradient(180deg,#8A3A2A,#6B1F2E)}
+html body section#for-you .yp-lc:not(#_a){border:1px solid rgba(255,255,255,.12);box-shadow:0 12px 28px rgba(74,21,33,.28)}
+html body section#for-you .yp-tt-l:not(#_a){background:rgba(255,252,245,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html body section#for-you .yp-tt-i:not(#_a){background:#E9D3B0}
+html body section#for-you .yp-tts-sh:not(#_a){background:#F3E8D2}
+@media (prefers-reduced-motion:no-preference){html body section#for-you .yp-bg svg:not(#_a){animation:ypbg 16s ease-in-out infinite alternate}@keyframes ypbg{from{transform:translateY(0)}to{transform:translateY(-8px)}}}
+html body section#for-you .yp-tabs button:not(#_a):not(#_b){flex:1 1 0!important;width:auto!important;min-width:0!important}
+html body section#for-you a.yp-gear:not(#_a){text-decoration:none;color:#6B1F2E}
+html body section#for-you .yp-gear span:not(#_a){text-decoration:none}

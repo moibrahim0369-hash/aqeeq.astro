@@ -162,7 +162,7 @@
   function isPrivate() { try { return localStorage.getItem('aqeeq_private_v1') === '1'; } catch (_) { return false; } }
   function settingsHtml() {
     var u = user() || {};
-    return back('رجوع') + '<div class="yp-set"><h3>الإعدادات</h3>' +
+    return '<div class="yp-set">' +
       '<div class="yp-set-g"><p class="yp-lab">حسابك</p><div class="yp-set-row"><div><b dir="ltr">' + esc(u.email || '') + '</b><small>نوع الاشتراك</small></div>' + planChip() + '</div></div>' +
       '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
       '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
@@ -244,6 +244,29 @@
     if (ST.tab === 'transits') { list = allCycles(); return timeTravel() + (list ? cyclesHtml(list, true) : needNatal()) + domainCards('حسب مجال حياتك'); }
     return natal() ? domainCards('صفاتك الثابتة حسب المجال') + '<p class="yp-lab">كل الصفات</p><div class="yp-list">' + placeCards() + '</div>' : needNatal();
   }
+
+  /* ---- الهوية البصرية الجديدة: عنوان كبير، تابات زجاجية، خلفية لكل تبويب ---- */
+  var TABS = [['lens', 'بصيرتك', '<path d="M12 3l2.200 5.600 5.800.500-4.400 3.900 1.400 5.700L12 15.600 7 18.700l1.400-5.700L4 9.100l5.800-.500z"/>', 'ما تحمله لك سماء اليوم، بكلمات تخصّك'],
+    ['transits', 'عبوراتك', '<ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-25 12 12)"/><circle cx="12" cy="12" r="2.200"/><circle cx="19" cy="8" r="1"/>', 'ما يمرّ بك الآن، وما يقترب منك'],
+    ['pattern', 'نمطك', '<path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/>', 'ما يميّزك في كل مجال من حياتك'],
+    ['settings', 'الإعدادات', '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.600 5.600l2.100 2.100M16.300 16.300l2.100 2.100M5.600 18.400l2.100-2.100M16.300 7.700l2.100-2.100"/>', 'بياناتك وتفضيلاتك']];
+  var BGART = {
+    lens: '<g opacity=".5"><circle cx="340" cy="60" r="60"/><circle cx="340" cy="60" r="95"/><circle cx="340" cy="60" r="135"/></g><g opacity=".45" stroke="#6B1F2E"><path d="M30 700l40-30 30 20 45-40"/><circle cx="30" cy="700" r="2.500" fill="#6B1F2E"/><circle cx="70" cy="670" r="2" fill="#6B1F2E"/><circle cx="100" cy="690" r="2.500" fill="#6B1F2E"/><circle cx="145" cy="650" r="2" fill="#6B1F2E"/></g>',
+    transits: '<g opacity=".5" transform="rotate(-20 190 420)"><ellipse cx="190" cy="420" rx="260" ry="110"/><ellipse cx="190" cy="420" rx="200" ry="80"/><ellipse cx="190" cy="420" rx="140" ry="52"/></g><circle cx="330" cy="330" r="5" fill="#B5532F" stroke="none" opacity=".7"/><circle cx="60" cy="520" r="4" fill="#6B1F2E" stroke="none" opacity=".6"/>',
+    pattern: '<g opacity=".45"><path d="M300 40l50 29v58l-50 29-50-29V69z"/><path d="M300 40l50 29-50 29-50-29zM300 98v58"/><path d="M60 640l50 29v58l-50 29-50-29v-58z"/><path d="M60 640l50 29-50 29-50-29zM60 698v58"/></g>',
+    settings: '<g opacity=".45" stroke="#6B1F2E"><path d="M40 90l60 40 50-30 70 50"/><path d="M290 640l30-50 40 20"/><circle cx="40" cy="90" r="3" fill="#6B1F2E"/><circle cx="100" cy="130" r="2.500" fill="#6B1F2E"/><circle cx="150" cy="100" r="3" fill="#6B1F2E"/><circle cx="220" cy="150" r="2.500" fill="#6B1F2E"/><circle cx="290" cy="640" r="3" fill="#6B1F2E"/><circle cx="320" cy="590" r="2.500" fill="#6B1F2E"/></g>'
+  };
+  function curTab() { return ST.view && ST.view.set ? 'settings' : ST.tab; }
+  function pageHead() {
+    var t = TABS.filter(function (x) { return x[0] === curTab(); })[0]; if (!t) return '';
+    return '<div class="yp-ph1"><div class="yp-ph1-r"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l5 10-5 10-5-10z" fill="#B5532F"/><path d="M12 2l5 10H7z" fill="#E08A5C"/></svg><h1>' + t[1] + '</h1></div><i class="yp-ph1-u"></i><p>' + t[3] + '</p></div>';
+  }
+  function tabsHtml() {
+    var cur = curTab();
+    return '<div class="yp-tabs" role="tablist">' + TABS.map(function (t) {
+      return '<button type="button" role="tab" data-tab="' + t[0] + '" aria-selected="' + (cur === t[0]) + '">' + SVG(t[2]) + '<span>' + t[1] + '</span></button>';
+    }).join('') + '</div>';
+  }
   function render() {
     loadTexts();
     var u = user(), host = $('#fy-body'), sec = $('#for-you'); if (!host) return;
@@ -252,10 +275,12 @@
     var name = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || (u.email || '').split('@')[0] || 'حسابك';
     var pn = $('#account-profile-completion'), home = $('#acct-user');
     if (pn && home && host.contains(pn)) home.appendChild(pn);
-    host.innerHTML = '<div class="yp"><header class="yp-head"><div class="yp-who"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' +
-      '<button type="button" class="yp-gear' + (ST.view && ST.view.set ? ' on' : '') + '" data-set aria-label="الإعدادات">' + SVG('<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>') + '<span>الإعدادات</span></button></header>' +
-      (ST.view && ST.view.set ? '' : '<div class="yp-tabs" role="tablist"><button type="button" role="tab" data-tab="lens" aria-selected="' + (ST.tab === 'lens' && !ST.view) + '">بصيرتك</button><button type="button" role="tab" data-tab="transits" aria-selected="' + (ST.tab === 'transits' && !ST.view) + '">عبوراتك</button><button type="button" role="tab" data-tab="pattern" aria-selected="' + (ST.tab === 'pattern' && !ST.view) + '">نمطك</button></div>') +
-      '<div class="yp-body">' + bodyHtml() + '</div></div>';
+    var inSub = ST.view && !ST.view.set;
+    host.innerHTML = '<div class="yp yp-t-' + curTab() + '"><div class="yp-bg" aria-hidden="true"><svg width="100%" height="100%" viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9A4A32" stroke-width="1">' + (BGART[curTab()] || '') + '</svg></div>' +
+      '<header class="yp-head"><div class="yp-who"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' +
+      '<a class="yp-gear" href="#chart" aria-label="الخريطة">' + SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/>') + '<span>الخريطة</span></a></header>' +
+      tabsHtml() + (inSub ? '' : pageHead()) +
+      '<div class="yp-body">' + (ST.view && ST.view.set ? settingsHtml() : bodyHtml()) + '</div></div>';
     if (ST.view && ST.view.set) {
       var slot = $('#yp-prof-slot');
       if (pn && slot) { pn.hidden = false; slot.appendChild(pn); }
@@ -298,7 +323,7 @@
     }
     if (t.hasAttribute('data-signout')) { var so = $('#acct-signout'); if (so) so.click(); return; }
     if (t.hasAttribute('data-set')) { ST.view = ST.view && ST.view.set ? null : { set: true }; ST.tries = 0; render(); window.scrollTo(0, 0); return; }
-    if (t.hasAttribute('data-tab')) { ST.tab = t.getAttribute('data-tab'); ST.view = null; }
+    if (t.hasAttribute('data-tab')) { var tn = t.getAttribute('data-tab'); if (tn === 'settings') { ST.view = { set: true }; ST.tries = 0; } else { ST.tab = tn; ST.view = null; } }
     else if (t.hasAttribute('data-dom')) ST.view = { dom: t.getAttribute('data-dom'), from: ST.view };
     else if (t.hasAttribute('data-cyc')) ST.view = { cyc: t.getAttribute('data-cyc'), from: ST.view };
     else if (t.hasAttribute('data-pl')) { var id = t.getAttribute('data-pl'), p = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === id; })[0]; ST.view = { pl: p.nn + ' في ' + p.sign, id: p.id, from: ST.view }; }
