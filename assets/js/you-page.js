@@ -259,7 +259,7 @@
     if (v && v.dom) {
       var d = domOf(v.dom); list = allCycles();
       var mine = list ? list.filter(function (c) { return v.dom === 'growth' ? ['saturn', 'pluto', 'chiron', 'neptune'].indexOf(c.t) >= 0 : c.doms.indexOf(v.dom) >= 0; }) : [];
-      return back('رجوع') + '<div class="yp-dh"><h3>' + d.t + '</h3><small>' + d.s + '</small></div>' + (list ? cyclesHtml(mine) : needNatal()) + (placeCards(v.dom) ? '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>' : '');
+      return back('رجوع') + '<div class="yp-dh"><span class="yp-dom-i">' + SVG(d.i) + '</span><small>' + d.s + '</small></div>' + (list ? cyclesHtml(mine) : needNatal()) + (placeCards(v.dom) ? '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>' : '');
     }
     if (ST.tab === 'lens') return lensHtml();
     if (ST.tab === 'transits') { list = allCycles(); return timeTravel() + (list ? cyclesHtml(list, true) : needNatal()) + domainCards('حسب مجال حياتك'); }
