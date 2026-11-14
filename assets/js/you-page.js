@@ -77,7 +77,7 @@
     var old = document.getElementById('yp-reader'); if (old) old.remove();
     var el = document.createElement('div'); el.id = 'yp-reader'; el.className = 'yp-rd'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
     el.innerHTML = '<div class="yp-rd-top"><button type="button" class="yp-rd-x" data-rd-close aria-label="إغلاق">' + SVG('<path d="M6 6l12 12M18 6L6 18"/>') + '</button><div class="yp-rd-k"><small>' + esc(kicker) + '</small><b>' + esc(title) + '</b></div></div>' +
-      '<div class="yp-rd-track" tabindex="0">' + sl.map(function (x, i) { return '<section class="yp-rd-s"><i>' + (i + 1) + ' / ' + sl.length + '</i>' + (x.t ? '<h4>' + esc(x.t) + '</h4>' : '') + '<p>' + esc(x.b).replace(/\n/g, '<br>') + '</p></section>'; }).join('') + '</div>' +
+      '<div class="yp-rd-track" tabindex="0">' + sl.map(function (x, i) { return '<section class="yp-rd-s"><i dir="ltr">' + (i + 1) + ' / ' + sl.length + '</i>' + (x.t ? '<h4>' + esc(x.t) + '</h4>' : '') + '<p>' + esc(x.b).replace(/\n/g, '<br>') + '</p></section>'; }).join('') + '</div>' +
       '<div class="yp-rd-dots">' + sl.map(function (_, i) { return '<span' + (i === 0 ? ' class="on"' : '') + '></span>'; }).join('') + '</div>' +
       '<div class="yp-rd-nav"><button type="button" data-rd="1">السابق</button><button type="button" data-rd="-1" class="go">التالي</button></div>';
     document.body.appendChild(el); document.documentElement.classList.add('yp-rd-open');

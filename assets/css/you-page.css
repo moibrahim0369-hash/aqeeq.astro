@@ -191,3 +191,4 @@ html.yp-rd-open{overflow:hidden}
 .yp-rd-nav{display:flex;gap:10px}
 .yp-rd-nav button{flex:1;min-height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font:700 .95rem 'Cairo',sans-serif;cursor:pointer}
 .yp-rd-nav .go{background:#f3dcc0;color:#4a1a2b;border-color:#f3dcc0}
+.yp-rd-s i{align-self:flex-start}
