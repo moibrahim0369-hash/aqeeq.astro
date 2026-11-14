@@ -79,3 +79,8 @@ html body section#astro-maps.eam-view-result:not(#_a):not(#_b):not(#_c) #eam-exp
 #astro-maps .vc-chips2:not(#_a):not(#_b){margin-bottom:12px}
 #astro-maps .vc-code:not(#_a):not(#_b){font-style:normal;font-family:ui-monospace,Menlo,monospace;font-size:.68rem;color:#B08A3E;margin-inline-start:6px;letter-spacing:.04em;opacity:.9}
 #astro-maps .vc-codes:not(#_a):not(#_b){grid-column:1/-1;display:flex;gap:6px}#astro-maps .vc-codes:empty:not(#_a):not(#_b){display:none}
+
+.vh-ex-slot{margin:.7rem 0;padding:.7rem .9rem;border:1px dashed #8a3b2a;border-radius:12px;background:rgba(138,59,42,.06)}
+.vh-ex-slot b{display:block;color:#7a1f2b;font-size:.85rem;margin-bottom:.2rem}
+.vh-ex-slot span{display:block;font-size:.9rem;line-height:1.7;margin-bottom:.5rem}
+.vh-ex-slot[hidden]{display:none}
