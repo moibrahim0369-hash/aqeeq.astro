@@ -160,3 +160,8 @@ html body section#for-you .yp-lc p:not(#_a){font-size:.9rem;line-height:1.85}
 html body section#for-you .yp-lc-b:not(#_a){min-height:40px;font-size:.88rem;padding:0 18px}
 html body section#for-you .yp-det h3:not(#_a){font-size:1.35rem}
 html body section#for-you .yp-tt-l:not(#_a){min-height:40px;font-size:.82rem}
+
+/* زر الإعدادات بنص واضح، وإخفاء «تابع من هنا» من صفحة الشخص */
+html body section#for-you .yp-gear:not(#_a){width:auto;height:40px;padding:0 14px 0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;flex:none;font:700 .85rem 'Cairo',sans-serif}
+html body section#for-you .yp-gear span:not(#_a){line-height:1}
+section#for-you.yp-on .aq-related{display:none!important}
