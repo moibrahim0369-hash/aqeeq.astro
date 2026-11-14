@@ -33,7 +33,9 @@
     sade: '<circle cx="12" cy="12" r="3.2"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(-20 12 12)"/>',
     lunar: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
     expert: '<rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>',
-    year: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'
+    year: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+    star: '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.9 6.8 19.7l1-5.9L3.5 9.7l5.9-.8z"/>',
+    event: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9 14.500l2 2 4-4"/>'
   };
   var TILES = [
     ['birth', 'خريطة الميلاد', 'العجلة والكواكب والاتصالات'],
@@ -297,14 +299,14 @@
       } else {
         now1 = '<p class="vh-sade-now">أنت الآن خارج ساتي ساتي.' + (nxt ? ' تبدأ الدورة القادمة في ' + fdt(nxt.s) + '، بعد ' + span(nxt.s - now) + '.' : '') + (prv ? ' وانتهت آخر دورة في ' + fdt(prv.e) + '.' : '') + '</p>';
       }
-      out.push(accEl('أين أنت الآن', 'sade', now1, true, 'sade'));
+      out.push(accEl('أين زحل منك الآن', 'sade', now1, true, 'sade'));
       var show3 = c || nxt || prv;
       if (show3) {
-        out.push(accEl('المراحل الثلاث بتواريخها', 'dasha', '<p class="vh-sade-cyc">' + (c ? 'الدورة الحالية' : nxt ? 'الدورة القادمة' : 'آخر دورة') + '</p><ol class="vh-steps">' + show3.ph.map(function (p, j) { return '<li' + (c && j === k ? ' class="on"' : '') + '><b>' + ['المرحلة الأولى: ', 'المرحلة الثانية: ', 'المرحلة الثالثة: '][j] + PH[j][0] + ' · ' + SG[D.targets[j]] + '</b><br>' + rng(p) + '<br><small>المدة: ' + span(p.e - p.s) + '</small></li>'; }).join('') + '</ol>', false, 'sade'));
+        out.push(accEl('مراحل ساتي ساتي بتواريخها', 'dasha', '<p class="vh-sade-cyc">' + (c ? 'الدورة الحالية' : nxt ? 'الدورة القادمة' : 'آخر دورة') + '</p><ol class="vh-steps">' + show3.ph.map(function (p, j) { return '<li' + (c && j === k ? ' class="on"' : '') + '><b>' + ['المرحلة الأولى: ', 'المرحلة الثانية: ', 'المرحلة الثالثة: '][j] + PH[j][0] + ' · ' + SG[D.targets[j]] + '</b><br>' + rng(p) + '<br><small>المدة: ' + span(p.e - p.s) + '</small></li>'; }).join('') + '</ol>', false, 'sade'));
       }
-      out.push(accEl('ماذا تعني كل مرحلة', 'star', PH.map(function (x, j) { return '<h6>' + ['الأولى', 'الثانية', 'الثالثة'][j] + ': ' + x[0] + '</h6>' + x[2].map(function (t) { return '<p>' + t + '</p>'; }).join(''); }).join(''), false, 'sade'));
+      out.push(accEl('ماذا تعني فترة زحل عليك', 'star', PH.map(function (x, j) { return '<h6>' + ['الأولى', 'الثانية', 'الثالثة'][j] + ': ' + x[0] + '</h6>' + x[2].map(function (t) { return '<p>' + t + '</p>'; }).join(''); }).join(''), false, 'sade'));
       var cyc = D.cl.map(function (z) { return '<li' + (z === c ? ' class="on"' : '') + '>' + rng(z) + (z === c ? ' (الحالية)' : z.s > now ? ' (قادمة)' : ' (سابقة)') + '</li>'; }).join('');
-      if (cyc) out.push(accEl('الدورات السابقة والقادمة', 'event', '<ol class="vh-steps">' + cyc + '</ol><p class="vh-tm-note">كل دورة تتكرر كل نحو ثلاثين سنة، وتُحسب من دخول زحل البرج الذي قبل قمرك حتى خروجه من البرج الذي بعده.</p>', false, 'sade'));
+      if (cyc) out.push(accEl('دورات زحل السابقة والقادمة', 'event', '<ol class="vh-steps">' + cyc + '</ol><p class="vh-tm-note">كل دورة تتكرر كل نحو ثلاثين سنة، وتُحسب من دخول زحل البرج الذي قبل قمرك حتى خروجه من البرج الذي بعده.</p>', false, 'sade'));
     } catch (e) { console.warn(e); out = [accEl('ساتي ساتي', 'sade', '<p class="vh-tm-err">تعذر حساب الدورات الآن.</p>', true, 'sade')]; }
     out.forEach(function (d) { result.appendChild(d); fillSlots(d); });
   }
