@@ -210,3 +210,12 @@ html.yp-rd-open{overflow:hidden}
 .yp-tts-r{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;margin:6px 0}
 .yp-tts-r label{display:grid;gap:4px;font:700 .75rem 'Cairo',sans-serif;color:#7a5a4c}
 .yp-tts-r select{min-height:46px;border-radius:14px;border:1px solid #E2D3BC;background:#EFE3D3;color:#6b1f2e;font:700 1rem 'Cairo',sans-serif;padding:0 10px}
+
+/* ترتيب بطاقات النمط: سطر علوي (شارة + برج وبيت) ثم العنوان */
+.yp-pl-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+html body section#for-you .yp-pl .yp-chip:not(#_a){position:static;border-radius:9px;padding:4px 11px;width:auto}
+html body section#for-you .yp-pl:not(#_a){grid-template-columns:1fr;align-content:start}
+html body section#for-you .yp-pl b:not(#_a){font-size:1.02rem;line-height:1.7}
+/* صفحة الشخص بلا تذييل الموقع ولا شريط تمرير ظاهر */
+html:has(#for-you.yp-on:target) footer.foot,html:has(#for-you.yp-on:target) .fc-foot{display:none!important}
+section#for-you{scrollbar-width:none}section#for-you::-webkit-scrollbar{display:none}

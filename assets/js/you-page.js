@@ -147,7 +147,7 @@
     var pl = window.AqeeqYou.placements(ch).filter(function (p) { return !dom || p.dom === dom; });
     return pl.map(function (p) {
       var c = coreOf(p); if (!c) return '';
-      return '<button type="button" class="yp-pl" data-pl="' + p.id + '"><span class="yp-chip blue">' + p.nn + '</span><small>' + p.nn + ' في ' + p.sign + ' · البيت ' + c.house + '</small><b>' + esc(headOf(c.e)) + '</b></button>';
+      return '<button type="button" class="yp-pl" data-pl="' + p.id + '"><span class="yp-pl-h"><span class="yp-chip blue">' + p.nn + '</span><small>' + p.sign + ' · البيت ' + c.house + '</small></span><b>' + esc(headOf(c.e)) + '</b></button>';
     }).join('');
   }
   function back(label) { return '<button type="button" class="yp-back" data-back>' + SVG('<path d="M9 6l6 6-6 6"/>') + label + '</button>'; }
@@ -258,7 +258,7 @@
       '<div class="yp-body">' + bodyHtml() + '</div></div>';
     if (ST.view && ST.view.set) {
       var slot = $('#yp-prof-slot');
-      if (pn && slot) slot.appendChild(pn);
+      if (pn && slot) { pn.hidden = false; slot.appendChild(pn); }
       else if (slot && (ST.tries = (ST.tries || 0) + 1) < 20) setTimeout(function () { if (ST.view && ST.view.set && !$('#yp-prof-slot #account-profile-completion')) render(); }, 400);
     }
   }
