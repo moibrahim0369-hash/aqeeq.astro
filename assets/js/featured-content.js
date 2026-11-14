@@ -1,4 +1,4 @@
-/* محتوى مميز — القائمة + صفحة القراءة (مصدر واحد: assets/data/featured-content.json) */
+/* المجلة — القائمة + صفحة القراءة (مصدر واحد: assets/data/featured-content.json) */
 (function () {
   'use strict';
   var SRC = 'assets/data/featured-content.json', CK = 'aq-fc-cache', PAGE = 4;
@@ -95,7 +95,7 @@
   function pick() {
     var a = pickA(); if (!a) return '';
     return '<section class="fc-pick" aria-labelledby="fc-pick-t" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '">' +
-      '<div class="fc-pick-main"><div class="fc-pick-txt"><span class="fc-flag">اختيار المحررين</span><h2 id="fc-pick-t">' + esc(a.title) + '</h2><p>' + esc(a.excerpt) + '</p>' +
+      '<div class="fc-pick-main"><div class="fc-pick-txt"><span class="fc-flag">الأبرز الآن</span><h2 id="fc-pick-t">' + esc(a.title) + '</h2><p>' + esc(a.excerpt) + '</p>' +
       '<div class="fc-pick-row"><a class="fc-btn" href="#featured-content/' + esc(a.slug) + '"><span>اقرأ المحتوى</span>' + ARROW + '</a><div class="fc-meta">' + meta(a) + '</div></div></div>' +
       '<div class="fc-pick-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div></div>' +
       '<div class="fc-pick-q" aria-hidden="true">' + STAR + '<span id="fc-quote">' + esc(QUOTES[quoteI]) + '</span>' + STAR + '</div></section>';
@@ -123,6 +123,7 @@
     var items = filtered(), showPick = st.cat === 'الكل' && !st.q;
     h += offline ? '<p class="fc-offline" role="status">أنت تتصفح نسخة محفوظة من المحتوى بسبب ضعف الاتصال.</p>' : '';
     h += showPick ? pick() : '';
+    if (st.cat !== 'الكل' && !st.q) h += '<div class="fc-gpage"><button type="button" class="fc-gback" data-fc-reset aria-label="رجوع إلى المجلة">' + PGP + '</button><div><h2>' + esc(st.cat) + '</h2><small>' + (SUB[st.cat] || '') + '</small></div></div>';
     h += '<div class="fc-tools"><div class="fc-filters" role="group" aria-label="تصنيفات المحتوى" id="fc-filters">' + CATS.map(function (c) { return '<button type="button" class="fc-chip" data-cat="' + esc(c) + '" aria-pressed="' + (c === st.cat) + '">' + esc(c) + '</button>'; }).join('') + '</div></div>';
     h += '<div class="fc-sub"><p class="fc-count" id="fc-count" role="status" aria-live="polite"></p>' +
       '<div class="fc-search" role="search"><label for="fc-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">ابحث في المحتوى</label>' + ICO.search +
@@ -192,8 +193,9 @@
     return h + '<button type="button" class="fc-pg" data-pg="' + (st.page + 1) + '" aria-label="الصفحة التالية"' + (st.page === pages ? ' disabled' : '') + '>' + PGN + '</button>';
   }
   function countText(n) { return n + (n === 1 ? ' مادة' : n === 2 ? ' مادتان' : n <= 10 ? ' مواد' : ' مادة'); }
+  var SUB = { 'الأبراج': 'شخصيات الأبراج وتفاصيلها', 'الكواكب والقمر والعبور': 'حركة السماء وأثرها عليك', 'مسار الحياة ومصفوفة القدر': 'أرقامك ودوراتك الكبرى', 'العلاقات والرموز': 'ما بينك وبين الآخرين ومعاني الرموز', 'أحدث ما نُشر': 'الأحدث على المجلة' };
   function rowHead(k, ico, n, all) {
-    return '<header class="fc-row-h"><' + (all ? 'button type="button" data-fc-group="' + esc(k) + '"' : 'div') + ' class="fc-row-t"><span class="fc-row-ic">' + (TICO[ico] || TICO['الفلك']) + '</span><span><h2>' + esc(k) + '</h2><small>' + countText(n) + '</small></span></' + (all ? 'button' : 'div') + '>' +
+    return '<header class="fc-row-h"><' + (all ? 'button type="button" data-fc-group="' + esc(k) + '"' : 'div') + ' class="fc-row-t"><span class="fc-row-ic">' + (TICO[ico] || TICO['الفلك']) + '</span><span><h2>' + esc(k) + (all ? '<i class="fc-row-chev">' + PGN + '</i>' : '') + '</h2><small>' + (SUB[k] || countText(n)) + '</small></span></' + (all ? 'button' : 'div') + '>' +
       (all ? '<button type="button" class="fc-row-all" data-fc-group="' + esc(k) + '"><span>عرض كل المقالات</span>' + ARROW + '</button>' : '') + '</header>';
   }
   /* ---------- بطاقات الدعوة السياقية: كل تصنيف يقود للأداة المناسبة ---------- */
@@ -297,11 +299,35 @@
   function save() { try { sessionStorage.setItem('aq-fc-state', JSON.stringify({ c: st.cat, q: st.q })); } catch (e) { } }
   (function restore() { try { var s = JSON.parse(sessionStorage.getItem('aq-fc-state') || 'null'); if (s) { st.cat = (CATS.indexOf(s.c) > -1 || groupOf(s.c)) ? s.c : 'الكل'; st.q = s.q || ''; } } catch (e) { } })();
 
+
+  /* ---------- نافذة القراءة المنبثقة (نص فقط، تمرير عمودي، زر إغلاق) ---------- */
+  function popClose() {
+    var el = document.getElementById('fc-pop'); if (!el) return;
+    document.documentElement.style.overflow = ''; el.classList.remove('is-open');
+    setTimeout(function () { if (el.parentNode) el.remove(); }, reduce ? 0 : 240);
+  }
+  function popOpen(slug) {
+    var a = bySlug(slug); if (!a) { location.hash = '#featured-content/' + slug; return; }
+    var old = document.getElementById('fc-pop'); if (old) old.remove();
+    var el = document.createElement('div'); el.id = 'fc-pop'; el.className = 'fc-pop'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-labelledby', 'fc-pop-t'); el.setAttribute('dir', 'rtl');
+    el.innerHTML = '<div class="fc-pop-top"><button type="button" class="fc-pop-x" data-fc-pop-x aria-label="إغلاق">' + ICO.x + '</button><div class="fc-pop-hd"><small>' + esc(a.category) + ' · ' + esc(a.readingTime) + ' دقائق قراءة</small><h3 id="fc-pop-t">' + esc(a.title) + '</h3></div></div>' +
+      '<div class="fc-pop-scroll" tabindex="0"><div class="fc-pop-col"><p class="fc-pop-lead">' + esc(a.excerpt) + '</p><div class="fc-body">' + body(a) + '</div>' +
+      '<div class="fc-pop-end"><a class="fc-pop-full" href="#featured-content/' + esc(a.slug) + '">فتح في صفحة كاملة</a><button type="button" class="fc-pop-close" data-fc-pop-x>إغلاق</button></div></div></div>';
+    document.body.appendChild(el); document.documentElement.style.overflow = 'hidden';
+    void el.offsetWidth; el.classList.add('is-open');
+    var x = el.querySelector('.fc-pop-x'); if (x) x.focus({ preventScroll: true });
+    el.addEventListener('click', function (e) { if (e.target.closest('[data-fc-pop-x]') || e.target.closest('a[href^="#"]')) popClose(); });
+  }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && document.getElementById('fc-pop')) { e.stopPropagation(); popClose(); } }, true);
+  window.addEventListener('hashchange', popClose);
+
   list.addEventListener('click', function (e) {
+    var cd = e.target.closest('.fc-mini,.fc-card,.fc-pick');
+    if (cd && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.target.closest('button,[data-pg],.fc-cta')) { var sl = cd.getAttribute('data-slug'); if (sl) { e.preventDefault(); popOpen(sl); return; } }
     if (e.target.closest('[data-fc-retry]')) { load(); return; }
     var pgb = e.target.closest('[data-pg]'); if (pgb && !pgb.disabled) { st.page = Number(pgb.getAttribute('data-pg')); paintGrid(); var gg = $('#fc-latest') || $('#fc-grid'); if (gg) gg.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); return; }
-    if (e.target.closest('[data-fc-reset]') || e.target.closest('[data-fc-clear]')) { st.q = ''; st.cat = e.target.closest('[data-fc-reset]') ? 'الكل' : st.cat; st.page = 1; save(); render(); return; }
-    var gb = e.target.closest('[data-fc-group]'); if (gb) { st.cat = gb.getAttribute('data-fc-group'); st.page = 1; st.q = ''; save(); render(); var tl = $('.fc-tools'); if (tl) tl.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); return; }
+    if (e.target.closest('[data-fc-reset]') || e.target.closest('[data-fc-clear]')) { st.q = ''; st.cat = e.target.closest('[data-fc-reset]') ? 'الكل' : st.cat; st.page = 1; save(); render(); window.scrollTo(0, 0); list.scrollTop = 0; return; }
+    var gb = e.target.closest('[data-fc-group]'); if (gb) { st.cat = gb.getAttribute('data-fc-group'); st.page = 1; st.q = ''; save(); render(); window.scrollTo(0, 0); list.scrollTop = 0; return; }
     var a = e.target.closest('a[href^="#featured-content/"]'); if (a) internal++;
   });
 
@@ -336,19 +362,19 @@
     var a = bySlug(slug), host = $('#fc-reader-body');
     reader.classList.add('fc-open'); reader.scrollTop = 0;
     if (!a) {
-      host.innerHTML = '<div class="fc-art"><div class="fc-msg"><p>هذا المحتوى غير متاح حاليًا.</p><a class="fc-btn" href="#featured-content"><span>رجوع إلى المحتوى المميز</span>' + ARROW + '</a></div></div>';
+      host.innerHTML = '<div class="fc-art"><div class="fc-msg"><p>هذا المحتوى غير متاح حاليًا.</p><a class="fc-btn" href="#featured-content"><span>رجوع إلى المجلة</span>' + ARROW + '</a></div></div>';
       document.title = 'محتوى غير متاح | AQEQ ASTRO'; return;
     }
     document.title = a.title + ' | AQEQ ASTRO';
     var rel = related(a);
     host.innerHTML =
-      '<ol class="fc-crumb" aria-label="مسار التنقل" style="width:min(720px,100% - 40px);margin-inline:auto;margin-bottom:28px"><li><a href="#home">الرئيسية</a></li><li><a href="#featured-content">محتوى مميز</a></li><li aria-current="page">' + esc(a.category) + '</li></ol>' +
+      '<ol class="fc-crumb" aria-label="مسار التنقل" style="width:min(720px,100% - 40px);margin-inline:auto;margin-bottom:28px"><li><a href="#home">الرئيسية</a></li><li><a href="#featured-content">المجلة</a></li><li aria-current="page">' + esc(a.category) + '</li></ol>' +
       '<article class="fc-art" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '">' +
       '<header class="fc-art-hd">'+ topic(a) +'<div class="fc-meta">' + meta(a) + '</div><h1 id="fc-art-title" tabindex="-1">' + esc(a.title) + '</h1><p class="fc-intro">' + esc(a.excerpt) + '</p></header></article>' +
       '<div class="fc-hero-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div>' +
       '<div class="fc-art"><div class="fc-body">' + body(a) + '</div>' +
       '<div class="fc-note"><b>ملاحظة تحريرية:</b> ' + esc(a.note || '') + '</div>' +
-      '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '">' + ARROW + '<span>' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '</span></button>' +
+      '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="' + (backTarget() ? backTarget()[1] : 'رجوع إلى المجلة') + '">' + ARROW + '<span>' + (backTarget() ? backTarget()[1] : 'رجوع إلى المجلة') + '</span></button>' +
       '<button type="button" class="fc-ghost" data-fc-save aria-pressed="false" aria-label="حفظ المقال">' + ICO.save + '<span>حفظ المقال</span></button>' +
       '<span class="fc-share"><button type="button" class="fc-ghost" data-fc-share aria-haspopup="menu" aria-expanded="false" aria-label="مشاركة المقال">' + ICO.share + '<span>مشاركة المقال</span></button>' +
       '<div class="fc-menu" role="menu" hidden><button type="button" role="menuitem" data-fc-copy>نسخ الرابط</button>' +
@@ -358,7 +384,7 @@
       '<span class="fc-saved" role="status"></span></div></div>' +
       '<div class="fc-art fc-art-cta">' + ctaCard(CAT_CTA[a.category] || 'chart', 'article') + '</div>' +
       '<section class="fc-related" aria-labelledby="fc-rel-t"><h2 id="fc-rel-t">محتوى ذو صلة</h2><div class="fc-grid">' + rel.map(function (x, i) { return card(x, i, true); }).join('') + '</div></section>' +
-      '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المحتوى المميز') + '</span>' + ARROW + '</a>' + (fromKey ? '' : '') + '</div>';
+      '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المجلة') + '</span>' + ARROW + '</a>' + (fromKey ? '' : '') + '</div>';
     var sv = $('[data-fc-save]', host), msg = $('.fc-saved', host);
     getUser().then(function (u) { var on = getSaved(u && u.id).indexOf(slug) > -1; sv.setAttribute('aria-pressed', on); $('span', sv).textContent = on ? 'محفوظ' : 'حفظ المقال'; sv._u = u; });
     sv.addEventListener('click', function () {
@@ -385,7 +411,7 @@
   var FROM = {
     chart: ['#chart', 'العودة إلى الخريطة الفلكية'], lifepath: ['#lifepath', 'العودة إلى مسار الحياة'],
     matrix: ['#matrix', 'العودة إلى مصفوفة القدر'], sky: ['#sky', 'العودة إلى السماء'],
-    featured: ['#featured-content', 'العودة إلى المحتوى المميز'], home: ['#home', 'العودة إلى الرئيسية']
+    featured: ['#featured-content', 'العودة إلى المجلة'], home: ['#home', 'العودة إلى الرئيسية']
   };
   function backTarget() { return FROM[fromKey] || null; }
   function goBack() { var t = backTarget(); if (t) { fromKey = ''; location.hash = t[0]; return; } if (internal > 0) { internal--; history.back(); } else location.hash = '#featured-content'; }
@@ -407,7 +433,7 @@
     reader.classList.remove('fc-open');
     var on = h === '#featured-content';
     list.classList.toggle('fc-open', on);
-    if (on) { document.title = 'محتوى مميز | AQEQ ASTRO'; }
+    if (on) { document.title = 'المجلة | AQEQ ASTRO'; }
   }
   window.addEventListener('hashchange', route);
   render(); route(); load();

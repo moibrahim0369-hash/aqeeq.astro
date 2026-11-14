@@ -34,7 +34,7 @@
   window.addEventListener('hashchange', closeYou);
   function renderBar() {
     if (!bar) return;
-    var home = bar.querySelector('[data-nav="home"]'), disc = $('#aqn-discover-btn'), acc = bar.querySelector('[data-nav="account"]');
+    var home = bar.querySelector('[data-nav="home"]'), disc = $('#aqn-mag-btn'), acc = bar.querySelector('[data-nav="account"]');
     var compat = bar.querySelector('[data-nav="compat"]'); if (compat) compat.remove();
     var old = $('#aq-you-item', bar); if (old) old.remove();
     /* بعد الدخول: «حسابي» هو صفحتك الكاملة (#for-you) بدل نافذة منبثقة، فلا حاجة لزر «لك» منفصل */

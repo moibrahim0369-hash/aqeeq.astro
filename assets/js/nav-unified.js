@@ -80,7 +80,7 @@
   function sync() {
     var h = norm(), inDiscover = DISCOVER.indexOf(h) > -1;
     $$('.bnav .bnav-item').forEach(function (el) {
-      var on = el.id === 'aqn-discover-btn' ? inDiscover : el.getAttribute('href') === h;
+      var hr = el.getAttribute('href'), on = el.id === 'aqn-discover-btn' ? inDiscover : hr === '#featured-content' ? h.indexOf('#featured-content') === 0 : hr === h;
       el.classList.toggle('on', on);
       if (on) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current');
     });

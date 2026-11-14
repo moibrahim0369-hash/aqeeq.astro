@@ -1,0 +1,59 @@
+/* المجلة — بطاقات صور بنمط Discover + نافذة قراءة منبثقة (هوية عقيق: كريمي/عنابي/طوبي) */
+html body #featured-content .fc-tools{display:none!important}
+html body #featured-content .fc-pick{border-radius:18px;max-width:none;min-height:0;display:block;background:#4A1521;box-shadow:0 18px 34px -18px rgba(53,27,40,.7)}
+html body #featured-content .fc-pick-main{position:relative;display:block;min-height:0;aspect-ratio:4/5;max-height:440px}
+html body #featured-content .fc-pick-img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;order:0}
+html body #featured-content .fc-pick-img img{object-position:center}
+html body #featured-content .fc-pick-img::after{background:linear-gradient(0deg,rgba(40,14,22,.95) 0,rgba(40,14,22,.55) 45%,rgba(40,14,22,0) 78%)!important}
+html body #featured-content .fc-pick-txt{position:absolute;inset:auto 0 0 0;width:100%;min-height:0;padding:22px 20px;z-index:2}
+html body #featured-content .fc-pick h2{font-size:1.6rem;line-height:1.4}
+html body #featured-content .fc-pick p,html body #featured-content .fc-pick .fc-meta,html body #featured-content .fc-pick-q{display:none!important}
+html body #featured-content .fc-pick .fc-btn{min-height:44px}
+html body #featured-content .fc-row-all{display:none!important}
+html body #featured-content .fc-row-h{border:0;padding:0;margin-bottom:10px}
+html body #featured-content .fc-row-t h2{display:flex;align-items:center;gap:6px}
+html body #featured-content .fc-row-chev{display:inline-grid;width:22px;height:22px;color:#9a6f2f}
+html body #featured-content .fc-row-chev svg{width:20px;height:20px}
+html body #featured-content .fc-rows{gap:30px}
+html body #featured-content .fc-track .fc-mini{flex:0 0 62%;max-width:250px}
+/* بطاقة صورة */
+html body #featured-content .fc-mini{position:relative;aspect-ratio:3/4;border-radius:16px;overflow:hidden;border:0;background:#4A1521;display:block}
+html body #featured-content .fc-mini-img{position:absolute;inset:0;aspect-ratio:auto}
+html body #featured-content .fc-mini-img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(40,14,22,.92) 0,rgba(40,14,22,.35) 48%,rgba(40,14,22,0) 72%)}
+html body #featured-content .fc-mini-b{position:absolute;inset:auto 0 0 0;padding:14px;z-index:2}
+html body #featured-content .fc-mini h3{color:#FBF3E4;font-size:1rem;-webkit-line-clamp:3}
+html body #featured-content .fc-mini .fc-topic,html body #featured-content .fc-mini .fc-meta{display:none}
+html body #featured-content .fc-row-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}
+/* صفحة القسم: قائمة عمودية بصور مصغّرة */
+html body #featured-content .fc-gpage{display:flex;align-items:center;gap:12px;margin:0 0 16px}
+html body #featured-content .fc-gpage h2{margin:0;font:700 1.5rem 'Amiri',serif;color:#4A1521}
+html body #featured-content .fc-gpage small{color:#746C68}
+html body #featured-content .fc-gback{width:46px;height:46px;border-radius:50%;border:1px solid rgba(112,38,63,.3);background:#F3E7D3;color:#70263F;display:grid;place-items:center;cursor:pointer;padding:0}
+html body #featured-content .fc-gback svg{width:22px;height:22px}
+html body #featured-content .fc-list{gap:12px}
+html body #featured-content .fc-list .fc-card{display:grid;grid-template-columns:104px 1fr;min-height:0;border-radius:14px;overflow:hidden;cursor:pointer}
+html body #featured-content .fc-list .fc-card-img,html body #featured-content .fc-list .fc-card-img img{height:104px;min-height:0;aspect-ratio:auto;width:100%}
+html body #featured-content .fc-list .fc-card-b{padding:10px 14px;gap:4px}
+html body #featured-content .fc-list .fc-card h3{font-size:1rem;line-height:1.5}
+html body #featured-content .fc-list .fc-card .fc-topic,html body #featured-content .fc-list .fc-card-f{display:none}
+html body #featured-content .fc-list .fc-card p{font-size:.85rem;-webkit-line-clamp:2}
+/* النافذة المنبثقة */
+.fc-pop{position:fixed;inset:0;z-index:5000;background:#F3E9D6;display:flex;flex-direction:column;opacity:0;transform:translateY(14px);transition:opacity .22s,transform .22s}
+.fc-pop.is-open{opacity:1;transform:none}
+.fc-pop-top{display:flex;align-items:flex-start;gap:12px;padding:calc(14px + env(safe-area-inset-top,0px)) 16px 12px;border-bottom:1px solid rgba(112,38,63,.18);background:#EFE2CB}
+.fc-pop-x{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(112,38,63,.35);background:#F8EFDD;color:#70263F;display:grid;place-items:center;cursor:pointer;padding:0}
+.fc-pop-x svg{width:22px;height:22px}
+.fc-pop-hd small{display:block;color:#9a6f2f;font-weight:700;font-size:.78rem;margin-bottom:2px}
+.fc-pop-hd h3{margin:0;font:700 1.35rem/1.45 'Amiri',serif;color:#4A1521}
+.fc-pop-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;outline:0}
+.fc-pop-col{max-width:680px;margin:0 auto;padding:20px 20px 40px;color:#2B1B1F}
+.fc-pop-lead{font:700 1.08rem/1.9 'Amiri',serif;color:#70263F;margin:0 0 14px}
+.fc-pop .fc-body{font-size:1.02rem;line-height:2}
+.fc-pop .fc-body p,.fc-pop .fc-body li{color:#2B1B1F}
+.fc-pop .fc-body h2{font:700 1.3rem 'Amiri',serif;color:#4A1521;margin:22px 0 8px}
+.fc-pop .fc-body blockquote{border-inline-start:3px solid #B78A52;margin:14px 0;padding:4px 14px;color:#70263F;background:rgba(183,138,82,.12)}
+.fc-pop .fc-inline{display:none}
+.fc-pop-end{display:flex;flex-direction:column;gap:10px;margin-top:26px}
+.fc-pop-close{min-height:48px;border-radius:999px;border:0;background:#4A1521;color:#FBF3E4;font:700 1rem inherit;cursor:pointer}
+.fc-pop-full{text-align:center;color:#70263F;text-decoration:underline;padding:10px}
+@media(prefers-reduced-motion:reduce){.fc-pop{transition:none}}
