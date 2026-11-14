@@ -225,7 +225,7 @@
       cur.slice(0, 3).forEach(function (c) {
         var pp = pls.filter(function (x) { return x.id === c.n; })[0], cc = pp && coreOf(pp);
         var line = cc ? 'ما تحمله ' + c.nn + ' عندك: ' + headOf(cc.e) : 'دورة مؤقتة تحرّك ما يخصّ ' + c.nn + ' في خريطتك.';
-        cards.push(lensCard('يؤثر فيك الآن', 'دورة ' + c.tn + ' مع ' + c.nn, line, '<button type="button" class="yp-lc-b" data-cyc="' + esc(c.id + '|' + c.start) + '">افتح الدورة</button>', c.tn + ' ' + c.an + ' ' + c.nn + ' · تنتهي ' + fmtM(c.end)));
+        cards.push(lensCard('يؤثر فيك الآن', 'دورة ' + c.tn + ' مع ' + c.nn, line, '<button type="button" class="yp-lc-b" data-pop="cyc" data-id="' + esc(c.id + '|' + c.start) + '">تعمّق</button>', c.tn + ' ' + c.an + ' ' + c.nn + ' · تنتهي ' + fmtM(c.end)));
       });
     }
     var m = moonToday();
@@ -234,7 +234,7 @@
       var doy = Math.floor((Date.now() - new Date(d.getFullYear(), 0, 0)) / DAY), k = 0, shown = 0;
       while (shown < 2 && k < pls.length) {
         var p = pls[(doy + k) % pls.length]; k++; var c2 = coreOf(p); if (!c2) continue;
-        cards.push(lensCard('تذكير بنمطك', p.nn + ' في ' + p.sign + ' · البيت ' + c2.house, headOf(c2.e), '<button type="button" class="yp-lc-b" data-pl="' + p.id + '">افتح الصفة</button>')); shown++;
+        cards.push(lensCard('تذكير بنمطك', p.nn + ' في ' + p.sign + ' · البيت ' + c2.house, headOf(c2.e), '<button type="button" class="yp-lc-b" data-pop="pl" data-id="' + p.id + '">تعمّق</button>')); shown++;
       }
     }
     return cards.join('');
@@ -249,10 +249,10 @@
     var sl = slidesOf(e.text).filter(function (x) { return !(key && x.b.indexOf(key) === 0); });
     return sl.map(function (x) { return '<div class="yp-ds">' + (x.t ? '<h4>' + esc(x.t) + '</h4>' : '') + '<p>' + esc(x.b).replace(/\n/g, '<br>') + '</p></div>'; }).join('');
   }
-  function textBlock(e) {
+  function textBlock(e, kind, id) {
     var br = briefOf(e), dp = deepHtml(e, br);
     return '<div class="yp-txt"><p class="yp-brief">' + esc(br) + '</p></div>' +
-      (dp ? '<button type="button" class="yp-deep-b" data-deep aria-expanded="false"><span>تعمّق</span>' + DWN + '</button><div class="yp-deep" hidden>' + dp + '</div>' : '');
+      (dp ? '<button type="button" class="yp-deep-b" data-pop="' + kind + '" data-id="' + esc(id) + '"><span>تعمّق</span>' + SVG('<path d="M9 6l6 6-6 6"/>') + '</button>' : '');
   }
   function rail(title, sub, cards, go) {
     if (!cards) return '';
@@ -290,12 +290,12 @@
         return '<div class="yp-det"><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><h3>' + esc(titleOf(c)) + '</h3><small class="yp-al">' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small>' + actBar(c.id + '|' + c.start, titleOf(c)) +
           '<div class="yp-meta"><div><i>المدة</i><b>' + Math.max(1, Math.round((c.end - c.start) / MONTH)) + ' شهر</b><i>ذروة التأثير</i>' + (c.peaks.length ? c.peaks.map(function (p) { return '<b>' + fmtM(p.a) + (p.b - p.a > 20 * DAY ? ' – ' + fmtM(p.b) : '') + '</b>'; }).join('') : '<b>غير محددة</b>') + '</div>' + ring(c, c.start > selMs()) + '</div>' +
           '<p class="yp-lab">مراحل الدورة</p>' + phases(c) +
-          (cc0 ? '<p class="yp-lab">ما تحمله ' + c.nn + ' عندك</p>' + textBlock(cc0.e) : '') + '</div>';
+          (cc0 ? '<p class="yp-lab">ما تحمله ' + c.nn + ' عندك</p>' + textBlock(cc0.e, 'cyc', c.id + '|' + c.start) : '') + '</div>';
       }
     }
     if (v && v.pl) {
       var pp = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === v.id; })[0], cc = pp && coreOf(pp);
-      return '<div class="yp-det"><h3>' + esc(v.pl) + (cc ? ' · البيت ' + cc.house : '') + '</h3><small class="yp-al">صفة ثابتة في خريطتك</small>' + (cc ? textBlock(cc.e) : '') + '</div>';
+      return '<div class="yp-det"><h3>' + esc(v.pl) + (cc ? ' · البيت ' + cc.house : '') + '</h3><small class="yp-al">صفة ثابتة في خريطتك</small>' + (cc ? textBlock(cc.e, 'pl', v.id) : '') + '</div>';
     }
     if (v && v.dom) {
       var d = domOf(v.dom); list = allCycles();
@@ -325,7 +325,7 @@
     var barT = set ? 'حسابك' : inSub ? (ST.view.cyc ? 'تفاصيل الدورة' : ST.view.dom ? (domOf(ST.view.dom) || {}).t || 'المجال' : 'صفة في نمطك') : home ? 'أنت' : (ST.tab === 'transits' ? 'عبوراتك' : 'نمطك');
     var backA = home ? 'data-home' : inSub ? 'data-back' : 'data-tab="home"';
     var who = set ? '<div class="yp-who yp-who-card"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' : '';
-    var end = home ? '<button type="button" class="yp-av yp-av-b" data-set aria-label="حسابي">' + avatar(u, name) + '</button>' : '<span></span>';
+    var end = home ? '<button type="button" class="yp-av yp-av-b" data-set aria-label="حسابي"><span class="yp-av-i">' + avatar(u, name) + '</span><span class="yp-av-n">' + esc(String(name).split(' ')[0]) + '</span></button>' : '<span></span>';
     host.innerHTML = '<div class="yp yp-t-' + cur + (inSub ? ' yp-sub' : '') + '"><div class="yp-bg" aria-hidden="true"><svg width="100%" height="100%" viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9A4A32" stroke-width="1">' + (BGART[cur === 'home' ? 'lens' : cur] || '') + '</svg></div>' +
       '<header class="yp-bar"><button type="button" class="yp-bar-b" ' + backA + ' aria-label="رجوع">' + SVG('<path d="M9 6l6 6-6 6"/>') + '</button><h1>' + esc(barT) + '</h1>' + end + '</header>' +
       (home ? '<p class="yp-sub1">مكتبة تكبر معك، كلها عن حكايتك أنت</p>' : '') + who +
@@ -336,6 +336,38 @@
       else if (slot && (ST.tries = (ST.tries || 0) + 1) < 20) setTimeout(function () { if (ST.view && ST.view.set && !$('#yp-prof-slot #account-profile-completion')) render(); }, 400);
     }
   }
+  /* نافذة التعمّق المنبثقة: شرح أطول بتنسيق زجاجي، تُغلق بزر أسفلها */
+  function popOpen(kind, rid) {
+    var pls = natal() ? window.AqeeqYou.placements(natal()) : [], tgt, ttl, kk;
+    if (kind === 'cyc') { var lc = (allCycles() || []).filter(function (x) { return x.id + '|' + x.start === rid; })[0]; if (!lc) return; tgt = pls.filter(function (x) { return x.id === lc.n; })[0]; ttl = titleOf(lc); kk = astroLine(lc); }
+    else { tgt = pls.filter(function (x) { return x.id === rid; })[0]; ttl = tgt ? tgt.nn + ' في ' + tgt.sign : ''; kk = 'صفة ثابتة في خريطتك'; }
+    var cx = tgt && coreOf(tgt); if (!cx) return;
+    var br = briefOf(cx.e), old = $('#yp-pop'); if (old) old.remove();
+    var el = document.createElement('div'); el.id = 'yp-pop'; el.className = 'yp-pop';
+    el.innerHTML = '<div class="yp-pop-bd" data-pop-x></div><div class="yp-pop-sh" role="dialog" aria-modal="true" aria-label="' + esc(ttl) + '"><i class="yp-pop-g"></i>' +
+      '<div class="yp-pop-hd"><small>' + esc(kk) + '</small><h3>' + esc(ttl) + '</h3></div>' +
+      '<div class="yp-pop-body"><p class="yp-pop-br">' + esc(br) + '</p>' + deepHtml(cx.e, br) + '</div>' +
+      '<div class="yp-pop-ft"><button type="button" class="yp-pop-x" data-pop-x>إغلاق</button></div></div>';
+    document.body.appendChild(el); document.documentElement.classList.add('yp-pop-open');
+    requestAnimationFrame(function () { el.classList.add('on'); });
+  }
+  function popClose() { var el = $('#yp-pop'); if (!el) return; el.classList.remove('on'); document.documentElement.classList.remove('yp-pop-open'); setTimeout(function () { el.remove(); }, 260); }
+  document.addEventListener('click', function (e) {
+    var p = e.target.closest && e.target.closest('[data-pop]'); if (p) { popOpen(p.getAttribute('data-pop'), p.getAttribute('data-id')); return; }
+    if (e.target.closest && e.target.closest('[data-pop-x]')) popClose();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') popClose(); });
+  window.addEventListener('hashchange', popClose);
+
+  /* زر «الخريطة» في أنت: تُحسب الخريطة وتظهر جاهزة من بياناتك المحفوظة */
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('#for-you a[href="#chart"]'); if (a) { try { sessionStorage.setItem('aq_yp_chart', '1'); } catch (_) {} } }, true);
+  function autoChart() {
+    if (location.hash !== '#chart') return; var f; try { f = sessionStorage.getItem('aq_yp_chart'); sessionStorage.removeItem('aq_yp_chart'); } catch (_) {}
+    if (!f || !natal()) return;
+    setTimeout(function () { var b = document.querySelector('#chart .aq-autofill-btn'); if (b) b.click(); setTimeout(function () { var fm = document.getElementById('cform'); if (fm && fm.requestSubmit) fm.requestSubmit(); }, 250); }, 200);
+  }
+  window.addEventListener('hashchange', autoChart);
+
   /* بعد الدخول: «حسابي» يفتح صفحتك الكاملة بدل النافذة المنبثقة (إلا شاشة كلمة المرور الجديدة أو الرجوع من الدفع) */
   function route() {
     if (location.hash !== '#account' || !user()) return;
