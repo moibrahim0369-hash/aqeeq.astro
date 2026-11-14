@@ -124,6 +124,7 @@
   function table(head, rows) { return '<div class="eam-table-wrap"><table class="eam-table"><thead><tr>' + head.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' + rows.join('') + '</tbody></table></div>'; }
   function render(result, ch, natal, helpers) {
     var moon = body(ch, 'moon'); if (!moon) return;
+    window.AqVedic.last = { ch: ch, natal: natal };
     var now = Date.now(), birthMs = (natal && isFinite(natal.utcMs)) ? natal.utcMs : (ch.jde - 2440587.5) * 864e5;
     var n = Math.floor(moon.lon / (360 / 27)), pada = Math.floor((moon.lon % (360 / 27)) / (360 / 108)) + 1, nk = NK[n];
     var h = '';

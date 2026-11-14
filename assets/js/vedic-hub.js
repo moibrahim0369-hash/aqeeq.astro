@@ -10,6 +10,7 @@
     dasha: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/>',
     sade: '<circle cx="12" cy="12" r="3.2"/><ellipse cx="12" cy="12" rx="9" ry="3.6" transform="rotate(-20 12 12)"/>',
     lunar: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+    expert: '<rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>',
     year: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>'
   };
   var TILES = [
@@ -19,7 +20,8 @@
     ['dasha', 'الداشا', 'فتراتك الكبرى والصغرى'],
     ['sade', 'ساتي ساتي', 'أين زحل من قمرك الآن'],
     ['lunar', 'المنزل القمري', 'منزلك وحاكمه'],
-    ['year', 'قراءة السنة', 'ما تعيشه الآن']
+    ['year', 'قراءة السنة', 'ما تعيشه الآن'],
+    ['expert', 'وضع الخبير', 'ملاحظات خاصة بك وحدك']
   ];
   function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
   function groupOf(t) {
@@ -39,6 +41,43 @@
       (inside ? '' : '');
     return d;
   }
+  function isAdmin() { return !!(window.AqSession && window.AqSession.isAdmin) || document.documentElement.getAttribute('data-admin') === '1'; }
+  var VK = [['d6', 'D6 · الضغوط', 6], ['d8', 'D8 · التحولات', 8], ['d27', 'D27 · القوة', 27], ['d30', 'D30 · التحديات', 30]];
+  function b64(x) { return Uint8Array.from(atob(x), function (c) { return c.charCodeAt(0); }); }
+  async function decrypt(pass) {
+    var r = await fetch('data/expert/vedic-notes.enc.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error('none');
+    var j = await r.json(), enc = new TextEncoder(), c = window.crypto.subtle;
+    var km = await c.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
+    var key = await c.deriveKey({ name: 'PBKDF2', salt: b64(j.salt), iterations: 200000, hash: 'SHA-256' }, km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    var out = await c.decrypt({ name: 'AES-GCM', iv: b64(j.iv) }, key, b64(j.data));
+    return JSON.parse(new TextDecoder().decode(out));
+  }
+  function expertCard(result) {
+    var d = document.createElement('section'); d.className = 'vh-expert'; d.dataset.vhG = 'expert';
+    d.innerHTML = '<p class="vh-ex-lead">هذا القسم لك وحدك. الملاحظات محفوظة مشفّرة ولا تُفتح إلا بكلمة السر التي اخترتها، ولا تظهر للزوار.</p>' +
+      '<form class="vh-ex-form"><input type="password" class="vh-ex-pass" autocomplete="off" placeholder="كلمة السر" aria-label="كلمة السر"><button type="submit" class="vh-ex-go">فتح</button></form><div class="vh-ex-out" aria-live="polite"></div>';
+    var out = d.querySelector('.vh-ex-out');
+    d.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault(); out.textContent = 'جارٍ الفتح…';
+      var pass = d.querySelector('.vh-ex-pass').value;
+      decrypt(pass).then(function (notes) {
+        var L = window.AqVedic && window.AqVedic.last, VC = window.AqVedicChart, html = '', found = 0;
+        if (!L || !VC) { out.textContent = 'احسب الخريطة أولًا.'; return; }
+        VK.forEach(function (v) {
+          var tbl = notes[v[0]]; if (!tbl) return;
+          var map = VC.build(L.ch, v[2]), rows = '';
+          map.items.forEach(function (it) {
+            var t = tbl[it.key] && tbl[it.key][String(it.house + 1)];
+            if (t) { found++; rows += '<li><b>' + it.name + ' في البيت ' + (it.house + 1) + '</b><span>' + String(t).replace(/</g, '&lt;') + '</span></li>'; }
+          });
+          if (rows) html += '<h5>' + v[1] + '</h5><ul class="vh-ex-list">' + rows + '</ul>';
+        });
+        out.innerHTML = found ? html : '<p>لا توجد ملاحظات تنطبق على هذه الخريطة.</p>';
+      }).catch(function (err) { out.textContent = err && err.message === 'none' ? 'لم تُضف ملاحظات مشفّرة بعد.' : 'كلمة السر غير صحيحة.'; });
+    });
+    return d;
+  }
   function build() {
     var result = content.querySelector('#eam-result');
     if (!result || result.hidden || !result.querySelector('#vx-vargas') || result.querySelector('.vh-grid')) return;
@@ -56,15 +95,16 @@
     });
     var sade = sadeCard(result);
     var grid = document.createElement('nav'); grid.className = 'vh-grid'; grid.dataset.vhG = 'hub'; grid.setAttribute('aria-label', 'أقسام الفلك الفيدي');
-    grid.innerHTML = TILES.filter(function (t) { return t[0] !== 'sade' || sade; }).map(function (t) {
+    grid.innerHTML = TILES.filter(function (t) { return (t[0] !== 'sade' || sade) && (t[0] !== 'expert' || isAdmin()); }).map(function (t) {
       return '<button type="button" class="vh-tile" data-g="' + t[0] + '"><span class="vh-ic">' + svg(t[0]) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-s">' + t[2] + '</span></button>';
     }).join('');
-    var bar = document.createElement('div'); bar.className = 'vh-bar'; bar.dataset.vhG = 'vargas birth dasha sade lunar year';
+    var bar = document.createElement('div'); bar.className = 'vh-bar'; bar.dataset.vhG = 'vargas birth dasha sade lunar year expert';
     bar.innerHTML = '<button type="button" class="vh-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><span>كل الأقسام</span></button><b class="vh-cur"></b>';
     var head = result.querySelector('.eam-result-head');
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
     result.insertBefore(bar, grid);
     if (sade) { sade.dataset.vhG = 'sade'; result.appendChild(sade); }
+    if (isAdmin()) result.appendChild(expertCard(result));
     function show(g, chart) {
       result.dataset.vh = g;
       Array.prototype.slice.call(result.children).forEach(function (c) {
