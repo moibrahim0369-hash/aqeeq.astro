@@ -345,13 +345,12 @@
     var br = briefOf(cx.e), old = $('#yp-pop'); if (old) old.remove();
     var key = String(br).slice(0, 40), sl = [{ t: '', b: br, big: 1 }].concat(slidesOf(cx.e.text).filter(function (x) { return !(key && x.b.indexOf(key) === 0); }));
     var el = document.createElement('div'); el.id = 'yp-pop'; el.className = 'yp-pop'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', ttl);
-    el.innerHTML = '<button type="button" class="yp-pop-back" data-pop-x aria-label="رجوع">' + SVG('<path d="M9 6l6 6-6 6"/>') + '</button>' +
-      '<div class="yp-pop-track" tabindex="0">' + sl.map(function (x, i) {
-        return '<section class="yp-pop-s"><div class="yp-pop-in"><small class="yp-pop-k">' + esc(kk) + '</small><h3 class="yp-pop-t">' + esc(i ? (x.t || ttl) : ttl) + '</h3><p class="' + (x.big ? 'big' : '') + '">' + esc(x.b).replace(/\n/g, '<br>') + '</p></div></section>';
-      }).join('') + '</div><div class="yp-pop-dots">' + sl.map(function (_, i) { return '<span' + (i === 0 ? ' class="on"' : '') + '></span>'; }).join('') + '</div>';
+    var X = SVG('<path d="M6 6l12 12M18 6L6 18"/>');
+    el.innerHTML = '<div class="yp-pop-top"><button type="button" class="yp-pop-x2" data-pop-x aria-label="إغلاق">' + X + '</button><div class="yp-pop-hd"><small class="yp-pop-k">' + esc(kk) + '</small><h3 class="yp-pop-t">' + esc(ttl) + '</h3></div></div>' +
+      '<div class="yp-pop-scroll" tabindex="0"><div class="yp-pop-col">' + sl.map(function (x, i) {
+        return '<section class="yp-pop-p">' + (i && x.t ? '<h4>' + esc(x.t) + '</h4>' : '') + '<p class="' + (x.big ? 'big' : '') + '">' + esc(x.b).replace(/\n/g, '<br>') + '</p></section>';
+      }).join('') + '<button type="button" class="yp-pop-end" data-pop-x>إغلاق</button></div></div>';
     document.body.appendChild(el); document.documentElement.classList.add('yp-pop-open');
-    var tr = el.querySelector('.yp-pop-track'), dots = el.querySelectorAll('.yp-pop-dots span');
-    tr.addEventListener('scroll', function () { var k = Math.round(Math.abs(tr.scrollLeft) / tr.clientWidth); dots.forEach(function (d, n) { d.classList.toggle('on', n === k); }); });
     requestAnimationFrame(function () { el.classList.add('on'); });
   }
   function popClose() { var el = $('#yp-pop'); if (!el) return; el.classList.remove('on'); document.documentElement.classList.remove('yp-pop-open'); setTimeout(function () { el.remove(); }, 260); }
