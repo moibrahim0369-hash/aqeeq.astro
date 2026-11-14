@@ -72,3 +72,10 @@ html body section#astro-maps.eam-view-result:not(#_a):not(#_b):not(#_c) #eam-exp
 #astro-maps .vh-tm-txt:not(#_a):not(#_b){line-height:2;font-size:.95rem;color:#3F2E28}
 #astro-maps .vh-tm-note:not(#_a):not(#_b){margin:12px 0 0;padding:10px 12px;border-radius:12px;background:#F4EBD6;font-size:.82rem;line-height:1.9;color:#6B5547}
 #astro-maps .vh-tm-err:not(#_a):not(#_b){color:#8E2A22}
+
+/* فصل خرائط التخصص الدقيق + الاسم الأصلي + أكواد الخبير */
+#astro-maps .vc-sub:not(#_a):not(#_b){margin:14px 0 6px;font-size:.92rem;font-weight:700;color:#5A1828}
+#astro-maps .vc-chip small:not(#_a):not(#_b){font-size:.62rem;letter-spacing:.06em;color:#B08A3E;direction:ltr;unicode-bidi:isolate;font-weight:600}
+#astro-maps .vc-chips2:not(#_a):not(#_b){margin-bottom:12px}
+#astro-maps .vc-code:not(#_a):not(#_b){font-style:normal;font-family:ui-monospace,Menlo,monospace;font-size:.68rem;color:#B08A3E;margin-inline-start:6px;letter-spacing:.04em;opacity:.9}
+#astro-maps .vc-codes:not(#_a):not(#_b){grid-column:1/-1;display:flex;gap:6px}#astro-maps .vc-codes:empty:not(#_a):not(#_b){display:none}

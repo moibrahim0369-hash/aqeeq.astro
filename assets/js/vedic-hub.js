@@ -42,43 +42,33 @@
     return d;
   }
   function isAdmin() { return !!(window.AqSession && window.AqSession.isAdmin) || document.documentElement.getAttribute('data-admin') === '1'; }
-  var VK = [['d6', 'D6 · الضغوط', 6], ['d8', 'D8 · التحولات', 8], ['d27', 'D27 · القوة', 27], ['d30', 'D30 · التحديات', 30]];
-  function b64(x) { return Uint8Array.from(atob(x), function (c) { return c.charCodeAt(0); }); }
-  async function decrypt(pass) {
-    var r = await fetch('data/expert/vedic-notes.enc.json', { cache: 'no-store' });
-    if (!r.ok) throw new Error('none');
-    var j = await r.json(), enc = new TextEncoder(), c = window.crypto.subtle;
-    var km = await c.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
-    var key = await c.deriveKey({ name: 'PBKDF2', salt: b64(j.salt), iterations: 200000, hash: 'SHA-256' }, km, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
-    var out = await c.decrypt({ name: 'AES-GCM', iv: b64(j.iv) }, key, b64(j.data));
-    return JSON.parse(new TextDecoder().decode(out));
-  }
-  function expertCard(result) {
+  var EXPERT_N = { d1: 1, d2: 2, d4: 4, d6: 6, d7: 7, d8: 8, d9: 9, d10: 10, d11: 11, d27: 27, d30: 30 };
+  function expertCard() {
     var d = document.createElement('section'); d.className = 'vh-expert'; d.dataset.vhG = 'expert';
-    d.innerHTML = '<p class="vh-ex-lead">هذا القسم لك وحدك. الملاحظات محفوظة مشفّرة ولا تُفتح إلا بكلمة السر التي اخترتها، ولا تظهر للزوار.</p>' +
-      '<form class="vh-ex-form"><input type="password" class="vh-ex-pass" autocomplete="off" placeholder="كلمة السر" aria-label="كلمة السر"><button type="submit" class="vh-ex-go">فتح</button></form><div class="vh-ex-out" aria-live="polite"></div>';
-    var out = d.querySelector('.vh-ex-out');
-    d.querySelector('form').addEventListener('submit', function (e) {
-      e.preventDefault(); out.textContent = 'جارٍ الفتح…';
-      var pass = d.querySelector('.vh-ex-pass').value;
-      decrypt(pass).then(function (notes) {
+    d.innerHTML = '<p class="vh-ex-lead">هذا القسم لك وحدك، ويُفتح بحسابك المسجَّل. الأكواد الصغيرة تظهر الآن جنب الكواكب في صفحة الخرائط المقسمة.</p><div class="vh-ex-out" aria-live="polite"></div>';
+    d.__load = function () {
+      var out = d.querySelector('.vh-ex-out'); out.textContent = 'جارٍ فتح ملاحظاتك…';
+      var sb = window.aqeeqSupabase;
+      if (!sb || !isAdmin()) { out.textContent = 'سجّل الدخول بحساب الأدمن لتظهر ملاحظاتك.'; return; }
+      sb.from('expert_notes').select('chart,planet,house,note').then(function (r) {
+        if (r.error) { out.textContent = 'جدول ملاحظات الخبير غير مُجهَّز بعد.'; return; }
+        var notes = {}; (r.data || []).forEach(function (x) { ((notes[x.chart] = notes[x.chart] || {})[x.planet] = notes[x.chart][x.planet] || {})[x.house] = x.note; });
         var L = window.AqVedic && window.AqVedic.last, VC = window.AqVedicChart, html = '', found = 0;
         if (!L || !VC) { out.textContent = 'احسب الخريطة أولًا.'; return; }
-        VK.forEach(function (v) {
-          var tbl = notes[v[0]]; if (!tbl) return;
-          var map = VC.build(L.ch, v[2]), rows = '';
+        Object.keys(EXPERT_N).forEach(function (k) {
+          var tbl = notes[k]; if (!tbl) return;
+          var n = EXPERT_N[k], v = VC.VARGAS.filter(function (x) { return x[0] === n; })[0], map = VC.build(L.ch, n), rows = '';
           map.items.forEach(function (it) {
-            var t = tbl[it.key] && tbl[it.key][String(it.house + 1)];
-            if (t) { found++; rows += '<li><b>' + it.name + ' في البيت ' + (it.house + 1) + '</b><span>' + String(t).replace(/</g, '&lt;') + '</span></li>'; }
+            var t = tbl[it.key] && tbl[it.key][it.house + 1];
+            if (t) { found++; var cs = VC.codesFor(map, it).map(function (c) { return '<em class="vc-code">[' + c + ']</em>'; }).join(''); rows += '<li><b>' + esc(it.name) + ' في البيت ' + (it.house + 1) + cs + '</b><span>' + esc(t) + '</span></li>'; }
           });
-          if (rows) html += '<h5>' + v[1] + '</h5><ul class="vh-ex-list">' + rows + '</ul>';
+          if (rows) html += '<h5>' + esc(v ? v[1] + ' · ' + v[2] : k) + '</h5><ul class="vh-ex-list">' + rows + '</ul>';
         });
-        out.innerHTML = found ? html : '<p>لا توجد ملاحظات تنطبق على هذه الخريطة.</p>';
-      }).catch(function (err) { out.textContent = err && err.message === 'none' ? 'لم تُضف ملاحظات مشفّرة بعد.' : 'كلمة السر غير صحيحة.'; });
-    });
+        out.innerHTML = found ? html : '<p>لا توجد ملاحظات تنطبق على هذه الخريطة بعد.</p>';
+      }, function () { out.textContent = 'تعذر فتح الملاحظات الآن.'; });
+    };
     return d;
   }
-
   /* آلة الزمن: الداشا النشطة (كبرى/صغرى/دقيقة) والعبورات الفيدية في أي تاريخ فوق خريطته */
   var MON = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
@@ -162,7 +152,7 @@
     result.insertBefore(bar, grid);
     if (sade) { sade.dataset.vhG = 'sade'; result.appendChild(sade); }
     result.appendChild(timeCard());
-    if (isAdmin()) result.appendChild(expertCard(result));
+    if (isAdmin()) { var exC = expertCard(); result.appendChild(exC); result.__ex = exC; }
     function show(g, chart) {
       result.dataset.vh = g;
       Array.prototype.slice.call(result.children).forEach(function (c) {
@@ -177,6 +167,11 @@
         var mine = Array.prototype.filter.call(ds, function (d) { return d.dataset.vhG === g; });
         if (mine.length === 1) mine[0].open = true;
       } else bar.style.display = 'none';
+      if (g === 'expert' && result.__ex) {
+        var was = window.AqVedicExpert && window.AqVedicExpert.on; window.AqVedicExpert = { on: true };
+        if (!was) Array.prototype.forEach.call(result.querySelectorAll('#vx-vargas'), function (h) { if (h.__draw) h.__draw(); });
+        result.__ex.__load();
+      }
       if (g === 'moonsun') { var b = result.querySelector('.vc-chip[data-n="' + (chart || 'moon') + '"]'); if (b) b.click(); }
       if (g === 'vargas') { var o = result.querySelector('.vc-chip[data-n="1"]'); if (o && !result.querySelector('.vc-chip.on')) o.click(); }
       if (!first) try { result.scrollIntoView({ block: 'start' }); } catch (e) { }
