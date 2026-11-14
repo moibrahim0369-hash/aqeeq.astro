@@ -100,9 +100,18 @@
       return '<div><b>' + x[0] + '</b><small>' + fmtM(x[1]) + (x[2] - x[1] > 20 * DAY ? ' – ' + fmtM(x[2]) : '') + '</small></div>';
     }).join('') + '</div>';
   }
+
+  /* حفظ ومشاركة: على هذا الجهاز فقط، ويُمسح عند الخروج */
+  var SAVE_KEY = 'aqeeq_yp_saved_v1';
+  function saved() { try { return JSON.parse(localStorage.getItem(SAVE_KEY) || '[]'); } catch (e) { return []; } }
+  function actBar(id, title) {
+    var on = saved().indexOf(id) >= 0;
+    return '<div class="yp-act"><button type="button" class="yp-ab' + (on ? ' on' : '') + '" data-save="' + esc(id) + '" aria-pressed="' + on + '">' + SVG('<path d="M7 4h10v16l-5-3.500L7 20z"/>') + '<span>' + (on ? 'محفوظة' : 'احفظ') + '</span></button>' +
+      '<button type="button" class="yp-ab" data-share="' + esc(title) + '">' + SVG('<circle cx="18" cy="5.500" r="2.500"/><circle cx="6" cy="12" r="2.500"/><circle cx="18" cy="18.500" r="2.500"/><path d="M8.300 10.800l7.400-4M8.300 13.200l7.400 4"/>') + '<span>شارك</span></button></div>';
+  }
   function cardHtml(c, up) {
     var peak = c.peaks[0] ? 'ذروتها: ' + fmtM(c.peaks[0].a) : '';
-    return '<button type="button" class="yp-cy' + (up ? ' up' : '') + '" data-cyc="' + esc(c.id + '|' + c.start) + '"><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><span class="yp-cy-t"><b>' + esc(titleOf(c)) + '</b><small>' + fmtM(c.start) + ' – ' + fmtM(c.end) + '</small><small>' + peak + '</small></span>' + ring(c, up) + '</button>';
+    return '<button type="button" class="yp-cy' + (up ? ' up' : '') + '" data-cyc="' + esc(c.id + '|' + c.start) + '">' + (up ? '<em class="yp-soon">قريبًا</em>' : '') + '<span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><span class="yp-cy-t"><b>' + esc(titleOf(c)) + '</b><small>' + fmtM(c.start) + ' – ' + fmtM(c.end) + '</small><small>' + peak + '</small></span>' + ring(c, up) + '</button>';
   }
   function cyclesHtml(list, cap) {
     var s = split(list), h = '';
@@ -206,7 +215,7 @@
       list = allCycles() || []; var c = list.filter(function (x) { return x.id + '|' + x.start === v.cyc; })[0];
       if (c) {
         var pp0 = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === c.n; })[0], cc0 = pp0 && coreOf(pp0);
-        return back('رجوع') + '<div class="yp-det"><small>' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><h3>' + esc(titleOf(c)) + '</h3><small class="yp-al">' + esc(astroLine(c)) + '</small>' +
+        return back('رجوع') + '<div class="yp-det"><small>' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><h3>' + esc(titleOf(c)) + '</h3><small class="yp-al">' + esc(astroLine(c)) + '</small>' + actBar(c.id + '|' + c.start, titleOf(c)) +
           '<div class="yp-meta"><div><i>المدة</i><b>' + Math.max(1, Math.round((c.end - c.start) / MONTH)) + ' شهر</b><i>ذروة التأثير</i>' + (c.peaks.length ? c.peaks.map(function (p) { return '<b>' + fmtM(p.a) + (p.b - p.a > 20 * DAY ? ' – ' + fmtM(p.b) : '') + '</b>'; }).join('') : '<b>غير محددة</b>') + '</div>' + ring(c, c.start > selMs()) + '</div>' +
           '<p class="yp-lab">مراحل الدورة</p>' + phases(c) +
           (cc0 ? '<p class="yp-lab">ما تحمله ' + c.nn + ' عندك</p><div class="yp-txt"><b class="yp-hd">' + esc(headOf(cc0.e)) + '</b></div><button type="button" class="yp-cta" data-read="cyc" data-id="' + esc(c.id + '|' + c.start) + '">اقرأ الرؤية الكاملة</button>' : '') + '</div>';
@@ -260,7 +269,9 @@
     if (location.hash !== '#for-you') location.hash = '#for-you'; else { render(); window.scrollTo(0, 0); }
   }, true);
   document.addEventListener('click', function (e) {
-    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout],#for-you [data-read]'); if (!t) return;
+    var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout],#for-you [data-read],#for-you [data-save],#for-you [data-share]'); if (!t) return;
+    if (t.hasAttribute('data-save')) { var sid = t.getAttribute('data-save'), L = saved(), k = L.indexOf(sid); if (k >= 0) L.splice(k, 1); else L.push(sid); try { localStorage.setItem(SAVE_KEY, JSON.stringify(L)); } catch (x) {} render(); return; }
+    if (t.hasAttribute('data-share')) { var tt = t.getAttribute('data-share') + ' — عقيق أسترو'; try { if (navigator.share) navigator.share({ title: tt, url: location.origin + location.pathname }); else if (navigator.clipboard) { navigator.clipboard.writeText(tt + ' ' + location.origin + location.pathname); t.querySelector('span').textContent = 'تم النسخ'; } } catch (x) {} return; }
     if (t.hasAttribute('data-read')) {
       var kind = t.getAttribute('data-read'), rid = t.getAttribute('data-id'), pls = natal() ? window.AqeeqYou.placements(natal()) : [], tgt, ttl, kk;
       if (kind === 'cyc') { var lc = (allCycles() || []).filter(function (x) { return x.id + '|' + x.start === rid; })[0]; if (!lc) return; tgt = pls.filter(function (x) { return x.id === lc.n; })[0]; ttl = titleOf(lc); kk = astroLine(lc); }

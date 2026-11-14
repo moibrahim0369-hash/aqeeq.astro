@@ -192,3 +192,8 @@ html.yp-rd-open{overflow:hidden}
 .yp-rd-nav button{flex:1;min-height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font:700 .95rem 'Cairo',sans-serif;cursor:pointer}
 .yp-rd-nav .go{background:#f3dcc0;color:#4a1a2b;border-color:#f3dcc0}
 .yp-rd-s i{align-self:flex-start}
+
+.yp-soon{position:absolute;top:10px;left:14px;font-style:normal;font:700 .68rem 'Cairo',sans-serif;padding:3px 10px;border-radius:999px;background:rgba(243,220,192,.2);color:#f3dcc0;border:1px solid rgba(243,220,192,.5)}
+.yp-act{display:flex;gap:8px}
+.yp-ab{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--cream);color:var(--wine);font:700 .85rem 'Cairo',sans-serif;cursor:pointer}
+.yp-ab svg{width:17px;height:17px}.yp-ab.on{background:var(--wine);color:#fff;border-color:var(--wine)}.yp-ab.on svg{fill:#fff}
