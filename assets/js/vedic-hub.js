@@ -42,8 +42,8 @@
     ['vargas', 'الخرائط المقسمة', 'من D1 إلى D60 بالرسمين'],
     ['moonsun', 'خريطتا القمر والشمس', 'مشاعرك وجوهرك'],
     ['dasha', 'فترات عمرك', 'الفترة الكبرى والصغرى التي تعيشها الآن', 'داشا · فيمشوتاري'],
-    ['sade', 'اختبار زحل', 'أين زحل من قمرك الآن', 'ساتي ساتي'],
-    ['lunar', 'المنزل القمري', 'منزلك وحاكمه', 'نكشاترا'],
+    ['sade', 'اختبار زحل', 'أين زحل من قمرك الآن', 'زحل · ساتي ساتي'],
+    ['lunar', 'المنزل القمري', 'منزلك وحاكمه', 'القمر · نكشاترا'],
     ['year', 'قراءة السنة', 'ما تعيشه الآن'],
     ['expert', 'وضع الخبير', 'ملاحظات خاصة بك وحدك']
   ];
@@ -83,7 +83,7 @@
       }).join('') + '</div>';
     }).join('');
     h += '<h5 class="vh-gh">الأزمنة والتنبؤ</h5><div class="vh-grid">' + TIMET.filter(function (id) { return id !== 'expert' || admin; }).map(function (id) {
-      var t = tileOf(id); return '<button type="button" class="vh-tile" data-g="' + id + '"' + (id === 'expert' ? ' data-admin="1"' : '') + '><span class="vh-ic">' + svg(id) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-s">' + t[2] + '</span></button>';
+      var t = tileOf(id); return '<button type="button" class="vh-tile" data-g="' + id + '"' + (id === 'expert' ? ' data-admin="1"' : '') + '><span class="vh-ic">' + svg(id) + '</span><span class="vh-t">' + t[1] + '</span>' + (t[3] ? '<span class="vh-v">' + t[3] + '</span>' : '') + '<span class="vh-s">' + t[2] + '</span></button>';
     }).join('') + '</div>';
     return h;
   }
