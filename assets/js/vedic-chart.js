@@ -148,12 +148,13 @@
     function draw() {
       var v = VARGAS.filter(function (x) { return x[0] === cur; })[0], map = build(ch, cur), title = 'مخطط ' + v[1] + ' · ' + v[2];
       var sig = v[4] ? map.items.filter(function (x) { return x.key === v[4]; })[0] : null;
-      var chipOf = function (x) { return '<button type="button" class="vc-chip' + (x[0] === cur ? ' on' : '') + '" data-n="' + x[0] + '" aria-pressed="' + (x[0] === cur) + '"><b>' + x[1] + '</b><span>' + x[2] + '</span><small>' + (ORIG[x[0]] || '') + '</small></button>'; };
-      var chips = VARGAS.filter(function (x) { return SPEC.indexOf(x[0]) < 0; }).map(chipOf).join('');
-      var chips2 = VARGAS.filter(function (x) { return SPEC.indexOf(x[0]) >= 0; }).map(chipOf).join('');
+      var chipOf = function (x) { return '<button type="button" class="vc-chip' + (x[0] === cur ? ' on' : '') + '" data-n="' + x[0] + '" aria-pressed="' + (x[0] === cur) + '"><b>' + String(x[1]).replace('خريطة ', '') + '</b><span>' + x[2] + '</span><small>' + (ORIG[x[0]] || '') + '</small></button>'; };
+      var GR = [['الأساس', ['1', 'moon', 'sun']], ['الحياة اليومية', ['2', '3', '4', '5', '6', '7']], ['المسار والعمق', ['8', '9', '10', '11', '12']], ['التخصص الدقيق', ['16', '20', '24', '27', '30', '40', '45', '60']]];
+      var chipsAll = GR.map(function (g) {
+        return '<h5 class="vc-sub">' + g[0] + '</h5><div class="vc-grp' + (g[1].length === 3 ? ' vc-grp3' : '') + '" role="group" aria-label="' + g[0] + '">' + g[1].map(function (k) { var x = VARGAS.filter(function (y) { return String(y[0]) === k; })[0]; return x ? chipOf(x) : ''; }).join('') + '</div>';
+      }).join('');
       var note = (cur === 'moon' || cur === 'sun') ? 'البيت الأول هنا هو برج ' + (cur === 'moon' ? 'القمر' : 'الشمس') + ' (' + SG[map.lagna] + ').' : map.basis === 'asc' ? 'الطالع في ' + SG[map.lagna] + '.' : 'وقت الميلاد غير معروف، فالمخطط يبدأ من برج القمر (' + SG[map.lagna] + ') بدل الطالع.';
-      host.innerHTML = '<h4>المخططات الفيدية · التقسيمات</h4><div class="vc-chips" role="group" aria-label="اختيار التقسيم">' + chips + '</div>' +
-        '<h5 class="vc-sub">خرائط التخصص الدقيق</h5><div class="vc-chips vc-chips2" role="group" aria-label="خرائط التخصص الدقيق">' + chips2 + '</div>' +
+      host.innerHTML = '<h4>المخططات الفيدية · التقسيمات</h4>' + chipsAll +
         '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b> <small class="vc-orig">' + esc(ORIG[cur] || '') + '</small><br>' + esc(v[3]) + '</p>' +
         '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div>' +
         '<div class="vc-chartwrap">' + (style === 's' ? svgSouth(map, title) : svg(map, title)) + '</div>' +

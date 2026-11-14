@@ -23,7 +23,7 @@
     ['year', 'قراءة السنة', 'ما تعيشه الآن'],
     ['expert', 'وضع الخبير', 'ملاحظات خاصة بك وحدك']
   ];
-  var TARGET = null;
+  var TARGET = null, PUSHED = 0;
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
     if (a) TARGET = a.getAttribute('data-vh') || null;
@@ -306,6 +306,7 @@
     var tmc = timeCard(), tmw = accEl('آلة الزمن', 'dasha', '', true, 'dasha year'); tmw.querySelector('.eam-acc-body').appendChild(tmc); tmc.dataset.vhG = ''; result.appendChild(tmw);
     if (isAdmin()) { var exC = expertCard(), exw = accEl('ملاحظات الخبير', 'expert', '', true, 'expert'); exw.querySelector('.eam-acc-body').appendChild(exC); exC.dataset.vhG = ''; result.appendChild(exw); result.__ex = exC; }
     function show(g, chart) {
+      if (g !== 'hub' && result.dataset.vh === 'hub') { try { history.pushState({ vh: 1 }, ''); PUSHED++; } catch (e) { } }
       if (g === 'sade' && !result.__sade) { result.__sade = 1; fillSade(result); }
       result.dataset.vh = g;
       Array.prototype.slice.call(result.children).forEach(function (c) {
@@ -335,9 +336,22 @@
     bar.querySelector('.vh-back').addEventListener('click', function () { show('hub'); });
     result.__show = show;
     show('hub');
+    try { history.pushState({ vhr: 1 }, ''); PUSHED++; } catch (e) { }
     if (TARGET && (TARGET !== 'expert' || isAdmin())) { var tg = TARGET; TARGET = null; show(tg); } else TARGET = null;
     sec.classList.add('vh-on');
   }
+  function liveResult() { var r = content.querySelector('#eam-result'); return r && !r.hidden && r.__show && sec.classList.contains('eam-view-result') && location.hash === '#astro-maps' ? r : null; }
+  window.addEventListener('click', function (e) {
+    var r = liveResult(); if (!r) return;
+    if (e.target.closest('[data-aq-back]') && PUSHED > 0) { e.preventDefault(); e.stopImmediatePropagation(); history.back(); return; }
+    if (e.target.closest('.eam-backbar') && PUSHED > 0) { var n = PUSHED; setTimeout(function () { try { history.go(-n); } catch (x) { } }, 60); }
+  }, true);
+  window.addEventListener('popstate', function () {
+    if (PUSHED > 0) PUSHED--;
+    var r = liveResult(); if (!r) return;
+    if (r.dataset.vh !== 'hub') r.__show('hub');
+    else { var b = content.querySelector('.eam-backbar button'); if (b) b.click(); }
+  });
   var timer = null;
   new MutationObserver(function () { clearTimeout(timer); timer = setTimeout(function () { try { build(); prefill(); } catch (e) { console.warn(e); } }, 320); })
     .observe(content, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });
