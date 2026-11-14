@@ -131,5 +131,53 @@ html body section#astro-maps.eam-view-result:not(#_a):not(#_b) #eam-form{display
 #astro-maps .eam-table thead th:not(#_a):not(#_b){background:#F1E4C8;color:#4A1A24}
 #astro-maps .eam-table tbody tr:nth-child(even) td:not(#_a):not(#_b){background:#F7EBD2}
 #astro-maps .eam-acc-body:not(#_a):not(#_b){background:#FBF3E4;color:#3A2A26}
-#astro-maps .vh-sheet .aqm-sheet-body:not(#_a):not(#_b){background:transparent}
-#astro-maps .vh-sheet .aqm-foot-next:not(#_a):not(#_b){min-height:44px;padding:0 18px;border-radius:999px;border:1px solid #C9A25A;background:#FBF3E4;color:#5A1828;font-weight:700}
+.vh-sheet .aqm-sheet-body:not(#_a):not(#_b){background:transparent}
+.vh-sheet .aqm-foot-next:not(#_a):not(#_b){min-height:44px;padding:0 18px;border-radius:999px;border:1px solid #C9A25A;background:#FBF3E4;color:#5A1828;font-weight:700}
+
+/* ===== تنسيق الصفحة الفيدية: الأيقونات، الإخفاء، النافذة، الجداول ===== */
+.vh-sheet .aqm-sheet-panel:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){display:flex;flex-direction:column;max-height:86vh!important;padding-top:6px!important}
+.vh-sheet .aqm-sheet-x:not(#_a):not(#_b):not(#_c){position:absolute;top:14px;inset-inline-start:14px;z-index:3;width:40px;height:40px;background:#FBF3E4;border:1px solid #C9A25A;color:#5A1828;box-shadow:0 2px 8px rgba(90,24,40,.15)}
+.vh-sheet .aqm-sheet-head:not(#_a):not(#_b){flex:0 0 auto;padding:6px 0 12px;padding-inline-start:54px;margin:0;border-bottom:1px solid rgba(201,162,90,.4)}
+.vh-sheet .aqm-sheet-body:not(#_a):not(#_b){flex:1 1 auto;min-height:0;overflow-y:auto;padding:14px 2px 18px}
+.vh-sheet .aqm-sheet-foot:not(#_a):not(#_b){flex:0 0 auto;display:flex;gap:10px;justify-content:center;padding:10px 4px calc(14px + env(safe-area-inset-bottom))!important;border-top:1px solid rgba(201,162,90,.4)!important;background:#FBF3E4!important}
+.vh-sheet .aqm-foot-close:not(#_a):not(#_b){min-height:44px;padding:0 22px;border-radius:999px;border:0;background:#5A1828;color:#FBF3E4;font-weight:700}
+.vh-sheet .eam-table-wrap:not(#_a):not(#_b){border:1px solid #E2CFA6;border-radius:16px;overflow:hidden;background:#FFFDF7;box-shadow:none}
+.vh-sheet .eam-table:not(#_a):not(#_b){border-collapse:collapse;width:100%;font-size:.92rem}
+.vh-sheet .eam-table thead th:not(#_a):not(#_b){background:#F1E4C8;color:#5A1828;font-weight:700;padding:11px 10px;font-size:.85rem;border:0}
+.vh-sheet .eam-table td:not(#_a):not(#_b){padding:11px 10px;border:0;border-top:1px solid #EFE2C4;background:transparent}
+.vh-sheet .eam-table tbody tr:nth-child(even) td:not(#_a):not(#_b){background:#FBF4E2}
+.vh-sheet .eam-table td:first-child{font-weight:700;color:#4A1224}
+.vh-tm{background:transparent;border:0;box-shadow:none;padding:0}
+.vh-tm>h5{display:none}
+.vh-tm-lead{margin:0 0 14px;color:#6B5448;line-height:1.9}
+.vh-tm-row{display:grid;grid-template-columns:1fr 1.5fr 1.1fr;gap:8px;margin-bottom:10px}
+.vh-tm-row select{min-height:46px;border-radius:14px;border:1px solid #D9C08A;background:#FFFDF7;color:#4A1224;font-weight:700;padding:0 10px}
+.vh-tm-go{width:100%;min-height:48px;border:0;border-radius:14px;background:linear-gradient(135deg,#6A2038,#4A1224);color:#FBF3E4;font-weight:700;margin-bottom:6px}
+.vh-tm-out h6{margin:18px 0 10px;font-size:1rem;color:#4A1224;font-family:'Amiri',serif}
+.vh-tm-dash{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px}
+.vh-tm-dash li{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"k n" "d d";gap:2px 10px;align-items:baseline;padding:12px 14px;border:1px solid #E2CFA6;border-radius:16px;background:#FFFDF7}
+.vh-tm-dash li span{grid-area:k;font-size:.78rem;color:#fff;background:#8A3A4E;border-radius:999px;padding:2px 10px}
+.vh-tm-dash li b{grid-area:n;font-size:1.05rem;color:#4A1224}
+.vh-tm-dash li i{grid-area:d;font-style:normal;font-size:.82rem;color:#7a5f50}
+.vh-tm-note{margin:12px 0 0;padding:12px 14px;border-radius:14px;background:#F6EAD0;color:#6B5448;font-size:.84rem;line-height:1.9}
+/* أيقونات الأقسام: العنوان بالمعنى + الاسم الفيدي + شرح قصير */
+.vh-tile-c{display:flex;flex-direction:column;align-items:flex-start;text-align:start;gap:3px;padding:12px 12px 14px}
+.vh-tile-c .vh-t{font-weight:800;color:#4A1224;font-size:.98rem;line-height:1.5}
+.vh-tile-c .vh-v{font-size:.74rem;color:#9A6A3A;font-weight:700}
+.vh-tile-c .vh-s{font-size:.76rem;color:#6B5448;line-height:1.7;font-weight:400}
+.vh-cg:not(#_a):not(#_b){grid-template-columns:repeat(2,1fr)}
+@media(min-width:700px){.vh-cg:not(#_a):not(#_b){grid-template-columns:repeat(4,1fr)}}
+/* إخفاء النموذج والتعريف حتى يُضغط على أيقونة */
+#astro-maps[data-eam-page="sidereal"]:not(.vh-ask):not(.eam-view-result) :is(#eam-form,#eam-explain){display:none!important}
+.vh-ask-head{margin:0 0 12px;padding:14px;border:1px solid #E2CFA6;border-radius:18px;background:#FFFDF7}
+.vh-ask-head[hidden]{display:none}
+.vh-ask-head h3{margin:8px 0 4px;font-family:'Amiri',serif;color:#4A1224;font-size:1.2rem}
+.vh-ask-head p{margin:0;color:#6B5448;font-size:.86rem;line-height:1.9}
+.vh-ask-back{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid #C9A25A;background:#FBF3E4;color:#5A1828;font-weight:700}
+.vh-ask-back svg{width:16px;height:16px}
+#astro-maps .vh-pre .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d),#astro-maps .vh-hub .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d){grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:700px){#astro-maps .vh-pre .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d),#astro-maps .vh-hub .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d){grid-template-columns:repeat(4,minmax(0,1fr))}}
+#astro-maps[data-eam-page="sidereal"].vh-ask #eam-explain{display:none!important}
+.vh-sheet .eam-table tbody tr:nth-child(odd) td:not(#_a):not(#_b):not(#_c){background:#FFFDF7}
+.vh-sheet .eam-table tbody tr:nth-child(even) td:not(#_a):not(#_b):not(#_c){background:#FBF4E2}
+.vh-cg>.vh-tile-c:last-child:nth-child(odd){grid-column:1/-1}
