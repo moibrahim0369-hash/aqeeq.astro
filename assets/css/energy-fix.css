@@ -254,3 +254,7 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 #astro-maps .vh-nt em:not(#_a):not(#_b){font-style:normal}
 #astro-maps .vh-nt-e:not(#_a):not(#_b){padding-top:6px;border-top:1px dashed #E6D9BC}
 #astro-maps .vh-nt-q:not(#_a):not(#_b){padding-top:6px;border-top:1px dashed #E6D9BC}
+
+/* أثناء حساب الفيدي: نخفي أي نتيجة جزئية حتى تكتمل الشبكة، مع رسالة انتظار */
+#astro-maps.vh-await #eam-result { visibility: hidden !important; height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }
+#astro-maps.vh-await #eam-content::after { content: "جارٍ حساب خريطتك…"; display: block; text-align: center; padding: 26px 12px; color: #7A5A48; font-weight: 700; }

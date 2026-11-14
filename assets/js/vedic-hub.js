@@ -506,10 +506,17 @@
     else { var b = content.querySelector('.eam-backbar button'); if (b) b.click(); }
   });
   var timer = null;
+  var awaitT = null;
+  function awaitOff() { clearTimeout(awaitT); sec.classList.remove('vh-await'); }
+  document.addEventListener('submit', function (e) {
+    if (!e.target || e.target.id !== 'eam-form' || sec.getAttribute('data-eam-page') !== 'sidereal') return;
+    sec.classList.add('vh-await'); clearTimeout(awaitT); awaitT = setTimeout(awaitOff, 9000);
+  }, true);
   function settle() {
     try { build(); prefill(); } catch (e) { console.warn(e); }
     var r = content.querySelector('#eam-result');
     if (r && !r.classList.contains('vh-ready') && r.querySelector('#vx-vargas') && !r.hidden) r.classList.add('vh-ready');
+    if (r && r.classList.contains('vh-ready') && sec.classList.contains('vh-await')) awaitOff();
   }
   new MutationObserver(function () {
     clearTimeout(timer);
