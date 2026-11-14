@@ -67,6 +67,8 @@
   }
   function signOf(n, key) { var b = n && n.ch && (n.ch.bodies || []).filter(function (x) { return String(x.key).toLowerCase() === key; })[0]; return b ? SIGNS[Math.floor(((b.lon % 360) + 360) % 360 / 30)] : null; }
   function syncMe() {
+    /* الرئيسية تبقى كما هي بعد الدخول: لا كارت شخصي هنا، المحتوى الشخصي كله في صفحة «أنت» */
+    var gone = document.getElementById('b3-me'); if (gone) gone.remove(); return;
     var home = $('#home'), grid = home && $('.aqh-hero-grid', home); if (!grid) return;
     var me = $('#b3-me');
     if (!loggedIn()) { if (me) me.hidden = true; return; }
