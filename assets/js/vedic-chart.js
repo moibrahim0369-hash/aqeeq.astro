@@ -24,6 +24,9 @@
     [45, 'D45', 'خط الأب', 'ما انتقل إليك من جهة الأب من إرث وأخلاق وقيم.', 'sun'],
     [60, 'D60', 'الكارما', 'الرصيد الأعمق الذي تحمله معك. يتغير كل دقيقتين تقريباً في الطالع فلا يُعتمد عليه إلا مع وقت ميلاد دقيق.', 'moon']
   ];
+  var ORIG = { 1: 'Rasi', 2: 'Hora', 3: 'Drekkana', 4: 'Chaturthamsa', 7: 'Saptamsa', 9: 'Navamsa', 10: 'Dasamsa', 12: 'Dwadasamsa', 16: 'Shodasamsa', 20: 'Vimsamsa', 24: 'Siddhamsa', 27: 'Bhamsa', 30: 'Trimsamsa', 40: 'Khavedamsa', 45: 'Akshavedamsa', 60: 'Shashtiamsa' };
+  /* الرسم الجنوبي: البروج ثابتة في أماكنها (الحمل ثاني خلية في الصف الأول) ويمضي الترتيب مع عقارب الساعة */
+  var SOUTH = { 11: [0, 0], 0: [1, 0], 1: [2, 0], 2: [3, 0], 3: [3, 1], 4: [3, 2], 5: [3, 3], 6: [2, 3], 7: [1, 3], 8: [0, 3], 9: [0, 2], 10: [0, 1] };
   var CENTERS = [[200, 92], [100, 40], [40, 100], [92, 200], [40, 300], [100, 360], [200, 308], [300, 360], [360, 300], [308, 200], [360, 100], [300, 40]];
   var NUMPOS = [[200, 150], [100, 20], [18, 98], [150, 200], [18, 306], [100, 392], [200, 252], [300, 392], [382, 306], [250, 200], [382, 98], [300, 20]];
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -86,6 +89,29 @@
     }
     return h + '</svg>';
   }
+  function svgSouth(map, title) {
+    var C = 100, h = '<svg class="vc-svg" viewBox="0 0 400 400" role="img" aria-label="' + esc(title) + '" xmlns="http://www.w3.org/2000/svg">';
+    h += '<title>' + esc(title) + '</title><rect x="2" y="2" width="396" height="396" rx="6" fill="' + CREAM + '" stroke="' + GOLD + '" stroke-width="2.5"/>';
+    h += '<rect x="102" y="102" width="196" height="196" fill="#FBF6EA" stroke="' + GOLD + '" stroke-width="1.2"/>';
+    h += '<g fill="none" stroke="' + GOLD + '" stroke-width="1.6"><path d="M102 2V398M202 2V102M202 298V398M298 2V398M2 102H398M2 202H102M298 202H398M2 298H398"/></g>';
+    for (var sg = 0; sg < 12; sg++) {
+      var pos = SOUTH[sg], x0 = pos[0] * C + 2, y0 = pos[1] * C + 2, cx = x0 + 48, house = (sg - map.lagna + 12) % 12;
+      h += '<text x="' + (x0 + 8) + '" y="' + (y0 + 14) + '" font-size="11" fill="' + GOLD + '" font-weight="700">' + (sg + 1) + '</text>';
+      var here = map.items.filter(function (x) { return x.sign === sg; }).map(function (x) { return { t: x.ab, tone: TONE[x.key] || 'g', r: x.retro }; });
+      if (house === 0) {
+        here.unshift({ t: map.basis === 'asc' ? 'ط' : 'ط*', tone: 'l', r: false });
+        h += '<path d="M' + x0 + ' ' + (y0 + 26) + 'L' + (x0 + 26) + ' ' + y0 + '" stroke="' + WINE + '" stroke-width="2.2" fill="none"/>';
+      }
+      var k = here.length, cols = k > 2 ? 2 : 1, rows = Math.ceil(k / cols), w = 34, gx = 40, gy = 22, top = y0 + 52 - (rows - 1) * gy / 2 + 6;
+      here.forEach(function (it, j) {
+        var col = cols === 1 ? 0 : j % 2, row = cols === 1 ? j : Math.floor(j / 2);
+        h += pill(cx + (cols === 1 ? 0 : (col === 0 ? -gx / 2 : gx / 2)), top + row * gy, w, it.t, it.tone, it.r);
+      });
+    }
+    h += '<text x="200" y="196" text-anchor="middle" font-size="17" font-weight="800" fill="' + WINE + '">' + esc('D' + map.n) + '</text>';
+    h += '<text x="200" y="220" text-anchor="middle" font-size="12" fill="' + GOLD + '" letter-spacing="1">' + esc(ORIG[map.n] || '') + '</text>';
+    return h + '</svg>';
+  }
   function houseRows(map) {
     return map.items.map(function (x) {
       var tn = TONE[x.key] || 'g';
@@ -94,21 +120,24 @@
   }
   function mount(host, ch, natal) {
     if (!host || !window.AqVedic) return;
-    var cur = 1;
+    var cur = 1, style = 'n';
+    try { style = localStorage.getItem('aq-vedic-style') === 's' ? 's' : 'n'; } catch (e) {}
     function draw() {
       var v = VARGAS.filter(function (x) { return x[0] === cur; })[0], map = build(ch, cur), title = 'مخطط ' + v[1] + ' · ' + v[2];
       var sig = v[4] ? map.items.filter(function (x) { return x.key === v[4]; })[0] : null;
       var chips = VARGAS.map(function (x) { return '<button type="button" class="vc-chip' + (x[0] === cur ? ' on' : '') + '" data-n="' + x[0] + '" aria-pressed="' + (x[0] === cur) + '"><b>' + x[1] + '</b><span>' + x[2] + '</span></button>'; }).join('');
       var note = map.basis === 'asc' ? 'الطالع في ' + SG[map.lagna] + '.' : 'وقت الميلاد غير معروف، فالمخطط يبدأ من برج القمر (' + SG[map.lagna] + ') بدل الطالع.';
       host.innerHTML = '<h4>المخططات الفيدية · التقسيمات</h4><div class="vc-chips" role="group" aria-label="اختيار التقسيم">' + chips + '</div>' +
-        '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b><br>' + esc(v[3]) + '</p>' +
-        '<div class="vc-chartwrap">' + svg(map, title) + '</div>' +
-        '<p class="vc-note">' + esc(note) + ' الأرقام الذهبية أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. ℞ يعني راجع.</p>' +
+        '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b> <small class="vc-orig">' + esc(ORIG[cur] || '') + '</small><br>' + esc(v[3]) + '</p>' +
+        '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div>' +
+        '<div class="vc-chartwrap">' + (style === 's' ? svgSouth(map, title) : svg(map, title)) + '</div>' +
+        '<p class="vc-note">' + esc(note) + (style === 's' ? ' في الرسم الجنوبي كل برج له مكان ثابت (الحمل ثاني خانة في الصف الأعلى) ويمضي الترتيب مع عقارب الساعة، والخط المائل يعلّم خانة الطالع. ℞ يعني راجع.' : ' الأرقام الذهبية أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. ℞ يعني راجع.') + '</p>' +
         '<p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p><ul class="vc-rows">' + houseRows(map) + '</ul>' +
         (sig ? '<p class="vc-sig">' + esc(sig.name) + ' الدال هنا في ' + SG[sig.sign] + ' (البيت ' + (sig.house + 1) + ').</p>' : '');
+      host.querySelectorAll('.vc-st').forEach(function (b) { b.addEventListener('click', function () { style = b.dataset.s; try { localStorage.setItem('aq-vedic-style', style); } catch (e) {} draw(); }); });
       host.querySelectorAll('.vc-chip').forEach(function (b) { b.addEventListener('click', function () { cur = +b.dataset.n; draw(); var on = host.querySelector('.vc-chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' }); }); });
     }
     draw();
   }
-  window.AqVedicChart = { mount: mount, build: build, svg: svg, VARGAS: VARGAS, PL: PL };
+  window.AqVedicChart = { mount: mount, build: build, svg: svg, VARGAS: VARGAS, PL: PL, svgSouth: svgSouth };
 })();
