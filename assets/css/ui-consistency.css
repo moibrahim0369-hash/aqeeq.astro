@@ -1,0 +1,10 @@
+/* توحيد شكل الأكورديونات في الصفحات غير المعتمدة — شكل فقط، بدون أي نص أو حساب */
+#year2027 .y27-acc>summary .y27-t,
+#karmic .y27-acc>summary .y27-t,
+#compat .y27-acc>summary .y27-t{font-family:'Amiri',serif;font-size:16.8px;font-weight:700}
+#compat details.cp-composite-houses{border:1px solid rgba(196,156,84,.35);border-radius:18px;background:#fffaf0;padding:0 14px 10px;margin-top:12px}
+#compat details.cp-composite-houses>summary{font-family:'Amiri',serif;font-size:16.8px;font-weight:700;color:#5a2336;padding:12px 0;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+#compat details.cp-composite-houses>summary::-webkit-details-marker{display:none}
+#compat details.cp-composite-houses>summary::after{content:"";width:9px;height:9px;border-inline-end:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:.2s}
+#compat details.cp-composite-houses[open]>summary::after{transform:rotate(-135deg)}
+#compat details.cp-composite-houses ol{color:#5b4a3f}
