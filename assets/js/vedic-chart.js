@@ -137,6 +137,9 @@
   }
   var EXA = { sun: 0, moon: 1, mars: 9, mercury: 5, jupiter: 3, venus: 11, saturn: 6, node: 1, ketu: 7 };
   var OWN = { sun: [4], moon: [3], mars: [0, 7], mercury: [2, 5], jupiter: [8, 11], venus: [1, 6], saturn: [9, 10] };
+  var COMB = { moon: 12, mars: 17, mercury: 14, jupiter: 11, venus: 10, saturn: 15 };
+  var SIGNLORD = ['mars', 'venus', 'mercury', 'moon', 'sun', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'saturn', 'jupiter'];
+  var ASP = { mars: [4, 7, 8], jupiter: [5, 7, 9], saturn: [3, 7, 10], node: [5, 7, 9], ketu: [5, 7, 9] };
   function dignity(x) {
     if (EXA[x.key] === x.sign) return ['ex', 'مرتفع'];
     if (EXA[x.key] != null && (EXA[x.key] + 6) % 12 === x.sign) return ['db', 'هابط'];
@@ -151,6 +154,10 @@
       var u = 360 / 27, ni = Math.floor(x.lon / u) % 27, pd = Math.floor((x.lon % u) / (u / 4)) + 1;
       if (T && T.NK && T.NK[ni]) parts.push('<i class="vc-nk">' + T.NK[ni][0] + ' · ' + pd + '</i>');
     }
+    if (d1 && x.lon != null && COMB[x.key]) {
+      var su = map.items.filter(function (y) { return y.key === 'sun'; })[0];
+      if (su && su.lon != null) { var df = Math.abs(((x.lon - su.lon + 540) % 360) - 180); df = 180 - df; var orb = COMB[x.key] - (x.retro && (x.key === 'mercury' || x.key === 'venus') ? 2 : 0); if (df <= orb) parts.push('<i class="vc-dn vc-dn-db">محترق</i>'); }
+    }
     if (dg) parts.push('<i class="vc-dn vc-dn-' + dg[0] + '">' + dg[1] + '</i>');
     return parts.length ? '<span class="vc-dt">' + parts.join('') + '</span>' : '';
   }
@@ -159,6 +166,22 @@
       var tn = TONE[x.key] || 'g';
       return '<li class="vc-r vc-t-' + tn + '"><span class="vc-ab">' + esc(x.ab) + '</span><b>' + esc(x.name) + (x.retro ? ' ℞' : '') + '</b><span class="vc-sg">' + SG[x.sign] + ' · البيت ' + (x.house + 1) + '</span>' + detail(map, x) + (window.AqVedicExpert && window.AqVedicExpert.on ? '<span class="vc-codes">' + codesFor(map, x).map(function (k) { return '<em class="vc-code">[' + k + ']</em>'; }).join('') + '</span>' : '') + '</li>';
     }).join('');
+  }
+  function extras(map) {
+    var by = {}, SGn = window.AqVedic && window.AqVedic.T ? window.AqVedic.T.SG : [];
+    map.items.forEach(function (x) { by[x.key] = x; });
+    var lords = '';
+    for (var h = 0; h < 12; h++) {
+      var sg = (map.lagna + h) % 12, lk = SIGNLORD[sg], lp = by[lk];
+      lords += '<li><b>البيت ' + (h + 1) + '</b><span>' + SG[sg] + '</span><em>' + (lp ? esc(lp.name) + ' في البيت ' + (lp.house + 1) : '') + '</em></li>';
+    }
+    var asp = map.items.map(function (x) {
+      var hs = (ASP[x.key] || [7]).map(function (n) { return (x.house + n - 1) % 12; });
+      var tg = map.items.filter(function (y) { return y.key !== x.key && hs.indexOf(y.house) >= 0; }).map(function (y) { return esc(y.name); });
+      return '<li><b>' + esc(x.name) + '</b><span>ينظر إلى البيوت ' + hs.map(function (v) { return v + 1; }).sort(function (a, b) { return a - b; }).join('، ') + '</span><em>' + (tg.length ? tg.join('، ') : 'لا كواكب هناك') + '</em></li>';
+    }).join('');
+    return '<details class="vc-ext"><summary>حكام البيوت</summary><ul class="vc-xl">' + lords + '</ul></details>' +
+      '<details class="vc-ext"><summary>النظرات (غراها دريشتي)</summary><ul class="vc-xl">' + asp + '</ul></details>';
   }
   function mount(host, ch, natal, only) {
     if (!host || !window.AqVedic) return;
@@ -178,7 +201,7 @@
         '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div>' +
         '<div class="vc-chartwrap">' + (style === 's' ? svgSouth(map, title) : svg(map, title)) + '</div>' +
         '<p class="vc-note">' + esc(note) + (style === 's' ? ' في الرسم الجنوبي كل برج له مكان ثابت (الحمل ثاني خانة في الصف الأعلى) ويمضي الترتيب مع عقارب الساعة، والخط المائل يعلّم خانة الطالع. ℞ يعني راجع.' : ' الأرقام الذهبية أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. ℞ يعني راجع.') + '</p>' +
-        '<p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p><ul class="vc-rows">' + houseRows(map) + '</ul>' +
+        '<p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p><ul class="vc-rows">' + houseRows(map) + '</ul>' + extras(map) +
         (sig ? '<p class="vc-sig">' + esc(sig.name) + ' الدال هنا في ' + SG[sig.sign] + ' (البيت ' + (sig.house + 1) + ').</p>' : '');
       host.querySelectorAll('.vc-st').forEach(function (b) { b.addEventListener('click', function () { style = b.dataset.s; try { localStorage.setItem('aq-vedic-style', style); } catch (e) {} draw(); }); });
       host.querySelectorAll('.vc-chip').forEach(function (b) { b.addEventListener('click', function () { cur = isNaN(+b.dataset.n) ? b.dataset.n : +b.dataset.n; draw(); var on = host.querySelector('.vc-chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' }); }); });
