@@ -84,3 +84,15 @@ html body section#astro-maps.eam-view-result:not(#_a):not(#_b):not(#_c) #eam-exp
 .vh-ex-slot b{display:block;color:#7a1f2b;font-size:.85rem;margin-bottom:.2rem}
 .vh-ex-slot span{display:block;font-size:.9rem;line-height:1.7;margin-bottom:.5rem}
 .vh-ex-slot[hidden]{display:none}
+
+html body section#astro-maps.eam-view-result:not(#_a):not(#_b) #eam-form{display:none!important}
+#astro-maps .vh-ex-acc:not(#_a):not(#_b){margin:10px 0;border:1px solid #E6D9BC;border-radius:14px;background:#fff;overflow:hidden}
+#astro-maps .vh-ex-acc summary:not(#_a):not(#_b){display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;cursor:pointer;font-weight:700;color:#5A1828;list-style:none}
+#astro-maps .vh-ex-acc summary::-webkit-details-marker{display:none}
+#astro-maps .vh-ex-acc summary em:not(#_a):not(#_b){font-style:normal;font-size:.78rem;padding:2px 10px;border-radius:999px;background:#F4EBD6;color:#7A5A48}
+#astro-maps .vh-ex-acc .vh-ex-list:not(#_a):not(#_b){padding:0 12px 12px;grid-template-columns:1fr}
+@media (min-width:900px){#astro-maps .vh-ex-acc .vh-ex-list:not(#_a):not(#_b){grid-template-columns:1fr 1fr}}
+#astro-maps .vh-ex-h:not(#_a):not(#_b){display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin-bottom:4px}
+#astro-maps .vh-ex-h b:not(#_a):not(#_b){color:#4A1A24}
+#astro-maps .vh-ex-h i:not(#_a):not(#_b){font-style:normal;font-size:.78rem;padding:1px 9px;border-radius:999px;background:#F4EBD6;color:#7A5A48}
+#astro-maps .vh-ex-list li span:not(#_a):not(#_b){font-size:.9rem;line-height:1.85;color:#4A3A32}
