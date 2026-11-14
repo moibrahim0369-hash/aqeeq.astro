@@ -244,3 +244,13 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 
 /* بعد الحساب: لا نُظهر نتيجة الفيدي الخام قبل أن تُرتَّب في الشبكة (يمنع وميض الخرائط القديمة) */
 #astro-maps[data-eam-page="sidereal"] #eam-result:has(#vx-vargas):not(.vh-ready) { visibility: hidden !important; height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }
+
+/* ملاحظات الخبير: ثلاث طبقات واضحة بدل نص واحد متصل */
+#astro-maps .vh-nts:not(#_a):not(#_b){display:grid;gap:6px;margin-top:2px}
+#astro-maps .vh-nt:not(#_a):not(#_b){display:grid;grid-template-columns:64px 1fr;gap:8px;align-items:start;font-size:.88rem;line-height:1.8;color:#4A3A32}
+#astro-maps .vh-nt i:not(#_a):not(#_b){font-style:normal;font-size:.72rem;font-weight:700;text-align:center;padding:2px 0;border-radius:8px;background:#F4EBD6;color:#7A5A48;margin-top:3px}
+#astro-maps .vh-nt-e i:not(#_a):not(#_b){background:#4A1A24;color:#FBF3E4}
+#astro-maps .vh-nt-q i:not(#_a):not(#_b){background:#B8732F;color:#fff}
+#astro-maps .vh-nt em:not(#_a):not(#_b){font-style:normal}
+#astro-maps .vh-nt-e:not(#_a):not(#_b){padding-top:6px;border-top:1px dashed #E6D9BC}
+#astro-maps .vh-nt-q:not(#_a):not(#_b){padding-top:6px;border-top:1px dashed #E6D9BC}

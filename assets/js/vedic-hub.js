@@ -115,10 +115,10 @@
     loadNotes(function (n) {
       Array.prototype.forEach.call(slots, function (el) {
         var h = '';
-        if (el.dataset.sade) { var t = n.sade && n.sade.saturn && n.sade.saturn[el.dataset.sade]; if (t) h = '<b>ملاحظة الخبير على المرحلة</b><span>' + esc(t) + '</span>'; }
+        if (el.dataset.sade) { var t = n.sade && n.sade.saturn && n.sade.saturn[el.dataset.sade]; if (t) h = '<b>ملاحظة الخبير على المرحلة</b>' + nt(t) + ''; }
         if (el.dataset.dl) el.dataset.dl.split(',').forEach(function (q) {
           var a = q.split(':'), t = n.d1 && n.d1[a[1]] && n.d1[a[1]][+a[2] + 1];
-          if (t) h += '<b>' + esc(a[0]) + ' في بيتك ' + (+a[2] + 1) + '</b><span>' + esc(t) + '</span>';
+          if (t) h += '<b>' + esc(a[0]) + ' في بيتك ' + (+a[2] + 1) + '</b>' + nt(t) + '';
         });
         if (h) { el.innerHTML = h; el.hidden = false; }
       });
@@ -154,7 +154,7 @@
           var n = EXPERT_N[k], v = VC.VARGAS.filter(function (x) { return x[0] === n; })[0], map = VC.build(L.ch, n), rows = '';
           map.items.forEach(function (it) {
             var t = tbl[it.key] && tbl[it.key][it.house + 1];
-            if (t) { found++; var cs = VC.codesFor(map, it).map(function (c) { return '<em class="vc-code">[' + c + ']</em>'; }).join(''); rows += '<li><div class="vh-ex-h"><b>' + esc(it.name) + '</b><i>البيت ' + (it.house + 1) + '</i>' + cs + '</div><span>' + esc(t) + '</span></li>'; }
+            if (t) { found++; var cs = VC.codesFor(map, it).map(function (c) { return '<em class="vc-code">[' + c + ']</em>'; }).join(''); rows += '<li><div class="vh-ex-h"><b>' + esc(it.name) + '</b><i>البيت ' + (it.house + 1) + '</i>' + cs + '</div>' + nt(t) + '</li>'; }
           });
           if (rows) html += '<details class="vh-ex-acc"' + (html ? '' : ' open') + '><summary><span>' + esc(v ? v[1] + ' · ' + v[2] : k) + '</span><em>' + map.items.filter(function (it) { return tbl[it.key] && tbl[it.key][it.house + 1]; }).length + '</em></summary><ul class="vh-ex-list">' + rows + '</ul></details>';
         });
@@ -165,6 +165,11 @@
   }
   /* آلة الزمن: الداشا النشطة (كبرى/صغرى/دقيقة) والعبورات الفيدية في أي تاريخ فوق خريطته */
   var MON = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+  function nt(t) {
+    t = String(t == null ? '' : t); var s = t.split(' وفي الجلسة: '), a = s[0].split(' للخبير: '), o = '';
+    function row(c, x) { return x ? '<span class="vh-nt vh-nt-' + c + '"><i>' + ({ m: 'الدلالة', e: 'للخبير', q: 'في الجلسة' }[c]) + '</i><em>' + esc(x.trim()) + '</em></span>' : ''; }
+    return '<div class="vh-nts">' + row('m', a[0]) + row('e', a[1]) + row('q', s[1]) + '</div>';
+  }
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function fdt(ms) { return new Date(ms).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' }); }
   function timeCard() {
@@ -451,7 +456,7 @@
           var tbl = n['d' + k], map = VC.build(L.ch, +k), rows = '';
           if (tbl) map.items.forEach(function (it) {
             var t = tbl[it.key] && tbl[it.key][it.house + 1];
-            if (t) rows += '<li><div class="vh-ex-h"><b>' + esc(it.name) + '</b><i>البيت ' + (it.house + 1) + '</i></div><span>' + esc(t) + '</span></li>';
+            if (t) rows += '<li><div class="vh-ex-h"><b>' + esc(it.name) + '</b><i>البيت ' + (it.house + 1) + '</i></div>' + nt(t) + '</li>';
           });
           ex.querySelector('.eam-acc-body').innerHTML = rows ? '<ul class="vh-ex-list">' + rows + '</ul>' : '<p class="vh-tm-note">لا توجد ملاحظات لهذه الخريطة بعد.</p>';
         });
