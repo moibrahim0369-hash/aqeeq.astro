@@ -186,6 +186,15 @@
   /* ---------- هيدر أنت: اليوزر، المحفوظات، صندوق الإشعارات ---------- */
   var UN_KEY = 'aqeeq_username_v1', INB_KEY = 'aqeeq_yp_inbseen_v1';
   function unGet(u) { try { var v = localStorage.getItem(UN_KEY); if (v) return v; } catch (e) {} var b = String((u && u.email) || 'user').split('@')[0].toLowerCase().replace(/[^a-z0-9._]/g, ''); return b.length >= 3 ? b.slice(0, 20) : 'user' + String((u && u.id) || '0').replace(/[^a-z0-9]/gi, '').slice(0, 5).toLowerCase(); }
+  var unSynced = '';
+  function unSync(u) {
+    var sb = window.aqeeqSupabase; if (!u || !sb || !sb.from || unSynced === u.id) return; unSynced = u.id;
+    sb.from('usernames').select('username').eq('user_id', u.id).maybeSingle().then(function (r) {
+      var n = r && r.data && r.data.username; if (!n) return;
+      var old = ''; try { old = localStorage.getItem(UN_KEY) || ''; localStorage.setItem(UN_KEY, n); } catch (e) {}
+      if (old !== n) render();
+    }, function () {});
+  }
   function unOk(v) { return /^[a-z][a-z0-9._]{2,19}$/.test(v); }
   function inbSeen() { try { return JSON.parse(localStorage.getItem(INB_KEY) || '[]'); } catch (e) { return []; } }
   function inbItems() {
@@ -220,7 +229,7 @@
     return h || '<div class="yp-empty">' + SVG('<path d="M6 4h12v16l-6-4-6 4z"/>') + '<p>لم تحفظ شيئًا بعد. كل ما تحفظه من مقالات وقراءات وما تشتريه سيجتمع هنا.</p></div>';
   }
   function topHtml(u, name) {
-    var un = unGet(u), n = inbUnread();
+    unSync(u); var un = unGet(u), n = inbUnread();
     var ib = function (a, lab, ico, badge) { return '<button type="button" class="yp-ib" ' + a + ' aria-label="' + lab + '">' + SVG(ico) + (badge ? '<i>' + (badge > 9 ? '9+' : badge) + '</i>' : '') + '<em>' + lab + '</em></button>'; };
     return '<header class="yp-top"><button type="button" class="yp-who-b" data-set aria-label="الملف الشخصي"><span class="yp-av yp-av-b"><span class="yp-av-i">' + avatar(u, name) + '</span></span><span class="yp-who-t"><b>' + esc(name) + '</b><small dir="ltr">@' + esc(un) + '</small></span></button>' +
       '<div class="yp-ibs">' + ib('data-sv', 'الحفظ', '<path d="M6 4h12v16l-6-4-6 4z"/>', 0) + ib('data-inb', 'الإشعارات', '<path d="M6 16V11a6 6 0 0 1 12 0v5l1.500 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/>', n) + ib('data-tab="settings"', 'الضبط', '<circle cx="12" cy="12" r="3"/><path d="M12 3v2.500M12 18.500V21M3 12h2.500M18.500 12H21M5.600 5.600l1.800 1.800M16.600 16.600l1.800 1.800M5.600 18.400l1.800-1.800M16.600 7.400l1.800-1.800"/>', 0) + '</div></header>';
@@ -517,7 +526,17 @@
     if (el.hasAttribute('data-un-save')) {
       var inp = $('#yp-un'), m = $('#yp-un-m'), v = inp ? inp.value.trim().toLowerCase() : '';
       if (!unOk(v)) { if (m) { m.textContent = 'اكتب من 3 إلى 20 حرفًا إنجليزيًا أو رقمًا أو نقطة، وتبدأ بحرف.'; m.className = 'yp-un-m err'; } return; }
-      try { localStorage.setItem(UN_KEY, v); } catch (x) {} if (m) { m.textContent = 'تم حفظ اسم المستخدم.'; m.className = 'yp-un-m ok'; } return;
+      var sb = window.aqeeqSupabase, say = function (t, ok) { if (m) { m.textContent = t; m.className = 'yp-un-m ' + (ok ? 'ok' : 'err'); } };
+      if (!sb || !sb.rpc) { say('تعذّر الاتصال الآن، حاول لاحقًا.', false); return; }
+      say('جارٍ التحقق...', true);
+      sb.rpc('claim_username', { p_name: v }).then(function (r) {
+        var d = r && !r.error ? r.data : 'err';
+        if (d === 'ok') { try { localStorage.setItem(UN_KEY, v); } catch (x) {} say('تم حفظ اسم المستخدم.', true); }
+        else if (d === 'taken') say('هذا الاسم مأخوذ، اختر اسمًا آخر.', false);
+        else if (d === 'invalid') say('اكتب من 3 إلى 20 حرفًا إنجليزيًا أو رقمًا أو نقطة، وتبدأ بحرف.', false);
+        else say('تعذّر الحفظ الآن، حاول مرة أخرى.', false);
+      }, function () { say('تعذّر الحفظ الآن، حاول مرة أخرى.', false); });
+      return;
     }
     ST.view = el.hasAttribute('data-sv') ? { sv: true } : { inb: true }; render(); var s0 = $('#for-you'); if (s0) s0.scrollTop = 0; window.scrollTo(0, 0);
   });
