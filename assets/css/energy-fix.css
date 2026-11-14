@@ -1,0 +1,9 @@
+/* التوافق الطاقي: عمود واحد على الديسك توب، سهم بدل علامة + */
+html body section#energy-compatibility .relationship-studio:not(#_a):not(#_b):not(#_c):not(#_d){display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important;max-width:760px;margin-inline:auto}
+html body section#energy-compatibility details.lp-section>summary:not(#_a):not(#_b):not(#_c)::after{content:""!important;position:static!important;display:block!important;flex:none;order:9;width:9px!important;height:9px!important;margin:0 4px 0 0!important;border:solid #A07A3A!important;border-width:0 2px 2px 0!important;border-radius:0!important;background:none!important;box-shadow:none!important;transform:rotate(45deg)!important;transition:transform .2s;inset:auto!important}
+html body section#energy-compatibility details.lp-section[open]>summary:not(#_a):not(#_b):not(#_c)::after{transform:rotate(-135deg)!important;margin-top:4px!important}
+html body section#energy-compatibility details.lp-section>summary:not(#_a):not(#_b){display:flex!important;align-items:center;gap:12px}
+html body section#energy-compatibility details.lp-section:not(#_a):not(#_b){align-self:start;margin:0!important;width:100%}
+html body section#energy-compatibility details.lp-section>summary:not(#_a):not(#_b):not(#_c)::before{content:none!important;display:none!important}
+html body section#energy-compatibility .relationship-studio.energy-compatibility-studio:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){grid-template-columns:minmax(0,1fr)!important;display:grid!important}
+html body section#energy-compatibility .lp-sections:not(#_a):not(#_b):not(#_c):not(#_d){display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
