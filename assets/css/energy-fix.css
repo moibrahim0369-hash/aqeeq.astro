@@ -181,3 +181,26 @@ html body section#astro-maps.eam-view-result:not(#_a):not(#_b) #eam-form{display
 .vh-sheet .eam-table tbody tr:nth-child(odd) td:not(#_a):not(#_b):not(#_c){background:#FFFDF7}
 .vh-sheet .eam-table tbody tr:nth-child(even) td:not(#_a):not(#_b):not(#_c){background:#FBF4E2}
 .vh-cg>.vh-tile-c:last-child:nth-child(odd){grid-column:1/-1}
+
+/* ===== أيقونات الخرائط بشكل البانر + جداول وكروت أنظف ===== */
+.vh-cg:not(#_a):not(#_b):not(#_c){gap:12px;margin:0 0 14px}
+#astro-maps .vh-tile-m:not(#_a):not(#_b):not(#_c){min-height:150px;align-content:start;gap:3px}
+#astro-maps .vh-tile-m .vh-t:not(#_a):not(#_b):not(#_c){font-size:1.05rem;line-height:1.5;color:#4A1224;margin-top:8px}
+#astro-maps .vh-tile-m .vh-v:not(#_a):not(#_b){font-size:.72rem;color:#9A6A3A;font-weight:700;letter-spacing:.02em}
+#astro-maps .vh-tile-m .vh-s:not(#_a):not(#_b):not(#_c){font-size:.78rem;line-height:1.7;color:#7A5A48}
+.vh-cg>.vh-tile-m:last-child:nth-child(odd){grid-column:1/-1;min-height:0}
+.vh-sheet .eam-table tbody :is(th,td):not(#_a):not(#_b):not(#_c){background:transparent!important;border:0;border-top:1px solid #EFE2C4;padding:12px 10px;text-align:start}
+.vh-sheet .eam-table tbody tr:nth-child(odd):not(#_a):not(#_b){background:#FFFDF7}
+.vh-sheet .eam-table tbody tr:nth-child(even):not(#_a):not(#_b){background:#FBF4E2}
+.vh-sheet .eam-table tbody tr:first-child :is(th,td):not(#_a){border-top:0}
+.vh-sheet .eam-table thead th:not(#_a):not(#_b):not(#_c){text-align:start;padding:12px 10px}
+.vh-sheet .aqm-sheet-body{scrollbar-width:none}.vh-sheet .aqm-sheet-body::-webkit-scrollbar{display:none}
+.vh-tm-dash{border:1px solid #E2CFA6;border-radius:18px;background:#FFFDF7;overflow:hidden;gap:0}
+.vh-tm-dash li:not(#_a){display:grid;grid-template-columns:1fr;grid-template-areas:"k" "n" "d";gap:2px;border:0;border-radius:0;background:transparent;padding:12px 16px}
+.vh-tm-dash li+li{border-top:1px solid #EFE2C4}
+.vh-tm-dash li span:not(#_a){background:transparent;border-radius:0;padding:0;color:#9A6A3A;font-size:.76rem;font-weight:700}
+.vh-tm-dash li b{font-size:1.08rem}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-rows{grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-rows li.vc-r{min-width:0;overflow:hidden}
+html body #astro-maps .vc-key{margin:14px 0 4px;gap:6px}
+html body #astro-maps .vc-key i{font-size:.72rem;padding:2px 10px}
