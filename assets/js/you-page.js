@@ -26,7 +26,7 @@
   var headOf = function (e) { var t = String(e.summary || ''); var i = t.indexOf(':'); t = i > -1 ? t.slice(i + 1).trim() : t; var j = t.indexOf('.'); return (j > 8 ? t.slice(0, j) : t); };
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var user = function () { return (window.AqSession && window.AqSession.user) || null; };
-  var natal = function () { try { var n = window.AqeeqChartContext && window.AqeeqChartContext.getOrPrefill(); return n && n.ch ? n.ch : null; } catch (e) { return null; } };
+  var natal = function () { try { var n = window.AqeeqChartContext && window.AqeeqChartContext.getMine(); return n && n.ch ? n.ch : null; } catch (e) { return null; } };
   var fmtM = function (ms) { return new Date(ms).toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' }); };
   var fmtD = function (ms) { return new Date(ms).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' }); };
   var domOf = function (id) { return DOMAINS.filter(function (d) { return d.id === id; })[0]; };

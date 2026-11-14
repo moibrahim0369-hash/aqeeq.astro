@@ -71,7 +71,7 @@
     var me = $('#b3-me');
     if (!loggedIn()) { if (me) me.hidden = true; return; }
     if (!me) { me = document.createElement('section'); me.id = 'b3-me'; me.className = 'b3-me'; grid.parentNode.insertBefore(me, grid); }
-    var n = null; try { n = window.AqeeqChartContext && window.AqeeqChartContext.getOrPrefill(); } catch (e) {}
+    var n = null; try { n = window.AqeeqChartContext && window.AqeeqChartContext.getMine(); } catch (e) {}
     var nm = n && n.name ? n.name : '', sun = signOf(n, 'sun'), mo = signOf(n, 'moon'), now = moonNow();
     me.hidden = false;
     me.innerHTML = '<div class="b3-me-h"><span>مساحتك</span><h2>' + (nm ? 'أهلًا ' + esc(nm) : 'أهلًا بعودتك') + '</h2></div>' +
@@ -158,7 +158,7 @@
   function init() {
     buildRot(); buildZodiac(); buildReports(); buildKarmic(); watchMatrix(); syncMe();
     var u = document.getElementById('acct-user'); if (u) new MutationObserver(syncMe).observe(u, { attributes: true, attributeFilter: ['hidden'] });
-    document.addEventListener('aqeeq:natal-ready', syncMe);
+    document.addEventListener('aqeeq:natal-ready', syncMe); document.addEventListener('aq:session', function () { setTimeout(syncMe, 400); setTimeout(syncMe, 2500); });
     setTimeout(openWelcome, 4000);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
