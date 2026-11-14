@@ -2,7 +2,7 @@
    وتبقى بيانات الحساب محفوظة على الخادم. تعرض أيضًا window.AqSession وحدث aq:session لبقية الواجهة. لا تمسّ منطق auth. */
 (function () {
   'use strict';
-  var KEYS = ['aqeeq_profile_cache_v1', 'aqeeq_preferred_name_v1', 'aqeeq_saved_readings_v1', 'aqeeq_activity_v1'];
+  var KEYS = ['aqeeq_profile_cache_v1', 'aqeeq_preferred_name_v1', 'aqeeq_saved_readings_v1', 'aqeeq_activity_v1', 'aq-last-birth-v1', 'aq-gender'];
   var S = window.AqSession = { known: false, user: null, wipe: wipe };
   function wipe() { KEYS.forEach(function (k) { try { localStorage.removeItem(k); } catch (_) {} }); }
   S.isAdmin = false;
