@@ -114,7 +114,7 @@ html body #yp-prof-slot #profile-onboarding-banner:not(#_a){padding:12px 14px!im
 .yp-av{overflow:hidden}.yp-av img{width:100%;height:100%;object-fit:cover;display:block}
 html body section#for-you .yp-set-g:first-of-type .yp-set-row:not(#_a){flex-wrap:wrap}
 
-/* عدستك: بطاقات اليوم بالتمرير الأفقي */
+/* بصيرتك: بطاقات اليوم بالتمرير الأفقي */
 .yp-lens{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 14px;margin:0 -2px;scrollbar-width:none}
 .yp-lens::-webkit-scrollbar{display:none}
 .yp-lc{flex:0 0 84%;scroll-snap-align:center;display:flex;flex-direction:column;gap:8px;min-height:300px;padding:22px 20px;border-radius:24px;color:#fff;background:linear-gradient(160deg,#7f3a52,#542033 62%,#3b1624);box-shadow:0 10px 26px rgba(74,21,33,.22)}

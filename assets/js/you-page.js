@@ -145,7 +145,7 @@
         cards.push(lensCard('تذكير بنمطك', p.nn + ' في ' + p.sign + ' · البيت ' + c2.house, headOf(c2.e), '<button type="button" class="yp-lc-b" data-pl="' + p.id + '">تعمّق</button>')); shown++;
       }
     }
-    return '<p class="yp-lab">عدستك اليوم</p><div class="yp-lens" tabindex="0" role="region" aria-label="بطاقات اليوم، مرّر أفقيًا">' + cards.join('') + '</div>' +
+    return '<p class="yp-lab">بصيرتك اليوم</p><div class="yp-lens" tabindex="0" role="region" aria-label="بطاقات اليوم، مرّر أفقيًا">' + cards.join('') + '</div>' +
       '<p class="yp-lc-hint">' + (ch ? 'مرّر لترى بقية البطاقات' : 'أدخل بيانات ميلادك لتظهر بطاقات خريطتك هنا') + '</p>' + (ch ? '' : '<a class="yp-btn" href="#chart">احسب خريطتك</a>');
   }
   function bodyHtml() {
@@ -180,7 +180,7 @@
     if (pn && home && host.contains(pn)) home.appendChild(pn);
     host.innerHTML = '<div class="yp"><header class="yp-head"><div class="yp-who"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' +
       '<button type="button" class="yp-gear' + (ST.view && ST.view.set ? ' on' : '') + '" data-set aria-label="الإعدادات">' + SVG('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900l2.100 2.100M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100"/>') + '</button></header>' +
-      '<div class="yp-tabs" role="tablist"><button type="button" role="tab" data-tab="lens" aria-selected="' + (ST.tab === 'lens' && !ST.view) + '">عدستك</button><button type="button" role="tab" data-tab="transits" aria-selected="' + (ST.tab === 'transits' && !ST.view) + '">عبوراتك</button><button type="button" role="tab" data-tab="pattern" aria-selected="' + (ST.tab === 'pattern' && !ST.view) + '">نمطك</button></div>' +
+      '<div class="yp-tabs" role="tablist"><button type="button" role="tab" data-tab="lens" aria-selected="' + (ST.tab === 'lens' && !ST.view) + '">بصيرتك</button><button type="button" role="tab" data-tab="transits" aria-selected="' + (ST.tab === 'transits' && !ST.view) + '">عبوراتك</button><button type="button" role="tab" data-tab="pattern" aria-selected="' + (ST.tab === 'pattern' && !ST.view) + '">نمطك</button></div>' +
       '<div class="yp-body">' + bodyHtml() + '</div></div>';
     if (ST.view && ST.view.set) {
       var slot = $('#yp-prof-slot');
