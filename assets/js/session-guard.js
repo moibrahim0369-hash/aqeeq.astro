@@ -21,7 +21,7 @@
   }
   function apply(user) {
     S.known = true; S.user = user || null; checkAdmin(user);
-    document.documentElement.setAttribute('data-auth', user ? 'in' : 'out');
+    document.documentElement.setAttribute('data-auth', user ? 'in' : 'out'); document.documentElement.setAttribute('data-auth-known', '1');
     document.dispatchEvent(new CustomEvent('aq:session', { detail: { user: S.user } }));
   }
   function hook() {

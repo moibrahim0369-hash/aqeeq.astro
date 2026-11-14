@@ -264,9 +264,9 @@
   function domCycles(list, id) { return list ? list.filter(function (c) { return id === 'growth' ? ['saturn', 'pluto', 'chiron', 'neptune'].indexOf(c.t) >= 0 : c.doms.indexOf(id) >= 0; }) : []; }
   function homeHtml() {
     var list = allCycles(), has = !!natal(), h = '';
-    h += '<div class="yp-pills"><a class="yp-pill" href="#chart">' + SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.500"/><path d="M12 3v5.500M12 15.500V21M4.200 7.500l4.700 2.700M15.100 13.800l4.700 2.700M4.200 16.500l4.700-2.700M15.100 10.200l4.700-2.700"/>') + 'الخريطة</a>' +
-      '<button type="button" class="yp-pill" data-tt-open>' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + 'سافر بالزمن</button>' +
-      '<button type="button" class="yp-pill" data-set>' + SVG('<circle cx="12" cy="8" r="3.500"/><path d="M5 20a7 7 0 0 1 14 0"/>') + 'حسابي</button></div>';
+    h += '<div class="yp-pills"><a class="yp-pill" href="#chart">' + SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.500"/><path d="M12 3v5.500M12 15.500V21M4.200 7.500l4.700 2.700M15.100 13.800l4.700 2.700M4.200 16.500l4.700-2.700M15.100 10.200l4.700-2.700"/>') + '<span>الخريطة</span></a>' +
+      '<button type="button" class="yp-pill" data-tt-open>' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<span>سافر بالزمن</span></button>' +
+      '<button type="button" class="yp-pill" data-set>' + SVG('<circle cx="12" cy="8" r="3.500"/><path d="M5 20a7 7 0 0 1 14 0"/>') + '<span>حسابي</span></button></div>';
     h += rail('سماء يومك', 'ما تحمله لك سماء اليوم، بكلمات تخصّك', lensCards());
     if (!has) return h + needNatal();
     h += rail('عبوراتك', 'ما يمرّ بك الآن وما يقترب منك', list ? curList(list, 8) : '', 'transits');
