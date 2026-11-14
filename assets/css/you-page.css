@@ -197,3 +197,16 @@ html.yp-rd-open{overflow:hidden}
 .yp-act{display:flex;gap:8px}
 .yp-ab{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--cream);color:var(--wine);font:700 .85rem 'Cairo',sans-serif;cursor:pointer}
 .yp-ab svg{width:17px;height:17px}.yp-ab.on{background:var(--wine);color:#fff;border-color:var(--wine)}.yp-ab.on svg{fill:#fff}
+
+/* نافذة السفر بالزمن */
+.yp-asof{margin:-4px 4px 12px;padding:6px 12px;border-radius:12px;background:#F1E6D3;color:var(--wine);font:700 .8rem 'Cairo',sans-serif;display:inline-block}
+.yp-tts{position:fixed;inset:0;z-index:2900;display:flex;align-items:flex-end;justify-content:center;pointer-events:none}
+.yp-tts-bd{position:absolute;inset:0;background:rgba(40,12,22,.55);opacity:0;transition:opacity .25s}
+.yp-tts-sh{position:relative;width:100%;max-width:560px;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));border-radius:24px 24px 0 0;background:#FBF5EA;color:#3a2a26;transform:translateY(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1);display:grid;gap:10px}
+.yp-tts.on{pointer-events:auto}.yp-tts.on .yp-tts-bd{opacity:1}.yp-tts.on .yp-tts-sh{transform:none}
+.yp-tts-g{justify-self:center;width:44px;height:4px;border-radius:4px;background:#d9c7ab}
+.yp-tts-sh h3{margin:4px 0 0;text-align:center;color:#6b1f2e;font:700 1.35rem 'Amiri','Cairo',serif}
+.yp-tts-sh p{margin:0;text-align:center;color:#7a5a4c;font-size:.85rem}
+.yp-tts-r{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;margin:6px 0}
+.yp-tts-r label{display:grid;gap:4px;font:700 .75rem 'Cairo',sans-serif;color:#7a5a4c}
+.yp-tts-r select{min-height:46px;border-radius:14px;border:1px solid #E2D3BC;background:#EFE3D3;color:#6b1f2e;font:700 1rem 'Cairo',sans-serif;padding:0 10px}

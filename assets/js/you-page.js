@@ -31,7 +31,7 @@
   var fmtM = function (ms) { return new Date(ms).toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' }); };
   var fmtD = function (ms) { return new Date(ms).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' }); };
   var domOf = function (id) { return DOMAINS.filter(function (d) { return d.id === id; })[0]; };
-  function selMs() { return ST.year === new Date().getFullYear() ? Date.now() : Date.UTC(ST.year, 6, 1); }
+  function selMs() { return ST.date || Date.now(); }
   function allCycles() {
     var ch = natal(); if (!ch || !window.AqeeqYou || typeof Astro === 'undefined') return null;
     var key = Math.floor(selMs() / DAY) + '|' + ch.bodies[0].lon;
@@ -127,11 +127,21 @@
     }).join('') + '</div>';
   }
   function needNatal() { return '<div class="yp-empty">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<p>أدخل بيانات ميلادك مرة واحدة لتظهر عبورات خريطتك.</p><a class="yp-btn" href="#chart">احسب خريطتك</a></div>'; }
+  var MON = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
   function timeTravel() {
-    var now = new Date().getFullYear(), o = '';
-    for (var y = now - 1; y <= now + 2; y++) o += '<option value="' + y + '"' + (y === ST.year ? ' selected' : '') + '>' + y + '</option>';
-    return '<div class="yp-tt"><label class="yp-tt-l"><span class="yp-tt-i">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '</span>السفر بالزمن<select id="yp-year" aria-label="اختر السنة">' + o + '</select></label><div class="yp-tt-d"><b>' + (ST.year === now ? 'اليوم' : 'سنة ' + ST.year) + '</b><small>دورات مؤقتة تغيّر فيك شيئًا</small></div></div>';
+    var d = new Date(selMs()), today = !ST.date;
+    return '<div class="yp-tt"><button type="button" class="yp-tt-l" data-tt-open aria-haspopup="dialog"><span class="yp-tt-i">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '</span>السفر بالزمن</button><div class="yp-tt-d"><b>' + (today ? 'اليوم' : fmtD(selMs())) + '</b><small>' + (today ? 'دورات مؤقتة تغيّر فيك شيئًا' : 'تعرض دورات هذا التاريخ') + '</small></div></div>' + (today ? '' : '<p class="yp-asof">كما في ' + fmtD(selMs()) + '</p>');
   }
+  function ttSheet() {
+    var old = $('#yp-ttsheet'); if (old) old.remove();
+    var d = new Date(selMs()), y0 = new Date().getFullYear(), o = function (a, b, cur, lab) { var h = ''; for (var k = a; k <= b; k++) h += '<option value="' + k + '"' + (k === cur ? ' selected' : '') + '>' + (lab ? lab(k) : k) + '</option>'; return h; };
+    var el = document.createElement('div'); el.id = 'yp-ttsheet'; el.className = 'yp-tts';
+    el.innerHTML = '<div class="yp-tts-bd" data-tt-close></div><div class="yp-tts-sh" role="dialog" aria-modal="true" aria-label="السفر بالزمن"><span class="yp-tts-g"></span><h3>السفر بالزمن</h3><p>اختر تاريخًا لترى دورات خريطتك فيه.</p>' +
+      '<div class="yp-tts-r"><label>اليوم<select id="yp-td">' + o(1, 31, d.getDate()) + '</select></label><label>الشهر<select id="yp-tm">' + o(0, 11, d.getMonth(), function (k) { return MON[k]; }) + '</select></label><label>السنة<select id="yp-ty">' + o(y0 - 1, y0 + 2, d.getFullYear()) + '</select></label></div>' +
+      '<button type="button" class="yp-cta" data-tt-set>تطبيق التاريخ</button><button type="button" class="yp-more" data-tt-today>العودة إلى اليوم</button></div>';
+    document.body.appendChild(el); requestAnimationFrame(function () { el.classList.add('on'); });
+  }
+  function ttClose() { var el = $('#yp-ttsheet'); if (!el) return; el.classList.remove('on'); setTimeout(function () { el.remove(); }, 250); }
   function placeCards(dom) {
     var ch = natal(); if (!ch || !window.AqeeqYou) return '';
     var pl = window.AqeeqYou.placements(ch).filter(function (p) { return !dom || p.dom === dom; });
@@ -269,6 +279,14 @@
     if (location.hash !== '#for-you') location.hash = '#for-you'; else { render(); window.scrollTo(0, 0); }
   }, true);
   document.addEventListener('click', function (e) {
+    var q = e.target.closest && e.target.closest('[data-tt-open],[data-tt-close],[data-tt-set],[data-tt-today]'); if (!q) return;
+    if (q.hasAttribute('data-tt-open')) { ttSheet(); return; }
+    if (q.hasAttribute('data-tt-close')) { ttClose(); return; }
+    if (q.hasAttribute('data-tt-today')) { ST.date = null; ttClose(); render(); return; }
+    var dd = +$('#yp-td').value, mm = +$('#yp-tm').value, yy = +$('#yp-ty').value, dt = new Date(yy, mm, Math.min(dd, new Date(yy, mm + 1, 0).getDate()), 12);
+    ST.date = dt.getTime(); ttClose(); render();
+  });
+  document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout],#for-you [data-read],#for-you [data-save],#for-you [data-share]'); if (!t) return;
     if (t.hasAttribute('data-save')) { var sid = t.getAttribute('data-save'), L = saved(), k = L.indexOf(sid); if (k >= 0) L.splice(k, 1); else L.push(sid); try { localStorage.setItem(SAVE_KEY, JSON.stringify(L)); } catch (x) {} render(); return; }
     if (t.hasAttribute('data-share')) { var tt = t.getAttribute('data-share') + ' — عقيق أسترو'; try { if (navigator.share) navigator.share({ title: tt, url: location.origin + location.pathname }); else if (navigator.clipboard) { navigator.clipboard.writeText(tt + ' ' + location.origin + location.pathname); t.querySelector('span').textContent = 'تم النسخ'; } } catch (x) {} return; }
@@ -289,7 +307,6 @@
     render(); var s = $('#for-you'); if (s) s.scrollTop = 0;
   });
   document.addEventListener('change', function (e) {
-    if (e.target && e.target.id === 'yp-year') { ST.year = +e.target.value; render(); }
     if (e.target && e.target.id === 'yp-private') { try { localStorage.setItem('aqeeq_private_v1', e.target.checked ? '1' : '0'); } catch (_) {} }
   });
   document.addEventListener('aq:session', function () { route(); render(); });
