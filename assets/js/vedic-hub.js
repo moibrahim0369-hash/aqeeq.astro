@@ -340,7 +340,9 @@
     ask.querySelector('.vh-ask-back').addEventListener('click', function () { if (PUSHED > 0) history.back(); else toPick(); });
     setInterval(function () {
       if (sec.classList.contains('eam-view-result') && sec.classList.contains('vh-ask')) { ask.hidden = true; sec.classList.remove('vh-ask'); }
-      var on = !sec.classList.contains('eam-view-result') && !sec.classList.contains('vh-ask');
+      var vedic = sec.getAttribute('data-eam-page') === 'sidereal';
+      if (!vedic && sec.classList.contains('vh-ask')) { ask.hidden = true; sec.classList.remove('vh-ask'); }
+      var on = vedic && !sec.classList.contains('eam-view-result') && !sec.classList.contains('vh-ask');
       nav.hidden = !on;
     }, 400);
   })();
