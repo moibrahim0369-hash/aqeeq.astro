@@ -28,15 +28,6 @@
     var a = e.target.closest && e.target.closest('a[href^="#"]');
     if (a) TARGET = a.getAttribute('data-vh') || null;
   }, true);
-  (function cards() {
-    var first = document.querySelector('a.rh-card[data-am="sidereal"]'); if (!first) return;
-    var grid = first.parentNode, wrap = document.createElement('div');
-    wrap.innerHTML = '<h3 class="rh-sub"><span>الفلك الفيدي: كل قسم وحده</span></h3><div class="rh-grid rh-grid-w">' +
-      TILES.filter(function (t) { return t[0] !== 'expert'; }).map(function (t) {
-        return '<a class="rh-card" href="#astro-maps" data-am="sidereal" data-vh="' + t[0] + '"><span class="rh-ico">' + svg(t[0]) + '</span><h3>' + t[1] + '</h3><p>' + t[2] + '</p><span class="rh-go">افتح ←</span></a>';
-      }).join('') + '</div>';
-    var ref = grid.nextSibling; while (wrap.firstChild) grid.parentNode.insertBefore(wrap.firstChild, ref);
-  })();
   function svg(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[k] + '</svg>'; }
   function groupOf(t) {
     if (/عجلة|جدول|اتصال/.test(t)) return 'birth';
@@ -171,6 +162,121 @@
     return h;
   }
 
+  function accEl(title, ic, html, open, g) {
+    var d = document.createElement('details'); d.className = 'eam-acc eam-t-g'; if (open) d.open = true; d.dataset.vhG = g;
+    d.innerHTML = '<summary><span class="eam-acc-ic">' + svg(ic) + '</span><span class="eam-acc-t">' + title + '</span><span class="eam-acc-ch" aria-hidden="true"></span></summary><div class="eam-acc-body">' + html + '</div>';
+    return d;
+  }
+  function span(ms) {
+    var d = Math.max(0, Math.round(ms / 864e5)), y = Math.floor(d / 365.25), m = Math.round((d - y * 365.25) / 30.44);
+    if (m === 12) { y++; m = 0; }
+    return (y ? y + ' سنة' : '') + (y && m ? ' و' : '') + (m ? m + ' شهر' : (y ? '' : 'أيام قليلة'));
+  }
+  var PH = [
+    ['الاقتراب', 'زحل في البرج الذي قبل برج قمرك', [
+      'تبدأ المرحلة حين يدخل زحل البرج الذي يسبق برج قمرك. هنا يضغط الوقت على ما يخرج منك: المصروفات، والنوم، والراحة، والأماكن البعيدة، والمشاعر التي تكتمها.',
+      'تحس أن الحمل يزيد قبل أن تعرف السبب، وأن طاقتك تتسرب في التزامات لم تخترها. كثيرون يظنون في هذه الفترة أن الدنيا تضيق، وهي في الحقيقة تطلب منك ترتيب ما أهملته.',
+      'كيف تستفيد منها: رتّب مصاريفك، وقلّل الالتزامات التي لا تعنيك، وثبّت مواعيد نومك، ولا تأخذ قرارًا كبيرًا وأنت متعب.']],
+    ['الذروة', 'زحل فوق برج قمرك', [
+      'هذه أثقل مراحل ساتي ساتي نفسيًا، لأن زحل يمر فوق برج قمرك نفسه، فيمس المزاج والشعور بالأمان والبيت والعلاقات القريبة.',
+      'تنكشف فيها الأشياء التي كنت تعتمد عليها دون أن تفحصها: علاقة تتعب، أو عادة تستنزفك، أو يقين ورثته ولم تختبره. يزيد الميل للوحدة والمراجعة، وقد تبدو الأيام أبطأ من العادة.',
+      'كيف تستفيد منها: خفّف الأحمال بقدر ما تستطيع، وثبّت روتينًا بسيطًا لا يتغير، ولا تقطع علاقة في عز الضغط، واطلب سندًا من شخص تثق به.']],
+    ['الانفراج', 'زحل في البرج الذي بعد برج قمرك', [
+      'حين ينتقل زحل إلى البرج الذي بعد برج قمرك يخف الضغط تدريجيًا، ويتجه الاهتمام إلى المال والكلام والأسرة، أي إلى ما تبنيه بعد الاختبار.',
+      'هذه مرحلة الحصاد البطيء: ما عملته بصبر يبدأ يظهر، وما لم يكن صالحًا للبقاء يسقط بهدوء. قد تبقى بعض آثار التعب، لكنها تتراجع مع الوقت.',
+      'كيف تستفيد منها: سدّد الالتزامات القديمة، وابنِ مدخراتك بتؤدة، وانتبه لكلامك مع أهلك لأن الحدة تعود بسهولة في هذه المرحلة.']]
+  ];
+  function sadeCycles(L) {
+    var E = window.AqEam, natal = L.natal, ch = L.ch, norm = E.norm;
+    var moonB = (ch.bodies || []).filter(function (b) { return String(b.key).toLowerCase() === 'moon'; })[0];
+    var ms0 = Math.floor(moonB.lon / 30), targets = [(ms0 + 11) % 12, ms0, (ms0 + 1) % 12];
+    function sign(ms) {
+      var tch = E.engineChart(ms, natal), off = E.ayanamsa(tch.jde), l = tch.bodies || [], i;
+      for (i = 0; i < l.length; i++) if (String(l[i].key).toLowerCase() === 'saturn') return Math.floor(norm(l[i].lon - off) / 30);
+      return -1;
+    }
+    var DAY = 864e5, now = Date.now(), start = now - 34 * 365.25 * DAY, end = now + 34 * 365.25 * DAY, step = 20 * DAY;
+    var prev = sign(start), segs = [{ sign: prev, s: start }], t;
+    for (t = start + step; t <= end; t += step) {
+      var sg = sign(t);
+      if (sg !== prev) {
+        var lo = t - step, hi = t;
+        while (hi - lo > DAY) { var mid = (lo + hi) / 2; if (sign(mid) === prev) lo = mid; else hi = mid; }
+        segs[segs.length - 1].e = hi; segs.push({ sign: sg, s: hi }); prev = sg;
+      }
+    }
+    segs[segs.length - 1].e = end;
+    var cl = [], cur = null;
+    segs.forEach(function (g) {
+      var k = targets.indexOf(g.sign); if (k < 0) return;
+      if (!cur || g.s - cur.e > 2 * 365.25 * DAY) { cur = { s: g.s, e: g.e, ph: [null, null, null] }; cl.push(cur); }
+      cur.e = g.e; cur.s = Math.min(cur.s, g.s);
+      var p = cur.ph[k]; cur.ph[k] = p ? { s: Math.min(p.s, g.s), e: Math.max(p.e, g.e) } : { s: g.s, e: g.e };
+    });
+    cl = cl.filter(function (c) { return c.s > start + 40 * DAY && c.e < end - 40 * DAY && c.ph.every(Boolean); });
+    return { cl: cl, targets: targets, now: now };
+  }
+  function fillSade(result) {
+    var V = window.AqVedic, L = V && V.last, SG = V.T.SG, host = result;
+    var out = [];
+    try {
+      var D = sadeCycles(L), now = D.now, c = null, nxt = null, prv = null, i;
+      for (i = 0; i < D.cl.length; i++) { if (now >= D.cl[i].s && now < D.cl[i].e) c = D.cl[i]; else if (D.cl[i].s > now && !nxt) nxt = D.cl[i]; else if (D.cl[i].e <= now) prv = D.cl[i]; }
+      if (c && nxt === null) { /* keep */ }
+      var rng = function (p) { return 'من ' + fdt(p.s) + ' إلى ' + fdt(p.e); };
+      var now1 = '', k = -1;
+      if (c) {
+        for (i = 0; i < 3; i++) if (now >= c.ph[i].s && now < c.ph[i].e) k = i;
+        if (k < 0) k = now < c.ph[1].s ? 0 : (now < c.ph[2].s ? 1 : 2);
+        var p = c.ph[k];
+        now1 = '<p class="vh-sade-now">أنت الآن داخل ساتي ساتي، في المرحلة ' + ['الأولى', 'الثانية', 'الثالثة'][k] + ' (' + PH[k][0] + '): ' + PH[k][1] + ' (' + SG[D.targets[k]] + ').</p>' +
+          '<ul class="vh-sade-facts"><li><span>بدأت المرحلة</span><b>' + fdt(p.s) + '</b></li><li><span>تنتهي</span><b>' + fdt(p.e) + '</b></li><li><span>مضى منها</span><b>' + span(now - p.s) + '</b></li><li><span>المتبقي</span><b>' + span(p.e - now) + '</b></li></ul>' +
+          '<p class="vh-sade-cyc">الدورة كلها ' + rng(c) + '، أي نحو ' + span(c.e - c.s) + '.</p><div class="vh-ex-slot" data-sade="' + (k + 1) + '" hidden></div>';
+      } else {
+        now1 = '<p class="vh-sade-now">أنت الآن خارج ساتي ساتي.' + (nxt ? ' تبدأ الدورة القادمة في ' + fdt(nxt.s) + '، بعد ' + span(nxt.s - now) + '.' : '') + (prv ? ' وانتهت آخر دورة في ' + fdt(prv.e) + '.' : '') + '</p>';
+      }
+      out.push(accEl('أين أنت الآن', 'sade', now1, true, 'sade'));
+      var show3 = c || nxt || prv;
+      if (show3) {
+        out.push(accEl('المراحل الثلاث بتواريخها', 'dasha', '<p class="vh-sade-cyc">' + (c ? 'الدورة الحالية' : nxt ? 'الدورة القادمة' : 'آخر دورة') + '</p><ol class="vh-steps">' + show3.ph.map(function (p, j) { return '<li' + (c && j === k ? ' class="on"' : '') + '><b>' + ['المرحلة الأولى: ', 'المرحلة الثانية: ', 'المرحلة الثالثة: '][j] + PH[j][0] + ' · ' + SG[D.targets[j]] + '</b><br>' + rng(p) + '<br><small>المدة: ' + span(p.e - p.s) + '</small></li>'; }).join('') + '</ol>', false, 'sade'));
+      }
+      out.push(accEl('ماذا تعني كل مرحلة', 'star', PH.map(function (x, j) { return '<h6>' + ['الأولى', 'الثانية', 'الثالثة'][j] + ': ' + x[0] + '</h6>' + x[2].map(function (t) { return '<p>' + t + '</p>'; }).join(''); }).join(''), false, 'sade'));
+      var cyc = D.cl.map(function (z) { return '<li' + (z === c ? ' class="on"' : '') + '>' + rng(z) + (z === c ? ' (الحالية)' : z.s > now ? ' (قادمة)' : ' (سابقة)') + '</li>'; }).join('');
+      if (cyc) out.push(accEl('الدورات السابقة والقادمة', 'event', '<ol class="vh-steps">' + cyc + '</ol><p class="vh-tm-note">كل دورة تتكرر كل نحو ثلاثين سنة، وتُحسب من دخول زحل البرج الذي قبل قمرك حتى خروجه من البرج الذي بعده.</p>', false, 'sade'));
+    } catch (e) { console.warn(e); out = [accEl('ساتي ساتي', 'sade', '<p class="vh-tm-err">تعذر حساب الدورات الآن.</p>', true, 'sade')]; }
+    out.forEach(function (d) { result.appendChild(d); fillSlots(d); });
+  }
+  function d1Card() {
+    var VC = window.AqVedicChart, L = window.AqVedic && window.AqVedic.last; if (!VC || !L) return null;
+    var style = 'n'; try { style = localStorage.getItem('aq-vedic-style') === 's' ? 's' : 'n'; } catch (e) { }
+    var d = accEl('خريطة الميلاد بالمربع الهندي', 'birth', '', true, 'birth'), body = d.querySelector('.eam-acc-body');
+    function draw() {
+      var map = VC.build(L.ch, 1), title = 'خريطة الميلاد · راشي D1';
+      body.innerHTML = '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div><div class="vc-chartwrap">' + (style === 's' ? VC.svgSouth(map, title) : VC.svg(map, title)) + '</div><p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p>';
+      Array.prototype.forEach.call(body.querySelectorAll('.vc-st'), function (b) { b.addEventListener('click', function () { style = b.dataset.s; try { localStorage.setItem('aq-vedic-style', style); } catch (e) { } draw(); }); });
+    }
+    draw(); return d;
+  }
+  (function pre() {
+    var form = document.getElementById('eam-form'); if (!form) return;
+    var nav = document.createElement('nav'); nav.className = 'vh-grid vh-pre'; nav.setAttribute('aria-label', 'أقسام الفلك الفيدي');
+    nav.innerHTML = TILES.map(function (t) {
+      return '<button type="button" class="vh-tile" data-g="' + t[0] + '"' + (t[0] === 'expert' ? ' hidden' : '') + '><span class="vh-ic">' + svg(t[0]) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-s">' + t[2] + '</span></button>';
+    }).join('');
+    var hint = document.createElement('p'); hint.className = 'vh-pre-hint'; hint.hidden = true;
+    form.parentNode.insertBefore(nav, form); form.parentNode.insertBefore(hint, form);
+    nav.addEventListener('click', function (e) {
+      var b = e.target.closest('.vh-tile'); if (!b) return;
+      TARGET = b.dataset.g; hint.hidden = false; hint.textContent = 'ادخل بيانات ميلادك ثم اضغط احسب، وسنفتح لك مباشرة: ' + ((TILES.filter(function (t) { return t[0] === TARGET; })[0] || [])[1] || '');
+      try { form.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (x) { }
+    });
+    setInterval(function () {
+      var on = !sec.classList.contains('eam-view-result') && !!form.offsetParent;
+      nav.hidden = !on; if (!on) hint.hidden = true;
+      var ex = nav.querySelector('[data-g="expert"]'); if (ex) ex.hidden = !isAdmin();
+    }, 500);
+  })();
+
   function build() {
     var result = content.querySelector('#eam-result');
     if (!result || result.hidden || !result.querySelector('#vx-vargas') || result.querySelector('.vh-grid')) return;
@@ -186,7 +292,7 @@
       else if (c.matches('details.eam-acc')) { var t = (c.querySelector('.eam-acc-t') || {}).textContent || ''; c.dataset.vhG = groupOf(t) || 'birth'; }
       else c.dataset.vhG = 'misc';
     });
-    var sade = sadeCard(result);
+    var sade = true;
     var grid = document.createElement('nav'); grid.className = 'vh-grid'; grid.dataset.vhG = 'hub'; grid.setAttribute('aria-label', 'أقسام الفلك الفيدي');
     grid.innerHTML = TILES.filter(function (t) { return (t[0] !== 'sade' || sade) && (t[0] !== 'expert' || isAdmin()); }).map(function (t) {
       return '<button type="button" class="vh-tile" data-g="' + t[0] + '"><span class="vh-ic">' + svg(t[0]) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-s">' + t[2] + '</span></button>';
@@ -196,10 +302,11 @@
     var head = result.querySelector('.eam-result-head');
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
     result.insertBefore(bar, grid);
-    if (sade) { sade.dataset.vhG = 'sade'; result.appendChild(sade); }
-    result.appendChild(timeCard());
-    if (isAdmin()) { var exC = expertCard(); result.appendChild(exC); result.__ex = exC; }
+    var dc = d1Card(); if (dc) { var fb = result.querySelector('details.eam-acc[data-vh-g="birth"]'); result.insertBefore(dc, fb || null); }
+    var tmc = timeCard(), tmw = accEl('آلة الزمن', 'dasha', '', true, 'dasha year'); tmw.querySelector('.eam-acc-body').appendChild(tmc); tmc.dataset.vhG = ''; result.appendChild(tmw);
+    if (isAdmin()) { var exC = expertCard(), exw = accEl('ملاحظات الخبير', 'expert', '', true, 'expert'); exw.querySelector('.eam-acc-body').appendChild(exC); exC.dataset.vhG = ''; result.appendChild(exw); result.__ex = exC; }
     function show(g, chart) {
+      if (g === 'sade' && !result.__sade) { result.__sade = 1; fillSade(result); }
       result.dataset.vh = g;
       Array.prototype.slice.call(result.children).forEach(function (c) {
         var gs = (c.dataset.vhG || '').split(' ');
@@ -228,7 +335,7 @@
     bar.querySelector('.vh-back').addEventListener('click', function () { show('hub'); });
     result.__show = show;
     show('hub');
-    if (TARGET && (TARGET !== 'sade' || sade) && (TARGET !== 'expert' || isAdmin())) { var tg = TARGET; TARGET = null; show(tg); } else TARGET = null;
+    if (TARGET && (TARGET !== 'expert' || isAdmin())) { var tg = TARGET; TARGET = null; show(tg); } else TARGET = null;
     sec.classList.add('vh-on');
   }
   var timer = null;
