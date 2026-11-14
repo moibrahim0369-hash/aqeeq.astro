@@ -160,12 +160,33 @@
     return '<span class="yp-plan' + (isOwner() ? ' owner' : '') + '">' + SVG(isOwner() ? '<path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/>' : '<circle cx="12" cy="12" r="8.500"/><path d="M12 8v8M8 12h8"/>') + (isOwner() ? 'المالك · كل شيء مفتوح' : 'الخطة المجانية') + '</span>';
   }
   function isPrivate() { try { return localStorage.getItem('aqeeq_private_v1') === '1'; } catch (_) { return false; } }
+
+  /* تفضيلات التنبيهات: تُحفظ على هذا الجهاز، والمعاينة توضّح شكل الرسالة */
+  var NF_KEY = 'aqeeq_yp_notif_v1', NF_ITEMS = [['day', 'بصيرة اليوم', 'بطاقة قصيرة كل صباح عن طاقة يومك.', 'يومك يطلب منك شيئًا واحدًا: ابدأ به قبل أي شيء.'], ['near', 'عبور يقترب', 'تنبيه قبل أن تبدأ دورة جديدة في خريطتك.', 'دورة جديدة تقترب منك. جهّز نفسك قبل أن تصل.'], ['peak', 'ذروة العبور', 'إشارة حين تبلغ دورة جارية أقوى لحظاتها.', 'الدورة التي تمرّ بك بلغت ذروتها هذا الأسبوع.']];
+  function nfGet() { var d = { day: true, near: true, peak: false, time: '08:00' }; try { var o = JSON.parse(localStorage.getItem(NF_KEY) || '{}'); for (var k in o) d[k] = o[k]; } catch (e) {} return d; }
+  function nfSet(k, v) { var o = nfGet(); o[k] = v; try { localStorage.setItem(NF_KEY, JSON.stringify(o)); } catch (e) {} }
+  function nfHtml() {
+    var o = nfGet();
+    return '<div class="yp-set-g"><p class="yp-lab">التنبيهات</p>' + NF_ITEMS.map(function (x) {
+      return '<label class="yp-set-row yp-sw"><div><b>' + x[1] + '</b><small>' + x[2] + '</small></div><input type="checkbox" data-nf="' + x[0] + '"' + (o[x[0]] ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label>';
+    }).join('') +
+      '<div class="yp-set-row"><div><b>وقت التنبيه</b><small>الساعة التي تصلك فيها الرسائل.</small></div><select class="yp-nf-t" data-nf-time aria-label="وقت التنبيه">' + ['06:00', '07:00', '08:00', '09:00', '12:00', '18:00', '21:00'].map(function (t) { return '<option value="' + t + '"' + (o.time === t ? ' selected' : '') + '>' + t + '</option>'; }).join('') + '</select></div>' +
+      '<button type="button" class="yp-ab yp-nf-pv" data-nf-prev>' + SVG('<path d="M3 12s3.500-6 9-6 9 6 9 6-3.500 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.500"/>') + '<span>معاينة التنبيه</span></button></div>';
+  }
+  function nfPreview() {
+    var old = document.getElementById('yp-nfp'); if (old) old.remove();
+    var o = nfGet(), on = NF_ITEMS.filter(function (x) { return o[x[0]]; }), it = on[0] || NF_ITEMS[0];
+    var el = document.createElement('div'); el.id = 'yp-nfp'; el.className = 'yp-tts'; 
+    el.innerHTML = '<div class="yp-tts-bd" data-nfp-x></div><div class="yp-tts-sh" role="dialog" aria-modal="true" aria-label="معاينة التنبيه"><i class="yp-tts-g"></i><h3>هكذا يصلك التنبيه</h3><div class="yp-nfp-c"><span class="yp-nfp-i">' + SVG('<path d="M12 3l2.200 5.600 5.800.500-4.400 3.900 1.400 5.700L12 15.600 7 18.700l1.400-5.700L4 9.100l5.800-.500z"/>') + '</span><div><small>عقيق أسترو · ' + esc(o.time) + '</small><b>' + esc(it[1]) + '</b><p>' + esc(it[3]) + '</p></div></div>' + (on.length ? '' : '<p>كل التنبيهات متوقفة الآن.</p>') + '<button type="button" class="yp-btn" data-nfp-x>تمام</button></div>';
+    document.body.appendChild(el); requestAnimationFrame(function () { el.classList.add('on'); });
+  }
+  function nfClose() { var el = document.getElementById('yp-nfp'); if (!el) return; el.classList.remove('on'); setTimeout(function () { el.remove(); }, 260); }
   function settingsHtml() {
     var u = user() || {};
     return '<div class="yp-set">' +
       '<div class="yp-set-g"><p class="yp-lab">حسابك</p><div class="yp-set-row"><div><b dir="ltr">' + esc(u.email || '') + '</b><small>نوع الاشتراك</small></div>' + planChip() + '</div></div>' +
       '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
-      '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
+      nfHtml() + '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
       '<button type="button" class="yp-out" data-signout>تسجيل الخروج</button></div>';
   }
 
@@ -331,7 +352,14 @@
     else if (t.hasAttribute('data-back')) ST.view = (ST.view && ST.view.from) || null;
     render(); var s = $('#for-you'); if (s) s.scrollTop = 0;
   });
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('[data-nf-prev]')) nfPreview();
+    else if (e.target.closest && e.target.closest('[data-nfp-x]')) nfClose();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') nfClose(); });
   document.addEventListener('change', function (e) {
+    var q = e.target && e.target.getAttribute && e.target.getAttribute('data-nf'); if (q) nfSet(q, e.target.checked);
+    if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-nf-time')) nfSet('time', e.target.value);
     if (e.target && e.target.id === 'yp-private') { try { localStorage.setItem('aqeeq_private_v1', e.target.checked ? '1' : '0'); } catch (_) {} }
   });
   document.addEventListener('aq:session', function () { route(); render(); });

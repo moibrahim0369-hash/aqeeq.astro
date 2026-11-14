@@ -260,3 +260,19 @@ html body section#for-you .yp-tts-sh:not(#_a){background:#F3E8D2}
 html body section#for-you .yp-tabs button:not(#_a):not(#_b){flex:1 1 0!important;width:auto!important;min-width:0!important}
 html body section#for-you a.yp-gear:not(#_a){text-decoration:none;color:#6B1F2E}
 html body section#for-you .yp-gear span:not(#_a){text-decoration:none}
+/* قارئ دافئ بدل البنفسجي الداكن */
+html body .yp-rd:not(#_a){background:radial-gradient(520px 420px at 100% 0,rgba(201,156,98,.35),transparent 70%),radial-gradient(480px 520px at 0 100%,rgba(181,83,47,.4),transparent 70%),linear-gradient(170deg,#6B1F2E,#3F1220 70%)}
+html body .yp-rd .yp-rd-s h4:not(#_a){color:#F3D9A8}
+html body .yp-rd .yp-rd-s i:not(#_a),html body .yp-rd .yp-rd-dots span.on:not(#_a){color:#E0B879}
+html body .yp-rd .yp-rd-dots span.on:not(#_a){background:#E0B879}
+html body .yp-rd .yp-rd-nav .go:not(#_a){background:#F3E8D2;color:#6B1F2E;border-color:#F3E8D2}
+html body .yp-tts-r select:not(#_a),html body .yp-nf-t:not(#_a){background:#E9D3B0;border:1px solid #D9C8AB;color:#6B1F2E;border-radius:14px;font:700 .95rem 'Cairo',sans-serif;min-height:42px;padding:0 10px}
+html body .yp-nfp-c:not(#_a){display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;background:rgba(255,252,245,.8);border:1px solid #D9C8AB;border-right:4px solid #B5532F;margin:10px 0;text-align:right}
+html body .yp-nfp-c b:not(#_a){display:block;color:#6B1F2E;font:700 1rem 'Cairo',sans-serif}
+html body .yp-nfp-c small:not(#_a){color:#6F5D54;font-size:.74rem}
+html body .yp-nfp-c p:not(#_a){margin:2px 0 0;color:#3A2A26;text-align:right;font-size:.88rem;line-height:1.8}
+html body .yp-nfp-i:not(#_a){flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#8A3A2A,#6B1F2E);color:#FBF5EA}
+html body .yp-nfp-i svg:not(#_a){width:20px;height:20px}
+html body #yp-nfp .yp-btn:not(#_a){width:100%}
+html body .yp-nf-pv:not(#_a){justify-self:start}
+html body #yp-nfp .yp-btn:not(#_a):not(#_b){display:flex;align-items:center;justify-content:center;width:100%;min-height:46px;border:0;border-radius:999px;background:linear-gradient(180deg,#8A3A2A,#6B1F2E)!important;color:#FBF5EA!important;font:700 1rem 'Cairo',sans-serif;cursor:pointer;margin-top:6px}
