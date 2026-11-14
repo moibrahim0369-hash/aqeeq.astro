@@ -214,3 +214,5 @@ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .v
 html body #astro-maps .vc-r .vc-sg{white-space:normal}
 @media(min-width:700px){html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .vc-rows{grid-template-columns:repeat(2,minmax(0,1fr))}}
 html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
+#astro-maps .vh-grid .vh-tile:not(#_a):not(#_b):not(#_c) .vh-v{font-size:.72rem;color:#9A6A3A;font-weight:700}
+#astro-maps .vh-grid .vh-tile:not(#_a):not(#_b):not(#_c){align-content:start;gap:3px;min-height:150px}
