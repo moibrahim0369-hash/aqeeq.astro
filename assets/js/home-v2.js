@@ -379,7 +379,7 @@
     prev.addEventListener('click', function () { step(1); }); next.addEventListener('click', function () { step(-1); }); /* RTL: scrollLeft سالب نحو النهاية */
     track.addEventListener('scroll', function () { update(); try { sessionStorage.setItem('aqh-car', String(track.scrollLeft)); } catch (e) { } }, { passive: true });
     window.addEventListener('resize', update);
-    function restorePos() { try { var v = sessionStorage.getItem('aqh-car'); if (v) track.scrollLeft = parseFloat(v); } catch (e) { } }
+    function restorePos() { try { sessionStorage.removeItem('aqh-car'); } catch (e) { } }
     var drag = null, moved = false;
     track.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse' || e.button !== 0) return; drag = { x: e.clientX, s: track.scrollLeft }; moved = false; track.classList.add('is-drag'); });
     window.addEventListener('pointermove', function (e) { if (!drag) return; var dx = e.clientX - drag.x; if (Math.abs(dx) > 6) moved = true; if (moved) track.scrollLeft = drag.s - dx; });

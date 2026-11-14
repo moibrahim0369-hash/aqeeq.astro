@@ -473,3 +473,6 @@ html.aqh-lock,html.aqh-lock body{overflow:hidden}
 /* بلا حركة دخول: الصفحة الرئيسية تظهر ثابتة فورًا عند التحديث */
 html.aqh-js .aqh-brand,html.aqh-js .aqh-nav,html.aqh-js .aqh-tools,html.aqh-js #home.aqh .aqh-seq,html.aqh-js #home.aqh .aqh-chart-seq .aqh-wheel-wrap,html.aqh-js #home.aqh .aqh-chart-seq .aqh-orbit-detail,html.aqh-js #home.aqh .aqh-reveal{opacity:1!important;transform:none!important;transition:none!important}
 html.aqh-js #home.aqh .aqh-wheel-wrap::before{opacity:.7!important;transition:none!important}
+
+/* بلا ظهور تدريجي للعنوان وما حوله (تعارض مع styles.css القديم) */
+.hero .hero-title,.hero .hero-sub,.wheel-hint,.wheel-sub,#home .hero-title,#home .hero-sub,#home .aqh-title,#home .aqh-lead{animation:none!important;opacity:1!important;transform:none!important}
