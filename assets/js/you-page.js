@@ -182,10 +182,55 @@
     document.body.appendChild(el); requestAnimationFrame(function () { el.classList.add('on'); });
   }
   function nfClose() { var el = document.getElementById('yp-nfp'); if (!el) return; el.classList.remove('on'); setTimeout(function () { el.remove(); }, 260); }
+
+  /* ---------- هيدر أنت: اليوزر، المحفوظات، صندوق الإشعارات ---------- */
+  var UN_KEY = 'aqeeq_username_v1', INB_KEY = 'aqeeq_yp_inbseen_v1';
+  function unGet(u) { try { var v = localStorage.getItem(UN_KEY); if (v) return v; } catch (e) {} var b = String((u && u.email) || 'user').split('@')[0].toLowerCase().replace(/[^a-z0-9._]/g, ''); return b.length >= 3 ? b.slice(0, 20) : 'user' + String((u && u.id) || '0').replace(/[^a-z0-9]/gi, '').slice(0, 5).toLowerCase(); }
+  function unOk(v) { return /^[a-z][a-z0-9._]{2,19}$/.test(v); }
+  function inbSeen() { try { return JSON.parse(localStorage.getItem(INB_KEY) || '[]'); } catch (e) { return []; } }
+  function inbItems() {
+    var out = [], now = Date.now(), d = new Date(), key = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    if (natal()) out.push({ id: 'sky:' + key, ic: '<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.600 5.600l1.400 1.400M17 17l1.400 1.400M5.600 18.400 7 17M17 7l1.400-1.400"/>', t: 'سماء يومك جاهزة', x: 'سبع بطاقات قصيرة عن طاقة اليوم تخصّك أنت.', go: 'sky' });
+    var cy = allCycles() || [];
+    cy.forEach(function (c) {
+      var dd = (c.start - now) / DAY;
+      if (dd > 0 && dd <= 14) out.push({ id: 'near:' + c.id + c.start, ic: '<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>', t: 'عبور يقترب: ' + titleOf(c), x: 'يبدأ ' + fmtD(c.start) + '. اقرأ ما يحمله لك قبل أن يصل.', cyc: c.id + '|' + c.start });
+      else if (dd <= 0 && dd > -4 && c.end > now) out.push({ id: 'new:' + c.id + c.start, ic: '<path d="M12 3l2.200 5.600 5.800.500-4.400 3.900 1.400 5.700L12 15.600 7 18.700l1.400-5.700L4 9.100l5.800-.500z"/>', t: 'بدأ عبورك: ' + titleOf(c), x: 'هذه أيام بدايته، وهي الأوضح في الإحساس.', cyc: c.id + '|' + c.start });
+    });
+    return out;
+  }
+  function inbUnread() { var sn = inbSeen(); return inbItems().filter(function (i) { return sn.indexOf(i.id) < 0; }).length; }
+  function inboxHtml() {
+    var sn = inbSeen(), items = inbItems();
+    try { localStorage.setItem(INB_KEY, JSON.stringify(items.map(function (i) { return i.id; }))); } catch (e) {}
+    if (!items.length) return '<div class="yp-empty">' + SVG('<path d="M6 16V11a6 6 0 0 1 12 0v5l1.500 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/>') + '<p>لا جديد الآن. هنا يتجمّع كل ما لم تره: توقّع لك أو رسالة أو عبور يقترب.</p></div>';
+    return '<div class="yp-inb">' + items.map(function (i) {
+      var a = i.cyc ? 'data-cyc="' + esc(i.cyc) + '"' : 'data-go="' + i.go + '"';
+      return '<button type="button" class="yp-inb-i' + (sn.indexOf(i.id) < 0 ? ' new' : '') + '" ' + a + '><span class="yp-inb-ic">' + SVG(i.ic) + '</span><span class="yp-inb-t"><b>' + esc(i.t) + '</b><small>' + esc(i.x) + '</small></span></button>';
+    }).join('') + '</div>';
+  }
+  function savedHtml() {
+    var L = saved(), cy = allCycles() || [], h = '', now = Date.now();
+    var cards = L.map(function (id) { var c = cy.filter(function (x) { return x.id + '|' + x.start === id; })[0]; return c ? cardHtml(c, c.start > now) : ''; }).join('');
+    var uid = (user() || {}).id, arts = [];
+    try { arts = JSON.parse(localStorage.getItem('aqh-saved:' + (uid || 'guest')) || '[]'); } catch (e) {}
+    var ah = arts.map(function (sl) { var a = window.FeaturedContent && window.FeaturedContent.get(sl); return a ? '<a class="yp-sv-a" href="#featured-content/' + esc(a.slug) + '"><span class="yp-sv-img"><img src="' + esc(a.coverImage) + '" alt="" loading="lazy"></span><span><b>' + esc(a.title) + '</b><small>' + esc(a.category) + '</small></span></a>' : ''; }).join('');
+    if (cards) h += '<p class="yp-lab">دورات وقراءات حفظتها</p><div class="yp-list">' + cards + '</div>';
+    if (ah) h += '<p class="yp-lab">مقالات من المجلة</p><div class="yp-sv-l">' + ah + '</div>';
+    return h || '<div class="yp-empty">' + SVG('<path d="M6 4h12v16l-6-4-6 4z"/>') + '<p>لم تحفظ شيئًا بعد. كل ما تحفظه من مقالات وقراءات وما تشتريه سيجتمع هنا.</p></div>';
+  }
+  function topHtml(u, name) {
+    var un = unGet(u), n = inbUnread();
+    var ib = function (a, lab, ico, badge) { return '<button type="button" class="yp-ib" ' + a + ' aria-label="' + lab + '">' + SVG(ico) + (badge ? '<i>' + (badge > 9 ? '9+' : badge) + '</i>' : '') + '<em>' + lab + '</em></button>'; };
+    return '<header class="yp-top"><button type="button" class="yp-who-b" data-set aria-label="الملف الشخصي"><span class="yp-av yp-av-b"><span class="yp-av-i">' + avatar(u, name) + '</span></span><span class="yp-who-t"><b>' + esc(name) + '</b><small dir="ltr">@' + esc(un) + '</small></span></button>' +
+      '<div class="yp-ibs">' + ib('data-sv', 'الحفظ', '<path d="M6 4h12v16l-6-4-6 4z"/>', 0) + ib('data-inb', 'الإشعارات', '<path d="M6 16V11a6 6 0 0 1 12 0v5l1.500 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/>', n) + ib('data-tab="settings"', 'الضبط', '<circle cx="12" cy="12" r="3"/><path d="M12 3v2.500M12 18.500V21M3 12h2.500M18.500 12H21M5.600 5.600l1.800 1.800M16.600 16.600l1.800 1.800M5.600 18.400l1.800-1.800M16.600 7.400l1.800-1.800"/>', 0) + '</div></header>';
+  }
+
   function settingsHtml() {
     var u = user() || {};
     return '<div class="yp-set">' +
-      '<div class="yp-set-g"><p class="yp-lab">حسابك</p><div class="yp-set-row"><div><b dir="ltr">' + esc(u.email || '') + '</b><small>نوع الاشتراك</small></div>' + planChip() + '</div></div>' +
+      '<div class="yp-set-g"><p class="yp-lab">حسابك</p><div class="yp-set-row"><div><b dir="ltr">' + esc(u.email || '') + '</b><small>نوع الاشتراك</small></div>' + planChip() + '</div>' +
+      '<div class="yp-set-row yp-un"><div><b>اسم المستخدم</b><small>حروف إنجليزية وأرقام ونقطة، من 3 إلى 20.</small></div><span class="yp-un-f" dir="ltr">@<input id="yp-un" type="text" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" value="' + esc(unGet(u)) + '"></span><button type="button" class="yp-ab" data-un-save><span>حفظ</span></button></div><p class="yp-un-m" id="yp-un-m" role="status"></p></div>' +
       '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
       nfHtml() + '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
       '<button type="button" class="yp-out" data-signout>تسجيل الخروج</button></div>';
@@ -328,6 +373,8 @@
   function bodyHtml() {
     var v = ST.view, list;
     if (v && v.set) return settingsHtml();
+    if (v && v.sv) return savedHtml();
+    if (v && v.inb) return inboxHtml();
     if (v && v.cyc) {
       list = allCycles() || []; var c = list.filter(function (x) { return x.id + '|' + x.start === v.cyc; })[0];
       if (c) {
@@ -367,13 +414,13 @@
     var name = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || (u.email || '').split('@')[0] || 'حسابك';
     var pn = $('#account-profile-completion'), home0 = $('#acct-user');
     if (pn && home0 && host.contains(pn)) home0.appendChild(pn);
-    var set = !!(ST.view && ST.view.set), inSub = !!(ST.view && !set), home = !set && !inSub && ST.tab === 'home', cur = set ? 'settings' : ST.tab;
-    var barT = set ? 'حسابك' : inSub ? (ST.view.cyc ? 'تفاصيل الدورة' : ST.view.dom ? (domOf(ST.view.dom) || {}).t || 'المجال' : 'صفة في نمطك') : home ? 'أنت' : (ST.tab === 'sky' ? 'سماء يومك' : ST.tab === 'transits' ? 'عبوراتك' : 'نمطك');
-    var backA = home ? 'data-home' : inSub ? 'data-back' : 'data-tab="home"';
+    var set = !!(ST.view && ST.view.set), inSub = !!(ST.view && !set && !ST.view.sv && !ST.view.inb), sv = !!(ST.view && ST.view.sv), inb = !!(ST.view && ST.view.inb), home = !set && !inSub && !sv && !inb && ST.tab === 'home', cur = (set || sv || inb) ? 'settings' : ST.tab;
+    var barT = sv ? 'المحفوظات' : inb ? 'إشعاراتك' : set ? 'الضبط' : inSub ? (ST.view.cyc ? 'تفاصيل الدورة' : ST.view.dom ? (domOf(ST.view.dom) || {}).t || 'المجال' : 'صفة في نمطك') : home ? 'أنت' : (ST.tab === 'sky' ? 'سماء يومك' : ST.tab === 'transits' ? 'عبوراتك' : 'نمطك');
+    var backA = home ? 'data-home' : (inSub || sv || inb) ? 'data-back' : 'data-tab="home"';
     var who = set ? '<div class="yp-who yp-who-card"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' : '';
     var end = home ? '<button type="button" class="yp-av yp-av-b" data-set aria-label="حسابي"><span class="yp-av-i">' + avatar(u, name) + '</span><span class="yp-av-n">' + esc(String(name).split(' ')[0]) + '</span></button>' : '<span></span>';
     host.innerHTML = '<div class="yp yp-t-' + cur + (inSub ? ' yp-sub' : '') + '"><div class="yp-bg" aria-hidden="true"><svg width="100%" height="100%" viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9A4A32" stroke-width="1">' + (BGART[cur === 'home' ? 'lens' : cur] || '') + '</svg></div>' +
-      '<header class="yp-bar"><button type="button" class="yp-bar-b" ' + backA + ' aria-label="رجوع">' + SVG('<path d="M9 6l6 6-6 6"/>') + '</button><h1>' + esc(barT) + '</h1>' + end + '</header>' +
+      (home ? topHtml(u, name) : '<header class="yp-bar"><button type="button" class="yp-bar-b" ' + backA + ' aria-label="رجوع">' + SVG('<path d="M9 6l6 6-6 6"/>') + '</button><h1>' + esc(barT) + '</h1>' + end + '</header>') +
       (home ? '<p class="yp-sub1">مكتبة تكبر معك، كلها عن حكايتك أنت</p>' : '') + who +
       '<div class="yp-body">' + bodyHtml() + '</div></div>';
     if (set) {
@@ -463,6 +510,16 @@
     else if (t.hasAttribute('data-all')) ST.all = true;
     else if (t.hasAttribute('data-back')) ST.view = (ST.view && ST.view.from) || null;
     render(); var s = $('#for-you'); if (s) s.scrollTop = 0;
+  });
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest && e.target.closest('#for-you [data-sv],#for-you [data-inb],#for-you [data-un-save]'); if (!el) return;
+    if (el.hasAttribute('data-un-save')) {
+      var inp = $('#yp-un'), m = $('#yp-un-m'), v = inp ? inp.value.trim().toLowerCase() : '';
+      if (!unOk(v)) { if (m) { m.textContent = 'اكتب من 3 إلى 20 حرفًا إنجليزيًا أو رقمًا أو نقطة، وتبدأ بحرف.'; m.className = 'yp-un-m err'; } return; }
+      try { localStorage.setItem(UN_KEY, v); } catch (x) {} if (m) { m.textContent = 'تم حفظ اسم المستخدم.'; m.className = 'yp-un-m ok'; } return;
+    }
+    ST.view = el.hasAttribute('data-sv') ? { sv: true } : { inb: true }; render(); var s0 = $('#for-you'); if (s0) s0.scrollTop = 0; window.scrollTo(0, 0);
   });
   document.addEventListener('click', function (e) {
     if (e.target.closest && e.target.closest('[data-nf-prev]')) nfPreview();
