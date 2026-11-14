@@ -141,9 +141,9 @@
       return '<li class="vc-r vc-t-' + tn + '"><span class="vc-ab">' + esc(x.ab) + '</span><b>' + esc(x.name) + (x.retro ? ' ℞' : '') + '</b><span class="vc-sg">' + SG[x.sign] + ' · البيت ' + (x.house + 1) + '</span>' + (window.AqVedicExpert && window.AqVedicExpert.on ? '<span class="vc-codes">' + codesFor(map, x).map(function (k) { return '<em class="vc-code">[' + k + ']</em>'; }).join('') + '</span>' : '') + '</li>';
     }).join('');
   }
-  function mount(host, ch, natal) {
+  function mount(host, ch, natal, only) {
     if (!host || !window.AqVedic) return;
-    var cur = 1, style = 'n';
+    var cur = only === undefined ? 1 : only, style = 'n';
     try { style = localStorage.getItem('aq-vedic-style') === 's' ? 's' : 'n'; } catch (e) {}
     function draw() {
       var v = VARGAS.filter(function (x) { return x[0] === cur; })[0], map = build(ch, cur), title = 'مخطط ' + v[1] + ' · ' + v[2];
@@ -154,7 +154,7 @@
         return '<h5 class="vc-sub">' + g[0] + '</h5><div class="vc-grp' + (g[1].length === 3 ? ' vc-grp3' : '') + '" role="group" aria-label="' + g[0] + '">' + g[1].map(function (k) { var x = VARGAS.filter(function (y) { return String(y[0]) === k; })[0]; return x ? chipOf(x) : ''; }).join('') + '</div>';
       }).join('');
       var note = (cur === 'moon' || cur === 'sun') ? 'البيت الأول هنا هو برج ' + (cur === 'moon' ? 'القمر' : 'الشمس') + ' (' + SG[map.lagna] + ').' : map.basis === 'asc' ? 'الطالع في ' + SG[map.lagna] + '.' : 'وقت الميلاد غير معروف، فالمخطط يبدأ من برج القمر (' + SG[map.lagna] + ') بدل الطالع.';
-      host.innerHTML = '<h4>المخططات الفيدية · التقسيمات</h4>' + chipsAll +
+      host.innerHTML = (only === undefined ? '<h4>المخططات الفيدية · التقسيمات</h4>' + chipsAll : '') +
         '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b> <small class="vc-orig">' + esc(ORIG[cur] || '') + '</small><br>' + esc(v[3]) + '</p>' +
         '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div>' +
         '<div class="vc-chartwrap">' + (style === 's' ? svgSouth(map, title) : svg(map, title)) + '</div>' +
