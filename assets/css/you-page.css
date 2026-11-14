@@ -476,3 +476,21 @@ html.yp-pop-open{overflow:hidden}
 .yp-pop .yp-ds p{margin:0;color:#3A2A26;font:400 .95rem/2 'Cairo',sans-serif}
 .yp-pop-ft{padding:10px 16px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(217,195,160,.7)}
 .yp-pop-x{display:block;width:100%;min-height:50px;border:0;border-radius:999px;background:linear-gradient(180deg,#8A3A2A,#6B1F2E);color:#fff;font:700 1rem 'Cairo',sans-serif;cursor:pointer;box-shadow:0 6px 14px rgba(107,31,46,.28)}
+
+/* قارئ بملء الشاشة: فقرة في كل شريحة، سحب أفقي ونقاط */
+.yp-pop{display:block!important;align-items:initial;background:linear-gradient(180deg,#F6EEDD,#EBDDC3);opacity:0;transition:opacity .25s;pointer-events:none}
+.yp-pop.on{opacity:1;pointer-events:auto}
+.yp-pop .yp-pop-bd,.yp-pop .yp-pop-sh{display:none}
+.yp-pop-back{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;z-index:2;width:46px;height:46px;border-radius:50%;border:1px solid rgba(226,205,170,.9);background:rgba(255,250,240,.9);color:#6B1F2E;display:grid;place-items:center;cursor:pointer;padding:0}
+.yp-pop-back svg{width:22px;height:22px}
+.yp-pop-track{position:absolute;inset:0;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.yp-pop-track::-webkit-scrollbar{display:none}
+.yp-pop-s{flex:0 0 100%;scroll-snap-align:center;height:100%;display:flex;align-items:center;padding:84px 26px 86px;box-sizing:border-box}
+.yp-pop-in{width:100%;max-height:100%;overflow-y:auto;display:grid;gap:10px;align-content:center}
+.yp-pop-k{color:#9A4A32;font:700 .8rem 'Cairo',sans-serif}
+.yp-pop-t{margin:0;color:#6B1F2E;font:800 1.45rem/1.5 'Cairo',sans-serif}
+.yp-pop-in p{margin:0;color:#3A2A26;font:500 1.12rem/2.05 'Cairo',sans-serif}
+.yp-pop-in p.big{font:700 1.3rem/1.95 'Cairo',sans-serif}
+.yp-pop-dots{position:absolute;left:0;right:0;bottom:calc(26px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;gap:8px;pointer-events:none}
+.yp-pop-dots span{width:8px;height:8px;border-radius:50%;background:rgba(107,31,46,.22);transition:all .2s}
+.yp-pop-dots span.on{width:22px;border-radius:6px;background:#6B1F2E}

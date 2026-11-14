@@ -343,12 +343,15 @@
     else { tgt = pls.filter(function (x) { return x.id === rid; })[0]; ttl = tgt ? tgt.nn + ' في ' + tgt.sign : ''; kk = 'صفة ثابتة في خريطتك'; }
     var cx = tgt && coreOf(tgt); if (!cx) return;
     var br = briefOf(cx.e), old = $('#yp-pop'); if (old) old.remove();
-    var el = document.createElement('div'); el.id = 'yp-pop'; el.className = 'yp-pop';
-    el.innerHTML = '<div class="yp-pop-bd" data-pop-x></div><div class="yp-pop-sh" role="dialog" aria-modal="true" aria-label="' + esc(ttl) + '"><i class="yp-pop-g"></i>' +
-      '<div class="yp-pop-hd"><small>' + esc(kk) + '</small><h3>' + esc(ttl) + '</h3></div>' +
-      '<div class="yp-pop-body"><p class="yp-pop-br">' + esc(br) + '</p>' + deepHtml(cx.e, br) + '</div>' +
-      '<div class="yp-pop-ft"><button type="button" class="yp-pop-x" data-pop-x>إغلاق</button></div></div>';
+    var key = String(br).slice(0, 40), sl = [{ t: '', b: br, big: 1 }].concat(slidesOf(cx.e.text).filter(function (x) { return !(key && x.b.indexOf(key) === 0); }));
+    var el = document.createElement('div'); el.id = 'yp-pop'; el.className = 'yp-pop'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-label', ttl);
+    el.innerHTML = '<button type="button" class="yp-pop-back" data-pop-x aria-label="رجوع">' + SVG('<path d="M9 6l6 6-6 6"/>') + '</button>' +
+      '<div class="yp-pop-track" tabindex="0">' + sl.map(function (x, i) {
+        return '<section class="yp-pop-s"><div class="yp-pop-in"><small class="yp-pop-k">' + esc(kk) + '</small><h3 class="yp-pop-t">' + esc(i ? (x.t || ttl) : ttl) + '</h3><p class="' + (x.big ? 'big' : '') + '">' + esc(x.b).replace(/\n/g, '<br>') + '</p></div></section>';
+      }).join('') + '</div><div class="yp-pop-dots">' + sl.map(function (_, i) { return '<span' + (i === 0 ? ' class="on"' : '') + '></span>'; }).join('') + '</div>';
     document.body.appendChild(el); document.documentElement.classList.add('yp-pop-open');
+    var tr = el.querySelector('.yp-pop-track'), dots = el.querySelectorAll('.yp-pop-dots span');
+    tr.addEventListener('scroll', function () { var k = Math.round(Math.abs(tr.scrollLeft) / tr.clientWidth); dots.forEach(function (d, n) { d.classList.toggle('on', n === k); }); });
     requestAnimationFrame(function () { el.classList.add('on'); });
   }
   function popClose() { var el = $('#yp-pop'); if (!el) return; el.classList.remove('on'); document.documentElement.classList.remove('yp-pop-open'); setTimeout(function () { el.remove(); }, 260); }
