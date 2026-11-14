@@ -228,3 +228,16 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 .vc-xl span{font-size:.86rem;color:#6B5448}
 .vc-xl em{font-style:normal;font-size:.82rem;color:#9A6A3A;font-weight:700}
 .vc-xl li{direction:rtl;text-align:start;grid-template-columns:76px 1fr}.vc-xl span,.vc-xl em{text-align:start;display:block}
+
+/* قوائم الفترات والعبورات ككروت */
+.vh-per{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.vh-per li{display:grid;grid-template-columns:1fr auto;gap:3px 10px;align-items:center;padding:13px 16px;border:1px solid #E2CFA6;border-radius:16px;background:#FFFDF7}
+.vh-per li b{font-size:1.05rem;color:#4A1224;font-family:'Amiri',serif}
+.vh-per li span{grid-column:1/-1;font-size:.84rem;color:#6B5448}
+.vh-per li.on{background:linear-gradient(135deg,#FBEFD6,#F6E3BD);border-color:#C9A25A}
+.vh-per li em{font-style:normal;font-size:.72rem;font-weight:800;color:#FBF3E4;background:#8A3148;border-radius:999px;padding:2px 12px}
+.vh-per4 li span:nth-of-type(1){color:#9A6A3A;font-weight:700}
+/* أيقونات بعنابي متوسط مريح */
+#astro-maps .vh-ic:not(#_a):not(#_b):not(#_c),.vh-sheet .aqm-sheet-ic:not(#_a):not(#_b):not(#_c),#astro-maps .eam-acc-ic:not(#_a):not(#_b):not(#_c){background:linear-gradient(145deg,#A0405A,#7E2C42);border:1px solid #B65A72;color:#FBF3E4;box-shadow:0 3px 8px rgba(126,44,66,.22)}
+#astro-maps .vh-ic svg:not(#_a):not(#_b):not(#_c),.vh-sheet .aqm-sheet-ic svg:not(#_a):not(#_b):not(#_c),#astro-maps .eam-acc-ic svg:not(#_a):not(#_b):not(#_c){stroke:#FBF3E4;color:#FBF3E4}
+.vh-per4 li i{font-style:normal;font-size:.78rem;font-weight:800;color:#8A3148;background:#F6E3BD;border-radius:999px;padding:2px 12px}

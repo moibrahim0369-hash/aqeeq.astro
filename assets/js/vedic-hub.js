@@ -196,7 +196,7 @@
     var tch = E.engineChart(ms, natal), off = E.ayanamsa(tch.jde), norm = E.norm;
     var lagna = ch.known ? Math.floor(ch.asc / 30) : Math.floor(moonB.lon / 30), basis = ch.known ? 'الطالع' : 'القمر';
     var SG = T.SG, h = '';
-    h += '<h6>الفترة النشطة في ' + fdt(ms) + '</h6><ul class="vh-tm-dash"><li><span>الكبرى</span><b>' + T.LORDS[maha.lord] + '</b><i>' + fdt(maha.s) + ' إلى ' + fdt(maha.e) + '</i></li>' +
+    h += '<h6>الفترة النشطة (داشا) في ' + fdt(ms) + '</h6><ul class="vh-tm-dash"><li><span>الكبرى</span><b>' + T.LORDS[maha.lord] + '</b><i>' + fdt(maha.s) + ' إلى ' + fdt(maha.e) + '</i></li>' +
       '<li><span>الصغرى</span><b>' + T.LORDS[ant.lord] + '</b><i>' + fdt(ant.s) + ' إلى ' + fdt(ant.e) + '</i></li>' +
       '<li><span>الدقيقة</span><b>' + T.LORDS[pra.lord] + '</b><i>' + fdt(pra.s) + ' إلى ' + fdt(pra.e) + '</i></li></ul>';
     h += '<p class="vh-tm-txt">' + esc(T.LT[ant.lord]) + '</p>';
@@ -217,7 +217,7 @@
       if (k[0] === 'saturn') sat = hm;
       rows += '<tr><th>' + k[1] + (retro && k[0] !== 'node' && k[0] !== 'ketu' ? ' ℞' : '') + '</th><td>' + SG[sg] + '</td><td>' + (hs + 1) + '</td><td>' + (hm + 1) + '</td></tr>';
     });
-    h += '<h6>العبورات الفيدية فوق خريطتك</h6><div class="eam-table-wrap"><table class="eam-table"><thead><tr><th>الكوكب</th><th>البرج</th><th>البيت من ' + basis + '</th><th>البيت من القمر</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    h += '<h6>العبورات الفيدية فوق خريطتك (غوتشارا)</h6><div class="eam-table-wrap"><table class="eam-table"><thead><tr><th>الكوكب</th><th>البرج</th><th>البيت من ' + basis + '</th><th>البيت من القمر</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
     var SS = T.SS, idx = sat === 11 ? 0 : sat === 0 ? 1 : sat === 1 ? 2 : -1;
     h += '<p class="vh-tm-txt">' + (idx >= 0 ? esc(SS[idx]) : 'في هذا التاريخ كان زحل خارج دائرة ساتي ساتي بالنسبة لقمرك.') + '</p>';
     h += '<p class="vh-tm-note">هذه قراءة تحليلية محتملة لطاقة الفترة، وليست تنبؤًا بحدث بعينه. الفترة تُظهر المناخ العام، والعبورات تُظهر أين يضغط الوقت على خريطتك، وما يحدث فعلًا يتوقف على ظروفك وقراراتك.</p>';
@@ -345,6 +345,23 @@
     }, 400);
   })();
 
+  function enhance(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('.eam-table-wrap'), function (w) {
+      var t = w.querySelector('table'); if (!t || w.dataset.vhE) return;
+      var hs = Array.prototype.map.call(t.querySelectorAll('thead th'), function (x) { return x.textContent.trim(); });
+      var rows = Array.prototype.slice.call(t.querySelectorAll('tbody tr')), h = '';
+      if (hs.length === 3 && hs[1] === 'من') {
+        rows.forEach(function (r) { var c = r.children, on = r.classList.contains('vx-on') || /الآن/.test(c[0].textContent);
+          h += '<li' + (on ? ' class="on"' : '') + '><b>' + c[0].textContent.replace(/\s*·\s*الآن/, '') + '</b>' + (on ? '<em>الآن</em>' : '') + '<span>من ' + c[1].textContent + ' &nbsp;·&nbsp; إلى ' + c[2].textContent + '</span></li>'; });
+        h = '<ul class="vh-per">' + h + '</ul>';
+      } else if (hs.length === 4 && hs[0] === 'الكوكب') {
+        rows.forEach(function (r) { var c = r.children;
+          h += '<li><b>' + c[0].textContent + '</b><i>' + c[1].textContent + '</i><span>البيت ' + c[2].textContent + ' من ' + hs[2].replace('البيت من ', '') + ' &nbsp;·&nbsp; البيت ' + c[3].textContent + ' من ' + hs[3].replace('البيت من ', '') + '</span></li>'; });
+        h = '<ul class="vh-per vh-per4">' + h + '</ul>';
+      } else return;
+      w.dataset.vhE = '1'; w.insertAdjacentHTML('afterend', h); w.style.display = 'none';
+    });
+  }
   var SH = null, SHC = null;
   function sheetEnsure() {
     if (SH) return SH;
@@ -354,6 +371,7 @@
       '<div class="aqm-sheet-head"><span class="aqm-sheet-ic"></span><div><h3></h3></div></div><div class="aqm-sheet-body"></div>' +
       '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-vhn>القسم التالي</button><button type="button" class="aqm-foot-close" data-vhc>إغلاق</button></div></div>';
     document.body.appendChild(SH);
+    try { new MutationObserver(function () { enhance(SH); }).observe(SH.querySelector('.aqm-sheet-body'), { childList: true, subtree: true }); } catch (x) { }
     SH.addEventListener('click', function (e) { if (e.target.closest('[data-vhn]')) sheetNext(); else if (e.target.closest('[data-vhc]')) sheetClose(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && SH && !SH.hidden) sheetClose(); });
     return SH;

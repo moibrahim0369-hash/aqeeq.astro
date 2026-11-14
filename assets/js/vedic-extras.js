@@ -145,8 +145,8 @@
       yr += '<p>' + (idx >= 0 ? SS[idx] : 'زحل الآن خارج دائرة ساتي ساتي بالنسبة لقمرك، فالضغط الأثقل ليس عليك اليوم.') + '</p>';
     }
     h += '<section class="eam-card vx"><h4>قراءة سنتك الحالية</h4>' + yr + '</section>';
-    h += '<section class="eam-card vx"><h4>رحلة الفترات الكبرى</h4>' + table(['الفترة', 'من', 'إلى'], ds.map(function (x) { return '<tr' + (x === cm ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === cm ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
-    h += '<section class="eam-card vx"><h4>داخل فترة ' + LORDS[cm.lord] + '</h4>' + table(['الفترة الصغرى', 'من', 'إلى'], antars(cm).map(function (x) { return '<tr' + (x === ca ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === ca ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
+    h += '<section class="eam-card vx"><h4>رحلة الفترات الكبرى (ماها داشا)</h4>' + table(['الفترة', 'من', 'إلى'], ds.map(function (x) { return '<tr' + (x === cm ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === cm ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
+    h += '<section class="eam-card vx"><h4>داخل فترة ' + LORDS[cm.lord] + ' (أنتر داشا)</h4>' + table(['الفترة الصغرى', 'من', 'إلى'], antars(cm).map(function (x) { return '<tr' + (x === ca ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === ca ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
     h += '<p class="eam-note">الحسابات على نظام لاهيري وبيوت البرج الكامل. هذه قراءة للتأمل وتختلف من مدرسة لأخرى، وليست حكمًا نهائيًا.</p>';
     var box = document.createElement('div'); box.className = 'vx-wrap'; box.innerHTML = h;
     var host = result.querySelector('.eam-copy-anchor') || result; host.insertBefore(box, result.querySelector('.aq-copy-map-btn'));
