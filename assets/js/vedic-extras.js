@@ -89,6 +89,19 @@
     if (n === 9) start = (sg % 3 === 0) ? sg : (sg % 3 === 1) ? sg + 8 : sg + 4;
     if (n === 10) start = (sg % 2 === 0) ? sg : sg + 8;
     if (n === 7) start = (sg % 2 === 0) ? sg : sg + 6;
+    var mod = sg % 3, odd = sg % 2 === 0, el = sg % 4;
+    if (n === 3) return (sg + 4 * part) % 12;
+    if (n === 4) return (sg + 3 * part) % 12;
+    if (n === 16 || n === 45) start = mod === 0 ? 0 : mod === 1 ? 4 : 8;
+    if (n === 20) start = mod === 0 ? 0 : mod === 1 ? 8 : 4;
+    if (n === 24) start = odd ? 4 : 3;
+    if (n === 27) start = [0, 3, 6, 9][el];
+    if (n === 40) start = odd ? 0 : 6;
+    if (n === 30) { /* تريمشامسا: أجزاء غير متساوية */
+      var T = odd ? [[5, 0], [10, 10], [18, 8], [25, 2], [30, 6]] : [[5, 1], [12, 5], [20, 11], [25, 9], [30, 7]];
+      for (var q = 0; q < 5; q++) if (pos < T[q][0]) return T[q][1];
+      return T[4][1];
+    }
     return (start + part) % 12;
   }
   function dt(ms) { return new Date(ms).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' }); }
