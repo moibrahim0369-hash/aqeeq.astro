@@ -9,7 +9,7 @@
     { id: 'self', t: 'هويتك ومصيرك', s: 'من أنت وإلى أين تمضي', i: '<circle cx="12" cy="8" r="3.500"/><path d="M5 20a7 7 0 0 1 14 0"/>' },
     { id: 'work', t: 'عملك وبيتك', s: 'مسارك المهني وأمانك الداخلي', i: '<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/>' }
   ];
-  var ST = { all: false, tab: 'transits', year: new Date().getFullYear(), view: null, memo: null };
+  var ST = { all: false, tab: 'lens', year: new Date().getFullYear(), view: null, memo: null };
   var TXT = ['sun', 'moon', 'mercury', 'venus', 'mars', 'saturn'];
   function loadTexts() {
     if (ST.ix || ST.ixLoading) return; ST.ixLoading = true;
@@ -98,6 +98,56 @@
       '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
       '<button type="button" class="yp-out" data-signout>تسجيل الخروج</button></div>';
   }
+
+  /* ---------- عدستك: بطاقات اليوم من الحسابات والنصوص الموجودة ---------- */
+  var WD = [
+    ['الأحد', 'يوم الشمس', 'ممكن تلاحظ اليوم رغبة أن تُرى وتُقدَّر. اسأل نفسك أين تحتاج أن تظهر بصدق بدل أن تُثبت شيئًا.'],
+    ['الاثنين', 'يوم القمر', 'مشاعرك أقرب إلى السطح اليوم. ممكن تحتاج مكانًا هادئًا وكلامًا أقل، وهذا ليس ضعفًا.'],
+    ['الثلاثاء', 'يوم المريخ', 'طاقة الدفع اليوم ممكن تتحول إلى قرار أو إلى انفعال. اختر أين تضعها قبل أن تختارك هي.'],
+    ['الأربعاء', 'يوم عطارد', 'عقلك أسرع اليوم. ممكن تنجز رسائل ومهام مؤجلة، وانتبه لجملة تقولها قبل أن تفكر فيها.'],
+    ['الخميس', 'يوم المشتري', 'ميل للتوسع والتفاؤل. ممكن يفتح لك باب إن طرقته، وانتبه ألا تعد بأكثر مما تقدر.'],
+    ['الجمعة', 'يوم الزهرة', 'القلب يطلب قربًا وجمالًا. ممكن تلاحظ ما يريحك فعلًا وما تفعله فقط لإرضاء غيرك.'],
+    ['السبت', 'يوم زحل', 'يطلب منك اليوم جدية وترتيبًا. ممكن تشعر بثقل المسؤوليات، وهو وقت جيد لتحسم ما تؤجله.']
+  ];
+  var SG = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
+  var MOON = [
+    'مشاعرك ممكن تتحرك بسرعة وتطلب فعلًا مباشرًا. أعطها مجالًا للحركة بدل أن تكتمها.',
+    'ما يهدئك اليوم هو الملموس: ترتيب، أكل بيتي، شيء تنجزه بيدك.',
+    'تحتاج أن تتكلم أو تكتب لتفهم ما تشعر به. ممكن تخف حدة الشعور حين تسمّيه.',
+    'الحدس والحساسية أعلى. ممكن تلتقط مزاج من حولك، فاحرص على مسافة تحميك.'
+  ];
+  function moonToday() {
+    try { var c = window.Astro.chart({ utcMs: Date.now(), lat: 30.0444, lon: 31.2357, known: false }), b = c.bodies.filter(function (x) { return String(x.key).toLowerCase() === 'moon'; })[0]; return b ? Math.floor(((b.lon % 360) + 360) % 360 / 30) : -1; } catch (e) { return -1; }
+  }
+  function lensCard(kick, title, text, act, extra) {
+    return '<article class="yp-lc"><span class="yp-lc-k">' + esc(kick) + '</span><h3>' + esc(title) + '</h3>' + (extra ? '<small class="yp-lc-x">' + esc(extra) + '</small>' : '') + '<p>' + esc(text) + '</p>' + (act || '') + '</article>';
+  }
+  function lensHtml() {
+    var d = new Date(), w = WD[d.getDay()], ch = natal(), cards = [];
+    var dateS = d.toLocaleDateString('ar-EG', { weekday: 'long', day: 'numeric', month: 'long' });
+    cards.push(lensCard('طاقة اليوم · ' + dateS, w[1], w[2]));
+    var list = ch ? allCycles() : null, pls = ch && window.AqeeqYou ? window.AqeeqYou.placements(ch) : [];
+    if (list) {
+      var now = Date.now(), cur = list.filter(function (c) { return c.start <= now && c.end >= now; });
+      cur.sort(function (a, b) { var pa = a.peaks[0] ? Math.abs(a.peaks[0].a - now) : 9e15, pb = b.peaks[0] ? Math.abs(b.peaks[0].a - now) : 9e15; return pa - pb; });
+      cur.slice(0, 3).forEach(function (c) {
+        var pp = pls.filter(function (x) { return x.id === c.n; })[0], cc = pp && coreOf(pp);
+        var line = cc ? 'ما تحمله ' + c.nn + ' عندك: ' + headOf(cc.e) : 'دورة مؤقتة تحرّك ما يخصّ ' + c.nn + ' في خريطتك.';
+        cards.push(lensCard('يؤثر فيك الآن', 'دورة ' + c.tn + ' مع ' + c.nn, line, '<button type="button" class="yp-lc-b" data-cyc="' + esc(c.id + '|' + c.start) + '">تعمّق</button>', c.tn + ' ' + c.an + ' ' + c.nn + ' · تنتهي ' + fmtM(c.end)));
+      });
+    }
+    var m = moonToday();
+    if (m >= 0) cards.push(lensCard('حدث فلكي', 'القمر اليوم في برج ' + SG[m], MOON[m % 4]));
+    if (pls.length) {
+      var doy = Math.floor((Date.now() - new Date(d.getFullYear(), 0, 0)) / DAY), k = 0, shown = 0;
+      while (shown < 2 && k < pls.length) {
+        var p = pls[(doy + k) % pls.length]; k++; var c2 = coreOf(p); if (!c2) continue;
+        cards.push(lensCard('تذكير بنمطك', p.nn + ' في ' + p.sign + ' · البيت ' + c2.house, headOf(c2.e), '<button type="button" class="yp-lc-b" data-pl="' + p.id + '">تعمّق</button>')); shown++;
+      }
+    }
+    return '<p class="yp-lab">عدستك اليوم</p><div class="yp-lens" tabindex="0" role="region" aria-label="بطاقات اليوم، مرّر أفقيًا">' + cards.join('') + '</div>' +
+      '<p class="yp-lc-hint">' + (ch ? 'مرّر لترى بقية البطاقات' : 'أدخل بيانات ميلادك لتظهر بطاقات خريطتك هنا') + '</p>' + (ch ? '' : '<a class="yp-btn" href="#chart">احسب خريطتك</a>');
+  }
   function bodyHtml() {
     var v = ST.view, list;
     if (v && v.set) return settingsHtml();
@@ -116,6 +166,7 @@
       var mine = list ? list.filter(function (c) { return c.doms.indexOf(v.dom) >= 0; }) : [];
       return back('رجوع') + '<div class="yp-dh"><h3>' + d.t + '</h3><small>' + d.s + '</small></div>' + (list ? cyclesHtml(mine) : needNatal()) + (placeCards(v.dom) ? '<p class="yp-lab">صفاتك الثابتة</p><div class="yp-list">' + placeCards(v.dom) + '</div>' : '');
     }
+    if (ST.tab === 'lens') return lensHtml();
     if (ST.tab === 'transits') { list = allCycles(); return timeTravel() + (list ? cyclesHtml(list, true) : needNatal()) + domainCards('حسب مجال حياتك'); }
     return natal() ? domainCards('صفاتك الثابتة حسب المجال') + '<p class="yp-lab">كل الصفات</p><div class="yp-list">' + placeCards() + '</div>' : needNatal();
   }
@@ -129,7 +180,7 @@
     if (pn && home && host.contains(pn)) home.appendChild(pn);
     host.innerHTML = '<div class="yp"><header class="yp-head"><div class="yp-who"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' +
       '<button type="button" class="yp-gear' + (ST.view && ST.view.set ? ' on' : '') + '" data-set aria-label="الإعدادات">' + SVG('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.900 4.900l2.100 2.100M17 17l2.100 2.100M4.900 19.100L7 17M17 7l2.100-2.100"/>') + '</button></header>' +
-      '<div class="yp-tabs" role="tablist"><button type="button" role="tab" data-tab="transits" aria-selected="' + (ST.tab === 'transits' && !ST.view) + '">عبوراتك</button><button type="button" role="tab" data-tab="pattern" aria-selected="' + (ST.tab === 'pattern' && !ST.view) + '">نمطك</button></div>' +
+      '<div class="yp-tabs" role="tablist"><button type="button" role="tab" data-tab="lens" aria-selected="' + (ST.tab === 'lens' && !ST.view) + '">عدستك</button><button type="button" role="tab" data-tab="transits" aria-selected="' + (ST.tab === 'transits' && !ST.view) + '">عبوراتك</button><button type="button" role="tab" data-tab="pattern" aria-selected="' + (ST.tab === 'pattern' && !ST.view) + '">نمطك</button></div>' +
       '<div class="yp-body">' + bodyHtml() + '</div></div>';
     if (ST.view && ST.view.set) {
       var slot = $('#yp-prof-slot');
