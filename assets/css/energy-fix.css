@@ -10,3 +10,9 @@ html body section#energy-compatibility .lp-sections:not(#_a):not(#_b):not(#_c):n
 
 /* astro-maps: ملاحظة الأيانامشا بين الأكورديونات */
 #astro-maps .eam-note:not(#_a):not(#_b){margin:10px 4px 14px;padding:0 6px;font-size:12.5px;line-height:1.8;color:#6B5547;text-align:center}
+
+/* الخريطة الفيدية: مبدّل الرسم شمالي/جنوبي والاسم الأصلي */
+#astro-maps .vc-styles:not(#_a):not(#_b){display:inline-flex;gap:0;margin:4px 0 10px;border:1px solid #D9C49A;border-radius:999px;background:#FBF6EA;padding:3px}
+#astro-maps .vc-st:not(#_a):not(#_b){border:0;background:transparent;color:#6B3A3A;font:inherit;font-size:.86rem;font-weight:700;padding:6px 18px;border-radius:999px;cursor:pointer;min-height:34px}
+#astro-maps .vc-st.on:not(#_a):not(#_b){background:#5A1828;color:#FFF3D6}
+#astro-maps .vc-orig:not(#_a):not(#_b){font-size:.72rem;color:#9A7B55;letter-spacing:.08em;font-weight:600;direction:ltr;unicode-bidi:isolate}
