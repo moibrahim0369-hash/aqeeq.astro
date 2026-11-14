@@ -31,6 +31,30 @@
     if (/فترة|الفترات/.test(t)) return 'dasha';
     return null;
   }
+  var LK = ['ketu', 'venus', 'sun', 'moon', 'mars', 'node', 'jupiter', 'saturn', 'mercury'], __notes = null;
+  function loadNotes(cb) {
+    var sb = window.aqeeqSupabase; if (!sb || !isAdmin()) return;
+    if (__notes) { cb(__notes); return; }
+    sb.from('expert_notes').select('chart,planet,house,note').then(function (r) {
+      if (r.error) return; var n = {};
+      (r.data || []).forEach(function (x) { ((n[x.chart] = n[x.chart] || {})[x.planet] = n[x.chart][x.planet] || {})[x.house] = x.note; });
+      __notes = n; cb(n);
+    }, function () {});
+  }
+  function fillSlots(root) {
+    var slots = root.querySelectorAll('.vh-ex-slot'); if (!slots.length || !isAdmin()) return;
+    loadNotes(function (n) {
+      Array.prototype.forEach.call(slots, function (el) {
+        var h = '';
+        if (el.dataset.sade) { var t = n.sade && n.sade.saturn && n.sade.saturn[el.dataset.sade]; if (t) h = '<b>ملاحظة الخبير على المرحلة</b><span>' + esc(t) + '</span>'; }
+        if (el.dataset.dl) el.dataset.dl.split(',').forEach(function (q) {
+          var a = q.split(':'), t = n.d1 && n.d1[a[1]] && n.d1[a[1]][+a[2] + 1];
+          if (t) h += '<b>' + esc(a[0]) + ' في بيتك ' + (+a[2] + 1) + '</b><span>' + esc(t) + '</span>';
+        });
+        if (h) { el.innerHTML = h; el.hidden = false; }
+      });
+    });
+  }
   function sadeCard(result) {
     var SS = window.AqVedic && window.AqVedic.T && window.AqVedic.T.SS, cur = '';
     result.querySelectorAll('.eam-acc-body p').forEach(function (p) { if (/ساتي ساتي/.test(p.textContent) && !cur) { cur = p.textContent; p.setAttribute('data-vh-sade', '1'); } });
@@ -38,7 +62,8 @@
     var d = document.createElement('section'); d.className = 'vh-sade';
     var inside = SS && SS.indexOf(cur) >= 0;
     d.innerHTML = (inside ? '' : '<p class="vh-sade-now">' + cur.replace(/</g, '&lt;') + '</p>') + (SS ? '<h5>' + (inside ? 'المراحل الثلاث، وأنت الآن في المرحلة المظللة' : 'المراحل الثلاث') + '</h5>' : '') + (SS ? '<ol class="vh-steps">' + SS.map(function (t) { return '<li' + (t === cur ? ' class="on"' : '') + '>' + t.replace(/</g, '&lt;') + '</li>'; }).join('') + '</ol>' : '') +
-      (inside ? '' : '');
+      (inside ? '<div class="vh-ex-slot" data-sade="' + (SS.indexOf(cur) + 1) + '" hidden></div>' : '');
+    fillSlots(d);
     return d;
   }
   function isAdmin() { return !!(window.AqSession && window.AqSession.isAdmin) || document.documentElement.getAttribute('data-admin') === '1'; }
@@ -87,7 +112,7 @@
       var out = d.querySelector('.vh-tm-out'), dd = +d.querySelector('.vh-tm-d').value, mm = +d.querySelector('.vh-tm-m').value, yy = +d.querySelector('.vh-tm-y').value;
       var ms = Date.UTC(yy, mm - 1, dd, 12), chk = new Date(ms);
       if (chk.getUTCDate() !== dd) { out.innerHTML = '<p class="vh-tm-err">هذا التاريخ غير موجود في الشهر المختار.</p>'; return; }
-      try { out.innerHTML = timeHTML(ms); } catch (e) { console.warn(e); out.innerHTML = '<p class="vh-tm-err">تعذر حساب هذا التاريخ.</p>'; }
+      try { out.innerHTML = timeHTML(ms); fillSlots(out); } catch (e) { console.warn(e); out.innerHTML = '<p class="vh-tm-err">تعذر حساب هذا التاريخ.</p>'; }
     });
     return d;
   }
@@ -108,6 +133,13 @@
       '<li><span>الصغرى</span><b>' + T.LORDS[ant.lord] + '</b><i>' + fdt(ant.s) + ' إلى ' + fdt(ant.e) + '</i></li>' +
       '<li><span>الدقيقة</span><b>' + T.LORDS[pra.lord] + '</b><i>' + fdt(pra.s) + ' إلى ' + fdt(pra.e) + '</i></li></ul>';
     h += '<p class="vh-tm-txt">' + esc(T.LT[ant.lord]) + '</p>';
+    if (isAdmin()) {
+      var d1 = VC.build(ch, 1).items, dl = [[maha, 'الكبرى'], [ant, 'الصغرى']].map(function (z) {
+        var key = LK[z[0].lord], it = d1.filter(function (x) { return x.key === key; })[0];
+        return it ? z[1] + ' ' + T.LORDS[z[0].lord] + ':' + key + ':' + it.house : '';
+      }).filter(Boolean).join(',');
+      if (dl) h += '<div class="vh-ex-slot" data-dl="' + esc(dl) + '" hidden></div>';
+    }
     var keys = [['sun', 'الشمس'], ['moon', 'القمر'], ['mars', 'المريخ'], ['mercury', 'عطارد'], ['jupiter', 'المشتري'], ['venus', 'الزهرة'], ['saturn', 'زحل'], ['node', 'راهو'], ['ketu', 'كيتو']], rows = '', sat = null, moonT = null, moonSign = Math.floor(moonB.lon / 30);
     keys.forEach(function (k) {
       var lon = null, retro = false, list = tch.bodies || [], j, kk;
