@@ -38,7 +38,7 @@
     var compat = bar.querySelector('[data-nav="compat"]'); if (compat) compat.remove();
     var old = $('#aq-you-item', bar); if (old) old.remove();
     /* بعد الدخول: «حسابي» هو صفحتك الكاملة (#for-you) بدل نافذة منبثقة، فلا حاجة لزر «لك» منفصل */
-    if (acc) { acc.setAttribute('href', user ? '#for-you' : '#account'); acc.classList.toggle('on', location.hash === acc.getAttribute('href')); }
+    if (acc) { acc.setAttribute('href', '#account'); acc.classList.toggle('on', location.hash === (user ? '#for-you' : '#account')); }
     if (user) { closeYou(); return; }
     var it = item('aq-you-item', '#', 'أنت', ICON_YOU, 'button');
     it.id = 'aq-you-item'; it.setAttribute('data-nav', 'you');

@@ -192,11 +192,18 @@
   function route() {
     if (location.hash !== '#account' || !user()) return;
     var rec = $('#acct-recovery'); if (rec && !rec.hidden) return;
-    if (/[?&](order|order_id|code)=/.test(location.search)) return;
+    if (/[?&](order|order_id)=/.test(location.search)) return;
     var card = $('#acct-user');
     if (card && card.getAttribute('data-profile-complete') === 'false') ST.view = { set: true };
     location.replace('#for-you'); render();
   }
+  /* «حسابي» بعد الدخول يفتح إعدادات صفحة «أنت» مباشرة بدل نافذة الحساب القديمة */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href="#account"]'); if (!a || !user()) return;
+    var rec = $('#acct-recovery'); if (rec && !rec.hidden) return;
+    e.preventDefault(); e.stopPropagation(); ST.view = { set: true }; ST.tries = 0;
+    if (location.hash !== '#for-you') location.hash = '#for-you'; else { render(); window.scrollTo(0, 0); }
+  }, true);
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('#for-you [data-tab],#for-you [data-dom],#for-you [data-cyc],#for-you [data-pl],#for-you [data-back],#for-you [data-all],#for-you [data-set],#for-you [data-signout]'); if (!t) return;
     if (t.hasAttribute('data-signout')) { var so = $('#acct-signout'); if (so) so.click(); return; }
