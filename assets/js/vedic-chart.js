@@ -57,7 +57,7 @@
     if (n === 'moon' || n === 'sun') { /* خريطة القمر/الشمس: نفس أبراج D1 والطالع هو برج القمر/الشمس */
       var bl = bodyLon(ch, n), sg0 = bl == null ? 0 : D(bl, 1); lagna = sg0; basis = n;
       var its = [];
-      PL.forEach(function (p) { var lon = bodyLon(ch, p[0]); if (lon == null) return; var sg = D(lon, 1); its.push({ key: p[0], name: p[1], ab: p[2], sign: sg, house: (sg - lagna + 12) % 12, retro: p[0] !== 'node' && p[0] !== 'ketu' && retroOf(ch, p[0]) }); });
+      PL.forEach(function (p) { var lon = bodyLon(ch, p[0]); if (lon == null) return; var sg = D(lon, 1); its.push({ lon: lon, key: p[0], name: p[1], ab: p[2], sign: sg, house: (sg - lagna + 12) % 12, retro: p[0] !== 'node' && p[0] !== 'ketu' && retroOf(ch, p[0]) }); });
       return { n: n, lagna: lagna, basis: basis, items: its };
     }
     lagna = known ? D(ch.asc, n) : (moonLon == null ? 0 : D(moonLon, n));
@@ -65,7 +65,7 @@
     PL.forEach(function (p) {
       var lon = bodyLon(ch, p[0]); if (lon == null) return;
       var sg = D(lon, n);
-      items.push({ key: p[0], name: p[1], ab: p[2], sign: sg, house: (sg - lagna + 12) % 12, retro: p[0] !== 'node' && p[0] !== 'ketu' && retroOf(ch, p[0]) });
+      items.push({ lon: lon, key: p[0], name: p[1], ab: p[2], sign: sg, house: (sg - lagna + 12) % 12, retro: p[0] !== 'node' && p[0] !== 'ketu' && retroOf(ch, p[0]) });
     });
     return { n: n, lagna: lagna, basis: basis, items: items };
   }
@@ -135,10 +135,29 @@
     if (h === 12 || (map.n === 2 && h === 6)) c.push('D-12');
     return c;
   }
+  var EXA = { sun: 0, moon: 1, mars: 9, mercury: 5, jupiter: 3, venus: 11, saturn: 6, node: 1, ketu: 7 };
+  var OWN = { sun: [4], moon: [3], mars: [0, 7], mercury: [2, 5], jupiter: [8, 11], venus: [1, 6], saturn: [9, 10] };
+  function dignity(x) {
+    if (EXA[x.key] === x.sign) return ['ex', 'مرتفع'];
+    if (EXA[x.key] != null && (EXA[x.key] + 6) % 12 === x.sign) return ['db', 'هابط'];
+    if (OWN[x.key] && OWN[x.key].indexOf(x.sign) >= 0) return ['ow', 'في برجه'];
+    return null;
+  }
+  function degTxt(lon) { var d = ((lon % 30) + 30) % 30, g = Math.floor(d), m = Math.floor((d - g) * 60); return g + '°' + (m < 10 ? '0' : '') + m + '′'; }
+  function detail(map, x) {
+    var parts = [], dg = dignity(x), T = window.AqVedic && window.AqVedic.T, d1 = map.n === 1 || map.n === 'moon' || map.n === 'sun';
+    if (d1 && x.lon != null) {
+      parts.push('<i class="vc-dg">' + degTxt(x.lon) + '</i>');
+      var u = 360 / 27, ni = Math.floor(x.lon / u) % 27, pd = Math.floor((x.lon % u) / (u / 4)) + 1;
+      if (T && T.NK && T.NK[ni]) parts.push('<i class="vc-nk">' + T.NK[ni][0] + ' · ' + pd + '</i>');
+    }
+    if (dg) parts.push('<i class="vc-dn vc-dn-' + dg[0] + '">' + dg[1] + '</i>');
+    return parts.length ? '<span class="vc-dt">' + parts.join('') + '</span>' : '';
+  }
   function houseRows(map) {
     return map.items.map(function (x) {
       var tn = TONE[x.key] || 'g';
-      return '<li class="vc-r vc-t-' + tn + '"><span class="vc-ab">' + esc(x.ab) + '</span><b>' + esc(x.name) + (x.retro ? ' ℞' : '') + '</b><span class="vc-sg">' + SG[x.sign] + ' · البيت ' + (x.house + 1) + '</span>' + (window.AqVedicExpert && window.AqVedicExpert.on ? '<span class="vc-codes">' + codesFor(map, x).map(function (k) { return '<em class="vc-code">[' + k + ']</em>'; }).join('') + '</span>' : '') + '</li>';
+      return '<li class="vc-r vc-t-' + tn + '"><span class="vc-ab">' + esc(x.ab) + '</span><b>' + esc(x.name) + (x.retro ? ' ℞' : '') + '</b><span class="vc-sg">' + SG[x.sign] + ' · البيت ' + (x.house + 1) + '</span>' + detail(map, x) + (window.AqVedicExpert && window.AqVedicExpert.on ? '<span class="vc-codes">' + codesFor(map, x).map(function (k) { return '<em class="vc-code">[' + k + ']</em>'; }).join('') + '</span>' : '') + '</li>';
     }).join('');
   }
   function mount(host, ch, natal, only) {

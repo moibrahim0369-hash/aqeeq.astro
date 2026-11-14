@@ -204,3 +204,13 @@ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-rows{gr
 html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d) .vc-rows li.vc-r{min-width:0;overflow:hidden}
 html body #astro-maps .vc-key{margin:14px 0 4px;gap:6px}
 html body #astro-maps .vc-key i{font-size:.72rem;padding:2px 10px}
+html body #astro-maps .vc-r:not(#_a){grid-template-areas:"ab nm" "ab sg" "dt dt"!important}
+html body #astro-maps .vc-r .vc-dt{grid-area:dt;display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+html body #astro-maps .vc-r .vc-dt i{font-style:normal;font-size:.68rem;font-weight:700;padding:1px 8px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid #E3CFA3;color:#6B5448}
+html body #astro-maps .vc-r .vc-dt .vc-dn-ex{background:#E4F0E1;border-color:#7FA67D;color:#2F5A32}
+html body #astro-maps .vc-r .vc-dt .vc-dn-db{background:#F8E2DE;border-color:#C9786E;color:#8E2A22}
+html body #astro-maps .vc-r .vc-dt .vc-dn-ow{background:#F8EBCB;border-color:#C5A059;color:#6E5319}
+html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .vc-rows{grid-template-columns:1fr}
+html body #astro-maps .vc-r .vc-sg{white-space:normal}
+@media(min-width:700px){html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .vc-rows{grid-template-columns:repeat(2,minmax(0,1fr))}}
+html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
