@@ -270,7 +270,7 @@
   var TABS = [['lens', 'بصيرتك', '<path d="M12 3l2.200 5.600 5.800.500-4.400 3.900 1.400 5.700L12 15.600 7 18.700l1.400-5.700L4 9.100l5.800-.500z"/>', 'ما تحمله لك سماء اليوم، بكلمات تخصّك'],
     ['transits', 'عبوراتك', '<ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(-25 12 12)"/><circle cx="12" cy="12" r="2.200"/><circle cx="19" cy="8" r="1"/>', 'ما يمرّ بك الآن، وما يقترب منك'],
     ['pattern', 'نمطك', '<path d="M12 3l8 4.500v9L12 21l-8-4.500v-9z"/><path d="M12 12l8-4.500M12 12v9M12 12L4 7.500"/>', 'ما يميّزك في كل مجال من حياتك'],
-    ['settings', 'الإعدادات', '<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.600 5.600l2.100 2.100M16.300 16.300l2.100 2.100M5.600 18.400l2.100-2.100M16.300 7.700l2.100-2.100"/>', 'بياناتك وتفضيلاتك']];
+    ['settings', 'الإعدادات', '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>', 'بياناتك وتفضيلاتك']];
   var BGART = {
     lens: '<g opacity=".5"><circle cx="340" cy="60" r="60"/><circle cx="340" cy="60" r="95"/><circle cx="340" cy="60" r="135"/></g><g opacity=".45" stroke="#6B1F2E"><path d="M30 700l40-30 30 20 45-40"/><circle cx="30" cy="700" r="2.500" fill="#6B1F2E"/><circle cx="70" cy="670" r="2" fill="#6B1F2E"/><circle cx="100" cy="690" r="2.500" fill="#6B1F2E"/><circle cx="145" cy="650" r="2" fill="#6B1F2E"/></g>',
     transits: '<g opacity=".5" transform="rotate(-20 190 420)"><ellipse cx="190" cy="420" rx="260" ry="110"/><ellipse cx="190" cy="420" rx="200" ry="80"/><ellipse cx="190" cy="420" rx="140" ry="52"/></g><circle cx="330" cy="330" r="5" fill="#B5532F" stroke="none" opacity=".7"/><circle cx="60" cy="520" r="4" fill="#6B1F2E" stroke="none" opacity=".6"/>',
@@ -299,7 +299,7 @@
     var inSub = ST.view && !ST.view.set;
     host.innerHTML = '<div class="yp yp-t-' + curTab() + '"><div class="yp-bg" aria-hidden="true"><svg width="100%" height="100%" viewBox="0 0 375 812" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#9A4A32" stroke-width="1">' + (BGART[curTab()] || '') + '</svg></div>' +
       '<header class="yp-head"><div class="yp-who"><span class="yp-av">' + avatar(u, name) + '</span><div><h2>' + esc(name) + '</h2>' + planChip() + '</div></div>' +
-      '<a class="yp-gear" href="#chart" aria-label="الخريطة">' + SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/>') + '<span>الخريطة</span></a></header>' +
+      '<a class="yp-gear" href="#chart" aria-label="الخريطة">' + SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.500"/><path d="M12 3v5.500M12 15.500V21M4.200 7.500l4.700 2.700M15.100 13.800l4.700 2.700M4.200 16.500l4.700-2.700M15.100 10.200l4.700-2.700"/>') + '<span>الخريطة</span></a></header>' +
       tabsHtml() + (inSub ? '' : pageHead()) +
       '<div class="yp-body">' + (ST.view && ST.view.set ? settingsHtml() : bodyHtml()) + '</div></div>';
     if (ST.view && ST.view.set) {
