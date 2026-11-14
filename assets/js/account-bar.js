@@ -4,7 +4,7 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var SVG = function (p) { return '<svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24">' + p + '</svg>'; };
   var ICON_FORYOU = SVG('<path d="M12 3l2.2 5.600L20 9.500l-4.400 3.900L17 19l-5-3-5 3 1.400-5.600L4 9.500l5.800-.9z"/>');
-  var ICON_YOU = SVG('<circle cx="10" cy="8.500" r="3.800"/><path d="M3.500 20.500a6.500 6.500 0 0 1 11-4.700"/><path d="M18 12v6M15 15h6"/>');
+  var ICON_YOU = SVG('<circle cx="12" cy="12" r="9"/><path d="M12 6.500l1.600 3.900 3.900 1.600-3.900 1.600L12 17.500l-1.600-3.900L6.500 12l3.900-1.600z"/>');
   var BELL = SVG('<path d="M6 16.500V11a6 6 0 0 1 12 0v5.500l1.500 2h-15z"/><path d="M10 21a2 2 0 0 0 4 0"/>');
   var user = null;
 
