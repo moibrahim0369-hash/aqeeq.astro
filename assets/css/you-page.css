@@ -126,3 +126,37 @@ html body section#for-you .yp-set-g:first-of-type .yp-set-row:not(#_a){flex-wrap
 .yp-lc p{margin:0;flex:1;font:400 1rem/1.95 'Cairo',sans-serif;color:rgba(255,255,255,.93)}
 .yp-lc-b{align-self:flex-start;min-height:44px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.7);background:transparent;color:#fff;font:700 .95rem 'Cairo',sans-serif;cursor:pointer}
 .yp-lc-hint{text-align:center;color:#7a5a4c;font-size:.85rem;margin:2px 0 0}
+
+/* مقاسات الموبايل: صفحة «أنت» أصغر وأكثف وبلا زخارف جانبية */
+section#for-you .amb{display:none!important}
+html body section#for-you .yp:not(#_a){padding-bottom:84px}
+html body section#for-you .yp-head:not(#_a){margin:2px 0 12px}
+html body section#for-you .yp-av:not(#_a){width:40px;height:40px;font-size:1rem}
+html body section#for-you .yp-who h2:not(#_a){font-size:1.05rem!important}
+html body section#for-you .yp-plan:not(#_a){font-size:.7rem;padding:2px 9px}
+html body section#for-you .yp-gear:not(#_a){width:40px;height:40px}
+html body section#for-you .yp-gear svg:not(#_a){width:20px;height:20px}
+html body section#for-you .yp-tabs:not(#_a){gap:3px;padding:3px;margin-bottom:14px}
+html body section#for-you .yp-tabs button:not(#_a){min-height:40px;font-size:.9rem}
+html body section#for-you .yp-lab:not(#_a){margin:16px 4px 8px;font-size:.84rem}
+html body section#for-you .yp-cy:not(#_a){padding:12px;gap:10px;border-radius:18px}
+html body section#for-you .yp-cy-t:not(#_a){padding-top:20px;gap:2px}
+html body section#for-you .yp-cy-t b:not(#_a){font-size:1rem}
+html body section#for-you .yp-cy-t small:not(#_a){font-size:.76rem}
+html body section#for-you .yp-chip:not(#_a){font-size:.7rem;padding:5px 10px}
+html body section#for-you .yp-ring:not(#_a){width:66px;height:66px}
+html body section#for-you .yp-ring b:not(#_a){font-size:1.15rem}
+html body section#for-you .yp-ring i:not(#_a){font-size:.6rem}
+html body section#for-you .yp-dom:not(#_a){padding:11px 12px;gap:11px;border-radius:16px}
+html body section#for-you .yp-dom-i:not(#_a){width:38px;height:38px;border-radius:12px}
+html body section#for-you .yp-dom-i svg:not(#_a){width:20px;height:20px}
+html body section#for-you .yp-dom-t b:not(#_a){font-size:.98rem}
+html body section#for-you .yp-dom-t small:not(#_a){font-size:.76rem}
+html body section#for-you .yp-pl:not(#_a){padding:12px;gap:4px;border-radius:16px}
+html body section#for-you .yp-pl b:not(#_a){font-size:1.02rem}
+html body section#for-you .yp-lc:not(#_a){min-height:236px;padding:16px;border-radius:20px;gap:6px;flex-basis:86%}
+html body section#for-you .yp-lc h3:not(#_a){font-size:1.25rem}
+html body section#for-you .yp-lc p:not(#_a){font-size:.9rem;line-height:1.85}
+html body section#for-you .yp-lc-b:not(#_a){min-height:40px;font-size:.88rem;padding:0 18px}
+html body section#for-you .yp-det h3:not(#_a){font-size:1.35rem}
+html body section#for-you .yp-tt-l:not(#_a){min-height:40px;font-size:.82rem}

@@ -117,3 +117,6 @@ html body nav.aqh-menu .aqn-acc{margin:8px 0}
 html body nav.aqh-menu .aqn-acc-btn{padding:15px 16px;min-height:50px;gap:14px}
 html body nav.aqh-menu .aqn-acc-panel{padding:6px 10px 10px}
 html body nav.aqh-menu .aqn-acc-panel a{padding:13px 14px!important;min-height:46px;margin:3px 0}
+
+/* الشريط السفلي: الخانات بعدد الأزرار الفعلي (3 بعد الدخول و4 قبله) بدون فراغ جانبي */
+html body nav.bnav{grid-template-columns:none!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important}
