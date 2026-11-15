@@ -1,0 +1,1 @@
+try{var k=Object.keys(localStorage).some(function(x){return /^sb-.*-auth-token$/.test(x)});if(k){document.documentElement.setAttribute('data-auth-hint','in');setTimeout(function(){document.documentElement.setAttribute('data-auth-known','1')},4000)}}catch(e){}

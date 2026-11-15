@@ -1,0 +1,1 @@
+try{history.scrollRestoration='manual'}catch(e){}

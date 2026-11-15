@@ -1,0 +1,2 @@
+/* وسم المسار الحالي لتنسيق شكل التطبيق على الموبايل */
+(function(){function r(){var h=(location.hash||'#home').replace('#','').split(/[/?]/)[0]||'home';document.documentElement.setAttribute('data-aqr',h)}r();window.addEventListener('hashchange',r)})();

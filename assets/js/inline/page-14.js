@@ -1,0 +1,1 @@
+window.AQ_REVIEW_OPEN=true;document.documentElement.classList.add("aq-review-open");
