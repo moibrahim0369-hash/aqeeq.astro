@@ -47,7 +47,7 @@
     }
     var old = $('#aq-you-item', bar); if (old) old.remove();
     /* بعد الدخول: «حسابي» هو صفحتك الكاملة (#for-you) بدل نافذة منبثقة، فلا حاجة لزر «لك» منفصل */
-    if (acc) { acc.setAttribute('href', '#account'); acc.classList.toggle('on', location.hash === (user ? '#for-you' : '#account')); }
+    if (acc) { var al = acc.querySelector('.bnav-label'); if (al) { al.removeAttribute('data-i18n-ar'); al.removeAttribute('data-i18n-en'); al.textContent = user ? 'أنت' : 'حسابي'; } acc.setAttribute('href', '#account'); acc.classList.toggle('on', location.hash === (user ? '#for-you' : '#account')); }
     if (user) { closeYou(); return; }
     var it = item('aq-you-item', '#', 'أنت', ICON_YOU, 'button');
     it.id = 'aq-you-item'; it.setAttribute('data-nav', 'you');

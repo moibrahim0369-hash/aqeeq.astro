@@ -433,7 +433,7 @@
     var list = allCycles(), has = !!natal(), h = '';
     h += '<div class="yp-pills"><a class="yp-pill" data-k="chart" href="#chart">' + SVG('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.500"/><path d="M12 3v5.500M12 15.500V21M4.200 7.500l4.700 2.700M15.100 13.800l4.700 2.700M4.200 16.500l4.700-2.700M15.100 10.200l4.700-2.700"/>') + '<span>الخريطة</span></a>' +
       '<button type="button" class="yp-pill" data-k="time" data-tt-open>' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<span>سافر بالزمن</span></button>' +
-      '<button type="button" class="yp-pill" data-k="acct" data-set>' + SVG('<circle cx="12" cy="8" r="3.500"/><path d="M5 20a7 7 0 0 1 14 0"/>') + '<span>حسابي</span></button></div>';
+      '<button type="button" class="yp-pill" data-k="acct" data-go="we">' + SVG('<circle cx="9" cy="12" r="5.500"/><circle cx="15" cy="12" r="5.500"/>') + '<span>نحن</span></button></div>';
     h += rail('سماء يومك', 'ما تحمله لك سماء اليوم، بكلمات تخصّك', lensCards(), 'sky');
     if (!has) return h + needNatal();
     h += rail('عبوراتك', 'ما يمرّ بك الآن وما يقترب منك', list ? curList(list, 8) : '', 'transits');
@@ -599,8 +599,8 @@
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href="#account"]'); if (!a || !user()) return;
     var rec = $('#acct-recovery'); if (rec && !rec.hidden) return;
-    e.preventDefault(); e.stopPropagation(); ST.view = { set: true }; ST.tries = 0;
-    if (location.hash !== '#for-you') location.hash = '#for-you'; else { render(); window.scrollTo(0, 0); }
+    e.preventDefault(); e.stopPropagation(); ST.view = null; ST.tab = 'home'; ST.weAdd = false;
+    if (location.hash !== '#for-you') location.hash = '#for-you'; else { render(); var s1 = $('#for-you'); if (s1) s1.scrollTop = 0; window.scrollTo(0, 0); }
   }, true);
   document.addEventListener('click', function (e) {
     var q = e.target.closest && e.target.closest('[data-tt-open],[data-tt-close],[data-tt-set],[data-tt-today]'); if (!q) return;
