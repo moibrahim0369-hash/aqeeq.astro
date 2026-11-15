@@ -246,9 +246,9 @@ html body section#for-you .yp-cy.up:not(#_a){background:linear-gradient(135deg,#
 html body section#for-you .yp-dom:not(#_a),html body section#for-you .yp-pl:not(#_a),html body section#for-you .yp-txt:not(#_a),html body section#for-you .yp-set-row:not(#_a){background:linear-gradient(180deg,rgba(243,232,210,.92),rgba(233,214,184,.85));border-color:#D9C8AB}
 html body section#for-you .yp-dom:not(#_a){border-right:5px solid #B5532F}
 html body section#for-you .yp-dom:nth-child(2):not(#_a){border-right-color:#6B1F2E}
-html body section#for-you .yp-dom:nth-child(3):not(#_a){border-right-color:#A9823F}
+html body section#for-you .yp-dom:nth-child(3):not(#_a){border-right-color:#8A3A2A}
 html body section#for-you .yp-dom:nth-child(4):not(#_a){border-right-color:#7A5645}
-html body section#for-you .yp-pl:not(#_a){border-right:4px solid #A9823F}
+html body section#for-you .yp-pl:not(#_a){border-right:4px solid #8A3A2A}
 html body section#for-you .yp-meta:not(#_a),html body section#for-you .yp-ph>div:not(#_a),html body section#for-you .yp-asof:not(#_a){background:rgba(233,214,184,.8);border-color:#D9C8AB}
 html body section#for-you .yp-empty:not(#_a){background:rgba(243,232,210,.7);border-color:#BBA98F}
 html body section#for-you .yp-dom-i:not(#_a){background:linear-gradient(180deg,#8A3A2A,#6B1F2E)}
@@ -310,7 +310,7 @@ html body #yp-prof-slot .profile-summary-identity:not(#_a):not(#_b){display:none
 html body #yp-prof-slot .profile-summary-card:not(#_a):not(#_b){padding:0!important;border:0!important;background:none!important}
 html body #yp-prof-slot .profile-summary-top:not(#_a):not(#_b){gap:0}
 html body #yp-prof-slot .profile-summary-grid:not(#_a):not(#_b){grid-template-columns:1fr;gap:8px;margin-top:8px}
-html body #yp-prof-slot .profile-summary-item:not(#_a):not(#_b){display:flex;align-items:center;justify-content:space-between;gap:10px;flex-direction:row-reverse;padding:14px 16px;border-radius:18px;background:linear-gradient(180deg,#F5EAD3,#EBD8B8)!important;border:1px solid #D9C8AB;border-right:4px solid #A9823F}
+html body #yp-prof-slot .profile-summary-item:not(#_a):not(#_b){display:flex;align-items:center;justify-content:space-between;gap:10px;flex-direction:row-reverse;padding:14px 16px;border-radius:18px;background:linear-gradient(180deg,#F5EAD3,#EBD8B8)!important;border:1px solid #D9C8AB;border-right:4px solid #8A3A2A}
 html body #yp-prof-slot .profile-summary-item:not(#_a):not(#_b)>*{margin:0}
 html body #yp-prof-slot .profile-summary-item strong:not(#_a){color:#3A2A26;font:700 .95rem 'Cairo',sans-serif}
 html body #yp-prof-slot .profile-summary-item span:not(#_a),html body #yp-prof-slot .profile-summary-item small:not(#_a){color:#6F5D54;font-size:.8rem}
@@ -380,7 +380,7 @@ html body section#for-you .yp-cy-t small:not(#_a):not(#_b):not(#_c),html body se
 html body section#for-you .yp-pl b:not(#_a):not(#_b):not(#_c){color:#3A2A26;font-weight:600;line-height:1.8}
 html body section#for-you .yp-pl-h small:not(#_a){color:#6F5D54}
 html body section#for-you .yp-soon:not(#_a):not(#_b){background:#F3E6E3;color:#6B1F2E;border:1px solid #E6D2CE}
-html body section#for-you .yp-cy.up>.yp-chip:not(#_a):not(#_b){background:linear-gradient(135deg,#A9823F,#7A5645)}
+html body section#for-you .yp-cy.up>.yp-chip:not(#_a):not(#_b){background:linear-gradient(135deg,#8A3A2A,#6B1F2E)}
 /* بطاقات سماء يومك */
 html body section#for-you .yp-lc:not(#_a):not(#_b):not(#_c){min-height:0;padding:16px;gap:6px}
 html body section#for-you .yp-lc-k:not(#_a):not(#_b){background:#F3E9E0;color:#9A4A32}
@@ -391,7 +391,7 @@ html body section#for-you .yp-lc-b:not(#_a):not(#_b){background:linear-gradient(
 /* الحلقة على خلفية فاتحة */
 html body section#for-you .yp-ring .bg:not(#_a):not(#_b){stroke:#E9E3D8}
 html body section#for-you .yp-ring span:not(#_a):not(#_b):not(#_c){background:#FCFBF9}
-html body section#for-you .yp-ring.up .fg:not(#_a):not(#_b){stroke:#A9823F}
+html body section#for-you .yp-ring.up .fg:not(#_a):not(#_b){stroke:#8A3A2A}
 html body section#for-you .yp-ring.up span:not(#_a):not(#_b):not(#_c){background:#FCFBF9}
 html body section#for-you .yp-ring.up b:not(#_a):not(#_b):not(#_c){color:#7A5645}
 html body section#for-you .yp-ring.up i:not(#_a):not(#_b):not(#_c){color:#6F5D54}
@@ -471,7 +471,7 @@ html.yp-pop-open{overflow:hidden}
 .yp-pop-body{overflow-y:auto;padding:14px 16px;display:grid;gap:10px;-webkit-overflow-scrolling:touch}
 .yp-pop-br{margin:0;padding:12px 14px;border-radius:16px;background:rgba(255,250,240,.85);border:1px solid rgba(226,205,170,.8);font:600 1rem/2 'Cairo',sans-serif;color:#3A2A26}
 .yp-pop .yp-ds{padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,rgba(255,250,240,.9),rgba(246,234,212,.75));border:1px solid rgba(226,205,170,.8);border-right:4px solid #B5532F}
-.yp-pop .yp-ds:nth-child(3n+2){border-right-color:#6B1F2E}.yp-pop .yp-ds:nth-child(3n){border-right-color:#A9823F}
+.yp-pop .yp-ds:nth-child(3n+2){border-right-color:#6B1F2E}.yp-pop .yp-ds:nth-child(3n){border-right-color:#8A3A2A}
 .yp-pop .yp-ds h4{margin:0 0 4px;color:#6B1F2E;font:800 1rem/1.6 'Cairo',sans-serif}
 .yp-pop .yp-ds p{margin:0;color:#3A2A26;font:400 .95rem/2 'Cairo',sans-serif}
 .yp-pop-ft{padding:10px 16px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(217,195,160,.7)}
@@ -614,9 +614,9 @@ html body section#for-you .yp-wf-go{min-height:50px;justify-content:center}
 
 /* ===== نظام الأيقونات الموحّد: بلاطات ملوّنة بهوية عقيق، كل نوع له لونه ===== */
 html body section#for-you .yp-pill svg:not(#_a):not(#_b){width:22px;height:22px;padding:9px;border-radius:16px;color:#FBF1DE;stroke:#FBF1DE;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 12px -6px rgba(74,21,33,.55)}
-html body section#for-you .yp-pill[data-k=chart] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#C9663A,#8A3A2A)}
+html body section#for-you .yp-pill[data-k=chart] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#8B3050,#5A1F32)}
 html body section#for-you .yp-pill[data-k=time] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#8B3050,#5A1F32)}
-html body section#for-you .yp-pill[data-k=acct] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#C9A062,#8F6A2E)}
+html body section#for-you .yp-pill[data-k=acct] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#8B3050,#5A1F32)}
 html body section#for-you .yp-dom-i:not(#_a):not(#_b){color:#FBF1DE;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 6px 12px -6px rgba(74,21,33,.5)}
 html body section#for-you .yp-dom-i[data-d=love]:not(#_a):not(#_b){background:linear-gradient(145deg,#B8455E,#7A2238)}
 html body section#for-you .yp-dom-i[data-d=self]:not(#_a):not(#_b){background:linear-gradient(145deg,#C9663A,#8A3A2A)}
@@ -670,3 +670,7 @@ html body .cmp-fab:not(#_a):not(#_b){min-width:44px;min-height:44px}
 html body.yp-app .cmp-fab:not(#_a):not(#_b){width:44px!important;height:44px!important}
 html body section#for-you :is(.yp-lc-b,.yp-tab,.yp-pill,.yp-ab,.yp-ib,.yp-x,.yp-back):not(#_a):not(#_b):not(#_c){min-height:44px}
 html body section#for-you .yp-ut button:not(#_a):not(#_b):not(#_c){min-height:48px}
+
+/* ===== شيل الذهبي: زر «استثمر في ذاتك» بإطار عنابي بلا تعبئة ===== */
+html body #home.aqh .aqh-hero .aqh-cta-gold:not(#_a):not(#_b):not(#_c){background:transparent!important;color:#6B1F2E!important;border:1.5px solid #6B1F2E!important;box-shadow:none!important}
+html body #home.aqh .aqh-hero .aqh-cta-gold:not(#_a):not(#_b):not(#_c):hover{background:rgba(107,31,46,.07)!important;box-shadow:none!important}
