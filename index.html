@@ -54,7 +54,6 @@
 <link rel="stylesheet" href="assets/css/extended-astro-charts.css?v=20261119a">
 <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
 <link rel="stylesheet" href="assets/css/cosmic-background.css">
-<link rel="stylesheet" href="assets/css/tarot-sanctuary.css">
 <link rel="stylesheet" href="assets/css/aqeeq-design-system.css?v=3.15">
 <link rel="stylesheet" href="assets/css/home-v2.css?v=20261115b">
 <link rel="stylesheet" href="assets/css/daily-banner.css?v=20261106a">
@@ -91,7 +90,7 @@
 <link rel="stylesheet" href="assets/css/lifepath-page.css?v=20261110b">
 <script src="assets/js/inline/page-05.js?v=1"></script>
 <style>
-#manifest,#wishes,#dream-library,#tarot-chamber,a[href="#tarot-chamber"],#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
+#manifest,#wishes,#dream-library,a[href="#tarot-chamber"],#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
 </style>
 <link rel="stylesheet" href="assets/css/lp-accordion.css?v=20261106d">
 <link rel="stylesheet" href="assets/css/sky-zodiac-theme.css?v=20261106b">
@@ -249,7 +248,7 @@
         <div class="b3-rot" id="b3-rot" aria-live="off"></div>
       </div>
       <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
-      <div class="grp hidden-feature" id="cat-tarot" hidden style="display:none !important;"></div>
+      
       <div class="grp hidden-feature" id="cat-account" hidden style="display:none !important;"></div>
       <div class="grp hidden-feature" id="cat-forecast" hidden style="display:none !important;"></div>
       <div class="grp hidden-feature" id="cat-library" hidden style="display:none !important;"></div>
@@ -1336,71 +1335,7 @@
 <div class="y27-ex"><b>3</b><div><strong>الخريطة المشتركة</strong><p>صورة العلاقة نفسها كأنها شخص ثالث، من نقطة المنتصف بينكما.</p></div></div>
 <p class="y27-about-note">وقت الميلاد يرفع دقة القراءة، لكن غيابه لا يمنع الحساب.</p></div>
 </section>
-<section class="sec alt hidden-feature" id="tarot-chamber" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap">
-<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
-<div class="aq-section-topbar">
-  <a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a>
-  <div class="aq-section-quick-links">
-    <a href="#tarot-chamber" class="aq-section-pill active">جلسة الاستشارة المباشرة</a>
-    <a href="tarot.html" class="aq-section-pill">قاعة المخطوطات المرجعية</a>
-    <a href="workbench.html" class="aq-section-pill">استوديو التسكين والموسوعة (٧٨ بطاقة)</a>
-  </div>
-</div>
-<div class="aq-tarot-chamber-header">
-  <span class="eyebrow" dir="ltr">TAROT SANCTUARY · 78 ARCANA CONSULTATION</span>
-  <h2>محراب استشارات التاروت الحية</h2>
-  <p class="intro">اختر هيكل الفرشة وعدسة التحليل النفسي، ثم اسحب بطاقاتك لتلقي قراءة استبصارية مباشرة تفكك واقعك الراهن، العوائق غير المرئية، وخطوات الفعل المتزن.</p>
-</div>
-<div class="consult-config-bar">
-  <div class="workbench-form-group" style="flex: 1.2; min-width: 240px;">
-    <label for="consultSpreadSelect">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8l2 4-2 4-2-4z"/></svg>
-      <span>هيكل الفرشة والاستشارة</span>
-    </label>
-    <select id="consultSpreadSelect" class="workbench-select">
-      <option value="three-direct" selected>ثالوث الاستبصار المباشر (3 بطاقات: واقعك · العائق · خطوتك)</option>
-      <option value="three-time">مثلث الزمن (3 بطاقات: الماضي · الحاضر · المستقبل)</option>
-      <option value="three-guide">ثالوث التوجيه (3 بطاقات: الموقف · التحدي · الإرشاد)</option>
-      <option value="single">بصيرة الموقف والرسالة العاجلة (بطاقة واحدة)</option>
-      <option value="relationship">كشف النوايا والعلاقات والشراكات (3 بطاقات)</option>
-      <option value="decision">ميزان القرار والخيارات الحاسمة (3 بطاقات)</option>
-      <option value="five-cross">صليب التحول العميق (5 بطاقات: الجوهر والتحدي والمآل)</option>
-      <option value="seven-horseshoe">حدوة الحصان الاستبصارية (7 بطاقات: التحليل الشامل للمسار)</option>
-      <option value="nine-matrix">المصفوفة الاستراتيجية 3×3 (9 بطاقات: الجذور والواقع والمآل)</option>
-    </select>
-  </div>
-  <div class="workbench-form-group" style="flex: 1; min-width: 210px;">
-    <label for="consultLensSelect">
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
-      <span>عدسة التحليل النفسي</span>
-    </label>
-    <select id="consultLensSelect" class="workbench-select">
-      <option value="motives" selected>تفكيك النوايا وما وراء السلوك</option>
-      <option value="momentum">المسار الحركي والقرارات</option>
-      <option value="psyche">التشريح النفسي والتوازن الذاتي</option>
-    </select>
-  </div>
-  <div>
-    <button type="button" id="consultDrawBtn" class="workbench-btn-primary">
-      <span>خلط الأوراق وسحب القراءة</span>
-    </button>
-  </div>
-</div>
-<div class="workbench-status-banner">
-  <div class="workbench-status-info">
-    <span>الفرشة النشطة: </span>
-    <span class="spread-title" id="activeSpreadTitleDisplay">ثالوث الاستبصار المباشر (3 بطاقات)</span>
-    <span style="color: var(--aq-text-muted); margin: 0 8px;">|</span>
-    <span>عدسة القراءة: </span>
-    <span id="activeLensTitleDisplay" style="color: var(--aq-accent-gold);">تفكيك النوايا وما وراء السلوك</span>
-  </div>
-  <div style="font-size: 0.82rem; color: var(--aq-text-muted);">
-    <span>انقر على أي بطاقة لقلبها أو حفظ التقرير في مكتبتك</span>
-  </div>
-</div>
-<div class="consult-cards-arena multi-card-mode" id="consultCardsArena" aria-label="مساحة سحب وعرض بطاقات التاروت"></div>
-<div id="consultResultsContainer" aria-live="polite"></div>
-</div></section>
+
 
 </main>
 <section class="sec" id="energy-compatibility"><div class="wrap">
@@ -1552,7 +1487,6 @@
 <script src="assets/js/top-gap.js?v=20261111b" defer></script>
 <script src="assets/js/date-selects.js?v=20261113k" defer></script>
 <script src="account-profile.js" type="module"></script>
-<script src="assets/js/consultation-tarot.js"></script>
 <script src="assets/js/aqeeq-platform.js"></script>
 <script src="assets/js/hero-live.js?v=20261106e" defer></script>
 <script src="assets/js/hero-rotate.js?v=20261107k" defer></script>

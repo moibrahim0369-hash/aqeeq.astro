@@ -13,7 +13,7 @@
 - **المحتوى:**
   - المقالات المميزة في `assets/data/featured-content.json`، وفيه قائمة `articles`.
   - بيانات المصفوفة في `assets/js/destiny-matrix-data.js`، وبتتحمّل بعد اكتمال الصفحة.
-  - بيانات التاروت في `assets/data/tarot/` (القسم مخفي حالياً).
+  - القسم اتشال بالكامل (التاروت).
 - **التوثيق الداخلي:** `docs/`، وفيه دستور المحتوى `CONTENT_STYLE_GUIDE.md` ودليل الصوت `content/voice-guide.md`.
 
 ## 2. إضافة مقال جديد
