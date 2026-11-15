@@ -695,7 +695,6 @@
             <button type="button" class="aq-lib-filter-btn" data-lib-filter="matrix">مصفوفة القدر</button>
             <button type="button" class="aq-lib-filter-btn" data-lib-filter="lifepath">مسار الحياة</button>
             <button type="button" class="aq-lib-filter-btn" data-lib-filter="compat">التوافق</button>
-            <button type="button" class="aq-lib-filter-btn" data-lib-filter="tarot">التاروت</button>
           </div>
         </div>
 
