@@ -674,3 +674,6 @@ html body section#for-you .yp-ut button:not(#_a):not(#_b):not(#_c){min-height:48
 /* ===== شيل الذهبي: زر «استثمر في ذاتك» بإطار عنابي بلا تعبئة ===== */
 html body #home.aqh .aqh-hero .aqh-cta-gold:not(#_a):not(#_b):not(#_c){background:transparent!important;color:#6B1F2E!important;border:1.5px solid #6B1F2E!important;box-shadow:none!important}
 html body #home.aqh .aqh-hero .aqh-cta-gold:not(#_a):not(#_b):not(#_c):hover{background:rgba(107,31,46,.07)!important;box-shadow:none!important}
+
+/* ===== خط واحد محمّل فعليًا (Cairo) بدل Alexandria/Tajawal غير المحمّلين، في «أنت» والرئيسية فقط ===== */
+html body section#for-you *:not(svg):not(svg *),html body #home.aqh *:not(svg):not(svg *){font-family:'Cairo',-apple-system,'Segoe UI',Tahoma,sans-serif}
