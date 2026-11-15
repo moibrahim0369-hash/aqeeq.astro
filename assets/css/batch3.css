@@ -170,7 +170,7 @@ html body .aqm-slot:not(#_a):not(#_b),html body .aqm-sheet-body .aqm-slot:not(#_
 html body .aqm-slot *:not(b):not(strong):not(h4):not(h5){color:#3A2A26!important}
 html body .aqm-sheet-body:not(#_a) :is(p,li){line-height:2;color:#3A2A26}
 /* استثمر في ذاتك: كروت مثل المقالات */
-html body #invest .inv-grid:not(#_a),html body #invest .b3-reports:not(#_a){display:none!important}
+html body #invest .b3-reports:not(#_a){display:none!important}
 .b3-vip{max-width:760px;margin:6px auto 18px}
 .b3-vip-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .b3-vip-track::-webkit-scrollbar{display:none}
