@@ -722,3 +722,10 @@ html body header.top.aqh-header:not(#_a):not(#_b){padding-top:calc(3px + env(saf
 html body .bnav:not(#_a):not(#_b){padding-bottom:max(6px,env(safe-area-inset-bottom,0px))}
 html body{overscroll-behavior-y:none}
 }
+
+/* ===== شكل التطبيق على الموبايل لكل الزوار: الفوتر في الرئيسية فقط، والرفيق دايرة صغيرة ===== */
+@media(max-width:899px){
+html:not([data-aqr="home"]) body footer.foot:not(#_a):not(#_b){display:none!important}
+html body .cmp-fab:not(#_a):not(#_b){width:44px!important;height:44px!important;inset-inline-start:auto!important;inset-inline-end:12px!important;bottom:calc(86px + env(safe-area-inset-bottom,0px))!important;animation:none!important;opacity:.92}
+html body .cmp-fab svg{width:22px;height:22px}
+}

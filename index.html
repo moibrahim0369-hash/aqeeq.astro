@@ -18,6 +18,15 @@
 <!-- بعد ما تضيف الموقع في Google Search Console، ضع هنا كود التحقق الي هيدهولك: -->
 <!-- <meta name="google-site-verification" content="ضع-الكود-هنا"> -->
 <meta content="#FAF7F0" name="theme-color"/>
+<script>/* أداء: ملفات JSON الكبيرة تُجلب مرة واحدة، وملف التاروت (2.8MB) لا يُجلب إلا عند فتح التاروت */
+(function(){var f=window.fetch;if(!f)return;var memo={};
+function tarotOpen(){if(/tarot|consult/i.test(location.hash))return true;var a=document.getElementById('consultCardsArena');return !!(a&&a.offsetParent)}
+function gate(){return new Promise(function(res){if(tarotOpen())return res();var t=setInterval(function(){if(tarotOpen()){clearInterval(t);res()}},500);window.addEventListener('hashchange',function(){if(tarotOpen()){clearInterval(t);res()}})})}
+window.fetch=function(u,o){var url=typeof u==='string'?u:(u&&u.url)||'';var m=/featured-content\.json(\?|$)/.test(url)?'fc':/tarot-library\.json(\?|$)/.test(url)?'tl':null;if(!m)return f.apply(this,arguments);var args=arguments,self=this;
+if(!memo[m])memo[m]=(m==='tl'?gate():Promise.resolve()).then(function(){return f.apply(self,args)});
+return memo[m].then(function(r){return r.clone()})}})();</script>
+<script>/* وسم المسار الحالي لتنسيق شكل التطبيق على الموبايل */
+(function(){function r(){var h=(location.hash||'#home').replace('#','').split(/[/?]/)[0]||'home';document.documentElement.setAttribute('data-aqr',h)}r();window.addEventListener('hashchange',r)})();</script>
 <link href="manifest.webmanifest?v=2" rel="manifest"/>
 <link href="icons/apple-touch-icon.png" rel="apple-touch-icon"/>
 <link href="icons/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -116,7 +125,7 @@
 <link rel="stylesheet" href="assets/css/sky-sheet-fix.css?v=20261114b">
 <link rel="stylesheet" href="assets/css/inner-unified.css?v=46">
 <link rel="stylesheet" href="assets/css/aq-tokens.css?v=1">
-<link rel="stylesheet" href="assets/css/you-page.css?v=48">
+<link rel="stylesheet" href="assets/css/you-page.css?v=49">
 <link rel="stylesheet" href="assets/css/page-celestial.css?v=20261122g">
 <link rel="stylesheet" href="assets/css/internal-fixes.css?v=20261123d">
 <link rel="stylesheet" href="assets/css/mobile-fixes.css?v=3">
