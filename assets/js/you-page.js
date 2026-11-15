@@ -531,6 +531,21 @@
     pattern: '<g opacity=".45"><path d="M300 40l50 29v58l-50 29-50-29V69z"/><path d="M300 40l50 29-50 29-50-29zM300 98v58"/><path d="M60 640l50 29v58l-50 29-50-29v-58z"/><path d="M60 640l50 29-50 29-50-29zM60 698v58"/></g>',
     settings: '<g opacity=".45" stroke="#6B1F2E"><path d="M40 90l60 40 50-30 70 50"/><path d="M290 640l30-50 40 20"/><circle cx="40" cy="90" r="3" fill="#6B1F2E"/><circle cx="100" cy="130" r="2.500" fill="#6B1F2E"/><circle cx="150" cy="100" r="3" fill="#6B1F2E"/><circle cx="220" cy="150" r="2.500" fill="#6B1F2E"/><circle cx="290" cy="640" r="3" fill="#6B1F2E"/><circle cx="320" cy="590" r="2.500" fill="#6B1F2E"/></g>'
   };
+  /* رئيسية المسجّل: بطاقة «سماء يومك» بدل الهيرو التسويقي */
+  function homeSync(u, name) {
+    try {
+      document.body.classList.toggle('yp-user', !!u);
+      var host = $('#home-intro'), old = $('#yp-hc'); if (old) old.remove();
+      if (!u || !host) return;
+      var d = new Date(), w = WD[d.getDay()], list = natal() ? allCycles() : null, cur = list ? split(list).cur[0] : null;
+      var first = String(name || '').split(/\s+/)[0], dateS = d.toLocaleDateString('ar-EG-u-nu-latn', { weekday: 'long', day: 'numeric', month: 'long' });
+      var el = document.createElement('div'); el.id = 'yp-hc'; el.className = 'yp-hc';
+      el.innerHTML = '<p class="yp-hc-k">أهلًا ' + esc(first) + '</p><p class="yp-hc-d">طاقة اليوم · ' + dateS + '</p><h2>' + w[1] + '</h2><p class="yp-hc-t">' + w[2] + '</p>' +
+        (cur ? '<p class="yp-hc-c"><span>عبورك الآن</span><b>' + esc(titleOf(cur)) + '</b></p>' : '') +
+        '<a class="yp-hc-go" href="#for-you"><span>افتح صفحتك</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>';
+      host.insertBefore(el, host.firstChild);
+    } catch (e) {}
+  }
   /* شكل التطبيق: بعد الدخول وداخل «أنت» فقط يختفي هيدر وفوتر الموقع */
   function appSync() { try { document.body.classList.toggle('yp-app', !!user() && /^#for-you/.test(location.hash)); } catch (e) {} }
   window.addEventListener('hashchange', appSync);
@@ -539,8 +554,9 @@
     var u = user(), host = $('#fy-body'), sec = $('#for-you'); if (!host) return;
     if (sec) sec.classList.toggle('yp-on', !!u);
     appSync();
-    if (!u) return;
+    if (!u) { homeSync(null); return; }
     var name = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || (u.email || '').split('@')[0] || 'حسابك';
+    homeSync(u, name);
     var pn = $('#account-profile-completion'), home0 = $('#acct-user');
     if (pn && home0 && host.contains(pn)) home0.appendChild(pn);
     var set = !!(ST.view && ST.view.set), inSub = !!(ST.view && !set && !ST.view.sv && !ST.view.inb), sv = !!(ST.view && ST.view.sv), inb = !!(ST.view && ST.view.inb), home = !set && !inSub && !sv && !inb && ST.tab === 'home', cur = (set || sv || inb) ? 'settings' : ST.tab;
