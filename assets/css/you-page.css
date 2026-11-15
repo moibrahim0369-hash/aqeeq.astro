@@ -354,7 +354,7 @@ html body section#for-you .yp-bar h1:not(#_a):not(#_b){font-size:1.15rem}
 html body section#for-you .yp-bar-b:not(#_a):not(#_b){background:#FBFAF7;border-color:#E6E1D8;box-shadow:none}
 html body section#for-you .yp-av-b:not(#_a):not(#_b){width:42px;height:42px;padding:0;border-radius:50%;border:1px solid #E6E1D8;background:linear-gradient(135deg,#B5532F,#6B1F2E);color:#fff;font:700 1rem 'Cairo',sans-serif;display:grid;place-items:center;overflow:hidden;cursor:pointer}
 html body section#for-you .yp-av-b img:not(#_a){width:100%;height:100%;object-fit:cover}
-html body section#for-you .yp-sub1:not(#_a):not(#_b){margin:4px 0 12px;color:#8A7D74}
+html body section#for-you .yp-sub1:not(#_a):not(#_b){margin:4px 0 12px;color:#6F5D54}
 /* أزرار سريعة */
 html body section#for-you .yp-pills:not(#_a):not(#_b){display:flex;gap:8px;overflow-x:auto;margin:0 -16px 6px;padding:2px 16px 8px;scrollbar-width:none}
 html body section#for-you .yp-pills::-webkit-scrollbar{display:none}
@@ -365,9 +365,9 @@ html body section#for-you .yp-sec:not(#_a):not(#_b){margin:16px 0 6px}
 html body section#for-you .yp-sh:not(#_a):not(#_b){display:block!important;width:100%;padding:0 2px;border:0;background:none!important;text-align:right;cursor:pointer;box-shadow:none}
 html body section#for-you .yp-sh-t:not(#_a){display:flex;align-items:center;gap:6px}
 html body section#for-you .yp-sh-t b:not(#_a){font:800 1.3rem/1.4 'Cairo',sans-serif;color:#3A2A26}
-html body section#for-you .yp-sh-t svg:not(#_a){width:20px;height:20px;color:#8A7D74}
+html body section#for-you .yp-sh-t svg:not(#_a){width:20px;height:20px;color:#6F5D54}
 html body section#for-you div.yp-sh .yp-sh-t svg:not(#_a){display:none}
-html body section#for-you .yp-sh small:not(#_a){display:block;margin-top:1px;color:#8A7D74;font-size:.82rem;line-height:1.6}
+html body section#for-you .yp-sh small:not(#_a){display:block;margin-top:1px;color:#6F5D54;font-size:.82rem;line-height:1.6}
 html body section#for-you .yp-rail:not(#_a):not(#_b){display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:10px -16px 0;padding:4px 16px 14px;scroll-padding:0 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 html body section#for-you .yp-rail::-webkit-scrollbar{display:none}
 html body section#for-you .yp-rail>*:not(#_a):not(#_b){flex:0 0 80%!important;max-width:310px;min-height:150px;scroll-snap-align:start;box-sizing:border-box}
@@ -378,7 +378,7 @@ html body section#for-you .yp-cy-t b:not(#_a):not(#_b):not(#_c){color:#6B1F2E}
 html body section#for-you .yp-cy.up .yp-cy-t b:not(#_a):not(#_b):not(#_c){color:#9A4A32}
 html body section#for-you .yp-cy-t small:not(#_a):not(#_b):not(#_c),html body section#for-you .yp-cy.up .yp-cy-t small:not(#_a):not(#_b):not(#_c){color:#7A6A60}
 html body section#for-you .yp-pl b:not(#_a):not(#_b):not(#_c){color:#3A2A26;font-weight:600;line-height:1.8}
-html body section#for-you .yp-pl-h small:not(#_a){color:#8A7D74}
+html body section#for-you .yp-pl-h small:not(#_a){color:#6F5D54}
 html body section#for-you .yp-soon:not(#_a):not(#_b){background:#F3E6E3;color:#6B1F2E;border:1px solid #E6D2CE}
 html body section#for-you .yp-cy.up>.yp-chip:not(#_a):not(#_b){background:linear-gradient(135deg,#A9823F,#7A5645)}
 /* بطاقات سماء يومك */
@@ -386,7 +386,7 @@ html body section#for-you .yp-lc:not(#_a):not(#_b):not(#_c){min-height:0;padding
 html body section#for-you .yp-lc-k:not(#_a):not(#_b){background:#F3E9E0;color:#9A4A32}
 html body section#for-you .yp-lc h3:not(#_a):not(#_b):not(#_c){color:#3A2A26;font:800 1.1rem/1.5 'Cairo',sans-serif}
 html body section#for-you .yp-lc p:not(#_a):not(#_b):not(#_c){color:#5A4A42;font-size:.9rem;line-height:1.9}
-html body section#for-you .yp-lc-x:not(#_a):not(#_b){color:#8A7D74}
+html body section#for-you .yp-lc-x:not(#_a):not(#_b){color:#6F5D54}
 html body section#for-you .yp-lc-b:not(#_a):not(#_b){background:linear-gradient(180deg,#8A3A2A,#6B1F2E)!important;color:#fff!important;border:0}
 /* الحلقة على خلفية فاتحة */
 html body section#for-you .yp-ring .bg:not(#_a):not(#_b){stroke:#E9E3D8}
@@ -394,12 +394,12 @@ html body section#for-you .yp-ring span:not(#_a):not(#_b):not(#_c){background:#F
 html body section#for-you .yp-ring.up .fg:not(#_a):not(#_b){stroke:#A9823F}
 html body section#for-you .yp-ring.up span:not(#_a):not(#_b):not(#_c){background:#FCFBF9}
 html body section#for-you .yp-ring.up b:not(#_a):not(#_b):not(#_c){color:#7A5645}
-html body section#for-you .yp-ring.up i:not(#_a):not(#_b):not(#_c){color:#8A7D74}
+html body section#for-you .yp-ring.up i:not(#_a):not(#_b):not(#_c){color:#6F5D54}
 /* تابات سفلية بخط تحتها (صفحة كاملة) */
 html body section#for-you .yp-ut:not(#_a):not(#_b){display:flex;border-bottom:1px solid #E6E1D8;margin:4px 0 14px}
-html body section#for-you .yp-ut button:not(#_a):not(#_b){flex:1 1 0;min-height:48px;border:0;background:none!important;color:#8A7D74;font:700 1rem 'Cairo',sans-serif;cursor:pointer;box-shadow:inset 0 -3px 0 transparent;border-radius:0;display:block!important}
+html body section#for-you .yp-ut button:not(#_a):not(#_b){flex:1 1 0;min-height:48px;border:0;background:none!important;color:#6F5D54;font:700 1rem 'Cairo',sans-serif;cursor:pointer;box-shadow:inset 0 -3px 0 transparent;border-radius:0;display:block!important}
 html body section#for-you .yp-ut button[aria-selected=true]:not(#_a):not(#_b){color:#3A2A26;box-shadow:inset 0 -3px 0 #B5532F}
-html body section#for-you .yp-lab:not(#_a):not(#_b){color:#8A7D74;font:700 .78rem 'Cairo',sans-serif;letter-spacing:.04em;margin:14px 2px 8px}
+html body section#for-you .yp-lab:not(#_a):not(#_b){color:#6F5D54;font:700 .78rem 'Cairo',sans-serif;letter-spacing:.04em;margin:14px 2px 8px}
 html body section#for-you .yp-tt-l:not(#_a):not(#_b){background:linear-gradient(135deg,#FCFBF9,#F1EFEA)!important;border-color:#E6E1D8;box-shadow:none}
 html body section#for-you .yp-tt-i:not(#_a){background:#F3E9E0}
 html body section#for-you .yp-ph>div:not(#_a):not(#_b):not(#_c){background:#FBFAF7!important;border-color:#E6E1D8!important}
@@ -420,7 +420,7 @@ html body section#for-you .yp-deep[hidden]:not(#_a):not(#_b){display:none!import
 html body section#for-you .yp-ds:not(#_a):not(#_b):not(#_c){padding:14px 16px;border-radius:16px;border-right:3px solid #B5532F!important}
 html body section#for-you .yp-ds h4:not(#_a){margin:0 0 4px;color:#6B1F2E;font:800 1rem/1.6 'Cairo',sans-serif}
 html body section#for-you .yp-ds p:not(#_a){margin:0;color:#3A2A26;font:400 .95rem/2 'Cairo',sans-serif}
-html body section#for-you .yp-ut button:not(#_a):not(#_b):not(#_c){border:0!important;background:transparent!important;color:#8A7D74!important;box-shadow:inset 0 -3px 0 transparent!important;border-radius:0!important;padding:0 8px}
+html body section#for-you .yp-ut button:not(#_a):not(#_b):not(#_c){border:0!important;background:transparent!important;color:#6F5D54!important;box-shadow:inset 0 -3px 0 transparent!important;border-radius:0!important;padding:0 8px}
 html body section#for-you .yp-ut button[aria-selected=true]:not(#_a):not(#_b):not(#_c){color:#3A2A26!important;box-shadow:inset 0 -3px 0 #B5532F!important}
 html body section#for-you .yp-ut:not(#_a):not(#_b):not(#_c){border:0!important;border-bottom:1px solid #E6E1D8!important;border-radius:0!important;background:none!important;box-shadow:none!important;padding:0!important}
 
@@ -655,3 +655,7 @@ html body.yp-app section#for-you #fy-body{padding-bottom:150px}
 html body section#for-you .yp-legal{padding:4px 2px}
 html body section#for-you .yp-legal p{margin:0 0 10px;font-size:12.5px;line-height:1.8;color:#6F5D54}
 html body.yp-app section#for-you.yp-on:not(#_a):not(#_b):not(#_c){padding-top:max(10px,env(safe-area-inset-top,0px))!important}
+
+/* ===== حد أدنى 12px للنصوص داخل أنت ===== */
+html body section#for-you .yp-ring i:not(#_a):not(#_b):not(#_c),html body section#for-you .yp-chip:not(#_a):not(#_b):not(#_c),html body section#for-you .yp-soon:not(#_a):not(#_b):not(#_c),html body section#for-you em:not(#_a):not(#_b):not(#_c),html body section#for-you .yp-lab:not(#_a):not(#_b):not(#_c){font-size:12px!important}
+html body section#for-you .yp-ring i:not(#_a):not(#_b):not(#_c){line-height:1.1}
