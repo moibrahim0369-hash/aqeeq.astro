@@ -95,6 +95,14 @@
       "slug": "moon-phases",
       "category": "moon",
       "label": "افهم مراحل القمر"
+    },
+    {
+      "entityKey": "planet-pluto",
+      "entityType": "planet",
+      "planet": "pluto",
+      "slug": "pluto-hidden",
+      "category": "planets",
+      "label": "اقرأ عن بلوتو"
     }
   ],
   "general": [
