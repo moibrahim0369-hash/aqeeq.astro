@@ -729,3 +729,9 @@ html:not([data-aqr="home"]) body footer.foot:not(#_a):not(#_b){display:none!impo
 html body .cmp-fab:not(#_a):not(#_b){width:44px!important;height:44px!important;inset-inline-start:auto!important;inset-inline-end:12px!important;bottom:calc(86px + env(safe-area-inset-bottom,0px))!important;animation:none!important;opacity:.92}
 html body .cmp-fab svg{width:22px;height:22px}
 }
+
+/* الزائر على الموبايل: الصفحة الرئيسية بقت أقرب للتطبيق: المقالات والفقرات المجلّية تتشال من الرئيسية (المقالات موجودة في تبويب "مميز" من الشريط السفلي) */
+@media(max-width:899px){
+html body:not(.yp-user) #home.aqh .aqh-band-arts:not(#_a):not(#_b),
+html body:not(.yp-user) #home.aqh .aqh-articles:not(#_a):not(#_b){display:none!important}
+}
