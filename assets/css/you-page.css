@@ -699,3 +699,8 @@ html body section#for-you .yp-rail:not(#_a):not(#_b):not(#_c){display:grid;grid-
 html body section#for-you .yp-rail>*:not(#_a):not(#_b):not(#_c){flex:none!important;max-width:none;width:auto}
 html body section#for-you .yp-rail>*:nth-child(n+4):not(#_a):not(#_b):not(#_c){display:none!important}
 }
+
+/* ===== المجلة في الرئيسية: معاينة 3 مقالات للزائر وسطح المكتب، وتختفي في شكل التطبيق (موبايل + مسجّل) ===== */
+html body #home.aqh #aqh-row2:not(#_a):not(#_b){display:none!important}
+html body #home.aqh #aqh-track .aqh-article:nth-child(n+4):not(#_a):not(#_b){display:none!important}
+@media(max-width:899px){html body.yp-user #home.aqh .aqh-band-arts:not(#_a):not(#_b){display:none!important}}
