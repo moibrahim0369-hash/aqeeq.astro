@@ -2584,7 +2584,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   });
 
   /* ---------- الكورسات والفيديوهات ---------- */
-  const cl = $("#courses-list");
+  const cl = $("#courses-list") || document.createElement("ul");
   if (COURSES.length) {
     cl.innerHTML = COURSES.map(c => `<li class="course"><div class="cbody"><h3>${esc(c.title)}</h3><p>${esc(c.desc)}</p><p class="meta">${esc(c.level || "")}${c.price ? ` | ${esc(c.price)}` : ""}${c.soon ? ` <span class="soon">قريبًا</span>` : ""}</p></div>${c.link ? `<a class="btn ghost" href="${esc(c.link)}" target="_blank" rel="noopener">اشترك دلوقتي</a>` : ""}</li>`).join("");
   } else {
