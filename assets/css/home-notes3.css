@@ -33,7 +33,7 @@ html body #home.aqh .aqh-skyb #aqh-energy .dbn-eyebrow::before{content:"";flex:n
 @media(prefers-reduced-motion:reduce){html body #home.aqh .aqh-skyb #aqh-energy .dbn-eyebrow::before{animation:none}}
 
 /* 4) بانر الأدوات: دافئ ومتناغم بدل الأبيض */
-html body #home.aqh .aqh-fuse .aqh-tools{background:linear-gradient(180deg,#F8EBD6 0%,#EFDDBF 100%)!important;border:1px solid rgba(183,138,82,.6)!important;box-shadow:0 14px 30px rgba(110,60,40,.14),inset 0 1px 0 rgba(255,255,255,.7)!important;position:relative}
+html body #home.aqh .aqh-fuse .aqh-tools{background:linear-gradient(180deg,#FCF9F3 0%,#F7F1E4 100%)!important;border:1px solid rgba(183,138,82,.6)!important;box-shadow:0 14px 30px rgba(110,60,40,.14),inset 0 1px 0 rgba(255,255,255,.7)!important;position:relative}
 html body #home.aqh .aqh-fuse .aqh-tools::before{content:"";position:absolute;inset-inline:22px;top:0;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--hn-brick),var(--hn-gold),var(--hn-wine2),transparent);opacity:.8}
 html body #home.aqh .aqh-fuse .aqh-tool{background:linear-gradient(160deg,rgba(255,250,240,.92),rgba(246,232,208,.92))!important;border:1px solid rgba(183,138,82,.38)!important;box-shadow:0 2px 6px rgba(110,70,40,.08)!important}
 html body #home.aqh .aqh-fuse .aqh-tool:hover{background:linear-gradient(160deg,#FFF6E4,#F2DDB6)!important;border-color:rgba(183,138,82,.75)!important}
