@@ -1,0 +1,7 @@
+/* خطوط الموقع محلياً (مضغوطة WOFF، عربي ولاتيني وأرقام): Amiri للعناوين، IBM Plex Sans Arabic للنصوص والواجهة.
+   الترخيص: SIL Open Font License (ملفات الترخيص داخل assets/fonts) */
+@font-face{font-family:'Amiri';src:url('../fonts/Amiri-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Amiri';src:url('../fonts/Amiri-Bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans Arabic';src:url('../fonts/IBMPlexSansArabic-Regular.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans Arabic';src:url('../fonts/IBMPlexSansArabic-Medium.woff') format('woff');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans Arabic';src:url('../fonts/IBMPlexSansArabic-Bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
