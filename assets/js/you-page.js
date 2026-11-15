@@ -688,6 +688,8 @@
   });
   document.addEventListener('aq:session', function () { route(); render(); });
   document.addEventListener('aq:admin', render);
+  /* اهتزاز خفيف عند لمس أزرار التنقل (أندرويد؛ يتجاهله ما لا يدعمه) */
+  document.addEventListener('pointerdown', function (e) { try { if (navigator.vibrate && e.target.closest && e.target.closest('.bnav-item,.yp-pill,.yp-ib')) navigator.vibrate(8); } catch (x) {} }, { passive: true });
   window.addEventListener('hashchange', function () { route(); if (location.hash === '#for-you') render(); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { route(); render(); }); else { route(); render(); }
 })();

@@ -704,3 +704,14 @@ html body section#for-you .yp-rail>*:nth-child(n+4):not(#_a):not(#_b):not(#_c){d
 html body #home.aqh #aqh-row2:not(#_a):not(#_b){display:none!important}
 html body #home.aqh #aqh-track .aqh-article:nth-child(n+4):not(#_a):not(#_b){display:none!important}
 @media(max-width:899px){html body.yp-user #home.aqh .aqh-band-arts:not(#_a):not(#_b){display:none!important}}
+
+/* ===== حركة هادئة: استجابة اللمس والتنقل (بدون أنيميشن دخول للصفحات) ===== */
+@media(prefers-reduced-motion:no-preference){
+html body :is(.bnav-item,.yp-pill,.yp-ib,.yp-btn,.yp-ab,.yp-hc-go,.yp-cy,.yp-sh,.aqh-cta,.fc-mini,.fc-card,.fc-pick):not(#_a):not(#_b){transition:transform .18s var(--aq-ease,cubic-bezier(.2,.8,.2,1)),box-shadow .2s ease,background-color .2s ease,color .2s ease;-webkit-tap-highlight-color:transparent}
+html body :is(.bnav-item,.yp-pill,.yp-ib,.yp-btn,.yp-ab,.yp-hc-go,.yp-cy,.yp-sh,.aqh-cta,.fc-mini,.fc-card,.fc-pick):active:not(#_a):not(#_b){transform:scale(.965)}
+html body .bnav-item .bnav-icon:not(#_a){transition:transform .25s var(--aq-ease,cubic-bezier(.2,.8,.2,1)),background-color .25s ease,box-shadow .25s ease}
+html body .bnav-item.on .bnav-icon:not(#_a){transform:translateY(-2px)}
+html body section#for-you .yp-pill:hover:not(#_a):not(#_b){transform:translateY(-1px)}
+}
+@media(prefers-reduced-motion:reduce){html body *{scroll-behavior:auto!important}}
+html body{-webkit-tap-highlight-color:transparent}
