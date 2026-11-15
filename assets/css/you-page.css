@@ -611,3 +611,25 @@ html body section#for-you #yp-w-cl{position:absolute;inset-inline:0;top:100%;z-i
 html body section#for-you #yp-w-cl li{padding:10px 12px;border-radius:8px;cursor:pointer;display:flex;justify-content:space-between;gap:8px;color:#2B1B1F}
 html body section#for-you #yp-w-cl li small{color:#8a6a5a}
 html body section#for-you .yp-wf-go{min-height:50px;justify-content:center}
+
+/* ===== نظام الأيقونات الموحّد: بلاطات ملوّنة بهوية عقيق، كل نوع له لونه ===== */
+html body section#for-you .yp-pill svg:not(#_a):not(#_b){width:22px;height:22px;padding:9px;border-radius:16px;color:#FBF1DE;stroke:#FBF1DE;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 12px -6px rgba(74,21,33,.55)}
+html body section#for-you .yp-pill[data-k=chart] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#C9663A,#8A3A2A)}
+html body section#for-you .yp-pill[data-k=time] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#8B3050,#5A1F32)}
+html body section#for-you .yp-pill[data-k=acct] svg:not(#_a):not(#_b){background:linear-gradient(145deg,#C9A062,#8F6A2E)}
+html body section#for-you .yp-dom-i:not(#_a):not(#_b){color:#FBF1DE;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 6px 12px -6px rgba(74,21,33,.5)}
+html body section#for-you .yp-dom-i[data-d=love]:not(#_a):not(#_b){background:linear-gradient(145deg,#B8455E,#7A2238)}
+html body section#for-you .yp-dom-i[data-d=self]:not(#_a):not(#_b){background:linear-gradient(145deg,#C9663A,#8A3A2A)}
+html body section#for-you .yp-dom-i[data-d=growth]:not(#_a):not(#_b){background:linear-gradient(145deg,#8C8A4A,#5E6330)}
+html body section#for-you .yp-dom-i[data-d=work]:not(#_a):not(#_b){background:linear-gradient(145deg,#C9A062,#8F6A2E)}
+/* حلقة الأرقام: قوس تقدّم نظيف + قرص داخلي بدل الدائرة المنقطة */
+html body section#for-you .yp-ring:not(#_a):not(#_b){width:74px;height:74px}
+html body section#for-you .yp-ring .bg:not(#_a){stroke:#E6D2B6;stroke-dasharray:none;stroke-width:7}
+html body section#for-you .yp-ring .fg:not(#_a){stroke:#B5532F;stroke-width:7;filter:drop-shadow(0 1px 2px rgba(138,58,42,.35))}
+html body section#for-you .yp-ring span:not(#_a){inset:11px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF8EA,#F1E1C6);box-shadow:inset 0 1px 3px rgba(74,21,33,.18)}
+html body section#for-you .yp-ring b:not(#_a){font:700 1.2rem/1 'Cairo',sans-serif;color:#6B1F2E}
+html body section#for-you .yp-ring i:not(#_a){font-size:.58rem;color:#8A6A5A;font-weight:600}
+html body section#for-you .yp-ring.up .bg:not(#_a){stroke:rgba(255,246,228,.35)}
+html body section#for-you .yp-ring.up .fg:not(#_a){stroke:#F6DDB0;filter:none}
+html body section#for-you .yp-ring.up span:not(#_a){background:rgba(255,246,228,.16);box-shadow:inset 0 0 0 1px rgba(255,246,228,.35)}
+html body section#for-you .yp-ring.up b:not(#_a),html body section#for-you .yp-ring.up i:not(#_a){color:#FFF6E4}
