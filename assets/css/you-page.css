@@ -691,3 +691,11 @@ html body #home.aqh .yp-hc .yp-hc-c span{font-size:12px;color:#6F5D54}
 html body #home.aqh .yp-hc .yp-hc-c b{font-size:14px;color:#6B1F2E}
 html body #home.aqh .yp-hc .yp-hc-go{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:#6B1F2E;color:#FCF9F3;font-weight:700;font-size:14px;text-decoration:none}
 html body #home.aqh .yp-hc .yp-hc-go svg{width:16px;height:16px}
+
+/* ===== سطح المكتب: عمود أوسع والبطاقات في شبكة بدل صف يُقصّ ===== */
+@media(min-width:900px){
+html body section#for-you.yp-on:not(#_a):not(#_b) #fy-body{max-width:960px}
+html body section#for-you .yp-rail:not(#_a):not(#_b):not(#_c){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible;margin:10px 0 0;padding:4px 0 14px}
+html body section#for-you .yp-rail>*:not(#_a):not(#_b):not(#_c){flex:none!important;max-width:none;width:auto}
+html body section#for-you .yp-rail>*:nth-child(n+4):not(#_a):not(#_b):not(#_c){display:none!important}
+}
