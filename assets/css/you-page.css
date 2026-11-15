@@ -735,3 +735,7 @@ html body .cmp-fab svg{width:22px;height:22px}
 html body:not(.yp-user) #home.aqh .aqh-band-arts:not(#_a):not(#_b),
 html body:not(.yp-user) #home.aqh .aqh-articles:not(#_a):not(#_b){display:none!important}
 }
+
+/* استثمر في ذاتك: زر شراء واضح باللون العنابي (بدون ذهبي) يودّي لقسم الدفع */
+html body #invest .inv-cta:not(#_a):not(#_b){display:flex;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;width:100%;max-width:320px;min-height:50px;margin:16px auto 6px;border-radius:999px;background:linear-gradient(135deg,#8a3d56,#70263F);color:#FFF8EE!important;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 10px 24px rgba(112,38,63,.25)}
+html body #invest .inv-cta:not(#_a):not(#_b):focus-visible{outline:3px solid rgba(112,38,63,.45);outline-offset:3px}
