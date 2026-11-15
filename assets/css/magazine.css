@@ -57,3 +57,5 @@ html body #featured-content .fc-list .fc-card p{font-size:.85rem;-webkit-line-cl
 .fc-pop-close{min-height:48px;border-radius:999px;border:0;background:#4A1521;color:#FBF3E4;font:700 1rem inherit;cursor:pointer}
 .fc-pop-full{text-align:center;color:#70263F;text-decoration:underline;padding:10px}
 @media(prefers-reduced-motion:reduce){.fc-pop{transition:none}}
+html body #featured-content .fc-pick-img img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover}
+@media(min-width:900px){html body #featured-content .fc-pick{max-width:760px;margin-inline:auto}html body #featured-content .fc-pick-main{aspect-ratio:16/9}html body #featured-content .fc-track .fc-mini{flex-basis:220px}html body #featured-content .fc-row-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}

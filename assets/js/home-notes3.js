@@ -23,8 +23,8 @@
     if (!head || !all || !sec || sec.getAttribute('data-hn')) return;
     sec.setAttribute('data-hn', '1');
     var wrap = document.createElement('div'); wrap.className = 'aqh-all-wrap'; var ico=document.createElement('span'); ico.className='aqh-all-ico'; ico.innerHTML=SVG.grid; all.appendChild(ico); wrap.appendChild(all); sec.appendChild(wrap);
-    var badge = document.createElement('span'); badge.className = 'aqh-new-badge'; badge.hidden = true; badge.setAttribute('role', 'img'); badge.setAttribute('aria-label', 'محتوى مميز جديد');
-    badge.innerHTML = SVG.star + '<span>محتوى مميز جديد</span>'; head.appendChild(badge);
+    var badge = document.createElement('span'); badge.className = 'aqh-new-badge'; badge.hidden = true; badge.setAttribute('role', 'img'); badge.setAttribute('aria-label', 'جديد في المجلة');
+    badge.innerHTML = SVG.star + '<span>جديد في المجلة</span>'; head.appendChild(badge);
     try {
       fetch('assets/data/featured-content.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
         var list = Array.isArray(d) ? d : (d.items || d.articles || []);

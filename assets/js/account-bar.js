@@ -32,12 +32,13 @@
   function openYou() { buildSheet(); youSheet.hidden = false; youScrim.hidden = false; void youSheet.offsetWidth; youSheet.classList.add('is-open'); youScrim.classList.add('is-open'); }
   function closeYou() { if (!youSheet) return; youSheet.classList.remove('is-open'); youScrim.classList.remove('is-open'); setTimeout(function () { youSheet.hidden = true; youScrim.hidden = true; }, 300); }
   window.addEventListener('hashchange', closeYou);
+  document.addEventListener('aq:wesync', function () { var a = document.querySelector('.bnav-item[data-we]'), me = document.querySelector('.bnav-item[data-nav="account"]'), on = !!window.__aqWeOn && location.hash === '#for-you'; if (a) a.classList.toggle('on', on); if (me && user && location.hash === '#for-you') me.classList.toggle('on', !on); });
   function renderBar() {
     if (!bar) return;
     var home = bar.querySelector('[data-nav="home"]'), disc = $('#aqn-mag-btn'), acc = bar.querySelector('[data-nav="account"]');
     var compat = bar.querySelector('[data-nav="compat"]');
     if (compat) {
-      compat.style.display = user ? '' : 'none';
+      if (user) compat.style.removeProperty('display'); else compat.style.setProperty('display', 'none', 'important');
       if (user && !compat.getAttribute('data-we')) {
         compat.setAttribute('data-we', '1'); compat.setAttribute('href', '#for-you');
         var lb = compat.querySelector('.bnav-label'); if (lb) { lb.removeAttribute('data-i18n-ar'); lb.removeAttribute('data-i18n-en'); lb.textContent = 'نحن'; }

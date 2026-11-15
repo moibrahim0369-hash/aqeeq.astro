@@ -530,7 +530,7 @@
     settings: '<g opacity=".45" stroke="#6B1F2E"><path d="M40 90l60 40 50-30 70 50"/><path d="M290 640l30-50 40 20"/><circle cx="40" cy="90" r="3" fill="#6B1F2E"/><circle cx="100" cy="130" r="2.500" fill="#6B1F2E"/><circle cx="150" cy="100" r="3" fill="#6B1F2E"/><circle cx="220" cy="150" r="2.500" fill="#6B1F2E"/><circle cx="290" cy="640" r="3" fill="#6B1F2E"/><circle cx="320" cy="590" r="2.500" fill="#6B1F2E"/></g>'
   };
   function render() {
-    loadTexts();
+    loadTexts(); window.__aqWeOn = ST.tab === 'we' && !ST.view; try { document.dispatchEvent(new Event('aq:wesync')); } catch (e) {}
     var u = user(), host = $('#fy-body'), sec = $('#for-you'); if (!host) return;
     if (sec) sec.classList.toggle('yp-on', !!u);
     if (!u) return;

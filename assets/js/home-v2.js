@@ -423,7 +423,7 @@
       var inp = $('#aqh-q', box), ul = $('.aqh-results', box);
       function items(q) {
         var n = norm(q), all = DEST.map(function (d) { return { t: d.t, sub: 'قسم', h: d.h, hay: norm(d.t + ' ' + d.k) }; })
-          .concat(ARTICLES.map(function (a) { return { t: a.title, sub: 'محتوى مميز', slug: a.slug, hay: norm(a.title + ' ' + a.category + ' ' + a.intro) }; }));
+          .concat(ARTICLES.map(function (a) { return { t: a.title, sub: 'المجلة', slug: a.slug, hay: norm(a.title + ' ' + a.category + ' ' + a.intro) }; }));
         return n ? all.filter(function (x) { return x.hay.indexOf(n) > -1; }) : all.slice(0, 7);
       }
       function render() {
