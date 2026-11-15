@@ -1,0 +1,20 @@
+/* نظام الخطوط: العناوين بخط Amiri، والتفاصيل والنصوص والواجهة بخط IBM Plex Sans Arabic.
+   ملف واحد متأخر في التحميل، عشان يتطبّق على كل الصفحات بنفس الشكل */
+:root{
+  --aq-font-title:'Amiri',Georgia,serif;
+  --aq-font-ui:'IBM Plex Sans Arabic',system-ui,-apple-system,sans-serif;
+  --display:var(--aq-font-title);
+  --serif:var(--aq-font-title);
+  --sans:var(--aq-font-ui);
+  --body:var(--aq-font-ui);
+  --ui:var(--aq-font-ui);
+}
+html body,
+html body *:not(svg):not(svg *):not(#_a):not(#_b){font-family:var(--aq-font-ui)!important}
+html body :is(h1,h2,h3,h4,[class*="title"],[class*="-head"]):not(svg *):not(#_a):not(#_b){font-family:var(--aq-font-title)!important}
+/* عناصر كانت بتحدد خطها بقواعد أقوى: نرجعها لنفس النظام */
+html body :is(b,strong,.copy):not(#_a):not(#_b){font-family:var(--aq-font-ui)!important}
+html body :is(.dbn-headline,.dbn-quote4):not(#_a):not(#_b){font-family:var(--aq-font-title)!important}
+html body .dbn-s1-main .dbn-headline:not(#_a),html body .dbn-copy .dbn-quote4:not(#_a){font-family:var(--aq-font-title)!important}
+html body :is(p,div,span,h1,h2,h3,h4,h5,b,strong,small,a,button,label,li,td,th,dt,dd,em,i):not(svg *):not(#_a):not(#_b):not(#_c):not(#_d){font-family:var(--aq-font-ui)!important}
+html body :is(.dbn-headline,.dbn-quote4,h1,h2,h3,h4,[class*="title"],[class*="-head"]):not(svg *):not(#_a):not(#_b):not(#_c):not(#_d){font-family:var(--aq-font-title)!important}
