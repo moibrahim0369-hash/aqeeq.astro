@@ -161,7 +161,7 @@
     buildRot(); buildZodiac(); buildReports(); buildKarmic(); watchMatrix(); syncMe();
     var u = document.getElementById('acct-user'); if (u) new MutationObserver(syncMe).observe(u, { attributes: true, attributeFilter: ['hidden'] });
     document.addEventListener('aqeeq:natal-ready', syncMe); document.addEventListener('aq:session', function () { setTimeout(syncMe, 400); setTimeout(syncMe, 2500); });
-    setTimeout(openWelcome, 4000);
+    setTimeout(openWelcome, 14000);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

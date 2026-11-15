@@ -1,6 +1,6 @@
 /* الشريط السفلي (لك/أنت) + جرس الإشعارات + نافذة الدعوة للدخول */
 .aq-bell{position:relative}
-.aq-n-badge{position:absolute;top:-3px;inset-inline-end:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#D9362B;color:#fff;font:700 .66rem/17px 'Cairo',sans-serif;text-align:center;font-style:normal;box-shadow:0 0 0 2px #FFFDF8}
+.aq-n-badge{position:absolute;top:-3px;inset-inline-end:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:#8B1F3A;color:#fff;font:700 .66rem/17px 'Cairo',sans-serif;text-align:center;font-style:normal;box-shadow:0 0 0 2px #FFFDF8}
 .aq-n-badge[hidden]{display:none}
 .aq-notif{position:fixed;top:72px;inset-inline-start:14px;width:min(360px,calc(100vw - 28px));max-height:min(70vh,520px);overflow:auto;z-index:2300;padding:10px;border-radius:18px;background:linear-gradient(180deg,#FFFEFB,#FBF4E6);border:1px solid #E6D8BD;box-shadow:0 22px 50px rgba(94,34,52,.25)}
 .aq-notif[hidden]{display:none}

@@ -74,7 +74,7 @@
       : '<a class="aq-n-i is-me" href="#account"><span class="aq-n-ic">' + ICON_YOU + '</span><span class="aq-n-t"><b>سجّل دخولك لإشعارات تخصّك</b><small>طاقتك وتوقعاتك وعبوراتك الشخصية</small></span></a>';
     panel.innerHTML = '<div class="aq-n-h"><b>الإشعارات</b><button type="button" data-n-close aria-label="إغلاق">' + SVG('<path d="M6 6l12 12M18 6 6 18"/>') + '</button></div>' + top + (list || '<p class="aq-n-empty">لا توجد إشعارات جديدة الآن.</p>') + '<a class="aq-n-all" href="#featured-content">كل المحتوى المميز</a>';
   }
-  function badge() { if (!bellBtn) return; var n = unread(), b = bellBtn.querySelector('.aq-n-badge'); b.textContent = n > 9 ? '9+' : String(n); b.hidden = n === 0; }
+  function badge() { if (!bellBtn) return; var n = user ? unread() : 0, b = bellBtn.querySelector('.aq-n-badge'); b.textContent = n > 9 ? '9+' : String(n); b.hidden = n === 0; }
   function togglePanel(v) {
     if (!panel) return; var open = v === undefined ? panel.hidden : v;
     panel.hidden = !open; bellBtn.setAttribute('aria-expanded', String(open));
@@ -109,7 +109,7 @@
   }
   document.addEventListener('aq:admin', adminChip);
   function joinBtn() { var j = $('.aqh-join span'); if (j) { j.removeAttribute('data-i18n-ar'); j.removeAttribute('data-i18n-en'); j.textContent = user ? 'حسابي' : 'انضم الآن'; } }
-  document.addEventListener('aq:session', function (e) { user = e.detail && e.detail.user; renderBar(); renderPanel(); joinBtn(); });
+  document.addEventListener('aq:session', function (e) { user = e.detail && e.detail.user; renderBar(); renderPanel(); joinBtn(); badge(); });
   function init() { user = (window.AqSession && window.AqSession.user) || null; renderBar(); buildBell(); joinBtn(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
