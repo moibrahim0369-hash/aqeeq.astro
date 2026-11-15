@@ -2591,7 +2591,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     cl.innerHTML = `<li class="course"><div class="cbody"><h3>الكورسات قريبًا</h3><p>بجهز كورسات تعلّم الفلك ومصفوفة القدر خطوة بخطوة. تابعني على انستجرام عشان تعرف أول بأول.</p></div><a class="btn ghost" data-ig-link href="#">تابعني على انستجرام</a></li>`;
   }
   const ytId = u => { const m = String(u).match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : null; };
-  const vl = $("#videos-list");
+  const vl = $("#videos-list") || document.createElement("ul");
   if (VIDEOS.length) {
     vl.innerHTML = VIDEOS.map(v => { const id = ytId(v.url); return `<li><a class="vid" href="${esc(v.url)}" target="_blank" rel="noopener"><span class="thumb">${id ? `<img loading="lazy" alt="" src="https://i.ytimg.com/vi/${id}/hqdefault.jpg">` : ""}<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(18,8,42,.7)" stroke="#D6AE5E"/><path d="M10 8l6 4-6 4z" fill="#C5A46D"/></svg></span><span class="vt">${esc(v.title)}</span></a></li>`; }).join("");
   } else {
