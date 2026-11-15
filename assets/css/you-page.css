@@ -659,3 +659,14 @@ html body.yp-app section#for-you.yp-on:not(#_a):not(#_b):not(#_c){padding-top:ma
 /* ===== حد أدنى 12px للنصوص داخل أنت ===== */
 html body section#for-you .yp-ring i:not(#_a):not(#_b):not(#_c),html body section#for-you .yp-chip:not(#_a):not(#_b):not(#_c),html body section#for-you .yp-soon:not(#_a):not(#_b):not(#_c),html body section#for-you em:not(#_a):not(#_b):not(#_c),html body section#for-you .yp-lab:not(#_a):not(#_b):not(#_c){font-size:12px!important}
 html body section#for-you .yp-ring i:not(#_a):not(#_b):not(#_c){line-height:1.1}
+
+/* ===== أهداف اللمس 44px على الأقل (الرئيسية و«أنت») ===== */
+html body :is(.aqh-burger,.aqh-icon,.aqh-join,.aqh-cta,.aqh-brand,.dbn-arrow,.aqh-car-btn,.aqh-article-link,.sp-foot a,.aq-soc a,.foot-act .btn):not(#_a):not(#_b){min-height:44px!important;min-width:44px}
+html body :is(.aqh-cta,.aqh-article-link,.sp-foot a,.foot-act .btn):not(#_a):not(#_b){display:inline-flex;align-items:center;justify-content:center}
+html body :is(.dbn-arrow,.aqh-car-btn):not(#_a):not(#_b){width:44px!important;height:44px!important}
+html body .dbn-dot:not(#_a){position:relative;overflow:visible}
+html body .dbn-dot:not(#_a)::after{content:"";position:absolute;inset:-19px -6px}
+html body .cmp-fab:not(#_a):not(#_b){min-width:44px;min-height:44px}
+html body.yp-app .cmp-fab:not(#_a):not(#_b){width:44px!important;height:44px!important}
+html body section#for-you :is(.yp-lc-b,.yp-tab,.yp-pill,.yp-ab,.yp-ib,.yp-x,.yp-back):not(#_a):not(#_b):not(#_c){min-height:44px}
+html body section#for-you .yp-ut button:not(#_a):not(#_b):not(#_c){min-height:48px}
