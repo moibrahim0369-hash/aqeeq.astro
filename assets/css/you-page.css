@@ -715,3 +715,10 @@ html body section#for-you .yp-pill:hover:not(#_a):not(#_b){transform:translateY(
 }
 @media(prefers-reduced-motion:reduce){html body *{scroll-behavior:auto!important}}
 html body{-webkit-tap-highlight-color:transparent}
+
+/* ===== عند التثبيت كتطبيق: لا شيء تحت شريط الحالة ===== */
+@media(display-mode:standalone){
+html body header.top.aqh-header:not(#_a):not(#_b){padding-top:calc(3px + env(safe-area-inset-top,0px))!important}
+html body .bnav:not(#_a):not(#_b){padding-bottom:max(6px,env(safe-area-inset-bottom,0px))}
+html body{overscroll-behavior-y:none}
+}
