@@ -193,7 +193,7 @@
     return h + '<button type="button" class="fc-pg" data-pg="' + (st.page + 1) + '" aria-label="الصفحة التالية"' + (st.page === pages ? ' disabled' : '') + '>' + PGN + '</button>';
   }
   function countText(n) { return n + (n === 1 ? ' مادة' : n === 2 ? ' مادتان' : n <= 10 ? ' مواد' : ' مادة'); }
-  var SUB = { 'الأبراج': 'شخصيات الأبراج وتفاصيلها', 'الكواكب والقمر والعبور': 'حركة السماء وأثرها عليك', 'مسار الحياة ومصفوفة القدر': 'أرقامك ودوراتك الكبرى', 'العلاقات والرموز': 'ما بينك وبين الآخرين ومعاني الرموز', 'أحدث ما نُشر': 'الأحدث على المجلة' };
+  var SUB = { 'الأبراج': 'شخصيات الأبراج وتفاصيلها', 'الكواكب والقمر والعبور': 'حركة السماء وأثرها عليك', 'مسار الحياة ومصفوفة القدر': 'أرقامك ودوراتك الكبرى', 'العلاقات والرموز': 'ما بينك وبين الآخرين ومعاني الرموز', 'أحدث ما نُشر': 'الأحدث في المحتوى المميز' };
   function rowHead(k, ico, n, all) {
     return '<header class="fc-row-h"><' + (all ? 'button type="button" data-fc-group="' + esc(k) + '"' : 'div') + ' class="fc-row-t"><span class="fc-row-ic">' + (TICO[ico] || TICO['الفلك']) + '</span><span><h2>' + esc(k) + (all ? '<i class="fc-row-chev">' + PGN + '</i>' : '') + '</h2><small>' + (SUB[k] || countText(n)) + '</small></span></' + (all ? 'button' : 'div') + '>' +
       (all ? '<button type="button" class="fc-row-all" data-fc-group="' + esc(k) + '"><span>عرض كل المقالات</span>' + ARROW + '</button>' : '') + '</header>';
