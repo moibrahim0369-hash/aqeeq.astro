@@ -226,7 +226,7 @@
     try { arts = JSON.parse(localStorage.getItem('aqh-saved:' + (uid || 'guest')) || '[]'); } catch (e) {}
     var ah = arts.map(function (sl) { var a = window.FeaturedContent && window.FeaturedContent.get(sl); return a ? '<a class="yp-sv-a" href="#featured-content/' + esc(a.slug) + '"><span class="yp-sv-img"><img src="' + esc(a.coverImage) + '" alt="" loading="lazy"></span><span><b>' + esc(a.title) + '</b><small>' + esc(a.category) + '</small></span></a>' : ''; }).join('');
     if (cards) h += '<p class="yp-lab">دورات وقراءات حفظتها</p><div class="yp-list">' + cards + '</div>';
-    if (ah) h += '<p class="yp-lab">مقالات من المجلة</p><div class="yp-sv-l">' + ah + '</div>';
+    if (ah) h += '<p class="yp-lab">مقالات مميزة</p><div class="yp-sv-l">' + ah + '</div>';
     return h || '<div class="yp-empty">' + SVG('<path d="M6 4h12v16l-6-4-6 4z"/>') + '<p>لم تحفظ شيئًا بعد. كل ما تحفظه من مقالات وقراءات وما تشتريه سيجتمع هنا.</p></div>';
   }
   function topHtml(u, name) {

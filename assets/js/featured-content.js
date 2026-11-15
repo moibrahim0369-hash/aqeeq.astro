@@ -1,4 +1,4 @@
-/* المجلة — القائمة + صفحة القراءة (مصدر واحد: assets/data/featured-content.json) */
+/* المحتوى المميز — القائمة + صفحة القراءة (مصدر واحد: assets/data/featured-content.json) */
 (function () {
   'use strict';
   var SRC = 'assets/data/featured-content.json', CK = 'aq-fc-cache', PAGE = 4;
@@ -123,7 +123,7 @@
     var items = filtered(), showPick = st.cat === 'الكل' && !st.q;
     h += offline ? '<p class="fc-offline" role="status">أنت تتصفح نسخة محفوظة من المحتوى بسبب ضعف الاتصال.</p>' : '';
     h += showPick ? pick() : '';
-    if (st.cat !== 'الكل' && !st.q) h += '<div class="fc-gpage"><button type="button" class="fc-gback" data-fc-reset aria-label="رجوع إلى المجلة">' + PGP + '</button><div><h2>' + esc(st.cat) + '</h2><small>' + (SUB[st.cat] || '') + '</small></div></div>';
+    if (st.cat !== 'الكل' && !st.q) h += '<div class="fc-gpage"><button type="button" class="fc-gback" data-fc-reset aria-label="رجوع إلى المحتوى المميز">' + PGP + '</button><div><h2>' + esc(st.cat) + '</h2><small>' + (SUB[st.cat] || '') + '</small></div></div>';
     h += '<div class="fc-tools"><div class="fc-filters" role="group" aria-label="تصنيفات المحتوى" id="fc-filters">' + CATS.map(function (c) { return '<button type="button" class="fc-chip" data-cat="' + esc(c) + '" aria-pressed="' + (c === st.cat) + '">' + esc(c) + '</button>'; }).join('') + '</div></div>';
     h += '<div class="fc-sub"><p class="fc-count" id="fc-count" role="status" aria-live="polite"></p>' +
       '<div class="fc-search" role="search"><label for="fc-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">ابحث في المحتوى</label>' + ICO.search +
@@ -362,19 +362,19 @@
     var a = bySlug(slug), host = $('#fc-reader-body');
     reader.classList.add('fc-open'); reader.scrollTop = 0;
     if (!a) {
-      host.innerHTML = '<div class="fc-art"><div class="fc-msg"><p>هذا المحتوى غير متاح حاليًا.</p><a class="fc-btn" href="#featured-content"><span>رجوع إلى المجلة</span>' + ARROW + '</a></div></div>';
+      host.innerHTML = '<div class="fc-art"><div class="fc-msg"><p>هذا المحتوى غير متاح حاليًا.</p><a class="fc-btn" href="#featured-content"><span>رجوع إلى المحتوى المميز</span>' + ARROW + '</a></div></div>';
       document.title = 'محتوى غير متاح | AQEQ ASTRO'; return;
     }
     document.title = a.title + ' | AQEQ ASTRO';
     var rel = related(a);
     host.innerHTML =
-      '<ol class="fc-crumb" aria-label="مسار التنقل" style="width:min(720px,100% - 40px);margin-inline:auto;margin-bottom:28px"><li><a href="#home">الرئيسية</a></li><li><a href="#featured-content">المجلة</a></li><li aria-current="page">' + esc(a.category) + '</li></ol>' +
+      '<ol class="fc-crumb" aria-label="مسار التنقل" style="width:min(720px,100% - 40px);margin-inline:auto;margin-bottom:28px"><li><a href="#home">الرئيسية</a></li><li><a href="#featured-content">محتوى مميز</a></li><li aria-current="page">' + esc(a.category) + '</li></ol>' +
       '<article class="fc-art" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '">' +
       '<header class="fc-art-hd">'+ topic(a) +'<div class="fc-meta">' + meta(a) + '</div><h1 id="fc-art-title" tabindex="-1">' + esc(a.title) + '</h1><p class="fc-intro">' + esc(a.excerpt) + '</p></header></article>' +
       '<div class="fc-hero-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div>' +
       '<div class="fc-art"><div class="fc-body">' + body(a) + '</div>' +
       '<div class="fc-note"><b>ملاحظة تحريرية:</b> ' + esc(a.note || '') + '</div>' +
-      '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="' + (backTarget() ? backTarget()[1] : 'رجوع إلى المجلة') + '">' + ARROW + '<span>' + (backTarget() ? backTarget()[1] : 'رجوع إلى المجلة') + '</span></button>' +
+      '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '">' + ARROW + '<span>' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '</span></button>' +
       '<button type="button" class="fc-ghost" data-fc-save aria-pressed="false" aria-label="حفظ المقال">' + ICO.save + '<span>حفظ المقال</span></button>' +
       '<span class="fc-share"><button type="button" class="fc-ghost" data-fc-share aria-haspopup="menu" aria-expanded="false" aria-label="مشاركة المقال">' + ICO.share + '<span>مشاركة المقال</span></button>' +
       '<div class="fc-menu" role="menu" hidden><button type="button" role="menuitem" data-fc-copy>نسخ الرابط</button>' +
@@ -384,7 +384,7 @@
       '<span class="fc-saved" role="status"></span></div></div>' +
       '<div class="fc-art fc-art-cta">' + ctaCard(CAT_CTA[a.category] || 'chart', 'article') + '</div>' +
       '<section class="fc-related" aria-labelledby="fc-rel-t"><h2 id="fc-rel-t">محتوى ذو صلة</h2><div class="fc-grid">' + rel.map(function (x, i) { return card(x, i, true); }).join('') + '</div></section>' +
-      '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المجلة') + '</span>' + ARROW + '</a>' + (fromKey ? '' : '') + '</div>';
+      '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المحتوى المميز') + '</span>' + ARROW + '</a>' + (fromKey ? '' : '') + '</div>';
     var sv = $('[data-fc-save]', host), msg = $('.fc-saved', host);
     getUser().then(function (u) { var on = getSaved(u && u.id).indexOf(slug) > -1; sv.setAttribute('aria-pressed', on); $('span', sv).textContent = on ? 'محفوظ' : 'حفظ المقال'; sv._u = u; });
     sv.addEventListener('click', function () {
@@ -411,7 +411,7 @@
   var FROM = {
     chart: ['#chart', 'العودة إلى الخريطة الفلكية'], lifepath: ['#lifepath', 'العودة إلى مسار الحياة'],
     matrix: ['#matrix', 'العودة إلى مصفوفة القدر'], sky: ['#sky', 'العودة إلى السماء'],
-    featured: ['#featured-content', 'العودة إلى المجلة'], home: ['#home', 'العودة إلى الرئيسية']
+    featured: ['#featured-content', 'العودة إلى المحتوى المميز'], home: ['#home', 'العودة إلى الرئيسية']
   };
   function backTarget() { return FROM[fromKey] || null; }
   function goBack() { var t = backTarget(); if (t) { fromKey = ''; location.hash = t[0]; return; } if (internal > 0) { internal--; history.back(); } else location.hash = '#featured-content'; }
@@ -433,7 +433,7 @@
     reader.classList.remove('fc-open');
     var on = h === '#featured-content';
     list.classList.toggle('fc-open', on);
-    if (on) { document.title = 'المجلة | AQEQ ASTRO'; }
+    if (on) { document.title = 'محتوى مميز | AQEQ ASTRO'; }
   }
   window.addEventListener('hashchange', route);
   render(); route(); load();
