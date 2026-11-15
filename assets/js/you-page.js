@@ -355,6 +355,7 @@
       '<div class="yp-set-row yp-un"><div><b>اسم المستخدم</b><small>حروف إنجليزية وأرقام ونقطة، من 3 إلى 20.</small></div><span class="yp-un-f" dir="ltr">@<input id="yp-un" type="text" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" value="' + esc(unGet(u)) + '"></span><button type="button" class="yp-ab" data-un-save><span>حفظ</span></button></div><p class="yp-un-m" id="yp-un-m" role="status"></p></div>' +
       '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
       nfHtml() + '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
+      '<div class="yp-set-g"><p class="yp-lab">عن عقيق أسترو</p><div class="yp-legal"><p>القراءات للتأمل والترفيه، وليست بديلاً عن الاستشارة النفسية أو الطبية أو القانونية أو المالية.</p><p>© 2026 عقيق أسترو (Aqeq Astro). جميع الحقوق محفوظة. كل النصوص والقراءات والتصاميم والحسابات ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها بدون إذن كتابي.</p></div></div>' +
       '<button type="button" class="yp-out" data-signout>تسجيل الخروج</button></div>';
   }
 
@@ -529,10 +530,14 @@
     pattern: '<g opacity=".45"><path d="M300 40l50 29v58l-50 29-50-29V69z"/><path d="M300 40l50 29-50 29-50-29zM300 98v58"/><path d="M60 640l50 29v58l-50 29-50-29v-58z"/><path d="M60 640l50 29-50 29-50-29zM60 698v58"/></g>',
     settings: '<g opacity=".45" stroke="#6B1F2E"><path d="M40 90l60 40 50-30 70 50"/><path d="M290 640l30-50 40 20"/><circle cx="40" cy="90" r="3" fill="#6B1F2E"/><circle cx="100" cy="130" r="2.500" fill="#6B1F2E"/><circle cx="150" cy="100" r="3" fill="#6B1F2E"/><circle cx="220" cy="150" r="2.500" fill="#6B1F2E"/><circle cx="290" cy="640" r="3" fill="#6B1F2E"/><circle cx="320" cy="590" r="2.500" fill="#6B1F2E"/></g>'
   };
+  /* شكل التطبيق: بعد الدخول وداخل «أنت» فقط يختفي هيدر وفوتر الموقع */
+  function appSync() { try { document.body.classList.toggle('yp-app', !!user() && /^#for-you/.test(location.hash)); } catch (e) {} }
+  window.addEventListener('hashchange', appSync);
   function render() {
     loadTexts(); window.__aqWeOn = ST.tab === 'we' && !ST.view; try { document.dispatchEvent(new Event('aq:wesync')); } catch (e) {}
     var u = user(), host = $('#fy-body'), sec = $('#for-you'); if (!host) return;
     if (sec) sec.classList.toggle('yp-on', !!u);
+    appSync();
     if (!u) return;
     var name = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || (u.email || '').split('@')[0] || 'حسابك';
     var pn = $('#account-profile-completion'), home0 = $('#acct-user');

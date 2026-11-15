@@ -645,3 +645,13 @@ html body section#for-you .yp-ib[data-sv]:not(#_a):not(#_b):not(#_c){background:
 html body section#for-you .yp-ib[data-inb]:not(#_a):not(#_b):not(#_c){background:#F6E3E3}
 html body section#for-you .yp-ib[data-tab]:not(#_a):not(#_b):not(#_c){background:#F1ECD9}
 html body section#for-you .yp-ib i{box-shadow:0 0 0 2px #FBF8F2}
+
+/* ===== شكل التطبيق داخل «أنت» بعد الدخول: بلا هيدر ولا فوتر الموقع ===== */
+html body.yp-app header.aqh-header:not(#_a):not(#_b),html body.yp-app footer.foot:not(#_a):not(#_b){display:none!important}
+html body.yp-app{padding-top:0!important}
+html body.yp-app .cmp-fab:not(#_a):not(#_b){width:44px!important;height:44px!important;inset-inline-start:auto!important;inset-inline-end:12px!important;bottom:calc(86px + env(safe-area-inset-bottom,0px))!important;animation:none!important;opacity:.92}
+html body.yp-app .cmp-fab svg{width:22px;height:22px}
+html body.yp-app section#for-you #fy-body{padding-bottom:150px}
+html body section#for-you .yp-legal{padding:4px 2px}
+html body section#for-you .yp-legal p{margin:0 0 10px;font-size:12.5px;line-height:1.8;color:#6F5D54}
+html body.yp-app section#for-you.yp-on:not(#_a):not(#_b):not(#_c){padding-top:max(10px,env(safe-area-inset-top,0px))!important}
