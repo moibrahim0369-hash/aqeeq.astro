@@ -46,7 +46,7 @@
       var st = stageLine(el.getAttribute('data-pair'), el.getAttribute('data-ph'));
       bx.innerHTML = intro + (e.t || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + reality +
         (st ? '<p class="ax-note ax-stage">' + esc(st) + '</p>' : '') + keep +
-        (e.q ? '<p class="ax-q">' + esc(e.q) + '</p>' : '') + oldQ;
+        (e.q ? '<p class="ax-q">' + esc(e.q) + '</p>' : oldQ);
       el.setAttribute('data-lib', '1');
     }
   }
