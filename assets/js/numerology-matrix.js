@@ -215,13 +215,13 @@
     for (let y = 0; y < 80; y++) {
       const d = ageDeg(y);
       const major = y % 10 === 0;
-      const a = polar(major ? 330 : 344, d), b = polar(356, d);
+      const a = polar(major ? 342 : 356, d), b = polar(368, d);
       ticks += `<line x1="${r2(a[0])}" y1="${r2(a[1])}" x2="${r2(b[0])}" y2="${r2(b[1])}" class="aqm-svg-tick${major ? ' is-major' : ''}" />`;
     }
     let ageLabels = '';
     for (let y = 0; y < 80; y += 5) {
-      const p = polar(312, ageDeg(y));
-      const pe = polar(312, ageDeg(y) + 5.2), py = polar(312, ageDeg(y) - 5.2);
+      const p = polar(326, ageDeg(y));
+      const pe = polar(326, ageDeg(y) + 5.2), py = polar(326, ageDeg(y) - 5.2);
       const en = ageMap && ageMap[y];
       ageLabels += `<text x="${r2(py[0])}" y="${r2(py[1])}" class="aqm-svg-age-label">${y === 0 ? '0/80' : y}</text>`;
       if (en) ageLabels += `<text x="${r2(pe[0])}" y="${r2(pe[1])}" class="aqm-svg-age-energy" data-age="${y}">${en}</text>`;
@@ -231,11 +231,11 @@
     if (P.pairAges) {
       ageLabels = '';
       for (let y = 0; y < 80; y += 10) {
-        const p = polar(378, ageDeg(y));
+        const p = polar(392, ageDeg(y));
         ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-label">${y === 0 ? '0/80' : y}</text>`;
       }
       P.pairAges.forEach(a => {
-        const p = polar(312, ageDeg(a.age));
+        const p = polar(322, ageDeg(a.age));
         ageLabels += `<text x="${r2(p[0])}" y="${r2(p[1])}" class="aqm-svg-age-energy aqm-svg-age-station" data-age="${a.age}">${a.value}</text>`;
       });
     }
@@ -260,7 +260,7 @@
     };
 
     return `
-      <svg class="aqm-svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم مصفوفة القدر الهندسية">
+      <svg class="aqm-svg" viewBox="-24 -24 848 848" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="رسم مصفوفة القدر الهندسية">
         <style>
           svg.aqm-svg .aqm-svg-bg { fill: #FAF7F0; }
           svg.aqm-svg .aqm-svg-dial-ring { fill: none; stroke: #C5A46D; stroke-width: 1.2; }
@@ -301,7 +301,7 @@
         </defs>
 
         <!-- الخلفية العاجية والإطار الدائري المزدوج -->
-        <rect x="0" y="0" width="800" height="800" rx="28" class="aqm-svg-bg" fill="#FAF7F0" />
+        <rect x="-24" y="-24" width="848" height="848" rx="28" class="aqm-svg-bg" fill="#FAF7F0" />
         <circle cx="400" cy="400" r="372" class="aqm-svg-dial-ring is-outer" fill="none" stroke="#C5A46D" />
         <circle cx="400" cy="400" r="356" class="aqm-svg-dial-ring" fill="none" stroke="#C5A46D" />
         <text x="778" y="786" class="aqm-svg-watermark" fill="#B89758" fill-opacity="0.17" text-anchor="end" font-size="22" font-weight="700" direction="ltr">عقيق أسترو · Aqeq Astro</text>
@@ -349,9 +349,9 @@
         }).join('')}
         ${nodeG('aqm-node-balance', 'love_line', 'نقطة التوازن بين الحب والمال (Balance)', balancePoint, pos.balance, 18, null, null, 'balance')}
         <!-- المحور الأفقي الأيسر من A إلى E: النقاط الثلاث (الخارجية والوسطى والداخلية الخضراء) -->
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [200, 400], 19, '', T.petrol, 'axis_left_outer')}
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(A+E)', hP1, [265, 400], 19, '', T.sky, 'axis_left_mid')}
-        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية داخلية — reduce22(الوسطى+E)', hP2, [326, 400], 19, '', T.lgreen, 'axis_left_inner')}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(p1+A)', hP3, [202, 400], 17, '', T.petrol, 'axis_left_outer')}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية — reduce22(A+E)', hP1, [265, 400], 17, '', T.sky, 'axis_left_mid')}
+        ${nodeG('aqm-node-chakra', 'chakras', 'نقطة أفقية داخلية — reduce22(الوسطى+E)', hP2, [328, 400], 17, '', T.lgreen, 'axis_left_inner')}
         <!-- المحور الأيمن من E إلى C: C2 = reduce(C+E) ثم reduce(C+C2) (والنقطة الداخلية هي نقطة المال) -->
         ${nodeG('aqm-node-money', 'money_line', 'مال — C2 = reduce22(C+E)', mP1, [535, 400], 19, '', T.orange, 'axis_right_mid')}
         ${nodeG('aqm-node-money', 'money_line', 'مال — reduce22(C+C2)', mP2, [600, 400], 19, '', T.white, 'axis_right_outer')}
@@ -362,9 +362,9 @@
           : nodeG('aqm-node-ancestral', 'ancestral_programs', 'مركز الأجداد (مجموع الزوايا الأربع)', generational.ancestralCenter, [466, 400], 14, '', null, 'ancestral_center')
             + nodeG('aqm-node-ancestral', 'ancestral_programs', 'المركز المشترك (مركز الأجداد + المركز)', generational.commonCenter, [497, 400], 14, '', null, 'common_center')}
         <!-- المحور الرأسي الأعلى: B(9) ← 7 ← B2(16) -->
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 200], 19, '', T.petrol, 'axis_top_outer')}
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 19, '', T.sky, 'axis_top_mid')}
-        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح الداخلية — reduce22(B2+E)', tTop3, [400, 326], 19, '', T.lgreen, 'axis_top_inner')}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — reduce22(B+B2)', tB, [400, 202], 17, '', T.petrol, 'axis_top_outer')}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح — B2 (B+E)', intermediate.B2, pos.B2, 17, '', T.sky, 'axis_top_mid')}
+        ${nodeG('aqm-node-corner', 'talents', 'طاقة الروح الداخلية — reduce22(B2+E)', tTop3, [400, 328], 17, '', T.lgreen, 'axis_top_inner')}
         <g class="aqm-node aqm-node-center" data-section="center" data-position="core" data-title="مركز راحة الروح والجوهر الأساسي" data-arcana="${E}" transform="translate(${pos.center[0]}, ${pos.center[1]})">
           <circle cx="0" cy="0" r="44" class="aqm-node-bg" style="fill:#E6C280" />
           <circle cx="0" cy="0" r="38" class="aqm-node-ring" />
@@ -769,12 +769,13 @@
   function closeXrModal() {
     if (!xrModal || xrModal.hidden) return;
     xrToken++;
+    const xrBox = xrModal.querySelector('.aqm-xr-scroll'); if (xrBox) xrBox.scrollTop = 0;
     xrModal.hidden = true;
     document.documentElement.classList.remove('aqm-xr-open');
     // إعادة الخريطة لحالتها الطبيعية بعد إغلاق التفسير (إزالة التظليل والتعتيم)
     document.querySelectorAll('.aqm-svg .aqm-node.is-active').forEach(n => n.classList.remove('is-active'));
     document.querySelectorAll('.aqm-svg.has-focus').forEach(n => n.classList.remove('has-focus'));
-    if (xrLastTrigger && document.contains(xrLastTrigger)) { try { xrLastTrigger.focus(); } catch (e) {} }
+    if (xrLastTrigger && document.contains(xrLastTrigger)) { try { xrLastTrigger.focus({ preventScroll: true }); } catch (e) {} }
     xrLastTrigger = null;
   }
   /* يفتح النافذة بمحتوى Promise<string> (HTML). trigger = العنصر الذي يعود إليه التركيز عند الإغلاق. */
@@ -789,9 +790,10 @@
     box.scrollTop = 0;
     m.hidden = false;
     document.documentElement.classList.add('aqm-xr-open');
-    m.querySelector('.aqm-xr-sheet').focus();
+    box.scrollTop = 0;
+    m.querySelector('.aqm-xr-sheet').focus({ preventScroll: true });
     makeHtml().then(html => {
-      if (token === xrToken) box.innerHTML = html;
+      if (token === xrToken) { box.innerHTML = html; box.scrollTop = 0; }
     }).catch(() => {
       if (token === xrToken) box.innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
     });
@@ -847,7 +849,10 @@
     center: { pos: 'core', n: P => P.anchors.E },
     love_line: { pos: 'love', n: P => P.channels.heartPoint },
     money_line: { pos: 'money', n: P => P.channels.moneyPoint },
-    purposes: { pos: 'mission', n: P => P.purposes.social },
+    purposes: { pos: 'mission', n: P => P.purposes.social, stages: [
+      { t: 'الرسالة الشخصية · من 20 إلى 40', n: P => P.purposes.personal },
+      { t: 'الرسالة الاجتماعية · من 40 إلى 60', n: P => P.purposes.social },
+      { t: 'الرسالة العامة · بعد الستين', n: P => P.purposes.spiritual }] },
     karmic_tail: { pos: 'tail_entry', n: P => P.anchors.D, tail: true }
   };
   /* مواضع Gemini تُعرض داخل الأكورديون نفسه: نص الموضع ثم القراءة الأعمق (المرجع) بدون أزرار أو نوافذ.
@@ -867,6 +872,28 @@
         + `<p class="aqm-g-p"><em>${escapeHtml(nm(0))} · ${escapeHtml(nm(1))} · ${escapeHtml(nm(2))}</em></p>`;
     });
   }
+  /* دمج نص الموضع مع قراءته الأعمق في تدفق واحد (عرض فقط، لا تعديل في الملفات ولا في الجمل):
+     يُحذف من المرجع ما يكرر ما في نص الموضع: قطبا النور والظل، ومجموعة بروتوكول التحول حين يوجد حل عملي في نص الموضع.
+     ما عدا ذلك يُعرض كما هو بعد نص الموضع بلا عنوان «قراءة أعمق». */
+  function mergeGeminiFlow(unitBlocks, refBlocks) {
+    const unit = unitBlocks || [], ref = refBlocks || [];
+    const unitHasPoles = unit.some(b => b.k === 'li' && b.d === 0 && /^قطب (النور|الظل)/.test(b.t));
+    const unitHasResolution = unit.some(b => b.k === 'h2' && /اتزان|الميزان|النضج|الحل|التحرر/.test(b.t));
+    const out = [];
+    let skipGroup = false;
+    for (let i = 0; i < ref.length; i++) {
+      const b = ref[i];
+      if (b.k === 'h1') skipGroup = unitHasResolution && /بروتوكول|التحول الخيميائي/.test(b.t);
+      if (skipGroup) continue;
+      if (unitHasPoles && b.k === 'li' && b.d === 0 && /^قطب (النور|الظل)/.test(b.t)) {
+        while (i + 1 < ref.length && ref[i + 1].k === 'c') i++;
+        continue;
+      }
+      if (unitHasPoles && b.k === 'p' && /:\s*$/.test(b.t) && ref[i + 1] && ref[i + 1].k === 'li' && /^قطب (النور|الظل)/.test(ref[i + 1].t)) continue;
+      out.push(b);
+    }
+    return unit.concat(out);
+  }
   function applyGeminiAccordions(host, P, tailTriad) {
     const loader = window.AqeeqMatrix;
     host.querySelectorAll('.aqm-acc-item').forEach(item => {
@@ -884,17 +911,25 @@
       if (cfg.tail) parts.push(loader.geminiTails());
       Promise.all(parts).then(async ([d, td]) => {
         const unit = d && d.positions && d.positions[cfg.pos];
-        let html = `<h4 class="aqm-slot-title">${escapeHtml(label)} · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4>`;
-        if (unit) html += geminiBlocksHtml(unit.blocks);
+        let html = '';
+        if (cfg.stages) {
+          const ds = await Promise.all(cfg.stages.map(st => loader.gemini(Number(st.n(P))).catch(() => null)));
+          cfg.stages.forEach((st, i) => {
+            const sn = Number(st.n(P)), dd = ds[i], u = dd && dd.positions && dd.positions[cfg.pos];
+            const rb = dd && dd.reference && Array.isArray(dd.reference.blocks) ? dd.reference.blocks.filter(b => (b.pos || 'core') === cfg.pos) : [];
+            html += `<h4 class="aqm-slot-title">${escapeHtml(st.t)} · الأركانا ${sn}${arcanaName(sn) ? ' · ' + escapeHtml(arcanaName(sn)) : ''}</h4>`;
+            if (u) html += geminiBlocksHtml(mergeGeminiFlow(u.blocks, rb), cfg.pos);
+          });
+        } else {
+        html = `<h4 class="aqm-slot-title">${escapeHtml(label)} · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4>`;
+        const refBlocks = d && d.reference && Array.isArray(d.reference.blocks) ? d.reference.blocks.filter(b => (b.pos || 'core') === cfg.pos) : [];
+        if (unit) html += geminiBlocksHtml(mergeGeminiFlow(unit.blocks, refBlocks), cfg.pos);
+        }
         if (cfg.tail) {
           const code = tailTriad.map(Number).join('-'), rev = tailTriad.map(Number).reverse().join('-');
           const t = td.tails.find(x => x.code === code) || td.tails.find(x => x.code === rev);
           html += `<h4 class="aqm-slot-title aqm-g-tail-title">${t ? gInline(t.title.replace(/^عقيق أسترو \|\s*/, '')) : 'الذيل الكارمي ' + escapeHtml(code)}</h4>`;
           html += t ? geminiBlocksHtml(t.blocks) : await composeTailFallback(tailTriad).catch(() => '');
-        }
-        const refBlocks = d && d.reference && Array.isArray(d.reference.blocks) ? d.reference.blocks.filter(b => (b.pos || 'core') === cfg.pos) : [];
-        if (refBlocks.length) {
-          html += `<h4 class="aqm-slot-title aqm-g-deeper-title">قراءة أعمق للطاقة ${n}</h4>` + geminiBlocksHtml(refBlocks, cfg.pos);
         }
         grid.querySelector('[data-slot="gemini"]').innerHTML = html;
       }).catch(() => {
@@ -959,7 +994,7 @@
     const specs = {
       father_line: { file: 'father_line', fields: LINE_FIELDS, items: [[P.corners.F, 'مواهب الأب العليا (F) — ما ورثته من الأب روحيًا وفكريًا'], [P.corners.H, 'كارما الأب السفلية (H) — ما ورثته من الأب ماديًا وسلوكيًا'], [P.generational.father.combined, 'محصلة خط الأب']] },
       mother_line: { file: 'mother_line', fields: LINE_FIELDS, items: [[P.corners.G, 'مواهب الأم العليا (G) — ما ورثته من الأم روحيًا وفكريًا'], [P.corners.I, 'كارما الأم السفلية (I) — ما ورثته من الأم عاطفيًا وسلوكيًا'], [P.generational.mother.combined, 'محصلة خط الأم']] },
-      talents: { file: 'talents', fields: [['channel', 'قناة الاتصال', ''], ['gift', 'قطب النور', 'light'], ['trap', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [[P.anchors.B, 'موهبة من الله (السماء) — B', ''], [P.corners.G, 'موهبة من الأم — G', 'fromMother'], [P.corners.F, 'موهبة من الأب — F', 'fromFather']] },
+      talents: { file: 'talents', fields: [['channel', 'قناة الاتصال', ''], ['gift', 'قطب النور', 'light'], ['trap', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [[P.anchors.B, 'موهبة من الله (السماء) — B', ''], [axisPoints(P, adapter.reduceArcana).top.mid, 'موهبة التحقق — B1', ''], [axisPoints(P, adapter.reduceArcana).top.outer, 'موهبة الامتداد — B2', ''], [P.corners.G, 'موهبة من الأم — G', 'fromMother'], [P.corners.F, 'موهبة من الأب — F', 'fromFather']] },
       ancestral_programs: { file: 'ancestral_programs', fields: [['roots', 'الجذر والموروث', ''], ['fallPatterns', 'أنماط السقوط التلقائي', 'shadowlist'], ['path', 'مسار التحرر', 'light']], items: [[P.ancestralPrograms.ancestralCenter, 'مركز الأجداد — الجذر الذي تتشكل منه برمجتك العائلية'], [P.ancestralPrograms.commonCenter, 'المركز المشترك — ما يجمع تراثك العائلي بجوهرك']] },
       age_cycles: { file: 'age_cycles', fields: [['stage', 'طابع المرحلة', ''], ['light', 'قطب النور', 'light'], ['shadow', 'قطب الظل', 'shadow'], ['practice', 'الممارسة', 'light']], items: [0, 10, 20, 30, 40, 50, 60, 70].map(a => [(P.ageMap && (P.ageMap[a] || P.ageMap[String(a)])) || P.anchors.A, 'محطة سن ' + a + ' — الفترة من ' + a + ' إلى ' + (a + 10) + ' سنة']) },
       children_line: { file: 'children_line', fields: [['family', 'الأسرة والتربية', '']], items: [[P.childrenLine.childEnergy, 'طاقة الطفل'], [P.childrenLine.generationKey, 'مفتاح التواصل بين الأجيال']] },
@@ -1033,7 +1068,9 @@
       const ids = [...new Set(triads.flatMap(t => t[1]))].filter(n => n >= 1 && n <= 22);
       Promise.all([loader.section('composite_programs').catch(() => ({ entries: [] })), ...ids.map(id => loader.arcana(id).catch(() => null))]).then(([data, ...arr]) => {
         const byId = {}; ids.forEach((id, i) => { byId[id] = arr[i]; });
-        const html = triads.map(([label, t, kind]) => {
+        const seen = {}; const uniq = [];
+        triads.forEach(([l, t, k]) => { const key = [t.join('-'), [...t].reverse().join('-')].sort()[0]; if (seen[key]) { seen[key][0] += ' · ' + l; } else { seen[key] = [l, t, k]; uniq.push(seen[key]); } });
+        const html = uniq.map(([label, t, kind]) => {
           const code = t.join('-'), rev = [...t].reverse().join('-');
           const hit = (data.entries || []).find(e => e.code === code) || (data.entries || []).find(e => e.code === rev);
           const badges = t.map(badge).join(' ');
@@ -1041,7 +1078,7 @@
           let body;
           if (hit) {
             const d = hit.deep || {};
-            body = `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(hit.summary)}</p>` + poleUl([poleLi('كيف يعمل هذا البرنامج', d.pattern, ''), poleLi('مشهد من اليوم', d.daily, 'shadow'), poleLi('مسار التحرر', d.remedy, 'light')]);
+            body = `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(hit.summary)}</p>` + poleUl([poleLi('نقاط القوة', d.pattern, 'light'), poleLi('التحديات المحتملة', d.daily, 'shadow'), poleLi('التوصيات', d.remedy, 'light')]);
           } else if (t.every(n => roles[n])) {
             const intro = data.intro && data.intro[kind];
             const nm = n => arcanaName(n);
@@ -1234,10 +1271,9 @@
         title: 'المهمة والغاية — الغايات الحياتية الأربع الكبرى',
         subtitle: 'الغاية الشخصية، والاجتماعية، والروحية العامة، والغاية الكونية العليا (Purposes)',
         arcanaList: [
-          { num: purposes.personal, name: 'الشخصية' },
-          { num: purposes.social, name: 'الاجتماعية' },
-          { num: purposes.spiritual, name: 'الروحية' },
-          { num: purposes.planetary, name: 'الكونية' }
+          { num: purposes.personal, name: 'الشخصية 20–40' },
+          { num: purposes.social, name: 'الاجتماعية 40–60' },
+          { num: purposes.spiritual, name: 'العامة / الكونية' }
         ],
         contentKey: 'matrix.section.purposes',
         slots: {
@@ -1300,7 +1336,7 @@
         icon: '✨',
         title: 'المواهب والقدرات — هدايا الروح والإلهام',
         subtitle: 'المواهب الفطرية والاتصال بالإلهام والحدس (Anchor B)',
-        arcanaList: [{ num: B, name: getInfo(B).name }],
+        arcanaList: [{ num: B, name: 'B' }, { num: axisPoints(P, adapter.reduceArcana).top.mid, name: 'B1' }, { num: axisPoints(P, adapter.reduceArcana).top.outer, name: 'B2' }, { num: P.corners.G, name: 'G الأم' }, { num: P.corners.F, name: 'F الأب' }],
         contentKey: 'matrix.section.talents',
         slots: {
           primary: `تتوج زاوية المواهب طاقة شهر الميلاد <strong>${getInfo(B).name} (${B})</strong>؛ وهي الهدية التي زودتك بها الروح لتلهم مسارك.`,

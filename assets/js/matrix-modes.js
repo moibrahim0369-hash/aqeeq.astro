@@ -146,7 +146,7 @@
       sp.pts.forEach(function (p, j) {
         var v = get(p[0]), a = AD().getArcanaInfo(v.n);
         tc[toneOf(v.n)]++; badges += '<span class="aqm-badge-arcana aqm-tone-' + (j % 4) + ' b3-tn-' + toneOf(v.n) + '"><b class="aqm-bn">' + v.n + '</b><span class="aqm-bl">' + esc(p[1]) + '</span></span> ';
-        body += slot('aqm-slot-detailed', 'd', esc(p[1]) + ' · ' + v.n + ' ' + esc(a.name) + (v.x ? ' · ' + esc(v.x) : ''), '<p>' + esc(a.archetype) + '.</p>') +
+        body += '<div class="mxm-ptslot" data-sec="' + (specs === CHILD ? 'child-' : 'pair-') + i + '" data-pt="' + esc(p[0]) + '" data-n="' + v.n + '"></div>' + slot('aqm-slot-detailed', 'd', esc(p[1]) + ' · ' + v.n + ' ' + esc(a.name) + (v.x ? ' · ' + esc(v.x) : ''), '<p>' + esc(a.archetype) + '.</p>') +
           slot('aqm-slot-strengths', 's', 'في حالتها الصافية', '<p>' + esc(a.light) + '.</p>') +
           slot('aqm-slot-challenges', 'c', 'حين تختل', '<p>' + esc(a.shadow) + '.</p>');
       });
@@ -156,6 +156,22 @@
         '<div class="aqm-acc-badges">' + badges + '</div><span class="aqm-acc-chevron" aria-hidden="true">›</span></button>' +
         '<div class="aqm-acc-body">' + '<div class="aqm-content-grid">' + body + '</div></div></div>';
     }).join('') + '</div>';
+  }
+  /* نصوص المؤلف من القوالب: تظهر فقط حين تكون الخانة غير فارغة، وبلا أي undefined */
+  function hydrateModeSlots(host, mode) {
+    var L = window.AqeeqMatrix; if (!L || !L.modeSlots) return;
+    var cache = {};
+    host.querySelectorAll('.mxm-ptslot').forEach(function (el) {
+      var n = +el.dataset.n; if (!(n >= 1 && n <= 22)) return;
+      (cache[n] = cache[n] || L.modeSlots(mode, n)).then(function (d) {
+        if (!d) return;
+        var sec = d.sections.filter(function (s) { return s.id === el.dataset.sec; })[0];
+        var sl = sec && sec.slots.filter(function (x) { return x.key === el.dataset.pt; })[0];
+        var t = sl && typeof sl.text === 'string' ? sl.text.trim() : '';
+        if (!t) return;
+        el.innerHTML = t.split(/\n{2,}/).map(function (para) { return '<p class="aqm-g-p">' + esc(para) + '</p>'; }).join('');
+      });
+    });
   }
   function bindAcc(host) {
     if (host.__mxcAcc) return; host.__mxcAcc = true;
@@ -178,7 +194,7 @@
     host.innerHTML = map +
       pairAccHtml(PAIR, function (k) { return { n: c[k] }; }) + sum +
       '<p class="mxm-note">قراءة العلاقة بين شريكين أيًّا كانت صلتهما، والأرقام محسوبة من تاريخي الميلاد.</p>';
-    host.hidden = false; bindAcc(host); bindMap(host, pairFull(d1, d2));
+    host.hidden = false; bindAcc(host); hydrateModeSlots(host, 'compat'); bindMap(host, pairFull(d1, d2));
   }
   /* الضغط على رقم العمر أو على أي عقدة في خريطة الشريكين يعرض معناه تحت الخريطة مباشرة */
   function bindMap(host, P, W) {
@@ -223,7 +239,7 @@
         return { n: P[k] };
       }, CHILD_SUB) + sum +
       '<p class="mxm-note">النصوص داخل الأقسام تمهيدية، والأرقام محسوبة من تاريخ الميلاد.</p>';
-    host.hidden = false; bindAcc(host); if (full) bindMap(host, full, { age: 'الطاقة التي يمرّ بها الطفل عند هذا العمر', dec: 'بداية مرحلة جديدة في عمره', node: 'نقطة من خريطة الطفل' });
+    host.hidden = false; bindAcc(host); hydrateModeSlots(host, 'child'); if (full) bindMap(host, full, { age: 'الطاقة التي يمرّ بها الطفل عند هذا العمر', dec: 'بداية مرحلة جديدة في عمره', node: 'نقطة من خريطة الطفل' });
   }
 
   function field(id, label, type) {

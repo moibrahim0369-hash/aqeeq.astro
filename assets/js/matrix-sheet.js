@@ -45,12 +45,14 @@
     var s = ensureSheet(); fill(item);
     lastFocus = document.activeElement;
     s.classList.remove('is-closing'); s.hidden = false; document.documentElement.classList.add('aqm-sheet-open');
-    var x = s.querySelector('.aqm-sheet-x'); if (x) x.focus();
+    var sbo = s.querySelector('.aqm-sheet-body'); if (sbo) sbo.scrollTop = 0; var pn = s.querySelector('.aqm-sheet-panel'); if (pn) pn.scrollTop = 0;
+    var x = s.querySelector('.aqm-sheet-x'); if (x) x.focus({ preventScroll: true });
   }
   function close() {
     if (!sheet || sheet.hidden) return; sheet.classList.add('is-closing');
+    var sbc = sheet.querySelector('.aqm-sheet-body'); if (sbc) sbc.scrollTop = 0;
     var sh = sheet; setTimeout(function () { sh.hidden = true; sh.classList.remove('is-closing'); document.documentElement.classList.remove('aqm-sheet-open'); }, 230);
-    if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {}
+    if (lastFocus && lastFocus.focus) try { lastFocus.focus({ preventScroll: true }); } catch (e) {}
   }
 
   /* قراءة الخريطة كاملة: فهرس جامع بالأقسام وأرقامها */

@@ -1771,3 +1771,7 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 #matrix .aqm-forecast .aqm-fc-month .aqm-fc-num { width: 34px; min-width: 34px; height: 34px; }
 #matrix .aqm-forecast .aqm-fc-read { width: auto; min-height: 0; padding: 7px 14px; font-size: .78rem; background: transparent; color: #6A2038; border: 1px solid #C5A46D; border-radius: 999px; }
 #matrix .aqm-forecast .aqm-fc-month button.aqm-fc-open { font-size: inherit; min-height: 0; }
+
+/* منع اهتزاز الخلفية عند قفل التمرير أثناء النوافذ */
+html:has(#matrix) { scrollbar-gutter: stable; }
+html.aqm-xr-open, html.aqm-sheet-open { overflow: hidden; scrollbar-gutter: stable; }

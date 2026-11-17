@@ -90,6 +90,11 @@
     return load('gemini/pos-' + String(id).padStart(2, '0') + '.json', d => d && d.number === id && d.positions && typeof d.positions === 'object')
       .catch(() => null);   // رقم بلا ملف مصدر (مثل 22 للمرجع أو 17 للمواضع) = لا يوجد، وليس خطأ
   }
+  /* قوالب النصوص المخصصة للشراكة والطفل: gemini/compat-NN.json و gemini/child-NN.json (خانات نصية فارغة تُملأ لاحقًا) */
+  function modeSlots(mode, id) {
+    if ((mode !== 'compat' && mode !== 'child') || !validId(id)) return Promise.resolve(null);
+    return load('gemini/' + mode + '-' + String(id).padStart(2, '0') + '.json', d => d && d.mode === mode && Array.isArray(d.sections)).catch(() => null);
+  }
   function geminiTails() {
     return load('gemini/tails.json', d => d && Array.isArray(d.tails));
   }
@@ -98,6 +103,7 @@
   function chakraLower() { return load('chakra-lower.json', d => d && d.chakras && d.arcana); }
 
   window.AqeeqMatrix = {
+    modeSlots: modeSlots,
     chakraLower,
     gemini, geminiTails,
     core, arcana, chakraText, chakraReading, prefetch, FIELDS,
