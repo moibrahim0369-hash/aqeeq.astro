@@ -7,13 +7,15 @@ const KEYS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'u
 const ASP = ['conj', 'sext', 'square', 'trine', 'opp'];
 const GROUPS = { moon: () => KEYS.filter(k => k !== 'moon').map(k => [k, 'moon'].sort((a, b) => KEYS.indexOf(a) - KEYS.indexOf(b)).join('|')) };
 KEYS.forEach((k, i) => { if (k !== 'moon' && !GROUPS[k]) GROUPS[k] = () => KEYS.slice(i + 1).filter(o => o !== 'moon').map(o => k + '|' + o); });
+/* زوايا لا تحدث في السماء لقرب الكوكبين من الشمس أو من بعضهما */
+const IMPOSSIBLE = { 'sun|mercury': ['sext', 'square', 'trine', 'opp'], 'sun|venus': ['sext', 'square', 'trine', 'opp'], 'mercury|venus': ['square', 'trine', 'opp'] };
 const BAN = ['مفتاح', 'مفاتيح', 'طُعم', 'طعم', 'بصفتي', 'من الجدير', 'في الختام', 'محمد'];
 const err = [];
 const idx = JSON.parse(fs.readFileSync(path.join(DIR, 'index.json'), 'utf8'));
 const all = [];
 for (const g of idx.groups) {
   const d = JSON.parse(fs.readFileSync(path.join(DIR, g + '.json'), 'utf8'));
-  const expect = []; GROUPS[g]().forEach(p => ASP.forEach(a => expect.push(p + '|' + a)));
+  const expect = []; GROUPS[g]().forEach(p => ASP.forEach(a => { if (!(IMPOSSIBLE[p] || []).includes(a)) expect.push(p + '|' + a); }));
   if (['moon', 'sun', 'mercury', 'venus', 'mars', 'jupiter', 'saturn'].includes(g)) {
     expect.forEach(k => { if (!d[k]) err.push(g + ': ناقص ' + k); });
     Object.keys(d).forEach(k => { if (!expect.includes(k)) err.push(g + ': مفتاح غير متوقع ' + k); });
