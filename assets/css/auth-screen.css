@@ -73,3 +73,38 @@
   html[data-aqr="account"] #account #acct-email-open{
     background:rgba(239,227,211,.55)!important;color:#70263F!important;border:1.5px solid rgba(168,135,80,.7)!important;margin-top:14px}
 }
+@media (max-width:760px){
+  /* النسخة الزجاجية النهائية: كريمي دافي بوهج ذهبي ووردي هادي، من غير أي بنفسجي */
+  html[data-aqr="account"] section#account.sec.acct-modal.acx{
+    background:
+      radial-gradient(70% 38% at 50% 8%,rgba(226,190,128,.38),transparent 70%),
+      radial-gradient(60% 34% at 92% 46%,rgba(226,170,160,.20),transparent 70%),
+      radial-gradient(70% 36% at 6% 78%,rgba(222,186,128,.20),transparent 70%),
+      linear-gradient(180deg,#FBF5EA 0%,#F6EBDA 100%)!important;
+  }
+  /* اللوجو على قرص زجاجي */
+  html[data-aqr="account"] #account .acx-logo img{
+    width:112px!important;height:112px!important;box-sizing:border-box;padding:12px;border-radius:50%;
+    background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 10px 34px rgba(190,150,80,.28),inset 0 1px 0 rgba(255,255,255,.9);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+  /* لوح زجاجي للزرارين */
+  html[data-aqr="account"] #account #acct-guest:not([hidden]){
+    padding:20px 18px 16px;border-radius:28px;
+    background:linear-gradient(180deg,rgba(255,252,246,.72),rgba(255,247,236,.48));
+    border:1px solid rgba(255,255,255,.85);
+    box-shadow:0 18px 44px rgba(112,38,63,.10),0 2px 0 rgba(255,255,255,.7) inset;
+    -webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2)}
+  html[data-aqr="account"] #account #acct-google{
+    box-shadow:0 10px 24px rgba(112,38,63,.30),inset 0 1px 0 rgba(255,255,255,.28)!important}
+  html[data-aqr="account"] #account #acct-email-open{
+    background:rgba(255,255,255,.55)!important;border:1.2px solid rgba(168,135,80,.65)!important;
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  html[data-aqr="account"] #account .acx-legal{margin:14px 0 0;text-align:center;font-size:.78rem;color:#8a7a6e;line-height:1.7}
+  html[data-aqr="account"] #account .acx-legal a{color:#70263F;text-decoration:underline;text-underline-offset:3px}
+  html[data-aqr="account"] #account #acct-guest.acx-email .acx-legal{display:none}
+  html[data-aqr="account"] #account .acct-card-shell{padding-bottom:6px!important}
+}
+@media (max-width:760px){
+  html[data-aqr="account"] .amb,html[data-aqr="account"] .amb-nebula{display:none!important}
+}
