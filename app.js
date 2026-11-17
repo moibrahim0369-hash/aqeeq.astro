@@ -120,17 +120,6 @@
     // Keep composite formatting consistent for every result, including master 11.
     const compositeDisplay = `${meta.rawBaseSum} / الجذر ${meta.composite}`;
 
-    const scoreDetails = `
-      <div class="syn-score-breakdown">
-        <p>الأساس: <strong>${breakdown.base ?? 50}</strong></p>
-        <p>توافق العائلات: <strong>${breakdown.familyBonus ?? 0}</strong></p>
-        <p>الجسر الأساسي: <strong>${breakdown.coreBridgeBonus ?? 0}</strong></p>
-        <p>الجسر اليومي: <strong>${breakdown.dailyBridgeBonus ?? 0}</strong></p>
-        <p>مكافأة المسار المشترك: <strong>${breakdown.compositeBonus ?? 0}</strong></p>
-        <p>الأرقام الرئيسية: <strong>${breakdown.masterBonus ?? 0}</strong></p>
-        <p>الدرس الكارمي: <strong>${breakdown.karmicPenalty ?? 0}</strong></p>
-        <p>المجموع قبل الحد: <strong>${meta.rawScore ?? meta.score}</strong></p>
-      </div>`;
 
     const overlayHtml = overlays.length ? `
       <article class="syn-result-card">
@@ -190,9 +179,9 @@
       <div class="syn-result-grid">
         <article class="syn-result-card"><div class="syn-kpi">مسار ${esc(nameA)}</div><div class="syn-value">${meta.path1}</div><h4>${safeText(p1.identity, "مسار الحياة")}</h4></article>
         <article class="syn-result-card"><div class="syn-kpi">مسار ${esc(nameB)}</div><div class="syn-value">${meta.path2}</div><h4>${safeText(p2.identity, "مسار الحياة")}</h4></article>
-        <article class="syn-result-card"><div class="syn-kpi">المسار المشترك Composite</div><div class="syn-value">${esc(compositeDisplay)}</div><h4>${meta.isCompositeMaster ? "مسار رئيسي في العلاقة" : "جذر المسار المشترك"}</h4></article>
-        <article class="syn-result-card"><div class="syn-kpi">الجسر الأساسي Core Bridge</div><div class="syn-value">${meta.coreBridge}</div><h4>${safeText(bridge.title, free.coreBridgeTitle || "جسر العلاقة")}</h4><p>${safeText(bridge.power_dynamic, "")}</p></article>
-        <article class="syn-result-card"><div class="syn-kpi">الجسر اليومي Daily Bridge</div><div class="syn-value">${meta.dailyBridge}</div><h4>${safeText(daily.title, "طريقة التفاعل اليومي")}</h4><p>${safeText(daily.spark_dynamic, "")}</p><h4>نقطة الاحتكاك اليومية</h4><p>${safeText(daily.daily_fuse, "")}</p><h4>اقتراح عملي</h4><p>${safeText(daily.daily_hack, "")}</p></article>
+        <article class="syn-result-card"><div class="syn-kpi">الرقم المشترك</div><div class="syn-value">${esc(compositeDisplay)}</div><h4>${meta.isCompositeMaster ? "مسار رئيسي في العلاقة" : "جذر المسار المشترك"}</h4></article>
+        <article class="syn-result-card"><div class="syn-kpi">الجسر الأساسي</div><div class="syn-value">${meta.coreBridge}</div><h4>${safeText(bridge.title, free.coreBridgeTitle || "جسر العلاقة")}</h4><p>${safeText(bridge.power_dynamic, "")}</p></article>
+        <article class="syn-result-card"><div class="syn-kpi">الجسر اليومي</div><div class="syn-value">${meta.dailyBridge}</div><h4>${safeText(daily.title, "طريقة التفاعل اليومي")}</h4><p>${safeText(daily.spark_dynamic, "")}</p><h4>نقطة الاحتكاك اليومية</h4><p>${safeText(daily.daily_fuse, "")}</p><h4>اقتراح عملي</h4><p>${safeText(daily.daily_hack, "")}</p></article>
       </div>
 
       ${attractionHTML}
@@ -201,7 +190,7 @@
         ${card("جسر العلاقة الأساسي", `<p>${safeText(bridge.hidden_trigger, "")}</p><h4>بروتوكول الإصلاح</h4><p>${safeText(bridge.healing_protocol, "")}</p><h4>جملة الإصلاح المشتركة</h4><p>${safeText(bridge.repair_statement || free.healingLine, "")}</p>`)}
       </div>
 
-      <article class="syn-premium locked" id="syn-premium">
+      <article class="syn-premium unlocked" id="syn-premium">
         <div class="syn-premium-content">
           <h3>التقرير المتعمق للشراكة</h3>
           <div class="syn-result-grid">
@@ -211,36 +200,22 @@
             ${card("نقطة الصدام الخفية", `<p>${safeText(lens1.daily_fuse, "")}</p><p>${safeText(lens2.daily_fuse, "")}</p><h4>المحفز المشترك</h4><p>${safeText(bridge.hidden_trigger, "")}</p>`)}
             ${card(relationType === "business" ? "روشتة الشراكة العملية" : relationType === "family" ? "روشتة إصلاح العلاقة الأسرية" : "روشتة الحل بينكم", `
               <h4>الجملة المشتركة اللي تفتح باب الإصلاح</h4>${para(bridge.repair_statement)}
-              <h4>${esc(nameA)} · مفتاح مساره</h4>${para(p1.magicKey, "مفتاح المسار غير متاح في البيانات الحالية.")}
+              <h4>اللي بيفرق مع ${esc(nameA)}</h4>${para(p1.magicKey)}
               <h4>خطوة عملية لـ ${esc(nameA)}</h4>${para(lens1.prescription_for_you)}
               <h4>الجملة العلاجية المناسبة لـ ${esc(nameA)}</h4>${para(lens1.healing_line)}
-              <h4>${esc(nameB)} · مفتاح مساره</h4>${para(p2.magicKey, "مفتاح المسار غير متاح في البيانات الحالية.")}
+              <h4>اللي بيفرق مع ${esc(nameB)}</h4>${para(p2.magicKey)}
               <h4>خطوة عملية لـ ${esc(nameB)}</h4>${para(lens2.prescription_for_you)}
               <h4>الجملة العلاجية المناسبة لـ ${esc(nameB)}</h4>${para(lens2.healing_line)}
               <h4>بروتوكول الإصلاح المشترك</h4>${para(bridge.healing_protocol)}
             `)}
-            ${card("تفاصيل الحساب", scoreDetails)}
           </div>
           ${overlayHtml}
           ${karmicHtml}
         </div>
-        <div class="syn-lock-overlay">
-          <div style="font-size:2rem"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></div>
-          <h3>التقرير الكامل</h3>
-          <p>المعاينة الكاملة هنا تجريبية. زر العرض لا يمثل نظام دفع فعليًا.</p>
-          <button class="btn" type="button" id="syn-unlock">عرض التقرير التفصيلي</button>
-        </div>
-      </article>
-      <p class="syn-note">الحسابات تتم داخل المتصفح. درجة التوافق مؤشر داخل منهج عقيق أسترو وليست قياسًا علميًا للعلاقة.</p>`;
+      </article>`;
 
     output.hidden = false;
     output.style.display = "";
-    const unlock = $("syn-unlock");
-    if (unlock) unlock.addEventListener("click", () => {
-      const premium = $("syn-premium");
-      premium.classList.remove("locked");
-      premium.classList.add("unlocked");
-    });
   }
 
   form.addEventListener("submit", async (event) => {
