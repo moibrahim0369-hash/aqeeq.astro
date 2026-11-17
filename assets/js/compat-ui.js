@@ -33,6 +33,60 @@
     paint();
   }
 
-  function init() { modeCards(); }
+  /* ---------- 2) بطاقة النتيجة العنابية + إخفاء النموذج ---------- */
+  var REL = { romantic: 'عاطفة وشراكة', family: 'أسرة وأخوة', business: 'عمل وشغل' };
+  var HI = {
+    edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.500 6.500l4 4"/>',
+    save: '<path d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z"/>',
+    add: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>'
+  };
+  function pill(a, ic, label) { return '<button type="button" data-cph="' + a + '" aria-label="' + label + '">' + sv(HI[ic], 1.7) + '<span>' + label + '</span></button>'; }
+  function setForm(show) {
+    var f = $('#synastry-form'), m = $('#cpm-modes'), ex = $('#lifepath-compat .cp-explain');
+    [f, m, ex].forEach(function (el) { if (!el) return; if (show) { el.style.removeProperty('display'); el.hidden = false; } else el.style.setProperty('display', 'none', 'important'); });
+  }
+  function clearResult() { var o = $('#syn-result'); if (o) { o.hidden = true; o.innerHTML = ''; } }
+  function buildHero(out) {
+    if (!out || out.hidden || !out.innerHTML.trim()) { return; }
+    if (out.querySelector('.cph')) return;
+    var D = out.dataset, h = document.createElement('section'); h.className = 'cph';
+    var master = out.querySelector('.syn-master-badge');
+    h.innerHTML = '<span class="cph-k">توافق مسار الحياة · ' + esc(REL[D.rel] || '') + '</span>' +
+      '<div class="cph-pair">' +
+      '<div class="cph-p"><span class="cph-n">' + esc(D.p1) + '</span><b>' + esc(D.na) + '</b><small>مسار حياته</small></div>' +
+      '<div class="cph-sc"><span class="cph-ring"><strong>' + esc(D.score) + '<em>%</em></strong></span><small>' + esc(D.label) + '</small></div>' +
+      '<div class="cph-p"><span class="cph-n">' + esc(D.p2) + '</span><b>' + esc(D.nb) + '</b><small>مسار حياتها</small></div></div>' +
+      '<div class="cph-tools">' + pill('edit', 'edit', 'تعديل البيانات') + pill('save', 'save', 'حفظ') + pill('new', 'add', 'توافق جديد') + '</div>';
+    /* الوصف (حياته/حياتها) يتبع الجنس المختار، وإلا صيغة محايدة */
+    var caps = h.querySelectorAll('.cph-p small');
+    caps[0].textContent = D.g1 === 'female' ? 'مسار حياتها' : D.g1 === 'male' ? 'مسار حياته' : 'مسار الحياة';
+    caps[1].textContent = D.g2 === 'female' ? 'مسار حياتها' : D.g2 === 'male' ? 'مسار حياته' : 'مسار الحياة';
+    if (master) h.appendChild(master);
+    out.insertBefore(h, out.firstChild);
+    setForm(false);
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); }
+    var sec = $('#lifepath-compat'); if (sec) sec.scrollTop = 0;
+  }
+  function heroActions() {
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-cph]'); if (!b) return;
+      var a = b.getAttribute('data-cph'), out = $('#syn-result'), D = (out && out.dataset) || {};
+      if (a === 'edit') { clearResult(); setForm(true); var f = $('#synastry-form'); if (f) f.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      else if (a === 'new') { ['syn-name-a', 'syn-name-b', 'syn-date-a', 'syn-date-b'].forEach(function (id) { var el = $('#' + id); if (el) { el.value = ''; el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); } }); clearResult(); setForm(true); var n = $('#syn-name-a'); if (n) { n.scrollIntoView({ behavior: 'smooth', block: 'center' }); try { n.focus({ preventScroll: true }); } catch (x) {} } }
+      else if (a === 'save') {
+        var P = window.AqeeqPlatform;
+        if (P && typeof P.saveReading === 'function') {
+          P.saveReading({ type: 'lifepath-compat', typeLabel: 'توافق مسار الحياة', title: D.na + ' + ' + D.nb, subtitle: (REL[D.rel] || '') + ' · ' + D.score + '%', route: '#lifepath-compat', inputs: { name1: D.na, date1: D.d1, gender1: D.g1, name2: D.nb, date2: D.d2, gender2: D.g2, type: D.rel } });
+          b.classList.add('is-saved'); var sp = b.querySelector('span'); if (sp) sp.textContent = 'تم الحفظ';
+        }
+      }
+    });
+  }
+  function watchResult() {
+    var out = $('#syn-result'); if (!out) return; var q = false;
+    new MutationObserver(function () { if (q) return; q = true; requestAnimationFrame(function () { q = false; buildHero(out); }); }).observe(out, { childList: true, attributes: true, attributeFilter: ['hidden'] });
+  }
+
+  function init() { modeCards(); heroActions(); watchResult(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

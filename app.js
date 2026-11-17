@@ -288,6 +288,10 @@
       const result = window.AqeqEngine.calculateAqeqCompatibility(pathA, pathB, dateDay(dateA), dateDay(dateB));
       const report = window.AqeqEngine.buildReport(result, DATA, relationEngineType(selectedType));
       renderReport(nameA, nameB, report, relationEngineType(selectedType), { a: $("syn-gender-a")?.value || "", b: $("syn-gender-b")?.value || "" });
+      Object.assign(output.dataset, {
+        score: report.meta.score, label: report.meta.label?.label || "", rel: selectedType,
+        d1: dateA, d2: dateB, g1: $("syn-gender-a")?.value || "", g2: $("syn-gender-b")?.value || ""
+      });
       output.scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (error) {
       console.error("Aqeq synastry calculation failed:", error);

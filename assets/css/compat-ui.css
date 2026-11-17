@@ -8,3 +8,24 @@ html body #lifepath-compat .cpm-mode.is-on{background:linear-gradient(160deg,#6A
 html body #lifepath-compat .cpm-mode.is-on .cpm-ic{background:rgba(255,243,214,.12);border-color:rgba(224,197,138,.55);color:#E9CE8E}
 html body #lifepath-compat .cpm-mode:focus-visible{outline:2px solid #C8A15A;outline-offset:2px}
 html body section#lifepath-compat .syn-person ~ .field.syn-rel.cpm-hidden,html body section#lifepath-compat .syn-rel.cpm-hidden,html body section#lifepath-compat .field.syn-rel.cpm-hidden{display:none!important}
+
+/* بطاقة النتيجة العنابية */
+html body #lifepath-compat #syn-result>.cph{position:relative;display:block;margin:0 0 14px;padding:22px 14px 16px;border-radius:22px;text-align:center;overflow:hidden;background:radial-gradient(70% 90% at 100% 0%,rgba(200,161,90,.20),transparent 62%),linear-gradient(160deg,#6A2038,#4A1224 62%,#3A0E1C);border:1.4px solid #C8A15A;box-shadow:0 14px 30px rgba(58,14,28,.30),0 1px 0 rgba(255,243,214,.15) inset}
+html body #lifepath-compat #syn-result>.cph::after{content:"";position:absolute;inset-inline-start:-46px;bottom:-52px;width:170px;height:170px;border-radius:50%;border:1px solid rgba(224,197,138,.22);box-shadow:0 0 0 18px rgba(224,197,138,.05);pointer-events:none}
+.cph-k{display:block;margin:0 0 14px;font:600 .82rem 'Cairo',sans-serif;color:#E0C58A;letter-spacing:.03em}
+.cph-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}
+.cph-p{display:grid;justify-items:center;gap:4px;min-width:0}
+.cph-p b{font:700 1.02rem/1.4 'Amiri','Cairo',serif;color:#FFF3D6;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cph-p small,.cph-sc small{font:500 .74rem 'Cairo',sans-serif;color:#E0C58A}
+.cph-n{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;font:700 1.8rem/1 'Cairo',sans-serif;color:#4A1224;background:radial-gradient(circle at 35% 28%,#FFF6DC,#EBCF8C 62%,#C8A15A);border:2px solid #F3DDA0;box-shadow:0 0 0 3px rgba(74,18,36,.9),0 0 0 5px rgba(226,190,112,.85),0 8px 16px rgba(0,0,0,.30)}
+.cph-sc{display:grid;justify-items:center;gap:8px;max-width:130px}
+.cph-ring{display:grid;place-items:center;width:92px;height:92px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#5A1A30,#3A0E1C);border:2px solid #F3DDA0;box-shadow:0 0 0 4px rgba(74,18,36,.95),0 0 0 6px rgba(226,190,112,.85),0 0 0 11px rgba(226,190,112,.16),0 10px 22px rgba(0,0,0,.30)}
+.cph-ring strong{font:800 1.7rem/1 'Cairo',sans-serif;color:#FFF3D6;direction:ltr}
+.cph-ring em{font-style:normal;font-size:.9rem;margin-inline-start:2px;color:#E9CE8E}
+.cph-tools{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:16px}
+.cph-tools button{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;cursor:pointer;font:600 .82rem 'Cairo',sans-serif;background:rgba(255,243,214,.10);border:1px solid rgba(224,197,138,.45);color:#FFF3D6}
+.cph-tools button svg{width:18px;height:18px;color:#E9CE8E}
+.cph-tools button.is-saved{background:#E9CE8E;color:#4A1224;border-color:#E9CE8E}
+.cph-tools button.is-saved svg{color:#4A1224}
+.cph .syn-master-badge{margin:14px 0 0;font:500 .8rem/1.6 'Cairo',sans-serif;color:#FFF3D6;background:rgba(255,243,214,.08);border-radius:12px;padding:8px 10px}
+html body #lifepath-compat #syn-result>.lpa-nav,html body #lifepath-compat #syn-result>.syn-score-card{display:none!important}
