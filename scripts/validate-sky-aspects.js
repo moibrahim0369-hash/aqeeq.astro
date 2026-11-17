@@ -28,7 +28,7 @@ for (const g of idx.groups) {
     if (/[A-Za-z]/.test(txt)) err.push(k + ': حروف لاتينية');
     if (/[—–]/.test(txt)) err.push(k + ': شرطة طويلة');
     const n = txt.split(/\s+/).filter(Boolean).length;
-    if (n < 55 || n > 150) err.push(k + ': الطول ' + n + ' كلمة');
+    if (n < 90 || n > 190) err.push(k + ': الطول ' + n + ' كلمة');
   }
 }
 /* تكرار ست كلمات متتالية بين نصين */
