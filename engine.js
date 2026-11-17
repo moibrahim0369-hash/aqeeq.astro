@@ -199,7 +199,10 @@ function getMasterOverlays(path1, path2, rawBaseSum, masterData = {}) {
       overlays.push({ source, number: path, text: masterData[String(path)] });
     }
   }
-  if (MASTER_NUMBERS.includes(Number(rawBaseSum)) && masterData[String(rawBaseSum)]) {
+  // Skip the composite overlay when a partner already carries the same master number (same text would repeat).
+  const composite = Number(rawBaseSum);
+  const duplicated = overlays.some(item => item.number === composite);
+  if (!duplicated && MASTER_NUMBERS.includes(composite) && masterData[String(rawBaseSum)]) {
     overlays.push({ source: 'composite', number: Number(rawBaseSum), text: masterData[String(rawBaseSum)] });
   }
   return overlays;
@@ -233,6 +236,7 @@ function buildReport(result, data, relationType = 'love') {
   const dailyBridgeData = dailyBridges[`bridge_${result.dailyBridge}`] || {};
   const karmicDebts = getKarmicDebtDetails(result.day1, result.day2, karmicData);
   const attractionCell = getAttractionSecretSafe(result.base1, result.base2, attractionData);
+  const attractionCellB = getAttractionSecretSafe(result.base2, result.base1, attractionData);
   const masterOverlays = getMasterOverlays(result.path1, result.path2, result.rawBaseSum, masterData);
   const personalMasterOverlays = masterOverlays.filter(item => item.source !== 'composite');
   const compositeMasterOverlay = masterOverlays.find(item => item.source === 'composite') || null;
@@ -275,7 +279,8 @@ function buildReport(result, data, relationType = 'love') {
       personalMasterOverlays,
       compositeMasterOverlay,
       karmicDebts,
-      attractionFull: attractionCell
+      attractionFull: attractionCell,
+      attractionFullB: attractionCellB
     }
   };
 }

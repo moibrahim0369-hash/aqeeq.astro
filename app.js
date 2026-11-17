@@ -20,14 +20,11 @@
   const safeText = (value, fallback = "المحتوى غير متاح في هذه النسخة.") =>
     typeof value === "string" && value.trim() ? esc(value.trim()) : fallback;
 
-  // YYYY-MM-DD digit sum, preserving 11/22/33 as master Life Paths.
+  // Life Path comes from the single shared core (keeps 11/22/33).
   function pathFromDate(isoDate) {
-    const digits = String(isoDate).replace(/\D/g, "");
-    let total = [...digits].reduce((sum, digit) => sum + Number(digit), 0);
-    while (total > 9 && ![11, 22, 33].includes(total)) {
-      total = [...String(total)].reduce((sum, digit) => sum + Number(digit), 0);
-    }
-    return total;
+    const core = window.AqeqLifePathCore;
+    if (!core) throw new Error("aqeeq-lifepath-core.js لم يتم تحميله.");
+    return core.fromISO(isoDate);
   }
 
   function dateDay(isoDate) {
@@ -114,6 +111,8 @@
     const daily = premium.dailyBridge || {};
     const bridge = premium.coreBridge || {};
     const attraction = premium.attractionFull || {};
+    const attractionB = premium.attractionFullB || {};
+    const isLove = relationType === "love";
     const overlays = premium.masterOverlays || [];
     const karmic = premium.karmicDebts || [];
     const breakdown = meta.breakdown || {};
@@ -162,7 +161,21 @@
     const masterBadge = meta.isCompositeMaster
       ? `<p class="syn-master-badge" role="status"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg> تنبيه قدري: تم رصد طاقة ماستر كبرى (${esc(meta.rawBaseSum)}) في رابط هذا الثنائي!</p>`
       : "";
-    const attractionHook = attraction.attraction_hook || free.attraction || "اكتشفوا تفاصيل الجذب والتفاعل بينكم.";
+
+    // Attraction texts are written per direction (A->B and B->A). Show both so the report never depends on input order.
+    // Business/Family have no dedicated attraction texts yet, so the romantic section stays hidden for them.
+    const attractionCards = (a, fb) => `
+      <div class="syn-result-grid syn-attraction-grid">
+        ${card("شرارة الجذب", safeText(a.attraction_hook || (fb && fb.attraction), ""))}
+        ${card("السر البدائي للجذب", safeText(a.primal_secret || (fb && fb.primalSecret), ""))}
+        ${card("انطباع اللقاء الأول", safeText(a.first_meeting_vibe, ""))}
+        ${card("ليه ممكن تفضلوا مع بعض؟", safeText(a.why_they_stay, ""))}
+      </div>`;
+    const sameAttraction = JSON.stringify(attraction) === JSON.stringify(attractionB);
+    const attractionHTML = !isLove ? "" : sameAttraction
+      ? `<h3 class="syn-section-heading">كروت الجذب الأربعة</h3>${attractionCards(attraction, free)}`
+      : `<h3 class="syn-section-heading">من منظور ${esc(nameA)}</h3>${attractionCards(attraction, free)}
+         <h3 class="syn-section-heading">من منظور ${esc(nameB)}</h3>${attractionCards(attractionB, null)}`;
 
     output.innerHTML = `
       <article class="syn-result-card syn-score-card">
@@ -171,7 +184,6 @@
         <h3 class="center">${safeText(meta.label?.label, "قراءة التوافق")}</h3>
         <p class="center syn-score-note">${esc(nameA)} · ${esc(nameB)} · ${esc(relationLabel(relationType === "love" ? "romantic" : relationType))}</p>
         ${masterBadge}
-        <p class="syn-insight center">${safeText(attractionHook, "اكتشفوا تفاصيل الجذب والتفاعل في الكروت التالية.")}</p>
       </article>
 
       <div class="syn-result-grid">
@@ -182,13 +194,7 @@
         <article class="syn-result-card"><div class="syn-kpi">الجسر اليومي Daily Bridge</div><div class="syn-value">${meta.dailyBridge}</div><h4>${safeText(daily.title, "طريقة التفاعل اليومي")}</h4><p>${safeText(daily.spark_dynamic, "")}</p><h4>نقطة الاحتكاك اليومية</h4><p>${safeText(daily.daily_fuse, "")}</p><h4>اقتراح عملي</h4><p>${safeText(daily.daily_hack, "")}</p></article>
       </div>
 
-      <h3 class="syn-section-heading">كروت الجذب الأربعة</h3>
-      <div class="syn-result-grid syn-attraction-grid">
-        ${card("شرارة الجذب", safeText(attraction.attraction_hook || free.attraction, ""))}
-        ${card("السر البدائي للجذب", safeText(attraction.primal_secret || free.primalSecret, ""))}
-        ${card("انطباع اللقاء الأول", safeText(attraction.first_meeting_vibe, ""))}
-        ${card("ليه ممكن تفضلوا مع بعض؟", safeText(attraction.why_they_stay, ""))}
-      </div>
+      ${attractionHTML}
       <h3 class="syn-section-heading">الجسر الأساسي وطريقة الإصلاح</h3>
       <div class="syn-result-grid">
         ${card("جسر العلاقة الأساسي", `<p>${safeText(bridge.hidden_trigger, "")}</p><h4>بروتوكول الإصلاح</h4><p>${safeText(bridge.healing_protocol, "")}</p><h4>جملة الإصلاح المشتركة</h4><p>${safeText(bridge.repair_statement || free.healingLine, "")}</p>`)}

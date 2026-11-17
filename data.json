@@ -756,12 +756,6 @@
   "compatibility_algorithm": {
     "description": "خوارزمية عقيق أسترو لحساب نسبة التناغم المئوية الحقيقية (النسخة المعتمدة)"
   },
-  "audit_scripts": {
-    "attraction_matrix_audit": {
-      "description": "كود فحص اكتمال مصفوفة الـ81 سر انجذاب",
-      "code": "function auditSynastryData(jsonData) { const requiredKeys = ['attraction_hook', 'primal_secret', 'first_meeting_vibe', 'why_they_stay']; let missingCells = []; let missingKeys = []; let emptyFields = []; let totalCells = 0; for (let i = 1; i <= 9; i++) { for (let j = 1; j <= 9; j++) { const cellId = `${i}_${j}`; const rowData = jsonData.attraction_secrets?.[`row_${i}`]; const cell = rowData?.[cellId]; if (!cell) { missingCells.push(cellId); } else { totalCells++; requiredKeys.forEach(key => { if (!(key in cell)) missingKeys.push(`${cellId} -> missing ${key}`); else if (!cell[key] || cell[key].trim() === '') emptyFields.push(`${cellId} -> empty ${key}`); }); } } } console.log(`✅ الخلايا المفحوصة: ${totalCells}/81`); if (missingCells.length) console.error('❌ خلايا مفقودة:', missingCells); if (missingKeys.length) console.error('❌ مفاتيح ناقصة:', missingKeys); if (emptyFields.length) console.error('❌ حقول فارغة:', emptyFields); if (!missingCells.length && !missingKeys.length && !emptyFields.length) { console.log('🎉 مصفوفة الـ 81 مكتملة 100% ومفيش أي حقل ناقص!'); } }"
-    }
-  },
   "attraction_secrets": {
     "row_1": {
       "1_1": {
