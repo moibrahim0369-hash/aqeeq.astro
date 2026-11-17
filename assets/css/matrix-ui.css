@@ -1,0 +1,45 @@
+/* مصفوفة القدر (فردي / شركاء / أطفال): خلفية فاتحة، بطاقات بيضاء مرفوعة، شريط سياق موحّد، بطاقة نتيجة عنابية. عرض فقط. */
+:root{--mxu-sh:0 6px 20px rgba(90,24,42,.06),0 1px 3px rgba(90,24,42,.04);--mxu-bd:1px solid rgba(198,168,124,.22)}
+/* 1) الخلفية */
+html:root body section.sec#matrix:not(#_a):not(#_b):not(#_c):not(#_d),html:root body section.sec#matrix-compat:not(#_a):not(#_b):not(#_c):not(#_d),html:root body section.sec#matrix-child:not(#_a):not(#_b):not(#_c):not(#_d),
+html:root body section.sec#matrix:not(#_a):not(#_b):not(#_c):not(#_d)::before,html:root body section.sec#matrix-compat:not(#_a):not(#_b):not(#_c):not(#_d)::before,html:root body section.sec#matrix-child:not(#_a):not(#_b):not(#_c):not(#_d)::before,
+html:root body section.sec#matrix:not(#_a):not(#_b):not(#_c):not(#_d)::after,html:root body section.sec#matrix-compat:not(#_a):not(#_b):not(#_c):not(#_d)::after,html:root body section.sec#matrix-child:not(#_a):not(#_b):not(#_c):not(#_d)::after{background-color:#FBF9F6!important;background-image:none!important}
+html:root body section.sec#matrix:not(#_a):not(#_b):not(#_c):not(#_d)::before,html:root body section.sec#matrix-compat:not(#_a):not(#_b):not(#_c):not(#_d)::before,html:root body section.sec#matrix-child:not(#_a):not(#_b):not(#_c):not(#_d)::before,
+html:root body section.sec#matrix:not(#_a):not(#_b):not(#_c):not(#_d)::after,html:root body section.sec#matrix-compat:not(#_a):not(#_b):not(#_c):not(#_d)::after,html:root body section.sec#matrix-child:not(#_a):not(#_b):not(#_c):not(#_d)::after{background-color:transparent!important}
+/* 2) بطاقات الإدخال والنتيجة البيضاء */
+html body :is(#matrix,#matrix-compat,#matrix-child):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) :is(#mform,#mxc-form,#mxk-form,.mxp-card,.syn-person .field,.field,.aqm-sum-card,.aqm-canvas-wrap,.aqm-acc-item,.aqm-fc-card,.aqm-line-card,.aqm-chakra-card,.aqm-learn,.y27-explain,.mxm-card,.mxm-sec,.mxm-block){background:#FFFFFF!important;border:var(--mxu-bd)!important;box-shadow:var(--mxu-sh)!important}
+html body :is(#matrix,#matrix-compat,#matrix-child):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) :is(#mform,#mxc-form,#mxk-form,.mxp-card){border-radius:22px!important}
+html body :is(#matrix,#matrix-compat,#matrix-child):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) .aqm-acc-item{border-radius:20px!important}
+html body :is(#matrix,#matrix-compat,#matrix-child):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) :is(.field input,.field select){background:#FFFFFF!important}
+/* أيقونات الأقسام: مربع كريمي متوازن */
+html body #matrix .aqm-acc-icon{width:44px!important;height:44px!important;border-radius:15px!important;display:grid!important;place-items:center;flex:none;box-shadow:none!important}
+html body #matrix .aqm-acc-icon svg{width:24px!important;height:24px!important;display:block}
+/* 3) بطاقات الأوضاع */
+.mxm-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 16px}
+.mxm-mode{display:grid;justify-items:center;align-content:start;gap:8px;padding:12px 6px;border-radius:18px;text-decoration:none;text-align:center;background:#FFFFFF;border:1px solid rgba(198,168,124,.30);box-shadow:var(--mxu-sh);color:#6B1D2F;font:700 .86rem/1.35 'Cairo',sans-serif;transition:transform .18s}
+.mxm-mode:active{transform:scale(.97)}
+.mxm-mic{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:#FBF4E4;border:1px solid #E3CFA4}
+.mxm-mic svg{width:24px;height:24px;display:block}
+.mxm-mode.is-on{background:linear-gradient(160deg,#6A2038,#4A1224);border-color:#C8A15A;color:#FFF3D6;box-shadow:0 8px 20px rgba(58,14,28,.25)}
+.mxm-mode.is-on .mxm-mic{background:rgba(255,243,214,.12);border-color:rgba(224,197,138,.55);color:#E9CE8E}
+html body #matrix .mxm-links{display:none!important}
+/* عند ظهور النتيجة: لا بطاقات أوضاع ولا عنوان تعريفي، والبطاقة العنابية تحت الشريط مباشرة */
+html.mxr-on #matrix .mxm-modes,html.mxr-on #matrix .aqm-crumbs,html.mxr-on #matrix .aqm-page-title{display:none!important}
+html body section:has(#mxc-result:not([hidden])) .mxm-modes,html body section:has(#mxk-result:not([hidden])) .mxm-modes{display:none}
+/* 4) بطاقة النتيجة العنابية */
+html body #matrix .aqm-header,html body :is(#matrix-compat,#matrix-child) .mxc-head{position:relative;overflow:hidden;text-align:center;border-radius:22px!important;padding:20px 16px 16px!important;background:radial-gradient(70% 90% at 100% 0%,rgba(200,161,90,.20),transparent 62%),linear-gradient(160deg,#6A2038,#4A1224 62%,#3A0E1C)!important;border:1.4px solid #C8A15A!important;box-shadow:0 14px 30px rgba(58,14,28,.30),0 1px 0 rgba(255,243,214,.15) inset!important}
+html body #matrix .aqm-kicker,html body :is(#matrix-compat,#matrix-child) .mxc-kicker{color:#E0C58A!important;font:600 .82rem 'Cairo',sans-serif!important;letter-spacing:.03em}
+html body #matrix .aqm-header h2{color:#FFF3D6!important;font:700 1.5rem/1.4 'Amiri','Cairo',serif!important;margin:6px 0 12px!important;text-align:center!important}
+html body #matrix .aqm-meta-info{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:14px}
+html body #matrix .aqm-meta-pill{background:rgba(255,243,214,.10)!important;border:1px solid rgba(224,197,138,.45)!important;color:#FFF3D6!important;border-radius:999px;padding:6px 12px;font:600 .78rem 'Cairo',sans-serif}
+html body #matrix .aqm-actions,html body :is(#matrix-compat,#matrix-child) .mxc-tools{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+html body #matrix .aqm-actions .aqm-btn,html body :is(#matrix-compat,#matrix-child) .mxc-tools button{display:inline-flex;align-items:center;gap:6px;width:auto!important;padding:8px 14px!important;border-radius:999px!important;font:600 .82rem 'Cairo',sans-serif!important;background:rgba(255,243,214,.10)!important;border:1px solid rgba(224,197,138,.45)!important;color:#FFF3D6!important;box-shadow:none!important}
+html body #matrix .aqm-actions .aqm-btn-primary{background:#E9CE8E!important;border-color:#E9CE8E!important;color:#4A1224!important}
+html body :is(#matrix-compat,#matrix-child) .mxc-tools button svg{color:#E9CE8E;stroke:#E9CE8E}
+html body :is(#matrix-compat,#matrix-child) .mxc-tools button.is-saved{background:#E9CE8E!important;color:#4A1224!important;border-color:#E9CE8E!important}
+html body :is(#matrix-compat,#matrix-child) .mxc-p{background:rgba(255,243,214,.10)!important;border:1px solid rgba(224,197,138,.45)!important}
+html body :is(#matrix-compat,#matrix-child) .mxc-p b{color:#FFF3D6!important}
+html body :is(#matrix-compat,#matrix-child) .mxc-p small{color:#E0C58A!important}
+html body :is(#matrix-compat,#matrix-child) .mxc-join{color:#E9CE8E!important}
+html body #matrix .aqm-header#_x,html body section#matrix:not(#_a):not(#_b) .aqm-header #aqm-report-title,html body section#matrix:not(#_a):not(#_b) .aqm-header h2{color:#FFF3D6!important;-webkit-text-fill-color:#FFF3D6!important;opacity:1!important}
+html body section#matrix:not(#_a):not(#_b) .aqm-header .aqm-kicker{color:#E0C58A!important;-webkit-text-fill-color:#E0C58A!important;opacity:1!important}

@@ -29,14 +29,21 @@
         var p = BYHREF[a.getAttribute('href')]; if (p) a.insertAdjacentHTML('afterbegin', ic(p));
       });
       var old = bar.querySelector('.aq-back-home-btn'); if (old) old.remove();
-      var ctxSec = bar.closest('#lifepath,#lifepath-compat,#relationships');
+      var ctxSec = bar.closest('#lifepath,#lifepath-compat,#relationships,#matrix,#matrix-compat,#matrix-child');
       if (ctxSec) {
         bar.classList.add('aq-ctxbar');
         var arrow = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
         var diag = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
-        var isC = ctxSec.id === 'lifepath-compat', isHub = ctxSec.id === 'relationships';
-        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع">' + arrow + '<span>رجوع</span></button><span class="aq-ctx-title">' + (isHub ? 'التوافق' : isC ? 'توافق مسار الحياة' : 'مسار الحياة') + '</span>' +
-          (isHub ? '' : '<a class="aq-ctx-x" href="' + (isC ? '#lifepath' : '#lifepath-compat') + '"><span>' + (isC ? 'اكتشف مسارك الفردي' : 'احسب توافقك مع شريكك') + '</span>' + diag + '</a>');
+        var CX = {
+          'lifepath': ['مسار الحياة', '#lifepath-compat', 'احسب توافقك مع شريكك'],
+          'lifepath-compat': ['توافق مسار الحياة', '#lifepath', 'اكتشف مسارك الفردي'],
+          'relationships': ['التوافق', '', ''],
+          'matrix': ['مصفوفة القدر', '#matrix-compat', 'توافق مصفوفة القدر'],
+          'matrix-compat': ['توافق مصفوفة القدر', '#matrix', 'مصفوفة القدر الفردية'],
+          'matrix-child': ['مصفوفة الطفل', '#matrix', 'مصفوفة القدر الفردية']
+        }[ctxSec.id];
+        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع">' + arrow + '<span>رجوع</span></button><span class="aq-ctx-title">' + CX[0] + '</span>' +
+          (CX[1] ? '<a class="aq-ctx-x" href="' + CX[1] + '"><span>' + CX[2] + '</span>' + diag + '</a>' : '');
         return;
       }
       var box = document.createElement('div'); box.className = 'aq-nav-actions';
@@ -52,6 +59,15 @@
     var sc = b.closest('section'), id = sc && sc.id, ed = null;
     if (id === 'lifepath-compat') { var o = document.getElementById('syn-result'); if (o && !o.hidden && o.querySelector('.cph')) ed = o.querySelector('[data-cph="edit"]'); }
     else if (id === 'lifepath' && document.documentElement.classList.contains('lpr-on')) ed = sc.querySelector('.lpr-head [data-lph="edit"]');
+    else if (id === 'matrix') { var mr = document.getElementById('mresult'); if (mr && !mr.hidden) ed = document.getElementById('aqm-btn-edit'); }
+    else if (id === 'matrix-compat' || id === 'matrix-child') {
+      var out = document.getElementById(id === 'matrix-compat' ? 'mxc-result' : 'mxk-result');
+      if (out && !out.hidden) {
+        var fm = document.getElementById(id === 'matrix-compat' ? 'mxc-form' : 'mxk-form'), ex = document.getElementById(id === 'matrix-compat' ? 'mxc-explain' : 'mxk-explain'), hd = sc.querySelector('.lpx-head');
+        if (fm) fm.hidden = false; if (ex) ex.hidden = false; if (hd) hd.hidden = false; out.hidden = true;
+        window.scrollTo(0, 0); sc.scrollTop = 0; return;
+      }
+    }
     if (ed) { ed.click(); return; }
     if (navCount > 0) history.back(); else location.hash = '#home';
   });
