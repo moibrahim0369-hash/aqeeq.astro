@@ -877,16 +877,7 @@
      ما عدا ذلك يُعرض كما هو بعد نص الموضع بلا عنوان «قراءة أعمق». */
   function mergeGeminiFlow(unitBlocks, refBlocks) {
     const unit = unitBlocks || [];
-    /* عرض فقط (لا تعديل على الملفات): إسقاط عناوين التغليف الوصفية وأسطر التصنيف، وتجريد الترقيم «أولاً:» من العناوين، مع بقاء كل الفقرات */
-    const META_H = /المفارقة النفسية التأسيسية|قراءة أعمق للطاقة/;
-    const META_LABEL = /^(صدمة البداية للمستخدم|صراع القطبين داخل الطاقة)\s*[:：]?\s*$/;
-    const ref = (refBlocks || []).filter(b => {
-      const t = String(b.t || '').trim();
-      if ((b.k === 'h1' || b.k === 'h2') && META_H.test(t)) return false;
-      if (META_LABEL.test(t)) return false;
-      if (b.k === 'p' && /^تصنيف الطاقة\s*[:：]/.test(t)) return false;
-      return true;
-    }).map(b => (b.k === 'h1' || b.k === 'h2') && /^(أولاً|ثانياً|ثالثاً|رابعاً|خامساً|سادساً)\s*[:：]/.test(b.t) ? Object.assign({}, b, { t: b.t.replace(/^[^:：]+[:：]\s*/, '') }) : b);
+    const ref = refBlocks || [];
     const unitHasPoles = unit.some(b => b.k === 'li' && b.d === 0 && /^قطب (النور|الظل)/.test(b.t));
     const unitHasResolution = unit.some(b => b.k === 'h2' && /اتزان|الميزان|النضج|الحل|التحرر/.test(b.t));
     const out = [];
@@ -904,6 +895,8 @@
     }
     return unit.concat(out);
   }
+  /* سؤال التأمل (reflection_question): يظهر في آخر القسم فقط حين يكون مكتوبًا */
+  const reflHtml = q => (typeof q === 'string' && q.trim()) ? `<p class="aqm-g-p aqm-reflection"><em>${escapeHtml(q.trim())}</em></p>` : '';
   function applyGeminiAccordions(host, P, tailTriad) {
     const loader = window.AqeeqMatrix;
     host.querySelectorAll('.aqm-acc-item').forEach(item => {
@@ -928,12 +921,12 @@
             const sn = Number(st.n(P)), dd = ds[i], u = dd && dd.positions && dd.positions[cfg.pos];
             const rb = dd && dd.reference && Array.isArray(dd.reference.blocks) ? dd.reference.blocks.filter(b => (b.pos || 'core') === cfg.pos) : [];
             html += `<h4 class="aqm-slot-title">${escapeHtml(st.t)} · الأركانا ${sn}${arcanaName(sn) ? ' · ' + escapeHtml(arcanaName(sn)) : ''}</h4>`;
-            if (u) html += geminiBlocksHtml(mergeGeminiFlow(u.blocks, rb), cfg.pos);
+            if (u) html += geminiBlocksHtml(mergeGeminiFlow(u.blocks, rb), cfg.pos) + reflHtml(u.reflection_question);
           });
         } else {
         html = `<h4 class="aqm-slot-title">${escapeHtml(label)} · الأركانا ${n}${arcanaName(n) ? ' · ' + escapeHtml(arcanaName(n)) : ''}</h4>`;
         const refBlocks = d && d.reference && Array.isArray(d.reference.blocks) ? d.reference.blocks.filter(b => (b.pos || 'core') === cfg.pos) : [];
-        if (unit) html += geminiBlocksHtml(mergeGeminiFlow(unit.blocks, refBlocks), cfg.pos);
+        if (unit) html += geminiBlocksHtml(mergeGeminiFlow(unit.blocks, refBlocks), cfg.pos) + reflHtml(unit.reflection_question);
         }
         if (cfg.tail) {
           const code = tailTriad.map(Number).join('-'), rev = tailTriad.map(Number).reverse().join('-');
@@ -1027,7 +1020,7 @@
           const rows = e
             ? spec.fields.map(([k, lab, kind]) => (kind === 'list' || kind === 'shadowlist' || kind === 'lightlist') ? listLi(lab, d[k], kind) : poleLi(lab, String(d[k] || '').trim() === String(lead).trim() ? '' : d[k], kind))
             : [poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow'), poleLi('الممارسة', c.growth, 'light')];
-          return `<article class="aqm-line-entry"><h4 class="aqm-slot-title">${escapeHtml(label)}<span class="aqm-badge-arcana aqm-tone-${i % 4}">${n} · ${escapeHtml(arcanaName(n))}</span></h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${poleUl(rows.concat([gd]))}</article>`;
+          return `<article class="aqm-line-entry"><h4 class="aqm-slot-title">${escapeHtml(label)}<span class="aqm-badge-arcana aqm-tone-${i % 4}">${n} · ${escapeHtml(arcanaName(n))}</span></h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${poleUl(rows.concat([gd]))}${reflHtml(d.reflection_question)}</article>`;
         }).join('');
         grid.querySelector('[data-slot="gemini"]').innerHTML = html;
       }).catch(() => { grid.querySelector('[data-slot="gemini"]').innerHTML = ''; });
@@ -1066,7 +1059,7 @@
           poleLi('مسار التحرر', d.balanceKey, 'light'),
           g && e.genderDynamic && e.genderDynamic[g] ? poleLi('بصيغتك', e.genderDynamic[g], '') : ''
         ] : [poleLi('قطب النور', c.gift, 'light'), poleLi('قطب الظل', c.shadowTrap, 'shadow'), poleLi('مسار التحرر', c.growth, 'light')];
-        pMount.innerHTML = `<article class="aqm-line-entry"><h4 class="aqm-slot-title">طاقة يوم الميلاد (A)${badge(A, 0)}</h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${poleUl(rows)}</article>`;
+        pMount.innerHTML = `<article class="aqm-line-entry"><h4 class="aqm-slot-title">طاقة يوم الميلاد (A)${badge(A, 0)}</h4>${lead ? `<p class="aqm-g-p aqm-sec-lead">${escapeHtml(lead)}</p>` : ''}${poleUl(rows)}${reflHtml(d.reflection_question)}</article>`;
       }).catch(() => { pMount.innerHTML = ''; });
     }
 

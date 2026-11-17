@@ -168,8 +168,9 @@
         var sec = d.sections.filter(function (s) { return s.id === el.dataset.sec; })[0];
         var sl = sec && sec.slots.filter(function (x) { return x.key === el.dataset.pt; })[0];
         var t = sl && typeof sl.text === 'string' ? sl.text.trim() : '';
-        if (!t) return;
-        el.innerHTML = t.split(/\n{2,}/).map(function (para) { return '<p class="aqm-g-p">' + esc(para) + '</p>'; }).join('');
+        var q = typeof sl.reflection_question === 'string' ? sl.reflection_question.trim() : '';
+        if (!t && !q) return;
+        el.innerHTML = (t ? t.split(/\n{2,}/).map(function (para) { return '<p class="aqm-g-p">' + esc(para) + '</p>'; }).join('') : '') + (q ? '<p class="aqm-g-p aqm-reflection"><em>' + esc(q) + '</em></p>' : '');
       });
     });
   }

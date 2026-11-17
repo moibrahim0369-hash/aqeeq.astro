@@ -10,12 +10,14 @@
     {
      "key": "A",
      "label": "طبعه الظاهر",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "E",
      "label": "مركزه الداخلي",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -26,12 +28,14 @@
     {
      "key": "A2",
      "label": "ما يطمئنه",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "balance",
      "label": "ما يعيد إليه توازنه",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -42,22 +46,26 @@
     {
      "key": "F",
      "label": "ما يحمله من جهة الأب",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "G",
      "label": "ما يحمله من جهة الأم",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "father",
      "label": "خط الأب مجتمعًا",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "mother",
      "label": "خط الأم مجتمعًا",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -68,12 +76,14 @@
     {
      "key": "B",
      "label": "موهبته الأولى",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "B2",
      "label": "ما يغذّي موهبته",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -84,12 +94,14 @@
     {
      "key": "C",
      "label": "طاقته في الإنجاز",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "C2",
      "label": "علاقته بما يملك وما يحقق",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -100,17 +112,20 @@
     {
      "key": "personal",
      "label": "غايته لنفسه",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "social",
      "label": "غايته مع الناس",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "spiritual",
      "label": "غايته الأبعد",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -121,17 +136,20 @@
     {
      "key": "D",
      "label": "الخوف الأقدم",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "D2",
      "label": "ما يوقظ الخوف",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "D3",
      "label": "ما يحمله من القديم",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -142,12 +160,14 @@
     {
      "key": "__year",
      "label": "طاقة عامه الحالي",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "__age",
      "label": "طاقة مرحلته العمرية",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   }

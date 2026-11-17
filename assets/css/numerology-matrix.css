@@ -1775,3 +1775,5 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 /* منع اهتزاز الخلفية عند قفل التمرير أثناء النوافذ */
 html:has(#matrix) { scrollbar-gutter: stable; }
 html.aqm-xr-open, html.aqm-sheet-open { overflow: hidden; scrollbar-gutter: stable; }
+
+.aqm-reflection{margin-top:10px;padding-top:10px;border-top:1px dashed rgba(139,26,43,.25);color:#7a2a2f}

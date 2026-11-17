@@ -10,12 +10,14 @@
     {
      "key": "E",
      "label": "جوهر العلاقة",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "personal",
      "label": "الغرض المشترك",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -26,12 +28,14 @@
     {
      "key": "A",
      "label": "ما شدّ كلًّا منكما للآخر",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "social",
      "label": "حضوركما أمام الآخرين",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -42,12 +46,14 @@
     {
      "key": "money",
      "label": "باب الوفرة المشتركة",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "balance",
      "label": "ميزان العطاء والأخذ",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -58,12 +64,14 @@
     {
      "key": "C",
      "label": "الدرس الذي يعود بلا توقف",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "I",
      "label": "التواصل بينكما",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -74,12 +82,14 @@
     {
      "key": "D3",
      "label": "ما تحمله العلاقة من القديم",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "C2",
      "label": "الدرس الذي يتكرر حتى يُتعلَّم",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -90,12 +100,14 @@
     {
      "key": "D",
      "label": "البيت والحياة الأسرية",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "D2",
      "label": "الحب والتواصل العاطفي",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -106,12 +118,14 @@
     {
      "key": "heart",
      "label": "الجاذبية والكيمياء",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "B2",
      "label": "ما يغذّي العلاقة",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -122,12 +136,14 @@
     {
      "key": "H",
      "label": "نقطة الضعف في الأساس",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "G",
      "label": "ما يُستنزف بصمت",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -138,12 +154,14 @@
     {
      "key": "F",
      "label": "ما يُرمَّم أولًا",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "spiritual",
      "label": "الغاية الأبعد للعلاقة",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -154,12 +172,14 @@
     {
      "key": "personal",
      "label": "ما تبنيانه لأنفسكما",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "earth",
      "label": "ما تثبّتانه على الأرض",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   },
@@ -170,12 +190,14 @@
     {
      "key": "B",
      "label": "الطاقة الكامنة",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     },
     {
      "key": "A2",
      "label": "ما تنضج إليه العلاقة",
-     "text": ""
+     "text": "",
+     "reflection_question": ""
     }
    ]
   }
