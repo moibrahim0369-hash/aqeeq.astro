@@ -141,3 +141,9 @@ html.lpr-on body #lpresult .lpr-head .lph-about svg{width:22px;height:22px;color
 /* شارة رقم المسار في رؤوس النوافذ */
 .lp-hbadge{display:inline-grid;place-items:center;min-width:30px;height:24px;padding:0 9px;margin:0 0 4px;border-radius:999px;background:#F4E6D3;border:1px solid rgba(139,38,62,.28);color:#8B263E;font-weight:800;font-size:.86rem;line-height:1;font-variant-numeric:tabular-nums}
 .lp-hbadge[hidden]{display:none}
+
+.lp-hbadges{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.lp-hbadges[hidden]{display:none}
+.lp-hbadges .lp-hbadge{display:inline-flex;align-items:center;gap:6px;margin:0;padding:0 10px 0 9px}
+.lp-hbadges .lp-hbadge small{font-size:.68rem;font-weight:600;color:#8a6a30;letter-spacing:0}
+.lp-hbadges .lp-hbadge b{font-weight:800;color:#8B263E}
