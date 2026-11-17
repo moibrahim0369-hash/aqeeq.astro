@@ -403,7 +403,11 @@
   function lensCards() {
     var d = new Date(), w = WD[d.getDay()], ch = natal(), cards = [];
     var dateS = d.toLocaleDateString('ar-EG-u-nu-latn', { weekday: 'long', day: 'numeric', month: 'long' });
-    cards.push(lensCard('طاقة اليوم · ' + dateS, w[1], w[2]));
+    var live = ch && window.AqeeqLive ? window.AqeeqLive.today(ch) : [];
+    live.forEach(function (r, i) {
+      cards.push(lensCard(i === 0 ? 'طاقة اليوم · ' + dateS : 'عبور اليوم', r.name + ' في ' + r.sign + ' · بيتك ' + r.house, r.text + ' ' + r.act, '', 'الدرجة ' + r.deg + ' · ' + r.phase + (r.retro ? ' · راجع' : '')));
+    });
+    if (!live.length) cards.push(lensCard('طاقة اليوم · ' + dateS, 'أدخل بيانات ميلادك', 'لتظهر لك طاقة اليوم محسوبة على خريطتك أنت: القمر والكواكب السريعة في بيوتك بالدرجة الفعلية الآن.'));
     var list = ch ? allCycles() : null, pls = ch && window.AqeeqYou ? window.AqeeqYou.placements(ch) : [];
     if (list) {
       var now = Date.now(), cur = list.filter(function (c) { return c.start <= now && c.end >= now; });
@@ -414,8 +418,6 @@
         cards.push(lensCard('يؤثر فيك الآن', 'دورة ' + c.tn + ' مع ' + c.nn, line, '<button type="button" class="yp-lc-b" data-pop="cyc" data-id="' + esc(c.id + '|' + c.start) + '">تعمّق</button>', c.tn + ' ' + c.an + ' ' + c.nn + ' · تنتهي ' + fmtM(c.end)));
       });
     }
-    var m = moonToday();
-    if (m >= 0) cards.push(lensCard('حدث فلكي', 'القمر اليوم في برج ' + SG[m], MOON[m % 4]));
     if (pls.length) {
       var doy = Math.floor((Date.now() - new Date(d.getFullYear(), 0, 0)) / DAY), k = 0, shown = 0;
       while (shown < 2 && k < pls.length) {
@@ -468,7 +470,12 @@
       cell('الشمس', pick('sun'), '<circle cx="12" cy="12" r="4"/><path d="M12 2.500v3M12 18.500v3M2.500 12h3M18.500 12h3M5.300 5.300l2.100 2.100M16.600 16.600l2.100 2.100M5.300 18.700l2.100-2.100M16.600 7.400l2.100-2.100"/>') +
       cell('القمر', pick('moon'), '<path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/>') +
       cell('الطالع', rise, '<path d="M3 17h18M6 17a6 6 0 0 1 12 0M12 5v3M5.600 8.600l1.800 1.800M18.400 8.600l-1.800 1.800"/>') +
-      cell('مسار الحياة', String(lp), '<path d="M4 20c3-8 5-8 8-2s5 4 8-12"/>') + '</div>' + cta + '</section>';
+      cell('مسار الحياة', String(lp), '<path d="M4 20c3-8 5-8 8-2s5 4 8-12"/>') + '</div>' + vedicRow(mine.ch) + cta + '</section>';
+  }
+  function vedicRow(ch) {
+    var v = window.AqeeqLive && window.AqeeqLive.vedic(ch); if (!v) return '';
+    var it = function (k, t) { return '<div class="yp-vd-i"><small>' + k + '</small><b>' + esc(t) + '</b></div>'; };
+    return '<div class="yp-vd"><span class="yp-vd-k">فلكك الفيدي · لاهيري</span><div class="yp-vd-g">' + it('برج القمر', v.rashi) + it('النكشاترا · بادا ' + v.pada, v.nak) + (v.asc ? it('الطالع', v.asc) : '') + '</div></div>';
   }
   var HT = [['day', 'طاقة اليوم'], ['transits', 'عبوراتك'], ['patterns', 'أنماطك'], ['rel', 'علاقاتك']];
   function htBar() {
@@ -739,6 +746,10 @@
     [].forEach.call(bar.querySelectorAll('.yp-seg-b'), function (x) { x.setAttribute('aria-selected', String(x === b)); });
     hp.classList.remove('yp-hp-in'); hp.innerHTML = panelHtml(k); void hp.offsetWidth; hp.classList.add('yp-hp-in');
   });
+  setInterval(function () {
+    var hp = document.getElementById('yp-hp'); if (!hp || document.hidden || (ST.ht || 'day') !== 'day' || ST.view) return;
+    var html = panelHtml('day'); if (hp.innerHTML !== html) hp.innerHTML = html;
+  }, 600000);
   document.addEventListener('aq:session', function () { route(); render(); });
   document.addEventListener('aq:admin', render);
   /* اهتزاز خفيف عند لمس أزرار التنقل (أندرويد؛ يتجاهله ما لا يدعمه) */

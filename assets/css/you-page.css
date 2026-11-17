@@ -879,3 +879,10 @@ html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-gl
 html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n.up b{top:-46px!important}
 html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n.up small{top:-28px!important}
 html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-track{margin-top:60px!important}
+
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-vd{margin-top:12px!important;padding:12px 12px 10px!important;border-radius:20px!important;background:rgba(255,255,255,.34)!important;-webkit-backdrop-filter:blur(12px)!important;backdrop-filter:blur(12px)!important;box-shadow:0 1px 0 rgba(255,255,255,.7) inset!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-vd-k{display:block!important;margin:0 4px 8px!important;font:500 11.5px 'IBM Plex Sans Arabic',sans-serif!important;color:#9a4a32!important;letter-spacing:.03em}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-vd-g{display:flex!important;gap:8px!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-vd-i{flex:1 1 0!important;min-width:0!important;display:flex!important;flex-direction:column!important;gap:2px!important;padding:8px 10px!important;border-radius:14px!important;background:rgba(251,245,234,.6)!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-vd-i small{font-size:11.5px!important;color:#8a7468!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-vd-i b{font:700 13px/1.35 'IBM Plex Sans Arabic',sans-serif!important;color:#3a2a26!important;overflow-wrap:anywhere}
