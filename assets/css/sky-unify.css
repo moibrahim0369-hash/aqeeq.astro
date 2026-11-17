@@ -1,0 +1,28 @@
+/* توحيد صفحات السماء (#sky) والخريطة العالمية (#world) وتوقعات الأبراج (#signs):
+   خلفية كريمي #FBF9F6، كروت بيضاء بظل ناعم، وشريط علوي موحد (رجوع عنابي + كبسولة تنقل بيضاء).
+   يمس الشكل فقط، ولا يغيّر أي حساب أو نص. */
+:root{--sk-bg:#FBF9F6;--sk-card:#FFFFFF;--sk-line:rgba(197,160,89,.32);--sk-shadow:0 6px 20px rgba(90,24,42,.06)}
+
+/* ===== الخلفية ===== */
+html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){background-color:var(--sk-bg)!important}
+html body:has(section.sec:is(#sky,#world,#signs):target) header.top:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){background-image:linear-gradient(rgba(251,249,246,.98) 0,rgba(251,249,246,.9) 70%,rgba(251,249,246,0) 100%)!important}
+
+/* ===== الكروت: أبيض + حد موحد + ظل ناعم ===== */
+html body #sky .swc:not(#_a):not(#_b):not(#_c),
+html body #sky .zdc:not(#_a):not(#_b):not(#_c),
+html body #sky .sky-asp-item:not(#_a):not(#_b):not(#_c),
+html body #world .wld-card:not(#_a):not(#_b):not(#_c),
+html body #world .wld-chart:not(#_a):not(#_b):not(#_c),
+html body #world .wld-keys>div:not(#_a):not(#_b):not(#_c),
+html body #signs .arch:not(#_a):not(#_b):not(#_c),
+html body #signs .picker button.sign:not(#_a):not(#_b):not(#_c):not(:hover):not(:active):not(:focus-visible):not(.on):not(.active):not([aria-pressed=true]){
+  background:var(--sk-card)!important;border:1px solid var(--sk-line)!important;box-shadow:var(--sk-shadow)!important}
+
+/* ===== الشريط العلوي: رجوع عنابي + اسم الصفحة + كبسولة تنقل بيضاء ===== */
+html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) .aq-section-topbar.aq-ctxbar{display:flex!important;justify-content:flex-start!important;align-items:center;flex-wrap:nowrap!important;gap:8px!important;width:100%!important;max-width:none!important;box-sizing:border-box!important;margin:0 0 12px!important;padding:6px 2px 10px!important;border-bottom:1px solid rgba(198,168,124,.22)!important;background:transparent!important}
+html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-back{display:inline-flex!important;align-items:center;gap:6px;flex:none;width:auto!important;height:auto!important;padding:7px 12px 7px 11px!important;border-radius:999px!important;background:#6A2038!important;color:#FFF3D6!important;border:1px solid #C8A15A!important;font:700 .82rem 'Cairo',sans-serif!important;box-shadow:0 4px 12px rgba(58,14,28,.18)!important;cursor:pointer}
+html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-back svg{width:16px!important;height:16px!important;flex:none;color:#E9CE8E;stroke:#E9CE8E;fill:none}
+html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-title{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:700 .86rem/1.4 'Amiri','Cairo',serif!important;color:#4A1224}
+html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-x{display:inline-flex;align-items:center;gap:5px;flex:none;margin-inline-start:auto;padding:7px 10px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(198,168,124,.55);color:#6B1D2F;font:700 .72rem 'Cairo',sans-serif;text-decoration:none;box-shadow:var(--sk-shadow)}
+html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-x svg{width:14px;height:14px;flex:none;color:#B78A52}
+@media(max-width:400px){html body section.sec:is(#sky,#world,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-title{display:none}}
