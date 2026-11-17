@@ -1,0 +1,10 @@
+/* توافق مسار الحياة: واجهة العرض. يُحمَّل بعد lifepath-sheen.css */
+html body #lifepath-compat .cpm-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 16px}
+html body #lifepath-compat .cpm-mode{appearance:none;cursor:pointer;display:grid;justify-items:center;align-content:start;gap:8px;padding:12px 6px;border-radius:18px;border:1px solid rgba(198,168,124,.30);background:#FFFFFF;box-shadow:0 4px 16px rgba(90,24,42,.05);color:#6B1D2F;font:700 .86rem/1.35 'Cairo',sans-serif;text-align:center;transition:transform .18s,border-color .18s,box-shadow .18s,background .18s}
+html body #lifepath-compat .cpm-mode:active{transform:scale(.97)}
+html body #lifepath-compat .cpm-ic{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:#FBF4E4;border:1px solid #E3CFA4}
+html body #lifepath-compat .cpm-ic svg{width:24px;height:24px}
+html body #lifepath-compat .cpm-mode.is-on{background:linear-gradient(160deg,#6A2038,#4A1224);border-color:#C8A15A;color:#FFF3D6;box-shadow:0 8px 20px rgba(58,14,28,.25)}
+html body #lifepath-compat .cpm-mode.is-on .cpm-ic{background:rgba(255,243,214,.12);border-color:rgba(224,197,138,.55);color:#E9CE8E}
+html body #lifepath-compat .cpm-mode:focus-visible{outline:2px solid #C8A15A;outline-offset:2px}
+html body section#lifepath-compat .syn-person ~ .field.syn-rel.cpm-hidden,html body section#lifepath-compat .syn-rel.cpm-hidden,html body section#lifepath-compat .field.syn-rel.cpm-hidden{display:none!important}
