@@ -110,7 +110,7 @@
     var cu = ch.cusps, hl = '', hn = '';
     for (i = 0; i < 12; i++) {
       var ax = i % 3 === 0;
-      hl += ln(pt(cu[i], R2), pt(cu[i], R3), 'stroke="' + (ax ? '#4A1224' : '#6E5236') + '" stroke-width="' + (ax ? 2.6 : 1.5) + '" stroke-opacity="' + (ax ? 1 : .9) + '"');
+      hl += ln(pt(cu[i], R2), pt(cu[i], R3), 'stroke="' + (ax ? '#3A0D1B' : '#5A3E26') + '" stroke-width="' + (ax ? 3 : 2) + '" stroke-opacity="' + (ax ? 1 : .9) + '"');
       var mid = cu[i] + mod(cu[(i + 1) % 12] - cu[i]) / 2, q = pt(mid, RN);
       hn += '<text x="' + f(q[0]) + '" y="' + f(q[1] + 3.5) + '" text-anchor="middle">' + (i + 1) + '</text>';
     }
@@ -132,10 +132,11 @@
       var off = Math.abs(((x.disp - it.lon + 540) % 360) - 180) > .8, le = pt(x.disp, RP + 20);
       o += '<g class="swc-pl' + (it.k === 'node' ? ' is-node' : '') + '" data-k="' + it.k + '" tabindex="0" role="button"><title>' + it.n + ' · ' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + (it.retro ? ' · متراجع' : '') + '</title>' + ln(t1p, t2, 'stroke="#6B2234" stroke-width="1.4"') +
         '<circle cx="' + f(t2[0]) + '" cy="' + f(t2[1]) + '" r="1.7" fill="#6B2234"/>' +
-        (off ? ln(t2, le, 'stroke="#B8965A" stroke-width=".8" stroke-opacity=".9"') : ln(t2, le, 'stroke="#B8965A" stroke-width=".6" stroke-opacity=".5"')) +
+        (off ? ln(t2, le, 'stroke="#6B2234" stroke-width="1.6" stroke-opacity=".95"') : ln(t2, le, 'stroke="#6B2234" stroke-width="1.1" stroke-opacity=".6"')) +
         '<circle class="swc-hit" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="22" fill="#6B2234" fill-opacity="0"/>' +
-        '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="19" fill="#FFFDF7" fill-opacity=".97" stroke="#C5A059" stroke-width="1.1"/>' +
-        '<path class="swc-glyph" transform="translate(' + f(p[0] - 16) + ' ' + f(p[1] - 16) + ') scale(1.333)" d="' + g + '" fill="none" stroke="#4A1521" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="19" fill="none" stroke="none"/>' +
+        '<path class="swc-halo" transform="translate(' + f(p[0] - 16) + ' ' + f(p[1] - 16) + ') scale(1.333)" d="' + g + '" fill="none" stroke="#FFFDF9" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".92"/>' +
+        '<path class="swc-glyph" transform="translate(' + f(p[0] - 16) + ' ' + f(p[1] - 16) + ') scale(1.333)" d="' + g + '" fill="none" stroke="#5A182A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
         '<text class="swc-dg" x="' + f(pl[0]) + '" y="' + f(pl[1] + 3.9) + '" text-anchor="middle" font-size="11" font-weight="700" fill="#4A1224" font-family="Cairo,sans-serif" paint-order="stroke" stroke="#FFFDF9" stroke-width="3.6" stroke-linejoin="round" style="direction:ltr;unicode-bidi:plaintext">' + dm(it.lon) + '</text>' +
         (it.retro ? '<g class="swc-rx"><title>متراجع</title><circle cx="' + f(p[0] + 15) + '" cy="' + f(p[1] - 15) + '" r="9" fill="#B8473E" stroke="#FFFDF7" stroke-width="1.2"/><svg x="' + f(p[0] + 15 - 5.5) + '" y="' + f(p[1] - 15 - 5.5) + '" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 9l5 5"/><path d="M4 9h9.500a5.500 5.500 0 0 1 0 11H10"/></svg></g>' : '') + '</g>';
     });
@@ -192,6 +193,13 @@
   function renderTabs(st) { renderMine(st); renderHouses(st); renderElem(st); }
   function skipSame(name, key) { if (sigs[name] === key) return true; sigs[name] = key; return false; }
 
+  /* قفل تمرير الخلفية بثبات: نحفظ الموضع ونعيده بلا قفزة، والإخفاء بعد انتهاء حركة الخروج */
+  var lockY = 0, locks = 0;
+  function lockBg() { if (!locks++) { lockY = window.pageYOffset || 0; } root.classList.add('aqm-sheet-open'); }
+  function unlockBg() { if (locks > 0 && !--locks) { root.classList.remove('aqm-sheet-open'); if ((window.pageYOffset || 0) !== lockY) window.scrollTo(0, lockY); } }
+  function topScroll(s) { var b = s.querySelector('.aqm-sheet-body'), pn = s.querySelector('.aqm-sheet-panel'); if (b) b.scrollTop = 0; if (pn) pn.scrollTop = 0; requestAnimationFrame(function () { if (b) b.scrollTop = 0; }); }
+  function openSh(s) { var was = !s.hidden; s.classList.remove('is-closing'); s.hidden = false; if (!was) lockBg(); topScroll(s); }
+  function closeSh(s) { if (!s || s.hidden || s.classList.contains('is-closing')) return; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); unlockBg(); }, 240); }
   var mineOpen = false, mineSheet = null, mineK = null;
   function numAr(n) { try { return n.toLocaleString('ar-EG'); } catch (e) { return String(n); } }
   function mineData(st, k) {
@@ -203,21 +211,28 @@
   function renderMine(st) {
     var host = $('swc-mine'), A = window.AqSky, R = window.AqReadings; if (!host) return;
     if (!A || !R) { host.innerHTML = '<p class="swt-empty">القراءات قيد التحميل…</p>'; sigs.mine = ''; return; }
-    var sg = A.getSign(), key = (sg === null ? 'x' : sg) + '|' + mineOpen + '|' + st.items.map(function (i) { return i.k + i.sign + (i.retro ? 'r' : ''); }).join('');
-    if (skipSame('mine', key)) return;
-    var picker = '<section class="swm-pick"><b>اختر برجك الشمسي أو طالعك</b><small>مرة واحدة فقط، ونعرض لك كيف تلمس سماء هذه اللحظة بيوتك</small><div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">' +
-      A.SIGNS.map(function (s, i) { return '<button type="button" class="sky-sg' + (i === sg ? ' is-on' : '') + '" data-i="' + i + '" aria-pressed="' + (i === sg) + '"><span class="sg" aria-hidden="true">' + A.gl(s.g) + '</span><span>' + s.n + '</span></button>'; }).join('') + '</div></section>';
-    var h = '';
-    if (sg === null) h = picker + '<p class="swt-empty">اختر برجك لنعرض لك تقرير اليوم: أين يقف كل كوكب في حياتك.</p>';
-    else {
-      h = '<div class="swm-ban"><span class="swm-ban-g"><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[sg].g) + '</span></span><div><small>تقرير سماء هذه اللحظة</small><b>تأثير سماء هذه اللحظة على برج ' + A.SIGNS[sg].n + '</b></div><button type="button" class="swm-chg" data-chg>' + (mineOpen ? 'إغلاق' : 'تغيير البرج') + '</button></div>';
-      if (mineOpen) h += picker;
-      h += '<div class="swg">' + st.items.map(function (bd) {
-        var d = mineData(st, bd.k);
-        return '<button type="button" class="swg-c' + (bd.retro ? ' is-retro' : '') + '" data-mk="' + bd.k + '"><span class="swg-g">' + path(bd.k, 'swg-gi') + '</span><b>' + bd.n + '</b><i class="swg-h">البيت ' + numAr(d.hh) + '</i>' + (bd.retro ? '<em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</button>';
-      }).join('') + '</div><p class="swg-tip">اضغط أي كوكب لتقرأ أثره في بيتك</p>';
+    var sg = A.getSign();
+    if (!host.querySelector('.swm-pk')) {
+      host.innerHTML = '<div class="swm-top"></div><div class="swm-pk"><div class="swm-pk-in"><section class="swm-pick"><b>اختر برجك الشمسي أو طالعك</b><small>مرة واحدة فقط، ونعرض لك كيف تلمس سماء هذه اللحظة بيوتك</small><div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">' +
+        A.SIGNS.map(function (x, i) { return '<button type="button" class="sky-sg" data-i="' + i + '" aria-pressed="false"><span class="sg" aria-hidden="true">' + A.gl(x.g) + '</span><span>' + x.n + '</span></button>'; }).join('') + '</div></section></div></div><div class="swm-body"></div>';
     }
-    host.innerHTML = h; queueUp();
+    if (sg === null) mineOpen = true;
+    var key = (sg === null ? 'x' : sg) + '|' + st.items.map(function (i) { return i.k + i.sign + (i.retro ? 'r' : ''); }).join('');
+    var pk = host.querySelector('.swm-pk'), chg;
+    pk.classList.toggle('is-open', mineOpen);
+    [].forEach.call(pk.querySelectorAll('.sky-sg'), function (b, i) { b.classList.toggle('is-on', i === sg); b.setAttribute('aria-pressed', i === sg); });
+    var top = host.querySelector('.swm-top'), body = host.querySelector('.swm-body');
+    if (sg === null) { top.innerHTML = ''; body.innerHTML = '<p class="swt-empty">اختر برجك لنعرض لك تقرير اليوم: أين يقف كل كوكب في حياتك.</p>'; sigs.mine = ''; return; }
+    var nx = (sg + 1) % 12;
+    top.innerHTML = '<div class="swm-ban"><div class="swm-ban-r"><span class="swm-ban-g"><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[sg].g) + '</span></span><div><small>تأثير سماء هذه اللحظة على</small><b>برج ' + A.SIGNS[sg].n + '</b></div>' +
+      '<button type="button" class="swm-chg" data-chg aria-expanded="' + mineOpen + '">' + (mineOpen ? 'إخفاء' : 'تغيير البرج') + '</button></div>' +
+      '<button type="button" class="swm-nx" data-nxs><span>البرج التالي: <b>' + A.SIGNS[nx].n + '</b></span><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[nx].g) + '</span></button></div>';
+    if (sigs.mine === key) return; sigs.mine = key;
+    body.innerHTML = '<div class="swg">' + st.items.map(function (bd) {
+      var d = mineData(st, bd.k);
+      return '<button type="button" class="swg-c' + (bd.retro ? ' is-retro' : '') + '" data-mk="' + bd.k + '"><span class="swg-g">' + path(bd.k, 'swg-gi') + '</span><b>' + bd.n + '</b><i class="swg-h">البيت ' + numAr(d.hh) + '</i>' + (bd.retro ? '<em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</button>';
+    }).join('') + '</div><p class="swg-tip">اضغط أي كوكب لتقرأ أثره في بيتك</p>';
+    queueUp();
   }
   /* ورقة سفلية موحدة لقراءة كوكب في بيت البرج المختار */
   function ensureMine() {
@@ -235,21 +250,21 @@
     var A = window.AqSky; if (!cur || !A || A.getSign() === null) return;
     mineK = k; var d = mineData(cur, k), bd = d.bd, s = ensureMine(), sg = A.getSign(), o = st_items(), nk = o[(o.indexOf(k) + 1) % o.length], nm = '';
     cur.items.forEach(function (i) { if (i.k === nk) nm = i.n; });
-    s.querySelector('.mns-body').innerHTML = '<div class="mns-hero"><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><small>لمن برجه ' + A.SIGNS[sg].n + '</small><h3>' + bd.n + ' في بيتك ' + d.H.n + '</h3><span class="mns-meta">' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + d.H.area + (bd.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</span></div></div>' +
+    s.querySelector('.mns-body').innerHTML = '<div class="mns-hero"><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><span class="mns-sg"><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[sg].g) + '</span>برج ' + A.SIGNS[sg].n + '</span><h3>' + bd.n + ' في بيتك ' + d.H.n + '</h3><span class="mns-meta">' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + d.H.area + (bd.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</span></div></div>' +
       '<p class="mns-txt">' + d.txt + '</p>' + (d.rt ? '<p class="swm-rt">' + d.rt + '</p>' : '') +
       '<div class="swm-q"><b>أسئلة تخصك</b><ul><li>' + d.q1 + '</li>' + (d.q2 ? '<li>' + d.q2 + '</li>' : '') + '</ul></div>';
     s.querySelector('[data-mnn] b').textContent = nm;
-    s.querySelector('.mns-body').scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open'); queueUp();
+    openSh(s); queueUp();
   }
-  function closeMine() { if (!mineSheet || mineSheet.hidden) return; var s = mineSheet; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
+  function closeMine() { closeSh(mineSheet); }
 
   function renderHouses(st) {
     var host = $('swc-houses'); if (!host) return;
     var ch = st.ch, key = ch.asc.toFixed(2) + '|' + st.items.map(function (i) { return i.k + (i.house || ''); }).join(''); if (skipSame('houses', key)) return;
     var angs = [['الطالع', ch.asc], ['الغارب', ch.asc + 180], ['وسط السماء', ch.mc], ['وتد الأرض', ch.mc + 180]];
-    var h = '<div class="swt-angles">' + angs.map(function (a) { var s = Math.floor(mod(a[1]) / 30); return '<div class="swt-ang"><small>' + a[0] + '</small><b>' + sgIc(s) + SIGNS_AR[s] + '</b><span>' + dmb(a[1]) + '</span></div>'; }).join('') + '</div>';
+    var h = '<div class="swt-angles">' + angs.map(function (a) { var s = Math.floor(mod(a[1]) / 30); return '<div class="swt-ang"><span class="swt-ang-i">' + sgIc(s) + '</span><div class="swt-ang-t"><small>' + a[0] + '</small><b>' + SIGNS_AR[s] + '</b><span>' + dmb(a[1]) + '</span></div></div>'; }).join('') + '</div>';
     h += '<div class="swt-hs">' + ch.cusps.map(function (c, i) {
-      var s = Math.floor(mod(c) / 30), ps = st.items.filter(function (it) { return it.house === i + 1; }).map(function (it) { return '<span class="swt-hp">' + path(it.k, 'swt-pg') + it.n + '</span>'; }).join('');
+      var s = Math.floor(mod(c) / 30), ps = st.items.filter(function (it) { return it.house === i + 1; }).map(function (it) { return '<span class="swt-hp"><i>' + path(it.k, 'swt-pg') + '</i>' + it.n + '</span>'; }).join('');
       return '<div class="swt-h"><span class="swt-hn">' + (i + 1) + '</span><div class="swt-ht"><b>البيت ' + HOUSE_AR[i] + '</b><small>' + HOUSE_AREA[i] + '</small></div><span class="swt-hc">' + sgIc(s) + SIGNS_AR[s] + ' ' + dmb(c) + '</span>' + (ps ? '<div class="swt-hps">' + ps + '</div>' : '') + '</div>';
     }).join('') + '</div>';
     host.innerHTML = h; queueUp();
@@ -275,8 +290,9 @@
   window.addEventListener('hashchange', function () { /* #world دُمجت في #sky */ });
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('.swt-t'); if (t) { setTab(t.getAttribute('data-tab')); return; }
-    var sgb = e.target.closest && e.target.closest('#swc-mine .sky-sg'); if (sgb && window.AqSky) { window.AqSky.setSign(+sgb.getAttribute('data-i')); mineOpen = false; sigs.mine = ''; renderMine(cur); return; }
-    if (e.target.closest && e.target.closest('#swc-mine [data-chg]')) { mineOpen = !mineOpen; sigs.mine = ''; renderMine(cur); return; }
+    var sgb = e.target.closest && e.target.closest('#swc-mine .sky-sg'); if (sgb && window.AqSky) { window.AqSky.setSign(+sgb.getAttribute('data-i')); mineOpen = false; renderMine(cur); return; }
+    if (e.target.closest && e.target.closest('#swc-mine [data-nxs]') && window.AqSky) { window.AqSky.setSign((window.AqSky.getSign() + 1) % 12); renderMine(cur); return; }
+    if (e.target.closest && e.target.closest('#swc-mine [data-chg]')) { mineOpen = !mineOpen; renderMine(cur); return; }
     var mc = e.target.closest && e.target.closest('#swc-mine [data-mk]'); if (mc) showMine(mc.getAttribute('data-mk'));
   });
 
@@ -316,10 +332,10 @@
   function showSheet() {
     var s = ensureSheet(), body = s.querySelector('.swp-body'), panel = document.getElementById('sky-panel');
     if (panel && panel.parentNode !== body) body.appendChild(panel);
-    body.scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
+    openSh(s);
     updNext(); queueUp();
   }
-  function closeSheet() { if (!sheet || sheet.hidden) return; var s = sheet; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
+  function closeSheet() { closeSh(sheet); }
   /* زر «القسم التالي»: ينتقل للكوكب التالي بنفس ترتيب الشبكة */
   function planetOrder() { return [].map.call(gridEl.querySelectorAll('.swc-pc'), function (b) { return b.getAttribute('data-k'); }); }
   function nextKey() { var o = planetOrder(), i = o.indexOf(sel); return o.length ? o[(i + 1) % o.length] : null; }
@@ -359,9 +375,9 @@
       (isNaN(orb) ? '' : '<div class="axs-orb"><div class="axs-orb-h"><b>دقة الزاوية</b><span>' + (tight ? 'زاوية قوية' : orb <= lim * .66 ? 'زاوية متوسطة' : 'زاوية خفيفة') + ' · <bdi dir="ltr">' + orb.toFixed(1).replace(/\.0$/, '') + '°</bdi></span></div><div class="axs-orb-bar"><i style="width:' + pct.toFixed(0) + '%"></i></div><div class="axs-orb-s"><span><bdi dir="ltr">0°</bdi></span><span><bdi dir="ltr">' + lim + '°</bdi></span></div></div>') +
       '<div class="axs-txt">' + txt + '</div>' + (q ? '<div class="swm-q"><b>أسئلة تخصك</b><ul><li>' + q + '</li></ul></div>' : '');
     var nx = L[(axI + 1) % L.length], nb = s.querySelector('[data-axn]'); nb.hidden = L.length < 2; nb.querySelector('b').textContent = nx.querySelector('.ax-t b').textContent;
-    body.scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open'); queueUp();
+    openSh(s); queueUp();
   }
-  function closeAx() { if (!axSheet || axSheet.hidden) return; var s = axSheet; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
+  function closeAx() { closeSh(axSheet); }
   var axHost = document.getElementById('sky-asp');
   if (axHost) axHost.addEventListener('click', function (e) { var b = e.target.closest('.ax-s'); if (!b) return; var L = axList(), i = L.indexOf(b.parentNode); if (i > -1) renderAx(i); });
 
@@ -384,7 +400,7 @@
     });
   });
   function pickEv(e) { var n = e.target.closest('[data-k]'); if (n) openPlanet(n.getAttribute('data-k')); }
-  function wheelEv(e) { var n = e.target.closest('.swc-pl[data-k]'); if (!n) { if (!e.target.closest('.swc-cap')) clearFocus(); return; } var k = n.getAttribute('data-k'); focusPlanet(k); }
+  function wheelEv(e) { var n = e.target.closest('.swc-pl[data-k]'); if (!n) { if (!e.target.closest('.swc-cap')) clearFocus(); return; } var k = n.getAttribute('data-k'); if (foc === k) clearFocus(); else focusPlanet(k); }
   svg.addEventListener('click', wheelEv); gridEl.addEventListener('click', pickEv);
   capEl.addEventListener('click', function (e) { var o = e.target.closest('[data-open]'); if (o) { openPlanet(o.getAttribute('data-open')); return; } if (e.target.closest('[data-clear]')) clearFocus(); });
   svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wheelEv(e); } });

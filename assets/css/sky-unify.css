@@ -191,14 +191,11 @@ html body #sky .swc-pl.is-sel .swc-dg{fill:#6B2234;font-weight:800}
 html body #sky .swc-cw.has-foc .swc-pl:not(.is-sel){opacity:.55}
 @media(max-width:480px){html body #sky .swc:not(#_a):not(#_b){padding-inline:4px!important}html body #sky .swc-wheel{margin-inline:-2px}}
 /* بانر البرج */
-.swm-ban{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow);margin-bottom:12px}
 .swm-ban>div{flex:1;min-width:0;display:grid;gap:1px}
 .swm-ban small{font:700 .68rem 'Cairo',sans-serif;color:#A8863F}
 .swm-ban b{font:700 .95rem/1.45 'El Messiri','Cairo',serif;color:#4A1224}
 .swm-ban-g{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:#6A2038;color:#F3DFA8}
 .swm-ban-g .sg svg{width:22px;height:22px}
-.swm-chg{flex:none;border:1px solid #C8A15A;background:#FFF8E8;color:#6A2038;border-radius:999px;padding:7px 12px;font:700 .74rem 'Cairo',sans-serif;cursor:pointer}
-.swm-pick{margin-bottom:12px}
 /* شبكة الكواكب */
 .swg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .swg-c{position:relative;display:flex;align-items:center;gap:10px;padding:12px 10px;border-radius:18px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow);cursor:pointer;text-align:start;-webkit-tap-highlight-color:transparent}
@@ -243,3 +240,55 @@ html body .aqm-sheet .swm-rt{margin:10px 0 0;padding:8px 12px;border-radius:12px
 html body .aqm-sheet .swm-q:not(#_a):not(#_b),html body .aqm-sheet .swm-q:not(#_a):not(#_b) li,html body .aqm-sheet .swm-q:not(#_a):not(#_b) ul{color:#FFFFFF!important;-webkit-text-fill-color:#FFFFFF}
 html body .aqm-sheet .swm-q:not(#_a):not(#_b)>b{color:#E9CE8E!important;-webkit-text-fill-color:#E9CE8E}
 html body #sky .swt .swt-bar .swt-l:not(#_a):not(#_b){white-space:normal;line-height:1.25;font-size:.62rem;text-align:center;overflow-wrap:anywhere}
+
+/* ===== جولة التلميع الأخيرة ===== */
+html body #sky .swc-pl .swc-ring:not(#_a){fill:none!important;stroke:none!important}
+html body #sky .swc-pl.is-sel .swc-ring:not(#_a){fill:#FFFDF9!important;fill-opacity:1!important;stroke:#5A182A!important;stroke-width:3.4!important}
+html body #sky .swc-pl.is-sel .swc-glyph{stroke:#5A182A;stroke-width:2.2}
+/* بانر البرج + البرج التالي */
+.swm-ban{display:grid;gap:10px;padding:12px 14px;border-radius:20px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow);margin-bottom:12px}
+.swm-ban-r{display:flex;align-items:center;gap:12px}
+.swm-ban-r>div{flex:1;min-width:0;display:grid;gap:0}
+.swm-ban small{font:700 .68rem 'Cairo',sans-serif;color:#A8863F}
+.swm-ban-r b{font:700 1.15rem/1.3 'El Messiri','Cairo',serif;color:#4A1224}
+.swm-ban-g{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 28%,#8A2D4A,#5A182A);border:2px solid #C8A15A;box-shadow:0 6px 14px rgba(90,24,42,.22)}
+.swm-chg{flex:none;border:1.5px solid #5A182A;background:#5A182A;color:#FFF3D6;border-radius:999px;padding:8px 14px;font:700 .78rem 'Cairo',sans-serif;cursor:pointer}
+.swm-nx{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:9px 14px;border-radius:14px;border:1px dashed #C8A15A;background:#FFF8E8;color:#5A182A;font:600 .82rem 'Cairo',sans-serif;cursor:pointer}
+.swm-nx b{font-weight:800}
+.swm-nx .sg svg{width:20px;height:20px;color:#5A182A;stroke:#5A182A}
+/* ستارة اختيار البرج */
+.swm-pk{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease,margin .32s ease;margin:0}
+.swm-pk.is-open{grid-template-rows:1fr;margin-bottom:12px}
+.swm-pk-in{overflow:hidden;min-height:0}
+.swm-pk:not(.is-open) .swm-pk-in{visibility:hidden;transition:visibility 0s .32s}
+.swm-pick{margin:0}
+/* شارة البرج في الورقة */
+.mns-sg{display:inline-flex;align-items:center;gap:6px;margin-bottom:3px;padding:3px 12px 3px 8px;border-radius:999px;background:#5A182A;color:#FFF3D6;font:700 .76rem 'Cairo',sans-serif}
+.mns-sg .sg svg{width:16px;height:16px;color:#F3DFA8;stroke:#F3DFA8}
+/* ثبات الورقة عند الإغلاق */
+html.aqm-sheet-open{overflow:hidden!important;scrollbar-gutter:auto!important}
+.aqm-sheet .aqm-sheet-body,.aqm-sheet .aqm-sheet-panel{overscroll-behavior:contain}
+.aqm-sheet.is-closing{pointer-events:none}
+/* أيقونات موحدة بعمق: البيوت والكواكب */
+.swt-ang{display:flex;align-items:center;gap:11px;padding:12px;border-radius:18px;background:linear-gradient(180deg,#FFFFFF,#FBF3E2);border:1px solid rgba(197,160,89,.6);box-shadow:var(--sk-shadow)}
+.swt-ang-i{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 28%,#FFFDF5,#F1DFB8);border:1.5px solid #C5A059;box-shadow:0 5px 12px rgba(94,34,52,.14),inset 0 1px 0 #fff}
+.swt-ang-i svg{width:26px;height:26px;color:#6A2038}
+.swt-ang-t{display:grid;gap:1px;min-width:0}
+.swt-ang-t small{font:700 .7rem 'Cairo',sans-serif;color:#A8863F}
+.swt-ang-t b{font:700 1rem 'El Messiri','Cairo',serif;color:#4A1224}
+.swt-ang-t span{font:600 .78rem 'Cairo',sans-serif;color:#6A2038}
+.swt-angles{gap:10px}.swt-hs{gap:10px}
+.swt-h{padding:13px 14px;gap:12px;grid-template-columns:44px minmax(0,1fr) auto;border:1px solid rgba(197,160,89,.6);background:linear-gradient(180deg,#FFFFFF,#FDF8EC)}
+.swt-hn{width:44px;height:44px;background:radial-gradient(circle at 35% 28%,#8A2D4A,#5A182A);border:2px solid #C8A15A;box-shadow:0 5px 12px rgba(90,24,42,.25);font-size:1rem}
+.swt-hps{gap:8px;padding-top:2px}
+.swt-hp{gap:7px;padding:3px 12px 3px 4px;border:1px solid rgba(197,160,89,.7);background:#FFF8E8}
+.swt-hp i{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#FFFDF5,#F1DFB8);border:1px solid #C5A059}
+.swt-hp .swt-pg{width:15px;height:15px;color:#6A2038}
+.swg-g{border:2px solid #C8A15A;background:radial-gradient(circle at 35% 28%,#8A2D4A,#5A182A);box-shadow:0 5px 12px rgba(90,24,42,.22)}
+html body #sky .swc-pc-m{box-shadow:0 5px 12px rgba(94,34,52,.16)}
+html body #sky .swc-pc{padding:12px 14px;gap:14px}
+html body #sky .swm-ban-r:not(#_a):not(#_b){display:flex!important;align-items:center;gap:12px}
+html body #sky .swm-ban-r>div:not(#_a):not(#_b){display:grid!important;flex:1;min-width:0}
+html body #sky .swm-chg:not(#_a):not(#_b){display:inline-flex!important;width:auto!important;flex:none}
+html body #sky .swm-nx:not(#_a):not(#_b){display:flex!important}
+html body #sky .swm-ban-g:not(#_a):not(#_b){display:grid!important}
