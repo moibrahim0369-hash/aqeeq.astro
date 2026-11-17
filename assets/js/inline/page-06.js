@@ -1990,7 +1990,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function skyCard(k, bd, i) {
     const P = PLANETS[k], sg = SIGNS[i], hh = ((bd.sign - i + 12) % 12) + 1, H = HOUSES[hh - 1], pf = PF[k], q = HQ[hh - 1], ex = HEX[hh - 1];
     return `<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">${gl(P.g)}</span></span><div><h4>${P.n} في بيتك ${H.n}</h4><small>${sg.n} · مجال ${H.area}</small></div></header>
-      <div class="swp-hook"><b class="swp-lbl">أسئلة تخصك</b><p>${(window.AqReadings && window.AqReadings.TR[k][hh - 1]) ? PQH[k][hh - 1] : PQ[k]}</p><p>${q[(Math.floor(Date.now() / 864e5) + i) % 2]}</p></div>
+      <div class="swp-hook"><p>${(window.AqReadings && window.AqReadings.TR[k][hh - 1]) ? PQH[k][hh - 1] : PQ[k]}</p><p>${q[(Math.floor(Date.now() / 864e5) + i) % 2]}</p></div>
       <div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b><p>${window.AqReadings ? (window.AqReadings.TR[k][hh - 1] || window.AqReadings.PH[k][hh - 1]) : ""}</p>${bd.retro && window.AqReadings && window.AqReadings.RT[k] ? `<p class="swp-rt">${window.AqReadings.RT[k]}</p>` : ""}</div></div>
       <p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>`;
   }
@@ -2055,7 +2055,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     }
     found.sort((x, y) => x.orb - y.orb);
     const top = found.slice(0, 12);
-    const head = `<div class="asp-head"><h4 class="ph">الأسبكتات بين الكواكب الآن</h4><span class="asp-leg"><i class="k-soft">داعم</i><i class="k-hard">متوتر</i><i class="k-neu">اندماج</i></span></div><p class="ax-sub">الأسبكتات هي الزوايا التي تصنعها الكواكب مع بعضها، وكل زاوية تصنع حوارًا بين مجالين في حياتك.</p>`;
+    const head = `<div class="asp-ban"><div class="asp-ban-r"><span class="asp-ban-g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 4 19h16z"/><circle cx="12" cy="4" r="1.6"/><circle cx="4" cy="19" r="1.6"/><circle cx="20" cy="19" r="1.6"/></svg></span><div><small>AQEQ ASTRO</small><b>الأسبكتات بين الكواكب الآن</b></div></div><span class="asp-leg"><i class="k-soft">داعم</i><i class="k-hard">متوتر</i><i class="k-neu">اندماج</i></span></div><p class="ax-sub">الأسبكتات هي الزوايا التي تصنعها الكواكب مع بعضها، وكل زاوية تصنع حوارًا بين مجالين في حياتك.</p>`;
     if (!top.length) { $("#sky-asp").innerHTML = head + `<p class="sub">لا توجد أسبكتات مؤثرة في هذه اللحظة، فالسماء هادئة نسبيًا.</p>`; return; }
     const AM = { conj: "يلتقي المجالان في نقطة واحدة فيمتزجان، ويصعب الفصل بينهما، فيشتدّ أثرهما معًا.", sext: "فرصة هادئة للتعاون بين المجالين، وتحتاج منك مبادرة بسيطة لتستثمرها.", square: "احتكاك يحرّك الأمور ويكشف خلافًا داخليًا، ويطلب منك قرارًا واضحًا.", trine: "انسجام وتدفق طبيعي بين المجالين، وعليك فقط ألا تعتاد السهولة فتؤجل.", opp: "شدّ بين طرفين، وكل طرف يطلب منك الانحياز إليه، والحل في التوازن الواعي." };
     const AQ = { conj: "هل تشعر أن أمرين في حياتك لم يعودا منفصلين؟", sext: "هل ظهرت فرصة صغيرة تتردد في الإمساك بها؟", square: "هل تشعر بشدٍّ داخلي بين ما تريده وما تفعله فعلًا؟", trine: "هل تسير أمور كثيرة بسهولة غريبة حتى صرت تشك فيها؟", opp: "هل تشعر أنك بين طرفين، كل منهما يسحبك إلى جهة؟" };

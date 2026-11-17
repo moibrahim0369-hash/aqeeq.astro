@@ -2,6 +2,8 @@
 (function () {
   var r = document.documentElement;
   function set() {
+    /* أثناء فتح ورقة سفلية يغطي الغطاء الهيدر فيُقرأ كأنه مخفي؛ نُبقي القيمة السابقة كي لا يقفز المحتوى */
+    if (r.classList.contains('aqm-sheet-open') || document.querySelector('.aqm-sheet:not([hidden])')) return;
     var h = document.querySelector('.aqh-header'); var v = 0;
     if (h) { var b = h.getBoundingClientRect(); var cs = getComputedStyle(h); if (cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity) > 0.1 && b.bottom > 4) { var hit = document.elementFromPoint(Math.max(2, window.innerWidth / 2), Math.min(b.bottom - 4, 40)); if (hit && hit.closest && hit.closest('.aqh-header')) v = Math.max(0, Math.min(120, Math.round(b.bottom))); } }
     r.style.setProperty('--aq-hdr', v + 'px');

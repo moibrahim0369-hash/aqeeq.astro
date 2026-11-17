@@ -194,6 +194,9 @@
   function skipSame(name, key) { if (sigs[name] === key) return true; sigs[name] = key; return false; }
 
   /* قفل تمرير الخلفية بثبات: نحفظ الموضع ونعيده بلا قفزة، والإخفاء بعد انتهاء حركة الخروج */
+  (function () { function inScroll(t) { return t.closest && t.closest('.aqm-sheet-body, .aqm-sheet-panel [style*="overflow"]'); }
+    function blk(e) { var t = e.target; if (t.closest && t.closest('.aqm-sheet') && !inScroll(t)) e.preventDefault(); }
+    document.addEventListener('touchmove', blk, { passive: false }); document.addEventListener('wheel', blk, { passive: false }); })();
   var lockY = 0, locks = 0;
   function lockBg() { if (!locks++) { lockY = window.pageYOffset || 0; } root.classList.add('aqm-sheet-open'); }
   function unlockBg() { if (locks > 0 && !--locks) { root.classList.remove('aqm-sheet-open'); if ((window.pageYOffset || 0) !== lockY) window.scrollTo(0, lockY); } }
@@ -252,7 +255,7 @@
     cur.items.forEach(function (i) { if (i.k === nk) nm = i.n; });
     s.querySelector('.mns-body').innerHTML = '<div class="mns-hero"><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><span class="mns-sg"><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[sg].g) + '</span>برج ' + A.SIGNS[sg].n + '</span><h3>' + bd.n + ' في بيتك ' + d.H.n + '</h3><span class="mns-meta">' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + d.H.area + (bd.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</span></div></div>' +
       '<p class="mns-txt">' + d.txt + '</p>' + (d.rt ? '<p class="swm-rt">' + d.rt + '</p>' : '') +
-      '<div class="swm-q"><b>أسئلة تخصك</b><ul><li>' + d.q1 + '</li>' + (d.q2 ? '<li>' + d.q2 + '</li>' : '') + '</ul></div>';
+      '<div class="swm-q"><ul><li>' + d.q1 + '</li>' + (d.q2 ? '<li>' + d.q2 + '</li>' : '') + '</ul></div>';
     s.querySelector('[data-mnn] b').textContent = nm;
     openSh(s); queueUp();
   }
@@ -373,7 +376,7 @@
     var txt = [].filter.call(bx.children, function (c) { return c !== qEl; }).map(function (c) { return c.outerHTML; }).join('');
     body.innerHTML = '<div class="axs-hero axt-' + tone + '">' + el.querySelector('.ax-pair').outerHTML + '<div class="axs-t"><b>' + el.querySelector('.ax-t b').innerHTML + '</b><small>' + el.querySelector('.ax-t small').innerHTML + '</small></div></div>' +
       (isNaN(orb) ? '' : '<div class="axs-orb"><div class="axs-orb-h"><b>دقة الزاوية</b><span>' + (tight ? 'زاوية قوية' : orb <= lim * .66 ? 'زاوية متوسطة' : 'زاوية خفيفة') + ' · <bdi dir="ltr">' + orb.toFixed(1).replace(/\.0$/, '') + '°</bdi></span></div><div class="axs-orb-bar"><i style="width:' + pct.toFixed(0) + '%"></i></div><div class="axs-orb-s"><span><bdi dir="ltr">0°</bdi></span><span><bdi dir="ltr">' + lim + '°</bdi></span></div></div>') +
-      '<div class="axs-txt">' + txt + '</div>' + (q ? '<div class="swm-q"><b>أسئلة تخصك</b><ul><li>' + q + '</li></ul></div>' : '');
+      '<div class="axs-txt">' + txt + '</div>' + (q ? '<div class="swm-q"><ul><li>' + q + '</li></ul></div>' : '');
     var nx = L[(axI + 1) % L.length], nb = s.querySelector('[data-axn]'); nb.hidden = L.length < 2; nb.querySelector('b').textContent = nx.querySelector('.ax-t b').textContent;
     openSh(s); queueUp();
   }
