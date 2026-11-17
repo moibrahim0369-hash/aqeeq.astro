@@ -4,7 +4,10 @@
   'use strict';
   var res = document.getElementById('lpresult');
   if (!res) return;
-  var root = document.documentElement, sheet = null, list = [], cur = -1, busy = false;
+  var root = document.documentElement, sheet = null, list = [], cur = -1, busy = false, closeT = 0;
+  var AQL = window.__aqLock = window.__aqLock || { s: {}, on: function (k) { this.s[k] = 1; document.documentElement.classList.add('aqm-sheet-open'); }, off: function (k) { delete this.s[k]; if (!Object.keys(this.s).length) document.documentElement.classList.remove('aqm-sheet-open'); } };
+  function lpNum() { var b = document.querySelector('#lpresult .numbadge'), n = b ? parseInt(b.textContent, 10) : 0; return n > 0 ? String(n) : ''; }
+  function paintBadge(s) { var el = s.querySelector('.lp-hbadge'); if (!el) return; var n = lpNum(); el.textContent = n; el.hidden = !n; if (n) el.setAttribute('aria-label', 'رقم مسار حياتك ' + n); }
 
   function sv(d, w) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 1.6) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; }
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -83,7 +86,7 @@
       '<div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="lpc-title">' +
       '<span class="aqm-sheet-grip" aria-hidden="true"></span>' +
       '<button type="button" class="aqm-sheet-x" data-lpc-close aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
-      '<div class="lpc-head"><span class="lpc-hic"></span><div><small class="lpc-count"></small><h3 id="lpc-title"></h3><p class="lpc-hsub"></p></div></div>' +
+      '<div class="lpc-head"><span class="lpc-hic"></span><div><small class="lpc-count"></small><span class="lp-hbadge" hidden></span><h3 id="lpc-title"></h3><p class="lpc-hsub"></p></div></div>' +
       '<div class="aqm-sheet-body lpc-body"></div>' +
       '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-close" data-lpc-close>إغلاق</button>' +
       '<button type="button" class="aqm-foot-next" data-lpc-next><span class="aqm-foot-l"><small>التالي</small><b></b></span>' + IC.next + '</button></div></div>';
@@ -162,13 +165,13 @@
       return;
     }
     if (!fill(i)) return;
-    s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
+    clearTimeout(closeT); s.classList.remove('is-closing'); s.hidden = false; AQL.on('lpc'); paintBadge(s);
     s.querySelector('.lpc-body').scrollTop = 0;
   }
   function close() {
     if (!sheet || sheet.hidden) return;
     var s = sheet; s.classList.add('is-closing');
-    setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230);
+    clearTimeout(closeT); closeT = setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); AQL.off('lpc'); }, 230);
   }
 
   res.addEventListener('click', function (e) {

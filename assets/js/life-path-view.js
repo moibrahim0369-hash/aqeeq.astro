@@ -203,19 +203,20 @@
     setTimeout(animate, reduce ? 0 : 350);
     top.addEventListener('click', function (e) { if (e.target.closest('.lpj-st')) tab('st'); });
     var ov = null, opener = null;
-    function close() { if (!ov) return; ov.remove(); ov = null; document.removeEventListener('keydown', onKey); if (opener) opener.focus(); }
+    var AQL = window.__aqLock = window.__aqLock || { s: {}, on: function (k) { this.s[k] = 1; document.documentElement.classList.add('aqm-sheet-open'); }, off: function (k) { delete this.s[k]; if (!Object.keys(this.s).length) document.documentElement.classList.remove('aqm-sheet-open'); } };
+    function close() { if (!ov) return; ov.remove(); ov = null; AQL.off('lpj'); document.removeEventListener('keydown', onKey); if (opener) opener.focus({ preventScroll: true }); }
     function onKey(e) {
       if (e.key === 'Escape') { close(); return; }
-      if (e.key === 'Tab' && ov) { var f = ov.querySelectorAll('button,a[href]'); if (!f.length) return; var a = f[0], z = f[f.length - 1]; if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); } }
+      if (e.key === 'Tab' && ov) { var f = ov.querySelectorAll('button,a[href]'); if (!f.length) return; var a = f[0], z = f[f.length - 1]; if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus({ preventScroll: true }); } else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus({ preventScroll: true }); } }
     }
     function open(i, btn) {
       close(); opener = btn;
       ov = document.createElement('div'); ov.className = 'lpj-ov open lpj';
       ov.innerHTML = '<div class="lpj-panel" role="dialog" aria-modal="true" aria-labelledby="lpj-panel-t">' + panelHTML(m, i) + '</div>';
-      document.body.appendChild(ov);
+      document.body.appendChild(ov); AQL.on('lpj');
       ov.addEventListener('click', function (e) { if (e.target === ov || e.target.closest('[data-lpj-close]')) close(); });
       document.addEventListener('keydown', onKey);
-      var x = $('[data-lpj-close]', ov); if (x) x.focus();
+      var x = $('[data-lpj-close]', ov); if (x) x.focus({ preventScroll: true });
     }
     function interp() { var t = $('#lpj-interp', root); if (t) { t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); var d = root.querySelector('details.lp-section'); if (d) d.open = true; } }
     function onClick(e) {
@@ -232,7 +233,7 @@
       var b = e.target.closest('.lpj-st'); if (!b) return;
       var all = [].slice.call(top.querySelectorAll('.lpj-st')), i = all.indexOf(b), n = -1;
       if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') n = i + 1; else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') n = i - 1;
-      if (n >= 0 && n < all.length) { e.preventDefault(); all[n].focus(); }
+      if (n >= 0 && n < all.length) { e.preventDefault(); all[n].focus({ preventScroll: true }); }
     });
   }
 
