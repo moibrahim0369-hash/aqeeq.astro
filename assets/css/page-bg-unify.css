@@ -1,5 +1,5 @@
 /* توحيد الخلفية الكريمية والحدود المعتمدة في مصفوفة القدر على باقي الصفحات (بدون صور خلفية مكررة) */
-html body section.sec:not(#_a):not(#_b):is(#compat,#energy-compatibility,#relationships,#individual,#invest,#services,#for-you,#world,#sky,#signs){background-color:#F8F3E8!important}
+html body section.sec:not(#_a):not(#_b):is(#compat,#energy-compatibility,#relationships,#individual,#invest,#services,#for-you,#sky,#signs){background-color:#F8F3E8!important}
 html body section.sec:not(#_a):not(#_b):is(#compat,#energy-compatibility,#relationships,#individual,#invest,#services){background-image:linear-gradient(180deg,#F8F3E8 0,rgba(248,243,232,.88) 14%,rgba(248,243,232,0) 34%)!important}
 /* التوافق الطاقي: من داكن إلى كريمي بنفس بطاقة المصفوفة */
 html body section#energy-compatibility,html body section#energy-compatibility .wrap{color:#3a2a2e!important}

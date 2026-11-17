@@ -92,25 +92,25 @@
 
   /* ---------- العجلة بمعيار Astro.com: درجات ودقائق، تدريج 1°/5°/10°، تباعد ذكي وخطوط توصيل، وتركيز على كوكب ---------- */
   function wheel(st) {
-    var ch = st.ch, asc = ch.asc, mc = ch.mc, cx = 270, R1 = 238, R2 = 198, R3 = 88, RP = 152, RL = 123, RN = 102;
+    var ch = st.ch, asc = ch.asc, mc = ch.mc, cx = 270, R1 = 238, R2 = 198, R3 = 88, RP = 156, RL = 127, RN = 102;
     function pt(lon, r) { var a = (180 + (lon - asc)) * Math.PI / 180; return [cx + r * Math.cos(a), cx - r * Math.sin(a)]; }
     function f(n) { return n.toFixed(1); }
     function ln(a, b, at) { return '<line x1="' + f(a[0]) + '" y1="' + f(a[1]) + '" x2="' + f(b[0]) + '" y2="' + f(b[1]) + '" ' + (at || '') + '/>'; }
-    var o = '<defs><radialGradient id="swcC" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#F6ECD6"/></radialGradient></defs>';
+    var o = '<defs><radialGradient id="swcC" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFFDF9"/><stop offset="1" stop-color="#FFFDF9"/></radialGradient></defs>';
     for (var i = 0; i < 12; i++) {
       var p0 = pt(i * 30, R1), p1 = pt(i * 30 + 30, R1), p2_ = pt(i * 30 + 30, R2), p3 = pt(i * 30, R2);
       o += '<path d="M' + f(p0[0]) + ' ' + f(p0[1]) + 'A' + R1 + ' ' + R1 + ' 0 0 0 ' + f(p1[0]) + ' ' + f(p1[1]) + 'L' + f(p2_[0]) + ' ' + f(p2_[1]) + 'A' + R2 + ' ' + R2 + ' 0 0 1 ' + f(p3[0]) + ' ' + f(p3[1]) + 'Z" fill="' + (i % 2 ? '#6A2A3C' : '#5E2234') + '" stroke="#C5A059" stroke-width=".9"/>';
       var g = pt(i * 30 + 15, (R1 + R2) / 2), d = GLY['s' + i];
       if (d) o += '<path transform="translate(' + f(g[0] - 16.8) + ' ' + f(g[1] - 16.8) + ') scale(1.4)" d="' + d + '" fill="none" stroke="#F3DFA8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>';
     }
-    o += '<circle cx="' + cx + '" cy="' + cx + '" r="' + R2 + '" fill="url(#swcC)" stroke="#C5A059" stroke-width="1.2"/><circle cx="' + cx + '" cy="' + cx + '" r="' + R3 + '" fill="#FFFDF8" stroke="#C5A059" stroke-width="1"/>';
+    o += '<circle cx="' + cx + '" cy="' + cx + '" r="' + R2 + '" fill="url(#swcC)" stroke="#C5A059" stroke-width="1.2"/><circle cx="' + cx + '" cy="' + cx + '" r="' + R3 + '" fill="#FFFDF9" stroke="#C5A059" stroke-width="1"/>';
     var t1 = '', t5 = '', t10 = '';
     for (var a = 0; a < 360; a++) { var seg = 'M' + f(pt(a, R2)[0]) + ' ' + f(pt(a, R2)[1]) + 'L' + f(pt(a, R2 - (a % 10 === 0 ? 9 : a % 5 === 0 ? 6 : 3))[0]) + ' ' + f(pt(a, R2 - (a % 10 === 0 ? 9 : a % 5 === 0 ? 6 : 3))[1]); if (a % 10 === 0) t10 += seg; else if (a % 5 === 0) t5 += seg; else t1 += seg; }
     o += '<g fill="none" stroke="#B8965A"><path d="' + t1 + '" stroke-width=".45" stroke-opacity=".7"/><path d="' + t5 + '" stroke-width=".75" stroke-opacity=".9"/><path d="' + t10 + '" stroke-width="1"/></g>';
     var cu = ch.cusps, hl = '', hn = '';
     for (i = 0; i < 12; i++) {
       var ax = i % 3 === 0;
-      hl += ln(pt(cu[i], R2), pt(cu[i], R3), 'stroke="' + (ax ? '#6B2234' : '#B8965A') + '" stroke-width="' + (ax ? 1.7 : .8) + '" stroke-opacity="' + (ax ? .95 : .7) + '"');
+      hl += ln(pt(cu[i], R2), pt(cu[i], R3), 'stroke="' + (ax ? '#4A1224' : '#6E5236') + '" stroke-width="' + (ax ? 2.6 : 1.5) + '" stroke-opacity="' + (ax ? 1 : .9) + '"');
       var mid = cu[i] + mod(cu[(i + 1) % 12] - cu[i]) / 2, q = pt(mid, RN);
       hn += '<text x="' + f(q[0]) + '" y="' + f(q[1] + 3.5) + '" text-anchor="middle">' + (i + 1) + '</text>';
     }
@@ -121,23 +121,23 @@
     st.asp.forEach(function (x) {
       var hard = x.t[0] === 'square' || x.t[0] === 'opp';
       if (x.t[0] === 'conj') return;
-      as += ln(pt(x.A.lon, R3), pt(x.B.lon, R3), 'class="swc-al" data-a="' + x.A.k + '" data-b="' + x.B.k + '" stroke="' + (hard ? '#C0554A' : '#4E7FB0') + '" stroke-opacity=".75" stroke-width="1.2"');
+      as += ln(pt(x.A.lon, R3), pt(x.B.lon, R3), 'class="swc-al" data-a="' + x.A.k + '" data-b="' + x.B.k + '" stroke="' + (hard ? '#B5233B' : '#1E78A8') + '" stroke-opacity=".92" stroke-width="2.2" stroke-linecap="round"');
     });
     o += as;
     /* تباعد: كل كوكب يبتعد عن جاره 15° على الأقل، وخط رفيع يربط الرمز بدرجته الحقيقية */
-    var arr = st.items.concat(st.node ? [st.node] : []).map(function (it) { return { it: it, disp: it.lon }; }).sort(function (a, b) { return a.it.lon - b.it.lon; }), GAP = 15;
+    var arr = st.items.concat(st.node ? [st.node] : []).map(function (it) { return { it: it, disp: it.lon }; }).sort(function (a, b) { return a.it.lon - b.it.lon; }), GAP = 17;
     for (var rep = 0; rep < 300; rep++) { var mv = false; for (var k = 0; k < arr.length; k++) { var A = arr[k], B = arr[(k + 1) % arr.length], gap = mod(B.disp - A.disp); if (gap < GAP - .05 && arr.length > 1) { var ps = (GAP - gap) / 2 + .02; A.disp = mod(A.disp - ps); B.disp = mod(B.disp + ps); mv = true; } } if (!mv) break; }
     arr.forEach(function (x) {
       var it = x.it, p = pt(x.disp, RP), pl = pt(x.disp, RL), t1p = pt(it.lon, R2), t2 = pt(it.lon, R2 - 11), g = it.k === 'node' ? NODE_G : (GLY[it.k] || ''), tap = true;
-      var off = Math.abs(((x.disp - it.lon + 540) % 360) - 180) > .8, le = pt(x.disp, RP + 17);
+      var off = Math.abs(((x.disp - it.lon + 540) % 360) - 180) > .8, le = pt(x.disp, RP + 20);
       o += '<g class="swc-pl' + (it.k === 'node' ? ' is-node' : '') + '" data-k="' + it.k + '" tabindex="0" role="button"><title>' + it.n + ' · ' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + (it.retro ? ' · متراجع' : '') + '</title>' + ln(t1p, t2, 'stroke="#6B2234" stroke-width="1.4"') +
         '<circle cx="' + f(t2[0]) + '" cy="' + f(t2[1]) + '" r="1.7" fill="#6B2234"/>' +
         (off ? ln(t2, le, 'stroke="#B8965A" stroke-width=".8" stroke-opacity=".9"') : ln(t2, le, 'stroke="#B8965A" stroke-width=".6" stroke-opacity=".5"')) +
-        '<circle class="swc-hit" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="19" fill="#6B2234" fill-opacity="0"/>' +
-        '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="16.5" fill="#FFFDF7" fill-opacity=".95" stroke="#C5A059" stroke-width="1.1"/>' +
-        '<path class="swc-glyph" transform="translate(' + f(p[0] - 14) + ' ' + f(p[1] - 14) + ') scale(1.167)" d="' + g + '" fill="none" stroke="#4A1521" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
-        '<text class="swc-dg" x="' + f(pl[0]) + '" y="' + f(pl[1] + 3.4) + '" text-anchor="middle" font-size="9.5" font-weight="700" fill="#5E2234" font-family="Cairo,sans-serif" paint-order="stroke" stroke="#FFFDF7" stroke-width="3" stroke-linejoin="round" style="direction:ltr;unicode-bidi:plaintext">' + dm(it.lon) + '</text>' +
-        (it.retro ? '<g class="swc-rx"><title>متراجع</title><circle cx="' + f(p[0] + 13) + '" cy="' + f(p[1] - 13) + '" r="8" fill="#B8473E" stroke="#FFFDF7" stroke-width="1.2"/><svg x="' + f(p[0] + 13 - 5) + '" y="' + f(p[1] - 13 - 5) + '" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 9l5 5"/><path d="M4 9h9.500a5.500 5.500 0 0 1 0 11H10"/></svg></g>' : '') + '</g>';
+        '<circle class="swc-hit" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="22" fill="#6B2234" fill-opacity="0"/>' +
+        '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="19" fill="#FFFDF7" fill-opacity=".97" stroke="#C5A059" stroke-width="1.1"/>' +
+        '<path class="swc-glyph" transform="translate(' + f(p[0] - 16) + ' ' + f(p[1] - 16) + ') scale(1.333)" d="' + g + '" fill="none" stroke="#4A1521" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<text class="swc-dg" x="' + f(pl[0]) + '" y="' + f(pl[1] + 3.9) + '" text-anchor="middle" font-size="11" font-weight="700" fill="#4A1224" font-family="Cairo,sans-serif" paint-order="stroke" stroke="#FFFDF9" stroke-width="3.6" stroke-linejoin="round" style="direction:ltr;unicode-bidi:plaintext">' + dm(it.lon) + '</text>' +
+        (it.retro ? '<g class="swc-rx"><title>متراجع</title><circle cx="' + f(p[0] + 15) + '" cy="' + f(p[1] - 15) + '" r="9" fill="#B8473E" stroke="#FFFDF7" stroke-width="1.2"/><svg x="' + f(p[0] + 15 - 5.5) + '" y="' + f(p[1] - 15 - 5.5) + '" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 9l5 5"/><path d="M4 9h9.500a5.500 5.500 0 0 1 0 11H10"/></svg></g>' : '') + '</g>';
     });
     return o;
   }
@@ -192,27 +192,56 @@
   function renderTabs(st) { renderMine(st); renderHouses(st); renderElem(st); }
   function skipSame(name, key) { if (sigs[name] === key) return true; sigs[name] = key; return false; }
 
+  var mineOpen = false, mineSheet = null, mineK = null;
+  function numAr(n) { try { return n.toLocaleString('ar-EG'); } catch (e) { return String(n); } }
+  function mineData(st, k) {
+    var A = window.AqSky, R = window.AqReadings, sg = A.getSign(), bd = null;
+    st.items.forEach(function (i) { if (i.k === k) bd = i; });
+    var hh = ((bd.sign - sg + 12) % 12) + 1, H = A.HOUSES[hh - 1], hasTr = R.TR[k] && R.TR[k][hh - 1];
+    return { bd: bd, hh: hh, H: H, txt: hasTr || (R.PH[k] && R.PH[k][hh - 1]) || '', q1: (hasTr && A.PQH[k] && A.PQH[k][hh - 1]) || A.PQ[k] || '', q2: A.HQ[hh - 1] ? A.HQ[hh - 1][(Math.floor(Date.now() / 864e5) + sg) % 2] : '', rt: bd.retro && R.RT[k] ? R.RT[k] : '' };
+  }
   function renderMine(st) {
     var host = $('swc-mine'), A = window.AqSky, R = window.AqReadings; if (!host) return;
     if (!A || !R) { host.innerHTML = '<p class="swt-empty">القراءات قيد التحميل…</p>'; sigs.mine = ''; return; }
-    var sg = A.getSign(), key = (sg === null ? 'x' : sg) + '|' + st.items.map(function (i) { return i.k + i.sign + (i.retro ? 'r' : ''); }).join('');
+    var sg = A.getSign(), key = (sg === null ? 'x' : sg) + '|' + mineOpen + '|' + st.items.map(function (i) { return i.k + i.sign + (i.retro ? 'r' : ''); }).join('');
     if (skipSame('mine', key)) return;
-    var h = '<section class="swm-pick"><b>اختر برجك الشمسي أو طالعك</b><small>مرة واحدة فقط، ونعرض لك كيف تلمس سماء هذه اللحظة بيوتك</small><div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">' +
+    var picker = '<section class="swm-pick"><b>اختر برجك الشمسي أو طالعك</b><small>مرة واحدة فقط، ونعرض لك كيف تلمس سماء هذه اللحظة بيوتك</small><div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">' +
       A.SIGNS.map(function (s, i) { return '<button type="button" class="sky-sg' + (i === sg ? ' is-on' : '') + '" data-i="' + i + '" aria-pressed="' + (i === sg) + '"><span class="sg" aria-hidden="true">' + A.gl(s.g) + '</span><span>' + s.n + '</span></button>'; }).join('') + '</div></section>';
-    if (sg === null) h += '<p class="swt-empty">اختر برجك لنعرض لك تقرير اليوم: أين يقف كل كوكب في حياتك، وما الذي قد تشعر به دون أن تعرف السبب.</p>';
+    var h = '';
+    if (sg === null) h = picker + '<p class="swt-empty">اختر برجك لنعرض لك تقرير اليوم: أين يقف كل كوكب في حياتك.</p>';
     else {
-      h += '<header class="swm-head"><small>تقرير سماء هذه اللحظة</small><b>لمن برجه ' + A.SIGNS[sg].n + '</b></header>';
-      st.items.forEach(function (bd) {
-        var k = bd.k, hh = ((bd.sign - sg + 12) % 12) + 1, H = A.HOUSES[hh - 1], hasTr = R.TR[k] && R.TR[k][hh - 1];
-        var txt = hasTr || (R.PH[k] && R.PH[k][hh - 1]) || '', q = (hasTr && A.PQH[k] && A.PQH[k][hh - 1]) || A.PQ[k] || '';
-        h += '<article class="swm-c"><header><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><h4>' + bd.n + ' في بيتك ' + H.n + '</h4><small>' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + H.area + '</small></div>' + (bd.retro ? '<em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</header>' +
-          '<p class="swm-r">' + txt + '</p>' + (bd.retro && R.RT[k] ? '<p class="swm-rt">' + R.RT[k] + '</p>' : '') +
-          (q ? '<div class="swm-q"><b>سؤال يخصك</b><p>' + q + '</p></div>' : '') + '</article>';
-      });
-      h += '<a class="swm-go" href="#signs"><span class="swm-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swm-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></span></a>';
+      h = '<div class="swm-ban"><span class="swm-ban-g"><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[sg].g) + '</span></span><div><small>تقرير سماء هذه اللحظة</small><b>تأثير سماء هذه اللحظة على برج ' + A.SIGNS[sg].n + '</b></div><button type="button" class="swm-chg" data-chg>' + (mineOpen ? 'إغلاق' : 'تغيير البرج') + '</button></div>';
+      if (mineOpen) h += picker;
+      h += '<div class="swg">' + st.items.map(function (bd) {
+        var d = mineData(st, bd.k);
+        return '<button type="button" class="swg-c' + (bd.retro ? ' is-retro' : '') + '" data-mk="' + bd.k + '"><span class="swg-g">' + path(bd.k, 'swg-gi') + '</span><b>' + bd.n + '</b><i class="swg-h">البيت ' + numAr(d.hh) + '</i>' + (bd.retro ? '<em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</button>';
+      }).join('') + '</div><p class="swg-tip">اضغط أي كوكب لتقرأ أثره في بيتك</p>';
     }
     host.innerHTML = h; queueUp();
   }
+  /* ورقة سفلية موحدة لقراءة كوكب في بيت البرج المختار */
+  function ensureMine() {
+    if (mineSheet) return mineSheet;
+    mineSheet = document.createElement('div'); mineSheet.className = 'aqm-sheet swp-sheet mns-sheet'; mineSheet.hidden = true;
+    mineSheet.innerHTML = '<div class="aqm-sheet-scrim" data-mnc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="أثر الكوكب في بيتك"><span class="aqm-sheet-grip"></span><div class="aqm-sheet-body swp-body mns-body"></div>' +
+      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-mnn><span class="aqm-foot-l"><small>الكوكب التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-mnc>إغلاق</button></div></div>';
+    document.body.appendChild(mineSheet);
+    mineSheet.addEventListener('click', function (e) { if (e.target.closest('[data-mnn]')) { var o = st_items(); var i = o.indexOf(mineK); showMine(o[(i + 1) % o.length]); } else if (e.target.closest('[data-mnc]')) closeMine(); });
+    mineSheet.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMine(); });
+    return mineSheet;
+  }
+  function st_items() { return cur ? cur.items.map(function (i) { return i.k; }) : []; }
+  function showMine(k) {
+    var A = window.AqSky; if (!cur || !A || A.getSign() === null) return;
+    mineK = k; var d = mineData(cur, k), bd = d.bd, s = ensureMine(), sg = A.getSign(), o = st_items(), nk = o[(o.indexOf(k) + 1) % o.length], nm = '';
+    cur.items.forEach(function (i) { if (i.k === nk) nm = i.n; });
+    s.querySelector('.mns-body').innerHTML = '<div class="mns-hero"><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><small>لمن برجه ' + A.SIGNS[sg].n + '</small><h3>' + bd.n + ' في بيتك ' + d.H.n + '</h3><span class="mns-meta">' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + d.H.area + (bd.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</span></div></div>' +
+      '<p class="mns-txt">' + d.txt + '</p>' + (d.rt ? '<p class="swm-rt">' + d.rt + '</p>' : '') +
+      '<div class="swm-q"><b>أسئلة تخصك</b><ul><li>' + d.q1 + '</li>' + (d.q2 ? '<li>' + d.q2 + '</li>' : '') + '</ul></div>';
+    s.querySelector('[data-mnn] b').textContent = nm;
+    s.querySelector('.mns-body').scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open'); queueUp();
+  }
+  function closeMine() { if (!mineSheet || mineSheet.hidden) return; var s = mineSheet; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
 
   function renderHouses(st) {
     var host = $('swc-houses'); if (!host) return;
@@ -246,7 +275,9 @@
   window.addEventListener('hashchange', function () { /* #world دُمجت في #sky */ });
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('.swt-t'); if (t) { setTab(t.getAttribute('data-tab')); return; }
-    var sgb = e.target.closest && e.target.closest('#swc-mine .sky-sg'); if (sgb && window.AqSky) { window.AqSky.setSign(+sgb.getAttribute('data-i')); sigs.mine = ''; renderMine(cur); }
+    var sgb = e.target.closest && e.target.closest('#swc-mine .sky-sg'); if (sgb && window.AqSky) { window.AqSky.setSign(+sgb.getAttribute('data-i')); mineOpen = false; sigs.mine = ''; renderMine(cur); return; }
+    if (e.target.closest && e.target.closest('#swc-mine [data-chg]')) { mineOpen = !mineOpen; sigs.mine = ''; renderMine(cur); return; }
+    var mc = e.target.closest && e.target.closest('#swc-mine [data-mk]'); if (mc) showMine(mc.getAttribute('data-mk'));
   });
 
   function render() {
@@ -313,8 +344,7 @@
     if (axSheet) return axSheet;
     axSheet = document.createElement('div'); axSheet.className = 'aqm-sheet swp-sheet axs-sheet'; axSheet.hidden = true;
     axSheet.innerHTML = '<div class="aqm-sheet-scrim" data-axc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="قراءة الزاوية"><span class="aqm-sheet-grip"></span>' +
-      '<button type="button" class="aqm-sheet-x" data-axc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
-      '<div class="aqm-sheet-body swp-body axs-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-axn><span class="aqm-foot-l"><small>القسم التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-axc>إغلاق</button></div></div>';
+            '<div class="aqm-sheet-body swp-body axs-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-axn><span class="aqm-foot-l"><small>القسم التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-axc>إغلاق</button></div></div>';
     document.body.appendChild(axSheet);
     axSheet.addEventListener('click', function (e) { if (e.target.closest('[data-axn]')) renderAx(axI + 1); else if (e.target.closest('[data-axc]')) closeAx(); });
     axSheet.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAx(); });
@@ -323,7 +353,11 @@
   function renderAx(i) {
     var L = axList(); if (!L.length) return; axI = ((i % L.length) + L.length) % L.length;
     var el = L[axI], s = ensureAx(), body = s.querySelector('.axs-body'), tone = (el.className.match(/axt-(\w)/) || [])[1] || 'n';
-    body.innerHTML = '<div class="axs-hero axt-' + tone + '">' + el.querySelector('.ax-pair').outerHTML + '<div class="axs-t"><b>' + el.querySelector('.ax-t b').innerHTML + '</b><small>' + el.querySelector('.ax-t small').innerHTML + '</small></div></div><div class="axs-txt">' + el.querySelector('.ax-b').innerHTML + '</div>';
+    var bx = el.querySelector('.ax-b'), qEl = bx.querySelector('.ax-q'), q = qEl ? qEl.textContent : '', orb = parseFloat(el.getAttribute('data-orb')), lim = parseFloat(el.getAttribute('data-lim')) || 8, pct = isNaN(orb) ? 0 : Math.max(2, Math.min(100, (1 - orb / lim) * 100)), tight = !isNaN(orb) && orb <= lim / 3;
+    var txt = [].filter.call(bx.children, function (c) { return c !== qEl; }).map(function (c) { return c.outerHTML; }).join('');
+    body.innerHTML = '<div class="axs-hero axt-' + tone + '">' + el.querySelector('.ax-pair').outerHTML + '<div class="axs-t"><b>' + el.querySelector('.ax-t b').innerHTML + '</b><small>' + el.querySelector('.ax-t small').innerHTML + '</small></div></div>' +
+      (isNaN(orb) ? '' : '<div class="axs-orb"><div class="axs-orb-h"><b>دقة الزاوية</b><span>' + (tight ? 'زاوية قوية' : orb <= lim * .66 ? 'زاوية متوسطة' : 'زاوية خفيفة') + ' · <bdi dir="ltr">' + orb.toFixed(1).replace(/\.0$/, '') + '°</bdi></span></div><div class="axs-orb-bar"><i style="width:' + pct.toFixed(0) + '%"></i></div><div class="axs-orb-s"><span><bdi dir="ltr">0°</bdi></span><span><bdi dir="ltr">' + lim + '°</bdi></span></div></div>') +
+      '<div class="axs-txt">' + txt + '</div>' + (q ? '<div class="swm-q"><b>أسئلة تخصك</b><ul><li>' + q + '</li></ul></div>' : '');
     var nx = L[(axI + 1) % L.length], nb = s.querySelector('[data-axn]'); nb.hidden = L.length < 2; nb.querySelector('b').textContent = nx.querySelector('.ax-t b').textContent;
     body.scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open'); queueUp();
   }

@@ -1125,7 +1125,6 @@ html body .swc-moon-fig,html body .swc-moon-svg{cursor:pointer}
 .mn-sheet .mn-node:not(.is-on){opacity:.82}
 .mn-sheet .mn-nl{font:700 11px 'Cairo',sans-serif;fill:#6A2038}
 html body #swc-moon{flex-wrap:wrap!important}
-html body #swc-moon .mn-open,html body .wld-moon .mn-open{flex:0 0 100%;width:100%;justify-content:center;white-space:nowrap;margin-top:8px}
 
 /* ===== تعديلات: زر المصفوفة بنفس بقية الأزرار، كارت السماء أقصر، وصف الكروت سؤال قصير ===== */
 html body #home.aqh .aqh-fuse .aqh-system:nth-child(3) .aqh-go{padding:5px 11px!important;min-width:0!important;width:auto!important;white-space:nowrap!important;backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2)}

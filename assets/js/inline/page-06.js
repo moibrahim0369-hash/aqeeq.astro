@@ -1994,7 +1994,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b><p>${window.AqReadings ? (window.AqReadings.TR[k][hh - 1] || window.AqReadings.PH[k][hh - 1]) : ""}</p>${bd.retro && window.AqReadings && window.AqReadings.RT[k] ? `<p class="swp-rt">${window.AqReadings.RT[k]}</p>` : ""}</div></div>
       <p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>`;
   }
-  window.AqSky = { skyCard, PLANETS, SIGNS, HOUSES, gl, HQ, HEX, PF, PQ, PQH, getSign: () => skySign, setSign: v => { skySign = (v === null || v === undefined) ? null : +v; try { if (skySign === null) localStorage.removeItem("aq-sky-sign"); else localStorage.setItem("aq-sky-sign", skySign); } catch (e) { } try { renderSky(); } catch (e) { } } };
+  window.AqSky = { skyCard, PLANETS, SIGNS, HOUSES, gl, HQ, HEX, PF, PQ, PQH, getSign: () => skySign, setSign: v => { skySign = (v === null || v === undefined) ? null : +v; try { if (skySign === null) localStorage.removeItem("aq-sky-sign"); else localStorage.setItem("aq-sky-sign", skySign); } catch (e) { } } };
   const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
 
   /* ---------- كارت منازل القمر: اسم الطور + شكل القمر الحقيقي ---------- */
@@ -2050,7 +2050,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       const lim = (A.key === "sun" || A.key === "moon" || B.key === "sun" || B.key === "moon") ? 8 : 6;
       for (const [k, deg, name] of ASP) {
         const orb = Math.abs(sep - deg);
-        if (orb <= lim) { found.push({ A, B, k, name, orb }); break; }
+        if (orb <= lim) { found.push({ A, B, k, name, orb, lim }); break; }
       }
     }
     found.sort((x, y) => x.orb - y.orb);
@@ -2065,7 +2065,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       const hard = ["square", "opp"].includes(x.k), neu = x.k === "conj", tc = neu ? "n" : hard ? "h" : "s", tone = neu ? "اندماج" : hard ? "متوتر" : "داعم";
       const rb = r => r ? ` <em class="ax-r">راجع</em>` : "";
       const retroNote = (x.A.retro || x.B.retro) ? `<p class="ax-note">ومع تراجع ${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")}، يتجه هذا الحوار إلى الداخل، فراجع قبل أن تقرر.</p>` : "";
-      return `<div class="ax axt-${tc}" data-ax="${ix}"><button type="button" class="ax-s" aria-haspopup="dialog"><span class="ax-pair"><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span></span><span class="ax-ln"><svg viewBox="0 0 24 24" aria-hidden="true">${AG[x.k]}</svg></span><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span></span></span><span class="ax-t"><b>${PLANETS[x.A.key].n} <u>${x.name}</u> ${PLANETS[x.B.key].n}</b><small><i class="ax-tone">${tone}</i><span>أوربة ${x.orb.toFixed(1)}°</span>${(x.A.retro || x.B.retro) ? `<em class="ax-r">${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")} راجع</em>` : ""}</small></span><span class="ax-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></button><div class="ax-b" hidden><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p><p class="ax-q">${AQ[x.k]}</p><p><b>في الواقع:</b> ${AR[x.k]}</p>${retroNote}</div></div>`;
+      return `<div class="ax axt-${tc}" data-ax="${ix}" data-orb="${x.orb.toFixed(2)}" data-lim="${x.lim}"><button type="button" class="ax-s" aria-haspopup="dialog"><span class="ax-pair"><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span></span><span class="ax-ln"><svg viewBox="0 0 24 24" aria-hidden="true">${AG[x.k]}</svg></span><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span></span></span><span class="ax-t"><b>${PLANETS[x.A.key].n} <u>${x.name}</u> ${PLANETS[x.B.key].n}</b><small><i class="ax-tone">${tone}</i><span>أوربة ${x.orb.toFixed(1)}°</span>${(x.A.retro || x.B.retro) ? `<em class="ax-r">${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")} راجع</em>` : ""}</small></span><span class="ax-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></button><div class="ax-b" hidden><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p><p class="ax-q">${AQ[x.k]}</p><p><b>في الواقع:</b> ${AR[x.k]}</p>${retroNote}</div></div>`;
     }).join("") + `</div>`;
   }
   function renderSkyPanel(ch, ms) {
@@ -2104,9 +2104,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <div class="swp-pills"><i class="swp-pill ${bd.retro ? "is-retro" : "is-direct"}">${bd.retro ? "متراجع" : (k === "sun" || k === "moon" ? "في حركته" : "مباشر")}</i><i class="swp-pill is-sign"><span class="swp-pill-g" aria-hidden="true"><span class="sg">${gl(S.g)}</span></span>${nd(dInt)}° ${nd(dMin)}′ ${S.n}</i></div></div></div>
       <div class="swp-deg" role="img" aria-label="الدرجة ${dInt} من 30"><div class="swp-track"><span class="swp-dot" style="--p:${(deg / 30 * 100).toFixed(1)}%"></span></div><div class="swp-scale"><span>٠°</span><span>١٠°</span><span>٢٠°</span><span>٣٠°</span></div><p><b>${stage[0]}</b> · ${stage[1]}</p></div>
       <p class="swp-read">يمرّ ${p.n} الآن في ${S.n}، فيمنح ${p.theme} طابعًا ${S.way}. الأجواء تساعدك على ${S.strength}، وتذكّرك بلطف أن تنتبه من ${S.shadow}، فهو الوجه الذي يظهر حين تتعب.</p>
-      ${mv}${ingTxt}
-      ${skySign == null ? "" : `<h4 class="swp-h">أين يلمسك هذا الكوكب؟</h4>${skyCard(k, bd, skySign)}`}`;
-    o += `<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>`;
+      ${mv}${ingTxt}`;
     $("#sky-panel").innerHTML = o;
   }
   skyDateInput.addEventListener("change", renderSky);

@@ -5,15 +5,15 @@
 :root{--sp-wine:#5E2234;--sp-wine2:#6A2A3C;--sp-gold:#C5A059;--sp-gold2:#E8CF98;--sp-cream:#FFFBF2;--sp-cream2:#F8EFDD;--sp-line:#E6D8BD;--sp-ink:#2C2523;--sp-brown:#4A2C1F;--sp-brown2:#6B3F28}
 
 /* ---------- 1) شريط التبويبات العلوي ---------- */
-#sky .aq-section-pill,#signs .aq-section-pill,#world .aq-section-pill{display:inline-flex!important;align-items:center;gap:7px;padding:8px 15px!important;font:700 .8rem 'Cairo',sans-serif!important;white-space:nowrap;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;border:1px solid var(--sp-line)!important;color:var(--sp-wine)!important;box-shadow:0 2px 8px rgba(94,34,52,.07);transition:transform .2s,box-shadow .2s,border-color .2s!important}
-#sky .aq-section-pill:hover,#signs .aq-section-pill:hover,#world .aq-section-pill:hover{transform:translateY(-1px);border-color:var(--sp-gold)!important;box-shadow:0 6px 16px rgba(94,34,52,.14)}
-#sky .aq-section-pill.active,#signs .aq-section-pill.active,#world .aq-section-pill.active{background:linear-gradient(135deg,#7A3449,var(--sp-wine) 70%)!important;border-color:var(--sp-gold)!important;color:#FFF8EA!important;box-shadow:0 6px 16px rgba(94,34,52,.28)}
+#sky .aq-section-pill,#signs .aq-section-pill{display:inline-flex!important;align-items:center;gap:7px;padding:8px 15px!important;font:700 .8rem 'Cairo',sans-serif!important;white-space:nowrap;background:linear-gradient(180deg,#FFFDF8,#F8EFDD)!important;border:1px solid var(--sp-line)!important;color:var(--sp-wine)!important;box-shadow:0 2px 8px rgba(94,34,52,.07);transition:transform .2s,box-shadow .2s,border-color .2s!important}
+#sky .aq-section-pill:hover,#signs .aq-section-pill:hover{transform:translateY(-1px);border-color:var(--sp-gold)!important;box-shadow:0 6px 16px rgba(94,34,52,.14)}
+#sky .aq-section-pill.active,#signs .aq-section-pill.active{background:linear-gradient(135deg,#7A3449,var(--sp-wine) 70%)!important;border-color:var(--sp-gold)!important;color:#FFF8EA!important;box-shadow:0 6px 16px rgba(94,34,52,.28)}
 .pill-i{width:16px;height:16px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-#sky .aq-section-pill.active .pill-i,#signs .aq-section-pill.active .pill-i,#world .aq-section-pill.active .pill-i{stroke:var(--sp-gold2)}
-#sky .aq-section-pill:not(.active) .pill-i,#signs .aq-section-pill:not(.active) .pill-i,#world .aq-section-pill:not(.active) .pill-i{stroke:#9A6A2E}
-#sky .aq-section-quick-links,#signs .aq-section-quick-links,#world .aq-section-quick-links{flex-wrap:wrap;gap:8px}
-#sky .aq-back-home-btn,#signs .aq-back-home-btn,#world .aq-back-home-btn{display:inline-flex;align-items:center;gap:6px;background:#FFFDF8!important;border:1px solid var(--sp-gold)!important;color:var(--sp-wine)!important;border-radius:999px!important;font-weight:700}
-#sky .aq-back-home-btn:hover,#signs .aq-back-home-btn:hover,#world .aq-back-home-btn:hover{background:var(--sp-wine)!important;color:#fff!important}
+#sky .aq-section-pill.active .pill-i,#signs .aq-section-pill.active .pill-i{stroke:var(--sp-gold2)}
+#sky .aq-section-pill:not(.active) .pill-i,#signs .aq-section-pill:not(.active) .pill-i{stroke:#9A6A2E}
+#sky .aq-section-quick-links,#signs .aq-section-quick-links{flex-wrap:wrap;gap:8px}
+#sky .aq-back-home-btn,#signs .aq-back-home-btn{display:inline-flex;align-items:center;gap:6px;background:#FFFDF8!important;border:1px solid var(--sp-gold)!important;color:var(--sp-wine)!important;border-radius:999px!important;font-weight:700}
+#sky .aq-back-home-btn:hover,#signs .aq-back-home-btn:hover{background:var(--sp-wine)!important;color:#fff!important}
 
 /* ---------- 2) أسهم التاريخ ---------- */
 .swc-dw{display:flex;align-items:stretch;gap:6px}
