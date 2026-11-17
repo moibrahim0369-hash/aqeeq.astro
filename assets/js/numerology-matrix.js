@@ -876,7 +876,17 @@
      يُحذف من المرجع ما يكرر ما في نص الموضع: قطبا النور والظل، ومجموعة بروتوكول التحول حين يوجد حل عملي في نص الموضع.
      ما عدا ذلك يُعرض كما هو بعد نص الموضع بلا عنوان «قراءة أعمق». */
   function mergeGeminiFlow(unitBlocks, refBlocks) {
-    const unit = unitBlocks || [], ref = refBlocks || [];
+    const unit = unitBlocks || [];
+    /* عرض فقط (لا تعديل على الملفات): إسقاط عناوين التغليف الوصفية وأسطر التصنيف، وتجريد الترقيم «أولاً:» من العناوين، مع بقاء كل الفقرات */
+    const META_H = /المفارقة النفسية التأسيسية|قراءة أعمق للطاقة/;
+    const META_LABEL = /^(صدمة البداية للمستخدم|صراع القطبين داخل الطاقة)\s*[:：]?\s*$/;
+    const ref = (refBlocks || []).filter(b => {
+      const t = String(b.t || '').trim();
+      if ((b.k === 'h1' || b.k === 'h2') && META_H.test(t)) return false;
+      if (META_LABEL.test(t)) return false;
+      if (b.k === 'p' && /^تصنيف الطاقة\s*[:：]/.test(t)) return false;
+      return true;
+    }).map(b => (b.k === 'h1' || b.k === 'h2') && /^(أولاً|ثانياً|ثالثاً|رابعاً|خامساً|سادساً)\s*[:：]/.test(b.t) ? Object.assign({}, b, { t: b.t.replace(/^[^:：]+[:：]\s*/, '') }) : b);
     const unitHasPoles = unit.some(b => b.k === 'li' && b.d === 0 && /^قطب (النور|الظل)/.test(b.t));
     const unitHasResolution = unit.some(b => b.k === 'h2' && /اتزان|الميزان|النضج|الحل|التحرر/.test(b.t));
     const out = [];
