@@ -1088,10 +1088,7 @@
     <div class="swc-side"><div class="swc-moon" id="swc-moon"></div><div class="swc-hint" id="swc-hint"></div><div class="swc-pgrid" id="swc-pgrid" aria-label="مواقع الكواكب"></div></div>
   </div>
 </section>
-<div class="sky-ctl">
-<div class="field" style="flex:1;min-width:220px;margin:0;"><label for="sky-date">تاريخ الرصد الفلكي</label><input id="sky-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
-<button class="btn ghost sm" id="sky-today" type="button">العودة لتاريخ اليوم</button>
-</div>
+<input id="sky-date" type="date" min="1900-01-01" max="2100-12-31" hidden aria-hidden="true" tabindex="-1">
 <div class="sky-moon" id="sky-moon"></div>
 <div aria-label="اختيار الكوكب" class="chips" id="sky-chips" role="group"></div>
 <div aria-live="polite" class="sky-panel" id="sky-panel"></div>
@@ -1436,7 +1433,7 @@
 <script src="name_engine.js"></script>
 <script src="pinnacles_challenges.js?v=3.0.0"></script>
 <script src="name_readings.js?v=4.0.0"></script>
-<script src="assets/js/inline/page-06.js?v=2"></script>
+<script src="assets/js/inline/page-06.js?v=3"></script>
 <script src="assets/js/inline/page-07.js?v=1"></script>
 <script src="assets/js/inline/page-08.js?v=1"></script>
 <script src="assets/js/inline/page-09.js?v=1"></script>
@@ -1482,7 +1479,7 @@
 <script src="assets/js/section-footer.js?v=20261113k"></script>
 <script src="assets/js/paywall-modal.js?v=20261126a"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
-<script src="assets/js/sky-world-chart.js?v=20261125b" defer></script>
+<script src="assets/js/sky-world-chart.js?v=20261125c" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>

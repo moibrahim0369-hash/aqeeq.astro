@@ -113,8 +113,8 @@
       hn += '<text x="' + f(q[0]) + '" y="' + f(q[1] + 3.5) + '" text-anchor="middle">' + (i + 1) + '</text>';
     }
     o += hl + '<g font-size="10.5" font-weight="600" fill="#8A6A4C" font-family="Cairo,sans-serif">' + hn + '</g>';
-    var lab = function (lon, t) { var q = pt(lon, R1 + 17); return '<text x="' + f(q[0]) + '" y="' + f(q[1] + 4) + '" text-anchor="middle" font-size="12" font-weight="700" fill="#4A1521" font-family="Cairo,sans-serif" letter-spacing=".04em">' + t + '</text>'; };
-    o += lab(asc, 'ASC') + lab(asc + 180, 'DSC') + lab(mc, 'MC') + lab(mc + 180, 'IC');
+    var lab = function (lon, t) { var q = pt(lon, R1 + 17); return '<text x="' + f(q[0]) + '" y="' + f(q[1] + 4) + '" text-anchor="middle" font-size="11.5" font-weight="700" fill="#4A1521" font-family="Cairo,sans-serif">' + t + '</text>'; };
+    o += lab(asc, 'الطالع') + lab(asc + 180, 'الغارب') + lab(mc, 'وسط السماء') + lab(mc + 180, 'وتد الأرض');
     var as = '';
     st.asp.forEach(function (x) {
       var hard = x.t[0] === 'square' || x.t[0] === 'opp', soft = x.t[0] === 'sext' || x.t[0] === 'trine';
@@ -197,7 +197,6 @@
       var hard = x.t[0] === 'square' || x.t[0] === 'opp', neu = x.t[0] === 'conj';
       return '<div class="wld-a ' + (neu ? 'is-neu' : (hard ? 'is-hard' : 'is-soft')) + '"><span class="wld-ai">' + path(x.A.k, 'wld-g') + '</span><b>' + x.A.n + ' ' + x.t[2] + ' ' + x.B.n + '</b><span class="wld-ai">' + path(x.B.k, 'wld-g') + '</span><small>' + (neu ? 'محايد' : (hard ? 'متوتر' : 'منسجم')) + ' · فارق ' + x.o.toFixed(1) + '°</small><p>' + (FXp.ASP_FX[x.t[0]] || '') + '</p></div>';
     }).join('') + '</div>' : '<p class="wld-none">لا توجد زوايا قوية بين الكواكب في هذه اللحظة.</p>') + '</section>';
-    h += '<p class="wld-note">هذه خريطة للسماء في لحظة ومكان محددين، وليست خريطة شخصية. البيوت محسوبة بنظام بلاسيدوس لموقع المدينة المختارة، وللتأمل والترفيه فقط.</p>';
     host.innerHTML = h;
   }
   function onWorld() { if (location.hash === '#world') { if (!cur) { try { cur = compute(); } catch (e) { return; } } renderWorld(cur); } }

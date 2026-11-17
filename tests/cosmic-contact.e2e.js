@@ -66,7 +66,7 @@ let pass = 0, fail = 0; const ok = (c, m) => { c ? pass++ : fail++; console.log(
   ok(/القمر .* في برج /.test(mn.title || '') && mn.svg, 'moon card: ' + JSON.stringify(mn));
   // شكل القمر بيتغير مع التاريخ: محاق ≠ بدر
   const shapes = [];
-  for (const d of ['2026-10-10', '2026-10-26', '2026-11-09']) { await p.fill('#sky-date', d); await p.dispatchEvent('#sky-date', 'change'); await p.waitForTimeout(400); shapes.push(await p.evaluate(() => [(document.querySelector('.mn-title b') || {}).textContent, (document.querySelector('.mn-svg g g path') || {}).getAttribute && (document.querySelector('.mn-svg g g path') ? document.querySelector('.mn-svg g g path').getAttribute('d') : 'none')].join('|'))); }
+  for (const d of ['2026-10-10', '2026-10-26', '2026-11-09']) { await p.evaluate(v => { const e = document.querySelector('#sky-date'); e.value = v; e.dispatchEvent(new Event('change', { bubbles: true })); }, d); await p.waitForTimeout(400); shapes.push(await p.evaluate(() => [(document.querySelector('.mn-title b') || {}).textContent, (document.querySelector('.mn-svg g g path') || {}).getAttribute && (document.querySelector('.mn-svg g g path') ? document.querySelector('.mn-svg g g path').getAttribute('d') : 'none')].join('|'))); }
   ok(new Set(shapes).size === 3, 'moon shape/name changes by date: ' + shapes.join(' || '));
   // مفيش selector :active عام بيلوّن الشاشة كلها
   const css = await (await fetch_(BASE + '/styles.css'));

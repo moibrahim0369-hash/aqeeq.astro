@@ -2118,7 +2118,6 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     }));
   }
   skyDateInput.addEventListener("change", renderSky);
-  $("#sky-today").addEventListener("click", () => { skyDateInput.value = ""; renderSky(); });
   renderSky();
 
 

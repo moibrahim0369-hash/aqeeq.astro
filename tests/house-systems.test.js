@@ -3,7 +3,11 @@
 // Run: node tests/house-systems.test.js
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const html = fs.readFileSync(require('node:path').join(__dirname, '..', 'index.html'), 'utf8');
+const root = require('node:path').join(__dirname, '..');
+// خيارات أنظمة البيوت في index.html، ومحرك الحساب في assets/js/inline/page-06.js
+const page = fs.readFileSync(require('node:path').join(root, 'index.html'), 'utf8');
+const engine = fs.readFileSync(require('node:path').join(root, 'assets/js/inline/page-06.js'), 'utf8');
+const html = page + '\n' + engine;
 
 for (const [value, label] of [
   ['placidus', 'Placidus'],
