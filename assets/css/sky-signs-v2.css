@@ -13,7 +13,6 @@ html body :is(#signs,#sgs-sheet) .sg-bd-xl .sg:not(#_a){font-size:1.9rem}
 html body :is(#signs,#sgs-sheet) .sg-bd-xl svg:not(#_a){width:34px;height:34px}
 /* اللوحة بلا بطاقة خارجية */
 html body #signs article.arch#panel:not(#_a):not(#_b){background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
-html body #signs.sg-picked .center .intro:not(#_a){display:none}
 /* الستارة */
 html body #signs .sg-cur:not(#_a){display:contents}
 html body #signs .sg-pk:not(#_a){margin:0 0 14px}
@@ -82,3 +81,42 @@ html body #sgs-sheet .sg-ing:not(#_a){font-size:.84rem;color:#7A5A22}
 html body #signs article#panel:not(#_a):not(#_b):not(#_c){display:block!important}
 html body #signs article#panel:empty:not(#_a):not(#_b):not(#_c){display:none!important}
 @media(min-width:700px){html body #signs :is(.sg-bar,.sg-pk):not(#_a){max-width:580px;margin-inline:auto}html body #signs .sg-bar:not(#_a){margin-bottom:10px}}
+
+/* ===== الجولة الثانية: تباين فاخر، تبويبات كبسولية، بطاقات الأقسام ===== */
+html body #signs .picker button.sg-pick:not(#_a):not(#_b){background:#FAF3E8!important;border:1.5px solid #D4B475!important;box-shadow:0 12px 24px rgba(90,24,42,.17),0 2px 0 rgba(255,255,255,.9) inset!important;color:#5A182A!important;gap:9px;padding:14px 6px 12px;transition:none}
+html body #signs .picker button.sg-pick .sg:not(#_a){-webkit-text-stroke:.7px #5A182A;font-size:1.32rem;color:#5A182A!important}
+html body #signs .picker button.sg-pick svg:not(#_a){stroke-width:2.3}
+html body #signs .picker button.sg-pick[aria-pressed="true"]:not(#_a):not(#_b){background:#5A182A!important;border-color:#D4B475!important;color:#FFFDF9!important;box-shadow:0 12px 26px rgba(90,24,42,.38),0 0 0 2px rgba(212,180,117,.55)!important}
+html body #signs .picker button.sg-pick[aria-pressed="true"] .sg-bd:not(#_a){background:rgba(255,253,249,.08)!important;border-color:#E9D5A6!important}
+html body #signs .picker button.sg-pick[aria-pressed="true"] .sg:not(#_a){color:#F6E6BC!important;-webkit-text-stroke:.7px #F6E6BC;filter:drop-shadow(0 0 7px rgba(246,214,138,.95))}
+html body #signs .picker button.sg-pick[aria-pressed="true"] svg:not(#_a){stroke:#F6E6BC}
+html body #signs .picker button.sg-pick span:last-child:not(#_a){color:inherit}
+/* تبويبات كبسولية */
+html body #signs .sg-tabs:not(#_a){display:grid;gap:8px;margin:0 0 12px;padding:0;background:none!important;border:0!important;box-shadow:none!important;border-radius:0}
+html body #signs .sg-tabs-main:not(#_a){grid-template-columns:1fr 1fr}
+html body #signs .sg-tabs-sub:not(#_a){grid-template-columns:repeat(3,auto);justify-content:stretch;grid-auto-flow:column;grid-auto-columns:1fr}
+html body #signs .sg-tabs button:not(#_a){min-height:44px;padding:0 8px;border-radius:999px;background:#FAF3E8;border:1.5px solid #D4B475;color:#5A182A;font:800 .82rem 'Cairo',sans-serif;box-shadow:0 4px 10px rgba(90,24,42,.1);cursor:pointer;white-space:nowrap}
+html body #signs .sg-tabs-sub button:not(#_a){min-height:38px;font-size:.74rem;padding:0 6px}
+html body #signs .sg-tabs button[aria-selected="true"]:not(#_a){background:#5A182A;border-color:#5A182A;color:#F6E6BC;box-shadow:0 6px 14px rgba(90,24,42,.3)}
+/* صندوق التأمل العنابي */
+html body :is(#signs,#sgs-sheet) .sg-q:not(#_a){position:relative;margin:14px 0 4px;padding:16px 16px 16px 14px;border-radius:18px;background:#5A182A;box-shadow:0 8px 20px rgba(90,24,42,.22);overflow:hidden}
+html body :is(#signs,#sgs-sheet) .sg-q:not(#_a)::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:4px;background:linear-gradient(180deg,#F6D58A,#D4B475)}
+html body :is(#signs,#sgs-sheet) .sg-q p:not(#_a){margin:0!important;color:#FFFDF9!important;-webkit-text-fill-color:#FFFDF9;font:700 .96rem/1.95 'Cairo',sans-serif}
+/* بطاقات الفترات */
+html body #signs .sg-per:not(#_a){margin:0 0 16px;padding:14px 12px 4px;border-radius:22px;background:#FAF3E8;border:1.5px solid #D4B475;box-shadow:0 12px 24px rgba(90,24,42,.12)}
+html body #signs .sg-per>header:not(#_a){display:flex;align-items:center;gap:12px;margin:0 0 10px}
+html body #signs .sg-per h5:not(#_a){margin:0;font:800 1.02rem 'Cairo',sans-serif;color:#5A182A}
+html body #signs .sg-per small:not(#_a){font:600 .74rem/1.5 'Cairo',sans-serif;color:#7B6B64}
+html body #signs .sg-hint-p:not(#_a){margin:0 0 10px!important;padding:0 2px;border:0}
+/* شبكة الأقسام الأيقونية */
+html body #signs .sg-grid:not(#_a){display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+html body #signs .sg-med:not(#_a){display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 8px 14px;border-radius:22px;background:#FAF3E8;border:1.5px solid #D4B475;box-shadow:0 12px 24px rgba(90,24,42,.14),0 2px 0 rgba(255,255,255,.9) inset;cursor:pointer;color:#5A182A;font-family:'Cairo',sans-serif}
+html body #signs .sg-med b:not(#_a){font:800 .86rem/1.5 'Cairo',sans-serif;color:#5A182A;text-align:center}
+html body #signs .sg-medal:not(#_a){position:relative;display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:radial-gradient(circle at 32% 26%,#7E2B42,#5A182A 62%,#44111F);border:2px solid #D4B475;box-shadow:0 8px 16px rgba(90,24,42,.32),inset 0 2px 3px rgba(255,255,255,.28),inset 0 -3px 6px rgba(0,0,0,.25);color:#F6E6BC;overflow:hidden}
+html body #signs .sg-medal:not(#_a)::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.32) 0%,rgba(255,255,255,0) 46%);pointer-events:none}
+html body #signs .sg-medal svg:not(#_a){width:28px;height:28px;fill:none;stroke:#F6E6BC;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(246,214,138,.7))}
+html body #signs .sg-sec:last-child:not(#_a){margin-bottom:8px}
+html body #signs .sg-tabs button[role="tab"]:not(#_a):not(#_b):not(#_c){background:#FAF3E8!important;border:1.5px solid #D4B475!important;color:#5A182A!important;-webkit-text-fill-color:#5A182A;box-shadow:0 4px 10px rgba(90,24,42,.12)!important;opacity:1!important}
+html body #signs .sg-tabs button[role="tab"][aria-selected="true"]:not(#_a):not(#_b):not(#_c){background:#5A182A!important;border-color:#5A182A!important;color:#F6E6BC!important;-webkit-text-fill-color:#F6E6BC;box-shadow:0 6px 14px rgba(90,24,42,.32)!important}
+html body #signs .sg-pk-in .picker:not(#_a):not(#_b){padding:6px 6px 24px}
+html body #signs .picker button.sg-pick .sg:not(#_a){-webkit-text-stroke:1px currentColor}
