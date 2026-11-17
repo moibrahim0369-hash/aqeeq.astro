@@ -6,12 +6,13 @@ const p=await b.newPage({viewport:{width:w,height:h}});const errs=[];p.on('pagee
 await p.addInitScript(()=>{localStorage.removeItem('aq-sky-sign');localStorage.setItem('aqeeq_profile_cache_v1',JSON.stringify({name:'م',date:'1990-05-12',time:'14:30',noTime:false,city:'القاهرة',country:'مصر'}))});
 /* مرصد السماء */
 await p.goto(U+'#sky');await p.waitForTimeout(1500);
-ok(w+' sky: 12 sign buttons, no 12-card dump',await p.locator('#sky-panel .sky-sg').count()===12&&await p.locator('#sky-panel .sky-card').count()===0);
-await p.evaluate(()=>document.querySelectorAll('#sky-panel .sky-sg')[4].click());
-ok(w+' sky: one card after pick',await p.locator('#sky-panel .sky-card').count()===1);
-await p.evaluate(()=>document.querySelectorAll('#sky-panel .sky-sg')[7].click());
-ok(w+' sky: switching keeps one card',await p.locator('#sky-panel .sky-card').count()===1&&await p.locator('#sky-panel .sky-sg.is-on').count()===1);
-ok(w+' sky: aspects as accordion',await p.locator('#sky-asp details.lpa-card').count()>0);
+ok(w+' sky: 12 sign buttons in the mine tab, no report yet',await p.locator('#swc-mine .sky-sg').count()===12&&await p.locator('#swc-mine .swm-c').count()===0);
+ok(w+' sky: planet sheet has no sign picker',await p.locator('#sky-panel .sky-sg').count()===0);
+await p.evaluate(()=>document.querySelectorAll('#swc-mine .sky-sg')[4].click());
+ok(w+' sky: one pick shows all planet cards',await p.locator('#swc-mine .swm-c').count()===10&&await p.locator('#swc-mine .swm-go[href="#signs"]').count()===1);
+await p.evaluate(()=>document.querySelectorAll('#swc-mine .sky-sg')[7].click());
+ok(w+' sky: switching keeps one selected sign',await p.locator('#swc-mine .swm-c').count()===10&&await p.locator('#swc-mine .sky-sg.is-on').count()===1);
+ok(w+' sky: aspects as cards',await p.locator('#sky-asp .ax').count()>0);
 ok(w+' sky: footer at page end',await p.evaluate(()=>{const s=document.getElementById('sky'),f=s.querySelector(':scope > footer.sec-foot');return !!f&&f.getBoundingClientRect().bottom+s.scrollTop>=s.scrollHeight-120&&f.offsetHeight>50}));
 ok(w+' sky: no body hscroll',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
 ok(w+' sky: chips carousel scrolls',await p.evaluate(()=>{const c=document.getElementById('sky-chips');return getComputedStyle(c).overflowX==='auto'||innerWidth>=900}));

@@ -1,5 +1,5 @@
 /* خريطة السماء العالمية: لحظة سماء لأي تاريخ ووقت ومدينة في العالم (ليست خريطة شخصية).
-   تقرأ من محرك Astro الموجود نفسه. الكارت في صفحة السماء يعرض العجلة والقمر والكواكب، وزر العرض يفتح صفحة #world بالتفاصيل الكاملة. */
+   تقرأ من محرك Astro الموجود نفسه. كل شيء في #sky: العجلة، القمر، وخمسة تبويبات (الكواكب، تأثيرها على برجك، الزوايا، الطالع والبيوت، العناصر والأنماط). */
 (function () {
   'use strict';
   var form = document.getElementById('swc-form'), svg = document.getElementById('swc-svg');
@@ -48,7 +48,7 @@
   var NODE_G = 'M4 18h5a6 6 0 1 1 6 0h5';
   var GLY = {};
   var $ = function (id) { return document.getElementById(id); };
-  var dateI = $('swc-date'), timeI = $('swc-time'), citySel = $('swc-city'), capEl = $('swc-cap'), moonEl = $('swc-moon'), gridEl = $('swc-pgrid'), hintEl = $('swc-hint'), errEl = $('swc-err');
+  var dateI = $('swc-date'), timeI = $('swc-time'), citySel = $('swc-city'), capEl = $('swc-cap'), moonEl = $('swc-moon'), gridEl = $('swc-pgrid'), errEl = $('swc-err');
   var live = true, cur = null, sel = null;
 
   var ci = 0; GROUPS.forEach(function (g) { var og = document.createElement('optgroup'); og.label = g[0]; g[1].forEach(function (c) { var o = document.createElement('option'); o.value = ci++; o.textContent = c[0]; og.appendChild(o); }); citySel.appendChild(og); });
@@ -62,6 +62,7 @@
   function setInputs(t) { dateI.value = t.y + '-' + p2(t.m) + '-' + p2(t.d); timeI.value = p2(t.hh) + ':' + p2(t.mm); }
   function addDays(t, n) { var d = new Date(Date.UTC(t.y, t.m - 1, t.d + n, t.hh, t.mm)); return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate(), hh: d.getUTCHours(), mm: d.getUTCMinutes() }; }
   function dm(lon) { var d = Math.floor(mod(lon) % 30), m = Math.floor((mod(lon) % 1) * 60); return d + '°' + p2(m) + '′'; }
+  function dmb(lon) { return '<bdi dir="ltr">' + dm(lon) + '</bdi>'; }
   function phaseName(el) { var n = PHASES[0][1]; for (var i = 1; i < PHASES.length; i++) if (el >= PHASES[i][0]) n = PHASES[i][1]; if (el >= 348.75) n = PHASES[0][1]; return n; }
   function path(k, cls, sw) { var d = k === 'node' ? NODE_G : GLY[k]; return d ? '<svg class="' + (cls || '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (sw || 1.7) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>' : ''; }
   function wd(st) { return ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'][new Date(Date.UTC(st.y, st.m - 1, st.d)).getUTCDay()]; }
@@ -89,9 +90,9 @@
     return { ch: ch, city: c, y: dp[0], m: dp[1], d: dp[2], hh: tp[0], mm: tp[1], items: items, node: node, asp: asp };
   }
 
-  /* ---------- العجلة بشكل خريطة الميلاد: حلقة أبراج عنابية، قلب كريمي، زوايا ملونة ---------- */
+  /* ---------- العجلة بمعيار Astro.com: درجات ودقائق، تدريج 1°/5°/10°، تباعد ذكي وخطوط توصيل، وتركيز على كوكب ---------- */
   function wheel(st) {
-    var ch = st.ch, asc = ch.asc, mc = ch.mc, cx = 270, R1 = 238, R2 = 198, R3 = 96, RP = 160, RN = 116;
+    var ch = st.ch, asc = ch.asc, mc = ch.mc, cx = 270, R1 = 238, R2 = 198, R3 = 88, RP = 152, RL = 123, RN = 102;
     function pt(lon, r) { var a = (180 + (lon - asc)) * Math.PI / 180; return [cx + r * Math.cos(a), cx - r * Math.sin(a)]; }
     function f(n) { return n.toFixed(1); }
     function ln(a, b, at) { return '<line x1="' + f(a[0]) + '" y1="' + f(a[1]) + '" x2="' + f(b[0]) + '" y2="' + f(b[1]) + '" ' + (at || '') + '/>'; }
@@ -103,8 +104,9 @@
       if (d) o += '<path transform="translate(' + f(g[0] - 16.8) + ' ' + f(g[1] - 16.8) + ') scale(1.4)" d="' + d + '" fill="none" stroke="#F3DFA8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>';
     }
     o += '<circle cx="' + cx + '" cy="' + cx + '" r="' + R2 + '" fill="url(#swcC)" stroke="#C5A059" stroke-width="1.2"/><circle cx="' + cx + '" cy="' + cx + '" r="' + R3 + '" fill="#FFFDF8" stroke="#C5A059" stroke-width="1"/>';
-    var tk = ''; for (var a = 0; a < 360; a += 5) tk += ln(pt(a, R2), pt(a, R2 - (a % 10 ? 4 : 8)));
-    o += '<g stroke="#B8965A" stroke-width=".7" stroke-opacity=".8">' + tk + '</g>';
+    var t1 = '', t5 = '', t10 = '';
+    for (var a = 0; a < 360; a++) { var seg = 'M' + f(pt(a, R2)[0]) + ' ' + f(pt(a, R2)[1]) + 'L' + f(pt(a, R2 - (a % 10 === 0 ? 9 : a % 5 === 0 ? 6 : 3))[0]) + ' ' + f(pt(a, R2 - (a % 10 === 0 ? 9 : a % 5 === 0 ? 6 : 3))[1]); if (a % 10 === 0) t10 += seg; else if (a % 5 === 0) t5 += seg; else t1 += seg; }
+    o += '<g fill="none" stroke="#B8965A"><path d="' + t1 + '" stroke-width=".45" stroke-opacity=".7"/><path d="' + t5 + '" stroke-width=".75" stroke-opacity=".9"/><path d="' + t10 + '" stroke-width="1"/></g>';
     var cu = ch.cusps, hl = '', hn = '';
     for (i = 0; i < 12; i++) {
       var ax = i % 3 === 0;
@@ -117,20 +119,24 @@
     o += lab(asc, 'الطالع') + lab(asc + 180, 'الغارب') + lab(mc, 'وسط السماء') + lab(mc + 180, 'وتد الأرض');
     var as = '';
     st.asp.forEach(function (x) {
-      var hard = x.t[0] === 'square' || x.t[0] === 'opp', soft = x.t[0] === 'sext' || x.t[0] === 'trine';
+      var hard = x.t[0] === 'square' || x.t[0] === 'opp';
       if (x.t[0] === 'conj') return;
-      as += ln(pt(x.A.lon, R3), pt(x.B.lon, R3), 'stroke="' + (hard ? '#C0554A' : '#4E7FB0') + '" stroke-opacity=".75" stroke-width="1.2"');
+      as += ln(pt(x.A.lon, R3), pt(x.B.lon, R3), 'class="swc-al" data-a="' + x.A.k + '" data-b="' + x.B.k + '" stroke="' + (hard ? '#C0554A' : '#4E7FB0') + '" stroke-opacity=".75" stroke-width="1.2"');
     });
     o += as;
-    /* كواكب: تباعد بسيط لمنع التداخل */
-    var arr = st.items.concat(st.node ? [st.node] : []).map(function (it) { return { it: it, disp: it.lon }; }).sort(function (a, b) { return a.it.lon - b.it.lon; });
-    for (var rep = 0; rep < 60; rep++) { var mv = false; for (var k = 0; k < arr.length; k++) { var A = arr[k], B = arr[(k + 1) % arr.length], gap = mod(B.disp - A.disp); if (gap < 12 && arr.length > 1) { var ps = (12 - gap) / 2 + .01; A.disp = mod(A.disp - ps); B.disp = mod(B.disp + ps); mv = true; } } if (!mv) break; }
+    /* تباعد: كل كوكب يبتعد عن جاره 15° على الأقل، وخط رفيع يربط الرمز بدرجته الحقيقية */
+    var arr = st.items.concat(st.node ? [st.node] : []).map(function (it) { return { it: it, disp: it.lon }; }).sort(function (a, b) { return a.it.lon - b.it.lon; }), GAP = 15;
+    for (var rep = 0; rep < 300; rep++) { var mv = false; for (var k = 0; k < arr.length; k++) { var A = arr[k], B = arr[(k + 1) % arr.length], gap = mod(B.disp - A.disp); if (gap < GAP - .05 && arr.length > 1) { var ps = (GAP - gap) / 2 + .02; A.disp = mod(A.disp - ps); B.disp = mod(B.disp + ps); mv = true; } } if (!mv) break; }
     arr.forEach(function (x) {
-      var it = x.it, p = pt(x.disp, RP), t1 = pt(it.lon, R2), t2 = pt(it.lon, R2 - 11), g = it.k === 'node' ? NODE_G : (GLY[it.k] || ''), tap = it.k !== 'node';
-      o += '<g class="swc-pl' + (tap ? '' : ' is-static') + '" data-k="' + it.k + '"' + (tap ? ' tabindex="0" role="button"' : '') + '><title>' + it.n + ' · ' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + (it.retro ? ' · متراجع' : '') + '</title>' + ln(t1, t2, 'stroke="#6B2234" stroke-width="1.4"') +
+      var it = x.it, p = pt(x.disp, RP), pl = pt(x.disp, RL), t1p = pt(it.lon, R2), t2 = pt(it.lon, R2 - 11), g = it.k === 'node' ? NODE_G : (GLY[it.k] || ''), tap = true;
+      var off = Math.abs(((x.disp - it.lon + 540) % 360) - 180) > .8, le = pt(x.disp, RP + 17);
+      o += '<g class="swc-pl' + (it.k === 'node' ? ' is-node' : '') + '" data-k="' + it.k + '" tabindex="0" role="button"><title>' + it.n + ' · ' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + (it.retro ? ' · متراجع' : '') + '</title>' + ln(t1p, t2, 'stroke="#6B2234" stroke-width="1.4"') +
+        '<circle cx="' + f(t2[0]) + '" cy="' + f(t2[1]) + '" r="1.7" fill="#6B2234"/>' +
+        (off ? ln(t2, le, 'stroke="#B8965A" stroke-width=".8" stroke-opacity=".9"') : ln(t2, le, 'stroke="#B8965A" stroke-width=".6" stroke-opacity=".5"')) +
         '<circle class="swc-hit" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="19" fill="#6B2234" fill-opacity="0"/>' +
-        '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="16.5" fill="#FFFDF7" fill-opacity=".92" stroke="#C5A059" stroke-width="1.1"/>' +
+        '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="16.5" fill="#FFFDF7" fill-opacity=".95" stroke="#C5A059" stroke-width="1.1"/>' +
         '<path class="swc-glyph" transform="translate(' + f(p[0] - 14) + ' ' + f(p[1] - 14) + ') scale(1.167)" d="' + g + '" fill="none" stroke="#4A1521" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<text class="swc-dg" x="' + f(pl[0]) + '" y="' + f(pl[1] + 3.4) + '" text-anchor="middle" font-size="9.5" font-weight="700" fill="#5E2234" font-family="Cairo,sans-serif" paint-order="stroke" stroke="#FFFDF7" stroke-width="3" stroke-linejoin="round" style="direction:ltr;unicode-bidi:plaintext">' + dm(it.lon) + '</text>' +
         (it.retro ? '<g class="swc-rx"><title>متراجع</title><circle cx="' + f(p[0] + 13) + '" cy="' + f(p[1] - 13) + '" r="8" fill="#B8473E" stroke="#FFFDF7" stroke-width="1.2"/><svg x="' + f(p[0] + 13 - 5) + '" y="' + f(p[1] - 13 - 5) + '" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 9l5 5"/><path d="M4 9h9.500a5.500 5.500 0 0 1 0 11H10"/></svg></g>' : '') + '</g>';
     });
     return o;
@@ -142,64 +148,106 @@
     return { el: el, il: il, age: age, svg: '<svg class="swc-moon-svg" viewBox="0 0 120 120" role="img" aria-label="القمر: ' + phaseName(el) + '، إضاءة ' + il + '%">' + mk + '</svg>', ph: phaseName(el), moon: moon, sun: sun };
   }
 
-  function joinAr(a) { return a.length < 2 ? a.join('') : a.length === 2 ? a[0] + ' و' + a[1] : a.slice(0, -1).join('، ') + ' و' + a[a.length - 1]; }
-  /* جملة تحت القمر: تتبدل مع درجات الكواكب وحالات التراجع الفعلية في اللحظة المختارة */
-  function hintHTML(st) {
-    var retro = st.items.filter(function (r) { return r.retro && r.k !== 'sun' && r.k !== 'moon'; }), edge = null;
-    st.items.forEach(function (it) { var d = it.lon % 30; if (!edge && it.k !== 'moon' && (d >= 29 || d < 1)) edge = it; });
-    var lead;
-    if (edge) lead = edge.n + (edge.lon % 30 >= 29 ? ' يغادر ' : ' يدخل ') + SIGNS_AR[edge.sign] + ' · اضغط عليه';
-    else if (retro.length) lead = joinAr(retro.map(function (r) { return r.n; })) + (retro.length > 2 ? ' متراجعون' : retro.length === 2 ? ' متراجعان' : ' متراجع') + ' · اضغط لتفتح القراءة';
-    else lead = 'اضغط على أي كوكب لتفتح قراءته';
-    return '<span class="swc-hint-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v15M5.500 12.500 12 19l6.500-6.500"/></svg></span><span class="swc-hint-t"><b>' + lead + '</b></span>';
-  }
-
   function renderCard(st) {
     svg.innerHTML = wheel(st);
     var m = moonBlock(st);
-    moonEl.innerHTML = '<div class="swc-moon-fig">' + m.svg + '</div><div class="swc-moon-txt"><small>القمر في التاريخ المختار</small><b>' + m.ph + '</b><span>القمر في ' + SIGNS_AR[m.moon.sign] + ' ' + dm(m.moon.lon) + '</span><span>إضاءة ' + m.il + '% · عمره ' + m.age + ' يوم</span><span>الشمس في ' + SIGNS_AR[m.sun.sign] + ' ' + dm(m.sun.lon) + '</span></div>';
+    moonEl.innerHTML = '<div class="swc-moon-fig">' + m.svg + '</div><div class="swc-moon-txt"><small>القمر في التاريخ المختار</small><b>' + m.ph + '</b><span>القمر في ' + SIGNS_AR[m.moon.sign] + ' ' + dmb(m.moon.lon) + '</span><span>إضاءة ' + m.il + '% · عمره ' + m.age + ' يوم</span></div>';
     gridEl.innerHTML = st.items.map(function (it) {
       var fixed = it.k === 'sun' || it.k === 'moon';
-      return '<button type="button" class="swc-pc' + (it.retro ? ' is-retro' : '') + '" data-k="' + it.k + '"><span class="swc-pc-m">' + path(it.k, 'swc-pc-g') + '</span><span class="swc-pc-t"><b>' + it.n + '</b><small>' + SIGNS_AR[it.sign] + ' ' + dm(it.lon) + '</small></span>' +
+      return '<button type="button" class="swc-pc' + (it.retro ? ' is-retro' : '') + '" data-k="' + it.k + '"><span class="swc-pc-m">' + path(it.k, 'swc-pc-g') + '</span><span class="swc-pc-t"><b>' + it.n + '</b><small>' + SIGNS_AR[it.sign] + ' ' + dmb(it.lon) + '</small></span>' +
         (fixed ? '' : '<i class="swc-pc-st ' + (it.retro ? 'is-retro' : 'is-direct') + '">' + (it.retro ? 'متراجع' : 'مباشر') + '</i>') +
         '<span class="swc-pc-go" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></button>';
     }).join('');
-    hintEl.innerHTML = hintHTML(st);
-    capEl.textContent = dateTxt(st) + (live ? ' · العبور الحالي' : '');
+    if (foc) focusPlanet(foc, true); else idleCap(st);
+    renderTabs(st);
+  }
+  function idleCap(st) { capEl.className = 'swc-cap'; capEl.textContent = wd(st) + ' ' + st.d + '/' + st.m + '/' + st.y + ' · ' + p2(st.hh) + ':' + p2(st.mm) + ' · ' + st.city[0] + (live ? ' · الآن' : ''); }
+
+  /* ---------- تركيز على كوكب: شريط قراءة حي فوق العجلة + إبراز زواياه وتعتيم الباقي ---------- */
+  var foc = null;
+  function focusPlanet(k, keep) {
+    var st = cur, it = null; if (!st) return;
+    st.items.concat(st.node ? [st.node] : []).forEach(function (x) { if (x.k === k) it = x; });
+    if (!it) { foc = null; idleCap(st); return; }
+    foc = k; highlight(k);
+    var n = 0;
+    [].forEach.call(svg.querySelectorAll('.swc-al'), function (l) { var inv = l.getAttribute('data-a') === k || l.getAttribute('data-b') === k; l.classList.toggle('is-hot', inv); l.classList.toggle('is-dim', !inv); });
+    st.asp.forEach(function (x) { if (x.A.k === k || x.B.k === k) n++; });
+    svg.classList.add('has-foc');
+    capEl.className = 'swc-cap is-focus';
+    capEl.innerHTML = '<span class="swc-fp-g">' + path(k, 'swc-fp-gi', 1.8) + '</span><span class="swc-fp-t"><b>' + it.n + (it.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</b><small>' + SIGNS_AR[it.sign] + ' ' + dmb(it.lon) + ' · البيت ' + (it.house || 1) + (k === 'node' ? '' : ' · ' + (n ? n + (n > 2 ? ' زوايا' : n === 2 ? ' زاويتان' : ' زاوية') : 'بلا زوايا قوية')) + '</small></span>' +
+      (k === 'node' ? '' : '<button type="button" class="swc-fp-go" data-open="' + k + '">القراءة</button>') + '<button type="button" class="swc-fp-x" data-clear aria-label="إلغاء التركيز"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>';
+  }
+  function clearFocus() {
+    foc = null; svg.classList.remove('has-foc');
+    [].forEach.call(svg.querySelectorAll('.swc-al'), function (l) { l.classList.remove('is-hot', 'is-dim'); });
+    [].forEach.call(svg.querySelectorAll('.swc-pl.is-sel'), function (g) { g.classList.remove('is-sel'); });
+    if (cur) idleCap(cur);
   }
 
-  /* ---------- صفحة التفاصيل #world ---------- */
-  function bar(label, pct, cls) { return '<div class="wld-bar"><span>' + label + '</span><i><u class="' + cls + '" style="width:' + pct + '%"></u></i><b>' + pct + '%</b></div>'; }
-  function renderWorld(st) {
-    var host = $('wld'); if (!host) return;
-    var ch = st.ch, m = moonBlock(st), FXp = window.AqeeqFX || { FX: {}, SUN_SHORT: [], ASP_FX: {}, moonShort: function () { return ''; } };
-    function fx(it) { if (it.k === 'sun') return FXp.SUN_SHORT[it.sign] || ''; if (it.k === 'moon') return FXp.moonShort(it.sign); var a = FXp.FX[it.k]; return a ? a[it.retro ? 1 : 0] : ''; }
-    $('wld-sub').textContent = dateTxt(st) + ' · خط العرض ' + st.city[1].toFixed(2) + '° · خط الطول ' + st.city[2].toFixed(2) + '°';
-    var ascS = Math.floor(mod(ch.asc) / 30), mcS = Math.floor(mod(ch.mc) / 30);
+  /* ---------- التبويبات الخمسة ---------- */
+  var sigs = {};
+  function barRow(label, pct, cls) { return '<div class="swb"><span>' + label + '</span><i><u class="' + cls + '" style="width:' + pct + '%"></u></i><b>' + pct + '%</b></div>'; }
+  function sgIc(i) { return path('s' + i, 'swt-sg'); }
+  function renderTabs(st) { renderMine(st); renderHouses(st); renderElem(st); }
+  function skipSame(name, key) { if (sigs[name] === key) return true; sigs[name] = key; return false; }
+
+  function renderMine(st) {
+    var host = $('swc-mine'), A = window.AqSky, R = window.AqReadings; if (!host) return;
+    if (!A || !R) { host.innerHTML = '<p class="swt-empty">القراءات قيد التحميل…</p>'; sigs.mine = ''; return; }
+    var sg = A.getSign(), key = (sg === null ? 'x' : sg) + '|' + st.items.map(function (i) { return i.k + i.sign + (i.retro ? 'r' : ''); }).join('');
+    if (skipSame('mine', key)) return;
+    var h = '<section class="swm-pick"><b>اختر برجك الشمسي أو طالعك</b><small>مرة واحدة فقط، ونعرض لك كيف تلمس سماء هذه اللحظة بيوتك</small><div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">' +
+      A.SIGNS.map(function (s, i) { return '<button type="button" class="sky-sg' + (i === sg ? ' is-on' : '') + '" data-i="' + i + '" aria-pressed="' + (i === sg) + '"><span class="sg" aria-hidden="true">' + A.gl(s.g) + '</span><span>' + s.n + '</span></button>'; }).join('') + '</div></section>';
+    if (sg === null) h += '<p class="swt-empty">اختر برجك لنعرض لك تقرير اليوم: أين يقف كل كوكب في حياتك، وما الذي قد تشعر به دون أن تعرف السبب.</p>';
+    else {
+      h += '<header class="swm-head"><small>تقرير سماء هذه اللحظة</small><b>لمن برجه ' + A.SIGNS[sg].n + '</b></header>';
+      st.items.forEach(function (bd) {
+        var k = bd.k, hh = ((bd.sign - sg + 12) % 12) + 1, H = A.HOUSES[hh - 1], hasTr = R.TR[k] && R.TR[k][hh - 1];
+        var txt = hasTr || (R.PH[k] && R.PH[k][hh - 1]) || '', q = (hasTr && A.PQH[k] && A.PQH[k][hh - 1]) || A.PQ[k] || '';
+        h += '<article class="swm-c"><header><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><h4>' + bd.n + ' في بيتك ' + H.n + '</h4><small>' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + H.area + '</small></div>' + (bd.retro ? '<em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</header>' +
+          '<p class="swm-r">' + txt + '</p>' + (bd.retro && R.RT[k] ? '<p class="swm-rt">' + R.RT[k] + '</p>' : '') +
+          (q ? '<div class="swm-q"><b>سؤال يخصك</b><p>' + q + '</p></div>' : '') + '</article>';
+      });
+      h += '<a class="swm-go" href="#signs"><span class="swm-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swm-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></span></a>';
+    }
+    host.innerHTML = h; queueUp();
+  }
+
+  function renderHouses(st) {
+    var host = $('swc-houses'); if (!host) return;
+    var ch = st.ch, key = ch.asc.toFixed(2) + '|' + st.items.map(function (i) { return i.k + (i.house || ''); }).join(''); if (skipSame('houses', key)) return;
+    var angs = [['الطالع', ch.asc], ['الغارب', ch.asc + 180], ['وسط السماء', ch.mc], ['وتد الأرض', ch.mc + 180]];
+    var h = '<div class="swt-angles">' + angs.map(function (a) { var s = Math.floor(mod(a[1]) / 30); return '<div class="swt-ang"><small>' + a[0] + '</small><b>' + sgIc(s) + SIGNS_AR[s] + '</b><span>' + dmb(a[1]) + '</span></div>'; }).join('') + '</div>';
+    h += '<div class="swt-hs">' + ch.cusps.map(function (c, i) {
+      var s = Math.floor(mod(c) / 30), ps = st.items.filter(function (it) { return it.house === i + 1; }).map(function (it) { return '<span class="swt-hp">' + path(it.k, 'swt-pg') + it.n + '</span>'; }).join('');
+      return '<div class="swt-h"><span class="swt-hn">' + (i + 1) + '</span><div class="swt-ht"><b>البيت ' + HOUSE_AR[i] + '</b><small>' + HOUSE_AREA[i] + '</small></div><span class="swt-hc">' + sgIc(s) + SIGNS_AR[s] + ' ' + dmb(c) + '</span>' + (ps ? '<div class="swt-hps">' + ps + '</div>' : '') + '</div>';
+    }).join('') + '</div>';
+    host.innerHTML = h; queueUp();
+  }
+
+  function renderElem(st) {
+    var host = $('swc-elem'); if (!host) return;
+    var key = st.items.map(function (i) { return i.k + i.sign + (i.retro ? 'r' : ''); }).join(''); if (skipSame('elem', key)) return;
     var elc = [0, 0, 0, 0], mdc = [0, 0, 0];
     st.items.forEach(function (it) { elc[SIGN_EL[it.sign]]++; mdc[SIGN_MOD[it.sign]]++; });
     var n = st.items.length, pc = function (v) { return Math.round(v / n * 100); };
-    var housesOf = function (h) { return st.items.filter(function (it) { return it.house === h; }).map(function (it) { return path(it.k, 'wld-hg') + it.n; }).join('، '); };
-    var retro = st.items.filter(function (it) { return it.retro; });
-    var h = '';
-    h += '<div class="wld-top"><div class="wld-chart"><svg class="swc-cw" id="wld-svg" viewBox="-14 -14 568 568" role="img" aria-label="الخريطة الفلكية العالمية">' + wheel(st) + '</svg><div class="swc-legend" aria-hidden="true"><span class="lg-soft">اتصال منسجم</span><span class="lg-hard">اتصال متوتر</span></div></div>';
-    h += '<div class="wld-aside"><div class="swc-moon wld-moon"><div class="swc-moon-fig">' + m.svg + '</div><div class="swc-moon-txt"><small>القمر في التاريخ المختار</small><b>' + m.ph + '</b><span>القمر في ' + SIGNS_AR[m.moon.sign] + ' ' + dm(m.moon.lon) + '</span><span>إضاءة ' + m.il + '% · عمره ' + m.age + ' يوم</span></div></div>';
-    h += '<div class="wld-keys"><div><small>الطالع</small><b>' + path('s' + ascS, 'wld-sg') + SIGNS_AR[ascS] + ' ' + dm(ch.asc) + '</b></div><div><small>وسط السماء</small><b>' + path('s' + mcS, 'wld-sg') + SIGNS_AR[mcS] + ' ' + dm(ch.mc) + '</b></div><div><small>الشمس</small><b>' + path('s' + st.items[0].sign, 'wld-sg') + SIGNS_AR[st.items[0].sign] + ' ' + dm(st.items[0].lon) + '</b></div><div><small>الكواكب المتراجعة</small><b>' + (retro.length ? retro.map(function (x) { return x.n; }).join('، ') : 'لا يوجد') + '</b></div></div>';
-    h += '<div class="wld-card"><h4>توزيع العناصر</h4>' + bar('نار', pc(elc[0]), 'e0') + bar('تراب', pc(elc[1]), 'e1') + bar('هواء', pc(elc[2]), 'e2') + bar('ماء', pc(elc[3]), 'e3') + '<h4>توزيع الأنماط</h4>' + bar('كاردينال', pc(mdc[0]), 'm0') + bar('ثابت', pc(mdc[1]), 'm1') + bar('متحول', pc(mdc[2]), 'm2') + '</div></div></div>';
-    h += '<section class="wld-card"><h3>مواقع الكواكب</h3><div class="wld-tbl">' + st.items.concat(st.node ? [st.node] : []).map(function (it) {
-      return '<div class="wld-tr' + (it.retro ? ' is-retro' : '') + '" data-k="' + it.k + '"><span class="wld-ic">' + path(it.k, 'wld-g') + '</span><b>' + it.n + (it.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</b><span class="wld-deg">' + dm(it.lon) + '</span><span class="wld-sgn">' + path('s' + it.sign, 'wld-sg') + SIGNS_AR[it.sign] + '</span><span class="wld-hs">البيت ' + HOUSE_AR[(it.house || 1) - 1] + '</span><span class="wld-st">' + (it.k === 'node' ? 'نقطة' : (it.retro ? 'متراجع' : 'مباشر')) + '</span><p>' + (it.k === 'node' ? 'اتجاه النمو الجماعي والدروس المطلوبة في هذه الفترة.' : fx(it)) + '</p></div>';
-    }).join('') + '</div></section>';
-    h += '<section class="wld-card"><h3>البيوت الاثنا عشر</h3><div class="wld-houses">' + ch.cusps.map(function (c, i) {
-      var s = Math.floor(mod(c) / 30), hs = housesOf(i + 1);
-      return '<div class="wld-h"><span class="wld-hn">' + (i + 1) + '</span><div><b>البيت ' + HOUSE_AR[i] + '</b><small>' + HOUSE_AREA[i] + '</small></div><span class="wld-hc">' + path('s' + s, 'wld-sg') + SIGNS_AR[s] + ' ' + dm(c) + '</span>' + (hs ? '<p>' + hs + '</p>' : '') + '</div>';
-    }).join('') + '</div></section>';
-    h += '<section class="wld-card"><h3>الزوايا والاتصالات بين الكواكب</h3>' + (st.asp.length ? '<div class="wld-asp">' + st.asp.map(function (x) {
-      var hard = x.t[0] === 'square' || x.t[0] === 'opp', neu = x.t[0] === 'conj';
-      return '<div class="wld-a ' + (neu ? 'is-neu' : (hard ? 'is-hard' : 'is-soft')) + '"><span class="wld-ai">' + path(x.A.k, 'wld-g') + '</span><b>' + x.A.n + ' ' + x.t[2] + ' ' + x.B.n + '</b><span class="wld-ai">' + path(x.B.k, 'wld-g') + '</span><small>' + (neu ? 'محايد' : (hard ? 'متوتر' : 'منسجم')) + ' · فارق ' + x.o.toFixed(1) + '°</small><p>' + (FXp.ASP_FX[x.t[0]] || '') + '</p></div>';
-    }).join('') + '</div>' : '<p class="wld-none">لا توجد زوايا قوية بين الكواكب في هذه اللحظة.</p>') + '</section>';
+    var retro = st.items.filter(function (it) { return it.retro && it.k !== 'sun' && it.k !== 'moon'; });
+    var h = '<section class="swt-card"><h4>توزيع العناصر</h4>' + barRow('نار', pc(elc[0]), 'e0') + barRow('تراب', pc(elc[1]), 'e1') + barRow('هواء', pc(elc[2]), 'e2') + barRow('ماء', pc(elc[3]), 'e3') + '</section>' +
+      '<section class="swt-card"><h4>توزيع الأنماط</h4>' + barRow('كاردينال', pc(mdc[0]), 'm0') + barRow('ثابت', pc(mdc[1]), 'm1') + barRow('متحول', pc(mdc[2]), 'm2') + '</section>' +
+      '<section class="swt-card"><h4>الكواكب المتراجعة</h4>' + (retro.length ? '<div class="swt-rx">' + retro.map(function (it) { return '<span class="swt-rxi"><em class="rx-b">' + RX + '</em>' + it.n + ' في ' + SIGNS_AR[it.sign] + '</span>'; }).join('') + '</div>' : '<p class="swt-empty is-in">لا يوجد كوكب متراجع في هذه اللحظة، فكل الكواكب تسير مباشرة.</p>') + '</section>';
     host.innerHTML = h;
   }
-  function onWorld() { if (location.hash === '#world') { if (!cur) { try { cur = compute(); } catch (e) { return; } } renderWorld(cur); } }
+
+  function setTab(name) {
+    [].forEach.call(document.querySelectorAll('.swt-t'), function (b) { var on = b.getAttribute('data-tab') === name; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on); if (on && b.scrollIntoView) { try { var bar = b.parentNode; bar.scrollTo({ left: b.offsetLeft - (bar.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' }); } catch (e) { } } });
+    [].forEach.call(document.querySelectorAll('.swt-p'), function (p) { p.hidden = p.id !== 'swp-' + name; });
+  }
+  window.addEventListener('hashchange', function () { /* #world دُمجت في #sky */ });
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('.swt-t'); if (t) { setTab(t.getAttribute('data-tab')); return; }
+    var sgb = e.target.closest && e.target.closest('#swc-mine .sky-sg'); if (sgb && window.AqSky) { window.AqSky.setSign(+sgb.getAttribute('data-i')); sigs.mine = ''; renderMine(cur); }
+  });
 
   function render() {
     errEl.hidden = true;
@@ -208,7 +256,7 @@
       errEl.textContent = e.message === 'range' ? 'اختر تاريخاً بين 1900 و2100.' : (e.message === 'empty' ? 'أدخل التاريخ والوقت أولاً.' : 'تعذر حساب الخريطة حالياً.');
       errEl.hidden = false; return false;
     }
-    cur = st; renderCard(st); syncSky(); var pc = document.querySelector('#sky-chips .chip[aria-pressed="true"]'); if (pc) sel = pc.getAttribute('data-k'); if (sel) highlight(sel); if (location.hash === '#world') renderWorld(st);
+    cur = st; renderCard(st); syncSky(); var pc = document.querySelector('#sky-chips .chip[aria-pressed="true"]'); if (pc) sel = pc.getAttribute('data-k'); if (foc) focusPlanet(foc, true); else if (sel) highlight(sel);
     return true;
   }
   function syncSky() {
@@ -284,7 +332,7 @@
   if (axHost) axHost.addEventListener('click', function (e) { var b = e.target.closest('.ax-s'); if (!b) return; var L = axList(), i = L.indexOf(b.parentNode); if (i > -1) renderAx(i); });
 
   function setQuick(btn) { [].forEach.call(form.querySelectorAll('.swc-quick button'), function (b) { b.classList.toggle('is-on', b === btn); }); }
-  form.addEventListener('submit', function (e) { e.preventDefault(); live = false; setQuick(null); if (render()) location.hash = '#world'; });
+  form.addEventListener('submit', function (e) { e.preventDefault(); live = false; setQuick(null); render(); });
   form.querySelector('.swc-quick').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
     var off = +b.getAttribute('data-off'), c = CITIES[+citySel.value], t = addDays(nowLocal(c), off);
@@ -302,9 +350,12 @@
     });
   });
   function pickEv(e) { var n = e.target.closest('[data-k]'); if (n) openPlanet(n.getAttribute('data-k')); }
-  svg.addEventListener('click', pickEv); gridEl.addEventListener('click', pickEv);
-  svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pickEv(e); } });
-  window.addEventListener('hashchange', onWorld);
+  function wheelEv(e) { var n = e.target.closest('.swc-pl[data-k]'); if (!n) { if (!e.target.closest('.swc-cap')) clearFocus(); return; } var k = n.getAttribute('data-k'); focusPlanet(k); }
+  svg.addEventListener('click', wheelEv); gridEl.addEventListener('click', pickEv);
+  capEl.addEventListener('click', function (e) { var o = e.target.closest('[data-open]'); if (o) { openPlanet(o.getAttribute('data-open')); return; } if (e.target.closest('[data-clear]')) clearFocus(); });
+  svg.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wheelEv(e); } });
+  function toWorld() { if (location.hash === '#world') { try { location.replace(location.pathname + location.search + '#sky'); } catch (e) { location.hash = '#sky'; } setTab('houses'); } }
+  window.addEventListener('hashchange', toWorld);
 
 
   /* توحيد رموز الكواكب والأبراج في قسم الرصد: تحويل الحروف النصية الباهتة إلى نفس الأيقونات المرسومة */
@@ -328,7 +379,7 @@
   function queueUp() { if (upQ) return; upQ = requestAnimationFrame(function () { upQ = 0; upgradeGlyphs(); }); }
   if ('MutationObserver' in window) { var skyEl = document.getElementById('sky'); if (skyEl) new MutationObserver(queueUp).observe(skyEl, { childList: true, subtree: true }); new MutationObserver(queueUp).observe(document.body, { childList: true }); queueUp(); }
 
-  function init() { try { setInputs(nowLocal(CITIES[0])); render(); onWorld(); upgradeGlyphs(); } catch (e) { errEl.textContent = 'تعذر حساب الخريطة حالياً.'; errEl.hidden = false; } }
+  function init() { try { setInputs(nowLocal(CITIES[0])); render(); toWorld(); upgradeGlyphs(); } catch (e) { errEl.textContent = 'تعذر حساب الخريطة حالياً.'; errEl.hidden = false; } }
   window.addEventListener('load', init);
   if (document.readyState === 'complete') init();
   setInterval(function () { if (live && !document.hidden) { setInputs(nowLocal(CITIES[+citySel.value])); render(); } }, 60000);

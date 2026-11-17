@@ -131,7 +131,7 @@
 <link rel="stylesheet" href="assets/css/matrix-compat.css?v=20261113o">
 <link rel="stylesheet" href="assets/css/ui-consistency.css?v=4">
 <link href="assets/css/type-system.css?v=4" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/sky-unify.css?v=20261124b">
+<link rel="stylesheet" href="assets/css/sky-unify.css?v=20261126a">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -186,7 +186,7 @@
     <a href="#home"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7v9a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.500-1.500z"/><path d="M9.500 21v-6h5v6"/></svg><span>الرئيسية</span></a>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>الخرائط والمسارات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#chart">الخريطة الفلكية</a><a href="#matrix">مصفوفة القدر</a><a href="#matrix-child">مصفوفة الطفل</a><a href="#lifepath">مسار الحياة</a><a href="#astro-maps">الفيدي والداشا</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>التوافق والعلاقات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#compat">خريطة التوافق الفلكية</a><a href="#matrix-compat">توافق مصفوفة القدر</a><a href="#lifepath-compat">توافق مسار الحياة بالأرقام</a></div></div>
-    <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>السماء والتوقعات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#sky">السماء الآن</a><a href="#world">حركة الكواكب</a></div></div>
+    <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>السماء والتوقعات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#sky">السماء الآن</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>استثمر في ذاتك والمحتوى</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#featured-content">المقالات</a><a href="#invest">الجلسات والتقارير المدفوعة</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>عن المنصة</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#about">من نحن</a><a href="#contact">التواصل</a><a href="#terms">الشروط</a><a href="#privacy">سياسة الخصوصية</a><a href="#disclaimer">إخلاء المسؤولية</a></div></div>
     <a href="#account"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/></svg><span>حسابي</span></a>
@@ -1035,23 +1035,6 @@
 <div id="fy-body" aria-live="polite"></div>
 </div>
 </section>
-<section class="sec alt" id="world" aria-labelledby="wld-h">
-<div class="wrap">
-<div class="aq-section-topbar">
-  <a href="#sky" class="aq-back-home-btn">← العودة لصفحة السماء</a>
-  <div class="aq-section-quick-links">
-    <a href="#sky" class="aq-section-pill"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg>المشهد الفلكي الآن</a>
-    <a href="#world" class="aq-section-pill active"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>الخريطة العالمية</a>
-  </div>
-</div>
-<div class="center">
-  <span class="eyebrow" dir="ltr">خريطة السماء العالمية · ليست خريطة شخصية</span>
-  <h2 id="wld-h">الخريطة الفلكية العالمية</h2>
-  <p class="intro" id="wld-sub">اختر التاريخ والمدينة من صفحة السماء لتظهر هنا تفاصيل الخريطة كاملة.</p>
-</div>
-<div class="wld" id="wld"></div>
-</div>
-</section>
 <section class="sec alt" id="sky">
 <div class="wrap">
 <div class="aq-section-topbar">
@@ -1062,14 +1045,7 @@
     <a href="#signs" class="aq-section-pill"><svg class="pill-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M7 4.5C8 9 8 15 7 19.5M17 4.5C16 9 16 15 17 19.5M5 9.5c4.5 1.2 9.5 1.200 14 0M5 14.500c4.500-1.200 9.5-1.200 14 0"/></svg>صفات وتوقعات الأبراج</a>
   </div>
 </div>
-<div class="center">
-  <span class="eyebrow" dir="ltr">السماء الآن · مواضع حقيقية</span>
-  <h2>كيف تبدو السماء فوقك الآن؟</h2>
-  <p class="intro">خريطة حقيقية لمواضع الكواكب والقمر لحظة بلحظة. اضغط على أي كوكب لتعرف ماذا يعني موقعه، وهل هو متراجع أم يسير في طريقه المعتاد.</p>
-</div>
-<section class="swc" id="swc" aria-labelledby="swc-h">
-  <header class="swc-head"><span class="swc-medal" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle class="sm-ring" cx="32" cy="32" r="25" stroke-dasharray="2 4.2"/><circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="10"/><path d="M32 5v8M32 51v8M5 32h8M51 32h8"/><path d="M32 22l2.6 7.4L42 32l-7.400 2.600L32 42l-2.600-7.400L22 32l7.400-2.600z" fill="currentColor" stroke="none"/><circle cx="48.500" cy="15.500" r="2.700" fill="currentColor" stroke="none"/></svg></span><span class="swc-eyebrow">بإحداثيات حقيقية لأي مكان وزمان</span><h3 id="swc-h">خريطة السماء العالمية</h3>
-  <p>اختر أي تاريخ أو مدينة في العالم لترى السماء كما كانت أو ستكون. هذه ليست خريطتك الشخصية.</p></header>
+<section class="swc" id="swc" aria-label="السماء الآن">
   <form class="swc-ctl" id="swc-form" novalidate>
     <div class="swc-quick" role="group" aria-label="اختصارات التاريخ"><button type="button" data-off="0" class="is-on">الآن</button><button type="button" data-off="1">غدًا</button><button type="button" data-off="7">بعد أسبوع</button><button type="button" data-off="30">بعد شهر</button></div>
     <details class="swc-adv"><summary><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.500" y="5" width="17" height="15" rx="3"/><path d="M8 3v4M16 3v4M3.500 10h17"/></svg><span>غيّر التاريخ أو الوقت أو المدينة</span><i class="swc-adv-ch" aria-hidden="true"></i></summary><div class="swc-adv-in">
@@ -1077,22 +1053,19 @@
     <label class="swc-f"><span>الوقت</span><input id="swc-time" type="time" required></label>
     <label class="swc-f swc-city"><span>المدينة</span><select id="swc-city"></select></label>
     </div></details>
-    <button class="swc-go" type="submit">عرض الخريطة بالتفاصيل</button>
   </form>
   <p class="swc-err" id="swc-err" role="alert" hidden></p>
   <div class="swc-body">
-    <div class="swc-wheel"><svg id="swc-svg" class="swc-cw" viewBox="-14 -14 568 568" role="img" aria-label="خريطة السماء العالمية"></svg>
-      <div class="swc-legend" aria-hidden="true"><span class="lg-soft">اتصال منسجم</span><span class="lg-hard">اتصال متوتر</span></div>
-      <p class="swc-cap" id="swc-cap" aria-live="polite"></p>
-      <p class="swc-tap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V8.500a1.500 1.500 0 0 1 3 0V11m0 0v-.5a1.500 1.500 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.200a5 5 0 0 1-4-2L4.500 15.500a1.500 1.500 0 0 1 2.300-1.900L9 16"/></svg><span>اضغط على أي كوكب في الخريطة لتقرأ تأثيره</span></p></div>
-    <div class="swc-side"><div class="swc-moon" id="swc-moon"></div><div class="swc-hint" id="swc-hint"></div><div class="swc-pgrid" id="swc-pgrid" aria-label="مواقع الكواكب"></div></div>
+    <div class="swc-wheel"><p class="swc-cap" id="swc-cap" aria-live="polite"></p><svg id="swc-svg" class="swc-cw" viewBox="-14 -14 568 568" role="img" aria-label="خريطة السماء العالمية"></svg>
+      <div class="swc-legend" aria-hidden="true"><span class="lg-soft">اتصال منسجم</span><span class="lg-hard">اتصال متوتر</span></div></div>
+    <div class="swc-side"><div class="swc-moon" id="swc-moon"></div></div>
   </div>
+  <div class="swt"><div class="swt-bar" role="tablist" aria-label="أقسام السماء"><button type="button" role="tab" class="swt-t is-on" id="swt-planets" data-tab="planets" aria-selected="true" aria-controls="swp-planets"><span class="swt-i"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><ellipse cx="12" cy="12" rx="10" ry="3.6" transform="rotate(-24 12 12)"/></svg></span><span class="swt-l">الكواكب</span></button><button type="button" role="tab" class="swt-t" id="swt-mine" data-tab="mine" aria-selected="false" aria-controls="swp-mine"><span class="swt-i"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 5.500c1 4 1 9 0 13M16 5.500c-1 4-1 9 0 13M5 9.500h14M5 14.500h14"/></svg></span><span class="swt-l">تأثيرها على برجك</span></button><button type="button" role="tab" class="swt-t" id="swt-asp" data-tab="asp" aria-selected="false" aria-controls="swp-asp"><span class="swt-i"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 21 19H3z"/><circle cx="12" cy="4" r="1.2"/><circle cx="21" cy="19" r="1.2"/><circle cx="3" cy="19" r="1.2"/></svg></span><span class="swt-l">الزوايا الفلكية</span></button><button type="button" role="tab" class="swt-t" id="swt-houses" data-tab="houses" aria-selected="false" aria-controls="swp-houses"><span class="swt-i"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></span><span class="swt-l">الطالع والبيوت</span></button><button type="button" role="tab" class="swt-t" id="swt-elem" data-tab="elem" aria-selected="false" aria-controls="swp-elem"><span class="swt-i"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3.500 5 5.500 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 2.500 2 2.500C11 9 11 6 12 3z"/></svg></span><span class="swt-l">العناصر والأنماط</span></button></div><div class="swt-p" role="tabpanel" id="swp-planets" aria-labelledby="swt-planets"><div class="swc-pgrid" id="swc-pgrid" aria-label="مواقع الكواكب"></div></div><div class="swt-p" role="tabpanel" id="swp-mine" aria-labelledby="swt-mine" hidden><div id="swc-mine"></div></div><div class="swt-p" role="tabpanel" id="swp-asp" aria-labelledby="swt-asp" hidden><div aria-live="polite" class="sky-asp" id="sky-asp"></div></div><div class="swt-p" role="tabpanel" id="swp-houses" aria-labelledby="swt-houses" hidden><div id="swc-houses"></div></div><div class="swt-p" role="tabpanel" id="swp-elem" aria-labelledby="swt-elem" hidden><div id="swc-elem"></div></div></div>
 </section>
 <input id="sky-date" type="date" min="1900-01-01" max="2100-12-31" hidden aria-hidden="true" tabindex="-1">
 <div class="sky-moon" id="sky-moon"></div>
 <div aria-label="اختيار الكوكب" class="chips" id="sky-chips" role="group"></div>
 <div aria-live="polite" class="sky-panel" id="sky-panel"></div>
-<div aria-live="polite" class="sky-asp" id="sky-asp"></div>
 <a class="zdc" id="zdc" href="#signs" aria-label="توقعات الأبراج وما لا تعرفه عن برجك">
   <span class="zdc-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7M10.6 10.6l5 5M32.4 32.4l5 5M10.6 37.4l5-5M32.4 15.6l5-5"/><circle cx="24" cy="24" r="2.6" class="zdc-core"/></svg></span>
   <span class="zdc-t"><b>توقعات الأبراج وما لا تعرفه عن برجك</b><small>صفات برجك، توقعه الكامل الآن، والعبورات التي تؤثر عليك اليوم بالتفصيل</small></span>
@@ -1433,7 +1406,7 @@
 <script src="name_engine.js"></script>
 <script src="pinnacles_challenges.js?v=3.0.0"></script>
 <script src="name_readings.js?v=4.0.0"></script>
-<script src="assets/js/inline/page-06.js?v=3"></script>
+<script src="assets/js/inline/page-06.js?v=4"></script>
 <script src="assets/js/inline/page-07.js?v=1"></script>
 <script src="assets/js/inline/page-08.js?v=1"></script>
 <script src="assets/js/inline/page-09.js?v=1"></script>
@@ -1479,7 +1452,7 @@
 <script src="assets/js/section-footer.js?v=20261113k"></script>
 <script src="assets/js/paywall-modal.js?v=20261126a"></script>
 <script src="assets/js/lp-knowledge.js?v=20261106d"></script>
-<script src="assets/js/sky-world-chart.js?v=20261125c" defer></script>
+<script src="assets/js/sky-world-chart.js?v=20261126a" defer></script>
 <script src="assets/js/auth-ui.js?v=20261105b" defer></script>
 <script src="assets/js/invest-page.js?v=20261105c" defer></script>
 <script src="assets/js/manual-pay.js?v=20261105c" defer></script>
@@ -1495,7 +1468,7 @@
 <script src="assets/js/hero-rotate.js?v=20261107k" defer></script>
 <script src="assets/js/nav-unified.js?v=20261114b" defer></script>
 <script src="assets/js/session-guard.js?v=20261114bx"></script>
-<script src="assets/js/page-unify.js?v=20261124a" defer></script>
+<script src="assets/js/page-unify.js?v=20261126a" defer></script>
 <script src="assets/js/chart-adv.js?v=20261112a" defer></script>
 <script src="assets/js/home-notes3.js?v=20261126b" defer></script>
 <script src="assets/js/companion.js?v=20261119a" defer></script>

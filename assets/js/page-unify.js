@@ -29,7 +29,7 @@
         var p = BYHREF[a.getAttribute('href')]; if (p) a.insertAdjacentHTML('afterbegin', ic(p));
       });
       var old = bar.querySelector('.aq-back-home-btn'); if (old) old.remove();
-      var ctxSec = bar.closest('#lifepath,#lifepath-compat,#relationships,#matrix,#matrix-compat,#matrix-child,#sky,#world,#signs');
+      var ctxSec = bar.closest('#lifepath,#lifepath-compat,#relationships,#matrix,#matrix-compat,#matrix-child,#sky,#signs');
       if (ctxSec) {
         bar.classList.add('aq-ctxbar');
         var arrow = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -42,11 +42,11 @@
           'matrix-compat': ['توافق مصفوفة القدر', '#matrix', 'مصفوفة القدر الفردية'],
           'matrix-child': ['مصفوفة الطفل', '#matrix', 'مصفوفة القدر الفردية'],
           'sky': ['السماء الآن', '#signs', 'توقعات الأبراج'],
-          'world': ['الخريطة العالمية', '#sky', 'السماء الآن'],
           'signs': ['توقعات الأبراج', '#sky', 'السماء الآن']
         }[ctxSec.id];
         bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع">' + arrow + '<span>رجوع</span></button><span class="aq-ctx-title">' + CX[0] + '</span>' +
-          (CX[1] ? '<a class="aq-ctx-x" href="' + CX[1] + '"><span>' + CX[2] + '</span>' + diag + '</a>' : '');
+          (CX[1] ? '<a class="aq-ctx-x" href="' + CX[1] + '"><span>' + CX[2] + '</span>' + diag + '</a>' : '') +
+          (/^(sky|signs)$/.test(ctxSec.id) ? '<a class="aq-ctx-home" href="#home" aria-label="الرئيسية" title="الرئيسية"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg><span>الرئيسية</span></a>' : '');
         return;
       }
       var box = document.createElement('div'); box.className = 'aq-nav-actions';
@@ -73,7 +73,6 @@
     }
     /* السماء: من تفاصيل برج يرجع لكل الأبراج، ومن الخريطة العالمية يرجع للسماء لو مفيش صفحة سابقة */
     if (id === 'signs' && sc.classList.contains('signs-detail')) { var sb = document.getElementById('signs-back'); if (sb) { sb.click(); return; } }
-    if (id === 'world' && navCount === 0) { location.hash = '#sky'; return; }
     if (ed) { ed.click(); return; }
     if (navCount > 0) history.back(); else location.hash = '#home';
   });

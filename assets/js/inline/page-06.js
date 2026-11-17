@@ -1994,7 +1994,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b><p>${window.AqReadings ? (window.AqReadings.TR[k][hh - 1] || window.AqReadings.PH[k][hh - 1]) : ""}</p>${bd.retro && window.AqReadings && window.AqReadings.RT[k] ? `<p class="swp-rt">${window.AqReadings.RT[k]}</p>` : ""}</div></div>
       <p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>`;
   }
-  window.AqSky = { skyCard, PLANETS, SIGNS, HOUSES, gl, HQ, HEX, PF, PQ, PQH };
+  window.AqSky = { skyCard, PLANETS, SIGNS, HOUSES, gl, HQ, HEX, PF, PQ, PQH, getSign: () => skySign, setSign: v => { skySign = (v === null || v === undefined) ? null : +v; try { if (skySign === null) localStorage.removeItem("aq-sky-sign"); else localStorage.setItem("aq-sky-sign", skySign); } catch (e) { } try { renderSky(); } catch (e) { } } };
   const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
 
   /* ---------- كارت منازل القمر: اسم الطور + شكل القمر الحقيقي ---------- */
@@ -2105,17 +2105,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <div class="swp-deg" role="img" aria-label="الدرجة ${dInt} من 30"><div class="swp-track"><span class="swp-dot" style="--p:${(deg / 30 * 100).toFixed(1)}%"></span></div><div class="swp-scale"><span>٠°</span><span>١٠°</span><span>٢٠°</span><span>٣٠°</span></div><p><b>${stage[0]}</b> · ${stage[1]}</p></div>
       <p class="swp-read">يمرّ ${p.n} الآن في ${S.n}، فيمنح ${p.theme} طابعًا ${S.way}. الأجواء تساعدك على ${S.strength}، وتذكّرك بلطف أن تنتبه من ${S.shadow}، فهو الوجه الذي يظهر حين تتعب.</p>
       ${mv}${ingTxt}
-      <h4 class="swp-h">أين يلمسك هذا الكوكب؟</h4><p class="swp-sub">يمرّ ${p.n} على بيت مختلف في حياة كل برج. اختر برجك أو طالعك لتعرف أين.</p>`;
-    o += `<div class="sky-pick"><div class="sky-pick-h"><span class="sky-pick-ic" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div><b>اختر برجك أو طالعك</b><small>اضغط على برجك لتقرأ ما يخصك</small></div></div>
-      <div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">${SIGNS.map((sg, i) => `<button type="button" class="sky-sg${i === skySign ? " is-on" : ""}" data-i="${i}" aria-pressed="${i === skySign}"><span class="sg" aria-hidden="true">${gl(sg.g)}</span><span>${sg.n}</span></button>`).join("")}</div>
-      <div class="sky-signcard" id="sky-signcard" aria-live="polite">${skySign == null ? `<p class="sky-pick-empty">اختر برجك، لنخبرك أين يلمس ${p.n} حياتك فعلًا، وما الذي قد تشعر به الآن دون أن تعرف السبب.</p>` : skyCard(k, bd, skySign)}</div></div>`;
+      ${skySign == null ? "" : `<h4 class="swp-h">أين يلمسك هذا الكوكب؟</h4>${skyCard(k, bd, skySign)}`}`;
     o += `<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>`;
     $("#sky-panel").innerHTML = o;
-    $$("#sky-panel .sky-sg").forEach(btn => btn.addEventListener("click", () => {
-      skySign = +btn.dataset.i; try { localStorage.setItem("aq-sky-sign", skySign); } catch (e) { }
-      $$("#sky-panel .sky-sg").forEach(x => { const on = x === btn; x.classList.toggle("is-on", on); x.setAttribute("aria-pressed", on); });
-      $("#sky-signcard").innerHTML = skyCard(k, bd, skySign);
-    }));
   }
   skyDateInput.addEventListener("change", renderSky);
   renderSky();

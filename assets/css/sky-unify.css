@@ -47,3 +47,112 @@ html body #sky .ax-chev svg:not(#_a){width:18px;height:18px;fill:none;stroke:cur
 .axs-sheet .axs-t small{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font:500 .78rem 'Cairo',sans-serif;color:#7a6a58}
 .axs-sheet .axs-txt p{margin:0 0 12px;font:500 .95rem/1.95 'Cairo',sans-serif;color:#4A3A34}
 .axs-sheet .axs-txt .ax-q{font-weight:700;color:#6A2038}
+
+/* ===== الدفعة 3: شريط علوي بزر الرئيسية + ترتيب #sky الجديد (عجلة، تحكم، قمر، تبويبات) ===== */
+html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-home{display:inline-flex;align-items:center;gap:5px;flex:none;padding:7px 10px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(198,168,124,.55);color:#6B1D2F;font:700 .72rem 'Cairo',sans-serif;text-decoration:none;box-shadow:var(--sk-shadow)}
+html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-home svg{width:15px;height:15px;flex:none;color:#B78A52}
+@media(max-width:360px){html body section.sec:is(#sky,#signs):not(#_a):not(#_b):not(#_c):not(#_d) .aq-ctx-home span{display:none}}
+
+html body #sky .swc:not(#_a):not(#_b){display:flex;flex-direction:column;padding:12px 12px 18px}
+@media(min-width:700px){html body #sky .swc:not(#_a):not(#_b){max-width:640px;margin-inline:auto}}
+html body #sky .swc-body:not(#_a):not(#_b),html body #sky .swc-side:not(#_a):not(#_b){display:contents}
+html body #sky .swc-wheel:not(#_a):not(#_b){order:2;margin:2px -8px 0}
+html body #sky .swc-ctl:not(#_a):not(#_b){order:3;margin:8px 0 10px}
+html body #sky .swc-err:not(#_a):not(#_b){order:4}
+html body #sky .swc-moon:not(#_a):not(#_b){order:5;margin-top:0;padding:10px 12px;gap:12px;background:#fff;border-radius:16px}
+html body #sky .swc-moon:not(#_a):not(#_b) .swc-moon-fig{flex:0 0 64px;width:64px}
+html body #sky .swt:not(#_a):not(#_b){order:6;margin-top:16px}
+
+/* شريط القراءة الحي فوق العجلة */
+html body #sky .swc-cap:not(#_a):not(#_b){display:flex;align-items:center;justify-content:center;gap:10px;min-height:42px;margin:0 8px 6px;padding:8px 14px;border-radius:999px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow);font:700 .8rem/1.5 'Cairo',sans-serif;color:#4A1224;text-align:center}
+html body #sky .swc-cap.is-focus:not(#_a):not(#_b){justify-content:flex-start;border-radius:18px;padding:6px 8px 6px 10px;text-align:start;border-color:rgba(106,32,56,.45)}
+.swc-fp-g{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#6A2038;color:#F3DFA8}
+.swc-fp-gi{width:21px;height:21px}
+.swc-fp-t{flex:1;min-width:0;display:grid;gap:1px}
+.swc-fp-t b{font:700 .92rem/1.3 'El Messiri','Cairo',serif;color:#4A1224}
+.swc-fp-t small{font:600 .72rem/1.5 'Cairo',sans-serif;color:#7a5c4a}
+.swc-fp-go{flex:none;border:0;cursor:pointer;padding:8px 14px;border-radius:999px;background:linear-gradient(180deg,#7A2A44,#5A1A30);color:#FFF3D6;font:700 .76rem 'Cairo',sans-serif}
+.swc-fp-x{flex:none;width:28px;height:28px;display:grid;place-items:center;border:0;border-radius:50%;background:rgba(106,32,56,.08);color:#6A2038;cursor:pointer}
+.swc-fp-x svg{width:14px;height:14px}
+html body #sky .swc-al{transition:stroke-opacity .2s,stroke-width .2s}
+html body #sky .swc-al.is-dim{stroke-opacity:.1}
+html body #sky .swc-al.is-hot{stroke-opacity:1;stroke-width:2.4}
+html body #sky .swc-cw.has-foc .swc-pl:not(.is-sel) .swc-ring{fill-opacity:.7}
+html body #sky .swc-dg{pointer-events:none}
+
+/* التبويبات */
+.swt-bar{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.swt-bar::-webkit-scrollbar{display:none}
+.swt-t{flex:0 0 auto;min-width:80px;display:grid;justify-items:center;align-content:start;gap:6px;padding:10px 8px;border-radius:16px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow);color:#6A2038;font:700 .7rem/1.35 'Cairo',sans-serif;scroll-snap-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s,color .2s}
+.swt-i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(197,160,89,.16);color:#A8863F}
+.swt-i svg{width:20px;height:20px}
+.swt-l{max-width:72px;text-align:center}
+.swt-t.is-on{background:#6A2038;border-color:#C8A15A;color:#FFF3D6}
+.swt-t.is-on .swt-i{background:rgba(255,243,214,.16);color:#E9CE8E}
+.swt-p{margin-top:4px}
+.swt-p[hidden]{display:none}
+.swt-empty{margin:6px 0;padding:14px;border-radius:16px;background:#fff;border:1px dashed rgba(184,150,90,.7);font:500 .88rem/1.9 'Cairo',sans-serif;color:#6B4A3E;text-align:center}
+html body #sky .swt-p .sky-asp{margin:0}
+
+/* تأثيرها على برجك */
+.swm-pick{padding:14px;border-radius:18px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow);margin-bottom:12px}
+.swm-pick>b{display:block;font:700 1rem 'El Messiri','Cairo',serif;color:#4A1224}
+.swm-pick>small{display:block;margin:2px 0 10px;font:500 .78rem/1.7 'Cairo',sans-serif;color:#7a6a58}
+.swm-pick .sky-signs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.swm-pick .sky-sg{display:grid;justify-items:center;gap:3px;padding:7px 2px;border-radius:12px;border:1px solid var(--sk-line);background:#FBF9F6;color:#5E2234;font:700 .7rem 'Cairo',sans-serif;cursor:pointer}
+.swm-pick .sky-sg .sg{width:22px;height:22px;display:grid;place-items:center;color:#A8863F}
+.swm-pick .sky-sg .sg svg{width:20px;height:20px}
+.swm-pick .sky-sg.is-on{background:#6A2038;border-color:#C8A15A;color:#FFF3D6}
+.swm-pick .sky-sg.is-on .sg{color:#E9CE8E}
+.swm-head{display:grid;gap:2px;margin:4px 4px 10px;text-align:center}
+.swm-head small{font:700 .7rem 'Cairo',sans-serif;letter-spacing:.06em;color:#A8863F}
+.swm-head b{font:700 1.2rem 'El Messiri','Amiri',serif;color:#4A1224}
+.swm-c{margin-bottom:12px;padding:14px;border-radius:20px;background:#FFFFFF;border:1px solid var(--sk-line);box-shadow:0 10px 26px rgba(90,24,42,.1)}
+.swm-c>header{display:flex;align-items:center;gap:12px}
+.swm-c>header>div{flex:1;min-width:0}
+.swm-g{flex:none;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:rgba(197,160,89,.16);color:#8A6A2A;border:1px solid rgba(197,160,89,.5)}
+.swm-gi{width:24px;height:24px}
+.swm-c h4{margin:0;font:700 1rem/1.4 'El Messiri','Cairo',serif;color:#4A1224}
+.swm-c small{font:500 .74rem/1.6 'Cairo',sans-serif;color:#7a6a58}
+.swm-r{margin:10px 0 0;font:500 .92rem/1.95 'Cairo',sans-serif;color:#4A3A34}
+.swm-rt{margin:8px 0 0;padding:8px 12px;border-radius:12px;background:rgba(184,71,62,.08);font:600 .84rem/1.8 'Cairo',sans-serif;color:#8A2F28}
+.swm-q{margin-top:12px;padding:13px 14px;border-radius:16px;background:linear-gradient(160deg,#7A2A44,#4A1224);box-shadow:0 8px 18px rgba(74,18,36,.25)}
+.swm-q b{display:block;margin-bottom:4px;font:700 .72rem 'Cairo',sans-serif;letter-spacing:.06em;color:#E8C58E}
+.swm-q p{margin:0;font:600 .92rem/1.9 'Cairo',sans-serif;color:#FFFFFF}
+.swm-go{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:18px;background:linear-gradient(160deg,#7A2A44,#4A1224);color:#fff;text-decoration:none;box-shadow:0 10px 22px rgba(74,18,36,.28)}
+.swm-go-t{flex:1;display:grid;gap:2px}
+.swm-go-t b{font:700 1rem 'El Messiri','Cairo',serif;color:#FFF3D6}
+.swm-go-t small{font:500 .76rem/1.6 'Cairo',sans-serif;color:#EBD3D9}
+.swm-go-ar{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:rgba(255,243,214,.16);color:#E9CE8E}
+.swm-go-ar svg{width:16px;height:16px}
+
+/* الطالع والبيوت */
+.swt-angles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.swt-ang{display:grid;gap:3px;justify-items:center;padding:12px 8px;border-radius:16px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow);text-align:center}
+.swt-ang small{font:700 .7rem 'Cairo',sans-serif;color:#A8863F}
+.swt-ang b{display:inline-flex;align-items:center;gap:6px;font:700 .98rem 'El Messiri','Cairo',serif;color:#4A1224}
+.swt-ang span{font:600 .8rem 'Cairo',sans-serif;color:#6B4A3E;direction:ltr}
+.swt-sg{width:20px;height:20px;color:#A8863F;flex:none}
+.swt-hs{display:grid;gap:8px}
+.swt-h{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 12px;border-radius:16px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow)}
+.swt-hn{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#6A2038;color:#F3DFA8;font:700 .9rem 'Cairo',sans-serif}
+.swt-ht{display:grid;gap:1px;min-width:0}
+.swt-ht b{font:700 .92rem 'El Messiri','Cairo',serif;color:#4A1224}
+.swt-ht small{font:500 .72rem/1.5 'Cairo',sans-serif;color:#7a6a58}
+.swt-hc{display:inline-flex;align-items:center;gap:4px;font:700 .76rem 'Cairo',sans-serif;color:#6A2038}
+.swt-hps{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.swt-hp{display:inline-flex;align-items:center;gap:4px;padding:3px 10px 3px 8px;border-radius:999px;background:rgba(197,160,89,.16);font:700 .74rem 'Cairo',sans-serif;color:#5E2234}
+.swt-pg{width:16px;height:16px;color:#8A6A2A}
+
+/* العناصر والأنماط */
+.swt-card{margin-bottom:12px;padding:14px;border-radius:18px;background:#fff;border:1px solid var(--sk-line);box-shadow:var(--sk-shadow)}
+.swt-card h4{margin:0 0 10px;font:700 1rem 'El Messiri','Cairo',serif;color:#4A1224}
+.swb{display:grid;grid-template-columns:62px minmax(0,1fr) 40px;align-items:center;gap:10px;margin:8px 0;font:700 .8rem 'Cairo',sans-serif;color:#5E2234}
+.swb i{height:9px;border-radius:9px;background:rgba(197,160,89,.18);overflow:hidden}
+.swb u{display:block;height:100%;border-radius:9px;text-decoration:none}
+.swb b{text-align:start;color:#7a6a58;font-size:.74rem}
+.swb .e0{background:#C0554A}.swb .e1{background:#9A8248}.swb .e2{background:#7FA0C4}.swb .e3{background:#3F6E9C}
+.swb .m0{background:#6A2038}.swb .m1{background:#A8863F}.swb .m2{background:#7A8F6B}
+.swt-rx{display:flex;flex-wrap:wrap;gap:8px}
+.swt-rxi{display:inline-flex;align-items:center;gap:6px;padding:6px 12px 6px 8px;border-radius:999px;background:rgba(184,71,62,.08);font:700 .8rem 'Cairo',sans-serif;color:#8A2F28}
+.swt-card .swt-empty{margin:0;border:0;background:rgba(62,130,80,.08);color:#2E6B40}
