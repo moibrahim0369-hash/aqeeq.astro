@@ -170,8 +170,8 @@
     function parts(list) { return list.filter(function (x) { return x[1]; }).map(function (x) { return '<h4>' + esc(x[0]) + '</h4><p>' + esc(x[1]) + '</p>'; }).join(''); }
     return '<button type="button" class="x" data-lpj-close aria-label="إغلاق">' + I.x + '</button>' +
       '<h3 id="lpj-panel-t">المرحلة ' + (i + 1) + ' — ' + esc(a ? a.title : 'القمة ' + p.value) + '</h3><p>' + esc(p.period.label) + '</p>' +
-      (a ? '<span class="part">القمة ' + p.value + '</span>' + (a.essence ? '<p>' + esc(a.essence) + '</p>' : '') + parts([['طاقة القمة والفرص', a.energy], ['النبض النفسي والعاطفي', a.psyche], ['طريقة الاستثمار والعمل', a.invest], ['التحذير والظل الطاقي', a.shadow], ['سؤال للتأمل', a.reflection]]) : '<p>' + NA + '</p>') +
-      (b ? '<span class="part">التحدي ' + c.value + (b.title ? ' — ' + esc(b.title) : '') + '</span>' + (b.essence ? '<p>' + esc(b.essence) + '</p>' : '') + parts([['جذر التحدي', b.root], ['الدرس النفسي والروحي', b.lesson], ['المهارات التي تحتاج بناء', b.skills], ['روشتة تجاوز التحدي', b.practice]]) : '');
+      (a ? '<span class="part">القمة ' + p.value + '</span>' + (a.essence ? '<p>' + esc(a.essence) + '</p>' : '') + parts([['طاقة القمة والفرص', a.energy], ['النبض النفسي والعاطفي', a.psyche], ['طريقة الاستثمار والعمل', a.invest], ['التحذير والظل الطاقي', a.shadow], ['قطب النور', a.light], ['في حياتك اليومية', a.reallife], ['سؤال للتأمل', a.reflection]]) : '<p>' + NA + '</p>') +
+      (b ? '<span class="part">التحدي ' + c.value + (b.title ? ' — ' + esc(b.title) : '') + '</span>' + (b.essence ? '<p>' + esc(b.essence) + '</p>' : '') + parts([['جذر التحدي', b.root], ['الدرس النفسي والروحي', b.lesson], ['المهارات التي تحتاج بناء', b.skills], ['روشتة تجاوز التحدي', b.practice], ['قطب النور', b.light], ['في حياتك اليومية', b.reallife], ['سؤال للتأمل', b.reflection]]) : '');
   }
 
   function wire(m) {

@@ -29,6 +29,11 @@
         var p = BYHREF[a.getAttribute('href')]; if (p) a.insertAdjacentHTML('afterbegin', ic(p));
       });
       var old = bar.querySelector('.aq-back-home-btn'); if (old) old.remove();
+      if (bar.closest('#lifepath')) {
+        bar.classList.add('aq-ctxbar');
+        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" transform="matrix(-1 0 0 1 24 0)"/></svg></button><span class="aq-ctx-title">مسار الحياة</span>';
+        return;
+      }
       var box = document.createElement('div'); box.className = 'aq-nav-actions';
       box.innerHTML = '<button type="button" class="aq-nav-btn" data-aq-back>' + ic(I.back) + '<span>رجوع</span></button>' +
         '<a href="#home" class="aq-nav-btn is-home">' + ic(I.home) + '<span>الرئيسية</span></a>';

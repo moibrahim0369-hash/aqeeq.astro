@@ -303,21 +303,25 @@
             ["طاقة القمة والفرص (ماذا يطلب منك الكون؟)", content && content.energy],
             ["النبض النفسي والعاطفي (ماذا يدور بداخلك؟)", content && content.psyche],
             ["طريقة الاستثمار والعمل (كيف تنجح في هذه القمة؟)", content && content.invest],
-            ["التحذير والظل الطاقي (فخ المرحلة)", content && content.shadow]
+            ["التحذير والظل الطاقي (فخ المرحلة)", content && content.shadow],
+            ["قطب النور", content && content.light],
+            ["في حياتك اليومية", content && content.reallife]
           ]
         : [
             ["جذر التحدي", content && content.root],
             ["الدرس النفسي والروحي", content && content.lesson],
             ["المهارات اللي محتاجة بناء", content && content.skills],
-            ["روشتة تجاوز التحدي", content && content.practice]
+            ["روشتة تجاوز التحدي", content && content.practice],
+            ["قطب النور", content && content.light],
+            ["في حياتك اليومية", content && content.reallife]
           ];
       const copy = content
         ? (content.essence ? '<p class="aqeq-pc-essence"><strong>المعنى الجوهري:</strong> ' + escapeHTML(content.essence) + '</p>' : '') +
-          sections.map(function (part) {
+          sections.filter(function (part) { return part[1]; }).map(function (part) {
             return '<section class="aqeq-pc-reading-section"><h5>' + escapeHTML(part[0]) +
               '</h5><p>' + escapeHTML(part[1] || "") + '</p></section>';
           }).join("") +
-          (kind === "pinnacle" && content.reflection
+          (content.reflection
             ? '<p class="aqeq-pc-reflection"><strong>سؤال للتأمل:</strong> ' + escapeHTML(content.reflection) + '</p>'
             : '')
         : '<p>القراءة التفصيلية لهذا الرقم قيد الإعداد.</p>';
