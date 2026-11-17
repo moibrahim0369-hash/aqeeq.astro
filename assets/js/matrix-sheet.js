@@ -91,7 +91,7 @@
     if (!host) return;
     var tabs = host.querySelector('.aqm-tabs'); if (!tabs || tabs.__aqmSheet) return;
     tabs.__aqmSheet = true;
-    var chak = host.querySelector('#aqm-chakras'), lines = host.querySelector('.aqm-lines'), read = host.querySelector('#aqm-readings');
+    var chak = host.querySelector('#aqm-chakras'), lines = host.querySelector('.aqm-lines'), read = host.querySelector('#aqm-readings'), fc = host.querySelector('#aqm-forecast');
     var panel = document.createElement('div'); panel.className = 'aqm-mpanels';
     var hint = document.createElement('p'); hint.className = 'aqm-hint';
     hint.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/></svg><span>اضغط على أي قسم لعرض تفسيره</span>';
@@ -105,12 +105,13 @@
     var pr = document.createElement('div'); pr.className = 'aqm-mp aqm-mp-read'; pr.appendChild(hint); if (read) pr.appendChild(read);
     var pc = document.createElement('div'); pc.className = 'aqm-mp aqm-mp-chak'; if (chak) pc.appendChild(chak);
     var pl = document.createElement('div'); pl.className = 'aqm-mp aqm-mp-lines'; if (lines) pl.appendChild(lines);
-    panel.appendChild(pr); panel.appendChild(pc); panel.appendChild(pl);
+    var pf = document.createElement('div'); pf.className = 'aqm-mp aqm-mp-fc'; if (fc) pf.appendChild(fc);
+    panel.appendChild(pr); panel.appendChild(pc); panel.appendChild(pl); panel.appendChild(pf);
     var a = tabs.querySelectorAll('.aqm-tab'); var names = ['الخريطة', 'الشاكرات', 'التفسيرات'];
     /* ترتيب التبويبات: التفسيرات أولًا */
-    var map = { 'التفسيرات': 'read', 'الشاكرات': 'chak', 'الخطوط': 'lines' };
+    var map = { 'التفسيرات': 'read', 'الشاكرات': 'chak', 'الخطوط': 'lines', 'التوقعات': 'fc' };
     a.forEach(function (t) { var n = t.textContent.trim(); if (n === 'الخريطة') { t.textContent = 'الخطوط'; t.setAttribute('href', '#aqm-lines'); } });
-    var order = ['التفسيرات', 'الشاكرات', 'الخطوط'];
+    var order = ['التفسيرات', 'الشاكرات', 'الخطوط', 'التوقعات'];
     var list = Array.prototype.slice.call(tabs.querySelectorAll('.aqm-tab'));
     order.forEach(function (n) { var t = list.filter(function (x) { return x.textContent.trim() === n; })[0]; if (t) tabs.appendChild(t); });
     function set(k) {

@@ -1596,6 +1596,49 @@
 
   const build12Sections = build15Sections;
 
+  /* ===== التوقعات الزمنية: السنة، الأشهر الاثنا عشر، الأسبوع واليوم (أرقام فقط + زر التفسير الموجود) ===== */
+  const AR_MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+  function fcDate(iso) { const [y, m, d] = String(iso).split('-').map(Number); return `${d} ${AR_MONTHS[m - 1]}`; }
+  function fcRange(a, b) { return `${fcDate(a)} – ${fcDate(b)}`; }
+  function buildForecastSection(engine, birthDate) {
+    let F;
+    try { F = engine.calculateForecast(birthDate); } catch (err) { console.error(err); return ''; }
+    if (!F || !F.today) return '';
+    const nm = n => { try { return engine.getArcanaInfo(n).name; } catch (e) { return ''; } };
+    const hint = n => { try { return engine.getArcanaInfo(n).archetype; } catch (e) { return ''; } };
+    const read = n => `<button type="button" class="aqm-fc-open aqm-fc-read" data-fc-arcana="${n}" aria-haspopup="dialog">اقرأ تفسير الطاقة</button>`;
+    const num = n => `<span class="aqm-fc-num" aria-hidden="true">${n}</span>`;
+    const card = (cls, kicker, range, n, extra) => `
+      <article class="aqm-fc-card ${cls}">
+        <header class="aqm-fc-head">${num(n)}<div><span class="aqm-fc-kicker">${escapeHtml(kicker)}</span><h4>${escapeHtml(nm(n))}</h4><small>${escapeHtml(range)}</small></div></header>
+        <p class="aqm-fc-line">${escapeHtml(hint(n))}</p>
+        ${extra || ''}
+        ${read(n)}
+      </article>`;
+    const tags = (F.today.tags || []).map(t => `<span class="aqm-fc-pill" data-tag="${t.id}">${escapeHtml(t.label)}</span>`).join('');
+    const monthsHtml = F.months.map(m => `
+      <li class="aqm-fc-month${m.index === F.currentMonth.index ? ' is-now' : ''}">
+        <button type="button" class="aqm-fc-open" data-fc-arcana="${m.number}" aria-haspopup="dialog" aria-label="${escapeHtml(nm(m.number))} — ${escapeHtml(fcRange(m.from, m.to))}">
+          ${num(m.number)}<span class="aqm-fc-mname">${escapeHtml(nm(m.number))}</span><span class="aqm-fc-mdate">${escapeHtml(fcRange(m.from, m.to))}</span>
+        </button>
+      </li>`).join('');
+    return `
+      <section class="aqm-forecast" id="aqm-forecast" aria-labelledby="aqm-fc-title">
+        <h3 id="aqm-fc-title" class="aqm-fc-title">التوقعات الزمنية</h3>
+        <p class="aqm-fc-sub">تبدأ سنتك من يوم ميلادك وتنتهي قبل يوم ميلادك التالي. اضغط على أي طاقة لقراءتها.</p>
+        <div class="aqm-fc-grid">
+          ${card('aqm-fc-c-year', 'طاقة السنة', `${fcRange(F.yearRange.from, F.yearRange.to)} · ${F.yearRange.label}`, F.yearPersonal,
+            `<p class="aqm-fc-aux">محطتك على حلقة الأعمار الآن: <b>${F.yearRing.ring}</b> ${escapeHtml(nm(F.yearRing.ring))}</p>`)}
+          ${card('aqm-fc-c-month', 'الشهر الحالي', fcRange(F.currentMonth.from, F.currentMonth.to), F.currentMonth.number)}
+          ${card('aqm-fc-c-week', 'الأسبوع الحالي', fcRange(F.currentWeek.from, F.currentWeek.to), F.currentWeek.number)}
+          ${card('aqm-fc-c-day', 'اليوم', fcDate(F.today.date), F.today.number, tags ? `<div class="aqm-fc-pills" role="list" aria-label="دليل اليوم">${tags}</div>` : '')}
+        </div>
+        <h4 class="aqm-fc-sec">الأشهر الاثنا عشر لسنتك</h4>
+        <ol class="aqm-fc-months">${monthsHtml}</ol>
+      </section>`;
+  }
+
+
   // ==================== 3. مصفوفة المصطلحات والمرجع (Glossary) ====================
 
   function buildGlossaryGrid(P) {
@@ -1673,6 +1716,7 @@
       return;
     }
     const getInfo = n => engine.getArcanaInfo(n);
+    const forecastHtml = buildForecastSection(engine, P.birthDate);
     const dateStr = `${P.birthDate.year}-${String(P.birthDate.month).padStart(2, '0')}-${String(P.birthDate.day).padStart(2, '0')}`;
     const displayName = name ? name.trim() : 'مستخدم عقيق أسترو';
     // ملخص التصميم: قراءة فقط من نتيجة المحرك؛ أي قيمة ناقصة تظهر «—» بدل رقم مخترع.
@@ -1781,12 +1825,14 @@
           <a class="aqm-tab is-active" role="tab" aria-selected="true" href="#aqm-map">الخريطة</a>
           <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-chakras">الشاكرات</a>
           <a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-readings">التفسيرات</a>
+          ${forecastHtml ? '<a class="aqm-tab" role="tab" aria-selected="false" href="#aqm-forecast">التوقعات</a>' : ''}
         </div>
 
         <!-- نظام الأكورديون الـ 15 المتكامل -->
         <div class="aqm-accordion-container" id="aqm-readings">
           ${build12Sections(P)}
         </div>
+        ${forecastHtml}
 
         <!-- الفهرس المرجعي للأركان (للتوافق المعياري مع الاختبارات) -->
         <div style="margin-top:32px;padding-top:20px;border-top:1px solid var(--aqm-gold-border);">
@@ -1821,6 +1867,7 @@
     };
 
     // ربط تفاعلات الأكورديون
+    host.querySelectorAll('.aqm-fc-open').forEach(b => b.addEventListener('click', () => openXrWith(b, () => geminiPositionHtml('core', Number(b.dataset.fcArcana), ''))));
     const accItems = host.querySelectorAll('.aqm-acc-item');
     accItems.forEach(item => {
       const header = item.querySelector('.aqm-acc-header');

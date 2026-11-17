@@ -1739,3 +1739,35 @@ html.aqm-xr-open, html.aqm-xr-open body { overflow: hidden; }
 
 /* شارات الثلاثية في عنوان البرنامج المركب */
 #matrix .aqm-code-badges{display:inline-flex;flex-wrap:wrap;gap:6px;margin-inline-start:10px;vertical-align:middle}
+
+/* ===== التوقعات الزمنية (عرض فقط) ===== */
+.aqm-forecast { margin: 18px 0 8px; padding: 16px; border: 1.2px solid #E0C88F; border-radius: 18px; background: linear-gradient(160deg, #FFFDF7, #FAF1DC); box-shadow: 0 4px 12px rgba(122,46,72,.07); scroll-margin-top: 70px; }
+.aqm-fc-title { margin: 0 0 4px; font-size: 1.1rem; color: #4A1224; }
+.aqm-fc-sub { margin: 0 0 14px; font-size: .82rem; color: #7A5A4A; line-height: 1.7; }
+.aqm-fc-sec { margin: 18px 0 10px; font-size: .95rem; color: #6A2038; }
+.aqm-fc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+.aqm-fc-card { display: flex; flex-direction: column; gap: 8px; padding: 12px; border: 1.2px solid #E0C88F; border-radius: 16px; background: #FFFEFA; }
+.aqm-fc-c-year { border-color: #C5A46D; background: linear-gradient(160deg, #FFFDF7, #F7EBCF); }
+.aqm-fc-head { display: flex; align-items: center; gap: 10px; }
+.aqm-fc-head h4 { margin: 0; font-size: .98rem; color: #4A1224; line-height: 1.35; }
+.aqm-fc-head small { display: block; font-size: .74rem; color: #7A5A4A; margin-top: 2px; }
+.aqm-fc-kicker { display: block; font-size: .7rem; font-weight: 800; letter-spacing: .02em; color: #A5803C; }
+.aqm-fc-num { flex: 0 0 auto; min-width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: linear-gradient(135deg, #8A3350, #6A2038 55%, #4A1224); color: #FFF3D6; font-weight: 800; font-size: 1.05rem; }
+.aqm-fc-line { margin: 0; font-size: .84rem; line-height: 1.7; color: #5A3A32; }
+.aqm-fc-aux { margin: 0; font-size: .78rem; color: #7A5A4A; }
+.aqm-fc-aux b { color: #6A2038; }
+.aqm-fc-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.aqm-fc-pill { padding: 4px 10px; border-radius: 999px; border: 1px solid #C5A46D; background: rgba(197,164,109,.16); color: #6A2038; font-size: .74rem; font-weight: 700; line-height: 1.5; }
+.aqm-fc-read { align-self: flex-start; margin-top: auto; padding: 7px 14px; border-radius: 999px; border: 1px solid #C5A46D; background: transparent; color: #6A2038; font: inherit; font-size: .78rem; font-weight: 800; cursor: pointer; }
+.aqm-fc-read:hover, .aqm-fc-read:focus-visible { background: #6A2038; color: #FFF3D6; outline: none; }
+.aqm-fc-months { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.aqm-fc-month button.aqm-fc-open { width: 100%; display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; gap: 0 8px; align-items: center; text-align: start; padding: 8px 10px; border: 1.2px solid #E0C88F; border-radius: 14px; background: #FFFEFA; color: inherit; font: inherit; cursor: pointer; }
+.aqm-fc-month .aqm-fc-num { grid-row: 1 / 3; min-width: 34px; height: 34px; font-size: .9rem; border-radius: 11px; }
+.aqm-fc-mname { font-size: .82rem; font-weight: 800; color: #4A1224; }
+.aqm-fc-mdate { font-size: .7rem; color: #7A5A4A; }
+.aqm-fc-month.is-now button { border-color: #C5A46D; background: linear-gradient(160deg, #FFFDF7, #F4E6C6); box-shadow: 0 3px 10px rgba(122,46,72,.12); }
+@media (max-width: 480px) { .aqm-forecast { padding: 12px; } .aqm-fc-months { grid-template-columns: 1fr 1fr; } }
+#matrix .aqm-forecast .aqm-fc-num { display: grid; place-items: center; width: 42px; min-width: 42px; height: 42px; padding: 0; border-radius: 13px; }
+#matrix .aqm-forecast .aqm-fc-month .aqm-fc-num { width: 34px; min-width: 34px; height: 34px; }
+#matrix .aqm-forecast .aqm-fc-read { width: auto; min-height: 0; padding: 7px 14px; font-size: .78rem; background: transparent; color: #6A2038; border: 1px solid #C5A46D; border-radius: 999px; }
+#matrix .aqm-forecast .aqm-fc-month button.aqm-fc-open { font-size: inherit; min-height: 0; }

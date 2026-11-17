@@ -642,12 +642,12 @@ html body #matrix .aqm-canvas-wrap>p{font-size:.78rem!important;margin:0 0 6px!i
 html body #matrix .aqm-zoom{top:8px!important;inset-inline-start:8px!important;inset-inline-end:auto!important;flex-direction:row!important;gap:5px!important}
 html body #matrix .aqm-zoom .aqm-zoom-btn{width:30px!important;height:30px!important;min-height:0!important;border-radius:9px!important;font-size:.95rem!important;border:1px solid #D2AE6C!important;background:#fff!important;color:#6A2038!important}
 /* tabs */
-html body #matrix .aqm-tabs{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:6px!important;padding:5px!important;background:linear-gradient(160deg,#FFFDF7,#F7EBCF)!important;border:1.2px solid #D2AE6C!important;border-radius:16px!important;position:static!important;margin:4px 0 0!important}
+html body #matrix .aqm-tabs{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(0,1fr))!important;gap:6px!important;padding:5px!important;background:linear-gradient(160deg,#FFFDF7,#F7EBCF)!important;border:1.2px solid #D2AE6C!important;border-radius:16px!important;position:static!important;margin:4px 0 0!important}
 html body #matrix .aqm-tab{text-align:center;padding:9px 4px!important;border-radius:12px!important;font-size:.84rem!important;font-weight:800;color:#6A2038!important;background:transparent!important;border:0!important}
 html body #matrix .aqm-tab.is-active{background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important;color:#FFF3D6!important;box-shadow:0 3px 10px rgba(74,18,36,.25)}
 html body #matrix .aqm-mp{display:none}
 html body #matrix[data-mtab] .aqm-mp,html body #matrix .aqm-mp{display:none}
-html body #mresult[data-mtab="read"] .aqm-mp-read,html body #mresult[data-mtab="chak"] .aqm-mp-chak,html body #mresult[data-mtab="lines"] .aqm-mp-lines{display:block!important}
+html body #mresult[data-mtab="read"] .aqm-mp-read,html body #mresult[data-mtab="chak"] .aqm-mp-chak,html body #mresult[data-mtab="lines"] .aqm-mp-lines,html body #mresult[data-mtab="fc"] .aqm-mp-fc{display:block!important}
 html body #matrix .aqm-hint{display:flex;align-items:center;gap:8px;margin:0 0 8px!important;padding:8px 12px;border-radius:12px;background:rgba(210,174,108,.14);color:#6A2038;font-size:.8rem;font-weight:700}
 html body #matrix .aqm-hint svg{flex:0 0 auto;color:#B88F46}
 /* compact accordion rows */
@@ -693,13 +693,13 @@ html.aqm-sheet-open{overflow:hidden}
 @media(max-width:820px){
 html body #matrix .aqm-page-title,html body #matrix .aqm-canvas-wrap>p{display:none!important}
 html body #matrix .aqm-tab.is-active{background:transparent!important;color:#6A2038!important;box-shadow:none!important}
-html body #mresult[data-mtab="read"] .aqm-tab:nth-child(1),html body #mresult[data-mtab="chak"] .aqm-tab:nth-child(2),html body #mresult[data-mtab="lines"] .aqm-tab:nth-child(3){background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important;color:#FFF3D6!important;box-shadow:0 3px 10px rgba(74,18,36,.25)!important}
+html body #mresult[data-mtab="read"] .aqm-tab:nth-child(1),html body #mresult[data-mtab="chak"] .aqm-tab:nth-child(2),html body #mresult[data-mtab="lines"] .aqm-tab:nth-child(3),html body #mresult[data-mtab="fc"] .aqm-tab:nth-child(4){background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important;color:#FFF3D6!important;box-shadow:0 3px 10px rgba(74,18,36,.25)!important}
 html body #matrix .aqm-zoom{top:6px!important}
 html body #matrix .aqm-canvas-wrap{padding-top:44px!important}
 html body #matrix .aq-reading-action-bar .aq-reading-meta{font-size:.76rem}
 }
 @media(max-width:820px){
-html body #mresult#mresult[data-mtab="read"] .aqm-tabs .aqm-tab:nth-child(1),html body #mresult#mresult[data-mtab="chak"] .aqm-tabs .aqm-tab:nth-child(2),html body #mresult#mresult[data-mtab="lines"] .aqm-tabs .aqm-tab:nth-child(3){background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important;color:#FFF3D6!important;box-shadow:0 3px 10px rgba(74,18,36,.25)!important}
+html body #mresult#mresult[data-mtab="read"] .aqm-tabs .aqm-tab:nth-child(1),html body #mresult#mresult[data-mtab="chak"] .aqm-tabs .aqm-tab:nth-child(2),html body #mresult#mresult[data-mtab="lines"] .aqm-tabs .aqm-tab:nth-child(3),html body #mresult#mresult[data-mtab="fc"] .aqm-tabs .aqm-tab:nth-child(4){background:linear-gradient(135deg,#8A3350,#6A2038 55%,#4A1224)!important;color:#FFF3D6!important;box-shadow:0 3px 10px rgba(74,18,36,.25)!important}
 html body #matrix .aq-reading-action-bar .aq-reading-meta>span:last-child{display:none!important}
 }
 

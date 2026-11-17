@@ -388,13 +388,32 @@
   function ringAt(points, pos) {
     const p = ((pos % 80) + 80) % 80;
     const k = Math.floor(p / RING_STEP + 1e-9);
-    return { position: Math.round(pos * 1000) / 1000, segment: k, number: points[k % 64], next: points[(k + 1) % 64] };
+    return { position: Math.round(pos * 1000) / 1000, segment: k, ring: points[k % 64], ringNext: points[(k + 1) % 64] };
+  }
+
+  // وسوم دليل اليوم (تقويم الحظ): كل رقم أركانا يظهر تحت كل وسم يحتويه
+  const DAY_TAGS = [
+    { id: 'money_business', label: 'مناسب للمال والأعمال وتوقيع العقود', arcana: [1, 3, 4, 7, 8, 10, 15, 19, 21] },
+    { id: 'love_relationships', label: 'مناسب للحب والعلاقات والتواصل', arcana: [2, 3, 6, 14, 17, 18, 22] },
+    { id: 'health_wellness', label: 'مناسب للصحة والرياضة والتعافي', arcana: [2, 5, 9, 11, 12, 14] },
+    { id: 'travel', label: 'مناسب للسفر والحركة والتجديد', arcana: [7, 10, 17, 21, 22] },
+    { id: 'caution_reflection', label: 'يوم للتأمل والمراجعة وتأجيل القرارات المصيرية', arcana: [9, 12, 13, 16, 18, 20] }
+  ];
+
+  /** وسوم اليوم لرقم أركانا (1..22): مصفوفة من { id, label } */
+  function getDayCategories(arcana) {
+    const n = reduceArcana(arcana);
+    return DAY_TAGS.filter(t => t.arcana.includes(n)).map(t => ({ id: t.id, label: t.label }));
   }
 
   /**
-   * توقعات مبنية على حلقة الأعمار: سنة (من عيد الميلاد إلى عيد الميلاد)، 12 شهرًا من عيد الميلاد،
-   * ثم الأسبوع واليوم الحاليان. كل عنصر يعطي رقم الأركانا فقط ليُربط بمفتاح النص الموجود
-   * (الموضع + الرقم)؛ لا نصوص جديدة هنا.
+   * التوقعات الزمنية:
+   * - السنة من عيد الميلاد إلى عيد الميلاد: طاقة السنة = A + B + مجموع خانات سنة بداية الدورة.
+   * - الشهر i (1..12 من عيد الميلاد) = اختزال(طاقة السنة + i).
+   * - الأسبوع = اختزال(طاقة الشهر + رقم الأسبوع داخل الشهر).
+   * - اليوم = اختزال(طاقة الشهر + اختزال(رقم اليوم في الشهر التقويمي)).
+   * وإلى جانبها محطة حلقة الأعمار (ring) لكل فترة. كل عنصر يعطي رقم الأركانا فقط
+   * ليُربط بنص الموقع؛ لا نصوص جديدة هنا.
    */
   function calculateForecast(birthDate, today) {
     const m = calculateDestinyMatrix(birthDate, today);
@@ -409,28 +428,41 @@
     const start = bd(year + age), end = bd(year + age + 1);
     const span = (end - start) / dayMs;
     const points = buildAgeRing(m);
-    const at = ms => ringAt(points, age + (ms - start) / dayMs / span);
+    const ringAtMs = ms => ringAt(points, age + (ms - start) / dayMs / span);
     const fmt = ms => new Date(ms).toISOString().slice(0, 10);
+    const personalYear = m.yearEnergy.number;
 
     const months = [];
     for (let i = 0; i < 12; i++) {
-      const ms = utc(year + age, month - 1 + i, day), nx = utc(year + age, month + i, day);
-      months.push(Object.assign({ index: i + 1, from: fmt(ms), to: fmt(nx - dayMs) }, at(ms)));
+      const ms = utc(year + age, month - 1 + i, day), nx = i === 11 ? end : utc(year + age, month + i, day);
+      months.push(Object.assign({ index: i + 1, from: fmt(ms), to: fmt(nx - dayMs), msFrom: ms, msTo: nx - dayMs,
+        number: reduceArcana(personalYear + i + 1) }, ringAtMs(ms)));
     }
-    const weeks = [];
-    for (let ms = start, i = 1; ms < end; ms += 7 * dayMs, i++) {
-      weeks.push(Object.assign({ index: i, from: fmt(ms), to: fmt(Math.min(ms + 6 * dayMs, end - dayMs)) }, at(ms)));
+    const monthOf = ms => { let k = 0; months.forEach((x, i) => { if (x.msFrom <= ms) k = i; }); return months[k]; };
+
+    const weeks = [], perMonth = {};
+    for (let ms = start; ms < end; ms += 7 * dayMs) {
+      const mo = monthOf(ms); perMonth[mo.index] = (perMonth[mo.index] || 0) + 1;
+      weeks.push(Object.assign({ index: weeks.length + 1, monthIndex: mo.index, weekInMonth: perMonth[mo.index],
+        from: fmt(ms), to: fmt(Math.min(ms + 6 * dayMs, end - dayMs)), msFrom: ms,
+        number: reduceArcana(mo.number + perMonth[mo.index]) }, ringAtMs(ms)));
     }
-    const idx = (list) => { let k = 0; list.forEach((x, i) => { if (utc(+x.from.slice(0, 4), +x.from.slice(5, 7) - 1, +x.from.slice(8, 10)) <= nowUtc) k = i; }); return k; };
+    const weekOf = ms => { let k = 0; weeks.forEach((x, i) => { if (x.msFrom <= ms) k = i; }); return weeks[k]; };
+    const dayOf = ms => {
+      const mo = monthOf(ms), dd = new Date(ms).getUTCDate(), number = reduceArcana(mo.number + reduceArcana(dd));
+      return Object.assign({ date: fmt(ms), monthIndex: mo.index, number, tags: getDayCategories(number) }, ringAtMs(ms));
+    };
+    const strip = x => { const o = Object.assign({}, x); delete o.msFrom; delete o.msTo; return o; };
     return {
       age,
       yearRange: { from: fmt(start), to: fmt(end - dayMs), label: m.yearEnergy.label },
-      yearPersonal: m.yearEnergy.number,           // طاقة السنة (A+B+مجموع خانات سنة بداية الدورة)
-      yearRing: at(start),                          // محطة الحلقة التي تبدأ بها سنة العمر
-      months, weeks,
-      currentMonth: months[idx(months)],
-      currentWeek: weeks[idx(weeks)],
-      today: Object.assign({ date: fmt(nowUtc) }, at(nowUtc))
+      yearPersonal: personalYear,
+      yearRing: ringAtMs(start),
+      months: months.map(strip), weeks: weeks.map(strip),
+      currentMonth: strip(monthOf(nowUtc)),
+      currentWeek: strip(weekOf(nowUtc)),
+      today: dayOf(nowUtc),
+      dayAt: (y, mo, d) => dayOf(utc(y, mo - 1, d)) // يوم داخل السنة الحالية للدورة (للتقويم لاحقًا)
     };
   }
 
@@ -444,6 +476,8 @@
     buildMatrixFromAnchors,
     buildAgeRing,
     calculateForecast,
+    getDayCategories,
+    DAY_TAGS,
     getArcanaInfo,
     ARCANA_DATA,
     version: '2.0.0',
