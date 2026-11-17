@@ -279,6 +279,8 @@
   }
   function openTile(kind) {
     if (kind === 'extra') { openSheet('extra', IC.scale, 'الأرقام المكملة', 'من تاريخ ميلادك', extraHTML()); return; }
+    if (kind === 'peaks') { openSheet('peaks', IC.peaks, 'القمم الأربع', 'قمة بعد قمة على عمرك', listHTML('peaks')); return; }
+    if (kind === 'chal') { openSheet('chal', IC.chal, 'التحديات الأربعة', 'درس بعد درس على عمرك', listHTML('chal')); return; }
     if (kind === 'name') { openSheet('name', IC.name, 'بصمة الاسم', 'ثلاث زوايا من أرقام اسمك', nameHTML()); return; }
     openSheet('stages', IC.stages, 'مراحل العمر الأربع', 'القمة والتحدي داخل كل مرحلة', stagesHTML());
   }
@@ -286,7 +288,7 @@
   /* ---------- البلاطات ---------- */
   function buildTiles() {
     var d = document.createElement('section'); d.className = 'lpt-tiles'; d.setAttribute('aria-label', 'تفاصيل رحلتك');
-    var T = [['stages', 'مراحل العمر', 'اكتشف مراحلك', IC.stages], ['peaks', 'القمم', 'اصعد قممك', IC.peaks], ['chal', 'التحديات', 'واجه دروسك', IC.chal], ['name', 'بصمة الاسم', 'اقرأ اسمك', IC.name]];
+    var T = [['stages', 'مراحل العمر', 'اكتشف مراحلك', IC.stages], ['peaks', 'القمم', 'اصعد قممك', IC.peaks], ['chal', 'التحديات', 'واجه دروسك', IC.chal], ['name', 'بصمة الاسم', 'اقرأ اسمك', IC.name], ['extra', 'الأرقام المكملة', 'دورتك الشخصية', IC.scale]];
     d.innerHTML = '<h3 class="lpt-h">رحلتك بين يديك</h3><p class="lpt-sub">اضغط على أي دائرة لتفتح تفاصيلها</p><div class="lpt-row">' +
       T.map(function (t, k) { return '<button type="button" class="lpt-tile" data-lpt="' + t[0] + '"><span class="lpt-c c' + (k + 1) + '">' + t[3] + '</span><span class="lpt-t">' + t[1] + '</span><span class="lpt-s">' + t[2] + '</span></button>'; }).join('') + '</div>';
     d.addEventListener('click', function (e) { var b = e.target.closest('[data-lpt]'); if (b) openTile(b.getAttribute('data-lpt')); });
@@ -367,12 +369,14 @@
     html += '<h4 class="lpg-h">أساس شخصيتك<small>من أنت؟</small></h4>';
     g1.forEach(pushMade);
     push('t:name', IC.name, 'بصمة الاسم', 'اقرأ اسمك', function () { openTile('name'); });
-    push('t:extra', IC.scale, 'الأرقام المكملة', 'السنة الشخصية، يوم الميلاد، النضج، القمم والتحديات', function () { openTile('extra'); });
+    push('t:extra', IC.scale, 'الأرقام المكملة', 'السنة والشهر واليوم الشخصي، يوم الميلاد، النضج', function () { openTile('extra'); });
     g1b.forEach(pushMade);
     html += '<h4 class="lpg-h">الظل والعلاقات والمال<small>كيف تعيش؟</small></h4>';
     g2.concat(rest).forEach(pushMade);
     html += '<h4 class="lpg-h">رحلتك عبر السنين<small>التوقيت الزمني</small></h4>';
     push('t:stages', IC.stages, 'مراحل العمر الأربع', 'القمة والتحدي لكل مرحلة جواها', function () { openTile('stages'); });
+    push('t:peaks', IC.peaks, 'القمم الأربع', 'P1 إلى P4 على عمرك', function () { openTile('peaks'); });
+    push('t:chal', IC.chal, 'التحديات الأربعة', 'C1 إلى C4 على عمرك', function () { openTile('chal'); });
     g3.forEach(pushMade);
     var q = $('.lpj-bottom .lpj-reflect', res);
     if (q) push('q', IC.ask, 'سؤال للتأمل', 'سؤال يناسب مرحلتك الحالية', function () { openSheet('q', IC.ask, 'سؤال للتأمل', '', '<div class="lps-daily">' + q.innerHTML + '</div>'); });

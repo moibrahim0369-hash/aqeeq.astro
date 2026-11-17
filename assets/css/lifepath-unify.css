@@ -147,3 +147,9 @@ html.lpr-on body #lpresult .lpr-head .lph-about svg{width:22px;height:22px;color
 .lp-hbadges .lp-hbadge{display:inline-flex;align-items:center;gap:6px;margin:0;padding:0 10px 0 9px}
 .lp-hbadges .lp-hbadge small{font-size:.68rem;font-weight:600;color:#8a6a30;letter-spacing:0}
 .lp-hbadges .lp-hbadge b{font-weight:800;color:#8B263E}
+
+/* خمس بلاطات: مراحل، قمم، تحديات، اسم، أرقام مكملة */
+html body .lpt-tiles .lpt-row{grid-template-columns:repeat(5,1fr)}
+html body .lpt-tiles .lpt-t{font-size:.72rem;line-height:1.35}
+html body .lpt-tiles .lpt-s{font-size:.62rem}
+@media(max-width:380px){html body .lpt-tiles .lpt-c{width:54px;height:54px}}
