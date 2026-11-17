@@ -4,7 +4,12 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 const rootDir = path.resolve(__dirname, '..');
-const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+const indexShell = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+// الكود الداخلي انتقل من index.html إلى assets/js/inline/page-XX.js؛ نقرأه كمصدر للصفحة.
+const inlineDir = path.join(rootDir, 'assets/js/inline');
+const inlineJs = fs.readdirSync(inlineDir).filter(f => /^page-\d+\.js$/.test(f)).sort().map(f => fs.readFileSync(path.join(inlineDir, f), 'utf8')).join('\n');
+const indexHtml = indexShell + '\n' + inlineJs;
+const lifePathCoreJs = fs.readFileSync(path.join(rootDir, 'assets/js/aqeeq-lifepath-core.js'), 'utf8');
 const platformJs = fs.readFileSync(path.join(rootDir, 'assets/js/aqeeq-platform.js'), 'utf8');
 const lifePathDataJs = fs.readFileSync(path.join(rootDir, 'assets/js/life-path-data.js'), 'utf8');
 const nameEngineJs = fs.readFileSync(path.join(rootDir, 'name_engine.js'), 'utf8');
@@ -18,10 +23,11 @@ const nameReadingsScriptMatches = indexHtml.match(/<script\b[^>]*\bsrc=["']name_
 assert.equal(pinnaclesScriptMatches.length, 1, 'pinnacles_challenges.js must be loaded exactly once in index.html');
 assert.equal(nameReadingsScriptMatches.length, 1, 'name_readings.js must be loaded exactly once in index.html');
 
-const astroExposeIdx = indexHtml.indexOf("if (typeof window !== 'undefined') window.Astro = Astro;");
-const platformScriptIdx = indexHtml.indexOf('<script src="assets/js/aqeeq-platform.js"></script>');
-assert.ok(astroExposeIdx > 0, 'window.Astro must be exposed in index.html');
-assert.ok(platformScriptIdx > astroExposeIdx, 'aqeeq-platform.js must load after window.Astro is defined');
+const astroExposeIdx = indexShell.indexOf('assets/js/inline/page-06.js');
+const platformScriptIdx = indexShell.indexOf('<script src="assets/js/aqeeq-platform.js"></script>');
+assert.ok(inlineJs.includes("if (typeof window !== 'undefined') window.Astro = Astro;"), 'window.Astro must be exposed in page-06.js');
+assert.ok(astroExposeIdx > 0 && platformScriptIdx > astroExposeIdx, 'aqeeq-platform.js must load after page-06.js (window.Astro)');
+assert.ok(indexShell.indexOf('assets/js/aqeeq-lifepath-core.js') > 0 && indexShell.indexOf('assets/js/aqeeq-lifepath-core.js') < astroExposeIdx, 'aqeeq-lifepath-core.js must load before page-06.js');
 
 // 2. Verify Astro engine + window.Astro + updateObservatoryRibbon
 const astroMatch = indexHtml.match(/const Astro = \(\(\) => \{[\s\S]*?\n\}\)\(\);\nif \(typeof module !== 'undefined'\) module\.exports = Astro;\nif \(typeof window !== 'undefined'\) window\.Astro = Astro;/);
@@ -163,6 +169,7 @@ vm.createContext(sandbox);
 vm.runInContext(astroMatch[0], sandbox);
 assert.ok(sandbox.window.Astro && typeof sandbox.window.Astro.chart === 'function', 'window.Astro.chart must be available in window');
 
+vm.runInContext(lifePathCoreJs, sandbox);
 vm.runInContext(lifePathDataJs, sandbox);
 vm.runInContext(nameEngineJs, sandbox);
 vm.runInContext(pinnaclesJs, sandbox);
@@ -171,7 +178,7 @@ vm.runInContext(nameReadingsJs, sandbox);
 // Extract digSum, lifePath, renderLPBlueprintCard, renderPinnaclesBlock from index.html
 const digSumMatch = indexHtml.match(/const digSum = n => String\(n\)\.split\(""\)\.reduce\(\(s, c\) => s \+ \+c, 0\);/);
 assert.ok(digSumMatch, 'digSum must be found in index.html');
-const lpFnMatch = indexHtml.match(/function lifePath\(d, m, y\) \{[\s\S]*?\n  \}/);
+const lpFnMatch = indexHtml.match(/function lifePath\(d, m, y\) \{[^\n]*\}/);
 assert.ok(lpFnMatch, 'lifePath calculation function must be found in index.html');
 
 const blueprintFnMatch = indexHtml.match(/function renderLPBlueprintCard\(lp\) \{[\s\S]*?\n  \}\n\n  function renderPinnaclesBlock\(name, d, m, y, lp\) \{[\s\S]*?\n  \}/);
