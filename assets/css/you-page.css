@@ -651,7 +651,7 @@ html body.yp-app header.aqh-header:not(#_a):not(#_b),html body.yp-app footer.foo
 html body.yp-app{padding-top:0!important}
 html body.yp-app .cmp-fab:not(#_a):not(#_b){width:44px!important;height:44px!important;inset-inline-start:auto!important;inset-inline-end:12px!important;bottom:calc(86px + env(safe-area-inset-bottom,0px))!important;animation:none!important;opacity:.92}
 html body.yp-app .cmp-fab svg{width:22px;height:22px}
-html body.yp-app section#for-you #fy-body{padding-bottom:150px}
+html body.yp-app section#for-you #fy-body{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))}
 html body section#for-you .yp-legal{padding:4px 2px}
 html body section#for-you .yp-legal p{margin:0 0 10px;font-size:12.5px;line-height:1.8;color:var(--aq-ink-2,#6F5D54)}
 html body.yp-app section#for-you.yp-on:not(#_a):not(#_b):not(#_c){padding-top:max(10px,env(safe-area-inset-top,0px))!important}
@@ -739,3 +739,47 @@ html body:not(.yp-user) #home.aqh .aqh-articles:not(#_a):not(#_b){display:none!i
 /* استثمر في ذاتك: زر شراء واضح باللون العنابي (بدون ذهبي) يودّي لقسم الدفع */
 html body #invest .inv-cta:not(#_a):not(#_b){display:flex;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;width:100%;max-width:320px;min-height:50px;margin:16px auto 6px;border-radius:999px;background:linear-gradient(135deg,#8a3d56,#70263F);color:#FFF8EE!important;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 10px 24px rgba(112,38,63,.25)}
 html body #invest .inv-cta:not(#_a):not(#_b):focus-visible{outline:3px solid rgba(112,38,63,.45);outline-offset:3px}
+
+
+/* ===== أنت: بطاقة بصمتك + تبويبات قطعية ===== */
+html body section#for-you .yp-bp{position:relative;margin:6px 0 14px;padding:20px 18px 18px;border-radius:26px;border:1px solid rgba(184,150,90,.35);background:linear-gradient(160deg,#FBF5EA 0%,#F3E6D2 100%);box-shadow:0 14px 34px -18px rgba(107,31,46,.35),inset 0 1px 0 rgba(255,255,255,.55);overflow:hidden}
+html body section#for-you .yp-bp::before{content:"";position:absolute;inset-inline-end:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(184,150,90,.22),transparent 70%);pointer-events:none}
+html body section#for-you .yp-bp-k{display:block;font:500 12px 'IBM Plex Sans Arabic',sans-serif;letter-spacing:.04em;color:#9a4a32}
+html body section#for-you .yp-bp h2{margin:4px 0 14px;font:700 24px/1.4 'Amiri',serif;color:#6B1F2E}
+html body section#for-you .yp-bp p{margin:0 0 14px;font-size:14px;line-height:1.9;color:#6F5D54}
+html body section#for-you .yp-bp-g{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+html body section#for-you .yp-bp-c{display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 4px 10px;border-radius:18px;background:rgba(255,255,255,.0);background:rgba(251,245,234,.7);border:1px solid rgba(184,150,90,.25);text-align:center;min-width:0}
+html body section#for-you .yp-bp-i{display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#F3E6D2;color:#6B1F2E;margin-bottom:4px}
+html body section#for-you .yp-bp-i svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+html body section#for-you .yp-bp-c small{font-size:12px;color:#8a7468}
+html body section#for-you .yp-bp-c b{font:700 14px/1.3 'IBM Plex Sans Arabic',sans-serif;color:#3a2a26;overflow-wrap:anywhere}
+html body section#for-you .yp-bp-go{display:flex;gap:8px;margin-top:14px}
+html body section#for-you .yp-bp-b{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 16px;border-radius:14px;border:1px solid #6B1F2E;color:#6B1F2E;background:transparent;font:700 14px 'IBM Plex Sans Arabic',sans-serif;text-decoration:none;flex:1;transition:transform .15s}
+html body section#for-you .yp-bp-b.main{background:#6B1F2E;color:#FBF5EA;flex:1.6}
+html body section#for-you .yp-bp-b:active{transform:scale(.97)}
+html body section#for-you .yp-bp-b svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html body section#for-you .yp-bp-empty .yp-bp-b{width:100%;flex:none}
+
+html body section#for-you .yp-seg{position:relative;display:grid;grid-template-columns:repeat(4,1fr);padding:4px;margin:0 0 16px;border-radius:16px;background:rgba(243,230,210,.85);border:1px solid rgba(184,150,90,.3);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+html body section#for-you .yp-seg-b{position:relative;z-index:1;min-height:42px;padding:0 2px;border:0;border-radius:12px;background:transparent;color:#7a6358;font:500 13px 'IBM Plex Sans Arabic',sans-serif;cursor:pointer;transition:color .2s,background .25s,box-shadow .25s}
+html body section#for-you .yp-seg-b[aria-selected="true"]{background:#6B1F2E;color:#FBF5EA;font-weight:700;box-shadow:0 6px 14px -6px rgba(107,31,46,.55)}
+html body section#for-you .yp-seg-i{display:none}
+html body section#for-you .yp-hp{min-height:200px}
+html body section#for-you .yp-hp-in{animation:ypHp .28s ease both}
+@keyframes ypHp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html body section#for-you .yp-hp-in{animation:none}}
+html body section#for-you .yp-stack{display:flex;flex-direction:column;gap:12px}
+html body section#for-you .yp-stack>*{width:100%!important;max-width:none!important;min-width:0;flex:none!important}
+html body section#for-you .yp-more{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:48px;margin-top:14px;border-radius:14px;border:1px solid rgba(107,31,46,.45);background:transparent;color:#6B1F2E;font:700 14px 'IBM Plex Sans Arabic',sans-serif;cursor:pointer}
+html body section#for-you .yp-more svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html body section#for-you .yp-lab{margin:20px 0 10px}
+html body section#for-you .yp-rows{display:flex;flex-direction:column;gap:10px}
+html body section#for-you .yp-row,html body section#for-you .yp-we-cta{display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;border-radius:18px;border:1px solid rgba(184,150,90,.35);background:#FBF5EA;color:#3a2a26;text-align:right;cursor:pointer;font-family:inherit}
+html body section#for-you .yp-we-cta{margin-bottom:12px;background:linear-gradient(160deg,#FBF5EA,#F3E6D2)}
+html body section#for-you .yp-row-t{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+html body section#for-you .yp-row-t b{font:700 15px 'IBM Plex Sans Arabic',sans-serif}
+html body section#for-you .yp-row-t small{font-size:12.5px;color:#8a7468}
+html body section#for-you .yp-we-i{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;background:#F3E6D2;color:#6B1F2E}
+html body section#for-you .yp-we-i svg,html body section#for-you .yp-row svg,html body section#for-you .yp-we-cta>svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+html body section#for-you .yp-row>svg:last-child,html body section#for-you .yp-we-cta>svg:last-child{width:16px;height:16px;opacity:.5}
+html body section#for-you .yp-sub1{display:none}
