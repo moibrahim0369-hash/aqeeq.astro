@@ -107,6 +107,35 @@
     return { value: reduceNumber(sum, false), rawTotal: sum, year: targetYear };
   }
 
+  /* الشهر والأيام الشخصية: السنة الشخصية (1–9) + رقم الشهر الميلادي، ثم اليوم الشخصي = الشهر الشخصي + رقم اليوم؛
+     يُحفظ 11 و22 فقط (الخانات 1–9 و11 و22). */
+  const AR_MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+  function reduceKeep1122(value) {
+    let n = Math.abs(Math.trunc(Number(value)));
+    if (!Number.isFinite(n)) return 0;
+    while (n > 9 && n !== 11 && n !== 22) n = String(n).split("").reduce(function (sum, digit) { return sum + Number(digit); }, 0);
+    return n;
+  }
+  function calculatePersonalMonth(day, month, targetYear, refDate) {
+    const ref = refDate && typeof refDate.getMonth === "function" ? refDate : new Date();
+    const year = Number(targetYear == null ? ref.getFullYear() : targetYear);
+    const py = calculatePersonalYear(day, month, year);
+    const calMonth = ref.getMonth() + 1, raw = py.value + calMonth;
+    return { value: reduceKeep1122(raw), rawTotal: raw, calendarMonth: calMonth, year: year, personalYear: py.value };
+  }
+  function calculatePersonalDay(day, month, targetYear, refDate) {
+    const ref = refDate && typeof refDate.getMonth === "function" ? refDate : new Date();
+    const pm = calculatePersonalMonth(day, month, targetYear, ref);
+    const calDay = ref.getDate(), raw = pm.value + calDay;
+    return { value: reduceKeep1122(raw), rawTotal: raw, calendarDay: calDay, personalMonth: pm.value, year: pm.year };
+  }
+  /* خانة نص من name_data.json: تُستخدم فقط إن كانت مكتملة؛ الخانة الفارغة لا تعرض أي نص عام. */
+  function slotEntry(nameData, key, number) {
+    const group = nameData && nameData[key] && nameData[key].numbers;
+    const e = group && group[String(number)];
+    return e && Array.isArray(e.sections) && e.sections.some(function (x) { return x && String(x.content || "").trim(); }) ? e : null;
+  }
+
   function calculateBirthdayNumber(day) {
     const raw = Number(day);
     if (!Number.isInteger(raw) || raw < 1 || raw > 31) throw new RangeError("يوم الميلاد لازم يكون من 1 إلى 31.");
@@ -182,11 +211,27 @@
           (index + 1) + '</span><h5>' + escapeHTML(part.title) + '</h5><div class="aqeq-extra-copy">' +
           contentToHTML(part.content) + '</div></section>';
       }).join("") + '</div></article>';
+    function periodHTML(cls, label, eyebrow, calc, key) {
+      const entry = slotEntry(nameData, key, calc.value);
+      const secs = entry ? entry.sections.map(function (part, index) {
+        return '<section class="aqeq-personal-year-section"><span class="aqeq-card-index">0' + (index + 1) + '</span><h5>' + escapeHTML(part.title) +
+          '</h5><div class="aqeq-extra-copy">' + contentToHTML(part.content) + '</div></section>';
+      }).join("") : "";
+      return '<article class="aqeq-personal-year ' + cls + '"><div class="aqeq-extra-card-head"><div><span class="aqeq-extra-eyebrow">' + escapeHTML(eyebrow) +
+        '</span><h4>' + label + '</h4></div><span class="aqeq-extra-number">' + escapeHTML(calc.value) + '</span></div>' +
+        (entry && entry.title ? '<h5>' + escapeHTML(entry.title) + '</h5>' : '') + (secs ? '<div class="aqeq-personal-year-grid">' + secs + '</div>' : '') + '</article>';
+    }
+    const now = new Date();
+    const personalMonth = calculatePersonalMonth(day, month, personal.year, now);
+    const personalDay = calculatePersonalDay(day, month, personal.year, now);
+    const periodsHTML = periodHTML("aqeq-personal-month", "الشهر الشخصي", AR_MONTHS[personalMonth.calendarMonth - 1] + " " + personalMonth.year, personalMonth, "personal_months") +
+      periodHTML("aqeq-personal-day", "اليوم الشخصي", personalDay.calendarDay + " " + AR_MONTHS[personalMonth.calendarMonth - 1], personalDay, "personal_days");
     return '<section class="aqeq-extra-numbers"><div class="aqeq-extra-heading"><span class="aqeq-name-kicker">AQEQ ASTRO · THE NEXT LAYER</span><h3>الأرقام المكملة لمسارك</h3><p>ثلاث زوايا رمزية تضيف طبقة جديدة لفهم رحلتك.</p></div>' +
-      personalHTML + '<div class="aqeq-extra-grid">' +
+      personalHTML + periodsHTML + '<div class="aqeq-extra-grid">' +
       items.map(function (item) {
-        if (!item.data) return "";
-        const d = item.data;
+        if (!item.data && !(item.key === "maturity" && slotEntry(nameData, "maturity_extra", item.number))) return "";
+        const slot = item.key === "maturity" ? slotEntry(nameData, "maturity_extra", item.number) : null;
+        const d = slot ? Object.assign({}, item.data || {}, slot) : item.data;
         const sectionsHTML = (Array.isArray(d.sections) ? d.sections : []).map(function (section, index) {
           let sectionBody = "";
           if (section.remedy || section.reflection) {
@@ -410,5 +455,5 @@
     }
   }
 
-  root.AqeqNameReadings = Object.freeze({ render: render, loadData: loadData, calculatePersonalYear: calculatePersonalYear, calculateBirthdayNumber: calculateBirthdayNumber, calculateMaturityNumber: calculateMaturityNumber, renderPinnaclesChallenges: renderPinnaclesChallenges, extraReadings: EXTRA_READINGS });
+  root.AqeqNameReadings = Object.freeze({ render: render, loadData: loadData, calculatePersonalYear: calculatePersonalYear, calculatePersonalMonth: calculatePersonalMonth, calculatePersonalDay: calculatePersonalDay, calculateBirthdayNumber: calculateBirthdayNumber, calculateMaturityNumber: calculateMaturityNumber, renderPinnaclesChallenges: renderPinnaclesChallenges, extraReadings: EXTRA_READINGS });
 })(window);

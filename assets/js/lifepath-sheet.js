@@ -211,6 +211,10 @@
     }
     var py = $('.aqeq-personal-year', ex);
     if (py) group('ask', 'السنة الشخصية', ($('h5', py) || {}).textContent || '', ($('.aqeq-extra-number', py) || {}).textContent, secs(py, '.aqeq-personal-year-section', 'h5', '.aqeq-extra-copy'));
+    [['.aqeq-personal-month', 'الشهر الشخصي'], ['.aqeq-personal-day', 'اليوم الشخصي']].forEach(function (a) {
+      var el = $(a[0], ex); if (!el) return;
+      group('ask', a[1], ($('h5', el) || {}).textContent || ($('.aqeq-extra-eyebrow', el) || {}).textContent || '', ($('.aqeq-extra-number', el) || {}).textContent, secs(el, '.aqeq-personal-year-section', 'h5', '.aqeq-extra-copy'));
+    });
     [['.aqeq-extra-birthday', 'person', 'رقم يوم الميلاد'], ['.aqeq-extra-maturity', 'scale', 'رقم النضج']].forEach(function (a) {
       var el = $(a[0], ex); if (!el) return;
       group(a[1], a[2], ($('h5', el) || {}).textContent || '', ($('.aqeq-extra-number', el) || {}).textContent, secs(el, '.aqeq-extra-deep-section', 'h5'));
