@@ -202,7 +202,7 @@
           escapeHTML(item.badge) + '</span><h4>' + escapeHTML(item.label) + '</h4></div><span class="aqeq-extra-number">' +
           escapeHTML(item.number) + '</span></div><h5>' + escapeHTML(d.title) + '</h5>' + subtitle +
           '<div class="aqeq-extra-copy">' + sectionsHTML + '</div></article>';
-      }).join("") + '</div><p class="aqeq-extra-note">قراءات علم الأرقام هنا رمزية للتأمل الذاتي وليست حقائق علمية أو تنبؤات مؤكدة.</p></section>';
+      }).join("") + '</div></section>';
   }
 
   function ensurePinnacleStyles() {
@@ -305,8 +305,7 @@
       '<div class="aqeq-pc-heading" style="margin-top:22px"><h3>التحديات الأربعة</h3><p>فروق مطلقة بين أرقام الشهر واليوم والسنة المختزلة.</p></div>' +
       '<div class="aqeq-pc-grid">' + challengeCards + '</div>' +
       '<div class="aqeq-pc-heading" style="margin-top:22px"><h3>فحص الديون الكارمية</h3><p>الفحص هنا حسابي ورمزي، ويعتمد على الأرقام المركبة الظاهرة قبل الاختزال فقط.</p></div>' +
-      '<article class="aqeq-pc-card aqeq-pc-debts">' + debtHTML + '</article>' +
-      '<p class="aqeq-pc-note">ملاحظة منهجية: علم الأعداد إطار رمزي للتأمل وليس أداة علمية مثبتة أو حكمًا على المصير. طريقة الاحتفاظ بالأرقام الرئيسية وفحص الديون محددة داخل محرك عقيق أسترو.</p></section>';
+      '<article class="aqeq-pc-card aqeq-pc-debts">' + debtHTML + '</article></section>';
   }
 
   function numberLabel(result) {
@@ -382,7 +381,7 @@
       }).join("");
 
       section.innerHTML = '<div class="aqeq-name-heading"><span class="aqeq-name-kicker">AQEQ ASTRO · NAME NUMBERS</span><h3>بصمة اسم ' +
-        escapeHTML(cleanName) + '</h3><p>قراءة رمزية للتأمل وفهم الذات، بتكمل مسار حياتك ولا تستبدله.</p></div>' +
+        escapeHTML(cleanName) + '</h3></div>' +
         '<div class="aqeq-name-groups">' + groupsHTML + '</div>';
       if (birthContext && Number.isInteger(Number(birthContext.day)) &&
           Number.isInteger(Number(birthContext.month)) && Number.isInteger(Number(birthContext.year)) &&

@@ -144,7 +144,7 @@
       return '<button type="button" class="yp-dom" data-dom="' + d.id + '"><span class="yp-dom-i" data-d="' + d.id + '">' + SVG(d.i) + '</span><span class="yp-dom-t"><b>' + d.t + '</b><small>' + d.s + '</small></span><span class="yp-dom-go">' + SVG('<path d="M15 6l-6 6 6 6"/>') + '</span></button>';
     }).join('') + '</div>';
   }
-  function needNatal(m) { return '<div class="yp-empty">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<p>' + (m || 'أدخل بيانات ميلادك مرة واحدة لتظهر عبورات خريطتك.') + '</p><a class="yp-btn" href="#chart">احسب خريطتك</a></div>'; }
+  function needNatal(m) { return '<div class="yp-empty">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<p>' + (m || 'أدخل بيانات ميلادك مرة واحدة لتظهر عبورات خريطتك.') + '</p><a class="yp-btn" href="#chart" data-ob>أدخل بيانات ميلادك</a></div>'; }
   var MON = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
   function timeTravel() {
     var d = new Date(selMs()), today = !ST.date;
@@ -162,11 +162,13 @@
   function ttClose() { var el = $('#yp-ttsheet'); if (!el) return; el.classList.remove('on'); setTimeout(function () { el.remove(); }, 250); }
   function placeCards(dom, max) {
     var ch = natal(); if (!ch || !window.AqeeqYou) return '';
-    var pl = window.AqeeqYou.placements(ch).filter(function (p) { return !dom || p.dom === dom; });
+    var act = {}; (allCycles() || []).forEach(function (c) { if (c.start <= selMs() && c.end >= selMs()) act[c.n] = 1; });
+    var pl = window.AqeeqYou.placements(ch).filter(function (p) { return typeof dom === 'function' ? dom(p) : (!dom || p.dom === dom); });
+    if (typeof dom === 'function') pl.sort(function (a, b) { return (act[b.id] ? 1 : 0) - (act[a.id] ? 1 : 0); });
     if (max) pl = pl.slice(0, max);
     return pl.map(function (p) {
       var c = coreOf(p); if (!c) return '';
-      return '<button type="button" class="yp-pl" data-pl="' + p.id + '"><span class="yp-pl-h"><span class="yp-chip blue">' + p.nn + '</span><small>' + p.sign + ' · البيت ' + c.house + '</small></span><b>' + esc(headOf(c.e)) + '</b></button>';
+      return '<button type="button" class="yp-pl" data-pl="' + p.id + '"><span class="yp-pl-h"><span class="yp-chip blue">' + p.nn + '</span>' + (act[p.id] ? '<em class="yp-act-t">نشِط الآن</em>' : '') + '<small>' + p.sign + ' · البيت ' + c.house + '</small></span><b>' + esc(headOf(c.e)) + '</b></button>';
     }).join('');
   }
   function back(label) { return '<button type="button" class="yp-back" data-back>' + SVG('<path d="M9 6l6 6-6 6"/>') + label + '</button>'; }
@@ -373,7 +375,7 @@
       '<div class="yp-set-row yp-un"><div><b>اسم المستخدم</b><small>حروف إنجليزية وأرقام ونقطة، من 3 إلى 20.</small></div><span class="yp-un-f" dir="ltr">@<input id="yp-un" type="text" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" value="' + esc(unGet(u)) + '"></span><button type="button" class="yp-ab" data-un-save><span>حفظ</span></button></div><p class="yp-un-m" id="yp-un-m" role="status"></p></div>' +
       '<div class="yp-set-g"><p class="yp-lab">الخصوصية</p><label class="yp-set-row yp-sw"><div><b>حساب خاص</b><small>ملفك وقراءاتك لا تظهر لأحد غيرك.</small></div><input type="checkbox" id="yp-private"' + (isPrivate() ? ' checked' : '') + '><span class="yp-sw-t" aria-hidden="true"></span></label></div>' +
       nfHtml() + '<div class="yp-set-g"><p class="yp-lab">بياناتك وخريطتك</p><div id="yp-prof-slot"></div></div>' +
-      '<div class="yp-set-g"><p class="yp-lab">عن عقيق أسترو</p><div class="yp-legal"><p>القراءات للتأمل والترفيه، وليست بديلاً عن الاستشارة النفسية أو الطبية أو القانونية أو المالية.</p><p>© 2026 عقيق أسترو (Aqeq Astro). جميع الحقوق محفوظة. كل النصوص والقراءات والتصاميم والحسابات ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها بدون إذن كتابي.</p></div></div>' +
+      '<div class="yp-set-g"><p class="yp-lab">عن عقيق أسترو</p><div class="yp-legal"><p>© 2026 عقيق أسترو (Aqeq Astro). جميع الحقوق محفوظة. كل النصوص والقراءات والتصاميم والحسابات ملكية خاصة، ويمنع نسخها أو إعادة نشرها أو بيعها بدون إذن كتابي.</p></div></div>' +
       '<button type="button" class="yp-out" data-signout>تسجيل الخروج</button></div>';
   }
 
@@ -405,26 +407,10 @@
     var dateS = d.toLocaleDateString('ar-EG-u-nu-latn', { weekday: 'long', day: 'numeric', month: 'long' });
     var live = ch && window.AqeeqLive ? window.AqeeqLive.today(ch) : [];
     live.forEach(function (r, i) {
-      cards.push(lensCard(i === 0 ? 'طاقة اليوم · ' + dateS : 'عبور اليوم', r.name + ' في ' + r.sign + ' · بيتك ' + r.house, r.text + ' ' + r.act, '', 'الدرجة ' + r.deg + ' · ' + r.phase + (r.retro ? ' · راجع' : '')));
+      cards.push(lensCard(i === 0 ? 'طاقة اليوم · ' + dateS : 'عبور اليوم', r.name + ' في ' + r.sign + ' · بيتك ' + r.house, r.text + ' ' + r.act, '', 'الدرجة ' + r.deg + ' · ' + r.phase + (r.retro ? ' · راجع' : '') + (r.approx ? ' · بيوت تقريبية لعدم معرفة وقت الميلاد' : '')));
     });
     if (!live.length) cards.push(lensCard('طاقة اليوم · ' + dateS, 'أدخل بيانات ميلادك', 'لتظهر لك طاقة اليوم محسوبة على خريطتك أنت: القمر والكواكب السريعة في بيوتك بالدرجة الفعلية الآن.'));
     var list = ch ? allCycles() : null, pls = ch && window.AqeeqYou ? window.AqeeqYou.placements(ch) : [];
-    if (list) {
-      var now = Date.now(), cur = list.filter(function (c) { return c.start <= now && c.end >= now; });
-      cur.sort(function (a, b) { var pa = a.peaks[0] ? Math.abs(a.peaks[0].a - now) : 9e15, pb = b.peaks[0] ? Math.abs(b.peaks[0].a - now) : 9e15; return pa - pb; });
-      cur.slice(0, 3).forEach(function (c) {
-        var pp = pls.filter(function (x) { return x.id === c.n; })[0], cc = pp && coreOf(pp);
-        var line = cc ? 'ما تحمله ' + c.nn + ' عندك: ' + headOf(cc.e) : 'دورة مؤقتة تحرّك ما يخصّ ' + c.nn + ' في خريطتك.';
-        cards.push(lensCard('يؤثر فيك الآن', 'دورة ' + c.tn + ' مع ' + c.nn, line, '<button type="button" class="yp-lc-b" data-pop="cyc" data-id="' + esc(c.id + '|' + c.start) + '">تعمّق</button>', c.tn + ' ' + c.an + ' ' + c.nn + ' · تنتهي ' + fmtM(c.end)));
-      });
-    }
-    if (pls.length) {
-      var doy = Math.floor((Date.now() - new Date(d.getFullYear(), 0, 0)) / DAY), k = 0, shown = 0;
-      while (shown < 2 && k < pls.length) {
-        var p = pls[(doy + k) % pls.length]; k++; var c2 = coreOf(p); if (!c2) continue;
-        cards.push(lensCard('تذكير بنمطك', p.nn + ' في ' + p.sign + ' · البيت ' + c2.house, headOf(c2.e), '<button type="button" class="yp-lc-b" data-pop="pl" data-id="' + p.id + '">تعمّق</button>')); shown++;
-      }
-    }
     return cards.join('');
   }
   var CHEV = SVG('<path d="M15 6l-6 6 6 6"/>'), DWN = SVG('<path d="M6 9l6 6 6-6"/>');
@@ -449,6 +435,10 @@
       '<div class="yp-rail" tabindex="0">' + cards + '</div></section>';
   }
   function curList(list, n) { var s = split(list); return s.cur.slice(0, n).map(function (c) { return cardHtml(c, false); }).join('') + s.up.slice(0, 3).map(function (c) { return cardHtml(c, true); }).join(''); }
+  var LOVEP = ['venus', 'moon', 'mars', 'juno'], LOVEH = [5, 7, 8];
+  function natHouse(id) { var ch = natal(), b = ch && ch.bodies ? ch.bodies.filter(function (x) { return x.key === id; })[0] : null; return b ? b.house : 0; }
+  function isLovePl(p) { return LOVEP.indexOf(p.id) >= 0 || LOVEH.indexOf(natHouse(p.id)) >= 0; }
+  function isLoveCy(c) { return LOVEP.indexOf(c.n) >= 0 || LOVEH.indexOf(natHouse(c.n)) >= 0; }
   function domCycles(list, id) { return list ? list.filter(function (c) { return id === 'growth' ? ['saturn', 'pluto', 'chiron', 'neptune'].indexOf(c.t) >= 0 : c.doms.indexOf(id) >= 0; }) : []; }
   /* ---- رئيسية «أنت» الجديدة: بطاقة هويتك + تبويبات قطعية بدل الشرائح المتكررة ---- */
   var SIGNS12 = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -460,7 +450,7 @@
     var mine = null; try { mine = window.AqeeqChartContext && window.AqeeqChartContext.getMine(); } catch (e) {}
     var cta = '<div class="yp-bp-go"><a class="yp-bp-b main" href="#chart"><span>اكتشف خريطتك كاملة</span>' + SVG('<path d="M19 12H5M11 6l-6 6 6 6"/>') + '</a><a class="yp-bp-b" href="#matrix"><span>مصفوفة قدرك</span></a></div>';
     if (!mine || !mine.ch) {
-      return '<section class="yp-bp yp-bp-empty"><span class="yp-bp-k">بصمتك</span><h2>خريطتك تبدأ من ميلادك</h2><p>أدخل بيانات ميلادك مرة واحدة، لتظهر لك بصمتك وسماءك وعبوراتك مكتوبة عليك أنت.</p><a class="yp-bp-b main" href="#chart"><span>أدخل بيانات ميلادك</span>' + SVG('<path d="M19 12H5M11 6l-6 6 6 6"/>') + '</a></section>';
+      return '<section class="yp-bp yp-bp-empty"><span class="yp-bp-k">بصمتك</span><h2>خريطتك تبدأ من ميلادك</h2><p>أدخل بيانات ميلادك مرة واحدة، لتظهر لك بصمتك وسماءك وعبوراتك مكتوبة عليك أنت.</p><a class="yp-bp-b main" href="#chart" data-ob><span>أدخل بيانات ميلادك</span>' + SVG('<path d="M19 12H5M11 6l-6 6 6 6"/>') + '</a></section>';
     }
     var pls = window.AqeeqYou ? window.AqeeqYou.placements(mine.ch) : [], pick = function (id) { var x = pls.filter(function (q) { return q.id === id; })[0]; return x ? x.sign : '—'; };
     var rise = mine.ch.known && typeof mine.ch.asc === 'number' ? SIGNS12[Math.floor(((mine.ch.asc % 360) + 360) % 360 / 30)] : 'غير محدد';
@@ -487,14 +477,15 @@
     var list = allCycles(), has = !!natal();
     if (k === 'day') return '<div class="yp-stack">' + lensCards() + '</div>' + moreLink('سماء يومك كاملة', 'sky');
     if (!has) return needNatal();
-    if (k === 'transits') return '<div class="yp-stack">' + (list ? curList(list, 4) : '') + '</div>' + '<button type="button" class="yp-more yp-tt" data-tt-open>' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<span>سافر بالزمن</span></button>' + moreLink('كل عبوراتك', 'transits');
+    if (k === 'transits') return '<div class="yp-stack">' + (list ? curList(list.filter(function (c) { return !isLoveCy(c); }), 5) : '') + '</div>' + '<button type="button" class="yp-more yp-tt" data-tt-open>' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7v5l3 2"/>') + '<span>سافر بالزمن</span></button>' + moreLink('كل عبوراتك', 'transits');
     if (k === 'patterns') {
+      if (!natal().known) return needNatal('أنماطك تُبنى على بيوت خريطتك، وهذا يحتاج وقت ميلادك. أضفه لتظهر لك كاملة.');
       var rows = DOMAINS.filter(function (d) { return d.id !== 'love'; }).map(function (d) { return '<button type="button" class="yp-row" data-go="dom:' + d.id + '"><span class="yp-dom-i" data-d="' + d.id + '">' + SVG(d.i) + '</span><span class="yp-row-t"><b>' + d.t + '</b><small>' + d.s + '</small></span>' + CHEV + '</button>'; }).join('');
-      return '<div class="yp-stack">' + placeCards(null, 4) + '</div>' + moreLink('كل أنماطك', 'pattern') + '<p class="yp-lab">مجالات حياتك</p><div class="yp-rows">' + rows + '</div>';
+      return '<div class="yp-stack">' + placeCards(function (p) { return !isLovePl(p); }, 0) + '</div>' + '<p class="yp-lab">مجالات حياتك</p><div class="yp-rows">' + rows + '</div>';
     }
-    var lv = domCycles(list, 'love'), sp = split(lv);
+    var lv = (list || []).filter(isLoveCy), sp = split(lv);
     return '<button type="button" class="yp-we-cta" data-go="we"><span class="yp-we-i">' + SVG('<circle cx="9" cy="12" r="5.500"/><circle cx="15" cy="12" r="5.500"/>') + '</span><span class="yp-row-t"><b>نحن: أنت والطرف الآخر</b><small>أدخل بيانات شريك أو صديق وشوف توافقكم</small></span>' + CHEV + '</button>' +
-      '<div class="yp-stack">' + sp.cur.slice(0, 3).map(function (c) { return cardHtml(c, false); }).join('') + sp.up.slice(0, 2).map(function (c) { return cardHtml(c, true); }).join('') + placeCards('love') + '</div>' + moreLink('كل ما يخص علاقاتك', 'dom:love');
+      '<div class="yp-stack">' + sp.cur.slice(0, 3).map(function (c) { return cardHtml(c, false); }).join('') + sp.up.slice(0, 2).map(function (c) { return cardHtml(c, true); }).join('') + placeCards(isLovePl, 4) + '</div>' + moreLink('كل ما يخص علاقاتك', 'dom:love');
   }
   function homeHtml() {
     return heroHtml() + htBar() + '<div class="yp-hp" id="yp-hp">' + panelHtml(ST.ht || 'day') + '</div>';
@@ -750,6 +741,7 @@
     var hp = document.getElementById('yp-hp'); if (!hp || document.hidden || (ST.ht || 'day') !== 'day' || ST.view) return;
     var html = panelHtml('day'); if (hp.innerHTML !== html) hp.innerHTML = html;
   }, 600000);
+  window.AqeeqYouWarm = function () { try { loadTexts(); allCycles(); } catch (e) {} };
   document.addEventListener('aq:session', function () { route(); render(); });
   document.addEventListener('aq:admin', render);
   /* اهتزاز خفيف عند لمس أزرار التنقل (أندرويد؛ يتجاهله ما لا يدعمه) */

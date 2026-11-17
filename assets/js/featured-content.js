@@ -373,7 +373,6 @@
       '<header class="fc-art-hd">'+ topic(a) +'<div class="fc-meta">' + meta(a) + '</div><h1 id="fc-art-title" tabindex="-1">' + esc(a.title) + '</h1><p class="fc-intro">' + esc(a.excerpt) + '</p></header></article>' +
       '<div class="fc-hero-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div>' +
       '<div class="fc-art"><div class="fc-body">' + body(a) + '</div>' +
-      '<div class="fc-note"><b>ملاحظة تحريرية:</b> ' + esc(a.note || '') + '</div>' +
       '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '">' + ARROW + '<span>' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '</span></button>' +
       '<button type="button" class="fc-ghost" data-fc-save aria-pressed="false" aria-label="حفظ المقال">' + ICO.save + '<span>حفظ المقال</span></button>' +
       '<span class="fc-share"><button type="button" class="fc-ghost" data-fc-share aria-haspopup="menu" aria-expanded="false" aria-label="مشاركة المقال">' + ICO.share + '<span>مشاركة المقال</span></button>' +

@@ -11,6 +11,7 @@
     var T = (jde - 2415020) / 36525; return (22 * 3600 + 27 * 60 + 37.65 + 5025.75 * T + 1.11 * T * T) / 3600;
   }
   function houseOf(ch, lon) {
+    if (!ch.known || !ch.cusps || typeof ch.asc !== 'number') { var sun = ch.bodies.filter(function (b) { return b.key === 'sun'; })[0]; return Math.floor(norm(lon - (sun ? sun.lon : 0)) / 30) + 1; }
     var c = ch.cusps || [], off = c.length >= 13 ? 1 : 0;
     for (var i = 1; i <= 12; i++) {
       var a = norm(c[i - 1 + off]), b = norm(c[(i % 12) + off]);
@@ -95,7 +96,7 @@
     var phase = PH[key][p][s % 2], house = HS[h - 1][s % 3];
     var edge = deg === 0 ? ' (في أول درجة من البرج)' : deg === 29 ? ' (في آخر درجة قبل الانتقال)' : '';
     var text = (Math.floor(s / 3) % 2 === 0) ? phase + '، وهذا يمسّ ' + house + '.' : 'يتجه الانتباه اليوم إلى ' + house + '، ' + phase + '.';
-    return { key: key, name: PN[key], sign: SG[sg], deg: deg, house: h, phase: PHN[p], text: text + edge, act: ACT[key][(s >> 2) % 2], retro: !!b.retro };
+    return { key: key, name: PN[key], sign: SG[sg], deg: deg, house: h, phase: PHN[p], text: text + edge, act: ACT[key][(s >> 2) % 2], retro: !!b.retro, approx: !ch.known };
   }
   /* بطاقات اليوم: القمر دائمًا (يتبدّل كل ساعات)، ثم كوكبان من الشخصيين بالتناوب اليومي */
   function today(ch) {
