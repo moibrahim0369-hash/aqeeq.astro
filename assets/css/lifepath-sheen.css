@@ -47,3 +47,19 @@ html body section#lifepath-compat :is(.syn-person,.y27-about,.y27-ex,.lpa-card,.
 .lpa-hb.is-center{justify-content:center;margin:0 0 10px;display:flex}
 .lpa-card>summary .lpa-hb{margin-inline-start:auto}
 html body section#lifepath-compat .syn-person .field,html body section#lifepath-compat .syn-rel{background:#FFFFFF!important;border:1px solid rgba(198,168,124,.22)!important;box-shadow:0 4px 16px rgba(90,24,42,.05)!important}
+
+/* شريط السياق: زر رجوع + العنوان + زر التنقل بين الأداتين */
+html body section:is(#lifepath,#lifepath-compat) .aq-section-topbar.aq-ctxbar{gap:8px!important;flex-wrap:nowrap!important}
+html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-back{display:inline-flex!important;align-items:center;gap:6px;flex:none;width:auto!important;height:auto!important;padding:7px 12px 7px 11px!important;border-radius:999px!important;background:#6A2038!important;color:#FFF3D6!important;border:1px solid #C8A15A!important;font:700 .82rem 'Cairo',sans-serif!important;box-shadow:0 4px 12px rgba(58,14,28,.18)!important;cursor:pointer}
+html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-back svg{width:16px!important;height:16px!important;flex:none;color:#E9CE8E;stroke:#E9CE8E;fill:none}
+html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-title{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.86rem!important}
+html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-x{display:inline-flex;align-items:center;gap:5px;flex:none;margin-inline-start:auto;padding:7px 10px;border-radius:999px;background:#FFFFFF;border:1px solid rgba(198,168,124,.55);color:#6B1D2F;font:700 .72rem 'Cairo',sans-serif;text-decoration:none;box-shadow:0 4px 12px rgba(90,24,42,.06)}
+html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-x svg{width:14px;height:14px;flex:none;color:#B78A52}
+@media(max-width:400px){html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-title{display:none}}
+/* لا زر "العودة للرئيسية" داخل نتيجة مسار الحياة */
+html body section#lifepath #lpresult .result-top-bar:has(.btn-return-home),html body section#lifepath #lpresult .btn-return-home{display:none!important}
+/* عمق وارتفاع موحّد لبطاقات القراءة */
+html body section#lifepath #lpresult .lpg .lpg-row{box-shadow:0 6px 20px rgba(90,24,42,.06),0 1px 3px rgba(90,24,42,.04)!important}
+html body section#lifepath #lpresult .lpg .lpg-ic{background:#FBF4E4!important;border:1px solid #E3CFA4!important;border-radius:15px!important;box-shadow:none!important;color:#6B1D2F!important}
+html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-x{flex:0 1 auto;min-width:0;max-width:calc(100% - 92px)}
+html body section.sec:is(#lifepath,#lifepath-compat):not(#_a):not(#_b):not(#_c) .aq-ctx-x span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:auto;letter-spacing:0}

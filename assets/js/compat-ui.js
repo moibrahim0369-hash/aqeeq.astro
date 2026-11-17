@@ -43,6 +43,7 @@
   function pill(a, ic, label) { return '<button type="button" data-cph="' + a + '" aria-label="' + label + '">' + sv(HI[ic], 1.7) + '<span>' + label + '</span></button>'; }
   function setForm(show) {
     var f = $('#synastry-form'), m = $('#cpm-modes'), ex = $('#lifepath-compat .cp-explain');
+    var sec = $('#lifepath-compat'); if (sec) sec.classList.toggle('cp-res', !show);
     [f, m, ex].forEach(function (el) { if (!el) return; if (show) { el.style.removeProperty('display'); el.hidden = false; } else el.style.setProperty('display', 'none', 'important'); });
   }
   function clearResult() { closeSheet(); var o = $('#syn-result'); if (o) { o.hidden = true; o.innerHTML = ''; } }
@@ -53,14 +54,14 @@
     var master = out.querySelector('.syn-master-badge');
     h.innerHTML = '<span class="cph-k">توافق مسار الحياة · ' + esc(REL[D.rel] || '') + '</span>' +
       '<div class="cph-pair">' +
-      '<div class="cph-p"><span class="cph-n">' + esc(D.p1) + '</span><b>' + esc(D.na) + '</b><small>مسار حياته</small></div>' +
+      '<div class="cph-p"><span class="cph-n">' + esc(D.p1) + '</span><b>' + esc(D.na) + '</b><small></small></div>' +
       '<div class="cph-sc"><span class="cph-ring"><strong>' + esc(D.score) + '<em>%</em></strong></span><small>' + esc(D.label) + '</small></div>' +
-      '<div class="cph-p"><span class="cph-n">' + esc(D.p2) + '</span><b>' + esc(D.nb) + '</b><small>مسار حياتها</small></div></div>' +
+      '<div class="cph-p"><span class="cph-n">' + esc(D.p2) + '</span><b>' + esc(D.nb) + '</b><small></small></div></div>' +
       '<div class="cph-tools">' + pill('edit', 'edit', 'تعديل البيانات') + pill('save', 'save', 'حفظ') + pill('new', 'add', 'توافق جديد') + '</div>';
     /* الوصف (حياته/حياتها) يتبع الجنس المختار، وإلا صيغة محايدة */
     var caps = h.querySelectorAll('.cph-p small');
-    caps[0].textContent = D.g1 === 'female' ? 'مسار حياتها' : D.g1 === 'male' ? 'مسار حياته' : 'مسار الحياة';
-    caps[1].textContent = D.g2 === 'female' ? 'مسار حياتها' : D.g2 === 'male' ? 'مسار حياته' : 'مسار الحياة';
+    caps[0].textContent = D.g1 === 'female' ? 'مسار حياتها' : 'مسار حياته';
+    caps[1].textContent = D.g2 === 'female' ? 'مسار حياتها' : 'مسار حياته';
     if (master) h.appendChild(master);
     out.insertBefore(h, out.firstChild);
     setForm(false);

@@ -49,3 +49,9 @@ html body #lifepath-compat .cpt-ch svg{width:18px;height:18px}
 .cps-body p{margin:0 0 8px;font:500 .95rem/1.95 'Cairo',sans-serif;color:#3A2A2E}
 .cps-body .cps-who{margin:6px 0 2px;padding:8px 12px;border-radius:12px;background:#6A2038;color:#FFF3D6;font:700 .95rem 'Cairo',sans-serif}
 .cps-body .cps-who~.cps-who{margin-top:22px}
+
+/* بطاقات الأقسام: نفس عمق بطاقات مسار الحياة */
+html body #lifepath-compat .cpt-tile{padding:14px 12px;border-radius:20px;box-shadow:0 6px 20px rgba(90,24,42,.06),0 1px 3px rgba(90,24,42,.04)}
+html body #lifepath-compat .cpt-ic{width:44px;height:44px;border-radius:15px;background:#FBF4E4;border:1px solid #E3CFA4;box-shadow:none}
+/* إخفاء رأس الصفحة التعريفي عند ظهور النتيجة */
+html body section#lifepath-compat.cp-res .lpx-head{display:none!important}

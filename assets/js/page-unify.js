@@ -32,7 +32,11 @@
       var ctxSec = bar.closest('#lifepath,#lifepath-compat');
       if (ctxSec) {
         bar.classList.add('aq-ctxbar');
-        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" transform="matrix(-1 0 0 1 24 0)"/></svg></button><span class="aq-ctx-title">' + (ctxSec.id === 'lifepath-compat' ? 'توافق مسار الحياة' : 'مسار الحياة') + '</span>';
+        var arrow = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+        var diag = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+        var isC = ctxSec.id === 'lifepath-compat';
+        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع">' + arrow + '<span>رجوع</span></button><span class="aq-ctx-title">' + (isC ? 'توافق مسار الحياة' : 'مسار الحياة') + '</span>' +
+          '<a class="aq-ctx-x" href="' + (isC ? '#lifepath' : '#lifepath-compat') + '"><span>' + (isC ? 'اكتشف مسارك الفردي' : 'احسب توافقك مع شريكك') + '</span>' + diag + '</a>';
         return;
       }
       var box = document.createElement('div'); box.className = 'aq-nav-actions';
