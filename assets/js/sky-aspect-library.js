@@ -1,4 +1,4 @@
-/* مكتبة توقعات الأسبكتات في صفحة السماء: نص خاص لكل كوكبين وزاوية، يستبدل القالب العام.
+/* مكتبة توقعات الأسبكتات في صفحة السماء: نص خاص لكل كوكبين وزاوية، يُضاف إلى النص القديم ولا يمحوه.
    الملفات في assets/data/sky-aspects: index.json (المجموعات المتاحة) وstages.json (سطر حالة الزاوية)
    وملف لكل مجموعة (moon.json ...) مفتاح كل نص: كوكب|كوكب|زاوية بترتيب الكواكب المعتاد.
    إن لم يوجد نص للتركيبة يبقى القالب القديم كما هو. */
@@ -36,11 +36,17 @@
       var el = list[i], e = LIB[el.getAttribute('data-pair')];
       if (!e || el.getAttribute('data-lib') === '1') continue;
       var bx = el.querySelector('.ax-b'); if (!bx) continue;
-      var old = bx.querySelector('.ax-note'), keep = old ? old.outerHTML : '';
+      var kids = [].slice.call(bx.children), intro = '', reality = '', oldQ = '', keep = '';
+      kids.forEach(function (c) {
+        if (c.classList.contains('ax-q')) oldQ += c.outerHTML;
+        else if (c.classList.contains('ax-note')) keep += c.outerHTML;
+        else if (c.querySelector('b')) reality += c.outerHTML;
+        else intro += c.outerHTML;
+      });
       var st = stageLine(el.getAttribute('data-pair'), el.getAttribute('data-ph'));
-      bx.innerHTML = (e.t || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') +
-        (e.q ? '<p class="ax-q">' + esc(e.q) + '</p>' : '') +
-        (st ? '<p class="ax-note ax-stage">' + esc(st) + '</p>' : '') + keep;
+      bx.innerHTML = intro + (e.t || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + reality +
+        (st ? '<p class="ax-note ax-stage">' + esc(st) + '</p>' : '') + keep +
+        (e.q ? '<p class="ax-q">' + esc(e.q) + '</p>' : '') + oldQ;
       el.setAttribute('data-lib', '1');
     }
   }
