@@ -44,7 +44,8 @@
         else intro += c.outerHTML;
       });
       var st = stageLine(el.getAttribute('data-pair'), el.getAttribute('data-ph'));
-      bx.innerHTML = intro + (e.t || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + reality +
+      var pk = el.getAttribute('data-pair').split('|'), era = LIB[pk[0] + '|' + pk[1] + '|era'];
+      bx.innerHTML = intro + (era ? (era.t || []).map(function (p) { return '<p class="ax-era">' + esc(p) + '</p>'; }).join('') : '') + (e.t || []).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + reality +
         (st ? '<p class="ax-note ax-stage">' + esc(st) + '</p>' : '') + keep +
         (e.q ? '<p class="ax-q">' + esc(e.q) + '</p>' : '') + oldQ;
       el.setAttribute('data-lib', '1');

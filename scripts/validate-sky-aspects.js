@@ -16,9 +16,10 @@ const all = [];
 for (const g of idx.groups) {
   const d = JSON.parse(fs.readFileSync(path.join(DIR, g + '.json'), 'utf8'));
   const expect = []; GROUPS[g]().forEach(p => ASP.forEach(a => { if (!(IMPOSSIBLE[p] || []).includes(a)) expect.push(p + '|' + a); }));
-  if (['moon', 'sun', 'mercury', 'venus', 'mars', 'jupiter', 'saturn'].includes(g)) {
+  if (['moon', 'sun', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'].includes(g)) {
     expect.forEach(k => { if (!d[k]) err.push(g + ': ناقص ' + k); });
-    Object.keys(d).forEach(k => { if (!expect.includes(k)) err.push(g + ': مفتاح غير متوقع ' + k); });
+    GROUPS[g]().forEach(p => { if (!d[p + '|era'] && ['uranus', 'neptune'].includes(g)) err.push(g + ': ناقص خلفية ' + p); });
+    Object.keys(d).forEach(k => { if (!k.endsWith('|era') && !expect.includes(k)) err.push(g + ': مفتاح غير متوقع ' + k); });
   }
   for (const k of Object.keys(d)) {
     const e = d[k], txt = (e.t || []).join(' ') + ' ' + (e.q || '');
