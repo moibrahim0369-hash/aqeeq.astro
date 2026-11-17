@@ -75,28 +75,50 @@
     return valueText ? `<p>${esc(valueText)}</p>` : (fallback ? `<p>${esc(fallback)}</p>` : "");
   }
 
-  function personLens(name, person, lens, relationType) {
+  // Gender agreement (display only): feminine wording for a female partner, dual form for a shared paragraph of mixed genders.
+  const gfix = (value, ctx, opts) => {
+    const text = typeof value === "string" ? value.trim() : "";
+    if (!text || !window.AqeqGender) return text;
+    return window.AqeqGender.fix(text, ctx.g, { ...opts, both: !!ctx.both });
+  };
+  const gpara = (value, ctx, opts) => para(gfix(value, ctx, opts));
+  const sharedCtx = (gA, gB) => {
+    const fa = gA === "female", fb = gB === "female";
+    return fa && fb ? { g: "female" } : (fa || fb ? { g: "female", both: true } : { g: "" });
+  };
+
+  // One shared paragraph when both partners get the identical text; otherwise one paragraph per partner under their name.
+  function dualParas(t1, t2, ctxA, ctxB, nameA, nameB, opts) {
+    if (typeof t1 === "string" && t1.trim() && t1 === t2) {
+      return gpara(t1, sharedCtx(ctxA.g, ctxB.g), opts);
+    }
+    const one = (name, t, ctx) => (t && String(t).trim()) ? `<h4>${esc(name)}</h4>${gpara(t, ctx, opts)}` : "";
+    return one(nameA, t1, ctxA) + one(nameB, t2, ctxB);
+  }
+
+  function personLens(name, person, lens, relationType, ctx) {
     const label = relationType === "love" ? "قراءة العلاقة العاطفية"
       : relationType === "family" ? "قراءة العلاقة الأسرية" : "قراءة الشراكة العملية";
     const actionsTitle = relationType === "business" ? "خطوة عملية للطرف ده" : "خطوة يقدر يعملها الطرف ده";
     const partnerTitle = relationType === "business" ? "إيه اللي الطرف الآخر يقدر يقدمه؟" : "إيه اللي الطرف الآخر يقدر يعمله؟";
+    const P = (v, o) => gpara(v, ctx, o);
     return `
       <article class="syn-result-card">
         <h3>${esc(name)} · ${esc(label)}</h3>
         <p class="syn-kpi">${safeText(person.identity, "مسار الحياة")}</p>
-        ${para(lens.hook)}
-        <h4>زاوية الفهم</h4>${para(lens.diagnosis)}
-        <h4>الاحتياج الأساسي</h4>${para(person.coreNeed)}
-        <h4>نقطة حساسة</h4>${para(lens.hidden_wound || person.coreWound)}
-        <h4>الظل المحتمل</h4>${para(person.shadowSide)}
-        <h4>المحفزات</h4>${para(person.triggers)}
-        <h4>${esc(actionsTitle)}</h4>${para(lens.prescription_for_you)}
-        <h4>${esc(partnerTitle)}</h4>${para(lens.prescription_for_partner)}
-        <h4>جملة تساعد على الإصلاح</h4>${para(lens.healing_line)}
+        ${P(lens.hook)}
+        <h4>زاوية الفهم</h4>${P(lens.diagnosis)}
+        <h4>الاحتياج الأساسي</h4>${P(person.coreNeed)}
+        <h4>نقطة حساسة</h4>${P(lens.hidden_wound || person.coreWound)}
+        <h4>الظل المحتمل</h4>${P(person.shadowSide)}
+        <h4>المحفزات</h4>${P(person.triggers)}
+        <h4>${esc(actionsTitle)}</h4>${P(lens.prescription_for_you)}
+        <h4>${esc(partnerTitle)}</h4>${P(lens.prescription_for_partner, { third: true })}
+        <h4>جملة تساعد على الإصلاح</h4>${P(lens.healing_line)}
       </article>`;
   }
 
-  function renderReport(nameA, nameB, report, relationType) {
+  function renderReport(nameA, nameB, report, relationType, genders = {}) {
     const { meta, free, premium } = report;
     const p1 = premium.path1 || {};
     const p2 = premium.path2 || {};
@@ -113,6 +135,11 @@
     const attraction = premium.attractionFull || {};
     const attractionB = premium.attractionFullB || {};
     const isLove = relationType === "love";
+    const ctxA = { g: genders.a || "" };
+    const ctxB = { g: genders.b || "" };
+    const sameNumber = Number(meta.path1) === Number(meta.path2);
+    const shared = sharedCtx(ctxA.g, ctxB.g);
+    const pairNames = `${nameA} و${nameB}`;
     const overlays = premium.masterOverlays || [];
     const karmic = premium.karmicDebts || [];
     const breakdown = meta.breakdown || {};
@@ -144,9 +171,9 @@
         }).join("")}
       </article>` : "";
 
-    const relationshipDynamics = relationType === "love" ? "ديناميكية الحب والاحتياج"
-      : relationType === "family" ? "ديناميكية العلاقة الأسرية" : "ديناميكية الشراكة والعمل";
-    const relationshipSummary = `${safeText(lens1.diagnosis, "")}<br><br>${safeText(lens2.diagnosis, "")}`;
+    const relationshipDynamics = relationType === "love" ? "بتحبوا بعض إزاي ومحتاجين إيه؟"
+      : relationType === "family" ? "بتتعاملوا مع بعض إزاي؟" : "بتشتغلوا مع بعض إزاي؟";
+    const relationshipSummary = dualParas(lens1.diagnosis, lens2.diagnosis, ctxA, ctxB, nameA, nameB);
     const masterBadge = meta.isCompositeMaster
       ? `<p class="syn-master-badge" role="status"><svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg> تنبيه قدري: تم رصد طاقة ماستر كبرى (${esc(meta.rawBaseSum)}) في رابط هذا الثنائي!</p>`
       : "";
@@ -192,20 +219,25 @@
 
       <article class="syn-premium unlocked" id="syn-premium">
         <div class="syn-premium-content">
-          <h3>التقرير المتعمق للشراكة</h3>
+          <h3>إزاي بتفهموا بعض من جوه؟</h3>
           <div class="syn-result-grid">
-            ${personLens(nameA, p1, lens1, relationType)}
-            ${personLens(nameB, p2, lens2, relationType)}
+            ${sameNumber
+              ? personLens(pairNames, p1, lens1, relationType, shared)
+              : personLens(nameA, p1, lens1, relationType, ctxA) + personLens(nameB, p2, lens2, relationType, ctxB)}
             ${card(relationshipDynamics, relationshipSummary)}
-            ${card("نقطة الصدام الخفية", `<p>${safeText(lens1.daily_fuse, "")}</p><p>${safeText(lens2.daily_fuse, "")}</p><h4>المحفز المشترك</h4><p>${safeText(bridge.hidden_trigger, "")}</p>`)}
-            ${card(relationType === "business" ? "روشتة الشراكة العملية" : relationType === "family" ? "روشتة إصلاح العلاقة الأسرية" : "روشتة الحل بينكم", `
+            ${card("نقطة الصدام الخفية", `${dualParas(lens1.daily_fuse, lens2.daily_fuse, ctxA, ctxB, nameA, nameB)}<h4>المحفز المشترك</h4><p>${safeText(bridge.hidden_trigger, "")}</p>`)}
+            ${card(relationType === "business" ? "نعمل إيه عشان الشغل يمشي؟" : relationType === "family" ? "نعمل إيه عشان البيت يرتاح؟" : "نعمل إيه عشان العلاقة تنجح؟", `
               <h4>الجملة المشتركة اللي تفتح باب الإصلاح</h4>${para(bridge.repair_statement)}
-              <h4>اللي بيفرق مع ${esc(nameA)}</h4>${para(p1.magicKey)}
-              <h4>خطوة عملية لـ ${esc(nameA)}</h4>${para(lens1.prescription_for_you)}
-              <h4>الجملة العلاجية المناسبة لـ ${esc(nameA)}</h4>${para(lens1.healing_line)}
-              <h4>اللي بيفرق مع ${esc(nameB)}</h4>${para(p2.magicKey)}
-              <h4>خطوة عملية لـ ${esc(nameB)}</h4>${para(lens2.prescription_for_you)}
-              <h4>الجملة العلاجية المناسبة لـ ${esc(nameB)}</h4>${para(lens2.healing_line)}
+              ${sameNumber ? `
+              <h4>اللي بيفرق مع ${esc(pairNames)}</h4>${gpara(p1.magicKey, shared)}
+              <h4>خطوة عملية لـ ${esc(pairNames)}</h4>${gpara(lens1.prescription_for_you, shared)}
+              <h4>الجملة العلاجية المناسبة لـ ${esc(pairNames)}</h4>${gpara(lens1.healing_line, shared)}` : `
+              <h4>اللي بيفرق مع ${esc(nameA)}</h4>${gpara(p1.magicKey, ctxA)}
+              <h4>خطوة عملية لـ ${esc(nameA)}</h4>${gpara(lens1.prescription_for_you, ctxA)}
+              <h4>الجملة العلاجية المناسبة لـ ${esc(nameA)}</h4>${gpara(lens1.healing_line, ctxA)}
+              <h4>اللي بيفرق مع ${esc(nameB)}</h4>${gpara(p2.magicKey, ctxB)}
+              <h4>خطوة عملية لـ ${esc(nameB)}</h4>${gpara(lens2.prescription_for_you, ctxB)}
+              <h4>الجملة العلاجية المناسبة لـ ${esc(nameB)}</h4>${gpara(lens2.healing_line, ctxB)}`}
               <h4>بروتوكول الإصلاح المشترك</h4>${para(bridge.healing_protocol)}
             `)}
           </div>
@@ -255,7 +287,7 @@
       const pathB = pathFromDate(dateB);
       const result = window.AqeqEngine.calculateAqeqCompatibility(pathA, pathB, dateDay(dateA), dateDay(dateB));
       const report = window.AqeqEngine.buildReport(result, DATA, relationEngineType(selectedType));
-      renderReport(nameA, nameB, report, relationEngineType(selectedType));
+      renderReport(nameA, nameB, report, relationEngineType(selectedType), { a: $("syn-gender-a")?.value || "", b: $("syn-gender-b")?.value || "" });
       output.scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (error) {
       console.error("Aqeq synastry calculation failed:", error);

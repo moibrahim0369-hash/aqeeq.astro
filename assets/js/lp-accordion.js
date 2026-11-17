@@ -8,7 +8,7 @@
     star: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>'
   };
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function tone(title) { return /\(\+\)|النور|القوة|روشتة|الحل/.test(title) ? 'light' : /\(-\)|\(−\)|الظل|الصدام|الديون|فخ/.test(title) ? 'shadow' : ''; }
+  function tone(title) { return /\(\+\)|النور|القوة|روشتة|الحل|نعمل إيه/.test(title) ? 'light' : /\(-\)|\(−\)|الظل|الصدام|الديون|فخ/.test(title) ? 'shadow' : ''; }
   function card(title, body, opt) {
     opt = opt || {};
     var d = document.createElement('details'); d.className = 'lpa-card' + (opt.tone ? ' is-' + opt.tone : ''); if (opt.open) d.open = true;
@@ -102,8 +102,8 @@
       if (/منظور/.test(t)) return [['مساره', t.indexOf(D.na) > -1 ? D.p1 : D.p2]];
       if (/قراءة العلاقة|قراءة الشراكة/.test(t)) return [['مساره', t.indexOf(D.na) === 0 ? D.p1 : D.p2]];
       if (/الجسر اليومي|نقطة الصدام/.test(t)) return [['الجسر اليومي', D.daily]];
-      if (/الجسر الأساسي|جسر العلاقة|روشتة/.test(t)) return [['الجسر الأساسي', D.core]];
-      if (/ديناميكية/.test(t)) return [['الرقم المشترك', D.comp]];
+      if (/الجسر الأساسي|جسر العلاقة|روشتة|نعمل إيه/.test(t)) return [['الجسر الأساسي', D.core]];
+      if (/ديناميكية|بتحبوا بعض|بتتعاملوا|بتشتغلوا/.test(t)) return [['الرقم المشترك', D.comp]];
       if (/الأرقام الرئيسية/.test(t)) return [['المساران', D.p1 + ' · ' + D.p2]];
       return null;
     }
