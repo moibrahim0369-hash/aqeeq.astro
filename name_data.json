@@ -1077,5 +1077,151 @@
         ]
       }
     }
+  },
+  "personal_months": {
+    "label": "الشهر الشخصي",
+    "calculation": "السنة الشخصية (1–9) + رقم الشهر الميلادي، ثم الاختزال مع حفظ 11 و22.",
+    "numbers": {
+      "1": {
+        "number": 1,
+        "title": "",
+        "sections": []
+      },
+      "2": {
+        "number": 2,
+        "title": "",
+        "sections": []
+      },
+      "3": {
+        "number": 3,
+        "title": "",
+        "sections": []
+      },
+      "4": {
+        "number": 4,
+        "title": "",
+        "sections": []
+      },
+      "5": {
+        "number": 5,
+        "title": "",
+        "sections": []
+      },
+      "6": {
+        "number": 6,
+        "title": "",
+        "sections": []
+      },
+      "7": {
+        "number": 7,
+        "title": "",
+        "sections": []
+      },
+      "8": {
+        "number": 8,
+        "title": "",
+        "sections": []
+      },
+      "9": {
+        "number": 9,
+        "title": "",
+        "sections": []
+      },
+      "11": {
+        "number": 11,
+        "title": "",
+        "sections": []
+      },
+      "22": {
+        "number": 22,
+        "title": "",
+        "sections": []
+      }
+    }
+  },
+  "personal_days": {
+    "label": "اليوم الشخصي",
+    "calculation": "الشهر الشخصي + رقم اليوم الميلادي، ثم الاختزال مع حفظ 11 و22.",
+    "numbers": {
+      "1": {
+        "number": 1,
+        "title": "",
+        "sections": []
+      },
+      "2": {
+        "number": 2,
+        "title": "",
+        "sections": []
+      },
+      "3": {
+        "number": 3,
+        "title": "",
+        "sections": []
+      },
+      "4": {
+        "number": 4,
+        "title": "",
+        "sections": []
+      },
+      "5": {
+        "number": 5,
+        "title": "",
+        "sections": []
+      },
+      "6": {
+        "number": 6,
+        "title": "",
+        "sections": []
+      },
+      "7": {
+        "number": 7,
+        "title": "",
+        "sections": []
+      },
+      "8": {
+        "number": 8,
+        "title": "",
+        "sections": []
+      },
+      "9": {
+        "number": 9,
+        "title": "",
+        "sections": []
+      },
+      "11": {
+        "number": 11,
+        "title": "",
+        "sections": []
+      },
+      "22": {
+        "number": 22,
+        "title": "",
+        "sections": []
+      }
+    }
+  },
+  "maturity_extra": {
+    "label": "رقم النضج: نصوص الأرقام الرئيسية 11 و22 و33 (الخانة المكتملة تتقدم على النص الحالي)",
+    "calculation": "مسار الحياة + رقم التعبير مع حفظ الأرقام الرئيسية؛ 33 يظهر عند مجموع 33 (مثل 11 + 22).",
+    "numbers": {
+      "11": {
+        "number": 11,
+        "title": "",
+        "subtitle": "",
+        "sections": []
+      },
+      "22": {
+        "number": 22,
+        "title": "",
+        "subtitle": "",
+        "sections": []
+      },
+      "33": {
+        "number": 33,
+        "title": "",
+        "subtitle": "",
+        "sections": []
+      }
+    }
   }
 }
