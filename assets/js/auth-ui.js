@@ -16,7 +16,7 @@
     else {
       back.hidden = true; set(forgot, 'نسيت كلمة المرور؟');
       if (m === 'signup') { set(title, 'إنشاء حساب جديد'); set(sub, 'ابدأ مساحتك الشخصية لحفظ قراءاتك وتقاريرك.'); set(swQ, 'لديك حساب بالفعل؟'); set(swBtn, 'تسجيل الدخول'); }
-      else { set(title, 'مرحبًا بعودتك'); set(sub, 'مساحتك الشخصية لاكتشاف ذاتك وحفظ قراءاتك وتقاريرك.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
+      else { set(title, 'مرحبًا بك في عالمك'); set(sub, 'سجّل دخولك لوصول أسرع لكل خدماتك، وتوقعات يومية مخصصة لخرائطك كلها مجمعة في مكان واحد.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
     }
     if (submit && submit.textContent.trim() === 'دخول') set(submit, 'تسجيل الدخول');
   }
@@ -43,5 +43,12 @@
   /* Esc يغلق النافذة */
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && location.hash === '#account') location.hash = '#home'; });
   window.addEventListener('hashchange', function () { if (location.hash !== '#account' && reset) { reset = false; render(); } });
+  /* شاشة الدخول: زر البريد يفتح الفورم بحركة ناعمة */
+  var emailOpen = q('#acct-email-open'), guest = q('#acct-guest');
+  if (emailOpen && guest) {
+    emailOpen.addEventListener('click', function () { guest.classList.add('acx-email'); var em = q('#acct-email'); if (em) setTimeout(function () { em.focus(); }, 60); });
+    window.addEventListener('hashchange', function () { if (location.hash !== '#account') guest.classList.remove('acx-email'); });
+  }
+
   render();
 })();

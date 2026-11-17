@@ -1,0 +1,48 @@
+/* شاشة الدخول كاملة على الموبايل (App-like): تظهر لما الصفحة تكون #account.
+   الهيدر وشريط التنقل السفلي بيتخفوا، والواجهة الأولية زرين بس، والفورم يظهر بعد اختيار البريد. */
+@media (max-width:760px){
+  html[data-aqr="account"] .aqh-header,
+  html[data-aqr="account"] #aqn-bnav,
+  html[data-aqr="account"] .aqn-scrim,
+  html[data-aqr="account"] .aq-notif,
+  html[data-aqr="account"] .cmp-fab{display:none!important}
+
+  html[data-aqr="account"] section#account.sec.acct-modal.acx{
+    position:fixed!important;inset:0!important;width:100%!important;max-width:none!important;height:100dvh!important;
+    margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;
+    overflow-y:auto!important;-webkit-overflow-scrolling:touch;
+    background:
+      radial-gradient(120% 55% at 50% -5%,rgba(212,175,110,.24),transparent 62%),
+      radial-gradient(90% 45% at 100% 100%,rgba(214,150,160,.16),transparent 62%),
+      #F7F1E6!important;
+  }
+  html[data-aqr="account"] section#account.sec.acct-modal.acx::before,html[data-aqr="account"] section#account.sec.acct-modal.acx::after{display:none!important}
+  #account .sheet-x{position:fixed!important;top:calc(14px + env(safe-area-inset-top,0px));inset-inline-start:16px;inset-inline-end:auto;z-index:5;
+    width:42px;height:42px;border-radius:50%;background:rgba(255,250,240,.92);border:1px solid rgba(139,38,63,.18);color:#70263F;display:grid;place-items:center;box-shadow:0 4px 14px rgba(112,38,63,.10)}
+  #account .acct-wrap{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:calc(72px + env(safe-area-inset-top,0px)) 26px 40px;box-sizing:border-box}
+  html body section#account.acx .acct-tabs[role="tablist"]{display:none!important}
+  html[data-aqr="account"] #account .acct-card-shell{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;max-width:420px!important;width:100%!important;margin:0 auto!important}
+  html[data-aqr="account"] #account .acct-card-shell::before,html[data-aqr="account"] #account .acct-card-shell::after{display:none!important}
+  #account #acct-guest:not(.acx-email) .acct-divider,
+  #account #acct-guest:not(.acx-email) #acct-form,
+  #account #acct-guest:not(.acx-email) .acx-switch{display:none!important}
+  #account #acct-email-open{display:flex;justify-content:center;align-items:center;width:100%;min-height:52px;margin-top:12px;border-radius:999px;
+    background:transparent;border:1.5px solid rgba(112,38,63,.45);color:#70263F;font-weight:600}
+  #account #acct-guest.acx-email #acct-email-open{display:none!important}
+  #account #acct-guest.acx-email #acct-form,
+  #account #acct-guest.acx-email .acx-switch,
+  #account #acct-guest.acx-email .acct-divider{animation:acxIn .5s cubic-bezier(.2,.7,.2,1) both}
+  #account #acct-guest.acx-email .acx-switch{animation-delay:.12s}
+  @keyframes acxIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){#account #acct-guest.acx-email *{animation:none!important}}
+}
+@media (max-width:760px){
+  /* شاشة الزائر: لوحة الإحصائيات بتختفي وتسيب الواجهة نضيفة */
+  html[data-aqr="account"] #account .acct-card-shell:has(#acct-guest:not([hidden])) .aq-dashboard-grid{display:none!important}
+}
+@media (max-width:760px){
+  html[data-aqr="account"] #account .acx-crest,
+  html[data-aqr="account"] #account .acx-visual{display:none!important}
+  html[data-aqr="account"] #account .acct-wrap{padding-inline:26px!important}
+  html[data-aqr="account"] #account .acct-brand-header{margin-top:0}
+}
