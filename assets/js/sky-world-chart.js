@@ -44,6 +44,7 @@
   var HOUSE_AR = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن', 'التاسع', 'العاشر', 'الحادي عشر', 'الثاني عشر'];
   var HOUSE_AREA = ['الشخصية وشكل الظهور', 'المال والإحساس بالقيمة', 'التواصل والتنقلات القريبة', 'البيت والعائلة والجذور', 'الحب والمتعة والإبداع', 'العمل اليومي والصحة', 'الشراكات والعلاقات', 'التحولات والمشاركات العميقة', 'السفر والمعرفة والفلسفة', 'المسار المهني والمكانة', 'الصداقات والأحلام', 'العزلة والباطن والخفايا'];
   var ASP = [['conj', 0, 'اقتران', 8], ['sext', 60, 'تسديس', 5], ['square', 90, 'تربيع', 6], ['trine', 120, 'تثليث', 6], ['opp', 180, 'مقابلة', 7]];
+  var RX = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 4 9l5 5"/><path d="M4 9h9.500a5.500 5.500 0 0 1 0 11H10"/></svg>';
   var NODE_G = 'M4 18h5a6 6 0 1 1 6 0h5';
   var GLY = {};
   var $ = function (id) { return document.getElementById(id); };
@@ -130,7 +131,7 @@
         '<circle class="swc-hit" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="19" fill="#6B2234" fill-opacity="0"/>' +
         '<circle class="swc-ring" cx="' + f(p[0]) + '" cy="' + f(p[1]) + '" r="16.5" fill="#FFFDF7" fill-opacity=".92" stroke="#C5A059" stroke-width="1.1"/>' +
         '<path class="swc-glyph" transform="translate(' + f(p[0] - 14) + ' ' + f(p[1] - 14) + ') scale(1.167)" d="' + g + '" fill="none" stroke="#4A1521" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
-        (it.retro ? '<circle cx="' + f(p[0] + 13) + '" cy="' + f(p[1] - 13) + '" r="7.5" fill="#B8473E" stroke="#FFFDF7" stroke-width="1.2"/><text x="' + f(p[0] + 13) + '" y="' + f(p[1] - 9.8) + '" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff" font-family="Cairo,sans-serif">R</text>' : '') + '</g>';
+        (it.retro ? '<g class="swc-rx"><title>متراجع</title><circle cx="' + f(p[0] + 13) + '" cy="' + f(p[1] - 13) + '" r="8" fill="#B8473E" stroke="#FFFDF7" stroke-width="1.2"/><svg x="' + f(p[0] + 13 - 5) + '" y="' + f(p[1] - 13 - 5) + '" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 9l5 5"/><path d="M4 9h9.500a5.500 5.500 0 0 1 0 11H10"/></svg></g>' : '') + '</g>';
     });
     return o;
   }
@@ -186,7 +187,7 @@
     h += '<div class="wld-keys"><div><small>الطالع</small><b>' + path('s' + ascS, 'wld-sg') + SIGNS_AR[ascS] + ' ' + dm(ch.asc) + '</b></div><div><small>وسط السماء</small><b>' + path('s' + mcS, 'wld-sg') + SIGNS_AR[mcS] + ' ' + dm(ch.mc) + '</b></div><div><small>الشمس</small><b>' + path('s' + st.items[0].sign, 'wld-sg') + SIGNS_AR[st.items[0].sign] + ' ' + dm(st.items[0].lon) + '</b></div><div><small>الكواكب المتراجعة</small><b>' + (retro.length ? retro.map(function (x) { return x.n; }).join('، ') : 'لا يوجد') + '</b></div></div>';
     h += '<div class="wld-card"><h4>توزيع العناصر</h4>' + bar('نار', pc(elc[0]), 'e0') + bar('تراب', pc(elc[1]), 'e1') + bar('هواء', pc(elc[2]), 'e2') + bar('ماء', pc(elc[3]), 'e3') + '<h4>توزيع الأنماط</h4>' + bar('كاردينال', pc(mdc[0]), 'm0') + bar('ثابت', pc(mdc[1]), 'm1') + bar('متحول', pc(mdc[2]), 'm2') + '</div></div></div>';
     h += '<section class="wld-card"><h3>مواقع الكواكب</h3><div class="wld-tbl">' + st.items.concat(st.node ? [st.node] : []).map(function (it) {
-      return '<div class="wld-tr' + (it.retro ? ' is-retro' : '') + '" data-k="' + it.k + '"><span class="wld-ic">' + path(it.k, 'wld-g') + '</span><b>' + it.n + (it.retro ? ' <em>R</em>' : '') + '</b><span class="wld-deg">' + dm(it.lon) + '</span><span class="wld-sgn">' + path('s' + it.sign, 'wld-sg') + SIGNS_AR[it.sign] + '</span><span class="wld-hs">البيت ' + HOUSE_AR[(it.house || 1) - 1] + '</span><span class="wld-st">' + (it.k === 'node' ? 'نقطة' : (it.retro ? 'متراجع' : 'مباشر')) + '</span><p>' + (it.k === 'node' ? 'اتجاه النمو الجماعي والدروس المطلوبة في هذه الفترة.' : fx(it)) + '</p></div>';
+      return '<div class="wld-tr' + (it.retro ? ' is-retro' : '') + '" data-k="' + it.k + '"><span class="wld-ic">' + path(it.k, 'wld-g') + '</span><b>' + it.n + (it.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</b><span class="wld-deg">' + dm(it.lon) + '</span><span class="wld-sgn">' + path('s' + it.sign, 'wld-sg') + SIGNS_AR[it.sign] + '</span><span class="wld-hs">البيت ' + HOUSE_AR[(it.house || 1) - 1] + '</span><span class="wld-st">' + (it.k === 'node' ? 'نقطة' : (it.retro ? 'متراجع' : 'مباشر')) + '</span><p>' + (it.k === 'node' ? 'اتجاه النمو الجماعي والدروس المطلوبة في هذه الفترة.' : fx(it)) + '</p></div>';
     }).join('') + '</div></section>';
     h += '<section class="wld-card"><h3>البيوت الاثنا عشر</h3><div class="wld-houses">' + ch.cusps.map(function (c, i) {
       var s = Math.floor(mod(c) / 30), hs = housesOf(i + 1);
@@ -227,10 +228,10 @@
     sheet = document.createElement('div'); sheet.className = 'aqm-sheet swp-sheet'; sheet.hidden = true;
     sheet.innerHTML = '<div class="aqm-sheet-scrim" data-swpc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="قراءة الكوكب"><span class="aqm-sheet-grip"></span>' +
       '<button type="button" class="aqm-sheet-x" data-swpc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
-      '<div class="aqm-sheet-body swp-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-close" data-swpc>إغلاق</button></div></div>';
+      '<div class="aqm-sheet-body swp-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-swpn><span class="aqm-foot-l"><small>القسم التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-swpc>إغلاق</button></div></div>';
     document.body.appendChild(sheet);
     if ('MutationObserver' in window) new MutationObserver(function () { queueUp(); }).observe(sheet, { childList: true, subtree: true });
-    sheet.addEventListener('click', function (e) { if (e.target.closest('[data-swpc]')) closeSheet(); else if (e.target.closest('a[href]')) closeSheet(); });
+    sheet.addEventListener('click', function (e) { if (e.target.closest('[data-swpn]')) nextPlanet(); else if (e.target.closest('[data-swpc]')) closeSheet(); else if (e.target.closest('a[href]')) closeSheet(); });
     sheet.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeSheet(); });
     return sheet;
   }
@@ -238,9 +239,15 @@
     var s = ensureSheet(), body = s.querySelector('.swp-body'), panel = document.getElementById('sky-panel');
     if (panel && panel.parentNode !== body) body.appendChild(panel);
     body.scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
-    queueUp();
+    updNext(); queueUp();
   }
   function closeSheet() { if (!sheet || sheet.hidden) return; var s = sheet; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
+  /* زر «القسم التالي»: ينتقل للكوكب التالي بنفس ترتيب الشبكة */
+  function planetOrder() { return [].map.call(gridEl.querySelectorAll('.swc-pc'), function (b) { return b.getAttribute('data-k'); }); }
+  function nextKey() { var o = planetOrder(), i = o.indexOf(sel); return o.length ? o[(i + 1) % o.length] : null; }
+  function planetName(k) { for (var i = 0; i < PL.length; i++) if (PL[i][0] === k) return PL[i][1]; return ''; }
+  function updNext() { if (!sheet) return; var b = sheet.querySelector('[data-swpn] b'), k = nextKey(); if (b && k) b.textContent = planetName(k); }
+  function nextPlanet() { var k = nextKey(); if (k) openPlanet(k); }
   function openPlanet(k) {
     if (k === 'node') return;
     highlight(k);
@@ -251,6 +258,31 @@
       else if (n++ < 20) setTimeout(go, 120);
     })();
   }
+
+  /* بطاقات الزوايا: الضغط على أي بطاقة يفتح قراءتها في ورقة سفلية مع «القسم التالي» */
+  var axSheet = null, axI = 0;
+  function axList() { return [].slice.call(document.querySelectorAll('#sky-asp .ax')); }
+  function ensureAx() {
+    if (axSheet) return axSheet;
+    axSheet = document.createElement('div'); axSheet.className = 'aqm-sheet swp-sheet axs-sheet'; axSheet.hidden = true;
+    axSheet.innerHTML = '<div class="aqm-sheet-scrim" data-axc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="قراءة الزاوية"><span class="aqm-sheet-grip"></span>' +
+      '<button type="button" class="aqm-sheet-x" data-axc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
+      '<div class="aqm-sheet-body swp-body axs-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-axn><span class="aqm-foot-l"><small>القسم التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-axc>إغلاق</button></div></div>';
+    document.body.appendChild(axSheet);
+    axSheet.addEventListener('click', function (e) { if (e.target.closest('[data-axn]')) renderAx(axI + 1); else if (e.target.closest('[data-axc]')) closeAx(); });
+    axSheet.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAx(); });
+    return axSheet;
+  }
+  function renderAx(i) {
+    var L = axList(); if (!L.length) return; axI = ((i % L.length) + L.length) % L.length;
+    var el = L[axI], s = ensureAx(), body = s.querySelector('.axs-body'), tone = (el.className.match(/axt-(\w)/) || [])[1] || 'n';
+    body.innerHTML = '<div class="axs-hero axt-' + tone + '">' + el.querySelector('.ax-pair').outerHTML + '<div class="axs-t"><b>' + el.querySelector('.ax-t b').innerHTML + '</b><small>' + el.querySelector('.ax-t small').innerHTML + '</small></div></div><div class="axs-txt">' + el.querySelector('.ax-b').innerHTML + '</div>';
+    var nx = L[(axI + 1) % L.length], nb = s.querySelector('[data-axn]'); nb.hidden = L.length < 2; nb.querySelector('b').textContent = nx.querySelector('.ax-t b').textContent;
+    body.scrollTop = 0; s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open'); queueUp();
+  }
+  function closeAx() { if (!axSheet || axSheet.hidden) return; var s = axSheet; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); root.classList.remove('aqm-sheet-open'); }, 230); }
+  var axHost = document.getElementById('sky-asp');
+  if (axHost) axHost.addEventListener('click', function (e) { var b = e.target.closest('.ax-s'); if (!b) return; var L = axList(), i = L.indexOf(b.parentNode); if (i > -1) renderAx(i); });
 
   function setQuick(btn) { [].forEach.call(form.querySelectorAll('.swc-quick button'), function (b) { b.classList.toggle('is-on', b === btn); }); }
   form.addEventListener('submit', function (e) { e.preventDefault(); live = false; setQuick(null); if (render()) location.hash = '#world'; });
