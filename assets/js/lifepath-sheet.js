@@ -113,14 +113,14 @@
     if (kind === 'name') {
       $$('.aqeq-name-group', res).forEach(function (g) {
         var t = (($('h4', g) || {}).textContent || ''), n = ($('.aqeq-name-number', g) || {}).textContent;
-        out.push({ l: /روح/.test(t) ? 'الروح' : /شخصية/.test(t) ? 'الشخصية' : /تعبير/.test(t) ? 'التعبير' : t.trim(), v: (n || '').trim() });
+        out.push({ l: /روح/.test(t) ? 'الروح' : /شخصية/.test(t) ? 'الشخصية' : /تعبير/.test(t) ? 'التعبير' : t.trim(), v: ((n || '').match(/\d+/) || [''])[0] });
       });
       return out;
     }
     if (kind === 'extra') {
       [['.aqeq-personal-year:not(.aqeq-personal-month):not(.aqeq-personal-day)', 'السنة'], ['.aqeq-personal-month', 'الشهر'], ['.aqeq-personal-day', 'اليوم'], ['.aqeq-extra-birthday', 'الميلاد'], ['.aqeq-extra-maturity', 'النضج']].forEach(function (a) {
         var el = $(a[0], res), n = el && $('.aqeq-extra-number', el);
-        if (n) out.push({ l: a[1], v: n.textContent.trim() });
+        if (n) out.push({ l: a[1], v: (n.textContent.match(/\d+/) || [''])[0] });
       });
       return out;
     }
