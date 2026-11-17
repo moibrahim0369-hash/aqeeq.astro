@@ -3432,7 +3432,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     const lpIntro = document.querySelector("#lifepath .center");
     if (lpIntro) { lpIntro.hidden = true; lpIntro.style.display = "none"; }
     const lpr = $("#lpresult");
-    if (lpr) { lpr.hidden = false; lpr.style.display = "block"; lpr.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); }
+    if (lpr) { lpr.hidden = false; lpr.style.display = "block"; lpr.scrollIntoView({behavior:'auto',block:'start'}); }
   });
 
 
