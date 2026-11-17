@@ -74,16 +74,10 @@
   }
 
   // Gender agreement (display only): feminine wording for a female partner, dual form for a shared paragraph of mixed genders.
-  const gfix = (value, ctx, opts) => {
-    const text = typeof value === "string" ? value.trim() : "";
-    if (!text || !window.AqeqGender) return text;
-    return window.AqeqGender.fix(text, ctx.g, { ...opts, both: !!ctx.both });
-  };
-  const gpara = (value, ctx, opts) => para(gfix(value, ctx, opts));
-  const sharedCtx = (gA, gB) => {
-    const fa = gA === "female", fb = gB === "female";
-    return fa && fb ? { g: "female" } : (fa || fb ? { g: "female", both: true } : { g: "" });
-  };
+  // Texts stay gender-neutral (no automatic inflection); copywriting handles wording.
+  const gfix = (value) => (typeof value === "string" ? value.trim() : "");
+  const gpara = (value) => para(gfix(value));
+  const sharedCtx = () => ({});
 
   // One shared paragraph when both partners get the identical text; otherwise one paragraph per partner under their name.
   function dualParas(t1, t2, ctxA, ctxB, nameA, nameB, opts) {

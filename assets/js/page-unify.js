@@ -29,14 +29,14 @@
         var p = BYHREF[a.getAttribute('href')]; if (p) a.insertAdjacentHTML('afterbegin', ic(p));
       });
       var old = bar.querySelector('.aq-back-home-btn'); if (old) old.remove();
-      var ctxSec = bar.closest('#lifepath,#lifepath-compat');
+      var ctxSec = bar.closest('#lifepath,#lifepath-compat,#relationships');
       if (ctxSec) {
         bar.classList.add('aq-ctxbar');
         var arrow = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
         var diag = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
-        var isC = ctxSec.id === 'lifepath-compat';
-        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع">' + arrow + '<span>رجوع</span></button><span class="aq-ctx-title">' + (isC ? 'توافق مسار الحياة' : 'مسار الحياة') + '</span>' +
-          '<a class="aq-ctx-x" href="' + (isC ? '#lifepath' : '#lifepath-compat') + '"><span>' + (isC ? 'اكتشف مسارك الفردي' : 'احسب توافقك مع شريكك') + '</span>' + diag + '</a>';
+        var isC = ctxSec.id === 'lifepath-compat', isHub = ctxSec.id === 'relationships';
+        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع">' + arrow + '<span>رجوع</span></button><span class="aq-ctx-title">' + (isHub ? 'التوافق' : isC ? 'توافق مسار الحياة' : 'مسار الحياة') + '</span>' +
+          (isHub ? '' : '<a class="aq-ctx-x" href="' + (isC ? '#lifepath' : '#lifepath-compat') + '"><span>' + (isC ? 'اكتشف مسارك الفردي' : 'احسب توافقك مع شريكك') + '</span>' + diag + '</a>');
         return;
       }
       var box = document.createElement('div'); box.className = 'aq-nav-actions';
@@ -47,7 +47,13 @@
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-aq-back]'); if (!b) return;
-    e.preventDefault(); if (navCount > 0) history.back(); else location.hash = '#home';
+    e.preventDefault();
+    /* نتيجة معروضة: الرجوع يفتح النموذج ببياناته. نموذج: رجوع للصفحة السابقة فعلًا. */
+    var sc = b.closest('section'), id = sc && sc.id, ed = null;
+    if (id === 'lifepath-compat') { var o = document.getElementById('syn-result'); if (o && !o.hidden && o.querySelector('.cph')) ed = o.querySelector('[data-cph="edit"]'); }
+    else if (id === 'lifepath' && document.documentElement.classList.contains('lpr-on')) ed = sc.querySelector('.lpr-head [data-lph="edit"]');
+    if (ed) { ed.click(); return; }
+    if (navCount > 0) history.back(); else location.hash = '#home';
   });
   /* روابط ختامية لكل صفحة: أدوات مرتبطة + مقال/قراءة */
   var REL = {
