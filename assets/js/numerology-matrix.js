@@ -45,11 +45,7 @@
 
   // مسار الحياة: نفس منهج الجمع الكلي (index.html) مع الإبقاء على 11 و22 و33
   function lifePathOf(dateStr) {
-    const [y, m, d] = String(dateStr).split('-').map(Number);
-    const ds = n => String(n).split('').reduce((a, c) => a + Number(c), 0);
-    let n = ds(d) + ds(m) + ds(y);
-    while (n > 9 && ![11, 22, 33].includes(n)) n = ds(n);
-    return n;
+    return window.AqeqLifePathCore.fromISO(dateStr);
   }
 
   // ألوان الشاكرات المعتمدة (من أعلى لأسفل)

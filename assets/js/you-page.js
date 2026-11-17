@@ -442,10 +442,7 @@
   function domCycles(list, id) { return list ? list.filter(function (c) { return id === 'growth' ? ['saturn', 'pluto', 'chiron', 'neptune'].indexOf(c.t) >= 0 : c.doms.indexOf(id) >= 0; }) : []; }
   /* ---- رئيسية «أنت» الجديدة: بطاقة هويتك + تبويبات قطعية بدل الشرائح المتكررة ---- */
   var SIGNS12 = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
-  function lifePathOf(y, m, d) {
-    var red = function (n) { while (n > 9 && n !== 11 && n !== 22 && n !== 33) n = String(n).split('').reduce(function (a, b) { return a + +b; }, 0); return n; };
-    return red(red(d) + red(m) + red(y));
-  }
+  function lifePathOf(y, m, d) { return window.AqeqLifePathCore.lifePath(d, m, y); }
   function heroHtml() {
     var mine = null; try { mine = window.AqeeqChartContext && window.AqeeqChartContext.getMine(); } catch (e) {}
     var cta = '<div class="yp-bp-go"><a class="yp-bp-b main" href="#chart"><span>اكتشف خريطتك كاملة</span>' + SVG('<path d="M19 12H5M11 6l-6 6 6 6"/>') + '</a><a class="yp-bp-b" href="#matrix"><span>مصفوفة قدرك</span></a></div>';

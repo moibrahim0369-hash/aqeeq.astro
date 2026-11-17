@@ -2707,11 +2707,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     P.year = redArc(A + B + redArc(digSum(_cy)));
     return P;
   }
-  function lifePath(d, m, y) {
-    let n = digSum(d) + digSum(m) + digSum(y);
-    while (n > 9 && ![11, 22, 33].includes(n)) n = digSum(n);
-    return n;
-  }
+  function lifePath(d, m, y) { return window.AqeqLifePathCore.lifePath(d, m, y); } /* الدالة المرجعية الوحيدة: assets/js/aqeeq-lifepath-core.js */
   function ageNow(d, m, y) {
     const t = new Date(); let a = t.getFullYear() - y;
     if (t.getMonth() + 1 < m || (t.getMonth() + 1 === m && t.getDate() < d)) a--;

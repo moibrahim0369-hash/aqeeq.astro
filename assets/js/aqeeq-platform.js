@@ -74,24 +74,10 @@
   // =========================================================================
   function calcLifePathNumber(dateStr) {
     if (!dateStr) return null;
-    const parts = String(dateStr).split('-').map(Number);
-    const digSum = (n) => {
-      let s = 0;
-      for (const c of String(Math.abs(n))) s += +c;
-      return s;
-    };
-    let sum = 0;
-    if (parts.length === 3 && parts.every(Number.isFinite)) {
-      sum = digSum(parts[2]) + digSum(parts[1]) + digSum(parts[0]);
-    } else {
-      const digits = String(dateStr).replace(/\D/g, '').split('').map(Number);
-      if (!digits.length) return null;
-      sum = digits.reduce((a, b) => a + b, 0);
-    }
-    while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
-      sum = digSum(sum);
-    }
-    return sum;
+    const core = window.AqeqLifePathCore, v = core.fromISO(dateStr);
+    if (v !== null) return v;
+    const digits = String(dateStr).replace(/\D/g, '').split('').map(Number);
+    return digits.length ? core.reduceKeepMaster(digits.reduce((a, b) => a + b, 0)) : null;
   }
 
   function calcMatrixArcana(dateStr) {
