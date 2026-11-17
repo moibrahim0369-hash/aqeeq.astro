@@ -336,3 +336,22 @@ html body #sky .swt-hps:not(#_a){gap:12px}
 html body #sky .swt-hp:not(#_a){display:inline-flex;flex-direction:column;align-items:center;gap:4px;padding:0;border:0;background:none;font:700 .7rem 'Cairo',sans-serif;color:#5E2234}
 html body #sky .swt-hp i:not(#_a){width:44px;height:44px;border:1.5px solid #C5A059;background:radial-gradient(circle at 35% 28%,#FFFDF5,#F1DFB8);box-shadow:0 5px 12px rgba(94,34,52,.14),inset 0 1px 0 #fff}
 html body #sky .swt-hp .swt-pg:not(#_a){width:24px;height:24px;color:#6A2038}
+
+/* ===== بلور عاجي: شارات دائرية #FFFDF9 بحافة ذهبية وزخرفة عنابية ===== */
+html body #sky .swg-g:not(#_a):not(#_b),html body #sky .swt-ang-i:not(#_a):not(#_b),html body #sky .swt-hp i:not(#_a):not(#_b),html body #sky .swc-pc-m:not(#_a):not(#_b),html body #sky .swt-bar .swt-t:not(.is-on) .swt-i:not(#_a):not(#_b),html body #sky .asp-pg:not(#_a):not(#_b),html body .axs-sheet .asp-pg:not(#_a):not(#_b){background:#FFFDF9!important;border:1.5px solid #D4B475!important;box-shadow:0 4px 10px rgba(90,24,42,.12),inset 0 1px 0 #fff!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+html body #sky .swg-g .swg-gi,html body #sky .swt-ang-i svg,html body #sky .swt-hp .swt-pg,html body #sky .swc-pc-m .swc-pc-g,html body #sky .swt-bar .swt-t:not(.is-on) .swt-i svg,html body #sky .asp-pg .sg,html body #sky .asp-pg .sg-svg,html body .axs-sheet .asp-pg .sg-svg{color:#5A182A!important;stroke:#5A182A}
+html body #sky .swt-bar .swt-t:not(.is-on) .swt-i svg [fill]:not([fill=none]){fill:#5A182A}
+/* شريط التبويبات */
+html body #sky .swt .swt-bar:not(#_a):not(#_b){background:#FFFDF9!important;border:1.5px solid #E2CFA3!important;box-shadow:0 8px 22px rgba(90,24,42,.09)!important}
+html body #sky .swt .swt-bar .swt-t:not(.is-on):not(#_a){background:#FFFFFF!important;border:1px solid #EFE6D6!important;color:#5A182A!important;box-shadow:0 2px 6px rgba(90,24,42,.05)}
+html body #sky .swt .swt-bar .swt-t.is-on:not(#_a){background:#5A182A!important;border-color:#D4B475!important}
+/* الزوايا: فك التغليف المزدوج وبطاقات بعمق البيوت */
+html body #sky .sky-asp:not(#_a):not(#_b):not(#_c){background:none!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important}
+html body #sky .ax:not(#_a):not(#_b):not(#_c),html body #sky .swt-h:not(#_a):not(#_b),html body #sky .swt-ang:not(#_a):not(#_b){background:linear-gradient(180deg,#FFFFFF,#FDF9F0)!important;border:1px solid #E8DFD1!important;border-radius:18px;box-shadow:0 6px 18px rgba(90,24,42,.07)!important}
+html body #sky .ax.axt-h:not(#_a):not(#_b):not(#_c){border-color:#E8CFCF!important}
+html body #sky .ax.axt-s:not(#_a):not(#_b):not(#_c){border-color:#D6E3CC!important}
+html body #sky .ax:not(#_a) .ax-s:not(#_a):not(#_b){padding:13px 14px!important}
+html body #sky .sky-asp .ax-sub{margin:2px 4px 14px}
+html body #sky .ax-pl:not(#_a):not(#_b):not(#_c),html body .axs-sheet .ax-pl:not(#_a):not(#_b):not(#_c){background:#FFFDF9!important;border:1.5px solid #D4B475!important;box-shadow:0 4px 10px rgba(90,24,42,.12),inset 0 1px 0 #fff!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+html body #sky .ax-pl .sg,html body #sky .ax-pl .sg-svg,html body .axs-sheet .ax-pl .sg,html body .axs-sheet .ax-pl .sg-svg{color:#5A182A!important;stroke:#5A182A}
+html body #sky .swg-h:not(#_a):not(#_b){background:#FFFDF9;border:1px solid #D4B475;color:#5A182A}
