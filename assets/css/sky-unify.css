@@ -156,3 +156,49 @@ html body #sky .swt-p .sky-asp{margin:0}
 .swt-rx{display:flex;flex-wrap:wrap;gap:8px}
 .swt-rxi{display:inline-flex;align-items:center;gap:6px;padding:6px 12px 6px 8px;border-radius:999px;background:rgba(184,71,62,.08);font:700 .8rem 'Cairo',sans-serif;color:#8A2F28}
 .swt-card .swt-empty{margin:0;border:0;background:rgba(62,130,80,.08);color:#2E6B40}
+
+/* ===== الدفعة 3: ورقة القمر: خلفية كريمية، بطاقات بيضاء، أقسام بتخطيط وأيقونة لكل قسم ===== */
+html body .mn-sheet:not(#_a) .aqm-sheet-panel{background:#FBF9F6}
+html body .mn-sheet:not(#_a) .mn-moon{filter:drop-shadow(0 0 24px rgba(255,214,140,.42)) drop-shadow(0 12px 22px rgba(30,20,10,.3))}
+.mn-sheet .mn-bd{flex:none;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(160deg,#FBF0D6,#F1DFB4);color:#8A6A2A;border:1px solid rgba(197,160,89,.5)}
+.mn-sheet .mn-bd svg{width:20px;height:20px}
+.mn-sheet .mn-sh{display:flex;align-items:center;gap:10px}
+.mn-sheet .mn-sh b{font:700 .98rem 'El Messiri','Cairo',serif;color:#4A1224}
+.mn-sheet .mn-sh small{display:block;font:700 .7rem 'Cairo',sans-serif;letter-spacing:.04em;color:#A8863F}
+html body .mn-sheet .mn-sh h4{margin:2px 0 0;font:700 1.4rem/1.3 'Amiri',serif;color:#4A1224}
+.mn-sheet .mn-tel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mn-sheet .mn-tc{display:flex;align-items:center;gap:10px;padding:12px;border-radius:16px;background:#fff;border:1px solid var(--sk-line);box-shadow:0 6px 20px rgba(90,24,42,.06)}
+.mn-sheet .mn-tc span{display:grid;gap:1px;min-width:0}
+.mn-sheet .mn-tc small{font:600 .68rem 'Cairo',sans-serif;color:#8a7a6e}
+.mn-sheet .mn-tc b{font:700 .9rem/1.4 'Cairo',sans-serif;color:#4A1224}
+html body .mn-sheet .mn-ed:not(#_a){margin:12px 0;padding:16px;border-radius:20px;background:#fff;border:1px solid var(--sk-line);box-shadow:0 6px 20px rgba(90,24,42,.06)}
+.mn-sheet .mn-tag{margin-inline-start:auto;flex:none;font-style:normal;padding:4px 12px;border-radius:99px;background:rgba(106,32,56,.08);color:#6A2038;font:700 .74rem 'Cairo',sans-serif}
+html body .mn-sheet .mn-lead:not(#_a){margin:12px 0 0;padding-inline-start:14px;border-inline-start:3px solid #C5A059;font:500 .96rem/2 'Cairo',sans-serif;color:#33241d}
+html body .mn-sheet .mn-q:not(#_a){margin:12px 0;padding:16px;border-radius:20px;background:linear-gradient(160deg,#7A2A44,#4A1224);border:1px solid #C8A15A;box-shadow:0 12px 26px rgba(74,18,36,.3)}
+html body .mn-sheet .mn-q .mn-sh b{color:#FFFFFF;font-size:1.02rem}
+html body .mn-sheet .mn-q .mn-bd{background:rgba(255,255,255,.12);border-color:rgba(232,197,142,.55);color:#E8C58E}
+html body .mn-sheet .mn-q ul{margin:12px 0 0;padding:0;list-style:none}
+html body .mn-sheet .mn-q li{position:relative;margin:0 0 10px;padding-inline-start:22px;font:600 .96rem/1.95 'Cairo',sans-serif;color:#FFFFFF!important}
+html body .mn-sheet .mn-q li:last-child{margin-bottom:0}
+html body .mn-sheet .mn-q li::before{content:"";position:absolute;inset-inline-start:2px;top:.78em;width:8px;height:8px;border-radius:2px;transform:rotate(45deg);background:#E8C58E}
+html body .mn-sheet .mn-rd:not(#_a){margin:12px 0;padding:15px 16px;border-radius:20px;background:#fff;border:1px solid var(--sk-line);box-shadow:0 6px 20px rgba(90,24,42,.06)}
+html body .mn-sheet .mn-rd .mn-sh{margin-bottom:8px}
+html body .mn-sheet .mn-rd .mn-sh b{font-size:.98rem;color:#4A1224;margin:0}
+html body .mn-sheet .mn-rd p{margin:0;font-size:.92rem;line-height:2;color:#33241d}
+html body .mn-sheet .mn-rd-in:not(#_a){background:linear-gradient(180deg,#FFFDF8,#FBF3E2)}
+html body .mn-sheet .mn-rd-real ul{margin:0;padding:0;list-style:none;border-inline-start:2px dashed rgba(197,160,89,.6);margin-inline-start:6px}
+html body .mn-sheet .mn-rd-real li{position:relative;padding-inline-start:20px;margin:0 0 6px;font-size:.9rem;line-height:1.95;color:#33241d}
+html body .mn-sheet .mn-rd-real li::before{content:"";position:absolute;inset-inline-start:-6px;top:.95em;width:10px;height:10px;border-radius:50%;background:#FFFFFF;border:2px solid #C5A059}
+.mn-sheet .mn-act{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mn-sheet .mn-act>div{padding:13px;border-radius:18px;border:1px solid transparent}
+.mn-sheet .mn-act p{margin:8px 0 0;font:500 .86rem/1.9 'Cairo',sans-serif;color:#33241d}
+.mn-sheet .mn-act>.mn-act-y{background:#EEF6EF;border-color:#BFD8C3}
+.mn-sheet .mn-act-y .mn-bd{background:#DCEEDF;border-color:#A9CBB0;color:#2E6B40}
+.mn-sheet .mn-act-y .mn-sh b{color:#2E6B40}
+.mn-sheet .mn-act>.mn-act-n{background:#FBECEE;border-color:#E8C1C7}
+.mn-sheet .mn-act-n .mn-bd{background:#F6D9DE;border-color:#E3B3BB;color:#9A2F40}
+.mn-sheet .mn-act-n .mn-sh b{color:#9A2F40}
+.mn-sheet .mn-act .mn-bd{width:32px;height:32px;border-radius:10px}
+.mn-sheet .mn-act .mn-bd svg{width:18px;height:18px}
+html body .mn-sheet .mn-intro{margin:2px 0 8px;font-size:.86rem;line-height:1.8}
+.mn-sheet .aqm-foot-l small{opacity:.85}

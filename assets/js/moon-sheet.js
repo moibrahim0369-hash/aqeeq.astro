@@ -41,13 +41,19 @@
       ['تميل إلى النوم المبكر وتقل رغبتك في الخروج.', 'ترتب غرفتك أو هاتفك دون سبب.', 'تودع شخصًا أو فكرة بصمت.']]
   ];
   window.AqMoonPhase = function (ms) { try { var c = calc(ms); return { p: PH[c.ph], il: Math.round(c.il * 100) }; } catch (e) { return null; } };
-  function phBody(p) {
-    return '<p>' + p[2] + '</p>' +
-      '<div class="mn-q"><b>أسئلة تخصك</b><p>' + p[5][0] + '</p><p>' + p[5][1] + '</p></div>' +
-      '<div class="mn-rd"><b>قراءة من الداخل</b><p>' + p[6] + '</p></div>' +
-      '<div class="mn-rd"><b>قد تجد نفسك</b><ul><li>' + p[7].join('</li><li>') + '</li></ul></div>' +
-      '<div class="mn-do"><span><b>تناسبك:</b> ' + p[3] + '</span><span><b>تجنّب:</b> ' + p[4] + '</span></div>';
+  var MI = {"ed": "<path d=\"M19 14.5A8 8 0 1 1 9.5 5 6.5 6.5 0 0 0 19 14.5z\"/>", "q": "<path d=\"M9.5 9a2.5 2.5 0 1 1 3.5 2.300c-.7.400-1 .900-1 1.700\"/><circle cx=\"12\" cy=\"17\" r=\".6\"/><circle cx=\"12\" cy=\"12\" r=\"9\"/>", "rd": "<path d=\"M2 12s3.500-6.500 10-6.500S22 12 22 12s-3.500 6.500-10 6.500S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"2.800\"/>", "real": "<path d=\"M8 6h12M8 12h12M8 18h12\"/><circle cx=\"4\" cy=\"6\" r=\"1\"/><circle cx=\"4\" cy=\"12\" r=\"1\"/><circle cx=\"4\" cy=\"18\" r=\"1\"/>", "yes": "<path d=\"M5 12.500 10 17.500 19 7\"/>", "no": "<circle cx=\"12\" cy=\"12\" r=\"8.500\"/><path d=\"M6 6l12 12\"/>", "il": "<circle cx=\"12\" cy=\"12\" r=\"8.500\"/><path d=\"M12 3.500a8.500 8.500 0 0 1 0 17z\" fill=\"currentColor\"/>", "age": "<circle cx=\"12\" cy=\"12\" r=\"8.500\"/><path d=\"M12 7v5l3 2\"/>", "sign": "<circle cx=\"12\" cy=\"12\" r=\"8.500\"/><path d=\"M7.500 5.500c1 4 1 9 0 13M16.500 5.500c-1 4-1 9 0 13M4 10h16M4 14h16\"/>", "dist": "<circle cx=\"5\" cy=\"12\" r=\"2\"/><circle cx=\"19\" cy=\"12\" r=\"2\"/><path d=\"M8 12h8M10.500 9.500 8 12l2.500 2.500M13.500 9.500 16 12l-2.500 2.500\"/>"};
+  function mi(k) { return '<span class="mn-bd" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + MI[k] + '</svg></span>'; }
+  /* كل قسم له تخطيط وشارة أيقونة خاصة: مقال تحريري، بطاقة أسئلة عنابية، قراءة من الداخل، قائمة واقع، وبطاقة فعل بلونين */
+  function phBody(p, hd) {
+    hd = hd || {};
+    return '<section class="mn-ed"><header class="mn-sh">' + mi('ed') + '<div><small>' + (hd.label || 'ماذا يعني هذا الطور لك') + '</small>' + (hd.title ? '<h4>' + hd.title + '</h4>' : '') + '</div><i class="mn-tag">' + p[1] + '</i></header><p class="mn-lead">' + p[2] + '</p></section>' +
+      '<section class="mn-q"><header class="mn-sh">' + mi('q') + '<b>أسئلة تخصك</b></header><ul><li>' + p[5][0] + '</li><li>' + p[5][1] + '</li></ul></section>' +
+      '<section class="mn-rd mn-rd-in"><header class="mn-sh">' + mi('rd') + '<b>قراءة من الداخل</b></header><p>' + p[6] + '</p></section>' +
+      '<section class="mn-rd mn-rd-real"><header class="mn-sh">' + mi('real') + '<b>قد تجد نفسك</b></header><ul><li>' + p[7].join('</li><li>') + '</li></ul></section>' +
+      '<section class="mn-act"><div class="mn-act-y"><header class="mn-sh">' + mi('yes') + '<b>تناسبك</b></header><p>' + p[3] + '</p></div><div class="mn-act-n"><header class="mn-sh">' + mi('no') + '<b>تجنّب</b></header><p>' + p[4] + '</p></div></section>';
   }
+  function tel(k, label, val) { return '<div class="mn-tc">' + mi(k) + '<span><small>' + label + '</small><b>' + val + '</b></span></div>'; }
+  var STARTS = [348.75, 11.25, 78.75, 101.25, 168.75, 191.25, 258.75, 281.25];
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return [].slice.call((r || document).querySelectorAll(s)); }
   function mod(x) { return ((x % 360) + 360) % 360; }
@@ -69,10 +75,10 @@
     return o;
   }
   /* قمر واقعي: خامة بحار وفوهات مولَّدة مرة واحدة، ثم إضاءة الطور بحساب لامبرت من زاوية الاستطالة الفعلية. */
-  var TEX = null, TN = 320;
+  var TEX = null, HGT = null, TN = 360;
   function rng(s) { return function () { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
   function buildTex() {
-    var N = TN, R = N / 2, r = rng(20261110), v = new Float32Array(N * N), i, x, y;
+    var N = TN, R = N / 2, r = rng(20261110), v = new Float32Array(N * N), hg = new Float32Array(N * N), i, x, y;
     var hv = function (a, b) { var h = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return h - Math.floor(h); };
     var vn = function (px, py) { var ix = Math.floor(px), iy = Math.floor(py), fx = px - ix, fy = py - iy; fx = fx * fx * (3 - 2 * fx); fy = fy * fy * (3 - 2 * fy); return (hv(ix, iy) * (1 - fx) + hv(ix + 1, iy) * fx) * (1 - fy) + (hv(ix, iy + 1) * (1 - fx) + hv(ix + 1, iy + 1) * fx) * fy; };
     var MARIA = [[-.27, -.38, .3, .22], [.1, -.36, .17, .14], [.26, -.1, .21, .17], [.66, -.3, .11, .08], [.55, .16, .15, .12], [-.62, -.08, .3, .4], [-.2, .45, .21, .13], [-.5, .52, .11, .1], [-.05, -.76, .36, .06], [0, -.12, .1, .08], [.43, -.45, .1, .07]];
@@ -83,16 +89,18 @@
       v[y * N + x] = .8 - m * .36 + (g - .5) * .16;
     }
     function crater(cx, cy, rad, str) {
-      var x0 = Math.max(0, Math.floor(cx - rad * 2.6)), x1 = Math.min(N - 1, Math.ceil(cx + rad * 2.6)), y0 = Math.max(0, Math.floor(cy - rad * 2.6)), y1 = Math.min(N - 1, Math.ceil(cy + rad * 2.6));
+      var x0 = Math.max(0, Math.floor(cx - rad * 2.6)), x1 = Math.min(N - 1, Math.ceil(cx + rad * 2.6)), y0 = Math.max(0, Math.floor(cy - rad * 2.6)), y1 = Math.min(N - 1, Math.ceil(cy + rad * 2.6)), dep = .5 * rad * str;
       for (var yy = y0; yy <= y1; yy++) for (var xx = x0; xx <= x1; xx++) {
-        var dx = xx - cx, dy = yy - cy, d = Math.sqrt(dx * dx + dy * dy) / rad, dl = 0;
-        if (d < 1) dl = -.1 * str * (1 - d * d) + (dx * -.5 + dy * -.5) / rad * .06 * str * (d > .5 ? 1 : 0);
-        else if (d < 1.25) dl = .13 * str * (1 - (d - 1) / .25);
-        else if (d < 2.4) dl = .05 * str * (1 - (d - 1.25) / 1.15);
-        v[yy * N + xx] += dl;
+        var dx = xx - cx, dy = yy - cy, d = Math.sqrt(dx * dx + dy * dy) / rad, hh = 0, al = 0;
+        if (d < 1) { hh = -dep * (1 - d * d); al = -.04 * str * (1 - d * d); if (rad > 6) hh += dep * .55 * Math.exp(-(d / .13) * (d / .13)); }
+        if (d > .8 && d < 1.3) { var q = (d - 1.04) / .1; hh += dep * .4 * Math.exp(-q * q); al += .04 * str * Math.exp(-q * q); }
+        if (d >= 1.2 && d < 2.4) { hh += dep * .07 * (1 - (d - 1.2) / 1.2); al += .035 * str * (1 - (d - 1.2) / 1.2); }
+        hg[yy * N + xx] += hh; v[yy * N + xx] += al;
       }
     }
-    for (i = 0; i < 420; i++) { var a = r() * 6.2832, d2 = Math.sqrt(r()) * .97, rad = 1.2 + Math.pow(r(), 3.2) * 13; crater(R + Math.cos(a) * d2 * R, R + Math.sin(a) * d2 * R, rad, .3 + r() * .5); }
+    for (i = 0; i < 760; i++) { var a = r() * 6.2832, d2 = Math.sqrt(r()) * .98, rad = 1.1 + Math.pow(r(), 3.4) * 15; crater(R + Math.cos(a) * d2 * R, R + Math.sin(a) * d2 * R, rad, .25 + r() * .45); }
+    for (y = 0; y < N; y++) for (x = 0; x < N; x++) hg[y * N + x] += (vn(x / 9, y / 9) - .5) * 1.4 + (vn(x / 3.2, y / 3.2) - .5) * .5;
+    HGT = hg;
     /* تيخو وكوبرنيكوس بأشعتهما */
     var tx = R + -.12 * R, ty = R + .72 * R; crater(tx, ty, 7, 1.6);
     for (i = 0; i < 22; i++) { var ang = r() * 6.2832, len = 40 + r() * 90; for (var t = 12; t < len; t += 1) { var px = Math.round(tx + Math.cos(ang) * t), py = Math.round(ty + Math.sin(ang) * t); if (px > 0 && py > 0 && px < N && py < N && (px - R) * (px - R) + (py - R) * (py - R) < R * R) v[py * N + px] += .07 * (1 - t / len); } }
@@ -104,15 +112,17 @@
     var key = Math.round(el * 2); if (MCACHE[key]) return MCACHE[key];
     if (!TEX) TEX = buildTex();
     var N = TN, R = N / 2, cv = document.createElement('canvas'); cv.width = cv.height = N;
-    var cx = cv.getContext('2d'), im = cx.createImageData(N, N), D = im.data, e = el * Math.PI / 180;
+    var cx = cv.getContext('2d'), im = cx.createImageData(N, N), D = im.data, e = el * Math.PI / 180, H = HGT;
     var sx = Math.sin(e), sz = -Math.cos(e), x, y;
     for (y = 0; y < N; y++) for (x = 0; x < N; x++) {
       var nx = (x + .5 - R) / R, ny = (y + .5 - R) / R, rr = nx * nx + ny * ny; if (rr >= 1.02) continue;
-      var nz = Math.sqrt(Math.max(0, 1 - rr)), dot = nx * sx + nz * sz;
-      var lit = Math.max(0, Math.min(1, (dot + .06) / .3)); lit = lit * lit * (3 - 2 * lit);
-      var alb = Math.max(.05, Math.min(1, TEX[y * N + x])), sh = .3 + lit * .75 * (.55 + .45 * Math.pow(Math.max(dot, 0), .35));
-      var k = alb * sh, i4 = (y * N + x) * 4, edge = rr > .98 ? Math.max(0, (1.02 - rr) / .04) : 1;
-      D[i4] = Math.min(255, k * 262 + (1 - lit) * 4); D[i4 + 1] = Math.min(255, k * 252 + (1 - lit) * 10); D[i4 + 2] = Math.min(255, k * 238 + (1 - lit) * 22); D[i4 + 3] = 255 * edge;
+      var nz = Math.sqrt(Math.max(0, 1 - rr)), dotG = nx * sx + nz * sz, ix = y * N + x;
+      var hx = x > 0 && x < N - 1 ? (H[ix + 1] - H[ix - 1]) * .5 : 0, hy = y > 0 && y < N - 1 ? (H[ix + N] - H[ix - N]) * .5 : 0, w = (.3 + .7 * nz) * .42;
+      var px = nx - hx * w, py = ny - hy * w, pz = nz, pl = Math.sqrt(px * px + py * py + pz * pz) || 1, dotP = (px * sx + pz * sz) / pl;
+      var lit = Math.max(0, Math.min(1, (dotG + .05) / .26)); lit = lit * lit * (3 - 2 * lit);
+      var alb = Math.max(.05, Math.min(1, TEX[ix])), rel = Math.max(0, dotP), sh = lit * (.2 + 1.05 * Math.pow(rel, .62));
+      var k = alb * sh, i4 = ix * 4, edge = rr > .98 ? Math.max(0, (1.02 - rr) / .04) : 1, es = (1 - lit) * (.07 + .035 * alb);
+      D[i4] = Math.min(255, k * 268 + es * 255 * .82); D[i4 + 1] = Math.min(255, k * 254 + es * 255 * .88); D[i4 + 2] = Math.min(255, k * 232 + es * 255 * 1.05); D[i4 + 3] = 255 * edge;
     }
     cx.putImageData(im, 0, 0);
     var u = cv.toDataURL('image/png'); MCACHE[key] = u; return u;
@@ -120,7 +130,7 @@
   window.AqeeqMoonImg = moonImg;
   function mInner(el) { try { return '<image href="' + moonImg(el) + '" x="10" y="10" width="100" height="100"/>'; } catch (e) { return window.AqeeqMoon ? window.AqeeqMoon(el) : ''; } }
   function moonSvg(c, size) {
-    var inner; try { inner = '<defs><radialGradient id="mnHalo" cx="50%" cy="50%" r="50%"><stop offset=".8" stop-color="#fff3cf" stop-opacity=".0"/><stop offset="1" stop-color="#fff3cf" stop-opacity="0"/></radialGradient></defs><circle cx="60" cy="60" r="50" fill="#0b0a12"/><image href="' + moonImg(c.el) + '" x="10" y="10" width="100" height="100"/>'; } catch (er) { inner = typeof window.AqeeqMoon === 'function' ? window.AqeeqMoon(c.el) : '<circle cx="60" cy="60" r="50" fill="#d9d2c3"/>'; }
+    var inner; try { inner = '<defs><radialGradient id="mnGlw" cx="50%" cy="50%" r="50%"><stop offset=".6" stop-color="#FFE3A6" stop-opacity=".6"/><stop offset=".78" stop-color="#FFD58A" stop-opacity=".18"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></radialGradient><radialGradient id="mnRim" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".34"/></radialGradient></defs><circle cx="60" cy="60" r="63" fill="url(#mnGlw)" opacity="' + (.22 + .78 * c.il).toFixed(2) + '"/><circle cx="60" cy="60" r="50" fill="#0b0a12"/><image href="' + moonImg(c.el) + '" x="10" y="10" width="100" height="100"/><circle cx="60" cy="60" r="50" fill="url(#mnRim)"/>'; } catch (er) { inner = typeof window.AqeeqMoon === 'function' ? window.AqeeqMoon(c.el) : '<circle cx="60" cy="60" r="50" fill="#d9d2c3"/>'; }
     var over = '';
     if (c.lunar) over = '<defs><radialGradient id="mnCop" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C2542B" stop-opacity=".78"/><stop offset=".7" stop-color="#8E2D1E" stop-opacity=".82"/><stop offset="1" stop-color="#4A1812" stop-opacity=".9"/></radialGradient></defs><circle cx="60" cy="60" r="50" fill="url(#mnCop)" style="mix-blend-mode:multiply"/>';
     if (c.solar) over = '<circle cx="60" cy="60" r="50" fill="#14090c"/><g stroke="#F6DCA0" stroke-opacity=".55" stroke-width=".8" stroke-linecap="round">' + (function () { var s = ''; for (var i = 0; i < 36; i++) { var a = i * 10 * Math.PI / 180, r1 = 52, r2 = 52 + (i % 3 ? 5 : 9); s += '<line x1="' + (60 + r1 * Math.cos(a)).toFixed(1) + '" y1="' + (60 + r1 * Math.sin(a)).toFixed(1) + '" x2="' + (60 + r2 * Math.cos(a)).toFixed(1) + '" y2="' + (60 + r2 * Math.sin(a)).toFixed(1) + '"/>'; } return s; })() + '</g><circle cx="60" cy="60" r="51" fill="none" stroke="#F6DCA0" stroke-opacity=".7" stroke-width="1.2"/>';
@@ -153,8 +163,8 @@
       '<div class="mn-title"><h4>' + p[0] + '</h4><div class="mn-bs">' + badges(c) + '</div></div>' +
       '<div class="mn-date"><button type="button" data-mn-step="-1" aria-label="اليوم التالي"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button><span>' + fmtD(c.d) + (off === 0 ? ' · الآن' : '') + '</span><button type="button" data-mn-step="1" aria-label="اليوم السابق"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button></div>' +
       '<input class="mn-range" id="mn-range" type="range" min="-30" max="30" step="1" value="' + off + '" aria-label="تغيير اليوم"><button type="button" class="mn-now" data-mn-now' + (off === 0 ? ' hidden' : '') + '>العودة إلى الآن</button>' +
-      '<div class="mn-facts">' + fact('الإضاءة', Math.round(c.il * 100) + '%') + fact('عمر القمر', c.age.toFixed(1).replace('.', '٫') + ' يوم') + fact('البرج', c.sign + ' ' + c.deg + '°') + fact('المسافة عن الأرض', num(c.dist) + ' كم') + '</div>' +
-      '<div class="mn-card"><small>ماذا يعني هذا الطور لك</small>' + phBody(p) + '</div>' +
+      '<div class="mn-tel">' + tel('il', 'الإضاءة', Math.round(c.il * 100) + '%') + tel('age', 'عمر القمر', c.age.toFixed(1).replace('.', '٫') + ' يوم') + tel('sign', 'البرج', c.sign + ' ' + c.deg + '°') + tel('dist', 'المسافة عن الأرض', num(c.dist) + ' كم') + '</div>' +
+      phBody(p, { label: 'ماذا يعني هذا الطور لك' }) +
       '<div class="mn-facts">' + nextEv(c) + '</div>';
   }
   var DAYS = [0, 4, 7, 11, 15, 18, 22, 26];
@@ -166,7 +176,7 @@
     for (i = 0; i < 8; i++) {
       var a = (i * 45 - 90) * Math.PI / 180, x = C + R * Math.cos(a), y = C + R * Math.sin(a), el = i * 45;
       var act = (pick == null ? cur : pick) === i;
-      nodes += '<g class="mn-node' + (act ? ' is-on' : '') + (i === cur ? ' is-cur' : '') + '" data-mn-ph="' + i + '" role="button" tabindex="0" aria-label="' + PH[i][0] + '" transform="translate(' + (x - 25).toFixed(1) + ' ' + (y - 25).toFixed(1) + ') scale(.4167)"><circle cx="60" cy="60" r="50" fill="#0b0a12"/>' + (act ? '<circle cx="60" cy="60" r="62" fill="none" stroke="#6A2038" stroke-width="3"/>' : '') + mInner(el) + '</g>' +
+      nodes += '<g class="mn-node' + (act ? ' is-on' : '') + (i === cur ? ' is-cur' : '') + '" data-mn-ph="' + i + '" role="button" tabindex="0" aria-label="' + PH[i][0] + '" transform="translate(' + (x - 25).toFixed(1) + ' ' + (y - 25).toFixed(1) + ') scale(.4167)"><circle cx="60" cy="60" r="62" fill="url(#mnGlw)" opacity="' + (.2 + .8 * (1 - Math.cos(el * Math.PI / 180)) / 2).toFixed(2) + '"/><circle cx="60" cy="60" r="50" fill="#0b0a12"/>' + (act ? '<circle cx="60" cy="60" r="62" fill="none" stroke="#6A2038" stroke-width="3"/>' : '') + mInner(el) + '<circle cx="60" cy="60" r="50" fill="url(#mnRim)"/></g>' +
         '<circle cx="' + (x + 20).toFixed(1) + '" cy="' + (y - 20).toFixed(1) + '" r="8" fill="#6A2038"/><text x="' + (x + 20).toFixed(1) + '" y="' + (y - 16.5).toFixed(1) + '" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">' + (i + 1) + '</text>' +
         '<text x="' + x.toFixed(1) + '" y="' + (y + 40).toFixed(1) + '" text-anchor="middle" class="mn-nl">' + PH[i][1] + '</text>';
     }
@@ -176,11 +186,10 @@
     var list = '<h4 class="mn-lt">الأطوار الثمانية بالترتيب</h4><ol class="mn-leg">';
     for (i = 0; i < 8; i++) list += '<li><button type="button" data-mn-ph="' + i + '" class="' + (i === cur ? 'is-cur' : '') + (i === sel ? ' is-on' : '') + '"><b>' + (i + 1) + '</b><span><strong>' + PH[i][0] + '</strong><small>' + PH[i][1] + ' · حوالي اليوم ' + num(DAYS[i] + 1) + '</small></span>' + (i === cur ? '<em>الآن</em>' : '') + '</button></li>';
     list += '</ol>';
-    return '<p class="mn-intro">القمر يكمل دورة كل 29 يوماً تقريباً: يبدأ بالمحاق (ظلام)، يكبر حتى البدر، ثم يصغر ويعود. لكل طور طاقة مختلفة، والأرقام تبيّن الترتيب مع اتجاه عقارب الساعة. الطور المؤطَّر بدائرة هو الذي تختاره، وكلمة «الآن» في القائمة تحته تدل على طور اليوم.</p>' +
-      '<svg class="mn-wheel" viewBox="0 0 ' + S + ' ' + S + '" role="group" aria-label="بوصلة أطوار القمر">' + ring + mid + nodes + '</svg>' +
+    return '<p class="mn-intro">دورة القمر نحو 29 يومًا، ولكل طور طاقة مختلفة. اضغط أي طور لتقرأ معناه.</p>' +
+      '<svg class="mn-wheel" viewBox="0 0 ' + S + ' ' + S + '" role="group" aria-label="بوصلة أطوار القمر"><defs><radialGradient id="mnGlw" cx="50%" cy="50%" r="50%"><stop offset=".6" stop-color="#FFE3A6" stop-opacity=".6"/><stop offset=".78" stop-color="#FFD58A" stop-opacity=".18"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></radialGradient><radialGradient id="mnRim" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".34"/></radialGradient></defs>' + ring + mid + nodes + '</svg>' +
       '<p class="mn-hint">اضغط أي طور لتقرأ معناه</p>' +
-      '<div class="mn-card"><small>' + (sel === cur ? 'الطور الحالي' : 'طور القمر') + ' · ' + p[1] + '</small><h4>' + p[0] + '</h4>' + phBody(p) +
-      (sel !== cur ? '<button type="button" class="mn-go" data-mn-go="' + sel + '">اعرض أقرب موعد لهذا الطور</button>' : '') + '</div>' + list;
+      phBody(p, { label: (sel === cur ? 'الطور الحالي' : 'طور القمر'), title: p[0] }) + (sel !== cur ? '<button type="button" class="mn-go" data-mn-go="' + sel + '">اعرض أقرب موعد لهذا الطور</button>' : '') + list;
   }
   function render() {
     var s = ensure(), b = $('.aqm-sheet-body', s), st = b.scrollTop;
@@ -188,7 +197,14 @@
     b.innerHTML = '<div class="mn-tabs" role="tablist"><button type="button" role="tab" data-mn-tab="moon" class="' + (tab === 'moon' ? 'is-on' : '') + '">القمر</button><button type="button" role="tab" data-mn-tab="compass" class="' + (tab === 'compass' ? 'is-on' : '') + '">بوصلة الأطوار</button></div><div class="mn-pane">' + (tab === 'moon' ? moonView() : compassView()) + '</div>';
     b.scrollTop = st;
     var c = calc(base + off * 864e5); $('.aqm-sheet-sub', s).textContent = PH[c.ph][0] + ' · ' + Math.round(c.il * 100) + '%';
+    var nb = $('[data-mn-next] b', s); if (nb) nb.textContent = PH[((tab === 'compass' && pick != null ? pick : c.ph) + 1) % 8][0];
     bind();
+  }
+  function nextPhase() {
+    var c = calc(base + off * 864e5);
+    if (tab === 'compass') { pick = ((pick == null ? c.ph : pick) + 1) % 8; return render(); }
+    try { var d = A().SearchMoonPhase(STARTS[(c.ph + 1) % 8] % 360 + .4, new Date(base + off * 864e5), 40).date; off = Math.min(45, Math.max(off + 1, Math.ceil((d - base) / 864e5))); } catch (x) { off = Math.min(45, off + 3); }
+    render();
   }
   var dragging = false;
   function setOff(v) { v = Math.max(-45, Math.min(45, v)); if (v === off) return; off = v; render(); }
@@ -219,10 +235,11 @@
     sheet.innerHTML = '<div class="aqm-sheet-scrim" data-mnc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="mn-t"><span class="aqm-sheet-grip"></span>' +
       '<button type="button" class="aqm-sheet-x" data-mnc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>' +
       '<div class="aqm-sheet-head"><span class="aqm-sheet-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14.5A8 8 0 1 1 9.5 5 6.5 6.5 0 0 0 19 14.5z"/></svg></span><div><h3 id="mn-t">القمر</h3><p class="aqm-sheet-sub"></p></div></div><div class="aqm-sheet-body"></div>' +
-      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-close" data-mnc>إغلاق</button></div></div>';
+      '<div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-mn-next><span class="aqm-foot-l"><small>الطور التالي</small><b></b></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" class="aqm-foot-close" data-mnc>إغلاق</button></div></div>';
     document.body.appendChild(sheet);
     sheet.addEventListener('click', function (e) {
       if (e.target.closest('[data-mnc]')) return close();
+      if (e.target.closest('[data-mn-next]')) return nextPhase();
       var t = e.target.closest('[data-mn-tab]'); if (t) { tab = t.getAttribute('data-mn-tab'); return render(); }
       var s = e.target.closest('[data-mn-step]'); if (s) return setOff(off + (+s.getAttribute('data-mn-step')));
       if (e.target.closest('[data-mn-now]')) { off = 0; return render(); }
