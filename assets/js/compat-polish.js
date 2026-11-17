@@ -64,6 +64,15 @@
       if (t && !t.value && !(u && u.checked)) d.open = true;
     });
   }, true);
-  var n = 0; (function tick() { run(); if (++n < 12) setTimeout(tick, 400); })();
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  /* بدل التكرار الزمني: تشغيل عند التحميل وعند ظهور نموذج جديد فقط */
+  var FORMS = '#cp-form,#synastry-form,#mxc-form,#mxk-form,#mxm-pair,.mxm-form', q = false;
+  function schedule() { if (q) return; q = true; requestAnimationFrame(function () { q = false; run(); }); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+  window.addEventListener('load', run);
+  new MutationObserver(function (ms) {
+    for (var i = 0; i < ms.length; i++) for (var j = 0; j < ms[i].addedNodes.length; j++) {
+      var n = ms[i].addedNodes[j];
+      if (n.nodeType === 1 && (n.matches(FORMS) || n.querySelector(FORMS))) return schedule();
+    }
+  }).observe(document.body || document.documentElement, { childList: true, subtree: true });
 })();

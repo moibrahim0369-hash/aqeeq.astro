@@ -177,6 +177,7 @@
       : `<h3 class="syn-section-heading">من منظور ${esc(nameA)}</h3>${attractionCards(attraction, free)}
          <h3 class="syn-section-heading">من منظور ${esc(nameB)}</h3>${attractionCards(attractionB, null)}`;
 
+    Object.assign(output.dataset, { p1: meta.path1, p2: meta.path2, core: meta.coreBridge, daily: meta.dailyBridge, comp: meta.composite, na: nameA, nb: nameB });
     output.innerHTML = `
       <article class="syn-result-card syn-score-card">
         <div class="syn-gauge" style="--score-angle:${meta.score * 3.6}deg"><strong>${meta.score}%</strong></div>

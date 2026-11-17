@@ -29,9 +29,10 @@
         var p = BYHREF[a.getAttribute('href')]; if (p) a.insertAdjacentHTML('afterbegin', ic(p));
       });
       var old = bar.querySelector('.aq-back-home-btn'); if (old) old.remove();
-      if (bar.closest('#lifepath')) {
+      var ctxSec = bar.closest('#lifepath,#lifepath-compat');
+      if (ctxSec) {
         bar.classList.add('aq-ctxbar');
-        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" transform="matrix(-1 0 0 1 24 0)"/></svg></button><span class="aq-ctx-title">مسار الحياة</span>';
+        bar.innerHTML = '<button type="button" class="aq-ctx-back" data-aq-back aria-label="رجوع"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6" transform="matrix(-1 0 0 1 24 0)"/></svg></button><span class="aq-ctx-title">' + (ctxSec.id === 'lifepath-compat' ? 'توافق مسار الحياة' : 'مسار الحياة') + '</span>';
         return;
       }
       var box = document.createElement('div'); box.className = 'aq-nav-actions';

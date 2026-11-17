@@ -90,10 +90,34 @@
     });
   }
 
+  /* شارات الأرقام المحسوبة في رؤوس أقسام النتيجة (عرض فقط، الأرقام من app.js عبر data-*) */
+  function synBadges(out) {
+    var D = out.dataset || {};
+    function chips(list) {
+      var w = document.createElement('span'); w.className = 'lp-hbadges lpa-hb';
+      w.innerHTML = list.filter(function (x) { return x[1] !== undefined && x[1] !== ''; }).map(function (x) { return '<span class="lp-hbadge"><small>' + esc(x[0]) + '</small><b>' + esc(x[1]) + '</b></span>'; }).join('');
+      return w.children.length ? w : null;
+    }
+    function forTitle(t) {
+      if (/منظور/.test(t)) return [['مساره', t.indexOf(D.na) > -1 ? D.p1 : D.p2]];
+      if (/قراءة العلاقة|قراءة الشراكة/.test(t)) return [['مساره', t.indexOf(D.na) === 0 ? D.p1 : D.p2]];
+      if (/الجسر اليومي|نقطة الصدام/.test(t)) return [['الجسر اليومي', D.daily]];
+      if (/الجسر الأساسي|جسر العلاقة|روشتة/.test(t)) return [['الجسر الأساسي', D.core]];
+      if (/ديناميكية/.test(t)) return [['الرقم المشترك', D.comp]];
+      if (/الأرقام الرئيسية/.test(t)) return [['المساران', D.p1 + ' · ' + D.p2]];
+      return null;
+    }
+    [].forEach.call(out.querySelectorAll('.lpa-card > summary .lpa-t, .syn-section-heading, .syn-result-card > h3'), function (h) {
+      if (h.nextElementSibling && h.nextElementSibling.classList && h.nextElementSibling.classList.contains('lpa-hb')) return;
+      var list = forTitle(text(h)); var c = list && chips(list); if (c) h.insertAdjacentElement('afterend', c);
+    });
+    var sc = out.querySelector('.syn-score-card'); if (sc && !sc.querySelector('.lpa-hb')) { var c2 = chips([['مسار ' + D.na, D.p1], ['مسار ' + D.nb, D.p2], ['الرقم المشترك', D.comp]]); if (c2) { c2.classList.add('is-center'); sc.insertBefore(c2, sc.firstChild); } }
+  }
+
   function enhanceSyn(out) {
     if (!out || out.hidden || out.querySelector('.lpa-nav') || !out.innerHTML.trim()) return;
     var nav = document.createElement('div'); nav.className = 'lpa-nav';
-    nav.innerHTML = '<button type="button" class="lpa-navbtn" data-lpa-edit>' + IC.back + '<span>تعديل بيانات الطرفين</span></button><a class="lpa-navbtn" href="#home">' + IC.back + '<span>الرئيسية</span></a>';
+    nav.innerHTML = '<button type="button" class="lpa-navbtn" data-lpa-edit>' + IC.back + '<span>تعديل بيانات الطرفين</span></button>';
     out.insertBefore(nav, out.firstChild);
     /* جسور وأرقام: بطاقات الـ kpi تبقى مربعات، وبقية البطاقات (عنوان + نص) تصبح أكورديون */
     [].forEach.call(out.querySelectorAll('.syn-result-card'), function (c) {
@@ -105,7 +129,9 @@
     /* التقرير المتعمق: يظهر مباشرة بدون قفل */
     var pr = out.querySelector('#syn-premium'); if (pr) { pr.classList.remove('locked'); pr.classList.add('unlocked'); }
     var first = out.querySelector('.lpa-card'); if (first) first.open = true;
-    var n = out.querySelector('.syn-score-card'); if (n) setTimeout(function () { out.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 0);
+    synBadges(out);
+    out.tabIndex = -1; try { out.focus({ preventScroll: true }); } catch (e) { out.focus(); }
+    var n = out.querySelector('.syn-score-card'); if (n) { clearTimeout(enhanceSyn._t); enhanceSyn._t = setTimeout(function () { out.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 0); }
   }
 
   function watch(el, fn) {
