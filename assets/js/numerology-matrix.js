@@ -1788,7 +1788,7 @@
           <p>خريطة رمزية لفهم أنماطك الداخلية وطاقاتك الأساسية</p>
         </div>
             <header class="aqm-header">
-          <span class="aqm-kicker">مصفوفة القدر · Natalia Ladini System</span>
+          <span class="aqm-kicker">مصفوفة القدر · نظام الأركانا الاثنين والعشرين</span>
           <h2 id="aqm-report-title">${displayName}</h2>
           <div class="aqm-meta-info">
             <span class="aqm-meta-pill">الميلاد: ${dateStr}</span>
