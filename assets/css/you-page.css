@@ -845,3 +845,37 @@ html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-se
 html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-ib i{inset-inline-start:auto!important;left:auto!important;right:auto!important;inset-inline-end:2px!important;top:2px!important;width:auto!important;max-width:20px!important;min-width:16px!important;display:block!important;transform:none!important}
 html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-ib{overflow:visible!important}
 html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-ib svg{position:static!important;margin:0!important}
+
+/* ===== أنت: اسم مكدّس + كروت العبور + خط زمني ===== */
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-who-t{flex-direction:column!important;align-items:flex-start!important;gap:1px!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-who-t b{max-width:100%!important;font-size:17px!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-who-t small{font-size:12px!important;color:#a08b7e!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp{padding-bottom:4px!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-hp{min-height:0!important}
+html body.yp-app section#for-you #fy-body{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))!important;min-height:0!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-cx{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:12px!important;text-align:start!important;cursor:pointer;color:#3a2a26!important;font-family:inherit!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-cx-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 14px;border-radius:999px;background:rgba(107,31,46,.08);color:#6B1F2E;font:500 12.5px 'IBM Plex Sans Arabic',sans-serif}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-gl{font:400 16px/1 'DejaVu Sans','Segoe UI Symbol','Noto Sans Symbols',serif;color:#8A4B2A}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-cx-t{font:700 19px/1.5 'Amiri',serif!important;color:#4a1521}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-cx-bar{display:block;position:relative;width:100%;height:2px;border-radius:2px;background:rgba(107,31,46,.12);overflow:hidden}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-cx-bar i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:2px;background:linear-gradient(90deg,#B8965A,#7d2437)}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-cx-d{font:400 12.5px 'IBM Plex Sans Arabic',sans-serif!important;color:#8a7468!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl{margin:6px 0 20px;padding:20px 18px 14px;border-radius:24px;background:linear-gradient(180deg,#FFFCF6,#FBF5EA);box-shadow:0 18px 36px -24px rgba(107,31,46,.38),0 0 0 1px rgba(184,150,90,.14)}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-dur{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(107,31,46,.08);color:#6B1F2E;font:700 13px 'IBM Plex Sans Arabic',sans-serif}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-dur svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-track{position:relative;height:2px;margin:46px 40px 58px;background:rgba(107,31,46,.14);border-radius:2px}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-fill{position:absolute;inset-block:0;inset-inline-start:0;border-radius:2px;background:linear-gradient(90deg,#B8965A,#7d2437)}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n{position:absolute;top:50%;transform:translate(50%,-50%);display:flex;flex-direction:column;align-items:center;width:84px}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n i{width:12px;height:12px;border-radius:50%;background:#FBF5EA;border:2px solid rgba(107,31,46,.3);box-sizing:border-box}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n.on i{background:#7d2437;border-color:#7d2437}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n b{position:absolute;top:20px;font:700 13px 'IBM Plex Sans Arabic',sans-serif;color:#4a1521;white-space:nowrap}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n small{position:absolute;top:38px;font:400 11.5px 'IBM Plex Sans Arabic',sans-serif;color:#8a7468;white-space:nowrap}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-now{position:absolute;top:50%;width:16px;height:16px;margin-top:-8px;margin-inline-start:-8px;border-radius:50%;background:#C9A062;box-shadow:0 0 0 5px rgba(201,160,98,.28),0 0 18px 4px rgba(201,160,98,.55);animation:ypNow 2.4s ease-in-out infinite;transform:translateX(0)}
+html[dir=rtl] body section#for-you .yp-tl-now{margin-inline-start:0;margin-right:-8px}
+@keyframes ypNow{0%,100%{box-shadow:0 0 0 4px rgba(201,160,98,.25),0 0 14px 3px rgba(201,160,98,.45)}50%{box-shadow:0 0 0 8px rgba(201,160,98,.12),0 0 24px 6px rgba(201,160,98,.6)}}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-st{margin:0;text-align:center;font:500 12.5px 'IBM Plex Sans Arabic',sans-serif;color:#9a4a32}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-det>.yp-chip{display:inline-flex!important;align-items:center;margin:4px 0 10px!important;padding:6px 14px!important;border-radius:999px!important;border:0!important;background:rgba(107,31,46,.08)!important;color:#6B1F2E!important;font:500 12.5px 'IBM Plex Sans Arabic',sans-serif!important;box-shadow:none!important;position:static!important;transform:none!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-gl{font-size:18px!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n.up b{top:-46px!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-n.up small{top:-28px!important}
+html body section#for-you#for-you#for-you#for-you#for-you#for-you#for-you .yp-tl-track{margin-top:60px!important}

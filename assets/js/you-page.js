@@ -95,6 +95,20 @@
   function readerClose() { var el = document.getElementById('yp-reader'); if (el) el.remove(); document.documentElement.classList.remove('yp-rd-open'); }
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') readerClose(); });
   window.addEventListener('hashchange', readerClose);
+  function durAr(ms) {
+    var m = Math.max(1, Math.round(ms / MONTH)), y = Math.floor(m / 12), r = m % 12, out = [];
+    if (y) out.push(y === 1 ? 'سنة' : y === 2 ? 'سنتان' : y + (y <= 10 ? ' سنوات' : ' سنة'));
+    if (r) out.push(r === 1 ? 'شهر' : r === 2 ? 'شهران' : r + (r <= 10 ? ' أشهر' : ' شهرًا'));
+    return out.join(' و');
+  }
+  function timeline(c) {
+    var now = selMs(), pk = c.peaks[0], pm = pk ? Math.round((pk.a + Math.max(pk.a, pk.b)) / 2) : Math.round((c.start + c.end) / 2);
+    var span = c.end - c.start, pos = function (t) { return Math.min(100, Math.max(0, (t - c.start) / span * 100)); }, np = pos(now), pp = pos(pm);
+    var st = now < c.start ? 'تبدأ قريبًا' : now > c.end ? 'انتهت' : 'أنت هنا الآن';
+    var node = function (k, t, at) { var on = (k === 'البداية' && now >= c.start) || (k === 'الذروة' && now >= pm) || (k === 'النهاية' && now >= c.end); return '<div class="yp-tl-n' + (on ? ' on' : '') + (k === 'الذروة' && (pp < 26 || pp > 74) ? ' up' : '') + '" style="inset-inline-start:' + at + '%"><i></i><b>' + k + '</b><small>' + fmtM(t) + '</small></div>'; };
+    return '<div class="yp-tl"><span class="yp-tl-dur">' + SVG('<circle cx="12" cy="12" r="8.500"/><path d="M12 7.500V12l3 2"/>') + 'مدة العبور: ' + durAr(span) + '</span>' +
+      '<div class="yp-tl-track"><span class="yp-tl-fill" style="width:' + np + '%"></span>' + node('البداية', c.start, 0) + node('الذروة', pm, pp) + node('النهاية', c.end, 100) + (now >= c.start && now <= c.end ? '<span class="yp-tl-now" style="inset-inline-start:' + np + '%"></span>' : '') + '</div><p class="yp-tl-st">' + st + '</p></div>';
+  }
   function phases(c) {
     var pk = c.peaks[0], a = pk ? pk.a : (c.start + c.end) / 2, b = pk ? Math.max(pk.b, a) : a;
     return '<div class="yp-ph">' + [['الاقتراب', c.start, a], ['الذروة', a, b], ['الانحسار', b, c.end]].map(function (x) {
@@ -110,9 +124,12 @@
     return '<div class="yp-act"><button type="button" class="yp-ab' + (on ? ' on' : '') + '" data-save="' + esc(id) + '" aria-pressed="' + on + '">' + SVG('<path d="M7 4h10v16l-5-3.500L7 20z"/>') + '<span>' + (on ? 'محفوظة' : 'احفظ') + '</span></button>' +
       '<button type="button" class="yp-ab" data-share="' + esc(title) + '">' + SVG('<circle cx="18" cy="5.500" r="2.500"/><circle cx="6" cy="12" r="2.500"/><circle cx="18" cy="18.500" r="2.500"/><path d="M8.300 10.800l7.400-4M8.300 13.200l7.400 4"/>') + '<span>شارك</span></button></div>';
   }
+  var GLY = { jupiter: '\u2643', saturn: '\u2644', uranus: '\u2645', neptune: '\u2646', pluto: '\u2647', truenode: '\u260A', chiron: '\u26B7' };
+  function gly(t) { return '<span class="yp-gl" aria-hidden="true">' + (GLY[t] || '\u2736') + '\uFE0E</span>'; }
+  function progOf(c) { var now = selMs(); return c.start > now ? 0 : Math.min(1, Math.max(0, (now - c.start) / (c.end - c.start))); }
   function cardHtml(c, up) {
-    var peak = c.peaks[0] ? 'ذروتها: ' + fmtM(c.peaks[0].a) : '';
-    return '<button type="button" class="yp-cy' + (up ? ' up' : '') + '" data-cyc="' + esc(c.id + '|' + c.start) + '">' + (up ? '<em class="yp-soon">قريبًا</em>' : '') + '<span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><span class="yp-cy-t"><b>' + esc(titleOf(c)) + '</b><small>' + fmtM(c.start) + ' – ' + fmtM(c.end) + '</small><small>' + peak + '</small></span>' + ring(c, up) + '</button>';
+    var pr = Math.round(progOf(c) * 100);
+    return '<button type="button" class="yp-cx" data-cyc="' + esc(c.id + '|' + c.start) + '"><span class="yp-cx-pill">' + gly(c.t) + '<span>' + c.tn + ' \u00b7 ' + c.an + ' \u00b7 ' + c.nn + '</span></span><b class="yp-cx-t">' + esc(titleOf(c)) + '</b><span class="yp-cx-bar" aria-hidden="true"><i style="width:' + pr + '%"></i></span><small class="yp-cx-d">' + fmtM(c.start) + ' \u2013 ' + fmtM(c.end) + '</small></button>';
   }
   function cyclesHtml(list, cap) {
     var s = split(list), h = '';
@@ -533,8 +550,7 @@
       if (c) {
         var pp0 = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === c.n; })[0], cc0 = pp0 && coreOf(pp0);
         return '<div class="yp-det"><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><h3>' + esc(titleOf(c)) + '</h3><small class="yp-al">' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small>' + actBar(c.id + '|' + c.start, titleOf(c)) +
-          '<div class="yp-meta"><div><i>المدة</i><b>' + Math.max(1, Math.round((c.end - c.start) / MONTH)) + ' شهر</b><i>ذروة التأثير</i>' + (c.peaks.length ? c.peaks.map(function (p) { return '<b>' + fmtM(p.a) + (p.b - p.a > 20 * DAY ? ' – ' + fmtM(p.b) : '') + '</b>'; }).join('') : '<b>غير محددة</b>') + '</div>' + ring(c, c.start > selMs()) + '</div>' +
-          '<p class="yp-lab">مراحل الدورة</p>' + phases(c) +
+          timeline(c) +
           (cc0 ? '<p class="yp-lab">ما تحمله ' + c.nn + ' عندك</p>' + textBlock(cc0.e, 'cyc', c.id + '|' + c.start) : '') + '</div>';
       }
     }
