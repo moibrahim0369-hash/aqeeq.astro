@@ -456,7 +456,7 @@
   var HT = [['day', 'طاقة اليوم'], ['transits', 'عبوراتك'], ['patterns', 'أنماطك'], ['rel', 'علاقاتك']];
   function htBar() {
     var cur = ST.ht || 'day';
-    return '<div class="yp-seg" role="tablist" aria-label="أقسام صفحتك">' + HT.map(function (t) { return '<button type="button" role="tab" class="yp-seg-b" data-ht="' + t[0] + '" aria-selected="' + (cur === t[0]) + '">' + t[1] + '</button>'; }).join('') + '<span class="yp-seg-i" aria-hidden="true"></span></div>';
+    return '<div class="yp-seg" role="tablist" aria-label="أقسام صفحتك" style="--i:' + HT.map(function (t) { return t[0]; }).indexOf(cur) + '">' + HT.map(function (t) { return '<button type="button" role="tab" class="yp-seg-b" data-ht="' + t[0] + '" aria-selected="' + (cur === t[0]) + '">' + t[1] + '</button>'; }).join('') + '<span class="yp-seg-i" aria-hidden="true"></span></div>';
   }
   function moreLink(label, go) { return '<button type="button" class="yp-more" data-go="' + go + '"><span>' + label + '</span>' + CHEV + '</button>'; }
   function panelHtml(k) {
@@ -719,6 +719,7 @@
     var b = e.target.closest && e.target.closest('#for-you [data-ht]'); if (!b) return;
     var k = b.getAttribute('data-ht'); if (k === ST.ht) return; ST.ht = k;
     var bar = b.parentNode, hp = $('#yp-hp'); if (!hp) { render(); return; }
+    bar.style.setProperty('--i', String([].indexOf.call(bar.querySelectorAll('.yp-seg-b'), b)));
     [].forEach.call(bar.querySelectorAll('.yp-seg-b'), function (x) { x.setAttribute('aria-selected', String(x === b)); });
     hp.classList.remove('yp-hp-in'); hp.innerHTML = panelHtml(k); void hp.offsetWidth; hp.classList.add('yp-hp-in');
   });
