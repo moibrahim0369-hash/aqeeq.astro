@@ -43,6 +43,33 @@
 @media (max-width:760px){
   html[data-aqr="account"] #account .acx-crest,
   html[data-aqr="account"] #account .acx-visual{display:none!important}
-  html[data-aqr="account"] #account .acct-wrap{padding-inline:26px!important}
+  html body section#account.acx .acct-wrap{padding-inline:26px!important;box-sizing:border-box;width:100%!important}
   html[data-aqr="account"] #account .acct-brand-header{margin-top:0}
+}
+@media (max-width:760px){
+  /* توزيع الشاشة: الهوية في الثلث العلوي، والزرارين في الثلث السفلي */
+  html body section.sec:target#account.acx > .wrap.acct-wrap,html body section#account.acx .acct-wrap{justify-content:flex-start!important;padding-top:calc(124px + env(safe-area-inset-top,0px))!important;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))!important}
+  html[data-aqr="account"] #account .acct-card-shell{flex:1;display:flex!important;flex-direction:column}
+  html[data-aqr="account"] #account #acct-guest:not([hidden]){margin-top:auto;display:flex;flex-direction:column}
+  html[data-aqr="account"] #account #acct-guest.acx-email{margin-top:22px}
+
+  /* اللوجو: العين فوق والاسم تحتها في النص */
+  html[data-aqr="account"] #account .acx-logo{flex-direction:column!important;align-items:center!important;gap:12px!important;text-align:center}
+  html[data-aqr="account"] #account .acx-logo img{width:92px!important;height:92px!important}
+  html[data-aqr="account"] #account .acx-logo span{display:flex;flex-direction:column;align-items:center;gap:2px}
+  html[data-aqr="account"] #account .acx-logo b{letter-spacing:.16em;font-size:1.05rem}
+  html[data-aqr="account"] #account .acct-brand-header h2{margin-top:22px!important}
+
+  /* الزرارين: نفس الشكل والحجم */
+  html[data-aqr="account"] #account #acct-google,
+  html[data-aqr="account"] #account #acct-email-open{
+    width:100%;min-height:56px;border-radius:14px!important;display:flex;align-items:center;justify-content:center;gap:10px;
+    font-size:1.02rem;font-weight:700;box-shadow:none}
+  html[data-aqr="account"] #account #acct-google{
+    background:linear-gradient(135deg,#8a3d56,#70263F)!important;color:#FFF8EE!important;border:1px solid #70263F!important;
+    box-shadow:0 8px 22px rgba(112,38,63,.28)!important}
+  html[data-aqr="account"] #account #acct-google span{color:#FFF8EE!important}
+  html[data-aqr="account"] #account #acct-google .google-icon{background:#fff;border-radius:50%;padding:3px;box-sizing:content-box}
+  html[data-aqr="account"] #account #acct-email-open{
+    background:rgba(239,227,211,.55)!important;color:#70263F!important;border:1.5px solid rgba(168,135,80,.7)!important;margin-top:14px}
 }
