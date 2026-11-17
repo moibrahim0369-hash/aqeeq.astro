@@ -1,0 +1,84 @@
+/* #signs v2: ستارة الأبراج + تبويبان + ورقة سفلية، بمعيار #sky (ivory #FFFDF9 / gold #D4B475 / wine #5A182A / line #E8DFD1) */
+html body :is(#signs,#sgs-sheet){--v2-iv:#FFFDF9;--v2-gold:#D4B475;--v2-wine:#5A182A;--v2-line:#E8DFD1;--v2-ink:#3A2A2E;--v2-mute:#7B6B64}
+/* الشارة البلورية العاجية */
+html body :is(#signs,#sgs-sheet) .sg-bd:not(#_a):not(#_b){display:inline-grid;place-items:center;flex:none;width:40px;height:40px;border-radius:50%;background:var(--v2-iv)!important;border:1.5px solid var(--v2-gold)!important;color:var(--v2-wine)!important;box-shadow:0 2px 8px rgba(90,24,42,.12),inset 0 1px 0 #fff!important;line-height:1;padding:0!important;margin:0!important}
+html body :is(#signs,#sgs-sheet) .sg-bd .sg:not(#_a){display:grid;place-items:center;width:auto;height:auto;margin:0;padding:0;background:none!important;border:0!important;box-shadow:none!important;color:var(--v2-wine)!important;font-size:1.22rem;line-height:1}
+html body :is(#signs,#sgs-sheet) .sg-bd svg:not(#_a){width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+html body :is(#signs,#sgs-sheet) .sg-bd .sg-svg svg:not(#_a){width:20px;height:20px}
+html body :is(#signs,#sgs-sheet) .sg-bd-s:not(#_a){width:32px;height:32px}
+html body :is(#signs,#sgs-sheet) .sg-bd-s svg:not(#_a){width:17px;height:17px}
+html body :is(#signs,#sgs-sheet) .sg-bd-l:not(#_a){width:46px;height:46px}
+html body :is(#signs,#sgs-sheet) .sg-bd-xl:not(#_a){width:62px;height:62px}
+html body :is(#signs,#sgs-sheet) .sg-bd-xl .sg:not(#_a){font-size:1.9rem}
+html body :is(#signs,#sgs-sheet) .sg-bd-xl svg:not(#_a){width:34px;height:34px}
+/* اللوحة بلا بطاقة خارجية */
+html body #signs article.arch#panel:not(#_a):not(#_b){background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+html body #signs.sg-picked .center .intro:not(#_a){display:none}
+/* الستارة */
+html body #signs .sg-cur:not(#_a){display:contents}
+html body #signs .sg-pk:not(#_a){margin:0 0 14px}
+html body #signs .sg-bar:not(#_a){display:flex;align-items:center;gap:8px;position:sticky;top:6px;z-index:6;margin:0 0 10px;padding:8px 10px;border-radius:20px;background:var(--v2-iv);border:1px solid var(--v2-line);box-shadow:0 -14px 0 #FBF9F6,0 6px 18px rgba(90,24,42,.09)}
+html body #signs .sg-bar[hidden]:not(#_a){display:none}
+html body #signs .sg-bar-id:not(#_a){display:flex;align-items:center;gap:9px;flex:1;min-width:0}
+html body #signs .sg-bar-t:not(#_a){display:grid;min-width:0}
+html body #signs .sg-bar-t b:not(#_a){font:800 .95rem/1.3 'Cairo',sans-serif;color:var(--v2-wine)}
+html body #signs .sg-bar-t small:not(#_a){font:600 .68rem/1.3 'Cairo',sans-serif;color:var(--v2-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html body #signs .sg-chg:not(#_a),html body #signs .sg-nxt:not(#_a){flex:none;min-height:38px;padding:0 12px;border-radius:999px;font:800 .74rem 'Cairo',sans-serif;cursor:pointer;white-space:nowrap}
+html body #signs .sg-chg:not(#_a){background:var(--v2-iv);color:var(--v2-wine);border:1.5px solid var(--v2-gold)}
+html body #signs .sg-nxt:not(#_a){background:linear-gradient(180deg,#6B1D2F,#5A182A);color:#F6E6BC;border:1.5px solid #5A182A;box-shadow:0 3px 10px rgba(90,24,42,.25)}
+html body #signs .sg-pk:not(#_a){display:grid;grid-template-rows:1fr;transition:grid-template-rows .3s ease}
+html body #signs .sg-cur[data-open="false"] .sg-pk:not(#_a){grid-template-rows:0fr}
+html body #signs .sg-pk-in:not(#_a){overflow:hidden;min-height:0}
+html body #signs .sg-cur[data-open="false"] .sg-pk-in:not(#_a){visibility:hidden;transition:visibility 0s .3s}
+html body #signs .sg-pk-in .picker:not(#_a){padding:2px}
+html body #signs .picker button.sg-pick:not(#_a):not(#_b){display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px;background:var(--v2-iv)!important;border:1px solid var(--v2-line)!important;border-radius:18px;box-shadow:0 4px 14px rgba(90,24,42,.06)!important;color:var(--v2-wine)!important;font:800 .86rem 'Cairo',sans-serif}
+html body #signs .picker button.sg-pick[aria-pressed="true"]:not(#_a):not(#_b){border-color:var(--v2-wine)!important;box-shadow:0 0 0 2px var(--v2-gold),0 6px 16px rgba(90,24,42,.14)!important}
+/* البطل العنابي */
+html body #signs .sg-hero:not(#_a){position:relative;display:flex;align-items:center;gap:14px;margin:0 0 12px;padding:18px 16px;border-radius:22px;background:#5A182A;color:#FFFDF9;overflow:hidden;box-shadow:0 10px 26px rgba(90,24,42,.22)}
+html body #signs .sg-hero:not(#_a)::before{content:"";position:absolute;inset-inline:0;top:0;height:3px;background:linear-gradient(90deg,transparent,#D4B475,transparent)}
+html body #signs .sg-hero-t h3:not(#_a){margin:0;font:800 1.45rem/1.3 'Cairo',sans-serif;color:#FFFDF9}
+html body #signs .sg-hero-t p:not(#_a){margin:2px 0 8px;font:600 .8rem 'Cairo',sans-serif;color:#E9D5A6}
+html body #signs .sg-tags:not(#_a){display:flex;flex-wrap:wrap;gap:6px}
+html body #signs .sg-tags span:not(#_a){padding:3px 10px;border-radius:999px;border:1px solid rgba(212,180,117,.7);background:rgba(255,253,249,.08);color:#FFFDF9;font:700 .7rem 'Cairo',sans-serif}
+/* التبويبات */
+html body #signs .sg-tabs:not(#_a){display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:0 0 14px;padding:4px;border-radius:999px;background:var(--v2-iv);border:1px solid var(--v2-line);box-shadow:0 4px 14px rgba(90,24,42,.06);overflow:visible}
+html body #signs .sg-tabs button:not(#_a){min-height:42px;border:0;border-radius:999px;background:transparent;color:var(--v2-wine);font:800 .8rem 'Cairo',sans-serif;cursor:pointer;padding:0 6px}
+html body #signs .sg-tabs button[aria-selected="true"]:not(#_a){background:linear-gradient(180deg,#6B1D2F,#5A182A);color:#F6E6BC;box-shadow:0 3px 10px rgba(90,24,42,.25)}
+/* الأقسام والبطاقات */
+html body #signs .sg-sec:not(#_a){margin:0 0 20px}
+html body #signs .sg-h:not(#_a){display:flex;align-items:center;gap:10px;margin:0 0 10px;padding:0 0 8px;border-bottom:1px dashed var(--v2-line);font:800 1.02rem 'Cairo',sans-serif;color:var(--v2-wine)}
+html body #signs .sg-sub:not(#_a){margin:0 0 10px;font:500 .86rem/1.9 'Cairo',sans-serif;color:var(--v2-mute)}
+html body #signs .sg-card:not(#_a),html body #signs .sg-row:not(#_a){display:flex;align-items:flex-start;gap:12px;width:100%;margin:0 0 10px;padding:14px;border-radius:18px;background:var(--v2-iv)!important;border:1px solid var(--v2-line)!important;box-shadow:0 4px 14px rgba(90,24,42,.05)!important;text-align:start;color:var(--v2-ink)}
+html body #signs .sg-card h5:not(#_a){margin:0 0 4px;font:800 .95rem 'Cairo',sans-serif;color:var(--v2-wine)}
+html body #signs .sg-card p:not(#_a){margin:0;font:500 .92rem/1.95 'Cairo',sans-serif;color:var(--v2-ink)}
+html body #signs .sg-overall:not(#_a){font-size:.98rem!important}
+html body #signs .sg-hint:not(#_a){margin-top:8px!important;padding-top:8px;border-top:1px dashed var(--v2-line);font-size:.82rem!important;color:#7A5A22!important}
+html body #signs .sg-mini:not(#_a){display:block}
+html body #signs .sg-mini b:not(#_a){display:block;margin:0 0 4px;font:800 .8rem 'Cairo',sans-serif;color:#8A6A2F}
+html body #signs .sg-row:not(#_a){align-items:center;cursor:pointer;font-family:'Cairo',sans-serif}
+html body #signs .sg-row-t:not(#_a){display:grid;flex:1;min-width:0;gap:2px}
+html body #signs .sg-row-t b:not(#_a){font:800 .94rem/1.4 'Cairo',sans-serif;color:var(--v2-wine)}
+html body #signs .sg-row-t small:not(#_a){font:600 .74rem/1.5 'Cairo',sans-serif;color:var(--v2-mute)}
+html body #signs .sg-row.is-rx:not(#_a){border-color:#E3B9C0!important}
+html body #signs .sg-pair:not(#_a){display:inline-flex;flex:none}
+html body #signs .sg-pair .sg-bd+.sg-bd:not(#_a){margin-inline-start:-10px!important}
+html body #signs .sg-chev:not(#_a){flex:none;width:9px;height:9px;border-left:2px solid var(--v2-gold);border-bottom:2px solid var(--v2-gold);transform:rotate(45deg)}
+html body #signs .rxb:not(#_a){font-style:normal;padding:1px 7px;border-radius:999px;background:#FBEAEC;border:1px solid #E3B9C0;color:#A3263E;font-size:.66rem}
+html body #signs .sg-chips:not(#_a){display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+html body #signs .sg-chips span:not(#_a){padding:6px 12px;border-radius:999px;background:var(--v2-iv);border:1px solid var(--v2-line);font:600 .78rem 'Cairo',sans-serif;color:var(--v2-ink)}
+html body #signs .sg-chips span.is-rx:not(#_a){background:#FBEAEC;border-color:#E3B9C0}
+html body #signs .sg-empty:not(#_a){margin:0;font:500 .88rem/1.9 'Cairo',sans-serif;color:var(--v2-mute)}
+html body #signs .sg-minis:not(#_a){display:grid;gap:0}
+html body #signs .sg-sec .zd-acc.lpa-card:not(#_a):not(#_b){background:var(--v2-iv)!important;border:1px solid var(--v2-line)!important;box-shadow:0 4px 14px rgba(90,24,42,.05)!important}
+html body #signs .sg-sec .zd-acc.lpa-card>summary:not(#_a):not(#_b),html body #signs .sg-sec .zd-acc.lpa-card[open]>summary:not(#_a):not(#_b){background:transparent!important}
+/* الورقة السفلية */
+html body #sgs-sheet .sg-sh-hd:not(#_a){display:flex;align-items:center;gap:12px;margin:0 0 14px;padding-inline-start:46px;min-height:46px}
+html body #sgs-sheet .sg-sh-hd h3:not(#_a){margin:0;font:800 1.08rem/1.4 'Cairo',sans-serif;color:var(--v2-wine)}
+html body #sgs-sheet .sg-sh-hd small:not(#_a){font:600 .76rem/1.5 'Cairo',sans-serif;color:var(--v2-mute)}
+html body #sgs-sheet .sg-sh-bd:not(#_a){padding:2px 2px 8px;font:500 .96rem/2 'Cairo',sans-serif;color:var(--v2-ink)}
+html body #sgs-sheet .sg-sh-bd p:not(#_a){margin:0 0 12px}
+html body #sgs-sheet .sg-rx:not(#_a){padding:12px 14px;border-radius:16px;background:#FBEAEC;border:1px solid #E3B9C0}
+html body #sgs-sheet .sg-ing:not(#_a){font-size:.84rem;color:#7A5A22}
+html body #signs article#panel:not(#_a):not(#_b):not(#_c){display:block!important}
+html body #signs article#panel:empty:not(#_a):not(#_b):not(#_c){display:none!important}
+@media(min-width:700px){html body #signs :is(.sg-bar,.sg-pk):not(#_a){max-width:580px;margin-inline:auto}html body #signs .sg-bar:not(#_a){margin-bottom:10px}}
