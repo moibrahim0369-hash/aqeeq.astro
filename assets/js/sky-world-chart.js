@@ -372,8 +372,8 @@
   function renderAx(i) {
     var L = axList(); if (!L.length) return; axI = ((i % L.length) + L.length) % L.length;
     var el = L[axI], s = ensureAx(), body = s.querySelector('.axs-body'), tone = (el.className.match(/axt-(\w)/) || [])[1] || 'n';
-    var bx = el.querySelector('.ax-b'), qs = [].slice.call(bx.querySelectorAll('.ax-q')), orb = parseFloat(el.getAttribute('data-orb')), lim = parseFloat(el.getAttribute('data-lim')) || 8, pct = isNaN(orb) ? 0 : Math.max(2, Math.min(100, (1 - orb / lim) * 100)), tight = !isNaN(orb) && orb <= lim / 3;
-    var txt = [].filter.call(bx.children, function (c) { return qs.indexOf(c) < 0; }).map(function (c) { return c.outerHTML; }).join('');
+    var bx = el.querySelector('.ax-b'), qs = [].slice.call(bx.querySelectorAll('.ax-q')).slice(0, 2), orb = parseFloat(el.getAttribute('data-orb')), lim = parseFloat(el.getAttribute('data-lim')) || 8, pct = isNaN(orb) ? 0 : Math.max(2, Math.min(100, (1 - orb / lim) * 100)), tight = !isNaN(orb) && orb <= lim / 3;
+    var txt = [].filter.call(bx.children, function (c) { return !c.classList.contains('ax-q'); }).map(function (c) { return c.outerHTML; }).join('');
     body.innerHTML = '<div class="axs-hero axt-' + tone + '">' + el.querySelector('.ax-pair').outerHTML + '<div class="axs-t"><b>' + el.querySelector('.ax-t b').innerHTML + '</b><small>' + el.querySelector('.ax-t small').innerHTML + '</small></div></div>' +
       (isNaN(orb) ? '' : '<div class="axs-orb"><div class="axs-orb-h"><b>دقة الزاوية</b><span>' + (tight ? 'زاوية قوية' : orb <= lim * .66 ? 'زاوية متوسطة' : 'زاوية خفيفة') + ' · <bdi dir="ltr">' + orb.toFixed(1).replace(/\.0$/, '') + '°</bdi></span></div><div class="axs-orb-bar"><i style="width:' + pct.toFixed(0) + '%"></i></div><div class="axs-orb-s"><span><bdi dir="ltr">0°</bdi></span><span><bdi dir="ltr">' + lim + '°</bdi></span></div></div>') +
       '<div class="axs-txt">' + txt + '</div>' + (qs.length ? '<div class="swm-q"><ul>' + qs.map(function (z) { return '<li>' + z.innerHTML + '</li>'; }).join('') + '</ul></div>' : '');
