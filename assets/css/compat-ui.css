@@ -29,3 +29,23 @@ html body #lifepath-compat #syn-result>.cph::after{content:"";position:absolute;
 .cph-tools button.is-saved svg{color:#4A1224}
 .cph .syn-master-badge{margin:14px 0 0;font:500 .8rem/1.6 'Cairo',sans-serif;color:#FFF3D6;background:rgba(255,243,214,.08);border-radius:12px;padding:8px 10px}
 html body #lifepath-compat #syn-result>.lpa-nav,html body #lifepath-compat #syn-result>.syn-score-card{display:none!important}
+
+/* قائمة الأقسام: بطاقات بيضاء تفتح نافذة سفلية */
+html body #lifepath-compat .cpt-list{display:grid;gap:10px;margin:0 0 18px}
+html body #lifepath-compat .cpt-grp{margin:12px 2px 2px;font:700 1.05rem/1.5 'Amiri','Cairo',serif;color:#6B1D2F}
+html body #lifepath-compat .cpt-tile{appearance:none;cursor:pointer;width:100%;display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:18px;text-align:start;background:#FFFFFF;border:1px solid rgba(198,168,124,.22);box-shadow:0 4px 16px rgba(90,24,42,.05),0 1px 3px rgba(90,24,42,.04);color:#3A1A24;transition:transform .15s,box-shadow .15s}
+html body #lifepath-compat .cpt-tile:active{transform:scale(.985)}
+html body #lifepath-compat .cpt-ic{flex:none;width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:#FBF4E4;border:1px solid #E3CFA4;color:#6B1D2F}
+html body #lifepath-compat .cpt-ic svg{width:24px;height:24px}
+html body #lifepath-compat .cpt-tx{flex:1;min-width:0;display:grid;gap:3px}
+html body #lifepath-compat .cpt-tx>b{font:700 .98rem/1.45 'Cairo',sans-serif;color:#4A1224}
+html body #lifepath-compat .cpt-tx>span:not(.cpt-bd){font:500 .8rem/1.5 'Cairo',sans-serif;color:#7a5a50;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+html body #lifepath-compat .cpt-bd{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px}
+html body #lifepath-compat .cpt-ch{flex:none;color:#B78A52}
+html body #lifepath-compat .cpt-ch svg{width:18px;height:18px}
+/* محتوى النافذة */
+.cps-body h4{margin:18px 0 6px;font:700 .98rem/1.5 'Cairo',sans-serif;color:#6B1D2F}
+.cps-body h4:first-child{margin-top:4px}
+.cps-body p{margin:0 0 8px;font:500 .95rem/1.95 'Cairo',sans-serif;color:#3A2A2E}
+.cps-body .cps-who{margin:6px 0 2px;padding:8px 12px;border-radius:12px;background:#6A2038;color:#FFF3D6;font:700 .95rem 'Cairo',sans-serif}
+.cps-body .cps-who~.cps-who{margin-top:22px}
