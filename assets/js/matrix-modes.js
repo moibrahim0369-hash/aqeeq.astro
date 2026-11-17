@@ -9,48 +9,44 @@
   var AD = function () { return window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter; };
   function esc(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
-  /* نفس معادلات المحرك، انطلاقاً من الأركان الثلاثة */
-  function fromCorners(A, B, C) {
-    var r = AD().reduceArcana;
-    var D = r(A + B + C), E = r(A + B + C + D);
-    var F = r(A + B), G = r(B + C), H = r(C + D), I = r(D + A);
-    var father = r(F + H), mother = r(G + I);
-    var A2 = r(A + E), B2 = r(B + E), C2 = r(C + E), D2 = r(D + E), D3 = r(D + D2);
-    var balance = r(D2 + C2), heart = r(balance + D2), money = r(balance + C2);
-    var sky = r(B + D), earth = r(A + C), personal = r(sky + earth), social = r(father + mother);
-    var spiritual = r(personal + social);
-    return { A: A, B: B, C: C, D: D, E: E, F: F, G: G, H: H, I: I, father: father, mother: mother,
-      A2: A2, B2: B2, C2: C2, D2: D2, D3: D3, balance: balance, heart: heart, money: money,
-      sky: sky, earth: earth, personal: personal, social: social, spiritual: spiritual };
+  /* ملخّص مسطّح لنقاط المصفوفة، يُبنى من المحرك نفسه انطلاقاً من الأركان الأربعة (لا معادلات مكرّرة هنا) */
+  function flatOf(m) {
+    var a = m.anchors, c = m.corners, i = m.intermediate, g = m.generational, pu = m.purposes, ch = m.channels;
+    return { A: a.A, B: a.B, C: a.C, D: a.D, E: a.E, F: c.F, G: c.G, H: c.H, I: c.I,
+      father: g.father.combined, mother: g.mother.combined,
+      A2: i.A2, B2: i.B2, C2: i.C2, D2: i.D2, D3: i.D3,
+      balance: ch.balancePoint, heart: ch.heartPoint, money: ch.moneyPoint,
+      sky: pu.sky, earth: pu.earth, personal: pu.personal, social: pu.social, spiritual: pu.spiritual };
   }
+  function fromAnchors(A, B, C, D) { return flatOf(AD().buildMatrixFromAnchors(A, B, C, D)); }
+  /* من الأركان الثلاثة (الدرس D = اختزال A+B+C) */
+  function fromCorners(A, B, C) { return fromAnchors(A, B, C, AD().reduceArcana(A + B + C)); }
   function ofDate(dateStr, today) {
     var m = AD().calculateDestinyMatrix(dateStr, today), a = m.anchors;
     var P = fromCorners(a.A, a.B, a.C);
     P.yearEnergy = m.yearEnergy; P.ageMap = m.ageMap; P.birth = m.birthDate;
     return P;
   }
-  /* مصفوفة الشراكة: كل نقطة = اختزال (نقطة الأول + نقطة الثاني) للموضع نفسه.
+  /* مصفوفة الشراكة: نجمع الأركان الأربعة للشريكين فقط ثم نعيد حساب كل نقطة أخرى منها (منهج الموقع المرجعي).
      طابقنا الأرقام مع النتيجة المرجعية لتاريخي 25/09/1999 و24/09/1990 (المركز 12، الأسرة 15، المشاعر 9، المال 10). */
   function pairOf(d1, d2) {
-    var r = AD().reduceArcana, p1 = ofDate(d1), p2 = ofDate(d2), c = {};
-    Object.keys(p1).forEach(function (k) { if (typeof p1[k] === 'number' && typeof p2[k] === 'number') c[k] = r(p1[k] + p2[k]); });
+    var r = AD().reduceArcana, p1 = ofDate(d1), p2 = ofDate(d2);
+    /* نجمع الأركان الأربعة فقط (اليوم، الشهر، السنة، الدرس) ثم نعيد بناء بقية المصفوفة منها */
+    var c = fromAnchors(r(p1.A + p2.A), r(p1.B + p2.B), r(p1.C + p2.C), r(p1.D + p2.D));
     return { a: p1, b: p2, c: c };
   }
   /* مصفوفة الشراكة الكاملة بنفس بنية محرك المصفوفة الفردية، لتُرسم بنفس رسم الموقع (generateMatrixSVG) */
   function pairFull(d1, d2) {
     var r = AD().reduceArcana, m1 = AD().calculateDestinyMatrix(d1), m2 = AD().calculateDestinyMatrix(d2);
-    function sum(a, b, key) {
-      if (typeof a === 'number' && typeof b === 'number') return key === 'year' || key === 'month' || key === 'day' ? a : r(a + b);
-      if (Array.isArray(a) && Array.isArray(b)) return a.map(function (x, i) { return sum(x, b[i]); });
-      if (a && b && typeof a === 'object' && typeof b === 'object') { var o = {}; Object.keys(a).forEach(function (k) { o[k] = k in b ? sum(a[k], b[k], k) : a[k]; }); return o; }
-      return a;
-    }
-    var P = sum(m1, m2);
+    var P = AD().buildMatrixFromAnchors(
+      r(m1.anchors.A + m2.anchors.A), r(m1.anchors.B + m2.anchors.B),
+      r(m1.anchors.C + m2.anchors.C), r(m1.anchors.D + m2.anchors.D));
     var axis = function (m, X) { var mid = r(X + m.anchors.E); return { mid: mid, outer: r(X + mid), inner: r(mid + m.anchors.E) }; };
     var diag = function (m, X) { var inner = r(X + m.anchors.E); return { inner: inner, outer: r(X + inner) }; };
-    function pairOfFn(fn, k1, k2, ks) { var o = {}; ks.forEach(function (k) { var x = fn(m1, k1[k]), y = fn(m2, k2[k]); o[k] = {}; Object.keys(x).forEach(function (f) { o[k][f] = r(x[f] + y[f]); }); }); return o; }
-    P.pairAxis = pairOfFn(axis, { left: m1.anchors.A, top: m1.anchors.B, right: m1.anchors.C, bottom: m1.anchors.D }, { left: m2.anchors.A, top: m2.anchors.B, right: m2.anchors.C, bottom: m2.anchors.D }, ['left', 'top', 'right', 'bottom']);
-    P.pairDiag = pairOfFn(diag, m1.corners, m2.corners, ['F', 'G', 'H', 'I']);
+    /* نقاط المحاور والأقطار تُحسب من مصفوفة الشراكة نفسها (مركزها E الخاص بالشراكة) لا من جمع نقاط الشخصين */
+    var axisK = { left: 'A', top: 'B', right: 'C', bottom: 'D' };
+    P.pairAxis = {}; Object.keys(axisK).forEach(function (k) { P.pairAxis[k] = axis(P, P.anchors[axisK[k]]); });
+    P.pairDiag = {}; ['F', 'G', 'H', 'I'].forEach(function (k) { P.pairDiag[k] = diag(P, P.corners[k]); });
     // حلقة الأعمار: تُشتق من أركان الشراكة نفسها (لا من جمع نقاط الشخصين)، 7 محطات بين كل ركنين
     var ring = [P.anchors.A, P.corners.F, P.anchors.B, P.corners.G, P.anchors.C, P.corners.H, P.anchors.D, P.corners.I];
     var offs = [1.25, 2.5, 3.75, 5, 6.25, 7.5, 8.75], ages = [], ageMap = {};
@@ -336,7 +332,7 @@
       saveMeta: function (p) { return { type: 'matrix-child', typeLabel: 'مصفوفة الطفل', title: p[0].n || 'مصفوفة الطفل', subtitle: fmtDate(p[0].d), inputs: { name: p[0].n, date: p[0].d } }; }
     });
   }
-  window.AqMatrixModes = { fromCorners: fromCorners, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull };
+  window.AqMatrixModes = { fromCorners: fromCorners, fromAnchors: fromAnchors, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
     var boot = function () { build(); buildCompatPage(); buildChildPage(); var n = 0; (function t() { buildCompatPage(); buildChildPage(); if (++n < 12 && !((document.getElementById('mxc-form') || {}).__mxc && (document.getElementById('mxk-form') || {}).__mxc)) setTimeout(t, 400); })(); };

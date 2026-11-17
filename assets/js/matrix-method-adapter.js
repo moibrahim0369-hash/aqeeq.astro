@@ -130,6 +130,17 @@
     // Bottom (60 yo / الجنوب): طاقة الذيل الكارمي الأساسية (الكارما السابقة، الدرس المتكرر)
     const D = reduceArcana(A + B + C);
 
+    return buildMatrixFromAnchors(A, B, C, D, { year, month, day }, today);
+  }
+
+  /**
+   * يبني المصفوفة كاملة من الأركان الأربعة (A,B,C,D) المختزلة فقط.
+   * يُستعمل للمصفوفة الفردية (من تاريخ الميلاد) ولمصفوفة الشراكة
+   * (جمع أركان الشريكين الأربعة ثم إعادة بناء الباقي منها).
+   * birth اختياري: بدونه لا تُحسب طاقة السنة الشخصية.
+   */
+  function buildMatrixFromAnchors(a, b, c, d, birth, today) {
+    const A = reduceArcana(a), B = reduceArcana(b), C = reduceArcana(c), D = reduceArcana(d);
     // 2. المركز الأساسي (مركز راحة الروح / Center):
     // طاقة الجوهر النفسي ومنطقة الراحة
     const E = reduceArcana(A + B + C + D);
@@ -233,10 +244,16 @@
 
     // 9. طاقة السنة الحالية:
     // طاقة شخصية تبدأ من عيد الميلاد حتى عيد الميلاد التالي (وليست بالسنة التقويمية من 1 يناير).
-    const now = today instanceof Date && !Number.isNaN(today.getTime()) ? today : new Date();
-    const beforeBirthday = now.getMonth() + 1 < month || (now.getMonth() + 1 === month && now.getDate() < day);
-    const currentYear = now.getFullYear() - (beforeBirthday ? 1 : 0);
-    const yearEnergy = reduceArcana(A + B + reduceArcana(digitSum(currentYear)));
+    // في مصفوفة الشراكة لا يوجد تاريخ ميلاد واحد، فلا تُحسب طاقة سنة شخصية.
+    let currentYear = null;
+    let yearEnergy = null;
+    if (birth) {
+      const { year, month, day } = birth;
+      const now = today instanceof Date && !Number.isNaN(today.getTime()) ? today : new Date();
+      const beforeBirthday = now.getMonth() + 1 < month || (now.getMonth() + 1 === month && now.getDate() < day);
+      currentYear = now.getFullYear() - (beforeBirthday ? 1 : 0);
+      yearEnergy = reduceArcana(A + B + reduceArcana(digitSum(currentYear)));
+    }
 
     // 10. جدول الشاكرات السبع (7 Chakras Energy Card).
     // الأعمدة: الجسد (محور أفقي: A,C) · الطاقة (محور رأسي: B,D) · المشاعر = اختزال مجموعهما.
@@ -265,7 +282,7 @@
     totals.common = reduceArcana(totals.physics + totals.energy + totals.emotions);
 
     return {
-      birthDate: { year, month, day },
+      birthDate: birth ? { year: birth.year, month: birth.month, day: birth.day } : null,
       anchors: { A, B, C, D, E },
       corners: { F, G, H, I },
       nodes: {
@@ -318,7 +335,7 @@
       },
       intermediate: { A2, B2, C2, D2, D3, F2, G2, H2, I2 },
       ageMap,
-      yearEnergy: { year: currentYear, endYear: currentYear + 1, label: currentYear + '–' + (currentYear + 1), number: yearEnergy },
+      yearEnergy: birth ? { year: currentYear, endYear: currentYear + 1, label: currentYear + '–' + (currentYear + 1), number: yearEnergy } : null,
       chakras: { rows: chakras, totals },
       ancestralPrograms: {
         fatherLine: { top: F, bottom: H, combined: fatherCombined },
@@ -348,6 +365,75 @@
     };
   }
 
+  // ==================== 3ب. حلقة الأعمار والتوقعات (منطق حسابي فقط) ====================
+
+  const RING_STEP = 1.25; // كل محطة على الحلقة تمتد 1.25 سنة (7 محطات وسيطة بين كل ركنين رئيسيين، 8 عقود = 80 سنة)
+
+  /**
+   * حلقة الأعمار الكاملة: 64 محطة (0، 1.25، 2.5 ... 78.75) ثم تعود إلى A عند 80.
+   * ترتيب الأركان على المحيط: A,F,B,G,C,H,D,I. المحطات الوسيطة تُشتق بنفس معادلة ageMap في المحرك.
+   */
+  function buildAgeRing(m) {
+    const { A, B, C, D } = m.anchors, { F, G, H, I } = m.corners;
+    const ring = [A, F, B, G, C, H, D, I];
+    const points = [];
+    ring.forEach((p, i) => {
+      const q = ring[(i + 1) % 8], mid = reduceArcana(p + q), L = reduceArcana(p + mid), R = reduceArcana(mid + q);
+      points.push(p, reduceArcana(p + L), L, reduceArcana(L + mid), mid, reduceArcana(mid + R), R, reduceArcana(R + q));
+    });
+    return points; // 64 قيمة، الفهرس k يقابل العمر k × 1.25
+  }
+
+  /** طاقة الحلقة عند موضع عمري (بالسنوات، قد يكون كسريًا). */
+  function ringAt(points, pos) {
+    const p = ((pos % 80) + 80) % 80;
+    const k = Math.floor(p / RING_STEP + 1e-9);
+    return { position: Math.round(pos * 1000) / 1000, segment: k, number: points[k % 64], next: points[(k + 1) % 64] };
+  }
+
+  /**
+   * توقعات مبنية على حلقة الأعمار: سنة (من عيد الميلاد إلى عيد الميلاد)، 12 شهرًا من عيد الميلاد،
+   * ثم الأسبوع واليوم الحاليان. كل عنصر يعطي رقم الأركانا فقط ليُربط بمفتاح النص الموجود
+   * (الموضع + الرقم)؛ لا نصوص جديدة هنا.
+   */
+  function calculateForecast(birthDate, today) {
+    const m = calculateDestinyMatrix(birthDate, today);
+    const { year, month, day } = m.birthDate;
+    const now = today instanceof Date && !Number.isNaN(today.getTime()) ? today : new Date();
+    const dayMs = 86400000;
+    const utc = (y, mo, d) => Date.UTC(y, mo, d);
+    const nowUtc = utc(now.getFullYear(), now.getMonth(), now.getDate());
+    const before = now.getMonth() + 1 < month || (now.getMonth() + 1 === month && now.getDate() < day);
+    const age = now.getFullYear() - year - (before ? 1 : 0);
+    const bd = y => utc(y, month - 1, day); // 29/2 في سنة غير كبيسة يتحول تلقائيًا إلى 1/3
+    const start = bd(year + age), end = bd(year + age + 1);
+    const span = (end - start) / dayMs;
+    const points = buildAgeRing(m);
+    const at = ms => ringAt(points, age + (ms - start) / dayMs / span);
+    const fmt = ms => new Date(ms).toISOString().slice(0, 10);
+
+    const months = [];
+    for (let i = 0; i < 12; i++) {
+      const ms = utc(year + age, month - 1 + i, day), nx = utc(year + age, month + i, day);
+      months.push(Object.assign({ index: i + 1, from: fmt(ms), to: fmt(nx - dayMs) }, at(ms)));
+    }
+    const weeks = [];
+    for (let ms = start, i = 1; ms < end; ms += 7 * dayMs, i++) {
+      weeks.push(Object.assign({ index: i, from: fmt(ms), to: fmt(Math.min(ms + 6 * dayMs, end - dayMs)) }, at(ms)));
+    }
+    const idx = (list) => { let k = 0; list.forEach((x, i) => { if (utc(+x.from.slice(0, 4), +x.from.slice(5, 7) - 1, +x.from.slice(8, 10)) <= nowUtc) k = i; }); return k; };
+    return {
+      age,
+      yearRange: { from: fmt(start), to: fmt(end - dayMs), label: m.yearEnergy.label },
+      yearPersonal: m.yearEnergy.number,           // طاقة السنة (A+B+مجموع خانات سنة بداية الدورة)
+      yearRing: at(start),                          // محطة الحلقة التي تبدأ بها سنة العمر
+      months, weeks,
+      currentMonth: months[idx(months)],
+      currentWeek: weeks[idx(weeks)],
+      today: Object.assign({ date: fmt(nowUtc) }, at(nowUtc))
+    };
+  }
+
   // ==================== 4. تصدير النظام ====================
 
   const adapterApi = {
@@ -355,6 +441,9 @@
     reduceArcana,
     normalizeBirthDate,
     calculateDestinyMatrix,
+    buildMatrixFromAnchors,
+    buildAgeRing,
+    calculateForecast,
     getArcanaInfo,
     ARCANA_DATA,
     version: '2.0.0',
