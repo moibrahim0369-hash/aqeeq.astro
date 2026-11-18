@@ -258,3 +258,31 @@ html body #signs .sg-h:not(#_a):not(#_b){margin:4px 0 6px!important;gap:8px!impo
 html body #signs .sg-h .sg-bd-s:not(#_a):not(#_b):not(#_c){width:28px!important;height:28px!important}
 html body #signs .sg-chips:not(#_a):not(#_b){margin:0 0 8px!important;gap:6px!important}
 html body #signs .sg-chips span:not(#_a):not(#_b){font-size:.7rem!important;padding:4px 9px!important}
+
+/* ===== الجولة السادسة: شريط البرج + البانر العنابي بطاقة واحدة ===== */
+html body #signs .sg-bar:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){background:linear-gradient(165deg,#6A1E32,#4D1424)!important;border:1.5px solid #D4B475!important;border-radius:22px!important;padding:9px 12px!important;box-shadow:0 8px 16px rgba(90,24,42,.28),0 1px 0 rgba(255,255,255,.18) inset!important;margin:0 0 8px!important;gap:8px!important}
+html body #signs .sg-bar .sg-bar-t:not(#_a){display:flex!important;flex-direction:column;align-items:flex-start;gap:5px}
+html body #signs .sg-bar-l1:not(#_a){display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+html body #signs .sg-bar-l1 b:not(#_a){font:800 1.05rem 'Cairo',sans-serif;color:#FFFDF9!important}
+html body #signs .sg-bar-l1 small:not(#_a){font:600 .72rem 'Cairo',sans-serif;color:#E9D5A6!important}
+html body #signs .sg-bar-l2:not(#_a){display:flex;gap:6px}
+html body #signs .sg-bar-l2 i:not(#_a){font:700 .68rem 'Cairo',sans-serif;font-style:normal;padding:2px 10px;border-radius:999px;background:rgba(246,230,188,.14);border:1px solid rgba(212,180,117,.7);color:#F6E6BC}
+html body #signs .sg-bar .sg-chg:not(#_a):not(#_b):not(#_c){background:rgba(255,253,249,.96)!important;color:#5A182A!important;border:1.5px solid #D4B475!important}
+html body #signs .sg-bar .sg-nxt:not(#_a):not(#_b):not(#_c){background:linear-gradient(165deg,#F6E5BD,#E2C07E)!important;color:#5A182A!important;border:1.5px solid #D4B475!important;box-shadow:0 4px 8px rgba(0,0,0,.25)!important}
+html body #signs .sg-bar:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_g){display:grid!important;grid-template-columns:1fr 96px!important;grid-template-rows:auto auto;column-gap:10px!important;row-gap:6px!important;align-items:center;padding:9px 12px!important}
+html body #signs .sg-bar[hidden]{display:none!important}
+html body #signs .sg-bar .sg-bar-id:not(#_a){grid-column:1;grid-row:1/3;min-width:0}
+html body #signs .sg-bar .sg-chg:not(#_a):not(#_b):not(#_c):not(#_d){grid-column:2;grid-row:1;min-height:30px!important;padding:0 8px!important;font-size:.72rem!important;white-space:nowrap;margin:0!important}
+html body #signs .sg-bar .sg-nxt:not(#_a):not(#_b):not(#_c):not(#_d){grid-column:2;grid-row:2;min-height:30px!important;padding:0 8px!important;font-size:.72rem!important;white-space:nowrap;margin:0!important}
+html body #signs .sg-bar-l2 i:not(#_a){white-space:nowrap}
+html body #signs .sg-bar-l1 small:not(#_a){white-space:nowrap}
+html body #signs .sg-fc .sg-moon-in p:not(#_a):not(#_b):not(#_c){display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+html body #signs .sg-tile:not(#_a):not(#_b):not(#_c):not(#_d){padding:7px 2px 6px!important;gap:4px!important}
+html body #signs .sg-tile .sg-ti:not(#_a):not(#_b):not(#_c):not(#_d){width:30px!important;height:30px!important}
+html body #signs .sg-tile .sg-ti svg:not(#_a):not(#_b):not(#_c):not(#_d){width:17px!important;height:17px!important}
+html body #signs .sg-tabs-main button[role="tab"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_g){min-height:46px!important}
+html body #signs .sg-tabs-sub button[role="tab"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){min-height:32px!important}
+html body #signs .sg-q:not(#_a):not(#_b):not(#_c):not(#_d){padding:8px 12px!important}
+html body #signs .sg-fc .sg-moon-in p:not(#_a):not(#_b):not(#_c):not(#_d){-webkit-line-clamp:4}
+html body #signs .sg-q p:not(#_a):not(#_b):not(#_c){font-size:.76rem!important;line-height:1.5!important}
+html body #signs .sg-bar:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_g):not(#_h){padding:7px 12px!important;row-gap:4px!important;margin-bottom:6px!important}

@@ -2595,7 +2595,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       { svg: AICs.tip, t: "إرشادات اليوم", sub: "ما تفعله وما تتجنبه ونصيحة", html: gHtml }
     ] };
     const tiles = curList.tiles.map((t, n) => `<button type="button" class="sg-tile" data-sgrow="tiles:${n}"><span class="sg-ti" aria-hidden="true">${t.svg}</span><b>${t.t}</b></button>`).join("");
-    return `${signHero(i)}
+    return `
       <section class="sg-sec">
       <article class="sg-card sg-fc"><p class="sg-overall">${f.overall}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>طاقة يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${moonDay(L.moonH)}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div></article>
       <div class="sg-tiles">${tiles}</div>${qBox(q)}</section>`;
@@ -2645,7 +2645,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     signCur = i; try { localStorage.setItem("aq-sky-sign", i); } catch (e) {}
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
     sgBar.hidden = false; signsSec.classList.add("sg-picked");
-    sgBar.querySelector(".sg-bar-id").innerHTML = `${bdg(SIGNS[i].g)}<span class="sg-bar-t"><b>${SIGNS[i].n}</b><small>${SIGNS[i].d}</small></span>`;
+    sgBar.querySelector(".sg-bar-id").innerHTML = `${bdg(SIGNS[i].g)}<span class="sg-bar-t"><span class="sg-bar-l1"><b>${SIGNS[i].n}</b><small>${SIGNS[i].d}</small></span><span class="sg-bar-l2"><i>${ELEMENTS[SIGNS[i].el].adj}</i><i>الحاكم: ${PLANETS[SIGNS[i].ruler].n}</i></span></span>`;
     setCurtain(false); renderSign();
   }
   SIGNS.forEach((s, i) => {
