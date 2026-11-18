@@ -34,6 +34,7 @@
     var list = document.querySelectorAll('#sky-asp .ax[data-pair]');
     for (var i = 0; i < list.length; i++) {
       var el = list[i], e = LIB[el.getAttribute('data-pair')];
+      if (e && e.alt && (hash(el.getAttribute('data-pair')) + Math.floor(Date.now() / 864e5)) % 2) e = e.alt;
       if (!e || el.getAttribute('data-lib') === '1') continue;
       var bx = el.querySelector('.ax-b'); if (!bx) continue;
       var kids = [].slice.call(bx.children), intro = '', reality = '', oldQ = '', keep = '';

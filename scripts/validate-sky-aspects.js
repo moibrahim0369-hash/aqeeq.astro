@@ -24,6 +24,7 @@ for (const g of idx.groups) {
   for (const k of Object.keys(d)) {
     const e = d[k], txt = (e.t || []).join(' ') + ' ' + (e.q || '');
     all.push({ k, e, txt });
+    if (e.alt) { const at = (e.alt.t || []).join(' ') + ' ' + (e.alt.q || ''); all.push({ k: k + '#alt', e: e.alt, txt: at }); if (!e.alt.q) err.push(k + ': alt بلا سؤال'); BAN.forEach(w => { if (at.includes(w)) err.push(k + '#alt: كلمة ممنوعة ' + w); }); if (/[A-Za-z]/.test(at)) err.push(k + '#alt: حروف لاتينية'); if (/[—–]/.test(at)) err.push(k + '#alt: شرطة طويلة'); const an = at.split(/\s+/).filter(Boolean).length; if (an < 90 || an > 190) err.push(k + '#alt: الطول ' + an + ' كلمة'); }
     if (!Array.isArray(e.t) || !e.t.length) err.push(k + ': t فارغ');
     BAN.forEach(w => { if (txt.includes(w)) err.push(k + ': كلمة ممنوعة ' + w); });
     if (/[A-Za-z]/.test(txt)) err.push(k + ': حروف لاتينية');
