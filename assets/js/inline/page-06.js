@@ -2588,17 +2588,18 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const moonDay = h => `النهاردة مزاجك واهتمامك بيتجهوا لـ${HOUSES[h - 1].area}. ممكن تلاقي نفسك في ${HOUSE_SIT[h - 1][0]}، أو ${HOUSE_SIT[h - 1][1]}. نصيحة اليوم: ${HOUSE_ADV[h - 1]}.`;
   function pulseTab(i, L) {
     const s = SIGNS[i], f = FORECASTS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
+    const AL = window.AqLive, ar = (a, fb) => (AL && AL.AREA && AL.AREA[a] && AL.AREA[a][L.moonH - 1]) || fb, head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || f.overall;
     const gHtml = G.map(x => `<h4 class="sg-sh-h">${x.t}</h4>${x.html}`).join("");
     curList = { tiles: [
-      { svg: ZI.heart, t: "العاطفة", sub: "توقع يومك في المشاعر والعلاقات", html: `<p>${f.love}</p>` },
-      { svg: ZI.work, t: "العمل", sub: "توقع يومك في الشغل والإنجاز", html: `<p>${f.work}</p>` },
-      { svg: ZI.coin, t: "المال", sub: "توقع يومك في الفلوس والإنفاق", html: `<p>${f.money}</p>` },
+      { svg: ZI.heart, t: "العاطفة", sub: "توقع يومك في المشاعر والعلاقات", html: `<p>${ar("love", f.love)}</p>` },
+      { svg: ZI.work, t: "العمل", sub: "توقع يومك في العمل والإنجاز", html: `<p>${ar("work", f.work)}</p>` },
+      { svg: ZI.coin, t: "المال", sub: "توقع يومك في المال والإنفاق", html: `<p>${ar("money", f.money)}</p>` },
       { svg: AICs.tip, t: "إرشادات اليوم", sub: "ما تفعله وما تتجنبه ونصيحة", html: gHtml }
     ] };
     const tiles = curList.tiles.map((t, n) => `<button type="button" class="sg-tile" data-sgrow="tiles:${n}"><span class="sg-ti" aria-hidden="true">${t.svg}</span><b>${t.t}</b></button>`).join("");
     return `
       <section class="sg-sec">
-      <article class="sg-card sg-fc"><p class="sg-overall">${f.overall}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>طاقة يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${moonDay(L.moonH)}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div></article>
+      <article class="sg-card sg-fc"><p class="sg-overall">${head}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>طاقة يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${liveText("moon", L.moonH)}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div></article>
       <div class="sg-tiles">${tiles}</div>${qBox(q)}</section>`;
   }
   function transitsTab(i, L) {
