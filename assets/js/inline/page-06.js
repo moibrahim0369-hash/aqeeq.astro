@@ -2446,7 +2446,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const t = R && ((R.TR && R.TR[k] && R.TR[k][h - 1]) || (R.PH && R.PH[k] && R.PH[k][h - 1]));
     return t || deepHouse(k, h, "transit");
   }
-  function liveRetro(k) { const R = rd(); return (R && R.RT && R.RT[k]) || retroText(k); }
+  function liveRetro(k, h) { const A = window.AqLive, R = rd(), x = A && A.RTH && A.RTH[k] && A.RTH[k][h - 1]; return x || (R && R.RT && R.RT[k]) || retroText(k); }
   function moonHint(i, nowMoonSign) {
     try {
       const ms = Date.now(), jdUt = Astro.jdFromMs(ms), jde = jdUt + Astro.deltaT(Astro.yearOf(jdUt)) / 86400;
@@ -2466,7 +2466,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const item = k => {
       const b = nb(k), h = hOf(k), S = SIGNS[b.sign];
       let body = `<p>${liveText(k, h)}</p>`;
-      if (b.retro) body += `<p class="sg-rx">${liveRetro(k)}</p>`;
+      if (b.retro) body += `<p class="sg-rx">${liveRetro(k, h)}</p>`;
       if (k !== "moon" && k !== "sun") { let ing = null; try { ing = nextIngress(k, ms); } catch (e) {} if (ing) body += `<p class="sg-ing">${PLANETS[k].n} ${ing.sign === (b.sign + 11) % 12 ? "يعود إلى برج" : "ينتقل إلى برج"} ${SIGNS[ing.sign].n} تقريبًا يوم ${dfmt(ing.ms)}.</p>`; }
       return { k, g: PLANETS[k].g, t: `${PLANETS[k].n} في ${S.n}${b.retro ? " (راجع)" : ""}`, sub: `يؤثر على بيتك ${HOUSES[h - 1].n} · ${HOUSES[h - 1].area}`, rx: b.retro, html: body, q: qPl(k, h) };
     };
