@@ -24,7 +24,7 @@ ok(w+' sky: chips carousel scrolls',await p.evaluate(()=>{const c=document.getEl
 await p.goto(U+'#signs');await p.waitForTimeout(1200);
 await p.evaluate(()=>document.querySelector('#picker button').click());await p.waitForTimeout(500);
 ok(w+' signs: curtain collapses with bar (change + next)',await p.evaluate(()=>{const c=document.getElementById('sg-cur'),bar=c.querySelector('.sg-bar');return c.dataset.open==='false'&&!bar.hidden&&!!bar.querySelector('[data-sgchg]')&&!!bar.querySelector('[data-sgnxt]')}));
-ok(w+' signs: 2 main tabs + 3 sub tabs + pulse has reflection box and moon hint',await p.locator('#panel .sg-tabs-main [role=tab]').count()===2&&await p.locator('#panel .sg-tabs-sub [role=tab]').count()===3&&await p.locator('#panel .sg-q').count()===1&&await p.locator('#panel .sg-hint').count()===1);
+ok(w+' signs: 2 main tabs + 3 sub tabs + pulse has reflection box and moon hint',await p.locator('#sg-cur .sg-tabs-main [role=tab]').count()===2&&await p.locator('#panel .sg-tabs-sub [role=tab]').count()===3&&await p.locator('#panel .sg-q').count()===1&&await p.locator('#panel .sg-hint').count()===1);
 await p.click('#panel [data-sgsub="periods"]');await p.waitForTimeout(300);
 ok(w+' signs: periods map has near/mid/far cards',await p.locator('#panel .sg-per').count()===3);
 await p.click('#panel [data-sgsub="transits"]');await p.waitForTimeout(300);
@@ -33,9 +33,9 @@ await p.locator('#panel .sg-row[data-sgrow^="tr:"]').first().click();await p.wai
 ok(w+' signs: transit sheet opens with title, question, next/close',await p.evaluate(()=>{const s=document.getElementById('sgs-sheet');return !s.hidden&&!!s.querySelector('.sg-sh-hd h3')&&!!s.querySelector('.sg-q')&&!!s.querySelector('[data-sgn]')&&!!s.querySelector('.aqm-foot-close')}));
 await p.click('#sgs-sheet .aqm-foot-close');await p.waitForTimeout(500);
 await p.click('[data-sgnxt]');await p.waitForTimeout(400);
-await p.click('#panel [data-sgtab="traits"]');await p.waitForTimeout(300);
+await p.click('#sg-cur [data-sgtab="traits"]');await p.waitForTimeout(300);
 ok(w+' signs: traits tab is an 11-card icon grid (no accordions)',await p.locator('#panel .sg-med').count()===11&&await p.locator('#panel details').count()===0);
-ok(w+' signs: next sign advances to Taurus and resets scroll',await p.evaluate(()=>document.querySelector('.sg-hero h3').textContent==='الثور'&&document.getElementById('signs').scrollTop===0));
+ok(w+' signs: next sign advances to Taurus and resets scroll',await p.evaluate(()=>document.querySelector('.sg-bar-t b').textContent==='الثور'&&document.getElementById('signs').scrollTop===0));
 ok(w+' signs: no ask-you label',(await p.locator('text=أسئلة تخصك').count())===0);
 ok(w+' signs: picker cards cream with gold border',await p.evaluate(()=>{const b=document.querySelectorAll('#signs .picker .sg-pick')[5],s=getComputedStyle(b);return /250, ?243, ?232/.test(s.backgroundColor)&&/212, ?180, ?117/.test(s.borderTopColor)}));
 /* الخرائط المتقدمة */

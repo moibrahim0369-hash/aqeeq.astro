@@ -2542,14 +2542,14 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   /* ---- ستارة الأبراج والتنقل ---- */
   let signCur = -1, signsMode = "forecast", curList = {};
   const cur = document.createElement("div"); cur.className = "sg-cur"; cur.id = "sg-cur"; cur.setAttribute("data-open", "true");
-  cur.innerHTML = '<div class="sg-bar" hidden><span class="sg-bar-id"></span><button type="button" class="sg-chg" data-sgchg aria-expanded="false">تغيير البرج</button><button type="button" class="sg-nxt" data-sgnxt>البرج التالي</button></div><div class="sg-pk"><div class="sg-pk-in"></div></div>';
+  cur.innerHTML = '<div class="sg-tabs sg-tabs-main" role="tablist" aria-label="أقسام البرج"><button type="button" role="tab" data-sgtab="forecast" aria-selected="true"><span class="sg-ti" aria-hidden="true">' + ZI.star + '</span>توقعات البرج</button><button type="button" role="tab" data-sgtab="traits" aria-selected="false"><span class="sg-ti" aria-hidden="true">' + ZI.book + '</span>أسرار وصفات البرج</button></div><div class="sg-bar" hidden><span class="sg-bar-id"></span><button type="button" class="sg-chg" data-sgchg aria-expanded="false">تغيير البرج</button><button type="button" class="sg-nxt" data-sgnxt>البرج التالي</button></div><div class="sg-pk"><div class="sg-pk-in"></div></div>';
   picker.parentNode.insertBefore(cur, picker); cur.querySelector(".sg-pk-in").appendChild(picker);
   const sgBar = cur.querySelector(".sg-bar");
   function setCurtain(open) {
     cur.setAttribute("data-open", open ? "true" : "false");
     const c = cur.querySelector("[data-sgchg]"); c.setAttribute("aria-expanded", open ? "true" : "false"); c.textContent = open ? "إخفاء الأبراج" : "تغيير البرج";
   }
-  function alignTabs() { try { const t = panel.querySelector(".sg-tabs-main"), r = t.getBoundingClientRect(), bb = sgBar.getBoundingClientRect(); const d = r.top - (bb.bottom + 10); if (d < 0) { if (signsSec.scrollHeight > signsSec.clientHeight + 2) signsSec.scrollTop += d; else window.scrollBy(0, d); } } catch (e) {} }
+  function alignTabs() { return; /* try { const t = panel.querySelector(".sg-tabs-main"), r = t.getBoundingClientRect(), bb = sgBar.getBoundingClientRect(); const d = r.top - (bb.bottom + 10); if (d < 0) { if (signsSec.scrollHeight > signsSec.clientHeight + 2) signsSec.scrollTop += d; else window.scrollBy(0, d); } } catch (e) {} */ }
   function toTop() { try { signsSec.scrollTo && signsSec.scrollTo(0, 0); window.scrollTo(0, 0); } catch (e) {} }
   cur.addEventListener("click", e => {
     if (e.target.closest("[data-sgchg]")) setCurtain(cur.getAttribute("data-open") !== "true");
@@ -2564,11 +2564,11 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   if (signsH2) signsH2.textContent = HEAD_T;
   if (signsIntro) signsIntro.textContent = HEAD_P;
-  function setMode(m) { signsMode = m; signsSec.setAttribute("data-mode", m); updatePeriod(); if (signCur >= 0) renderSign(); }
+  function setMode(m) { signsMode = m; cur.querySelectorAll("[data-sgtab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.sgtab === m))); signsSec.setAttribute("data-mode", m); updatePeriod(); if (signCur >= 0) renderSign(); }
   updatePeriod();
   function signHero(i) {
     const s = SIGNS[i];
-    return `<header class="sg-hero">${bdg(s.g, "sg-bd-xl")}<div class="sg-hero-t"><h3>${s.n}</h3><p>${s.d}</p><div class="sg-tags"><span>برج ${ELEMENTS[s.el].adj}</span><span>${MODALITIES[s.mod].n}</span><span>يحكمه ${PLANETS[s.ruler].n}</span></div></div></header>`;
+    return `<header class="sg-hero"><b>${s.n}</b><span>${s.d}</span><span>${ELEMENTS[s.el].adj}</span><span>${PLANETS[s.ruler].n}</span></header>`;
   }
   const secH = (icon, t) => `<h4 class="sg-h"><span class="sg-bd sg-bd-s" aria-hidden="true">${icon}</span><span>${t}</span></h4>`;
   const rowBd = it => it.svg ? bdi(it.svg) : it.pair ? `<span class="sg-pair">${bdg(PLANETS[it.A].g)}${bdg(PLANETS[it.B].g)}</span>` : bdg(it.g);
@@ -2593,9 +2593,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       { svg: ZI.coin, t: "المال", sub: "توقع يومك في الفلوس والإنفاق", html: `<p>${f.money}</p>` },
       { svg: AICs.tip, t: "إرشادات اليوم", sub: "ما تفعله وما تتجنبه ونصيحة", html: gHtml }
     ] };
-    const tiles = curList.tiles.map((t, n) => `<button type="button" class="sg-tile" data-sgrow="tiles:${n}">${bdi(t.svg)}<b>${t.t}</b><small>${n < 3 ? [f.love, f.work, f.money][n] : "ما يناسبك وما تتجنبه اليوم"}</small></button>`).join("");
+    const tiles = curList.tiles.map((t, n) => `<button type="button" class="sg-tile" data-sgrow="tiles:${n}"><span class="sg-ti" aria-hidden="true">${t.svg}</span><b>${t.t}</b></button>`).join("");
     return `${signHero(i)}
-      <section class="sg-sec">${secH(ZI.star, "التوقع الكامل لليوم")}
+      <section class="sg-sec">
       <article class="sg-card sg-fc"><p class="sg-overall">${f.overall}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>طاقة يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${moonDay(L.moonH)}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div></article>
       <div class="sg-tiles">${tiles}</div>${qBox(q)}</section>`;
   }
@@ -2619,7 +2619,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     curList = { sec: SIGN_SECS.map((x, j) => ({ svg: x.g, g: "", t: x.t, sub: `قسم ${nAr(j + 1)} من ${nAr(SIGN_SECS.length)}`, html: signSectionContent(i, j) })) };
     const grid = curList.sec.map((it, n) => `<button type="button" class="sg-med" data-sgrow="sec:${n}"><span class="sg-medal" aria-hidden="true">${it.svg}</span><b>${it.t}</b></button>`).join("");
     const mini = [["القوة", s.strength, AICs.do], ["نقطة المراجعة", s.shadow, AICs.wound], ["نية للتأمل", s.growth, AICs.growth]].map(m => `<article class="sg-card sg-mini">${bdi(m[2])}<div><h5>${m[0]}</h5><p>${m[1]}</p></div></article>`).join("");
-    return `${signHero(i)}<section class="sg-sec">${secH(ZI.book, "أسرار " + s.n)}<div class="sg-grid">${grid}</div></section><section class="sg-sec"><div class="sg-minis">${mini}</div></section>`;
+    return `<section class="sg-sec"><div class="sg-grid">${grid}</div></section><section class="sg-sec"><div class="sg-minis">${mini}</div></section>`;
   }
   function renderSign() {
     const i = signCur, main = signsMode === "traits" ? "traits" : "forecast";
@@ -2630,10 +2630,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       sub = `<div class="sg-tabs sg-tabs-sub" role="tablist" aria-label="أقسام التوقعات">${subTabs.map(t => `<button type="button" role="tab" data-sgsub="${t[0]}" aria-selected="${signsSub === t[0]}">${t[1]}</button>`).join("")}</div>`;
       body = signsSub === "transits" ? transitsTab(i, L) : signsSub === "periods" ? periodsTab(i, L) : pulseTab(i, L);
     }
-    panel.innerHTML = `<div class="sg-tabs sg-tabs-main" role="tablist" aria-label="أقسام البرج"><button type="button" role="tab" data-sgtab="forecast" aria-selected="${main === "forecast"}">توقعات وطاقة البرج</button><button type="button" role="tab" data-sgtab="traits" aria-selected="${main === "traits"}">أسرار وصفات البرج</button></div>${sub}${body}`;
+    cur.querySelectorAll("[data-sgtab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.sgtab === main)));
+    panel.innerHTML = `${sub}${body}`;
   }
+  cur.addEventListener("click", e => {
+    const t = e.target.closest("[data-sgtab]"); if (t && t.dataset.sgtab !== signsMode) setMode(t.dataset.sgtab);
+  });
   panel.addEventListener("click", e => {
-    const t = e.target.closest("[data-sgtab]"); if (t) { if (t.dataset.sgtab !== signsMode) { setMode(t.dataset.sgtab); alignTabs(); } return; }
     const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); alignTabs(); } return; }
     const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); sgShow(curList[key], +n); }
   });

@@ -154,3 +154,47 @@ html body #sgs-sheet .sg-sh-h:not(#_a){margin:12px 0 4px;font:800 .95rem 'Cairo'
 html body #signs .sg-cur[data-open="false"] .sg-pk:not(#_a):not(#_b):not(#_c){margin:0!important}
 html body #signs #panel:not(#_a):not(#_b){padding-top:6px!important}
 html body #signs .sg-bar:not(#_a):not(#_b){box-shadow:0 -14px 0 #FBF9F6,0 10px 0 -2px #FBF9F6,0 6px 18px rgba(90,24,42,.09)!important}
+
+/* ===== الجولة الرابعة: ملمومة في شاشة واحدة، بلا Sticky ===== */
+html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) .center .intro:not(#_f){display:none!important}
+html body #signs .sg-bar:not(#_a):not(#_b):not(#_c){position:static!important;top:auto!important;z-index:auto!important;box-shadow:0 4px 12px rgba(90,24,42,.08)!important;margin:0 0 8px!important;padding:6px 10px!important}
+html body #signs .sg-bar .sg-bd:not(#_a):not(#_b){width:34px!important;height:34px!important}
+html body #signs .sg-tabs-main:not(#_a):not(#_b):not(#_c){display:grid!important;grid-template-columns:1fr 1fr!important;gap:8px!important;margin:6px 0 10px!important;padding:5px!important;border-radius:20px!important;background:#F5EBD9!important;border:1px solid rgba(212,180,117,.85)!important;box-shadow:0 4px 12px rgba(90,24,42,.08)!important}
+html body #signs .sg-tabs-main button[role="tab"]:not(#_a):not(#_b):not(#_c):not(#_d){display:flex!important;align-items:center;justify-content:center;gap:7px;min-height:42px!important;border-radius:15px!important;font-size:.82rem!important;padding:0 6px!important}
+html body #signs .sg-ti{display:inline-grid;place-items:center;width:20px;height:20px;flex:none}
+html body #signs .sg-ti svg:not(#_a){width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+html body #signs .sg-tabs-sub:not(#_a):not(#_b):not(#_c){margin:0 0 8px!important;gap:6px!important}
+html body #signs .sg-tabs-sub button[role="tab"]:not(#_a):not(#_b):not(#_c):not(#_d){min-height:36px!important;font-size:.76rem!important}
+/* شريط البرج المصغر */
+html body #signs .sg-hero:not(#_a):not(#_b){display:flex!important;flex-wrap:nowrap;align-items:center;justify-content:center;gap:0;margin:0 0 8px!important;padding:8px 10px!important;border-radius:999px!important;font:700 .76rem 'Cairo',sans-serif;white-space:nowrap;overflow:hidden}
+html body #signs .sg-hero b:not(#_a){font:800 .92rem 'Cairo',sans-serif;color:#FFFDF9}
+html body #signs .sg-hero span:not(#_a){color:#E9D5A6;font-weight:600}
+html body #signs .sg-hero span:not(#_a)::before{content:"·";margin:0 7px;color:#D4B475}
+/* نبض اليوم */
+html body #signs .sg-tiles:not(#_a):not(#_b){grid-template-columns:repeat(4,1fr)!important;gap:8px!important;margin:0 0 8px!important}
+html body #signs .sg-tile:not(#_a):not(#_b):not(#_c){align-items:center!important;gap:6px!important;padding:10px 2px 9px!important;border-radius:16px!important;text-align:center}
+html body #signs .sg-tile .sg-ti:not(#_a){width:22px;height:22px;color:#5A182A}
+html body #signs .sg-tile .sg-ti svg:not(#_a){width:22px;height:22px}
+html body #signs .sg-tile b:not(#_a){font-size:.74rem!important;line-height:1.3;text-align:center}
+html body #signs .sg-sec:not(#_a){margin-bottom:8px}
+/* أسرار وصفات البرج: 3×4 بلا دوائر */
+html body #signs .sg-grid:not(#_a):not(#_b){grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+html body #signs .sg-med:not(#_a):not(#_b){gap:5px!important;padding:10px 6px!important;border-radius:16px!important;box-shadow:0 4px 10px rgba(90,24,42,.09)!important;justify-content:center}
+html body #signs .sg-medal:not(#_a):not(#_b){width:22px!important;height:22px!important;border:0!important;background:none!important;box-shadow:none!important;border-radius:0!important}
+html body #signs .sg-medal:not(#_a)::after{display:none!important}
+html body #signs .sg-medal svg:not(#_a):not(#_b){width:22px!important;height:22px!important;stroke:#5A182A!important;filter:none!important}
+html body #signs .sg-med b:not(#_a):not(#_b){font-size:.72rem!important;line-height:1.35}
+html body #signs .sg-grid .sg-med:last-child:nth-child(odd):not(#_a):not(#_b){grid-column:auto!important}
+html body #signs .sg-grid .sg-med:last-child:nth-child(3n+2):not(#_a):not(#_b){grid-column:span 2!important}
+html body #signs .sg-fc:not(#_a):not(#_b){padding:12px 14px!important;margin:0 0 8px!important}
+html body #signs .sg-fc .sg-overall:not(#_a):not(#_b){font-size:.92rem!important;line-height:1.7!important;margin:0 0 8px!important;padding:0 0 8px!important}
+html body #signs .sg-fc .sg-moon-in:not(#_a):not(#_b){gap:10px!important;padding:0!important;margin:0!important}
+html body #signs .sg-fc .sg-moon-in .sg-bd:not(#_a):not(#_b){width:30px!important;height:30px!important}
+html body #signs .sg-fc .sg-moon-in h5:not(#_a){font-size:.8rem!important;margin:0 0 2px!important}
+html body #signs .sg-fc .sg-moon-in p:not(#_a){font-size:.78rem!important;line-height:1.65!important;margin:0!important}
+html body #signs .sg-fc .sg-hint:not(#_a):not(#_b){display:none!important}
+html body #signs .sg-q:not(#_a):not(#_b){padding:12px 14px!important}
+html body #signs .sg-q p:not(#_a){font-size:.86rem!important;line-height:1.7!important}
+html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d) .center .period:not(#_f),html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d) .center .eyebrow:not(#_f){display:none!important}
+html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d) .center:not(#_f){margin-bottom:0!important;padding-bottom:0!important}
+html body #signs .sg-tabs-main:not(#_a):not(#_b):not(#_c){margin:2px 0 8px!important}
