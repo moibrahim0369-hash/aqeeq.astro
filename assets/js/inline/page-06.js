@@ -2028,6 +2028,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <h3 class="mn-title">القمر <b>${MOON_NAMES[ph]}</b> في برج <b>${SIGNS[moon.sign].n}</b></h3>
       <p class="mn-meta"><span>مضاء ${nd(ill)}٪</span><span>${el < 180 ? "متزايد" : "متناقص"}</span><span>عمره ${nd(age)} يوم</span></p>
       <p class="mn-next">${ph === 4 ? "بدر كامل دلوقتي" : "البدر القادم بعد ~" + nd(toFull) + " يوم"} · ${ph === 0 ? "محاق دلوقتي" : "المحاق القادم بعد ~" + nd(toNew) + " يوم"}</p>
+      ${(() => { const E = window.AqMoonSigns && window.AqMoonSigns[moon.sign]; return E ? `<div class="mn-sign"><p>${E.t}</p><p class="mn-sign-q">${E.q}</p></div>` : ""; })()}
       <small class="mn-date">${dtxt}${ttxt}</small></div>`;
   }
   setInterval(() => { if (!skyDateInput.value && !document.hidden) { const ms = Date.now(), ch = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false }); moonCard(ms, ch.bodies.find(x => x.key === "moon"), ch.bodies.find(x => x.key === "sun")); } }, 60000);
