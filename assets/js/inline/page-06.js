@@ -2549,6 +2549,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     cur.setAttribute("data-open", open ? "true" : "false");
     const c = cur.querySelector("[data-sgchg]"); c.setAttribute("aria-expanded", open ? "true" : "false"); c.textContent = open ? "إخفاء الأبراج" : "تغيير البرج";
   }
+  function alignTabs() { try { const t = panel.querySelector(".sg-tabs-main"), r = t.getBoundingClientRect(), bb = sgBar.getBoundingClientRect(); const d = r.top - (bb.bottom + 10); if (d < 0) { if (signsSec.scrollHeight > signsSec.clientHeight + 2) signsSec.scrollTop += d; else window.scrollBy(0, d); } } catch (e) {} }
   function toTop() { try { signsSec.scrollTo && signsSec.scrollTo(0, 0); window.scrollTo(0, 0); } catch (e) {} }
   cur.addEventListener("click", e => {
     if (e.target.closest("[data-sgchg]")) setCurtain(cur.getAttribute("data-open") !== "true");
@@ -2582,15 +2583,21 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     ];
   }
   const subTabs = [["pulse", "نبض اليوم"], ["transits", "العبورات والزوايا"], ["periods", "خريطة الفترات"]];
+  const moonDay = h => `النهاردة مزاجك واهتمامك بيتجهوا لـ${HOUSES[h - 1].area}. ممكن تلاقي نفسك في ${HOUSE_SIT[h - 1][0]}، أو ${HOUSE_SIT[h - 1][1]}. نصيحة اليوم: ${HOUSE_ADV[h - 1]}.`;
   function pulseTab(i, L) {
-    const s = SIGNS[i], f = FORECASTS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`;
-    curList = { guide: guideList(s) };
+    const s = SIGNS[i], f = FORECASTS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
+    const gHtml = G.map(x => `<h4 class="sg-sh-h">${x.t}</h4>${x.html}`).join("");
+    curList = { tiles: [
+      { svg: ZI.heart, t: "العاطفة", sub: "توقع يومك في المشاعر والعلاقات", html: `<p>${f.love}</p>` },
+      { svg: ZI.work, t: "العمل", sub: "توقع يومك في الشغل والإنجاز", html: `<p>${f.work}</p>` },
+      { svg: ZI.coin, t: "المال", sub: "توقع يومك في الفلوس والإنفاق", html: `<p>${f.money}</p>` },
+      { svg: AICs.tip, t: "إرشادات اليوم", sub: "ما تفعله وما تتجنبه ونصيحة", html: gHtml }
+    ] };
+    const tiles = curList.tiles.map((t, n) => `<button type="button" class="sg-tile" data-sgrow="tiles:${n}">${bdi(t.svg)}<b>${t.t}</b><small>${n < 3 ? [f.love, f.work, f.money][n] : "ما يناسبك وما تتجنبه اليوم"}</small></button>`).join("");
     return `${signHero(i)}
-      <section class="sg-sec">${secH(ZI.star, "التوقع الكامل لليوم")}<article class="sg-card"><p class="sg-overall">${f.overall}</p></article>
-      <div class="sg-trio"><article class="sg-card">${bdi(ZI.heart)}<div><h5>العاطفة</h5><p>${f.love}</p></div></article><article class="sg-card">${bdi(ZI.work)}<div><h5>العمل</h5><p>${f.work}</p></div></article><article class="sg-card">${bdi(ZI.coin)}<div><h5>المال</h5><p>${f.money}</p></div></article></div>
-      <article class="sg-card sg-moon">${bdg("☽")}<div><h5>طاقة يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${moonDay(L.moonH)}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></article>
-      ${qBox(q)}</section>
-      <section class="sg-sec">${secH(AICs.tip || ZI.tip, "إرشادات اليوم")}<div class="sg-rows">${rowsHTML(curList.guide, "guide")}</div></section>`;
+      <section class="sg-sec">${secH(ZI.star, "التوقع الكامل لليوم")}
+      <article class="sg-card sg-fc"><p class="sg-overall">${f.overall}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>طاقة يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${moonDay(L.moonH)}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div></article>
+      <div class="sg-tiles">${tiles}</div>${qBox(q)}</section>`;
   }
   function transitsTab(i, L) {
     curList = { tr: L.planets, as: L.aspects };
@@ -2611,7 +2618,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const s = SIGNS[i];
     curList = { sec: SIGN_SECS.map((x, j) => ({ svg: x.g, g: "", t: x.t, sub: `قسم ${nAr(j + 1)} من ${nAr(SIGN_SECS.length)}`, html: signSectionContent(i, j) })) };
     const grid = curList.sec.map((it, n) => `<button type="button" class="sg-med" data-sgrow="sec:${n}"><span class="sg-medal" aria-hidden="true">${it.svg}</span><b>${it.t}</b></button>`).join("");
-    const mini = [["القوة", s.strength], ["نقطة المراجعة", s.shadow], ["نية للتأمل", s.growth]].map(m => `<article class="sg-card sg-mini"><b>${m[0]}</b><p>${m[1]}</p></article>`).join("");
+    const mini = [["القوة", s.strength, AICs.do], ["نقطة المراجعة", s.shadow, AICs.wound], ["نية للتأمل", s.growth, AICs.growth]].map(m => `<article class="sg-card sg-mini">${bdi(m[2])}<div><h5>${m[0]}</h5><p>${m[1]}</p></div></article>`).join("");
     return `${signHero(i)}<section class="sg-sec">${secH(ZI.book, "أسرار " + s.n)}<div class="sg-grid">${grid}</div></section><section class="sg-sec"><div class="sg-minis">${mini}</div></section>`;
   }
   function renderSign() {
@@ -2626,12 +2633,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     panel.innerHTML = `<div class="sg-tabs sg-tabs-main" role="tablist" aria-label="أقسام البرج"><button type="button" role="tab" data-sgtab="forecast" aria-selected="${main === "forecast"}">توقعات وطاقة البرج</button><button type="button" role="tab" data-sgtab="traits" aria-selected="${main === "traits"}">أسرار وصفات البرج</button></div>${sub}${body}`;
   }
   panel.addEventListener("click", e => {
-    const t = e.target.closest("[data-sgtab]"); if (t) { if (t.dataset.sgtab !== signsMode) { setMode(t.dataset.sgtab); toTop(); } return; }
-    const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); } return; }
+    const t = e.target.closest("[data-sgtab]"); if (t) { if (t.dataset.sgtab !== signsMode) { setMode(t.dataset.sgtab); alignTabs(); } return; }
+    const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); alignTabs(); } return; }
     const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); sgShow(curList[key], +n); }
   });
   function pickSign(i) {
-    signCur = i; pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+    signCur = i; try { localStorage.setItem("aq-sky-sign", i); } catch (e) {}
+    pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
     sgBar.hidden = false; signsSec.classList.add("sg-picked");
     sgBar.querySelector(".sg-bar-id").innerHTML = `${bdg(SIGNS[i].g)}<span class="sg-bar-t"><b>${SIGNS[i].n}</b><small>${SIGNS[i].d}</small></span>`;
     setCurtain(false); renderSign();
@@ -2641,6 +2649,11 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     b.innerHTML = `${bdg(s.g)}<span>${s.n}</span>`;
     b.addEventListener("click", () => { pickSign(i); toTop(); }); picker.appendChild(b); pbtns.push(b);
   });
+  (function () {
+    let d = -1; try { const v = parseInt(localStorage.getItem("aq-sky-sign"), 10); if (v >= 0 && v < 12) d = v; } catch (e) {}
+    if (d < 0) { try { d = Astro.chart({ utcMs: Date.now(), lat: 30, lon: 31, known: false }).bodies.find(b => b.key === "sun").sign; } catch (e) { d = 0; } }
+    pickSign(d);
+  })();
   (function () { const ks = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"]; let n = 0; const step = () => { if (n >= ks.length) return; try { nextIngress(ks[n++], Date.now()); } catch (e) {} setTimeout(step, 150); }; window.addEventListener("load", () => setTimeout(step, 2500)); })();
   window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); });
   const glyphs = $("#glyphs");
@@ -2689,7 +2702,6 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const s = HOUSE_SIT[h - 1];
     return `${planetInHouse(k, h, mode)} ممكن يظهر ده في مواقف زي: ${s[0]}، أو ${s[1]}، أو ${s[2]}. والجانب الصعب (${PLANETS[k].watch}) بيزيد لو ${HOUSE_TRIG[h - 1]}.`;
   }
-  const moonDay = h => `النهاردة مزاجك واهتمامك بيتجهوا لـ${HOUSES[h - 1].area}. ممكن تلاقي نفسك في ${HOUSE_SIT[h - 1][0]}، أو ${HOUSE_SIT[h - 1][1]}. نصيحة اليوم: ${HOUSE_ADV[h - 1]}.`;
 
   /* ---------- توقعات يومية لكل برج (من حركة الكواكب الحقيقية) ---------- */
   function dailySign(i) {
@@ -3122,7 +3134,6 @@ let lastMX = null, lastLP = null;
       out.innerHTML = compatHTML(P, matrixCalc(d2, m2, y2)); out.hidden = false;
     });
   }
-  $("#panel").innerHTML = `<p class="sub" style="text-align:center;padding:28px 10px">اختار برجك من القائمة فوق، أو من الدائرة في الصفحة الرئيسية، عشان تشوف توقعاته.</p>`;
 
   /* ============ مسار الحياة والتوافق: المحتوى مفتوح بالكامل ============ */
   const SYN_ICONS = [
