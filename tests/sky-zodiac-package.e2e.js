@@ -28,8 +28,8 @@ ok(w+' signs: 2 main tabs + 3 sub tabs + pulse has reflection box and moon hint'
 await p.click('#panel [data-sgsub="periods"]');await p.waitForTimeout(300);
 ok(w+' signs: periods map has near/mid/far cards',await p.locator('#panel .sg-per').count()===3);
 await p.click('#panel [data-sgsub="transits"]');await p.waitForTimeout(300);
-ok(w+' signs: 8 live transit rows',await p.locator('#panel .sg-row[data-sgrow^="tr:"]').count()===8);
-await p.locator('#panel .sg-row[data-sgrow^="tr:"]').first().click();await p.waitForTimeout(500);
+ok(w+' signs: 8 live transit rows',await p.locator('#panel [data-sgrow^="tr:"]').count()===8);
+await p.locator('#panel [data-sgrow^="tr:"]').first().click();await p.waitForTimeout(500);
 ok(w+' signs: transit sheet opens with title, question, next/close',await p.evaluate(()=>{const s=document.getElementById('sgs-sheet');return !s.hidden&&!!s.querySelector('.sg-sh-hd h3')&&!!s.querySelector('.sg-q')&&!!s.querySelector('[data-sgn]')&&!!s.querySelector('.aqm-foot-close')}));
 await p.click('#sgs-sheet .aqm-foot-close');await p.waitForTimeout(500);
 await p.click('[data-sgnxt]');await p.waitForTimeout(400);
