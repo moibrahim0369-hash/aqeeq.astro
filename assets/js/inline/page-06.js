@@ -2493,7 +2493,14 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const pick = b => asp.filter(o => bucketOf(o.x) === b).slice(0, 3).map(o => o.it);
     const near = [item("moon")].concat(pick("near")), midL = mid.map(item).concat(pick("mid")), far = slow.map(item).concat(pick("far"));
     const sunH = hOf("sun"), moonH = hOf("moon"), rxN = order.filter(k => nb(k).retro).map(k => PLANETS[k].n);
-    return { planets, aspects, near, mid: midL, far, sunH, moonH, rxN, hint: moonHint(i) };
+    const lun = (() => {
+      const AL = window.AqLive; if (!AL) return null;
+      const el = Astro.norm(nb("moon").lon - nb("sun").lon), nd = Math.min(el, 360 - el), fd = Math.abs(el - 180);
+      if (nd < 24 && AL.NM) return { t: "المحاق الآن", cap: "قمر جديد في بيتك " + HOUSES[sunH - 1].n, txt: AL.NM[sunH - 1] };
+      if (fd < 24 && AL.FM) { const fh = ((sunH - 1 + 6) % 12) + 1; return { t: "البدر الآن", cap: "قمر مكتمل في بيتك " + HOUSES[fh - 1].n, txt: AL.FM[fh - 1] }; }
+      return null;
+    })();
+    return { planets, aspects, near, mid: midL, far, sunH, moonH, rxN, lun, hint: moonHint(i) };
   }
 
   /* ---- الورقة السفلية الموحدة ---- */
@@ -2600,6 +2607,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     return `
       <section class="sg-sec">
       <article class="sg-card sg-fc"><p class="sg-overall">${head}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>طاقة يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${liveText("moon", L.moonH)}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div></article>
+      ${L.lun && L.lun.txt ? `<article class="sg-card sg-lun"><div><h5>${L.lun.t}</h5><small>${L.lun.cap}</small><p>${L.lun.txt}</p></div></article>` : ""}
       <div class="sg-tiles">${tiles}</div>${qBox(q)}</section>`;
   }
   function transitsTab(i, L) {
