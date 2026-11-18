@@ -14,7 +14,7 @@ KEYS.forEach(p => {
     if (/[—–]/.test(t)) err.push(k + ': شرطة طويلة');
     if (/[ةى]\/|\/ة|\/ي\b/.test(t)) err.push(k + ': صيغة مؤنث/مذكر مقطوعة');
     const n = t.split(/\s+/).filter(Boolean).length, legacy = (LEGACY[p] || []).includes(i + 1);
-    if (!legacy && (n < 70 || n > 130)) err.push(k + ': الطول ' + n + ' كلمة');
+    if (!legacy && (n < 90 || n > 150)) err.push(k + ': الطول ' + n + ' كلمة');
   });
 });
 const grams = new Map();
