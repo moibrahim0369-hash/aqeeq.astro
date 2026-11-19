@@ -438,3 +438,20 @@ html body #signs .sg-in h5:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f)
 html body #signs .sg-in p:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0;font:600 .8rem/1.65 'Cairo',sans-serif;color:#3A2A2E}
 html body #signs .sg-med .sg-go:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:block;margin-top:2px;font:700 .62rem 'Cairo',sans-serif;color:#8A5A1C}
 html body #signs .sg-med .sg-go::after{content:" ‹";font-weight:800;color:#6B2135}
+
+/* ===== الجولة 13: توقع يومك مختصر + ورقة دافئة + أيقونات أقوى ===== */
+html body #signs .sg-fc:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){cursor:pointer}
+html body #signs .sg-ex:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0 0 8px;font:600 .82rem/1.75 'Cairo',sans-serif;color:#3A2A2E;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+html body #signs .sg-ex b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){color:#6B2135;font-weight:800}
+html body #signs .sg-more:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:inline-flex;align-items:center;gap:6px;font:800 .78rem 'Cairo',sans-serif;color:#6B2135;padding:5px 12px;border-radius:999px;background:rgba(107,33,53,.07);border:1px solid rgba(107,33,53,.18)}
+html body #signs .sg-more i:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:grid;width:16px;height:16px;transform:scaleX(-1)}
+html body #signs .sg-more svg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){width:16px;height:16px;fill:none;stroke:#6B2135;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+html body #signs .sg-med .sg-medal svg,html body #signs .sg-med .sg-medal svg *:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){stroke-width:2.1!important}
+html body #signs .sg-grid:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){padding-bottom:84px}
+html body #sgs-sheet .aqm-sheet-panel{background:linear-gradient(180deg,#FAF2E2 0%,#F5EDDC 100%)!important;border:1px solid rgba(198,162,92,.6)!important;border-bottom:0!important;box-shadow:0 -14px 34px rgba(90,24,42,.22),0 3px 0 #6B2135 inset!important}
+html body #sgs-sheet .sg-mrg{margin:0 0 14px;padding:10px 14px;border-radius:14px;background:#FBF8F1;border:1px solid rgba(198,162,92,.45)}
+html body #sgs-sheet .sg-mrg h6{margin:0 0 6px;font:800 .8rem 'Cairo',sans-serif;color:#6B2135}
+html body #sgs-sheet .sg-mrg p{margin:0 0 8px;font:600 .88rem/1.9 'Cairo',sans-serif;color:#3A2A2E}
+html body #sgs-sheet .sg-mrg .sg-hint{display:block;color:#8A5A1C;font-weight:700}
+html body #sgs-sheet :is(.sgs-body,.sg-sh-bd,.sg-sh-hd,.aqm-sheet-foot,.aqm-sheet-panel>div){background:transparent!important}
+html body #sgs-sheet .aqm-sheet-panel:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){background-image:linear-gradient(180deg,#F8EFDD 0%,#F2E6CF 100%)!important;background-color:#F5EDDC!important}

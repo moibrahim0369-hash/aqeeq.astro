@@ -2476,11 +2476,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const s = SIGNS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
     const AL = window.AqLive, day = (AL && AL.DAY && AL.DAY[L.moonH - 1]) || liveText("moon", L.moonH), head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || "";
     const guide = `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء. وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد. ونصيحة يومك: ${s.growth}.`;
-    curList = {};
+    const blk = (t, ps) => `<section class="sg-mrg"><h6>${t}</h6>${ps.filter(Boolean).map(x => `<p>${x}</p>`).join("")}</section>`;
+    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", sub: "نبض القمر وطاقة اليوم في قراءة واحدة", html: `<div class="sg-flow">${blk("نبض القمر وحركته", [head, day, L.hint ? `<span class="sg-hint">${L.hint}</span>` : ""])}${blk(`طاقة يومك في ${s.n}`, [guide])}</div>` }] };
     return `
       <section class="sg-sec">
-      <article class="sg-card sg-fc"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
-        <div class="sg-flow">${head ? `<p>${head}</p>` : ""}<p>${day}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}<p>${guide}</p></div>
+      <article class="sg-card sg-fc" data-sgrow="fc:0" role="button" tabindex="0"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
+        <p class="sg-ex"><b>قراءة واحدة تجمع نبض القمر وحركته مع طاقة يومك.</b> ${day}</p>
+        <span class="sg-more">قراءة التوقع الكامل<i aria-hidden="true">${AICs.more}</i></span>
         <div class="sg-q sg-q-end"><i class="sg-qi" aria-hidden="true">${ZI.sparkorb}</i><p>${q}</p></div></article>
       ${L.lun && L.lun.txt ? `<article class="sg-card sg-lun"><div><h5>${L.lun.t}</h5><small>${L.lun.cap}</small><p>${L.lun.txt}</p></div></article>` : ""}
       </section>`;
@@ -2507,8 +2509,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const s = SIGNS[i];
     curList = { sec: SIGN_SECS.map((x, j) => ({ svg: x.g, g: "", t: x.t, sub: `قسم ${nAr(j + 1)} من ${nAr(SIGN_SECS.length)}`, html: signSectionContent(i, j) })) };
     const grid = curList.sec.map((it, n) => `<button type="button" class="sg-med" data-sgrow="sec:${n}"><span class="sg-medal" aria-hidden="true">${it.svg}</span><b>${it.t}</b><span class="sg-go" aria-hidden="true">التفاصيل</span></button>`).join("");
-    const intro = [["القوة", s.strength, AICs.do], ["نقطة المراجعة", s.shadow, AICs.wound], ["نية للتأمل", s.growth, AICs.growth]].map(m => `<div class="sg-in">${bdi(m[2])}<div><h5>${m[0]}</h5><p>${m[1]}</p></div></div>`).join("");
-    return `<section class="sg-sec"><article class="sg-card sg-intro">${intro}</article><p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي صفة لاكتشاف عمقها النفسي</p><div class="sg-grid">${grid}</div></section>`;
+    return `<section class="sg-sec"><p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي صفة لاكتشاف عمقها النفسي</p><div class="sg-grid">${grid}</div></section>`;
   }
   function renderSign() {
     const i = signCur, main = signsMode === "traits" ? "traits" : "forecast";

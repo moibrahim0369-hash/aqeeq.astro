@@ -24,7 +24,7 @@ ok(w+' sky: chips carousel scrolls',await p.evaluate(()=>{const c=document.getEl
 await p.goto(U+'#signs');await p.waitForTimeout(1200);
 await p.evaluate(()=>document.querySelector('#picker button').click());await p.waitForTimeout(500);
 ok(w+' signs: curtain collapses with bar (change + next)',await p.evaluate(()=>{const c=document.getElementById('sg-cur'),bar=c.querySelector('.sg-bar');return c.dataset.open==='false'&&!bar.hidden&&!!bar.querySelector('[data-sgchg]')&&!!bar.querySelector('[data-sgnxt]')}));
-ok(w+' signs: 2 main tabs + 3 sub tabs + pulse has reflection box and moon hint',await p.locator('#sg-cur .sg-tabs-main [role=tab]').count()===2&&await p.locator('#panel .sg-tabs-sub [role=tab]').count()===3&&await p.locator('#panel .sg-q').count()===1&&await p.locator('#panel .sg-hint').count()===1);
+ok(w+' signs: 2 main tabs + 3 sub tabs + pulse has reflection box and moon hint',await p.locator('#sg-cur .sg-tabs-main [role=tab]').count()===2&&await p.locator('#panel .sg-tabs-sub [role=tab]').count()===3&&await p.locator('#panel .sg-q').count()===1&&await p.locator('#panel .sg-more').count()===1);
 await p.click('#panel [data-sgsub="periods"]');await p.waitForTimeout(300);
 ok(w+' signs: periods map has 3 capsule tabs and one card at a time',await p.locator('#panel [data-sgper]').count()===3&&await p.locator('#panel .sg-per').count()===1&&await p.locator('#panel .sg-tap').count()===1);
 await p.click('#panel [data-sgsub="transits"]');await p.waitForTimeout(300);
