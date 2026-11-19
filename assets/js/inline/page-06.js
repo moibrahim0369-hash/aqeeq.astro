@@ -2377,8 +2377,14 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   /* ---- الورقة السفلية الموحدة ---- */
   let sgSheet = null, sgBody = null, sgList = [], sgIdx = 0;
   const sgMark = document.createComment("sg-panel");
+  function sgRewind() {
+    if (!sgSheet) return;
+    const go = () => { [sgSheet.querySelector(".aqm-sheet-panel"), sgBody, sgSheet.querySelector(".sg-sh-bd")].forEach(e => { if (e) e.scrollTop = 0; }); };
+    go(); requestAnimationFrame(() => { go(); requestAnimationFrame(go); });
+  }
   function sgClose() {
     if (!sgSheet || sgSheet.hidden) return;
+    sgRewind();
     const sh = sgSheet; sh.classList.add("is-closing");
     setTimeout(() => { sh.hidden = true; sh.classList.remove("is-closing"); document.documentElement.classList.remove("aqm-sheet-open"); }, 230);
   }
@@ -2402,7 +2408,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function sgFill() {
     const it = sgList[sgIdx];
     sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3>${it.sub ? `<small>${it.sub}</small>` : ""}</div></header><div class="sg-sh-bd sign-detail">${it.html}${it.q ? `<div class="sg-q"><p>${it.q}</p></div>` : ""}</div>`;
-    sgBody.scrollTop = 0;
+    sgRewind();
     sgSheet.querySelector("[data-sgn]").hidden = sgList.length < 2;
   }
   function sgShow(list, idx) {
@@ -2410,11 +2416,11 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
       sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
       document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
-      sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); const pn = sgSheet.querySelector(".aqm-sheet-panel"); if (pn) pn.scrollTop = 0; } });
+      sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); sgRewind(); } });
       sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
     }
     sgList = list; sgIdx = idx; sgFill();
-    sgSheet.hidden = false; document.documentElement.classList.add("aqm-sheet-open");
+    sgSheet.hidden = false; document.documentElement.classList.add("aqm-sheet-open"); sgRewind();
   }
   window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); });
   const sgFab = () => { document.body.classList.toggle("aq-signs-open", location.hash === "#signs"); try { document.querySelectorAll("section.sec").forEach(x => { x.scrollTop = 0; }); window.scrollTo(0, 0); } catch (e) {} };
@@ -2490,9 +2496,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   function periodsTab(i, L) {
     curList = { near: L.near, mid: L.mid, far: L.far };
-    const P = [["near", "اليوم"], ["mid", "هذا الأسبوع"], ["far", "الشهر والفترة القادمة"]];
+    const P = [["near", "المدى السريع"], ["mid", "الكواكب الشخصية"], ["far", "الكواكب البطيئة"]];
     const per = `<div class="sg-tabs sg-tabs-per" role="tablist" aria-label="الفترات">${P.map(t => `<button type="button" role="tab" data-sgper="${t[0]}" aria-selected="${signsPer === t[0]}">${t[1]}</button>`).join("")}</div>`;
-    const caps = { near: "اليوم واليومين القادمين: القمر وزواياه السريعة", mid: "هذا الأسبوع: الشمس وعطارد والزهرة والمريخ", far: "الشهر والفترة القادمة: الكواكب البطيئة وحالات تراجعها" };
+    const caps = { near: "حركة القمر السريعة كل يومين ونصف والزوايا النشطة", mid: "دورات الشمس وعطارد والزهرة والمريخ الممتدة لأسابيع وشهور", far: "دورات المشتري وزحل وأورانوس ونبتون وبلوتو الممتدة لسنوات" };
     const rows = rowsHTML(curList[signsPer], signsPer).replace(/\s*\(راجع\)/g, "");
     return `<section class="sg-sec">${per}<p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي كوكب لقراءة تأثيره الكامل على فترتك</p>
       <article class="sg-per sg-per-one"><p class="sg-cap">${caps[signsPer]}</p>${signsPer === "near" && L.hint ? `<p class="sg-hint sg-hint-p">${L.hint}</p>` : ""}<div class="sg-rows">${rows}</div></article></section>`;
