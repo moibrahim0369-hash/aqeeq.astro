@@ -2379,14 +2379,14 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
       sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
       document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
-      sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); } });
+      sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); const pn = sgSheet.querySelector(".aqm-sheet-panel"); if (pn) pn.scrollTop = 0; } });
       sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
     }
     sgList = list; sgIdx = idx; sgFill();
     sgSheet.hidden = false; document.documentElement.classList.add("aqm-sheet-open");
   }
   window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); });
-  const sgFab = () => document.body.classList.toggle("aq-signs-open", location.hash === "#signs");
+  const sgFab = () => { document.body.classList.toggle("aq-signs-open", location.hash === "#signs"); try { document.querySelectorAll("section.sec").forEach(x => { x.scrollTop = 0; }); window.scrollTo(0, 0); } catch (e) {} };
   window.addEventListener("hashchange", sgFab); sgFab();
 
   /* ---- ستارة الأبراج والتنقل ---- */
@@ -2423,7 +2423,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const secH = (icon, t) => `<h4 class="sg-h"><span class="sg-bd sg-bd-s" aria-hidden="true">${icon}</span><span>${t}</span></h4>`;
   const rowBd = it => it.svg ? bdi(it.svg) : it.pair ? `<span class="sg-pair">${bdg(PLANETS[it.A].g)}${bdg(PLANETS[it.B].g)}</span>` : bdg(it.g);
   const rowsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-row${it.rx ? " is-rx" : ""}${it.tc ? " sg-t-" + it.tc : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<span class="sg-row-t"><b>${it.t}${it.rx ? ' <i class="rxb">راجع</i>' : ""}</b><small>${it.sub}</small></span><span class="sg-chev" aria-hidden="true"></span></button>`).join("");
-  const cellsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-cell${it.rx ? " is-rx" : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<b>${it.t}</b>${it.rx ? '<i class="rxb">راجع</i>' : ""}</button>`).join("");
+  const cellsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-cell${it.rx ? " is-rx" : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<b>${it.t}</b><span class="sg-go" aria-hidden="true">التفاصيل</span></button>`).join("");
   const qBox = q => `<div class="sg-q"><p>${q}</p></div>`;
   function guideList(s) {
     return [
@@ -2438,23 +2438,22 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function pulseTab(i, L) {
     const s = SIGNS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
     const AL = window.AqLive, day = (AL && AL.DAY && AL.DAY[L.moonH - 1]) || liveText("moon", L.moonH), head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || "";
-    const gHtml = G.map(x => `<h4 class="sg-sh-h">${x.t}</h4>${x.html}`).join("");
-    curList = { tiles: [
-      { svg: AICs.tip, t: "إرشادات اليوم", sub: "ما تفعله وما تتجنبه ونصيحة", html: gHtml }
-    ] };
-    const tiles = curList.tiles.map((t, n) => `<button type="button" class="sg-tile" data-sgrow="tiles:${n}"><span class="sg-ti" aria-hidden="true">${t.svg}</span><b>${t.t}</b></button>`).join("");
+    const gHtml = `<div class="sg-guide">${G.slice(0, 3).map(x => `<div class="sg-g"><h6><span class="sg-gi" aria-hidden="true">${x.svg}</span>${x.t}</h6>${x.html}</div>`).join("")}</div>`;
+    curList = {};
     return `
       <section class="sg-sec">
-      <article class="sg-card sg-fc"><p class="sg-overall">${head}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>توقع يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${day}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div></article>
+      <article class="sg-card sg-fc"><p class="sg-overall">${head}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>توقع يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${day}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div>${gHtml}</article>
       ${L.lun && L.lun.txt ? `<article class="sg-card sg-lun"><div><h5>${L.lun.t}</h5><small>${L.lun.cap}</small><p>${L.lun.txt}</p></div></article>` : ""}
-      <div class="sg-tiles">${tiles}</div>${qBox(q)}</section>`;
+      ${qBox(q)}</section>`;
   }
   function transitsTab(i, L) {
     curList = { tr: L.planets, as: L.aspects };
-    const glance = `<div class="sg-chips"><span><b>الشمس</b> في بيتك ${HOUSES[L.sunH - 1].n}</span><span><b>القمر</b> في بيتك ${HOUSES[L.moonH - 1].n}</span><span class="${L.rxN.length ? "is-rx" : ""}"><b>التراجع</b> ${L.rxN.length ? L.rxN.join("، ") : "لا كوكب راجع الآن"}</span></div>`;
+    const ci = (svg, h) => `<div class="sg-chip"><i class="sg-ci" aria-hidden="true">${svg}</i><span>${h}</span></div>`;
+    const glance = `<div class="sg-chips">${ci(AICs.sun, `<b>الشمس</b> في بيتك ${HOUSES[L.sunH - 1].n}`)}${ci(ZI.crescent, `<b>القمر</b> في بيتك ${HOUSES[L.moonH - 1].n}`)}${ci(ZI.orbit, `<b>التراجع</b> ${L.rxN.length ? L.rxN.join("، ") : "لا كوكب راجع الآن"}`)}</div>`;
     const aspHTML = L.aspects.length ? `<div class="sg-cells">${cellsHTML(curList.as, "as")}</div>` : `<p class="sg-empty">لا زوايا قوية على برجك في هذه اللحظة، فالسماء هادئة نسبيًا.</p>`;
-    return `<section class="sg-sec">${secH(ZI.orbit, "الكواكب العابرة في بيوت برجك")}${glance}<div class="sg-cells">${cellsHTML(curList.tr, "tr")}</div></section>
-      <section class="sg-sec">${secH(ZI.orbit, "الزوايا المؤثرة على برجك")}${aspHTML}</section>`;
+    return `${glance}<div class="sg-trbox"><p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي عبور أو زاوية لقراءة تأثيرها الكامل</p>
+      <section class="sg-sec">${secH(ZI.orbit, "الكواكب العابرة في بيوت برجك")}<div class="sg-cells">${cellsHTML(curList.tr, "tr")}</div></section>
+      <section class="sg-sec">${secH(ZI.orbit, "الزوايا المؤثرة على برجك")}${aspHTML}</section></div>`;
   }
   function periodsTab(i, L) {
     curList = { near: L.near, mid: L.mid, far: L.far };
@@ -2484,10 +2483,10 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     panel.innerHTML = `${sub}${body}`;
   }
   cur.addEventListener("click", e => {
-    const t = e.target.closest("[data-sgtab]"); if (t && t.dataset.sgtab !== signsMode) setMode(t.dataset.sgtab);
+    const t = e.target.closest("[data-sgtab]"); if (t && t.dataset.sgtab !== signsMode) { setMode(t.dataset.sgtab); toTop(); }
   });
   panel.addEventListener("click", e => {
-    const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); alignTabs(); } return; }
+    const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); toTop(); } return; }
     const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); sgShow(curList[key], +n); }
   });
   function pickSign(i) {
