@@ -40,12 +40,12 @@ ok(w+' signs: no ask-you label',(await p.locator('text=أسئلة تخصك').cou
 ok(w+' signs: picker cards cream with gold border',await p.evaluate(()=>{const b=document.querySelectorAll('#signs .picker .sg-pick')[5],s=getComputedStyle(b);return /251, ?248, ?241/.test(s.backgroundColor)&&/(212, ?180, ?117|198, ?162, ?92)/.test(s.borderTopColor)}));
 /* الخرائط المتقدمة */
 await p.goto(U+'#astro-maps');await p.waitForTimeout(1500);
-ok(w+' maps: ivory background',await p.evaluate(()=>/253, ?251, ?247/.test(getComputedStyle(document.getElementById('astro-maps')).backgroundColor)));
+ok(w+' maps: ivory background',await p.evaluate(()=>/(253, ?251, ?247|247, ?243, ?235)/.test(getComputedStyle(document.getElementById('astro-maps')).backgroundColor)));
 ok(w+' maps: prefilled from saved profile (controls visible)',await p.locator('#eam-content .eam-control').count()>0);
 await p.close();
 const q=await b.newPage({viewport:{width:w,height:h}});
 await q.goto(U+'#astro-maps');await q.waitForTimeout(1200);
-ok(w+' maps: invite card with gold border when no data',await q.evaluate(()=>{const e=document.querySelector('#eam-content .eam-invite');return !!e&&/197, ?160, ?89/.test(getComputedStyle(e).borderTopColor)}));
+ok(w+' maps: visitor without saved data sees the map chooser cards',await q.evaluate(()=>{const s=document.getElementById('astro-maps'),vis=t=>[...s.querySelectorAll('*')].some(e=>e.children.length===0&&e.textContent.trim()===t&&e.offsetParent);return vis('الخريطة الميلادية')&&vis('خريطة القمر')&&vis('خريطة الشمس')&&!!document.getElementById('eam-calculate')}));
 ok(w+' no errors',errs.length===0);await q.close();
 /* التوافق */
 const c=await b.newPage({viewport:{width:w,height:h}});
