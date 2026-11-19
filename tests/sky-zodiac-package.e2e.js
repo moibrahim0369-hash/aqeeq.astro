@@ -17,7 +17,7 @@ await p.evaluate(()=>document.querySelector('#swc-mine [data-chg]').click());
 await p.evaluate(()=>document.querySelectorAll('#swc-mine .sky-sg')[7].click());
 ok(w+' sky: switching keeps one selected sign',await p.locator('#swc-mine .swg-c').count()===10&&await p.locator('#swc-mine .swm-ban').count()===1);
 ok(w+' sky: aspects as cards',await p.locator('#sky-asp .ax').count()>0);
-ok(w+' sky: footer at page end',await p.evaluate(()=>{const s=document.getElementById('sky'),f=s.querySelector(':scope > footer.sec-foot');return !!f&&f.getBoundingClientRect().bottom+s.scrollTop>=s.scrollHeight-120&&f.offsetHeight>50}));
+ok(w+' sky: footer at page end',await p.evaluate(()=>{const s=document.getElementById('sky'),f=s.querySelector(':scope > footer.aqf');return !!f&&f.offsetTop+f.offsetHeight>=s.scrollHeight-120&&f.offsetHeight>50&&f.querySelectorAll('a').length>=5&&!!f.querySelector('a[href="#terms"]')}));
 ok(w+' sky: no body hscroll',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
 ok(w+' sky: chips carousel scrolls',await p.evaluate(()=>{const c=document.getElementById('sky-chips');return getComputedStyle(c).overflowX==='auto'||innerWidth>=900}));
 /* الأبراج */
