@@ -2459,6 +2459,10 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const AICs = typeof AIC !== "undefined" ? AIC : {};
   const qPl = (k, h) => `كيف يظهر ${PLANETS[k].theme} في ${HOUSES[h - 1].area} عندك الآن، وما الخطوة الصغيرة التي تعبّر عنه بصدق؟`;
   const qAs = (a, b) => `أين تلتقي ${PLANETS[a].theme} مع ${PLANETS[b].theme} في يومك، وما القرار الهادئ الذي يوازن بينهما؟`;
+  const aspKey = x => [x.A.key, x.B.key].sort((a, b) => PLANET_KEYS.indexOf(a) - PLANET_KEYS.indexOf(b)).join("|") + "|" + x.k;
+  const aspLib = x => { const L = window.AqAspLib; return L && L.ready() ? L.get(aspKey(x)) : null; };
+  const aspBody = x => { const e = aspLib(x); return e && e.t.length ? e.t.map(p => `<p>${p}</p>`).join("") : `<p>${ASP_MEAN[x.k]}</p>`; };
+  const aspQ = x => { const e = aspLib(x); return e && e.q ? e.q : qAs(x.A.key, x.B.key); };
   function signLive(i) {
     const ms = Date.now(), now = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false });
     const nb = k => now.bodies.find(b => b.key === k), hOf = k => ((nb(k).sign - i + 12) % 12) + 1;
@@ -2485,7 +2489,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const mk = x => {
       const hard = x.k === "square" || x.k === "opp", tone = x.k === "conj" ? "اندماج" : hard ? "متوتر" : "داعم", rx = [x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n);
       return { pair: true, A: x.A.key, B: x.B.key, g: PLANETS[x.A.key].g, tc: x.k === "conj" ? "n" : hard ? "h" : "s", t: `${PLANETS[x.A.key].n} ${x.name} ${PLANETS[x.B.key].n}`, sub: `${tone} · فارق ${nAr(x.orb.toFixed(1))}°`,
-        html: `<p>${ASP_MEAN[x.k]}</p>${rx.length ? `<p class="sg-rx">ومع تراجع ${rx.join(" و")}، يتجه هذا الحوار إلى الداخل، فراجع قبل أن تقرر.</p>` : ""}`, q: qAs(x.A.key, x.B.key) };
+        html: `${aspBody(x)}${rx.length ? `<p class="sg-rx">ومع تراجع ${rx.join(" و")}، يتجه هذا الحوار إلى الداخل، فراجع قبل أن تقرر.</p>` : ""}`, q: aspQ(x) };
     };
     const asp = found.map(x => ({ x, it: mk(x) }));
     const bucketOf = x => (x.A.key === "moon" || x.B.key === "moon") ? "near" : ([x.A.key, x.B.key].some(k => mid.includes(k)) ? "mid" : "far");

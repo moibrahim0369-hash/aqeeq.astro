@@ -52,7 +52,9 @@
       el.setAttribute('data-lib', '1');
     }
   }
+  window.AqAspLib = { get: function (pair) { var e = LIB[pair]; if (!e) return null; if (e.alt && (hash(pair) + Math.floor(Date.now() / 864e5)) % 2) e = e.alt; return { t: e.t || [], q: e.q || '' }; }, ready: function () { return ready; } };
   function boot() {
+    load();
     var host = document.getElementById('sky-asp'); if (!host) return;
     new MutationObserver(function () { if (!ready) { load(); } else { apply(); } }).observe(host, { childList: true, subtree: false });
     if (host.children.length) load();
