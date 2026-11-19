@@ -1927,6 +1927,23 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     }
     return null;
   }
+  const _prvMemo = {};
+  function prevIngress(key, ms) {
+    const dk = key + ":" + Math.floor(ms / 864e5);
+    if (dk in _prvMemo) return _prvMemo[dk];
+    const step = key === "moon" ? 0.125 : ({ uranus: 5, neptune: 5, pluto: 5, saturn: 2, jupiter: 2 }[key] || 1), s0 = signAt(key, ms);
+    let t = ms, res = null;
+    for (let i = 0; i * step <= HORIZON[key]; i++) {
+      const t2 = t - step * 864e5;
+      if (signAt(key, t2) !== s0) {
+        let a = t2, b = t;
+        for (let k = 0; k < 24; k++) { const m = (a + b) / 2; if (signAt(key, m) === s0) b = m; else a = m; }
+        res = b; break;
+      }
+      t = t2;
+    }
+    return (_prvMemo[dk] = res);
+  }
   const skyDateInput = $("#sky-date");
   let skyKey = "mars", skySign = null;
   try { const v = localStorage.getItem("aq-sky-sign"); if (v !== null && +v >= 0 && +v < 12) skySign = +v; } catch (e) { }
@@ -2254,6 +2271,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   const signsSec = $("#signs");
   const ZI = {
+    sparkorb: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.200l1.900 5.300 5.300 1.900-5.300 1.900-1.900 5.300-1.900-5.300-5.300-1.900 5.300-1.900z"/><circle cx="19" cy="5" r="1.100"/><circle cx="5.500" cy="18.500" r="1.100"/><path d="M19.600 16.600l.5 1.200 1.200.5-1.200.5-.5 1.200-.5-1.200-1.200-.5 1.200-.5z"/></svg>',
     crescent: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.500 3.800a8 8 0 1 0 5.700 11.600A6.600 6.600 0 0 1 14.500 3.800z"/><path d="M18 6.200l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',
     gem: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.500 4h11L21 9l-9 11L3 9z"/><path d="M3 9h18M9.500 4L8 9l4 11 4-11-1.500-5"/></svg>',
     star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.4 5.6 6 .6-4.5 4 1.4 5.9L12 16l-5.300 3.100 1.400-5.900-4.500-4 6-.6z"/></svg>',
@@ -2303,12 +2321,25 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const ms = Date.now(), now = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false });
     const nb = k => now.bodies.find(b => b.key === k), hOf = k => ((nb(k).sign - i + 12) % 12) + 1;
     const dfmt = t => new Date(t).toLocaleDateString("ar-EG", { day: "numeric", month: "long", year: "numeric" });
+    const dshort = (t, yr) => new Date(t).toLocaleDateString("ar-EG", yr ? { day: "numeric", month: "long", year: "numeric" } : { day: "numeric", month: "long" });
+    const dmoon = t => new Date(t).toLocaleString("ar-EG", { weekday: "long", hour: "numeric", minute: "2-digit" });
+    const spanOf = (k, b, h) => {
+      let from = null, ing = null; try { from = prevIngress(k, ms); ing = nextIngress(k, ms); } catch (e) {}
+      const long = k !== "moon" && k !== "sun", cy = new Date(ms).getFullYear(), yr = long && ((ing && new Date(ing.ms).getFullYear() !== cy) || (from && new Date(from).getFullYear() !== cy));
+      const d = t => k === "moon" ? dmoon(t) : dshort(t, yr);
+      const stay = from && ing ? `${PLANETS[k].n} في ${SIGNS[b.sign].n} من ${d(from)} إلى ${d(ing.ms)}.` : ing ? `${PLANETS[k].n} في ${SIGNS[b.sign].n} حتى ${d(ing.ms)}.` : "";
+      const nh = ing ? ((ing.sign - i + 12) % 12) + 1 : 0;
+      const nxt = ing ? `${ing.sign === (b.sign + 11) % 12 ? "يعود إلى" : "ينتقل إلى"} برج ${SIGNS[ing.sign].n}، فيتحول أثره إلى بيتك ${HOUSES[nh - 1].n}.` : "";
+      const brief = ing ? `حتى ${d(ing.ms)} ثم ${SIGNS[ing.sign].n}` : "";
+      return { stay, nxt, brief };
+    };
     const item = k => {
-      const b = nb(k), h = hOf(k), S = SIGNS[b.sign];
-      let body = `<p>${liveText(k, h)}</p>`;
+      const b = nb(k), h = hOf(k), S = SIGNS[b.sign], T = spanOf(k, b, h);
+      let body = T.stay ? `<div class="sg-time"><p><b>فترة البقاء</b><span>${T.stay}</span></p>${T.nxt ? `<p><b>المحطة القادمة</b><span>${T.nxt}</span></p>` : ""}</div>` : "";
+      body += `<p>${liveText(k, h)}</p>`;
       if (b.retro) body += `<p class="sg-rx">${liveRetro(k, h)}</p>`;
       if (k !== "moon" && k !== "sun") { let ing = null; try { ing = nextIngress(k, ms); } catch (e) {} if (ing) body += `<p class="sg-ing">${PLANETS[k].n} ${ing.sign === (b.sign + 11) % 12 ? "يعود إلى برج" : "ينتقل إلى برج"} ${SIGNS[ing.sign].n} تقريبًا يوم ${dfmt(ing.ms)}.</p>`; }
-      return { k, g: PLANETS[k].g, t: `${PLANETS[k].n} في ${S.n}${b.retro ? " (راجع)" : ""}`, sub: `يؤثر على بيتك ${HOUSES[h - 1].n} · ${HOUSES[h - 1].area}`, rx: b.retro, html: body, q: qPl(k, h) };
+      return { k, g: PLANETS[k].g, t: `${PLANETS[k].n} في ${S.n}${b.retro ? " (راجع)" : ""}`, sub: `يؤثر على بيتك ${HOUSES[h - 1].n} · ${HOUSES[h - 1].area}`, when: T.brief, rx: b.retro, html: body, q: qPl(k, h) };
     };
     const slow = ["jupiter", "saturn", "uranus", "neptune", "pluto"], mid = ["sun", "mercury", "venus", "mars"];
     const all8 = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"];
@@ -2422,7 +2453,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   const secH = (icon, t) => `<h4 class="sg-h"><span class="sg-bd sg-bd-s" aria-hidden="true">${icon}</span><span>${t}</span></h4>`;
   const rowBd = it => it.svg ? bdi(it.svg) : it.pair ? `<span class="sg-pair">${bdg(PLANETS[it.A].g)}${bdg(PLANETS[it.B].g)}</span>` : bdg(it.g);
-  const rowsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-row${it.rx ? " is-rx" : ""}${it.tc ? " sg-t-" + it.tc : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<span class="sg-row-t"><b>${it.t}${it.rx ? ' <i class="rxb">راجع</i>' : ""}</b><small>${it.sub}</small></span><span class="sg-chev" aria-hidden="true"></span></button>`).join("");
+  const rowsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-row${it.rx ? " is-rx" : ""}${it.tc ? " sg-t-" + it.tc : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<span class="sg-row-t"><b>${it.t}${it.rx ? ' <i class="rxb">راجع</i>' : ""}</b><small>${it.sub}</small>${it.when ? `<small class="sg-wh">${it.when}</small>` : ""}</span><span class="sg-chev" aria-hidden="true"></span></button>`).join("");
   const cellsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-cell${it.rx ? " is-rx" : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<b>${it.t}</b><span class="sg-go" aria-hidden="true">التفاصيل</span></button>`).join("");
   const qBox = q => `<div class="sg-q"><p>${q}</p></div>`;
   function guideList(s) {
@@ -2442,9 +2473,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     curList = {};
     return `
       <section class="sg-sec">
-      ${qBox(q)}
-      <article class="sg-card sg-fc"><div class="sg-fc-h">${bdg("☽")}<h5>توقع يومك</h5></div>
-        <div class="sg-flow">${head ? `<p>${head}</p>` : ""}<p>${day}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}<p>${guide}</p></div></article>
+      <article class="sg-card sg-fc"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
+        <div class="sg-flow">${head ? `<p>${head}</p>` : ""}<p>${day}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}<p>${guide}</p></div>
+        <div class="sg-q sg-q-end"><i class="sg-qi" aria-hidden="true">${ZI.sparkorb}</i><p>${q}</p></div></article>
       ${L.lun && L.lun.txt ? `<article class="sg-card sg-lun"><div><h5>${L.lun.t}</h5><small>${L.lun.cap}</small><p>${L.lun.txt}</p></div></article>` : ""}
       </section>`;
   }
