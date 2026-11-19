@@ -2506,9 +2506,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function traitsTab(i) {
     const s = SIGNS[i];
     curList = { sec: SIGN_SECS.map((x, j) => ({ svg: x.g, g: "", t: x.t, sub: `قسم ${nAr(j + 1)} من ${nAr(SIGN_SECS.length)}`, html: signSectionContent(i, j) })) };
-    const grid = curList.sec.map((it, n) => `<button type="button" class="sg-med" data-sgrow="sec:${n}"><span class="sg-medal" aria-hidden="true">${it.svg}</span><b>${it.t}</b></button>`).join("");
-    const mini = [["القوة", s.strength, AICs.do], ["نقطة المراجعة", s.shadow, AICs.wound], ["نية للتأمل", s.growth, AICs.growth]].map(m => `<article class="sg-card sg-mini">${bdi(m[2])}<div><h5>${m[0]}</h5><p>${m[1]}</p></div></article>`).join("");
-    return `<section class="sg-sec"><div class="sg-grid">${grid}</div></section><section class="sg-sec"><div class="sg-minis">${mini}</div></section>`;
+    const grid = curList.sec.map((it, n) => `<button type="button" class="sg-med" data-sgrow="sec:${n}"><span class="sg-medal" aria-hidden="true">${it.svg}</span><b>${it.t}</b><span class="sg-go" aria-hidden="true">التفاصيل</span></button>`).join("");
+    const intro = [["القوة", s.strength, AICs.do], ["نقطة المراجعة", s.shadow, AICs.wound], ["نية للتأمل", s.growth, AICs.growth]].map(m => `<div class="sg-in">${bdi(m[2])}<div><h5>${m[0]}</h5><p>${m[1]}</p></div></div>`).join("");
+    return `<section class="sg-sec"><article class="sg-card sg-intro">${intro}</article><p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي صفة لاكتشاف عمقها النفسي</p><div class="sg-grid">${grid}</div></section>`;
   }
   function renderSign() {
     const i = signCur, main = signsMode === "traits" ? "traits" : "forecast";

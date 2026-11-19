@@ -381,7 +381,7 @@ html body section.sec#signs .aq-back-home-btn:not(#_a){display:none!important}
 
 /* ===== الجولة العاشرة: لؤلؤي ناصع + عنابي مخملي + قمة مضغوطة + مباشر + توقيت + حركة ===== */
 :root{--rl-g:radial-gradient(120% 75% at 30% 0%,rgba(255,255,255,.98),rgba(255,255,255,0) 62%),linear-gradient(160deg,#FFFFFF,#FFFDFB 58%,#FAF4EA);--rl-sh:0 4px 10px rgba(90,24,42,.10),0 1px 0 rgba(255,255,255,1) inset,0 -2px 4px rgba(212,180,117,.18) inset}
-html body #signs :is(.sg-bd,.sg-medal,.sg-tile .sg-ti,.sg-ci,.sg-gi,.picker button.sg-pick .sg-bd):not(#_a):not(#_b):not(#_c):not(#_d){background:var(--rl-g)!important;background-color:#FFFDFB!important;border:1px solid rgba(212,180,117,.5)!important;box-shadow:var(--rl-sh)!important}
+html body #signs :is(.sg-bd,.sg-medal,.sg-tile .sg-ti,.sg-ci,.sg-gi,.picker button.sg-pick .sg-bd):not(#_a):not(#_b):not(#_c):not(#_d){background:var(--rl-g)!important;background-color:#F2E1BE!important;border:1px solid rgba(198,162,92,.6)!important;box-shadow:var(--rl-sh)!important}
 html body #signs .center:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){padding:8px 14px!important;margin:0 0 8px!important;box-shadow:0 12px 26px rgba(90,24,42,.13),0 1px 0 rgba(255,255,255,.95) inset!important}
 html body section.sec#signs .center h2:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){font-size:1.18rem!important;line-height:1.3!important;margin:0 0 2px!important}
 html body section.sec#signs .center .intro:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){font-size:.72rem!important;line-height:1.5!important;margin:0!important}
@@ -397,7 +397,7 @@ html body #signs .sg-live:not(#_a):not(#_b):not(#_c):not(#_d){display:inline-fle
 html body #signs .sg-dot:not(#_a):not(#_b):not(#_c):not(#_d){display:block;width:7px;height:7px;border-radius:50%;background:#C2455A;box-shadow:0 0 0 0 rgba(194,69,90,.55);animation:sgLive 2.2s ease-out infinite}
 html body #signs .sg-q-end:not(#_a):not(#_b):not(#_c):not(#_d){display:flex!important;align-items:center;gap:10px;margin:12px 0 0!important;padding:10px 12px!important;border-radius:16px!important;background:linear-gradient(165deg,#74293D,#6B2135)!important;border:1px solid rgba(212,180,117,.55)!important;box-shadow:0 6px 14px rgba(90,24,42,.18),0 1px 0 rgba(255,255,255,.18) inset!important}
 html body #signs .sg-q-end p:not(#_a):not(#_b):not(#_c):not(#_d){margin:0!important;color:#FBF1DD!important;font:700 .78rem/1.65 'Cairo',sans-serif!important}
-html body #signs .sg-qi:not(#_a):not(#_b):not(#_c):not(#_d){flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--rl-g);background-color:#FFFDFB;border:1px solid rgba(212,180,117,.6)}
+html body #signs .sg-qi:not(#_a):not(#_b):not(#_c):not(#_d){flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--rl-g);background-color:#F2E1BE;border:1px solid rgba(198,162,92,.6)}
 html body #signs .sg-qi svg:not(#_a):not(#_b):not(#_c):not(#_d){width:16px;height:16px;stroke:#6B2135;fill:none;stroke-width:1.6}
 html body #signs .sg-wh:not(#_a):not(#_b):not(#_c):not(#_d){display:block;margin-top:2px;font:600 .66rem/1.45 'Cairo',sans-serif;color:#8A6420}
 html body #sgs-sheet .sg-time{margin:0 0 12px;padding:8px 12px;border-radius:14px;background:rgba(255,253,249,.95);border:1px solid rgba(212,180,117,.45);display:grid;gap:6px}
@@ -426,3 +426,15 @@ html body #signs .sg-row-t b .rxb:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):n
 html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){background:#F6F1E9!important}
 html body #signs .sg-tabs-per:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){grid-template-columns:1fr 1fr 1fr!important}
 html body #signs .sg-tabs-per button[role="tab"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){font-size:.7rem!important;padding:0 4px!important}
+
+/* ===== الجولة 12: كريمي دافئ + ميداليات ذهبية + بطاقة تعريف الصفات ===== */
+:root{--pg-bg:#FBF8F1;--rl-g:linear-gradient(145deg,#F7EBD2,#EEDAB4);--rl-sh:0 3px 8px rgba(90,24,42,.18),0 1px 0 rgba(255,255,255,.75) inset}
+html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){background:#F5EFE4!important}
+html body #signs .sg-intro:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:grid;gap:0;padding:2px 14px!important}
+html body #signs .sg-in:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:flex;align-items:flex-start;gap:10px;padding:10px 0}
+html body #signs .sg-in+.sg-in:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){border-top:1px solid rgba(198,162,92,.4)}
+html body #signs .sg-in .sg-bd:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){width:30px!important;height:30px!important;flex:none}
+html body #signs .sg-in h5:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0 0 2px;font:800 .78rem 'Cairo',sans-serif;color:#6B2135}
+html body #signs .sg-in p:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0;font:600 .8rem/1.65 'Cairo',sans-serif;color:#3A2A2E}
+html body #signs .sg-med .sg-go:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:block;margin-top:2px;font:700 .62rem 'Cairo',sans-serif;color:#8A5A1C}
+html body #signs .sg-med .sg-go::after{content:" ‹";font-weight:800;color:#6B2135}
