@@ -2298,9 +2298,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function liveText(k, h) {
     const R = rd();
     const t = R && ((R.TR && R.TR[k] && R.TR[k][h - 1]) || (R.PH && R.PH[k] && R.PH[k][h - 1]));
-    return t || deepHouse(k, h, "transit");
+    return t || "";
   }
-  function liveRetro(k, h) { const A = window.AqLive, R = rd(), x = A && A.RTH && A.RTH[k] && A.RTH[k][h - 1]; return x || (R && R.RT && R.RT[k]) || retroText(k); }
+  function liveRetro(k, h) { const A = window.AqLive, R = rd(), x = A && A.RTH && A.RTH[k] && A.RTH[k][h - 1]; return x || (R && R.RT && R.RT[k]) || ""; }
   function moonHint(i, nowMoonSign) {
     try {
       const ms = Date.now(), jdUt = Astro.jdFromMs(ms), jde = jdUt + Astro.deltaT(Astro.yearOf(jdUt)) / 86400;
@@ -2431,7 +2431,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const cur = document.createElement("div"); cur.className = "sg-cur"; cur.id = "sg-cur"; cur.setAttribute("data-open", "true");
   cur.innerHTML = '<div class="sg-tabs sg-tabs-main" role="tablist" aria-label="أقسام البرج"><button type="button" role="tab" data-sgtab="forecast" aria-selected="true"><span class="sg-ti" aria-hidden="true">' + ZI.crescent + '</span>توقعات وطاقة البرج</button><button type="button" role="tab" data-sgtab="traits" aria-selected="false"><span class="sg-ti" aria-hidden="true">' + ZI.gem + '</span>شخصية وصفات البرج</button></div><div class="sg-bar" hidden><span class="sg-bar-id"></span><button type="button" class="sg-chg" data-sgchg aria-expanded="false">تغيير البرج</button><button type="button" class="sg-nxt" data-sgnxt>البرج التالي</button></div><div class="sg-pk"><div class="sg-pk-in"></div></div>';
   picker.parentNode.insertBefore(cur, picker); cur.querySelector(".sg-pk-in").appendChild(picker);
-  const sgBar = cur.querySelector(".sg-bar");
+  const sgBar = cur.querySelector(".sg-bar"); cur.insertBefore(sgBar, cur.firstChild);
   function setCurtain(open) {
     cur.setAttribute("data-open", open ? "true" : "false");
     const c = cur.querySelector("[data-sgchg]"); c.setAttribute("aria-expanded", open ? "true" : "false"); c.textContent = open ? "إخفاء الأبراج" : "تغيير البرج";
@@ -2474,10 +2474,14 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const moonDay = h => liveText("moon", h);
   function pulseTab(i, L) {
     const s = SIGNS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
-    const AL = window.AqLive, day = (AL && AL.DAY && AL.DAY[L.moonH - 1]) || liveText("moon", L.moonH), head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || "";
+    const AL = window.AqLive, day = (AL && AL.DAY && AL.DAY[L.moonH - 1]) || "", head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || "";
     const guide = `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء. وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد. ونصيحة يومك: ${s.growth}.`;
-    const blk = (t, ps) => `<section class="sg-mrg"><h6>${t}</h6>${ps.filter(Boolean).map(x => `<p>${x}</p>`).join("")}</section>`;
-    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", sub: "نبض القمر وطاقة اليوم في قراءة واحدة", html: `<div class="sg-flow">${blk("نبض القمر وحركته", [head, day, L.hint ? `<span class="sg-hint">${L.hint}</span>` : ""])}${blk(`طاقة يومك في ${s.n}`, [guide])}</div>` }] };
+    const paras = t => { const out = []; let cur2 = ""; String(t || "").split(/(?<=[.؟!])\s+/).forEach(x => { if (cur2 && (cur2 + " " + x).length > 135) { out.push(cur2); cur2 = x; } else cur2 = cur2 ? cur2 + " " + x : x; }); if (cur2) out.push(cur2); return out; };
+    const sub = (t, txt) => `<div class="sg-sub"><h6>${t}</h6>${paras(txt).map(x => `<p>${x}</p>`).join("")}</div>`;
+    const sep = '<div class="sg-sep" aria-hidden="true"><i></i></div>';
+    const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</section>`;
+    const dayPart = `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5>${sub("نقطة القوة الظاهرة", `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.`)}${sub("الجانب الذي يحتاج وعيًا", `انتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.`)}${sub("درس النمو المقترح", `${s.growth}.`)}</section>`;
+    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", sub: "نبض القمر وطاقة اليوم في قراءة واحدة", html: `<div class="sg-flow">${moonPart}${sep}${dayPart}</div>` }] };
     return `
       <section class="sg-sec">
       <article class="sg-card sg-fc" data-sgrow="fc:0" role="button" tabindex="0"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
@@ -2517,12 +2521,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     if (main === "traits") body = traitsTab(i);
     else {
       const L = signLive(i);
-      sub = `<div class="sg-tabs sg-tabs-sub" role="tablist" aria-label="أقسام التوقعات">${subTabs.map(t => `<button type="button" role="tab" data-sgsub="${t[0]}" aria-selected="${signsSub === t[0]}">${t[1]}</button>`).join("")}</div>`;
+      sub = `<div class="sg-tabs sg-tabs-sub" role="tablist" aria-label="أقسام التوقعات">${subTabs.map(t => `<button type="button" role="tab" data-sgsub="${t[0]}" aria-selected="${signsSub === t[0]}"><i class="sg-sti" aria-hidden="true">${{ pulse: ZI.sparkorb, transits: ZI.orbit, periods: ZI.crescent }[t[0]]}</i><span>${t[1]}</span></button>`).join("")}</div>`;
       body = signsSub === "transits" ? transitsTab(i, L) : signsSub === "periods" ? periodsTab(i, L) : pulseTab(i, L);
     }
     cur.querySelectorAll("[data-sgtab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.sgtab === main)));
     panel.innerHTML = `${sub}${body}`;
   }
+  window.__aqSignsRerender = () => { try { if (panel && panel.innerHTML) renderSign(); } catch (e) {} };
   cur.addEventListener("click", e => {
     const t = e.target.closest("[data-sgtab]"); if (t && t.dataset.sgtab !== signsMode) { setMode(t.dataset.sgtab); toTop(); }
   });
@@ -3666,3 +3671,6 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
 
 
 (function () { try { document.querySelectorAll('img[src*="brand/logo-mark-160"]').forEach(im => { im.addEventListener("error", () => { if (!im.dataset.fb) { im.dataset.fb = "1"; im.src = "assets/images/brand/logo-mark-512.png"; } }); if (im.complete && im.naturalWidth === 0) im.src = "assets/images/brand/logo-mark-512.png"; }); } catch (e) {} })();
+
+/* إعادة الرسم بعد تحميل نصوص الصفحة المؤجلة حتى لا تظهر النصوص القديمة الاحتياطية */
+(function () { try { const rr = () => { try { if (window.AqLive && window.__aqSignsRerender) window.__aqSignsRerender(); } catch (e) {} }; if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", rr); else rr(); window.addEventListener("load", rr); } catch (e) {} })();

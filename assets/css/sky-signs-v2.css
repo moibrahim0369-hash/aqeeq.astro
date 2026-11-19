@@ -455,3 +455,35 @@ html body #sgs-sheet .sg-mrg p{margin:0 0 8px;font:600 .88rem/1.9 'Cairo',sans-s
 html body #sgs-sheet .sg-mrg .sg-hint{display:block;color:#8A5A1C;font-weight:700}
 html body #sgs-sheet :is(.sgs-body,.sg-sh-bd,.sg-sh-hd,.aqm-sheet-foot,.aqm-sheet-panel>div){background:transparent!important}
 html body #sgs-sheet .aqm-sheet-panel:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){background-image:linear-gradient(180deg,#F8EFDD 0%,#F2E6CF 100%)!important;background-color:#F5EDDC!important}
+
+/* ===== الجولة 14: قراءة منبثقة هادئة + شريط البرج للأعلى + تبويبات فرعية أوضح ===== */
+html body #sgs-sheet .sg-flow{display:block}
+html body #sgs-sheet .sg-part{margin:0;padding:0 2px}
+html body #sgs-sheet .sg-part>h5{margin:0 0 10px;display:flex;align-items:center;gap:8px;font:800 .92rem 'Cairo',sans-serif;color:#6B2135}
+html body #sgs-sheet .sg-part>h5::before{content:"";width:7px;height:7px;transform:rotate(45deg);background:#C6A25C;flex:none}
+html body #sgs-sheet .sg-part>h5::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(198,162,92,.6),transparent)}
+html body #sgs-sheet .sg-flow p{margin:0 0 14px;font:500 .93rem/1.78 'Cairo',sans-serif;color:#3A2A2E}
+html body #sgs-sheet .sg-flow .sg-lead{font-weight:700;color:#5A182A}
+html body #sgs-sheet .sg-flow .sg-hint{display:block;margin:0 0 14px;padding:8px 12px;border-inline-start:3px solid #C6A25C;background:rgba(198,162,92,.12);border-radius:10px;font-weight:700;color:#7A5416}
+html body #sgs-sheet .sg-sub{margin:0 0 12px}
+html body #sgs-sheet .sg-sub h6{margin:0 0 4px;font:800 .78rem 'Cairo',sans-serif;color:#9A6B22;letter-spacing:.2px}
+html body #sgs-sheet .sg-sub p{margin:0 0 6px}
+html body #sgs-sheet .sg-sep{display:flex;align-items:center;gap:10px;margin:8px 0 16px;color:#C6A25C}
+html body #sgs-sheet .sg-sep::before,html body #sgs-sheet .sg-sep::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(198,162,92,.55),transparent)}
+html body #sgs-sheet .sg-sep i{width:6px;height:6px;transform:rotate(45deg);border:1px solid #C6A25C}
+html body #sgs-sheet .sg-sh-bd>p,html body #sgs-sheet .sign-detail p{line-height:1.78;margin:0 0 14px}
+html body #sgs-sheet .sg-time{background:none;border:0;border-top:1px solid rgba(198,162,92,.5);border-bottom:1px solid rgba(198,162,92,.5);border-radius:0;padding:10px 2px}
+html body #sgs-sheet .aqm-sheet-foot:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:flex!important;justify-content:center;gap:10px;padding:8px 16px calc(14px + env(safe-area-inset-bottom))!important}
+html body #sgs-sheet .aqm-foot-next:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n),html body #sgs-sheet .aqm-foot-close:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){flex:0 1 auto!important;min-width:112px;min-height:42px!important;padding:0 22px!important;font:800 .86rem 'Cairo',sans-serif!important;border-radius:999px!important}
+html body #sgs-sheet .aqm-foot-next:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){background:linear-gradient(165deg,#74293D,#6B2135)!important;color:#FBF1DD!important;border:1px solid rgba(198,162,92,.7)!important}
+html body #sgs-sheet .aqm-foot-close:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){background:transparent!important;color:#6B2135!important;border:1px solid rgba(198,162,92,.8)!important;box-shadow:none!important}
+html body #signs .sg-bar:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0 0 8px!important}
+html body #signs .sg-tabs-sub:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:grid!important;grid-template-columns:repeat(3,1fr);gap:6px!important;padding:4px!important;border-radius:18px!important;background:rgba(198,162,92,.14)!important;border:1px solid rgba(198,162,92,.55)!important;box-shadow:none!important}
+html body #signs .sg-tabs-sub button[role="tab"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:48px!important;padding:4px 2px!important;border-radius:14px!important;background:#FBF8F1!important;border:1px solid rgba(198,162,92,.55)!important;color:#6B2135!important;font:700 .7rem/1.25 'Cairo',sans-serif!important;text-align:center}
+html body #signs .sg-tabs-sub button[role="tab"][aria-selected="true"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){background:linear-gradient(165deg,#74293D,#6B2135)!important;color:#FBF1DD!important;border-color:#C6A25C!important;box-shadow:0 5px 12px rgba(90,24,42,.28),0 -2px 0 #C6A25C inset!important}
+html body #signs .sg-sti:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){display:grid;width:17px;height:17px}
+html body #signs .sg-sti svg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+html body #sgs-sheet .sg-flow p:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0 0 14px!important;font:500 .93rem/1.78 'Cairo',sans-serif!important;color:#3A2A2E!important}
+html body #sgs-sheet .sg-flow p.sg-lead:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0 0 16px!important;padding:2px 12px 2px 0;border-inline-start:3px solid #C6A25C;font-weight:700!important;color:#5A182A!important;font-size:.95rem!important}
+html body #sgs-sheet .sg-flow p.sg-hint:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:4px 0 14px!important;padding:8px 12px!important;border-radius:10px;background:rgba(198,162,92,.13);border-inline-start:3px solid #C6A25C;font-weight:700!important;color:#7A5416!important}
+html body #sgs-sheet .sg-sub p:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n){margin:0 0 6px!important}
