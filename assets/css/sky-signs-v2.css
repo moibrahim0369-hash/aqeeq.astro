@@ -356,3 +356,25 @@ html body #signs .sg-ci:not(#_a):not(#_b){font-style:normal}
 html body #signs .sg-overall:empty{display:none!important}
 html body #signs .sg-cell b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){font-size:.68rem!important;padding-inline:2px}
 html body #signs .sg-cells:not(#_a):not(#_b):not(#_c):not(#_d){padding-bottom:0!important}
+
+/* ===== الجولة التاسعة: خامة الزجاج اللؤلؤي الفاتح + نبض اليوم + الفترات ===== */
+:root{--pg-bg:rgba(255,253,249,.90);--pg-bd:1px solid rgba(212,180,117,.45);--pg-sh:0 8px 20px rgba(90,24,42,.08),0 1px 0 rgba(255,255,255,.95) inset,0 14px 18px -14px rgba(255,255,255,.9) inset}
+html body #signs :is(.sg-card,.sg-row,.sg-tile,.sg-cell,.sg-med,.sg-per,.sg-trbox,.sg-tabs-main,.picker button.sg-pick,.sg-tabs button[role="tab"]:not([aria-selected="true"]),.sg-chg):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){background:var(--pg-bg)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:var(--pg-bd)!important;box-shadow:var(--pg-sh)!important}
+html body section.sec#signs .center:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){background:var(--pg-bg)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:var(--pg-bd)!important;box-shadow:var(--pg-sh)!important}
+html body #signs .sg-tabs-main button[role="tab"]:not([aria-selected="true"]):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){box-shadow:none!important;background:transparent!important;border:0!important}
+html body #signs .picker button.sg-pick[aria-pressed="true"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){background:linear-gradient(165deg,#6A1E32,#4D1424)!important;border:1px solid #D4B475!important}
+html body #signs .sg-per .sg-row:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){background:transparent!important;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none!important;border:0!important;border-bottom:1px solid rgba(212,180,117,.35)!important}
+html body #signs .sg-trbox .sg-cell:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){background:rgba(255,253,249,.95)!important}
+html body #signs .sg-hint-p:not(#_a){background:none!important}
+html body #signs .sg-tabs-per:not(#_a):not(#_b){display:grid!important;grid-template-columns:1fr 1fr 1.5fr;gap:6px!important;margin:0 0 8px!important;padding:0!important}
+html body #signs .sg-tabs-per button[role="tab"]:not(#_a):not(#_b):not(#_c):not(#_d){min-height:34px!important;font-size:.72rem!important;padding:0 6px!important;white-space:normal;line-height:1.25}
+html body #signs .sg-per-one:not(#_a):not(#_b):not(#_c){padding:4px 0 0!important}
+html body #signs .sg-cap:not(#_a){margin:0;padding:6px 14px 8px;font:600 .72rem/1.5 'Cairo',sans-serif;color:#7B6B64;border-bottom:1px solid rgba(212,180,117,.35)}
+html body #signs .sg-chev:not(#_a):not(#_b){width:11px;height:11px;border-color:#5A182A!important;border-width:2.5px!important}
+html body #signs .sg-sec>.sg-q:not(#_a):not(#_b){margin:0 0 10px!important}
+html body #signs .sg-fc-h:not(#_a){display:flex;align-items:center;gap:10px;margin:0 0 8px}
+html body #signs .sg-fc-h h5:not(#_a){margin:0;font:800 .98rem 'Cairo',sans-serif;color:#5A182A}
+html body #signs .sg-flow:not(#_a){display:grid;gap:8px}
+html body #signs .sg-flow p:not(#_a){margin:0;font:600 .84rem/1.85 'Cairo',sans-serif;color:#3A2A2E}
+html body #signs .sg-flow p.sg-hint:not(#_a):not(#_b){display:block!important;color:#8A6420;font-weight:700}
+html body section.sec#signs .aq-back-home-btn:not(#_a){display:none!important}

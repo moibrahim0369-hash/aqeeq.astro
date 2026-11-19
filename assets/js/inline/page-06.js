@@ -2407,7 +2407,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   });
   const signsH2 = document.querySelector("#signs .center h2"), signsIntro = document.querySelector("#signs .center .intro");
   const HEAD_T = "توقعات وطاقة الأبراج الآن", HEAD_P = "اعرف نبض السماء المؤثر على برجك اليوم، واكتشف خريطة شخصيتك بعمق لم يُقَل لك من قبل.";
-  let signsSub = "pulse";
+  let signsSub = "pulse", signsPer = "near";
   function updatePeriod() {
     const el = document.getElementById("period"); if (!el) return;
     el.textContent = new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
@@ -2438,13 +2438,15 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function pulseTab(i, L) {
     const s = SIGNS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
     const AL = window.AqLive, day = (AL && AL.DAY && AL.DAY[L.moonH - 1]) || liveText("moon", L.moonH), head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || "";
-    const gHtml = `<div class="sg-guide">${G.slice(0, 3).map(x => `<div class="sg-g"><h6><span class="sg-gi" aria-hidden="true">${x.svg}</span>${x.t}</h6>${x.html}</div>`).join("")}</div>`;
+    const guide = `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء. وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد. ونصيحة يومك: ${s.growth}.`;
     curList = {};
     return `
       <section class="sg-sec">
-      <article class="sg-card sg-fc"><p class="sg-overall">${head}</p><div class="sg-moon-in">${bdg("☽")}<div><h5>توقع يومك (القمر في بيتك ${HOUSES[L.moonH - 1].n})</h5><p>${day}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</div></div>${gHtml}</article>
+      ${qBox(q)}
+      <article class="sg-card sg-fc"><div class="sg-fc-h">${bdg("☽")}<h5>توقع يومك</h5></div>
+        <div class="sg-flow">${head ? `<p>${head}</p>` : ""}<p>${day}</p>${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}<p>${guide}</p></div></article>
       ${L.lun && L.lun.txt ? `<article class="sg-card sg-lun"><div><h5>${L.lun.t}</h5><small>${L.lun.cap}</small><p>${L.lun.txt}</p></div></article>` : ""}
-      ${qBox(q)}</section>`;
+      </section>`;
   }
   function transitsTab(i, L) {
     curList = { tr: L.planets, as: L.aspects };
@@ -2457,11 +2459,12 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   function periodsTab(i, L) {
     curList = { near: L.near, mid: L.mid, far: L.far };
-    const card = (key, t, cap, ic, list, extra) => `<article class="sg-per"><header><span class="sg-bd sg-bd-l" aria-hidden="true">${ic}</span><div><h5>${t}</h5><small>${cap}</small></div></header>${extra || ""}<div class="sg-rows">${rowsHTML(list, key)}</div></article>`;
-    return `<section class="sg-sec">
-      ${card("near", "المدى القريب", "اليوم واليومين القادمين: القمر وزواياه السريعة", ZI.star, L.near, L.hint ? `<p class="sg-hint sg-hint-p">${L.hint}</p>` : "")}
-      ${card("mid", "المدى المتوسط", "هذا الأسبوع: الشمس وعطارد والزهرة والمريخ", ZI.orbit, L.mid)}
-      ${card("far", "المدى البعيد", "الشهر والفترة القادمة: الكواكب البطيئة وحالات تراجعها", ZI.orbit, L.far)}</section>`;
+    const P = [["near", "اليوم"], ["mid", "هذا الأسبوع"], ["far", "الشهر والفترة القادمة"]];
+    const per = `<div class="sg-tabs sg-tabs-per" role="tablist" aria-label="الفترات">${P.map(t => `<button type="button" role="tab" data-sgper="${t[0]}" aria-selected="${signsPer === t[0]}">${t[1]}</button>`).join("")}</div>`;
+    const caps = { near: "اليوم واليومين القادمين: القمر وزواياه السريعة", mid: "هذا الأسبوع: الشمس وعطارد والزهرة والمريخ", far: "الشهر والفترة القادمة: الكواكب البطيئة وحالات تراجعها" };
+    const rows = rowsHTML(curList[signsPer], signsPer).replace(/\s*\(راجع\)/g, "");
+    return `<section class="sg-sec">${per}<p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي كوكب لقراءة تأثيره الكامل على فترتك</p>
+      <article class="sg-per sg-per-one"><p class="sg-cap">${caps[signsPer]}</p>${signsPer === "near" && L.hint ? `<p class="sg-hint sg-hint-p">${L.hint}</p>` : ""}<div class="sg-rows">${rows}</div></article></section>`;
   }
   function traitsTab(i) {
     const s = SIGNS[i];
@@ -2487,6 +2490,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   });
   panel.addEventListener("click", e => {
     const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); toTop(); } return; }
+    const pt = e.target.closest("[data-sgper]"); if (pt) { if (pt.dataset.sgper !== signsPer) { signsPer = pt.dataset.sgper; renderSign(); } return; }
     const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); sgShow(curList[key], +n); }
   });
   function pickSign(i) {
@@ -3622,3 +3626,5 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
 
 })();
 
+
+(function () { try { document.querySelectorAll('img[src*="brand/logo-mark-160"]').forEach(im => { im.addEventListener("error", () => { if (!im.dataset.fb) { im.dataset.fb = "1"; im.src = "assets/images/brand/logo-mark-512.png"; } }); if (im.complete && im.naturalWidth === 0) im.src = "assets/images/brand/logo-mark-512.png"; }); } catch (e) {} })();
