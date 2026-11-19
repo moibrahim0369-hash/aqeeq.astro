@@ -2311,6 +2311,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     } catch (e) { return ""; }
   }
   const AICs = typeof AIC !== "undefined" ? AIC : {};
+  const SG_CLOCK = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
   const qPl = (k, h) => `كيف يظهر ${PLANETS[k].theme} في ${HOUSES[h - 1].area} عندك الآن، وما الخطوة الصغيرة التي تعبّر عنه بصدق؟`;
   const qAs = (a, b) => `أين تلتقي ${PLANETS[a].theme} مع ${PLANETS[b].theme} في يومك، وما القرار الهادئ الذي يوازن بينهما؟`;
   const aspKey = x => [x.A.key, x.B.key].sort((a, b) => PLANET_KEYS.indexOf(a) - PLANET_KEYS.indexOf(b)).join("|") + "|" + x.k;
@@ -2335,11 +2336,10 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     };
     const item = k => {
       const b = nb(k), h = hOf(k), S = SIGNS[b.sign], T = spanOf(k, b, h);
-      let body = T.stay ? `<div class="sg-time"><p><b>فترة البقاء</b><span>${T.stay}</span></p>${T.nxt ? `<p><b>المحطة القادمة</b><span>${T.nxt}</span></p>` : ""}</div>` : "";
-      body += `<p>${liveText(k, h)}</p>`;
+      let body = sgParas(liveText(k, h)).map(x => `<p>${x}</p>`).join("");
       if (b.retro) body += `<p class="sg-rx">${liveRetro(k, h)}</p>`;
       if (k !== "moon" && k !== "sun") { let ing = null; try { ing = nextIngress(k, ms); } catch (e) {} if (ing) body += `<p class="sg-ing">${PLANETS[k].n} ${ing.sign === (b.sign + 11) % 12 ? "يعود إلى برج" : "ينتقل إلى برج"} ${SIGNS[ing.sign].n} تقريبًا يوم ${dfmt(ing.ms)}.</p>`; }
-      return { k, g: PLANETS[k].g, t: `${PLANETS[k].n} في ${S.n}${b.retro ? " (راجع)" : ""}`, sub: `يؤثر على بيتك ${HOUSES[h - 1].n} · ${HOUSES[h - 1].area}`, when: T.brief, rx: b.retro, html: body, q: qPl(k, h) };
+      return { k, g: PLANETS[k].g, t: `${PLANETS[k].n} في ${S.n}${b.retro ? " (راجع)" : ""}`, sub: `يؤثر على بيتك ${HOUSES[h - 1].n} · ${HOUSES[h - 1].area}`, when: T.brief, span: T.stay, nxt: T.nxt, rx: b.retro, html: body, q: qPl(k, h) };
     };
     const slow = ["jupiter", "saturn", "uranus", "neptune", "pluto"], mid = ["sun", "mercury", "venus", "mars"];
     const all8 = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"];
@@ -2405,15 +2405,16 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     [].forEach.call(document.styleSheets, ss => { try { if (ss.ownerNode && ss.ownerNode.tagName === "LINK" && /sky-|signs|zodiac|page-art|aqeeq-design|lifepath|field-cards|internal-pages|cosmic/.test(ss.href || "")) walk(ss.cssRules, out); else if (ss.ownerNode && ss.ownerNode.tagName === "STYLE" && ss.ownerNode !== st) walk(ss.cssRules, out); } catch (e) {} });
     if (VARS.length) out.insertRule("#sgs-sheet{" + VARS.join(";") + "}", out.cssRules.length);
   }
+  function sgParas(t, max) { const out = []; let c = ""; String(t || "").split(/(?<=[.؟!])\s+/).forEach(x => { if (c && (c + " " + x).length > (max || 100)) { out.push(c); c = x; } else c = c ? c + " " + x : x; }); if (c) out.push(c); return out; }
   function sgReveal() {
-    const els = sgBody.querySelectorAll(".sg-part p,.sg-lead,.sg-time,.sg-hint,.sgs-qdock,.sg-sep");
+    const els = sgBody.querySelectorAll(".sg-sh-bd p,.sg-meta,.sgs-qdock,.sg-sep");
     if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { root: sgBody, threshold: 0.05 });
     els.forEach(el => { el.classList.add("sg-rv"); io.observe(el); });
   }
   function sgFill() {
     const it = sgList[sgIdx];
-    sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3>${it.sub ? `<small>${it.sub}</small>` : ""}</div></header><div class="sg-sh-bd sign-detail">${it.html}${it.q ? `<div class="sgs-qdock"><i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p></div>` : ""}</div>`;
+    sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3></div></header><div class="sg-sh-bd sign-detail">${(it.span || it.sub) ? `<div class="sg-meta">${it.span ? `<p class="sg-span"><i aria-hidden="true">${SG_CLOCK}</i><span>${it.span}</span></p>` : ""}${it.sub ? `<p class="sg-hs"><i aria-hidden="true"></i><span>${it.sub}</span></p>` : ""}${it.nxt ? `<p class="sg-nx">${it.nxt}</p>` : ""}</div>` : ""}${it.html}${it.q ? `<div class="sgs-qdock"><i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p></div>` : ""}</div>`;
     sgRewind(); sgReveal();
     sgSheet.querySelector("[data-sgn]").hidden = sgList.length < 2;
   }
@@ -2482,12 +2483,12 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const s = SIGNS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
     const AL = window.AqLive, day = (AL && AL.DAY && AL.DAY[L.moonH - 1]) || "", head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || "";
     const guide = `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء. وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد. ونصيحة يومك: ${s.growth}.`;
-    const paras = t => { const out = []; let cur2 = ""; String(t || "").split(/(?<=[.؟!])\s+/).forEach(x => { if (cur2 && (cur2 + " " + x).length > 135) { out.push(cur2); cur2 = x; } else cur2 = cur2 ? cur2 + " " + x : x; }); if (cur2) out.push(cur2); return out; };
+    const paras = t => sgParas(t, 100);
     const sub = (t, txt) => `<div class="sg-sub"><h6>${t}</h6>${paras(txt).map(x => `<p>${x}</p>`).join("")}</div>`;
     const sep = '<div class="sg-sep" aria-hidden="true"><i></i></div>';
     const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}</section>`;
     const dayPart = `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5><p>استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.</p><p>وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.</p><p>ودرس يومك: ${s.growth}.</p></section>`;
-    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", sub: "", html: `${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}<div class="sg-flow">${moonPart}${sep}${dayPart}</div>`, q }] };
+    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", span: (L.near[0] || {}).span, nxt: (L.near[0] || {}).nxt, sub: (L.near[0] || {}).sub, html: `<div class="sg-flow">${moonPart}${sep}${dayPart}</div>`, q }] };
     return `
       <section class="sg-sec">
       <article class="sg-card sg-fc" data-sgrow="fc:0" role="button" tabindex="0"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
@@ -2509,7 +2510,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     curList = { near: L.near, mid: L.mid, far: L.far };
     const P = [["near", "المدى السريع"], ["mid", "الكواكب الشخصية"], ["far", "الكواكب البطيئة"]];
     const per = `<div class="sg-tabs sg-tabs-per" role="tablist" aria-label="الفترات">${P.map(t => `<button type="button" role="tab" data-sgper="${t[0]}" aria-selected="${signsPer === t[0]}">${t[1]}</button>`).join("")}</div>`;
-    if (signsPer === "near" && L.near[0] && L.near[0].k === "moon" && !L.near[0].__h) { const m = L.near[0]; m.__h = 1; m.when = "اضغط لقراءة حركة القمر وتفاصيلها"; if (L.hint) m.html = `<p class="sg-hint">${L.hint}</p>` + m.html; }
+    if (signsPer === "near" && L.near[0] && L.near[0].k === "moon" && !L.near[0].__h) { const m = L.near[0]; m.__h = 1; m.when = "اضغط لقراءة حركة القمر وتفاصيلها"; }
     const caps = { mid: "دورات الشمس وعطارد والزهرة والمريخ الممتدة لأسابيع وشهور", far: "دورات المشتري وزحل وأورانوس ونبتون وبلوتو الممتدة لسنوات" };
     const rows = rowsHTML(curList[signsPer], signsPer).replace(/\s*\(راجع\)/g, "");
     return `<section class="sg-sec">${per}<p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي كوكب لقراءة تأثيره الكامل على فترتك</p>
