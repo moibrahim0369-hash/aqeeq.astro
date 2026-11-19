@@ -290,3 +290,15 @@ html body #signs .sg-lun:not(#_a){margin-top:12px;padding:14px 16px;background:l
 html body #signs .sg-lun h5:not(#_a){margin:0;font:800 .98rem 'Cairo',sans-serif;color:#5A182A}
 html body #signs .sg-lun small:not(#_a){display:block;margin:2px 0 8px;font:600 .78rem 'Cairo',sans-serif;color:#8A6A3A}
 html body #signs .sg-lun p:not(#_a){margin:0;font:500 .9rem/1.9 'Cairo',sans-serif;color:#3A2A2E}
+
+/* ===== الجولة السابعة: رتوش نهائية ===== */
+html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g) .aq-section-topbar.aq-ctxbar{display:none!important}
+html body #signs .sg-tabs-main .sg-ti svg:not(#_a):not(#_b):not(#_c){stroke-width:1.6}
+/* زر الرفيق العائم: لا يطمس نص البطاقات */
+html body.aq-signs-open .cmp-fab:not(#_a){width:40px!important;height:40px!important;opacity:.88;animation:none!important;bottom:calc(92px + env(safe-area-inset-bottom,0px))!important}
+html body.aq-signs-open .cmp-fab svg{width:20px!important;height:20px!important}
+html body #signs .sg-cells:not(#_a):not(#_b){padding-bottom:64px}
+html body #signs .sg-cell:not(#_a):not(#_b):not(#_c){padding-inline:6px!important}
+html body.aq-signs-open .cmp-fab:not(#_a):not(#_b){width:36px!important;height:36px!important;inset-inline-start:6px!important}
+html body #signs .sg-cell b:not(#_a):not(#_b):not(#_c){padding-inline:12px}
+html body #signs .sg-cell b:not(#_a):not(#_b):not(#_c):not(#_d){padding-inline:20px}

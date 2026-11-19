@@ -2254,6 +2254,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   const signsSec = $("#signs");
   const ZI = {
+    crescent: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.500 3.800a8 8 0 1 0 5.700 11.600A6.600 6.600 0 0 1 14.500 3.800z"/><path d="M18 6.200l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',
+    gem: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.500 4h11L21 9l-9 11L3 9z"/><path d="M3 9h18M9.500 4L8 9l4 11 4-11-1.500-5"/></svg>',
     star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.4 5.6 6 .6-4.5 4 1.4 5.9L12 16l-5.300 3.100 1.400-5.900-4.500-4 6-.6z"/></svg>',
     heart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.500-4.600-7.500-10A4.300 4.300 0 0 1 12 7.500 4.300 4.300 0 0 1 19.500 10c0 5.400-7.500 10-7.500 10z"/></svg>',
     work: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.500" y="7.500" width="17" height="12" rx="2"/><path d="M9 7.500V5.500A1.500 1.500 0 0 1 10.500 4h3A1.500 1.500 0 0 1 15 5.500v2M3.500 13h17"/></svg>',
@@ -2384,11 +2386,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     sgSheet.hidden = false; document.documentElement.classList.add("aqm-sheet-open");
   }
   window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); });
+  const sgFab = () => document.body.classList.toggle("aq-signs-open", location.hash === "#signs");
+  window.addEventListener("hashchange", sgFab); sgFab();
 
   /* ---- ستارة الأبراج والتنقل ---- */
   let signCur = -1, signsMode = "forecast", curList = {};
   const cur = document.createElement("div"); cur.className = "sg-cur"; cur.id = "sg-cur"; cur.setAttribute("data-open", "true");
-  cur.innerHTML = '<div class="sg-tabs sg-tabs-main" role="tablist" aria-label="أقسام البرج"><button type="button" role="tab" data-sgtab="forecast" aria-selected="true"><span class="sg-ti" aria-hidden="true">' + ZI.star + '</span>توقعات وطاقة البرج</button><button type="button" role="tab" data-sgtab="traits" aria-selected="false"><span class="sg-ti" aria-hidden="true">' + ZI.book + '</span>شخصية وصفات البرج</button></div><div class="sg-bar" hidden><span class="sg-bar-id"></span><button type="button" class="sg-chg" data-sgchg aria-expanded="false">تغيير البرج</button><button type="button" class="sg-nxt" data-sgnxt>البرج التالي</button></div><div class="sg-pk"><div class="sg-pk-in"></div></div>';
+  cur.innerHTML = '<div class="sg-tabs sg-tabs-main" role="tablist" aria-label="أقسام البرج"><button type="button" role="tab" data-sgtab="forecast" aria-selected="true"><span class="sg-ti" aria-hidden="true">' + ZI.crescent + '</span>توقعات وطاقة البرج</button><button type="button" role="tab" data-sgtab="traits" aria-selected="false"><span class="sg-ti" aria-hidden="true">' + ZI.gem + '</span>شخصية وصفات البرج</button></div><div class="sg-bar" hidden><span class="sg-bar-id"></span><button type="button" class="sg-chg" data-sgchg aria-expanded="false">تغيير البرج</button><button type="button" class="sg-nxt" data-sgnxt>البرج التالي</button></div><div class="sg-pk"><div class="sg-pk-in"></div></div>';
   picker.parentNode.insertBefore(cur, picker); cur.querySelector(".sg-pk-in").appendChild(picker);
   const sgBar = cur.querySelector(".sg-bar");
   function setCurtain(open) {
