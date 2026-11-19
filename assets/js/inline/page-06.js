@@ -2487,9 +2487,14 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const paras = t => sgParas(t, 100);
     const sub = (t, txt) => `<div class="sg-sub"><h6>${t}</h6>${paras(txt).map(x => `<p>${x}</p>`).join("")}</div>`;
     const sep = '<div class="sg-sep" aria-hidden="true"><i></i></div>';
+    const mAsp = (L.near || []).slice(1).find(x => x.pair) || (L.aspects || [])[0], pRx = (L.planets || []).find(x => x.rx && ["mercury", "venus", "mars"].includes(x.k));
+    const sunPart = `<section class="sg-part"><h5>خلفية أسبوعك: الشمس في بيتك ${HOUSES[L.sunH - 1].n}</h5>${paras(liveText("sun", L.sunH)).map(x => `<p>${x}</p>`).join("")}</section>`;
+    const aspPart = mAsp ? `<section class="sg-part"><h5>الزاوية الأقرب اليوم: ${mAsp.t}</h5>${mAsp.html}</section>` : "";
+    const rxPart = pRx ? `<section class="sg-part"><h5>${pRx.t}</h5>${pRx.html}</section>` : "";
+    const lunPart = L.lun && L.lun.txt ? `<section class="sg-part"><h5>${L.lun.t}: ${L.lun.cap}</h5>${paras(L.lun.txt).map(x => `<p>${x}</p>`).join("")}</section>` : "";
     const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}</section>`;
     const dayPart = `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5><p>استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.</p><p>وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.</p><p>ودرس يومك: ${s.growth}.</p></section>`;
-    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", span: (L.near[0] || {}).span, nxt: (L.near[0] || {}).nxt, sub: (L.near[0] || {}).sub, html: `<div class="sg-flow">${moonPart}${sep}${dayPart}</div>`, q }] };
+    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", span: (L.near[0] || {}).span, nxt: (L.near[0] || {}).nxt, sub: (L.near[0] || {}).sub, html: `<div class="sg-flow">${moonPart}${sep}${sunPart}${aspPart ? sep + aspPart : ""}${rxPart ? sep + rxPart : ""}${lunPart ? sep + lunPart : ""}${sep}${dayPart}</div>`, q }] };
     return `
       <section class="sg-sec">
       <article class="sg-card sg-fc" data-sgrow="fc:0" role="button" tabindex="0"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
