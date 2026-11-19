@@ -2402,7 +2402,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
         }
       } catch (e) {}
     } };
-    [].forEach.call(document.styleSheets, ss => { try { if (ss.ownerNode && ss.ownerNode.tagName === "LINK" && /sky-|signs|zodiac|page-art|aqeeq-design|lifepath|field-cards|internal-pages|cosmic/.test(ss.href || "")) walk(ss.cssRules, out); else if (ss.ownerNode && ss.ownerNode.tagName === "STYLE" && ss.ownerNode !== st) walk(ss.cssRules, out); } catch (e) {} });
+    const WANT = /sky-|signs|zodiac|page-art|aqeeq-design|lifepath|field-cards|internal-pages|cosmic/;
+    [].forEach.call(document.styleSheets, ss => { try { if (ss.ownerNode && ss.ownerNode.tagName === "LINK" && /aq-bundle-css/.test(ss.href || "")) { let on = false; for (const r of ss.cssRules) { if (r.selectorText === ".aqsrc") on = WANT.test(r.style.getPropertyValue("--f")); else if (on) walk([r], out); } } else if (ss.ownerNode && ss.ownerNode.tagName === "LINK" && WANT.test(ss.href || "")) walk(ss.cssRules, out); else if (ss.ownerNode && ss.ownerNode.tagName === "STYLE" && ss.ownerNode !== st) walk(ss.cssRules, out); } catch (e) {} });
     if (VARS.length) out.insertRule("#sgs-sheet{" + VARS.join(";") + "}", out.cssRules.length);
   }
   function sgParas(t, max) { const out = []; let c = ""; String(t || "").split(/(?<=[.؟!])\s+/).forEach(x => { if (c && (c + " " + x).length > (max || 100)) { out.push(c); c = x; } else c = c ? c + " " + x : x; }); if (c) out.push(c); return out; }
