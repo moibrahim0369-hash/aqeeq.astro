@@ -2407,14 +2407,16 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   function sgFill() {
     const it = sgList[sgIdx];
-    sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3>${it.sub ? `<small>${it.sub}</small>` : ""}</div></header><div class="sg-sh-bd sign-detail">${it.html}${it.q ? `<div class="sg-q"><p>${it.q}</p></div>` : ""}</div>`;
+    sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3>${it.sub ? `<small>${it.sub}</small>` : ""}</div></header><div class="sg-sh-bd sign-detail">${it.html}</div>`;
+    const dk = sgSheet.querySelector(".sgs-qdock");
+    if (dk) { dk.hidden = !it.q; dk.innerHTML = it.q ? `<i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p>` : ""; }
     sgRewind();
     sgSheet.querySelector("[data-sgn]").hidden = sgList.length < 2;
   }
   function sgShow(list, idx) {
     if (!sgSheet) {
       sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
-      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
+      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="sgs-qdock" hidden></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
       document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
       sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); sgRewind(); } });
       sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
@@ -2479,15 +2481,14 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const paras = t => { const out = []; let cur2 = ""; String(t || "").split(/(?<=[.؟!])\s+/).forEach(x => { if (cur2 && (cur2 + " " + x).length > 135) { out.push(cur2); cur2 = x; } else cur2 = cur2 ? cur2 + " " + x : x; }); if (cur2) out.push(cur2); return out; };
     const sub = (t, txt) => `<div class="sg-sub"><h6>${t}</h6>${paras(txt).map(x => `<p>${x}</p>`).join("")}</div>`;
     const sep = '<div class="sg-sep" aria-hidden="true"><i></i></div>';
-    const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}</section>`;
+    const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}</section>`;
     const dayPart = `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5>${sub("نقطة القوة الظاهرة", `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.`)}${sub("الجانب الذي يحتاج وعيًا", `انتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.`)}${sub("درس النمو المقترح", `${s.growth}.`)}</section>`;
-    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", sub: "نبض القمر وطاقة اليوم في قراءة واحدة", html: `<div class="sg-flow">${moonPart}${sep}${dayPart}</div>` }] };
+    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", sub: "", html: `${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}<div class="sg-flow">${moonPart}${sep}${dayPart}</div>`, q }] };
     return `
       <section class="sg-sec">
       <article class="sg-card sg-fc" data-sgrow="fc:0" role="button" tabindex="0"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
-        <p class="sg-ex"><b>قراءة واحدة تجمع نبض القمر وحركته مع طاقة يومك.</b> ${day}</p>
-        <span class="sg-more">قراءة التوقع الكامل<i aria-hidden="true">${AICs.more}</i></span>
-        <div class="sg-q sg-q-end"><i class="sg-qi" aria-hidden="true">${ZI.sparkorb}</i><p>${q}</p></div></article>
+        <p class="sg-ex">${head ? `<b>${head}</b> ` : ""}${day}</p>
+        <span class="sg-more">قراءة التوقع الكامل<i aria-hidden="true">${AICs.more}</i></span></article>
       ${L.lun && L.lun.txt ? `<article class="sg-card sg-lun"><div><h5>${L.lun.t}</h5><small>${L.lun.cap}</small><p>${L.lun.txt}</p></div></article>` : ""}
       </section>`;
   }
@@ -2504,10 +2505,11 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     curList = { near: L.near, mid: L.mid, far: L.far };
     const P = [["near", "المدى السريع"], ["mid", "الكواكب الشخصية"], ["far", "الكواكب البطيئة"]];
     const per = `<div class="sg-tabs sg-tabs-per" role="tablist" aria-label="الفترات">${P.map(t => `<button type="button" role="tab" data-sgper="${t[0]}" aria-selected="${signsPer === t[0]}">${t[1]}</button>`).join("")}</div>`;
-    const caps = { near: "حركة القمر السريعة كل يومين ونصف والزوايا النشطة", mid: "دورات الشمس وعطارد والزهرة والمريخ الممتدة لأسابيع وشهور", far: "دورات المشتري وزحل وأورانوس ونبتون وبلوتو الممتدة لسنوات" };
+    if (signsPer === "near" && L.near[0] && L.near[0].k === "moon" && !L.near[0].__h) { const m = L.near[0]; m.__h = 1; m.when = "اضغط لقراءة حركة القمر وتفاصيلها"; if (L.hint) m.html = `<p class="sg-hint">${L.hint}</p>` + m.html; }
+    const caps = { mid: "دورات الشمس وعطارد والزهرة والمريخ الممتدة لأسابيع وشهور", far: "دورات المشتري وزحل وأورانوس ونبتون وبلوتو الممتدة لسنوات" };
     const rows = rowsHTML(curList[signsPer], signsPer).replace(/\s*\(راجع\)/g, "");
     return `<section class="sg-sec">${per}<p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي كوكب لقراءة تأثيره الكامل على فترتك</p>
-      <article class="sg-per sg-per-one"><p class="sg-cap">${caps[signsPer]}</p>${signsPer === "near" && L.hint ? `<p class="sg-hint sg-hint-p">${L.hint}</p>` : ""}<div class="sg-rows">${rows}</div></article></section>`;
+      <article class="sg-per sg-per-one">${caps[signsPer] ? `<p class="sg-cap">${caps[signsPer]}</p>` : ""}<div class="sg-rows">${rows}</div></article></section>`;
   }
   function traitsTab(i) {
     const s = SIGNS[i];
