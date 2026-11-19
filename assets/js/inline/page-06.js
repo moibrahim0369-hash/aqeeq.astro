@@ -2405,18 +2405,22 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     [].forEach.call(document.styleSheets, ss => { try { if (ss.ownerNode && ss.ownerNode.tagName === "LINK" && /sky-|signs|zodiac|page-art|aqeeq-design|lifepath|field-cards|internal-pages|cosmic/.test(ss.href || "")) walk(ss.cssRules, out); else if (ss.ownerNode && ss.ownerNode.tagName === "STYLE" && ss.ownerNode !== st) walk(ss.cssRules, out); } catch (e) {} });
     if (VARS.length) out.insertRule("#sgs-sheet{" + VARS.join(";") + "}", out.cssRules.length);
   }
+  function sgReveal() {
+    const els = sgBody.querySelectorAll(".sg-part p,.sg-lead,.sg-time,.sg-hint,.sgs-qdock,.sg-sep");
+    if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { root: sgBody, threshold: 0.05 });
+    els.forEach(el => { el.classList.add("sg-rv"); io.observe(el); });
+  }
   function sgFill() {
     const it = sgList[sgIdx];
-    sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3>${it.sub ? `<small>${it.sub}</small>` : ""}</div></header><div class="sg-sh-bd sign-detail">${it.html}</div>`;
-    const dk = sgSheet.querySelector(".sgs-qdock");
-    if (dk) { dk.hidden = !it.q; dk.innerHTML = it.q ? `<i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p>` : ""; }
-    sgRewind();
+    sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3>${it.sub ? `<small>${it.sub}</small>` : ""}</div></header><div class="sg-sh-bd sign-detail">${it.html}${it.q ? `<div class="sgs-qdock"><i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p></div>` : ""}</div>`;
+    sgRewind(); sgReveal();
     sgSheet.querySelector("[data-sgn]").hidden = sgList.length < 2;
   }
   function sgShow(list, idx) {
     if (!sgSheet) {
       sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
-      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="sgs-qdock" hidden></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
+      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
       document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
       sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); sgRewind(); } });
       sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
@@ -2482,7 +2486,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const sub = (t, txt) => `<div class="sg-sub"><h6>${t}</h6>${paras(txt).map(x => `<p>${x}</p>`).join("")}</div>`;
     const sep = '<div class="sg-sep" aria-hidden="true"><i></i></div>';
     const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}</section>`;
-    const dayPart = `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5>${sub("نقطة القوة الظاهرة", `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.`)}${sub("الجانب الذي يحتاج وعيًا", `انتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.`)}${sub("درس النمو المقترح", `${s.growth}.`)}</section>`;
+    const dayPart = `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5><p>استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.</p><p>وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.</p><p>ودرس يومك: ${s.growth}.</p></section>`;
     curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", sub: "", html: `${L.hint ? `<p class="sg-hint">${L.hint}</p>` : ""}<div class="sg-flow">${moonPart}${sep}${dayPart}</div>`, q }] };
     return `
       <section class="sg-sec">
