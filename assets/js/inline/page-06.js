@@ -2596,7 +2596,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     ];
   }
   const subTabs = [["pulse", "نبض اليوم"], ["transits", "العبورات والزوايا"], ["periods", "خريطة الفترات"]];
-  const moonDay = h => `النهاردة مزاجك واهتمامك بيتجهوا لـ${HOUSES[h - 1].area}. ممكن تلاقي نفسك في ${HOUSE_SIT[h - 1][0]}، أو ${HOUSE_SIT[h - 1][1]}. نصيحة اليوم: ${HOUSE_ADV[h - 1]}.`;
+  const moonDay = h => liveText("moon", h);
   function pulseTab(i, L) {
     const s = SIGNS[i], f = FORECASTS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
     const AL = window.AqLive, ar = (a, fb) => (AL && AL.AREA && AL.AREA[a] && AL.AREA[a][L.moonH - 1]) || fb, head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || f.overall;
