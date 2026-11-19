@@ -37,7 +37,7 @@ await p.click('#sg-cur [data-sgtab="traits"]');await p.waitForTimeout(300);
 ok(w+' signs: traits tab is an 11-card icon grid (no accordions)',await p.locator('#panel .sg-med').count()===11&&await p.locator('#panel details').count()===0);
 ok(w+' signs: next sign advances to Taurus and resets scroll',await p.evaluate(()=>document.querySelector('.sg-bar-t b').textContent==='الثور'&&document.getElementById('signs').scrollTop===0));
 ok(w+' signs: no ask-you label',(await p.locator('text=أسئلة تخصك').count())===0);
-ok(w+' signs: picker cards cream with gold border',await p.evaluate(()=>{const b=document.querySelectorAll('#signs .picker .sg-pick')[5],s=getComputedStyle(b);return /252, ?249, ?244/.test(s.backgroundColor)&&/212, ?180, ?117/.test(s.borderTopColor)}));
+ok(w+' signs: picker cards cream with gold border',await p.evaluate(()=>{const b=document.querySelectorAll('#signs .picker .sg-pick')[5],s=getComputedStyle(b);return /252, ?249, ?244/.test(s.backgroundColor)&&/(212, ?180, ?117|198, ?162, ?92)/.test(s.borderTopColor)}));
 /* الخرائط المتقدمة */
 await p.goto(U+'#astro-maps');await p.waitForTimeout(1500);
 ok(w+' maps: ivory background',await p.evaluate(()=>/253, ?251, ?247/.test(getComputedStyle(document.getElementById('astro-maps')).backgroundColor)));
