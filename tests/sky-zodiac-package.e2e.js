@@ -50,7 +50,7 @@ ok(w+' no errors',errs.length===0);await q.close();
 /* التوافق */
 const c=await b.newPage({viewport:{width:w,height:h}});
 await c.goto(U+'#compat');await c.waitForTimeout(1000);
-await c.fill('#cp1-name','محمد');await c.fill('#cp2-name','سارة');await c.fill('#cp1-date','1990-05-14');await c.fill('#cp1-time','10:30');await c.fill('#cp2-date','1992-09-02');await c.fill('#cp2-time','08:15');
+await c.fill('#cp1-name','محمد');await c.fill('#cp2-name','سارة');await c.fill('#cp1-date','1990-05-14');await c.fill('#cp1-time','10:30',{force:true});await c.fill('#cp2-date','1992-09-02');await c.fill('#cp2-time','08:15',{force:true});
 await c.evaluate(()=>document.querySelector('#cp-form button[type=submit]').click());await c.waitForSelector('#cp-out:not([hidden]) .cp-res',{timeout:15000});
 ok(w+' wheel: hub shows both names',await c.evaluate(()=>{const t=[...document.querySelectorAll('#cp-bi-wheel .aq-wheel-hub-name')].map(x=>x.textContent);return t.join('|')==='محمد|سارة'&&!/SYNASTRY/.test(document.getElementById('cp-bi-wheel').textContent)}));
 ok(w+' wheel: person colors',await c.evaluate(()=>{const a=getComputedStyle(document.querySelector('#cp-bi-wheel .person-a .aq-wheel-planet-glyph')).fill,b2=getComputedStyle(document.querySelector('#cp-bi-wheel .person-b .aq-wheel-planet-glyph')).fill;return a==='rgb(74, 21, 33)'&&b2==='rgb(158, 120, 47)'}));
