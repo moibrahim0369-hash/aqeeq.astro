@@ -36,7 +36,7 @@
     var phase = mp ? '<div class="swp-row"><b>طور القمر اليوم · ' + mp.p[0] + ' · إضاءة ' + nd(mp.il) + '%</b><p>' + mp.p[6] + '</p></div>' : '';
     return '<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">' + D.gl(P.g) + '</span></span><div><h4>' + P.n + ' في بيتك ' + H.n + '</h4><small>' + sg.n + ' · مجال ' + H.area + '</small></div></header>' +
       '<div class="swp-hook"><p>' + qs.join('</p><p>') + '</p></div>' +
-      '<div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b><p>' + txt + '</p>' + rt + '</div>' + phase + '</div>' +
+      '<div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b>' + (window.AqReadingBlock ? window.AqReadingBlock.block(k, hh, txt) : '<p>' + txt + '</p>') + rt + '</div>' + phase + '</div>' +
       '<p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>';
   }
   function pick(i) {

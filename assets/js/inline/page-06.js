@@ -1993,7 +1993,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const P = PLANETS[k], sg = SIGNS[i], hh = ((bd.sign - i + 12) % 12) + 1, H = HOUSES[hh - 1], pf = PF[k], q = HQ[hh - 1], ex = HEX[hh - 1];
     return `<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">${gl(P.g)}</span></span><div><h4>${P.n} في بيتك ${H.n}</h4><small>${sg.n} · مجال ${H.area}</small></div></header>
       <div class="swp-hook"><p>${(window.AqReadings && window.AqReadings.TR[k][hh - 1]) ? PQH[k][hh - 1] : PQ[k]}</p><p>${q[(Math.floor(Date.now() / 864e5) + i) % 2]}</p></div>
-      <div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b><p>${window.AqReadings ? (window.AqReadings.TR[k][hh - 1] || window.AqReadings.PH[k][hh - 1]) : ""}</p>${bd.retro && window.AqReadings && window.AqReadings.RT[k] ? `<p class="swp-rt">${window.AqReadings.RT[k]}</p>` : ""}</div></div>
+      <div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b>${window.AqReadings ? window.AqReadingBlock.block(k, hh, (window.AqReadings.TR[k][hh - 1] || window.AqReadings.PH[k][hh - 1]), skyMs()) : ""}${bd.retro && window.AqReadings && window.AqReadings.RT[k] ? `<p class="swp-rt">${window.AqReadings.RT[k]}</p>` : ""}</div></div>
       <p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>`;
   }
   window.AqSky = { skyCard, PLANETS, SIGNS, HOUSES, gl, HQ, HEX, PF, PQ, PQH, getSign: () => skySign, setSign: v => { skySign = (v === null || v === undefined) ? null : +v; try { if (skySign === null) localStorage.removeItem("aq-sky-sign"); else localStorage.setItem("aq-sky-sign", skySign); } catch (e) { } } };

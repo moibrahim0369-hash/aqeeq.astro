@@ -27,6 +27,13 @@ for (const { k, t } of pool) {
 const op = {}; all.forEach(({ k, t }) => { const o = t.split(/\s+/).slice(0, 2).join(' '); (op[o] = op[o] || []).push(k); });
 const isLeg = k => { const [p, h] = k.split('|'); return (LEGACY[p] || []).includes(+h); };
 Object.entries(op).forEach(([o, ks]) => { if (ks.length > 1 && ks.some(k => !isLeg(k))) err.push('افتتاح مكرر «' + o + '»: ' + ks.join('، ')); });
+const seenL = {};
+KEYS.forEach(p => { const L = (R.TL || {})[p] || []; if (L.length !== 12) err.push('TL ' + p + ': ليس 12 سطرًا'); L.forEach((t, i) => { const k = 'TL ' + p + '|' + (i + 1), n = t.split(/\s+/).filter(Boolean).length;
+  if (n < 10 || n > 32) err.push(k + ': الطول ' + n);
+  BAN.forEach(w => { if (t.includes(w)) err.push(k + ': كلمة ممنوعة ' + w); });
+  if (/[A-Za-z]/.test(t)) err.push(k + ': حروف لاتينية'); if (/[—–]/.test(t)) err.push(k + ': شرطة طويلة');
+  const o = t.split(/\s+/).slice(0, 2).join(' '); (seenL[o] = seenL[o] || []).push(k); }); });
+Object.entries(seenL).forEach(([o, ks]) => { if (ks.length > 1) err.push('افتتاح مكرر في الأسطر «' + o + '»: ' + ks.join('، ')); });
 console.log('مملوء:', filled, 'من 120');
 if (err.length) { console.log(err.slice(0, 60).join('\n')); process.exit(1); }
 console.log('سليم');

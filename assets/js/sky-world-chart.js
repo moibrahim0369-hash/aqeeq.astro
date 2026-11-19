@@ -254,7 +254,7 @@
     mineK = k; var d = mineData(cur, k), bd = d.bd, s = ensureMine(), sg = A.getSign(), o = st_items(), nk = o[(o.indexOf(k) + 1) % o.length], nm = '';
     cur.items.forEach(function (i) { if (i.k === nk) nm = i.n; });
     s.querySelector('.mns-body').innerHTML = '<div class="mns-hero"><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><span class="mns-sg"><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[sg].g) + '</span>برج ' + A.SIGNS[sg].n + '</span><h3>' + bd.n + ' في بيتك ' + d.H.n + '</h3><span class="mns-meta">' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + d.H.area + (bd.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</span></div></div>' +
-      '<p class="mns-txt">' + d.txt + '</p>' + (d.rt ? '<p class="swm-rt">' + d.rt + '</p>' : '') +
+      (window.AqReadingBlock ? '<div class="mns-txt">' + window.AqReadingBlock.block(k, d.hh, d.txt) + '</div>' : '<p class="mns-txt">' + d.txt + '</p>') + (d.rt ? '<p class="swm-rt">' + d.rt + '</p>' : '') +
       '<div class="swm-q"><ul><li>' + d.q1 + '</li>' + (d.q2 ? '<li>' + d.q2 + '</li>' : '') + '</ul></div>';
     s.querySelector('[data-mnn] b').textContent = nm;
     openSh(s); queueUp();
