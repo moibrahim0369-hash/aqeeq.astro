@@ -8922,7 +8922,7 @@ window.AqMoonSigns = [{"t": "شرارة صغيرة تكفي اليوم لتشع�
     var moonSign = signGlyph(moon.sign) + ' ' + signName(moon.sign);
     setF('sunLine', sunLine, 1); setF('moonSign', moonSign, 1); setF('phaseName', ph);
     setF('moonSignDeg', moonSign + ' · ' + deg(moon.lon) + '°', 1); setF('illum', illum + '%');
-    setF('moonShort', moonSign + ' · ' + ph + ' · ' + illum + '%', 1);
+    setF('moonShort', moonSign, 1); setF('phaseIllum', ph + ' · ' + illum + '%');
     setF('updated', 'آخر تحديث ' + fmtT(now));
     [].forEach.call(root.querySelectorAll('[data-moon]'), function (sv) { sv.innerHTML = moonSvg(elong); sv.setAttribute('aria-label', 'القمر الآن: ' + ph + '، إضاءة ' + illum + '%'); });
     /* دخول/خروج القمر: يُعاد حسابه فقط عند تغير البرج */
@@ -9071,8 +9071,8 @@ window.AqMoonSigns = [{"t": "شرارة صغيرة تكفي اليوم لتشع�
   function userMove(delta) { show(cur + delta, true); }
 
   dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k, true); }); });
-  root.querySelector('[data-dbn="prev"]').addEventListener('click', function () { userMove(-1); });
-  root.querySelector('[data-dbn="next"]').addEventListener('click', function () { userMove(1); });
+  var ar_prev = root.querySelector('[data-dbn="prev"]'); if (ar_prev) ar_prev.addEventListener('click', function () { userMove(-1); });
+  var ar_next = root.querySelector('[data-dbn="next"]'); if (ar_next) ar_next.addEventListener('click', function () { userMove(1); });
   stage.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') { e.preventDefault(); userMove(1); }   /* RTL: يسار = التالي */
     else if (e.key === 'ArrowRight') { e.preventDefault(); userMove(-1); }
