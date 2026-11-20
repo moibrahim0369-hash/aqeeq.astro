@@ -381,3 +381,10 @@ html body #sky .swg-h:not(#_a):not(#_b){background:#FFFDF9;border:1px solid #D4B
 @media (prefers-reduced-motion:reduce){.trm-full{animation:none}.trm-bn svg{transition:none}}
 /* بطاقة السؤال: نص كريمي واضح على العنابي، وسؤال واحد */
 html body .swp-sheet .sky-card .swp-hook p:not(#_a):not(#_b),html body .aqm-sheet .swm-q li:not(#_a):not(#_b){color:#FFF3DC!important;opacity:1!important;animation:none!important;margin:0;font:600 1.02rem/2 'El Messiri','Cairo',serif}
+/* سؤال للتأمل في ورقة الكوكب: عنابي ثابت ونص كريمي واضح */
+html body .swp-q:not(#_a):not(#_b){margin:14px 0;padding:16px 18px;border-radius:18px;background:#5A182A!important;border:1px solid #C8A15A!important;box-shadow:none!important}
+html body .swp-q:not(#_a):not(#_b) .swp-h2,html body .swp-q:not(#_a):not(#_b) h4{color:#E9CE8E!important;-webkit-text-fill-color:#E9CE8E!important;opacity:1!important;background:none!important}
+html body .swp-q:not(#_a):not(#_b) p,html body .swp-q:not(#_a):not(#_b) p *{color:#FFF3DC!important;-webkit-text-fill-color:#FFF3DC!important;opacity:1!important;animation:none!important;margin:0;font:600 1.02rem/2 'El Messiri','Cairo',serif}
+html body .fc-gen:not(#_a):not(#_b){margin:6px 0 14px}
+html body .fc-gen:not(#_a):not(#_b) p{margin:0 0 10px;font:500 .96rem/2.05 'Cairo',sans-serif;color:#33241d}
+html body .fc-gen:not(#_a):not(#_b) h5{margin:14px 0 6px;font:700 1.02rem 'El Messiri','Cairo',serif;color:#6A2038}

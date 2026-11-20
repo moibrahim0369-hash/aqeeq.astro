@@ -52,6 +52,17 @@
     if (window.AqUpGlyphs) window.AqUpGlyphs();
     setTimeout(function () { try { box.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { } }, 60);
   }
+  /* الطاقة العامة للكوكب الآن وتأثيرها على الجميع، دون اختيار برج */
+  function gen(k, bd, S) {
+    var D = window.AqSky, P = D.PLANETS[k], R = window.AqReadings, o = '';
+    var ms = k === 'moon' && window.AqMoonSigns && window.AqMoonSigns[bd.sign];
+    if (ms && ms.t) o += '<p>' + ms.t + '</p>';
+    o += '<p>يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '. الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>';
+    var pl = R && R.PL && R.PL[k];
+    if (pl) { o += '<h5>' + pl[0] + '</h5><p>' + pl[1] + '</p><p>' + pl[2] + '</p><p><b>ما يطلبه منك:</b> ' + pl[3] + '</p>'; }
+    if (bd.retro && R && R.RT && R.RT[k]) o += '<p class="swp-rt">' + R.RT[k] + '</p>';
+    return o;
+  }
   function build(k) {
     var D = window.AqSky, bd = bodyOf(k), P = D.PLANETS[k], S = D.SIGNS[bd.sign], deg = Math.floor(bd.lon % 30);
     var saved = null; try { saved = localStorage.getItem('aq-sky-sign'); } catch (e) { }
@@ -61,9 +72,7 @@
       '<p class="fc-lead">تُحسب هذه التوقعات من عبور الكواكب الحقيقي وتوقيته الآن، فتتبدل مع حركة السماء، ولا تأتي من نصوص ثابتة.</p>' +
       '<section class="fc-about"><h4>ما هو ' + P.n + '؟</h4><p>' + P.n + ' يمثل ' + P.theme + '، وهو العدسة التي تُقرأ بها ' + P.lens + '. حين يكون متوازنًا يعطيك ' + P.give + '، ويحتاج منك انتباهًا إلى ' + P.watch + '.</p></section>' +
       '<div class="fc-now"><b>' + P.n + ' في ' + S.n + ' ' + nd(deg) + '°</b><i>' + st + '</i><small>' + dayTxt() + '</small></div>' +
-      '<h4 class="swp-h">اختر برجك أو طالعك</h4><p class="swp-sub">اضغط على برجك لتقرأ أين يلمسك ' + P.n + ' اليوم. واضغط عليه مرة ثانية لإخفاء القراءة.</p>' +
-      '<div class="sky-pick"><div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">' + D.SIGNS.map(function (sg, i) { return '<button type="button" class="sky-sg" data-i="' + i + '" aria-pressed="false"><span class="sg" aria-hidden="true">' + D.gl(sg.g) + '</span><span>' + sg.n + '</span></button>'; }).join('') + '</div>' +
-      '<div class="sky-signcard" id="fc-card" aria-live="polite"><p class="sky-pick-empty">اختر برجك لتظهر قراءته.</p></div></div>' +
+      '<section class="fc-gen"><h4 class="swp-h">طاقة ' + P.n + ' وتأثيرها العام</h4>' + gen(k, bd, S) + '</section>' +
       '<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>';
     return { html: h, saved: saved };
   }
