@@ -460,3 +460,57 @@ html body .trm-bn:not(#_a):not(#_b) svg{stroke:#7A3048}
 .trm-bn[aria-expanded="true"] svg{transform:rotate(180deg)}
 
 .aqm-sheet-body{overflow-anchor:none}
+
+/* ===== توقعات الأبراج: تعديلات القفل ===== */
+html body section.sec:is(#signs,#sky):target{scrollbar-width:none;-ms-overflow-style:none;scrollbar-gutter:auto;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+html body section.sec:is(#signs,#sky):target::-webkit-scrollbar{display:none;width:0;height:0}
+html:has(#signs:target) .cmp-fab,html:has(#sky:target) .cmp-fab{display:none!important}
+html body #signs .sg-bar :is(.sg-chg,.sg-nxt):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){min-height:44px!important;min-width:104px;padding:0 14px!important;font-size:12px!important}
+html body #signs .sg-tabs-sub button:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){min-height:46px!important;font-size:12px!important}
+html body #signs .sg-tabs-sub button span:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-tabs-per button:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){min-height:44px!important;font-size:12px!important}
+html body #signs .center .intro:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:13px!important}
+html body #signs .sg-bar-l1 small:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-bar-l2 i:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-live:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-chip :is(span,b):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-cell b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-go:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-row-t small:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-tap:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:12px!important}
+html body #signs .sg-cap:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){font-size:13px!important}
+html body .aqf p{font-size:12px!important}
+html body #signs .sg-chips .sg-chip.is-rx,html body #signs .sg-chips .sg-chip:last-child:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){background:linear-gradient(165deg,#F8EBCB,#EBD3A0)!important;border-color:#C9A25C!important;color:#5A182A!important}
+html body #signs .rxb:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){background:#F4E6C6!important;border:1px solid #C9A25C!important;color:#6B2237!important}
+html body #sgs-sheet .sg-flow :is(.sg-lead,.sg-hint,p):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p){border-inline-start:0!important;border-left:0!important;border-right:0!important}
+@media (min-width:821px){
+html body section.sec:is(#signs,#sky) .wrap:not(#_a):not(#_b){max-width:752px!important;width:100%!important;margin-inline:auto!important;padding-inline:16px!important;box-sizing:border-box}
+html body section.sec:is(#signs,#sky) .wrap>*:not(#_a):not(#_b),html body #signs :is(.center,.sg-bar,.sg-tabs-main,.sg-pk,.arch,.sg-tabs-sub,.sg-sec):not(#_a):not(#_b):not(#_c),html body #sky :is(.swc,.zdc,.aq-section-topbar):not(#_a):not(#_b):not(#_c){width:100%!important;max-width:100%!important;margin-inline:0!important;box-sizing:border-box}
+html body section.sec:is(#signs,#sky) :is(.aq-related,.aqf):not(#_a):not(#_b){max-width:720px!important;margin-inline:auto!important;width:calc(100% - 32px)!important}
+}
+html:has(#signs:target),html:has(#sky:target),html.aqm-sheet-open:has(#signs:target),html.aqm-sheet-open:has(#sky:target){scrollbar-gutter:auto!important}
+
+/* ===== السماء الآن: تعديلات القفل ===== */
+html body #sky .swb .e0:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#8F3248}
+html body #sky .swb .e1:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#A8683F}
+html body #sky .swb .e2:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#D3B26E}
+html body #sky .swb .e3:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#5A182A}
+html body #sky .swb .m0:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#6A2038}
+html body #sky .swb .m1:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#C99A4B}
+html body #sky .swb .m2:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#CDB88F}
+html body #sky .swt-rxi:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#F6EBCF!important;border:1px solid #D9BE82!important;color:#5A182A!important}
+html body #sky .swt-h:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){background:#FFFEFB!important;border:1px solid #E9DDC6!important;box-shadow:none!important;cursor:default;padding:12px 14px}
+html body #sky .swt-hps:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){display:flex;flex-wrap:wrap;gap:8px;grid-column:1/-1;padding-top:8px;border-top:1px dashed #E5D6B4}
+html body #sky .swt-hp:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){flex-direction:row!important;gap:8px!important;padding:3px 12px 3px 4px!important;border:1px solid #E1CD9B!important;background:#FBF3DF!important;font-size:12px!important;border-radius:999px}
+html body #sky .swt-hp i:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){width:26px!important;height:26px!important;box-shadow:none!important}
+html body #sky .swt-hp .swt-pg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){width:15px!important;height:15px!important}
+@media (min-width:600px){
+html body #sky .swc-adv .swc-adv-in:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p){grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)!important;gap:12px 14px}
+html body #sky .swc-adv .swc-adv-in>*:nth-child(n+3):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p){grid-column:1/-1}
+html body #sky .swc-adv .aq-dsx-date:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p){grid-template-columns:1fr 1.6fr 1.25fr!important}
+html body #sky .swc-adv .aq-dsx select:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p){padding-inline:10px!important;text-overflow:clip}
+}
+
+/* بلا شريط تمرير ظاهر في نوافذ السماء والتوقعات */
+html body :is(.mn-sheet,.swp-sheet,.sgs-sheet,.fc-sheet) .aqm-sheet-body:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){scrollbar-width:none!important;-ms-overflow-style:none}
+html body :is(.mn-sheet,.swp-sheet,.sgs-sheet,.fc-sheet) .aqm-sheet-body:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q)::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}

@@ -1663,7 +1663,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
 
   /* ---------- تفاصيل عناصر الخريطة عند الضغط ---------- */
   const lab = k => k === "asc" ? "الطالع" : k === "mc" ? "وسط السما" : PLANETS[k].n;
-  const aspLine = a => `<li>${lab(a.a)} ${a.asp.n} ${lab(a.b)} <span class="tone">أوربة ${a.orb.toFixed(1)}°</span></li>`;
+  const aspLine = a => `<li>${lab(a.a)} ${a.asp.n} ${lab(a.b)} <span class="tone">أورب ${a.orb.toFixed(1)}°</span></li>`;
   const pLink = k => `<button type="button" class="wd-link" data-kind="planet" data-k="${k}">${PLANETS[k].n}</button>`;
   const sLink = i => `<button type="button" class="wd-link" data-kind="sign" data-i="${i}">${SIGNS[i].n}</button>`;
   const hLink = i => `<button type="button" class="wd-link" data-kind="house" data-i="${i}">بيت ${HOUSES[i].n}</button>`;
@@ -2077,7 +2077,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       const hard = ["square", "opp"].includes(x.k), neu = x.k === "conj", tc = neu ? "n" : hard ? "h" : "s", tone = neu ? "اندماج" : hard ? "متوتر" : "داعم";
       const rb = r => r ? ` <em class="ax-r">راجع</em>` : "";
       const retroNote = (x.A.retro || x.B.retro) ? `<p class="ax-note">ومع تراجع ${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")}، يتجه هذا الحوار إلى الداخل، فراجع قبل أن تقرر.</p>` : "";
-      return `<div class="ax axt-${tc}" data-ax="${ix}" data-pair="${aspPair(x)}" data-ph="${aspPhase(x)}" data-orb="${x.orb.toFixed(2)}" data-lim="${x.lim}"><button type="button" class="ax-s" aria-haspopup="dialog"><span class="ax-pair"><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span></span><span class="ax-ln"><svg viewBox="0 0 24 24" aria-hidden="true">${AG[x.k]}</svg></span><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span></span></span><span class="ax-t"><b>${PLANETS[x.A.key].n} <u>${x.name}</u> ${PLANETS[x.B.key].n}</b><small><i class="ax-tone">${tone}</i><span>أوربة ${x.orb.toFixed(1)}°</span>${(x.A.retro || x.B.retro) ? `<em class="ax-r">${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")} راجع</em>` : ""}</small></span><span class="ax-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></button><div class="ax-b" hidden><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p><p class="ax-q">${AQ[x.k]}</p><p><b>في الواقع:</b> ${AR[x.k]}</p>${retroNote}</div></div>`;
+      return `<div class="ax axt-${tc}" data-ax="${ix}" data-pair="${aspPair(x)}" data-ph="${aspPhase(x)}" data-orb="${x.orb.toFixed(2)}" data-lim="${x.lim}"><button type="button" class="ax-s" aria-haspopup="dialog"><span class="ax-pair"><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.A.key].g)}</span></span><span class="ax-ln"><svg viewBox="0 0 24 24" aria-hidden="true">${AG[x.k]}</svg></span><span class="ax-pl"><span class="sg" aria-hidden="true">${gl(PLANETS[x.B.key].g)}</span></span></span><span class="ax-t"><b>${PLANETS[x.A.key].n} <u>${x.name}</u> ${PLANETS[x.B.key].n}</b><small><i class="ax-tone">${tone}</i><span>أورب ${x.orb.toFixed(1)}°</span>${(x.A.retro || x.B.retro) ? `<em class="ax-r">${[x.A, x.B].filter(z => z.retro).map(z => PLANETS[z.key].n).join(" و")} راجع</em>` : ""}</small></span><span class="ax-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></button><div class="ax-b" hidden><p>${PLANETS[x.A.key].theme} مع ${PLANETS[x.B.key].theme}: ${AM[x.k]}</p><p class="ax-q">${AQ[x.k]}</p><p><b>في الواقع:</b> ${AR[x.k]}</p>${retroNote}</div></div>`;
     }).join("") + `</div>`;
   }
   function renderSkyPanel(ch, ms) {
@@ -2461,7 +2461,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   if (signsH2) signsH2.textContent = HEAD_T;
   if (signsIntro) signsIntro.textContent = HEAD_P;
-  function setMode(m) { signsMode = m; cur.querySelectorAll("[data-sgtab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.sgtab === m))); signsSec.setAttribute("data-mode", m); updatePeriod(); if (signCur >= 0) renderSign(); }
+  function setMode(m) { signsMode = m; cur.querySelectorAll("[data-sgtab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.sgtab === m))); signsSec.setAttribute("data-mode", m); setCurtain(false); updatePeriod(); if (signCur >= 0) renderSign(); }
   updatePeriod();
   function signHero(i) {
     const s = SIGNS[i];
@@ -2490,14 +2490,18 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const sub = (t, txt) => `<div class="sg-sub"><h6>${t}</h6>${paras(txt).map(x => `<p>${x}</p>`).join("")}</div>`;
     const sep = '<div class="sg-sep" aria-hidden="true"><i></i></div>';
     const mAsp = (L.near || []).slice(1).find(x => x.pair) || (L.aspects || [])[0], pRx = (L.planets || []).find(x => x.rx && ["mercury", "venus", "mars"].includes(x.k));
-    const sunPart = `<section class="sg-part"><h5>خلفية أسبوعك: الشمس في بيتك ${HOUSES[L.sunH - 1].n}</h5>${paras(liveText("sun", L.sunH)).map(x => `<p>${x}</p>`).join("")}</section>`;
-    const aspPart = mAsp ? `<section class="sg-part"><h5>الزاوية الأقرب اليوم: ${mAsp.t}</h5>${mAsp.html}</section>` : "";
-    const rxPart = pRx ? `<section class="sg-part"><h5>${pRx.t}</h5>${pRx.html}</section>` : "";
-    const lunPart = L.lun && L.lun.txt ? `<section class="sg-part"><h5>${L.lun.t}: ${L.lun.cap}</h5>${paras(L.lun.txt).map(x => `<p>${x}</p>`).join("")}</section>` : "";
-    const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}</section>`;
+    const P = t => paras(t).map(x => `<p>${x}</p>`).join("");
+    const secs = [];
+    secs.push({ svg: ZI.crescent, t: "نبض القمر وحركته", span: (L.near[0] || {}).span, nxt: (L.near[0] || {}).nxt, sub: (L.near[0] || {}).sub, html: `<div class="sg-flow">${head ? `<p class="sg-lead">${head}</p>` : ""}${P(day)}</div>` });
+    if (mAsp) secs.push({ svg: ZI.conj, t: "أهم زاوية اليوم", sub: mAsp.t, html: `<div class="sg-flow">${mAsp.html}</div>` });
+    secs.push({ svg: AICs.sun, t: "خلفية أسبوعك", sub: `الشمس في بيتك ${HOUSES[L.sunH - 1].n}`, html: `<div class="sg-flow">${P(liveText("sun", L.sunH))}</div>` });
+    if (pRx) secs.push({ svg: ZI.orbit, t: "حالة التراجع", sub: pRx.t, html: `<div class="sg-flow">${pRx.html}</div>` });
+    if (L.lun && L.lun.txt) secs.push({ svg: ZI.star, t: L.lun.t, sub: L.lun.cap, html: `<div class="sg-flow">${P(L.lun.txt)}</div>` });
     const sd = (AL && AL.SIGNDAY && AL.SIGNDAY[i]) || "";
-    const dayPart = sd ? `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5>${paras(sd).map(x => `<p>${x}</p>`).join("")}</section>` : `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5><p>استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.</p><p>وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.</p><p>ودرس يومك: ${s.growth}.</p></section>`;
-    curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", span: (L.near[0] || {}).span, nxt: (L.near[0] || {}).nxt, sub: (L.near[0] || {}).sub, html: `<div class="sg-flow">${moonPart}${sep}${sunPart}${aspPart ? sep + aspPart : ""}${rxPart ? sep + rxPart : ""}${lunPart ? sep + lunPart : ""}${sep}${dayPart}</div>`, q }] };
+    secs.push({ svg: ZI.gem, t: `طاقة برجك ${s.n}`, sub: `${s.d}`, html: `<div class="sg-flow">${sd ? P(sd) : `<p>استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.</p><p>وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.</p><p>ونصيحة يومك: ${s.growth}.</p>`}</div>` });
+    secs.push({ svg: ZI.sparkorb, t: "سؤال اليوم", sub: "للتأمل بهدوء", html: qBox(q) });
+    secs.forEach((x, n) => { if (n) x.sub = `قسم ${nAr(n + 1)} من ${nAr(secs.length)}` + (x.sub ? " · " + x.sub : ""); });
+    curList = { fc: secs };
     return `
       <section class="sg-sec">
       <article class="sg-card sg-fc" data-sgrow="fc:0" role="button" tabindex="0"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
