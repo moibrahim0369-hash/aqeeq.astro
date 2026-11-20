@@ -2416,9 +2416,24 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); } }), { root: sgBody, threshold: 0.05 });
     els.forEach(el => { el.classList.add("sg-rv"); io.observe(el); });
   }
+  /* أول فقرة من القراءة بخط كبير، وباقي النص خلف «تعمّق في القراءة» (النص كامل بلا حذف) */
+  function sgDeepen() {
+    const bd = sgBody.querySelector(".sg-sh-bd"); if (!bd) return;
+    const ps = [].filter.call(bd.querySelectorAll("p"), p => !p.closest(".sg-meta,.sgs-qdock,.sg-deep") && p.textContent.trim().length > 1);
+    if (ps.length < 2) return;
+    const lead = ps[0]; lead.classList.add("sg-lead");
+    const det = document.createElement("details"); det.className = "sg-deep";
+    det.innerHTML = '<summary><span>تعمّق في القراءة</span><i aria-hidden="true"></i></summary><div class="sg-deep-b"></div>';
+    const box = det.querySelector(".sg-deep-b"); const first = ps[1];
+    let n = first; const moved = [];
+    while (n) { const nx = n.nextSibling; if (n.nodeType === 1 && n.classList && n.classList.contains("sgs-qdock")) break; moved.push(n); n = nx; }
+    first.parentNode.insertBefore(det, first);
+    moved.forEach(m => box.appendChild(m));
+  }
   function sgFill() {
     const it = sgList[sgIdx];
     sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3></div></header><div class="sg-sh-bd sign-detail">${(it.span || it.sub) ? `<div class="sg-meta">${it.span ? `<p class="sg-span"><i aria-hidden="true">${SG_CLOCK}</i><span>${it.span}</span></p>` : ""}${it.sub ? `<p class="sg-hs"><i aria-hidden="true"></i><span>${it.sub}</span></p>` : ""}${it.nxt ? `<p class="sg-nx">${it.nxt}</p>` : ""}</div>` : ""}${it.html}${it.q ? `<div class="sgs-qdock"><i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p></div>` : ""}</div>`;
+    sgDeepen();
     sgRewind(); sgReveal();
     sgSheet.querySelector("[data-sgn]").hidden = sgList.length < 2;
   }

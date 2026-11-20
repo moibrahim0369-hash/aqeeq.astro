@@ -551,3 +551,29 @@ html body{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))!important}
 }
 @keyframes aqnPop{from{transform:scale(.8)}to{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){html body nav.bnav .bnav-item.on .bnav-icon{animation:none!important}}
+
+/* بطاقة السؤال العنابية في ورقة القمر: نص فاتح مقروء */
+html body .mn-sheet .aqm-sheet-panel .aqm-sheet-body .mn-q li:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u),html body .mn-sheet .aqm-sheet-panel .aqm-sheet-body .mn-q p:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){color:#FFF6E4!important}
+html body .mn-sheet .aqm-sheet-panel .aqm-sheet-body .mn-q b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t):not(#_u){color:#F3DFA8!important}
+
+/* ورقة الزاوية: أيقونات الكوكبين والرمز الأوسط بنفس حجم صفحة السماء (القواعد الأصلية كانت مقصورة على #sky) */
+html body .axs-sheet .ax-pair:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){display:flex;align-items:center;gap:0;flex:none}
+html body .axs-sheet .ax-pl:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){width:42px;height:42px;min-width:42px;border-radius:50%;display:grid;place-items:center;flex:none}
+html body .axs-sheet .ax-pl .sg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){display:grid;place-items:center;width:100%;height:100%}
+html body .axs-sheet .ax-pl .sg-svg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){width:23px;height:23px;display:block}
+html body .axs-sheet .ax-ln:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){width:32px;height:32px;min-width:32px;margin-inline:-6px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1.5px solid currentColor;z-index:2;flex:none}
+html body .axs-sheet .ax-ln svg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+html body .axs-sheet .axt-s .ax-ln:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){color:#3E8250}
+html body .axs-sheet .axt-h .ax-ln:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){color:#B33A4D}
+html body .axs-sheet .axt-n .ax-ln:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){color:#A8863F}
+
+/* ورقة توقعات الأبراج: فقرة افتتاحية كبيرة + «تعمّق في القراءة» بنفس ستايل السماء */
+html body #sgs-sheet .sg-sh-bd .sg-lead{n}{font:700 1.18rem/2 'El Messiri','Cairo',serif!important;color:#4A1224!important;margin:6px 0 14px!important}
+html body #sgs-sheet .sg-deep{margin:4px 0 14px;border:1px solid rgba(200,161,90,.6);border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(236,205,140,.2));overflow:hidden}
+html body #sgs-sheet .sg-deep>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;padding:0 18px;cursor:pointer;font:700 1rem 'Cairo',sans-serif;color:#6A2038}
+html body #sgs-sheet .sg-deep>summary::-webkit-details-marker{display:none}
+html body #sgs-sheet .sg-deep>summary i{width:10px;height:10px;border-inline-end:2px solid #B78A52;border-bottom:2px solid #B78A52;transform:rotate(45deg);transition:transform .25s ease;margin-top:-4px}
+html body #sgs-sheet .sg-deep[open]>summary i{transform:rotate(-135deg);margin-top:4px}
+html body #sgs-sheet .sg-deep .sg-deep-b{padding:2px 18px 16px;border-top:1px solid rgba(200,161,90,.4)}
+html body #sgs-sheet .sg-deep .sg-deep-b p{font:500 1rem/2 'Cairo',sans-serif!important;color:#4A2A2E!important;margin:12px 0 0!important}
+html body #sgs-sheet .sg-sh-hd{background:none}

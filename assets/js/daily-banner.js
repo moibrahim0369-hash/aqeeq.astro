@@ -270,13 +270,18 @@
   window.addEventListener('load', function () { setTimeout(refresh, 700); });
 
   /* ---------- slider ---------- */
-  /* ارتفاع البانر = ارتفاع الشريحة الظاهرة فقط، فلا يبقى فراغ تحت الشرائح القصيرة */
+  /* ارتفاع البانر ثابت = أطول شريحة، فلا يتحرك ما تحته عند التبديل */
+  var fitRaf = 0;
   function fit() {
-    var s = slides[cur]; if (!s) return;
-    var h = s.offsetHeight; if (h > 0) stage.style.setProperty('height', h + 'px', 'important');
+    if (fitRaf) return;
+    fitRaf = requestAnimationFrame(function () {
+      fitRaf = 0;
+      var h = 0; slides.forEach(function (sl) { h = Math.max(h, sl.offsetHeight); });
+      if (h > 0 && Math.abs(h - (stage._fitH || 0)) > 1) { stage._fitH = h; stage.style.setProperty('height', h + 'px', 'important'); }
+    });
   }
-  if (window.ResizeObserver) { var fro = new ResizeObserver(function () { fit(); }); slides.forEach(function (sl) { fro.observe(sl); }); }
-  window.addEventListener('resize', function () { fit(); });
+  if (window.ResizeObserver) { var fro = new ResizeObserver(fit); slides.forEach(function (sl) { fro.observe(sl); }); }
+  window.addEventListener('resize', fit);
   function show(i, userDriven) {
     cur = (i + slides.length) % slides.length;
     slides.forEach(function (s, k) { var on = k === cur; s.classList.toggle('is-on', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); if ('inert' in s) s.inert = !on; });

@@ -143,7 +143,17 @@ html body #home.aqh .aqh-skyb #aqh-energy .dbn-slide .dbn-copy:not(#_a):not(#_b)
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-slide:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){align-items:flex-start!important}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-slide:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){padding-bottom:26px!important}
 
-/* ارتفاع البانر يتبع الشريحة الظاهرة */
-html body #home.aqh .aqh-skyb #aqh-energy .dbn-stage{overflow:hidden!important;transition:height .28s ease}
-html body #home.aqh .aqh-skyb #aqh-energy .dbn-slide{align-self:start!important}
-@media(prefers-reduced-motion:reduce){html body #home.aqh .aqh-skyb #aqh-energy .dbn-stage{transition:none}}
+/* ارتفاع ثابت للبانر: الشرائح كلها بنفس الارتفاع، والمحتوى القصير يتوسّط رأسيًا */
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-stage{overflow:hidden!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-slide{align-self:center!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-moon-read{font-size:.84rem!important;line-height:1.7!important;margin:2px 0 0!important}
+@media(max-width:640px){
+  html body #home.aqh .aqh-skyb #aqh-energy :is(.dbn-s1-moon,.dbn-s2-moon){width:44px!important;flex-basis:44px!important}
+  html body #home.aqh .aqh-skyb #aqh-energy .dbn-s2 .dbn-copy{gap:6px}
+  html body #home.aqh .aqh-skyb #aqh-energy .dbn-s2 .dbn-moonlist{gap:6px 14px}
+}
+@media(max-width:640px){
+  html body #home.aqh .aqh-skyb #aqh-energy :is(.dbn-s1,.dbn-s2){position:relative}
+  html body #home.aqh .aqh-skyb #aqh-energy :is(.dbn-s1-moon,.dbn-s2-moon){position:absolute!important;top:0;inset-inline-end:0;width:46px!important}
+  html body #home.aqh .aqh-skyb #aqh-energy .dbn-s2 .dbn-kicker{min-height:46px;align-items:center;padding-inline-end:56px}
+}

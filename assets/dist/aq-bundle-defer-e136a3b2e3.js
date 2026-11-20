@@ -3265,7 +3265,7 @@
     else {
       back.hidden = true; set(forgot, 'نسيت كلمة المرور؟');
       if (m === 'signup') { set(title, 'إنشاء حساب جديد'); set(sub, 'ابدأ مساحتك الشخصية لحفظ قراءاتك وتقاريرك.'); set(swQ, 'لديك حساب بالفعل؟'); set(swBtn, 'تسجيل الدخول'); }
-      else { set(title, 'مرحبًا بك في عالمك'); set(sub, 'سجّل دخولك لوصول أسرع لكل خدماتك، وتوقعات يومية مخصصة لخرائطك كلها مجمعة في مكان واحد.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
+      else { set(title, 'مرحبًا بك في عالمك'); set(sub, 'سجّل دخولك لتجد خرائطك وقراءاتك في مكان واحد.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
     }
     if (submit && submit.textContent.trim() === 'دخول') set(submit, 'تسجيل الدخول');
   }
@@ -9067,13 +9067,18 @@ window.AqMoonSigns = [{"t": "شرارة صغيرة تكفي اليوم لتشع�
   window.addEventListener('load', function () { setTimeout(refresh, 700); });
 
   /* ---------- slider ---------- */
-  /* ارتفاع البانر = ارتفاع الشريحة الظاهرة فقط، فلا يبقى فراغ تحت الشرائح القصيرة */
+  /* ارتفاع البانر ثابت = أطول شريحة، فلا يتحرك ما تحته عند التبديل */
+  var fitRaf = 0;
   function fit() {
-    var s = slides[cur]; if (!s) return;
-    var h = s.offsetHeight; if (h > 0) stage.style.setProperty('height', h + 'px', 'important');
+    if (fitRaf) return;
+    fitRaf = requestAnimationFrame(function () {
+      fitRaf = 0;
+      var h = 0; slides.forEach(function (sl) { h = Math.max(h, sl.offsetHeight); });
+      if (h > 0 && Math.abs(h - (stage._fitH || 0)) > 1) { stage._fitH = h; stage.style.setProperty('height', h + 'px', 'important'); }
+    });
   }
-  if (window.ResizeObserver) { var fro = new ResizeObserver(function () { fit(); }); slides.forEach(function (sl) { fro.observe(sl); }); }
-  window.addEventListener('resize', function () { fit(); });
+  if (window.ResizeObserver) { var fro = new ResizeObserver(fit); slides.forEach(function (sl) { fro.observe(sl); }); }
+  window.addEventListener('resize', fit);
   function show(i, userDriven) {
     cur = (i + slides.length) % slides.length;
     slides.forEach(function (s, k) { var on = k === cur; s.classList.toggle('is-on', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); if ('inert' in s) s.inert = !on; });
