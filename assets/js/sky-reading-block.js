@@ -71,7 +71,8 @@
     if (open) {
       b._trmBox = box; b._trmF = f; b._trmMk = document.createComment('trm');
       b.parentNode.insertBefore(b._trmMk, b);
-      host.appendChild(f); host.appendChild(b);
+      var q = null; for (var c = host.firstElementChild; c; c = c.nextElementSibling) if (c.classList && c.classList.contains('swm-q')) { q = c; break; }
+      if (q) { host.insertBefore(f, q); host.insertBefore(b, q); } else { host.appendChild(f); host.appendChild(b); }
     } else if (b._trmMk && b._trmMk.parentNode) {
       b._trmMk.parentNode.insertBefore(b, b._trmMk); b._trmMk.remove(); b._trmMk = null; b._trmF = null;
       box.appendChild(f);
