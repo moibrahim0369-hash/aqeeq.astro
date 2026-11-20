@@ -157,3 +157,10 @@ html body #home.aqh .aqh-skyb #aqh-energy .dbn-moon-read{font-size:.84rem!import
   html body #home.aqh .aqh-skyb #aqh-energy :is(.dbn-s1-moon,.dbn-s2-moon){position:absolute!important;top:0;inset-inline-end:0;width:46px!important}
   html body #home.aqh .aqh-skyb #aqh-energy .dbn-s2 .dbn-kicker{min-height:46px;align-items:center;padding-inline-end:56px}
 }
+@media(max-width:640px){
+  /* ضغط أطول شريحتين ليقترب ارتفاعهما من باقي الشرائح */
+  html body #home.aqh .aqh-skyb #aqh-energy .dbn-s3-date{display:flex!important;flex-direction:row!important;align-items:baseline;justify-content:center;gap:8px!important;padding:6px 14px!important;align-self:flex-start;flex:none!important;width:auto!important;min-height:0!important}
+  html body #home.aqh .aqh-skyb #aqh-energy .dbn-s3-date .dbn-dn{font-size:1.25rem!important;line-height:1.2}
+  html body #home.aqh .aqh-skyb #aqh-energy .dbn-s3-date .dbn-s3-tag{display:none}
+  html body #home.aqh .aqh-skyb #aqh-energy .dbn-unit small{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+}
