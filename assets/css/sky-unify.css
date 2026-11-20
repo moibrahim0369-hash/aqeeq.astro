@@ -423,3 +423,7 @@ html body .swp-sheet .swp-deg:not(#_a):not(#_b){box-shadow:0 6px 18px rgba(90,24
 html body .swp-sheet .swp-pill:not(#_a):not(#_b){box-shadow:0 2px 8px rgba(90,24,42,.10)}
 html body .fc-now:not(#_a):not(#_b) .fc-now-g{box-shadow:0 0 0 4px rgba(233,206,142,.18)}
 html body .swp-sheet .aqm-sheet-panel:not(#_a):not(#_b){box-shadow:0 -14px 40px rgba(60,16,30,.28)}
+/* النجمة: لا تلمس بانر حالة الحركة، وتنتقل لأسفل الزاوية البعيدة في بقية الكروت */
+html body .swp-sheet .swp-mv:not(#_a):not(#_b)::after{content:none!important;display:none!important}
+html body .swp-sheet .swp-psy:not(#_a):not(#_b)::after,html body .fc-about:not(#_a):not(#_b)::after{top:auto;bottom:9px;inset-inline-start:auto;inset-inline-end:12px;width:12px;height:12px;opacity:.6}
+html body .swp-sheet .swp-psy:not(#_a):not(#_b),html body .fc-about:not(#_a):not(#_b){padding-bottom:24px}
