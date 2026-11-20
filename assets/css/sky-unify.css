@@ -577,3 +577,7 @@ html body #sgs-sheet .sg-deep[open]>summary i{transform:rotate(-135deg);margin-t
 html body #sgs-sheet .sg-deep .sg-deep-b{padding:2px 18px 16px;border-top:1px solid rgba(200,161,90,.4)}
 html body #sgs-sheet .sg-deep .sg-deep-b p{font:500 1rem/2 'Cairo',sans-serif!important;color:#4A2A2E!important;margin:12px 0 0!important}
 html body #sgs-sheet .sg-sh-hd{background:none}
+
+/* توقعات الأبراج: نفس شريط الرجوع/الرئيسية وخلفية السماء */
+html body section#signs .aq-section-topbar.aq-ctxbar:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p){display:flex!important}
+html body section.sec#signs:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p){background-image:none!important;background-color:var(--sk-bg,#FBF9F6)!important}
