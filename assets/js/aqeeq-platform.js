@@ -808,7 +808,9 @@
         const noTime = Boolean(document.getElementById('f-unknown')?.checked);
         if (date) {
           try {
-            localStorage.setItem(STORAGE_KEY_PROFILE_CACHE, JSON.stringify({ name, date, time, noTime }));
+            const prev = getProfileBirthData() || {};
+            const same = prev.date === date;
+            localStorage.setItem(STORAGE_KEY_PROFILE_CACHE, JSON.stringify(Object.assign({}, same ? prev : {}, { name: name || (same ? prev.name : '') || '', date, time, noTime })));
           } catch (_) {}
           updateCosmicIdentitySummary();
         }
@@ -1022,12 +1024,16 @@
         const meta = cfg.getMeta();
         if (meta.inputs?.date) {
           try {
-            localStorage.setItem(STORAGE_KEY_PROFILE_CACHE, JSON.stringify({
-              name: meta.inputs.name || '',
-              date: meta.inputs.date,
-              time: '12:00',
-              noTime: true
-            }));
+            /* لا نمسّ بيانات صاحب الملف: نكتب فقط إذا لم يكن له تاريخ محفوظ (حساب شخص آخر لا يستبدله، ولا نفقد وقته أو مدينته) */
+            const prev = getProfileBirthData();
+            if (!prev || !prev.date) {
+              localStorage.setItem(STORAGE_KEY_PROFILE_CACHE, JSON.stringify({
+                name: meta.inputs.name || '',
+                date: meta.inputs.date,
+                time: '12:00',
+                noTime: true
+              }));
+            }
           } catch (_) {}
           updateCosmicIdentitySummary();
         }
@@ -1174,10 +1180,12 @@
         if (dateVal) {
           try {
             const existing = getProfileBirthData() || {};
-            localStorage.setItem(STORAGE_KEY_PROFILE_CACHE, JSON.stringify({
-              ...existing,
-              date: dateVal
-            }));
+            if (!existing.date) {
+              localStorage.setItem(STORAGE_KEY_PROFILE_CACHE, JSON.stringify({
+                ...existing,
+                date: dateVal
+              }));
+            }
           } catch (_) {}
         }
         setTimeout(updateCosmicIdentitySummary, 50);
