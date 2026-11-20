@@ -97,3 +97,18 @@
   function guard() { if (location.hash === '#tarot-chamber') location.replace('#home'); }
   window.addEventListener('hashchange', guard); guard();
 })();
+
+/* موضع تجويف التبويب النشط في الشريط السفلي: يُحسب من مركز الزر النشط */
+(function () {
+  var nav = document.getElementById('aqn-bnav'); if (!nav) return;
+  function place() {
+    var on = nav.querySelector('.bnav-item.on'), r = nav.getBoundingClientRect();
+    if (!on || !r.width || getComputedStyle(on).display === 'none') { nav.style.setProperty('--aqn-x', '-200px'); return; }
+    var b = on.getBoundingClientRect();
+    nav.style.setProperty('--aqn-x', (b.left + b.width / 2 - r.left) + 'px');
+  }
+  var mo = new MutationObserver(function () { requestAnimationFrame(place); });
+  mo.observe(nav, { attributes: true, attributeFilter: ['class', 'style', 'hidden'], subtree: true, childList: true });
+  window.addEventListener('resize', place); window.addEventListener('hashchange', function () { setTimeout(place, 30); });
+  place(); setTimeout(place, 300); setTimeout(place, 1200);
+})();
