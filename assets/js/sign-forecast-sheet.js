@@ -70,8 +70,8 @@
     var h = '<header class="fc-head"><span class="fc-medal" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="32" cy="32" r="28" stroke-dasharray="2 4.2"/><circle cx="32" cy="32" r="21"/><path d="M32 4v7M32 53v7M4 32h7M53 32h7"/></svg><span class="sg">' + D.gl(P.g) + '</span></span>' +
       '<div><span class="fc-ey">توقعات الأبراج</span><h3>ماذا تقول السماء لبرجك اليوم؟</h3></div></header>' +
       '<p class="fc-lead">تُحسب هذه التوقعات من عبور الكواكب الحقيقي وتوقيته الآن، فتتبدل مع حركة السماء، ولا تأتي من نصوص ثابتة.</p>' +
+      '<div class="fc-now"><span class="fc-now-g" aria-hidden="true"><span class="sg">' + D.gl(S.g) + '</span></span><div class="fc-now-t"><small>' + dayTxt() + '</small><b>' + P.n + ' في ' + S.n + '</b><span>' + nd(deg) + '° · ' + st + '</span></div></div>' +
       '<section class="fc-about"><h4>ما هو ' + P.n + '؟</h4><p>' + P.n + ' يمثل ' + P.theme + '، وهو العدسة التي تُقرأ بها ' + P.lens + '. حين يكون متوازنًا يعطيك ' + P.give + '، ويحتاج منك انتباهًا إلى ' + P.watch + '.</p></section>' +
-      '<div class="fc-now"><b>' + P.n + ' في ' + S.n + ' ' + nd(deg) + '°</b><i>' + st + '</i><small>' + dayTxt() + '</small></div>' +
       '<section class="fc-gen"><h4 class="swp-h">طاقة ' + P.n + ' وتأثيرها العام</h4>' + gen(k, bd, S) + '</section>' +
       '<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>';
     return { html: h, saved: saved };

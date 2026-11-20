@@ -2960,7 +2960,7 @@
     cur.items.forEach(function (i) { if (i.k === nk) nm = i.n; });
     s.querySelector('.mns-body').innerHTML = '<div class="mns-hero"><span class="swm-g">' + path(k, 'swm-gi') + '</span><div><span class="mns-sg"><span class="sg" aria-hidden="true">' + A.gl(A.SIGNS[sg].g) + '</span>برج ' + A.SIGNS[sg].n + '</span><h3>' + bd.n + ' في بيتك ' + d.H.n + '</h3><span class="mns-meta">' + SIGNS_AR[bd.sign] + ' ' + dmb(bd.lon) + ' · ' + d.H.area + (bd.retro ? ' <em class="rx-b" title="متراجع">' + RX + '</em>' : '') + '</span></div></div>' +
       (window.AqReadingBlock ? '<div class="mns-txt">' + window.AqReadingBlock.block(k, d.hh, d.txt) + '</div>' : '<p class="mns-txt">' + d.txt + '</p>') + (d.rt ? '<p class="swm-rt">' + d.rt + '</p>' : '') +
-      '<div class="swm-q"><ul><li>' + d.q1 + '</li>' + (d.q2 ? '<li>' + d.q2 + '</li>' : '') + '</ul></div>';
+      '<div class="swm-q"><ul><li>' + d.q1 + '</li></ul></div>';
     s.querySelector('[data-mnn] b').textContent = nm;
     openSh(s); queueUp();
   }
@@ -8290,21 +8290,23 @@ window.AqReadings = {"PH":{"sun":["الشمس في بيتك الأول تجعل�
   function fill() {
     [].forEach.call(document.querySelectorAll('.trm-slot[data-k]'), function (el) {
       var k = el.getAttribute('data-k'), ms = +el.getAttribute('data-ms'); el.removeAttribute('data-k');
-      try { el.outerHTML = ring(k, ms); } catch (e) { el.remove(); }
+      try { el.outerHTML = ring(k, ms); if (window.AqUpGlyphs) window.AqUpGlyphs(); } catch (e) { el.remove(); }
     });
   }
   function block(k, h, full, ms) {
-    var R = window.AqReadings, lead = R && R.TL && R.TL[k] && R.TL[k][h - 1], body = paras(full).map(function (x) { return '<p>' + x + '</p>'; }).join('');
-    if (!lead) return '<div class="trm">' + body + '</div>';
+    var R = window.AqReadings, lead = R && R.TL && R.TL[k] && R.TL[k][h - 1], ps = paras(full);
+    if (!lead || ps.length < 2) return '<div class="trm">' + ps.map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div>';
     var t0 = ms || Date.now();
     setTimeout(function () { fill(); }, 40);
-    return '<div class="trm"><div class="trm-slot" data-k="' + k + '" data-ms="' + t0 + '"></div><p class="trm-lead">' + lead + '</p><button type="button" class="trm-btn" data-trm aria-expanded="false"><span>تعمّق أكثر</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="trm-full" hidden>' + body + '</div></div>';
+    return '<div class="trm"><div class="trm-slot" data-k="' + k + '" data-ms="' + t0 + '"></div><p class="trm-lead">' + lead + '</p><p class="trm-tz">' + ps[0] + '</p>' +
+      '<button type="button" class="trm-bn" data-trm aria-expanded="false"><span class="trm-bn-t">تعمّق في القراءة كاملة</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>' +
+      '<div class="trm-full" hidden>' + ps.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div></div>';
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-trm]'); if (!b) return;
     var box = b.closest('.trm'), f = box && box.querySelector('.trm-full'); if (!f) return;
     var open = f.hidden; f.hidden = !open; b.setAttribute('aria-expanded', open); box.classList.toggle('is-open', open);
-    b.querySelector('span').textContent = open ? 'إخفاء التفاصيل' : 'تعمّق أكثر';
+    var t = b.querySelector('.trm-bn-t'); if (t) t.textContent = open ? 'إخفاء التفاصيل' : 'تعمّق في القراءة كاملة';
     if (open) { try { f.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (x) { } }
   });
   window.AqReadingBlock = { block: block, stay: stay };
@@ -8425,7 +8427,7 @@ window.AqLive = {"HEAD":["يومك يبدأ من صورتك أمام الناس�
     var R = window.AqReadings, txt = R && R.PH[k] ? (R.TR[k][hh - 1] || R.PH[k][hh - 1]) : '', rt = bd.retro && R && R.RT[k] ? '<p class="swp-rt">' + R.RT[k] + '</p>' : '';
     var phase = mp ? '<div class="swp-row"><b>طور القمر اليوم · ' + mp.p[0] + ' · إضاءة ' + nd(mp.il) + '%</b><p>' + mp.p[6] + '</p></div>' : '';
     return '<article class="sky-card"><header class="sky-card-h"><span class="sky-card-ic" aria-hidden="true"><span class="sg">' + D.gl(P.g) + '</span></span><div><h4>' + P.n + ' في بيتك ' + H.n + '</h4><small>' + sg.n + ' · مجال ' + H.area + '</small></div></header>' +
-      '<div class="swp-hook"><p>' + qs.join('</p><p>') + '</p></div>' +
+      '<div class="swp-hook"><p>' + qs[0] + '</p></div>' +
       '<div class="swp-anat"><div class="swp-row swp-main"><b>قراءة اليوم</b>' + (window.AqReadingBlock ? window.AqReadingBlock.block(k, hh, txt) : '<p>' + txt + '</p>') + rt + '</div>' + phase + '</div>' +
       '<p class="swp-tease">هذا ما يظهر على السطح فقط. أما السبب، وما يمكنك فعله به، فيخص برجك وحده.</p></article>';
   }
@@ -8442,6 +8444,17 @@ window.AqLive = {"HEAD":["يومك يبدأ من صورتك أمام الناس�
     if (window.AqUpGlyphs) window.AqUpGlyphs();
     setTimeout(function () { try { box.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { } }, 60);
   }
+  /* الطاقة العامة للكوكب الآن وتأثيرها على الجميع، دون اختيار برج */
+  function gen(k, bd, S) {
+    var D = window.AqSky, P = D.PLANETS[k], R = window.AqReadings, o = '';
+    var ms = k === 'moon' && window.AqMoonSigns && window.AqMoonSigns[bd.sign];
+    if (ms && ms.t) o += '<p>' + ms.t + '</p>';
+    o += '<p>يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '. الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>';
+    var pl = R && R.PL && R.PL[k];
+    if (pl) { o += '<h5>' + pl[0] + '</h5><p>' + pl[1] + '</p><p>' + pl[2] + '</p><p><b>ما يطلبه منك:</b> ' + pl[3] + '</p>'; }
+    if (bd.retro && R && R.RT && R.RT[k]) o += '<p class="swp-rt">' + R.RT[k] + '</p>';
+    return o;
+  }
   function build(k) {
     var D = window.AqSky, bd = bodyOf(k), P = D.PLANETS[k], S = D.SIGNS[bd.sign], deg = Math.floor(bd.lon % 30);
     var saved = null; try { saved = localStorage.getItem('aq-sky-sign'); } catch (e) { }
@@ -8449,11 +8462,9 @@ window.AqLive = {"HEAD":["يومك يبدأ من صورتك أمام الناس�
     var h = '<header class="fc-head"><span class="fc-medal" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="32" cy="32" r="28" stroke-dasharray="2 4.2"/><circle cx="32" cy="32" r="21"/><path d="M32 4v7M32 53v7M4 32h7M53 32h7"/></svg><span class="sg">' + D.gl(P.g) + '</span></span>' +
       '<div><span class="fc-ey">توقعات الأبراج</span><h3>ماذا تقول السماء لبرجك اليوم؟</h3></div></header>' +
       '<p class="fc-lead">تُحسب هذه التوقعات من عبور الكواكب الحقيقي وتوقيته الآن، فتتبدل مع حركة السماء، ولا تأتي من نصوص ثابتة.</p>' +
+      '<div class="fc-now"><span class="fc-now-g" aria-hidden="true"><span class="sg">' + D.gl(S.g) + '</span></span><div class="fc-now-t"><small>' + dayTxt() + '</small><b>' + P.n + ' في ' + S.n + '</b><span>' + nd(deg) + '° · ' + st + '</span></div></div>' +
       '<section class="fc-about"><h4>ما هو ' + P.n + '؟</h4><p>' + P.n + ' يمثل ' + P.theme + '، وهو العدسة التي تُقرأ بها ' + P.lens + '. حين يكون متوازنًا يعطيك ' + P.give + '، ويحتاج منك انتباهًا إلى ' + P.watch + '.</p></section>' +
-      '<div class="fc-now"><b>' + P.n + ' في ' + S.n + ' ' + nd(deg) + '°</b><i>' + st + '</i><small>' + dayTxt() + '</small></div>' +
-      '<h4 class="swp-h">اختر برجك أو طالعك</h4><p class="swp-sub">اضغط على برجك لتقرأ أين يلمسك ' + P.n + ' اليوم. واضغط عليه مرة ثانية لإخفاء القراءة.</p>' +
-      '<div class="sky-pick"><div class="sky-signs" role="group" aria-label="اختر برجك أو طالعك">' + D.SIGNS.map(function (sg, i) { return '<button type="button" class="sky-sg" data-i="' + i + '" aria-pressed="false"><span class="sg" aria-hidden="true">' + D.gl(sg.g) + '</span><span>' + sg.n + '</span></button>'; }).join('') + '</div>' +
-      '<div class="sky-signcard" id="fc-card" aria-live="polite"><p class="sky-pick-empty">اختر برجك لتظهر قراءته.</p></div></div>' +
+      '<section class="fc-gen"><h4 class="swp-h">طاقة ' + P.n + ' وتأثيرها العام</h4>' + gen(k, bd, S) + '</section>' +
       '<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>';
     return { html: h, saved: saved };
   }

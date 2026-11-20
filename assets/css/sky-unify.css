@@ -388,3 +388,10 @@ html body .swp-q:not(#_a):not(#_b) p,html body .swp-q:not(#_a):not(#_b) p *{colo
 html body .fc-gen:not(#_a):not(#_b){margin:6px 0 14px}
 html body .fc-gen:not(#_a):not(#_b) p{margin:0 0 10px;font:500 .96rem/2.05 'Cairo',sans-serif;color:#33241d}
 html body .fc-gen:not(#_a):not(#_b) h5{margin:14px 0 6px;font:700 1.02rem 'El Messiri','Cairo',serif;color:#6A2038}
+/* شريط موضع الكوكب الآن: بانر عنابي مميز */
+html body .fc-now:not(#_a):not(#_b){display:flex;align-items:center;gap:14px;margin:6px 0 14px;padding:14px 16px;border-radius:20px;background:linear-gradient(135deg,#7A3048,#5A182A);border:1px solid #C8A15A;box-shadow:0 10px 22px rgba(90,24,42,.22)}
+html body .fc-now:not(#_a):not(#_b) .fc-now-g{flex:0 0 auto;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:rgba(255,243,220,.12);border:1px solid #E9CE8E;color:#F3DFA8;font-size:1.6rem}
+html body .fc-now:not(#_a):not(#_b) .fc-now-t{display:grid;gap:2px;min-width:0}
+html body .fc-now:not(#_a):not(#_b) small{font:600 .74rem 'Cairo',sans-serif;color:#E9CE8E!important;opacity:1}
+html body .fc-now:not(#_a):not(#_b) b{font:700 1.28rem/1.4 'El Messiri','Cairo',serif;color:#FFF3DC!important}
+html body .fc-now:not(#_a):not(#_b) .fc-now-t>span{font:600 .86rem 'Cairo',sans-serif;color:#F3DFA8!important}
