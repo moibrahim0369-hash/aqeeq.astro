@@ -395,3 +395,12 @@ html body .fc-now:not(#_a):not(#_b) .fc-now-t{display:grid;gap:2px;min-width:0}
 html body .fc-now:not(#_a):not(#_b) small{font:600 .74rem 'Cairo',sans-serif;color:#E9CE8E!important;opacity:1}
 html body .fc-now:not(#_a):not(#_b) b{font:700 1.28rem/1.4 'El Messiri','Cairo',serif;color:#FFF3DC!important}
 html body .fc-now:not(#_a):not(#_b) .fc-now-t>span{font:600 .86rem 'Cairo',sans-serif;color:#F3DFA8!important}
+/* قراءة الطاقة العامة: افتتاحية بارزة، فواصل، عناوين صغيرة، وخلفية بنسيج خفيف */
+html body .fc-sheet .fc-body:not(#_a):not(#_b){background:radial-gradient(120% 60% at 100% 0,rgba(184,113,94,.10),transparent 60%),radial-gradient(100% 50% at 0 100%,rgba(122,48,72,.07),transparent 60%),repeating-linear-gradient(45deg,rgba(122,48,72,.025) 0 1px,transparent 1px 14px),#FBF4E6}
+html body .fc-gen:not(#_a):not(#_b) .fc-lead2{margin:0 0 4px;padding-inline-start:14px;border-inline-start:3px solid #B8715E;font:600 1.2rem/2 'El Messiri','Cairo',serif;color:#5A182A}
+html body .fc-gen:not(#_a):not(#_b) .fc-dv{display:block;height:1px;margin:20px 0 14px;background:linear-gradient(90deg,transparent,#C8A15A 30%,#C8A15A 70%,transparent);position:relative}
+html body .fc-gen:not(#_a):not(#_b) .fc-dv::after{content:"";position:absolute;left:50%;top:-4px;width:8px;height:8px;margin-left:-4px;transform:rotate(45deg);background:#B8715E;border-radius:2px}
+html body .fc-gen:not(#_a):not(#_b) h5{display:flex;align-items:center;gap:8px;margin:0 0 8px;font:700 1.05rem 'El Messiri','Cairo',serif;color:#7A3048}
+html body .fc-gen:not(#_a):not(#_b) .fc-ask{margin:12px 0 0;padding:12px 15px;border-radius:16px;background:rgba(200,161,90,.14);border:1px solid rgba(200,161,90,.55)}
+html body .fc-gen:not(#_a):not(#_b) .fc-ask b{display:block;margin-bottom:4px;font:700 .78rem 'Cairo',sans-serif;letter-spacing:.04em;color:#7A3048}
+html body .fc-gen:not(#_a):not(#_b) .fc-ask p{margin:0}

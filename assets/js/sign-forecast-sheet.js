@@ -54,13 +54,14 @@
   }
   /* الطاقة العامة للكوكب الآن وتأثيرها على الجميع، دون اختيار برج */
   function gen(k, bd, S) {
-    var D = window.AqSky, P = D.PLANETS[k], R = window.AqReadings, o = '';
+    var D = window.AqSky, P = D.PLANETS[k], R = window.AqReadings, o = '', dv = '<i class="fc-dv" aria-hidden="true"></i>';
     var ms = k === 'moon' && window.AqMoonSigns && window.AqMoonSigns[bd.sign];
-    if (ms && ms.t) o += '<p>' + ms.t + '</p>';
-    o += '<p>يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '. الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>';
+    var lead = (ms && ms.t) ? ms.t : ('يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '.');
+    o += '<p class="fc-lead2">' + lead + '</p>';
+    o += dv + '<h5>الأجواء العامة</h5><p>يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '. الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>';
     var pl = R && R.PL && R.PL[k];
-    if (pl) { o += '<h5>' + pl[0] + '</h5><p>' + pl[1] + '</p><p>' + pl[2] + '</p><p><b>ما يطلبه منك:</b> ' + pl[3] + '</p>'; }
-    if (bd.retro && R && R.RT && R.RT[k]) o += '<p class="swp-rt">' + R.RT[k] + '</p>';
+    if (pl) { o += dv + '<h5>' + pl[0] + '</h5><p>' + pl[1] + '</p><p>' + pl[2] + '</p><div class="fc-ask"><b>ما يطلبه منك</b><p>' + pl[3] + '</p></div>'; }
+    if (bd.retro && R && R.RT && R.RT[k]) o += dv + '<h5>حالة التراجع</h5><p class="swp-rt">' + R.RT[k] + '</p>';
     return o;
   }
   function build(k) {
