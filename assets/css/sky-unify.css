@@ -458,3 +458,5 @@ html body .trm-bn:not(#_a):not(#_b) .trm-bn-t{color:#7A3048}
 html body .trm-bn:not(#_a):not(#_b) svg{stroke:#7A3048}
 .aqm-sheet-body>.trm-bn,#sky-panel>.trm-bn{display:flex;margin:16px auto 6px}
 .trm-bn[aria-expanded="true"] svg{transform:rotate(180deg)}
+
+.aqm-sheet-body{overflow-anchor:none}

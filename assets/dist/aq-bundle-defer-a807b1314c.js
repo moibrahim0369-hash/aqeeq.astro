@@ -2995,7 +2995,16 @@
   var lockY = 0, locks = 0;
   function lockBg() { if (!locks++) { lockY = window.pageYOffset || 0; } root.classList.add('aqm-sheet-open'); }
   function unlockBg() { if (locks > 0 && !--locks) { root.classList.remove('aqm-sheet-open'); if ((window.pageYOffset || 0) !== lockY) window.scrollTo(0, lockY); } }
-  function topScroll(s) { var b = s.querySelector('.aqm-sheet-body'), pn = s.querySelector('.aqm-sheet-panel'); if (b) b.scrollTop = 0; if (pn) pn.scrollTop = 0; requestAnimationFrame(function () { if (b) b.scrollTop = 0; }); }
+  /* كل فتح يبدأ من أول الورقة: نعيد الضبط بعد كل إعادة رسم أو تحميل نص متأخر، ونتوقف إن لمس القارئ الشاشة */
+  function topScroll(s) {
+    var b = s.querySelector('.aqm-sheet-body'), pn = s.querySelector('.aqm-sheet-panel'), stop = false;
+    function z() { if (stop) return; if (b) b.scrollTop = 0; if (pn) pn.scrollTop = 0; }
+    function off() { stop = true; s.removeEventListener('touchstart', off, true); s.removeEventListener('wheel', off, true); }
+    s.addEventListener('touchstart', off, true); s.addEventListener('wheel', off, true);
+    z(); requestAnimationFrame(function () { z(); requestAnimationFrame(z); });
+    [120, 350, 800].forEach(function (t) { setTimeout(z, t); });
+    setTimeout(off, 900);
+  }
   function openSh(s) { var was = !s.hidden; s.classList.remove('is-closing'); s.hidden = false; if (!was) lockBg(); topScroll(s); }
   function closeSh(s) { if (!s || s.hidden || s.classList.contains('is-closing')) return; s.classList.add('is-closing'); setTimeout(function () { s.hidden = true; s.classList.remove('is-closing'); unlockBg(); }, 240); }
   var mineOpen = false, mineSheet = null, mineK = null;
