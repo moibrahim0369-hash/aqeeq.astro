@@ -123,3 +123,12 @@ html body #home.aqh .aqh-skyb #aqh-energy .dbn-progress{background:linear-gradie
   html body #home.aqh .aqh-skyb #aqh-energy .dbn-ctrl{transform:none;bottom:4px}
   html body #home.aqh .aqh-skyb #aqh-energy .dbn-arrow{display:grid}
 }
+
+/* الرئيسية: صف الكوكب مضغوط. الاسم والموضع والحركة في سطر واحد، وجملة المعنى تحته */
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){grid-template-columns:36px auto minmax(0,1fr) auto!important;grid-template-areas:"g b s i" "g f f f"!important;column-gap:10px!important;padding:6px 4px!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv .dbn-lv-g:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){width:34px!important;height:34px!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv .dbn-lv-g svg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){width:24px!important;height:24px!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv.k-sun .dbn-lv-g svg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){width:21px!important;height:21px!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){font-size:1rem!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv small:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){font-size:.84rem!important;justify-self:start}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv .dbn-fx:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){margin:0!important;font-size:.8rem!important;line-height:1.5!important}
