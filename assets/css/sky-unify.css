@@ -356,24 +356,28 @@ html body #sky .ax-pl:not(#_a):not(#_b):not(#_c),html body .axs-sheet .ax-pl:not
 html body #sky .ax-pl .sg,html body #sky .ax-pl .sg-svg,html body .axs-sheet .ax-pl .sg,html body .axs-sheet .ax-pl .sg-svg{color:#5A182A!important;stroke:#5A182A}
 html body #sky .swg-h:not(#_a):not(#_b){background:#FFFDF9;border:1px solid #D4B475;color:#5A182A}
 
-/* كتلة قراءة العبور: حلقة المدة، السطر الافتتاحي، وزر التعمق */
-.trm{display:grid;gap:12px}
-.trm-ring{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:#FBF4E6;border:1px solid #E6D3B3}
-.trm-dial{position:relative;flex:0 0 56px;width:56px;height:56px;display:grid;place-items:center}
+/* كتلة قراءة العبور: حلقة المدة، السطر الافتتاحي، لمحة، وشريط التعمق في الوسط */
+.trm{display:grid;gap:14px}
+.trm-ring{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:18px;background:#FFFCF5;border:1px solid #E6D3B3}
+.trm-dial{position:relative;flex:0 0 58px;width:58px;height:58px;display:grid;place-items:center}
 .trm-dial svg{position:absolute;inset:0;width:100%;height:100%}
 .trm-dial circle{fill:none;stroke-width:5;stroke-linecap:round}
-.trm-rest{stroke:#D9A39A}
-.trm-done{stroke:#6E9F80}
-.trm-dial .sg{position:relative;font-size:1.35rem;line-height:1;color:#6B2237}
-.trm-ring-t{display:grid;gap:2px;min-width:0}
-.trm-ring-t b{font:700 .98rem/1.5 'El Messiri','Cairo',serif;color:#5A182A}
+.trm-rest{stroke:#ECDDC6}
+.trm-done{stroke:#7A2740}
+.trm-dial .sg{position:relative;display:grid;place-items:center;font-size:1.3rem;line-height:1;color:#6B2237}
+.trm-dial .sg svg{position:static;width:24px;height:24px;stroke:#6B2237}
+.trm-ring-t{display:grid;gap:3px;min-width:0}
+.trm-ring-t b{font:700 1rem/1.5 'El Messiri','Cairo',serif;color:#5A182A}
 .trm-ring-t small{font:500 .8rem/1.6 'Cairo',sans-serif;color:#7A6455}
-.trm-lead{margin:0;padding:2px 2px 0;font:600 1.08rem/2 'El Messiri','Cairo',serif;color:#4A1626;border-inline-start:3px solid #B8715E;padding-inline-start:12px}
-.trm-btn{justify-self:start;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;border:1px solid #D8BE93;background:linear-gradient(180deg,#FFF8E9,#F6E8CB);color:#6B2237;font:700 .88rem/1 'Cairo',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.trm-btn svg{transition:transform .25s ease}
-.trm.is-open .trm-btn svg{transform:rotate(180deg)}
-.trm-full{display:grid;gap:8px;animation:trmIn .32s ease}
+.trm-lead{margin:0;padding:4px 14px 4px 2px;font:700 1.18rem/2 'El Messiri','Cairo',serif;color:#4A1626;border-inline-start:3px solid #B8715E;padding-inline-start:14px}
+.trm-tz{margin:0;font:500 .96rem/2.05 'Cairo',sans-serif;color:#33241d}
+.trm-bn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px 18px;border-radius:16px;border:1px solid #D6B66E;background:linear-gradient(135deg,#7A3048,#5A182A);color:#FFF3DC;font:700 1rem/1.4 'El Messiri','Cairo',serif;text-align:center;cursor:pointer;box-shadow:0 8px 18px -10px rgba(90,24,42,.7);-webkit-tap-highlight-color:transparent}
+.trm-bn svg{flex:0 0 auto;transition:transform .25s ease}
+.trm.is-open .trm-bn svg{transform:rotate(180deg)}
+.trm-full{display:grid;gap:10px;animation:trmIn .32s ease}
 .trm-full[hidden]{display:none}
 .trm-full p{margin:0;font:500 .96rem/2.05 'Cairo',sans-serif;color:#33241d}
 @keyframes trmIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.trm-full{animation:none}.trm-btn svg{transition:none}}
+@media (prefers-reduced-motion:reduce){.trm-full{animation:none}.trm-bn svg{transition:none}}
+/* بطاقة السؤال: نص كريمي واضح على العنابي، وسؤال واحد */
+html body .swp-sheet .sky-card .swp-hook p:not(#_a):not(#_b),html body .aqm-sheet .swm-q li:not(#_a):not(#_b){color:#FFF3DC!important;opacity:1!important;animation:none!important;margin:0;font:600 1.02rem/2 'El Messiri','Cairo',serif}

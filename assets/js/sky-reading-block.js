@@ -49,21 +49,23 @@
   function fill() {
     [].forEach.call(document.querySelectorAll('.trm-slot[data-k]'), function (el) {
       var k = el.getAttribute('data-k'), ms = +el.getAttribute('data-ms'); el.removeAttribute('data-k');
-      try { el.outerHTML = ring(k, ms); } catch (e) { el.remove(); }
+      try { el.outerHTML = ring(k, ms); if (window.AqUpGlyphs) window.AqUpGlyphs(); } catch (e) { el.remove(); }
     });
   }
   function block(k, h, full, ms) {
-    var R = window.AqReadings, lead = R && R.TL && R.TL[k] && R.TL[k][h - 1], body = paras(full).map(function (x) { return '<p>' + x + '</p>'; }).join('');
-    if (!lead) return '<div class="trm">' + body + '</div>';
+    var R = window.AqReadings, lead = R && R.TL && R.TL[k] && R.TL[k][h - 1], ps = paras(full);
+    if (!lead || ps.length < 2) return '<div class="trm">' + ps.map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div>';
     var t0 = ms || Date.now();
     setTimeout(function () { fill(); }, 40);
-    return '<div class="trm"><div class="trm-slot" data-k="' + k + '" data-ms="' + t0 + '"></div><p class="trm-lead">' + lead + '</p><button type="button" class="trm-btn" data-trm aria-expanded="false"><span>تعمّق أكثر</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="trm-full" hidden>' + body + '</div></div>';
+    return '<div class="trm"><div class="trm-slot" data-k="' + k + '" data-ms="' + t0 + '"></div><p class="trm-lead">' + lead + '</p><p class="trm-tz">' + ps[0] + '</p>' +
+      '<button type="button" class="trm-bn" data-trm aria-expanded="false"><span class="trm-bn-t">تعمّق في القراءة كاملة</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>' +
+      '<div class="trm-full" hidden>' + ps.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div></div>';
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-trm]'); if (!b) return;
     var box = b.closest('.trm'), f = box && box.querySelector('.trm-full'); if (!f) return;
     var open = f.hidden; f.hidden = !open; b.setAttribute('aria-expanded', open); box.classList.toggle('is-open', open);
-    b.querySelector('span').textContent = open ? 'إخفاء التفاصيل' : 'تعمّق أكثر';
+    var t = b.querySelector('.trm-bn-t'); if (t) t.textContent = open ? 'إخفاء التفاصيل' : 'تعمّق في القراءة كاملة';
     if (open) { try { f.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (x) { } }
   });
   window.AqReadingBlock = { block: block, stay: stay };
