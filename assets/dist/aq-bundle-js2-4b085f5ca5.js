@@ -3805,7 +3805,11 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const grid = curList.sec.map((it, n) => `<button type="button" class="sg-med" data-sgrow="sec:${n}"><span class="sg-medal" aria-hidden="true">${it.svg}</span><b>${it.t}</b><span class="sg-go" aria-hidden="true">التفاصيل</span></button>`).join("");
     return `<section class="sg-sec"><p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي صفة لاكتشاف عمقها النفسي</p><div class="sg-grid">${grid}</div></section>`;
   }
+  let signsDirty = false;
+  /* الرسم الأول لتوقعات البرج يحسب تواريخ الدخول (ثقيل): نؤجله إلى فتح #signs أو بعد انتهاء التسخين، والمخرجات نفسها */
+  function ensureSignRender() { if (signsDirty) renderSign(); }
   function renderSign() {
+    signsDirty = false;
     const i = signCur, main = signsMode === "traits" ? "traits" : "forecast";
     let body, sub = "";
     if (main === "traits") body = traitsTab(i);
@@ -3826,12 +3830,12 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const pt = e.target.closest("[data-sgper]"); if (pt) { if (pt.dataset.sgper !== signsPer) { signsPer = pt.dataset.sgper; renderSign(); } return; }
     const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); sgShow(curList[key], +n); }
   });
-  function pickSign(i) {
+  function pickSign(i, lazy) {
     signCur = i; try { localStorage.setItem("aq-sky-sign", i); } catch (e) {}
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
     sgBar.hidden = false; signsSec.classList.add("sg-picked");
     sgBar.querySelector(".sg-bar-id").innerHTML = `${bdg(SIGNS[i].g)}<span class="sg-bar-t"><span class="sg-bar-l1"><b>${SIGNS[i].n}</b><small>${SIGNS[i].d}</small></span><span class="sg-bar-l2"><i>${ELEMENTS[SIGNS[i].el].adj}</i><i>الحاكم: ${PLANETS[SIGNS[i].ruler].n}</i></span></span>`;
-    setCurtain(false); renderSign();
+    setCurtain(false); if (lazy) signsDirty = true; else renderSign();
   }
   SIGNS.forEach((s, i) => {
     const b = document.createElement("button"); b.type = "button"; b.className = "sg-pick";
@@ -3841,10 +3845,10 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   (function () {
     let d = -1; try { const v = parseInt(localStorage.getItem("aq-sky-sign"), 10); if (v >= 0 && v < 12) d = v; } catch (e) {}
     if (d < 0) { try { d = Astro.chart({ utcMs: Date.now(), lat: 30, lon: 31, known: false }).bodies.find(b => b.key === "sun").sign; } catch (e) { d = 0; } }
-    pickSign(d);
+    pickSign(d, location.hash !== "#signs");
   })();
-  (function () { const ks = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"]; let n = 0; const step = () => { if (n >= ks.length) return; try { nextIngress(ks[n++], Date.now()); } catch (e) {} setTimeout(step, 150); }; window.addEventListener("load", () => setTimeout(step, 2500)); })();
-  window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); });
+  (function () { const ks = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"]; let n = 0; const step = () => { if (n >= ks.length) { ensureSignRender(); return; } try { nextIngress(ks[n++], Date.now()); } catch (e) {} setTimeout(step, 150); }; window.addEventListener("load", () => setTimeout(step, 2500)); })();
+  window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); else ensureSignRender(); });
   const glyphs = $("#glyphs");
   SIGNS.forEach((s, i) => {
     const a = (-90 + i * 30) * Math.PI / 180, x = (200 + Math.cos(a) * 148).toFixed(2), y = (200 + Math.sin(a) * 148).toFixed(2);
