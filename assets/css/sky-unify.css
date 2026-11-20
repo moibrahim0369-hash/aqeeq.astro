@@ -404,3 +404,10 @@ html body .fc-gen:not(#_a):not(#_b) h5{display:flex;align-items:center;gap:8px;m
 html body .fc-gen:not(#_a):not(#_b) .fc-ask{margin:12px 0 0;padding:12px 15px;border-radius:16px;background:rgba(200,161,90,.14);border:1px solid rgba(200,161,90,.55)}
 html body .fc-gen:not(#_a):not(#_b) .fc-ask b{display:block;margin-bottom:4px;font:700 .78rem 'Cairo',sans-serif;letter-spacing:.04em;color:#7A3048}
 html body .fc-gen:not(#_a):not(#_b) .fc-ask p{margin:0}
+/* بلا معينات صغيرة: عناوين نظيفة، وزر تعمّق خفيف بدل البلاطة العنابية */
+html body .swp-sheet .swp-h2:not(#_a):not(#_b)::before,html body .aqm-sheet .swm-q li:not(#_a):not(#_b)::before,html body .mn-sheet .mn-q li:not(#_a):not(#_b)::before,html body .fc-gen:not(#_a):not(#_b) .fc-dv::after{content:none!important;display:none!important}
+html body .aqm-sheet .swm-q li:not(#_a):not(#_b){padding-inline-start:0;text-align:center}
+html body .trm .trm-bn:not(#_a):not(#_b){width:auto;min-width:200px;margin:14px auto;padding:9px 22px;border-radius:999px;background:transparent;border:1px solid #7A3048;color:#7A3048;font:700 .92rem 'Cairo',sans-serif;box-shadow:none}
+html body .trm .trm-bn:not(#_a):not(#_b) .trm-bn-t{color:#7A3048}
+html body .trm .trm-bn:not(#_a):not(#_b) svg{stroke:#7A3048}
+html body .trm .trm-bn:not(#_a):not(#_b):active{background:rgba(122,48,72,.08)}
