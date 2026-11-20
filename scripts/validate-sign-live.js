@@ -6,7 +6,7 @@ const wc = s => (s.match(/\S+/g) || []).length;
 const add = (k, t, min, max) => { all.push([k, t]); const n = wc(t); if (n < min || n > max) err.push(k + ': الطول ' + n + ' كلمة'); BAN.forEach(w => t.includes(w) && err.push(k + ': كلمة ممنوعة ' + w)); if (/[A-Za-z]/.test(t)) err.push(k + ': حروف لاتينية'); if (/[—–]/.test(t)) err.push(k + ': شرطة طويلة'); if (/[ء-ي]\/[ء-ي]/.test(t)) err.push(k + ': شرطة بين مذكر ومؤنث'); };
 L.HEAD.forEach((t, i) => add('HEAD|' + (i + 1), t, 12, 30));
 for (const a of Object.keys(L.AREA)) { if (L.AREA[a].length !== 12) err.push(a + ': العدد ليس 12'); L.AREA[a].forEach((t, i) => add(a + '|' + (i + 1), t, 90, 230)); }
-for (const [nm, src] of [['RTH', L.RTHB || L.RTH || {}], ['RTHV', L.RTHV || {}]]) for (const p of Object.keys(src)) { if (src[p].length !== 12) err.push(nm + ' ' + p + ': العدد ليس 12'); src[p].forEach((t, i) => add(nm + '-' + p + '|' + (i + 1), t, 90, 230)); }
+for (const p of Object.keys(L.RTH || {})) { const bs = (L.RTHB && L.RTHB[p]) || L.RTH[p]; if (bs.length !== 12) err.push('RTH ' + p + ': العدد ليس 12'); bs.forEach((t, i) => add('RTH-' + p + '|' + (i + 1), t, 90, 230)); if (L.RTHV && L.RTHV[p]) { if (L.RTHV[p].length !== 12) err.push('RTHV ' + p + ': العدد ليس 12'); L.RTHV[p].forEach((t, i) => add('RTHV-' + p + '|' + (i + 1), t, 90, 230)); } }
 for (const k of Object.keys(L)) if (!['HEAD', 'AREA', 'RTH', 'RTHB', 'RTHV', 'NM', 'FM', 'DAY', 'DAYB', 'DAYV'].includes(k) && Array.isArray(L[k])) L[k].forEach((t, i) => add(k + '|' + (i + 1), t, k === 'SIGNDAY' ? 75 : 90, 230));
 L.DAYB.forEach((t, i) => add('DAY|' + (i + 1), t, 90, 250));
 L.DAYV.forEach((p, i) => p.forEach((t, j) => add('DAY|' + (i + 1) + 'v' + (j + 2), t, 210, 330)));
