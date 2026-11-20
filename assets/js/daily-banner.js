@@ -270,10 +270,18 @@
   window.addEventListener('load', function () { setTimeout(refresh, 700); });
 
   /* ---------- slider ---------- */
+  /* ارتفاع البانر = ارتفاع الشريحة الظاهرة فقط، فلا يبقى فراغ تحت الشرائح القصيرة */
+  function fit() {
+    var s = slides[cur]; if (!s) return;
+    var h = s.offsetHeight; if (h > 0) stage.style.setProperty('height', h + 'px', 'important');
+  }
+  if (window.ResizeObserver) { var fro = new ResizeObserver(function () { fit(); }); slides.forEach(function (sl) { fro.observe(sl); }); }
+  window.addEventListener('resize', function () { fit(); });
   function show(i, userDriven) {
     cur = (i + slides.length) % slides.length;
     slides.forEach(function (s, k) { var on = k === cur; s.classList.toggle('is-on', on); s.setAttribute('aria-hidden', on ? 'false' : 'true'); if ('inert' in s) s.inert = !on; });
     dots.forEach(function (d, k) { d.classList.toggle('is-on', k === cur); if (k === cur) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+    fit();
     stage.setAttribute('aria-live', userDriven ? 'polite' : 'off');
     if (userDriven) { /* manual: pause then resume after idle */ pause(); armIdle(); } else schedule();
   }
