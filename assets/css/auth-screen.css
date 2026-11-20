@@ -108,3 +108,28 @@
 @media (max-width:760px){
   html[data-aqr="account"] .amb,html[data-aqr="account"] .amb-nebula{display:none!important}
 }
+
+@media (max-width:760px){
+  /* طبقات الخلفية: كريمي أساسي + توهج قمري أعلى المنتصف + نجوم دقيقة باهتة */
+  html[data-aqr="account"] section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d){
+    background:
+      radial-gradient(62% 34% at 50% 14%,rgba(255,247,222,.95),rgba(246,226,176,.34) 45%,transparent 72%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cg fill='%23B78A52'%3E%3Ccircle cx='24' cy='36' r='1.1' opacity='.55'/%3E%3Ccircle cx='96' cy='18' r='.8' opacity='.45'/%3E%3Ccircle cx='170' cy='52' r='1.2' opacity='.5'/%3E%3Ccircle cx='232' cy='24' r='.9' opacity='.45'/%3E%3Ccircle cx='60' cy='112' r='.8' opacity='.4'/%3E%3Ccircle cx='140' cy='132' r='1' opacity='.5'/%3E%3Ccircle cx='214' cy='150' r='.8' opacity='.4'/%3E%3Ccircle cx='30' cy='196' r='1.1' opacity='.5'/%3E%3Ccircle cx='108' cy='222' r='.8' opacity='.4'/%3E%3Ccircle cx='188' cy='234' r='1' opacity='.45'/%3E%3C/g%3E%3C/svg%3E") 0 0/260px 260px,
+      radial-gradient(60% 34% at 92% 60%,rgba(226,170,160,.16),transparent 70%),
+      linear-gradient(180deg,#FBF5EA 0%,#F6EBDA 100%)!important}
+  /* الهوية: AQEQ ASTRO فقط، بحروف متباعدة */
+  html[data-aqr="account"] #account .acx-logo small{display:none!important}
+  html[data-aqr="account"] #account .acx-logo b{letter-spacing:.34em;font-size:.82rem;font-weight:600;padding-inline-start:.34em}
+  /* حلقة ذهبية رفيعة حول القرص الزجاجي */
+  html[data-aqr="account"] #account .acx-logo img{box-shadow:0 0 0 1.5px rgba(197,160,89,.85),0 0 0 7px rgba(255,255,255,.35),0 14px 30px rgba(150,110,60,.26),inset 0 1px 0 rgba(255,255,255,.9)!important}
+  /* توزيع متساوٍ من فوق لتحت بلا فراغ ميت */
+  html body section#account.acx .acct-wrap{justify-content:space-evenly!important;padding-top:calc(76px + env(safe-area-inset-top,0px))!important;padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))!important}
+  html[data-aqr="account"] #account .acct-card-shell{flex:1 1 auto;justify-content:space-evenly;gap:0}
+  html[data-aqr="account"] #account .acct-brand-header{display:flex;flex-direction:column;align-items:center;text-align:center}
+  html[data-aqr="account"] #account .acct-brand-header h2{margin:26px 0 10px!important}
+  html[data-aqr="account"] #account .acct-subtitle{margin:0!important;max-width:30ch}
+  html[data-aqr="account"] #account .acx-orn{display:none!important}
+  html[data-aqr="account"] #account #acct-guest:not([hidden]){margin-top:0!important;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.46));border:1px solid rgba(255,255,255,.95)}
+  html[data-aqr="account"] #account #acct-guest.acx-email{margin-top:0!important}
+}
+@media (max-width:760px){html[data-aqr="account"] #account .acct-subtitle{text-wrap:balance;max-width:34ch!important}}
