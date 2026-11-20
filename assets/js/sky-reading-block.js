@@ -63,7 +63,7 @@
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-trm]'); if (!b) return;
-    var box = b.closest('.trm'), f = box && box.querySelector('.trm-full'); if (!f) return;
+    var box = b.closest('.trm, .swp-fold'), f = box && box.querySelector('.trm-full, .swp-full'); if (!f) return;
     var open = f.hidden; f.hidden = !open; b.setAttribute('aria-expanded', open); box.classList.toggle('is-open', open);
     var t = b.querySelector('.trm-bn-t'); if (t) t.textContent = open ? 'إخفاء التفاصيل' : 'تعمّق في القراءة كاملة';
     if (open) { try { f.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (x) { } }
