@@ -451,3 +451,10 @@ html body .swp-fold .trm-bn:not(#_a):not(#_b) svg{stroke:#7A3048}
 html body .swp-fold .trm-bn:not(#_a):not(#_b):active{background:rgba(122,48,72,.08)}
 html body .swp-fold.is-open .trm-bn svg,.swp-fold.is-open .trm-bn svg{transform:rotate(180deg)}
 .aqm-sheet-body>.trm-full,.aqm-sheet-body>.swp-full,#sky-panel>.swp-full{margin-top:14px;padding-top:14px;border-top:1px solid rgba(214,182,110,.5)}
+
+/* الزر الشفاف في أي موضع، والزر بعد النص الموسّع في آخر الورقة */
+html body .trm-bn:not(#_a):not(#_b){width:auto;min-width:200px;margin:14px auto;padding:9px 22px;border-radius:999px;background:transparent!important;border:1px solid #7A3048;color:#7A3048;font:700 .92rem 'Cairo',sans-serif;box-shadow:none}
+html body .trm-bn:not(#_a):not(#_b) .trm-bn-t{color:#7A3048}
+html body .trm-bn:not(#_a):not(#_b) svg{stroke:#7A3048}
+.aqm-sheet-body>.trm-bn,#sky-panel>.trm-bn{display:flex;margin:16px auto 6px}
+.trm-bn[aria-expanded="true"] svg{transform:rotate(180deg)}

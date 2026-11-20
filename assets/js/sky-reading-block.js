@@ -63,14 +63,19 @@
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-trm]'); if (!b) return;
-    var box = b.closest('.trm, .swp-fold'), f = box && box.querySelector('.trm-full, .swp-full'); if (!f) return;
+    var box = b._trmBox || b.closest('.trm, .swp-fold'), f = b._trmF || (box && box.querySelector('.trm-full, .swp-full')); if (!f) return;
     var open = f.hidden; f.hidden = !open; b.setAttribute('aria-expanded', open); box.classList.toggle('is-open', open);
     var t = b.querySelector('.trm-bn-t'); if (t) t.textContent = open ? 'إخفاء التفاصيل' : 'تعمّق في القراءة كاملة';
-    /* التفاصيل تنزل إلى آخر الورقة فلا تفصل بين القراءة وما بعدها، والقارئ ينزل إليها بنفسه */
+    /* عند الفتح: التفاصيل ثم الزر في آخر الورقة تماماً؛ وعند الإغلاق يرجعان مكانهما */
     var host = box.closest('.aqm-sheet-body, .swp-body, #sky-panel') || box.parentNode;
-    if (open) { if (f.parentNode !== host) host.appendChild(f); }
-    else if (f.parentNode !== box) box.appendChild(f);
+    if (open) {
+      b._trmBox = box; b._trmF = f; b._trmMk = document.createComment('trm');
+      b.parentNode.insertBefore(b._trmMk, b);
+      host.appendChild(f); host.appendChild(b);
+    } else if (b._trmMk && b._trmMk.parentNode) {
+      b._trmMk.parentNode.insertBefore(b, b._trmMk); b._trmMk.remove(); b._trmMk = null; b._trmF = null;
+      box.appendChild(f);
+    }
   });
-
   window.AqReadingBlock = { block: block, stay: stay };
 })();
