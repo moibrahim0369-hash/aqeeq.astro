@@ -3758,7 +3758,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   const subTabs = [["pulse", "نبض اليوم"], ["transits", "العبورات والزوايا"], ["periods", "خريطة الفترات"]];
   const moonDay = h => liveText("moon", h);
   function pulseTab(i, L) {
-    const s = SIGNS[i], q = `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
+    const s = SIGNS[i], hq = HQ[(L.moonH || 0) - 1], q = (hq && hq[0]) || `ما الموقف الذي تستطيع أن تطبّق فيه اليوم: ${s.growth}؟`, G = guideList(s);
     const AL = window.AqLive, day = (AL && AL.DAY && AL.DAY[L.moonH - 1]) || "", head = (AL && AL.HEAD && AL.HEAD[L.moonH - 1]) || "";
     const guide = `استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء. وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد. ونصيحة يومك: ${s.growth}.`;
     const paras = t => sgParas(t, 100);
