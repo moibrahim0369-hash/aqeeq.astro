@@ -534,7 +534,7 @@
       const gd = g && en.genderDynamic && en.genderDynamic[g]
         ? `<p class="aqm-slot-p aqm-gender-dynamic"><strong>بصيغتك:</strong> ${escapeHtml(en.genderDynamic[g])}</p>` : '';
       const draft = en.meta && en.meta.status === 'draft' ? '<p class="aqm-slot-p aqm-draft-note">نص تأملي قيد المراجعة.</p>' : '';
-      return `<div class="aqm-sec-entry">${head(en)}${en.summary ? `<p class="aqm-slot-p aqm-sec-lead">${escapeHtml(en.summary)}</p>` : ''}${rows}${gd}${draft}</div>`;
+      return `<div class="aqm-sec-entry">${head(en)}${en.summary ? `<p class="aqm-slot-p aqm-sec-lead">${escapeHtml(en.summary)}</p>` : ''}${rows}${gd}${draft}${reflHtml(en.deep && en.deep.reflection_question)}</div>`;
     }).join('');
     return { detailed, strengths: slot(spec.strengths), challenges: slot(spec.challenges), practical: slot(spec.practical) };
   }
