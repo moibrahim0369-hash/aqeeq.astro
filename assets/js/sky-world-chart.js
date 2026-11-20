@@ -291,6 +291,8 @@
     [].forEach.call(document.querySelectorAll('.swt-p'), function (p) { p.hidden = p.id !== 'swp-' + name; });
   }
   window.addEventListener('hashchange', function () { /* #world دُمجت في #sky */ });
+  /* وصلت نصوص السماء المؤجلة: أعد رسم تبويب «برجك» الذي كان يعرض «قيد التحميل» */
+  document.addEventListener('aq:sky-texts', function () { try { sigs.mine = ''; if (cur) renderMine(cur); } catch (e) { } });
   document.addEventListener('click', function (e) {
     var t = e.target.closest && e.target.closest('.swt-t'); if (t) { setTab(t.getAttribute('data-tab')); return; }
     var sgb = e.target.closest && e.target.closest('#swc-mine .sky-sg'); if (sgb && window.AqSky) { window.AqSky.setSign(+sgb.getAttribute('data-i')); mineOpen = false; renderMine(cur); return; }

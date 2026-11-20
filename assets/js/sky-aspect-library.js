@@ -54,7 +54,9 @@
   }
   window.AqAspLib = { get: function (pair) { var e = LIB[pair]; if (!e) return null; if (e.alt && (hash(pair) + Math.floor(Date.now() / 864e5)) % 2) e = e.alt; return { t: e.t || [], q: e.q || '' }; }, ready: function () { return ready; } };
   function boot() {
-    load();
+    /* لا تحميل عند البدء: وقت الخمول بعد اكتمال الصفحة، أو فور ظهور بطاقات الأسبكتات في #sky (المراقب أدناه) */
+    var idle = function () { (window.requestIdleCallback || function (f) { setTimeout(f, 3500); })(load, { timeout: 6000 }); };
+    if (document.readyState === 'complete') idle(); else window.addEventListener('load', function () { setTimeout(idle, 1200); });
     var host = document.getElementById('sky-asp'); if (!host) return;
     new MutationObserver(function () { if (!ready) { load(); } else { apply(); } }).observe(host, { childList: true, subtree: false });
     if (host.children.length) load();

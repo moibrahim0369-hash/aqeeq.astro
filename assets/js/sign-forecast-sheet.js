@@ -79,6 +79,7 @@
   }
   function open(k) {
     var D = window.AqSky; if (!D || !window.Astro || k === 'phase' || !D.PLANETS[k]) return false;
+    if (!window.AqReadings && window.AqSkyTexts) { window.AqSkyTexts.load().then(function (ok) { if (ok) open(k); }); return true; }
     try {
       curK = k; curSign = null; var s = ensure(), b = build(k);
       s.querySelector('.fc-body').innerHTML = b.html; s.querySelector('.fc-body').scrollTop = 0;
