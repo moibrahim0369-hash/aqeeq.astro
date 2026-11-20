@@ -4395,14 +4395,14 @@
         compat.addEventListener('click', function (e) { if (window.AqeeqYouPage) { e.preventDefault(); window.AqeeqYouPage.go('we'); } });
       }
     }
-    var old = $('#aq-you-item', bar); if (old) old.remove();
+    var old = $('#aq-you-item', bar);
     /* بعد الدخول: «حسابي» هو صفحتك الكاملة (#for-you) بدل نافذة منبثقة، فلا حاجة لزر «لك» منفصل */
     if (acc) { var al = acc.querySelector('.bnav-label'); if (al) { al.removeAttribute('data-i18n-ar'); al.removeAttribute('data-i18n-en'); al.textContent = user ? 'أنت' : 'حسابي'; } acc.setAttribute('href', '#account'); acc.classList.toggle('on', location.hash === (user ? '#for-you' : '#account')); }
-    if (user) { closeYou(); return; }
-    var it = item('aq-you-item', '#', 'أنت', ICON_YOU, 'button');
-    it.id = 'aq-you-item'; it.setAttribute('data-nav', 'you');
-    it.addEventListener('click', openYou);
-    bar.insertBefore(it, disc);
+    if (user) { if (old) old.remove(); closeYou(); return; }
+    /* الزر موجود في الـHTML من أول لحظة (لا يُعاد بناؤه) حتى لا يتبدّل الشريط عند التحميل */
+    var it = old;
+    if (!it) { it = item('aq-you-item', '#', 'أنت', ICON_YOU, 'button'); it.id = 'aq-you-item'; it.setAttribute('data-nav', 'you'); bar.insertBefore(it, disc); }
+    if (!it._aqBound) { it._aqBound = 1; it.addEventListener('click', openYou); }
   }
   var fy = document.querySelector('#aqn-sheet .aqn-grid a[href="#for-you"]'); if (fy) fy.remove();
 
@@ -4431,10 +4431,10 @@
     if (open) { renderPanel(); } else { markSeen(); badge(); }
   }
   function buildBell() {
-    var tools = $('.aqh-tools.hd-act'), search = $('[data-aqh-search]'); if (!tools || !search || $('#aq-bell')) return;
-    bellBtn = document.createElement('button'); bellBtn.type = 'button'; bellBtn.id = 'aq-bell'; bellBtn.className = 'aqh-icon aq-bell'; bellBtn.setAttribute('aria-label', 'الإشعارات'); bellBtn.setAttribute('aria-haspopup', 'true'); bellBtn.setAttribute('aria-expanded', 'false');
-    bellBtn.innerHTML = BELL + '<i class="aq-n-badge" hidden>0</i>';
-    tools.insertBefore(bellBtn, search);
+    var tools = $('.aqh-tools.hd-act'), search = $('[data-aqh-search]'); if (!tools || !search) return; var pre = $('#aq-bell'); if (pre && pre._aqBell) return;
+    bellBtn = pre || document.createElement('button');
+    if (!pre) { bellBtn.type = 'button'; bellBtn.id = 'aq-bell'; bellBtn.className = 'aqh-icon aq-bell'; bellBtn.setAttribute('aria-label', 'الإشعارات'); bellBtn.setAttribute('aria-haspopup', 'true'); bellBtn.setAttribute('aria-expanded', 'false'); bellBtn.innerHTML = BELL + '<i class="aq-n-badge" hidden>0</i>'; tools.insertBefore(bellBtn, search); }
+    bellBtn._aqBell = 1;
     panel = document.createElement('div'); panel.className = 'aq-notif'; panel.hidden = true; panel.setAttribute('role', 'region'); panel.setAttribute('aria-label', 'الإشعارات');
     document.body.appendChild(panel);
     bellBtn.addEventListener('click', function (e) { e.stopPropagation(); togglePanel(); });
