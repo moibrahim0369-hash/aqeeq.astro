@@ -411,3 +411,15 @@ html body .trm .trm-bn:not(#_a):not(#_b){width:auto;min-width:200px;margin:14px 
 html body .trm .trm-bn:not(#_a):not(#_b) .trm-bn-t{color:#7A3048}
 html body .trm .trm-bn:not(#_a):not(#_b) svg{stroke:#7A3048}
 html body .trm .trm-bn:not(#_a):not(#_b):active{background:rgba(122,48,72,.08)}
+/* لمسات جمالية مشتركة لنوافذ الكواكب والتوقعات: حلقة ذهبية رفيعة، نجوم صغيرة بالزوايا، ظلال ناعمة، ورق دافئ */
+html body .swp-sheet .swp-med:not(#_a):not(#_b),html body .fc-sheet .fc-medal:not(#_a):not(#_b){box-shadow:0 0 0 5px #FBF4E6,0 0 0 6.5px rgba(214,181,116,.95),0 12px 26px rgba(90,24,42,.22)}
+html body .swp-sheet .swp-ht h3:not(#_a):not(#_b){font-size:1.62rem;letter-spacing:.01em}
+html body .fc-sheet .fc-head h3:not(#_a):not(#_b){font-size:1.5rem}
+html body .swp-sheet .swp-body:not(#_a):not(#_b){background:radial-gradient(110% 40% at 100% 0,rgba(184,113,94,.09),transparent 60%),radial-gradient(90% 40% at 0 100%,rgba(122,48,72,.06),transparent 60%),repeating-linear-gradient(45deg,rgba(122,48,72,.022) 0 1px,transparent 1px 14px),#FBF4E6}
+html body .swp-sheet .swp-psy:not(#_a):not(#_b),html body .swp-sheet .swp-mv:not(#_a):not(#_b),html body .fc-about:not(#_a):not(#_b),html body .swp-sheet .swp-main:not(#_a):not(#_b){position:relative;box-shadow:0 8px 22px rgba(90,24,42,.07);border-color:rgba(200,161,90,.45)}
+html body .swp-sheet .swp-psy:not(#_a):not(#_b)::after,html body .swp-sheet .swp-mv:not(#_a):not(#_b)::after,html body .fc-about:not(#_a):not(#_b)::after{content:"";position:absolute;top:10px;inset-inline-start:12px;width:14px;height:14px;opacity:.75;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1.500l2.200 8.300 8.300 2.200-8.300 2.200L12 22.500l-2.200-8.300L1.500 12l8.300-2.200z' fill='%23C8A15A'/%3E%3C/svg%3E") no-repeat center/contain}
+html body .swp-sheet .swp-psy:not(#_a):not(#_b)::before,html body .swp-sheet .swp-mv:not(#_a):not(#_b)::before{content:none}
+html body .swp-sheet .swp-deg:not(#_a):not(#_b){box-shadow:0 6px 18px rgba(90,24,42,.06)}
+html body .swp-sheet .swp-pill:not(#_a):not(#_b){box-shadow:0 2px 8px rgba(90,24,42,.10)}
+html body .fc-now:not(#_a):not(#_b) .fc-now-g{box-shadow:0 0 0 4px rgba(233,206,142,.18)}
+html body .swp-sheet .aqm-sheet-panel:not(#_a):not(#_b){box-shadow:0 -14px 40px rgba(60,16,30,.28)}
