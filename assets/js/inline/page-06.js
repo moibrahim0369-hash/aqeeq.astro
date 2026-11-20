@@ -1,3 +1,4 @@
+window.AqIngLine=function(k,ing,back,pn,sn,date){var t=window.AqIngress&&window.AqIngress[k]&&window.AqIngress[k][ing.sign];if(t){return t.replace("{d}",date).replace("برج "+sn,"برج <b>"+sn+"</b>");}return pn+" "+(back?"يعود إلى برج":"ينتقل إلى برج")+" <b>"+sn+"</b> تقريبًا يوم "+date+".";};
 
 /* ============================== عدّل هنا ==============================
    كل حاجة بتتغير في الموقع من الأسماء والأرقام والكورسات والفيديوهات هنا.
@@ -2090,7 +2091,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     let ingTxt = "";
     if (ing) {
       const back = ing.sign === (bd.sign + 11) % 12;
-      ingTxt = `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true"><span class="sg">${gl(SIGNS[ing.sign].g)}</span></span><span>${p.n} ${back ? "يعود إلى برج" : "ينتقل إلى برج"} <b>${SIGNS[ing.sign].n}</b> تقريبًا يوم ${dfmt(ing.ms)}.</span></p>`;
+      ingTxt = `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true"><span class="sg">${gl(SIGNS[ing.sign].g)}</span></span><span>${window.AqIngLine(k, ing, back, p.n, SIGNS[ing.sign].n, dfmt(ing.ms))}</span></p>`;
     }
     const PSY = {
       sun: ["الشمس عند يونغ هي صورة الذات: ما تصير إليه حين تتوقف عن إثبات نفسك للآخرين.", "أين تتصرف هذه الأيام كما يُنتظر منك، لا كما تشعر في داخلك؟", "لديك طاقة أكبر مما تُظهره، وحاجة هادئة إلى أن يُرى جهدك دون أن تطلب ذلك."],
@@ -2339,7 +2340,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       const b = nb(k), h = hOf(k), S = SIGNS[b.sign], T = spanOf(k, b, h);
       let body = sgParas(liveText(k, h)).map(x => `<p>${x}</p>`).join("");
       if (b.retro) body += `<p class="sg-rx">${liveRetro(k, h)}</p>`;
-      if (k !== "moon" && k !== "sun") { let ing = null; try { ing = nextIngress(k, ms); } catch (e) {} if (ing) body += `<p class="sg-ing">${PLANETS[k].n} ${ing.sign === (b.sign + 11) % 12 ? "يعود إلى برج" : "ينتقل إلى برج"} ${SIGNS[ing.sign].n} تقريبًا يوم ${dfmt(ing.ms)}.</p>`; }
+      if (k !== "moon" && k !== "sun") { let ing = null; try { ing = nextIngress(k, ms); } catch (e) {} if (ing) body += `<p class="sg-ing">${window.AqIngLine(k, ing, ing.sign === (b.sign + 11) % 12, PLANETS[k].n, SIGNS[ing.sign].n, dfmt(ing.ms))}</p>`; }
       return { k, g: PLANETS[k].g, t: `${PLANETS[k].n} في ${S.n}${b.retro ? " (راجع)" : ""}`, sub: `يؤثر على بيتك ${HOUSES[h - 1].n} · ${HOUSES[h - 1].area}`, when: T.brief, span: T.stay, nxt: T.nxt, rx: b.retro, html: body, q: qPl(k, h) };
     };
     const slow = ["jupiter", "saturn", "uranus", "neptune", "pluto"], mid = ["sun", "mercury", "venus", "mars"];
