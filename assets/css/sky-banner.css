@@ -132,3 +132,8 @@ html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv.k-sun .dbn-lv-g svg:not(#_a):n
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){font-size:1rem!important}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv small:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){font-size:.84rem!important;justify-self:start}
 html body #home.aqh .aqh-skyb #aqh-energy .dbn-lv .dbn-fx:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){margin:0!important;font-size:.8rem!important;line-height:1.5!important}
+
+/* ترتيب أضغط للشرائح الأطول، من غير حذف أي نص: مسافات فقط */
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-unit:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){padding:4px 6px!important;gap:2px!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-unit strong:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){line-height:1.45!important}
+html body #home.aqh .aqh-skyb #aqh-energy .dbn-units:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){gap:4px!important;margin-top:2px!important}
