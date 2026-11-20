@@ -3,7 +3,7 @@ const fs = require('fs'), path = require('path');
 global.window = {}; eval(fs.readFileSync(path.join(__dirname, '../assets/js/sky-readings.js'), 'utf8'));
 const R = window.AqReadings, KEYS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
 const LEGACY = { sun: [1, 5, 7, 9], moon: [3, 5, 6, 7, 12], mercury: [1, 3, 4, 5, 8, 11], venus: [1, 2, 9] };
-const EXPANDED = ['sun','moon','mercury','venus','mars','jupiter','saturn','uranus']; // كواكب وُسّعت إلى 250 إلى 300 كلمة
+const EXPANDED = ['sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune']; // كواكب وُسّعت إلى 250 إلى 300 كلمة
 const BAN = ['مفتاح', 'مفاتيح', 'طُعم', 'طعم', 'بصفتي', 'من الجدير', 'في الختام', 'محمد'];
 const err = []; let filled = 0; const all = [];
 KEYS.forEach(p => {
