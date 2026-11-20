@@ -434,3 +434,12 @@ html body .swp-sheet .swp-psy:not(#_a):not(#_b),html body .fc-about:not(#_a):not
 .swp-fold .swp-full[hidden]{display:none}
 .swp-fold .trm-bn{margin:6px auto 2px}
 @media (prefers-reduced-motion:reduce){.swp-fold .swp-full{animation:none}}
+
+/* بانر «الكوكب الآن» في ورقة التوقعات: الكوكب والتعريف في بانر واحد */
+html body .fc-now:not(#_a):not(#_b){flex-direction:column;align-items:stretch;gap:12px}
+html body .fc-now:not(#_a):not(#_b) .fc-now-top{display:flex;align-items:center;gap:14px}
+html body .fc-now:not(#_a):not(#_b) .fc-now-g .sg{display:grid;place-items:center}
+html body .fc-now:not(#_a):not(#_b) .fc-now-g .sg-svg{width:28px;height:28px;color:#F3DFA8}
+html body .fc-now:not(#_a):not(#_b) .fc-now-about{padding-top:12px;border-top:1px solid rgba(233,206,142,.3)}
+html body .fc-now:not(#_a):not(#_b) .fc-now-about h4{margin:0 0 6px;font:700 .98rem 'Cairo',sans-serif;color:#F3DFA8}
+html body .fc-now:not(#_a):not(#_b) .fc-now-about p{margin:0;font:500 .9rem/1.9 'Cairo',sans-serif;color:#F7ECD8}
