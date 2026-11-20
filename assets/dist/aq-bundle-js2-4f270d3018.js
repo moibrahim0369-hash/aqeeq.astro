@@ -3556,6 +3556,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     coin: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.500"/><path d="M14.800 9.200c-.5-.8-1.500-1.200-2.800-1.200-1.600 0-2.700.8-2.700 2 0 2.800 5.600 1.400 5.600 4.200 0 1.200-1.200 2-2.900 2-1.300 0-2.400-.5-3-1.400M12 6.500V8M12 16v1.500"/></svg>',
     tip: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.500 10.900c.6.5 1 1.200 1 2V16h5v-.1c0-.8.4-1.500 1-2A6 6 0 0 0 12 3z"/></svg>',
     orbit: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="9.500" ry="4.200" transform="rotate(-25 12 12)"/></svg>',
+    conj: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="5.500"/><circle cx="15" cy="12" r="5.500"/></svg>',
     book: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.500A1.500 1.500 0 0 1 5.500 4H11v15H5.500A1.500 1.500 0 0 0 4 20.500zM20 5.500A1.500 1.500 0 0 0 18.500 4H13v15h5.500a1.500 1.500 0 0 1 1.500 1.500z"/></svg>'
   };
   /* ===== #signs: ستارة الأبراج + تبويبان + ورقة سفلية موحدة (محرك حي من Astro و AqReadings) ===== */

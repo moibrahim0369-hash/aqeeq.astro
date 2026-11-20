@@ -514,3 +514,10 @@ html body #sky .swc-adv .aq-dsx select:not(#_a):not(#_b):not(#_c):not(#_d):not(#
 /* بلا شريط تمرير ظاهر في نوافذ السماء والتوقعات */
 html body :is(.mn-sheet,.swp-sheet,.sgs-sheet,.fc-sheet) .aqm-sheet-body:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q){scrollbar-width:none!important;-ms-overflow-style:none}
 html body :is(.mn-sheet,.swp-sheet,.sgs-sheet,.fc-sheet) .aqm-sheet-body:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q)::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+
+/* تعديل أخير: أهداف لمس 44px في ورقات السماء والتوقعات، وحدّ الخط، ومسافة الشريط السفلي */
+html body :is(#sgs-sheet,.fc-sheet,.swp-sheet,.mn-sheet,.mns-sheet) :is(.aqm-foot-next,.aqm-foot-close):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){min-height:44px!important}
+html body :is(#sgs-sheet,.fc-sheet,.swp-sheet,.mn-sheet,.mns-sheet) .aqm-sheet-x:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){width:44px!important;height:44px!important}
+html body #signs .sg-pick span:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){font-size:12.5px!important}
+html body #signs .aq-rel-t small:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){font-size:13px!important}
+html body section.sec:is(#signs,#sky):target .aqf:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){margin-bottom:96px!important}
