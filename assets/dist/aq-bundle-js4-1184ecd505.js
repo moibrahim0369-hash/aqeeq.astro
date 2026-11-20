@@ -152,7 +152,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '39';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '42';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -1537,7 +1537,7 @@
         if (hit && !found.includes(hit)) found.push(hit);
       });
       if (!found.length) return;
-      const html = found.map(e => `<div class="aqm-sec-entry"><p class="aqm-slot-p aqm-entry-head"><strong>${escapeHtml(e.title)} (شفرة ${escapeHtml(e.code)})</strong></p><p class="aqm-slot-p">${escapeHtml(e.summary)}</p>${sectionVal('t', 'مفتاح التوازن', e.deep && e.deep.remedy)}</div>`).join('');
+      const html = found.map(e => `<div class="aqm-sec-entry"><p class="aqm-slot-p aqm-entry-head"><strong>${escapeHtml(e.title)} (شفرة ${escapeHtml(e.code)})</strong></p><p class="aqm-slot-p">${escapeHtml(e.summary)}</p>${sectionVal('t', 'كيف يعمل البرنامج', e.deep && e.deep.pattern)}${sectionVal('t', '', e.deep && e.deep.daily)}${sectionVal('t', 'مفتاح التوازن', e.deep && e.deep.remedy)}${reflHtml(e.deep && e.deep.reflection_question)}</div>`).join('');
       setSlots(item, { detailed: html });
       item.dataset.secSource = 'json';
     }).catch(err => {
