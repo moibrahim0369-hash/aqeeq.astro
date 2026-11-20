@@ -65,7 +65,7 @@
     if (f && !f.querySelector('.sp-foot')) {
       var n = document.createElement('nav'); n.className = 'sp-foot'; n.setAttribute('aria-label', 'صفحات الموقع');
       n.innerHTML = LINKS.map(function (l) { return '<a href="#' + l[0] + '">' + l[1] + '</a>'; }).join('');
-      var dis = f.querySelector('.foot-dis'); f.insertBefore(n, dis || null);
+      var host = f.querySelector('.foot-card') || f, dis = f.querySelector('.foot-dis'); host.insertBefore(n, host === f ? (dis || null) : null);
     }
   }
   document.addEventListener('click', function (e) {

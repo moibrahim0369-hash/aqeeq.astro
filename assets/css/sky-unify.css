@@ -521,3 +521,17 @@ html body :is(#sgs-sheet,.fc-sheet,.swp-sheet,.mn-sheet,.mns-sheet) .aqm-sheet-x
 html body #signs .sg-pick span:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){font-size:12.5px!important}
 html body #signs .aq-rel-t small:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){font-size:13px!important}
 html body section.sec:is(#signs,#sky):target .aqf:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){margin-bottom:96px!important}
+
+/* صفحات عن عقيق والشروط والخصوصية: بلا شريط تمرير جانبي ولا زر عين يغطي النص */
+html body section.sec:is(#about,#contact,#terms,#privacy,#disclaimer):target{scrollbar-width:none;-ms-overflow-style:none;scrollbar-gutter:auto;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+html body section.sec:is(#about,#contact,#terms,#privacy,#disclaimer):target::-webkit-scrollbar{display:none;width:0;height:0}
+html:has(#about:target) .cmp-fab{display:none!important}
+html:has(#about:target){scrollbar-gutter:auto!important}
+html:has(#contact:target) .cmp-fab{display:none!important}
+html:has(#contact:target){scrollbar-gutter:auto!important}
+html:has(#terms:target) .cmp-fab{display:none!important}
+html:has(#terms:target){scrollbar-gutter:auto!important}
+html:has(#privacy:target) .cmp-fab{display:none!important}
+html:has(#privacy:target){scrollbar-gutter:auto!important}
+html:has(#disclaimer:target) .cmp-fab{display:none!important}
+html:has(#disclaimer:target){scrollbar-gutter:auto!important}

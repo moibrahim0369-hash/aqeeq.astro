@@ -1323,7 +1323,7 @@ html body #sky .swc-pc:active{transform:scale(.985)}
 html body #sky .swc-pc:hover,html body #sky .swc-pc.is-sel{border-color:#6A2038;transform:none;background:linear-gradient(180deg,#FFFFFF,#FBF3E2);box-shadow:0 10px 20px rgba(94,34,52,.14)}
 html body #sky .swc-pc-m{flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 28%,#FFFDF5,#F1DFB8);border:1px solid #C5A059;box-shadow:0 3px 8px rgba(94,34,52,.14)}
 html body #sky .swc-pc .swc-pc-g{width:26px;height:26px;color:#6A2038}
-html body #sky .swc-pc[data-k="sun"] .swc-pc-m{background:radial-gradient(circle at 36% 30%,#FFE9A3,#F2C14E 58%,#D99A2B);border-color:#C98F27}
+html body #sky .swc-pc[data-k="sun"] .swc-pc-m{background:radial-gradient(circle at 36% 30%,#F6EBD0,#DEC283 62%,#C0A062);border-color:#B8965A}
 html body #sky .swc-pc[data-k="sun"] .swc-pc-g{color:#6E2410}
 html body #sky .swc-pc-t{flex:1;min-width:0;display:grid;gap:1px}
 html body #sky .swc-pc-t b{font:700 1.02rem 'Cairo',sans-serif;color:#33201f}

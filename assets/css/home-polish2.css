@@ -51,3 +51,15 @@ footer.foot .copy{margin:4px auto 0;max-width:640px;font:400 .66rem/1.7 'Cairo',
 
 /* بلاطة الحساب: لا تنتظر مراقب الظهور */
 html body #home.aqh .aqh-tools a.aqh-tool-login.aqh-reveal{opacity:1!important;transform:none!important}
+
+/* فوتر الرئيسية: بانر واحد للنبذة والحقوق والروابط، وأزرار التواصل والمشاركة في أسفل الصفحة */
+html body footer.foot .wrap:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){display:flex!important;flex-direction:column!important;align-items:center!important;gap:14px!important;padding-top:18px!important}
+html body footer.foot .foot-card:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){width:100%!important;max-width:640px!important;box-sizing:border-box!important;padding:18px 16px 14px!important;border-radius:22px!important;border:1px solid rgba(184,150,90,.5)!important;background:linear-gradient(180deg,#FFFDF8,#FAF4E8)!important;box-shadow:0 10px 26px rgba(90,24,40,.08)!important}
+html body footer.foot .foot-card .foot-about:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){max-width:none!important;margin:0 0 10px!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;border-radius:0!important}
+html body footer.foot .foot-card .copy:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){max-width:none!important;margin:0 0 12px!important;padding-top:12px!important;border-top:1px solid rgba(184,150,90,.35)!important;text-align:start!important}
+html body footer.foot .foot-card .sp-foot:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){margin:0!important;justify-content:center!important}
+html body footer.foot .foot-bottom:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j){display:flex!important;flex-direction:column!important;align-items:center!important;gap:10px!important;width:100%!important;margin:0!important}
+
+/* إزالة خطوط وتقطيعات الأقسام في الرئيسية: الفوتر بنفس خلفية الصفحة، وانتقال ناعم بعد قسم الهيرو */
+html body>footer.foot:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){background:transparent!important;border-top:0!important;box-shadow:none!important}
+html body #home.aqh .aqh-band:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l){background-image:linear-gradient(180deg,#F7F3EC 0,rgba(247,243,236,0) 90px),radial-gradient(520px 260px at 90% 0,rgba(183,138,82,.08),rgba(0,0,0,0) 70%)!important}
