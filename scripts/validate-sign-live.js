@@ -7,7 +7,9 @@ const add = (k, t, min, max) => { all.push([k, t]); const n = wc(t); if (n < min
 L.HEAD.forEach((t, i) => add('HEAD|' + (i + 1), t, 12, 30));
 for (const a of Object.keys(L.AREA)) { if (L.AREA[a].length !== 12) err.push(a + ': العدد ليس 12'); L.AREA[a].forEach((t, i) => add(a + '|' + (i + 1), t, 90, 150)); }
 for (const p of Object.keys(L.RTH || {})) { if (L.RTH[p].length !== 12) err.push('RTH ' + p + ': العدد ليس 12'); L.RTH[p].forEach((t, i) => add('RTH-' + p + '|' + (i + 1), t, 90, 150)); }
-for (const k of Object.keys(L)) if (!['HEAD', 'AREA', 'RTH'].includes(k) && Array.isArray(L[k])) L[k].forEach((t, i) => add(k + '|' + (i + 1), t, 90, 150));
+for (const k of Object.keys(L)) if (!['HEAD', 'AREA', 'RTH', 'DAY', 'DAYB', 'DAYV'].includes(k) && Array.isArray(L[k])) L[k].forEach((t, i) => add(k + '|' + (i + 1), t, k === 'SIGNDAY' ? 75 : 90, 150));
+L.DAYB.forEach((t, i) => add('DAY|' + (i + 1), t, 90, 150));
+L.DAYV.forEach((p, i) => p.forEach((t, j) => add('DAY|' + (i + 1) + 'v' + (j + 2), t, 210, 330)));
 const seen = {}; all.forEach(([k, t]) => { const o = t.split(/\s+/).slice(0, 2).join(' '); (seen[o] = seen[o] || []).push(k); });
 Object.entries(seen).forEach(([o, ks]) => ks.length > 1 && err.push('افتتاح مكرر «' + o + '»: ' + ks.join('، ')));
 const g = {}; all.filter(([k]) => !k.startsWith('HEAD')).forEach(([k, t]) => { const w = t.replace(/[،.؟:!]/g, '').split(/\s+/); const s = new Set(); for (let i = 0; i + 6 <= w.length; i++) s.add(w.slice(i, i + 6).join(' ')); s.forEach(x => (g[x] = g[x] || []).push(k)); });

@@ -2495,7 +2495,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const rxPart = pRx ? `<section class="sg-part"><h5>${pRx.t}</h5>${pRx.html}</section>` : "";
     const lunPart = L.lun && L.lun.txt ? `<section class="sg-part"><h5>${L.lun.t}: ${L.lun.cap}</h5>${paras(L.lun.txt).map(x => `<p>${x}</p>`).join("")}</section>` : "";
     const moonPart = `<section class="sg-part"><h5>نبض القمر وحركته</h5>${head ? `<p class="sg-lead">${head}</p>` : ""}${paras(day).map(x => `<p>${x}</p>`).join("")}</section>`;
-    const dayPart = `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5><p>استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.</p><p>وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.</p><p>ودرس يومك: ${s.growth}.</p></section>`;
+    const sd = (AL && AL.SIGNDAY && AL.SIGNDAY[i]) || "";
+    const dayPart = sd ? `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5>${paras(sd).map(x => `<p>${x}</p>`).join("")}</section>` : `<section class="sg-part"><h5>طاقة يومك في ${s.n}</h5><p>استخدم ${s.strength} في أول موقف يحتاجك اليوم، واختر شيئًا واحدًا وأنهِه بهدوء.</p><p>وانتبه إلى ${s.shadow}، وخذ نفسًا قبل أن ترد.</p><p>ودرس يومك: ${s.growth}.</p></section>`;
     curList = { fc: [{ svg: ZI.sparkorb, t: "توقع يومك", span: (L.near[0] || {}).span, nxt: (L.near[0] || {}).nxt, sub: (L.near[0] || {}).sub, html: `<div class="sg-flow">${moonPart}${sep}${sunPart}${aspPart ? sep + aspPart : ""}${rxPart ? sep + rxPart : ""}${lunPart ? sep + lunPart : ""}${sep}${dayPart}</div>`, q }] };
     return `
       <section class="sg-sec">
