@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>__TITLE__</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ink: #241d2e;
+    --ink-soft: #4a4157;
+    --gold: #b8892d;
+    --gold-soft: #c9a24b;
+    --paper: #fbf8f3;
+    --night: #171130;
+    --night-2: #241a4a;
+    --rule: #e8dfd2;
+  }
+  body {
+    font-family: "Noto Naskh Arabic", serif;
+    color: var(--ink);
+    background: var(--paper);
+    font-size: 12.5pt;
+    line-height: 2.05;
+  }
+
+  /* ===== Cover ===== */
+  .cover {
+    width: 210mm; height: 297mm;
+    page-break-after: always;
+    background:
+      radial-gradient(ellipse 90% 60% at 70% 12%, rgba(201,162,75,0.20), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 25% 85%, rgba(90,70,160,0.35), transparent 65%),
+      linear-gradient(160deg, var(--night-2) 0%, var(--night) 55%, #0d0a1e 100%);
+    color: #f3ead6;
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 26mm 22mm;
+  }
+  .cover::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.2px 1.2px at 12% 22%, #fff8 50%, transparent 51%),
+      radial-gradient(1px 1px at 34% 8%, #fff6 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 58% 18%, #fff9 50%, transparent 51%),
+      radial-gradient(1px 1px at 76% 30%, #fff5 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 88% 12%, #fff7 50%, transparent 51%),
+      radial-gradient(1px 1px at 22% 45%, #fff4 50%, transparent 51%),
+      radial-gradient(1.3px 1.3px at 45% 38%, #fff6 50%, transparent 51%),
+      radial-gradient(1px 1px at 67% 52%, #fff5 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 83% 64%, #fff6 50%, transparent 51%),
+      radial-gradient(1px 1px at 15% 70%, #fff4 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 38% 82%, #fff6 50%, transparent 51%),
+      radial-gradient(1px 1px at 62% 74%, #fff5 50%, transparent 51%),
+      radial-gradient(1.1px 1.1px at 90% 88%, #fff6 50%, transparent 51%);
+  }
+  .cover .brand {
+    text-align: center; position: relative; z-index: 2;
+    font-family: "Noto Kufi Arabic", sans-serif;
+    font-size: 15pt; letter-spacing: 1px; color: var(--gold-soft);
+  }
+  .cover .brand .sub { font-size: 9.5pt; color: #b9a8d8; letter-spacing: 3px; margin-top: 2mm; font-family: "Noto Sans Arabic", sans-serif; }
+  .cover .middle { text-align: center; position: relative; z-index: 2; }
+  .cover .code {
+    font-family: "Noto Kufi Arabic", sans-serif;
+    font-size: 40pt; font-weight: 700; color: #fff;
+    letter-spacing: 6px; direction: ltr;
+    text-shadow: 0 0 26px rgba(201,162,75,0.55);
+  }
+  .cover .code-label { font-size: 10.5pt; color: #b9a8d8; margin-top: 3mm; font-family: "Noto Sans Arabic", sans-serif; }
+  .cover .title {
+    font-family: "Noto Kufi Arabic", sans-serif;
+    font-size: 27pt; font-weight: 700; color: var(--gold-soft);
+    margin-top: 10mm; line-height: 1.7;
+  }
+  .cover .subtitle { font-size: 13.5pt; color: #d8ccf0; margin-top: 4mm; }
+  .cover .ornament { margin: 8mm auto 0; width: 46mm; display: block; }
+  .cover .footer {
+    text-align: center; position: relative; z-index: 2;
+    font-size: 9.5pt; color: #8f83b3; font-family: "Noto Sans Arabic", sans-serif;
+    line-height: 1.9;
+  }
+
+  /* ===== Body pages ===== */
+  .content { padding: 20mm 19mm 22mm; }
+  h1, h2, h3 { font-family: "Noto Kufi Arabic", sans-serif; }
+  .content > h1 { display: none; } /* title lives on the cover */
+  h2 {
+    font-size: 17pt; color: var(--night); font-weight: 700;
+    margin: 9mm 0 4mm; padding-bottom: 2.5mm;
+    border-bottom: 1px solid var(--rule);
+    page-break-after: avoid;
+  }
+  h2::before {
+    content: "✦"; color: var(--gold); margin-left: 3mm; font-size: 12pt;
+  }
+  h2:first-of-type { margin-top: 0; }
+  h3 {
+    font-size: 13.5pt; color: var(--gold); font-weight: 700;
+    margin: 6mm 0 2.5mm; page-break-after: avoid;
+  }
+  p { margin: 0 0 3.5mm; text-align: justify; color: var(--ink-soft); }
+  p strong, li strong { color: var(--ink); font-weight: 700; }
+  ul, ol { margin: 0 6mm 4mm 0; padding: 0 5mm 0 0; }
+  li { margin-bottom: 2mm; color: var(--ink-soft); }
+  li::marker { color: var(--gold); }
+  .sig {
+    margin-top: 10mm; padding-top: 5mm; border-top: 1px solid var(--rule);
+    text-align: center; font-size: 9pt; color: #a89f8d;
+    font-family: "Noto Sans Arabic", sans-serif;
+  }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="brand">
+      عقيق أسترو
+      <div class="sub">AQEEQ ASTRO · مصفوفة القدر</div>
+    </div>
+    <div class="middle">
+      <div class="code">__CODE__</div>
+      <div class="code-label">الذيل الكارمي · القراءة الرمزية الكاملة</div>
+      <div class="title">__TITLE__</div>
+      <div class="subtitle">__SUBTITLE__</div>
+      <svg class="ornament" viewBox="0 0 200 14" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="7" x2="82" y2="7" stroke="#c9a24b" stroke-width="0.8" opacity="0.7"/>
+        <path d="M100 1 L104 7 L100 13 L96 7 Z" fill="#c9a24b"/>
+        <circle cx="90" cy="7" r="1.6" fill="#c9a24b" opacity="0.8"/>
+        <circle cx="110" cy="7" r="1.6" fill="#c9a24b" opacity="0.8"/>
+        <line x1="118" y1="7" x2="200" y2="7" stroke="#c9a24b" stroke-width="0.8" opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="footer">
+      تقرير رمزي تأملي للتطور الذاتي · ليس بديلاً عن استشارة طبية أو نفسية أو قانونية<br>
+      © عقيق أسترو — جميع الحقوق محفوظة
+    </div>
+  </div>
+  <div class="content">
+__BODY__
+  <div class="sig">عقيق أسترو · مصفوفة القدر · الذيل الكارمي __CODE__</div>
+  </div>
+</body>
+</html>

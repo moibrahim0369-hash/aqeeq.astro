@@ -1,1 +1,189 @@
-[{"code": "18-6-6", "words": 3926}, {"code": "18-9-9", "words": 3072}, {"code": "15-5-8", "words": 3547}, {"code": "6-17-11", "words": 3150}, {"code": "6-20-14", "words": 3914}, {"code": "9-3-21", "words": 3878}, {"code": "9-15-6", "words": 3431}, {"code": "12-19-7", "words": 3787}, {"code": "15-8-11", "words": 2982}, {"code": "15-20-5", "words": 3313}, {"code": "18-3-12", "words": 3652}, {"code": "18-6-15", "words": 3653}, {"code": "18-9-21", "words": 4094}, {"code": "19-22-3", "words": 3136}, {"code": "21-4-10", "words": 2997}, {"code": "3-13-10", "words": 2998}, {"code": "3-7-22", "words": 3050}, {"code": "8-14-6", "words": 2740}, {"code": "17-5-6", "words": 2777}]
+{
+ "canon_count": 26,
+ "reports": [
+  {
+   "code": "18-9-9",
+   "status": "existing",
+   "folder_code": "18-9-9",
+   "note": "",
+   "file": "pdf/karmic-tail-18-9-9.pdf",
+   "word_count": 3222
+  },
+  {
+   "code": "9-18-9",
+   "status": "new",
+   "file": "pdf/karmic-tail-9-18-9.pdf",
+   "word_count": 1752
+  },
+  {
+   "code": "9-9-18",
+   "status": "new",
+   "file": "pdf/karmic-tail-9-9-18.pdf",
+   "word_count": 2059
+  },
+  {
+   "code": "15-20-5",
+   "status": "existing",
+   "folder_code": "15-20-5",
+   "note": "",
+   "file": "pdf/karmic-tail-15-20-5.pdf",
+   "word_count": 3458
+  },
+  {
+   "code": "15-5-20",
+   "status": "new",
+   "file": "pdf/karmic-tail-15-5-20.pdf",
+   "word_count": 1798
+  },
+  {
+   "code": "18-6-6",
+   "status": "existing",
+   "folder_code": "18-6-6",
+   "note": "",
+   "file": "pdf/karmic-tail-18-6-6.pdf",
+   "word_count": 4083
+  },
+  {
+   "code": "6-18-6",
+   "status": "new",
+   "file": "pdf/karmic-tail-6-18-6.pdf",
+   "word_count": 1712
+  },
+  {
+   "code": "6-6-18",
+   "status": "new",
+   "file": "pdf/karmic-tail-6-6-18.pdf",
+   "word_count": 1707
+  },
+  {
+   "code": "18-6-15",
+   "status": "existing",
+   "folder_code": "18-6-15",
+   "note": "",
+   "file": "pdf/karmic-tail-18-6-15.pdf",
+   "word_count": 3804
+  },
+  {
+   "code": "12-19-7",
+   "status": "existing",
+   "folder_code": "12-19-7",
+   "note": "",
+   "file": "pdf/karmic-tail-12-19-7.pdf",
+   "word_count": 3928
+  },
+  {
+   "code": "9-12-3",
+   "status": "new",
+   "file": "pdf/karmic-tail-9-12-3.pdf",
+   "word_count": 1702
+  },
+  {
+   "code": "3-12-9",
+   "status": "new",
+   "file": "pdf/karmic-tail-3-12-9.pdf",
+   "word_count": 1680
+  },
+  {
+   "code": "21-4-10",
+   "status": "existing",
+   "folder_code": "21-4-10",
+   "note": "",
+   "file": "pdf/karmic-tail-21-4-10.pdf",
+   "word_count": 3146
+  },
+  {
+   "code": "21-10-16",
+   "status": "new",
+   "file": "pdf/karmic-tail-21-10-16.pdf",
+   "word_count": 1807
+  },
+  {
+   "code": "21-10-7",
+   "status": "new",
+   "file": "pdf/karmic-tail-21-10-7.pdf",
+   "word_count": 1654
+  },
+  {
+   "code": "18-3-12",
+   "status": "existing",
+   "folder_code": "18-3-12",
+   "note": "",
+   "file": "pdf/karmic-tail-18-3-12.pdf",
+   "word_count": 3800
+  },
+  {
+   "code": "12-16-4",
+   "status": "new",
+   "file": "pdf/karmic-tail-12-16-4.pdf",
+   "word_count": 3476
+  },
+  {
+   "code": "6-14-8",
+   "status": "existing",
+   "folder_code": "8-14-6",
+   "note": "ترتيب معكوس عن القانون",
+   "file": "pdf/karmic-tail-8-14-6.pdf",
+   "word_count": 2888
+  },
+  {
+   "code": "6-17-11",
+   "status": "existing",
+   "folder_code": "6-17-11",
+   "note": "",
+   "file": "pdf/karmic-tail-6-17-11.pdf",
+   "word_count": 3291
+  },
+  {
+   "code": "6-20-14",
+   "status": "existing",
+   "folder_code": "6-20-14",
+   "note": "",
+   "file": "pdf/karmic-tail-6-20-14.pdf",
+   "word_count": 4057
+  },
+  {
+   "code": "3-7-22",
+   "status": "existing",
+   "folder_code": "3-7-22",
+   "note": "",
+   "file": "pdf/karmic-tail-3-7-22.pdf",
+   "word_count": 3195
+  },
+  {
+   "code": "3-22-19",
+   "status": "existing",
+   "folder_code": "19-22-3",
+   "note": "ترتيب معكوس عن القانون",
+   "file": "pdf/karmic-tail-19-22-3.pdf",
+   "word_count": 3283
+  },
+  {
+   "code": "9-15-6",
+   "status": "existing",
+   "folder_code": "9-15-6",
+   "note": "",
+   "file": "pdf/karmic-tail-9-15-6.pdf",
+   "word_count": 3578
+  },
+  {
+   "code": "12-18-6",
+   "status": "new",
+   "file": "pdf/karmic-tail-12-18-6.pdf",
+   "word_count": 1667
+  },
+  {
+   "code": "15-8-11",
+   "status": "existing",
+   "folder_code": "15-8-11",
+   "note": "",
+   "file": "pdf/karmic-tail-15-8-11.pdf",
+   "word_count": 3128
+  },
+  {
+   "code": "18-10-10",
+   "status": "new",
+   "file": "pdf/karmic-tail-18-10-10.pdf",
+   "word_count": 1668
+  }
+ ]
+}
