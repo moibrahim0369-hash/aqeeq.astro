@@ -430,8 +430,8 @@ html body .swp-sheet .swp-psy:not(#_a):not(#_b),html body .fc-about:not(#_a):not
 
 /* قراءة الكوكب في البرج: سطر افتتاحي وطيّ التفاصيل */
 .swp-fold{display:grid;gap:12px}
-.swp-fold .swp-full{display:block;animation:trmIn .32s ease}
-.swp-fold .swp-full[hidden]{display:none}
+.swp-full{display:block;animation:trmIn .32s ease}
+.swp-full[hidden]{display:none}
 .swp-fold .trm-bn{margin:6px auto 2px}
 @media (prefers-reduced-motion:reduce){.swp-fold .swp-full{animation:none}}
 
@@ -443,3 +443,11 @@ html body .fc-now:not(#_a):not(#_b) .fc-now-g .sg-svg{width:28px;height:28px;col
 html body .fc-now:not(#_a):not(#_b) .fc-now-about{padding-top:12px;border-top:1px solid rgba(233,206,142,.3)}
 html body .fc-now:not(#_a):not(#_b) .fc-now-about h4{margin:0 0 6px;font:700 .98rem 'Cairo',sans-serif;color:#F3DFA8}
 html body .fc-now:not(#_a):not(#_b) .fc-now-about p{margin:0;font:500 .9rem/1.9 'Cairo',sans-serif;color:#F7ECD8}
+
+/* زر «تعمّق في القراءة كاملة» بالشكل الشفاف نفسه في كل الأقسام */
+html body .swp-fold .trm-bn:not(#_a):not(#_b){width:auto;min-width:200px;margin:14px auto;padding:9px 22px;border-radius:999px;background:transparent;border:1px solid #7A3048;color:#7A3048;font:700 .92rem 'Cairo',sans-serif;box-shadow:none}
+html body .swp-fold .trm-bn:not(#_a):not(#_b) .trm-bn-t{color:#7A3048}
+html body .swp-fold .trm-bn:not(#_a):not(#_b) svg{stroke:#7A3048}
+html body .swp-fold .trm-bn:not(#_a):not(#_b):active{background:rgba(122,48,72,.08)}
+html body .swp-fold.is-open .trm-bn svg,.swp-fold.is-open .trm-bn svg{transform:rotate(180deg)}
+.aqm-sheet-body>.trm-full,.aqm-sheet-body>.swp-full,#sky-panel>.swp-full{margin-top:14px;padding-top:14px;border-top:1px solid rgba(214,182,110,.5)}

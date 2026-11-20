@@ -8582,8 +8582,12 @@ window.AqIngress = {"sun":["تدخل الشمس برج الحمل تقريبًا
     var box = b.closest('.trm, .swp-fold'), f = box && box.querySelector('.trm-full, .swp-full'); if (!f) return;
     var open = f.hidden; f.hidden = !open; b.setAttribute('aria-expanded', open); box.classList.toggle('is-open', open);
     var t = b.querySelector('.trm-bn-t'); if (t) t.textContent = open ? 'إخفاء التفاصيل' : 'تعمّق في القراءة كاملة';
-    if (open) { try { f.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } catch (x) { } }
+    /* التفاصيل تنزل إلى آخر الورقة فلا تفصل بين القراءة وما بعدها، والقارئ ينزل إليها بنفسه */
+    var host = box.closest('.aqm-sheet-body, .swp-body, #sky-panel') || box.parentNode;
+    if (open) { if (f.parentNode !== host) host.appendChild(f); }
+    else if (f.parentNode !== box) box.appendChild(f);
   });
+
   window.AqReadingBlock = { block: block, stay: stay };
 })();
 
