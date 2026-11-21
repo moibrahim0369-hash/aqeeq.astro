@@ -4,6 +4,7 @@
   var sec = document.getElementById('astro-maps'), content = document.getElementById('eam-content');
   if (!sec || !content) return;
   var IC = {
+    shadbala: '<path d="M4 20V9M12 20V4M20 20v-7M2 20h20"/>',
     ashtakavarga: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
     pratyantar: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 5v7l3 2"/>',
     c1: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5M12 15.5v5M3.5 12h5M15.5 12h5"/>',
@@ -44,6 +45,7 @@
     ['vargas', 'الخرائط المقسمة', 'من D1 إلى D60 بالرسمين'],
     ['moonsun', 'خريطتا القمر والشمس', 'مشاعرك وجوهرك'],
     ['dasha', 'فترات عمرك', 'الفترة الكبرى والصغرى التي تعيشها الآن', 'داشا · فيمشوتاري'],
+    ['shadbala', 'قوة الكواكب', 'القوى الست ومكوناتها الحسابية', 'شادبالا'],
     ['ashtakavarga', 'نقاط البروج', 'الجداول السبعة والمجموع العام ومصدر كل نقطة', 'أشتاكافارغا'],
     ['pratyantar', 'الفترات الدقيقة', 'الكبرى والصغرى والتسع فترات بموعد البداية والنهاية', 'براتيانتر داشا'],
     ['sade', 'اختبار زحل', 'أين زحل من قمرك الآن', 'زحل · ساتي ساتي'],
@@ -77,7 +79,7 @@
   };
   function chName(k) { var c = CH[k]; return c[0] + ' (' + c[1] + ' · ' + c[2] + ')'; }
   var CHG = [['الأساس', ['1', 'moon', 'sun']], ['الحياة اليومية', ['2', '3', '4', '5', '6', '7']], ['المسار والعمق', ['8', '9', '10', '11', '12']], ['التخصص الدقيق', ['16', '20', '24', '27', '30', '40', '45', '60']]];
-  var TIMET = ['dasha', 'pratyantar', 'ashtakavarga', 'sade', 'lunar', 'year', 'expert'];
+  var TIMET = ['dasha', 'pratyantar', 'ashtakavarga', 'shadbala', 'sade', 'lunar', 'year', 'expert'];
   var ALIAS = { birth: 'c:1', vargas: 'c:1', moonsun: 'c:moon' };
   function tileOf(id) { return TILES.filter(function (t) { return t[0] === id; })[0]; }
   function tilesHTML(admin) {
@@ -442,6 +444,10 @@
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
     result.insertBefore(bar, grid);
     var tmc = timeCard(), tmw = accEl('آلة الزمن', 'dasha', '', true, 'dasha year'); tmw.querySelector('.eam-acc-body').appendChild(tmc); tmc.dataset.vhG = ''; result.appendChild(tmw);
+    if (window.AqShadbala) {
+      var sbw = accEl('قوة الكواكب · شادبالا', 'shadbala', '', true, 'shadbala');
+      sbw.classList.add('vh-inline'); sbw.querySelector('.eam-acc-body').appendChild(window.AqShadbala.createCard()); result.appendChild(sbw);
+    }
     if (window.AqAshtakavarga) {
       var avw = accEl('نقاط البروج · أشتاكافارغا', 'ashtakavarga', '', true, 'ashtakavarga');
       avw.classList.add('vh-inline'); avw.querySelector('.eam-acc-body').appendChild(window.AqAshtakavarga.createCard()); result.appendChild(avw);

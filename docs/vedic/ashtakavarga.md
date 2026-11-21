@@ -10,7 +10,7 @@ Positions use the existing Lahiri engine. A planet at a sign boundary can change
 
 ## Verification
 
-The implementation encodes destination-house contributor sets. Tests use an independently represented contributor-to-house reference, crosschecked against classical text and a separate published implementation. 200 deterministic position sets compare all 134,400 contribution cells, the 84 BAV totals and the SAV. Rotation invariance, value range, missing-time/nonfinite guards and the six recension-sensitive cells are checked. The 337 checksum alone cannot detect recension mixing.
+The implementation encodes destination-house contributor sets. Tests use an independently represented contributor-to-house reference, crosschecked against classical text and a separate published implementation. 200 deterministic position sets compare all 134,400 contribution cells, 1,400 BAV totals and 200 SAV totals. Rotation invariance, value range, missing-time/nonfinite guards and the six recension-sensitive cells are checked. The 337 checksum alone cannot detect recension mixing.
 
 One web translation has transcription conflicts: the favourable paragraph omits Jupiter's own 1st/4th and swaps Sun/Saturn in Mercury's fifth. Its complementary unfavourable table and independent contributor tables settle these. These are corrected explicitly, not averaged.
 

@@ -1812,6 +1812,261 @@
 })();
 
 ;
+/* assets/js/vedic-pratyantar.js */
+/* براتيانتر داشا: تقسيم كل أنتر بالنسب نفسها، دون قصّ الفترة الأولى عند الميلاد.
+   المرجع: BPHS، فصل حساب الداشا 51: 1-2، http://jyotishvidya.com/ch51.htm
+   طول السنة المتبع في عقيق 365.25 يومًا. عرض الثواني لا يثبت دقة وقت الميلاد. */
+(function () {
+  'use strict';
+  var V = window.AqVedic; if (!V) return;
+  function pratyantars(antar) {
+    if (!antar || !Number.isInteger(antar.lord) || antar.lord < 0 || antar.lord > 8 || !Number.isFinite(antar.s) || !Number.isFinite(antar.e) || antar.e <= antar.s) return [];
+    var list = V.antars(antar);
+    // يمنع فجوة حسابية دون المللي ثانية عند آخر حد بسبب الجمع العشري.
+    list[list.length - 1].e = antar.e;
+    return list;
+  }
+  function active(list, ms) {
+    for (var i = 0; i < list.length; i++) if (ms >= list[i].s && ms < list[i].e) return i;
+    return -1;
+  }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function createCard() {
+    var L = V.last, box = document.createElement('section'); box.className = 'vpd';
+    if (!L) { box.textContent = 'احسب خريطتك أولًا.'; return box; }
+    var moon = (L.ch.bodies || []).filter(function (b) { return b.key === 'moon'; })[0];
+    var birth = L.natal && Number.isFinite(L.natal.utcMs) ? L.natal.utcMs : (L.ch.jde - 2440587.5) * 864e5;
+    if (!moon || !Number.isFinite(birth)) { box.textContent = 'تعذر حساب الفترات من بيانات الميلاد.'; return box; }
+    var ds = V.dashas(moon.lon, birth), names = V.T.LORDS, mi = 0, ai = 0;
+    var local = 'UTC'; try { local = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'; } catch (e) { }
+    var zone = local;
+    box.innerHTML = '<p class="vpd-lead">الفترة الكبرى، وداخلها الصغرى، ثم الفترات الدقيقة التسع. اختر أي فترة لتتصفح توقيتها كاملًا.</p>' +
+      '<div class="vpd-controls"><label>الفترة الكبرى · ماها<select class="vpd-maha" aria-label="الفترة الكبرى"></select></label><label>الفترة الصغرى · أنتر<select class="vpd-antar" aria-label="الفترة الصغرى"></select></label></div>' +
+      '<div class="vpd-toolbar"><label>التوقيت<select class="vpd-zone" aria-label="توقيت عرض الفترات"><option value="' + esc(local) + '">توقيت جهازك · ' + esc(local) + '</option>' + (local === 'UTC' ? '' : '<option value="UTC">UTC · التوقيت العالمي</option>') + '</select></label><button type="button" class="vpd-now">الفترة الحالية</button></div>' +
+      '<div class="vpd-out" aria-live="polite"></div>' +
+      '<p class="vpd-method">الحساب: مدة الأنتر × سنوات حاكم البراتيانتر ÷ 120. تبدأ الفترات بحاكم الأنتر ثم تتبع ترتيب فيمشوتاري. السنة هنا 365.25 يومًا.</p>' +
+      '<p class="vpd-note">كل فترة تبدأ عند وقت البداية وتنتهي قبل وقت النهاية مباشرة. قد تبدأ الفترة الأولى قبل ميلادك لأن الرصيد المتبقي جزء من دورة بدأت قبله. عرض الساعة والثواني دقة حسابية، وليس ضمانًا لدقة وقت الميلاد أو تنبؤًا بحدث.</p>' +
+      (L.ch.known ? '' : '<p class="vpd-warning">وقت الميلاد غير معروف: هذه توقيتات تقديرية مبنية على الوقت المفترض، وقد تتغير بمعرفة ساعة الميلاد.</p>');
+    var msel = box.querySelector('.vpd-maha'), asel = box.querySelector('.vpd-antar'), out = box.querySelector('.vpd-out');
+    function date(ms, short) {
+      var opts = { timeZone: zone, year: 'numeric', month: 'short', day: 'numeric' };
+      if (!short) { opts.hour = '2-digit'; opts.minute = '2-digit'; opts.second = '2-digit'; opts.hourCycle = 'h23'; }
+      return new Intl.DateTimeFormat('ar-EG', opts).format(new Date(ms));
+    }
+    function stamp(ms) {
+      var clock = new Intl.DateTimeFormat('en-GB', { timeZone: zone, hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).format(new Date(ms));
+      return '<time datetime="' + new Date(ms).toISOString() + '"><span>' + date(ms, true) + '</span><small dir="ltr">' + clock + '</small></time>';
+    }
+    function option(x, i) { return '<option value="' + i + '">' + names[x.lord] + ' · ' + date(x.s, true) + '</option>'; }
+    function populate() {
+      msel.innerHTML = ds.map(option).join(''); msel.value = mi;
+      asel.innerHTML = V.antars(ds[mi]).map(option).join(''); asel.value = ai;
+    }
+    function draw() {
+      var m = ds[mi], a = V.antars(m)[ai], ps = pratyantars(a), now = Date.now();
+      out.innerHTML = '<div class="vpd-path"><span>ماها <b>' + names[m.lord] + '</b></span><i aria-hidden="true">‹</i><span>أنتر <b>' + names[a.lord] + '</b></span><em>براتيانتر</em></div>' +
+        '<div class="vpd-parent"><span>الكبرى المختارة</span><b>' + date(m.s) + '</b><span>حتى</span><b>' + date(m.e) + '</b></div>' +
+        '<div class="vpd-parent"><span>الصغرى المختارة</span><b>' + date(a.s) + '</b><span>حتى</span><b>' + date(a.e) + '</b></div>' +
+        '<ol class="vpd-list">' + ps.map(function (p, i) {
+          var on = now >= p.s && now < p.e, days = (p.e - p.s) / 864e5;
+          return '<li' + (on ? ' class="is-current"' : '') + '><div class="vpd-period-head"><span class="vpd-number">' + (i + 1) + '</span><h6>' + names[p.lord] + '</h6>' + (on ? '<em>الآن</em>' : '') + '<small>نحو ' + days.toLocaleString('ar-EG', { maximumFractionDigits: 1 }) + ' يوم</small></div><dl><div><dt>تبدأ</dt><dd>' + stamp(p.s) + '</dd></div><div><dt>تنتهي</dt><dd>' + stamp(p.e) + '</dd></div></dl></li>';
+        }).join('') + '</ol><p class="vpd-zone-note">جميع المواعيد بتوقيت <b dir="ltr">' + esc(zone) + '</b>. نهاية الفترة هي بداية التالية.</p>';
+    }
+    function current() {
+      var now = Date.now(), selected = active(ds, now), ref = selected >= 0 && now >= birth ? now : birth;
+      mi = active(ds, ref); if (mi < 0) mi = 0;
+      ai = active(V.antars(ds[mi]), ref); if (ai < 0) ai = 0;
+      populate(); draw();
+      if (selected < 0 || now < birth) out.insertAdjacentHTML('afterbegin', '<p class="vpd-warning">التاريخ الحالي خارج نطاق العمر المحسوب. نعرض الفترة التي تحتوي لحظة الميلاد، ويمكنك تصفح بقية الدورة.</p>');
+    }
+    msel.addEventListener('change', function () { mi = +msel.value; ai = 0; populate(); draw(); });
+    asel.addEventListener('change', function () { ai = +asel.value; draw(); });
+    box.querySelector('.vpd-zone').addEventListener('change', function (e) { zone = e.target.value; populate(); draw(); });
+    box.querySelector('.vpd-now').addEventListener('click', current);
+    current(); return box;
+  }
+  V.pratyantars = pratyantars;
+  window.AqPratyantar = { createCard: createCard };
+})();
+
+;
+/* assets/js/vedic-ashtakavarga.js */
+/* Raw Parashari Ashtakavarga. BPHS 66.43–60, favourable marks only. */
+(function () {
+  'use strict';
+  var KEYS = ['sun','moon','mars','mercury','jupiter','venus','saturn','asc'];
+  var NAMES = ['الشمس','القمر','المريخ','عطارد','المشتري','الزهرة','زحل','الطالع'];
+  // Each row lists contributors for houses 1..12. Index order is KEYS above.
+  // Encoded by destination house, not copied from a software implementation.
+  var HOUSE = [
+    ['026','026','137','0267','34','13457','0256','026','02346','012367','0123467','357'],
+    ['134','24','0123567','345','2356','01267','01345','034','15','0123457','01234567',''],
+    ['267','2','0137','26','03','013457','26','256','6','02467','01234567','45'],
+    ['23567','12567','35','12567','035','01347','26','124567','02356','12367','01234567','034'],
+    ['02347','0123457','046','02347','13567','3567','01247','024','01357','023457','0123457','6'],
+    ['157','157','123567','12567','134567','23','','014567','1234567','456','01234567','012'],
+    ['07','0','1267','07','246','1234567','0','03','3','0237','01234567','2345']
+  ];
+  var TOTAL = [48,49,39,54,56,52,39];
+  function norm(x) { return ((x % 360) + 360) % 360; }
+  function signsOf(ch) {
+    if (!ch || !ch.known || !Number.isFinite(ch.asc)) throw new Error('وقت ميلاد معلوم وطالع صالح مطلوبان لإضافة مساهمة الطالع.');
+    return KEYS.map(function (k) {
+      var b = (ch.bodies || []).filter(function (x) { return String(x.key).toLowerCase() === k; })[0];
+      var v = k === 'asc' ? ch.asc : b && b.lon;
+      if (!Number.isFinite(v)) throw new Error('موضع كوكب مطلوب غير متاح.');
+      return Math.floor(norm(v) / 30);
+    });
+  }
+  function calculate(ch) {
+    var signs = signsOf(ch), sav = Array(12).fill(0);
+    var bav = HOUSE.map(function (houses, p) {
+      var contributors = KEYS.map(function () { return Array(12).fill(0); });
+      houses.forEach(function (cs, h) { cs.split('').forEach(function (c) { var k = +c; contributors[k][(signs[k] + h) % 12] = 1; }); });
+      var values = Array.from({length:12}, function (_, s) { return contributors.reduce(function (a,r) { return a + r[s]; }, 0); });
+      if (values.reduce(function(a,b){return a+b;},0) !== TOTAL[p]) throw new Error('فشل تحقق مجموع الجدول.');
+      values.forEach(function(v,s){sav[s]+=v;});
+      return { key: KEYS[p], values: values, contributors: contributors, total: TOTAL[p] };
+    });
+    return { bav: bav, sav: sav, total: sav.reduce(function(a,b){return a+b;},0), lagna: signs[7], convention: 'BPHS-66-raw-favourable-Parashara' };
+  }
+  function createCard() {
+    var el = document.createElement('div'); el.className = 'vav vad';
+    var L = window.AqVedic && window.AqVedic.last;
+    if (!L) { el.textContent = 'احسب خريطتك أولًا.'; return el; }
+    var r; try { r = calculate(L.ch); } catch(e) { el.innerHTML = '<p class="vad-warning"></p>'; el.firstChild.textContent=e.message+' لا نستبدل الطالع بالقمر هنا حتى لا نعطي مجموعًا مضللًا.'; return el; }
+    el.innerHTML = '<p class="vad-lead">نقاط البروج من الكواكب السبعة والطالع. اختر المجموع العام أو جدول كوكب لعرض مساهمات المصادر الثمانية.</p><label>الجدول<select class="vav-select"><option value="sav">سارفا · المجموع العام (337)</option>'+r.bav.map(function(b,p){return '<option value="'+p+'">بِهِنّا · '+NAMES[p]+' ('+b.total+')</option>';}).join('')+'</select></label><div class="vav-out" aria-live="polite"></div><p class="vad-note">المدرسة: باراشارا، BPHS 66، النقاط الملائمة قبل أي اختزال. لا يشمل راهو وكيتو أو جدولًا ثامنًا للطالع. بعض النصوص تسمي العلامة الملائمة «ريخا»، ونسميها هنا نقطة ملائمة بوضوح. لا نخلطها بالنقاط غير الملائمة.</p><p class="vad-note">مجموع الجداول السبعة دائمًا 337، لكنه لا يثبت المدرسة وحده. جداول فاراهاميهيرا تختلف في ست خلايا مع بقاء المجموع نفسه. هذه أعداد تقليدية للتأمل وليست احتمالات نجاح أو توقعًا مضمونًا.</p>';
+    function render() {
+      var val=el.querySelector('select').value, idx=val==='sav'?-1:+val, arr=idx<0?r.sav:r.bav[idx].values;
+      var h='<div class="vad-signs">';
+      arr.forEach(function(v,s){h+='<article><span>'+window.AqVedic.T.SG[s]+'</span><b>'+v+'</b><small>البيت '+((s-r.lagna+12)%12+1)+'</small></article>';}); h+='</div>';
+      h+='<p class="vad-total">المجموع: '+(idx<0?r.total:r.bav[idx].total)+'</p>';
+      if(idx>=0) {
+        h+='<h5>مصدر كل نقطة</h5><p class="vad-note">اسحب الجدول أفقيًا لعرض البروج الاثني عشر. 1 مساهمة ملائمة، و0 لا مساهمة.</p><div class="vad-scroll" tabindex="0" aria-label="مساهمات المصادر في البروج"><table><thead><tr><th scope="col">المصدر</th>'+window.AqVedic.T.SG.map(function(n){return '<th scope="col">'+n+'</th>';}).join('')+'</tr></thead><tbody>';
+        r.bav[idx].contributors.forEach(function(row,k){h+='<tr><th scope="row">'+NAMES[k]+'</th>'+row.map(function(v){return '<td>'+v+'</td>';}).join('')+'</tr>';});
+        h+='<tr><th scope="row">المجموع</th>'+arr.map(function(v){return '<td><b>'+v+'</b></td>';}).join('')+'</tr></tbody></table></div>';
+      }
+      el.querySelector('.vav-out').innerHTML=h;
+    }
+    el.querySelector('select').addEventListener('change',render);render();return el;
+  }
+  window.AqAshtakavarga={ calculate:calculate, createCard:createCard };
+})();
+
+;
+/* assets/js/vedic-shadbala.js */
+/* Shadbala, a declared BPHS/Saravali calculation convention, not a cross-software standard. */
+(function () {
+  'use strict';
+  var K=['sun','moon','mars','mercury','jupiter','venus','saturn'],N=['الشمس','القمر','المريخ','عطارد','المشتري','الزهرة','زحل'];
+  var OWN=[2,5,3,1,0,3,5,2,4,6,6,4],EX=[10,33,298,165,95,357,200],MT=[4,1,0,5,8,6,10];
+  var FRIEND=[[1,2,4],[0,3],[0,1,4],[0,5],[0,1,2],[3,6],[3,5]],ENEMY=[[5,6],[],[3],[1],[3,5],[0,1],[0,1,2]];
+  var MEAN={earth:[100.466457,36000.7698278,0.00030322,0.00000002],mercury:[252.250906,149474.0722491,0.0003035,0.000000018],venus:[181.979801,58519.2130302,0.00031014,0.000000015],mars:[355.433,19141.6964471,0.00031052,0.000000016],jupiter:[34.351519,3036.3027748,0.0002233,0.000000037],saturn:[50.077444,1223.5110686,0.00051908,-0.00000003]};
+  var REQ=[390,360,300,420,390,330,300],DAY=864e5;
+  function norm(x){return ((x%360)+360)%360;}
+  function signed(x){return norm(x+180)-180;}
+  function sep(a,b){return Math.abs(signed(a-b));}
+  function sum(a){return a.reduce(function(x,y){return x+y;},0);}
+  function body(ch,k){return (ch.bodies||[]).filter(function(b){return b.key===k;})[0];}
+  function mean(k,jde){var c=MEAN[k],t=(jde-2451545)/36525;return norm(c[0]+t*(c[1]+t*(c[2]+t*c[3])));}
+  function chesta(p,jde,trueLon){
+    var sun=norm(mean('earth',jde)+180),m=mean(K[p],jde),sighra=sun;
+    if(p===3||p===5){sighra=m;m=sun;}
+    var average=norm(m+signed(trueLon-m)/2);return sep(sighra,average)/3;
+  }
+  function aspect(a,p){
+    a=norm(a);var v=0,r=a%30;
+    if(a>=30&&a<60)v=(a-30)/2;
+    else if(a<90&&a>=60)v=a-45;
+    else if(a<120&&a>=90)v=(120-a)/2+30;
+    else if(a<150&&a>=120)v=150-a;
+    else if(a<180&&a>=150)v=(a-150)*2;
+    else if(a>=180&&a<300)v=(300-a)/2;
+    if(p===6){if(a>=30&&a<60)v=r*2;else if(a>=60&&a<90)v=60-r/2;else if(a>=240&&a<270)v=30+r;else if(a>=270&&a<300)v=(30-r)*2;}
+    if(p===2){if((a>=90&&a<120)||(a>=210&&a<240))v=60-r;else if(a>=60&&a<90)v=15+1.5*r;else if(a>=180&&a<210)v=60;}
+    if(p===4){if((a>=90&&a<120)||(a>=210&&a<240))v=45+r/2;else if((a>=120&&a<150)||(a>=240&&a<270))v=60-r;}
+    return Math.max(0,Math.min(60,v));
+  }
+  function ayana(p,tropical){
+    // BPHS's tabular 45/33/12 method, expressed on a 0..90 arc, then /3.
+    var l=norm(tropical),b=Math.min(l%180,180-l%180),f=b<30?b*45/30:b<60?45+(b-30)*33/30:78+(b-60)*12/30;
+    var north=l<180,s=(p===1||p===6)?-1:1;if(p===3)s=north?1:-1;
+    return (90+(north?1:-1)*s*f)/3;
+  }
+  function uchcha(p,l){return sep(l,norm(EX[p]+180))/3;}
+  function temporal(ms,ch){
+    var A=window.Astronomy;if(!A)throw new Error('محرك الشروق غير متاح.');
+    var obs=new A.Observer(ch.lat,ch.lon,0),start=new Date(ms-2*DAY),up=A.SearchRiseSet('Sun',obs,1,start,4),rises=[],sets=[];
+    // Bounded search over neighbouring solar days, not account/network polling.
+    while(up&&up.date.getTime()<=ms+2*DAY&&rises.length<5){rises.push(up.date.getTime());up=A.SearchRiseSet('Sun',obs,1,up.AddDays(0.05),2);}
+    var down=A.SearchRiseSet('Sun',obs,-1,start,4);
+    while(down&&down.date.getTime()<=ms+2*DAY&&sets.length<5){sets.push(down.date.getTime());down=A.SearchRiseSet('Sun',obs,-1,down.AddDays(0.05),2);}
+    var rise=rises.filter(function(t){return t<=ms;}).pop(),next=rises.filter(function(t){return t>ms;})[0];
+    if(!Number.isFinite(rise)||!Number.isFinite(next))throw new Error('لا شروق يومي عند هذا المكان والتاريخ؛ لن نخمن قوة الزمن القطبية.');
+    var set=sets.filter(function(t){return t>rise&&t<next;})[0];if(!Number.isFinite(set))throw new Error('تعذر تحديد غروب الشمس.');
+    var day=ms<set,from=day?rise:set,to=day?set:next,third=Math.min(2,Math.floor((ms-from)/(to-from)*3));
+    var solarDate=new Date(rise+ch.lon/360*DAY),year=solarDate.getUTCFullYear(),month=solarDate.getUTCMonth()+1,weekday=solarDate.getUTCDay();
+    var horaIndex=(day?0:12)+Math.min(11,Math.floor((ms-from)/(to-from)*12)),order=[6,4,2,0,5,3,1];
+    var ha=A.HourAngle('Sun',new Date(ms),obs),noon=60-Math.abs(ha>12?ha-24:ha)*5;
+    return {rise:rise,set:set,nextRise:next,day:day,third:third,noon:noon,lords:[((year+3)*3)%7,((12*year+month+6)*2)%7,weekday,order[(order.indexOf(weekday)+horaIndex)%7]],hora:horaIndex+1};
+  }
+  function positional(p,longs,asc,div){
+    var lon=longs[p],sg=Math.floor(lon/30),nav=div(lon,9),vargas=[1,2,3,7,9,12,30],points=[];
+    var sv=sum(vargas.map(function(d){
+      var signs=longs.map(function(v){return div(v,d);}),s=signs[p],owner=OWN[s];
+      if(d===1&&s===MT[p]){points.push(45);return 45;}
+      if(owner===p){points.push(30);return 30;}
+      // Compound relationship is based on natal Rasi positions, explicitly selected.
+      var natural=FRIEND[p].indexOf(owner)>=0?1:ENEMY[p].indexOf(owner)>=0?-1:0;
+      var house=(Math.floor(longs[owner]/30)-sg+12)%12+1,temp=[2,3,4,10,11,12].indexOf(house)>=0?1:-1;
+      var v=({'2':20,'1':15,'0':10,'-1':4,'-2':2})[natural+temp];points.push(v);return v;
+    }));
+    var female=p===1||p===5,odd=sg%2===0,oddNav=nav%2===0,oj=(odd!==female?15:0)+(oddNav!==female?15:0);
+    var house=(sg-Math.floor(asc/30)+12)%12,ken=[60,30,15][house%3],dec=Math.floor(lon%30/10),want=(p===0||p===2||p===4)?0:female?1:2;
+    var parts=[uchcha(p,lon),sv,oj,ken,dec===want?15:0];return {parts:parts,vargaPoints:points,total:sum(parts)};
+  }
+  function calculate(ch,natal){
+    if(!ch||!ch.known||!Number.isFinite(ch.asc)||!Number.isFinite(ch.mc)||!natal||!Number.isFinite(natal.utcMs))throw new Error('وقت ميلاد معلوم ومكانه مطلوبان لحساب القوى الست.');
+    if(!Number.isFinite(ch.lat)||!Number.isFinite(ch.lon))throw new Error('إحداثيات الميلاد غير متاحة.');
+    var E=window.AqEam,V=window.AqVedic,longs=K.map(function(k){var b=body(ch,k);if(!b||!Number.isFinite(b.lon))throw new Error('مواضع الكواكب غير مكتملة.');return norm(b.lon);});
+    var off=E.ayanamsa(ch.jde),t=temporal(natal.utcMs,ch),elong=norm(longs[1]-longs[0]),wax=elong<=180,phase=Math.min(elong,360-elong)/3;
+    var mercurySign=Math.floor(longs[3]/30);
+    var mercuryBad=longs.some(function(l,p){return ([0,2,6].indexOf(p)>=0||(p===1&&!wax))&&Math.floor(l/30)===mercurySign;});
+    var node=body(ch,'node')||body(ch,'truenode');
+    if(node&&Number.isFinite(node.lon)&&(Math.floor(norm(node.lon)/30)===mercurySign||Math.floor(norm(node.lon+180)/30)===mercurySign))mercuryBad=true;
+    var benefic=K.map(function(_,p){return p===4||p===5||(p===1&&wax)||(p===3&&!mercuryBad);});
+    var rows=K.map(function(k,p){
+      var st=positional(p,longs,ch.asc,V.div),weak=(p===0||p===2)?norm(ch.mc+180):(p===3||p===4)?norm(ch.asc+180):(p===1||p===5)?ch.mc:ch.asc;
+      var dig=sep(longs[p],weak)/3,ay=ayana(p,norm(longs[p]+off)),pak=benefic[p]?phase:60-phase;
+      var kalaParts=[p===3?60:([0,4,5].indexOf(p)>=0?t.noon:60-t.noon),pak,(p===4||p===(t.day?[3,0,6]:[1,5,2])[t.third])?60:0];
+      [15,30,45,60].forEach(function(v,j){kalaParts.push(t.lords[j]===p?v:0);});kalaParts.push(ay);
+      var mot=p===0?ay:p===1?pak:chesta(p,ch.jde,norm(longs[p]+off));
+      var contributions=K.map(function(_,q){if(q===p)return 0;var a=aspect(norm(longs[p]-longs[q]),q),c=benefic[q]?0.25:-0.25;if(q===3||q===4)c+=1;return a*c;});
+      var drik=sum(contributions),natural=[60,360/7,120/7,180/7,240/7,300/7,60/7][p];
+      return {key:k,name:N[p],sthana:st.total,sthanaParts:st.parts,vargaPoints:st.vargaPoints,dig:dig,kala:sum(kalaParts),kalaParts:kalaParts,chesta:mot,naisargika:natural,drik:drik,contributions:contributions};
+    });
+    var wars=[];for(var i=2;i<7;i++)for(var j=i+1;j<7;j++)if(sep(longs[i],longs[j])<1)wars.push([i,j]);
+    // Do not manufacture a total where the war convention has not been verified.
+    rows.forEach(function(r,p){r.total=wars.length?null:r.sthana+r.dig+r.kala+r.chesta+r.naisargika+r.drik;r.rupas=r.total===null?null:r.total/60;r.required=REQ[p]/60;r.ratio=r.total===null?null:r.total/REQ[p];});
+    return {rows:rows,temporal:t,wars:wars,convention:'BPHS27-explicit-v1',complete:wars.length===0};
+  }
+  function createCard(){
+    var el=document.createElement('div');el.className='vsb vad';var L=window.AqVedic&&window.AqVedic.last,r;
+    try{r=calculate(L&&L.ch,L&&L.natal);}catch(e){el.innerHTML='<p class="vad-warning"></p>';el.firstChild.textContent=e.message;return el;}
+    var fmt=function(v){return v===null?'غير مكتمل':v.toFixed(2);};
+    var h='<p class="vad-lead">تفصيل القوى الست لكل كوكب، بالفيروبا. كل 60 فيروبا = روبا واحدة. هذه نسخة معلنة القواعد، وليست وعدًا بالتطابق مع كل برامج شادبالا.</p>';
+    if(r.wars.length)h+='<p class="vad-warning">توجد حرب كوكبية (أقل من درجة): '+r.wars.map(function(w){return N[w[0]]+' / '+N[w[1]];}).join('، ')+'. لا نعرض مجموعًا أو ترتيبًا نهائيًا لأن تصحيح الحرب لم يُعتمد بعد. القيم أدناه قبل هذا التصحيح.</p>';
+    h+='<div class="vad-signs">'+r.rows.map(function(v){return '<article><span>'+v.name+'</span><b>'+fmt(v.rupas)+'</b><small>روبا'+(v.ratio===null?'':' · النسبة '+fmt(v.ratio))+'</small></article>';}).join('')+'</div><label>تفاصيل الكوكب<select class="vsb-select">'+N.map(function(n,p){return '<option value="'+p+'">'+n+'</option>';}).join('')+'</select></label><div class="vsb-out"></div>';
+    h+='<p class="vad-note">المنهج: BPHS 27، المولاثريكونا في D1 فقط، الصداقة المركبة من D1، نقاط السبعة 45/30/20/15/10/4/2. قوة الاتجاه من الطالع ووسط السماء الفعليين. الشروق والغروب فلكيان، واليوم يبدأ بالشروق، والهورا 12 جزءًا للنهار و12 لليل.</p><p class="vad-note">حاكما السنة والشهر وفق معادلات Saravali المعلنة، وليسا تلقائيًا حاكمي أول يناير وأول الشهر المدني. قوة الحركة من متوسطات مدارية حديثة مع قاعدة منفصلة لعطارد والزهرة؛ أيانا بجدول 45/33/12. درِك حسب زوايا BPHS 26، وقراءة «إضافة تأثير عطارد والمشتري كاملًا» في BPHS 27.19. اختلاف هذه الاختيارات يغيّر المجموع بين المدارس. لا يُستنتج حدث أو احتمال علمي من الرقم.</p>';
+    el.innerHTML=h;
+    function render(){var v=r.rows[+el.querySelector('select').value],labels=['الموقع · ستانا','الاتجاه · دِغ','الزمن · كالا','الحركة · تشيشتا','الطبيعة · نايسارغيكا','الاتصالات · درِك'],values=[v.sthana,v.dig,v.kala,v.chesta,v.naisargika,v.drik];
+      var s='<div class="vsb-parts">'+labels.map(function(n,k){return '<p><span>'+n+'</span><b>'+fmt(values[k])+'</b></p>';}).join('')+'</div><p class="vad-total">المجموع '+fmt(v.total)+' فيروبا · الحد التقليدي '+v.required+' روبا</p><details><summary>تفصيل الحساب</summary><p class="vad-note">الموقع (الشرف، التقسيمات، الفردي/الزوجي، المركز، الدريكانا): '+v.sthanaParts.map(fmt).join(' / ')+'</p><p class="vad-note">نقاط D1/D2/D3/D7/D9/D12/D30: '+v.vargaPoints.map(fmt).join(' / ')+'</p><p class="vad-note">الزمن (نهار/ليل، طور القمر، ثلث اليوم، السنة، الشهر، اليوم، الهورا، أيانا): '+v.kalaParts.map(fmt).join(' / ')+'</p></details>';el.querySelector('.vsb-out').innerHTML=s;}
+    el.querySelector('select').addEventListener('change',render);render();return el;
+  }
+  window.AqShadbala={calculate:calculate,createCard:createCard,math:{norm:norm,sep:sep,mean:mean,chesta:chesta,aspect:aspect,ayana:ayana,uchcha:uchcha,positional:positional,temporal:temporal}};
+})();
+
+;
 /* assets/js/vedic-hub.js */
 /* شاشة أيقونات الفلك الفيدي: بعد الحساب تظهر شبكة أيقونات، وكل أيقونة تفتح قسمها وحده بدون بقية الخرائط. */
 (function () {
@@ -1819,6 +2074,9 @@
   var sec = document.getElementById('astro-maps'), content = document.getElementById('eam-content');
   if (!sec || !content) return;
   var IC = {
+    shadbala: '<path d="M4 20V9M12 20V4M20 20v-7M2 20h20"/>',
+    ashtakavarga: '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
+    pratyantar: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 5v7l3 2"/>',
     c1: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5M12 15.5v5M3.5 12h5M15.5 12h5"/>',
     cmoon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
     csun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/>',
@@ -1857,6 +2115,9 @@
     ['vargas', 'الخرائط المقسمة', 'من D1 إلى D60 بالرسمين'],
     ['moonsun', 'خريطتا القمر والشمس', 'مشاعرك وجوهرك'],
     ['dasha', 'فترات عمرك', 'الفترة الكبرى والصغرى التي تعيشها الآن', 'داشا · فيمشوتاري'],
+    ['shadbala', 'قوة الكواكب', 'القوى الست ومكوناتها الحسابية', 'شادبالا'],
+    ['ashtakavarga', 'نقاط البروج', 'الجداول السبعة والمجموع العام ومصدر كل نقطة', 'أشتاكافارغا'],
+    ['pratyantar', 'الفترات الدقيقة', 'الكبرى والصغرى والتسع فترات بموعد البداية والنهاية', 'براتيانتر داشا'],
     ['sade', 'اختبار زحل', 'أين زحل من قمرك الآن', 'زحل · ساتي ساتي'],
     ['lunar', 'المنزل القمري', 'منزلك وحاكمه', 'القمر · نكشاترا'],
     ['year', 'قراءة السنة', 'ما تعيشه الآن'],
@@ -1888,7 +2149,7 @@
   };
   function chName(k) { var c = CH[k]; return c[0] + ' (' + c[1] + ' · ' + c[2] + ')'; }
   var CHG = [['الأساس', ['1', 'moon', 'sun']], ['الحياة اليومية', ['2', '3', '4', '5', '6', '7']], ['المسار والعمق', ['8', '9', '10', '11', '12']], ['التخصص الدقيق', ['16', '20', '24', '27', '30', '40', '45', '60']]];
-  var TIMET = ['dasha', 'sade', 'lunar', 'year', 'expert'];
+  var TIMET = ['dasha', 'pratyantar', 'ashtakavarga', 'shadbala', 'sade', 'lunar', 'year', 'expert'];
   var ALIAS = { birth: 'c:1', vargas: 'c:1', moonsun: 'c:moon' };
   function tileOf(id) { return TILES.filter(function (t) { return t[0] === id; })[0]; }
   function tilesHTML(admin) {
@@ -2014,7 +2275,7 @@
     if (ms < birthMs) return '<p class="vh-tm-err">هذا التاريخ قبل ميلادك، اختر تاريخًا بعده.</p>';
     var ds = V.dashas(moonB.lon, birthMs), maha = pick(ds, ms);
     if (!maha) return '<p class="vh-tm-err">هذا التاريخ خارج دورة الفترات المحسوبة (120 سنة).</p>';
-    var an = V.antars(maha), ant = pick(an, ms), pr = V.antars(ant), pra = pick(pr, ms);
+    var an = V.antars(maha), ant = pick(an, ms), pr = V.pratyantars(ant), pra = pick(pr, ms);
     var tch = E.engineChart(ms, natal), off = E.ayanamsa(tch.jde), norm = E.norm;
     var lagna = ch.known ? Math.floor(ch.asc / 30) : Math.floor(moonB.lon / 30), basis = ch.known ? 'الطالع' : 'القمر';
     var SG = T.SG, h = '';
@@ -2253,6 +2514,18 @@
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
     result.insertBefore(bar, grid);
     var tmc = timeCard(), tmw = accEl('آلة الزمن', 'dasha', '', true, 'dasha year'); tmw.querySelector('.eam-acc-body').appendChild(tmc); tmc.dataset.vhG = ''; result.appendChild(tmw);
+    if (window.AqShadbala) {
+      var sbw = accEl('قوة الكواكب · شادبالا', 'shadbala', '', true, 'shadbala');
+      sbw.classList.add('vh-inline'); sbw.querySelector('.eam-acc-body').appendChild(window.AqShadbala.createCard()); result.appendChild(sbw);
+    }
+    if (window.AqAshtakavarga) {
+      var avw = accEl('نقاط البروج · أشتاكافارغا', 'ashtakavarga', '', true, 'ashtakavarga');
+      avw.classList.add('vh-inline'); avw.querySelector('.eam-acc-body').appendChild(window.AqAshtakavarga.createCard()); result.appendChild(avw);
+    }
+    if (window.AqPratyantar) {
+      var pdw = accEl('الفترات الدقيقة · براتيانتر داشا', 'pratyantar', '', true, 'pratyantar');
+      pdw.classList.add('vh-inline'); pdw.querySelector('.eam-acc-body').appendChild(window.AqPratyantar.createCard()); result.appendChild(pdw);
+    }
     if (isAdmin()) { var exC = expertCard(), exw = accEl('ملاحظات الخبير', 'expert', '', true, 'expert'); exw.querySelector('.eam-acc-body').appendChild(exC); exC.dataset.vhG = ''; result.appendChild(exw); result.__ex = exC; }
     function ensureChart(k) {
       if (result.__ch && result.__ch[k]) return;
