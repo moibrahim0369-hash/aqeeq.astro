@@ -18,4 +18,11 @@ test('medallions distinguish annual, lunar, solar and divisional charts and esca
  for(const [n,label] of [['moon','القمر'],['sun','الشمس'],[60,'D60']])assert.ok(VC.svg({...m,n},'الخريطة').includes('>'+label+'</text>'));
  const s=VC.svg(m,'<bad>','<script>');assert.ok(!s.includes('<script>'));assert.ok(s.includes('&lt;script&gt;'));
 });
-test('southern fixed-sign layout is left unchanged',()=>{const s=VC.svgSouth({n:1,lagna:0,basis:'asc',items:[]},'الجنوبي');assert.ok(!s.includes('vc-north'));assert.ok(s.includes('D1'));});
+test('southern chart keeps its fixed-sign order under the shared design',()=>{const s=VC.svgSouth({n:1,lagna:0,basis:'asc',items:[]},'الجنوبي');assert.ok(!s.includes('vc-north'));assert.ok(s.includes('D1'));});
+
+test('southern positions remain fixed for every lagna and every planet is retained in dense cells',()=>{
+ for(let lagna=0;lagna<12;lagna++){
+  const m={n:2,lagna,basis:'asc',items:VC.PL.map(p=>({key:p[0],name:p[1],ab:p[2],house:(11-lagna+12)%12,sign:11}))},s=VC.svgSouth(m,'الجنوبي');
+  assert.equal((s.match(/class="vc-body"/g)||[]).length,10);assert.equal((s.match(/class="vc-house"/g)||[]).length,12);assert.ok(s.includes('data-sign="0"'));assert.ok(s.includes('x="100" y="0" width="100"'));assert.ok(s.includes('vc-medallion'));
+ }
+});

@@ -29,7 +29,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8777',root=path.join(__dirnam
    console.log('SIZE',width,await chart.evaluate(e=>({w:e.getBoundingClientRect().width,p:e.parentElement.getBoundingClientRect().width,card:e.closest('.vc-card').getBoundingClientRect().width})));
    const m=await chart.evaluate(e=>({w:e.getBoundingClientRect().width,sw:e.parentElement.scrollWidth,cw:e.parentElement.clientWidth}));assert.ok(m.sw<=m.cw+1,JSON.stringify(m));
   }
-  await page.locator('#eam-result .vc-st[data-s="s"]:visible').first().click();assert.equal(await page.locator('#eam-result .vc-north:visible').count(),0);
+  await page.locator('#eam-result .vc-st[data-s="s"]:visible').first().click();assert.equal(await page.locator('#eam-result .vc-north:visible').count(),0);const south=page.locator('#eam-result .vc-south:visible');assert.equal(await south.locator('.vc-body').count(),10);assert.equal(await south.locator('.vc-house').count(),12);for(const width of [320,390,1280]){await page.setViewportSize({width,height:width>600?900:844});await south.scrollIntoViewIfNeeded();await page.screenshot({path:'/downloads/vedic-south-'+tile.replace(':','-')+'-'+width+'.png'});}
   await page.locator('#eam-result .vc-st[data-s="n"]:visible').first().click();assert.equal(await page.locator('#eam-result .vc-north:visible').count(),1);assert.equal(await page.locator('#eam-result .vc-north:visible').evaluate(e=>getComputedStyle(e).animationName),'vc-chart-reveal');
   await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('#eam-result .vc-north:visible').evaluate(e=>getComputedStyle(e).animationName),'none');await page.emulateMedia({reducedMotion:'no-preference'});
   console.log('PASS shared chart route',tile);
