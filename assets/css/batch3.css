@@ -367,3 +367,22 @@ html.aq-review-open body #year2027 .y27-unlock{display:none}
 #year2027 .y27-acc.y27-t-g{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(232,244,236,.9));border-color:rgba(110,160,128,.55);box-shadow:0 20px 40px -10px rgba(47,90,62,.22),0 4px 12px rgba(47,90,62,.07),inset 0 1px 0 rgba(255,255,255,.95)}
 #year2027 .y27-acc.y27-t-s{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(250,232,231,.9));border-color:rgba(198,120,116,.55);box-shadow:0 20px 40px -10px rgba(122,36,48,.22),0 4px 12px rgba(122,36,48,.07),inset 0 1px 0 rgba(255,255,255,.95)}
 #year2027 .y27-acc.y27-t-n{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(247,238,220,.9));border-color:rgba(198,162,92,.6)}
+/* سطر إرشاد الأقسام: شارة ذهبية مميزة بلمعان وسهم نابض */
+#year2027 .y27-hint{position:relative;overflow:hidden;width:fit-content;margin:4px auto 14px;padding:9px 20px;gap:8px;border-radius:999px;font:700 14.5px/1.4 'Amiri','Cairo',serif;color:#4A1224;background:linear-gradient(135deg,#F3DEA8,#C8A15A 55%,#A87F3D);border:1px solid rgba(255,243,214,.85);box-shadow:0 10px 20px rgba(74,18,36,.28),0 2px 6px rgba(74,18,36,.12),inset 0 1px 0 rgba(255,246,220,.9)}
+#year2027 .y27-hint::after{content:"";position:absolute;top:0;bottom:0;inset-inline-start:-60%;width:45%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);animation:y27-shine 2.8s ease-in-out infinite;pointer-events:none}
+@keyframes y27-shine{0%,50%{inset-inline-start:-60%}85%,100%{inset-inline-start:135%}}
+#year2027 .y27-hint svg{width:15px;height:15px;color:#4A1224;filter:drop-shadow(0 1px 0 rgba(255,246,220,.75))}
+@media(prefers-reduced-motion:reduce){#year2027 .y27-hint::after{animation:none}}
+/* بلاطات نظرة السنة: ألوان أعمق وبروز أوضح */
+#year2027 .y27-gc{border-radius:20px;padding:14px 12px;background:linear-gradient(165deg,#FFFCF3,#F1DFBB);border:1.4px solid #B8893F;box-shadow:0 16px 30px -8px rgba(74,18,36,.26),0 3px 8px rgba(74,18,36,.08),inset 0 1px 0 rgba(255,255,255,.95);transition:transform .18s ease,box-shadow .25s ease}
+#year2027 .y27-gc small{color:#7A5320;font-weight:700}
+#year2027 .y27-gc b{color:#571C2F}
+#year2027 .y27-gc:hover{transform:translateY(-2px);box-shadow:0 22px 38px -10px rgba(74,18,36,.32),0 3px 8px rgba(74,18,36,.08),inset 0 1px 0 rgba(255,255,255,.95)}
+#year2027 .y27-gc-g{background:linear-gradient(165deg,#FBFEFB,#D3E7D5);border-color:#57835E}
+#year2027 .y27-gc-g small{color:#37613F}
+#year2027 .y27-gc-g b{color:#22482A}
+#year2027 .y27-gc-s{background:linear-gradient(165deg,#FFFBFA,#F1CFCA);border-color:#A94F46}
+#year2027 .y27-gc-s small{color:#94362D}
+#year2027 .y27-gc-s b{color:#711D18}
+/* لمسة: الأكورديونات ترتفع قليلًا عند التحويم */
+#year2027 .y27-acc:hover{transform:translateY(-2px)}
