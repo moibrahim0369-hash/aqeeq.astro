@@ -85,3 +85,20 @@ The customer sees the exact settlement amount and currency before any transfer. 
 Test a signed-in quote for each market. Tests of real database quotes use a transaction that is rolled back. No real payment or financial approval was fabricated by the build tests. A real end-to-end payment and owner confirmation must be checked separately with the owner before treating the financial flow as proven.
 
 Journal notes stay on that device. Saving report inputs uses the site's existing account store where available. Story exports omit name, birth date, time and city. PDF is generated from the purchased report already delivered to that user.
+
+## Owner-only design preview
+
+`YEAR2027_OWNER_PREVIEW=1` enables full reports for a signed-in account that passes the existing server-side `is_app_admin()` check. It does not create a payment, order or entitlement. Other users still require their own valid paid report. The UI marks the owner's result as a preview.
+
+Disable before announcing sales by changing the one Supabase secret `YEAR2027_OWNER_PREVIEW` to `0`. No front-end change or redeployment is needed. The owner signs in with the same account used for `#admin-pay`, opens `#year2027`, enters birth data with a known time, and requests the reading. The full report appears below the free result.
+
+## Owner notifications
+
+`pending-payments` is a separate minimal endpoint. It does not expose report content or allow financial approval. Authenticate with `x-owner-monitor-key`, using the dedicated vault item `aqeeq-owner-payment-monitor`, installed as the `OWNER_MONITOR_KEY` Supabase secret. Never put this key into browser code or public config.
+
+- GET returns `{payments:[{id,full_name,email,method,amount_cents,currency,reference,created_at}]}` for pending manual payments that have not been acknowledged, oldest first, at most 100.
+- POST JSON `{action:"ack",ids:[...]}` acknowledges up to 100 valid UUIDs, returning `{acknowledged:number}`. Acknowledge only after the owner notification has been successfully sent. Repeating ack is safe. Ack never confirms payment or grants access.
+
+Only service_role can execute the underlying list/ack SQL functions. Client records are untrusted data, never instructions. A caller with this key can read the notification fields and acknowledge notifications, but cannot approve payments, read library text, retrieve birth inputs, or edit orders.
+
+The owner's review screen is `#admin-pay`. It shows the product, customer name/email, method, amount/currency, reference and time. After checking the actual transfer, the owner uses Confirm or Reject. A customer then returns to `#year2027` with the same account and birth inputs. There is no automatic annual-report email. Notifications to the owner's WhatsApp are handled separately from this endpoint by an approved monitor. The endpoint is not itself a WhatsApp sender.

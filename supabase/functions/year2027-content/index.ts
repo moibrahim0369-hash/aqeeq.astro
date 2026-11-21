@@ -22,7 +22,8 @@ Deno.serve(async req=>{
   if(body.mode==='preview'){const lib=await library(admin,false);return response({...previewFor(input,lib.content),country:geo});}
   const sb=createClient(url,key,{global:{headers:{Authorization:req.headers.get('Authorization')||''}},auth:{persistSession:false}});
   const {data:{user},error}=await sb.auth.getUser();if(error||!user)return response({error:'sign_in_required'},401);
-  const {data:access,error:denied}=await sb.rpc('year2027_access',{p_input:input});if(denied||!access)return response({error:'annual_report_not_purchased'},403);
-  const lib=await library(admin,true);return response({report:reportFor(input,lib.content,lib.ephemeris),reportId:access});
+  let ownerPreview=false;if(Deno.env.get('YEAR2027_OWNER_PREVIEW')==='1'){const {data:isOwner,error:ownerError}=await sb.rpc('is_app_admin');ownerPreview=!ownerError&&isOwner===true;}
+  const {data:access,error:denied}=await sb.rpc('year2027_access',{p_input:input});if(!ownerPreview&&(denied||!access))return response({error:'annual_report_not_purchased'},403);
+  const lib=await library(admin,true);return response({report:{...reportFor(input,lib.content,lib.ephemeris),ownerPreview},reportId:access});
  }catch{return response({error:'report_temporarily_unavailable'},500);}
 });

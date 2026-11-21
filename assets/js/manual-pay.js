@@ -94,7 +94,7 @@
       rows.forEach(function (x) {
         var li = document.createElement('li'); li.className = 'adm-row';
         var h = document.createElement('div'); h.className = 'adm-info';
-        [['', (x.full_name || '') + ' · ' + x.email], ['', (METHODS[x.method] || { label: x.method }).label + ' · ' + fmtPrice(x.amount_cents, x.currency)], ['ltr', x.reference], ['', new Date(x.created_at).toLocaleString('ar-EG')]].forEach(function (p, i) {
+        [['', (x.full_name || '') + ' · ' + x.email], ['', /^year2027_/.test(x.product_code || '') ? 'تقرير سنة 2027' : (x.product_code === 'full_report' ? 'التقرير الشخصي الكامل' : x.product_code)], ['', (METHODS[x.method] || { label: x.method }).label + ' · ' + fmtPrice(x.amount_cents, x.currency)], ['ltr', x.reference], ['', new Date(x.created_at).toLocaleString('ar-EG')]].forEach(function (p, i) {
           var s = document.createElement(i === 0 ? 'strong' : 'span'); if (p[0]) s.dir = p[0]; s.textContent = p[1]; h.appendChild(s);
         });
         li.appendChild(h);
