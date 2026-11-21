@@ -1683,24 +1683,64 @@
     return '<g><rect x="' + (x - w / 2) + '" y="' + (y - 10) + '" width="' + w + '" height="20" rx="10" fill="' + c[0] + '" stroke="' + c[1] + '" stroke-width="1.3"/>' +
       '<text x="' + x + '" y="' + y + '" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="800" fill="' + c[2] + '">' + esc(label) + (retro ? '<tspan font-size="9" dy="-4">℞</tspan>' : '') + '</text></g>';
   }
-  /* SVG المخطط: كل كوكب في كبسولة ملونة، الأرقام الذهبية أرقام البروج. البيت 1 في الأعلى والترتيب عكس عقارب الساعة. */
-  function svg(map, title) {
-    var h = '<svg class="vc-svg" viewBox="0 0 400 400" role="img" aria-label="' + esc(title) + '" xmlns="http://www.w3.org/2000/svg">';
-    h += '<title>' + esc(title) + '</title><rect x="2" y="2" width="396" height="396" rx="6" fill="' + CREAM + '" stroke="' + GOLD + '" stroke-width="2.5"/>';
-    h += '<g fill="none" stroke="' + GOLD + '" stroke-width="1.6" stroke-linejoin="round"><path d="M2 2L398 398M398 2L2 398"/><path d="M200 2L398 200L200 398L2 200Z"/></g>';
-    for (var i = 0; i < 12; i++) {
-      var sg = (map.lagna + i) % 12, c = CENTERS[i], np = NUMPOS[i];
-      h += '<text x="' + np[0] + '" y="' + np[1] + '" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="' + GOLD + '" font-weight="700">' + (sg + 1) + '</text>';
-      var here = map.items.filter(function (x) { return x.house === i; }).map(function (x) { return { t: x.ab, tone: TONE[x.key] || 'g', r: x.retro }; });
-      if (i === 0) here.unshift({ t: lagLbl(map), tone: 'l', r: false });
-      var k = here.length, cols = k > 3 ? 2 : 1, rows = Math.ceil(k / cols), w = 36, gx = 40, gy = 23;
-      here.forEach(function (it, j) {
-        var col = cols === 1 ? 0 : j % 2, row = cols === 1 ? j : Math.floor(j / 2);
-        var px = c[0] + (cols === 1 ? 0 : (col === 0 ? -gx / 2 : gx / 2)), py = c[1] + (row - (rows - 1) / 2) * gy;
-        h += pill(px, py, w, it.t, it.tone, it.r);
-      });
+  /* البيوت ثابتة في الرسم الشمالي، والألوان تتبع عنصر البرج لا ترتيب البيت. */
+  var GLYPHS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+  var FIELDS = [
+    [[200,0],[100,100],[200,200],[300,100]], [[0,0],[200,0],[100,100]],
+    [[0,0],[100,100],[0,200]], [[0,200],[100,100],[200,200],[100,300]],
+    [[0,200],[100,300],[0,400]], [[0,400],[100,300],[200,400]],
+    [[200,200],[100,300],[200,400],[300,300]], [[200,400],[300,300],[400,400]],
+    [[400,400],[300,300],[400,200]], [[200,200],[300,100],[400,200],[300,300]],
+    [[400,0],[400,200],[300,100]], [[200,0],[400,0],[300,100]]
+  ];
+  var HEADS = [[200,53],[100,19],[34,88],[100,164],[34,288],[100,341],
+    [200,269],[300,341],[366,288],[300,164],[366,88],[300,19]];
+  var INKS = ['#784638','#796039','#6A435A','#4C6267'];
+  var FILLS = ['#E8CFC1','#EBDFC3','#E5D6DE','#D5E0DD'];
+  function inside(poly,x,y) {
+    var sign=0;
+    for(var j=0;j<poly.length;j++) {var a=poly[j],b=poly[(j+1)%poly.length],v=(b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]);if(Math.abs(v)<.01)continue;var z=v>0?1:-1;if(sign&&z!==sign)return false;sign=z;}
+    return true;
+  }
+  /* تتسع حتى لتجمّع الكواكب التسعة، بلا إخفاء أو عبور لحدود البيوت. */
+  function placement(i,count) {
+    var poly=FIELDS[i],hd=HEADS[i],target=CENTERS[i],found=[],w=32,ht=19;
+    for(var attempt=0;attempt<3;attempt++) {
+      w=32-attempt*4;ht=19-attempt*2;found=[];var slots=[];
+      for(var y=12+ht/2;y<395-ht/2;y+=ht+3)for(var x=8+w/2;x<395-w/2;x+=w+3) {
+        if(![[x-w/2-2,y-ht/2-2],[x+w/2+2,y-ht/2-2],[x+w/2+2,y+ht/2+2],[x-w/2-2,y+ht/2+2]].every(function(p){return inside(poly,p[0],p[1]);}))continue;
+        if(Math.abs(x-hd[0])<w/2+35&&y+ht/2>hd[1]-12&&y-ht/2<hd[1]+25)continue;
+        if(Math.hypot(x-200,y-200)<31+w/2)continue;
+        slots.push([x,y]);
+      }
+      slots.sort(function(a,b){return Math.hypot(a[0]-target[0],a[1]-target[1]-15)-Math.hypot(b[0]-target[0],b[1]-target[1]-15);});
+      found=slots.slice(0,count).sort(function(a,b){return a[1]-b[1]||a[0]-b[0];});
+      if(found.length===count)break;
     }
-    return h + '</svg>';
+    return {points:found,w:w,h:ht};
+  }
+  function svg(map, title, centerLabel) {
+    var label=centerLabel || (map.n==='moon'?'القمر':map.n==='sun'?'الشمس':'D'+map.n);
+    var h='<svg class="vc-svg vc-north" viewBox="0 0 424 424" role="img" aria-label="'+esc(title)+'" xmlns="http://www.w3.org/2000/svg">';
+    h+='<title>'+esc(title)+'</title><desc>البيت الأول أعلى المعين، ثم البيوت عكس عقارب الساعة. كل خانة تحمل رقم البرج ورمزه واسمه، والألوان حسب عنصر البرج.</desc>';
+    h+='<rect x="1" y="1" width="422" height="422" rx="17" fill="#F8F2E7" stroke="#D8C39B"/><rect x="7" y="7" width="410" height="410" rx="12" fill="none" stroke="#E2D3B8"/>';
+    h+='<g transform="translate(12 12)">';
+    for(var i=0;i<12;i++) {
+      var sg=(map.lagna+i)%12,hd=HEADS[i],el=sg%4;
+      h+='<g class="vc-house" data-house="'+(i+1)+'" data-sign="'+sg+'"><title>البيت '+(i+1)+' · '+SG[sg]+'</title><polygon points="'+FIELDS[i].map(function(p){return p.join(',');}).join(' ')+'" fill="'+FILLS[el]+'" fill-opacity="'+(i%3===0?'.9':'.38')+'"/>';
+      h+='<g class="vc-sign-label" fill="'+INKS[el]+'" text-anchor="middle"><text x="'+(hd[0]-11)+'" y="'+hd[1]+'" font-size="15" font-weight="600">'+(sg+1)+'</text><text x="'+(hd[0]+12)+'" y="'+hd[1]+'" font-family="Georgia, serif" font-size="19">'+GLYPHS[sg]+'&#xfe0e;</text><text x="'+hd[0]+'" y="'+(hd[1]+19)+'" font-size="13" font-weight="600" direction="rtl">'+SG[sg]+'</text></g>';
+      var here=map.items.filter(function(x){return x.house===i;}).map(function(x){return {t:x.ab,name:x.name,tone:TONE[x.key]||'g',r:x.retro,key:x.key};});
+      if(i===0)here.unshift({t:lagLbl(map),name:'الطالع',tone:'l',r:false,key:'lagna'});
+      var layout=placement(i,here.length);
+      here.forEach(function(it,j){var p=layout.points[j];if(!p)return;var col=TCOL[it.tone],fs=layout.h<18?10.5:12;
+        h+='<g class="vc-body" data-planet="'+esc(it.key)+'"><title>'+esc(it.name)+(it.r?' · متراجع':'')+'</title><rect x="'+(p[0]-layout.w/2)+'" y="'+(p[1]-layout.h/2)+'" width="'+layout.w+'" height="'+layout.h+'" rx="'+layout.h/2+'" fill="'+(it.tone==='l'?WINE:'#FFFCF5')+'" fill-opacity=".95" stroke="'+(it.tone==='l'?GOLD:col[1])+'" stroke-width=".8"/><text x="'+p[0]+'" y="'+p[1]+'" text-anchor="middle" dominant-baseline="central" font-size="'+fs+'" font-weight="700" fill="'+(it.tone==='l'?'#FFF1D6':col[2])+'">'+esc(it.t)+(it.r?'<tspan font-size="8" baseline-shift="super">℞</tspan>':'')+'</text></g>';
+      });
+      h+='</g>';
+    }
+    h+='<g fill="none" stroke="#9B805B" stroke-width="1.05" stroke-linejoin="round"><path d="M0 0H400V400H0ZM0 0L400 400M400 0L0 400M200 0L400 200L200 400L0 200Z"/></g>';
+    [[200,0],[0,200],[200,400],[400,200]].forEach(function(p){h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#F8F2E7" stroke="#9B805B"/><circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.5" fill="'+WINE+'"/>';});
+    h+='<g class="vc-medallion"><circle cx="200" cy="202" r="28" fill="#BDA578" opacity=".2"/><circle cx="200" cy="200" r="27" fill="#FCF7EB" stroke="#B69B6B" stroke-width="1.2"/><circle cx="200" cy="200" r="23" fill="none" stroke="#DFCEAE"/><text x="200" y="197" text-anchor="middle" dominant-baseline="middle" font-size="'+(String(label).length>4?'15':'20')+'" font-weight="700" fill="'+WINE+'">'+esc(label)+'</text><text x="200" y="213" text-anchor="middle" font-size="8.5" fill="#8A704D">عقيق أسترو</text></g>';
+    return h+'</g></svg>';
   }
   function svgSouth(map, title) {
     var C = 100, h = '<svg class="vc-svg" viewBox="0 0 400 400" role="img" aria-label="' + esc(title) + '" xmlns="http://www.w3.org/2000/svg">';
@@ -2025,6 +2065,17 @@
     var house=(sg-Math.floor(asc/30)+12)%12,ken=[60,30,15][house%3],dec=Math.floor(lon%30/10),want=(p===0||p===2||p===4)?0:female?1:2;
     var parts=[uchcha(p,lon),sv,oj,ken,dec===want?15:0];return {parts:parts,vargaPoints:points,total:sum(parts)};
   }
+  function yuddha(longs,base){
+    // Raman, Graha and Bhava Balas 76-77. Fixed traditional discs, not apparent diameters.
+    var discs=[0,0,9.4,6.6,190.4,16.6,158],pairs=[],degree=Array(7).fill(0),corrections=Array(7).fill(0),unresolved=[];
+    for(var i=2;i<7;i++)for(var j=i+1;j<7;j++)if(sep(longs[i],longs[j])<1){pairs.push({a:i,b:j});degree[i]++;degree[j]++;}
+    pairs.forEach(function(w){
+      if(degree[w.a]>1||degree[w.b]>1||Math.abs(norm(longs[w.a])-norm(longs[w.b]))<1e-10){w.reason=degree[w.a]>1||degree[w.b]>1?'حرب متعددة الأطراف: لا يحدد المرجع ترتيب التصحيحات':'تساوٍ تام في الطول: لا منتصر محدد في الصيغة';unresolved.push(w.a,w.b);return;}
+      w.winner=norm(longs[w.a])<norm(longs[w.b])?w.a:w.b;w.loser=w.winner===w.a?w.b:w.a;
+      w.amount=Math.abs(base[w.a]-base[w.b])/Math.abs(discs[w.a]-discs[w.b]);corrections[w.winner]+=w.amount;corrections[w.loser]-=w.amount;
+    });
+    return {pairs:pairs,corrections:corrections,unresolved:unresolved};
+  }
   function calculate(ch,natal){
     if(!ch||!ch.known||!Number.isFinite(ch.asc)||!Number.isFinite(ch.mc)||!natal||!Number.isFinite(natal.utcMs))throw new Error('وقت ميلاد معلوم ومكانه مطلوبان لحساب القوى الست.');
     if(!Number.isFinite(ch.lat)||!Number.isFinite(ch.lon))throw new Error('إحداثيات الميلاد غير متاحة.');
@@ -2045,25 +2096,24 @@
       var drik=sum(contributions),natural=[60,360/7,120/7,180/7,240/7,300/7,60/7][p];
       return {key:k,name:N[p],sthana:st.total,sthanaParts:st.parts,vargaPoints:st.vargaPoints,dig:dig,kala:sum(kalaParts),kalaParts:kalaParts,chesta:mot,naisargika:natural,drik:drik,contributions:contributions};
     });
-    var wars=[];for(var i=2;i<7;i++)for(var j=i+1;j<7;j++)if(sep(longs[i],longs[j])<1)wars.push([i,j]);
-    // Do not manufacture a total where the war convention has not been verified.
-    rows.forEach(function(r,p){r.total=wars.length?null:r.sthana+r.dig+r.kala+r.chesta+r.naisargika+r.drik;r.rupas=r.total===null?null:r.total/60;r.required=REQ[p]/60;r.ratio=r.total===null?null:r.total/REQ[p];});
-    return {rows:rows,temporal:t,wars:wars,convention:'BPHS27-explicit-v1',complete:wars.length===0};
+    var war=yuddha(longs,rows.map(function(r){return r.sthana+r.dig+sum(r.kalaParts.slice(0,7));}));
+    rows.forEach(function(r,p){r.yuddha=war.corrections[p];r.kalaParts.push(r.yuddha);r.kala+=r.yuddha;r.total=war.unresolved.indexOf(p)>=0?null:r.sthana+r.dig+r.kala+r.chesta+r.naisargika+r.drik;r.rupas=r.total===null?null:r.total/60;r.required=REQ[p]/60;r.ratio=r.total===null?null:r.total/REQ[p];});
+    return {rows:rows,temporal:t,wars:war.pairs,convention:'BPHS27-Raman76-war-v2',complete:war.unresolved.length===0};
   }
   function createCard(){
     var el=document.createElement('div');el.className='vsb vad';var L=window.AqVedic&&window.AqVedic.last,r;
     try{r=calculate(L&&L.ch,L&&L.natal);}catch(e){el.innerHTML='<p class="vad-warning"></p>';el.firstChild.textContent=e.message;return el;}
     var fmt=function(v){return v===null?'غير مكتمل':v.toFixed(2);};
     var h='<p class="vad-lead">تفصيل القوى الست لكل كوكب، بالفيروبا. كل 60 فيروبا = روبا واحدة. هذه نسخة معلنة القواعد، وليست وعدًا بالتطابق مع كل برامج شادبالا.</p>';
-    if(r.wars.length)h+='<p class="vad-warning">توجد حرب كوكبية (أقل من درجة): '+r.wars.map(function(w){return N[w[0]]+' / '+N[w[1]];}).join('، ')+'. لا نعرض مجموعًا أو ترتيبًا نهائيًا لأن تصحيح الحرب لم يُعتمد بعد. القيم أدناه قبل هذا التصحيح.</p>';
+    if(r.wars.length)h+='<p class="vad-note">حرب كوكبية وفق رامان: '+r.wars.map(function(w){return N[w.a]+' / '+N[w.b]+(w.reason?' · '+w.reason:' · المنتصر '+N[w.winner]+' · التصحيح ±'+fmt(w.amount)+' فيروبا');}).join('، ')+'. الأقل في الطول النجمي من 0 إلى 360 هو المنتصر في هذه المدرسة، وليس الأعلى في العرض أو الميل. الحجب إن وجد يخص الأطراف غير المحسومة فقط.</p>';
     h+='<div class="vad-signs">'+r.rows.map(function(v){return '<article><span>'+v.name+'</span><b>'+fmt(v.rupas)+'</b><small>روبا'+(v.ratio===null?'':' · النسبة '+fmt(v.ratio))+'</small></article>';}).join('')+'</div><label>تفاصيل الكوكب<select class="vsb-select">'+N.map(function(n,p){return '<option value="'+p+'">'+n+'</option>';}).join('')+'</select></label><div class="vsb-out"></div>';
-    h+='<p class="vad-note">المنهج: BPHS 27، المولاثريكونا في D1 فقط، الصداقة المركبة من D1، نقاط السبعة 45/30/20/15/10/4/2. قوة الاتجاه من الطالع ووسط السماء الفعليين. الشروق والغروب فلكيان، واليوم يبدأ بالشروق، والهورا 12 جزءًا للنهار و12 لليل.</p><p class="vad-note">حاكما السنة والشهر وفق معادلات Saravali المعلنة، وليسا تلقائيًا حاكمي أول يناير وأول الشهر المدني. قوة الحركة من متوسطات مدارية حديثة مع قاعدة منفصلة لعطارد والزهرة؛ أيانا بجدول 45/33/12. درِك حسب زوايا BPHS 26، وقراءة «إضافة تأثير عطارد والمشتري كاملًا» في BPHS 27.19. اختلاف هذه الاختيارات يغيّر المجموع بين المدارس. لا يُستنتج حدث أو احتمال علمي من الرقم.</p>';
+    h+='<p class="vad-note">المنهج: BPHS 27، المولاثريكونا في D1 فقط، الصداقة المركبة من D1، نقاط السبعة 45/30/20/15/10/4/2. قوة الاتجاه من الطالع ووسط السماء الفعليين. الشروق والغروب فلكيان، واليوم يبدأ بالشروق، والهورا 12 جزءًا للنهار و12 لليل.</p><p class="vad-note">حاكما السنة والشهر وفق معادلات Saravali المعلنة، وليسا تلقائيًا حاكمي أول يناير وأول الشهر المدني. قوة الحركة من متوسطات مدارية حديثة مع قاعدة منفصلة لعطارد والزهرة؛ أيانا بجدول 45/33/12. درِك حسب زوايا BPHS 26، وقراءة «إضافة تأثير عطارد والمشتري كاملًا» في BPHS 27.19. تصحيح الحرب الثنائية من كتاب رامان، الفقرتين 76 و77: فرق (الموقع + الاتجاه + الزمن حتى الهورا دون أيانا) ÷ فرق أقطار القرص الثابتة. اختيار المنهج لا يعني مطابقة بقية مكونات رامان. اختلاف هذه الاختيارات يغيّر المجموع بين المدارس. لا يُستنتج حدث أو احتمال علمي من الرقم.</p>';
     el.innerHTML=h;
     function render(){var v=r.rows[+el.querySelector('select').value],labels=['الموقع · ستانا','الاتجاه · دِغ','الزمن · كالا','الحركة · تشيشتا','الطبيعة · نايسارغيكا','الاتصالات · درِك'],values=[v.sthana,v.dig,v.kala,v.chesta,v.naisargika,v.drik];
-      var s='<div class="vsb-parts">'+labels.map(function(n,k){return '<p><span>'+n+'</span><b>'+fmt(values[k])+'</b></p>';}).join('')+'</div><p class="vad-total">المجموع '+fmt(v.total)+' فيروبا · الحد التقليدي '+v.required+' روبا</p><details><summary>تفصيل الحساب</summary><p class="vad-note">الموقع (الشرف، التقسيمات، الفردي/الزوجي، المركز، الدريكانا): '+v.sthanaParts.map(fmt).join(' / ')+'</p><p class="vad-note">نقاط D1/D2/D3/D7/D9/D12/D30: '+v.vargaPoints.map(fmt).join(' / ')+'</p><p class="vad-note">الزمن (نهار/ليل، طور القمر، ثلث اليوم، السنة، الشهر، اليوم، الهورا، أيانا): '+v.kalaParts.map(fmt).join(' / ')+'</p></details>';el.querySelector('.vsb-out').innerHTML=s;}
+      var s='<div class="vsb-parts">'+labels.map(function(n,k){return '<p><span>'+n+'</span><b>'+fmt(values[k])+'</b></p>';}).join('')+'</div><p class="vad-total">المجموع '+fmt(v.total)+' فيروبا · الحد التقليدي '+v.required+' روبا</p><details><summary>تفصيل الحساب</summary><p class="vad-note">الموقع (الشرف، التقسيمات، الفردي/الزوجي، المركز، الدريكانا): '+v.sthanaParts.map(fmt).join(' / ')+'</p><p class="vad-note">نقاط D1/D2/D3/D7/D9/D12/D30: '+v.vargaPoints.map(fmt).join(' / ')+'</p><p class="vad-note">الزمن (نهار/ليل، طور القمر، ثلث اليوم، السنة، الشهر، اليوم، الهورا، أيانا، تصحيح الحرب): '+v.kalaParts.map(fmt).join(' / ')+'</p></details>';el.querySelector('.vsb-out').innerHTML=s;}
     el.querySelector('select').addEventListener('change',render);render();return el;
   }
-  window.AqShadbala={calculate:calculate,createCard:createCard,math:{norm:norm,sep:sep,mean:mean,chesta:chesta,aspect:aspect,ayana:ayana,uchcha:uchcha,positional:positional,temporal:temporal}};
+  window.AqShadbala={calculate:calculate,createCard:createCard,math:{norm:norm,sep:sep,mean:mean,chesta:chesta,aspect:aspect,ayana:ayana,uchcha:uchcha,positional:positional,temporal:temporal,yuddha:yuddha}};
 })();
 
 ;
@@ -2102,18 +2152,82 @@
    var uc=Math.abs(signed(l-norm(EXALT[p]+180)))/9;parts.splice(1,0,uc);return {key:K[p],owners:owners,parts:parts,total:parts.reduce(function(a,b){return a+b;},0)/4};
   });
  }
+ function joining(a,b,pa,pb){
+  var asp=tajika(a,b,pa,pb);if(!asp)return null;
+  var gap=signed(norm(b.lon-a.lon)-asp.angle),fast=Math.abs(a.speed)>=Math.abs(b.speed)?a:b;
+  if(!Number.isFinite(a.speed)||!Number.isFinite(b.speed))return {unknown:true};
+  if(fast.speed<0)return null;
+  var lag=fast===a?gap:-gap,perfected=lag>=-1e-10&&lag<=1/120+1e-10,applying=gap*(b.speed-a.speed)<0;
+  return asp.within&&(perfected||applying)?{perfected:perfected,gap:Math.abs(gap)}:null;
+ }
+ function screenDuru(annual){
+  var pts=K.slice(0,7).map(function(k){return body(annual,k);}),pos=pts.map(function(b){return b.lon;}),strength=pancha(pos),ascSign=Math.floor(norm(annual.asc)/30),node=body(annual,'node'),wax=norm(pos[1]-pos[0])<=180;
+  var bad=[true,!wax,true,false,false,false,true];bad[3]=[0,1,2,6].some(function(q){return bad[q]&&Math.floor(pos[q]/30)===Math.floor(pos[3]/30);});
+  return pts.map(function(b,p){
+   var reasons=[],uncertain=[],sg=Math.floor(norm(b.lon)/30),house=(sg-ascSign+12)%12+1;
+   if(!Number.isFinite(b.speed))uncertain.push('الحركة غير متاحة');else if(b.speed<0)reasons.push('راجع');
+   if([6,8,12].indexOf(house)>=0)reasons.push('في البيت '+house);
+   if(RULER[(sg+6)%12]===p)reasons.push('في البرج المقابل لبيته');
+   // Source variants disagree on heliacal/combustion cutoffs. Do not invent one.
+   if(p!==0&&Math.abs(signed(b.lon-pos[0]))<=17)uncertain.push('قريب من الشمس: حد الاحتراق/الاختفاء مختلف بين المراجع');
+   pts.forEach(function(q,j){if(j===p)return;var a=tajika(q,b,j,p);
+    if(bad[j]&&a&&a.within)reasons.push('اتصال ضمن الأورب من '+N[j]);
+    if(Math.floor(norm(q.lon)/30)===Math.floor(norm(EXALT[j]+180)/30)&&joining(b,q,p,j))reasons.push('إيثاسالا مع '+N[j]+' في هبوطه');
+   });
+   if(!node)uncertain.push('موضع العقدة غير متاح');
+   if(node&&Math.min(Math.abs(signed(b.lon-node.lon)),Math.abs(signed(b.lon-node.lon-180)))<=12)uncertain.push('قرب رأس/ذيل راهو: حد الاقتران غير محسوم في نص دوروفا');
+   if(p===1){
+    if((sg-Math.floor(pos[0]/30)+12)%12===11)reasons.push('القمر في الثاني عشر من الشمس');
+    if((sg===6&&norm(b.lon)%30>=15)||(sg===7&&norm(b.lon)%30<15))reasons.push('القمر في المسار المحترق');
+    if(!wax)reasons.push('قمر متناقص');
+    var ruler=RULER[sg],aspect=ruler===p?null:tajika(pts[ruler],b,ruler,p);
+    if(ruler!==p&&(!aspect||!aspect.within))reasons.push('القمر غير متصل بحاكم برجه');
+    if(!pts.some(function(q,j){var a=j===p?null:tajika(q,b,j,p);return a&&a.within;}))reasons.push('القمر بلا اتصال ضمن الأورب');
+    if(strength[p].owners.every(function(o){return o!==p;})&&sg!==Math.floor(EXALT[p]/30))reasons.push('القمر بلا كرامة ذاتية');
+    if(norm(b.lon)%30>=29)uncertain.push('القمر قرب نهاية البرج: النص لا يحدد حدًا عدديًا');
+   }
+   return {reasons:reasons,uncertain:uncertain,blocked:reasons.length>0};
+  });
+ }
+ function rankOffices(candidates,mun,tri,light){
+  var unique=candidates.filter(function(v,i,a){return a.findIndex(function(x){return x.key===v.key;})===i;});
+  unique.forEach(function(v){v.claims=candidates.filter(function(c){return c.key===v.key;}).length;});
+  unique.sort(function(a,b){return b.strength-a.strength||b.aspect-a.aspect||b.claims-a.claims;});
+  if(!unique.length)return {key:null,reason:'لا مرشح مؤهل بعد فحص الموانع.'};
+  var best=unique[0],ties=unique.filter(function(v){return Math.abs(v.strength-best.strength)<1e-8&&v.aspect===best.aspect&&v.claims===best.claims;});
+  if(ties.length>1){for(var i=0;i<3;i++){var k=[mun,light,tri][i],hit=ties.filter(function(v){return v.key===k;})[0];if(hit)return {key:k,reason:'حُسم التعادل بعد القوة والاتصال وعدد المناصب، بترتيب مونثا ثم حاكم النير ثم التثليث.'};}return {key:null,reason:'تعادل باقٍ يحتاج إيثاسالا القمر أو حكمًا خاصًا؛ لا كسر اعتباطي.'};}
+  return {key:best.key,reason:'الأعلى قوة، ثم قوة الاتصال، ثم عدد المناصب عند تساوي ما قبله.'};
+ }
+ function moonReplacement(annual,audit){
+  var moon=body(annual,'moon'),joins=[];
+  K.slice(0,7).forEach(function(k,p){if(p===1)return;var j=joining(moon,body(annual,k),1,p);if(j)joins.push({key:p,state:j});});
+  var perfect=joins.filter(function(j){return j.state.perfected&&!audit[j.key].blocked&&audit[j.key].uncertain.length===0;});
+  if(perfect.length===1)return {key:perfect[0].key,reason:'استُبدل القمر بصاحب الإيثاسالا المكتمل الآن ضمن 30 ثانية قوسية، وفق موكتافالي 4.6–8.'};
+  if(perfect.length>1||joins.length)return {key:null,reason:'استبدال القمر يحتاج حسم إيثاسالا مكتمل، لا مجرد تقارب مستقبلي أو أكثر من بديل؛ لا نختار بديلًا اعتباطيًا.'};
+  return {key:RULER[Math.floor(norm(moon.lon)/30)],reason:'لا إيثاسالا للقمر: البديل حاكم برجه، ويبقى القمر إن كان هو حاكم برجه، وفق موكتافالي 4.6–8.'};
+ }
  function officeHolders(birthAsc,annual,mun,day){
   if(day===null)return {candidates:[],selected:null,reason:'الشمس قريبة من الأفق؛ لا نحسم النهار والليل قرب الحد.'};
   var ascSign=Math.floor(norm(annual.asc)/30),positions=K.slice(0,7).map(function(k){return body(annual,k).lon;}),strength=pancha(positions),triDay=[0,5,6,5,4,1,3,2,6,2,4,1],triNight=[4,1,3,2,0,5,6,5,6,2,4,1];
   var ids=[RULER[Math.floor(norm(birthAsc)/30)],RULER[ascSign],mun.lord,(day?triDay:triNight)[ascSign],RULER[Math.floor(positions[day?0:1]/30)]],labels=['حاكم طالع الميلاد','حاكم طالع السنة','حاكم مونثا','حاكم التثليث','حاكم برج '+(day?'الشمس · عودة نهارية':'القمر · عودة ليلية')];
   var candidates=ids.map(function(p,i){var h=(ascSign-Math.floor(positions[p]/30)+12)%12+1,asp=({1:60,3:40,4:15,5:45,7:60,9:45,10:15,11:10})[h]||0;return {key:p,role:labels[i],strength:strength[p].total,aspect:asp};});
-  var unique=candidates.filter(function(v,i,a){return a.findIndex(function(x){return x.key===v.key;})===i;}),eligible=unique.filter(function(v){return v.aspect>0;});
-  if(!eligible.length)return {candidates:candidates,strength:strength,selected:null,reason:'لا أحد من المرشحين يتصل بالطالع. تختلف قاعدة الترجيح بين النصوص؛ لا نختار حاكمًا بلا حسم المدرسة.'};
-  eligible.sort(function(a,b){return b.strength-a.strength||b.aspect-a.aspect;});var best=eligible[0],ties=eligible.filter(function(v){return Math.abs(v.strength-best.strength)<1e-8&&v.aspect===best.aspect;});
-  if(ties.length>1){var mt=ties.filter(function(v){return v.key===mun.lord;})[0];if(mt)best=mt;else return {candidates:candidates,strength:strength,selected:null,reason:'تعادل غير محسوم بين المرشحين؛ لا نفرض حاكمًا للسنة.'};}
-  if(best.key===1)return {candidates:candidates,strength:strength,selected:null,reason:'القمر هو الأعلى بين المرشحين. اختياره يحتاج قاعدة الإيثاسالا والاستبدال الخاصة؛ لا نسمّي حاكمًا نهائيًا قبل تطبيقها.'};
-  return {candidates:candidates,strength:strength,selected:best.key,reason:'الأقوى بالقوة الخماسية بين المرشحين المتصلين بالطالع، وفق الصيغة المعلنة. الاختيار لا يتضمن فحص جميع موانع دوروفا.'};
+  var audit=screenDuru(annual);candidates.forEach(function(c){c.audit=audit[c.key];});
+  var eligible=candidates.filter(function(v){return v.aspect>0&&!v.audit.blocked;}),chosen,reason;
+  if(!eligible.length){
+   if(candidates.some(function(v){return v.aspect>0;}))return {candidates:candidates,strength:strength,selected:null,reason:'المرشحون المتصلون بالطالع مستبعدون بموانع دوروفا؛ لا نعيد إدخال مستبعد.'};
+   var fallback=RULER[ascSign];chosen=fallback;reason='لا اتصال من الخمسة: نختار حاكم طالع السنة وفق تاجيكا موكتافالي 4.9، خلاف روايات تختار مونثا.';
+  }else{var rank=rankOffices(eligible,mun.lord,ids[3],ids[4]);chosen=rank.key;reason=rank.reason;}
+  if(chosen===null)return {candidates:candidates,strength:strength,selected:null,reason:reason};
+  if(eligible.some(function(v){return v.audit.uncertain.length>0;}))return {candidates:candidates,strength:strength,selected:null,reason:'مرشح غير مستبعد له فحص حدودي غير محسوم قد يغيّر الاختيار؛ راجع أسباب المرشحين.'};
+  if(chosen===1){
+   var replacement=moonReplacement(annual,audit);chosen=replacement.key;reason+=' '+replacement.reason;
+   if(chosen===null)return {candidates:candidates,strength:strength,selected:null,reason:reason};
+  }
+
+  if(audit[chosen].blocked||audit[chosen].uncertain.length)return {candidates:candidates,strength:strength,selected:null,reason:'الحاكم البديل/الاحتياطي لم يجتز فحص دوروفا؛ لا نلغي الموانع لإجبار اختيار.'};
+  return {candidates:candidates,strength:strength,selected:chosen,reason:reason+' القواعد العددية المعلنة مطبّقة، وليست إجماع كل روايات تاجيكا.'};
  }
+
  function punya(sun,moon,asc,day){
   var a=day?sun:moon,b=day?moon:sun;if(Math.floor(norm(asc)/30)===Math.floor(norm(a)/30)||Math.floor(norm(asc)/30)===Math.floor(norm(b)/30))return null;
   var between=norm(asc-a)<norm(b-a);return norm(b-a+asc+(between?0:30));
@@ -2142,7 +2256,7 @@
   if(!L||!L.ch.known){el.innerHTML='<p class="vad-warning">وقت الميلاد غير معروف. لا نخمن موعد العودة أو الطالع أو مونثا.</p>';return el;}
   var min=(Number.isInteger(L.natal.y)?L.natal.y:new Date(L.natal.utcMs).getUTCFullYear())+1,max=Math.min(2200,min+119),yr=Math.max(min,Math.min(max,new Date().getFullYear()+1));
   var place=String(L.natal.placeName||L.natal.place||'مكان الميلاد'),esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
-  el.innerHTML='<p class="vad-lead">الخريطة السنوية لحظة عودة الشمس إلى طولها النجمي عند ميلادك، مع طالع السنة ومونثا والاتصالات التاجيكية. العودة ليست تكرار الساعة والتاريخ المدنيين.</p><label>سنة العودة المرجعية<input class="vyr-year" type="number" min="'+min+'" max="'+max+'" step="1" value="'+yr+'"></label><label>مكان العودة<select class="vyr-place"><option value="birth">مكان الميلاد</option><option value="custom">مكان آخر · إحداثيات</option></select></label><p class="vad-note">الافتراضي مكان الميلاد: '+esc(place)+' ('+L.ch.lat.toFixed(4)+', '+L.ch.lon.toFixed(4)+'). غيّره إذا كنت تريد خريطة العودة على مكان آخر، فالمكان يغيّر الطالع والبيوت لا لحظة عودة الشمس.</p><div class="vyr-coords" hidden><label>خط العرض · شمال موجب وجنوب سالب<input class="vyr-lat" type="number" min="-89" max="89" step="any" value="'+L.ch.lat+'"></label><label>خط الطول · شرق موجب وغرب سالب<input class="vyr-lon" type="number" min="-180" max="180" step="any" value="'+L.ch.lon+'"></label></div><button type="button" class="vyr-go">احسب العودة السنوية</button><div class="vyr-out" aria-live="polite"></div><p class="vad-note">المدرسة: العودة النجمية مع لاهيري، وبيوت البرج الكامل. مونثا تتقدم برجًا لكل سنة مكتملة من طالع الميلاد. التوقيت معروض بـUTC وتوقيت جهاز العرض، ولا يغيّر الحساب.</p><p class="vad-note">هذه طبقة الخريطة السنوية وليست تقرير تاجيكا كاملًا. ترشيح حاكم السنة أولي من المرشحين والقوة الخماسية، ولا يشمل جميع موانع دوروفا. لا نختار آليًا في تعادل غير محسوم أو حين يلزم استبدال القمر أو يغيب الاتصال بالطالع. سهم بونيا وحده هنا، لا السهام الخمسون ولا اليوغات الست عشرة كاملة. التطبيق والانفصال هنا وصف عددي لحظي، وليس حكم إيثاسالا كاملًا. الأرقام الفلكية لا تثبت صحة التنبؤات.</p>';
+  el.innerHTML='<p class="vad-lead">الخريطة السنوية لحظة عودة الشمس إلى طولها النجمي عند ميلادك، مع طالع السنة ومونثا والاتصالات التاجيكية. العودة ليست تكرار الساعة والتاريخ المدنيين.</p><label>سنة العودة المرجعية<input class="vyr-year" type="number" min="'+min+'" max="'+max+'" step="1" value="'+yr+'"></label><label>مكان العودة<select class="vyr-place"><option value="birth">مكان الميلاد</option><option value="custom">مكان آخر · إحداثيات</option></select></label><p class="vad-note">الافتراضي مكان الميلاد: '+esc(place)+' ('+L.ch.lat.toFixed(4)+', '+L.ch.lon.toFixed(4)+'). غيّره إذا كنت تريد خريطة العودة على مكان آخر، فالمكان يغيّر الطالع والبيوت لا لحظة عودة الشمس.</p><div class="vyr-coords" hidden><label>خط العرض · شمال موجب وجنوب سالب<input class="vyr-lat" type="number" min="-89" max="89" step="any" value="'+L.ch.lat+'"></label><label>خط الطول · شرق موجب وغرب سالب<input class="vyr-lon" type="number" min="-180" max="180" step="any" value="'+L.ch.lon+'"></label></div><button type="button" class="vyr-go">احسب العودة السنوية</button><div class="vyr-out" aria-live="polite"></div><p class="vad-note">المدرسة: العودة النجمية مع لاهيري، وبيوت البرج الكامل. مونثا تتقدم برجًا لكل سنة مكتملة من طالع الميلاد. التوقيت معروض بـUTC وتوقيت جهاز العرض، ولا يغيّر الحساب.</p><p class="vad-note">هذه طبقة الخريطة السنوية وليست تقرير تاجيكا كاملًا. حاكم السنة يخضع لفحص دوروفا، والقوة ثم الاتصال ثم عدد المناصب وحسم التعادل، وقاعدة استبدال القمر. عند غياب اتصال الخمسة نتبع موكتافالي ونفحص حاكم طالع السنة. حدود الاحتراق وقرب العقدة وإيثاسالا القمر المستقبلية قد تبقى غير محسومة؛ تظهر أسباب الاستبعاد والفحوص المعلقة دون إجبار حاكم. سهم بونيا وحده هنا، لا السهام الخمسون ولا اليوغات الست عشرة كاملة. التطبيق والانفصال هنا وصف عددي لحظي، وليس حكم إيثاسالا كاملًا. الأرقام الفلكية لا تثبت صحة التنبؤات.</p>';
   el.querySelector('.vyr-place').addEventListener('change',function(){el.querySelector('.vyr-coords').hidden=this.value!=='custom';});
   function fmt(ms,tz){return new Intl.DateTimeFormat('ar-EG',{timeZone:tz,dateStyle:'long',timeStyle:'medium'}).format(new Date(ms));}
   function deg(l){return window.AqVedic.T.SG[Math.floor(norm(l)/30)]+' '+(norm(l)%30).toFixed(4)+'°';}
@@ -2150,10 +2264,10 @@
     var custom=el.querySelector('.vyr-place').value==='custom',lat=custom?Number(el.querySelector('.vyr-lat').value):L.ch.lat,lon=custom?Number(el.querySelector('.vyr-lon').value):L.ch.lon;
     if(custom&&(el.querySelector('.vyr-lat').value.trim()===''||el.querySelector('.vyr-lon').value.trim()===''))throw new Error('أدخل خط العرض والطول معًا.');
     var r=calculate(L.ch,L.natal,Number(el.querySelector('.vyr-year').value),{lat:lat,lon:lon}),SG=window.AqVedic.T.SG,zone=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';
-    var h='<h5>العودة رقم '+r.age+' · سنة '+r.year+'</h5><div class="vyr-moment"><span>لحظة العودة · UTC</span><b>'+fmt(r.returnMs,'UTC')+'</b><span>توقيت جهاز العرض · '+esc(zone)+'</span><b>'+fmt(r.returnMs,zone)+'</b><small>السنة تنتهي عند العودة التالية: '+fmt(r.nextMs,'UTC')+' UTC</small></div><p class="vad-note">مكان الحساب: '+lat.toFixed(4)+', '+lon.toFixed(4)+(custom?' · إحداثيات مختارة':' · مكان الميلاد')+'. وقت العودة هو حل عددي للزاوية؛ عرضه بالثانية لا يعني أن وقت الميلاد أو النموذج الفلكي دقيقان لثانية.</p><div class="vad-signs"><article><span>طالع السنة</span><b>'+SG[Math.floor(r.chart.asc/30)]+'</b><small>'+(r.chart.asc%30).toFixed(3)+'°</small></article><article><span>مونثا</span><b>'+SG[r.muntha.sign]+'</b><small>البيت '+r.muntha.house+' · حاكمها '+N[r.muntha.lord]+'</small></article></div>';
-    if(window.AqVedicChart){var m=window.AqVedicChart.build(r.chart,1);h+='<div class="vyr-chart">'+window.AqVedicChart.svg(m,'خريطة العودة الشمسية النجمية '+r.year)+'</div>';}
-    h+='<h5>القوة الخماسية ومرشحو حاكم السنة</h5><p class="vad-note">'+(r.offices.selected===null?'لا ترشيح نهائي آلي':('الترشيح الأولي: '+N[r.offices.selected]))+'. '+r.offices.reason+'</p><div class="vyr-candidates">';
-    r.offices.candidates.forEach(function(v){h+='<article><span>'+v.role+'</span><b>'+N[v.key]+'</b><small>القوة الخماسية '+v.strength.toFixed(3)+' / 20 · '+(v.aspect?'اتصال بالطالع '+v.aspect+'/60':'بلا اتصال بالطالع')+'</small></article>';});h+='</div><p class="vad-note">'+(r.punya===null?'سهم بونيا: لا قيمة آلية عند التباس الحد أو النهار والليل.':'سهم بونيا: '+deg(r.punya))+'. الترشيح ليس توقعًا لحدث.</p>';
+    var h='<h5>العودة رقم '+r.age+' · سنة '+r.year+'</h5><div class="vyr-moment"><span>لحظة العودة · UTC</span><b>'+fmt(r.returnMs,'UTC')+'</b><span>توقيت جهاز العرض · '+esc(zone)+'</span><b>'+fmt(r.returnMs,zone)+'</b><small>السنة تنتهي عند العودة التالية: '+fmt(r.nextMs,'UTC')+' UTC</small></div><p class="vad-note">مكان الحساب: '+lat.toFixed(4)+', '+lon.toFixed(4)+(custom?' · إحداثيات مختارة':' · مكان الميلاد')+'. وقت العودة هو حل عددي للزاوية؛ عرضه بالثانية لا يعني أن وقت الميلاد أو النموذج الفلكي دقيقان لثانية. في سبع حالات اختبار مستقلة كان فرق توقيت العودة عن مرجع Swiss من 13.5 إلى 57.4 ثانية زمنية، وفرق الطالع من 2.7 إلى 12.4 دقيقة قوسية. هذه فروق مقاسة في العينة وليست حدًا مضمونًا لكل التواريخ.</p><div class="vad-signs"><article><span>طالع السنة</span><b>'+SG[Math.floor(r.chart.asc/30)]+'</b><small>'+(r.chart.asc%30).toFixed(3)+'°</small></article><article><span>مونثا</span><b>'+SG[r.muntha.sign]+'</b><small>البيت '+r.muntha.house+' · حاكمها '+N[r.muntha.lord]+'</small></article></div>';
+    if(window.AqVedicChart){var m=window.AqVedicChart.build(r.chart,1);h+='<div class="vyr-chart">'+window.AqVedicChart.svg(m,'خريطة العودة الشمسية النجمية '+r.year,String(r.year))+'</div>';}
+    h+='<h5>القوة الخماسية ومرشحو حاكم السنة</h5><p class="vad-note">'+(r.offices.selected===null?'لم يُحسم حاكم السنة':('حاكم السنة وفق القواعد المعلنة: '+N[r.offices.selected]))+'. '+r.offices.reason+'</p><div class="vyr-candidates">';
+    r.offices.candidates.forEach(function(v){h+='<article><span>'+v.role+'</span><b>'+N[v.key]+'</b><small>القوة الخماسية '+v.strength.toFixed(3)+' / 20 · '+(v.aspect?'اتصال بالطالع '+v.aspect+'/60':'بلا اتصال بالطالع')+'</small>'+((v.audit&&v.audit.reasons.length)?'<small>مستبعد: '+v.audit.reasons.join('، ')+'</small>':'')+((v.audit&&v.audit.uncertain.length)?'<small>فحص غير محسوم: '+v.audit.uncertain.join('، ')+'</small>':'')+'</article>';});h+='</div><p class="vad-note">'+(r.punya===null?'سهم بونيا: لا قيمة آلية عند التباس الحد أو النهار والليل.':'سهم بونيا: '+deg(r.punya))+'. اختيار الحاكم ليس توقعًا لحدث.</p>';
     if(r.offices.strength){h+='<div class="vad-scroll" tabindex="0" aria-label="تفاصيل القوة الخماسية"><table><thead><tr><th>الكوكب</th><th>البرج /30</th><th>الشرف /20</th><th>حدّا /15</th><th>العشرية /10</th><th>التسع /5</th><th>المجموع /20</th></tr></thead><tbody>';r.offices.strength.forEach(function(v,p){h+='<tr><th>'+N[p]+'</th>'+v.parts.map(function(n){return '<td>'+n.toFixed(3)+'</td>';}).join('')+'<td>'+v.total.toFixed(3)+'</td></tr>';});h+='</tbody></table></div><p class="vad-note">تُجمع القيم الخمس ثم تُقسم على 4. علاقات تاجيكا وديّة/محايدة/عدائية، وليست الصداقة المركبة لباراشارا.</p>';}
     h+='<div class="vad-scroll" tabindex="0" aria-label="مواضع الكواكب في خريطة العودة"><table><thead><tr><th>الكوكب</th><th>موضعه النجمي</th><th>البيت</th><th>الحركة</th></tr></thead><tbody>';
     K.forEach(function(k,p){var b=body(r.chart,k);h+='<tr><th>'+N[p]+'</th><td>'+deg(b.lon)+'</td><td>'+b.house+'</td><td>'+(b.retro?'راجع':'مباشر')+'</td></tr>';});var nd=body(r.chart,'node');h+='<tr><th>كيتو</th><td>'+deg(nd.lon+180)+'</td><td>'+((Math.floor(norm(nd.lon+180)/30)-Math.floor(r.chart.asc/30)+12)%12+1)+'</td><td>راجع</td></tr></tbody></table></div><h5>اتصالات تاجيكا ضمن الأورب</h5><div class="vyr-aspects">';
@@ -2163,7 +2277,7 @@
    }catch(e){out.innerHTML='<p class="vad-warning"></p>';out.firstChild.textContent=e.message;delete out.dataset.returnMs;}}
   el.querySelector('.vyr-go').addEventListener('click',run);run();return el;
  }
- window.AqVarshaphala={calculate:calculate,createCard:createCard,math:{sunAt:sunAt,root:root,muntha:muntha,tajika:tajika,pancha:pancha,hadda:hadda,punya:punya,officeHolders:officeHolders}};
+ window.AqVarshaphala={calculate:calculate,createCard:createCard,math:{sunAt:sunAt,root:root,muntha:muntha,tajika:tajika,pancha:pancha,hadda:hadda,punya:punya,officeHolders:officeHolders,joining:joining,screenDuru:screenDuru,rankOffices:rankOffices,moonReplacement:moonReplacement}};
 })();
 
 ;

@@ -84,24 +84,83 @@
     return '<g><rect x="' + (x - w / 2) + '" y="' + (y - 10) + '" width="' + w + '" height="20" rx="10" fill="' + c[0] + '" stroke="' + c[1] + '" stroke-width="1.3"/>' +
       '<text x="' + x + '" y="' + y + '" text-anchor="middle" dominant-baseline="central" font-size="12.5" font-weight="800" fill="' + c[2] + '">' + esc(label) + (retro ? '<tspan font-size="9" dy="-4">℞</tspan>' : '') + '</text></g>';
   }
-  /* SVG المخطط: كل كوكب في كبسولة ملونة، الأرقام الذهبية أرقام البروج. البيت 1 في الأعلى والترتيب عكس عقارب الساعة. */
-  function svg(map, title) {
-    var h = '<svg class="vc-svg" viewBox="0 0 400 400" role="img" aria-label="' + esc(title) + '" xmlns="http://www.w3.org/2000/svg">';
-    h += '<title>' + esc(title) + '</title><rect x="2" y="2" width="396" height="396" rx="6" fill="' + CREAM + '" stroke="' + GOLD + '" stroke-width="2.5"/>';
-    h += '<g fill="none" stroke="' + GOLD + '" stroke-width="1.6" stroke-linejoin="round"><path d="M2 2L398 398M398 2L2 398"/><path d="M200 2L398 200L200 398L2 200Z"/></g>';
-    for (var i = 0; i < 12; i++) {
-      var sg = (map.lagna + i) % 12, c = CENTERS[i], np = NUMPOS[i];
-      h += '<text x="' + np[0] + '" y="' + np[1] + '" text-anchor="middle" dominant-baseline="middle" font-size="14" fill="' + GOLD + '" font-weight="700">' + (sg + 1) + '</text>';
-      var here = map.items.filter(function (x) { return x.house === i; }).map(function (x) { return { t: x.ab, tone: TONE[x.key] || 'g', r: x.retro }; });
-      if (i === 0) here.unshift({ t: lagLbl(map), tone: 'l', r: false });
-      var k = here.length, cols = k > 3 ? 2 : 1, rows = Math.ceil(k / cols), w = 36, gx = 40, gy = 23;
-      here.forEach(function (it, j) {
-        var col = cols === 1 ? 0 : j % 2, row = cols === 1 ? j : Math.floor(j / 2);
-        var px = c[0] + (cols === 1 ? 0 : (col === 0 ? -gx / 2 : gx / 2)), py = c[1] + (row - (rows - 1) / 2) * gy;
-        h += pill(px, py, w, it.t, it.tone, it.r);
-      });
+  /* البيوت ثابتة في الرسم الشمالي، والألوان تتبع عنصر البرج لا ترتيب البيت. */
+  var GLYPHS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+  var FIELDS = [
+    [[200,0],[100,100],[200,200],[300,100]], [[0,0],[200,0],[100,100]],
+    [[0,0],[100,100],[0,200]], [[0,200],[100,100],[200,200],[100,300]],
+    [[0,200],[100,300],[0,400]], [[0,400],[100,300],[200,400]],
+    [[200,200],[100,300],[200,400],[300,300]], [[200,400],[300,300],[400,400]],
+    [[400,400],[300,300],[400,200]], [[200,200],[300,100],[400,200],[300,300]],
+    [[400,0],[400,200],[300,100]], [[200,0],[400,0],[300,100]]
+  ];
+  var HEADS = [[200,53],[100,19],[34,88],[100,164],[34,288],[100,341],
+    [200,269],[300,341],[366,288],[300,164],[366,88],[300,19]];
+  var INKS = ['#784638','#796039','#6A435A','#4C6267'];
+  var FILLS = ['#E8CFC1','#EBDFC3','#E5D6DE','#D5E0DD'];
+  function inside(poly,x,y) {
+    var sign=0;
+    for(var j=0;j<poly.length;j++) {var a=poly[j],b=poly[(j+1)%poly.length],v=(b[0]-a[0])*(y-a[1])-(b[1]-a[1])*(x-a[0]);if(Math.abs(v)<.01)continue;var z=v>0?1:-1;if(sign&&z!==sign)return false;sign=z;}
+    return true;
+  }
+  /* تتسع حتى لتجمّع الكواكب التسعة، بلا إخفاء أو عبور لحدود البيوت. */
+  function labelAt(i,count) {
+    var h=HEADS[i].slice(),compact=count>4&&i%3!==0;
+    if(compact&&(i===5||i===7))h[1]=389;
+    return {x:h[0],y:h[1],compact:compact};
+  }
+  function placement(i,count) {
+    var poly=FIELDS[i],hd=labelAt(i,count),target=CENTERS[i],found=[],w=32,ht=19;
+    for(var attempt=0;attempt<8;attempt++) {
+      w=32-attempt*2;ht=19-attempt;found=[];var slots=[];
+      for(var y=10+ht/2;y<397-ht/2;y+=ht+2) {
+        var xs=[];
+        for(var x=2+w/2;x<398-w/2;x++) {
+          if(![[x-w/2-1,y-ht/2-1],[x+w/2+1,y-ht/2-1],[x+w/2+1,y+ht/2+1],[x-w/2-1,y+ht/2+1]].every(function(p){return inside(poly,p[0],p[1]);}))continue;
+          xs.push(x);
+        }
+        if(!xs.length)continue;
+        var n=Math.floor((xs[xs.length-1]-xs[0])/(w+3))+1,mid=(xs[0]+xs[xs.length-1])/2;
+        for(var k=0;k<n;k++) {
+          var px=mid+(k-(n-1)/2)*(w+3);
+          if(Math.abs(px-hd.x)<w/2+35&&y+ht/2>hd.y-12&&y-ht/2<hd.y+(hd.compact?4:25))continue;
+          if(Math.hypot(px-200,y-200)<31+w/2)continue;
+          slots.push([px,y]);
+        }
+      }
+      slots.sort(function(a,b){return Math.hypot(a[0]-target[0],a[1]-target[1]-15)-Math.hypot(b[0]-target[0],b[1]-target[1]-15);});
+      found=slots.slice(0,count).sort(function(a,b){return a[1]-b[1]||a[0]-b[0];});
+      if(found.length===count)break;
     }
-    return h + '</svg>';
+    return {points:found,w:w,h:ht};
+  }
+  function svg(map, title, centerLabel) {
+    var label=centerLabel || (map.n==='moon'?'القمر':map.n==='sun'?'الشمس':'D'+map.n);
+    var h='<svg class="vc-svg vc-north" viewBox="0 0 424 424" role="img" aria-label="'+esc(title)+'" xmlns="http://www.w3.org/2000/svg">';
+    h+='<title>'+esc(title)+'</title><desc>البيت الأول أعلى المعين، ثم البيوت عكس عقارب الساعة. كل خانة تحمل رقم البرج ورمزه واسمه، والألوان حسب عنصر البرج.</desc>';
+    h+='<rect x="1" y="1" width="422" height="422" rx="17" fill="#F8F2E7" stroke="#D8C39B"/><rect x="7" y="7" width="410" height="410" rx="12" fill="none" stroke="#E2D3B8"/>';
+    h+='<g transform="translate(12 12)">';
+    for(var i=0;i<12;i++) {
+      var sg=(map.lagna+i)%12,hd=HEADS[i],el=sg%4;
+      h+='<g class="vc-house" data-house="'+(i+1)+'" data-sign="'+sg+'"><title>البيت '+(i+1)+' · '+SG[sg]+'</title><polygon points="'+FIELDS[i].map(function(p){return p.join(',');}).join(' ')+'" fill="'+FILLS[el]+'" fill-opacity="'+(i%3===0?'.9':'.38')+'"/>';
+      var here=map.items.filter(function(x){return x.house===i;}).map(function(x){return {t:x.ab,name:x.name,tone:TONE[x.key]||'g',r:x.retro,key:x.key};});
+      if(i===0)here.unshift({t:lagLbl(map),name:'الطالع',tone:'l',r:false,key:'lagna'});
+      var hd0=labelAt(i,here.length);
+      if(hd0.compact) {
+        h+='<g class="vc-sign-label" fill="'+INKS[el]+'" text-anchor="middle"><text x="'+(hd0.x-30)+'" y="'+hd0.y+'" font-size="10">'+(sg+1)+'</text><text x="'+(hd0.x-15)+'" y="'+hd0.y+'" font-family="Georgia, serif" font-size="13">'+GLYPHS[sg]+'&#xfe0e;</text><text x="'+(hd0.x+13)+'" y="'+hd0.y+'" font-size="10" direction="rtl">'+SG[sg]+'</text></g>';
+      } else {
+      h+='<g class="vc-sign-label" fill="'+INKS[el]+'" text-anchor="middle"><text x="'+(hd[0]-11)+'" y="'+hd[1]+'" font-size="15" font-weight="600">'+(sg+1)+'</text><text x="'+(hd[0]+12)+'" y="'+hd[1]+'" font-family="Georgia, serif" font-size="19">'+GLYPHS[sg]+'&#xfe0e;</text><text x="'+hd[0]+'" y="'+(hd[1]+19)+'" font-size="13" font-weight="600" direction="rtl">'+SG[sg]+'</text></g>';
+      }
+      var layout=placement(i,here.length);
+      here.forEach(function(it,j){var p=layout.points[j];if(!p)return;var col=TCOL[it.tone],fs=Math.min(12,layout.h*.64);
+        h+='<g class="vc-body" data-planet="'+esc(it.key)+'"><title>'+esc(it.name)+(it.r?' · متراجع':'')+'</title><rect x="'+(p[0]-layout.w/2)+'" y="'+(p[1]-layout.h/2)+'" width="'+layout.w+'" height="'+layout.h+'" rx="'+layout.h/2+'" fill="'+(it.tone==='l'?WINE:'#FFFCF5')+'" fill-opacity=".95" stroke="'+(it.tone==='l'?GOLD:col[1])+'" stroke-width=".8"/><text x="'+p[0]+'" y="'+p[1]+'" text-anchor="middle" dominant-baseline="central" font-size="'+fs+'" font-weight="700" fill="'+(it.tone==='l'?'#FFF1D6':col[2])+'">'+esc(it.t)+(it.r?'<tspan font-size="8" baseline-shift="super">℞</tspan>':'')+'</text></g>';
+      });
+      h+='</g>';
+    }
+    h+='<g fill="none" stroke="#9B805B" stroke-width="1.05" stroke-linejoin="round"><path d="M0 0H400V400H0ZM0 0L400 400M400 0L0 400M200 0L400 200L200 400L0 200Z"/></g>';
+    [[200,0],[0,200],[200,400],[400,200]].forEach(function(p){h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#F8F2E7" stroke="#9B805B"/><circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.5" fill="'+WINE+'"/>';});
+    h+='<g class="vc-medallion"><circle cx="200" cy="202" r="28" fill="#BDA578" opacity=".2"/><circle cx="200" cy="200" r="27" fill="#FCF7EB" stroke="#B69B6B" stroke-width="1.2"/><circle cx="200" cy="200" r="23" fill="none" stroke="#DFCEAE"/><text x="200" y="197" text-anchor="middle" dominant-baseline="middle" font-size="'+(String(label).length>4?'15':'20')+'" font-weight="700" fill="'+WINE+'">'+esc(label)+'</text><text x="200" y="213" text-anchor="middle" font-size="8.5" fill="#8A704D">عقيق أسترو</text></g>';
+    return h+'</g></svg>';
   }
   function svgSouth(map, title) {
     var C = 100, h = '<svg class="vc-svg" viewBox="0 0 400 400" role="img" aria-label="' + esc(title) + '" xmlns="http://www.w3.org/2000/svg">';
@@ -200,7 +259,7 @@
         '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b> <small class="vc-orig">' + esc(ORIG[cur] || '') + '</small><br>' + esc(v[3]) + '</p>' +
         '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div>' +
         '<div class="vc-chartwrap">' + (style === 's' ? svgSouth(map, title) : svg(map, title)) + '</div>' +
-        '<p class="vc-note">' + esc(note) + (style === 's' ? ' في الرسم الجنوبي كل برج له مكان ثابت (الحمل ثاني خانة في الصف الأعلى) ويمضي الترتيب مع عقارب الساعة، والخط المائل يعلّم خانة الطالع. ℞ يعني راجع.' : ' الأرقام الذهبية أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. ℞ يعني راجع.') + '</p>' +
+        '<p class="vc-note">' + esc(note) + (style === 's' ? ' في الرسم الجنوبي كل برج له مكان ثابت (الحمل ثاني خانة في الصف الأعلى) ويمضي الترتيب مع عقارب الساعة، والخط المائل يعلّم خانة الطالع. ℞ يعني راجع.' : ' الأرقام داخل الخانات أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. تدرجات الخانات تميّز عناصر الأبراج وليست حكمًا على قوة الكواكب. ℞ يعني راجع.') + '</p>' +
         '<p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p><ul class="vc-rows">' + houseRows(map) + '</ul>' + extras(map) +
         (sig ? '<p class="vc-sig">' + esc(sig.name) + ' الدال هنا في ' + SG[sig.sign] + ' (البيت ' + (sig.house + 1) + ').</p>' : '');
       host.querySelectorAll('.vc-st').forEach(function (b) { b.addEventListener('click', function () { style = b.dataset.s; try { localStorage.setItem('aq-vedic-style', style); } catch (e) {} draw(); }); });
