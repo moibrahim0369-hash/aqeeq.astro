@@ -224,17 +224,5 @@
   });
   function editBack() { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); try { sec.scrollTo({ top: 0 }); } catch (x) {} }
   var y27ed = $('#y27-edit'); if (y27ed) y27ed.addEventListener('click', editBack);
-  /* قفل الصفحة على المسجلين: نفس نمط صفحة الدفع (AqSession + حدث aq:session) */
-  var guest = $('#y27-guest');
-  function gate() {
-    var S = window.AqSession; if (!S || !S.known) return;
-    var in_ = !!S.user;
-    if (guest) guest.hidden = in_;
-    if (form) form.hidden = !in_;
-    var ex = sec.querySelector('.y27-explain'); if (ex) ex.hidden = !in_;
-    if (!in_) { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); }
-  }
-  document.addEventListener('aq:session', gate);
-  gate();
   window.AqYear2027 = { compute: compute };
 })();

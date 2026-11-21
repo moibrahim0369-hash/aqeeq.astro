@@ -93,7 +93,7 @@ html body a.aqh-tool-y27 svg{flex:none}
 @media print{
  body.y27-printing>*:not(#year2027):not(script){display:none!important}
  body.y27-printing #year2027{display:block!important;position:static!important;inset:auto!important;overflow:visible!important;height:auto!important;background:#fff!important;transform:none!important}
- body.y27-printing :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) :is(.sheet-x,.aq-section-topbar,.y27-actions,.y27-editrow,.y27-form,.y27-intro,.y27-side,.y27-hint,.y27-buyb,.y27b-tools,.y27-guest,.y27-unlock){display:none!important}
+ body.y27-printing :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) :is(.sheet-x,.aq-section-topbar,.y27-actions,.y27-editrow,.y27-form,.y27-intro,.y27-side,.y27-hint,.y27-buyb,.y27b-tools,.y27-unlock){display:none!important}
  body.y27-printing :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) .y27-printhead{display:flex!important;justify-content:space-between;align-items:center;border-bottom:2px solid var(--b3-gold);padding-bottom:8px;margin-bottom:12px;color:var(--b3-wine);font-weight:700}
  body.y27-printing :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) .y27-acc{break-inside:avoid;backdrop-filter:none;background:#fff}
  body.y27-printing :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) .y27-acc:not([open])>.y27-body{display:block}
@@ -339,10 +339,4 @@ html.aq-review-open body #year2027 .y27-unlock{display:none}
 #year2027 .y27-buyb .y27-buy{white-space:nowrap;border-color:#E9CE8E;background:linear-gradient(135deg,#C8A15A,#A87F3D);color:#3A0E1C}
 @media(max-width:430px){#year2027 .y27-buyb{flex-wrap:wrap;justify-content:center;text-align:center}#year2027 .y27-buyb-t{flex:1 1 100%;order:-1}}
 #year2027 .y27-ghost{background:transparent;color:var(--b3-wine);border-color:var(--b3-gold)}
-#year2027 .y27-guest{display:grid;justify-items:center;gap:8px;margin:16px 0;padding:22px 18px;border-radius:20px;background:#FFFDFA;border:1px solid rgba(183,138,82,.45);box-shadow:0 10px 26px rgba(74,26,43,.06);text-align:center}
-#year2027 .y27-guest[hidden]{display:none}
-#year2027 .y27-g-ic{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:linear-gradient(160deg,#8A3350,#4A1224);border:1.5px solid #C8A15A;color:#E9CE8E}
-#year2027 .y27-guest h3{margin:0;font:700 1.15rem/1.5 'Amiri',serif;color:var(--b3-wine)}
-#year2027 .y27-guest p{margin:0;font-size:.9rem;line-height:1.8;color:var(--b3-mut)}
-#year2027 .y27-g-btn{margin-top:4px}
 #year2027 .y27-form[hidden],#year2027 .y27-explain[hidden]{display:none!important}
