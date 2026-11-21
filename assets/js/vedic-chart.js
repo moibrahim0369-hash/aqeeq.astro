@@ -135,7 +135,7 @@
     return {points:found,w:w,h:ht};
   }
   function medallion(label,radius) {
-    var year=/^\d{4}$/.test(String(label)),arabic=/[\u0600-\u06ff]/.test(String(label)),size=year?19:arabic?16:20;
+    var year=/^\d{4}$/.test(String(label)),arabic=/[\u0600-\u06ff]/.test(String(label)),size=year?19:arabic?13:20;
     return '<g class="vc-medallion" transform="translate(200 200) scale('+(radius/30)+')"><circle cy="1.6" r="30" fill="#A88A54" opacity=".12"/><circle r="30" fill="#FCF7EB" stroke="#BA9D69" stroke-width="1"/><circle r="26.5" fill="none" stroke="#E6D8BA" stroke-width=".6"/><text class="vc-medallion-label" x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-family="'+(year?'Amiri,serif':'inherit')+'" font-size="'+size+'" font-weight="'+(year?'700':'600')+'" fill="'+WINE+'">'+esc(label)+'</text><path d="M-10 6H10" stroke="#D9C39B" stroke-width=".65"/><text class="vc-medallion-brand" x="0" y="18" text-anchor="middle" font-family="Amiri,serif" font-size="11" fill="#977D57" opacity=".85">عقيق</text></g>';
   }
   function svg(map, title, centerLabel) {

@@ -1733,6 +1733,10 @@
     }
     return {points:found,w:w,h:ht};
   }
+  function medallion(label,radius) {
+    var year=/^\d{4}$/.test(String(label)),arabic=/[\u0600-\u06ff]/.test(String(label)),size=year?19:arabic?13:20;
+    return '<g class="vc-medallion" transform="translate(200 200) scale('+(radius/30)+')"><circle cy="1.6" r="30" fill="#A88A54" opacity=".12"/><circle r="30" fill="#FCF7EB" stroke="#BA9D69" stroke-width="1"/><circle r="26.5" fill="none" stroke="#E6D8BA" stroke-width=".6"/><text class="vc-medallion-label" x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-family="'+(year?'Amiri,serif':'inherit')+'" font-size="'+size+'" font-weight="'+(year?'700':'600')+'" fill="'+WINE+'">'+esc(label)+'</text><path d="M-10 6H10" stroke="#D9C39B" stroke-width=".65"/><text class="vc-medallion-brand" x="0" y="18" text-anchor="middle" font-family="Amiri,serif" font-size="11" fill="#977D57" opacity=".85">عقيق</text></g>';
+  }
   function svg(map, title, centerLabel) {
     var label=centerLabel || (map.n==='moon'?'القمر':map.n==='sun'?'الشمس':'D'+map.n);
     var h='<svg class="vc-svg vc-north" viewBox="0 0 424 424" role="img" aria-label="'+esc(title)+'" xmlns="http://www.w3.org/2000/svg">';
@@ -1758,7 +1762,7 @@
     }
     h+='<g fill="none" stroke="#9B805B" stroke-width="1.05" stroke-linejoin="round"><path d="M0 0H400V400H0ZM0 0L400 400M400 0L0 400M200 0L400 200L200 400L0 200Z"/></g>';
     [[200,0],[0,200],[200,400],[400,200]].forEach(function(p){h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#F8F2E7" stroke="#9B805B"/><circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.5" fill="'+WINE+'"/>';});
-    h+='<g class="vc-medallion"><circle cx="200" cy="202" r="28" fill="#BDA578" opacity=".2"/><circle cx="200" cy="200" r="27" fill="#FCF7EB" stroke="#B69B6B" stroke-width="1.2"/><circle cx="200" cy="200" r="23" fill="none" stroke="#DFCEAE"/><text x="200" y="197" text-anchor="middle" dominant-baseline="middle" font-size="'+(String(label).length>4?'15':'20')+'" font-weight="700" fill="'+WINE+'">'+esc(label)+'</text><text x="200" y="213" text-anchor="middle" font-size="8.5" fill="#8A704D">عقيق أسترو</text></g>';
+    h+=medallion(label,29);
     return h+'</g></svg>';
   }
   function svgSouth(map, title) {
@@ -1779,7 +1783,7 @@
     }
     h+='<g fill="none" stroke="#9B805B" stroke-width="1.05"><path d="M0 0H400V400H0ZM100 0V400M300 0V400M200 0V100M200 300V400M0 100H400M0 300H400M0 200H100M300 200H400"/></g>';
     [[100,100],[300,100],[300,300],[100,300]].forEach(function(p){h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3" fill="#F8F2E7" stroke="#9B805B"/>';});
-    h+='<g class="vc-medallion"><circle cx="200" cy="202" r="40" fill="#BDA578" opacity=".13"/><circle cx="200" cy="200" r="39" fill="#FCF7EB" stroke="#B69B6B" stroke-width="1.2"/><circle cx="200" cy="200" r="34" fill="none" stroke="#DFCEAE"/><text x="200" y="197" text-anchor="middle" font-size="23" font-weight="700" fill="'+WINE+'">'+esc(label)+'</text><text x="200" y="217" text-anchor="middle" font-size="10" fill="#8A704D">عقيق أسترو</text></g>';
+    h+=medallion(label,39);
     return h+'</g></svg>';
   }
   /* رموز وضع الخبير الصامتة: تظهر للأدمن بعد فتح القفل فقط */
