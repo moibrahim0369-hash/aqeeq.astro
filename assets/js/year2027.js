@@ -1,267 +1,68 @@
-/* قراءة سنة 2027 من الخريطة الفيدية: الفترة الحاكمة، ثقل زحل، العلاقات الكارمية، الحذر، العمل والمال، الميثاق.
-   تُحسب محلياً من الخريطة النجمية (لاهيري). النصوص مبدئية وتُستبدل بالنهائية من دستور المحتوى. */
-(function () {
-  'use strict';
-  var sec = document.getElementById('year2027'); if (!sec) return;
-  var YEAR = 2027;
-  var $ = function (s, r) { return (r || document).querySelector(s); };
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  var norm = function (x) { return ((x % 360) + 360) % 360; };
-  var SATH = ['',
-    'زحل يمر على بيتك الأول، فيطلب منك أن تقف على قدميك وحدك. تلاحظ أن المجاملات القديمة صارت ثقيلة، وأن صورتك أمام الناس تحتاج صدقًا أكثر. لا تعالج التعب بمزيد من العمل؛ ثبّت نومك ومواعيد أكلك أولًا.',
-    'زحل في بيتك الثاني: علاقتك بالمال تُراجَع بهدوء. المصروف الذي كنت تتجاهله يظهر أمامك، وكلامك يصير أثقل وزنًا. اكتب أرقامك مرة في الأسبوع، ولا تَعِد بما لا تقدر عليه.',
-    'زحل في بيتك الثالث: الكلام والمبادرات الصغيرة تحتاج جهدًا أكبر من العادة. رسالة أجّلتها أو اتصال مؤجل يعود يطلبك. اتخذ خطوة صغيرة كل يوم بدل انتظار الحماس.',
-    'زحل في بيتك الرابع: البيت والأسرة في مقدمة الحمل. قد تعيد ترتيب مكان تعيش فيه أو علاقة قديمة مع أهلك. ابدأ بإصلاح ما يزعجك في بيتك فعلًا، فالأمان الداخلي يبدأ من هناك.',
-    'زحل في بيتك الخامس: المتعة تحتاج جدية، والحب يطلب وضوحًا. قد تحس أنك لا تلعب كما كنت. خصص وقتًا ثابتًا لشيء تحبه بلا هدف، فهو يحميك من الجفاف.',
-    'زحل في بيتك السادس: الالتزامات اليومية تتراكم، والنظام هو طريق النجاة. روتين بسيط لعملك ونومك وطعامك يفيدك أكثر من أي خطة كبيرة. قل لا لما ليس من مسؤوليتك.',
-    'زحل في بيتك السابع: الشراكات تُوزَن من جديد. من يبقى بصدق يزداد قربه، ومن كان قائمًا على العادة يظهر ضعفه. قل بوضوح ما تحتاجه، ولا تحمل عن شريكك فوق طاقتك.',
-    'زحل في بيتك الثامن: ملفات مؤجلة تُفتح: التزامات مشتركة أو مشاعر مكتومة. واجهها واحدًا واحدًا بدل جمعها. الشجاعة هنا أن تقول الحقيقة لنفسك أولًا.',
-    'زحل في بيتك التاسع: قناعاتك تُختبر. ما كنت تقوله عن الحياة يُطالَب بدليل من تجربتك. السفر قد يتأخر، والدراسة تحتاج انتظامًا. أكمل شيئًا واحدًا تتعلمه حتى النهاية.',
-    'زحل في بيتك العاشر: مسؤولية عملك تكبر ومعها نظر الناس إليك. ما بنيته بصدق يثبت، وما كان استعجالًا يتعثر. اعمل بهدوء ودون استعراض، فالسمعة تُبنى في هذه الفترة.',
-    'زحل في بيتك الحادي عشر: تعيد حساب أصدقائك وأهدافك. دائرة أصغر وأصدق أفضل من دائرة كبيرة متعبة. اختر هدفًا واحدًا لهذه الفترة وقِس عليه ما تقبله وما ترفضه.',
-    'زحل في بيتك الثاني عشر: فترة تخفيف وانسحاب. تحتاج مساحة صامتة لتفرغ ما حملته طويلًا. لا تتخذ قرارات كبيرة وأنت مرهق، وراقب ما يستنزفك من اشتراكات وعادات وعلاقات.'];
-  var JUPH = ['',
-    'المشتري في بيتك الأول: ثقتك بنفسك ترتفع ويراك الناس أوسع صدرًا. ابدأ ما كنت تؤجله لنفسك: مشروع، مظهر، عادة. احذر فقط من الوعود الكبيرة فوق ما تقدر.',
-    'المشتري في بيتك الثاني: المال والموارد تتسع وكلامك يحمل بركة. وقت مناسب لتنمية دخلك بمهارة حقيقية. احتفظ بجزء ثابت مما يأتيك ولا تنفق على قدر ما دخل.',
-    'المشتري في بيتك الثالث: تنفتح أبواب بالتواصل والكتابة والتعلم والإخوة. رسالة ترسلها أو فكرة تنشرها قد تصل أبعد مما تتوقع. كن حاضرًا بصوتك.',
-    'المشتري في بيتك الرابع: راحة في البيت والأسرة وفرصة لمكان أوسع أو ترتيب أجمل. اهتم بمن تعيش معهم، فالدعم يأتي من الداخل.',
-    'المشتري في بيتك الخامس: الحب والإبداع والأبناء في وقت دافئ. افتح قلبك لتجربة جديدة وأنتج شيئًا بيدك. الفرح هنا ليس ترفًا بل وقودك.',
-    'المشتري في بيتك السادس: يسهل عليك ترتيب العمل اليومي والعمل بجد دون إرهاق. فرصة لتحسين نظامك وخدمة الناس بإتقان. الاستمرار البسيط يكسب.',
-    'المشتري في بيتك السابع: الشراكات تتحرك للأفضل: علاقة تتعمق أو شراكة عمل تنفتح. اختر من يشبه قيمك لا من يبهرك، وقل ما تريد بوضوح.',
-    'المشتري في بيتك الثامن: دعم يأتي من المال المشترك أو الإرث أو من تعافٍ داخلي. وقت جيد لتسوية الالتزامات وفتح ما كان مغلقًا بصبر.',
-    'المشتري في بيتك التاسع: فترة اتساع: سفر وتعلم ومعلم يظهر وثقة أكبر بطريقك. من أقوى الأوقات لتتقدم في دراسة أو رؤية بعيدة المدى.',
-    'المشتري في بيتك العاشر: عملك يُرى ويُقدَّر وتظهر فرصة ترقية أو توسع. اعرض ما تتقنه بصدق، فالمكانة تأتي من أثرك لا من ضجيجك.',
-    'المشتري في بيتك الحادي عشر: مكاسب وأصدقاء وأحلام تقترب. صلة جديدة قد تفتح بابًا لم تتوقعه. شارك هدفك مع من يدعمه.',
-    'المشتري في بيتك الثاني عشر: دعم هادئ من خلف الستار وراحة بعد تعب. وقت للتأمل والعطاء وإنهاء ما انتهى. ما تتركه الآن يفسح مكانًا لبداية أصفى.'];
-  var RAHH = ['',
-    'راهو في بيتك الأول وكيتو في السابع: علاقاتك تعلّمك كيف تكون نفسك داخل الصحبة. إن كنت تذوب في الشريك فالدرس أن تقف على أرضك، وإن كنت تبتعد فالدرس أن تسمح بالقرب.',
-    'راهو في بيتك الثاني وكيتو في الثامن: علاقة تدور حول الاعتماد والأمان. اسأل نفسك: هل أبقى لأني أحتاج أم لأني أحب؟ ووضّح حدود المال والالتزامات.',
-    'راهو في بيتك الثالث وكيتو في التاسع: علاقة تتعلم فيها أن تقول ما تؤمن به لا ما يُرضي. من يشاركك طريقًا فكريًا يقترب، ومن يجادل بلا فائدة يبتعد.',
-    'راهو في بيتك الرابع وكيتو في العاشر: علاقتك بأهلك أو بيتك تختلط بطموحك. تبحث عن أمان داخلي بينما تُطلب منك مكانة. احمِ وقتًا لبيتك ولا تنسَ مشروعك.',
-    'راهو في بيتك الخامس وكيتو في الحادي عشر: تتحول علاقة بين صداقة وحب، أو تتعلم أن تحب بلا تمثيل. قد تعود قصة قديمة لتُغلق وتبدأ دائرة أصدق.',
-    'راهو في بيتك السادس وكيتو في الثاني عشر: علاقات تتطلب عطاءً يوميًا وتنهكك إن لم تحمِ مساحتك. تعلّم أن تساعد دون أن تستنزف وأن ترتاح دون ذنب.',
-    'راهو في بيتك السابع وكيتو في الأول: علاقتك الأقرب في مركز الدرس. علاقة تُستكمل بصدق أو تُراجَع بحزم. الأمر لا يتعلق بالشخص وحده بل بنمط تكرره.',
-    'راهو في بيتك الثامن وكيتو في الثاني: علاقة تمس ما تخفيه: الثقة والغيرة والامتلاك. فرصة للشفاء إن تحدثت بصراحة بدل الصمت.',
-    'راهو في بيتك التاسع وكيتو في الثالث: علاقة مع شخص من بيئة مختلفة أو معلم يغيّر نظرتك. تعلّم الإصغاء لما يختلف عنك دون أن تفقد قناعتك.',
-    'راهو في بيتك العاشر وكيتو في الرابع: يتأثر قربك من أهلك أو شريكك بانشغالك بعملك. قرر ما تحميه أولًا: السمعة أم الدفء، وستجد طريقًا للاثنين.',
-    'راهو في بيتك الحادي عشر وكيتو في الخامس: دوائر جديدة وعلاقة قلبية تُختبر أمام الناس. اختر من يبقى حين تهدأ الأضواء.',
-    'راهو في بيتك الثاني عشر وكيتو في السادس: تنهي علاقات أو أدوارًا انتهى وقتها. الفراغ بعدها ليس خسارة بل مكان لعلاقة بلا ثقل قديم.'];
-  var DO = ['خفّف: أنهِ ما انتهى، وخصص مكانًا هادئًا لنفسك كل يوم.', 'اعتنِ بعلاقاتك وبذوقك، وخصص وقتًا للجمال والراحة دون ذنب.', 'قف في مكانك وقدّم نفسك بوضوح، وخذ دور القيادة في أمر واحد.', 'حافظ على نومك وعلى من يشعرك بالأمان، وسمِّ مشاعرك بدل كتمانها.', 'وجّه طاقتك إلى مشروع واحد، وحرّك جسمك يوميًا بالمشي أو الرياضة.', 'جرّب الجديد بخطوات صغيرة، وتحقق قبل أي التزام كبير.', 'تعلّم، وكن كريمًا بما تعرفه، ووسّع دائرتك مع من يرفعك.', 'ابنِ بصبر وبنظام ثابت، وأنجز ما التزمت به في موعده.', 'نظّم أفكارك واكتبها، وراجع كلامك قبل أن تقوله أو ترسله.'];
-  var DONT = ['لا تتمسك بما يتفكك، ولا تملأ الفراغ بأول شيء يأتي.', 'لا تفرط في الإنفاق على المتعة، ولا تبقَ في علاقة لأنها مريحة فقط.', 'لا تدخل صراع كبرياء، ولا تنتظر التقدير من الجميع.', 'لا تقرر وأنت متعب أو مجروح، ولا تعلّق راحتك على رضا الآخرين.', 'لا ترد على الغضب بغضب، ولا تفتح أكثر من معركة في وقت واحد.', 'لا تصدق كل وعد لامع، ولا توقّع قبل أن تقرأ وتسأل.', 'لا تتكاسل على النعمة، ولا تعد بأكثر مما تستطيع.', 'لا تؤجل المحاسبة، ولا تحمّل نفسك ما ليس عليك.', 'لا تشتت نفسك بين عشرة أمور، ولا تتسرع في الكلام الحاد.'];
-  var HAREA = ['', 'نفسك وصورتك', 'مالك وكلامك', 'مبادراتك وتواصلك', 'بيتك وأمانك', 'حبك وإبداعك', 'عملك اليومي', 'شراكاتك', 'تحولاتك العميقة', 'سفرك وقناعاتك', 'مهنتك ومكانتك', 'أصدقاؤك ومكاسبك', 'عزلتك وتفريغك'];
-
-  function dstr(ms) { return new Date(ms).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', timeZone: 'UTC' }); }
-  function pickBody(ch, k) { var l = ch.bodies || []; for (var i = 0; i < l.length; i++) if (String(l[i].key).toLowerCase() === k) return l[i]; return null; }
-
-  function compute(natal) {
-    var E = window.AqEam, V = window.AqVedic, T = V.T;
-    var ch = E.siderealChart(natal), moon = pickBody(ch, 'moon');
-    var moonSign = Math.floor(moon.lon / 30), known = !!ch.known, lagna = known ? Math.floor(ch.asc / 30) : moonSign;
-    var hOf = function (sg) { return ((sg - lagna + 12) % 12) + 1; };
-    var t0 = Date.UTC(YEAR, 0, 1), t1 = Date.UTC(YEAR + 1, 0, 1), DAYMS = 864e5;
-    var birthMs = isFinite(natal.utcMs) ? natal.utcMs : (ch.jde - 2440587.5) * DAYMS;
-    /* الفترات */
-    var maha = V.dashas(moon.lon, birthMs).filter(function (m) { return m.e > t0 && m.s < t1; });
-    var periods = [];
-    maha.forEach(function (m) { V.antars(m).forEach(function (a) { if (a.e > t0 && a.s < t1) periods.push({ maha: m.lord, lord: a.lord, s: Math.max(a.s, t0), e: Math.min(a.e, t1) }); }); });
-    /* العبور: برج كل كوكب نجمي كل 5 أيام ثم تدقيق الحدود */
-    var keys = { saturn: 'saturn', jupiter: 'jupiter', rahu: 'node' };
-    function signs(ms) {
-      var c = E.engineChart(ms, natal), ay = E.ayanamsa(c.jde), out = {};
-      Object.keys(keys).forEach(function (k) { var b = pickBody(c, keys[k]) || (k === 'rahu' ? pickBody(c, 'truenode') : null); out[k] = b ? Math.floor(norm(b.lon - ay) / 30) : null; });
-      return out;
-    }
-    var segs = { saturn: [], jupiter: [], rahu: [] }, prev = null, cur = null;
-    for (var t = t0; t <= t1; t += 5 * DAYMS) {
-      var s = signs(Math.min(t, t1 - 1));
-      if (!prev) { Object.keys(segs).forEach(function (k) { segs[k].push({ sign: s[k], s: t0, e: t1 }); }); }
-      else Object.keys(segs).forEach(function (k) {
-        if (s[k] !== prev[k]) {
-          var lo = t - 5 * DAYMS, hi = t;
-          while (hi - lo > DAYMS) { var mid = Math.floor((lo + hi) / 2); if (signs(mid)[k] === prev[k]) lo = mid; else hi = mid; }
-          var L = segs[k][segs[k].length - 1]; L.e = hi; segs[k].push({ sign: s[k], s: hi, e: t1 });
-        }
-      });
-      prev = s;
-    }
-    return { ch: ch, moon: moon, moonSign: moonSign, lagna: lagna, known: known, hOf: hOf, periods: periods, segs: segs, T: T };
-  }
-
-  function acc(title, tone, ic, inner, open) {
-    return '<details class="y27-acc y27-t-' + tone + '"' + (open ? ' open' : '') + '><summary><span class="y27-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ic + '</svg></span><span class="y27-t">' + title + '</span><span class="y27-ch" aria-hidden="true"></span></summary><div class="y27-body">' + inner + '</div></details>';
-  }
-  var IC = { clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/>', sat: '<circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="9.5" ry="3" transform="rotate(-20 12 12)"/>', link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>', warn: '<path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17.2v.1"/>', coin: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7v10M9 9.5c0-1.2 1.3-2 3-2s3 .8 3 2-1.3 1.8-3 2.5-3 1.1-3 2.5 1.3 2 3 2 3-.8 3-2"/>', check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>', lock: '<rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>', moon: '<path d="M19.5 13.5A7.5 7.5 0 1 1 10.5 4.5a6 6 0 0 0 9 9z"/><path d="M16.5 3.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>' };
-  var HIC = { edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>', save: '<path d="M7 4h10a1 1 0 0 1 1 1v15l-6-4-6 4V5a1 1 0 0 1 1-1z"/>', add: '<circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/>' };
-  function hIc(k) { return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + HIC[k] + '</svg>'; }
-  function segList(list, fn) {
-    return list.map(function (x) { return '<div class="y27-seg"><span class="y27-when">' + (list.length > 1 ? 'من ' + dstr(x.s) + ' إلى ' + dstr(x.e - 1) : 'طوال العام') + '</span><p>' + fn(x) + '</p></div>'; });
-  }
-  /* المجاني مقطع كامل، أو بداية مفيدة لا تقطع الجملة أو التنسيق. */
-  function splitFree(segs) {
-    if (!segs.length) return { free: '', rest: '' };
-    if (segs.length > 1) return { free: segs[0], rest: segs.slice(1).join('') };
-    var host = document.createElement('div'); host.innerHTML = segs[0];
-    if (host.textContent.trim().length < 240) return { free: segs[0], rest: '' };
-    var ps = host.querySelectorAll('p');
-    if (ps.length > 1) {
-      var copy = host.cloneNode(true), cps = copy.querySelectorAll('p');
-      for (var j = 1; j < ps.length; j++) ps[j].remove();
-      cps[0].remove();
-      return { free: host.innerHTML, rest: copy.innerHTML };
-    }
-    var para = ps[0];
-    if (!para) return { free: segs[0], rest: '' };
-    var txt = para.textContent, re = /[.!؟。](?:\s+|$)/g, m, cut = 0, count = 0;
-    while ((m = re.exec(txt))) {
-      count++;
-      if (count >= 2 && m.index + m[0].length >= 150 && txt.length - re.lastIndex >= 75) { cut = re.lastIndex; break; }
-    }
-    if (!cut) return { free: segs[0], rest: '' };
-    var walker = document.createTreeWalker(para, NodeFilter.SHOW_TEXT), node, at = 0;
-    while ((node = walker.nextNode())) {
-      if (at + node.length >= cut) break;
-      at += node.length;
-    }
-    if (!node) return { free: segs[0], rest: '' };
-    var range = document.createRange(); range.setStart(node, cut - at); range.setEnd(para, para.childNodes.length);
-    var tail = range.extractContents(), rest = document.createElement('div'), rp = document.createElement('p');
-    rest.className = 'y27-seg'; rp.appendChild(tail); rest.appendChild(rp);
-    return { free: host.innerHTML, rest: rest.outerHTML };
-  }
-  function prem(rest, title) {
-    if (!rest) return '';
-    var tease = title.indexOf('العمل') > -1 ? 'تابع بقية فترات العمل والمال ومجالات الفرصة في قراءتك.' :
-      title.indexOf('ميثاق') > -1 ? 'أكمل ما تلتزم به وما تتجنبه في بقية فترات سنتك.' :
-      title.indexOf('الحذر') > -1 ? 'أكمل قراءة نقاط الحذر والخطوات التي تساعدك على التعامل معها.' :
-      title.indexOf('علاقات') > -1 ? 'أكمل قراءة علاقاتك وما يتغير فيها خلال سنتك.' :
-      title.indexOf('زحل') > -1 ? 'تابع بقية قراءة زحل على قمرك خلال السنة.' :
-      'تابع بقية الفترات التي تشكّل سنتك ومعنى كل فترة لك.';
-    return '<div class="y27-prem"><div class="y27-prem-c" aria-hidden="true" inert>' + rest + '</div>' +
-      '<button type="button" class="y27-unlock" data-paywall="قراءة سنة 2027 الكاملة">' +
-      '<span class="y27-lock-top"><span class="y27-lock-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC.lock + '</svg></span><span class="y27-lock-k">بقية هذا القسم ضمن القراءة الكاملة</span></span>' +
-      '<b>الصورة لم تكتمل بعد</b><span class="y27-lock-tease">' + tease + '</span>' +
-      '<span class="y27-lock-cta">افتح قراءتك كاملة <span aria-hidden="true">←</span></span></button>' +
-      '<p class="y27-prem-print">الجزء الكامل من هذا القسم يظهر مع التوقع المدفوع.</p></div>';
-  }
-  function accL(title, tone, ic, segs, extraFree, open) {
-    var sp = splitFree(segs);
-    return acc(title, tone, ic, '<div class="y27-free">' + sp.free + (extraFree || '') + '</div>' + prem(sp.rest, title), open);
-  }
-  function render(natal, name) {
-    var R = compute(natal), T = R.T, h = '';
-    var first = R.periods[0];
-    var disp = (name || '').trim() || 'صديق عقيق';
-    var dateV = ($('#y27-date') || {}).value || '', dateC = dateV ? dateV.split('-').reverse().join('/') : '';
-    var cityO = city && city.selectedIndex >= 0 ? city.options[city.selectedIndex] : null;
-    var cityC = cityO ? cityO.textContent.trim() : '';
-    var timeV = ($('#y27-time') || {}).value || '';
-    var timeC = (unk && unk.checked) ? 'وقت الميلاد غير معروف' : timeV;
-    /* عنوان عرض النتيجة: يظهر بعد إدخال البيانات فقط */
-    h += '<div class="y27-rintro"><span class="eyebrow">من علم الفلك الفيدي</span><h2>ما تخفيه الكواكب عنك في 2027</h2></div>';
-    /* البانر العنابي: نفس لغة بانر مصفوفة القدر */
-    h += '<header class="y27-banner"><span class="y27b-k">قراءة سنة 2027 · فلك فيدي</span>' +
-      '<div class="y27b-id"><span class="y27b-n">27</span><span class="y27b-cap"><small>سنتك كما تراها الكواكب</small><b>' + esc(disp) + '</b></span></div>' +
-      '<div class="y27b-m">' + (dateC ? '<span>' + esc(dateC) + '</span>' : '') + (cityC ? '<span>' + esc(cityC) + '</span>' : '') + (timeC ? '<span>' + esc(timeC) + '</span>' : '') + '</div>' +
-      '<div class="y27b-tools"><button type="button" data-y27b="edit" aria-label="تعديل البيانات">' + hIc('edit') + '<span>تعديل</span></button>' +
-      '<button type="button" data-y27b="save" aria-label="حفظ القراءة">' + hIc('save') + '<span>حفظ</span></button>' +
-      '<button type="button" data-y27b="new" aria-label="قراءة جديدة">' + hIc('add') + '<span>قراءة جديدة</span></button></div></header>';
-    /* مربعات السنة الأربعة */
-    var satAct = R.segs.saturn.some(function (x) { var d = (x.sign - R.moonSign + 12) % 12; return d === 11 || d === 0 || d === 1; });
-    h += '<div class="y27-glance">' +
-      '<div class="y27-gc"><small>الفترة الحاكمة</small><b>' + T.LORDS[first.lord] + '</b></div>' +
-      '<div class="y27-gc ' + (satAct ? 'y27-gc-s' : 'y27-gc-g') + '"><small>ثقل زحل</small><b>' + (satAct ? 'حاضر في سنتك' : 'خفيف في سنتك') + '</b></div>' +
-      '<div class="y27-gc y27-gc-g"><small>باب الفرصة</small><b>' + HAREA[R.hOf(R.segs.jupiter[0].sign)] + '</b></div>' +
-      '<div class="y27-gc y27-gc-s"><small>ما يستحق الحذر</small><b>' + HAREA[R.hOf(R.segs.saturn[0].sign)] + '</b></div></div>';
-    var basis = R.known ? '' : '<p class="y27-note">وقت الميلاد غير معروف، فالبيوت محسوبة من برج القمر بدل الطالع، والقراءة أدق كلما عرفت وقتك.</p>';
-    h += basis + '<p class="y27-hint"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>اضغط على أي قسم لعرض تفاصيله</p>';
-    /* 1 الفترة */
-    var pr = R.periods.map(function (p) { return '<div class="y27-seg"><span class="y27-when">' + (R.periods.length > 1 ? 'من ' + dstr(p.s) + ' إلى ' + dstr(p.e - 1) : 'طوال العام') + '</span><p><b>فترة ' + T.LORDS[p.maha] + ' الكبرى وفي داخلها فترة ' + T.LORDS[p.lord] + ' الصغرى.</b> ' + T.LT[p.lord] + '</p></div>'; });
-    h += accL('الفترة التي تحكم سنتك', 'g', IC.clock, pr, '', true);
-    /* 2 ثقل زحل على القمر */
-    var ss = segList(R.segs.saturn, function (x) {
-      var d = (x.sign - R.moonSign + 12) % 12, i = d === 11 ? 0 : d === 0 ? 1 : d === 1 ? 2 : -1;
-      return i >= 0 ? T.SS[i] : 'زحل في هذه الفترة خارج دائرة قمرك، فالثقل الأكبر ليس عليك الآن. استثمر هذا الهدوء في ترتيب ما يحتاج ترتيبًا.';
-    });
-    h += accL('ثقل زحل على قمرك (ساديه ساتي)', 's', IC.sat, ss, '', false);
-    /* 3 العلاقات الكارمية */
-    var rl = segList(R.segs.rahu, function (x) { return RAHH[R.hOf(x.sign)]; });
-    h += accL('علاقاتك الكارمية', 'n', IC.link, rl, '', false);
-    /* 4 الحذر */
-    var ct = segList(R.segs.saturn, function (x) { return SATH[R.hOf(x.sign)]; });
-    h += accL('نقاط الحذر وكيف تتجاوزها', 's', IC.warn, ct, '<p class="y27-note">الحذر هنا دعوة للانتباه وليس حكمًا. ما يثقل عليك اليوم يخف حين تتعامل معه بخطوة صغيرة منتظمة.</p>', false);
-    /* 5 العمل والمال */
-    var wk = segList(R.segs.jupiter, function (x) { var hh = R.hOf(x.sign); return JUPH[hh] + ' <em>مجال الفرصة: ' + HAREA[hh] + '.</em>'; });
-    h += accL('أفضل مسار للعمل والمال', 'n', IC.coin, wk, '', false);
-    /* 6 الميثاق */
-    var lords = []; R.periods.forEach(function (p) { if (lords.indexOf(p.lord) < 0) lords.push(p.lord); });
-    var ch2 = lords.map(function (l) { return '<div class="y27-seg"><span class="y27-when">في فترة ' + T.LORDS[l] + '</span><p><b>التزم:</b> ' + DO[l] + '</p><p><b>تجنّب:</b> ' + DONT[l] + '</p></div>'; });
-    h += accL('ميثاقك لعام 2027: ما تلتزم به وما تتجنبه', 'g', IC.check, ch2, '', false);
-    /* بانر الشراء الهادئ */
-    h += '<div class="y27-buyb"><button type="button" class="y27-buyb-ic" data-y27-buy aria-label="شراء التوقع كامل"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC.moon + '</svg></button>' +
-      '<div class="y27-buyb-t"><b>توقعك الكامل لعام 2027</b><span>كل الفترات والتوقيتات والتفاصيل العميقة في تقرير واحد يخصك وحدك</span></div>' +
-      '<button type="button" class="y27-btn y27-buy" data-y27-buy>شراء التوقع كامل</button></div>';
-    h += '<p class="y27-note">قراءة رمزية مبنية على حساب فلكي لخريطتك. الفترات والتواريخ تتغير بتغير بياناتك.</p>' +
-      '<div class="y27-actions"><button type="button" class="y27-btn y27-ghost" id="y27-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 19h14"/></svg><span>تحميل القراءة PDF</span></button></div>';
-    return h;
-  }
-  /* ---- النموذج ---- */
-  var form = $('#y27-form'), out = $('#y27-result'), err = $('#y27-err'), city = $('#y27-city');
-  if (!form) return;
-  var CTX = function () { return window.AqeeqChartContext; };
-  function loadCities() { if (!CTX() || !CTX().cityOptionsHTML) return; var cur = city.value; city.innerHTML = CTX().cityOptionsHTML(); var m = city.querySelector('option[value="manual"]'); if (m) m.remove(); if (cur && city.querySelector('option[value="' + cur + '"]')) city.value = cur; }
-  loadCities(); setTimeout(loadCities, 1200); city.addEventListener('pointerdown', loadCities);
-  var unk = $('#y27-unknown'), time = $('#y27-time'); unk.addEventListener('change', function () { time.disabled = unk.checked; });
-  function say(t) { err.textContent = t || ''; err.hidden = !t; }
-  form.addEventListener('submit', function (e) {
-    e.preventDefault(); say('');
-    var v = $('#y27-date').value; if (!v) { say('اكتب تاريخ ميلادك كاملًا.'); return; }
-    var p = v.split('-').map(Number), hh = 12, mm = 0;
-    if (!unk.checked) { if (!time.value) { say('اكتب وقت ميلادك أو علّم «لا أعرف وقت ميلادي».'); return; } var t = time.value.split(':').map(Number); hh = t[0]; mm = t[1]; }
-    var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.classList.add('is-loading');
-    setTimeout(function () {
-      try {
-        if (!window.AqEam || !window.AqVedic) throw new Error('الحساب لم يحمّل بعد، أعد المحاولة بعد لحظة.');
-        var name = $('#y27-name').value.trim();
-        var natal = CTX().setFromInput({ y: p[0], m: p[1], d: p[2], hh: hh, mm: mm, known: !unk.checked, cityIdx: city.value, gender: '', name: name });
-        out.innerHTML = render(natal, name); out.hidden = false; sec.classList.add('y27-has');
-        out.onclick = function (ev) {
-          var buy = ev.target.closest && ev.target.closest('[data-y27-buy]');
-          if (buy) { location.hash = '#pay'; return; }
-          var b = ev.target.closest && ev.target.closest('[data-y27b]');
-          if (!b) return;
-          var a = b.getAttribute('data-y27b');
-          if (a === 'edit') editBack();
-          else if (a === 'new') {
-            ['y27-name', 'y27-date', 'y27-time'].forEach(function (id) { var f = $('#' + id); if (f) { f.value = ''; f.dispatchEvent(new Event('input', { bubbles: true })); f.dispatchEvent(new Event('change', { bubbles: true })); } });
-            if (unk) { unk.checked = false; time.disabled = false; }
-            editBack();
-          } else if (a === 'save') {
-            var P = window.AqeeqPlatform;
-            if (P && typeof P.saveReading === 'function') {
-              P.saveReading({ type: 'year2027', typeLabel: 'قراءة سنة 2027', title: ($('#y27-name').value.trim() || 'قراءة سنة 2027'), subtitle: ($('#y27-date').value || '').split('-').reverse().join('/'), route: '#year2027', inputs: { name: $('#y27-name').value.trim(), date: $('#y27-date').value, time: time.value, unknown: !!(unk && unk.checked), city: city.value } });
-              b.classList.add('is-saved'); var bs = b.querySelector('span'); if (bs) bs.textContent = 'تم الحفظ';
-            }
-          }
-        };
-        $('#y27-pdf').addEventListener('click', function () {
-          var ds = out.querySelectorAll('details.y27-acc'); for (var i = 0; i < ds.length; i++) ds[i].open = true;
-          document.body.classList.add('y27-printing');
-          var done = function () { document.body.classList.remove('y27-printing'); window.removeEventListener('afterprint', done); };
-          window.addEventListener('afterprint', done); setTimeout(function () { window.print(); }, 80);
-        });
-        $('#y27-name-print').textContent = name || '';
-        try { sec.scrollTo({ top: 0 }); } catch (x) { sec.scrollTop = 0; }
-      } catch (x) { say(x && x.message || 'تعذر حساب القراءة. راجع البيانات.'); }
-      btn.disabled = false; btn.classList.remove('is-loading');
-    }, 30);
-  });
-  function editBack() { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); try { sec.scrollTo({ top: 0 }); } catch (x) {} }
-  var y27ed = $('#y27-edit'); if (y27ed) y27ed.addEventListener('click', editBack);
-  /* طي كروت الشرح التلاتة على الموبايل فقط، وتفتح بالضغط */
-  var exs = sec.querySelectorAll('.y27-explain .y27-ex');
-  var mmq = window.matchMedia ? window.matchMedia('(max-width:640px)') : null;
-  function foldInit() { var on = !!(mmq && mmq.matches); for (var i = 0; i < exs.length; i++) { exs[i].classList.toggle('y27-fold', on); if (!on) exs[i].classList.remove('open'); } }
-  for (var xi = 0; xi < exs.length; xi++) exs[xi].addEventListener('click', function () { if (this.classList.contains('y27-fold')) this.classList.toggle('open'); });
-  if (mmq) { foldInit(); if (mmq.addEventListener) mmq.addEventListener('change', foldInit); }
-  window.AqYear2027 = { compute: compute };
+/* Arabic annual report: a complete free dated reading, then a paid calendar. */
+(function(){'use strict';
+ var sec=document.getElementById('year2027');if(!sec)return;
+ var $=(s,r)=>(r||sec).querySelector(s),form=$('#y27-form'),out=$('#y27-result'),err=$('#y27-err'),city=$('#y27-city'),time=$('#y27-time'),unk=$('#y27-unknown');if(!form)return;
+ var C=window.AqYear2027Core,O=window.AqYear2027Offer,state=null;
+ var esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ var date=t=>new Date(t).toLocaleDateString('ar-EG',{day:'numeric',month:'long',year:'numeric',timeZone:'Africa/Cairo'});
+ var range=s=>'من '+date(s.s)+' إلى '+date(s.e-1);
+ var ctx=()=>window.AqeeqChartContext;
+ var note=t=>{err.textContent=t||'';err.hidden=!t;};
+ function loadCities(){if(!ctx()||!ctx().cityOptionsHTML)return;var cur=city.value;city.innerHTML=ctx().cityOptionsHTML();var m=city.querySelector('option[value="manual"]');if(m)m.remove();if(cur)city.value=cur;}
+ loadCities();city.addEventListener('pointerdown',loadCities);setTimeout(loadCities,1200);unk.addEventListener('change',()=>time.disabled=unk.checked);
+ function reading(t){return '<div class="y27-prose">'+(t.dialogue?'<blockquote>'+esc(t.dialogue)+'</blockquote>':'')+t.paragraphs.map(p=>'<p>'+esc(p)+'</p>').join('')+'<div class="y27-step"><b>خطوتك</b><p>'+esc(t.action)+'</p></div><p class="y27-question"><b>اسأل نفسك:</b> '+esc(t.question)+'</p></div>';}
+ function banner(s,label){var h=s.house,hs=s.houses&&s.houses.length>1?s.houses:null;return '<header class="y27-state"><small>'+esc(label||'حركة السماء فوق خريطتك')+'</small><b>'+esc(C.NAMES[s.planet])+' · '+(hs?'البيوت '+hs.join('، ')+' · '+hs.map(n=>esc(C.AREAS[n-1])).join(' / '):h?'البيت '+h+' · '+esc(C.AREAS[h-1]):'من دون تعيين بيت')+'</b><span>'+esc(range(s))+'</span></header>';}
+ function acc(title,html,open){return '<details class="y27-acc"'+(open?' open':'')+'><summary><span class="y27-t">'+esc(title)+'</span><span class="y27-ch" aria-hidden="true"></span></summary><div class="y27-body">'+html+'</div></details>';}
+ function offer(){var p=O.price();return '<section class="y27-offer" aria-labelledby="y27-offer-h"><span class="eyebrow">تقرير سنة 2027</span><h3 id="y27-offer-h">اعرف فترات سنتك، وارجع لخطوتك وقتها</h3><p>الخريطة الزمنية الكاملة، معنى كل فترة، واتصالاتها بخريطتك، في مكان واحد.</p><p class="y27-privacy">'+(O.country()?'البلد مقدّر من اتصالك. تقدر تغيّر الاختيار، خصوصًا مع VPN.':'اختار بلد الشراء، تقدير البلد من الاتصال قد لا يكون متاحًا.')+'</p><label class="y27-market-label">سوق الشراء <select id="y27-market">'+Object.keys(O.prices).map(k=>'<option value="'+k+'"'+(O.market()===k?' selected':'')+'>'+O.prices[k].title+' · '+O.prices[k].label+'</option>').join('')+'</select></label><button class="y27-btn y27-buy" type="button" data-y27-buy'+(!state.model.known||!p.product?' disabled':'')+'>'+(!state.model.known?'أضف وقت الميلاد لفتح خريطة البيوت':p.product?'افتح تقرير سنتك · '+p.label:p.label)+'</button>'+(p.settlement?'<p class="y27-privacy">الدفع الفعلي عبر PayPal: <b>'+p.settlement.toFixed(2)+' USD</b>. السعر المحلي تقريبي، ورسوم التحويل لدى مزود الدفع قد تختلف.</p>':'')+'<p class="y27-terms">شراء مرة واحدة، بلا تجديد تلقائي. التغطية: 1 يناير إلى 31 ديسمبر 2027، مع مقدمة انتقالية من ديسمبر 2026. محفوظ في حسابك بعد تأكيد التحويل اليدوي، ويمكن طباعته PDF.</p><p class="y27-sale-status" role="status" id="y27-sale-status"></p></section>';}
+ function render(){var S=state,R=S.model,p=S.period,t=S.free;
+  var h='<div class="y27-rintro"><span class="eyebrow">سنة أوضح، خطوة بخطوة</span><h2>فتراتك في 2027</h2></div><header class="y27-banner"><span class="y27b-k">قراءة سنة 2027 · فلك فيدي</span><div class="y27b-id"><span class="y27b-n">27</span><span class="y27b-cap"><small>تقرير شخصي مبني على بيانات ميلادك</small><b>'+esc(S.input.name||'قراءتك')+'</b></span></div><div class="y27b-tools"><button type="button" data-y27-edit>تعديل البيانات</button><button type="button" data-y27-save>حفظ القراءة</button><button type="button" data-y27-new>قراءة جديدة</button></div></header>';
+  if(!R.known)h+='<p class="y27-note">وقت الميلاد غير معروف. لا نعرض طالعًا أو بيوتًا مفترضة، والقراءة المجانية هنا من فترات قمر الميلاد. حدّد وقتك للحصول على خريطة البيوت.</p>';
+  h+='<section class="y27-free-reading" id="y27-free"><span class="y27-tag">قراءة مكتملة لك، مجانًا</span><header class="y27-state"><small>الفترة الشخصية من قمر ميلادك</small><b>فترة '+esc(window.AqVedic.T.LORDS[p.lord])+'</b><span>'+esc(range(p))+'</span></header>'+reading(t)+'<details class="y27-why"><summary>ليه ظهرت لي القراءة دي؟</summary><p>موقع القمر لحظة ميلادك يحدد تسلسل فتراتك ومدتها. دي فترة شخصية محسوبة من بيانات الميلاد، مش رسالة عشوائية ولا من البرج الشمسي وحده. الوقت المجهول يقلل دقة حدود الفترة.</p></details><div class="y27-actions"><button class="y27-btn" type="button" data-y27-share>مشاركة القراءة</button><button class="y27-btn y27-ghost" type="button" data-y27-story>حفظ ستوري</button><button class="y27-btn y27-ghost" type="button" data-y27-copy>نسخ النص</button></div><p class="y27-privacy">المشاركة لا تتضمن اسمك أو بيانات ميلادك أو مدينتك.</p><p id="y27-share-status" role="status"></p></section>';
+  h+='<details class="y27-inside"><summary>عينة من شكل الخريطة الزمنية</summary><div class="y27-sample-timeline"><b>توقيت محسوب من خريطتك</b><span>حالة فلكية في بنر مستقل</span><span>قراءة مفصلة، خطوة عملية وسؤال</span><span>صلة بالفترة السابقة والموعد التالي</span></div><p>القراءة المجانية بالأعلى عينة فعلية من أسلوب المحتوى. لا نعرض هنا مواعيد وهمية باسمك.</p></details>';
+  h+='<div id="y27-paid"><div class="y27-calendar-lock"><span aria-hidden="true">◇</span><h3>باقي الخريطة الزمنية في تقرير السنة</h3><p>القراءة المجانية مكتملة. المدفوع يفتح الفترات كلها، مش بقية جملة مقطوعة.</p></div></div>'+offer()+'<p class="y27-note">قراءة رمزية للتأمل، وليست حقيقة علمية مثبتة أو ضمانًا لأحداث. ليست نصيحة طبية أو مالية.</p>';
+  out.innerHTML=h;out.hidden=false;sec.classList.add('y27-has');$('#y27-name-print').textContent=S.input.name||'';bind();checkPaid();
+ }
+ function shareText(){var R=state.model,p=state.period,t=state.free;return 'عقيق · فترتي في 2027\n'+range(p)+'\n\n'+t.paragraphs.slice(0,2).join('\n\n')+'\n\nخطوتي: '+t.action+'\n\n'+t.question+'\n\nقراءة رمزية للتأمل، لا ضمان لأحداث.';}
+ async function copy(){try{await navigator.clipboard.writeText(shareText());$('#y27-share-status').textContent='تم نسخ القراءة من غير بيانات الميلاد.';}catch(_){$('#y27-share-status').textContent='تعذر النسخ. استخدم زر المشاركة أو حفظ الستوري.';}}
+ async function story(){
+  await document.fonts.ready;var cv=document.createElement('canvas');cv.width=1080;cv.height=1920;var g=cv.getContext('2d');
+  var bg=g.createLinearGradient(0,0,0,1920);bg.addColorStop(0,'#2e1421');bg.addColorStop(1,'#672f43');g.fillStyle=bg;g.fillRect(0,0,1080,1920);g.strokeStyle='#c8a86a';g.lineWidth=3;g.strokeRect(55,55,970,1810);g.direction='rtl';g.textAlign='right';g.fillStyle='#ecd5a7';g.font='bold 62px Cairo, sans-serif';g.fillText('عقيق | فترتي في 2027',970,170);
+  var p=state.period,t=state.free;g.font='32px Cairo, sans-serif';g.fillText(range(p),970,260);g.fillStyle='#fff5e6';g.font='38px Cairo, sans-serif';
+  var y=370;function wrap(txt){var line='';txt.split(/\s+/).forEach(w=>{var test=line?line+' '+w:w;if(g.measureText(test).width>860){g.fillText(line,970,y);y+=69;line=w;}else line=test;});if(line){g.fillText(line,970,y);y+=69;}}
+  wrap(t.paragraphs[0]);y+=55;g.fillStyle='#ecd5a7';wrap('خطوتي');g.fillStyle='#fff5e6';wrap(t.action);y+=40;wrap(t.question);g.font='28px Cairo, sans-serif';g.fillStyle='#ecd5a7';g.fillText('قراءة رمزية للتأمل، لا ضمان لأحداث',970,1780);
+  var blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob)return;var f=new File([blob],'aqeeq-2027-story.png',{type:'image/png'});
+  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'عقيق · فترتي في 2027'});return;}catch(e){if(e.name==='AbortError')return;}}
+  var a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download=f.name;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);$('#y27-share-status').textContent='تم تجهيز الستوري للحفظ والمشاركة.';
+ }
+ function save(){var P=window.AqeeqPlatform;if(P&&P.saveReading){P.saveReading({type:'year2027',typeLabel:'تقرير سنة 2027',title:state.input.name||'سنتي في 2027',subtitle:state.input.date,route:'#year2027',inputs:state.input});}try{localStorage.setItem('aq-year2027-last',JSON.stringify(state.input));}catch(_){}var b=$('[data-y27-save]');if(b)b.textContent='تم الحفظ';}
+ function edit(clear){out.hidden=true;out.innerHTML='';sec.classList.remove('y27-has');if(clear){form.reset();time.disabled=false;state=null;}sec.scrollTo({top:0});}
+ function bind(){
+  $('[data-y27-edit]').onclick=()=>edit(false);$('[data-y27-new]').onclick=()=>edit(true);$('[data-y27-save]').onclick=save;
+  $('[data-y27-copy]').onclick=copy;$('[data-y27-story]').onclick=()=>story().catch(()=>$('#y27-share-status').textContent='تعذر تجهيز الصورة، جرب نسخ النص.');
+  $('[data-y27-share]').onclick=async()=>{if(navigator.share){try{await navigator.share({title:'عقيق · فترتي في 2027',text:shareText()});}catch(e){if(e.name!=='AbortError')copy();}}else copy();};
+  $('[data-y27-buy]').onclick=()=>O.begin(state.input);$('#y27-market').onchange=e=>{O.setMarket(e.target.value);var node=$('.y27-offer');node.outerHTML=offer();bindOffer();};
+ }
+ function bindOffer(){$('[data-y27-buy]').onclick=()=>O.begin(state.input);$('#y27-market').onchange=e=>{O.setMarket(e.target.value);$('.y27-offer').outerHTML=offer();bindOffer();};}
+ async function checkPaid(){var sb=window.aqeeqSupabase;if(!sb||!sb.auth)return;try{var session=await sb.auth.getSession();if(!session.data.session)return;var res=await sb.functions.invoke('year2027-content',{body:{input:state.input}});if(res.error||!res.data||!res.data.report)return;renderPaid(res.data.report);$('.y27-offer').hidden=true;}catch(_){} }
+ function renderPaid(report){var R=report.model;
+   var events=report.closing.concat(report.groups.flatMap(g=>g.periods)).sort((a,b)=>a.s-b.s),now=Date.now(),next=events.find(s=>s.s>now),active=events.find(s=>s.s<=now&&s.e>now),chosen=active||next||events[0],last=0;try{last=Number(localStorage.getItem('aq-y27-visit')||0);localStorage.setItem('aq-y27-visit',String(now));}catch(_){}
+   var changed=last?events.filter(s=>s.s>last&&s.s<=now).length:0;
+   var h='<section class="y27-now"><span class="eyebrow">أنت هنا الآن</span><h3>'+(active?'فترتك الحالية':next?'أقرب فترة في تقريرك':'ختام سنتك')+'</h3>'+banner(chosen)+'<p>'+(last?(changed?'بدأت '+changed+' فترات منذ زيارتك السابقة.':'الفترة مستمرة، لا تغيير جديد منذ زيارتك السابقة.'):'ارجع هنا لمتابعة موقعك من التقرير.')+'</p><label>خطوتك وملاحظتك السابقة<textarea id="y27-journal" rows="3" maxlength="3000" placeholder="ملاحظة خاصة محفوظة على جهازك فقط"></textarea></label><button type="button" data-y27-journal>حفظ ملاحظتي على هذا الجهاز</button></section>';
+   h+=acc('من ديسمبر 2026 إلى مارس 2027',report.closing.map(s=>banner(s,'افتتاح السنة')+reading(s.text)).join(''),false);
+   h+=acc('الفترات الشخصية خلال السنة',report.periods.map(p=>'<header class="y27-state"><b>'+esc(window.AqVedic.T.LORDS[p.lord])+'</b><span>'+range(p)+'</span></header>'+reading(p.text)).join(''),false);
+   report.groups.forEach(g=>{h+=acc(C.NAMES[g.planet]+' · فترات السنة',g.periods.map(s=>{
+      var t=s.text,extras=s.lord?'<p>'+esc(s.lord)+'</p>':(s.topics||[]).map(x=>'<p>'+esc(x)+'</p>').join('');if(t.axis)extras+='<p>'+esc(t.axis)+'</p>';
+      var contacts='<div class="y27-contacts">'+(s.contacts.length?'<b>اتصالات بخريطتك</b>'+s.contacts.map(x=>'<p>'+date(x.t)+' · اقتران '+esc(C.NAMES[g.planet])+' بموضع '+esc(C.NAMES[x.natal])+' في الميلاد · '+(x.lon%30).toFixed(2)+'°</p>').join(''):'<p>لا يوجد اقتران دقيق بكواكب ميلادك في هذه الفترة ضمن هذا الفحص.</p>')+'</div>';
+      return '<article class="y27-period">'+banner(s)+contacts+'<h4>'+esc(t.title)+'</h4>'+reading(t)+extras+'</article>';
+    }).join(''),false);});$('#y27-paid').innerHTML=h;
+   try{$('#y27-journal').value=localStorage.getItem('aq-y27-journal')||'';}catch(_){}$('[data-y27-journal]').onclick=()=>{try{localStorage.setItem('aq-y27-journal',$('#y27-journal').value);$('[data-y27-journal]').textContent='تم حفظ الملاحظة محليًا';}catch(_){$('[data-y27-journal]').textContent='تعذر الحفظ على الجهاز';}};
+   $('#y27-paid').insertAdjacentHTML('beforeend','<button class="y27-btn" type="button" id="y27-pdf">حفظ التقرير PDF</button>');$('#y27-pdf').onclick=()=>{out.querySelectorAll('details').forEach(d=>d.open=true);document.body.classList.add('y27-printing');window.addEventListener('afterprint',()=>document.body.classList.remove('y27-printing'),{once:true});window.print();};
+ }
+ async function freeReading(input){var r=await fetch('https://trcveoewbxqzhhvzawxy.supabase.co/functions/v1/year2027-content',{method:'POST',headers:{'Content-Type':'application/json',apikey:'sb_publishable_48pQKHVWg0AXYDRlcNH-HQ_iRyfDMdC'},body:JSON.stringify({mode:'preview',input:input})});var data=await r.json();if(!r.ok)throw new Error(r.status===429?'طلبات كثيرة، انتظر قليلًا قبل المحاولة.':'تعذر تحميل القراءة الآمنة. حاول بعد لحظة.');return data;}
+ form.addEventListener('submit',async function(e){e.preventDefault();note('');var birth=$('#y27-date').value;if(!birth){note('اكتب تاريخ ميلادك كاملًا.');return;}if(!unk.checked&&!time.value){note('اكتب وقت الميلاد أو اختر أنه غير معروف.');return;}var input={name:$('#y27-name').value.trim(),date:birth,time:unk.checked?'':time.value,unknown:unk.checked,city:city.value};var b=form.querySelector('button[type=submit]');b.disabled=true;b.classList.add('is-loading');note('جاري حساب فتراتك وتقاطعات خريطتك، قد يستغرق بضع ثوانٍ.');await new Promise(r=>setTimeout(r,60));try{var d=birth.split('-').map(Number),tm=(input.time||'12:00').split(':').map(Number);var natal=ctx().setFromInput({y:d[0],m:d[1],d:d[2],hh:tm[0],mm:tm[1],known:!unk.checked,cityIdx:city.value,name:input.name,gender:''});input.utcMs=Number.isFinite(natal.utcMs)?natal.utcMs:(natal.ch.jde-2440587.5)*864e5;input.lat=natal.ch.lat;input.lon=natal.ch.lon;var result=await freeReading(input);state={input:input,model:result.model,free:result.free,period:result.period};if(result.country&&O.applyCountry)O.applyCountry(result.country);note('');render();sec.scrollTo({top:0});}catch(x){note(x.message||'تعذر الحساب. راجع بياناتك.');}finally{b.disabled=false;b.classList.remove('is-loading');}});
+ window.addEventListener('aq-year2027-market',()=>{if(state&&$('.y27-offer')){$('.y27-offer').outerHTML=offer();bindOffer();}});
+ window.addEventListener('hashchange',()=>{if(state&&location.hash==='#year2027')checkPaid();});
+ window.addEventListener('aq-year2027-approved',()=>{if(state)checkPaid();});
+ try{var kept=JSON.parse(localStorage.getItem('aq-year2027-last')||'null');if(kept&&!$('#y27-date').value){[['y27-name',kept.name],['y27-date',kept.date],['y27-time',kept.time],['y27-city',kept.city]].forEach(a=>{var el=$('#'+a[0]);if(el){el.value=a[1]||'';el.dispatchEvent(new Event('change',{bubbles:true}));}});unk.checked=!!kept.unknown;time.disabled=unk.checked;}}catch(_){}
+ window.AqYear2027={compute:n=>C.compute(n,window.AqEam,window.AqVedic)};
 })();

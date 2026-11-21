@@ -1,0 +1,18 @@
+{
+  "templates": 108,
+  "closing": 60,
+  "dasha": 9,
+  "sources": [
+    "library-2027/saturn-templates.md",
+    "library-2027/jupiter-templates.md",
+    "library-2027/rahu-templates.md",
+    "library-2027/ketu-templates.md",
+    "library-2027/mars-templates.md",
+    "library-2027/venus-templates.md",
+    "library-2027/sun-templates.md",
+    "library-2027/moon-templates.md",
+    "library-2027/mercury-templates.md"
+  ],
+  "lexiconFiles": 108,
+  "revision": "c706ade3d50cf78b"
+}
