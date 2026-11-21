@@ -469,7 +469,7 @@
       var L = window.AqVedic && window.AqVedic.last, VC = window.AqVedicChart; if (!L || !VC) return;
       var key = isNaN(+k) ? k : +k, c = CH[k], g = 'c:' + k;
       if (isAdmin()) window.AqVedicExpert = { on: true };
-      var d = accEl(CH[k][0], 'birth', '', true, g); d.classList.add('vh-inline');
+      var d = accEl(CH[k][0], 'birth', '', true, g); d.classList.add('vh-inline', 'vc-detail-flat');
       var host = document.createElement('section'); host.className = 'eam-card vx vc-card'; d.querySelector('.eam-acc-body').appendChild(host);
       var fb = k === '1' ? result.querySelector('details.eam-acc[data-vh-g="c:1"]') : null;
       result.insertBefore(d, fb || null); VC.mount(host, L.ch, L.natal, key);

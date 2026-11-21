@@ -366,7 +366,7 @@ html.vc-viewer-open{overflow:hidden}
 @media(max-width:600px){
  html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-card{padding:2px;border:0;border-radius:0}
  html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chartwrap{width:calc(100% + 20px);max-width:none;margin-inline:-10px}
- #astro-maps .vyr-chart{margin-inline:-16px;padding:2px}
+ #astro-maps .vyr-chart{margin-inline:0;padding:2px}
  .vc-viewer{width:100vw;max-width:100vw;max-height:100dvh;border-radius:0;padding:12px;margin:auto 0}
  .vc-viewer h2{font-size:14px}.vc-viewer-pan{height:70dvh}
 }
@@ -376,3 +376,19 @@ html.vc-viewer-open{overflow:hidden}
  #astro-maps .vc-card:not(#_a):not(#_b):not(#_c):not(#_d){padding:0!important;border:0!important}
  #astro-maps .vc-chartwrap:not(#_a):not(#_b):not(#_c):not(#_d){width:100%!important;margin-inline:0!important}
 }
+
+/* طبقة عنوان واحدة ثم تعريف وأدوات ملاصقة للرسم. */
+#astro-maps .vc-detail-flat:not(#_a):not(#_b){border:0;box-shadow:none;background:transparent;margin-top:4px}
+#astro-maps .vc-detail-flat > summary{display:none!important}
+#astro-maps .vc-detail-flat > .eam-acc-body{border:0!important;padding-top:8px!important}
+#astro-maps .vc-caption{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 0 8px;color:#6A233A}
+#astro-maps .vc-caption>span{font-size:15px;font-weight:700;letter-spacing:.03em}
+#astro-maps .vc-caption small{color:#8C7456;font-size:10px;letter-spacing:.06em}
+#astro-maps .vc-card .vc-intro{text-align:center;margin:0 auto 12px!important;max-width:530px;font-size:13px!important;line-height:1.85}
+#astro-maps .vc-card .vc-styles{display:flex;justify-content:center;width:max-content;margin:10px auto 14px!important}
+#astro-maps .vc-guide{margin:10px auto 16px;max-width:540px;border-block:1px solid #E5D6BC;padding:9px 0}
+#astro-maps .vc-guide>summary{cursor:pointer;color:#795B3C;font-size:12px;padding:5px;text-align:center}
+#astro-maps .vc-guide .vc-note{margin:8px 0!important;font-size:12px!important;line-height:1.9}
+#astro-maps .vc-key{justify-content:center;margin:12px auto!important}
+.vc-viewer{font-family:Alexandria,Tajawal,sans-serif}
+@media(max-width:600px){#astro-maps .vc-caption{margin-top:8px}#astro-maps .vc-detail-flat>.eam-acc-body{padding:4px!important}}
