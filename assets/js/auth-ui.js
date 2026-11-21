@@ -10,13 +10,15 @@
   function set(el, t) { if (el && el.textContent !== t) el.textContent = t; }
   function render() {
     var m = mode(), usr = q('#acct-user');
+    var guestView=q('#acct-guest'); if(guestView&&m==='signup')guestView.classList.add('acx-email');
+    sec.classList.toggle('acx-signup',m==='signup');
     sec.classList.toggle('acx-reset', reset);
     if (usr && !usr.hidden) { set(title, 'حسابي'); set(sub, 'بياناتك الشخصية وقراءاتك المحفوظة في مكان واحد.'); }
     else if (reset) { set(title, 'استعادة كلمة المرور'); set(sub, 'اكتب بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.'); set(forgot, 'إرسال رابط الاستعادة'); back.hidden = false; }
     else {
       back.hidden = true; set(forgot, 'نسيت كلمة المرور؟');
       if (m === 'signup') { set(title, 'إنشاء حساب جديد'); set(sub, 'ابدأ مساحتك الشخصية لحفظ قراءاتك وتقاريرك.'); set(swQ, 'لديك حساب بالفعل؟'); set(swBtn, 'تسجيل الدخول'); }
-      else { set(title, 'مرحبًا بك في عالمك'); set(sub, 'سجّل دخولك لتجد خرائطك وقراءاتك في مكان واحد.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
+      else { set(title, 'خرائطك ومسارات حياتك، أقرب بضغطة'); set(sub, 'ابدأ رحلتك لفهم نفسك بصورة أعمق.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
     }
     if (submit && submit.textContent.trim() === 'دخول') set(submit, 'تسجيل الدخول');
   }

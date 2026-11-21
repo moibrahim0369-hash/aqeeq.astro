@@ -1,150 +1,49 @@
-/* شاشة الدخول كاملة على الموبايل (App-like): تظهر لما الصفحة تكون #account.
-   الهيدر وشريط التنقل السفلي بيتخفوا، والواجهة الأولية زرين بس، والفورم يظهر بعد اختيار البريد. */
-@media (max-width:760px){
-  html[data-aqr="account"] .aqh-header,
-  html[data-aqr="account"] #aqn-bnav,
-  html[data-aqr="account"] .aqn-scrim,
-  html[data-aqr="account"] .aq-notif,
-  html[data-aqr="account"] .cmp-fab{display:none!important}
-
-  html[data-aqr="account"] section#account.sec.acct-modal.acx{
-    position:fixed!important;inset:0!important;width:100%!important;max-width:none!important;height:100dvh!important;
-    margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;
-    overflow-y:auto!important;-webkit-overflow-scrolling:touch;
-    background:
-      radial-gradient(120% 55% at 50% -5%,rgba(212,175,110,.24),transparent 62%),
-      radial-gradient(90% 45% at 100% 100%,rgba(214,150,160,.16),transparent 62%),
-      #F7F1E6!important;
-  }
-  html[data-aqr="account"] section#account.sec.acct-modal.acx::before,html[data-aqr="account"] section#account.sec.acct-modal.acx::after{display:none!important}
-  #account .sheet-x{position:fixed!important;top:calc(14px + env(safe-area-inset-top,0px));inset-inline-start:16px;inset-inline-end:auto;z-index:5;
-    width:42px;height:42px;border-radius:50%;background:rgba(255,250,240,.92);border:1px solid rgba(139,38,63,.18);color:#70263F;display:grid;place-items:center;box-shadow:0 4px 14px rgba(112,38,63,.10)}
-  #account .acct-wrap{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:calc(72px + env(safe-area-inset-top,0px)) 26px 40px;box-sizing:border-box}
-  html body section#account.acx .acct-tabs[role="tablist"]{display:none!important}
-  html[data-aqr="account"] #account .acct-card-shell{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;max-width:420px!important;width:100%!important;margin:0 auto!important}
-  html[data-aqr="account"] #account .acct-card-shell::before,html[data-aqr="account"] #account .acct-card-shell::after{display:none!important}
-  #account #acct-guest:not(.acx-email) .acct-divider,
-  #account #acct-guest:not(.acx-email) #acct-form,
-  #account #acct-guest:not(.acx-email) .acx-switch{display:none!important}
-  #account #acct-email-open{display:flex;justify-content:center;align-items:center;width:100%;min-height:52px;margin-top:12px;border-radius:999px;
-    background:transparent;border:1.5px solid rgba(112,38,63,.45);color:#70263F;font-weight:600}
-  #account #acct-guest.acx-email #acct-email-open{display:none!important}
-  #account #acct-guest.acx-email #acct-form,
-  #account #acct-guest.acx-email .acx-switch,
-  #account #acct-guest.acx-email .acct-divider{animation:acxIn .5s cubic-bezier(.2,.7,.2,1) both}
-  #account #acct-guest.acx-email .acx-switch{animation-delay:.12s}
-  @keyframes acxIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion:reduce){#account #acct-guest.acx-email *{animation:none!important}}
-}
-@media (max-width:760px){
-  /* شاشة الزائر: لوحة الإحصائيات بتختفي وتسيب الواجهة نضيفة */
-  html[data-aqr="account"] #account .acct-card-shell:has(#acct-guest:not([hidden])) .aq-dashboard-grid{display:none!important}
-}
-@media (max-width:760px){
-  html[data-aqr="account"] #account .acx-crest,
-  html[data-aqr="account"] #account .acx-visual{display:none!important}
-  html body section#account.acx .acct-wrap{padding-inline:26px!important;box-sizing:border-box;width:100%!important}
-  html[data-aqr="account"] #account .acct-brand-header{margin-top:0}
-}
-@media (max-width:760px){
-  /* توزيع الشاشة: الهوية في الثلث العلوي، والزرارين في الثلث السفلي */
-  html body section.sec:target#account.acx > .wrap.acct-wrap,html body section#account.acx .acct-wrap{justify-content:flex-start!important;padding-top:calc(124px + env(safe-area-inset-top,0px))!important;padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))!important}
-  html[data-aqr="account"] #account .acct-card-shell{flex:1;display:flex!important;flex-direction:column}
-  html[data-aqr="account"] #account #acct-guest:not([hidden]){margin-top:auto;display:flex;flex-direction:column}
-  html[data-aqr="account"] #account #acct-guest.acx-email{margin-top:22px}
-
-  /* اللوجو: العين فوق والاسم تحتها في النص */
-  html[data-aqr="account"] #account .acx-logo{flex-direction:column!important;align-items:center!important;gap:12px!important;text-align:center}
-  html[data-aqr="account"] #account .acx-logo img{width:92px!important;height:92px!important}
-  html[data-aqr="account"] #account .acx-logo span{display:flex;flex-direction:column;align-items:center;gap:2px}
-  html[data-aqr="account"] #account .acx-logo b{letter-spacing:.16em;font-size:1.05rem}
-  html[data-aqr="account"] #account .acct-brand-header h2{margin-top:22px!important}
-
-  /* الزرارين: نفس الشكل والحجم */
-  html[data-aqr="account"] #account #acct-google,
-  html[data-aqr="account"] #account #acct-email-open{
-    width:100%;min-height:56px;border-radius:14px!important;display:flex;align-items:center;justify-content:center;gap:10px;
-    font-size:1.02rem;font-weight:700;box-shadow:none}
-  html[data-aqr="account"] #account #acct-google{
-    background:linear-gradient(135deg,#8a3d56,#70263F)!important;color:#FFF8EE!important;border:1px solid #70263F!important;
-    box-shadow:0 8px 22px rgba(112,38,63,.28)!important}
-  html[data-aqr="account"] #account #acct-google span{color:#FFF8EE!important}
-  html[data-aqr="account"] #account #acct-google .google-icon{background:#fff;border-radius:50%;padding:3px;box-sizing:content-box}
-  html[data-aqr="account"] #account #acct-email-open{
-    background:rgba(239,227,211,.55)!important;color:#70263F!important;border:1.5px solid rgba(168,135,80,.7)!important;margin-top:14px}
-}
-@media (max-width:760px){
-  /* النسخة الزجاجية النهائية: كريمي دافي بوهج ذهبي ووردي هادي، من غير أي بنفسجي */
-  html[data-aqr="account"] section#account.sec.acct-modal.acx{
-    background:
-      radial-gradient(70% 38% at 50% 8%,rgba(226,190,128,.38),transparent 70%),
-      radial-gradient(60% 34% at 92% 46%,rgba(226,170,160,.20),transparent 70%),
-      radial-gradient(70% 36% at 6% 78%,rgba(222,186,128,.20),transparent 70%),
-      linear-gradient(180deg,#FBF5EA 0%,#F6EBDA 100%)!important;
-  }
-  /* اللوجو على قرص زجاجي */
-  html[data-aqr="account"] #account .acx-logo img{
-    width:112px!important;height:112px!important;box-sizing:border-box;padding:12px;border-radius:50%;
-    background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);
-    box-shadow:0 10px 34px rgba(190,150,80,.28),inset 0 1px 0 rgba(255,255,255,.9);
-    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-  /* لوح زجاجي للزرارين */
-  html[data-aqr="account"] #account #acct-guest:not([hidden]){
-    padding:20px 18px 16px;border-radius:28px;
-    background:linear-gradient(180deg,rgba(255,252,246,.72),rgba(255,247,236,.48));
-    border:1px solid rgba(255,255,255,.85);
-    box-shadow:0 18px 44px rgba(112,38,63,.10),0 2px 0 rgba(255,255,255,.7) inset;
-    -webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2)}
-  html[data-aqr="account"] #account #acct-google{
-    box-shadow:0 10px 24px rgba(112,38,63,.30),inset 0 1px 0 rgba(255,255,255,.28)!important}
-  html[data-aqr="account"] #account #acct-email-open{
-    background:rgba(255,255,255,.55)!important;border:1.2px solid rgba(168,135,80,.65)!important;
-    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-  html[data-aqr="account"] #account .acx-legal{margin:14px 0 0;text-align:center;font-size:.78rem;color:#8a7a6e;line-height:1.7}
-  html[data-aqr="account"] #account .acx-legal a{color:#70263F;text-decoration:underline;text-underline-offset:3px}
-  html[data-aqr="account"] #account #acct-guest.acx-email .acx-legal{display:none}
-  html[data-aqr="account"] #account .acct-card-shell{padding-bottom:6px!important}
-}
-@media (max-width:760px){
-  html[data-aqr="account"] .amb,html[data-aqr="account"] .amb-nebula{display:none!important}
-}
-
-@media (max-width:760px){
-  /* طبقات الخلفية: كريمي أساسي + توهج قمري أعلى المنتصف + نجوم دقيقة باهتة */
-  html[data-aqr="account"] section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d){
-    background:
-      radial-gradient(62% 34% at 50% 14%,rgba(255,247,222,.95),rgba(246,226,176,.34) 45%,transparent 72%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cg fill='%23B78A52'%3E%3Ccircle cx='24' cy='36' r='1.1' opacity='.55'/%3E%3Ccircle cx='96' cy='18' r='.8' opacity='.45'/%3E%3Ccircle cx='170' cy='52' r='1.2' opacity='.5'/%3E%3Ccircle cx='232' cy='24' r='.9' opacity='.45'/%3E%3Ccircle cx='60' cy='112' r='.8' opacity='.4'/%3E%3Ccircle cx='140' cy='132' r='1' opacity='.5'/%3E%3Ccircle cx='214' cy='150' r='.8' opacity='.4'/%3E%3Ccircle cx='30' cy='196' r='1.1' opacity='.5'/%3E%3Ccircle cx='108' cy='222' r='.8' opacity='.4'/%3E%3Ccircle cx='188' cy='234' r='1' opacity='.45'/%3E%3C/g%3E%3C/svg%3E") 0 0/260px 260px,
-      radial-gradient(60% 34% at 92% 60%,rgba(226,170,160,.16),transparent 70%),
-      linear-gradient(180deg,#FBF5EA 0%,#F6EBDA 100%)!important}
-  /* الهوية: AQEQ ASTRO فقط، بحروف متباعدة */
-  html[data-aqr="account"] #account .acx-logo small{display:none!important}
-  html[data-aqr="account"] #account .acx-logo b{letter-spacing:.34em;font-size:.82rem;font-weight:600;padding-inline-start:.34em}
-  /* حلقة ذهبية رفيعة حول القرص الزجاجي */
-  html[data-aqr="account"] #account .acx-logo img{box-shadow:0 0 0 1.5px rgba(197,160,89,.85),0 0 0 7px rgba(255,255,255,.35),0 14px 30px rgba(150,110,60,.26),inset 0 1px 0 rgba(255,255,255,.9)!important}
-  /* توزيع متساوٍ من فوق لتحت بلا فراغ ميت */
-  html body section#account.acx .acct-wrap{justify-content:space-evenly!important;padding-top:calc(76px + env(safe-area-inset-top,0px))!important;padding-bottom:calc(36px + env(safe-area-inset-bottom,0px))!important}
-  html[data-aqr="account"] #account .acct-card-shell{flex:1 1 auto;justify-content:space-evenly;gap:0}
-  html[data-aqr="account"] #account .acct-brand-header{display:flex;flex-direction:column;align-items:center;text-align:center}
-  html[data-aqr="account"] #account .acct-brand-header h2{margin:26px 0 10px!important}
-  html[data-aqr="account"] #account .acct-subtitle{margin:0!important;max-width:30ch}
-  html[data-aqr="account"] #account .acx-orn{display:none!important}
-  html[data-aqr="account"] #account #acct-guest:not([hidden]){margin-top:0!important;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.46));border:1px solid rgba(255,255,255,.95)}
-  html[data-aqr="account"] #account #acct-guest.acx-email{margin-top:0!important}
-}
-@media (max-width:760px){html[data-aqr="account"] #account .acct-subtitle{text-wrap:balance;max-width:34ch!important}}
-
-@media (max-width:760px){
-  /* قائمة «ليه أسجل؟» */
-  html[data-aqr="account"] #account .acx-perks{list-style:none;margin:16px auto 0;padding:0;display:grid;gap:9px;width:max-content;max-width:100%}
-  html[data-aqr="account"] #account .acx-perks li{display:flex;align-items:center;gap:10px;font:500 .9rem/1.6 'Cairo',sans-serif;color:#7A5A4C}
-  html[data-aqr="account"] #account .acx-perks svg{width:12px;height:12px;flex:none;color:#C5A059}
-  html[data-aqr="account"] #account:has(#acct-guest.acx-email) .acx-perks{display:none}
-  /* حياة هادئة: نجوم تومض بطء وتوهج قمري يتحرك ببطء شديد */
-  html[data-aqr="account"] section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f)::before{display:block!important;content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cg fill='%23C5A059'%3E%3Ccircle cx='50' cy='70' r='1.6'/%3E%3Ccircle cx='150' cy='30' r='1.3'/%3E%3Ccircle cx='220' cy='110' r='1.6'/%3E%3Ccircle cx='90' cy='170' r='1.3'/%3E%3Ccircle cx='190' cy='210' r='1.5'/%3E%3Ccircle cx='20' cy='230' r='1.2'/%3E%3C/g%3E%3C/svg%3E") 40px 30px/260px 260px;animation:acxTw 7s ease-in-out infinite}
-  html[data-aqr="account"] section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f)::after{display:block!important;content:"";position:fixed;left:0;top:0;width:100%;height:62%;pointer-events:none;z-index:0;background:radial-gradient(ellipse 62% 48% at 50% 30%,rgba(255,246,214,.7),rgba(246,226,176,.22) 58%,transparent 100%);-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent);animation:acxGlow 22s ease-in-out infinite}
-  html[data-aqr="account"] #account .acct-wrap{position:relative;z-index:1}
-}
-@keyframes acxTw{0%,100%{opacity:.25}50%{opacity:.9}}
-@keyframes acxGlow{0%,100%{transform:translateY(0) scale(1);opacity:.85}50%{transform:translateY(14px) scale(1.06);opacity:1}}
-@media (prefers-reduced-motion:reduce){html[data-aqr="account"] section#account::before,html[data-aqr="account"] section#account::after{animation:none!important}}
+/* Aqeeq account: one calm screen, with the existing authentication contract. */
+html[data-aqr="account"] .aqh-header,html[data-aqr="account"] #aqn-bnav,html[data-aqr="account"] .aqn-scrim,html[data-aqr="account"] .aq-notif,html[data-aqr="account"] .cmp-fab,html[data-aqr="account"] .amb{display:none!important}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d){position:fixed!important;inset:0!important;z-index:2500!important;width:100%!important;max-width:none!important;height:100dvh!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;overflow-y:auto!important;background:#fff!important;backdrop-filter:none!important}
+html[data-aqr="account"] #account::before,html[data-aqr="account"] #account::after,html[data-aqr="account"] #account .acct-card-shell::before,html[data-aqr="account"] #account .acct-card-shell::after{display:none!important}
+html body section.sec:target#account.acx>.wrap.acct-wrap{width:100%!important;max-width:none!important;min-height:100dvh;box-sizing:border-box;padding:72px 24px 32px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+html[data-aqr="account"] body #account .acct-card-shell{position:relative;display:flex!important;flex-direction:column!important;justify-content:flex-start!important;gap:0!important;width:100%!important;max-width:390px!important;min-height:min(690px,calc(100dvh - 104px));margin:0 auto!important;padding:0!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:#472c36}
+html[data-aqr="account"] body #account .acx-crest,html[data-aqr="account"] body #account .acx-visual,html[data-aqr="account"] #account .acx-perks,html[data-aqr="account"] #account .acx-orn,html[data-aqr="account"] #account .acct-tabs,html[data-aqr="account"] #account .aq-dashboard-grid,html[data-aqr="account"] #account .pac-auth-intro{display:none!important}
+html[data-aqr="account"] body #account .acct-brand-header{display:flex!important;flex-direction:column;align-items:center;text-align:center;order:0;margin:18px 0 44px!important;padding:0!important}
+html[data-aqr="account"] #account .acx-logo{display:flex!important;flex-direction:column!important;align-items:center!important;gap:12px!important}
+html[data-aqr="account"] #account .acx-logo img{display:block;width:66px!important;height:66px!important;padding:0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html[data-aqr="account"] #account .acx-logo b{font-size:12px!important;letter-spacing:.22em;color:#6f2440;font-weight:700}
+html[data-aqr="account"] #account .acx-logo small{display:none!important}
+html[data-aqr="account"] #account .acct-brand-header h2{font-family:'Amiri',serif!important;font-size:36px!important;line-height:1.45!important;font-weight:400!important;max-width:13ch;margin:27px 0 10px!important;color:#62203a!important;text-wrap:balance}
+html[data-aqr="account"] #account .acct-subtitle{font-size:14px!important;line-height:1.9!important;color:#8b747a!important;max-width:28ch!important;margin:0!important;text-wrap:balance}
+html[data-aqr="account"] body #account #acct-guest:not([hidden]){display:flex!important;flex-direction:column;flex:1;margin:0!important;padding:0!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important}
+html[data-aqr="account"] #account #acct-google,html[data-aqr="account"] #account #acct-email-open,html[data-aqr="account"] #account #acct-submit{width:100%!important;min-height:56px!important;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:28px!important;font-size:15px!important;font-weight:700!important;transition:transform .18s,box-shadow .18s}
+html[data-aqr="account"] body #account #acct-google{background:#fff!important;border:1px solid #eadfe0!important;box-shadow:0 7px 23px #5e233c0b!important;color:#62384a!important;order:1}
+html[data-aqr="account"] body #account #acct-google span{color:#62384a!important}
+html[data-aqr="account"] #account #acct-google .google-icon{width:21px;height:21px;padding:0!important;background:none!important;border-radius:0!important;box-sizing:border-box}
+html[data-aqr="account"] body #account #acct-email-open,html[data-aqr="account"] body #account #acct-submit{background:linear-gradient(110deg,#8e244b,#6a1737)!important;color:#fff!important;border:0!important;box-shadow:0 9px 24px #6c20401d!important;margin-top:14px;order:2}
+html[data-aqr="account"] #account #acct-guest:not(.acx-email) #acct-form,html[data-aqr="account"] #account .acct-divider,html[data-aqr="account"] #account #acct-guest.acx-email #acct-email-open{display:none!important}
+html[data-aqr="account"] #account #acct-guest.acx-email #acct-form{display:flex!important;flex-direction:column;gap:15px;order:0;margin:0!important}
+html[data-aqr="account"] #account #acct-guest.acx-email #acct-google{order:2;margin-top:22px!important}
+html[data-aqr="account"] #account #acct-form .field{position:relative!important;margin:0!important;padding:0!important;display:block}
+html[data-aqr="account"] #account #acct-form .field[hidden]{display:none!important}
+html[data-aqr="account"] #account #acct-form label{display:block!important;font-size:12px!important;color:#826670!important;margin:0 12px 6px!important}
+html[data-aqr="account"] #account #acct-form input{display:block!important;width:100%!important;min-height:54px!important;border:1px solid #f0e9e7!important;background:#f7f3f1!important;border-radius:17px!important;color:#4a2836!important;padding:12px 17px!important;font:inherit!important;font-size:15px!important;box-shadow:none!important;box-sizing:border-box}
+html[data-aqr="account"] #account #acct-form input:focus{outline:2px solid #c29d6c!important;outline-offset:2px!important;background:#fff!important}
+html[data-aqr="account"] #account #acct-form .acx-pw input{padding-inline-end:52px!important}
+html[data-aqr="account"] #account .acx-eye{position:absolute!important;bottom:6px!important;top:auto!important;inset-inline-end:8px!important;transform:none!important;min-width:42px;min-height:42px;border:0;background:transparent!important;color:#866773}
+html[data-aqr="account"] #account #acct-forgot,html[data-aqr="account"] #account .acx-back{min-height:44px!important;margin:0!important;background:none!important;border:0!important;box-shadow:none!important;color:#7b3c53!important;font-size:13px!important}
+html[data-aqr="account"] #account .acx-switch{order:4;display:flex!important;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;margin:28px 0 14px!important;padding:0!important;background:none!important;border:0!important;font-size:13px!important;color:#8a757c!important}
+html[data-aqr="account"] #account .acx-switch svg{display:none!important}
+html[data-aqr="account"] #account .acx-switch button{border:0!important;background:none!important;min-height:44px;padding:0 5px!important;color:#702b45!important;font:inherit!important;font-weight:700!important;text-decoration:underline;text-underline-offset:4px}
+html[data-aqr="account"] #account .acx-legal{order:5;margin:auto 0 0!important;padding-top:32px!important;text-align:center;font-size:11px!important;line-height:1.9!important;color:#a08b91!important}
+html[data-aqr="account"] #account .acx-legal a{color:#8c6b51!important;text-decoration:underline;text-underline-offset:3px}
+html[data-aqr="account"] #account .sheet-x{position:fixed!important;top:calc(17px + env(safe-area-inset-top,0px))!important;inset-inline-start:20px!important;inset-inline-end:auto!important;width:42px!important;height:42px!important;display:grid!important;place-items:center;background:#fff!important;border:1px solid #efe5e3!important;box-shadow:none!important;color:#733149!important;border-radius:50%!important;z-index:5}
+html[data-aqr="account"] #account:has(.acx-email) .acct-brand-header{margin-bottom:27px!important}
+html[data-aqr="account"] #account:has(.acx-email) .acct-brand-header h2{font-size:31px!important;margin-top:18px!important;max-width:none}
+html[data-aqr="account"] #account:has(.acx-email) .acx-logo img{width:49px!important;height:49px!important}
+html[data-aqr="account"] #account.acx-reset #acct-google,html[data-aqr="account"] #account.acx-reset .acx-switch{display:none!important}
+html[data-aqr="account"] #account #acct-msg{order:0!important;margin:0!important;font-size:12px!important;line-height:1.8}
+@media(max-height:740px){html body section.sec:target#account.acx>.wrap.acct-wrap{padding-top:65px!important}html[data-aqr="account"] #account .acct-brand-header{margin-top:4px!important;margin-bottom:30px!important}html[data-aqr="account"] #account .acct-brand-header h2{font-size:30px!important;margin-top:20px!important}}
+@media(prefers-reduced-motion:reduce){html[data-aqr="account"] #account *{animation:none!important;transition:none!important}}
+html[data-aqr="account"] body #account.acx .acct-tabs[role="tablist"],html[data-aqr="account"] body #account [hidden]{display:none!important}
+html[data-aqr="account"] body #account .acct-brand-header h2{max-width:17ch!important;font-size:32px!important}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:target{opacity:1!important;visibility:visible!important;animation:none!important}
+html[data-aqr="account"] #account #acct-form #acct-msg{order:0!important}
+html[data-aqr="account"] body #account .acx-legal{font-size:12px!important}

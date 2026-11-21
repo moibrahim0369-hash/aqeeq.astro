@@ -3069,7 +3069,7 @@
     return {known:known,lagna:lagna,moon:moon.lon,periods:periods,segs:segs,stations:stations.sort((a,b)=>a.t-b.t),hits:hits.sort((a,b)=>a.t-b.t),revision:'lahiri-mean-v1',computedAt:Date.now()};
   }
   function periodsAt(R,now){return R.periods.find(p=>p.s<=now&&p.e>now)||R.periods.find(p=>p.s>now)||R.periods[R.periods.length-1];}
-  function timeline(R){var out=[];KEYS.forEach(k=>R.segs[k].forEach(s=>{if(s.e>SPLIT)out.push(Object.assign({},s,{s:Math.max(s.s,SPLIT),family:'annual'}));}));return out.sort((a,b)=>a.s-b.s||KEYS.indexOf(a.planet)-KEYS.indexOf(b.planet));}
+  function timeline(R){var out=[];KEYS.forEach(k=>R.segs[k].forEach(s=>{if(s.e>Y0)out.push(Object.assign({},s,{s:Math.max(s.s,Y0),family:'annual'}));}));return out.sort((a,b)=>a.s-b.s||KEYS.indexOf(a.planet)-KEYS.indexOf(b.planet));}
   function lordHouses(k,lagna){return (RULES[k]||[]).map(s=>(s-lagna+12)%12+1);}
   var api={compute:compute,timeline:timeline,periodsAt:periodsAt,lordHouses:lordHouses,KEYS:KEYS,NAMES:NAMES,AREAS:AREAS,START:START,SPLIT:SPLIT,END:END,Y0:Y0,norm:norm,delta:delta};
   root.AqYear2027Core=api;if(typeof module==='object'&&module.exports)module.exports=api;
@@ -3190,8 +3190,8 @@
  function periods(list){return list.map(s=>'<article class="y27-seg y27-period"><div class="y27-reading-card">'+banner(s)+'<div class="y27-reading-card-text">'+(s.contacts&&s.contacts.length?'<div class="y27-contacts">'+s.contacts.map(x=>'<p>'+date(x.t)+' · اقتران '+esc(C.NAMES[s.planet])+' بموضع '+esc(C.NAMES[x.natal])+' في الميلاد</p>').join('')+'</div>':'')+'<h4>'+esc(s.text.title)+'</h4>'+reading(s.text)+(s.lord?'<p>'+esc(s.lord)+'</p>':'')+(s.topics||[]).map(x=>'<p>'+esc(x)+'</p>').join('')+'</div></div></article>').join('');}
  function moonPeriods(list){
   var map=new Map();list.forEach(p=>{var key=p.house+'|'+JSON.stringify(p.text),g=map.get(key);if(!g){g={first:p,visits:[],contacts:[]};map.set(key,g);}g.visits.push(p);g.contacts.push(...(p.contacts||[]));});
-  var clock=t=>new Date(t).toLocaleString('ar-EG',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Africa/Cairo'});
-  return '<p class="y27-moon-note">قراءة القمر مرة واحدة لكل بيت، وتحتها كل زياراته المحسوبة. الأوقات بتوقيت القاهرة؛ نهاية الزيارة قبل الانتقال التالي بلحظة.</p>'+[...map.values()].map(g=>{var p=g.first;return '<article class="y27-seg y27-period y27-moon-group" data-moon-house="'+p.house+'"><div class="y27-reading-card"><p class="y27-sky-opening">القمر في البيت '+p.house+'، والقراءة هنا عن '+esc(C.AREAS[p.house-1])+'.</p><div class="y27-moon-visits"><b>مواعيد الزيارات · '+g.visits.length+' زيارات</b><ol>'+g.visits.map(v=>'<li data-visit-start="'+v.s+'" data-visit-end="'+v.e+'">من '+esc(clock(v.s))+' إلى '+esc(clock(v.e-1))+'</li>').join('')+'</ol></div><div class="y27-reading-card-text"><h4>'+esc(p.text.title)+'</h4>'+reading(p.text)+(p.lord?'<p>'+esc(p.lord)+'</p>':'')+(p.topics||[]).map(t=>'<p>'+esc(t)+'</p>').join('')+(g.contacts.length?'<div class="y27-contacts">'+g.contacts.map(x=>'<p>'+esc(contactText(x))+'</p>').join('')+'</div>':'')+'</div></div></article>';}).join('');
+  var clock=t=>new Date(t).toLocaleDateString('ar-EG',{day:'numeric',month:'long',timeZone:'Africa/Cairo'})+'، '+new Date(t).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Africa/Cairo'});
+  return '<p class="y27-moon-note">قراءة القمر مرة واحدة لكل بيت، وتحتها كل زياراته المحسوبة. المواعيد لعام ٢٠٢٧ بتوقيت القاهرة؛ نهاية الزيارة قبل الانتقال التالي بلحظة.</p>'+[...map.values()].map(g=>{var p=g.first;return '<article class="y27-seg y27-period y27-moon-group" data-moon-house="'+p.house+'"><div class="y27-reading-card"><p class="y27-sky-opening">القمر في البيت '+p.house+'، والقراءة هنا عن '+esc(C.AREAS[p.house-1])+'.</p><div class="y27-moon-visits"><b>مواعيد الزيارات · '+g.visits.length+' زيارات</b><ol>'+g.visits.map(v=>'<li data-visit-start="'+v.s+'" data-visit-end="'+v.e+'">من '+esc(clock(v.s))+' إلى '+esc(clock(v.e-1))+'</li>').join('')+'</ol></div><div class="y27-reading-card-text"><h4>'+esc(p.text.title)+'</h4>'+reading(p.text)+(p.lord?'<p>'+esc(p.lord)+'</p>':'')+(p.topics||[]).map(t=>'<p>'+esc(t)+'</p>').join('')+(g.contacts.length?'<div class="y27-contacts">'+g.contacts.map(x=>'<p>'+esc(contactText(x))+'</p>').join('')+'</div>':'')+'</div></div></article>';}).join('');
  }
  var group=k=>report.groups.find(g=>g.planet===k)?.periods||[],closing=k=>report.closing.filter(x=>x.planet===k),blocks=[];
  blocks[0]=report.periods.map(p=>'<div class="y27-seg"><span class="y27-when">'+esc(range(p))+'</span><p><b>الفترة الكبرى: '+esc(window.AqVedic.T.LORDS[p.maha])+'، وداخلها الفترة الصغرى: '+esc(window.AqVedic.T.LORDS[p.lord])+'. في هذا الجزء نقرأ الفترة الصغرى، لا الكبرى وحدها.</b></p>'+reading(p.text)+'</div>').join('');
@@ -3853,13 +3853,15 @@
   function set(el, t) { if (el && el.textContent !== t) el.textContent = t; }
   function render() {
     var m = mode(), usr = q('#acct-user');
+    var guestView=q('#acct-guest'); if(guestView&&m==='signup')guestView.classList.add('acx-email');
+    sec.classList.toggle('acx-signup',m==='signup');
     sec.classList.toggle('acx-reset', reset);
     if (usr && !usr.hidden) { set(title, 'حسابي'); set(sub, 'بياناتك الشخصية وقراءاتك المحفوظة في مكان واحد.'); }
     else if (reset) { set(title, 'استعادة كلمة المرور'); set(sub, 'اكتب بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.'); set(forgot, 'إرسال رابط الاستعادة'); back.hidden = false; }
     else {
       back.hidden = true; set(forgot, 'نسيت كلمة المرور؟');
       if (m === 'signup') { set(title, 'إنشاء حساب جديد'); set(sub, 'ابدأ مساحتك الشخصية لحفظ قراءاتك وتقاريرك.'); set(swQ, 'لديك حساب بالفعل؟'); set(swBtn, 'تسجيل الدخول'); }
-      else { set(title, 'مرحبًا بك في عالمك'); set(sub, 'سجّل دخولك لتجد خرائطك وقراءاتك في مكان واحد.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
+      else { set(title, 'خرائطك ومسارات حياتك، أقرب بضغطة'); set(sub, 'ابدأ رحلتك لفهم نفسك بصورة أعمق.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
     }
     if (submit && submit.textContent.trim() === 'دخول') set(submit, 'تسجيل الدخول');
   }
