@@ -69,7 +69,8 @@ html body a.aqh-tool-y27 svg{flex:none}
 :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) .wrap{max-width:720px}
 :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) .y27-printhead{display:none}
 :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat) .y27-form{display:grid;gap:12px;margin:16px 0}
-:is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat).y27-has .y27-form,:is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat).y27-has .y27-intro{display:none}
+:is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat).y27-has .y27-form{display:none}
+:is(#karmic,#astro-maps,#compat,#lifepath-compat).y27-has .y27-intro{display:none}
 :is(#year2027,#karmic,#astro-maps,#compat,#lifepath-compat):not(.y27-has) .y27-editrow{display:none}
 .y27-chk{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:6px;color:var(--b3-mut)}
 .y27-rhead{text-align:center;padding:10px 0 14px}.y27-kick{font-size:12px;color:var(--b3-gold);font-weight:700}.y27-rhead h3{margin:4px 0 6px;font-size:21px;color:var(--b3-wine)}.y27-rhead p{margin:0;font-size:13.5px;color:var(--b3-mut);line-height:1.8}
