@@ -258,3 +258,48 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 /* أثناء حساب الفيدي: نخفي أي نتيجة جزئية حتى تكتمل الشبكة، مع رسالة انتظار */
 #astro-maps.vh-await #eam-result { visibility: hidden !important; height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important; border: 0 !important; }
 #astro-maps.vh-await #eam-content::after { content: "جارٍ حساب خريطتك…"; display: block; text-align: center; padding: 26px 12px; color: #7A5A48; font-weight: 700; }
+
+/* براتيانتر: فترات متداخلة بتواريخ كاملة، دون جدول عريض على الهاتف */
+#astro-maps .vpd{color:var(--ink,#3f2931);max-width:860px;margin:auto;line-height:1.8}
+#astro-maps .vpd-lead{font-size:15px;margin:0 0 22px;color:var(--muted,#786a6e)}
+#astro-maps .vpd-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#astro-maps .vpd label{display:flex;flex-direction:column;gap:7px;font-size:12px;font-weight:700;min-width:0}
+#astro-maps .vpd select{width:100%;max-width:100%;min-height:46px;border:1px solid #c5a05966;border-radius:14px;padding:9px 12px;background:#fffaf1;color:#57233a;font:inherit;font-size:13px;text-overflow:ellipsis}
+#astro-maps .vpd-toolbar{display:flex;align-items:flex-end;gap:12px;margin:16px 0 24px}
+#astro-maps .vpd-toolbar label{flex:1}
+#astro-maps .vpd-now{min-height:46px;border:1px solid #c5a05999;border-radius:14px;padding:9px 16px;background:#6a2038;color:#fff4df;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+#astro-maps .vpd select:focus-visible,#astro-maps .vpd-now:focus-visible{outline:2px solid #a5782a;outline-offset:3px}
+#astro-maps .vpd-path{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:16px 0;color:#6a2038;font-size:13px}
+#astro-maps .vpd-path b{font-size:17px;margin-inline-start:4px}
+#astro-maps .vpd-path i{font-style:normal;color:#a78652}
+#astro-maps .vpd-path em{font-style:normal;border:1px solid #c5a05955;border-radius:30px;padding:2px 10px;font-size:11px}
+#astro-maps .vpd-parent{display:flex;flex-wrap:wrap;gap:4px 10px;margin-bottom:20px;padding:13px 16px;border-radius:14px;background:#c5a05912;font-size:12px}
+#astro-maps .vpd-parent b{font-weight:500}
+#astro-maps .vpd-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#astro-maps .vpd-list>li{min-width:0;padding:18px;border:1px solid #c5a0593d;border-radius:20px;background:linear-gradient(145deg,#fffdf8,#f7f0e4);box-shadow:0 4px 0 #c5a05918,0 8px 19px #48233706}
+#astro-maps .vpd-list>li.is-current{border-color:#8b7354;background:linear-gradient(145deg,#fff8e8,#eee3c9)}
+#astro-maps .vpd-period-head{display:flex;align-items:center;gap:8px;margin-bottom:13px}
+#astro-maps .vpd-number{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#6a20380c;color:#79552b;font-size:11px}
+#astro-maps .vpd-period-head h6{margin:0;font-size:17px;font-weight:700;color:#6a2038}
+#astro-maps .vpd-period-head small{margin-inline-start:auto;color:#827162;font-size:11px;white-space:nowrap}
+#astro-maps .vpd-period-head em{font-style:normal;font-size:10px;background:#6a2038;color:#fff4df;padding:1px 7px;border-radius:20px}
+#astro-maps .vpd-list dl{display:grid;gap:6px;margin:0;font-size:12px}
+#astro-maps .vpd-list dl>div{display:flex;gap:10px;align-items:baseline}
+#astro-maps .vpd-list dt{color:#8c7965;min-width:28px;font-size:11px}
+#astro-maps .vpd-list dd{margin:0;line-height:1.8;overflow-wrap:anywhere}
+#astro-maps .vpd-zone-note,#astro-maps .vpd-method,#astro-maps .vpd-note{font-size:12px;color:#84746c;line-height:1.9;margin-top:20px}
+#astro-maps .vpd-method{padding-top:18px;border-top:1px solid #c5a05933}
+#astro-maps .vpd-warning{font-size:12px;border-inline-start:3px solid #a5743a;padding:10px 14px;background:#c5a05910;border-radius:5px;margin:15px 0}
+@media(max-width:600px){
+#astro-maps .vpd-controls{grid-template-columns:1fr;gap:14px}
+#astro-maps .vpd-list{grid-template-columns:1fr;gap:14px}
+#astro-maps .vpd-toolbar{align-items:stretch;flex-direction:column;gap:10px}
+#astro-maps .vpd-now{align-self:flex-start}
+#astro-maps .vpd-list>li{padding:16px}
+#astro-maps .vpd-path{gap:8px}
+#astro-maps .vpd-parent{display:grid;gap:3px}
+}
+#astro-maps .vpd-list time{display:grid;gap:1px;font-size:13px}
+#astro-maps .vpd-list time small{display:block;direction:ltr;text-align:right;color:#8b796a;font-size:12px;letter-spacing:.04em}
+#astro-maps .vpd-period-head{flex-wrap:wrap}
+#astro-maps .vpd-number{flex:0 0 25px}

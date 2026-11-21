@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const root = path.join(__dirname, '..');
-const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const html = fs.readFileSync(path.join(root, 'assets/js/inline/page-06.js'), 'utf8');
 const engineSrc = html.match(/const Astro = \(\(\) => \{[\s\S]*?\n\}\)\(\);/);
 assert.ok(engineSrc, 'Astro engine extracted');
 const sb = { module: { exports: {} }, console, Date, Math, Intl, window: {} };

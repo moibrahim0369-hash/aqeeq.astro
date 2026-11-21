@@ -4,6 +4,7 @@
   var sec = document.getElementById('astro-maps'), content = document.getElementById('eam-content');
   if (!sec || !content) return;
   var IC = {
+    pratyantar: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 5v7l3 2"/>',
     c1: '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 3.5v5M12 15.5v5M3.5 12h5M15.5 12h5"/>',
     cmoon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
     csun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/>',
@@ -42,6 +43,7 @@
     ['vargas', 'الخرائط المقسمة', 'من D1 إلى D60 بالرسمين'],
     ['moonsun', 'خريطتا القمر والشمس', 'مشاعرك وجوهرك'],
     ['dasha', 'فترات عمرك', 'الفترة الكبرى والصغرى التي تعيشها الآن', 'داشا · فيمشوتاري'],
+    ['pratyantar', 'الفترات الدقيقة', 'الكبرى والصغرى والتسع فترات بموعد البداية والنهاية', 'براتيانتر داشا'],
     ['sade', 'اختبار زحل', 'أين زحل من قمرك الآن', 'زحل · ساتي ساتي'],
     ['lunar', 'المنزل القمري', 'منزلك وحاكمه', 'القمر · نكشاترا'],
     ['year', 'قراءة السنة', 'ما تعيشه الآن'],
@@ -73,7 +75,7 @@
   };
   function chName(k) { var c = CH[k]; return c[0] + ' (' + c[1] + ' · ' + c[2] + ')'; }
   var CHG = [['الأساس', ['1', 'moon', 'sun']], ['الحياة اليومية', ['2', '3', '4', '5', '6', '7']], ['المسار والعمق', ['8', '9', '10', '11', '12']], ['التخصص الدقيق', ['16', '20', '24', '27', '30', '40', '45', '60']]];
-  var TIMET = ['dasha', 'sade', 'lunar', 'year', 'expert'];
+  var TIMET = ['dasha', 'pratyantar', 'sade', 'lunar', 'year', 'expert'];
   var ALIAS = { birth: 'c:1', vargas: 'c:1', moonsun: 'c:moon' };
   function tileOf(id) { return TILES.filter(function (t) { return t[0] === id; })[0]; }
   function tilesHTML(admin) {
@@ -199,7 +201,7 @@
     if (ms < birthMs) return '<p class="vh-tm-err">هذا التاريخ قبل ميلادك، اختر تاريخًا بعده.</p>';
     var ds = V.dashas(moonB.lon, birthMs), maha = pick(ds, ms);
     if (!maha) return '<p class="vh-tm-err">هذا التاريخ خارج دورة الفترات المحسوبة (120 سنة).</p>';
-    var an = V.antars(maha), ant = pick(an, ms), pr = V.antars(ant), pra = pick(pr, ms);
+    var an = V.antars(maha), ant = pick(an, ms), pr = V.pratyantars(ant), pra = pick(pr, ms);
     var tch = E.engineChart(ms, natal), off = E.ayanamsa(tch.jde), norm = E.norm;
     var lagna = ch.known ? Math.floor(ch.asc / 30) : Math.floor(moonB.lon / 30), basis = ch.known ? 'الطالع' : 'القمر';
     var SG = T.SG, h = '';
@@ -438,6 +440,10 @@
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
     result.insertBefore(bar, grid);
     var tmc = timeCard(), tmw = accEl('آلة الزمن', 'dasha', '', true, 'dasha year'); tmw.querySelector('.eam-acc-body').appendChild(tmc); tmc.dataset.vhG = ''; result.appendChild(tmw);
+    if (window.AqPratyantar) {
+      var pdw = accEl('الفترات الدقيقة · براتيانتر داشا', 'pratyantar', '', true, 'pratyantar');
+      pdw.classList.add('vh-inline'); pdw.querySelector('.eam-acc-body').appendChild(window.AqPratyantar.createCard()); result.appendChild(pdw);
+    }
     if (isAdmin()) { var exC = expertCard(), exw = accEl('ملاحظات الخبير', 'expert', '', true, 'expert'); exw.querySelector('.eam-acc-body').appendChild(exC); exC.dataset.vhG = ''; result.appendChild(exw); result.__ex = exC; }
     function ensureChart(k) {
       if (result.__ch && result.__ch[k]) return;
