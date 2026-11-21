@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "التحرر من البنى القديمة",
   "core": {
-    "psychology": "",
-    "gift": "كشف ما يحتاج إلى إصلاح",
-    "shadowTrap": "هدم بلا خطة",
-    "growth": ""
+    "psychology": "يرمز البرج إلى انكشاف بنية لا تصمد أمام الواقع، وإلى الاضطراب الذي يفرض مراجعة الأساس. لا يجعل كل أزمة خيراً تلقائياً؛ لكنه يفتح سؤالاً عما كان هشاً أو مسكوتاً عنه. القوة في مواجهة الحقيقة وإعادة البناء، والتوتر بين رفض الاعتراف وبين هدم كل شيء دفعة واحدة.",
+    "gift": "كشف ما يحتاج إلى إصلاح يظهر في الاستعداد لمراجعة افتراض قديم عندما تناقضه الوقائع. في العمل، يدعم الاعتراف بفشل عملية قبل أن يتسع أثرها. وفي العلاقات، قد يحرر الكلام الصريح مساحة لبناء اتفاق واقعي بدلاً من حماية واجهة هشة.",
+    "shadowTrap": "هدم بلا خطة قد يكون رد فعل يخلط بين الجزء المختل وكل ما حوله. مثال ذلك الاستقالة أو القطيعة دون فهم المشكلة الأساسية، ثم اكتشاف تكرارها في سياق جديد. وفي الاتجاه الآخر، إنكار الإشارات الواضحة يطيل عمر البنية المتصدعة.",
+    "growth": "خطوة تأملية: فصل الجزء الذي تعطل عن الأجزاء الصالحة، وجمع الوقائع قبل اختيار الإصلاح أو الإنهاء بدلاً من القرار من ذروة الانفعال."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تتجسد الغاية في كشف ما لا يعمل وإعادة بناء أساس أكثر صدقاً.",
+      "energyPsychology": "تسترد الطاقة وجهتها عندما يُفصل الخلل المحدد عن كل ما ما زال صالحاً.",
+      "emotionsPsychology": "يتراجع الخوف حين تصبح الحقيقة قابلة للتعامل خطوة خطوة."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تختبر البرج متانة الافتراضات وتكشف ما لا ينسجم مع الواقع؛ الرؤية هنا تبدأ من قبول المعلومة المزعجة.",
+      "energyPsychology": "تتجه الطاقة إلى إعادة بناء ما ثبت خلله بدلاً من استهلاكها في حماية صورة لم تعد قابلة للدفاع.",
+      "emotionsPsychology": "يسمح الاعتراف بالاضطراب بمعالجته تدريجياً؛ وإنكار أثره يطيل الارتباك الداخلي."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تقول البرج الحقيقة التي تكشف خللاً في اتفاق أو تصور، ثم تساعد في بناء عبارة تفتح باب الإصلاح بدل الاكتفاء بالصدمة.",
+      "energyPsychology": "تتجه الطاقة إلى إزالة الغموض عن المشكلة المحددة، وتُستنزف إذا انشغلت بحماية الصورة القديمة.",
+      "emotionsPsychology": "يصبح الاضطراب قابلاً للاحتمال عندما يُعترف بأثره ويُسمع الطرف المتأثر دون دفاع فوري."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يدعو البرج إلى مراجعة ما إذا كان الرابط قائماً على حقيقة أم على صورة متفق عليها؛ الترميم يبدأ بصدق متبادل.",
+      "energyPsychology": "تتحرر طاقة العلاقة حين يعترف الطرفان بما تصدع، بدلاً من تكريس الجهد لإخفاء الشرخ.",
+      "emotionsPsychology": "يسمح الأمان بأن يقال «تأذيت» أو «أخطأت» دون حسم مصير العلاقة في لحظة الانفعال."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يسقط البرج صورة نجاح لم تعد تحمل الواقع؛ الضفيرة الشمسية تُجبر على إعادة بناء الثقة من خبرة صادقة لا من واجهة قوية.",
+      "energyPsychology": "تتحرر الطاقة حين يتوقف الدفاع عن نظام انهار، ثم تُستثمر في قرار صغير يمكن إثباته بدل وعد شامل جديد.",
+      "emotionsPsychology": "يحتاج الداخل إلى الحزن على ما فقده دون تحويل الانهيار إلى هوية دائمة."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

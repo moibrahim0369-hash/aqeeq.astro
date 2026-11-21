@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-13.draft-01",
+  "arcanaNumber": 13,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-13.json",
+    "headline": "التحول والتجدد",
+    "strengthSeed": "ترك ما انتهى يظهر في إنهاء دور أو عادة أو اتفاق لم يعد يحقق غايته، مع الاحتفاظ بما تعلمته التجربة. في العمل، يساعد على إعادة بناء مشروع بدل إصلاحه بلا نهاية. وفي العلاقة، يتيح الاعتراف بتبدل الاحتياجات قبل تحول المسافة إلى أذى متبادل.",
+    "challengeSeed": "مقاومة التغيير قد تبقي الشخص متعلقاً بصورة قديمة، بينما الاندفاع إلى الهدم قد يمحو ما كان يمكن إصلاحه. مثال ذلك إنهاء شراكة في لحظة غضب أو البقاء في عمل منهك لأن الهوية ارتبطت به. كلاهما يختصر الحزن بدلاً من فهمه."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "ينظم المركز العلاقة بالنهايات والتحول وإعادة ترتيب الهوية. دلالة الموت هنا رمزية لترك شكل انتهى، وليست نبوءة أو وصفاً لحدث حرفي.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "إنهاء دورة مستنزفة والاحتفاظ بما تعلمته منها دون التعلق بقالبها."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "مقاومة نهاية واضحة أو الهدم السريع لكل ما يذكّر بالمرحلة السابقة."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "إغلاق دورة يحرر مساحة لبناء مختلف.",
+        "poleB": "الاندفاع إلى النهاية قد يمحو ما كان قابلاً للإصلاح.",
+        "integration": "تتضح الموازنة في هذا الموضع عبر تحديد ما يحفظ من الخبرة وما يُغلق بوضوح قبل بناء الشكل الجديد. ويُراجع أثر ذلك بسؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "قطع شراكة في لحظة انفعال دون معرفة إن كان الخلل في العلاقة أم في اتفاق يمكن إصلاحه.",
+        "possiblePattern": "في هذا الموقف، قد يظهر النمط عندما مقاومة نهاية واضحة أو الهدم السريع لكل ما يذكّر بالمرحلة السابقة.؛ عندها يُختبر إن كان المورد المذكور في القراءة ما زال يخدم الغاية.",
+        "experiment": "ملاحظة قابلة للتطبيق: تحديد ما يحفظ من الخبرة وما يُغلق بوضوح قبل بناء الشكل الجديد. ثم مراجعة هذا السؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "reflectionQuestions": [
+      "ما الذي انتهى تحديداً: الهدف أم الطريقة أم الاتفاق؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "تحديد ما يحفظ من الخبرة وما يُغلق بوضوح قبل بناء الشكل الجديد.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

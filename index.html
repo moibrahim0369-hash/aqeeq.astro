@@ -47,22 +47,23 @@
 <link rel="stylesheet" href="assets/css/astro-wheel.css">
 <link rel="stylesheet" href="assets/css/extended-astro-charts.css">
 <link rel="stylesheet" href="assets/css/theme-dark-luxury.css">
+<link rel="stylesheet" href="assets/css/cosmic-background.css">
 <script>try{var a=new URLSearchParams(location.search).get("accent");if(a)localStorage.setItem("aq-accent",a);a=localStorage.getItem("aq-accent");if(a&&/^(gold|ember|rose|sage)$/.test(a))document.documentElement.setAttribute("data-accent",a)}catch(e){}</script>
+<style>
+#manifest,#wishes,#dream-library,#tarot-lab,#symbol-library,a.card[href="#manifest"],a.card[href="#wishes"],a.card[href="#dream-library"],a.card[href="#tarot-lab"],a.card[href="#symbol-library"],.hidden-feature,#ask,#chat,#fortune,#services,#courses,#videos,#faq,a.card[href="#ask"],a.card[href="#chat"],a.card[href="#fortune"],a.card[href="#services"],a.card[href="#courses"],a.card[href="#videos"],a.card[href="#faq"],a.card[href="tarot.html"],a.card[href="workbench.html"],a[href="#services"]{display:none !important;margin:0 !important;padding:0 !important;height:0 !important;min-height:0 !important;max-height:0 !important;border:none !important;overflow:hidden !important;visibility:hidden !important;pointer-events:none !important;}
+</style>
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
 <div aria-hidden="true" id="sky-layer">
 <i class="st s1"></i><i class="st s2"></i><i class="st s3"></i>
-<div class="ring r1"><i></i><span class="ball b-sun"></span></div>
-<div class="ring r2"><i></i><span class="ball b-mars"></span><span class="ball b-moon"></span></div>
-<div class="ring r3"><i></i><span class="ball b-ven"></span><span class="ball b-sat"></span></div>
 </div>
 <canvas aria-hidden="true" height="660" id="mw" width="1400"></canvas>
 <canvas aria-hidden="true" id="sky-bg"></canvas>
 <header class="top">
 <div class="hd">
 <a class="brand" href="#home" id="top"><span class="bn" data-brand=""></span></a>
-<div class="hd-act"><a aria-label="انستجرام" class="ig-top" href="#book" id="ig-top"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" fill="currentColor" r="1"></circle></svg></a><a class="btn sm" data-wa="general" href="#book">واتساب</a></div>
+<div class="hd-act"><a aria-label="انستجرام" class="ig-top" href="#home" id="ig-top"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" fill="currentColor" r="1"></circle></svg></a></div>
 </div>
 </header>
 <main>
@@ -78,7 +79,7 @@
 <div class="field q-gender"><label for="q-gender">صيغة التقرير (اختياري)</label><select id="q-gender" data-gender-select data-gender-group="self"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div>
 <div class="qrow"><input id="q-date" max="2100-12-31" min="1900-01-01" type="date"/><button class="btn" type="submit">اكشف بطاقتي</button></div>
 <p class="ferr" hidden="" id="qerr" role="alert"></p>
-<p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
+
 </form>
 </div>
 <div class="wheel-box">
@@ -109,7 +110,10 @@
 </div>
 </section>
 <div class="home">
-<div class="grp" id="cat-discover"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"></path></svg></span><span>اكتشف نفسك</span></div><a class="card" href="#chart"><span aria-hidden="true" class="ic gold"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><ellipse cx="12" cy="12" rx="9" ry="4"></ellipse><circle cx="19" cy="9" r="1.2"></circle></svg></span><span class="ct"><b>خريطة الميلاد</b><small>اكتشاف ذاتك الحقيقية من الكواكب والبيوت</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#astro-maps"><span aria-hidden="true" class="ic gold">☾</span><span class="ct"><b>خرائط فلكية إضافية</b><small>العبور والعودة الشمسية والخريطة الفيدية</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#matrix"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg></span><span class="ct"><b>مصفوفة القدر</b><small>مصيرك خطوة بخطوة، من تاريخ ميلادك</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#lifepath"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="6" cy="19" r="2"></circle><circle cx="18" cy="5" r="2"></circle><path d="M6 17V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7"></path></svg></span><span class="ct"><b>مسار الحياة</b><small>رقمك ونورك وضلّك وإزاي بتحب</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#manifest"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 4h12a2 2 0 0 1 2 2v4"></path><path d="M4 4v16a2 2 0 0 0 2 2h8"></path><path d="M8 8h6M8 12h3"></path><path d="M14 18l5-5 2 2-5 5h-2z"></path></svg></span><span class="ct"><b>دفتر التجلي</b><small>اكتب صورتك الذهنية واسأل سؤالك لنفسك، محفوظ على جهازك</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#wishes"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.3 6.4 20.4l1.1-6.3-4.5-4.4 6.2-.9z"></path></svg></span><span class="ct"><b>دفتر الأمنيات</b><small>اكتب صورتك الذهنية وخطواتك نحو أمنيتك، محفوظة على جهازك بس</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#dream-library"><span aria-hidden="true" class="ic gold">☁</span><span class="ct"><b>دليل رموز الأحلام</b><small>افهم صور الأحلام كمدخل للتأمل، لا كتنبؤات.</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#tarot-lab"><span aria-hidden="true" class="ic gold">✧</span><span class="ct"><b>بطاقة تأمل من التاروت</b><small>اسحب بطاقة رمزية وسؤالًا للتفكير.</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#symbol-library"><span aria-hidden="true" class="ic gold">◇</span><span class="ct"><b>أطلس الرموز</b><small>القمر والمفتاح والثعبان والعين ورموز ثقافية أخرى.</small></span><span aria-hidden="true" class="chev">‹</span></a></div><div class="grp" id="cat-relations"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"></path></svg></span><span>العلاقة ما بينكم</span></div><a class="card" href="#compat"><span aria-hidden="true" class="ic rose"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M19 12l-5 5a2 2 0 0 1-3 0l-2-2"></path><path d="M3 11l4 4"></path><path d="M12 6.5a3 3 0 0 1 5 2.2c0 3.5-5 6.3-5 6.3s-5-2.8-5-6.3a3 3 0 0 1 5-2.2z"></path></svg></span><span class="ct"><b>التوافق الفلكي</b><small>مقارنة خريطتين عشان تفهموا التناغم والتوتر</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#chat"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 5h11v8H9l-4 3v-3H4z"></path><path d="M9 17h9l2 2v-9h-2"></path></svg></span><span class="ct"><b>تحليل المحادثات</b><small>الصق محادثة تختارها بنفسك وشوف أسلوب التواصل</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#ask"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 20l1.5-3.5A8 8 0 1 1 8 19z"></path><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5"></path><circle cx="12" cy="16.5" r=".6"></circle></svg></span><span class="ct"><b>اسأل عن علاقتك</b><small>اكتب موقفك وخد قراءة متوازنة وخطوات عملية</small></span><span aria-hidden="true" class="chev">‹</span></a><!-- Hidden: relationship lab card removed from home (single compatibility tool) --><a class="card" href="#life-path-synastry"><span aria-hidden="true" class="ic rose">✧</span><span class="ct"><b>حاسبة توافق مسارات الحياة</b><small>الجسر المزدوج والشراكات القدرية</small><span class="pills"><span class="pill free">معاينة مجانية</span></span></span><span aria-hidden="true" class="chev">‹</span></a></div><div class="grp" id="cat-forecast"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M18 14.5A7.5 7.5 0 0 1 9.5 6a7.5 7.5 0 1 0 8.5 8.5z"></path></svg></span><span>التوقعات والعبور</span></div><a class="card" href="#signs"><span aria-hidden="true" class="ic gold"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="17" rx="2" width="18" x="3" y="4"></rect><path d="M3 9h18M8 2v4M16 2v4"></path><path d="M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"></path></svg></span><span class="ct"><b>توقعات الأبراج</b><small>توقعات برجك للفترة دي</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#fortune"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></span><span class="ct"><b>إلهام اليوم</b><small>رسالة تساعدك تشوف يومك من زاوية مختلفة</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a></div><div class="grp" id="cat-sky"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M16.5 4.2a8.5 8.5 0 1 0 3.3 12.4A7 7 0 0 1 16.5 4.2z"></path></svg></span><span>السماء دلوقتي</span></div><a class="card" href="#sky"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M3 12l12-4 2 4-12 4z"></path><path d="M11 13l-3 7M15 13l4 7"></path><circle cx="19" cy="6" r="2"></circle></svg></span><span class="ct"><b>السما دلوقتي</b><small>مواقع الكواكب النهاردة والتراجعات والقمر</small></span><span aria-hidden="true" class="chev">‹</span></a></div><div class="grp" id="cat-library"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v16H6.5A1.5 1.5 0 0 0 5 20.5z"></path><path d="M5 20.5V4.5M9 8h6"></path></svg></span><span>المكتبة والتواصل</span></div><a class="card" href="#services"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="17" rx="2" width="18" x="3" y="4"></rect><path d="M3 9h18M8 2v4M16 2v4"></path><circle cx="15.5" cy="15.5" r="2.5"></circle><path d="M15.5 14v1.5l1 .8"></path></svg></span><span class="ct"><b>الخدمات والجلسات</b><small>قراءات شخصية تحجزها على واتساب</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#courses"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"></path></svg></span><span class="ct"><b>الكورسات</b><small>تعلم الفلك ومصفوفة القدر بنفسك</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#videos"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5v7l5.5-3.5z"></path></svg></span><span class="ct"><b>الفيديوهات</b><small>شروحات وتوقعات وقراءات قصيرة</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#how"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 7l2 2 3.5-4M4 16l2 2 3.5-4M13 7h7M13 16h7"></path></svg></span><span class="ct"><b>إزاي الحجز؟</b><small>أربع خطوات بسيطة على واتساب</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#faq"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6M12 16.8h.01"></path></svg></span><span class="ct"><b>أسئلة شائعة</b><small>الحساب، الخصوصية، والكود</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#about"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><span class="ct"><b>عني</b><small>مين محمد ابراهيم وعقيق</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#book"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="M3 7l9 6 9-6"></path></svg></span><span class="ct"><b>تواصل معايا</b><small>واتساب وانستجرام</small></span><span aria-hidden="true" class="chev">‹</span></a></div>
+<div class="grp" id="cat-discover"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z"></path></svg></span><span>بوابات استكشاف الذات الكبرى</span></div><a class="card" href="#matrix"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg></span><span class="ct"><b>مصفوفة القدر</b><small>مصيرك خطوة بخطوة، من تاريخ ميلادك</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#chart"><span aria-hidden="true" class="ic gold"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><ellipse cx="12" cy="12" rx="9" ry="4"></ellipse><circle cx="19" cy="9" r="1.2"></circle></svg></span><span class="ct"><b>خريطة الميلاد</b><small>اكتشاف ذاتك الحقيقية من الكواكب والبيوت</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#astro-maps"><span aria-hidden="true" class="ic gold">☾</span><span class="ct"><b>خرائط فلكية إضافية</b><small>العبور والعودة الشمسية والخريطة الفيدية</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#lifepath"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="6" cy="19" r="2"></circle><circle cx="18" cy="5" r="2"></circle><path d="M6 17V13a4 4 0 0 1 4-4h4a4 4 0 0 0 4-4V7"></path></svg></span><span class="ct"><b>مسار الحياة</b><small>رقمك ونورك وضلّك وإزاي بتحب</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#manifest" hidden="" style="display:none !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 4h12a2 2 0 0 1 2 2v4"></path><path d="M4 4v16a2 2 0 0 0 2 2h8"></path><path d="M8 8h6M8 12h3"></path><path d="M14 18l5-5 2 2-5 5h-2z"></path></svg></span><span class="ct"><b>دفتر التجلي</b><small>اكتب صورتك الذهنية واسأل سؤالك لنفسك</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#wishes" hidden="" style="display:none !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 3l2.8 5.8 6.2.9-4.5 4.4 1.1 6.3L12 17.3 6.4 20.4l1.1-6.3-4.5-4.4 6.2-.9z"></path></svg></span><span class="ct"><b>دفتر الأمنيات</b><small>اكتب صورتك الذهنية وخطواتك نحو أمنيتك</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#dream-library" hidden="" style="display:none !important;"><span aria-hidden="true" class="ic gold">☁</span><span class="ct"><b>دليل رموز الأحلام</b><small>افهم صور الأحلام كمدخل للتأمل، لا كتنبؤات.</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#tarot-lab" hidden="" style="display:none !important;"><span aria-hidden="true" class="ic gold">✧</span><span class="ct"><b>بطاقة تأمل من التاروت</b><small>اسحب بطاقة رمزية وسؤالًا للتفكير.</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#symbol-library" hidden="" style="display:none !important;"><span aria-hidden="true" class="ic gold">◇</span><span class="ct"><b>أطلس الرموز</b><small>القمر والمفتاح والثعبان والعين ورموز ثقافية أخرى.</small></span><span aria-hidden="true" class="chev">‹</span></a></div>
+<div class="grp" id="cat-relations"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.4a4.2 4.2 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"></path></svg></span><span>بوابات التوافق والعلاقات</span></div><a class="card" href="#compat"><span aria-hidden="true" class="ic rose"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M19 12l-5 5a2 2 0 0 1-3 0l-2-2"></path><path d="M3 11l4 4"></path><path d="M12 6.5a3 3 0 0 1 5 2.2c0 3.5-5 6.3-5 6.3s-5-2.8-5-6.3a3 3 0 0 1 5-2.2z"></path></svg></span><span class="ct"><b>التوافق الفلكي</b><small>مقارنة خريطتين عشان تفهموا التناغم والتوتر</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#life-path-synastry"><span aria-hidden="true" class="ic rose">✧</span><span class="ct"><b>حاسبة توافق مسارات الحياة</b><small>الجسر المزدوج والشراكات القدرية</small><span class="pills"><span class="pill free">معاينة مجانية</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="#chat" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 5h11v8H9l-4 3v-3H4z"></path><path d="M9 17h9l2 2v-9h-2"></path></svg></span><span class="ct"><b>تحليل المحادثات</b><small>الصق محادثة تختارها بنفسك وشوف أسلوب التواصل</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="#ask" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M4 20l1.5-3.5A8 8 0 1 1 8 19z"></path><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5"></path><circle cx="12" cy="16.5" r=".6"></circle></svg></span><span class="ct"><b>اسأل عن علاقتك</b><small>اكتب موقفك وخد قراءة متوازنة وخطوات عملية</small></span><span aria-hidden="true" class="chev">‹</span></a></div>
+<div class="grp" id="cat-forecast"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M18 14.5A7.5 7.5 0 0 1 9.5 6a7.5 7.5 0 1 0 8.5 8.5z"></path></svg></span><span>حركة الكون والتوقعات</span></div><a class="card" href="#sky"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M3 12l12-4 2 4-12 4z"></path><path d="M11 13l-3 7M15 13l4 7"></path><circle cx="19" cy="6" r="2"></circle></svg></span><span class="ct"><b>السما دلوقتي</b><small>مواقع الكواكب النهاردة والتراجعات والقمر</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card" href="#signs"><span aria-hidden="true" class="ic gold"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="17" rx="2" width="18" x="3" y="4"></rect><path d="M3 9h18M8 2v4M16 2v4"></path><path d="M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"></path></svg></span><span class="ct"><b>توقعات الأبراج</b><small>توقعات برجك للفترة دي</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="#fortune" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></span><span class="ct"><b>إلهام اليوم</b><small>رسالة تساعدك تشوف يومك من زاوية مختلفة</small><span class="pills"><span class="pill free">مجاني</span></span></span><span aria-hidden="true" class="chev">‹</span></a></div>
+<div class="grp hidden-feature" id="cat-library" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="cat-h"><span aria-hidden="true" class="cat-i"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v16H6.5A1.5 1.5 0 0 0 5 20.5z"></path><path d="M5 20.5V4.5M9 8h6"></path></svg></span><span>المكتبة والتواصل</span></div><a class="card hidden-feature" href="tarot.html" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="3"></rect><path d="M12 7v10M8 12h8"></path><circle cx="12" cy="12" r="2"></circle></svg></span><span class="ct"><b>استشارة وقراءات التاروت</b><small>سحب كروت حي وتشريح نفسي وسلوكي مباشر للمستشير</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="workbench.html" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic gold"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 2L2 7h20L12 2z"></path></svg></span><span class="ct"><b>محراب التعليم والتسكين الأكاديمي</b><small>مختبر الفرشات اليدوية وميزان العناصر وموسوعة الـ 78 كارت</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="#services" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><rect height="17" rx="2" width="18" x="3" y="4"></rect><path d="M3 9h18M8 2v4M16 2v4"></path><circle cx="15.5" cy="15.5" r="2.5"></circle><path d="M15.5 14v1.5l1 .8"></path></svg></span><span class="ct"><b>الخدمات والجلسات</b><small>قراءات شخصية</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="#courses" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"></path></svg></span><span class="ct"><b>الكورسات</b><small>تعلم الفلك ومصفوفة القدر بنفسك</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="#videos" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5v7l5.5-3.5z"></path></svg></span><span class="ct"><b>الفيديوهات</b><small>شروحات وتوقعات وقراءات قصيرة</small></span><span aria-hidden="true" class="chev">‹</span></a><a class="card hidden-feature" href="#faq" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><span aria-hidden="true" class="ic"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6M12 16.8h.01"></path></svg></span><span class="ct"><b>أسئلة شائعة</b><small>الحساب، الخصوصية، والكود</small></span><span aria-hidden="true" class="chev">‹</span></a></div>
 </div>
 <section class="sec alt" id="matrix">
 <div class="wrap">
@@ -123,9 +127,9 @@
 <div class="field"><label for="m-date">تاريخ الميلاد</label><input id="m-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <p class="ferr" hidden="" id="merr" role="alert"></p>
 <button class="btn" type="submit">احسب مصفوفتي</button>
-<p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
+
 </form>
-<div aria-live="polite" class="result" hidden="" id="mresult"></div>
+<div aria-live="polite" class="result" hidden="" id="mresult" data-view-result="matrix"></div>
 </div>
 </section>
 <section class="sec" id="lifepath">
@@ -152,9 +156,9 @@
 <div class="field"><label for="lp-date">تاريخ الميلاد</label><input id="lp-date" max="2100-12-31" min="1900-01-01" type="date"/></div>
 <p class="ferr" hidden="" id="lperr" role="alert"></p>
 <button class="btn" type="submit">اعرف مسار حياتي</button>
-<p class="privacy">الحساب بيتم على جهازك ومابيتبعتش لأي مكان.</p>
+
 </form>
-<div aria-live="polite" class="result" hidden="" id="lpresult"></div>
+<div aria-live="polite" class="result" hidden="" id="lpresult" data-view-result="lifepath"></div>
 </div>
 </section>
 <section class="sec" id="chart">
@@ -186,9 +190,9 @@
 </details>
 <p class="ferr" hidden="" id="ferr" role="alert"></p>
 <button class="btn" type="submit">احسب خريطتي</button>
-<p class="privacy">الحساب بيتم على جهازك. بيانات ميلادك مابتتبعتش لأي سيرفر.</p>
+
 </form>
-<div aria-live="polite" class="result" hidden="" id="result"></div>
+<div aria-live="polite" class="result" hidden="" id="result" data-view-result="chart"></div>
 </div>
 </section>
 <section class="sec" id="astro-maps"><div class="wrap">
@@ -226,6 +230,7 @@
 <h2>توقعات الأبراج</h2>
 <p class="intro">اختار برجك وشوف توقعاته. دي قراءة عامة، والقراءة الشخصية على خريطة ميلادك بتكون أدق وأعمق.</p>
 </div>
+<button class="signs-back" id="signs-back" type="button" aria-label="الرجوع لكل الأبراج"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" transform="scale(-1 1) translate(-24 0)"/></svg><span>كل الأبراج</span></button>
 <div aria-label="اختيار البرج" class="picker" id="picker" role="group"></div>
 <article aria-live="polite" class="arch" id="panel"></article>
 </div>
@@ -237,38 +242,34 @@
 <div class="syn-person"><h3>✦ الطرف الأول</h3><div class="field"><label for="syn-name-a">الاسم</label><input id="syn-name-a" maxlength="80" autocomplete="name" required placeholder="اسم الطرف الأول"></div><div class="field"><label for="syn-gender-a">الجنس (اختياري)</label><select id="syn-gender-a" data-gender-select data-gender-group="syn-a"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-a">تاريخ الميلاد</label><input id="syn-date-a" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
 <div class="syn-person"><h3>✦ الطرف الثاني</h3><div class="field"><label for="syn-name-b">الاسم</label><input id="syn-name-b" maxlength="80" autocomplete="off" required placeholder="اسم الطرف الثاني"></div><div class="field"><label for="syn-gender-b">الجنس (اختياري)</label><select id="syn-gender-b" data-gender-select data-gender-group="syn-b"><option value="">بدون تحديد</option><option value="male">ذكر</option><option value="female">أنثى</option></select></div><div class="field"><label for="syn-date-b">تاريخ الميلاد</label><input id="syn-date-b" type="date" min="1900-01-01" max="2100-12-31" required></div></div>
 <div class="field syn-rel"><label for="syn-type">نوع العلاقة</label><select id="syn-type" required><option value="romantic">عاطفية / زواج</option><option value="family">أهل / إخوة</option><option value="business">بيزنس / استثمار</option></select></div>
-<p id="syn-error" class="ferr" role="alert" hidden></p><button class="btn" type="submit">اكشف كود التوافق الكوني</button><p class="privacy">الحساب بيتم داخل المتصفح. النتيجة قراءة رمزية للتأمل وليست حكمًا علميًا على نجاح العلاقة.</p>
+<p id="syn-error" class="ferr" role="alert" hidden></p><button class="btn" type="submit">اكشف كود التوافق الكوني</button>
 </form><div id="syn-result" class="syn-result" aria-live="polite" hidden></div><!-- Hidden: referral note removed --></div></section>
-<section class="sec" id="services">
+<section class="sec hidden-feature" id="services" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;">
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <h2>الخدمات</h2>
-<p class="intro">اختار الجلسة الي تناسب سؤالك. كل خدمة بتبدأ برسالة على واتساب فيها بياناتك الأساسية.</p>
+<p class="intro">اختار الجلسة الي تناسب سؤالك.</p>
 <ul>
 <li class="svc">
 <svg aria-hidden="true" class="svc-ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 64 64"><rect height="40" width="40" x="12" y="12"></rect><path d="M32 12L52 32L32 52L12 32Z"></path><circle cx="32" cy="32" r="5"></circle></svg>
 <div class="svc-body"><h3>قراءة مصفوفة القدر</h3><p>قراءة مفصلة لمصفوفتك: شخصيتك وهدفك والكارما والحب والفلوس، وطاقة المرحلة الي إنت فيها وسنتك الحالية.</p><p class="need">هتحتاج: اسمك وتاريخ ميلادك.</p></div>
-<a class="btn ghost" data-wa="matrix" href="#book">احجز قراءة المصفوفة</a>
 </li>
 <li class="svc">
 <svg aria-hidden="true" class="svc-ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6" viewbox="0 0 64 64"><circle cx="32" cy="32" r="9"></circle><path d="M32 8v8M32 48v8M8 32h8M48 32h8M15 15l5.7 5.7M43.3 43.3L49 49M15 49l5.7-5.7M43.3 20.7L49 15"></path></svg>
 <div class="svc-body"><h3>قراءة البرج الشخصية</h3><p>قراءة لبرجك وفترتك الحالية في الحب والشغل والفلوس، مع نصيحة تقدر تطبقها.</p><p class="need">هتحتاج: اسمك وتاريخ ميلادك.</p></div>
-<a class="btn ghost" data-wa="horoscope" href="#book">احجز القراءة</a>
 </li>
 <li class="svc">
 <svg aria-hidden="true" class="svc-ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6" viewbox="0 0 64 64"><circle cx="32" cy="32" r="24"></circle><circle cx="32" cy="32" r="11"></circle><path d="M43 32H56M37.5 41.5L44 52.8M26.5 41.5L20 52.8M21 32H8M26.5 22.5L20 11.2M37.5 22.5L44 11.2"></path></svg>
 <div class="svc-body"><h3>الخريطة الفلكية</h3><p>قراءة كاملة لخريطة ميلادك: الكواكب والبيوت، شخصيتك، نقاط قوتك، والمجالات الي بتاخد أكبر اهتمامك.</p><p class="need">هتحتاج: تاريخ الميلاد، الساعة بالدقيقة، ومكان الميلاد.</p></div>
-<a class="btn ghost" data-wa="chart" href="#book">احجز قراءة الخريطة</a>
 </li>
 <li class="svc">
 <svg aria-hidden="true" class="svc-ic" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.6" viewbox="0 0 64 64"><circle cx="24" cy="32" r="16"></circle><circle cx="40" cy="32" r="16"></circle><circle cx="32" cy="32" fill="currentColor" r="1.8"></circle></svg>
 <div class="svc-body"><h3>التوافق الفلكي (Synastry)</h3><p>مقارنة بين خريطتين، خريطتك وخريطة شخص تاني، عشان تفهموا أماكن التناغم وأماكن التوتر بينكم. تنفع لعلاقة حب أو شغل أو صداقة.</p><p class="need">هتحتاج: بيانات الميلاد الكاملة للطرفين.</p></div>
-<a class="btn ghost" data-wa="synastry" href="#book">احجز قراءة التوافق</a>
 </li>
 </ul>
 </div>
 </section>
-<section class="sec alt" id="courses">
+<section class="sec alt hidden-feature" id="courses" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;">
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <h2>الكورسات</h2>
@@ -276,7 +277,7 @@
 <ul id="courses-list"></ul>
 </div>
 </section>
-<section class="sec" id="videos">
+<section class="sec hidden-feature" id="videos" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;">
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <h2>الفيديوهات</h2>
@@ -284,53 +285,23 @@
 <ul class="videos" id="videos-list"></ul>
 </div>
 </section>
-<section class="sec" id="how">
-<div class="wrap">
-<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
-<h2>إزاي الحجز؟</h2>
-<p class="intro">أربع خطوات بسيطة، وكلها على واتساب.</p>
-<ol class="steps">
-<li class="step"><span class="n">١</span><h3>ابعت رسالة</h3><p>اضغط زر الحجز واختار الخدمة.</p></li>
-<li class="step"><span class="n">٢</span><h3>ابعت بياناتك</h3><p>تاريخ ووقت ومكان الميلاد لو الخدمة محتاجة.</p></li>
-<li class="step"><span class="n">٣</span><h3>نحدد المعاد</h3><p>هرد عليك بالمواعيد المتاحة والسعر.</p></li>
-<li class="step"><span class="n">٤</span><h3>تاخد جلستك</h3><p>قراءة واضحة تقدر ترجع لها وقت ما تحتاج.</p></li>
-</ol>
-</div>
-</section>
-<section class="sec alt" id="faq">
+<section class="sec alt hidden-feature" id="faq" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;">
 <div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="center"><h2>أسئلة بتتسأل كتير</h2></div>
-<p class="method">مواقع الكواكب بتتحسب بمعادلات فلكية حقيقية على جهازك، والبيوت بتتحسب من وقت ومكان الميلاد. النصوص بتترجم الرموز لأنماط نفسية وسلوكية للتأمل.</p>
+<p class="method">مواقع الكواكب والبيوت تُحسب بدقة فلكية من وقت ومكان الميلاد. النصوص بتترجم الرموز لأنماط نفسية وسلوكية للتأمل.</p>
 <div class="faq">
-<details class="acc"><summary>الحساب بيتم فين، وبياناتي بتتحفظ؟</summary><p>كل الحسابات بتتم على جهازك جوه المتصفح. التاريخ والاسم مابيتبعتوش لأي سيرفر ومابنحفظهمش.</p></details>
+
 <details class="acc"><summary>إيه المتاح في النسخة دي؟</summary><p>المصفوفة ونقاطها والخريطة الفلكية ورسالة اليوم والأقسام السبعة لمسار الحياة متاحة بالكامل داخل النسخة دي.</p></details>
 
 <details class="acc"><summary>لازم أعرف وقت ميلادي؟</summary><p>للماتريكس ومسار الحياة تاريخ الميلاد كفاية. للخريطة الفلكية الوقت بيحدد الطالع والبيوت، ولو مش عارفه الموقع بيحسب خريطة بدون بيوت دقيقة.</p></details>
 <details class="acc"><summary>القراءات بتتنبأ بالمستقبل؟</summary><p>لأ. هي مرايا للتأمل بتساعدك تلاحظ أنماطك وتختار بوعي، وهي مش بديل عن استشارة طبية أو نفسية أو قانونية أو مالية.</p></details>
 <details class="acc"><summary>الماتريكس عندكم هي نفس اللي في مواقع تانية؟</summary><p>مصفوفة القدر ليها أكتر من مدرسة وأسماء النقاط بتختلف. ده حساب النسخة الشائعة، فممكن تلاقي اختلاف بسيط في التسميات.</p></details>
-<details class="acc"><summary>ينفع أحجز جلسة شخصية؟</summary><p>أيوه، من قسم الخدمات تقدر تحجز قراءة شخصية وتتواصل معايا.</p></details>
 </div>
 </div>
 </section>
-<section class="sec" id="book">
-<div class="wrap">
-<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
-<div class="book">
-<h2>تواصل معايا</h2>
-<p>لو عايز قراءة شخصية أو عندك سؤال على خريطتك، كلمني على واتساب. وتابعني على انستجرام لتوقعات وفيديوهات جديدة.</p>
-<div class="cta-row"><a class="btn" data-wa="general" href="#book">كلمني على واتساب</a><a class="btn ghost" dir="ltr" href="#book" id="ig">@</a></div>
-</div>
-</div>
-</section>
-<section class="sec" id="about">
-<div class="wrap about">
-<h2>مين هو عقيق؟</h2>
-<p>أنا محمد ابراهيم، وعقيق هو اسمي في الفلك والطاقة. بقدم قراءات وجلسات لأي حد عايز يفهم نفسه وعلاقاته وقراراته بشكل أوضح، من خلال مصفوفة القدر وخريطة الميلاد وطاقة الأرقام.</p>
-<p>كل الحاسبات في الموقع بتشتغل على جهازك ومابتحفظش بياناتك. والقراءات التلقائية بتديك الصورة العامة، ولو عايز قراءة شخصية على حالتك كلمني على واتساب.</p>
-</div>
-</section>
-<section class="sec alt" id="manifest"><div class="wrap">
+
+<section class="sec alt" id="manifest" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="center"><h2>دفتر التجلي</h2><p class="intro">اكتب الصورة اللي في بالك كأنها حاصلة فعلاً، وبعدين اسأل نفسك سؤال صريح عن الطريق. الدفتر ده للتأمل والتركيز، ومش وعد بحاجة.</p></div>
 <form class="cform" id="mf-form" novalidate="">
@@ -340,9 +311,9 @@
 <button class="btn" type="submit">احفظ في دفتري</button>
 </form>
 <ul class="aff-list" id="mf-list"></ul>
-<p class="privacy">الدفتر بيتحفظ على الجهاز اللي إنت فيه بس، ومابيتبعتش لأي سيرفر.</p>
+
 </div></section>
-<section class="sec alt" id="chat"><div class="wrap">
+<section class="sec alt hidden-feature" id="chat" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="center"><h2>تحليل المحادثات</h2><p class="intro">إنت بتختار المحادثة اللي تلصقها بنفسك. الموقع مش بيوصل لواتساب ولا لأي رسايل تلقائيًا. التحليل الحالي محلي وبسيط، مش خدمة ذكاء اصطناعي.</p></div>
 <div class="msg-card"><p class="msg-txt">تنبيه خصوصية: ماتلصقش معلومات حساسة عن حد من غير ما يعرف، والمحادثة مش بتتحفظ على الموقع.</p></div>
@@ -353,7 +324,7 @@
 </form>
 <div aria-live="polite" class="result" hidden="" id="chat-out"></div>
 </div></section>
-<section class="sec alt" id="ask"><div class="wrap">
+<section class="sec alt hidden-feature" id="ask" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="center"><h2>اسأل عن علاقتك</h2><p class="intro">اكتب الموقف أو الخلاف اللي في دماغك، وهنقرأه من أكتر من زاوية، من غير أحكام قاطعة.</p></div>
 <form class="cform" id="ask-form" novalidate="">
@@ -363,7 +334,7 @@
 </form>
 <div aria-live="polite" class="result" hidden="" id="ask-out"></div>
 </div></section>
-<section class="sec alt" id="wishes"><div class="wrap">
+<section class="sec alt" id="wishes" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="center"><h2>دفتر الأمنيات</h2><p class="intro">اكتب الصورة اللي في دماغك لنفسك، والأمنية اللي نفسك تتحقق، وخطواتك العملية نحوها. ده مساحة كتابة خاصة، مش أداة رسم.</p></div>
 <form class="cform" id="wish-form" novalidate="">
@@ -374,48 +345,104 @@
 </form>
 <ul class="aff-list" id="wish-list"></ul>
 </div></section>
-<section class="sec alt" id="account"><div class="wrap">
-<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
-<div class="center"><h2>حسابي</h2><p class="intro">سجّل حسابك عشان نحفظ تقدمك ومتابعتك اليومية.</p></div>
-<p class="ferr" id="acct-fallback">تسجيل الدخول مش متاح دلوقتي. حدّث الصفحة وجرّب تاني، ولو المشكلة فضلت جرّب من شبكة تانية.</p>
-<p class="acct-ok" hidden="" id="acct-link-msg" role="status"></p>
+<section class="sec alt acct-modal" id="account"><div class="wrap acct-wrap">
+<a aria-label="إغلاق" class="sheet-x" href="#home">
+  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+</a>
 
-<div hidden="" id="acct-guest">
-<div aria-label="دخول أو حساب جديد" class="acct-tabs" role="tablist">
-<button aria-selected="true" data-mode="signin" role="tab" type="button">دخول</button>
-<button aria-selected="false" data-mode="signup" role="tab" type="button">حساب جديد</button>
-</div>
-<form class="cform" id="acct-form" novalidate="">
-<div class="field" hidden="" id="acct-name-field"><label for="acct-name">الاسم (اختياري)</label><input autocomplete="name" id="acct-name" maxlength="80" type="text"/></div>
-<div class="field"><label for="acct-email">الإيميل</label><input autocomplete="email" dir="ltr" id="acct-email" inputmode="email" required="" type="email"/></div>
-<div class="field"><label for="acct-pass">كلمة المرور</label><input autocomplete="current-password" dir="ltr" id="acct-pass" minlength="8" required="" type="password"/></div>
-<p class="ferr" hidden="" id="acct-msg" role="alert"></p>
-<button class="btn" id="acct-submit" type="submit">دخول</button>
-<button class="btn ghost" id="acct-forgot" type="button">نسيت كلمة المرور</button>
-</form>
-</div>
+<div class="acct-card-shell">
+  <div class="acct-brand-header">
+    <div class="acct-brand-seal">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 3v18M3 12h18"></path>
+        <circle cx="12" cy="12" r="4"></circle>
+      </svg>
+    </div>
+    <h2>حسابك الشخصي</h2>
+    <p class="acct-subtitle">متابعة مسارك الفلكي، حفظ قراءاتك، وتقاريرك الخاصة</p>
+  </div>
 
-<div class="msg-card" hidden="" id="acct-user">
-<p class="msg-txt">إنت داخل بحساب: <strong dir="ltr" id="acct-user-email"></strong></p>
-<p class="privacy">تقدر تطلب القراءة الكاملة من هنا، والدفع بيتم في صفحة آمنة تابعة لبوابة الدفع.</p>
-<p class="ferr" hidden="" id="acct-buy-msg" role="alert"></p>
-<button class="btn" id="acct-buy" type="button">اشترِ القراءة الكاملة</button>
-<button class="btn" id="acct-generate-report" type="button" hidden>تجهيز التقرير المدفوع</button>
-<a class="btn ghost" hidden id="acct-whatsapp-support" href="https://wa.me/201143813559" target="_blank" rel="noopener noreferrer">تواصل عبر واتساب بخصوص تقريرك</a>
-<button class="btn ghost" id="acct-signout" type="button">تسجيل الخروج</button>
-</div>
+  <p class="ferr" id="acct-fallback">تسجيل الدخول مش متاح دلوقتي. حدّث الصفحة وجرّب تاني.</p>
+  <p class="acct-ok" hidden="" id="acct-link-msg" role="status"></p>
 
-<div hidden="" id="acct-recovery">
-<div class="center"><h3>كلمة مرور جديدة</h3></div>
-<form class="cform" id="acct-recovery-form" novalidate="">
-<div class="field"><label for="acct-newpass">كلمة المرور الجديدة</label><input autocomplete="new-password" dir="ltr" id="acct-newpass" minlength="8" required="" type="password"/></div>
-<p class="ferr" hidden="" id="acct-recovery-msg" role="alert"></p>
-<button class="btn" type="submit">حفظ كلمة المرور</button>
-</form>
-</div>
+  <div hidden="" id="acct-guest">
+    <button class="btn btn-google" id="acct-google" type="button" aria-label="المتابعة باستخدام Google">
+      <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+      </svg>
+      <span>المتابعة باستخدام Google</span>
+    </button>
 
-<div class="msg-card"><p class="msg-txt">دفتر التجلي ودفتر الأمنيات لسه بيتحفظوا على الجهاز اللي إنت فيه بس، ومابيتزامنوش مع الحساب.</p></div>
-<p class="privacy">الحساب بيحفظ إيميلك واسمك بس. بيانات الميلاد مابتتبعتش لأي سيرفر.</p>
+    <div class="acct-divider"><span>أو عبر البريد الإلكتروني</span></div>
+
+    <div aria-label="دخول أو حساب جديد" class="acct-tabs" role="tablist">
+      <button aria-selected="true" data-mode="signin" role="tab" type="button">تسجيل الدخول</button>
+      <button aria-selected="false" data-mode="signup" role="tab" type="button">حساب جديد</button>
+    </div>
+
+    <form class="cform acct-form-refined" id="acct-form" novalidate="">
+      <div class="field" hidden="" id="acct-name-field">
+        <label for="acct-name">الاسم</label>
+        <input autocomplete="name" id="acct-name" maxlength="80" type="text" placeholder="اكتب اسمك"/>
+      </div>
+      <div class="field">
+        <label for="acct-email">البريد الإلكتروني</label>
+        <input autocomplete="email" dir="ltr" id="acct-email" inputmode="email" required="" type="email" placeholder="name@example.com"/>
+      </div>
+      <div class="field">
+        <label for="acct-pass">كلمة المرور</label>
+        <input autocomplete="current-password" dir="ltr" id="acct-pass" minlength="8" required="" type="password" placeholder="٨ رموز على الأقل"/>
+      </div>
+      <p class="ferr" hidden="" id="acct-msg" role="alert"></p>
+      <button class="btn acct-submit-btn" id="acct-submit" type="submit">تسجيل الدخول</button>
+      <button class="btn ghost acct-forgot-btn" id="acct-forgot" type="button">نسيت كلمة المرور؟</button>
+    </form>
+  </div>
+
+  <div class="msg-card acct-user-card" hidden="" id="acct-user">
+    <div class="acct-user-header">
+      <div class="acct-avatar-badge">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 21a8 8 0 0 1 16 0"></path>
+        </svg>
+      </div>
+      <div class="acct-user-details">
+        <span class="acct-status-label">الحساب المسجل</span>
+        <strong dir="ltr" id="acct-user-email"></strong>
+      </div>
+    </div>
+    <p class="ferr" hidden="" id="acct-buy-msg" role="alert"></p>
+    <div class="acct-actions-stack">
+      <button class="btn acct-primary-btn" id="acct-buy" type="button">اشترِ القراءة الكاملة</button>
+      <button class="btn acct-gold-btn" id="acct-generate-report" type="button" hidden>تجهيز التقرير المدفوع</button>
+      <a class="btn ghost acct-wa-btn" hidden id="acct-whatsapp-support" href="https://wa.me/201143813559" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.92-9.91-9.92z"/></svg>
+        <span>تواصل عبر واتساب بخصوص تقريرك</span>
+      </a>
+      <button class="btn ghost acct-signout-btn" id="acct-signout" type="button">تسجيل الخروج</button>
+    </div>
+  </div>
+
+  <div hidden="" id="acct-recovery">
+    <div class="acct-brand-header">
+      <h3>كلمة مرور جديدة</h3>
+      <p class="acct-subtitle">أدخل كلمة مرور جديدة لا تقل عن ٨ أحرف أو أرقام</p>
+    </div>
+    <form class="cform acct-form-refined" id="acct-recovery-form" novalidate="">
+      <div class="field">
+        <label for="acct-newpass">كلمة المرور الجديدة</label>
+        <input autocomplete="new-password" dir="ltr" id="acct-newpass" minlength="8" required="" type="password"/>
+      </div>
+      <p class="ferr" hidden="" id="acct-recovery-msg" role="alert"></p>
+      <button class="btn acct-submit-btn" type="submit">حفظ كلمة المرور</button>
+    </form>
+  </div>
+</div>
 </div></section>
 <section class="sec alt" id="compat"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
@@ -429,15 +456,15 @@
 </form>
 <div aria-live="polite" class="result" hidden="" id="cp-out"></div>
 </div></section>
-<section class="sec alt" id="fortune"><div class="wrap">
+<section class="sec alt hidden-feature" id="fortune" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
 <div class="center"><h2>إلهام اليوم</h2><p class="intro">رسالة تساعدك تشوف يومك من زاوية مختلفة. اقراها بهدوء، ومتاخدهاش كوعد ولا كحكم.</p></div>
 <div class="msg-card"><span aria-hidden="true" class="msg-g">✶</span><p class="msg-txt" id="fortune-txt"></p></div>
 <p class="privacy">الرسالة بتتغير مع اليوم، وبتتكرر بعد فترة.</p>
 </div></section>
 </main>
-<section class="sec alt" id="dream-library"><div class="wrap"><div class="center"><span class="eyebrow">DREAM SYMBOLS</span><h2>دليل رموز الأحلام</h2><p class="intro">الأحلام شخصية، ومعناها يتأثر بذكرياتك ومشاعرك وسياق حياتك. دي احتمالات للتأمل وليست تنبؤات أو تشخيصًا.</p></div><input aria-label="ابحث في رموز الأحلام" class="symbol-search" id="dream-search" placeholder="ابحث: ماء، سقوط، طيران، بيت..." type="search"/><div class="symbol-grid" id="dream-grid"><article class="symbol-card" data-keys="الماء البحر النهر مشاعر"><span class="sym">≈</span><h3>الماء أو البحر</h3><p>قد يرتبط في تجربتك بالمشاعر أو التغيير أو الذكريات. اسأل نفسك: كان الماء هادئًا أم مخيفًا؟ وما الشعور الذي صاحبه؟</p></article><article class="symbol-card" data-keys="الطيران حرية تحكم ارتفاع"><span class="sym">✧</span><h3>الطيران</h3><p>قد يفتح سؤال الحرية أو الطموح أو الرغبة في الابتعاد عن ضغط. لاحظ هل شعرت بالخفة أم بالخوف من السقوط.</p></article><article class="symbol-card" data-keys="السقوط فقدان السيطرة قلق"><span class="sym">↓</span><h3>السقوط</h3><p>يمكن التفكير فيه كصورة لفقدان السيطرة أو عدم الاستقرار، لكن لا يعني أن شيئًا سيئًا سيحدث. ما الذي يبدو غير ثابت في حياتك؟</p></article><article class="symbol-card" data-keys="البيت منزل هوية خصوصية أمان"><span class="sym">⌂</span><h3>البيت</h3><p>قد يذكّر بالأمان والخصوصية والذات أو بمرحلة من الماضي. أي غرفة أو شخص كان حاضرًا، وما الإحساس المرتبط بالمكان؟</p></article><article class="symbol-card" data-keys="الأسنان فقدان تغير كلام"><span class="sym">◇</span><h3>الأسنان</h3><p>تفسيراتها تختلف كثيرًا بين الثقافات. بدل اعتبارها نذيرًا، لاحظ ارتباطها عندك بالثقة أو المظهر أو الكلام أو القلق.</p></article><article class="symbol-card" data-keys="المطاردة هروب ضغط مواجهة"><span class="sym">↗</span><h3>المطاردة</h3><p>قد تعكس ضغطًا أو أمرًا مؤجلًا أو شعورًا بالتجنب. اسأل: هل هناك موقف أحتاج أن أواجهه بأمان وبخطوات صغيرة؟</p></article></div><p class="notice-soft" hidden="" id="dream-empty">مفيش نتيجة مطابقة. جرّب كلمة أخرى.</p></div></section><section class="sec" id="tarot-lab"><div class="wrap"><div class="center"><span class="eyebrow">TAROT REFLECTION</span><h2>بطاقة اليوم: سؤال يفتح بابًا</h2><p class="intro">اسحب بطاقة واحدة واقرأ رمزها كسؤال للتأمل. لا تُستخدم القراءة لاتخاذ قرارات طبية أو مالية أو مصيرية بدل المعلومات المتخصصة.</p></div>
-<div class="tarot-draw"><div aria-live="polite" class="tarot-card" id="tarot-card"><div><span class="card-glyph">✧</span><strong>البطاقة في انتظارك</strong><span style="display:block;color:#b6bdd0;font-size:.8rem;margin-top:8px">خذ نفسًا واختر سؤالًا</span></div></div><div class="tarot-copy"><h3 id="tarot-title">اسأل نفسك سؤالًا صادقًا</h3><p id="tarot-description">مش لازم تعرف كل الإجابات دلوقتي. اختار سؤالًا يساعدك تشوف موقفك بوضوح، ثم اسحب بطاقة.</p><p class="prompt" id="tarot-prompt">ما الشيء الذي أحتاج أن أراه من زاوية مختلفة؟</p><button class="btn" id="tarot-draw" type="button">اسحب بطاقة</button><p class="notice-soft">الاختيار عشوائي داخل المتصفح. المعاني هنا تأملية وليست تنبؤات مؤكدة.</p></div></div></div></section><section class="sec alt" id="symbol-library"><div class="wrap"><div class="center"><span class="eyebrow">SYMBOL ATLAS</span><h2>أطلس الرموز</h2><p class="intro">رمز واحد ممكن يحمل معاني مختلفة حسب الثقافة والسياق وتجربة الشخص. ابحث هنا عن مدخل يساعدك تبدأ، لا عن معنى وحيد ونهائي.</p></div><input aria-label="ابحث في قاموس الرموز" class="symbol-search" id="symbol-search" placeholder="ابحث عن القمر، المفتاح، الثعبان..." type="search"/><div class="symbol-grid" id="symbol-grid">
+<section class="sec alt" id="dream-library" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap"><div class="center"><span class="eyebrow">DREAM SYMBOLS</span><h2>دليل رموز الأحلام</h2><p class="intro">الأحلام شخصية، ومعناها يتأثر بذكرياتك ومشاعرك وسياق حياتك. دي احتمالات للتأمل وليست تنبؤات أو تشخيصًا.</p></div><input aria-label="ابحث في رموز الأحلام" class="symbol-search" id="dream-search" placeholder="ابحث: ماء، سقوط، طيران، بيت..." type="search"/><div class="symbol-grid" id="dream-grid"><article class="symbol-card" data-keys="الماء البحر النهر مشاعر"><span class="sym">≈</span><h3>الماء أو البحر</h3><p>قد يرتبط في تجربتك بالمشاعر أو التغيير أو الذكريات. اسأل نفسك: كان الماء هادئًا أم مخيفًا؟ وما الشعور الذي صاحبه؟</p></article><article class="symbol-card" data-keys="الطيران حرية تحكم ارتفاع"><span class="sym">✧</span><h3>الطيران</h3><p>قد يفتح سؤال الحرية أو الطموح أو الرغبة في الابتعاد عن ضغط. لاحظ هل شعرت بالخفة أم بالخوف من السقوط.</p></article><article class="symbol-card" data-keys="السقوط فقدان السيطرة قلق"><span class="sym">↓</span><h3>السقوط</h3><p>يمكن التفكير فيه كصورة لفقدان السيطرة أو عدم الاستقرار، لكن لا يعني أن شيئًا سيئًا سيحدث. ما الذي يبدو غير ثابت في حياتك؟</p></article><article class="symbol-card" data-keys="البيت منزل هوية خصوصية أمان"><span class="sym">⌂</span><h3>البيت</h3><p>قد يذكّر بالأمان والخصوصية والذات أو بمرحلة من الماضي. أي غرفة أو شخص كان حاضرًا، وما الإحساس المرتبط بالمكان؟</p></article><article class="symbol-card" data-keys="الأسنان فقدان تغير كلام"><span class="sym">◇</span><h3>الأسنان</h3><p>تفسيراتها تختلف كثيرًا بين الثقافات. بدل اعتبارها نذيرًا، لاحظ ارتباطها عندك بالثقة أو المظهر أو الكلام أو القلق.</p></article><article class="symbol-card" data-keys="المطاردة هروب ضغط مواجهة"><span class="sym">↗</span><h3>المطاردة</h3><p>قد تعكس ضغطًا أو أمرًا مؤجلًا أو شعورًا بالتجنب. اسأل: هل هناك موقف أحتاج أن أواجهه بأمان وبخطوات صغيرة؟</p></article></div><p class="notice-soft" hidden="" id="dream-empty">مفيش نتيجة مطابقة. جرّب كلمة أخرى.</p></div></section><section class="sec" id="tarot-lab" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap"><div class="center"><span class="eyebrow">TAROT REFLECTION</span><h2>بطاقة اليوم: سؤال يفتح بابًا</h2><p class="intro">اسحب بطاقة واحدة واقرأ رمزها كسؤال للتأمل. لا تُستخدم القراءة لاتخاذ قرارات طبية أو مالية أو مصيرية بدل المعلومات المتخصصة.</p></div>
+<div class="tarot-draw"><div aria-live="polite" class="tarot-card" id="tarot-card"><div><span class="card-glyph">✧</span><strong>البطاقة في انتظارك</strong><span style="display:block;color:#b6bdd0;font-size:.8rem;margin-top:8px">خذ نفسًا واختر سؤالًا</span></div></div><div class="tarot-copy"><h3 id="tarot-title">اسأل نفسك سؤالًا صادقًا</h3><p id="tarot-description">مش لازم تعرف كل الإجابات دلوقتي. اختار سؤالًا يساعدك تشوف موقفك بوضوح، ثم اسحب بطاقة.</p><p class="prompt" id="tarot-prompt">ما الشيء الذي أحتاج أن أراه من زاوية مختلفة؟</p><button class="btn" id="tarot-draw" type="button">اسحب بطاقة</button><p class="notice-soft">الاختيار عشوائي داخل المتصفح. المعاني هنا تأملية وليست تنبؤات مؤكدة.</p></div></div></div></section><section class="sec alt" id="symbol-library" hidden="" style="display:none !important;margin:0 !important;padding:0 !important;"><div class="wrap"><div class="center"><span class="eyebrow">SYMBOL ATLAS</span><h2>أطلس الرموز</h2><p class="intro">رمز واحد ممكن يحمل معاني مختلفة حسب الثقافة والسياق وتجربة الشخص. ابحث هنا عن مدخل يساعدك تبدأ، لا عن معنى وحيد ونهائي.</p></div><input aria-label="ابحث في قاموس الرموز" class="symbol-search" id="symbol-search" placeholder="ابحث عن القمر، المفتاح، الثعبان..." type="search"/><div class="symbol-grid" id="symbol-grid">
 <article class="symbol-card" data-keywords="القمر الليل التغير الدورات"><span class="sym">☾</span><h3>القمر</h3><p>يرتبط في ثقافات متعددة بالدورات والتغير والليل والخيال. اسأل: ما الذي يتغير داخلي، وما الذي يحتاج وقتًا؟</p></article>
 <article class="symbol-card" data-keywords="المفتاح باب حل فرصة"><span class="sym">⚿</span><h3>المفتاح</h3><p>قد يرمز إلى الوصول أو الحل أو المسؤولية التي تأتي مع المعرفة. اسأل: ما الباب الذي أستطيع فتحه بخطوة عملية؟</p></article>
 <article class="symbol-card" data-keywords="الثعبان الحية تجدد تحول الخوف"><span class="sym">𓆙</span><h3>الثعبان والتجدد</h3><p>ظهر الثعبان بمعانٍ متباينة بين التجدد والحكمة والخطر في ثقافات مختلفة. السياق أهم من الرمز وحده.</p></article>
@@ -468,10 +495,32 @@
 </div>
 </footer>
 <nav aria-label="التنقل الرئيسي" class="bnav">
-<a class="on" href="#home"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M4 11L12 4l8 7v9h-5v-6H9v6H4z"></path></svg><span>الرئيسية</span></a>
-<a href="#sky"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M3 12l12-4 2 4-12 4z"></path><path d="M11 13l-3 7M15 13l4 7"></path></svg><span>السماء</span></a>
-<a href="#book"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><rect height="14" rx="3" width="18" x="3" y="5"></rect><path d="M4 7l8 6 8-6"></path></svg><span>تواصل</span></a>
-<a href="#account"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg><span>حسابي</span></a>
+<a class="on" href="#home">
+  <span class="bnav-icon">
+    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+      <path d="M3 10.5L12 3l9 7.5v9a2 2 0 0 1-2 2h-4a1 1 0 0 1-1-1v-5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v5a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2v-9z"></path>
+    </svg>
+  </span>
+  <span class="bnav-label">الرئيسية</span>
+</a>
+<a href="#sky">
+  <span class="bnav-icon">
+    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+      <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"></path>
+      <path d="M19 5l.5 1.5L21 7l-1.5.5L19 9l-.5-1.5L17 7l1.5-.5z"></path>
+    </svg>
+  </span>
+  <span class="bnav-label">السماء</span>
+</a>
+<a href="#account">
+  <span class="bnav-icon">
+    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+      <circle cx="12" cy="7" r="4"></circle>
+      <path d="M5.5 21a8.5 8.5 0 0 1 13 0"></path>
+    </svg>
+  </span>
+  <span class="bnav-label">حسابي</span>
+</a>
 </nav>
 <script src="astronomy.min.js"></script>
 <script src="name_engine.js"></script>
@@ -1335,6 +1384,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
   const VS = "\uFE0E";
   const norm = Astro.norm, d180 = Astro.d180;
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const pad = n => String(n).padStart(2, "0");
   const waLink = t => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t)}`;
   const openWA = a => { a.target = "_blank"; a.rel = "noopener"; };
   const gl = g => g + VS;
@@ -1363,7 +1413,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
   $$("[data-tagline]").forEach(e => { e.textContent = SITE_TAGLINE; });
   document.title = `${SITE_NAME} | مصفوفة القدر وخريطتك الفلكية وقراءات الأبراج`;
   const ig = $("#ig");
-  ig.href = `https://instagram.com/${IG_USER}`; ig.textContent = "@" + IG_USER; openWA(ig);
+  if (ig) { ig.href = `https://instagram.com/${IG_USER}`; ig.textContent = "@" + IG_USER; openWA(ig); }
   $("#period").textContent = FORECAST_LABEL;
   const igTop = $("#ig-top"); igTop.href = `https://instagram.com/${IG_USER}`; openWA(igTop);
 
@@ -1454,14 +1504,23 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const base = ch.known ? ch.asc : 0;
     const th = lon => (180 + (lon - base)) * Math.PI / 180;
     const pt = (lon, r) => { const a = th(lon); return [(cx + r * Math.cos(a)).toFixed(1), (cy - r * Math.sin(a)).toFixed(1)]; };
-    let o = `<svg class="cw" viewBox="0 0 520 520" role="img" aria-label="العجلة الفلكية: الأبراج والبيوت ومواضع الكواكب"><title>خريطة الميلاد: الأبراج والبيوت ومواضع الكواكب</title>`;
+    let o = `<svg class="cw" viewBox="0 0 520 520" role="img" aria-label="العجلة الفلكية: الأبراج والبيوت ومواضع الكواكب">
+      <defs>
+        <radialGradient id="cw-center-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#0a0f1d"/>
+          <stop offset="100%" stop-color="#050811"/>
+        </radialGradient>
+      </defs>
+      <title>خريطة الميلاد: الأبراج والبيوت ومواضع الكواكب</title>`;
     for (let i = 0; i < 12; i++) {
       const [x0, y0] = pt(i * 30, R1), [x1, y1] = pt(i * 30 + 30, R1), [x2, y2] = pt(i * 30 + 30, R2), [x3, y3] = pt(i * 30, R2);
       o += `<path class="sec e${SIGNS[i].el}" d="M${x0} ${y0}A${R1} ${R1} 0 0 0 ${x1} ${y1}L${x2} ${y2}A${R2} ${R2} 0 0 1 ${x3} ${y3}Z"/>`;
       const [gx, gy] = pt(i * 30 + 15, (R1 + R2) / 2);
       o += `<text class="cg" data-kind="sign" data-i="${i}" x="${gx}" y="${gy}">${gl(SIGNS[i].g)}</text>`;
     }
-    o += `<circle class="rg" cx="${cx}" cy="${cy}" r="${R2}"/><circle class="rg" cx="${cx}" cy="${cy}" r="${R3}"/>`;
+    o += `<circle class="rg" cx="${cx}" cy="${cy}" r="${R2}"/>`;
+    o += `<circle class="cw-center" cx="${cx}" cy="${cy}" r="${R3}" fill="url(#cw-center-grad)"/>`;
+    o += `<circle class="rg" cx="${cx}" cy="${cy}" r="${R3}"/>`;
     if (ch.known) {
       ch.cusps.forEach((c, i) => {
         const [xa, ya] = pt(c, R2), [xb, yb] = pt(c, R3);
@@ -1558,6 +1617,201 @@ if (typeof module !== 'undefined') module.exports = Astro;
   window.AqeeqChartContext = { getNatal: () => LAST };
   $("#cform").addEventListener("submit", e => { e.preventDefault(); calc(); });
 
+  function isolateResultView(activeView) {
+    const allResultIds = ['result', 'mresult', 'matrix-result', 'lpresult', 'lifepath-result', 'syn-result', 'cp-out', 'eam-result'];
+    const activeMap = {
+      chart: ['result'],
+      matrix: ['mresult', 'matrix-result'],
+      lifepath: ['lpresult', 'lifepath-result'],
+      synastry: ['syn-result'],
+      compat: ['cp-out'],
+      astromaps: ['eam-result']
+    };
+    const activeIds = activeMap[activeView] || [];
+
+    allResultIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (activeIds.includes(id)) {
+        el.hidden = false;
+        el.style.display = 'block';
+      } else {
+        el.hidden = true;
+        el.style.display = 'none';
+      }
+    });
+  }
+  window.isolateResultView = isolateResultView;
+
+  function restoreAllForms() {
+    const cf = document.getElementById('cform');
+    const chartIntro = document.querySelector('#chart .center');
+    if (cf) { cf.hidden = false; cf.style.display = ''; }
+    if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+
+    const mf = document.getElementById('mform');
+    const matrixIntro = document.querySelector('#matrix .center');
+    if (mf) { mf.hidden = false; mf.style.display = ''; }
+    if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+
+    const lpf = document.getElementById('lpform');
+    const lpStart = document.getElementById('lp-start');
+    const lpIntro = document.querySelector('#lifepath .center');
+    if (lpf) { lpf.hidden = true; lpf.style.display = 'none'; }
+    if (lpStart) { lpStart.hidden = false; lpStart.style.display = ''; }
+    if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+
+    const cpf = document.getElementById('cp-form');
+    const cpIntro = document.querySelector('#energy-compatibility .center');
+    if (cpf) { cpf.hidden = false; cpf.style.display = ''; }
+    if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+  }
+
+  function onHashChangeRoute() {
+    const hash = (window.location.hash || '').replace('#', '');
+    if (hash === 'chart') {
+      const result = document.getElementById('result');
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      if (LAST && result && result.innerHTML && result.innerHTML.trim()) {
+        isolateResultView('chart');
+        if (cf) { cf.hidden = true; cf.style.display = 'none'; }
+        if (chartIntro) { chartIntro.hidden = true; chartIntro.style.display = 'none'; }
+      } else {
+        if (cf) { cf.hidden = false; cf.style.display = ''; }
+        if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+        if (result) { result.hidden = true; result.style.display = 'none'; }
+      }
+    } else if (hash === 'matrix') {
+      const mresult = document.getElementById('mresult');
+      const mf = document.getElementById('mform');
+      const matrixIntro = document.querySelector('#matrix .center');
+      if (lastMX && mresult && mresult.innerHTML && mresult.innerHTML.trim()) {
+        isolateResultView('matrix');
+        if (mf) { mf.hidden = true; mf.style.display = 'none'; }
+        if (matrixIntro) { matrixIntro.hidden = true; matrixIntro.style.display = 'none'; }
+      } else {
+        if (mf) { mf.hidden = false; mf.style.display = ''; }
+        if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+        if (mresult) { mresult.hidden = true; mresult.style.display = 'none'; }
+      }
+    } else if (hash === 'lifepath') {
+      const lpresult = document.getElementById('lpresult');
+      const lpf = document.getElementById('lpform');
+      const lpStart = document.getElementById('lp-start');
+      const lpIntro = document.querySelector('#lifepath .center');
+      if (lastLP && lpresult && lpresult.innerHTML && lpresult.innerHTML.trim()) {
+        isolateResultView('lifepath');
+        if (lpf) { lpf.hidden = true; lpf.style.display = 'none'; }
+        if (lpStart) { lpStart.hidden = true; lpStart.style.display = 'none'; }
+        if (lpIntro) { lpIntro.hidden = true; lpIntro.style.display = 'none'; }
+      } else {
+        if (lpf) { lpf.hidden = true; lpf.style.display = 'none'; }
+        if (lpStart) { lpStart.hidden = false; lpStart.style.display = ''; }
+        if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+        if (lpresult) { lpresult.hidden = true; lpresult.style.display = 'none'; }
+      }
+    } else if (hash === 'compat') {
+      const cpOut = document.getElementById('cp-out');
+      const cpf = document.getElementById('cp-form');
+      const cpIntro = document.querySelector('#energy-compatibility .center');
+      if (cpOut && cpOut.innerHTML && cpOut.innerHTML.trim() && !cpOut.hidden) {
+        isolateResultView('compat');
+        if (cpf) { cpf.hidden = true; cpf.style.display = 'none'; }
+        if (cpIntro) { cpIntro.hidden = true; cpIntro.style.display = 'none'; }
+      } else {
+        if (cpf) { cpf.hidden = false; cpf.style.display = ''; }
+        if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+        if (cpOut) { cpOut.hidden = true; cpOut.style.display = 'none'; }
+      }
+    } else if (hash === 'astro-maps') {
+      isolateResultView('astromaps');
+    } else if (hash === 'home' || !hash) {
+      isolateResultView('home');
+      restoreAllForms();
+    }
+  }
+  window.addEventListener('hashchange', onHashChangeRoute);
+  window.addEventListener('DOMContentLoaded', onHashChangeRoute);
+
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.btn-return-home');
+    if (btn) {
+      e.preventDefault();
+      isolateResultView('home');
+      restoreAllForms();
+      window.location.hash = '#home';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const editChart = e.target.closest('.btn-edit-chart');
+    if (editChart) {
+      e.preventDefault();
+      const cf = document.getElementById('cform');
+      const chartIntro = document.querySelector('#chart .center');
+      const result = document.getElementById('result');
+      if (cf) { cf.hidden = false; cf.style.display = 'block'; }
+      if (chartIntro) { chartIntro.hidden = false; chartIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const chartSec = document.getElementById('chart');
+      if (chartSec) chartSec.scrollIntoView({ behavior: 'smooth' });
+      const nameInput = document.getElementById('f-name');
+      if (nameInput) nameInput.focus();
+      return;
+    }
+
+    const editMatrix = e.target.closest('.btn-edit-matrix');
+    if (editMatrix) {
+      e.preventDefault();
+      const mf = document.getElementById('mform');
+      const matrixIntro = document.querySelector('#matrix .center');
+      const result = document.getElementById('mresult');
+      if (mf) { mf.hidden = false; mf.style.display = 'block'; }
+      if (matrixIntro) { matrixIntro.hidden = false; matrixIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const matrixSec = document.getElementById('matrix');
+      if (matrixSec) matrixSec.scrollIntoView({ behavior: 'smooth' });
+      const dateInput = document.getElementById('m-date');
+      if (dateInput) dateInput.focus();
+      return;
+    }
+
+    const editLP = e.target.closest('.btn-edit-lp, #lp-back-start');
+    if (editLP) {
+      e.preventDefault();
+      const lpf = document.getElementById('lpform');
+      const lpStart = document.getElementById('lp-start');
+      const lpIntro = document.querySelector('#lifepath .center');
+      const result = document.getElementById('lpresult');
+      if (lpf) { lpf.hidden = false; lpf.style.display = 'block'; }
+      if (lpStart) { lpStart.hidden = true; lpStart.style.display = 'none'; }
+      if (lpIntro) { lpIntro.hidden = false; lpIntro.style.display = ''; }
+      if (result) { result.hidden = true; result.style.display = 'none'; }
+      const lpSec = document.getElementById('lifepath');
+      if (lpSec) lpSec.scrollIntoView({ behavior: 'smooth' });
+      const dateInput = document.getElementById('lp-date');
+      if (dateInput) dateInput.focus();
+      return;
+    }
+
+    const editCP = e.target.closest('.btn-edit-cp');
+    if (editCP) {
+      e.preventDefault();
+      const cpf = document.getElementById('cp-form');
+      const cpIntro = document.querySelector('#energy-compatibility .center');
+      const out = document.getElementById('cp-out');
+      if (cpf) { cpf.hidden = false; cpf.style.display = 'block'; }
+      if (cpIntro) { cpIntro.hidden = false; cpIntro.style.display = ''; }
+      if (out) { out.hidden = true; out.style.display = 'none'; }
+      const cpSec = document.getElementById('energy-compatibility');
+      if (cpSec) cpSec.scrollIntoView({ behavior: 'smooth' });
+      const input1 = document.getElementById('cp1-date');
+      if (input1) input1.focus();
+      return;
+    }
+  });
+
   function fail(msg) { const el = $("#ferr"); el.textContent = msg; el.hidden = false; }
 
   function calc() {
@@ -1599,11 +1853,12 @@ if (typeof module !== 'undefined') module.exports = Astro;
         chartData: { bodies: ch.bodies.map(b => ({ key: b.key, lon: b.lon, speed: b.speed, retro: b.retro, sign: b.sign, house: b.house })), asc: ch.asc, mc: ch.mc, cusps: ch.cusps, hs: ch.hs, lat: ch.lat, lon: ch.lon, known: ch.known }
       }));
     } catch (_) { /* Private browsing/storage limits must not break chart calculation. */ }
-    renderResult(LAST);
-    const r = $("#result"); r.hidden = false;
+    renderResult(LAST); if (typeof isolateResultView === "function") isolateResultView("chart");
+    const r = $("#result"); r.hidden = false; r.style.display = "block";
+    const cf = $("#cform"); if (cf) { cf.hidden = true; cf.style.display = "none"; }
+    const chartIntro = document.querySelector("#chart .center"); if (chartIntro) { chartIntro.hidden = true; chartIntro.style.display = "none"; }
     window.AqeeqGender?.apply(r, LAST.gender);
-    window.AqeeqCopyMap?.attach(r, LAST.name ? "خريطة الميلاد · " + LAST.name : "خريطة الميلاد");
-    r.scrollIntoView();
+    r.scrollIntoView({ behavior: "smooth" });
   }
 
   /* ---------- خريطة التوافق الفلكي بين شخصين ---------- */
@@ -1804,7 +2059,22 @@ if (typeof module !== 'undefined') module.exports = Astro;
         ? `<p class="cp-note">فيه مكان بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فالبيوت (لو ظهرت) محسوبة بنظام Whole Sign.</p>` : "";
       const unknownNote = [P1, P2].some(p => !p.known)
         ? `<p class="cp-note">فيه وقت ميلاد غير معروف، والقمر بيتحرك حوالي 13 درجة في اليوم، فالاتصالات اللي فيها القمر تقريبية.</p>` : "";
-      return `<div class="cp-res">
+      const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+      const summaryCard = `<div class="chart-summary-card">
+        <div class="chart-summary-info">
+          <div class="chart-summary-badge">توافق الخريطتين الفلكي</div>
+          <h3 class="chart-summary-title">${esc(P1.name)} × ${esc(P2.name)}</h3>
+          <p class="chart-summary-meta">
+            <span><span class="meta-glyph">●</span> ${esc(P1.name)}: 📅 ${P1.date} · 📍 ${esc(P1.placeName)}</span>
+            <span class="meta-sep">•</span>
+            <span><span class="meta-glyph">●</span> ${esc(P2.name)}: 📅 ${P2.date} · 📍 ${esc(P2.placeName)}</span>
+          </p>
+        </div>
+        <div class="chart-summary-actions">
+          <button type="button" class="btn-edit-cp" id="btn-edit-cp"><svg class="edit-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> تعديل البيانات / توافق جديد</button>
+        </div>
+      </div>`;
+      return returnHomeBtn + summaryCard + `<div class="cp-res">
         <header class="cp-result-head"><div><span class="cp-result-kicker">قراءة توافق رمزية</span><h3>${esc(P1.name)} <span aria-hidden="true">×</span> ${esc(P2.name)}</h3><p class="cp-meta">${P1.date} · ${P1.placeName} <span aria-hidden="true">|</span> ${P2.date} · ${P2.placeName}</p><p class="cp-gender-meta">صيغة المخاطبة: الطرف الأول ${P1.gender === "female" ? "أنثى" : "ذكر"} · الطرف الثاني ${P2.gender === "female" ? "أنثى" : "ذكر"}</p></div><span class="cp-result-mark" aria-hidden="true">☉</span></header>
         ${unknownNote}${fallbackNote}
         <section class="cp-overview">
@@ -1850,9 +2120,13 @@ if (typeof module !== 'undefined') module.exports = Astro;
         out.innerHTML = render(P1, P2, synastry);
         if (P1.gender === P2.gender) window.AqeeqGender?.apply(out, P1.gender);
         window.AqeeqAstroWheel?.renderSynastryWheel(document.querySelector("#cp-bi-wheel"), P1.ch, P2.ch, synastry.asps);
-        window.AqeeqCopyMap?.attach(out, "خريطة التوافق Synastry & Composite · " + P1.name + " و" + P2.name);
         window.AqeeqAstroWheel?.renderCompositeWheel(document.querySelector("#cp-composite-wheel"), synastry.composite);
         out.hidden = false;
+        out.style.display = "block";
+        form.hidden = true;
+        form.style.display = "none";
+        const cpIntro = document.querySelector("#energy-compatibility .center");
+        if (cpIntro) { cpIntro.hidden = true; cpIntro.style.display = "none"; }
         status.dataset.state = "done";
         status.textContent = "اكتمل حساب الخريطتين والـ Composite.";
         out.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1951,13 +2225,37 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const ch = S.ch, asp = natalAspects(ch), pats = findPatterns(ch);
     const sun = body(ch, "sun"), moon = body(ch, "moon");
     const risingS = ch.known ? Math.floor(ch.asc / 30) : null;
-    const pad = n => String(n).padStart(2, "0");
-    const when = `${S.d}/${S.m}/${S.y}${S.known ? ` الساعة ${pad(S.hh)}:${pad(S.mm)}` : ""}`;
-    const titleName = S.name ? `خريطة ${esc(S.name)}` : "خريطتك";
+    const titleName = S.name ? `خريطة ${esc(S.name)}` : "خريطتك الفلكية";
+
+    let timeStr = "وقت غير محدد";
+    if (S.known) {
+      const period = S.hh >= 12 ? "م" : "ص";
+      let h12 = S.hh % 12;
+      if (h12 === 0) h12 = 12;
+      timeStr = `${pad(h12)}:${pad(S.mm)} ${period}`;
+    }
 
     const big = (label, lon, g) => `<div class="b3"><span class="b3g" aria-hidden="true">${gl(g)}</span><span class="b3l">${label}</span><strong>${SIGNS[fmt(lon).s].n}</strong>${num(fmt(lon).txt)}</div>`;
-    let h = `<div class="res-head"><h3>${titleName}</h3><p>${when}، ${esc(S.placeName)}</p></div>
-      <div class="big3">${big("الشمس", sun.lon, "☉")}${big("القمر", moon.lon, "☽")}${ch.known ? big("الطالع", ch.asc, "↑") : `<div class="b3 dim"><span class="b3g" aria-hidden="true">↑</span><span class="b3l">الطالع</span><strong>مش متاح</strong><span class="b3n">محتاج وقت الميلاد</span></div>`}</div>
+    const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+    const summaryCard = `<div class="chart-summary-card">
+      <div class="chart-summary-info">
+        <div class="chart-summary-badge">خريطة ميلاد فلكية</div>
+        <h3 class="chart-summary-title">${titleName}</h3>
+        <p class="chart-summary-meta">
+          <span><span class="meta-glyph">☉</span> ${pad(S.d)}/${pad(S.m)}/${S.y}</span>
+          <span class="meta-sep">•</span>
+          <span><span class="meta-glyph">☽</span> ${timeStr}</span>
+          <span class="meta-sep">•</span>
+          <span><span class="meta-glyph">⌖</span> ${esc(S.placeName)}</span>
+        </p>
+      </div>
+      <div class="chart-summary-actions">
+        <button type="button" class="btn-edit-chart" id="btn-edit-chart"><svg class="edit-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> تعديل البيانات / خريطة جديدة</button>
+      </div>
+    </div>`;
+
+    let h = returnHomeBtn + summaryCard +
+      `<div class="big3">${big("الشمس", sun.lon, "☉")}${big("القمر", moon.lon, "☽")}${ch.known ? big("الطالع", ch.asc, "↑") : `<div class="b3 dim"><span class="b3g" aria-hidden="true">↑</span><span class="b3l">الطالع</span><strong>مش متاح</strong><span class="b3n">محتاج وقت الميلاد</span></div>`}</div>
       <div class="wheel-wrap">${wheelSVG(ch, asp)}</div>
       <div class="wd-panel" id="wd-panel" aria-live="polite" hidden></div>
       ${ch.known ? "" : `<p class="note">من غير وقت الميلاد مش هنقدر نحسب الطالع والبيوت، والقمر ممكن يفرق لحد ٦ درجات.</p>`}
@@ -1965,15 +2263,12 @@ if (typeof module !== 'undefined') module.exports = Astro;
       ${ch.hs === "whole-fallback" ? `<p class="note">المكان ده بعيد عن خط الاستواء بدرجة بتصعّب نظام Placidus، فاستخدمنا نظام البيوت الكاملة (Whole Sign).</p>` : ""}`;
 
     h += `<div class="tabs" role="tablist" aria-label="أقسام الخريطة">
-      <button class="tab" role="tab" aria-selected="true" aria-controls="tp0" id="tb0">نمطك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp6" id="tb6" tabindex="-1">روابطك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp1" id="tb1" tabindex="-1">تفاصيل الكواكب</button>
+      <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">تفاصيل الكواكب</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="tp5" id="tb5" tabindex="-1">مجالات حياتك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">نمطك ونصايحك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">النهاردة ليك</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="tp4" id="tb4" tabindex="-1">الجداول</button></div>`;
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp4" id="tb4" tabindex="-1">الجداول</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">النهاردة ليك</button></div>`;
 
-    /* 1) القراءة */
+    /* 1) تفاصيل الكواكب */
     let rd = "";
     if (ch.known) rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">↑</span> الطالع في ${SIGNS[risingS].n} ${num(fmt(ch.asc).txt)}</h4><p>${RISING_TXT[risingS]}</p>
       ${(() => { const rk = SIGNS[risingS].ruler, rb = body(ch, rk); return `<p class="sub">حاكم طالعك هو ${PLANETS[rk].n}، وموجود في برج ${SIGNS[rb.sign].n} وفي البيت ${HOUSES[rb.house - 1].n}. ده بيوجّه طاقتك ناحية ${HOUSES[rb.house - 1].area}.</p>`; })()}</article>`;
@@ -1988,9 +2283,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     rd += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☊")}</span> العقدة الشمالية في ${SIGNS[nf.s].n} ${num(nf.txt)}</h4>
       <p>اتجاه نموك هو ${SIGNS[nf.s].strength}، ${SIGNS[nf.s].growth}. العقدة الجنوبية في ${SIGNS[south].n}: بتميل ترجع لمنطقة راحة قديمة هي ${SIGNS[south].strength}، فاستخدمها كدعم مش كمكان تقعد فيه.</p>
       ${ch.known ? `<p class="sub">في البيت ${HOUSES[nd.house - 1].n}: اتجاه نموك بيمر عن طريق ${HOUSES[nd.house - 1].area}.</p>` : ""}</article>`;
-    h += `<div class="panel" role="tabpanel" id="tp0" aria-labelledby="tb0">${patternHTML(S)}</div>`;
-    h += `<div class="panel" role="tabpanel" id="tp6" aria-labelledby="tb6" hidden><p class="lead2">اعرف التناغم بينك وبين شخص تاني: حبيب أو صاحب أو شريك شغل. اكتب تاريخ ميلاده وشوف.</p><div class="field"><label for="b-date">تاريخ ميلاد الشخص التاني</label><input id="b-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="b-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="b-go" type="button">اعرف التناغم</button></div><div id="b-out" hidden></div></div>`;
-    h += `<div class="panel" role="tabpanel" id="tp1" aria-labelledby="tb1" hidden>${rd}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp1" aria-labelledby="tb1">${rd}</div>`;
     h += `<div class="panel" role="tabpanel" id="tp5" aria-labelledby="tb5" hidden>${areasHTML(ch)}</div>`;
 
     /* 2) النمط والنصايح */
@@ -2014,12 +2307,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
       <h4 class="ph">نقاط قوتك</h4><ul class="lst">${strengths.map(t => `<li>${t}</li>`).join("")}</ul>
       <h4 class="ph">محتاجة انتباه</h4><ul class="lst">${watch.map(t => `<li>${t}</li>`).join("")}</ul>
       <h4 class="ph">نصايح ليك</h4><ul class="lst">${adv.map(t => `<li>${t}</li>`).join("")}</ul>`;
-    h += `<div class="panel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden>${pt}</div>`;
 
-    /* 3) النهاردة */
-    h += `<div class="panel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>${todayHTML(ch)}</div>`;
-
-    /* 4) الجداول */
+    /* 3) الجداول */
     const hsName = ch.hs === "placidus" ? "Placidus" : "Whole Sign";
     let tb = `<h4 class="ph">الكواكب</h4><div class="tbl">${ch.bodies.map(b => { const f = fmt(b.lon); return `<div class="tr"><span class="c1"><span class="sg" aria-hidden="true">${gl(PLANETS[b.key].g)}</span> ${PLANETS[b.key].n}</span><span class="c2">${gl(SIGNS[f.s].g)} ${SIGNS[f.s].n} ${num(f.txt)}</span><span class="c3">${ch.known ? "بيت " + b.house : ""}${b.retro ? ' <i class="rxb">راجع</i>' : ""}</span></div>`; }).join("")}</div>`;
     if (ch.known) {
@@ -2029,18 +2318,29 @@ if (typeof module !== 'undefined') module.exports = Astro;
     tb += `<h4 class="ph">الزوايا بين الكواكب</h4>${asp.length ? asp.slice(0, 16).map(a => { const f = fmt(a.orb); return `<article class="rd asp"><h4>${PLANETS[a.a] ? gl(PLANETS[a.a].g) : glyphOf(a.a)} ${nmOf(a.a)} ${a.asp.n} ${PLANETS[a.b] ? gl(PLANETS[a.b].g) : glyphOf(a.b)} ${nmOf(a.b)} <span class="orb">فرق ${num(f.txt)}</span></h4><p>${themeOf(a.a)}، مع ${themeOf(a.b)}: ${a.asp.nat}.</p></article>`; }).join("") : "<p>مفيش زوايا قريبة بشكل واضح.</p>"}`;
     h += `<div class="panel" role="tabpanel" id="tp4" aria-labelledby="tb4" hidden>${tb}</div>`;
 
-    /* دعوة للحجز */
-    const summary = `أهلاً، حسبت خريطتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${S.name}\nتاريخ الميلاد: ${when}\nمكان الميلاد: ${S.placeName}\nالشمس: ${SIGNS[sunS].n}\nالقمر: ${SIGNS[moonS].n}${ch.known ? `\nالطالع: ${SIGNS[risingS].n}` : ""}`;
-    h += `<div class="cta-box"><h4>عايز قراءة أعمق لخريطتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط الخريطة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="res-wa" href="#book">احجز قراءة الخريطة على واتساب</a></div>${CONTACT_LINE}`;
+    /* 4) النهاردة ليك */
+    h += `<div class="panel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>${todayHTML(ch)}<div id="aqeek-personal-transits"></div></div>`;
+
+    /* الأقسام الإضافية المحفوظة في الـ DOM */
+    h += `<div class="panel" role="tabpanel" id="tp0" aria-labelledby="tb0" hidden style="display:none!important">${patternHTML(S)}</div>`;
+    h += `<div class="panel" role="tabpanel" id="tp6" aria-labelledby="tb6" hidden style="display:none!important"><p class="lead2">اعرف التناغم بينك وبين شخص تاني: حبيب أو صاحب أو شريك شغل. اكتب تاريخ ميلاده وشوف.</p><div class="field"><label for="b-date">تاريخ ميلاد الشخص التاني</label><input id="b-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="b-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="b-go" type="button">اعرف التناغم</button></div><div id="b-out" hidden></div></div>`;
+    h += `<div class="panel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden style="display:none!important">${pt}</div>`;
 
     const root = $("#result");
-    h += '<div id="aqeek-personal-transits"></div>';
     root.innerHTML = h;
-    bindContact(root); wirePattern(root, S); wireWheel(root, S); const wa = $("#res-wa", root); wa.href = waLink(summary); openWA(wa);
+    bindContact(root); wirePattern(root, S); wireWheel(root, S);
     const tabs = $$("[role=tab]", root), panels = $$("[role=tabpanel]", root);
-    tabs.forEach((t, i) => t.addEventListener("click", () => tabs.forEach((x, j) => {
-      x.setAttribute("aria-selected", i === j ? "true" : "false"); x.tabIndex = i === j ? 0 : -1; panels[j].hidden = i !== j;
-    })));
+    tabs.forEach(t => t.addEventListener("click", () => {
+      const targetId = t.getAttribute("aria-controls");
+      tabs.forEach(x => {
+        const isTarget = x === t;
+        x.setAttribute("aria-selected", isTarget ? "true" : "false");
+        x.tabIndex = isTarget ? 0 : -1;
+      });
+      panels.forEach(p => {
+        p.hidden = p.id !== targetId;
+      });
+    }));
   }
 
   /* ---------- النهاردة ليك (عبور شخصي) ---------- */
@@ -2049,30 +2349,14 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const nb = k => now.bodies.find(b => b.key === k);
     const dateTxt = new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
     const mn = nb("moon"), mf = fmt(mn.lon);
-    let o = `<p class="sub">${dateTxt}</p>`;
-    o += `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> القمر النهاردة في ${SIGNS[mf.s].n}</h4><p>${MOON_TODAY[SIGNS[mf.s].el]}</p>`;
-    if (ch.known) { const h = Astro.houseOf(mn.lon, ch.cusps); o += `<p class="sub">القمر بيعدي دلوقتي على البيت ${HOUSES[h - 1].n} عندك، فمشاعرك واهتمامك أقرب لـ${HOUSES[h - 1].area}.</p>`; }
-    o += `</article>`;
-    const targets = ["sun", "moon", "mercury", "venus", "mars"].map(k => ({ key: k, lon: body(ch, k).lon }));
-    if (ch.known) targets.push({ key: "asc", lon: ch.asc }, { key: "mc", lon: ch.mc });
-    const order = ["pluto", "neptune", "uranus", "saturn", "jupiter", "mars", "venus", "mercury", "sun"];
-    const hits = [];
-    order.forEach((tk, wi) => {
-      const tb = nb(tk);
-      targets.forEach(n => {
-        const diff = Math.abs(d180(tb.lon - n.lon));
-        for (const A of ASPECTS) { const orb = Math.abs(diff - A.ang); if (orb <= 2) { hits.push({ tk, n: n.key, A, orb, w: wi }); break; } }
-      });
-    });
-    hits.sort((a, b) => a.w - b.w || a.orb - b.orb);
-    o += `<h4 class="ph">عبور الكواكب على خريطتك</h4>`;
-    o += hits.length ? hits.slice(0, 6).map(x => `<article class="rd"><h4>${gl(PLANETS[x.tk].g)} ${PLANETS[x.tk].n} ${x.A.n} ${PLANETS[x.n] ? gl(PLANETS[x.n].g) : glyphOf(x.n)} ${nmOf(x.n)} <span class="orb">فرق ${num(fmt(x.orb).txt)}</span></h4><p>${PLANETS[x.tk].theme} بتتقابل مع ${themeOf(x.n)} عندك: ${x.A.tr}.</p></article>`).join("") : `<p>مفيش عبور قوي النهاردة على الكواكب الشخصية في خريطتك. يوم هادي نسبيًا، فاستغله في روتينك.</p>`;
-    if (ch.known) {
-      o += `<h4 class="ph">الكواكب البطيئة في بيوتك</h4>`;
-      o += ["jupiter", "saturn", "uranus", "neptune", "pluto"].map(k => { const b = nb(k), h = Astro.houseOf(b.lon, ch.cusps), f = fmt(b.lon); return `<article class="rd"><h4>${gl(PLANETS[k].g)} ${PLANETS[k].n} في ${SIGNS[f.s].n}، بيتك ${HOUSES[h - 1].n}${b.retro ? ` <span class="rxb">راجع</span>` : ""}</h4><p>${deepHouse(k, h, "transit")}</p></article>`; }).join("");
-    }
+    let o = `<div class="today-cosmic-overview"><span class="today-date-badge">${dateTxt}</span>`;
+    o += `<article class="rd today-moon-focus"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> طقس القمر اليوم: ${SIGNS[mf.s].n}</h4><p>${MOON_TODAY[SIGNS[mf.s].el]}</p>`;
+    if (ch.known) { const h = Astro.houseOf(mn.lon, ch.cusps); o += `<p class="sub">عبور القمر ينشط البيت ${HOUSES[h - 1].n} عندك، فمشاعرك واهتمامك اليوم تتجه نحو ${HOUSES[h - 1].area}.</p>`; }
+    o += `</article></div>`;
     const retros = now.bodies.filter(b => b.retro);
-    if (retros.length) o += `<h4 class="ph">كواكب راجعة دلوقتي</h4>` + retros.map(b => `<p class="sub">${retroText(b.key)}</p>`).join("");
+    if (retros.length) {
+      o += `<div class="today-retro-wrap"><h4 class="ph">حركة التراجع في السماء الآن</h4>` + retros.map(b => `<p class="sub">${retroText(b.key)}</p>`).join("") + `</div>`;
+    }
     return o;
   }
 
@@ -2097,12 +2381,45 @@ if (typeof module !== 'undefined') module.exports = Astro;
   let skyKey = "mars";
   const skyMs = () => { const v = skyDateInput.value; if (!v) return Date.now(); const [y, m, d] = v.split("-").map(Number); return Date.UTC(y, m - 1, d, 12, 0); };
 
+  /* ---------- كارت منازل القمر: اسم الطور + شكل القمر الحقيقي ---------- */
+  const MOON_NAMES = ["محاق", "هلال متزايد", "تربيع أول", "أحدب متزايد", "بدر", "أحدب متناقص", "تربيع أخير", "هلال متناقص"];
+  const SYNODIC = 29.530588;
+  function moonSVG(el) {
+    const R = 52, wax = el <= 180, e = wax ? el : 360 - el, c = Math.cos(e * Math.PI / 180), rx = Math.abs(c) * R;
+    const lit = e < 1 ? "" : (e > 179 ? `<circle r="${R}" fill="url(#mnLit)"/>` : `<path d="M0 ${-R}A${R} ${R} 0 0 1 0 ${R}A${rx.toFixed(2)} ${R} 0 0 ${c > 0 ? 0 : 1} 0 ${-R}Z" fill="url(#mnLit)"/>`);
+    return `<svg class="mn-svg" viewBox="-64 -64 128 128" role="img" aria-label="شكل القمر الحالي"><defs>
+      <radialGradient id="mnLit" cx="40%" cy="38%" r="72%"><stop offset="0" stop-color="#f4f2ec"/><stop offset=".55" stop-color="#d9d6cc"/><stop offset="1" stop-color="#a9a69d"/></radialGradient>
+      <radialGradient id="mnDark" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#23232c"/><stop offset="1" stop-color="#101016"/></radialGradient>
+      <radialGradient id="mnHalo"><stop offset="0" stop-color="#e9ecf5" stop-opacity=".16"/><stop offset="1" stop-color="#e9ecf5" stop-opacity="0"/></radialGradient>
+      <filter id="mnBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+      <filter id="mnGrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 .5 -.12"/></filter>
+      <clipPath id="mnClip"><circle r="${R}"/></clipPath></defs>
+      <circle r="63" fill="url(#mnHalo)"/><circle r="${R}" fill="url(#mnDark)"/>
+      <g clip-path="url(#mnClip)"><g transform="${wax ? "" : "scale(-1 1)"}">${lit}</g>
+      <g filter="url(#mnBlur)" fill="#6f6e72" opacity=".5"><ellipse cx="-17" cy="-16" rx="14" ry="10"/><ellipse cx="-2" cy="-22" rx="9" ry="7"/><ellipse cx="14" cy="-9" rx="11" ry="9"/><ellipse cx="-24" cy="2" rx="9" ry="12"/><ellipse cx="-8" cy="8" rx="8" ry="6"/><ellipse cx="4" cy="22" rx="12" ry="7"/><ellipse cx="26" cy="12" rx="6" ry="5"/></g>
+      <g fill="none" stroke="#8a888c" stroke-opacity=".35" stroke-width=".7"><circle cx="22" cy="-26" r="6"/><circle cx="-30" cy="22" r="5"/><circle cx="12" cy="30" r="4"/><circle cx="-12" cy="34" r="3"/><circle cx="30" cy="-6" r="3.5"/></g>
+      <rect x="-60" y="-60" width="120" height="120" filter="url(#mnGrain)" opacity=".55" style="mix-blend-mode:multiply"/>
+      <circle r="${R}" fill="none" stroke="url(#mnHalo)" stroke-width="3"/></g></svg>`;
+  }
+  function moonCard(ms, moon, sun) {
+    const el = norm(moon.lon - sun.lon), ph = Math.floor(((el + 22.5) % 360) / 45), ill = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
+    const age = el / 360 * SYNODIC, toFull = ((180 - el + 360) % 360) / 360 * SYNODIC, toNew = ((360 - el) % 360) / 360 * SYNODIC;
+    const nd = n => n.toLocaleString("ar-EG", { maximumFractionDigits: 1 });
+    const dtxt = new Date(ms).toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    const live = !skyDateInput.value, ttxt = live ? ` · ${new Date(ms).toLocaleTimeString("ar-EG", { hour: "2-digit", minute: "2-digit" })}` : "";
+    $("#sky-moon").innerHTML = `<div class="mn-fig">${moonSVG(el)}</div><div class="mn-txt">
+      <span class="mn-kick">${live ? "القمر الآن" : "القمر في اليوم ده"}</span>
+      <h3 class="mn-title">القمر <b>${MOON_NAMES[ph]}</b> في برج <b>${SIGNS[moon.sign].n}</b></h3>
+      <p class="mn-meta"><span>مضاء ${nd(ill)}٪</span><span>${el < 180 ? "متزايد" : "متناقص"}</span><span>عمره ${nd(age)} يوم</span></p>
+      <p class="mn-next">${ph === 4 ? "بدر كامل دلوقتي" : "البدر القادم بعد ~" + nd(toFull) + " يوم"} · ${ph === 0 ? "محاق دلوقتي" : "المحاق القادم بعد ~" + nd(toNew) + " يوم"}</p>
+      <small class="mn-date">${dtxt}${ttxt}</small></div>`;
+  }
+  setInterval(() => { if (!skyDateInput.value && !document.hidden) { const ms = Date.now(), ch = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false }); moonCard(ms, ch.bodies.find(x => x.key === "moon"), ch.bodies.find(x => x.key === "sun")); } }, 60000);
+
   function renderSky() {
     const ms = skyMs(), ch = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false });
     const b = k => ch.bodies.find(x => x.key === k);
-    const el = norm(b("moon").lon - b("sun").lon), ph = Math.floor(((el + 22.5) % 360) / 45), ill = Math.round((1 - Math.cos(el * Math.PI / 180)) / 2 * 100);
-    const dtxt = new Date(ms).toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-    $("#sky-moon").innerHTML = `<strong>${dtxt}</strong><span>القمر ${PHASES[ph]}، مضاء حوالي ${ill}٪، وموجود في برج ${SIGNS[b("moon").sign].n}.</span>`;
+    moonCard(ms, b("moon"), b("sun"));
     $("#sky-chips").innerHTML = PLANET_KEYS.map(k => { const p = b(k), f = fmt(p.lon); return `<button type="button" class="chip" data-k="${k}" aria-pressed="${k === skyKey}"><span class="sg" aria-hidden="true">${gl(PLANETS[k].g)}</span><span class="cn">${PLANETS[k].n}${p.retro ? ' <i class="rxb">راجع</i>' : ""}</span><span class="cs">${SIGNS[f.s].n}</span>${num(f.txt)}</button>`; }).join("");
     $$("#sky-chips .chip").forEach(c => c.addEventListener("click", () => { skyKey = c.dataset.k; renderSky(); }));
     renderSkyPanel(ch, ms);
@@ -2403,8 +2720,11 @@ if (typeof module !== 'undefined') module.exports = Astro;
     }
     return `<p class="mercury-status-note" role="status">عطارد مباشر حالياً. القراءة التفصيلية لتراجع عطارد هتكون متاحة في الفترة القادمة.</p>`;
   }
+  const signsSec = $("#signs");
   function selectSign(i) {
     const s = SIGNS[i], f = FORECASTS[i];
+    signsSec.classList.add("signs-detail");
+    if (signsSec.scrollTo) signsSec.scrollTo(0, 0);
     pbtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
     panel.innerHTML = `${mercurySignIntro(i)}
       <div class="arch-g" aria-hidden="true">${gl(s.g)}</div><h3>${s.n}</h3><p class="dates">${s.d}</p>
@@ -2420,6 +2740,8 @@ if (typeof module !== 'undefined') module.exports = Astro;
     b.innerHTML = `<span class="sg" aria-hidden="true">${gl(s.g)}</span><span>${s.n}</span>`;
     b.addEventListener("click", () => selectSign(i)); picker.appendChild(b); pbtns.push(b);
   });
+  $("#signs-back").addEventListener("click", () => { signsSec.classList.remove("signs-detail"); if (signsSec.scrollTo) signsSec.scrollTo(0, 0); });
+  window.addEventListener("hashchange", () => { if (location.hash !== "#signs") signsSec.classList.remove("signs-detail"); });
   const glyphs = $("#glyphs");
   SIGNS.forEach((s, i) => {
     const a = (-90 + i * 30) * Math.PI / 180, x = (200 + Math.cos(a) * 148).toFixed(2), y = (200 + Math.sin(a) * 148).toFixed(2);
@@ -2458,7 +2780,7 @@ if (typeof module !== 'undefined') module.exports = Astro;
     $$("[data-wa-link]", root).forEach(a => { a.href = waLink(MSG.general); openWA(a); });
     $$("[data-ig-link]", root).forEach(a => { a.href = `https://instagram.com/${IG_USER}`; openWA(a); });
   }
-  const CONTACT_LINE = `<p class="contact-line">عايز تفاصيل أعمق أو عندك سؤال على حالتك؟ كلمني على <a data-wa-link href="#">واتساب</a> أو على <a data-ig-link href="#">انستجرام</a>.</p>`;
+  const CONTACT_LINE = "";
   const NOTE_SYM = `<p class="note">قراءة رمزية للتأمل والوعي بالنفس، مش تنبؤ قاطع ومش بديل عن استشارة مختصة.</p>`;
 
   /* ---------- نصوص أعمق للكوكب في البيت ---------- */
@@ -2598,76 +2920,245 @@ if (typeof module !== 'undefined') module.exports = Astro;
   }
   const mxs = (t, p) => `<article class="rd"><h4>${t}</h4><p>${p}</p></article>`;
 
+  function getDMD(n) {
+    if (window.AqeeqDestinyMatrixData && typeof window.AqeeqDestinyMatrixData.getArcana === 'function') {
+      return window.AqeeqDestinyMatrixData.getArcana(n);
+    }
+    const a = ARC(n) || {};
+    return {
+      number: n,
+      title: a.n || ('أركانا ' + n),
+      archetype: a.real || '',
+      paradox: a.psy || '',
+      light: a.core || '',
+      shadow: a.shadow || '',
+      somaticRelease: a.release || '',
+      psychosomatics: '',
+      positions: {},
+      transformationProtocol: [],
+      reflectiveQuestions: [],
+      taboos: {}
+    };
+  }
+
+  function getTailDMD(c1, c2, c3) {
+    if (window.AqeeqDestinyMatrixData && typeof window.AqeeqDestinyMatrixData.getKarmicTail === 'function') {
+      return window.AqeeqDestinyMatrixData.getKarmicTail(c1, c2, c3);
+    }
+    return {
+      code: c1 + '-' + c2 + '-' + c3,
+      title: 'الذيل الكارمي (' + c1 + '-' + c2 + '-' + c3 + ')',
+      paradox: '',
+      childhoodRoots: '',
+      tracks: {},
+      psychosomatics: '',
+      transformationProtocol: [],
+      closingConfrontation: ''
+    };
+  }
+
   function summaryHTML(P, lp) {
-    const a = ARC(P.A), b = ARC(P.B), dd = ARC(P.D), e = ARC(P.E), sky = ARC(P.sky), earth = ARC(P.earth), self = ARC(P.self), yr = ARC(P.year);
-    let o = `<div class="bond-cat"><strong>ملخص مصفوفتك</strong><p>طبعك الأصلي: ${a.n}. بتتجه ناحية: ${b.n}. والدرس الي بيتكرر معاك: ${dd.n}. وجوهرك الداخلي: ${e.n}.</p></div>`;
-    o += mxs("أقوى ما فيك", `${a.core}. ${a.real}`);
-    o += mxs("الي بيتعبك", `${dd.shadow}. ${dd.psy || dd.real}`);
-    o += mxs("اتجاهك", `${b.core}. ${b.real}`);
-    o += mxs("خطوة تبدأ بيها دلوقتي", e.release);
-    o += `<h4 class="ph">رسالتك في الحياة</h4>`;
-    o += mxs(`السما: ${sky.n}`, `ده الجانب الروحي، وبيقول إيه الي بتتعلمه من جوه. ${sky.spirit || sky.core + "."}`);
-    o += mxs(`الأرض: ${earth.n}`, `ده الجانب المادي، وبيقول إيه الي بتبنيه في الواقع. ${earth.real}`);
-    o += mxs(`هدفك الشخصي: ${self.n}`, `${self.core}. ${self.release}`);
-    o += `<h4 class="ph">طاقة رقمك وسنتك</h4>`;
-    o += mxs("مسار الحياة", LP_TXT[lp] + ` <a href="#lifepath" data-open-lp>شوف مسار حياتك بالتفصيل</a>`);
-    o += mxs(`طاقة سنتك الحالية: ${yr.n}`, `${yr.core}. ${yr.real} ${yr.release}`);
-    return o + MX_NOTE;
-  }
-  function pointsHTML(P) {
-    let o = `<p class="lead2">اضغط على أي نقطة تفتح تفاصيلها: معناها، وإزاي بتظهر في الواقع، والجانب الي محتاج انتباه، وخطوة عملية.</p>`;
-    o += "ABCDEFGHI".split("").map(k => roleCard(k, P, MX_ROLE)).join("");
-    o += `<h4 class="ph">النقاط الداخلية</h4><p class="sub">كل نقطة داخلية بتوضح إزاي مجال النقطة الخارجية بيتفعل من جوهرك، وبتتحسب بجمع النقطة مع المركز.</p>`;
-    o += ["A", "B", "C", "D", "F", "G", "H", "I"].map(k => { const a = ARC(P[k + "2"]); return `<details class="acc mxd"><summary><span class="sg" aria-hidden="true">${k}</span> ${MX_SHORT[k]} من جوه: ${a.n} <span class="hs">رقم ${P[k + "2"]}</span></summary><div class="mxb"><p>${a.core}.</p><p class="sub">خطوة عملية: ${a.release}</p></div></details>`; }).join("");
-    return o + MX_NOTE;
-  }
-  function stagesHTML(P, age) {
-    const ac = age % 80, i = Math.floor(ac / 10), half = (ac % 10) < 5 ? 0 : 1;
-    const st = k => ({ s: ARC(P[OUTER[k]]), m: ARC(P.mid[k]), e: ARC(P[OUTER[(k + 1) % 8]]) });
-    const c = st(i), nx = st((i + 1) % 8), dom = half === 0 ? c.s : c.m;
-    let o = `<p class="lead2">عمرك دلوقتي ${age} سنة${age >= 80 ? " (بعد الـ٨٠ الدورة بتبدأ من الأول)" : ""}. المصفوفة بتقسم العمر لمراحل كل واحدة ١٠ سنين، وكل مرحلة ليها طاقة بداية ومنتصف ونهاية.</p>`;
-    o += `<div class="bond-cat"><strong>مرحلتك الحالية: ${MX_STAGE[i]}</strong><p>من عمر ${i * 10} لعمر ${i * 10 + 10}. بدايتها ${c.s.n}، ومنتصفها ${c.m.n}، ونهايتها ${c.e.n}. ${half === 0 ? `إنت في النص الأول، وطاقة ${c.s.n} هي الأقوى حواليك وبتتحول تدريجيًا ناحية ${c.m.n}.` : `إنت في النص التاني، وطاقة ${c.m.n} بتتحول ناحية ${c.e.n}.`}</p></div>`;
-    o += mxs("الي بيحصل حواليك", `${dom.core}. ${dom.real}`);
-    o += mxs("نفسيًا", dom.psy);
-    o += mxs("انتبه من", `${dom.shadow}.`);
-    o += mxs("خطوة تبدأ بيها", dom.release);
-    o += mxs(`المرحلة الجاية: ${MX_STAGE[(i + 1) % 8]}`, `طاقتها الأساسية ${nx.m.n}. ${nx.m.core}.`);
-    o += `<h4 class="ph">كل مراحل عمرك</h4>`;
-    o += MX_STAGE.map((t, k) => { const s = st(k); return `<details class="acc mxd"><summary>${t} <span class="hs">من ${k * 10} لـ${k * 10 + 10}${k === i ? "، إنت هنا" : ""}</span></summary><div class="mxb"><p class="sub">البداية: ${s.s.n}، المنتصف: ${s.m.n}، النهاية: ${s.e.n}.</p><p>${s.m.core}.</p><p class="sub">انتبه من: ${s.m.shadow}.</p></div></details>`; }).join("");
-    return o + `<p class="note">الدايرة الكبيرة في الرسم بتبين المرحلة الي إنت فيها بخط ذهبي. الدواير الصغيرة على الإطار هي نقط المنتصف (الأعمار ٥، ١٥، ٢٥...).</p>` + MX_NOTE;
-  }
-  function karmaHTML(P, lp) {
-    const lives = [["الحياة الأقرب ليك (الذيل الكارمي)", "D"], ["حياة أبعد", "I"], ["حياة أقدم", "H"]];
-    const D = ARC(P.D), C = ARC(P.C);
-    let o = `<p class="sub">دي قراءة رمزية بتطلع من أرقام تاريخ ميلادك. مش دليل على حياة فعلية، لكنها مرآة لأنماط ممكن تكون بتكررها دلوقتي.</p>`;
-    o += lives.map(([t, k]) => `<article class="rd"><h4><span class="sg" aria-hidden="true">${gl("☽")}</span> ${t}: ${ARC(P[k]).n}</h4><p>${ARC(P[k]).past}</p></article>`).join("");
-    o += `<h4 class="ph">الدرس المتكرر (الذيل الكارمي)</h4>`;
-    o += mxs(`${D.n}`, `${D.psy}`);
-    o += mxs("وفي الواقع بيتجسد في", D.real);
-    o += mxs("تمرين تحرير", D.release);
-    o += `<h4 class="ph">الي ورثته من العيلة</h4>`;
-    o += mxs(`${C.n}`, `ورثت من الأهل طاقة ${C.n}: ${C.core}. وممكن تكون بتكررها من غير ما تحس في: ${C.shadow}.`);
-    o += mxs("خطوة تكسر بيها النمط", C.release);
-    return o + MX_NOTE;
-  }
-  function compatHTML(P1, P2) {
-    const R = {};
-    ["A", "B", "C", "D", "E", "G", "H"].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
-    let o = `<p class="lead2">اتحسبت بجمع نقط المصفوفتين نقطة نقطة، فبتعرف طاقة العلاقة نفسها مش طاقة كل واحد لوحده.</p>`;
-    o += `<div class="bond-cat"><strong>قلب العلاقة: ${ARC(R.E).n}</strong><p>${ARC(R.E).core}.</p></div>`;
-    o += ["A", "B", "H", "G", "D", "C"].map(k => roleCard(k, R, MX_REL)).join("");
-    const same = "ABCDEFGHI".split("").filter(k => P1[k] === P2[k]);
-    o += `<h4 class="ph">التشابه والتكامل</h4>`;
-    o += mxs("نقاط متطابقة", same.length ? `الأرقام متطابقة في: ${same.map(k => `${MX_SHORT[k]} (${ARC(P1[k]).n})`).join("، ")}. التطابق ده بيخلي الاتنين يتصرفوا بنفس الأسلوب في المجال ده، وده بيقرّب وساعات بيزوّد الصدام.` : "مفيش تطابق مباشر بين نقطة ونقطة. كل واحد فيكم جاي بأسلوب مختلف، وده بيكمّل مش بيكرر.");
-    const cross = [];
-    if (P1.D === P2.B) cross.push("الدرس المتكرر عندك هو هدف الشخص التاني، فهو ممكن يساعدك تتعلمه");
-    if (P2.D === P1.B) cross.push("الدرس المتكرر عنده هو هدفك، فإنت ممكن تساعده يتعلمه");
-    if (P1.D === P2.D) cross.push("الذيل الكارمي واحد بينكم، يعني بتتعلموا نفس الدرس مع بعض");
-    o += mxs("روابط بين النقطتين", cross.length ? cross.join(". ") + "." : "مفيش ربط مباشر بين الدروس والأهداف، والعلاقة بتتحدد أكتر بالوعي والاختيار.");
+    const a = getDMD(P.A);
+    const b = getDMD(P.B);
+    const c = getDMD(P.C);
+    const dd = getDMD(P.D);
+    const e = getDMD(P.E);
+    const sky = getDMD(P.sky);
+    const earth = getDMD(P.earth);
+    const self = getDMD(P.self);
+    const yr = getDMD(P.year);
+    const kMid = redArc(P.D + P.E);
+    const kInner = redArc(P.D + kMid);
+    const tail = getTailDMD(P.D, kMid, kInner);
+
+    let o = '<div class="bond-cat"><strong>ملخص مصفوفتك الشامل والتحليلي</strong>' +
+      '<p><b>طبعك وانطباعك الخارجي:</b> ' + esc(a.title) + '.<br>' +
+      '<b>اتصالك الروحي ورسالتك:</b> ' + esc(b.title) + '.<br>' +
+      '<b>جوهرك وراحة قلبك (المركز):</b> ' + esc(e.title) + '.<br>' +
+      '<b>الدرس الكارمي المتكرر:</b> ' + esc(tail.title) + '.</p></div>';
+
+    o += mxs('المفارقة النفسية والتوتر الوجودي لجوهرك', e.paradox || (e.title + ': ' + e.archetype));
+    o += mxs('أقوى ما فيك في النور (+)', a.title + ': ' + (a.light || a.archetype));
+    o += mxs('الفخ الذي يعطلك في الظل (-)', e.title + ': ' + (e.shadow || e.archetype));
+    o += mxs('البصمة الجسدية والسوماتيكية لراحتك', e.psychosomatics || e.somaticRelease || 'التنفس العميق وتفريغ الشحن الذهني بالرياضة.');
+    if (e.somaticRelease) o += mxs('مفتاح التفريغ السوماتيكي', e.somaticRelease);
+
+    o += '<h4 class="ph">رسالتك في الحياة ومحاور الاتصال</h4>';
+    o += mxs('محور السماء الروحي: ' + sky.title, 'ما تتعلمه روحياً في الباطن: ' + (sky.archetype || sky.light));
+    o += mxs('محور الأرض المادي: ' + earth.title, 'ما تبنيه وتجسده في الواقع الملموس: ' + (earth.positions?.money || earth.light));
+    o += mxs('الهدف الشخصي المتكامل: ' + self.title, self.archetype + '. مفتاح التحول: ' + (self.growthStep || self.somaticRelease || self.light));
+
+    o += '<h4 class="ph">طاقة رقمك وسنتك الحالية</h4>';
+    o += mxs('مسار الحياة', (LP_TXT[lp] || ('مسار رقم ' + lp)) + ' <a href="#lifepath" data-open-lp>شوف مسار حياتك بالتفصيل</a>');
+    o += mxs('طاقة سنتك الحالية: ' + yr.title, (yr.headline || yr.archetype) + '. الخطوة الواعية: ' + (yr.growthStep || yr.somaticRelease || yr.light));
+
     return o + MX_NOTE;
   }
 
-  let lastMX = null, lastLP = null;
+  function pointsHTML(P) {
+    let o = '<p class="lead2">اضغط على أي نقطة تفتح تشريحها الكامل: معناها، ظهورها في الواقع، فخ الظل، البصمة الجسدية، والخطوة العملية المباشرة.</p>';
+    const outerKeys = 'ABCDEFGHI'.split('');
+    o += outerKeys.map(k => {
+      const num = P[k];
+      const d = getDMD(num);
+      const role = MX_ROLE[k] || { t: k, sub: 'نقطة في المصفوفة' };
+      return '<details class="acc mxd"><summary><span class="sg" aria-hidden="true">' + k + '</span> ' + esc(role.t) + ': ' + esc(d.title) + ' <span class="hs">طاقة ' + num + '</span></summary>' +
+        '<div class="mxb">' +
+        '<p class="sub"><b>الدور في الخريطة:</b> ' + esc(role.sub) + '</p>' +
+        '<p><b>التشريح والظهور الواقعي:</b> ' + esc(d.archetype || d.light) + '</p>' +
+        (d.paradox ? '<p><b>المفارقة النفسية:</b> ' + esc(d.paradox) + '</p>' : '') +
+        '<p style="color:#e06c75;"><b>فخ الظل (-):</b> ' + esc(d.shadow) + '</p>' +
+        '<p style="color:#98c379;"><b>طاقة النور (+):</b> ' + esc(d.light) + '</p>' +
+        (d.psychosomatics ? '<p><b>العلامة الجسدية والسوماتيكية:</b> ' + esc(d.psychosomatics) + '</p>' : '') +
+        '<p class="sub"><b>الخطوة العملية المباشرة:</b> ' + esc(d.growthStep || d.somaticRelease || 'الملاحظة الواعية للنمط اليومي.') + '</p>' +
+        '</div></details>';
+    }).join('');
+
+    o += '<h4 class="ph">النقاط الداخلية (تفعيل الجوهر في المجالات)</h4><p class="sub">توضح كل نقطة داخلية كيف يتصل مجالك الخارجي بمركز روحك (E)، وتُحسب بجمع النقطة مع المركز.</p>';
+    o += ['A', 'B', 'C', 'D', 'F', 'G', 'H', 'I'].map(k => {
+      const num = P[k + '2'];
+      const d = getDMD(num);
+      return '<details class="acc mxd"><summary><span class="sg" aria-hidden="true">' + k + '</span> ' + esc(MX_SHORT[k] || k) + ' من جوه: ' + esc(d.title) + ' <span class="hs">رقم ' + num + '</span></summary>' +
+        '<div class="mxb">' +
+        '<p><b>المعنى الباطني:</b> ' + esc(d.archetype || d.light) + '</p>' +
+        '<p style="color:#e06c75;"><b>فخ الظل الداخلي:</b> ' + esc(d.shadow) + '</p>' +
+        '<p class="sub"><b>خطوة التوازن:</b> ' + esc(d.growthStep || d.somaticRelease || d.light) + '</p>' +
+        '</div></details>';
+    }).join('');
+
+    return o + MX_NOTE;
+  }
+
+  function stagesHTML(P, age) {
+    const ac = age % 80;
+    const i = Math.floor(ac / 10);
+    const half = (ac % 10) < 5 ? 0 : 1;
+    const st = k => ({
+      s: getDMD(P[OUTER[k]]),
+      m: getDMD(P.mid[k]),
+      e: getDMD(P[OUTER[(k + 1) % 8]])
+    });
+    const c = st(i);
+    const dom = half === 0 ? c.s : c.m;
+
+    let o = '<p class="lead2">عمرك دلوقتي ' + age + ' سنة' + (age >= 80 ? ' (بعد الـ٨٠ تبدأ الدورة من جديد)' : '') + '. تقسم مصفوفة القدر العمر إلى 8 مراحل كل مرحلة 10 سنوات، لكل مرحلة طاقة بداية ومنتصف ونهاية:</p>';
+    
+    o += '<div class="bond-cat"><strong>مرحلتك الحالية: ' + esc(MX_STAGE[i] || ('سنوات ' + (i * 10) + ' إلى ' + (i * 10 + 10))) + '</strong>' +
+      '<p>من عمر ' + (i * 10) + ' لعمر ' + (i * 10 + 10) + '.<br>' +
+      'بدايتها: ' + esc(c.s.title) + ' · منتصفها: ' + esc(c.m.title) + ' · نهايتها: ' + esc(c.e.title) + '.<br>' +
+      (half === 0 ? 'أنت في النصف الأول من المرحلة، وتسيطر عليك طاقة ' + esc(c.s.title) + ' وتتحول نحو ' + esc(c.m.title) + '.' : 'أنت في النصف الثاني، وتتحول طاقة ' + esc(c.m.title) + ' نحو ' + esc(c.e.title) + '.') + '</p></div>';
+
+    o += mxs('ما يواجهك في واقعك اليوم', dom.archetype || dom.light);
+    o += mxs('التشريح النفسي والتوتر الداخلي', dom.paradox || dom.archetype);
+    o += mxs('فخ الظل الذي يجب تجنبه (-)', dom.shadow);
+    o += mxs('البصمة الجسدية والسوماتيكية', dom.psychosomatics || 'مراقبة التنفس ومستوى التوتر في الجسم.');
+    o += mxs('الخطوة العملية للعبور بنجاح (+)', dom.growthStep || dom.somaticRelease || dom.light);
+
+    o += '<h4 class="ph">جميع مراحل العمر الثمانية (0 إلى 80 سنة)</h4>';
+    o += [0, 1, 2, 3, 4, 5, 6, 7].map(idx => {
+      const stage = st(idx);
+      const isCur = idx === i;
+      return '<details class="acc mxd"' + (isCur ? ' open' : '') + '><summary><span class="sg" aria-hidden="true">' + (idx * 10) + 'y</span> ' + esc(MX_STAGE[idx] || ('مرحلة ' + (idx * 10) + '-' + (idx * 10 + 10))) + (isCur ? ' <b style="color:#d5b45c;">[مرحلتك الآن]</b>' : '') + '</summary>' +
+        '<div class="mxb">' +
+        '<p><b>البداية (' + (idx * 10) + ' سنة):</b> ' + esc(stage.s.title) + '</p>' +
+        '<p><b>المنتصف (' + (idx * 10 + 5) + ' سنة):</b> ' + esc(stage.m.title) + '</p>' +
+        '<p><b>النهاية (' + (idx * 10 + 10) + ' سنة):</b> ' + esc(stage.e.title) + '</p>' +
+        '<p><b>توجيه المرحلة:</b> ' + esc(stage.s.light) + '</p>' +
+        '</div></details>';
+    }).join('');
+
+    return o + MX_NOTE;
+  }
+
+  function karmaHTML(P, lp) {
+    const kMid = redArc(P.D + P.E);
+    const kInner = redArc(P.D + kMid);
+    const tail = getTailDMD(P.D, kMid, kInner);
+    const dBase = getDMD(P.D);
+    const cMat = getDMD(P.C);
+
+    let o = '<p class="lead2">الذيل الكارمي هو العقدة الروحية الأعمق في اللاوعي؛ يمثل الدروس غير المكتملة وأنماط الطفولة التي تتكرر تلقائياً حتى يتم تفكيكها بوعي.</p>';
+
+    o += '<div class="bond-cat"><strong style="font-size:1.15rem;color:#d5b45c;">' + esc(tail.title) + ' (شفرة ' + esc(tail.code) + ')</strong>' +
+      '<p><b>الجرح المؤسس والتوتر الكارمي:</b> ' + esc(tail.paradox) + '</p>' +
+      '<p><b>جذور الطفولة والصدمة التأسيسية:</b> ' + esc(tail.childhoodRoots) + '</p></div>';
+
+    if (tail.tracks && (tail.tracks.trackOne || tail.tracks.trackTwo)) {
+      o += '<div class="aqm-karmic-tracks" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.85rem 0;">' +
+        '<div style="background:rgba(224,108,117,0.08);border:1px solid rgba(224,108,117,0.25);border-radius:10px;padding:.85rem;">' +
+        '<h5 style="color:#e06c75;margin:0 0 .4rem 0;">المسار الأول (الظل النشط)</h5><p style="font-size:.9rem;line-height:1.5;">' + esc(tail.tracks.trackOne || '') + '</p></div>' +
+        '<div style="background:rgba(97,175,239,0.08);border:1px solid rgba(97,175,239,0.25);border-radius:10px;padding:.85rem;">' +
+        '<h5 style="color:#61afef;margin:0 0 .4rem 0;">المسار الثاني (الكبت والانسحاب)</h5><p style="font-size:.9rem;line-height:1.5;">' + esc(tail.tracks.trackTwo || '') + '</p></div>' +
+        '</div>';
+    }
+
+    if (tail.psychosomatics) {
+      o += mxs('الأعراض السوماتيكية واحتقانات الجسد للذيل', tail.psychosomatics);
+    }
+
+    if (Array.isArray(tail.transformationProtocol) && tail.transformationProtocol.length) {
+      o += '<div style="background:rgba(152,195,121,0.08);border:1px solid rgba(152,195,121,0.25);border-radius:10px;padding:.85rem;margin:.85rem 0;">' +
+        '<h4 style="color:#98c379;margin:0 0 .5rem 0;">بروتوكول تفكيك العقدة الكارمية</h4><ol style="margin:0;padding-right:1.2rem;line-height:1.6;">' +
+        tail.transformationProtocol.map(s => '<li>' + esc(s) + '</li>').join('') +
+        '</ol></div>';
+    }
+
+    if (tail.closingConfrontation) {
+      o += mxs('المواجهة الختامية', tail.closingConfrontation);
+    }
+
+    o += '<h4 class="ph">إرث العائلة والأسلاف الموروث</h4>';
+    o += mxs('طاقة الأهل المادية: ' + cMat.title, 'ما ورثته من العائلة يظهر في: ' + cMat.archetype + '. احذر من تكرار الظل الأسري: ' + cMat.shadow + '. خطوة كسر النمط: ' + (cMat.growthStep || cMat.somaticRelease || cMat.light));
+
+    return o + MX_NOTE;
+  }
+
+  function compatHTML(P1, P2) {
+    const R = {};
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].forEach(k => { R[k] = redArc(P1[k] + P2[k]); });
+    const e = getDMD(R.E);
+    const a = getDMD(R.A);
+    const b = getDMD(R.B);
+    const d = getDMD(R.D);
+    const moneyChannel = redArc(R.C + R.E);
+    const loveChannel = redArc(R.D + R.E);
+    const arcLove = getDMD(loveChannel);
+    const arcMoney = getDMD(moneyChannel);
+
+    let o = '<p class="lead2">تُحسب مصفوفة العلاقة بجمع نقاط المصفوفتين هندسياً نقطة بنقطة؛ فتكشف عن كيمياء العلاقة نفسها ككيان طاقي ثالث مستقل عن رغبات الفردين:</p>';
+
+    o += '<div class="bond-cat"><strong style="font-size:1.15rem;color:#d5b45c;">قلب وغاية العلاقة: ' + esc(e.title) + ' (طاقة ' + R.E + ')</strong>' +
+      '<p><b>الرسالة الروحية المشتركة:</b> ' + esc(e.archetype || e.light) + '</p>' +
+      '<p><b>سر انسجام العلاقة واستمرارها:</b> ' + esc(e.light) + '</p>' +
+      '<p style="color:#e06c75;"><b>الفخ الذي يهدد الشراكة بالانفصال:</b> ' + esc(e.shadow) + '</p></div>';
+
+    o += '<div class="aqm-pos-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:.85rem 0;">' +
+      '<article class="aqm-pos-item" style="padding:.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;">' +
+      '<h5><span>خط الحب والتواصل الحميم</span><small>طاقة ' + loveChannel + '</small></h5>' +
+      '<p>' + esc(arcLove.positions?.relationship || arcLove.archetype) + '</p>' +
+      (arcLove.taboos?.sexuality ? '<p style="color:#ff758c;font-size:.85rem;"><b>الكيمياء الحميمية:</b> ' + esc(arcLove.taboos.sexuality) + '</p>' : '') +
+      '</article>' +
+      '<article class="aqm-pos-item" style="padding:.85rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;">' +
+      '<h5><span>خط المال والمشاريع المشتركة</span><small>طاقة ' + moneyChannel + '</small></h5>' +
+      '<p>' + esc(arcMoney.positions?.money || arcMoney.archetype) + '</p>' +
+      '</article>' +
+      '</div>';
+
+    const same = 'ABCDEFGHI'.split('').filter(k => P1[k] === P2[k]);
+    o += '<h4 class="ph">التشابه والتناغم الطاقي</h4>';
+    o += mxs('نقاط التطابق بينكما', same.length ? 'أنتم متطابقون في: ' + same.map(k => (MX_SHORT[k] || k) + ' (' + getDMD(P1[k]).title + ')').join('، ') + '. التطابق يعزز التفاهم السريع، لكنه يتطلب وعياً لتفادي تضارب الأنا في نفس المجال.' : 'لا توجد نقاط متطابقة متطرفة؛ كل طرف يكمل نقص الآخر ويدعمه من زاوية مختلفة.');
+
+    const cross = [];
+    if (P1.D === P2.B) cross.push('الدرس الكارمي عندك هو بوابة الاتصال الروحي عند الشريك، مما يجعله معلماً طبيعياً لك في هذا الدرس');
+    if (P2.D === P1.B) cross.push('الدرس الكارمي عنده هو بوابة الاتصال الروحي عندك، فأنت تساعده على تجاوز عقدته بحكمتك');
+    if (P1.D === P2.D) cross.push('تتشاركان نفس الذيل الكارمي؛ دخلتما هذه العلاقة لفك نفس العقدة معاً وتطهير الكارما سوياً');
+    if (P1.E === P2.E) cross.push('تتشاركان نفس طاقة المركز والجوهر؛ راحة قلبكما وتناغمكما الباطني نابع من نفس النواة الروحية');
+
+    o += mxs('الروابط والاتصالات المصيرية', cross.length ? cross.join('. ') + '.' : 'العلاقة تقوم على الاختيار والوعي وبناء التفاهم المشترك خطوة بخطوة دون قيود كارمية ثقيلة.');
+
+    return o + MX_NOTE;
+  }
+let lastMX = null, lastLP = null;
   const mform = $("#mform");
   mform.addEventListener("submit", e => {
     e.preventDefault();
@@ -2677,27 +3168,51 @@ if (typeof module !== 'undefined') module.exports = Astro;
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    if (typeof isolateResultView === "function") isolateResultView("matrix");
     renderMatrix($("#m-name").value.trim(), d, m, y);
-    const r = $("#mresult"); r.hidden = false; r.scrollIntoView();
+    const r = $("#mresult"); r.hidden = false; r.style.display = "block";
+    const mf = $("#mform"); if (mf) { mf.hidden = true; mf.style.display = "none"; }
+    const matrixIntro = document.querySelector("#matrix .center"); if (matrixIntro) { matrixIntro.hidden = true; matrixIntro.style.display = "none"; }
+    r.scrollIntoView({ behavior: "smooth" });
   });
   function renderMatrix(name, d, m, y, tabIdx) {
     lastMX = [name, d, m, y];
     const P = matrixCalc(d, m, y), lp = lifePath(d, m, y), age = ageNow(d, m, y), cur = Math.floor((age % 80) / 10);
-    const head = `<div class="res-head"><h3>${name ? "مصفوفة " + esc(name) : "مصفوفتك"}</h3><p>${d}/${m}/${y}</p></div>`;
-    const names = ["ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
+    const titleName = name ? "مصفوفة " + esc(name) : "مصفوفتك الكونية";
+    const summaryCard = `<div class="chart-summary-card">
+      <div class="chart-summary-info">
+        <div class="chart-summary-badge">مصفوفة القدر والشاكرات</div>
+        <h3 class="chart-summary-title">${titleName}</h3>
+        <p class="chart-summary-meta">
+          <span><span class="meta-glyph">☉</span> ${pad(d)}/${pad(m)}/${y}</span>
+          <span class="meta-sep">•</span>
+          <span><span class="meta-glyph">✦</span> طاقة المركز: ${P.E}</span>
+        </p>
+      </div>
+      <div class="chart-summary-actions">
+        <button type="button" class="btn-edit-matrix" id="btn-edit-matrix"><svg class="edit-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> تعديل البيانات / مصفوفة جديدة</button>
+      </div>
+    </div>`;
+    const head = summaryCard;
+    const hasDeep = !!(window.AqeeqNumerology && typeof window.AqeeqNumerology.render === "function");
+    const names = ["التقرير المرجعي (7 أقسام)", "ملخصك", "النقاط", "مراحل عمرك", "الكارما والحيوات", "توافق مع شخص"];
     const tabs = `<div class="tabs" role="tablist" aria-label="أقسام المصفوفة">${names.map((t, i) => `<button class="tab" role="tab" aria-selected="${i === 0}" aria-controls="mp${i + 1}" id="mt${i + 1}"${i ? ' tabindex="-1"' : ""}>${t}</button>`).join("")}</div>`;
     const compat = `<p class="lead2">اكتب تاريخ ميلاد شخص تاني (حبيب أو صاحب أو شريك شغل) وشوف مصفوفة العلاقة بينكم.</p><div class="field"><label for="mc-date">تاريخ ميلاد الشخص التاني</label><input id="mc-date" type="date" min="1900-01-01" max="2100-12-31"></div><p class="ferr" id="mc-err" role="alert" hidden></p><div class="cta-row"><button class="btn" id="mc-go" type="button">احسب مصفوفة العلاقة</button></div><div id="mc-out" hidden></div>`;
-    const bodies = [summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
+    const bodies = [hasDeep ? "" : summaryHTML(P, lp), summaryHTML(P, lp), pointsHTML(P), stagesHTML(P, age), karmaHTML(P, lp), compat];
     const panels = bodies.map((b, i) => `<div class="panel" role="tabpanel" id="mp${i + 1}" aria-labelledby="mt${i + 1}"${i ? " hidden" : ""}>${b}</div>`).join("");
-    const legend = `<p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
-    const msg = `أهلاً، حسبت مصفوفتي على موقع ${SITE_NAME} وعايز قراءة مفصلة.\n\nالاسم: ${name}\nتاريخ الميلاد: ${d}/${m}/${y}\nنقاطي: A=${P.A}، B=${P.B}، C=${P.C}، D=${P.D}، المركز=${P.E}`;
-    const cta = `<div class="cta-box"><h4>عايز قراءة أعمق لمصفوفتك؟</h4><p>القراءة التلقائية بتديك الصورة العامة. في الجلسة بنربط المصفوفة بحياتك وأسئلتك بشكل شخصي.</p><a class="btn" id="mx-wa" href="#book">احجز قراءة المصفوفة على واتساب</a></div>`;
+    const topWheel = hasDeep ? "" : `<div class="wheel-wrap">${matrixSVG(P, cur)}</div><p class="note">الدواير الكبيرة هي النقاط الأساسية (A لـ I) وتحتها عمرك عند كل نقطة. الصغيرة على الإطار هي منتصف كل مرحلة. والمنقطة جوه هي امتداد كل نقطة نحو مركزك.</p>`;
     const root = $("#mresult");
-    root.innerHTML = head + `<div class="wheel-wrap">${matrixSVG(P, cur)}</div>` + legend + tabs + panels + cta + CONTACT_LINE;
+    const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+    root.innerHTML = returnHomeBtn + head + topWheel + tabs + panels + CONTACT_LINE;
     wireTabs(root); bindContact(root);
+
+    const mp1 = $("#mp1", root);
+    if (mp1 && hasDeep) {
+      window.AqeeqNumerology.render(mp1, `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`);
+    }
     const lpFill = $("#lp-date"); if (lpFill && !lpFill.value) lpFill.value = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
     if (tabIdx) { const tt = $$("[role=tab]", root)[tabIdx]; if (tt) tt.click(); }
-    const wa = $("#mx-wa", root); if (wa) { wa.href = waLink(msg); openWA(wa); }
+    
     const mcGo = $("#mc-go", root); if (mcGo) mcGo.addEventListener("click", () => {
       const er = $("#mc-err", root), out = $("#mc-out", root); er.hidden = true;
       const v = $("#mc-date", root).value;
@@ -2932,7 +3447,24 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     lastLP = [name, d, m, y];
     const lp = lifePath(d, m, y), base = LP_BASE[lp] || lp, F = LP_FREE[base];
     const root = $("#lpresult");
-    root.innerHTML = `<button class="btn ghost sm lp-back-start" type="button" id="lp-back-start">← الرجوع لمسار الحياة</button><div class="res-head"><div class="numbadge" aria-hidden="true">${lp}</div><h3>${name ? esc(name) + ": " : ""}${F.t}${LP_BASE[lp] ? " (رقم رئيسي " + lp + ")" : ""}</h3><p class="tg2">${F.tag}</p><p>${d}/${m}/${y}</p></div>` + dailyHTML(lp) + `<div class="panel" style="margin-top:22px">${lpHTML(lp)}</div>` + MX_NOTE;
+    const returnHomeBtn = `<div class="result-top-bar"><a href="#home" class="btn-return-home" role="button"><span>←</span> العودة للرئيسية</a></div>`;
+    const titleName = name ? `مسار ${esc(name)}: ${esc(F.t)}` : `مسارك: ${esc(F.t)}`;
+    const masterBadge = LP_BASE[lp] ? ` (رقم رئيسي ${lp})` : "";
+    const summaryCard = `<div class="chart-summary-card">
+      <div class="chart-summary-info">
+        <div class="chart-summary-badge">مسار الحياة والأرقام • رقم ${lp}</div>
+        <h3 class="chart-summary-title">${titleName}${masterBadge}</h3>
+        <p class="chart-summary-meta">
+          <span><span class="meta-glyph">☉</span> ${pad(d)}/${pad(m)}/${y}</span>
+          <span class="meta-sep">•</span>
+          <span><span class="meta-glyph">✧</span> ${esc(F.tag)}</span>
+        </p>
+      </div>
+      <div class="chart-summary-actions">
+        <button type="button" class="btn-edit-lp" id="btn-edit-lp"><svg class="edit-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> تعديل البيانات / مسار جديد</button>
+      </div>
+    </div>`;
+    root.innerHTML = returnHomeBtn + summaryCard + `<div class="res-head"><div class="numbadge" aria-hidden="true">${lp}</div><h3>${name ? esc(name) + ": " : ""}${F.t}${LP_BASE[lp] ? " (رقم رئيسي " + lp + ")" : ""}</h3><p class="tg2">${F.tag}</p></div>` + dailyHTML(lp) + `<div class="panel" style="margin-top:22px">${lpHTML(lp)}</div>` + MX_NOTE;
     if ((LP_BASE[lp] || lp) === 1) {
       root.querySelectorAll("[data-lp-section]").forEach((el, i) => {
         const item = LP1_REVISED_SOURCE[i] || LP1_SOURCE_SECTIONS[i];
@@ -3007,11 +3539,15 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     const [y, m, d] = v.split("-").map(Number);
     if (y < 1900 || y > 2100) { err.textContent = "التاريخ لازم يكون بين 1900 و 2100."; err.hidden = false; return; }
     if (new Date(y, m - 1, d) > new Date()) { err.textContent = "تاريخ الميلاد ده في المستقبل. راجع التاريخ."; err.hidden = false; return; }
+    if (typeof isolateResultView === "function") isolateResultView("lifepath");
     renderLP($("#lp-name").value.trim(), d, m, y);
     window.AqeeqGender?.apply($("#lpresult"), gender);
-    window.AqeeqCopyMap?.attach($("#lpresult"), "مسار الحياة · " + $("#lp-name").value.trim());
-    $("#lpform").hidden = true; $("#lp-start").hidden = true;
-    $("#lpresult").scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+    const lpf = $("#lpform"); if (lpf) { lpf.hidden = true; lpf.style.display = "none"; }
+    const lps = $("#lp-start"); if (lps) { lps.hidden = true; lps.style.display = "none"; }
+    const lpIntro = document.querySelector("#lifepath .center");
+    if (lpIntro) { lpIntro.hidden = true; lpIntro.style.display = "none"; }
+    const lpr = $("#lpresult");
+    if (lpr) { lpr.hidden = false; lpr.style.display = "block"; lpr.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); }
   });
 
 
@@ -3261,7 +3797,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
       const s = Math.random() < .06 ? 1.8 : .8; c.fillRect(x, y, s, s);
     }
   })();
-  let W, H, DPR, N, stars = [], shoot = null, nextShoot = 4000;
+  let W, H, DPR, N, stars = [];
   const COL = ["239,230,210", "214,174,94", "185,173,216", "255,255,255"];
   const mk = init => ({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1, z: init ? Math.random() * .98 + .02 : 1, c: COL[(Math.random() * 4) | 0], s: Math.random() * 1.3 + .5, t: Math.random() * 6.28 });
   function size() {
@@ -3277,8 +3813,9 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
     const dt = Math.min(now - last, 50); last = now;
     const dy = Math.abs(scrollY - lastY); lastY = scrollY;
     sv = sv * .9 + dy * .00005;
-    const intro = reduce ? 0 : .0042 * Math.exp(-(now - t0) / 700);
-    const v = Math.min(.00005 + intro + Math.min(sv, .0007), .0045);
+    const intro = 0; /* بدون اندفاع بداية: خطوط الشهب/الحركة اتشالت */
+    const v = .00005; /* حركة بطيئة ثابتة، السرعة ما بتتأثرش بالتمرير */
+    if (window.__aqScroll) { if (sun) { const y = scrollY; sun.style.transform = `translateY(${-y * .28}px)`; sun.style.opacity = Math.max(0, 1 - y / (H * .9)); } if (!reduce) requestAnimationFrame(frame); return; }
     ctx.clearRect(0, 0, W, H);
     const cx = W / 2, cy = H * .46;
     for (const s of stars) {
@@ -3288,7 +3825,7 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
       if (s.z < .02 || sx < -20 || sx > W + 20 || sy < -20 || sy > H + 20) { Object.assign(s, mk(false)); continue; }
       const tw = .75 + .25 * Math.sin(now / 700 + s.t);
       const a = Math.min(1, Math.pow(1 - s.z, .8) * 1.3) * tw;
-      if (v > .0004) {
+      if (false) { /* رسم خطوط الحركة متوقف */
         const k2 = cx / zPrev * .9, px = cx + s.x * k2, py = cy + s.y * k2 * (H / W > 1 ? 1 : .7) * (W / cx) * .5 * 2;
         ctx.strokeStyle = `rgba(${s.c},${a * (intro > .0004 ? .8 : .4)})`; ctx.lineWidth = s.s * (1.2 - s.z);
         ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(sx, sy); ctx.stroke();
@@ -3296,17 +3833,6 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
         ctx.fillStyle = `rgba(${s.c},${a})`;
         const r = s.s * (1.5 - s.z); ctx.beginPath(); ctx.arc(sx, sy, r, 0, 6.283); ctx.fill();
       }
-    }
-    /* شهاب كل كام ثانية */
-    nextShoot -= dt;
-    if (!shoot && nextShoot <= 0 && !reduce) { shoot = { x: Math.random() * W * .8 + W * .1, y: Math.random() * H * .35, vx: -(.5 + Math.random() * .4), vy: .22 + Math.random() * .15, l: 0 }; nextShoot = 7000 + Math.random() * 8000; }
-    if (shoot) {
-      shoot.l += dt; shoot.x += shoot.vx * dt; shoot.y += shoot.vy * dt;
-      const al = Math.max(0, 1 - shoot.l / 900), tx = shoot.x - shoot.vx * 140, ty = shoot.y - shoot.vy * 140;
-      const lg = ctx.createLinearGradient(shoot.x, shoot.y, tx, ty);
-      lg.addColorStop(0, `rgba(255,246,210,${al})`); lg.addColorStop(1, "rgba(255,246,210,0)");
-      ctx.strokeStyle = lg; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(shoot.x, shoot.y); ctx.lineTo(tx, ty); ctx.stroke();
-      if (shoot.l > 900) shoot = null;
     }
     /* الشمس بتطلع لفوق وتخفت مع النزول */
     if (sun) { const y = scrollY; sun.style.transform = `translateY(${-y * .28}px)`; sun.style.opacity = Math.max(0, 1 - y / (H * .9)); }
@@ -3411,22 +3937,22 @@ const LP1_REVISED_SOURCE = [{"title":"القسم الأول: شفرة الروح
 /* Aqeq Astro v2: ambient stars, result export, and small interaction upgrades. */
 (function(){
   var canvas=document.getElementById('aqeq-stars');if(canvas&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var ctx=canvas.getContext('2d'),stars=[],shoot=null,shootAt=0,w=0,h=0,dpr=1,raf=0,t0=0;
+    var ctx=canvas.getContext('2d'),stars=[],w=0,h=0,dpr=1,raf=0,t0=0;
     /* ثلاث طبقات عمق: بعيدة خافتة بطيئة، متوسطة، وقريبة ألمع وأسرع، بلون فضي وبعضها دافئ ذهبي */
     var LAYERS=[{n:.55,rMin:.22,rMax:.55,aMin:.08,aMax:.30,vMin:.006,vMax:.022},
                 {n:.3,rMin:.5,rMax:1,aMin:.16,aMax:.42,vMin:.016,vMax:.04},
                 {n:.15,rMin:.9,rMax:1.6,aMin:.3,aMax:.62,vMin:.03,vMax:.07}];
     function mk(layer,yAny){return{x:Math.random()*w,y:yAny?Math.random()*h:-2,r:layer.rMin+Math.random()*(layer.rMax-layer.rMin),a:layer.aMin+Math.random()*(layer.aMax-layer.aMin),v:layer.vMin+Math.random()*(layer.vMax-layer.vMin),p:Math.random()*6.28,sway:Math.random()*6.28,warm:Math.random()<.16,layer:layer};}
     function resize(){dpr=Math.min(window.devicePixelRatio||1,1.5);w=window.innerWidth;h=window.innerHeight;canvas.width=Math.floor(w*dpr);canvas.height=Math.floor(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);var total=Math.min(150,Math.floor(w*h/9500));stars=[];LAYERS.forEach(function(layer){var cnt=Math.round(total*layer.n);for(var i=0;i<cnt;i++)stars.push(mk(layer,true));});}
-    function maybeShootingStar(){if(shoot||Date.now()<shootAt)return;if(Math.random()<.0028){var ang=.55+Math.random()*.5;shoot={x:Math.random()*w*.7+w*.15,y:Math.random()*h*.25,ang:ang,len:0,max:90+Math.random()*70,sp:9+Math.random()*4,life:1};}}
-    function draw(ts){ctx.clearRect(0,0,w,h);stars.forEach(function(s){s.p+=.012;s.sway+=.006;s.y+=s.v;s.x+=Math.sin(s.sway)*.045;if(s.y>h+2){Object.assign(s,mk(s.layer,false));}var a=s.a*(.65+.35*Math.sin(s.p));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=s.warm?'rgba(214,174,94,'+a+')':'rgba(239,230,210,'+a+')';ctx.fill();});
-      maybeShootingStar();
-      if(shoot){var dx=Math.cos(shoot.ang),dy=Math.sin(shoot.ang);shoot.len+=shoot.sp;shoot.life=1-shoot.len/shoot.max;if(shoot.life<=0){shoot=null;shootAt=Date.now()+4000+Math.random()*9000;}else{var tx=shoot.x+dx*shoot.len,ty=shoot.y+dy*shoot.len,tailX=tx-dx*26,tailY=ty-dy*26,g=ctx.createLinearGradient(tailX,tailY,tx,ty);g.addColorStop(0,'rgba(239,230,210,0)');g.addColorStop(1,'rgba(239,230,210,'+(.75*shoot.life)+')');ctx.strokeStyle=g;ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(tailX,tailY);ctx.lineTo(tx,ty);ctx.stroke();}}
+    function draw(ts){if(window.__aqScroll){raf=requestAnimationFrame(draw);return;}ctx.clearRect(0,0,w,h);stars.forEach(function(s){s.p+=.012;s.sway+=.006;s.y+=s.v;s.x+=Math.sin(s.sway)*.045;if(s.y>h+2){Object.assign(s,mk(s.layer,false));}var a=s.a*(.65+.35*Math.sin(s.p));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=s.warm?'rgba(214,174,94,'+a+')':'rgba(239,230,210,'+a+')';ctx.fill();});
       raf=requestAnimationFrame(draw);}
     resize();draw();window.addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',function(){if(document.hidden){cancelAnimationFrame(raf);}else{cancelAnimationFrame(raf);draw();}});
   }
   var resultIds=['result','mresult','lpresult','cp-out','chat-out','ask-out'];
-  function addTools(el){if(!el||el.hidden||el.querySelector('.aq-tools'))return;var bar=document.createElement('div');bar.className='aq-tools aq-print';bar.innerHTML='<button class="btn ghost sm" type="button" data-aq-print>اطبع / احفظ PDF</button><button class="btn ghost sm" type="button" data-aq-top>رجوع لبداية النتيجة ↑</button>';el.insertBefore(bar,el.firstChild);}
+  function addTools(el){
+    // Suppress PDF/Print button as requested across all result screens
+    return;
+  }
   resultIds.forEach(function(id){var el=document.getElementById(id);if(!el)return;new MutationObserver(function(){if(!el.hidden&&el.innerHTML.trim())addTools(el);}).observe(el,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden']});if(!el.hidden&&el.innerHTML.trim())addTools(el);});
   document.addEventListener('click',function(e){var p=e.target.closest('[data-aq-print]'),t=e.target.closest('[data-aq-top]');if(p){window.print();}if(t){var el=t.closest('.result');if(el)el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}});
   document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(){var id=a.getAttribute('href').slice(1),el=document.getElementById(id);if(el){el.classList.add('aq-skyline');window.setTimeout(function(){el.classList.remove('aq-skyline');},1800);}});});
@@ -3498,12 +4024,20 @@ const aqDreamSearch=document.getElementById('dream-search');if(aqDreamSearch)aqD
   <script src="app.js"></script>
   <script src="assets/js/gender-language.js"></script>
   <script src="assets/js/personal-transits.js"></script>
-<script src="assets/js/life-path-data.js?v=d7fc2633"></script>
+<script src="assets/js/life-path-data.js"></script>
+<script src="assets/js/destiny-matrix-data.js"></script>
+<script src="assets/js/age-map.js"></script>
 <script src="assets/js/matrix-loader.js"></script>
 <script src="assets/js/matrix-report-map.js"></script>
 <script src="assets/js/numerology-matrix.js"></script>
+<script src="assets/js/matrix-method-adapter.js"></script>
+<script src="numerology-matrix.js"></script>
+<script src="matrix-method-adapter.js"></script>
 <script src="assets/js/astro-wheel.js"></script>
 <script src="assets/js/extended-astro-charts.js"></script>
 <script src="auth.js" type="module"></script>
+<script>(function(){var t=0;document.addEventListener('scroll',function(){window.__aqScroll=true;clearTimeout(t);t=setTimeout(function(){window.__aqScroll=false;},140);},{capture:true,passive:true});})();</script>
+<script src="assets/js/cosmic-background.js" defer></script>
+<script src="assets/js/pro-wheel.js" defer></script>
 </body>
 </html>

@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "النظام والمسؤولية",
   "core": {
-    "psychology": "",
-    "gift": "ثبات وتنظيم",
-    "shadowTrap": "جمود أو تشدد",
-    "growth": ""
+    "psychology": "يرمز الإمبراطور إلى بناء حدود ونظام يحمي ما له قيمة. الدافع التأملي هو مقاومة الفوضى عبر قواعد واضحة ومسؤولية يمكن الاعتماد عليها. قوته في وضع الهيكل وتحمّل تبعات القرار؛ وتوتره أن الأمان قد يصبح مرادفاً للسيطرة، فيُستبعد كل ما لا يدخل الخطة. يظهر ذلك في تحمل أعباء الفريق ثم صعوبة تفويضها.",
+    "gift": "الثبات والتنظيم يتجليان في تحويل الأهداف إلى أدوار ومواعيد ومعايير مفهومة. في العمل، يمكن أن يصنع ذلك بيئة مستقرة وقت الأزمات، ويمنع تشتت الموارد. وفي الأسرة أو الشراكة، تمنح الحدود الواضحة شعوراً بالاعتماد حين تُشرح بوصفها اتفاقاً مشتركاً لا أمراً أحادياً.",
+    "shadowTrap": "عندما يتصل النظام بالخوف من الخطأ، يتحول الحزم إلى جمود ومراقبة دقيقة. قد تُرفض فكرة جيدة لأنها غير مألوفة، أو يُعاد العمل كله بدلاً من قبول مساهمة مختلفة. مثال ذلك الاحتفاظ بكل الصلاحيات ثم الشكوى من أن الآخرين لا يتحملون المسؤولية.",
+    "growth": "خطوة تأملية: تصنيف القواعد إلى ما يحمي قيمة أساسية وما يمكن تعديله، ثم تفويض النتيجة مع ترك مساحة لاختلاف الأسلوب."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تأخذ الرسالة شكلاً عملياً عبر نظام يحمي قيمة أو مسؤولية طويلة الأمد.",
+      "energyPsychology": "تستقر الطاقة حين تتوزع الأدوار والموارد بوضوح، لا حين تُحمل كلها على شخص واحد.",
+      "emotionsPsychology": "يطمئن الداخل إلى الحدود العادلة، لكنه ينغلق عندما يُعامل التغيير كتهديد دائم."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يفهم الإمبراطور الفكرة عبر بنيتها: ما القاعدة، ومن يقرر، وما الأثر؟ وتكتمل الرؤية عندما تظل الحدود قابلة للمراجعة.",
+      "energyPsychology": "تستقر الطاقة الذهنية في ترتيب واضح للمسؤوليات، وتضعف عندما تحاول السيطرة على كل متغير قبل الحركة.",
+      "emotionsPsychology": "يمنح الاتفاق العادل شعوراً بالثبات؛ أما تحويل الرأي إلى أمر دائم فيخلق مسافة عاطفية."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يصبح صوت الإمبراطور واضحاً عندما يحدد المسؤولية والحدود في اتفاق مفهوم، لا حين يفرض رأياً لا يحتمل الرد.",
+      "energyPsychology": "تستفيد طاقة الكلام من بنية مختصرة وثابتة، وتفقد أثرها حين تتحول كل محادثة إلى تعليمات.",
+      "emotionsPsychology": "يشعر الداخل بالأمان مع صراحة تحترم الطرفين؛ أما الحزم المنفرد فيترك شعوراً بالمسافة."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يحمي الإمبراطور العلاقة بالثبات والوفاء للاتفاق، ويحتاج قلبه إلى أن يعلن المودة لا أن يفترض أن المسؤولية تكفي لإظهارها.",
+      "energyPsychology": "تتعزز الطاقة العاطفية بالحدود الواضحة والأفعال الموثوقة، وتضعف عندما يصبح النظام بديلاً عن التبادل الوجداني.",
+      "emotionsPsychology": "يهدأ الداخل مع أمان يجمع الوضوح والدفء؛ الصرامة وحدها تبني جداراً لا ملاذاً."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يبني الإمبراطور مكانته من نظام واضح ومسؤولية يمكن الرجوع إليها؛ قوته في تثبيت القرار لا في إخضاع كل من حوله.",
+      "energyPsychology": "تنتظم طاقته حين تتحول السلطة إلى بنية تحمي العمل، وتستنزف حين يصبح التحكم غاية مستقلة عن النتيجة.",
+      "emotionsPsychology": "يصبح الأمان الداخلي أعمق عندما يسمح الحزم بإظهار الخطأ والتعديل، لا عندما يخفي الهشاشة خلف الأوامر."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }
