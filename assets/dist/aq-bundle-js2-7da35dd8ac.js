@@ -3696,14 +3696,23 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const ps = [].filter.call(bd.querySelectorAll("p"), p => !p.closest(".sg-meta,.sgs-qdock,.sg-deep") && p.textContent.trim().length > 1);
     if (ps.length < 2) return;
     const lead = ps[0]; lead.classList.add("sg-lead");
-    const det = document.createElement("details"); det.className = "sg-deep";
-    det.innerHTML = '<summary><span>تعمّق في القراءة</span><i aria-hidden="true"></i></summary><div class="sg-deep-b"></div>';
-    const box = det.querySelector(".sg-deep-b"); const first = ps[1];
+    const wrap = document.createElement("div"); wrap.className = "sg-trm";
+    wrap.innerHTML = '<button type="button" class="sg-trm-b" aria-expanded="false"><span>تعمّق في القراءة كاملة</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="sg-trm-full" hidden></div>';
+    const full = wrap.querySelector(".sg-trm-full"); const first = ps[1];
     let n = first; const moved = [];
     while (n) { const nx = n.nextSibling; if (n.nodeType === 1 && n.classList && n.classList.contains("sgs-qdock")) break; moved.push(n); n = nx; }
-    first.parentNode.insertBefore(det, first);
-    moved.forEach(m => box.appendChild(m));
+    first.parentNode.insertBefore(wrap, first);
+    moved.forEach(m => full.appendChild(m));
   }
+  /* زر «تعمّق»: يفتح النص تحته، ويهبط الزر بعد النص، وعند الإغلاق يرجع مكانه (نفس سلوك نافذة السماء) */
+  document.addEventListener("click", function (e) {
+    const b = e.target.closest && e.target.closest(".sg-trm-b"); if (!b) return;
+    const wrap = b.parentNode, full = wrap.querySelector(".sg-trm-full"); if (!full) return;
+    const open = full.hidden; full.hidden = !open;
+    b.setAttribute("aria-expanded", String(open));
+    b.querySelector("span").textContent = open ? "إخفاء التفاصيل" : "تعمّق في القراءة كاملة";
+    if (open) wrap.appendChild(b); else wrap.insertBefore(b, full);
+  });
   function sgFill() {
     const it = sgList[sgIdx];
     sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3></div></header><div class="sg-sh-bd sign-detail">${(it.span || it.sub) ? `<div class="sg-meta">${it.span ? `<p class="sg-span"><i aria-hidden="true">${SG_CLOCK}</i><span>${it.span}</span></p>` : ""}${it.sub ? `<p class="sg-hs"><i aria-hidden="true"></i><span>${it.sub}</span></p>` : ""}${it.nxt ? `<p class="sg-nx">${it.nxt}</p>` : ""}</div>` : ""}${it.html}${it.q ? `<div class="sgs-qdock"><i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p></div>` : ""}</div>`;
