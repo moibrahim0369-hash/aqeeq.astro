@@ -33,7 +33,7 @@ function body(s,closing=false){
   return {title:clean(title.split(':').slice(1).join(':')||title),paragraphs,action:field(s,'خطوتك'),question:field(s,'سؤالك'),dialogue:clean(inner||''),axis:clean(axis),...(sections.length?{sections,introParagraphs}:{})};
 }
 const lex=JSON.parse(read('lexicon/lexicon.json'));
-const data={version:1,templates:{},lordship:{},closing:[],dasha:[],topics:{}};
+const data={version:1,templates:{},lordship:{},closing:[],dasha:[],topics:{},closingMeta:[]};
 const audit={templates:0,closing:0,dasha:0,sources:[],lexiconFiles:lex.files.length};
 for(const k of planets){
   const file='library-2027/'+k+'-templates.md',raw=read(file);
@@ -54,6 +54,8 @@ for(const k of planets){
 for(let i=1;i<=12;i++){
   const raw=read('closing-2026-2027/lagnas/lagna-'+String(i).padStart(2,'0')+'.md');
   const sections=raw.split(/^## \d+\. [^\n]*\n/gm).slice(1);
+  const retrospective=/^# مراجعة 2026/m.test(raw);
+  if(retrospective){const facts=JSON.parse(read('closing-2026-2027/year2026-engine.json'));data.closingMeta[i-1]={year:2026,s:Date.UTC(2025,11,31,22),e:Date.UTC(2026,11,31,22),houses:Object.fromEntries(['saturn','jupiter','rahu','mars','mercury'].map(k=>[k,[...new Set(facts.segments[k].map(x=>(x.sign-(i-1)+12)%12+1))]]))};}
   if(sections.length!==5)throw new Error('Incomplete closing '+i);
   data.closing.push(sections.map(s=>{
     const scene=(s.match(/\*\*الواقع النفسي واليومي:\*\*([\s\S]*?)\*\*الحوار الداخلي:/)||[])[1]||'';

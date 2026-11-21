@@ -25,7 +25,9 @@ export function reportFor(input,lib,ephem){
   return {jde:jd+Astro.deltaT(Astro.yearOf(jd))/86400,bodies:ephem.keys.filter(k=>k!=='ketu').map(k=>{const j=ephem.keys.indexOf(k);return {key:k==='rahu'?'node':k,lon:norm(a[j]+delta(b[j],a[j])*f)};})};
  }};
  const R=C.compute(natal,E,{dashas,antars}),events=C.timeline(R),keys=['saturn','jupiter','rahu','mars','mercury'];
- const closing=lib.closing[R.lagna].map((text,i)=>({planet:keys[i],s:C.START,e:C.SPLIT,house:R.segs[keys[i]][0].house,houses:[...new Set(R.segs[keys[i]].filter(s=>s.s<C.SPLIT&&s.e>C.START).map(s=>s.house))],text}));
+ const cm=lib.closingMeta?.[R.lagna];
+ const closing=lib.closing[R.lagna].map((text,i)=>({planet:keys[i],s:cm?.s||C.START,e:cm?.e||C.SPLIT,house:R.segs[keys[i]][0].house,houses:[...new Set(R.segs[keys[i]].filter(s=>s.s<C.SPLIT&&s.e>C.START).map(s=>s.house))],text}));
+ if(cm)closing.forEach(x=>{x.houses=cm.houses[x.planet];x.house=x.houses[0];x.year=cm.year;});
  const groups=C.KEYS.map(k=>({planet:k,periods:events.filter(s=>s.planet===k).map(s=>{
   const text=lib.templates[k][s.house-1],lord=lib.lordship[k]?.[R.lagna]||'',topics=k==='jupiter'?C.lordHouses(k,R.lagna).map(h=>lib.topics[h]):[];
   return {...s,text,lord,topics,contacts:R.hits.filter(h=>h.planet===k&&h.t>=s.s&&h.t<s.e)};
