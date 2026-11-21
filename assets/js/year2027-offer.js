@@ -1,13 +1,13 @@
 /* Local annual prices. Geography suggests a market; visitors can always change it. */
 (function(){'use strict';
- var market='EG',manual=false,country=null;
+ var market='EG',manual=false,country=null,located=false;
  var PRICES={EG:{amount:299,minor:29900,currency:'EGP',label:'299 ج.م',product:'year2027_egp_299',title:'مصر'},SA:{amount:39,minor:3900,currency:'SAR',label:'39 ر.س',product:'year2027_sar_39',title:'السعودية'},AE:{amount:39,minor:3900,currency:'AED',label:'39 د.إ',product:'year2027_aed_39',title:'الإمارات'},KW:{amount:3.5,minor:3500,currency:'KWD',label:'3.5 د.ك',product:'year2027_kwd_3_5',title:'الكويت'},QA:{amount:39,minor:3900,currency:'QAR',label:'39 ر.ق',product:'year2027_qar_39',title:'قطر'},BH:{amount:4,minor:4000,currency:'BHD',label:'4 د.ب',product:'year2027_bhd_4',title:'البحرين'},OM:{amount:4,minor:4000,currency:'OMR',label:'4 ر.ع',product:'year2027_omr_4',title:'عمان'},INT:{amount:14.99,minor:1499,currency:'USD',label:'14.99 $',product:'year2027_usd_14_99',title:'أمريكا وأوروبا / دول أخرى'}};
- try{market=localStorage.getItem('aq-year2027-market')||'EG';manual=localStorage.getItem('aq-year2027-market-manual')==='1';}catch(_){}if(!PRICES[market])market='EG';
+ try{market=localStorage.getItem('aq-year2027-market')||'EG';manual=localStorage.getItem('aq-year2027-market-manual')==='1';located=manual;}catch(_){}if(!PRICES[market])market='EG';
  var SETTLE={SA:10.40,AE:10.62,KW:11.33,QA:10.71,BH:10.64,OM:10.40};Object.keys(SETTLE).forEach(k=>{PRICES[k].settlement=SETTLE[k];PRICES[k].product='year2027_usd_'+k.toLowerCase();});
  function price(){return PRICES[market];}
- function setMarket(m,auto){market=PRICES[m]?m:'EG';if(!auto)manual=true;try{localStorage.setItem('aq-year2027-market',market);if(!auto)localStorage.setItem('aq-year2027-market-manual','1');}catch(_){}window.dispatchEvent(new CustomEvent('aq-year2027-market'));}
- function applyCountry(c){if(!/^[A-Z]{2}$/.test(c))return;country=c;if(!manual)setMarket(PRICES[c]?c:'INT',true);}
+ function setMarket(m,auto){market=PRICES[m]?m:'EG';if(!auto){manual=true;located=true;}try{localStorage.setItem('aq-year2027-market',market);if(!auto)localStorage.setItem('aq-year2027-market-manual','1');}catch(_){}window.dispatchEvent(new CustomEvent('aq-year2027-market'));}
+ function applyCountry(c){if(!/^[A-Z]{2}$/.test(c))return;country=c;located=true;if(!manual)setMarket(PRICES[c]?c:'INT',true);}
  async function locate(){if(manual)return;try{var r=await fetch('https://api.country.is/',{credentials:'omit',referrerPolicy:'no-referrer',signal:AbortSignal.timeout(3500)});if(r.ok){var d=await r.json();applyCountry(d.country);}}catch(_){} }
- function begin(input){try{localStorage.setItem('aq-year2027-last',JSON.stringify(input));sessionStorage.setItem('aq-year2027-checkout',JSON.stringify({input:input,market:market,created:Date.now()}));sessionStorage.setItem('aq-pay-product',price().product);}catch(_){}location.hash='#pay';window.dispatchEvent(new Event('aq-year2027-checkout'));}
- window.AqYear2027Offer={price,setMarket,market:()=>market,begin,product:()=>price().product,applyCountry,country:()=>country,isManual:()=>manual,prices:PRICES};locate();
+ async function begin(input){if(!located)await locating;try{localStorage.setItem('aq-year2027-last',JSON.stringify(input));sessionStorage.setItem('aq-year2027-checkout',JSON.stringify({input:input,market:located?market:null,created:Date.now()}));sessionStorage.setItem('aq-pay-product',price().product);}catch(_){}location.hash='#pay';window.dispatchEvent(new Event('aq-year2027-checkout'));}
+ window.AqYear2027Offer={price,setMarket,market:()=>market,begin,product:()=>price().product,applyCountry,country:()=>country,isManual:()=>manual,isLocated:()=>located,prices:PRICES};var locating=locate();
 })();

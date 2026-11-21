@@ -9,7 +9,16 @@
   var STATUS = { pending: 'قيد المراجعة', approved: 'تم التأكيد', rejected: 'مرفوض' };
   var $ = function (id) { return document.getElementById(id); };
   var sb = function () { return window.aqeeqSupabase; };
-  var chosen = 'wallet', busy = false;
+  var chosen = 'wallet', busy = false, methodsExpanded = false;
+  function filterMethods() {
+    var o=window.AqYear2027Offer;if(!o)return;
+    var eg=o.market()==='EG',known=o.isLocated?o.isLocated():true;
+    if(!methodsExpanded&&known&&((eg&&chosen==='paypal')||(!eg&&chosen!=='paypal')))chosen=eg?'wallet':'paypal';
+    document.querySelectorAll('#pay [data-pm]').forEach(function(b){b.hidden=!methodsExpanded&&known&&(eg?b.dataset.pm==='paypal':b.dataset.pm!=='paypal');});
+    var other=$('pay-other-methods');if(!other){other=document.createElement('button');other.type='button';other.id='pay-other-methods';other.className='pay-other';document.querySelector('#pay-main>.pay-methods').after(other);other.onclick=function(){methodsExpanded=!methodsExpanded;filterMethods();renderMethod();};}
+    other.textContent=methodsExpanded?'عرض الوسائل المناسبة لبلدي فقط':'أحتاج وسيلة أخرى';
+    renderMethod();
+  }
 
   function say(id, t, ok) { var e = $(id); if (!e) return; e.hidden = !t; e.textContent = t || ''; e.classList.toggle('ok', !!ok); }
   function fmtPrice(c, cur) { return (c / 100) + ' ' + (cur === 'EGP' ? 'ج.م' : cur); }
@@ -55,7 +64,7 @@
     sb().auth.getSession().then(function (r) {
       var signed = !!(r && r.data && r.data.session);
       $('pay-guest').hidden = signed; $('pay-main').hidden = !signed;
-      if (signed) { loadPrice(); loadMine(); }
+      if (signed) { filterMethods(); loadPrice(); loadMine(); }
     });
   }
 
@@ -123,6 +132,8 @@
     $('pay-form').addEventListener('submit', submit);
     $('pay-copy').addEventListener('click', copyNum);
     renderMethod();
+    filterMethods();
+    window.addEventListener('aq-year2027-market',filterMethods);
     window.addEventListener('hashchange', function () { refresh(); loadAdmin(); });
     /* عميل Supabase يُعرَّف من وحدة module قد تتأخر عن هذا السكربت */
     var tries = 0, t = setInterval(function () {
