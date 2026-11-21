@@ -1,0 +1,5 @@
+
+# Private paid library is stored server-side only.
+content-sources/
+*year2027-content.json
+**/sources.json
