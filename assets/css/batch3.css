@@ -339,7 +339,7 @@ html.aq-review-open body #year2027 .y27-unlock{display:none}
 #year2027 .y27-buyb .y27-buy{white-space:nowrap;border-color:#E9CE8E;background:linear-gradient(135deg,#C8A15A,#A87F3D);color:#3A0E1C}
 @media(max-width:430px){#year2027 .y27-buyb{flex-wrap:wrap;justify-content:center;text-align:center}#year2027 .y27-buyb-t{flex:1 1 100%;order:-1}}
 #year2027 .y27-ghost{background:transparent;color:var(--b3-wine);border-color:var(--b3-gold)}
-#year2027.y27-has .wrap > .y27-intro{display:none}
+#year2027.y27-has .wrap > .y27-intro{display:none!important}
 /* رتوش صفحة الإدخال: ضغطة خفيفة للأزرار، توهج ذهبي للحقل النشط، حالة تحميل، وطي كروت الشرح على الموبايل */
 #year2027 .y27-form .btn{transition:transform .12s ease,box-shadow .2s ease}
 #year2027 .y27-form .btn:active{transform:scale(.965)}
