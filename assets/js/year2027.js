@@ -186,7 +186,7 @@
     var v = $('#y27-date').value; if (!v) { say('اكتب تاريخ ميلادك كاملًا.'); return; }
     var p = v.split('-').map(Number), hh = 12, mm = 0;
     if (!unk.checked) { if (!time.value) { say('اكتب وقت ميلادك أو علّم «لا أعرف وقت ميلادي».'); return; } var t = time.value.split(':').map(Number); hh = t[0]; mm = t[1]; }
-    var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.classList.add('is-loading');
     setTimeout(function () {
       try {
         if (!window.AqEam || !window.AqVedic) throw new Error('الحساب لم يحمّل بعد، أعد المحاولة بعد لحظة.');
@@ -221,10 +221,16 @@
         $('#y27-name-print').textContent = name || '';
         try { sec.scrollTo({ top: 0 }); } catch (x) { sec.scrollTop = 0; }
       } catch (x) { say(x && x.message || 'تعذر حساب القراءة. راجع البيانات.'); }
-      btn.disabled = false;
+      btn.disabled = false; btn.classList.remove('is-loading');
     }, 30);
   });
   function editBack() { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); try { sec.scrollTo({ top: 0 }); } catch (x) {} }
   var y27ed = $('#y27-edit'); if (y27ed) y27ed.addEventListener('click', editBack);
+  /* طي كروت الشرح التلاتة على الموبايل فقط، وتفتح بالضغط */
+  var exs = sec.querySelectorAll('.y27-explain .y27-ex');
+  var mmq = window.matchMedia ? window.matchMedia('(max-width:640px)') : null;
+  function foldInit() { var on = !!(mmq && mmq.matches); for (var i = 0; i < exs.length; i++) { exs[i].classList.toggle('y27-fold', on); if (!on) exs[i].classList.remove('open'); } }
+  for (var xi = 0; xi < exs.length; xi++) exs[xi].addEventListener('click', function () { if (this.classList.contains('y27-fold')) this.classList.toggle('open'); });
+  if (mmq) { foldInit(); if (mmq.addEventListener) mmq.addEventListener('change', foldInit); }
   window.AqYear2027 = { compute: compute };
 })();

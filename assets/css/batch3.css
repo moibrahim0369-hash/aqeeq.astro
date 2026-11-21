@@ -340,6 +340,21 @@ html.aq-review-open body #year2027 .y27-unlock{display:none}
 @media(max-width:430px){#year2027 .y27-buyb{flex-wrap:wrap;justify-content:center;text-align:center}#year2027 .y27-buyb-t{flex:1 1 100%;order:-1}}
 #year2027 .y27-ghost{background:transparent;color:var(--b3-wine);border-color:var(--b3-gold)}
 #year2027.y27-has .wrap > .y27-intro{display:none}
+/* رتوش صفحة الإدخال: ضغطة خفيفة للأزرار، توهج ذهبي للحقل النشط، حالة تحميل، وطي كروت الشرح على الموبايل */
+#year2027 .y27-form .btn{transition:transform .12s ease,box-shadow .2s ease}
+#year2027 .y27-form .btn:active{transform:scale(.965)}
+#year2027 .y27-form :is(input,select){transition:box-shadow .2s ease,border-color .2s ease}
+#year2027 .y27-form :is(input,select):focus{border-color:#C8A15A;box-shadow:0 0 0 3px rgba(200,161,90,.28);outline:none}
+#year2027 .y27-form button[type=submit].is-loading{position:relative;color:transparent!important;pointer-events:none}
+#year2027 .y27-form button[type=submit].is-loading::after{content:"";position:absolute;inset:0;margin:auto;width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(233,206,142,.35);border-top-color:#E9CE8E;animation:y27spin .7s linear infinite}
+@keyframes y27spin{to{transform:rotate(360deg)}}
+@media(max-width:640px){
+#year2027 .y27-ex.y27-fold{cursor:pointer;position:relative;padding-left:34px}
+#year2027 .y27-ex.y27-fold p{display:none}
+#year2027 .y27-ex.y27-fold.open p{display:block}
+#year2027 .y27-ex.y27-fold::after{content:"";position:absolute;left:14px;top:20px;width:8px;height:8px;border-left:2px solid #A87F3D;border-bottom:2px solid #A87F3D;transform:rotate(-45deg);transition:transform .2s ease}
+#year2027 .y27-ex.y27-fold.open::after{transform:rotate(135deg)}
+}
 #year2027 .y27-rintro{text-align:center;margin:2px 0 14px}
 #year2027 .y27-rintro .eyebrow{display:block;font-size:13px;color:#9A7424;letter-spacing:.3px;margin-bottom:4px}
 #year2027 .y27-rintro h2{margin:0;color:var(--b3-wine);line-height:1.3}

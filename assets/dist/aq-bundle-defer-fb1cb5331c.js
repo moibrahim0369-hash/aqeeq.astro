@@ -2579,6 +2579,8 @@
     var cityC = cityO ? cityO.textContent.trim() : '';
     var timeV = ($('#y27-time') || {}).value || '';
     var timeC = (unk && unk.checked) ? 'وقت الميلاد غير معروف' : timeV;
+    /* عنوان عرض النتيجة: يظهر بعد إدخال البيانات فقط */
+    h += '<div class="y27-rintro"><span class="eyebrow">من علم الفلك الفيدي</span><h2>ما تخفيه الكواكب عنك في 2027</h2></div>';
     /* البانر العنابي: نفس لغة بانر مصفوفة القدر */
     h += '<header class="y27-banner"><span class="y27b-k">قراءة سنة 2027 · فلك فيدي</span>' +
       '<div class="y27b-id"><span class="y27b-n">27</span><span class="y27b-cap"><small>سنتك كما تراها الكواكب</small><b>' + esc(disp) + '</b></span></div>' +
@@ -2638,7 +2640,7 @@
     var v = $('#y27-date').value; if (!v) { say('اكتب تاريخ ميلادك كاملًا.'); return; }
     var p = v.split('-').map(Number), hh = 12, mm = 0;
     if (!unk.checked) { if (!time.value) { say('اكتب وقت ميلادك أو علّم «لا أعرف وقت ميلادي».'); return; } var t = time.value.split(':').map(Number); hh = t[0]; mm = t[1]; }
-    var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true; btn.classList.add('is-loading');
     setTimeout(function () {
       try {
         if (!window.AqEam || !window.AqVedic) throw new Error('الحساب لم يحمّل بعد، أعد المحاولة بعد لحظة.');
@@ -2673,23 +2675,17 @@
         $('#y27-name-print').textContent = name || '';
         try { sec.scrollTo({ top: 0 }); } catch (x) { sec.scrollTop = 0; }
       } catch (x) { say(x && x.message || 'تعذر حساب القراءة. راجع البيانات.'); }
-      btn.disabled = false;
+      btn.disabled = false; btn.classList.remove('is-loading');
     }, 30);
   });
   function editBack() { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); try { sec.scrollTo({ top: 0 }); } catch (x) {} }
   var y27ed = $('#y27-edit'); if (y27ed) y27ed.addEventListener('click', editBack);
-  /* قفل الصفحة على المسجلين: نفس نمط صفحة الدفع (AqSession + حدث aq:session) */
-  var guest = $('#y27-guest');
-  function gate() {
-    var S = window.AqSession; if (!S || !S.known) return;
-    var in_ = !!S.user;
-    if (guest) guest.hidden = in_;
-    if (form) form.hidden = !in_;
-    var ex = sec.querySelector('.y27-explain'); if (ex) ex.hidden = !in_;
-    if (!in_) { out.hidden = true; out.innerHTML = ''; sec.classList.remove('y27-has'); }
-  }
-  document.addEventListener('aq:session', gate);
-  gate();
+  /* طي كروت الشرح التلاتة على الموبايل فقط، وتفتح بالضغط */
+  var exs = sec.querySelectorAll('.y27-explain .y27-ex');
+  var mmq = window.matchMedia ? window.matchMedia('(max-width:640px)') : null;
+  function foldInit() { var on = !!(mmq && mmq.matches); for (var i = 0; i < exs.length; i++) { exs[i].classList.toggle('y27-fold', on); if (!on) exs[i].classList.remove('open'); } }
+  for (var xi = 0; xi < exs.length; xi++) exs[xi].addEventListener('click', function () { if (this.classList.contains('y27-fold')) this.classList.toggle('open'); });
+  if (mmq) { foldInit(); if (mmq.addEventListener) mmq.addEventListener('change', foldInit); }
   window.AqYear2027 = { compute: compute };
 })();
 
