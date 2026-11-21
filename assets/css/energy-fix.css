@@ -303,3 +303,24 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 #astro-maps .vpd-list time small{display:block;direction:ltr;text-align:right;color:#8b796a;font-size:12px;letter-spacing:.04em}
 #astro-maps .vpd-period-head{flex-wrap:wrap}
 #astro-maps .vpd-number{flex:0 0 25px}
+
+/* Advanced Vedic cards, scoped to the charts section. */
+#astro-maps .vad { color:#6d5c50; line-height:1.9; min-width:0; }
+#astro-maps .vad label { display:block; color:#5a1828; font-weight:700; }
+#astro-maps .vad select,#astro-maps .vad input { display:block; width:100%; min-width:0; box-sizing:border-box; padding:12px; margin:7px 0 18px; border:1px solid #e5cfa4; border-radius:16px; background:#fffaf1; color:#681d38; font:inherit; }
+#astro-maps .vad .vad-lead { margin-top:0; }
+#astro-maps .vad-signs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:20px 0; }
+#astro-maps .vad-signs article { display:flex; flex-direction:column; align-items:center; gap:5px; padding:14px 6px; border:1px solid #e9d9b9; border-radius:23px; background:linear-gradient(145deg,#fffdf8,#f5eddf); box-shadow:0 5px 0 #eddfc5,0 9px 16px #6a4c2210; min-width:0; }
+#astro-maps .vad-signs b { font-size:25px; color:#78253e; }
+#astro-maps .vad-signs small { font-size:11px; color:#958270; }
+#astro-maps .vad-note { font-size:12px; color:#927f6e; margin:18px 0; }
+#astro-maps .vad-total { color:#6b213b; text-align:center; font-weight:800; }
+#astro-maps .vad-warning { border:1px solid #dac295; border-radius:16px; background:#f5ead3; padding:16px; color:#764b30; }
+#astro-maps .vad-scroll { overflow-x:auto; max-width:100%; border:1px solid #e8d4af; border-radius:18px; margin:16px 0; }
+#astro-maps .vad-scroll table { border-collapse:collapse; width:100%; min-width:680px; background:#fffaf2; font-size:12px; }
+#astro-maps .vad-scroll th,#astro-maps .vad-scroll td { text-align:center; padding:10px 7px; border-bottom:1px solid #eddfc7; white-space:nowrap; }
+#astro-maps .vad-scroll th { color:#70253a; background:#f6eddd; }
+#astro-maps .vad h5 { color:#70253a; margin:24px 0 10px; font-size:16px; }
+#astro-maps .vad button { background:#70253a; color:#fff7e9; border:1px solid #b18c54; border-radius:17px; padding:12px 18px; font:inherit; cursor:pointer; }
+#astro-maps .vad select:focus-visible,#astro-maps .vad input:focus-visible,#astro-maps .vad button:focus-visible,#astro-maps .vad-scroll:focus-visible { outline:2px solid #ae8441; outline-offset:3px; }
+@media(max-width:600px) { #astro-maps .vad-signs { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; } }
