@@ -237,7 +237,15 @@
   function siderealChart(natal){
     const offset=ayanamsa(natal.ch.jde),ch={...natal.ch,ayanamsa:offset,sidereal:true};
     ch.bodies=natal.ch.bodies.map(b=>({...b,lon:norm(b.lon-offset),sign:Math.floor(norm(b.lon-offset)/30)}));
-    if(ch.known){ch.asc=norm(ch.asc-offset);ch.mc=norm(ch.mc-offset);ch.cusps=ch.cusps.map(x=>norm(x-offset));}
+    if(ch.known){
+      ch.asc=norm(ch.asc-offset);ch.mc=norm(ch.mc-offset);
+      if(ch.hs==='whole'||ch.hs==='whole-fallback'){
+        // Whole-sign boundaries belong to the new zodiac, not rotated tropical cusps.
+        const start=Math.floor(ch.asc/30)*30;
+        ch.cusps=Array.from({length:12},(_,i)=>norm(start+30*i));
+        ch.bodies.forEach(b=>{b.house=Astro.houseOf(b.lon,ch.cusps);});
+      }else ch.cusps=ch.cusps.map(x=>norm(x-offset));
+    }
     return ch;
   }
   function renderChart(result,title,subtitle,ch,extraHTML='',aspects=[]){
