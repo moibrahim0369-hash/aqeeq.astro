@@ -1,6 +1,6 @@
 {
   "templates": 108,
-  "closing": 60,
+  "closing": 48,
   "dasha": 9,
   "sources": [
     "library-2027/saturn-templates.md",
@@ -14,5 +14,5 @@
     "library-2027/mercury-templates.md"
   ],
   "lexiconFiles": 108,
-  "revision": "adc67b5050527492"
+  "revision": "f9b183834cf8600c"
 }

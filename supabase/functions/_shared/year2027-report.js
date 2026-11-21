@@ -26,8 +26,8 @@ export function reportFor(input,lib,ephem){
  }};
  const R=C.compute(natal,E,{dashas,antars}),events=C.timeline(R),keys=['saturn','jupiter','rahu','mars','mercury'];
  const cm=lib.closingMeta?.[R.lagna];
- const closing=lib.closing[R.lagna].map((text,i)=>({planet:keys[i],s:cm?.s||C.START,e:cm?.e||C.SPLIT,house:R.segs[keys[i]][0].house,houses:[...new Set(R.segs[keys[i]].filter(s=>s.s<C.SPLIT&&s.e>C.START).map(s=>s.house))],text}));
- if(cm)closing.forEach(x=>{x.houses=cm.houses[x.planet];x.house=x.houses[0];x.year=cm.year;});
+ const texts=lib.closing[R.lagna],compact=texts.length===4;
+ const closing=texts.map((text,i)=>{const planet=keys[i],combined=compact&&i===3,hs=combined?[]:cm?.houses?.[planet]||[...new Set(R.segs[planet].filter(s=>s.s<C.SPLIT&&s.e>C.START).map(s=>s.house))];return {planet,s:cm?.s||C.START,e:cm?.e||C.SPLIT,house:hs[0]||null,houses:hs,text,...(combined?{combined:true}:{}),...(cm?{year:cm.year}:{})};});
  const groups=C.KEYS.map(k=>({planet:k,periods:events.filter(s=>s.planet===k).map(s=>{
   const text=lib.templates[k][s.house-1],lord=lib.lordship[k]?.[R.lagna]||'',topics=k==='jupiter'?C.lordHouses(k,R.lagna).map(h=>lib.topics[h]):[];
   return {...s,text,lord,topics,contacts:R.hits.filter(h=>h.planet===k&&h.t>=s.s&&h.t<s.e)};

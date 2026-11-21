@@ -52,15 +52,18 @@ for(const k of planets){
   }
 }
 for(let i=1;i<=12;i++){
-  const raw=read('closing-2026-2027/lagnas/lagna-'+String(i).padStart(2,'0')+'.md');
+  const raw=read('closing-2026-2027/lagnas/lagna-'+String(i).padStart(2,'0')+'.md').replace(/<!--[\s\S]*?-->/g,'');
   const sections=raw.split(/^## \d+\. [^\n]*\n/gm).slice(1);
-  const retrospective=/^# مراجعة 2026/m.test(raw);
+  const retrospective=/^# (?:مراجعة|ملخص) 2026/m.test(raw);
+  const closingTitles=[...raw.matchAll(/^## \d+\. (.+)$/gm)].map(x=>x[1]);
   if(retrospective){const facts=JSON.parse(read('closing-2026-2027/year2026-engine.json'));data.closingMeta[i-1]={year:2026,s:Date.UTC(2025,11,31,22),e:Date.UTC(2026,11,31,22),houses:Object.fromEntries(['saturn','jupiter','rahu','mars','mercury'].map(k=>[k,[...new Set(facts.segments[k].map(x=>(x.sign-(i-1)+12)%12+1))]]))};}
-  if(sections.length!==5)throw new Error('Incomplete closing '+i);
-  data.closing.push(sections.map(s=>{
+  if(sections.length<1)throw new Error('Empty closing '+i);
+  if(sections.length>5)throw new Error('Unexpected closing structure '+i);
+  if(retrospective)data.closingMeta[i-1].count=sections.length;
+  data.closing.push(sections.map((s,idx)=>{
     const scene=(s.match(/\*\*الواقع النفسي واليومي:\*\*([\s\S]*?)\*\*الحوار الداخلي:/)||[])[1]||'';
     const b=body(s,true);if(!b.sections){const bullets=scene.split('\n').map(x=>x.trim()).filter(x=>x.startsWith('- '));b.paragraphs=bullets.map(withoutDates);if(bullets.some(x=>/^- \*\*/.test(x))){b.introParagraphs=[];b.sections=[];for(const raw of bullets){const m=raw.match(/^- \*\*([^*]+)\*\*\s*(.*)$/);if(m)b.sections.push({heading:withoutDates(m[1]).replace(/:$/,''),paragraphs:[withoutDates(m[2])]});else b.introParagraphs.push(withoutDates(raw));}b.paragraphs=[...b.introParagraphs,...b.sections.flatMap(x=>x.paragraphs)];}}
-    b.action=withoutDates(b.action);b.question=withoutDates(b.question);audit.closing++;return b;
+    b.title=b.title||clean(closingTitles[idx]);b.action=withoutDates(b.action);b.question=withoutDates(b.question);audit.closing++;return b;
   }));
 }
 const lordOrder=['ketu','venus','sun','moon','mars','rahu','jupiter','saturn','mercury'];
