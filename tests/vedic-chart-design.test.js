@@ -1,6 +1,6 @@
 'use strict';
 const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
-const box={window:{}};vm.createContext(box);vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/js/vedic-chart.js'),'utf8'),box);const VC=box.window.AqVedicChart;
+const box={window:{addEventListener(){}},document:{addEventListener(){},querySelectorAll(){return []},getElementById(){return {}},body:{}},MutationObserver:class{observe(){}}};vm.createContext(box);vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets/js/vedic-chart.js'),'utf8'),box);const VC=box.window.AqVedicChart;
 test('all 12 ascending signs keep fixed houses, Arabic names, sign glyphs and their sign-based fills',()=>{
  for(let lagna=0;lagna<12;lagna++){
   const m={n:9,lagna,basis:'asc',items:[]},s=VC.svg(m,'الخريطة');assert.equal((s.match(/class="vc-house"/g)||[]).length,12);assert.equal((s.match(/class="vc-sign-label"/g)||[]).length,12);

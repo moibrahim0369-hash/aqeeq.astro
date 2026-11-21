@@ -1858,7 +1858,7 @@
         '<p class="vc-intro"><b>' + esc(v[1] + ' · ' + v[2]) + '</b> <small class="vc-orig">' + esc(ORIG[cur] || '') + '</small><br>' + esc(v[3]) + '</p>' +
         '<div class="vc-styles" role="group" aria-label="شكل الرسم"><button type="button" class="vc-st' + (style === 'n' ? ' on' : '') + '" data-s="n">شمالي</button><button type="button" class="vc-st' + (style === 's' ? ' on' : '') + '" data-s="s">جنوبي</button></div>' +
         '<div class="vc-chartwrap">' + (style === 's' ? svgSouth(map, title) : svg(map, title)) + '</div>' +
-        '<p class="vc-note">' + esc(note) + (style === 's' ? ' في الرسم الجنوبي كل برج له مكان ثابت (الحمل ثاني خانة في الصف الأعلى) ويمضي الترتيب مع عقارب الساعة، والخط المائل يعلّم خانة الطالع. ℞ يعني راجع.' : ' الأرقام الذهبية أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. ℞ يعني راجع.') + '</p>' +
+        '<p class="vc-note">' + esc(note) + (style === 's' ? ' في الرسم الجنوبي كل برج له مكان ثابت (الحمل ثاني خانة في الصف الأعلى) ويمضي الترتيب مع عقارب الساعة، والخط المائل يعلّم خانة الطالع. ℞ يعني راجع.' : ' الأرقام داخل الخانات أرقام البروج (1 الحمل ... 12 الحوت)، والبيت 1 في الأعلى ويمضي الترتيب عكس عقارب الساعة. تدرجات الخانات تميّز عناصر الأبراج وليست حكمًا على قوة الكواكب. ℞ يعني راجع.') + '</p>' +
         '<p class="vc-key"><i class="vc-t-n">نور</i><i class="vc-t-s">ظل</i><i class="vc-t-g">الشمس</i><i class="vc-t-l">الطالع</i></p><ul class="vc-rows">' + houseRows(map) + '</ul>' + extras(map) +
         (sig ? '<p class="vc-sig">' + esc(sig.name) + ' الدال هنا في ' + SG[sig.sign] + ' (البيت ' + (sig.house + 1) + ').</p>' : '');
       host.querySelectorAll('.vc-st').forEach(function (b) { b.addEventListener('click', function () { style = b.dataset.s; try { localStorage.setItem('aq-vedic-style', style); } catch (e) {} draw(); }); });
@@ -1867,6 +1867,44 @@
     host.__draw = draw;
     draw();
   }
+  /* عرض مكبّر متاح بلوحة المفاتيح واللمس، بلا تغيير في بيانات الرسم. */
+  var viewer=null,viewerOrigin=null,viewerScale=1;
+  function ensureViewer() {
+    if(viewer)return;
+    viewer=document.createElement('dialog');viewer.className='vc-viewer';viewer.setAttribute('aria-labelledby','vc-viewer-title');
+    viewer.innerHTML='<div class="vc-viewer-head"><h2 id="vc-viewer-title">الخريطة المكبّرة</h2><button type="button" data-vc-close aria-label="إغلاق الخريطة المكبّرة">إغلاق</button></div><div class="vc-viewer-tools"><button type="button" data-vc-zoom="-1" aria-label="تصغير">−</button><output aria-live="polite">100%</output><button type="button" data-vc-zoom="1" aria-label="تكبير">+</button><button type="button" data-vc-fit>ملاءمة الشاشة</button></div><p class="vc-viewer-hint">كبّر الخريطة ثم مرّر داخلها لقراءة التفاصيل.</p><div class="vc-viewer-pan" tabindex="0" aria-label="مساحة الخريطة، مرّر لرؤية التفاصيل"><div class="vc-viewer-art"></div></div>';
+    document.body.appendChild(viewer);
+    viewer.addEventListener('click',function(e){
+      if(e.target.closest('[data-vc-close]')||e.target===viewer){viewer.close();return;}
+      var z=e.target.closest('[data-vc-zoom]');
+      if(z){viewerScale=Math.max(1,Math.min(3,viewerScale+Number(z.dataset.vcZoom)*.5));resizeViewer();}
+      if(e.target.closest('[data-vc-fit]')){viewerScale=1;resizeViewer();}
+    });
+    viewer.addEventListener('close',function(){document.documentElement.classList.remove('vc-viewer-open');if(viewerOrigin&&viewerOrigin.isConnected)viewerOrigin.focus({preventScroll:true});viewer.querySelector('.vc-viewer-art').replaceChildren();});
+  }
+  function resizeViewer(){
+    var pan=viewer.querySelector('.vc-viewer-pan'),art=viewer.querySelector('.vc-viewer-art');
+    art.style.width=Math.round(Math.min(820,pan.clientWidth)*viewerScale)+'px';
+    viewer.querySelector('output').textContent=Math.round(viewerScale*100)+'%';
+    viewer.querySelector('[data-vc-zoom="-1"]').disabled=viewerScale===1;
+    viewer.querySelector('[data-vc-zoom="1"]').disabled=viewerScale===3;
+  }
+  function enhanceCharts(){
+    document.querySelectorAll('#astro-maps .vc-chartwrap,#astro-maps .vyr-chart').forEach(function(w){
+      if(w.querySelector('.vc-expand'))return;
+      var b=document.createElement('button');b.type='button';b.className='vc-expand';b.textContent='تكبير الخريطة';b.setAttribute('aria-haspopup','dialog');w.appendChild(b);
+    });
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.vc-expand');if(!b)return;
+    var chart=b.parentElement.querySelector('.vc-svg');if(!chart)return;
+    ensureViewer();viewerOrigin=b;viewerScale=1;viewer.querySelector('.vc-viewer-art').replaceChildren(chart.cloneNode(true));
+    viewer.querySelector('h2').textContent=chart.getAttribute('aria-label')||'الخريطة المكبّرة';
+    viewer.showModal();document.documentElement.classList.add('vc-viewer-open');resizeViewer();viewer.querySelector('[data-vc-close]').focus();
+  });
+  new MutationObserver(enhanceCharts).observe(document.getElementById('astro-maps')||document.body,{childList:true,subtree:true});
+  window.addEventListener('resize',function(){if(viewer&&viewer.open)resizeViewer();});
+  enhanceCharts();
   window.AqVedicChart = { mount: mount, build: build, svg: svg, VARGAS: VARGAS, PL: PL, svgSouth: svgSouth, codesFor: codesFor };
 })();
 

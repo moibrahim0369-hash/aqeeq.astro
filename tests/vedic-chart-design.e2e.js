@@ -20,6 +20,13 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8777',root=path.join(__dirnam
   for(const width of [320,390,1280]){
    await page.setViewportSize({width,height:width>600?900:844});await chart.scrollIntoViewIfNeeded();
    await page.screenshot({path:'/downloads/vedic-design-'+tile.replace(':','-')+'-'+width+'.png'});
+   const expand=chart.locator('..').locator('.vc-expand');await expand.click();
+   const dialog=page.locator('.vc-viewer');await dialog.waitFor({state:'visible'});
+   assert.equal(await dialog.locator('.vc-svg').count(),1);await dialog.locator('[data-vc-zoom="1"]').click();assert.equal(await dialog.locator('output').textContent(),'150%');
+   await page.screenshot({path:'/downloads/vedic-zoom-'+tile.replace(':','-')+'-'+width+'.png'});
+   await dialog.locator('[data-vc-fit]').click();assert.equal(await dialog.locator('output').textContent(),'100%');
+   await page.keyboard.press('Escape');await dialog.waitFor({state:'hidden'});assert.equal(await expand.evaluate(e=>e===document.activeElement),true);
+   console.log('SIZE',width,await chart.evaluate(e=>({w:e.getBoundingClientRect().width,p:e.parentElement.getBoundingClientRect().width,card:e.closest('.vc-card').getBoundingClientRect().width})));
    const m=await chart.evaluate(e=>({w:e.getBoundingClientRect().width,sw:e.parentElement.scrollWidth,cw:e.parentElement.clientWidth}));assert.ok(m.sw<=m.cw+1,JSON.stringify(m));
   }
   await page.locator('#eam-result .vc-st[data-s="s"]:visible').first().click();assert.equal(await page.locator('#eam-result .vc-north:visible').count(),0);

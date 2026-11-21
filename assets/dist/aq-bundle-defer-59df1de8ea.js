@@ -1867,6 +1867,44 @@
     host.__draw = draw;
     draw();
   }
+  /* عرض مكبّر متاح بلوحة المفاتيح واللمس، بلا تغيير في بيانات الرسم. */
+  var viewer=null,viewerOrigin=null,viewerScale=1;
+  function ensureViewer() {
+    if(viewer)return;
+    viewer=document.createElement('dialog');viewer.className='vc-viewer';viewer.setAttribute('aria-labelledby','vc-viewer-title');
+    viewer.innerHTML='<div class="vc-viewer-head"><h2 id="vc-viewer-title">الخريطة المكبّرة</h2><button type="button" data-vc-close aria-label="إغلاق الخريطة المكبّرة">إغلاق</button></div><div class="vc-viewer-tools"><button type="button" data-vc-zoom="-1" aria-label="تصغير">−</button><output aria-live="polite">100%</output><button type="button" data-vc-zoom="1" aria-label="تكبير">+</button><button type="button" data-vc-fit>ملاءمة الشاشة</button></div><p class="vc-viewer-hint">كبّر الخريطة ثم مرّر داخلها لقراءة التفاصيل.</p><div class="vc-viewer-pan" tabindex="0" aria-label="مساحة الخريطة، مرّر لرؤية التفاصيل"><div class="vc-viewer-art"></div></div>';
+    document.body.appendChild(viewer);
+    viewer.addEventListener('click',function(e){
+      if(e.target.closest('[data-vc-close]')||e.target===viewer){viewer.close();return;}
+      var z=e.target.closest('[data-vc-zoom]');
+      if(z){viewerScale=Math.max(1,Math.min(3,viewerScale+Number(z.dataset.vcZoom)*.5));resizeViewer();}
+      if(e.target.closest('[data-vc-fit]')){viewerScale=1;resizeViewer();}
+    });
+    viewer.addEventListener('close',function(){document.documentElement.classList.remove('vc-viewer-open');if(viewerOrigin&&viewerOrigin.isConnected)viewerOrigin.focus({preventScroll:true});viewer.querySelector('.vc-viewer-art').replaceChildren();});
+  }
+  function resizeViewer(){
+    var pan=viewer.querySelector('.vc-viewer-pan'),art=viewer.querySelector('.vc-viewer-art');
+    art.style.width=Math.round(Math.min(820,pan.clientWidth,pan.clientHeight)*viewerScale)+'px';
+    viewer.querySelector('output').textContent=Math.round(viewerScale*100)+'%';
+    viewer.querySelector('[data-vc-zoom="-1"]').disabled=viewerScale===1;
+    viewer.querySelector('[data-vc-zoom="1"]').disabled=viewerScale===3;
+  }
+  function enhanceCharts(){
+    document.querySelectorAll('#astro-maps .vc-chartwrap,#astro-maps .vyr-chart').forEach(function(w){
+      if(w.querySelector('.vc-expand'))return;
+      var b=document.createElement('button');b.type='button';b.className='vc-expand';b.textContent='تكبير الخريطة';b.setAttribute('aria-haspopup','dialog');w.appendChild(b);
+    });
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('.vc-expand');if(!b)return;
+    var chart=b.parentElement.querySelector('.vc-svg');if(!chart)return;
+    ensureViewer();viewerOrigin=b;viewerScale=1;viewer.querySelector('.vc-viewer-art').replaceChildren(chart.cloneNode(true));
+    viewer.querySelector('h2').textContent=chart.getAttribute('aria-label')||'الخريطة المكبّرة';
+    viewer.showModal();document.documentElement.classList.add('vc-viewer-open');resizeViewer();viewer.querySelector('[data-vc-close]').focus();
+  });
+  new MutationObserver(enhanceCharts).observe(document.getElementById('astro-maps')||document.body,{childList:true,subtree:true});
+  window.addEventListener('resize',function(){if(viewer&&viewer.open)resizeViewer();});
+  enhanceCharts();
   window.AqVedicChart = { mount: mount, build: build, svg: svg, VARGAS: VARGAS, PL: PL, svgSouth: svgSouth, codesFor: codesFor };
 })();
 

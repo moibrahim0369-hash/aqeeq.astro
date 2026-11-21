@@ -346,3 +346,33 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 #astro-maps .vyr input { direction:ltr; text-align:right; }
 #astro-maps .vyr .vad-scroll table { min-width:410px; }
 @media(max-width:600px) { #astro-maps .vyr-aspects,#astro-maps .vyr-candidates { grid-template-columns:1fr; } #astro-maps .vyr-chart { padding:5px; } }
+
+/* الرسم أوضح على الهواتف، وأداة التكبير مشتركة لكل الخرائط. */
+#astro-maps .vc-chartwrap:not(#_a){height:auto;aspect-ratio:auto}
+#astro-maps .vc-expand{display:block;margin:10px auto 0;padding:9px 16px;min-height:40px;border:1px solid #D7BD90;border-radius:24px;background:#FCF7EC;color:#672238;font:inherit;font-size:12px;cursor:pointer}
+#astro-maps .vc-expand:focus-visible,.vc-viewer button:focus-visible,.vc-viewer-pan:focus-visible{outline:2px solid #8E5265;outline-offset:3px}
+.vc-viewer{box-sizing:border-box;width:min(94vw,940px);max-width:940px;max-height:94dvh;padding:18px;border:1px solid #D8C39B;border-radius:24px;background:#FAF4E8;color:#5A1828;font-family:inherit;box-shadow:0 20px 70px #32131f55;overflow:hidden}
+.vc-viewer::backdrop{background:#2F1522ad;backdrop-filter:blur(4px)}
+html.vc-viewer-open{overflow:hidden}
+.vc-viewer-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vc-viewer h2{font:inherit;font-weight:600;line-height:1.7;margin:0;font-size:18px}
+.vc-viewer button{font:inherit;font-size:13px;min-height:42px;min-width:42px;padding:7px 12px;border:1px solid #D8C39B;border-radius:18px;background:#FFF9EE;color:#652038;cursor:pointer}
+.vc-viewer button:disabled{opacity:.35;cursor:default}
+.vc-viewer-tools{display:flex;gap:8px;align-items:center;justify-content:center;margin:12px 0 4px;direction:ltr}
+.vc-viewer-tools output{min-width:52px;text-align:center;font-size:13px}
+.vc-viewer-hint{font-size:12px;text-align:center;color:#846E58;margin:8px 0}
+.vc-viewer-pan{height:min(70dvh,820px);overflow:auto;overscroll-behavior:contain;direction:ltr;touch-action:pan-x pan-y pinch-zoom}
+.vc-viewer-art{margin:0 auto}.vc-viewer-art svg{display:block;width:100%;height:auto}
+@media(max-width:600px){
+ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-card{padding:2px;border:0;border-radius:0}
+ html body section.sec#astro-maps:not(#_a):not(#_b):not(#_c) .vc-chartwrap{width:calc(100% + 20px);max-width:none;margin-inline:-10px}
+ #astro-maps .vyr-chart{margin-inline:-16px;padding:2px}
+ .vc-viewer{width:100vw;max-width:100vw;max-height:100dvh;border-radius:0;padding:12px;margin:auto 0}
+ .vc-viewer h2{font-size:14px}.vc-viewer-pan{height:70dvh}
+}
+
+@media(max-width:600px){
+ #astro-maps .eam-acc-body:has(> .vc-card){padding:10px!important}
+ #astro-maps .vc-card:not(#_a):not(#_b):not(#_c):not(#_d){padding:0!important;border:0!important}
+ #astro-maps .vc-chartwrap:not(#_a):not(#_b):not(#_c):not(#_d){width:100%!important;margin-inline:0!important}
+}
