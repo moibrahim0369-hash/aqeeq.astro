@@ -13,9 +13,22 @@ function body(s,closing=false){
   const paragraphs=s.split(/\n\s*\n/).filter(p=>{
     const t=p.trim();return t&&!/^(?:#|---|\[|>|\*\*(?:بنر|الحالة|طبقة|خطوتك|سؤالك|الواقع|الحوار|مشاهد|النسيج|\())/.test(t);
   }).map(p=>closing?withoutDates(p):clean(p)).filter(Boolean);
+  // Preserve the approved literary subheadings instead of flattening them away.
+  const sections=[],introParagraphs=[];let active=null;
+  if(/^####\s+/m.test(s)){
+    for(const chunk of s.split(/\n\s*\n/)){
+      const lines=chunk.trim().split('\n'),heading=lines[0].match(/^####\s+(.+)$/);
+      if(heading){active={heading:clean(heading[1]),paragraphs:[]};sections.push(active);lines.shift();}
+      const prose=lines.join('\n').trim();
+      if(!prose||/^(?:#|---|\[|>|\*\*)/.test(prose))continue;
+      const text=closing?withoutDates(prose):clean(prose);
+      if(text)(active?active.paragraphs:introParagraphs).push(text);
+    }
+    paragraphs.splice(0,paragraphs.length,...introParagraphs,...sections.flatMap(x=>x.paragraphs));
+  }
   const inner=closing?(s.match(/\*\*الحوار الداخلي:\*\*\s*\n>\s*([^\n]+)/)||[])[1]:'';
   const axis=(s.match(/\[طبقة المحور:\s*«([^»]+)»\]/)||[])[1]||'';
-  return {title:clean(title.split(':').slice(1).join(':')||title),paragraphs,action:field(s,'خطوتك'),question:field(s,'سؤالك'),dialogue:clean(inner||''),axis:clean(axis)};
+  return {title:clean(title.split(':').slice(1).join(':')||title),paragraphs,action:field(s,'خطوتك'),question:field(s,'سؤالك'),dialogue:clean(inner||''),axis:clean(axis),...(sections.length?{sections,introParagraphs}:{})};
 }
 const lex=JSON.parse(read('lexicon/lexicon.json'));
 const data={version:1,templates:{},lordship:{},closing:[],dasha:[],topics:{}};
@@ -42,14 +55,14 @@ for(let i=1;i<=12;i++){
   if(sections.length!==5)throw new Error('Incomplete closing '+i);
   data.closing.push(sections.map(s=>{
     const scene=(s.match(/\*\*الواقع النفسي واليومي:\*\*([\s\S]*?)\*\*الحوار الداخلي:/)||[])[1]||'';
-    const b=body(s,true);b.paragraphs=scene.split('\n').map(x=>x.trim()).filter(x=>x.startsWith('- ')).map(withoutDates);
+    const b=body(s,true);if(!b.sections)b.paragraphs=scene.split('\n').map(x=>x.trim()).filter(x=>x.startsWith('- ')).map(withoutDates);
     b.action=withoutDates(b.action);b.question=withoutDates(b.question);audit.closing++;return b;
   }));
 }
 const lordOrder=['ketu','venus','sun','moon','mars','rahu','jupiter','saturn','mercury'];
 for(let i=0;i<9;i++){
   const raw=read('closing-2026-2027/dasha/antar-'+String(i+1).padStart(2,'0')+'-'+lordOrder[i]+'.md');
-  const b=body(raw);b.paragraphs=[field(raw,'النسيج العام'),...((raw.match(/\*\*مشاهد من الواقع اليومي:\*\*([\s\S]*?)\*\*الحوار الداخلي:/)||[])[1]||'').split('\n').filter(x=>x.trim().startsWith('- ')).map(clean)].filter(Boolean);
+  const b=body(raw);if(!b.sections)b.paragraphs=[field(raw,'النسيج العام'),...((raw.match(/\*\*مشاهد من الواقع اليومي:\*\*([\s\S]*?)\*\*الحوار الداخلي:/)||[])[1]||'').split('\n').filter(x=>x.trim().startsWith('- ')).map(clean)].filter(Boolean);
   data.dasha.push(b);audit.dasha++;
 }
 // Only general, house-matched examples enter the Jupiter fallback. No raw shadow records.

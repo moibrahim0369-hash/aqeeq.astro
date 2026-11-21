@@ -1,6 +1,12 @@
 # Annual report release and private editorial workflow
 
-## Current model
+## Open review, 21 November 2026
+
+The owner requested all calculated personal readings remain visible to every visitor while reviewing. `mode:read` returns one assembled personal report without login, using the same private server library and rate limit. The source archive and database table remain inaccessible to clients. There is no lock or owner-preview marker in the reading UI. Login is required only when a visitor chooses purchase. The eventual purchase benefit is still undecided. Do not claim that purchasing unlocks hidden text or invent a PDF-only product. Restore any reading restriction only after the owner explicitly ends review and approves it.
+
+The sections retain literary subheadings from `####` source headings. Contact dates and longitudes come from the existing computed event objects, never editorial numbers. Text changes do not change the engine.
+
+## Previous launch model, retained payment setup
 
 A report for one set of birth inputs, purchased once. No monthly plan and no automatic renewal. The existing generic `full_report` product is separate and unchanged.
 

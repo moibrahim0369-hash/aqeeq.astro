@@ -20,6 +20,7 @@ Deno.serve(async req=>{
   const ip=req.headers.get('x-forwarded-for')?.split(',')[0].trim()||'unknown';const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(ip+'|'+new Date().toISOString().slice(0,10))))).map(b=>b.toString(16).padStart(2,'0')).join('');
   const rate=await admin.rpc('year2027_rate_limit',{p_key:digest,p_limit:body.mode==='preview'?30:60});if(rate.error||rate.data!==true)return response({error:'too_many_requests'},429);
   if(body.mode==='preview'){const lib=await library(admin,false);return response({...previewFor(input,lib.content),country:geo});}
+  if(body.mode==='read'){if(input.unknown)return response({error:'birth_time_required'},400);const lib=await library(admin,true);return response({report:reportFor(input,lib.content,lib.ephemeris)});}
   const sb=createClient(url,key,{global:{headers:{Authorization:req.headers.get('Authorization')||''}},auth:{persistSession:false}});
   const {data:{user},error}=await sb.auth.getUser();if(error||!user)return response({error:'sign_in_required'},401);
   let ownerPreview=false;if(Deno.env.get('YEAR2027_OWNER_PREVIEW')==='1'){const {data:isOwner,error:ownerError}=await sb.rpc('is_app_admin');ownerPreview=!ownerError&&isOwner===true;}
