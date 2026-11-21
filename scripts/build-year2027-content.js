@@ -15,6 +15,7 @@ function body(s,closing=false){
   }).map(p=>closing?withoutDates(p):clean(p)).filter(Boolean);
   // Preserve the approved literary subheadings instead of flattening them away.
   const sections=[],introParagraphs=[];let active=null;
+  const opening=field(s,'النسيج العام');if(opening)introParagraphs.push(opening);
   if(/^####\s+/m.test(s)){
     for(const chunk of s.split(/\n\s*\n/)){
       const lines=chunk.trim().split('\n'),heading=lines[0].match(/^####\s+(.+)$/);
@@ -26,7 +27,7 @@ function body(s,closing=false){
     }
     paragraphs.splice(0,paragraphs.length,...introParagraphs,...sections.flatMap(x=>x.paragraphs));
   }
-  const inner=closing?(s.match(/\*\*الحوار الداخلي:\*\*\s*\n>\s*([^\n]+)/)||[])[1]:'';
+  const inner=(s.match(/\*\*الحوار الداخلي:\*\*\s*\n>\s*([^\n]+)/)||[])[1]||'';
   const axis=(s.match(/\[طبقة المحور:\s*«([^»]+)»\]/)||[])[1]||'';
   return {title:clean(title.split(':').slice(1).join(':')||title),paragraphs,action:field(s,'خطوتك'),question:field(s,'سؤالك'),dialogue:clean(inner||''),axis:clean(axis),...(sections.length?{sections,introParagraphs}:{})};
 }
