@@ -2548,7 +2548,7 @@
   function segRows(list, fn) {
     return list.map(function (x) { return '<div class="y27-seg"><span class="y27-when">' + (list.length > 1 ? 'من ' + dstr(x.s) + ' إلى ' + dstr(x.e - 1) : 'طوال العام') + '</span><p>' + fn(x) + '</p></div>'; }).join('');
   }
-  function render(natal, name, meta) {
+  function render(natal, name) {
     var R = compute(natal), T = R.T, h = '';
     var first = R.periods[0];
     /* 1 الفترة */
@@ -2574,15 +2574,17 @@
     var ch2 = lords.map(function (l) { return '<div class="y27-seg"><span class="y27-when">في فترة ' + T.LORDS[l] + '</span><p><b>التزم:</b> ' + DO[l] + '</p><p><b>تجنّب:</b> ' + DONT[l] + '</p></div>'; }).join('');
     h += acc('ميثاقك لعام 2027: ما تلتزم به وما تتجنبه', 'g', IC.check, ch2, false);
     var satAct = R.segs.saturn.some(function (x) { var d = (x.sign - R.moonSign + 12) % 12; return d === 11 || d === 0 || d === 1; });
+    var GI = function (k) { return '<i class="y27-gi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + IC[k] + '</svg></i>'; };
     var glance = '<div class="y27-glance">' +
-      '<div class="y27-gc"><small>الفترة الحاكمة</small><b>' + T.LORDS[first.lord] + '</b></div>' +
-      '<div class="y27-gc ' + (satAct ? 'y27-gc-s' : 'y27-gc-g') + '"><small>ثقل زحل</small><b>' + (satAct ? 'حاضر في سنتك' : 'خفيف في سنتك') + '</b></div>' +
-      '<div class="y27-gc y27-gc-g"><small>باب الفرصة</small><b>' + HAREA[R.hOf(R.segs.jupiter[0].sign)] + '</b></div>' +
-      '<div class="y27-gc y27-gc-s"><small>ما يستحق الحذر</small><b>' + HAREA[R.hOf(R.segs.saturn[0].sign)] + '</b></div></div>';
+      '<div class="y27-gc y27-gc-1">' + GI('clock') + '<small>الفترة الحاكمة</small><b>' + T.LORDS[first.lord] + '</b></div>' +
+      '<div class="y27-gc y27-gc-2 ' + (satAct ? 'y27-gc-s' : 'y27-gc-g') + '">' + GI('sat') + '<small>ثقل زحل</small><b>' + (satAct ? 'حاضر في سنتك' : 'خفيف في سنتك') + '</b></div>' +
+      '<div class="y27-gc y27-gc-3 y27-gc-g">' + GI('coin') + '<small>باب الفرصة</small><b>' + HAREA[R.hOf(R.segs.jupiter[0].sign)] + '</b></div>' +
+      '<div class="y27-gc y27-gc-4 y27-gc-s">' + GI('warn') + '<small>ما يستحق الحذر</small><b>' + HAREA[R.hOf(R.segs.saturn[0].sign)] + '</b></div></div>';
     h = '<span class="y27-kick">قراءة سنتك · 2027</span>' + glance + '<p class="y27-tap">اضغط على أي بطاقة بالأسفل لتقرأ ما يخصك</p>' + h;
     var basis = R.known ? '' : '<p class="y27-note">وقت الميلاد غير معروف، فالبيوت محسوبة من برج القمر بدل الطالع، والقراءة أدق كلما عرفت وقتك.</p>';
-    return '<header class="y27-rhead"><div class="y27-who"><b>' + esc(name || 'قراءتك') + '</b><span>' + esc(meta && meta.line || '') + '</span></div><div class="y27-actions"><button type="button" class="y27-btn" id="y27-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 19h14"/></svg><span>حفظ القراءة كملف PDF</span></button><button type="button" class="y27-btn y27-buy" data-y27-buy>شراء التوقع كامل</button><button type="button" class="y27-btn y27-ghost" data-y27-edit>تعديل البيانات</button></div></header>' + basis + h +
-      '<p class="y27-note">قراءة رمزية مبنية على حساب فلكي لخريطتك. الفترات والتواريخ تتغير بتغير بياناتك.</p>';
+    return '<header class="y27-rhead"><h3>' + (name ? esc(name) + '، هذا ما تحمله لك 2027' : 'هذا ما تحمله لك 2027') + '</h3><p>تقرأ هذه الصفحة حركة الكواكب فوق خريطتك بنظام الفلك الفيدي (النطاق النجمي). هي قراءة للتأمل وفهم الفترة، وليست حكمًا نهائيًا.</p></header>' + basis + h +
+      '<p class="y27-note">قراءة رمزية مبنية على حساب فلكي لخريطتك. الفترات والتواريخ تتغير بتغير بياناتك.</p>' +
+      '<div class="y27-actions"><button type="button" class="y27-btn" id="y27-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 19h14"/></svg><span>حفظ القراءة كملف PDF</span></button><button type="button" class="y27-btn y27-buy" data-y27-buy>شراء التوقع كامل</button></div>';
   }
 
   /* ---- النموذج ---- */
@@ -2604,13 +2606,8 @@
         if (!window.AqEam || !window.AqVedic) throw new Error('الحساب لم يحمّل بعد، أعد المحاولة بعد لحظة.');
         var name = $('#y27-name').value.trim();
         var natal = CTX().setFromInput({ y: p[0], m: p[1], d: p[2], hh: hh, mm: mm, known: !unk.checked, cityIdx: city.value, gender: '', name: name });
-        var dt = new Date(p[0], p[1] - 1, p[2]).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' });
-        var co = city.options[city.selectedIndex], place = (co && city.value && city.value !== 'manual') ? co.text : '';
-        out.innerHTML = render(natal, name, { line: dt + (place ? ' · ' + place : '') }); out.hidden = false; sec.classList.add('y27-has');
-        out.onclick = function (ev) {
-          if (ev.target.closest && ev.target.closest('[data-y27-edit]')) $('#y27-edit').click();
-          if (ev.target.closest && ev.target.closest('[data-y27-buy]')) location.hash = '#pay';
-        };
+        out.innerHTML = render(natal, name); out.hidden = false; sec.classList.add('y27-has');
+        out.onclick = function (ev) { if (ev.target.closest && ev.target.closest('[data-y27-buy]')) location.hash = '#pay'; };
         $('#y27-pdf').addEventListener('click', function () {
           document.body.classList.add('y27-printing');
           var done = function () { document.body.classList.remove('y27-printing'); window.removeEventListener('afterprint', done); };
