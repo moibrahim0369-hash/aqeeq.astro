@@ -96,25 +96,56 @@
   function segList(list, fn) {
     return list.map(function (x) { return '<div class="y27-seg"><span class="y27-when">' + (list.length > 1 ? 'من ' + dstr(x.s) + ' إلى ' + dstr(x.e - 1) : 'طوال العام') + '</span><p>' + fn(x) + '</p></div>'; });
   }
-  /* تقسيم مجاني/مدفوع: المقطع الأول مفتوح والباقي خلف القفل */
+  /* المجاني مقطع كامل، أو بداية مفيدة لا تقطع الجملة أو التنسيق. */
   function splitFree(segs) {
     if (!segs.length) return { free: '', rest: '' };
     if (segs.length > 1) return { free: segs[0], rest: segs.slice(1).join('') };
-    var s = segs[0], i = s.indexOf('</p>');
-    if (i > -1 && s.indexOf('<p', i) > -1) return { free: s.slice(0, i + 4), rest: s.slice(i + 4) };
-    var k = s.indexOf('. ', s.indexOf('<p>'));
-    if (k > -1 && s.length - k > 14) return { free: s.slice(0, k + 1) + '</p></div>', rest: '<div class="y27-seg"><p>' + s.slice(k + 2) };
-    return { free: s, rest: '' };
+    var host = document.createElement('div'); host.innerHTML = segs[0];
+    if (host.textContent.trim().length < 240) return { free: segs[0], rest: '' };
+    var ps = host.querySelectorAll('p');
+    if (ps.length > 1) {
+      var copy = host.cloneNode(true), cps = copy.querySelectorAll('p');
+      for (var j = 1; j < ps.length; j++) ps[j].remove();
+      cps[0].remove();
+      return { free: host.innerHTML, rest: copy.innerHTML };
+    }
+    var para = ps[0];
+    if (!para) return { free: segs[0], rest: '' };
+    var txt = para.textContent, re = /[.!؟。](?:\s+|$)/g, m, cut = 0, count = 0;
+    while ((m = re.exec(txt))) {
+      count++;
+      if (count >= 2 && m.index + m[0].length >= 150 && txt.length - re.lastIndex >= 75) { cut = re.lastIndex; break; }
+    }
+    if (!cut) return { free: segs[0], rest: '' };
+    var walker = document.createTreeWalker(para, NodeFilter.SHOW_TEXT), node, at = 0;
+    while ((node = walker.nextNode())) {
+      if (at + node.length >= cut) break;
+      at += node.length;
+    }
+    if (!node) return { free: segs[0], rest: '' };
+    var range = document.createRange(); range.setStart(node, cut - at); range.setEnd(para, para.childNodes.length);
+    var tail = range.extractContents(), rest = document.createElement('div'), rp = document.createElement('p');
+    rest.className = 'y27-seg'; rp.appendChild(tail); rest.appendChild(rp);
+    return { free: host.innerHTML, rest: rest.outerHTML };
   }
-  function prem(rest) {
+  function prem(rest, title) {
     if (!rest) return '';
-    return '<div class="y27-prem"><div class="y27-prem-c" aria-hidden="true">' + rest + '</div>' +
-      '<button type="button" class="y27-unlock" data-paywall="قراءة سنة 2027 الكاملة"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC.lock + '</svg><b>افتح قراءتك كاملة</b><span>هذا الجزء من سنتك ضمن التوقع المدفوع</span></button>' +
+    var tease = title.indexOf('العمل') > -1 ? 'تابع بقية فترات العمل والمال ومجالات الفرصة في قراءتك.' :
+      title.indexOf('ميثاق') > -1 ? 'أكمل ما تلتزم به وما تتجنبه في بقية فترات سنتك.' :
+      title.indexOf('الحذر') > -1 ? 'أكمل قراءة نقاط الحذر والخطوات التي تساعدك على التعامل معها.' :
+      title.indexOf('علاقات') > -1 ? 'أكمل قراءة علاقاتك وما يتغير فيها خلال سنتك.' :
+      title.indexOf('زحل') > -1 ? 'تابع بقية قراءة زحل على قمرك خلال السنة.' :
+      'تابع بقية الفترات التي تشكّل سنتك ومعنى كل فترة لك.';
+    return '<div class="y27-prem"><div class="y27-prem-c" aria-hidden="true" inert>' + rest + '</div>' +
+      '<button type="button" class="y27-unlock" data-paywall="قراءة سنة 2027 الكاملة">' +
+      '<span class="y27-lock-top"><span class="y27-lock-icon"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC.lock + '</svg></span><span class="y27-lock-k">بقية هذا القسم ضمن القراءة الكاملة</span></span>' +
+      '<b>الصورة لم تكتمل بعد</b><span class="y27-lock-tease">' + tease + '</span>' +
+      '<span class="y27-lock-cta">افتح قراءتك كاملة <span aria-hidden="true">←</span></span></button>' +
       '<p class="y27-prem-print">الجزء الكامل من هذا القسم يظهر مع التوقع المدفوع.</p></div>';
   }
   function accL(title, tone, ic, segs, extraFree, open) {
     var sp = splitFree(segs);
-    return acc(title, tone, ic, sp.free + (extraFree || '') + prem(sp.rest), open);
+    return acc(title, tone, ic, '<div class="y27-free">' + sp.free + (extraFree || '') + '</div>' + prem(sp.rest, title), open);
   }
   function render(natal, name) {
     var R = compute(natal), T = R.T, h = '';
