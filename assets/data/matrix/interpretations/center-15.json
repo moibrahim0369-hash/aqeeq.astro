@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "aqeeq.center.arcana-15.draft-01",
+  "arcanaNumber": 15,
+  "position": {
+    "key": "center",
+    "labelAr": "المركز",
+    "siteLabelAr": "الجوهر والدروس · تسمية الموقع الحالية",
+    "path": "matrix.nodes.center",
+    "labelStatus": "site-label-unverified"
+  },
+  "referenceRule": {
+    "ruleId": null,
+    "verificationStatus": "unverified",
+    "provenance": {
+      "source": null,
+      "locator": null,
+      "note": "المصدر العام يؤكد موضوع الأركانا، لكنه لا يثبت تفسير هذا الرقم في موضع المركز أو قاعدة الربط الخاصة بعقيق."
+    }
+  },
+  "calculationBinding": {
+    "status": "existing-site-formula",
+    "formulaId": "matrix.center-current",
+    "dataPath": "matrix.nodes.center",
+    "formula": "A=R(day), B=R(month), C=R(sum(year digits)), D=R(A+B+C), E=R(A+B+C+D); center=E.",
+    "sourceFile": "assets/js/numerology-matrix.js"
+  },
+  "siteSymbolSeed": {
+    "status": "site-authored",
+    "sourceFile": "assets/data/matrix/arcana-15.json",
+    "headline": "الاختيار الواعي",
+    "strengthSeed": "ملاحظة التعلق تسمح برؤية الصفقة التي يعقدها المرء مع نفسه: ما الذي يكسبه الآن، وما الذي يخسره لاحقاً؟ في العمل، تكشف علاقة السلطة بالمكافأة. وفي العلاقات، تساعد على تمييز الانجذاب الصادق من الخوف من الوحدة أو الحاجة إلى التحكم.",
+    "challengeSeed": "التعلق أو الإفراط يظهران في تكرار سلوك رغم معرفة كلفته، أو في تبرير تجاوز الحدود باسم الشغف. مثال ذلك قبول علاقة متقلبة لأنها تمنح لحظات قرب شديدة، مع تجاهل نمط الأذى المتكرر. الرمز يدعو للفحص لا للوصم."
+  },
+  "interpretation": {
+    "voice": "aqeeq-original",
+    "reviewStatus": "draft",
+    "completionStatus": "partial",
+    "scopeNote": "صياغة أصلية لموضع المركز وفق التسمية المحلية «الجوهر والدروس»؛ لا تمثل قاعدة موثقة للمدرسة أو حقيقة نفسية مثبتة عن صاحب المصفوفة.",
+    "meaning": "يضع المركز الرغبة والتعلق والثمن غير المرئي تحت الضوء. الشيطان هنا رمز لا حكم أخلاقي ولا تشخيص؛ القراءة تفحص ما يمنح اللذة أو النفوذ وما يسلب حرية الاختيار.",
+    "strengths": [
+      {
+        "id": "center-strength",
+        "text": "رؤية الصفقة النفسية وراء عادة أو علاقة، والقدرة على تسمية الاحتياج دون وصمه."
+      }
+    ],
+    "challenges": [
+      {
+        "id": "center-challenge",
+        "text": "تكرار سلوك مؤذٍ مع تبريره بالشغف، أو إدانة الرغبة بدلاً من فهمها."
+      }
+    ],
+    "innerTensions": [
+      {
+        "id": "center-tension",
+        "poleA": "رؤية الرغبة بوضوح تعيد مساحة الاختيار.",
+        "poleB": "تجنب الاعتراف بالتعلق قد يضاعف أثره الخفي.",
+        "integration": "تتضح الموازنة في هذا الموضع عبر صياغة حد قابل للتطبيق والاستعانة بدعم مناسب إن تعذر التغيير منفرداً. ويُراجع أثر ذلك بسؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "concreteScenarios": [
+      {
+        "id": "center-scenario",
+        "situation": "الاستمرار في علاقة متقلبة بسبب لحظات قرب شديدة رغم تكرر تجاوز الحدود.",
+        "possiblePattern": "في هذا الموقف، قد يظهر النمط في صورة تكرار سلوك مؤذٍ مع تبريره بالشغف، أو إدانة الرغبة بدلاً من فهمها؛ عندها يُختبر إن كان المورد المذكور في القراءة ما زال يخدم الغاية.",
+        "experiment": "ملاحظة قابلة للتطبيق: صياغة حد قابل للتطبيق والاستعانة بدعم مناسب إن تعذر التغيير منفرداً. ثم مراجعة هذا السؤال: هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ],
+    "reflectionQuestions": [
+      "ما المكسب القريب وما الثمن المتكرر لهذا النمط؟"
+    ],
+    "developmentSteps": [
+      {
+        "id": "center-step",
+        "action": "صياغة حد قابل للتطبيق والاستعانة بدعم مناسب إن تعذر التغيير منفرداً.",
+        "check": "هل حافظت الخطوة على قوة الرمز وخففت كلفته في الموقف؟"
+      }
+    ]
+  },
+  "contextualRules": [],
+  "combinationRules": [],
+  "personalizationReadiness": {
+    "supportsPositionSpecificContent": true,
+    "supportsVerifiedContextOverlays": true,
+    "availableVerifiedContextRules": 0,
+    "blockedUntil": [
+      "اعتماد قاعدة موضع المركز ومصدرها قبل تغيير الحالة من partial أو وصل النص بالمستخدم.",
+      "توفير قواعد موثقة للتركيبات قبل إضافة نصوص شرطية."
+    ]
+  },
+  "contentVersion": 1
+}

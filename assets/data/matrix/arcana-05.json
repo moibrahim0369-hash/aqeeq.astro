@@ -9,41 +9,56 @@
   "keywords": [],
   "headline": "التعلم والقيم",
   "core": {
-    "psychology": "",
-    "gift": "حكمة ومشاركة خبرة",
-    "shadowTrap": "وعظ أو تعلق بالقواعد",
-    "growth": ""
+    "psychology": "يرمز الكاهن الأعظم إلى نقل المعرفة داخل تقليد أو جماعة، وإلى السؤال عن القيم التي تجعل الفعل ذا معنى. دافعه هو الانتماء إلى إطار مفهوم ومشاركة ما تعلمه. قوته في التعليم وربط الخبرة بالمبدأ؛ وتوتره حين يخلط بين احترام الحكمة واحتكار الحقيقة أو حين يخشى مخالفة الجماعة.",
+    "gift": "تظهر الحكمة في تبسيط فكرة متوارثة دون تسطيحها، وفي بناء لغة مشتركة بين أجيال أو فرق مختلفة. في العمل، يبرز ذلك في التدريب والإرشاد ووضع معايير عادلة. وفي العلاقة، يساعد وضوح القيم على تفاهم مستقر، شرط ألا تتحول المبادئ إلى اختبار دائم للطرف الآخر.",
+    "shadowTrap": "قد يصبح الالتزام بالقواعد وسيلة لتجنب مراجعة ما لم يعد يخدم الناس. مثال ذلك رفض أسلوب جديد لمجرد أنه غير مألوف، أو تقديم النصيحة قبل سماع تجربة من يطلبها. هنا يفقد التعليم صلته بالحياة ويتحول إلى وعظ أو حراسة للانتماء.",
+    "growth": "خطوة تأملية: تسمية القيمة التي تستحق الحماية، ثم فحص ما إذا كانت الطريقة المعتادة ما زالت تخدمها في الواقع الحالي."
   },
   "chakras": {
     "sahasrara": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تظهر الرسالة في نقل معرفة أو قيمة بطريقة مفهومة وقابلة للتطبيق بين الناس.",
+      "energyPsychology": "تنتظم الطاقة حول مبدأ يفسر الاختيارات، مع استعداد لمراجعة الوسيلة التي تخدمه.",
+      "emotionsPsychology": "ينشأ الانتماء من التفاهم حول القيم، لا من إجبار المشاعر على موافقة الجماعة."
     },
     "ajna": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يقرأ المعلّم المعنى ضمن منظومة قيم ومعرفة، مع ضرورة التمييز بين حكمة التقليد وصحة كل فكرة موروثة.",
+      "energyPsychology": "تتغذى القدرة على التركيز من التعلم والحوار المنظم، لا من تكرار القاعدة لمجرد أنها مألوفة.",
+      "emotionsPsychology": "ينشأ الانتماء حين تُشارك القيم بحرية؛ ويثقل الشعور حين يصبح القبول مشروطاً بالطاعة."
     },
     "vishuddha": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "ينقل المعلّم معرفة ذات معنى ويترك مجالاً للسؤال، فيتحول التقليد من أمر جامد إلى فهم يمكن مراجعته.",
+      "energyPsychology": "تدعم الممارسة المنتظمة للتعلم والتعليم تدفق التعبير، بشرط ألا يُختزل الاختلاف في خطأ أو خروج عن الجماعة.",
+      "emotionsPsychology": "ينشأ القرب من حوار يحترم المعتقدات المتفاوتة، لا من مطالبة الآخر بتبنيها كي يبقى مقبولاً."
     },
     "anahata": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "تمنح المحبة معنى مشتركاً حين يتبادل الطرفان القيم من غير أن يطلب أحدهما من الآخر التنازل عن ضميره.",
+      "energyPsychology": "تنتظم طاقة العلاقة حول التعلم والاحترام المتبادل، لا حول سلطة طرف يحدد وحده ما ينبغي أن يؤمن به الآخر.",
+      "emotionsPsychology": "ينشأ القرب من قبول اختلاف القناعات ومناقشتها؛ الانتماء لا يحتاج أن يكون نسخة متطابقة."
     },
     "manipura": {
       "psychology": "",
       "shadowTrap": "",
       "bodySymbol": "",
-      "practice": ""
+      "practice": "",
+      "physicsPsychology": "يمنح المعلم معنى للمكانة عبر المعرفة والخدمة العامة، ويختبر سلطته حين يظن أن احترام القاعدة يعفيه من السؤال.",
+      "energyPsychology": "تتدفق الطاقة في التعليم والتوجيه وبناء معيار مشترك، وتضعف حين تتحول القناعة إلى رقابة على ضمائر الآخرين.",
+      "emotionsPsychology": "يستقر الداخل عندما يُسمح بالاختلاف داخل الجماعة دون اعتباره خيانة للهوية."
     },
     "svadhisthana": {
       "psychology": "",
@@ -63,7 +78,53 @@
     "motherLine": ""
   },
   "meta": {
-    "status": "draft",
-    "updated": "2026-10-25"
+    "status": "review",
+    "updated": "2026-10-26",
+    "contentStatus": "editorial-core-review",
+    "authorship": "aqeeq-original",
+    "referenceRuleStatus": "unverified",
+    "scopeNote": "صياغة أصلية رمزية للمراجعة؛ لا تمثل قاعدة موثقة للمدرسة ولا حقيقة نفسية مثبتة. الشاكرات وخطوط النسب والمواضع المركبة لم تكتمل في هذا الإصدار.",
+    "chakraContent": {
+      "sahasrara": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Sahasrara Mission",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+      },
+      "ajna": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Ajna Insight",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+      },
+      "vishuddha": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Vishuddha Expression",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+      },
+      "anahata": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Anahata Relationship",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+      },
+      "manipura": {
+        "status": "partial-review",
+        "authorship": "aqeeq-original",
+        "publicTopicLabel": "Manipura Agency",
+        "referenceRuleStatus": "unverified",
+        "bodySymbolStatus": "omitted-no-verified-rule",
+        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+      }
+    }
   }
 }

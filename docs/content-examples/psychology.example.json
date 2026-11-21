@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "psychology.example.draft",
+  "domain": "psychology",
+  "contentVersion": 1,
+  "workflow": {
+    "status": "draft",
+    "publishedAt": null
+  },
+  "review": {
+    "status": "not-reviewed",
+    "reviewedBy": null,
+    "reviewedAt": null,
+    "notes": "Example only; not clinical advice."
+  },
+  "provenance": {
+    "authorship": "example-only",
+    "sourceType": "example-fixture",
+    "sourceUrl": null,
+    "sourceLocator": null,
+    "discipline": "unassigned",
+    "evidenceLevel": "unassigned"
+  },
+  "payload": {
+    "title": "عنوان تجريبي للمحتوى النفسي",
+    "body": "نص توضيحي فقط. ميّز بين المعلومة البحثية والتأمل الشخصي، وأضف المرجع قبل الاعتماد."
+  }
+}
