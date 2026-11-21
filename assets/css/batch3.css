@@ -339,4 +339,8 @@ html.aq-review-open body #year2027 .y27-unlock{display:none}
 #year2027 .y27-buyb .y27-buy{white-space:nowrap;border-color:#E9CE8E;background:linear-gradient(135deg,#C8A15A,#A87F3D);color:#3A0E1C}
 @media(max-width:430px){#year2027 .y27-buyb{flex-wrap:wrap;justify-content:center;text-align:center}#year2027 .y27-buyb-t{flex:1 1 100%;order:-1}}
 #year2027 .y27-ghost{background:transparent;color:var(--b3-wine);border-color:var(--b3-gold)}
+#year2027.y27-has .wrap > .y27-intro{display:none}
+#year2027 .y27-rintro{text-align:center;margin:2px 0 14px}
+#year2027 .y27-rintro .eyebrow{display:block;font-size:13px;color:#9A7424;letter-spacing:.3px;margin-bottom:4px}
+#year2027 .y27-rintro h2{margin:0;color:var(--b3-wine);line-height:1.3}
 #year2027 .y27-form[hidden],#year2027 .y27-explain[hidden]{display:none!important}

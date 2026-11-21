@@ -125,6 +125,8 @@
     var cityC = cityO ? cityO.textContent.trim() : '';
     var timeV = ($('#y27-time') || {}).value || '';
     var timeC = (unk && unk.checked) ? 'وقت الميلاد غير معروف' : timeV;
+    /* عنوان عرض النتيجة: يظهر بعد إدخال البيانات فقط */
+    h += '<div class="y27-rintro"><span class="eyebrow">من علم الفلك الفيدي</span><h2>ما تخفيه الكواكب عنك في 2027</h2></div>';
     /* البانر العنابي: نفس لغة بانر مصفوفة القدر */
     h += '<header class="y27-banner"><span class="y27b-k">قراءة سنة 2027 · فلك فيدي</span>' +
       '<div class="y27b-id"><span class="y27b-n">27</span><span class="y27b-cap"><small>سنتك كما تراها الكواكب</small><b>' + esc(disp) + '</b></span></div>' +
