@@ -32,3 +32,20 @@ html body #year2027 .y27-rhead .y27-buy{background:linear-gradient(135deg,#F3DFA
 html body #year2027 .y27-rhead .y27-ghost{background:transparent!important;border:1px solid rgba(232,207,152,.55)!important;color:#EBD7B4!important}
 html body #year2027 .y27-rhead .y27-actions .y27-btn{flex:1 1 40%;justify-content:center}
 html body #year2027 .y27-rhead .y27-actions #y27-pdf{flex:1 1 100%}
+/* البطاقات الأربعة: كل بطاقة بلونها وأيقونتها وعمقها */
+html body #year2027 .y27-glance{gap:14px!important;margin:6px 0 14px}
+html body #year2027 .y27-gc{position:relative;display:grid!important;grid-template-columns:1fr;align-content:center;justify-items:start;gap:4px;padding:58px 16px 16px!important;min-height:132px;border-radius:22px!important;overflow:hidden;background:linear-gradient(165deg,rgba(255,255,255,.96) 0%,rgba(250,242,226,.9) 60%,rgba(240,226,200,.9) 100%)!important;box-shadow:0 18px 28px -10px rgba(60,20,32,.34),0 2px 0 rgba(255,255,255,.9) inset,inset 0 -14px 22px -12px rgba(94,37,52,.18)!important;border:1px solid rgba(214,180,110,.7)!important}
+html body #year2027 .y27-gc::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 100% 0%,rgba(255,255,255,.7),transparent 60%);pointer-events:none}
+html body #year2027 .y27-gi{position:absolute;top:12px;inset-inline-start:14px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#7A3048,#4E1A2B);box-shadow:0 6px 12px rgba(60,20,32,.35),inset 0 1px 0 rgba(255,236,196,.35);border:1px solid rgba(232,207,152,.7)}
+html body #year2027 .y27-gi svg{width:18px;height:18px;color:#F3DFA8}
+html body #year2027 .y27-gc small{font:600 .82rem 'Cairo',sans-serif!important;color:#7A5B4A!important;-webkit-text-fill-color:#7A5B4A!important}
+html body #year2027 .y27-gc b{font:800 1.12rem/1.5 'El Messiri','Cairo',serif!important;color:#4E1A2B!important;-webkit-text-fill-color:#4E1A2B!important}
+html body #year2027 .y27-gc-1{border-color:rgba(198,162,92,.9)!important}
+html body #year2027 .y27-gc-1 .y27-gi{background:linear-gradient(145deg,#E8CF98,#B8893F);border-color:rgba(122,48,72,.35)}
+html body #year2027 .y27-gc-1 .y27-gi svg{color:#4E1A2B}
+html body #year2027 .y27-gc-2 .y27-gi,html body #year2027 .y27-gc-3 .y27-gi{background:linear-gradient(145deg,#5E7F66,#2F4D3A)}
+html body #year2027 .y27-gc-4 .y27-gi{background:linear-gradient(145deg,#B5424F,#7A2430)}
+html body #year2027 .y27-gc-s{background:linear-gradient(165deg,rgba(255,250,250,.98),rgba(250,226,226,.9))!important;border-color:rgba(181,66,79,.55)!important}
+html body #year2027 .y27-gc-g{background:linear-gradient(165deg,rgba(252,255,252,.98),rgba(226,242,230,.9))!important;border-color:rgba(74,120,90,.55)!important}
+html body #year2027 .y27-gc-s b{color:#8A1F2C!important;-webkit-text-fill-color:#8A1F2C!important}
+html body #year2027 .y27-gc-g b{color:#2F5A3E!important;-webkit-text-fill-color:#2F5A3E!important}

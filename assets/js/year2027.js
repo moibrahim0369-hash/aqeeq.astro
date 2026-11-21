@@ -120,11 +120,12 @@
     var ch2 = lords.map(function (l) { return '<div class="y27-seg"><span class="y27-when">في فترة ' + T.LORDS[l] + '</span><p><b>التزم:</b> ' + DO[l] + '</p><p><b>تجنّب:</b> ' + DONT[l] + '</p></div>'; }).join('');
     h += acc('ميثاقك لعام 2027: ما تلتزم به وما تتجنبه', 'g', IC.check, ch2, false);
     var satAct = R.segs.saturn.some(function (x) { var d = (x.sign - R.moonSign + 12) % 12; return d === 11 || d === 0 || d === 1; });
+    var GI = function (k) { return '<i class="y27-gi" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + IC[k] + '</svg></i>'; };
     var glance = '<div class="y27-glance">' +
-      '<div class="y27-gc"><small>الفترة الحاكمة</small><b>' + T.LORDS[first.lord] + '</b></div>' +
-      '<div class="y27-gc ' + (satAct ? 'y27-gc-s' : 'y27-gc-g') + '"><small>ثقل زحل</small><b>' + (satAct ? 'حاضر في سنتك' : 'خفيف في سنتك') + '</b></div>' +
-      '<div class="y27-gc y27-gc-g"><small>باب الفرصة</small><b>' + HAREA[R.hOf(R.segs.jupiter[0].sign)] + '</b></div>' +
-      '<div class="y27-gc y27-gc-s"><small>ما يستحق الحذر</small><b>' + HAREA[R.hOf(R.segs.saturn[0].sign)] + '</b></div></div>';
+      '<div class="y27-gc y27-gc-1">' + GI('clock') + '<small>الفترة الحاكمة</small><b>' + T.LORDS[first.lord] + '</b></div>' +
+      '<div class="y27-gc y27-gc-2 ' + (satAct ? 'y27-gc-s' : 'y27-gc-g') + '">' + GI('sat') + '<small>ثقل زحل</small><b>' + (satAct ? 'حاضر في سنتك' : 'خفيف في سنتك') + '</b></div>' +
+      '<div class="y27-gc y27-gc-3 y27-gc-g">' + GI('coin') + '<small>باب الفرصة</small><b>' + HAREA[R.hOf(R.segs.jupiter[0].sign)] + '</b></div>' +
+      '<div class="y27-gc y27-gc-4 y27-gc-s">' + GI('warn') + '<small>ما يستحق الحذر</small><b>' + HAREA[R.hOf(R.segs.saturn[0].sign)] + '</b></div></div>';
     h = '<span class="y27-kick">قراءة سنتك · 2027</span>' + glance + '<p class="y27-tap">اضغط على أي بطاقة بالأسفل لتقرأ ما يخصك</p>' + h;
     var basis = R.known ? '' : '<p class="y27-note">وقت الميلاد غير معروف، فالبيوت محسوبة من برج القمر بدل الطالع، والقراءة أدق كلما عرفت وقتك.</p>';
     return '<header class="y27-rhead"><div class="y27-who"><b>' + esc(name || 'قراءتك') + '</b><span>' + esc(meta && meta.line || '') + '</span></div><div class="y27-actions"><button type="button" class="y27-btn" id="y27-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 19h14"/></svg><span>حفظ القراءة كملف PDF</span></button><button type="button" class="y27-btn y27-buy" data-y27-buy>شراء التوقع كامل</button><button type="button" class="y27-btn y27-ghost" data-y27-edit>تعديل البيانات</button></div></header>' + basis + h +
