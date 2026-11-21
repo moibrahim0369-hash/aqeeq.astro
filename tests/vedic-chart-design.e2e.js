@@ -16,7 +16,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8777',root=path.join(__dirnam
   await page.locator('#eam-result .vh-back').click();
   await page.locator('#eam-result .vh-hub [data-g="'+tile+'"]').click();
   const chart=page.locator('#eam-result .vc-north:visible').first();await chart.waitFor();
-  assert.equal(await chart.locator('.vc-house').count(),12);assert.equal(await chart.locator('.vc-body').count(),10);
+  assert.ok(await chart.locator('.vc-medallion-label').evaluate(e=>e.getBBox().width<53));assert.equal(await chart.locator('.vc-medallion-brand').textContent(),'عقيق');assert.equal(await chart.locator('.vc-house').count(),12);assert.equal(await chart.locator('.vc-body').count(),10);
   for(const width of [320,390,1280]){
    await page.setViewportSize({width,height:width>600?900:844});await chart.scrollIntoViewIfNeeded();
    await page.screenshot({path:'/downloads/vedic-design-'+tile.replace(':','-')+'-'+width+'.png'});

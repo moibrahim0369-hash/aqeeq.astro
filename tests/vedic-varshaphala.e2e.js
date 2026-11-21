@@ -14,7 +14,8 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8777',root=path.join(__dirnam
  for(const width of [320,390,1280]){
   await page.setViewportSize({width,height:width>600?900:844});
   await page.locator('.vyr').evaluate(e=>{const sec=e.closest('#astro-maps'),d=e.closest('details');sec.scrollTo({top:sec.scrollTop+d.getBoundingClientRect().top-sec.getBoundingClientRect().top-95,behavior:'instant'});});await page.waitForTimeout(200);await page.screenshot({path:'/downloads/varshaphala-'+width+'.png'});
-  await page.locator('.vyr-chart').scrollIntoViewIfNeeded();await page.screenshot({path:'/downloads/varshaphala-chart-'+width+'.png'});
+  await page.locator('.vyr-chart').scrollIntoViewIfNeeded();await page.locator('.vyr-chart svg').evaluate(async e=>{await Promise.all(e.getAnimations().map(a=>a.finished));await document.fonts.ready;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));});await page.screenshot({path:'/downloads/varshaphala-chart-'+width+'.png'});
+  await page.locator('.vyr-chart .vc-expand').click();await page.locator('.vc-viewer').waitFor({state:'visible'});assert.ok((await page.locator('.vc-viewer .vc-medallion-label').textContent()).includes('2027'));assert.equal(await page.locator('.vc-viewer .vc-medallion-brand').textContent(),'عقيق');await page.screenshot({path:'/downloads/annual-zoom-'+width+'.png'});await page.locator('.vc-viewer [data-vc-close]').click();
   await page.locator('.vyr-candidates').scrollIntoViewIfNeeded();await page.screenshot({path:'/downloads/varshaphala-audit-'+width+'.png'});
   assert.ok((await page.locator('.vyr-candidates').textContent()).includes('مستبعد:'));
   const m=await page.locator('.vyr').evaluate(e=>({w:e.clientWidth,scroll:e.scrollWidth}));assert.ok(m.scroll<=m.w+1,JSON.stringify(m));console.log('PASS Varshaphala',width,m);

@@ -1733,6 +1733,10 @@
     }
     return {points:found,w:w,h:ht};
   }
+  function medallion(label,radius) {
+    var year=/^\d{4}$/.test(String(label)),arabic=/[\u0600-\u06ff]/.test(String(label)),size=year?25:arabic?16:20;
+    return '<g class="vc-medallion" transform="translate(200 200) scale('+(radius/30)+')"><circle cy="1.6" r="30" fill="#A88A54" opacity=".12"/><circle r="30" fill="#FCF7EB" stroke="#BA9D69" stroke-width="1"/><circle r="26.5" fill="none" stroke="#E6D8BA" stroke-width=".6"/><text class="vc-medallion-label" x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-family="'+(year?'Amiri,serif':'inherit')+'" font-size="'+size+'" font-weight="'+(year?'700':'600')+'" fill="'+WINE+'">'+esc(label)+'</text><path d="M-10 6H10" stroke="#D9C39B" stroke-width=".65"/><text class="vc-medallion-brand" x="0" y="18" text-anchor="middle" font-family="Amiri,serif" font-size="11" fill="#977D57" opacity=".85">عقيق</text></g>';
+  }
   function svg(map, title, centerLabel) {
     var label=centerLabel || (map.n==='moon'?'القمر':map.n==='sun'?'الشمس':'D'+map.n);
     var h='<svg class="vc-svg vc-north" viewBox="0 0 424 424" role="img" aria-label="'+esc(title)+'" xmlns="http://www.w3.org/2000/svg">';
@@ -1758,31 +1762,29 @@
     }
     h+='<g fill="none" stroke="#9B805B" stroke-width="1.05" stroke-linejoin="round"><path d="M0 0H400V400H0ZM0 0L400 400M400 0L0 400M200 0L400 200L200 400L0 200Z"/></g>';
     [[200,0],[0,200],[200,400],[400,200]].forEach(function(p){h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#F8F2E7" stroke="#9B805B"/><circle cx="'+p[0]+'" cy="'+p[1]+'" r="1.5" fill="'+WINE+'"/>';});
-    h+='<g class="vc-medallion"><circle cx="200" cy="202" r="28" fill="#BDA578" opacity=".2"/><circle cx="200" cy="200" r="27" fill="#FCF7EB" stroke="#B69B6B" stroke-width="1.2"/><circle cx="200" cy="200" r="23" fill="none" stroke="#DFCEAE"/><text x="200" y="197" text-anchor="middle" dominant-baseline="middle" font-size="'+(String(label).length>4?'15':'20')+'" font-weight="700" fill="'+WINE+'">'+esc(label)+'</text><text x="200" y="213" text-anchor="middle" font-size="8.5" fill="#8A704D">عقيق أسترو</text></g>';
+    h+=medallion(label,29);
     return h+'</g></svg>';
   }
   function svgSouth(map, title) {
-    var C = 100, h = '<svg class="vc-svg" viewBox="0 0 400 400" role="img" aria-label="' + esc(title) + '" xmlns="http://www.w3.org/2000/svg">';
-    h += '<title>' + esc(title) + '</title><rect x="2" y="2" width="396" height="396" rx="6" fill="' + CREAM + '" stroke="' + GOLD + '" stroke-width="2.5"/>';
-    h += '<rect x="102" y="102" width="196" height="196" fill="#FBF6EA" stroke="' + GOLD + '" stroke-width="1.2"/>';
-    h += '<g fill="none" stroke="' + GOLD + '" stroke-width="1.6"><path d="M102 2V398M202 2V102M202 298V398M298 2V398M2 102H398M2 202H102M298 202H398M2 298H398"/></g>';
-    for (var sg = 0; sg < 12; sg++) {
-      var pos = SOUTH[sg], x0 = pos[0] * C + 2, y0 = pos[1] * C + 2, cx = x0 + 48, house = (sg - map.lagna + 12) % 12;
-      h += '<text x="' + (x0 + 8) + '" y="' + (y0 + 14) + '" font-size="11" fill="' + GOLD + '" font-weight="700">' + (sg + 1) + '</text>';
-      var here = map.items.filter(function (x) { return x.sign === sg; }).map(function (x) { return { t: x.ab, tone: TONE[x.key] || 'g', r: x.retro }; });
-      if (house === 0) {
-        here.unshift({ t: lagLbl(map), tone: 'l', r: false });
-        h += '<path d="M' + x0 + ' ' + (y0 + 26) + 'L' + (x0 + 26) + ' ' + y0 + '" stroke="' + WINE + '" stroke-width="2.2" fill="none"/>';
-      }
-      var k = here.length, cols = k > 2 ? 2 : 1, rows = Math.ceil(k / cols), w = 34, gx = 40, gy = 22, top = y0 + 52 - (rows - 1) * gy / 2 + 6;
-      here.forEach(function (it, j) {
-        var col = cols === 1 ? 0 : j % 2, row = cols === 1 ? j : Math.floor(j / 2);
-        h += pill(cx + (cols === 1 ? 0 : (col === 0 ? -gx / 2 : gx / 2)), top + row * gy, w, it.t, it.tone, it.r);
-      });
+    var label=map.n==='moon'?'القمر':map.n==='sun'?'الشمس':'D'+map.n;
+    var h='<svg class="vc-svg vc-south" viewBox="0 0 424 424" role="img" aria-label="'+esc(title)+'" xmlns="http://www.w3.org/2000/svg"><title>'+esc(title)+'</title><desc>الأبراج ثابتة في الرسم الجنوبي. الحمل ثاني خانة في الصف الأعلى، ثم مع عقارب الساعة. الخط المائل يحدد الطالع.</desc>';
+    h+='<rect x="1" y="1" width="422" height="422" rx="17" fill="#F8F2E7" stroke="#D8C39B"/><rect x="7" y="7" width="410" height="410" rx="12" fill="none" stroke="#E2D3B8"/><g transform="translate(12 12)">';
+    h+='<rect x="100" y="100" width="200" height="200" fill="#FCF7EB"/>';
+    for(var sg=0;sg<12;sg++) {
+      var pos=SOUTH[sg],x=pos[0]*100,y=pos[1]*100,cx=x+50,house=(sg-map.lagna+12)%12,el=sg%4;
+      h+='<g class="vc-house" data-house="'+(house+1)+'" data-sign="'+sg+'"><title>البيت '+(house+1)+' · '+SG[sg]+'</title><rect x="'+x+'" y="'+y+'" width="100" height="100" fill="'+FILLS[el]+'" fill-opacity=".55"/>';
+      h+='<g class="vc-sign-label" text-anchor="middle" fill="'+INKS[el]+'"><text x="'+(cx-12)+'" y="'+(y+19)+'" font-size="14" font-weight="600">'+(sg+1)+'</text><text x="'+(cx+12)+'" y="'+(y+19)+'" font-size="19" font-family="Georgia,serif">'+GLYPHS[sg]+'&#xfe0e;</text><text x="'+cx+'" y="'+(y+38)+'" font-size="13" font-weight="600" direction="rtl">'+SG[sg]+'</text></g>';
+      var here=map.items.filter(function(it){return it.sign===sg;}).map(function(it){return {t:it.ab,key:it.key,name:it.name,tone:TONE[it.key]||'g',r:it.retro};});
+      if(house===0){here.unshift({t:lagLbl(map),key:'lagna',name:'الطالع',tone:'l'});h+='<path d="M'+x+' '+(y+20)+'L'+(x+20)+' '+y+'" stroke="'+WINE+'" stroke-width="1.6"/>';}
+      var cols=here.length>6?3:here.length>2?2:1,rows=Math.ceil(here.length/cols),ht=rows>2?12:19,gy=ht+3,w=cols===3?27:34;
+      here.forEach(function(it,j){var row=Math.floor(j/cols),col=j%cols,n=Math.min(cols,here.length-row*cols),px=cx+(col-(n-1)/2)*(w+3),py=y+52+row*gy,c=TCOL[it.tone];
+        h+='<g class="vc-body" data-planet="'+esc(it.key)+'"><title>'+esc(it.name)+(it.r?' · متراجع':'')+'</title><rect x="'+(px-w/2)+'" y="'+(py-ht/2)+'" width="'+w+'" height="'+ht+'" rx="'+ht/2+'" fill="'+(it.tone==='l'?WINE:'#FFFCF5')+'" stroke="'+(it.tone==='l'?GOLD:c[1])+'" stroke-width=".8"/><text x="'+px+'" y="'+py+'" text-anchor="middle" dominant-baseline="central" font-size="'+(rows>2?9:12)+'" font-weight="700" fill="'+(it.tone==='l'?'#FFF1D6':c[2])+'">'+esc(it.t)+(it.r?'<tspan font-size="7" baseline-shift="super">℞</tspan>':'')+'</text></g>';
+      });h+='</g>';
     }
-    h += '<text x="200" y="196" text-anchor="middle" font-size="17" font-weight="800" fill="' + WINE + '">' + esc(map.n === 'moon' ? 'القمر' : map.n === 'sun' ? 'الشمس' : 'D' + map.n) + '</text>';
-    h += '<text x="200" y="220" text-anchor="middle" font-size="12" fill="' + GOLD + '" letter-spacing="1">' + esc(ORIG[map.n] || '') + '</text>';
-    return h + '</svg>';
+    h+='<g fill="none" stroke="#9B805B" stroke-width="1.05"><path d="M0 0H400V400H0ZM100 0V400M300 0V400M200 0V100M200 300V400M0 100H400M0 300H400M0 200H100M300 200H400"/></g>';
+    [[100,100],[300,100],[300,300],[100,300]].forEach(function(p){h+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3" fill="#F8F2E7" stroke="#9B805B"/>';});
+    h+=medallion(label,39);
+    return h+'</g></svg>';
   }
   /* رموز وضع الخبير الصامتة: تظهر للأدمن بعد فتح القفل فقط */
   function codesFor(map, x) {

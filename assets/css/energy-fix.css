@@ -398,3 +398,6 @@ html.vc-viewer-open{overflow:hidden}
 #astro-maps .vc-chartwrap>.vc-svg,#astro-maps .vyr-chart>.vc-svg{animation:vc-chart-reveal .2s ease-out both}
 #astro-maps .vc-card .vc-styles:not(#_a):not(#_b):not(#_c){display:flex!important;float:none!important;margin:10px auto 14px!important;width:max-content!important}
 @media(prefers-reduced-motion:reduce){#astro-maps .vc-chartwrap>.vc-svg,#astro-maps .vyr-chart>.vc-svg{animation:none!important}}
+
+/* سنة العودة واسم التقسيم هما البؤرة، واسم عقيق توقيع هادئ داخل الختم. */
+#astro-maps .vyr .vc-expand:not(#_a):not(#_b){display:block;margin:10px auto 0;background:#FCF7EC;color:#672238;border:1px solid #D7BD90;border-radius:24px;padding:9px 16px;min-height:40px;font-size:12px}

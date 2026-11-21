@@ -26,3 +26,9 @@ test('southern positions remain fixed for every lagna and every planet is retain
   assert.equal((s.match(/class="vc-body"/g)||[]).length,10);assert.equal((s.match(/class="vc-house"/g)||[]).length,12);assert.ok(s.includes('data-sign="0"'));assert.ok(s.includes('x="100" y="0" width="100"'));assert.ok(s.includes('vc-medallion'));
  }
 });
+
+test('center label and subtle Aqeeq brand remain present in both layouts',()=>{
+ for(const n of [1,9,60,'moon','sun'])for(const render of [VC.svg,VC.svgSouth]){
+  const s=render({n,lagna:0,basis:'asc',items:[]},'الخريطة');assert.ok(s.includes('vc-medallion-label'));assert.ok(s.includes('vc-medallion-brand'));assert.ok(s.includes('>عقيق</text>'));assert.ok(!s.includes('>عقيق أسترو</text>'));
+ }
+});
