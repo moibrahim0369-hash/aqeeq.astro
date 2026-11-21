@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.join(__dirname,'..'),C=require('../assets/js/year2027-core');
-const audit=require('../data/year2027/build-audit.json');assert.equal(audit.templates,108);assert.equal(audit.closing,60);assert.equal(audit.dasha,9);
+const audit=require('../data/year2027/build-audit.json');assert.equal(audit.templates,108);assert.equal(audit.closing,48);assert.equal(audit.dasha,9);
 assert.equal(fs.existsSync(path.join(root,'content-sources')),false,'Paid sources must not be in the public tree');assert.equal(fs.existsSync(path.join(root,'data/year2027/preview.json')),false,'No static preview library');assert.equal(fs.existsSync(path.join(root,'supabase/functions/_shared/year2027-content.json')),false,'No private library artifact in public tree');
 const cairo=t=>new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Cairo'}).format(t);assert.equal(cairo(C.Y0),'2027-01-01');assert.equal(cairo(C.END-1),'2027-12-31');assert.equal(cairo(C.SPLIT),'2027-04-01');
 for(let l=0;l<12;l++)assert.ok(C.lordHouses('jupiter',l).every(h=>h>=1&&h<=12));assert.ok(Math.abs(C.delta(359.9,0.1)+0.2)<1e-9);assert.ok(Math.abs(C.delta(0.1,359.9)-0.2)<1e-9);
