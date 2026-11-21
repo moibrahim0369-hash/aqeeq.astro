@@ -331,3 +331,18 @@ html body #astro-maps .vc-r .vc-dt .vc-dg{direction:ltr;unicode-bidi:isolate}
 #astro-maps .vsb-parts b { color:#70253a; direction:ltr; }
 #astro-maps .vsb details { margin:18px 0; overflow-wrap:anywhere; }
 @media(max-width:600px) { #astro-maps .vsb .vad-signs { grid-template-columns:repeat(2,minmax(0,1fr)); } #astro-maps .vsb .vad-signs b { font-size:20px; } }
+
+#astro-maps .vyr-moment { display:flex; flex-direction:column; gap:10px; margin:20px 0; padding:20px; background:linear-gradient(145deg,#fffdf8,#f4ead6); border:1px solid #e3c99b; border-radius:25px; box-shadow:0 5px 0 #ebdcc0; }
+#astro-maps .vyr-moment b { color:#74233c; font-size:16px; }
+#astro-maps .vyr-moment small { color:#927d67; margin-top:10px; }
+#astro-maps .vyr-chart { max-width:540px; margin:25px auto; padding:10px; border:1px solid #e7d3af; border-radius:24px; background:#fffaf1; box-shadow:0 5px 0 #ebdcc0; }
+#astro-maps .vyr-chart svg { width:100%; height:auto; display:block; }
+#astro-maps .vyr .vad-signs { grid-template-columns:repeat(2,minmax(0,1fr)); }
+#astro-maps .vyr .vad-signs b { font-size:20px; }
+#astro-maps .vyr-aspects,#astro-maps .vyr-candidates { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+#astro-maps .vyr-aspects article,#astro-maps .vyr-candidates article { display:flex; flex-direction:column; gap:8px; padding:15px; border:1px solid #e7d3af; border-radius:22px; background:#fffaf1; box-shadow:0 4px 0 #ebdcc0; }
+#astro-maps .vyr-aspects b,#astro-maps .vyr-candidates b { color:#74233c; }
+#astro-maps .vyr-aspects small,#astro-maps .vyr-candidates small { color:#927d67; }
+#astro-maps .vyr input { direction:ltr; text-align:right; }
+#astro-maps .vyr .vad-scroll table { min-width:410px; }
+@media(max-width:600px) { #astro-maps .vyr-aspects,#astro-maps .vyr-candidates { grid-template-columns:1fr; } #astro-maps .vyr-chart { padding:5px; } }
