@@ -3860,12 +3860,12 @@
     else if (reset) { set(title, 'استعادة كلمة المرور'); set(sub, 'اكتب بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.'); set(forgot, 'إرسال رابط الاستعادة'); back.hidden = false; }
     else {
       back.hidden = true; set(forgot, 'نسيت كلمة المرور؟');
-      if (m === 'signup') { set(title, 'إنشاء حساب جديد'); set(sub, 'ابدأ مساحتك الشخصية لحفظ قراءاتك وتقاريرك.'); set(swQ, 'لديك حساب بالفعل؟'); set(swBtn, 'تسجيل الدخول'); }
-      else { set(title, 'مساحتك الأقرب إليك'); set(sub, 'خرائطك وقراءاتك، في مكان يعود إليك.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
+      if (m === 'signup') { set(title, 'رحلتك تبدأ من هنا'); set(sub, 'خذ الخطوة الأولى إلى ذاتك.'); set(swQ, 'لديك حساب بالفعل؟'); set(swBtn, 'تسجيل الدخول'); }
+      else { set(title, 'خرائطك ومسارات حياتك، أقرب بضغطة'); set(sub, 'ابدأ رحلتك لفهم نفسك بصورة أعمق.'); set(swQ, 'ليس لديك حساب؟'); set(swBtn, 'إنشاء حساب جديد'); }
     }
     if (submit && submit.textContent.trim() === 'دخول') set(submit, 'تسجيل الدخول');
   }
-  var mo = new MutationObserver(render);
+  var mo = new MutationObserver(function(){render();});
   var uEl = q('#acct-user'); if (uEl) mo.observe(uEl, { attributes: true, attributeFilter: ['hidden'] });
   [].forEach.call(sec.querySelectorAll('.acct-tabs button'), function (b) { mo.observe(b, { attributes: true, attributeFilter: ['aria-selected'] }); });
   if (submit) mo.observe(submit, { childList: true, characterData: true, subtree: true });
@@ -3895,6 +3895,17 @@
     window.addEventListener('hashchange', function () { if (location.hash !== '#account') guest.classList.remove('acx-email'); });
   }
 
+  var logo=q('.acx-logo img');if(logo){logo.src='assets/images/brand/logo-mark-512.png';logo.width=92;logo.height=92;}
+  var curve=document.createElement('div');curve.className='acx-ref-curve';curve.setAttribute('aria-hidden','true');sec.appendChild(curve);
+  var confirmField=document.createElement('div');confirmField.className='field';confirmField.id='acct-confirm-field';confirmField.hidden=true;
+  confirmField.innerHTML='<label for="acct-pass-confirm">تأكيد كلمة المرور</label><input id="acct-pass-confirm" type="password" autocomplete="new-password" placeholder="تأكيد كلمة المرور" dir="ltr">';
+  var passField=pass.closest('.field');passField.after(confirmField);
+  var icons={name:'<circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',email:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>',pass:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'};
+  for(var item of [['#acct-name',icons.name],['#acct-email',icons.email],['#acct-pass',icons.pass],['#acct-pass-confirm',icons.pass]]){var inp=q(item[0]);inp.insertAdjacentHTML('beforebegin','<svg class="acx-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">'+item[1]+'</svg>');}
+  q('#acct-email').closest('.field').after(q('#acct-name-field'));
+  var divider=q('.acct-divider span');if(divider)divider.textContent='أو';
+  var oldRender=render;render=function(){oldRender();confirmField.hidden=mode()!=='signup';q('#acct-pass-confirm').required=mode()==='signup';};
+  form.addEventListener('submit',function(e){if(mode()==='signup'&&q('#acct-pass-confirm').value!==pass.value){e.preventDefault();e.stopImmediatePropagation();var msg=q('#acct-msg');msg.textContent='كلمتا المرور غير متطابقتين.';msg.hidden=false;q('#acct-pass-confirm').focus();}},true);
   render();
 })();
 
