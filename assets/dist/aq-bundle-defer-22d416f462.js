@@ -77,14 +77,16 @@
 
 ;
 /* assets/js/pwa-register.js */
-/* تسجيل Service Worker: يعمل على https وlocalhost فقط، ولا يؤثر على أي شاشة. */
+/* Remove the retired offline page cache. Auth and saved reading data are untouched. */
 (function () {
   if (!('serviceWorker' in navigator)) return;
-  var ok = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-  if (!ok) return;
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('sw.js', { scope: './' }).catch(function () {});
-  });
+  var base = new URL('./', document.baseURI).href;
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    return Promise.all(registrations.filter(function (r) { return r.scope === base; }).map(function (r) { return r.unregister(); }));
+  }).then(function () {
+    if (!('caches' in window)) return;
+    return caches.keys().then(function (keys) { return Promise.all(keys.filter(function (key) { return /^aq-sw-/.test(key); }).map(function (key) { return caches.delete(key); })); });
+  }).catch(function () {});
 })();
 
 ;
@@ -3180,7 +3182,7 @@
  blocks[2]=periods(group('rahu').concat(group('ketu')));
  blocks[3]=periods(group('mars').concat(group('mercury')));
  blocks[4]=periods(group('jupiter').concat(group('venus'),group('sun'),group('moon')));
- blocks[5]=report.periods.map(p=>{var t=p.text,chosen=(t.sections||[]).filter(s=>/يُستثمر|يستثمر|يُتجن|يتجن|ميثاق|خطو|فخ|عملي/.test(s.heading));return '<article class="y27-seg y27-covenant"><span class="y27-when">'+esc(range(p))+'</span><h4>ميثاق فترة '+esc(window.AqVedic.T.LORDS[p.lord])+'</h4><div class="y27-prose">'+(t.dialogue?'<blockquote>'+esc(t.dialogue)+'</blockquote>':'')+chosen.map(s=>'<section class="y27-literary-section"><h5>'+esc(s.heading)+'</h5>'+prose(s.paragraphs)+'</section>').join('')+'<div class="y27-step"><b>ما تلتزم به في هذه الفترة</b><p>'+esc(t.action)+'</p></div><p class="y27-question"><b>قبل أن تختار:</b> '+esc(t.question)+'</p></div></article>';}).join('');
+ blocks[5]=report.periods.map(p=>{var t=p.text,chosen=(t.sections||[]).filter(s=>/يُستثمر|يستثمر|يُتجن|يتجن|ميثاق|خطو|فخ|عملي/.test(s.heading));if(!chosen.length)chosen=(t.sections||[]).filter(s=>/هدف|غضب|الجسد|حدود|ميزان|معيار|تمهل|الإفراط|التشتت|مهرب|لأ|حين تميل|حين يفقد/.test(s.heading));if(!chosen.length)chosen=(t.sections||[]).slice(-1);return '<article class="y27-seg y27-covenant"><span class="y27-when">'+esc(range(p))+'</span><h4>ميثاق فترة '+esc(window.AqVedic.T.LORDS[p.lord])+'</h4><div class="y27-prose">'+(t.dialogue?'<blockquote>'+esc(t.dialogue)+'</blockquote>':'')+chosen.map(s=>'<section class="y27-literary-section"><h5>'+esc(s.heading)+'</h5>'+prose(s.paragraphs)+'</section>').join('')+'<div class="y27-step"><b>ما تلتزم به في هذه الفترة</b><p>'+esc(t.action)+'</p></div><p class="y27-question"><b>قبل أن تختار:</b> '+esc(t.question)+'</p></div></article>';}).join('');
  function previewLock(){return '';}
  var cl=$('[data-y27-closing]');if(cl)cl.innerHTML=previewLock()+'<p class="y27-note">قراءة انتقالية من ديسمبر 2026 إلى مارس 2027. ليست سجلًا لأحداث العام الماضي.</p>'+periods(report.closing);
  blocks.forEach((html,i)=>{var el=$('[data-y27-section="'+i+'"]');if(el)el.innerHTML=previewLock()+html;});

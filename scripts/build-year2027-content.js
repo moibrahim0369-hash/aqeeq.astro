@@ -29,6 +29,7 @@ function body(s,closing=false){
   }
   const inner=(s.match(/\*\*الحوار الداخلي:\*\*\s*\n>\s*([^\n]+)/)||[])[1]||'';
   const axis=(s.match(/\[طبقة المحور:\s*«([^»]+)»\]/)||[])[1]||'';
+  if(axis){const text=clean(axis);paragraphs.push(text);if(sections.length)sections.push({heading:'الطرف الآخر من الحكاية',paragraphs:[text]});}
   return {title:clean(title.split(':').slice(1).join(':')||title),paragraphs,action:field(s,'خطوتك'),question:field(s,'سؤالك'),dialogue:clean(inner||''),axis:clean(axis),...(sections.length?{sections,introParagraphs}:{})};
 }
 const lex=JSON.parse(read('lexicon/lexicon.json'));
@@ -56,7 +57,7 @@ for(let i=1;i<=12;i++){
   if(sections.length!==5)throw new Error('Incomplete closing '+i);
   data.closing.push(sections.map(s=>{
     const scene=(s.match(/\*\*الواقع النفسي واليومي:\*\*([\s\S]*?)\*\*الحوار الداخلي:/)||[])[1]||'';
-    const b=body(s,true);if(!b.sections)b.paragraphs=scene.split('\n').map(x=>x.trim()).filter(x=>x.startsWith('- ')).map(withoutDates);
+    const b=body(s,true);if(!b.sections){const bullets=scene.split('\n').map(x=>x.trim()).filter(x=>x.startsWith('- '));b.paragraphs=bullets.map(withoutDates);if(bullets.some(x=>/^- \*\*/.test(x))){b.introParagraphs=[];b.sections=[];for(const raw of bullets){const m=raw.match(/^- \*\*([^*]+)\*\*\s*(.*)$/);if(m)b.sections.push({heading:withoutDates(m[1]).replace(/:$/,''),paragraphs:[withoutDates(m[2])]});else b.introParagraphs.push(withoutDates(raw));}b.paragraphs=[...b.introParagraphs,...b.sections.flatMap(x=>x.paragraphs)];}}
     b.action=withoutDates(b.action);b.question=withoutDates(b.question);audit.closing++;return b;
   }));
 }
