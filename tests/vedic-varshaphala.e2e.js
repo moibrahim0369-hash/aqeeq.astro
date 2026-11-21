@@ -15,6 +15,8 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8777',root=path.join(__dirnam
   await page.setViewportSize({width,height:width>600?900:844});
   await page.locator('.vyr').evaluate(e=>{const sec=e.closest('#astro-maps'),d=e.closest('details');sec.scrollTo({top:sec.scrollTop+d.getBoundingClientRect().top-sec.getBoundingClientRect().top-95,behavior:'instant'});});await page.waitForTimeout(200);await page.screenshot({path:'/downloads/varshaphala-'+width+'.png'});
   await page.locator('.vyr-chart').scrollIntoViewIfNeeded();await page.screenshot({path:'/downloads/varshaphala-chart-'+width+'.png'});
+  await page.locator('.vyr-candidates').scrollIntoViewIfNeeded();await page.screenshot({path:'/downloads/varshaphala-audit-'+width+'.png'});
+  assert.ok((await page.locator('.vyr-candidates').textContent()).includes('مستبعد:'));
   const m=await page.locator('.vyr').evaluate(e=>({w:e.clientWidth,scroll:e.scrollWidth}));assert.ok(m.scroll<=m.w+1,JSON.stringify(m));console.log('PASS Varshaphala',width,m);
  }
  assert.ok(await page.evaluate(()=>{const L=window.AqVedic.last,old=L.ch.known;L.ch.known=false;const msg=window.AqVarshaphala.createCard().textContent;L.ch.known=old;return msg.includes('وقت الميلاد غير معروف');}));
