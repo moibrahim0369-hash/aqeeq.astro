@@ -79,9 +79,9 @@
   function close() { var e = $('#ob-screen'); if (e) e.remove(); document.documentElement.classList.remove('ob-open'); }
   function check() {
     if (!user()) return;
-    if (mine()) { warm(); return; }
-    var skipped = false; try { skipped = sessionStorage.getItem(SK) === '1'; } catch (e) {}
-    if (!skipped && window.AqeeqChartContext) open();
+    // The birth-data screen is manual-only. Signing in must never open it.
+    // Keep cached-chart warming without changing stored birth data.
+    if (mine()) warm();
   }
   document.addEventListener('aq:session', function () { setTimeout(check, 300); });
   window.addEventListener('load', function () { setTimeout(check, 900); });
