@@ -47,7 +47,7 @@
     return {known:known,lagna:lagna,moon:moon.lon,periods:periods,segs:segs,stations:stations.sort((a,b)=>a.t-b.t),hits:hits.sort((a,b)=>a.t-b.t),revision:'lahiri-mean-v1',computedAt:Date.now()};
   }
   function periodsAt(R,now){return R.periods.find(p=>p.s<=now&&p.e>now)||R.periods.find(p=>p.s>now)||R.periods[R.periods.length-1];}
-  function timeline(R){var out=[];KEYS.forEach(k=>R.segs[k].forEach(s=>{if(s.e>SPLIT)out.push(Object.assign({},s,{s:Math.max(s.s,SPLIT),family:'annual'}));}));return out.sort((a,b)=>a.s-b.s||KEYS.indexOf(a.planet)-KEYS.indexOf(b.planet));}
+  function timeline(R){var out=[];KEYS.forEach(k=>R.segs[k].forEach(s=>{if(s.e>Y0)out.push(Object.assign({},s,{s:Math.max(s.s,Y0),family:'annual'}));}));return out.sort((a,b)=>a.s-b.s||KEYS.indexOf(a.planet)-KEYS.indexOf(b.planet));}
   function lordHouses(k,lagna){return (RULES[k]||[]).map(s=>(s-lagna+12)%12+1);}
   var api={compute:compute,timeline:timeline,periodsAt:periodsAt,lordHouses:lordHouses,KEYS:KEYS,NAMES:NAMES,AREAS:AREAS,START:START,SPLIT:SPLIT,END:END,Y0:Y0,norm:norm,delta:delta};
   root.AqYear2027Core=api;if(typeof module==='object'&&module.exports)module.exports=api;

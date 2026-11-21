@@ -4,7 +4,7 @@
   var DAY=86400000,START=Date.UTC(2026,10,30,22),SPLIT=Date.UTC(2027,2,31,22),END=Date.UTC(2027,11,31,22),Y0=Date.UTC(2026,11,31,22);
   var KEYS=['saturn','jupiter','rahu','ketu','mars','venus','sun','moon','mercury'];
   var NAMES={saturn:'زحل',jupiter:'المشتري',rahu:'راهو',ketu:'كيتو',mars:'المريخ',venus:'الزهرة',sun:'الشمس',moon:'القمر',mercury:'عطارد',node:'راهو'};
-  var AREAS=['الذات والبدايات','الموارد والقيمة','التواصل والتعلم','البيت والجذور','القلب والإبداع','الروتين والعمل اليومي','الشراكات','الثقة والالتزامات المشتركة','المعرفة والسفر','المهنة والمكانة','الأصدقاء والأهداف','الراحة والمساحة الخاصة'];
+  var AREAS=['نفسك وطريقة دخولك لأي بداية','مالك وما تقدمه وما تطلبه في المقابل','كلامك وتعلمك والناس القريبة منك','بيتك والعائلة وما يريحك داخل المكان','حبك وإبداعك وأبنائك إن كانوا في حياتك','شغلك اليومي وعاداتك وما تتحمله من طلبات','علاقتك القريبة أو شراكة العمل','الثقة والخصوصية والمال المشترك','تعلمك وسفرك والأفكار اللي تعيش بها','شغلك وما تريد أن يعرفه الناس عنك','أصدقاؤك والناس اللي تشاركهم هدفًا','نومك وراحتك والوقت اللي تحتاجه لنفسك'];
   var RULES={saturn:[9,10],jupiter:[8,11],mars:[0,7],venus:[1,6],sun:[4],moon:[3],mercury:[2,5]};
   var norm=x=>((x%360)+360)%360,delta=(a,b)=>((a-b+540)%360)-180;
   var body=(ch,k)=>(ch.bodies||[]).find(b=>String(b.key).toLowerCase()===k);
@@ -47,7 +47,7 @@
     return {known:known,lagna:lagna,moon:moon.lon,periods:periods,segs:segs,stations:stations.sort((a,b)=>a.t-b.t),hits:hits.sort((a,b)=>a.t-b.t),revision:'lahiri-mean-v1',computedAt:Date.now()};
   }
   function periodsAt(R,now){return R.periods.find(p=>p.s<=now&&p.e>now)||R.periods.find(p=>p.s>now)||R.periods[R.periods.length-1];}
-  function timeline(R){var out=[];KEYS.forEach(k=>R.segs[k].forEach(s=>{if(s.e>SPLIT)out.push(Object.assign({},s,{s:Math.max(s.s,SPLIT),family:'annual'}));}));return out.sort((a,b)=>a.s-b.s||KEYS.indexOf(a.planet)-KEYS.indexOf(b.planet));}
+  function timeline(R){var out=[];KEYS.forEach(k=>R.segs[k].forEach(s=>{if(s.e>Y0)out.push(Object.assign({},s,{s:Math.max(s.s,Y0),family:'annual'}));}));return out.sort((a,b)=>a.s-b.s||KEYS.indexOf(a.planet)-KEYS.indexOf(b.planet));}
   function lordHouses(k,lagna){return (RULES[k]||[]).map(s=>(s-lagna+12)%12+1);}
   var api={compute:compute,timeline:timeline,periodsAt:periodsAt,lordHouses:lordHouses,KEYS:KEYS,NAMES:NAMES,AREAS:AREAS,START:START,SPLIT:SPLIT,END:END,Y0:Y0,norm:norm,delta:delta};
   root.AqYear2027Core=api;if(typeof module==='object'&&module.exports)module.exports=api;
