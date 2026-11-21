@@ -1,0 +1,8 @@
+/* بطاقة توقعات الأبراج في الرئيسية: حجم متناسق مع بطاقات الصفحة (أيقونة وبانر أصغر) */
+html body #sky #zdc.zdc:not(#_a):not(#_b):not(#_c){margin:16px 0 8px;padding:14px 14px;gap:12px;border-radius:20px;min-height:0}
+html body #sky #zdc .zdc-ic:not(#_a):not(#_b):not(#_c){width:44px;height:44px;flex:0 0 44px;box-shadow:0 0 0 4px rgba(232,207,152,.08)}
+html body #sky #zdc .zdc-ic svg:not(#_a):not(#_b):not(#_c){width:26px;height:26px}
+html body #sky #zdc .zdc-t b:not(#_a):not(#_b):not(#_c){font-size:1rem;line-height:1.5}
+html body #sky #zdc .zdc-t small:not(#_a):not(#_b):not(#_c){font-size:.8rem;line-height:1.6}
+html body #sky #zdc .zdc-go:not(#_a):not(#_b):not(#_c){width:30px;height:30px}
+html body #sky #zdc .zdc-go svg:not(#_a):not(#_b):not(#_c){width:16px;height:16px}
