@@ -126,9 +126,10 @@
       '<div class="y27-gc y27-gc-2 ' + (satAct ? 'y27-gc-s' : 'y27-gc-g') + '">' + GI('sat') + '<small>ثقل زحل</small><b>' + (satAct ? 'حاضر في سنتك' : 'خفيف في سنتك') + '</b></div>' +
       '<div class="y27-gc y27-gc-3 y27-gc-g">' + GI('coin') + '<small>باب الفرصة</small><b>' + HAREA[R.hOf(R.segs.jupiter[0].sign)] + '</b></div>' +
       '<div class="y27-gc y27-gc-4 y27-gc-s">' + GI('warn') + '<small>ما يستحق الحذر</small><b>' + HAREA[R.hOf(R.segs.saturn[0].sign)] + '</b></div></div>';
-    h = '<span class="y27-kick">قراءة سنتك · 2027</span>' + glance + '<p class="y27-tap">اضغط على أي بطاقة بالأسفل لتقرأ ما يخصك</p>' + h;
+    var bannerIn = '<span class="y27-kick">قراءة سنتك · 2027</span>' + glance;
+    h = '<p class="y27-tap">اضغط على أي بطاقة بالأسفل لتقرأ ما يخصك</p>' + h;
     var basis = R.known ? '' : '<p class="y27-note">وقت الميلاد غير معروف، فالبيوت محسوبة من برج القمر بدل الطالع، والقراءة أدق كلما عرفت وقتك.</p>';
-    return '<header class="y27-rhead"><div class="y27-who"><b>' + esc(name || 'قراءتك') + '</b><span>' + esc(meta && meta.line || '') + '</span></div><div class="y27-actions"><button type="button" class="y27-btn" id="y27-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 19h14"/></svg><span>حفظ القراءة كملف PDF</span></button><button type="button" class="y27-btn y27-buy" data-y27-buy>شراء التوقع كامل</button><button type="button" class="y27-btn y27-ghost" data-y27-edit>تعديل البيانات</button></div></header>' + basis + h +
+    return '<header class="y27-rhead"><div class="y27-who"><b>' + esc(name || 'قراءتك') + '</b><span>' + esc(meta && meta.line || '') + '</span></div><div class="y27-actions"><button type="button" class="y27-btn" id="y27-pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 19h14"/></svg><span>حفظ القراءة كملف PDF</span></button><button type="button" class="y27-btn y27-buy" data-y27-buy>شراء التوقع كامل</button><button type="button" class="y27-btn y27-ghost" data-y27-edit>تعديل البيانات</button></div>' + bannerIn + '</header>' + basis + h +
       '<p class="y27-note">قراءة رمزية مبنية على حساب فلكي لخريطتك. الفترات والتواريخ تتغير بتغير بياناتك.</p>';
   }
 

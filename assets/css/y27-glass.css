@@ -49,3 +49,11 @@ html body #year2027 .y27-gc-s{background:linear-gradient(165deg,rgba(255,250,250
 html body #year2027 .y27-gc-g{background:linear-gradient(165deg,rgba(252,255,252,.98),rgba(226,242,230,.9))!important;border-color:rgba(74,120,90,.55)!important}
 html body #year2027 .y27-gc-s b{color:#8A1F2C!important;-webkit-text-fill-color:#8A1F2C!important}
 html body #year2027 .y27-gc-g b{color:#2F5A3E!important;-webkit-text-fill-color:#2F5A3E!important}
+/* البطاقات الأربع داخل بانر النتيجة */
+html body #year2027 .y27-rhead{padding:20px 16px 18px}
+html body #year2027 .y27-rhead .y27-kick{color:#E8CF98!important}
+html body #year2027 .y27-rhead .y27-kick::before{background:linear-gradient(90deg,transparent,#E8CF98)}
+html body #year2027 .y27-rhead .y27-kick::after{background:linear-gradient(90deg,#E8CF98,transparent)}
+html body #year2027 .y27-rhead .y27-glance{margin:14px 0 16px!important;gap:12px!important;text-align:start}
+html body #year2027 .y27-rhead .y27-actions{margin-top:4px}
+html body #year2027 .y27-rhead .y27-btn{padding:10px 16px!important;font-size:.9rem!important;white-space:nowrap}
