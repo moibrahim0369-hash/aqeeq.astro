@@ -22,3 +22,13 @@ html body #year2027:not(#_a0):not(#_b1):not(#_c2):not(#_d3):not(#_e4):not(#_f5):
 html body #year2027:not(#_a0):not(#_b1):not(#_c2):not(#_d3):not(#_e4):not(#_f5):not(#_g6):not(#_h7):not(#_i8):not(#_j9):not(#_k10):not(#_l11):not(#_m12):not(#_n13):not(#_o14):not(#_p15):not(#_q16):not(#_r17):not(#_s18):not(#_t19):not(#_u20):not(#_v21):not(#_w22) .y27-acc summary .y27-ch::after{content:"";position:absolute;left:11px;top:9px;width:6px;height:6px;border-right:2px solid #7A3048;border-bottom:2px solid #7A3048;transform:rotate(45deg);transition:transform .25s}
 html body #year2027:not(#_a0):not(#_b1):not(#_c2):not(#_d3):not(#_e4):not(#_f5):not(#_g6):not(#_h7):not(#_i8):not(#_j9):not(#_k10):not(#_l11):not(#_m12):not(#_n13):not(#_o14):not(#_p15):not(#_q16):not(#_r17):not(#_s18):not(#_t19):not(#_u20):not(#_v21):not(#_w22) .y27-acc[open] summary .y27-ch::after{transform:rotate(-135deg);top:12px}
  .y27-form{background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(250,242,228,.66))!important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(214,180,110,.55)!important;box-shadow:0 18px 34px rgba(94,37,52,.14),inset 0 1px 0 rgba(255,255,255,.95)!important;border-radius:24px!important}
+/* نتيجة 2027: البانر يحمل الاسم والتاريخ والمكان والأزرار، والعنوان والسؤال يظهران قبل الحساب فقط */
+html body #year2027.y27-has .y27-intro p.intro{display:none!important}
+html body #year2027.y27-has .y27-editrow{display:none!important}
+html body #year2027 .y27-who{display:grid;gap:4px;margin:0 0 16px}
+html body #year2027 .y27-who b{font:700 1.25rem/1.5 'El Messiri','Cairo',serif;color:#FFF3DC;-webkit-text-fill-color:#FFF3DC}
+html body #year2027 .y27-who span{font:600 .9rem/1.6 'Cairo',sans-serif;color:#EBD7B4;-webkit-text-fill-color:#EBD7B4}
+html body #year2027 .y27-rhead .y27-buy{background:linear-gradient(135deg,#F3DFA8,#C6A25C)!important;color:#4A1A2C!important;border:1px solid #F3DFA8!important;font-weight:800!important}
+html body #year2027 .y27-rhead .y27-ghost{background:transparent!important;border:1px solid rgba(232,207,152,.55)!important;color:#EBD7B4!important}
+html body #year2027 .y27-rhead .y27-actions .y27-btn{flex:1 1 40%;justify-content:center}
+html body #year2027 .y27-rhead .y27-actions #y27-pdf{flex:1 1 100%}
