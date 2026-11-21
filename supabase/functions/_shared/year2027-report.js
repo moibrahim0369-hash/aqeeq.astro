@@ -14,7 +14,9 @@ export function previewFor(input,lib,now=Date.now()){
  const natal=natalFor(input),ch=sidereal(natal),moon=ch.bodies.find(b=>b.key==='moon'),periods=[];
  dashas(moon.lon,input.utcMs).forEach(m=>antars(m).forEach(a=>{if(a.e>C.Y0&&a.s<C.END)periods.push({maha:m.lord,lord:a.lord,s:Math.max(a.s,C.Y0),e:Math.min(a.e,C.END)});}));
  if(!periods.length)throw Error('unsupported_birth_date');const R={known:ch.known,periods},p=C.periodsAt(R,now),t=lib.dasha[p.lord];
- return {model:R,free:{...t,paragraphs:t.paragraphs.slice(0,2)},period:p,revision:lib.revision};
+ const paragraphs=t.paragraphs.slice();let words=paragraphs.join(' ').split(/\s+/).length;
+ if(ch.known){const at=C.Y0,jde=Astro.jdFromMs(at),sky=Astro.chart({utcMs:at,lat:input.lat,lon:input.lon,known:false,hs:'whole'}),planet=['ketu','venus','sun','moon','mars','rahu','jupiter','saturn','mercury'][p.lord],key=planet==='rahu'||planet==='ketu'?'node':planet,b=sky.bodies.find(x=>x.key===key);if(b){const lon=norm(b.lon-ayanamsa(sky.jde)+(planet==='ketu'?180:0)),house=(Math.floor(lon/30)-Math.floor(ch.asc/30)+12)%12+1,extra=lib.templates[planet][house-1];for(const para of extra.paragraphs){if(words>=180)break;paragraphs.push(para);words+=para.split(/\s+/).length;}}}
+ return {model:R,free:{...t,paragraphs},period:p,revision:lib.revision};
 }
 export function reportFor(input,lib,ephem){
  const natal=natalFor(input);if(input.unknown)throw Error('birth_time_required');
