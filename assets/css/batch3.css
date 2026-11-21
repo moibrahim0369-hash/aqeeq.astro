@@ -359,3 +359,11 @@ html.aq-review-open body #year2027 .y27-unlock{display:none}
 #year2027 .y27-rintro .eyebrow{display:block;font-size:13px;color:#9A7424;letter-spacing:.3px;margin-bottom:4px}
 #year2027 .y27-rintro h2{margin:0;color:var(--b3-wine);line-height:1.3}
 #year2027 .y27-form[hidden],#year2027 .y27-explain[hidden]{display:none!important}
+/* أكورديونات نتيجة 2027: عمق وبروز صفحة التفسيرات مع الحفاظ على الزجاجية وألوان الأقسام الهادية */
+#year2027 .y27-acc{border-radius:24px;border:1px solid rgba(214,180,110,.6);background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(248,239,222,.86));box-shadow:0 20px 40px -10px rgba(74,18,36,.22),0 4px 12px rgba(74,18,36,.07),inset 0 1px 0 rgba(255,255,255,.95);margin:0 0 16px;transition:transform .18s ease,box-shadow .25s ease}
+#year2027 .y27-acc>summary{transition:background .2s ease}
+#year2027 .y27-acc>summary:active{transform:scale(.992)}
+#year2027 .y27-acc .y27-ic{border-radius:14px;background:rgba(255,255,255,.55);box-shadow:0 2px 6px rgba(74,18,36,.08),inset 0 1px 0 rgba(255,255,255,.9)}
+#year2027 .y27-acc.y27-t-g{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(232,244,236,.9));border-color:rgba(110,160,128,.55);box-shadow:0 20px 40px -10px rgba(47,90,62,.22),0 4px 12px rgba(47,90,62,.07),inset 0 1px 0 rgba(255,255,255,.95)}
+#year2027 .y27-acc.y27-t-s{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(250,232,231,.9));border-color:rgba(198,120,116,.55);box-shadow:0 20px 40px -10px rgba(122,36,48,.22),0 4px 12px rgba(122,36,48,.07),inset 0 1px 0 rgba(255,255,255,.95)}
+#year2027 .y27-acc.y27-t-n{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(247,238,220,.9));border-color:rgba(198,162,92,.6)}
