@@ -35,7 +35,13 @@ test('planetary hours and thirds switch at measured sunrise and sunset, not midn
  const set=M.temporal(t.set+1000,ch);assert.equal(set.hora,13);assert.equal(set.third,0);assert.equal(set.day,false);
  const pre=M.temporal(t.rise-1000,ch);assert.equal(pre.hora,24);assert.notEqual(pre.lords[2],rise.lords[2]);
 });
-test('war, unknown time and polar sunrise absence fail closed rather than fabricate total',()=>{
- const ms=Date.UTC(2000,0,1,10),ch=chart(ms);ch.bodies.find(b=>b.key==='mars').lon=359.8;ch.bodies.find(b=>b.key==='venus').lon=0.2;const r=S.calculate(ch,{utcMs:ms});assert.ok(!r.complete);assert.ok(r.wars.length);assert.ok(r.rows.every(v=>v.total===null&&v.ratio===null));
+test('ordinary war is corrected; missing time and polar sunrise still reject',()=>{
+ const ms=Date.UTC(2000,0,1,10),ch=chart(ms);ch.bodies.find(b=>b.key==='mars').lon=359.8;ch.bodies.find(b=>b.key==='venus').lon=0.2;const r=S.calculate(ch,{utcMs:ms});assert.ok(r.complete);assert.ok(r.wars.length);assert.ok(r.rows.every(v=>Number.isFinite(v.total)&&Number.isFinite(v.ratio)));assert.ok(r.rows[5].yuddha>0);assert.ok(r.rows[2].yuddha<0);
  ch.known=false;assert.throws(()=>S.calculate(ch,{utcMs:ms}));ch.known=true;ch.lat=89;assert.throws(()=>M.temporal(Date.UTC(2000,5,21,12),ch));
+});
+
+test('Raman war independent arithmetic, exclusion, exact boundary, wrap and unresolved clusters',()=>{
+ const l=[10,10,100,100.5,180,230,280],base=[0,0,300,272,200,150,100],r=M.yuddha(l,base);near(r.corrections[2],10);near(r.corrections[3],-10);assert.equal(r.pairs[0].winner,2);near(r.corrections.reduce((a,b)=>a+b,0),0);
+ l[3]=101;assert.equal(M.yuddha(l,base).pairs.length,0);l[2]=359.8;l[3]=0.2;assert.equal(M.yuddha(l,base).pairs[0].winner,3);
+ l[2]=100;l[3]=100;assert.ok(M.yuddha(l,base).unresolved.length);l[3]=100.3;l[4]=100.6;assert.equal(M.yuddha(l,base).pairs.length,3);assert.ok(M.yuddha(l,base).unresolved.includes(4));
 });

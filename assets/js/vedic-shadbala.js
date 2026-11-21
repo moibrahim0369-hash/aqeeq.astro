@@ -68,6 +68,17 @@
     var house=(sg-Math.floor(asc/30)+12)%12,ken=[60,30,15][house%3],dec=Math.floor(lon%30/10),want=(p===0||p===2||p===4)?0:female?1:2;
     var parts=[uchcha(p,lon),sv,oj,ken,dec===want?15:0];return {parts:parts,vargaPoints:points,total:sum(parts)};
   }
+  function yuddha(longs,base){
+    // Raman, Graha and Bhava Balas 76-77. Fixed traditional discs, not apparent diameters.
+    var discs=[0,0,9.4,6.6,190.4,16.6,158],pairs=[],degree=Array(7).fill(0),corrections=Array(7).fill(0),unresolved=[];
+    for(var i=2;i<7;i++)for(var j=i+1;j<7;j++)if(sep(longs[i],longs[j])<1){pairs.push({a:i,b:j});degree[i]++;degree[j]++;}
+    pairs.forEach(function(w){
+      if(degree[w.a]>1||degree[w.b]>1||Math.abs(norm(longs[w.a])-norm(longs[w.b]))<1e-10){w.reason=degree[w.a]>1||degree[w.b]>1?'حرب متعددة الأطراف: لا يحدد المرجع ترتيب التصحيحات':'تساوٍ تام في الطول: لا منتصر محدد في الصيغة';unresolved.push(w.a,w.b);return;}
+      w.winner=norm(longs[w.a])<norm(longs[w.b])?w.a:w.b;w.loser=w.winner===w.a?w.b:w.a;
+      w.amount=Math.abs(base[w.a]-base[w.b])/Math.abs(discs[w.a]-discs[w.b]);corrections[w.winner]+=w.amount;corrections[w.loser]-=w.amount;
+    });
+    return {pairs:pairs,corrections:corrections,unresolved:unresolved};
+  }
   function calculate(ch,natal){
     if(!ch||!ch.known||!Number.isFinite(ch.asc)||!Number.isFinite(ch.mc)||!natal||!Number.isFinite(natal.utcMs))throw new Error('وقت ميلاد معلوم ومكانه مطلوبان لحساب القوى الست.');
     if(!Number.isFinite(ch.lat)||!Number.isFinite(ch.lon))throw new Error('إحداثيات الميلاد غير متاحة.');
@@ -88,23 +99,22 @@
       var drik=sum(contributions),natural=[60,360/7,120/7,180/7,240/7,300/7,60/7][p];
       return {key:k,name:N[p],sthana:st.total,sthanaParts:st.parts,vargaPoints:st.vargaPoints,dig:dig,kala:sum(kalaParts),kalaParts:kalaParts,chesta:mot,naisargika:natural,drik:drik,contributions:contributions};
     });
-    var wars=[];for(var i=2;i<7;i++)for(var j=i+1;j<7;j++)if(sep(longs[i],longs[j])<1)wars.push([i,j]);
-    // Do not manufacture a total where the war convention has not been verified.
-    rows.forEach(function(r,p){r.total=wars.length?null:r.sthana+r.dig+r.kala+r.chesta+r.naisargika+r.drik;r.rupas=r.total===null?null:r.total/60;r.required=REQ[p]/60;r.ratio=r.total===null?null:r.total/REQ[p];});
-    return {rows:rows,temporal:t,wars:wars,convention:'BPHS27-explicit-v1',complete:wars.length===0};
+    var war=yuddha(longs,rows.map(function(r){return r.sthana+r.dig+sum(r.kalaParts.slice(0,7));}));
+    rows.forEach(function(r,p){r.yuddha=war.corrections[p];r.kalaParts.push(r.yuddha);r.kala+=r.yuddha;r.total=war.unresolved.indexOf(p)>=0?null:r.sthana+r.dig+r.kala+r.chesta+r.naisargika+r.drik;r.rupas=r.total===null?null:r.total/60;r.required=REQ[p]/60;r.ratio=r.total===null?null:r.total/REQ[p];});
+    return {rows:rows,temporal:t,wars:war.pairs,convention:'BPHS27-Raman76-war-v2',complete:war.unresolved.length===0};
   }
   function createCard(){
     var el=document.createElement('div');el.className='vsb vad';var L=window.AqVedic&&window.AqVedic.last,r;
     try{r=calculate(L&&L.ch,L&&L.natal);}catch(e){el.innerHTML='<p class="vad-warning"></p>';el.firstChild.textContent=e.message;return el;}
     var fmt=function(v){return v===null?'غير مكتمل':v.toFixed(2);};
     var h='<p class="vad-lead">تفصيل القوى الست لكل كوكب، بالفيروبا. كل 60 فيروبا = روبا واحدة. هذه نسخة معلنة القواعد، وليست وعدًا بالتطابق مع كل برامج شادبالا.</p>';
-    if(r.wars.length)h+='<p class="vad-warning">توجد حرب كوكبية (أقل من درجة): '+r.wars.map(function(w){return N[w[0]]+' / '+N[w[1]];}).join('، ')+'. لا نعرض مجموعًا أو ترتيبًا نهائيًا لأن تصحيح الحرب لم يُعتمد بعد. القيم أدناه قبل هذا التصحيح.</p>';
+    if(r.wars.length)h+='<p class="vad-note">حرب كوكبية وفق رامان: '+r.wars.map(function(w){return N[w.a]+' / '+N[w.b]+(w.reason?' · '+w.reason:' · المنتصر '+N[w.winner]+' · التصحيح ±'+fmt(w.amount)+' فيروبا');}).join('، ')+'. الأقل في الطول النجمي من 0 إلى 360 هو المنتصر في هذه المدرسة، وليس الأعلى في العرض أو الميل. الحجب إن وجد يخص الأطراف غير المحسومة فقط.</p>';
     h+='<div class="vad-signs">'+r.rows.map(function(v){return '<article><span>'+v.name+'</span><b>'+fmt(v.rupas)+'</b><small>روبا'+(v.ratio===null?'':' · النسبة '+fmt(v.ratio))+'</small></article>';}).join('')+'</div><label>تفاصيل الكوكب<select class="vsb-select">'+N.map(function(n,p){return '<option value="'+p+'">'+n+'</option>';}).join('')+'</select></label><div class="vsb-out"></div>';
-    h+='<p class="vad-note">المنهج: BPHS 27، المولاثريكونا في D1 فقط، الصداقة المركبة من D1، نقاط السبعة 45/30/20/15/10/4/2. قوة الاتجاه من الطالع ووسط السماء الفعليين. الشروق والغروب فلكيان، واليوم يبدأ بالشروق، والهورا 12 جزءًا للنهار و12 لليل.</p><p class="vad-note">حاكما السنة والشهر وفق معادلات Saravali المعلنة، وليسا تلقائيًا حاكمي أول يناير وأول الشهر المدني. قوة الحركة من متوسطات مدارية حديثة مع قاعدة منفصلة لعطارد والزهرة؛ أيانا بجدول 45/33/12. درِك حسب زوايا BPHS 26، وقراءة «إضافة تأثير عطارد والمشتري كاملًا» في BPHS 27.19. اختلاف هذه الاختيارات يغيّر المجموع بين المدارس. لا يُستنتج حدث أو احتمال علمي من الرقم.</p>';
+    h+='<p class="vad-note">المنهج: BPHS 27، المولاثريكونا في D1 فقط، الصداقة المركبة من D1، نقاط السبعة 45/30/20/15/10/4/2. قوة الاتجاه من الطالع ووسط السماء الفعليين. الشروق والغروب فلكيان، واليوم يبدأ بالشروق، والهورا 12 جزءًا للنهار و12 لليل.</p><p class="vad-note">حاكما السنة والشهر وفق معادلات Saravali المعلنة، وليسا تلقائيًا حاكمي أول يناير وأول الشهر المدني. قوة الحركة من متوسطات مدارية حديثة مع قاعدة منفصلة لعطارد والزهرة؛ أيانا بجدول 45/33/12. درِك حسب زوايا BPHS 26، وقراءة «إضافة تأثير عطارد والمشتري كاملًا» في BPHS 27.19. تصحيح الحرب الثنائية من كتاب رامان، الفقرتين 76 و77: فرق (الموقع + الاتجاه + الزمن حتى الهورا دون أيانا) ÷ فرق أقطار القرص الثابتة. اختيار المنهج لا يعني مطابقة بقية مكونات رامان. اختلاف هذه الاختيارات يغيّر المجموع بين المدارس. لا يُستنتج حدث أو احتمال علمي من الرقم.</p>';
     el.innerHTML=h;
     function render(){var v=r.rows[+el.querySelector('select').value],labels=['الموقع · ستانا','الاتجاه · دِغ','الزمن · كالا','الحركة · تشيشتا','الطبيعة · نايسارغيكا','الاتصالات · درِك'],values=[v.sthana,v.dig,v.kala,v.chesta,v.naisargika,v.drik];
-      var s='<div class="vsb-parts">'+labels.map(function(n,k){return '<p><span>'+n+'</span><b>'+fmt(values[k])+'</b></p>';}).join('')+'</div><p class="vad-total">المجموع '+fmt(v.total)+' فيروبا · الحد التقليدي '+v.required+' روبا</p><details><summary>تفصيل الحساب</summary><p class="vad-note">الموقع (الشرف، التقسيمات، الفردي/الزوجي، المركز، الدريكانا): '+v.sthanaParts.map(fmt).join(' / ')+'</p><p class="vad-note">نقاط D1/D2/D3/D7/D9/D12/D30: '+v.vargaPoints.map(fmt).join(' / ')+'</p><p class="vad-note">الزمن (نهار/ليل، طور القمر، ثلث اليوم، السنة، الشهر، اليوم، الهورا، أيانا): '+v.kalaParts.map(fmt).join(' / ')+'</p></details>';el.querySelector('.vsb-out').innerHTML=s;}
+      var s='<div class="vsb-parts">'+labels.map(function(n,k){return '<p><span>'+n+'</span><b>'+fmt(values[k])+'</b></p>';}).join('')+'</div><p class="vad-total">المجموع '+fmt(v.total)+' فيروبا · الحد التقليدي '+v.required+' روبا</p><details><summary>تفصيل الحساب</summary><p class="vad-note">الموقع (الشرف، التقسيمات، الفردي/الزوجي، المركز، الدريكانا): '+v.sthanaParts.map(fmt).join(' / ')+'</p><p class="vad-note">نقاط D1/D2/D3/D7/D9/D12/D30: '+v.vargaPoints.map(fmt).join(' / ')+'</p><p class="vad-note">الزمن (نهار/ليل، طور القمر، ثلث اليوم، السنة، الشهر، اليوم، الهورا، أيانا، تصحيح الحرب): '+v.kalaParts.map(fmt).join(' / ')+'</p></details>';el.querySelector('.vsb-out').innerHTML=s;}
     el.querySelector('select').addEventListener('change',render);render();return el;
   }
-  window.AqShadbala={calculate:calculate,createCard:createCard,math:{norm:norm,sep:sep,mean:mean,chesta:chesta,aspect:aspect,ayana:ayana,uchcha:uchcha,positional:positional,temporal:temporal}};
+  window.AqShadbala={calculate:calculate,createCard:createCard,math:{norm:norm,sep:sep,mean:mean,chesta:chesta,aspect:aspect,ayana:ayana,uchcha:uchcha,positional:positional,temporal:temporal,yuddha:yuddha}};
 })();
