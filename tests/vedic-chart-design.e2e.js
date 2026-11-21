@@ -30,7 +30,8 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8777',root=path.join(__dirnam
    const m=await chart.evaluate(e=>({w:e.getBoundingClientRect().width,sw:e.parentElement.scrollWidth,cw:e.parentElement.clientWidth}));assert.ok(m.sw<=m.cw+1,JSON.stringify(m));
   }
   await page.locator('#eam-result .vc-st[data-s="s"]:visible').first().click();assert.equal(await page.locator('#eam-result .vc-north:visible').count(),0);
-  await page.locator('#eam-result .vc-st[data-s="n"]:visible').first().click();assert.equal(await page.locator('#eam-result .vc-north:visible').count(),1);
+  await page.locator('#eam-result .vc-st[data-s="n"]:visible').first().click();assert.equal(await page.locator('#eam-result .vc-north:visible').count(),1);assert.equal(await page.locator('#eam-result .vc-north:visible').evaluate(e=>getComputedStyle(e).animationName),'vc-chart-reveal');
+  await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('#eam-result .vc-north:visible').evaluate(e=>getComputedStyle(e).animationName),'none');await page.emulateMedia({reducedMotion:'no-preference'});
   console.log('PASS shared chart route',tile);
  }
  await page.locator('#eam-result .vc-north:visible').first().evaluate(chart=>{
