@@ -1,18 +1,12 @@
 'use strict';
-// Execute the exact Astro engine embedded in index.html against Swiss Ephemeris fixtures.
+// Execute the exact Astro engine loaded by the built page against Swiss Ephemeris fixtures.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const root = path.join(__dirname, '..');
-const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const fixture = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/swiss-ephemeris-houses.json'), 'utf8'));
-const match = html.match(/const Astro = \(\(\) => \{[\s\S]*?\n\}\)\(\);/);
-assert.ok(match, 'could extract production Astro engine IIFE from index.html');
-const sandbox = { module: { exports: {} }, console, Date, Math, Intl };
-vm.runInNewContext(match[0] + '\nmodule.exports = Astro;', sandbox, { timeout: 5000 });
-const Astro = sandbox.module.exports;
-assert.equal(typeof Astro.chart, 'function');
+const {Astro} = require('./helpers/production-page').loadAstro();
 const systems = ['placidus', 'whole', 'equal', 'porphyry'];
 const TOLERANCE_DEG = Number(process.env.HOUSE_TOLERANCE_DEG || '0.1');
 const circularError = (a, b) => Math.abs((((a - b + 540) % 360) + 360) % 360 - 180);

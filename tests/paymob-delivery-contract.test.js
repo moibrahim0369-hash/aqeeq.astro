@@ -7,7 +7,8 @@ const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const webhook = read('supabase/functions/paymob-webhook/index.ts');
 const report = read('supabase/functions/generate-astro-report/index.ts');
 const auth = read('auth.js');
-const html = read('index.html');
+const page = require('./helpers/production-page').productionPage();
+const html = page.shell + '\n' + page.code;
 const migration = read('supabase/migrations/20261026024522_report_delivery_state.sql');
 
 // Webhook signature and success/failure gates.

@@ -4,10 +4,16 @@ const path = require('node:path');
 const vm = require('node:vm');
 
 const rootDir = path.resolve(__dirname, '..');
-const indexShell = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
+// Source tags retain original ordering after production bundling.
+// build-sync plus the resolved production scripts verify their deployed contents.
+const indexShell = fs.readFileSync(path.join(rootDir, 'index.src.html'), 'utf8');
+const production = require('./helpers/production-page').productionPage();
 // الكود الداخلي انتقل من index.html إلى assets/js/inline/page-XX.js؛ نقرأه كمصدر للصفحة.
 const inlineDir = path.join(rootDir, 'assets/js/inline');
 const inlineJs = fs.readdirSync(inlineDir).filter(f => /^page-\d+\.js$/.test(f)).sort().map(f => fs.readFileSync(path.join(inlineDir, f), 'utf8')).join('\n');
+for (const file of fs.readdirSync(inlineDir).filter(f => /^page-\d+\.js$/.test(f))) {
+  assert.ok(production.code.includes(fs.readFileSync(path.join(inlineDir, file), 'utf8').trim()), file + ': inline source is present in production');
+}
 const indexHtml = indexShell + '\n' + inlineJs;
 const lifePathCoreJs = fs.readFileSync(path.join(rootDir, 'assets/js/aqeeq-lifepath-core.js'), 'utf8');
 const platformJs = fs.readFileSync(path.join(rootDir, 'assets/js/aqeeq-platform.js'), 'utf8');

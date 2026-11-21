@@ -1,6 +1,6 @@
 'use strict';
 // Run: node tests/swiss-house-fixtures.test.js
-// This loads the actual Astro IIFE from index.html and compares its real outputs
+// This loads the actual Astro IIFE loaded by the built page and compares its real outputs
 // against reference cusps generated with Swiss Ephemeris. It does not bundle Swiss Ephemeris.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -11,16 +11,7 @@ const root = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const fixture = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/swiss-ephemeris-houses.json'), 'utf8'));
 const systems = ['placidus', 'whole', 'equal', 'porphyry'];
-const marker = '})();\nif (typeof module !== \'undefined\') module.exports = Astro;';
-const start = html.indexOf('const Astro = (() => {');
-assert.notEqual(start, -1, 'Astro engine IIFE must exist in index.html');
-const end = html.indexOf(marker, start);
-assert.notEqual(end, -1, 'Astro engine IIFE must have its expected closing marker');
-const engineSource = html.slice(start, end + 4) + '\nmodule.exports = Astro;';
-const sandbox = { module: { exports: {} } };
-vm.runInNewContext(engineSource, sandbox, { filename: 'index.html#Astro-engine' });
-const Astro = sandbox.module.exports;
-assert.equal(typeof Astro.chart, 'function', 'actual Astro.chart must be exposed by the extracted engine');
+const {Astro} = require('./helpers/production-page').loadAstro();
 
 const angularError = (actual, expected) => Math.abs(((actual - expected + 540) % 360) - 180);
 const toleranceDegrees = 0.001; // 3.6 arcseconds, comfortably above fixture rounding precision
