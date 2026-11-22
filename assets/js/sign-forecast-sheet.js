@@ -73,10 +73,9 @@
     var D = window.AqSky, bd = bodyOf(k), P = D.PLANETS[k], S = D.SIGNS[bd.sign], deg = Math.floor(bd.lon % 30);
     var saved = null; try { saved = localStorage.getItem('aq-sky-sign'); } catch (e) { }
     var st = bd.retro ? ' · متراجع' : (k === 'sun' || k === 'moon' ? '' : ' · حركة مباشرة');
-    var h = '<header class="fc-head"><span class="fc-medal" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="32" cy="32" r="28" stroke-dasharray="2 4.2"/><circle cx="32" cy="32" r="21"/><path d="M32 4v7M32 53v7M4 32h7M53 32h7"/></svg><span class="sg">' + D.gl(P.g) + '</span></span>' +
-      '<div><span class="fc-ey">توقعات الأبراج</span><h3>ماذا تقول السماء لبرجك اليوم؟</h3></div></header>' +
-      '<div class="fc-now"><div class="fc-now-top"><span class="fc-now-g" aria-hidden="true"><span class="sg">' + D.gl(S.g) + '</span></span><div class="fc-now-t"><small>' + dayTxt() + '</small><b>' + P.n + ' في ' + S.n + '</b><span>' + degTxt(deg, S.n) + st + '</span></div></div>' +
-      '<div class="fc-now-about"><h4>' + (/^ال(شمس|زهرة)$/.test(P.n) ? 'ما هي ' : 'ما هو ') + P.n + '؟</h4><p>' + P.n + ' يمثل ' + P.theme + '، وهو العدسة التي تُقرأ بها ' + P.lens + '. حين يكون متوازنًا يعطيك ' + P.give + '، ويحتاج منك انتباهًا إلى ' + P.watch + '.</p></div></div>' +
+    var defH = (/^ال(شمس|زهرة)$/.test(P.n) ? 'ما هي ' : 'ما هو ') + P.n + '؟';
+    var h = '<div class="fc-now"><div class="fc-now-top"><span class="fc-now-g" aria-hidden="true"><span class="sg">' + D.gl(S.g) + '</span></span><div class="fc-now-t"><small>توقعات الأبراج · ' + dayTxt() + '</small><b>ماذا تقول السماء لبرجك اليوم؟</b><span>' + P.n + ' في ' + S.n + ' · ' + degTxt(deg, S.n) + st + '</span></div></div>' +
+      '<details class="fc-now-about"><summary>' + defH + '</summary><p>' + P.n + ' يمثل ' + P.theme + '، وهو العدسة التي تُقرأ بها ' + P.lens + '. حين يكون متوازنًا يعطيك ' + P.give + '، ويحتاج منك انتباهًا إلى ' + P.watch + '.</p></details></div>' +
       '<section class="fc-gen">' + gen(k, bd, S) + '</section>' +
       '<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>';
     return { html: h, saved: saved };

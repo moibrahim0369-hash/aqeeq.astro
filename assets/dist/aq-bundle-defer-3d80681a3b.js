@@ -4115,7 +4115,7 @@
    بيختار/يضيف عنصر في CITIES ويطلق حدث change على القائمة الأصلية. */
 (function () {
   "use strict";
-  /* الدولة|English|العاصمة|Capital|lat|lon|tz  (إحداثيات العاصمة، وتُستخدم تقريبًا للمحافظات اللي ملهاش إحداثيات) */
+  /* الدولة|English|العاصمة|Capital|lat|lon|tz  (إحداثيات العاصمة عند اختيارها صراحة فقط) */
   var C = ("مصر|Egypt|القاهرة|Cairo|30.0444|31.2357|Africa/Cairo;المملكة العربية السعودية|Saudi Arabia|الرياض|Riyadh|24.7136|46.6753|Asia/Riyadh;الإمارات العربية المتحدة|United Arab Emirates|أبوظبي|Abu Dhabi|24.4539|54.3773|Asia/Dubai;الكويت|Kuwait|مدينة الكويت|Kuwait City|29.3759|47.9774|Asia/Kuwait;قطر|Qatar|الدوحة|Doha|25.2854|51.531|Asia/Qatar;البحرين|Bahrain|المنامة|Manama|26.2285|50.586|Asia/Bahrain;عمان|Oman|مسقط|Muscat|23.588|58.3829|Asia/Muscat;الأردن|Jordan|عمّان|Amman|31.9454|35.9284|Asia/Amman;لبنان|Lebanon|بيروت|Beirut|33.8938|35.5018|Asia/Beirut;سوريا|Syria|دمشق|Damascus|33.5138|36.2765|Asia/Damascus;العراق|Iraq|بغداد|Baghdad|33.3152|44.3661|Asia/Baghdad;فلسطين|Palestine|القدس|Jerusalem|31.7683|35.2137|Asia/Hebron;اليمن|Yemen|صنعاء|Sanaa|15.3694|44.191|Asia/Aden;السودان|Sudan|الخرطوم|Khartoum|15.5007|32.5599|Africa/Khartoum;ليبيا|Libya|طرابلس|Tripoli|32.8872|13.1913|Africa/Tripoli;تونس|Tunisia|تونس|Tunis|36.8065|10.1815|Africa/Tunis;الجزائر|Algeria|الجزائر|Algiers|36.7538|3.0588|Africa/Algiers;المغرب|Morocco|الرباط|Rabat|34.0209|-6.8416|Africa/Casablanca;موريتانيا|Mauritania|نواكشوط|Nouakchott|18.0735|-15.9582|Africa/Nouakchott;الصومال|Somalia|مقديشو|Mogadishu|2.0469|45.3182|Africa/Mogadishu;جيبوتي|Djibouti|جيبوتي|Djibouti|11.5721|43.1456|Africa/Djibouti;جزر القمر|Comoros|موروني|Moroni|-11.7172|43.2473|Indian/Comoro;تركيا|Turkey|أنقرة|Ankara|39.9334|32.8597|Europe/Istanbul;إيران|Iran|طهران|Tehran|35.6892|51.389|Asia/Tehran;إسرائيل|Israel|القدس|Jerusalem|31.7683|35.2137|Asia/Jerusalem;قبرص|Cyprus|نيقوسيا|Nicosia|35.1856|33.3823|Asia/Nicosia;أثيوبيا|Ethiopia|أديس أبابا|Addis Ababa|9.03|38.74|Africa/Addis_Ababa;كينيا|Kenya|نيروبي|Nairobi|-1.2921|36.8219|Africa/Nairobi;نيجيريا|Nigeria|أبوجا|Abuja|9.0765|7.3986|Africa/Lagos;جنوب أفريقيا|South Africa|بريتوريا|Pretoria|-25.7479|28.2293|Africa/Johannesburg;غانا|Ghana|أكرا|Accra|5.6037|-0.187|Africa/Accra;السنغال|Senegal|داكار|Dakar|14.7167|-17.4677|Africa/Dakar;تنزانيا|Tanzania|دودوما|Dodoma|-6.163|35.7516|Africa/Dar_es_Salaam;أوغندا|Uganda|كمبالا|Kampala|0.3476|32.5825|Africa/Kampala;الجزائر_|x|x|x|0|0|x;المملكة المتحدة|United Kingdom|لندن|London|51.5074|-0.1278|Europe/London;أيرلندا|Ireland|دبلن|Dublin|53.3498|-6.2603|Europe/Dublin;فرنسا|France|باريس|Paris|48.8566|2.3522|Europe/Paris;ألمانيا|Germany|برلين|Berlin|52.52|13.405|Europe/Berlin;إيطاليا|Italy|روما|Rome|41.9028|12.4964|Europe/Rome;إسبانيا|Spain|مدريد|Madrid|40.4168|-3.7038|Europe/Madrid;البرتغال|Portugal|لشبونة|Lisbon|38.7223|-9.1393|Europe/Lisbon;هولندا|Netherlands|أمستردام|Amsterdam|52.3676|4.9041|Europe/Amsterdam;بلجيكا|Belgium|بروكسل|Brussels|50.8503|4.3517|Europe/Brussels;سويسرا|Switzerland|برن|Bern|46.948|7.4474|Europe/Zurich;النمسا|Austria|فيينا|Vienna|48.2082|16.3738|Europe/Vienna;السويد|Sweden|ستوكهولم|Stockholm|59.3293|18.0686|Europe/Stockholm;النرويج|Norway|أوسلو|Oslo|59.9139|10.7522|Europe/Oslo;الدنمارك|Denmark|كوبنهاغن|Copenhagen|55.6761|12.5683|Europe/Copenhagen;فنلندا|Finland|هلسنكي|Helsinki|60.1699|24.9384|Europe/Helsinki;بولندا|Poland|وارسو|Warsaw|52.2297|21.0122|Europe/Warsaw;اليونان|Greece|أثينا|Athens|37.9838|23.7275|Europe/Athens;روسيا|Russia|موسكو|Moscow|55.7558|37.6173|Europe/Moscow;أوكرانيا|Ukraine|كييف|Kyiv|50.4501|30.5234|Europe/Kyiv;رومانيا|Romania|بوخارست|Bucharest|44.4268|26.1025|Europe/Bucharest;بلغاريا|Bulgaria|صوفيا|Sofia|42.6977|23.3219|Europe/Sofia;هنغاريا|Hungary|بودابست|Budapest|47.4979|19.0402|Europe/Budapest;الجمهورية التشيكية|Czechia|براغ|Prague|50.0755|14.4378|Europe/Prague;صربيا|Serbia|بلغراد|Belgrade|44.7866|20.4489|Europe/Belgrade;كرواتيا|Croatia|زغرب|Zagreb|45.815|15.9819|Europe/Zagreb;ألبانيا|Albania|تيرانا|Tirana|41.3275|19.8187|Europe/Tirane;البوسنة والهرسك|Bosnia and Herzegovina|سراييفو|Sarajevo|43.8563|18.4131|Europe/Sarajevo;أيسلندا|Iceland|ريكيافيك|Reykjavik|64.1466|-21.9426|Atlantic/Reykjavik;مالطا|Malta|فاليتا|Valletta|35.8989|14.5146|Europe/Malta;الولايات المتحدة|United States|واشنطن العاصمة|Washington DC|38.9072|-77.0369|America/New_York;كندا|Canada|أوتاوا|Ottawa|45.4215|-75.6972|America/Toronto;المكسيك|Mexico|مكسيكو سيتي|Mexico City|19.4326|-99.1332|America/Mexico_City;البرازيل|Brazil|برازيليا|Brasilia|-15.7939|-47.8828|America/Sao_Paulo;الأرجنتين|Argentina|بوينس آيرس|Buenos Aires|-34.6037|-58.3816|America/Argentina/Buenos_Aires;تشيلي|Chile|سانتياغو|Santiago|-33.4489|-70.6693|America/Santiago;كولومبيا|Colombia|بوغوتا|Bogota|4.711|-74.0721|America/Bogota;بيرو|Peru|ليما|Lima|-12.0464|-77.0428|America/Lima;فنزويلا|Venezuela|كاراكاس|Caracas|10.4806|-66.9036|America/Caracas;كوبا|Cuba|هافانا|Havana|23.1136|-82.3666|America/Havana;الصين|China|بكين|Beijing|39.9042|116.4074|Asia/Shanghai;اليابان|Japan|طوكيو|Tokyo|35.6762|139.6503|Asia/Tokyo;كوريا الجنوبية|South Korea|سيول|Seoul|37.5665|126.978|Asia/Seoul;الهند|India|نيودلهي|New Delhi|28.6139|77.209|Asia/Kolkata;باكستان|Pakistan|إسلام آباد|Islamabad|33.6844|73.0479|Asia/Karachi;بنغلاديش|Bangladesh|دكا|Dhaka|23.8103|90.4125|Asia/Dhaka;أفغانستان|Afghanistan|كابول|Kabul|34.5553|69.2075|Asia/Kabul;أندونيسيا|Indonesia|جاكرتا|Jakarta|-6.2088|106.8456|Asia/Jakarta;ماليزيا|Malaysia|كوالالمبور|Kuala Lumpur|3.139|101.6869|Asia/Kuala_Lumpur;سنغافورة|Singapore|سنغافورة|Singapore|1.3521|103.8198|Asia/Singapore;تايلاند|Thailand|بانكوك|Bangkok|13.7563|100.5018|Asia/Bangkok;فيتنام|Vietnam|هانوي|Hanoi|21.0278|105.8342|Asia/Ho_Chi_Minh;فيلبيني|Philippines|مانيلا|Manila|14.5995|120.9842|Asia/Manila;كازاخستان|Kazakhstan|أستانا|Astana|51.1694|71.4491|Asia/Almaty;أوزبكستان|Uzbekistan|طشقند|Tashkent|41.2995|69.2401|Asia/Tashkent;أذربيجان|Azerbaijan|باكو|Baku|40.4093|49.8671|Asia/Baku;أرمينيا|Armenia|يريفان|Yerevan|40.1792|44.4991|Asia/Yerevan;جورجيا|Georgia|تبليسي|Tbilisi|41.7151|44.8271|Asia/Tbilisi;أستراليا|Australia|كانبرا|Canberra|-35.2809|149.13|Australia/Sydney;نيوزيلندا|New Zealand|ويلينغتون|Wellington|-41.2866|174.7756|Pacific/Auckland").split(";").map(function (s) { var p = s.split("|"); return { ar: p[0], en: p[1], capAr: p[2], capEn: p[3], lat: +p[4], lon: +p[5], tz: p[6] }; }).filter(function (c) { return c.en !== "x"; });
   var BYAR = {}; C.forEach(function (c) { BYAR[c.ar] = c; });
   /* أسماء معيبة في ملف الأقسام الإدارية */
@@ -4145,8 +4145,9 @@
     var hit = null, approx = false, label = region || (c && c.capAr) || country.name;
     var nr = norm(region);
     if (rt) { hit = { lat: rt.lat, lon: rt.lon, tz: rt.tz, n: rt.n }; }
-    if (!hit && region) { var m = cities.find(function (x) { return norm(x.n) === nr; }); if (m && m.tz) hit = { lat: m.lat, lon: m.lon, tz: m.tz, n: m.n }; }
-    if (!hit && c) { hit = { lat: c.lat, lon: c.lon, tz: c.tz, n: region || c.capAr }; approx = !!region; }
+    if (!hit && region) { var m = cities.find(function (x) { return norm(x.n) === nr && norm(FIX[x.g] || x.g) === norm(country.name); }); if (m && m.tz) hit = { lat: m.lat, lon: m.lon, tz: m.tz, n: m.n }; }
+    // Never label capital coordinates as an unresolved region.
+    if (!hit && c && !region) { hit = { lat: c.lat, lon: c.lon, tz: c.tz, n: c.capAr }; }
     if (!hit) return null;
     var key = hit.n + "|" + country.name;
     var idx = cities.findIndex(function (x) { return x.__gk === key; });
@@ -4168,7 +4169,15 @@
     sel.parentNode.insertBefore(host, sel); sel.style.display = "none";
     var lbl = sel.parentNode.querySelector('label[for="' + sel.id + '"]'); if (lbl) lbl.style.display = "none";
     var q = host.querySelector(".geo-q"), res = host.querySelector(".geo-res"), cs = host.querySelector(".geo-c"), rs = host.querySelector(".geo-r"), note = host.querySelector(".geo-note");
-    cs.innerHTML = GEO.map(function (g, i) { return '<option value="' + i + '">' + esc(g.name) + "</option>"; }).join("");
+    var activeIndex = -1, invalid = false, priorValue = sel.value;
+    q.setAttribute('aria-label', 'ابحث عن مدينة الميلاد'); q.setAttribute('role', 'combobox'); q.setAttribute('aria-autocomplete', 'list'); q.setAttribute('aria-expanded', 'false');
+    res.id = 'geo-results-' + sel.id; q.setAttribute('aria-controls', res.id);
+    var coords = document.createElement('small'); coords.className = 'geo-coordinates'; host.appendChild(coords); note.style.setProperty('display','block','important');
+    function closeResults() { res.hidden = true; q.setAttribute('aria-expanded', 'false'); q.removeAttribute('aria-activedescendant'); activeIndex = -1; }
+    function describe() { var ct = sel.value && sel.value !== 'manual' && window.__aqCITIES()[+sel.value]; coords.textContent = ct ? ct.lat.toFixed(4) + ', ' + ct.lon.toFixed(4) + ' · ' + (ct.tz || '') : ''; }
+    function rejectPlace() { q.value = ''; invalid = true; sel.selectedIndex = -1; note.dataset.invalid = 'true'; note.textContent = 'لا توجد إحداثيات مؤكدة لهذا الاختيار. اختر مدينة من نتائج البحث أو أدخل الإحداثيات يدويًا؛ لن نستخدم العاصمة بدلًا منها.'; coords.textContent = ''; }
+    var form = sel.closest('form'); if (form) form.addEventListener('submit', function (e) { if (invalid || !sel.value) { e.preventDefault(); e.stopImmediatePropagation(); rejectPlace(); q.focus(); return; } if (sel.id === 'f-city' && sel.value === 'manual') { var fields = ['f-lat','f-lon','f-off'].map(function(id){return document.getElementById(id);}); var values = fields.map(function(n){return n && n.value.trim() !== '' ? Number(n.value) : NaN;}); if (!values.every(Number.isFinite) || Math.abs(values[0]) > 89 || Math.abs(values[1]) > 180 || values[2] < -12 || values[2] > 14) { e.preventDefault(); e.stopImmediatePropagation(); note.textContent = 'أكمل خط العرض والطول وفرق التوقيت الصحيح أولًا. فرق التوقيت بين −12 و+14 ساعة.'; fields[0].focus(); } } }, true);
+    cs.innerHTML = GEO.map(function (g, i) { return '<option value="' + i + '">' + esc(g.name) + "</option>"; }).join("") + '<option value="manual">إدخال الإحداثيات يدويًا</option>';
     function fillRegions(ci, pick) {
       var g = GEO[ci]; var c = countryOf(g.name);
       var regs = g.regions.slice(); if (R[g.name]) regs = Object.keys(R[g.name]);
@@ -4177,13 +4186,15 @@
       rs.innerHTML = html; if (pick != null) rs.value = pick; else if (c) { var cap = regs.find(function (r) { return norm(r) === norm(c.capAr) || (R[g.name] && R[g.name][r] && norm(R[g.name][r].n) === norm(c.capAr)); }); rs.value = cap != null ? cap : ""; }
     }
     function apply() {
-      if (cs.value === "manual") { sel.value = "manual"; sel.dispatchEvent(new Event("change", { bubbles: true })); note.textContent = "اكتب خط العرض والطول وفرق التوقيت يدويًا."; return; }
+      invalid = false; note.dataset.invalid = 'false';
+      if (cs.value === "manual") { if (form) form.classList.add("ntx-adv-open"); coords.textContent = ""; q.value = ""; sel.value = "manual"; sel.dispatchEvent(new Event("change", { bubbles: true })); note.textContent = "اكتب خط العرض والطول وفرق التوقيت يدويًا."; return; }
       var g = GEO[+cs.value], r = resolve(g, rs.value || "");
-      if (!r) { note.textContent = "لم نجد هذا المكان، اكتب اسم أقرب مدينة كبيرة."; return; }
+      if (!r) { rejectPlace(); return; }
       var cities = window.__aqCITIES(), ct = cities[r.idx];
       if (!sel.querySelector('option[value="' + r.idx + '"]')) { var o = document.createElement("option"); o.value = r.idx; o.textContent = ct.n; sel.appendChild(o); }
       sel.value = String(r.idx); sel.dispatchEvent(new Event("change", { bubbles: true }));
-      note.textContent = "تم اختيار: " + ct.n + (g.name && norm(g.name) !== norm(ct.n) ? " — " + g.name : "");
+      describe();
+      note.textContent = "المكان المستخدم للحساب: " + ct.n + (g.name && norm(g.name) !== norm(ct.n) ? " — " + g.name : "");
     }
     cs.addEventListener("change", function () { if (cs.value === "manual") { rs.innerHTML = ""; apply(); return; } fillRegions(+cs.value); apply(); });
     rs.addEventListener("change", apply);
@@ -4200,25 +4211,34 @@
     }
     var IDX = null;
     function search() {
-      var v = norm(q.value); if (v.length < 2) { res.hidden = true; return; }
+      var v = norm(q.value); if (v.length < 2) { closeResults(); return; }
       IDX = IDX || index(); var seen = {}, hits = [];
       for (var i = 0; i < IDX.length && hits.length < 12; i++) { var it = IDX[i]; if (it.k.indexOf(v) < 0) continue; var key = it.t + it.sub; if (seen[key]) continue; seen[key] = 1; hits.push(it); }
       hits.sort(function (a, b) { return (norm(a.t).indexOf(v) === 0 ? 0 : 1) - (norm(b.t).indexOf(v) === 0 ? 0 : 1); });
-      res.innerHTML = hits.length ? hits.map(function (h, i) { return '<li role="option" data-i="' + i + '"><b>' + esc(h.t) + "</b><small>" + esc(h.sub) + "</small></li>"; }).join("") : '<li class="geo-none">مفيش نتيجة — جرّب اسم تاني أو اختار من القوائم</li>';
-      res.__hits = hits; res.hidden = false;
+      res.innerHTML = hits.length ? hits.map(function (h, i) { return '<li role="option" id="' + res.id + '-' + i + '" data-i="' + i + '"><b>' + esc(h.t) + "</b><small>" + esc(h.sub) + "</small></li>"; }).join("") : '<li class="geo-none">مفيش نتيجة — جرّب اسم تاني أو اختار من القوائم</li>';
+      res.__hits = hits; res.hidden = false; activeIndex = -1; q.setAttribute('aria-expanded', 'true');
     }
     q.addEventListener("input", search);
-    q.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); var f = res.querySelector("li[data-i]"); if (f) f.dispatchEvent(new Event("mousedown", { bubbles: true })); } });
+    q.addEventListener("keydown", function (e) {
+      if (e.key === 'Escape') { closeResults(); return; }
+      var options = res.querySelectorAll('li[data-i]');
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); if (res.hidden) search(); options = res.querySelectorAll('li[data-i]'); if (!options.length) return;
+        activeIndex = (activeIndex + (e.key === 'ArrowDown' ? 1 : -1) + options.length) % options.length;
+        [].forEach.call(options, function (x, i) { x.classList.toggle('is-active', i === activeIndex); x.setAttribute('aria-selected', String(i === activeIndex)); }); q.setAttribute('aria-activedescendant', options[activeIndex].id); options[activeIndex].scrollIntoView({block:'nearest'}); }
+      if (e.key === 'Enter' && !res.hidden) { e.preventDefault(); var chosen = options[activeIndex < 0 ? 0 : activeIndex]; if (chosen) chosen.dispatchEvent(new Event('mousedown', {bubbles:true})); }
+    });
     res.addEventListener("mousedown", function (e) { var li = e.target.closest("li[data-i]"); if (!li) return; e.preventDefault(); var h = res.__hits[+li.dataset.i];
-      if (h.ci != null) { if (!sel.querySelector('option[value="' + h.ci + '"]')) { var o2 = document.createElement("option"); o2.value = h.ci; o2.textContent = h.t; sel.appendChild(o2); } sel.value = String(h.ci); sel.dispatchEvent(new Event("change", { bubbles: true })); q.value = h.t; note.textContent = "تم اختيار: " + h.t + (h.sub ? " — " + h.sub : ""); res.hidden = true; return; }
-      cs.value = String(h.gi); fillRegions(h.gi, h.r); apply(); q.value = h.t; res.hidden = true; });
-    document.addEventListener("click", function (e) { if (!host.contains(e.target)) res.hidden = true; });
+      if (h.ci != null) { invalid = false; note.dataset.invalid = 'false'; if (!sel.querySelector('option[value="' + h.ci + '"]')) { var o2 = document.createElement("option"); o2.value = h.ci; o2.textContent = h.t; sel.appendChild(o2); } sel.value = String(h.ci); sel.dispatchEvent(new Event("change", { bubbles: true })); q.value = h.t; note.textContent = "تم اختيار: " + h.t + (h.sub ? " — " + h.sub : ""); describe(); closeResults(); return; }
+      cs.value = String(h.gi); fillRegions(h.gi, h.r); apply(); q.value = h.t; closeResults(); });
+    document.addEventListener("click", function (e) { if (!host.contains(e.target)) closeResults(); });
     sel.addEventListener("change", function () {
-      var o = sel.options[sel.selectedIndex]; if (!o || sel.value === "manual") return;
+      var o = sel.options[sel.selectedIndex]; if (!o || sel.value === 'manual') return; invalid = false; note.dataset.invalid = 'false'; describe();
       var ct = window.__aqCITIES()[+sel.value]; if (ct && document.activeElement !== q) { q.value = ct.n; note.textContent = "تم اختيار: " + ct.n + (ct.g ? " — " + ct.g : ""); }
     });
     /* افتراضي: مصر / القاهرة (أو اللي اتحفظ) */
-    fillRegions(0, "القاهرة"); apply();
+    fillRegions(0, "القاهرة");
+    if (priorValue && sel.querySelector('option[value="' + priorValue + '"]')) { sel.value = priorValue; sel.dispatchEvent(new Event('change', {bubbles:true})); }
+    else apply();
   }
   window.AqeeqGeoPicker = { attach: attach };
   function boot() { ["f-city", "cp1-city", "cp2-city", "y27-city", "eam-b-city"].forEach(function (id) { attach(document.getElementById(id)); }); }
@@ -6214,8 +6234,10 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     var drop = $('.aqh-drop');
     if (drop) {
       var btn = $('.aqh-drop-btn', drop);
-      var setOpen = function (v) { drop.classList.toggle('is-open', v); btn.setAttribute('aria-expanded', v ? 'true' : 'false'); };
       var dropMenu = $('.aqh-drop-menu', drop);
+      /* المنيو بتتنقل لـ body: هيدر الموقع عليه backdrop-filter فبيحبس position:fixed جواه، وناف التنقل overflow:auto فكان بيقصها */
+      if (dropMenu) document.body.appendChild(dropMenu);
+      var closeT = null;
       var place = function () {
         if (!dropMenu) return;
         var r = btn.getBoundingClientRect();
@@ -6224,13 +6246,30 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
           dropMenu.style.right = Math.max(8, window.innerWidth - r.right) + 'px'; dropMenu.style.left = 'auto';
         } else { dropMenu.style.left = r.left + 'px'; dropMenu.style.right = 'auto'; }
       };
-      btn.addEventListener('click', place);
-      drop.addEventListener('mouseenter', place);
-      drop.addEventListener('focusin', place);
-      window.addEventListener('resize', place);
+      var setOpen = function (v) {
+        clearTimeout(closeT);
+        drop.classList.toggle('is-open', v);
+        if (dropMenu) dropMenu.classList.toggle('is-open', v);
+        btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+        if (v) place();
+      };
+      var scheduleClose = function () { clearTimeout(closeT); closeT = setTimeout(function () { setOpen(false); }, 180); };
+      var cancelClose = function () { clearTimeout(closeT); };
       btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!drop.classList.contains('is-open')); });
-      document.addEventListener('click', function () { setOpen(false); });
+      drop.addEventListener('mouseenter', function () { cancelClose(); setOpen(true); });
+      drop.addEventListener('mouseleave', scheduleClose);
+      drop.addEventListener('focusin', function () { cancelClose(); setOpen(true); });
+      drop.addEventListener('focusout', function (e) { if (!drop.contains(e.relatedTarget) && !(dropMenu && dropMenu.contains(e.relatedTarget))) scheduleClose(); });
       drop.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });
+      if (dropMenu) {
+        dropMenu.addEventListener('mouseenter', cancelClose);
+        dropMenu.addEventListener('mouseleave', scheduleClose);
+        dropMenu.addEventListener('focusout', function (e) { if (!drop.contains(e.relatedTarget) && !dropMenu.contains(e.relatedTarget)) scheduleClose(); });
+        dropMenu.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });
+        dropMenu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+      }
+      document.addEventListener('click', function (e) { if (!drop.contains(e.target) && !(dropMenu && dropMenu.contains(e.target))) setOpen(false); });
+      window.addEventListener('resize', place);
     }
     var burger = $('#aqh-burger'), menu = $('#aqh-menu');
     if (burger && menu) {
@@ -9399,10 +9438,9 @@ window.AqMoonSigns = [{"t": "شرارة صغيرة تكفي اليوم لتشع�
     var D = window.AqSky, bd = bodyOf(k), P = D.PLANETS[k], S = D.SIGNS[bd.sign], deg = Math.floor(bd.lon % 30);
     var saved = null; try { saved = localStorage.getItem('aq-sky-sign'); } catch (e) { }
     var st = bd.retro ? ' · متراجع' : (k === 'sun' || k === 'moon' ? '' : ' · حركة مباشرة');
-    var h = '<header class="fc-head"><span class="fc-medal" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="32" cy="32" r="28" stroke-dasharray="2 4.2"/><circle cx="32" cy="32" r="21"/><path d="M32 4v7M32 53v7M4 32h7M53 32h7"/></svg><span class="sg">' + D.gl(P.g) + '</span></span>' +
-      '<div><span class="fc-ey">توقعات الأبراج</span><h3>ماذا تقول السماء لبرجك اليوم؟</h3></div></header>' +
-      '<div class="fc-now"><div class="fc-now-top"><span class="fc-now-g" aria-hidden="true"><span class="sg">' + D.gl(S.g) + '</span></span><div class="fc-now-t"><small>' + dayTxt() + '</small><b>' + P.n + ' في ' + S.n + '</b><span>' + degTxt(deg, S.n) + st + '</span></div></div>' +
-      '<div class="fc-now-about"><h4>' + (/^ال(شمس|زهرة)$/.test(P.n) ? 'ما هي ' : 'ما هو ') + P.n + '؟</h4><p>' + P.n + ' يمثل ' + P.theme + '، وهو العدسة التي تُقرأ بها ' + P.lens + '. حين يكون متوازنًا يعطيك ' + P.give + '، ويحتاج منك انتباهًا إلى ' + P.watch + '.</p></div></div>' +
+    var defH = (/^ال(شمس|زهرة)$/.test(P.n) ? 'ما هي ' : 'ما هو ') + P.n + '؟';
+    var h = '<div class="fc-now"><div class="fc-now-top"><span class="fc-now-g" aria-hidden="true"><span class="sg">' + D.gl(S.g) + '</span></span><div class="fc-now-t"><small>توقعات الأبراج · ' + dayTxt() + '</small><b>ماذا تقول السماء لبرجك اليوم؟</b><span>' + P.n + ' في ' + S.n + ' · ' + degTxt(deg, S.n) + st + '</span></div></div>' +
+      '<details class="fc-now-about"><summary>' + defH + '</summary><p>' + P.n + ' يمثل ' + P.theme + '، وهو العدسة التي تُقرأ بها ' + P.lens + '. حين يكون متوازنًا يعطيك ' + P.give + '، ويحتاج منك انتباهًا إلى ' + P.watch + '.</p></details></div>' +
       '<section class="fc-gen">' + gen(k, bd, S) + '</section>' +
       '<a class="swp-go" href="#signs"><span class="swp-go-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="19"/><circle cx="24" cy="24" r="12"/><path d="M24 5v7M24 36v7M5 24h7M36 24h7"/><circle class="swp-core" cx="24" cy="24" r="2.600"/></svg></span><span class="swp-go-t"><b>ما الذي لم نقله لك بعد؟</b><small>افتح توقعات برجك الكاملة، ففيها ما يخصك وحدك</small></span><span class="swp-go-ar" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span></a>';
     return { html: h, saved: saved };
@@ -10453,3 +10491,58 @@ s.insertBefore(f,s.firstChild);s.insertBefore(d,s.firstChild);
 var go=function(){size(s,f);};
 if(window.ResizeObserver){var ro=new ResizeObserver(go);[].forEach.call(s.children,function(c){if(c!==d&&c!==f)ro.observe(c);});}
 window.addEventListener('hashchange',function(){setTimeout(go,200);});setTimeout(go,300);setTimeout(go,1500);});})();
+
+;
+/* assets/js/service-clarity.js */
+/* Clear result expectations before birth data. No purchase or access changes. */
+(function () {
+  'use strict';
+  var ITEMS = {
+    cform: ['خريطة ميلادك، قبل أن تبدأ', 'رسم الخريطة ومواضع الكواكب والقراءات المتاحة لها. اختر النظام الغربي أو الفيدي من النموذج.', 'تاريخ الميلاد، والمدينة، والوقت إن كنت تعرفه. إن لم تعرف الوقت اختر ذلك، ولا نعتمد طالعًا أو بيوتًا دقيقة.'],
+    mform: ['ماذا ستقرأ في مصفوفتك؟', 'مخطط المصفوفة وأرقام مواضعها، ثم القراءات الرمزية المتاحة لكل موضع.', 'تاريخ الميلاد. الاسم اختياري، ولا تحتاج ساعة الميلاد.'],
+    lpform: ['ماذا يعطيك مسار الحياة؟', 'رقم مسار الحياة وقراءته، مع قراءة الاسم إذا أدخلته. هذا مسار مختلف عن الخريطة الفلكية.', 'تاريخ الميلاد، والاسم إن أردت قراءة اسمه.'],
+    'synastry-form': ['قبل مقارنة مساريكما', 'رقما مسار الحياة وقراءة المقارنة بينهما، للتأمل لا للحكم على صلاحية علاقة.', 'تاريخ ميلاد كل طرف. الأسماء اختيارية.'],
+    'mxc-form': ['قبل قراءة مصفوفة الشراكة', 'مصفوفة مشتركة وقراءات مواضعها المتاحة. ليست درجة نجاح للعلاقة ولا قرارًا بالبقاء أو الانفصال.', 'تاريخا الميلاد. لا تحتاج وقت الولادة.'],
+    'mxk-form': ['قبل قراءة مصفوفة الطفل', 'مصفوفة الطفل وقراءة رمزية موجهة للأهل. لا تشخّص الطفل ولا تحدد قدرته أو مستقبله.', 'تاريخ ميلاد الطفل. الاسم اختياري.'],
+    'eam-form': ['ما الذي ستجده في الخرائط الفيدية؟', 'أدوات الخرائط والتقسيمات والفترات الفيدية المتاحة في هذه الصفحة. اختر الأداة التي تريدها بعد الحساب.', 'تاريخ ووقت ومكان الميلاد. راجع الإحداثيات والمنطقة الزمنية قبل الحساب.'],
+    'cp-form': ['قبل مقارنة الخريطتين', 'خريطتا الميلاد والاتصالات المتبادلة والخريطة المركبة. هذه قراءة رمزية وليست اختبار توافق علميًا.', 'تاريخ ووقت ومدينة ميلاد كل طرف، أو تحديد أن وقت الميلاد غير معروف.'],
+    'kt-form': ['قبل قراءة الذيل الكارمي', 'أرقام الذيل من مصفوفة الميلاد والقراءة المتاحة لها. الرمز مدخل للتأمل، وليس إثباتًا لحياة سابقة.', 'تاريخ الميلاد. لا تحتاج وقت الولادة.'],
+    'swc-form': ['ماذا تحسب هذه الأداة؟', 'صورة للسماء بحسب الوقت والمكان المحددين، وليست خريطة ميلاد شخصية.', 'الوقت والمكان اللذان تريد استكشافهما.']
+  };
+  function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; }
+  function addBrief(form, data) {
+    if (!form || document.getElementById('service-' + form.id)) return;
+    var box = node('aside', 'svc-brief'); box.id = 'service-' + form.id;
+    var title = node('h3', '', data[0]); title.id = box.id + '-title'; box.setAttribute('aria-labelledby', title.id); box.appendChild(title);
+    box.appendChild(node('p', '', data[1]));
+    var need = node('p', 'svc-need'); need.appendChild(node('strong', '', 'تحتاج إلى: ')); need.appendChild(document.createTextNode(data[2])); box.appendChild(need);
+    var info = node('details', 'svc-details'); info.appendChild(node('summary', '', 'ما المجاني؟ وماذا عن التقرير الكامل؟'));
+    info.appendChild(node('p', '', 'الحساب والنتيجة المعروضة من هذا النموذج لا يتطلبان شراءً. لا يُنشأ طلب ولا يُخصم مبلغ بمجرد إدخال بياناتك.'));
+    if (form.id === 'cform') info.appendChild(node('p', '', 'التقرير الشخصي الكامل منتج منفصل عن نتيجة الحاسبة، ويُجهّز من بيانات خريطتك بعد تأكيد طلبه. لا يعني شراءه فتح كل منتجات عقيق.'));
+    else info.appendChild(node('p', '', 'التقرير الكامل، إن عُرض للشراء، له منتج ووصف مستقلان. لا نفترض أن شراء تقرير يفتح كل أداة أو كل قراءة في الموقع.'));
+    var link = node('a', '', 'كيف تختار وتراجع طلبك؟'); link.href = '#service-guide'; info.appendChild(link); box.appendChild(info);
+    form.prepend(box);
+  }
+  function personalCTA() {
+    var box = node('aside', 'svc-personal'); box.setAttribute('data-svc-personal', ''); box.appendChild(node('h3', '', 'برجك بداية، وخريطتك أوسع'));
+    box.appendChild(node('p', '', 'هذه قراءة عامة بحسب البرج أو موضع الكوكب، وليست مبنية على بيانات ميلادك كاملة. خريطة الميلاد تجمع المواضع في صورة شخصية، مع حدود ما نعرفه من وقت ولادتك.'));
+    var a = node('a', 'svc-link', 'ابدأ خريطة ميلادك المجانية'); a.href = '#chart'; box.appendChild(a); return box;
+  }
+  function syncPersonal() {
+    ['#panel', '#fc-card'].forEach(function (s) { var el = document.querySelector(s); if (el && el.children.length && !el.querySelector('[data-svc-personal]')) el.appendChild(personalCTA()); });
+  }
+  function makeGuide() {
+    if (document.getElementById('service-guide')) return;
+    var sec = node('section', 'sec alt svc-guide'); sec.id = 'service-guide';
+    var wrap = node('div', 'wrap'); var close = node('a', 'sheet-x', '×'); close.href = '#home'; close.setAttribute('aria-label', 'العودة للرئيسية'); wrap.appendChild(close); wrap.appendChild(node('span', 'eyebrow', 'عقيق · قبل أن تختار')); wrap.appendChild(node('h2', '', 'إزاي القراءة والطلب بيشتغلوا؟'));
+    [['ابدأ بالنتيجة المتاحة', 'افتح الأداة واقرأ ما تعطيه قبل كتابة بياناتك. يمكنك حساب النتيجة بدون إنشاء طلب شراء. القراءات رمزية للتأمل، وليست تشخيصًا أو نصيحة صحية أو مالية.'], ['اختر منتجًا بعينه', 'راجع اسم التقرير ومحتواه والسعر والعملة المعروضين له، وليس اسم الأداة وحده. لا تفترض أن تقريرًا واحدًا يشمل كل تقارير عقيق.'], ['قبل أي تحويل', 'راجع طريقة التسليم ومدة التجهيز وشروط الاسترداد الخاصة بالمنتج. إذا لم تظهر هذه التفاصيل، اطلب توضيحها قبل الدفع؛ لا نستبدل غيابها بوعد بتسليم فوري أو استرداد مضمون.'], ['تسليم التقرير الشخصي الكامل', 'في المسار الحالي، يتبع تأكيد الدفع تجهيز التقرير من قسم حسابك وإرساله إلى بريد الحساب. تأكيد التحويل وتجهيز التقرير ووصول البريد خطوات مختلفة. لا يوجد هنا موعد تسليم محدد معلن.']].forEach(function (item) { var art = node('article', 'svc-step'); art.appendChild(node('h3', '', item[0])); art.appendChild(node('p', '', item[1])); wrap.appendChild(art); });
+    var back = node('a', 'svc-link', 'ارجع لاختيار القراءة'); back.href = '#invest'; wrap.appendChild(back); sec.appendChild(wrap); document.querySelector('main').appendChild(sec);
+    var pay = document.querySelector('#pay .pay-head'); if (pay) { var note = node('aside', 'svc-brief svc-payment'); note.appendChild(node('h3', '', 'قبل التحويل')); note.appendChild(node('p', '', 'سعر الطلب وعملته يظهران بعد تسجيل الدخول. إذا لم يظهر سعر واضح، لا تحوّل مبلغًا تقديريًا. تأكد أيضًا من مدة التجهيز وشروط الاسترداد قبل الدفع.')); var a = node('a', '', 'اقرأ خطوات الطلب والتسليم'); a.href = '#service-guide'; note.appendChild(a); pay.after(note); }
+  }
+  function init() {
+    Object.keys(ITEMS).forEach(function (id) { addBrief(document.getElementById(id), ITEMS[id]); }); makeGuide(); syncPersonal();
+    var panel = document.getElementById('panel'); if (panel) new MutationObserver(syncPersonal).observe(panel, { childList: true });
+    document.addEventListener('click', function () { setTimeout(syncPersonal, 0); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
