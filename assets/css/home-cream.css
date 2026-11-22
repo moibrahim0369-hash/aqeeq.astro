@@ -367,3 +367,5 @@ html body #home.aqh #aqh-articles .aqh-article:nth-child(4)::after{animation-del
 @media(prefers-reduced-motion:reduce){html body #home.aqh #aqh-articles .aqh-article::after{animation:none!important;display:none!important}}
 /* Do not let scrollIntoView on a horizontal tile pan the entire home. */
 html body #home.aqh{overflow:clip!important}
+/* The approved first row has four cards, not the legacy three-card cap. */
+html body #home.aqh #aqh-articles #aqh-track .aqh-article:nth-child(n+4):not(#_a):not(#_b){display:flex!important}
