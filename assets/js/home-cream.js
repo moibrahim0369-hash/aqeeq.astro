@@ -23,6 +23,9 @@
   };
 
   var openKey = null, chart = null, host = null, sheetRoot = null, tab = 'planets';
+  /* PLANETS/SIGNS in page-06.js are const globals (lexical, not window.*) */
+  function gP() { return typeof PLANETS !== 'undefined' ? PLANETS : (window.PLANETS || null); }
+  function gS() { return typeof SIGNS !== 'undefined' ? SIGNS : (window.SIGNS || null); }
   var ASP = [['conj', 0, 'اقتران'], ['sext', 60, 'تسديس'], ['square', 90, 'تربيع'], ['trine', 120, 'تثليث'], ['opp', 180, 'مقابلة']];
   /* سطر الزاوية: داعمة/متوترة من المعاينة المعتمدة، والاندماج من page-06 AM.conj حرفيًا */
   var ASP_LINE = { sup: 'انسياب وسهولة يدعمان الطرفين.', ch: 'احتكاك يحرّك الأمور ويطلب قراراً.', neu: 'يلتقي المجالان في نقطة واحدة فيمتزجان، ويصعب الفصل بينهما.' };
@@ -43,7 +46,7 @@
   function renderStrip() {
     if (!host || !chart) return;
     host.innerHTML = KEYS.map(function (k) {
-      var p = window.PLANETS[k], bd = body(k), S = window.SIGNS[bd.sign];
+      var p = gP()[k], bd = body(k), S = gS()[bd.sign];
       var deg = bd.lon % 30;
       var retro = bd.retro && k !== 'sun' && k !== 'moon';
       return '<button type="button" class="aqhc-planet' + (openKey === k ? ' on' : '') + '" data-k="' + k + '" aria-pressed="' + (openKey === k) + '">'
@@ -63,7 +66,7 @@
   }
 
   function sheetHtml(k) {
-    var p = window.PLANETS[k], bd = body(k), S = window.SIGNS[bd.sign];
+    var p = gP()[k], bd = body(k), S = gS()[bd.sign];
     var deg = bd.lon % 30, dInt = Math.floor(deg);
     var retro = bd.retro && k !== 'sun' && k !== 'moon';
     var st = stageOf(deg);
@@ -80,7 +83,7 @@
     return '<div class="aqhc-sheet-scrim" data-close></div>'
       + '<div class="aqhc-sheet" role="dialog" aria-label="قراءة ' + p.n + ' السريعة">'
       + '<button type="button" class="aqhc-sheet-close" aria-label="إغلاق" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>'
-      + '<button type="button" class="aqhc-sheet-next" data-next="' + nextK + '">التالي: ' + window.PLANETS[nextK].n + chev + '</button>'
+      + '<button type="button" class="aqhc-sheet-next" data-next="' + nextK + '">التالي: ' + gP()[nextK].n + chev + '</button>'
       + '<div class="aqhc-sheet-grip"></div>'
       + '<p class="aqhc-sheet-eyebrow">السماء الآن · قراءة سريعة</p>'
       + '<h3 class="aqhc-sheet-title">' + p.n + ' في ' + S.n + '</h3>'
@@ -121,7 +124,7 @@
   function renderRetro() {
     var hostR = document.getElementById('aqhc-retro'); if (!hostR) return;
     hostR.innerHTML = KEYS.filter(function (k) { var b = body(k); return b.retro && k !== 'sun' && k !== 'moon'; }).map(function (k) {
-      var p = window.PLANETS[k], bd = body(k), S = window.SIGNS[bd.sign];
+      var p = gP()[k], bd = body(k), S = gS()[bd.sign];
       return '<div class="aqhc-retro-row" data-k="' + k + '" role="button" tabindex="0">'
         + '<img src="assets/images/home/planets/' + IMG[k] + '" alt="" loading="lazy" decoding="async">'
         + '<div class="aqhc-retro-main"><div class="aqhc-retro-head"><b>' + p.n + '</b>'
@@ -141,7 +144,7 @@
       var lbl = cls === 'sup' ? 'داعمة' : (cls === 'neu' ? 'اندماج' : 'متوترة');
       return '<div class="aqhc-aspect-card">'
         + '<span class="aqhc-chip ' + cls + '">' + lbl + '</span>'
-        + '<b>' + window.PLANETS[x.A].n + ' ' + x.name + ' ' + window.PLANETS[x.B].n + '</b>'
+        + '<b>' + gP()[x.A].n + ' ' + x.name + ' ' + gP()[x.B].n + '</b>'
         + '<span class="aqhc-aspect-diff">فارق ' + x.orb.toFixed(1) + '°</span>'
         + '<p>' + ASP_LINE[cls] + '</p></div>';
     }).join('') || '<p class="aqhc-none">لا توجد أسبكتات مؤثرة في هذه اللحظة، فالسماء هادئة نسبيًا.</p>';
@@ -197,7 +200,7 @@
     host = document.getElementById('aqhc-planets');
     sheetRoot = document.getElementById('aqhc-sheet-root');
     if (!host || !sheetRoot) return;
-    if (!window.Astro || !window.PLANETS || !window.SIGNS) { setTimeout(init, 400); return; }
+    if (!window.Astro || !gP() || !gS()) { setTimeout(init, 400); return; }
     tick();
     Array.prototype.forEach.call(document.querySelectorAll('.aqhc-tab'), function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
