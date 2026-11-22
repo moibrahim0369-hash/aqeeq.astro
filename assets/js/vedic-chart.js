@@ -217,7 +217,7 @@
     }
     if (d1 && x.lon != null && COMB[x.key]) {
       var su = map.items.filter(function (y) { return y.key === 'sun'; })[0];
-      if (su && su.lon != null) { var df = Math.abs(((x.lon - su.lon + 540) % 360) - 180); df = 180 - df; var orb = COMB[x.key] - (x.retro && (x.key === 'mercury' || x.key === 'venus') ? 2 : 0); if (df <= orb) parts.push('<i class="vc-dn vc-dn-db">محترق</i>'); }
+      if (su && su.lon != null) { var df = Math.abs(((x.lon - su.lon + 540) % 360) - 180); var orb = COMB[x.key] - (x.retro && (x.key === 'mercury' || x.key === 'venus') ? 2 : 0); if (df <= orb) parts.push('<i class="vc-dn vc-dn-db">محترق</i>'); }
     }
     if (dg) parts.push('<i class="vc-dn vc-dn-' + dg[0] + '">' + dg[1] + '</i>');
     return parts.length ? '<span class="vc-dt">' + parts.join('') + '</span>' : '';
