@@ -9,7 +9,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261122-natal384-review1';
+  var VERSION = '20261122-natal1183-review1';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -25,7 +25,7 @@
   var ANGLES = ['asc', 'dsc', 'mc', 'ic'];
   var ORDER = PLANETS.concat(POINTS);
   var ASPECTS = [
-    { slug: 'conjunction', n: 'اتصال', ang: 0, orb: 8 }, { slug: 'sextile', n: 'سداسي', ang: 60, orb: 4 },
+    { slug: 'conjunction', n: 'اقتران', ang: 0, orb: 8 }, { slug: 'sextile', n: 'سداسي', ang: 60, orb: 4 },
     { slug: 'square', n: 'تربيع', ang: 90, orb: 6 }, { slug: 'trine', n: 'تثليث', ang: 120, orb: 6 },
     { slug: 'opposition', n: 'مقابلة', ang: 180, orb: 8 }];
 
@@ -77,12 +77,12 @@
     var houses = [];
     if (known) for (var h = 1; h <= 12; h++) {
       houses.push({
-        n: h, sign: Math.floor(norm(ch.cusps[h - 1]) / 30),
+        n: h, lon: norm(ch.cusps[h - 1]), sign: Math.floor(norm(ch.cusps[h - 1]) / 30),
         occupants: PLANETS.filter(function (k) { return items[k] && items[k].house === h; })
       });
     }
     var angles = known ? [['asc', ch.asc], ['dsc', ch.asc + 180], ['mc', ch.mc], ['ic', ch.mc + 180]].map(function (p) {
-      return { body: p[0], label: LABEL[p[0]], sign: Math.floor(norm(p[1]) / 30) };
+      return { body: p[0], label: LABEL[p[0]], lon: norm(p[1]), sign: Math.floor(norm(p[1]) / 30) };
     }) : [];
     var stel = { houses: [], signs: [] };
     houses.forEach(function (H) { if (H.occupants.length >= 3) stel.houses.push(H.n); });
@@ -184,7 +184,7 @@
     if (referenceRows.length) S.references = det('il-reference-list', 'تصفّح المراجع العامة', rows(referenceRows), false);
     var asps = m.aspects.slice().sort(function (x, y) { return x.orb - y.orb; });
     S.aspects = asps.length ? rows(asps.map(function (a, i) {
-      return row(i, svg(ASP_ICO[a.type]), LABEL[a.first] + ' · ' + LABEL[a.second], a.n, 'فارق ' + a.orb.toFixed(1) + '°', sub('معنى الاتصال', refEntry(ix, 'aspect', a.type)) + entry(ix, idAspect(a.first, a.type, a.second), true));
+      return row(i, svg(ASP_ICO[a.type]), LABEL[a.first] + ' · ' + LABEL[a.second], a.n, 'فارق ' + a.orb.toFixed(1) + '°', sub(a.type === 'conjunction' ? 'معنى الاقتران' : 'معنى الاتصال', refEntry(ix, 'aspect', a.type)) + entry(ix, idAspect(a.first, a.type, a.second), true));
     })) : '';
     PLANETS.forEach(function (k) {
       var it = m.items[k]; if (!it) return;
@@ -204,13 +204,23 @@
       S.note = '<p class="il-note il-addtime">ظهرت لك كواكبك في أبراجها، أما البيوت والطالع فتحتاج ساعة ميلادك. إن عرفتها أضفها، وستظهر لك أقسام جديدة بحياتك الواقعية: العمل والعلاقات والبيت والمال. <button type="button" class="il-addbtn" data-il-addtime>أضف ساعة الميلاد</button></p>';
       return S;
     }
+    function sameAngle(H) {
+      var key = { 1: 'asc', 4: 'ic', 7: 'dsc', 10: 'mc' }[H.n];
+      return m.angles.filter(function (a) { return a.body === key && typeof H.lon === 'number' && typeof a.lon === 'number' && d180(H.lon - a.lon) < 0.0000001; })[0];
+    }
+    function houseIdentityNote(H) {
+      var a = sameAngle(H);
+      return a ? '<p class="il-note" data-il-same-position="' + a.body + '">هذه نقطة ' + esc(a.label) + ' نفسها، وليست موضعًا آخر. هنا قراءة رأس البيت، وقراءة المحور متاحة في نظرة عامة.</p>' : '';
+    }
     m.houses.forEach(function (H) {
       var st = H.occupants.length >= 3 ? sub('تجمّع في البيت', entry(ix, idStellium('house', H.n), true)) : '';
-      var bl = H.occupants.length ? '<div class="il-blend">' + H.occupants.map(function (k) { return entry(ix, idBlend(k, H.n), false); }).join('') + '</div>' : '';
-      S.houseTpl[H.n] = tpl(sub('عن البيت ' + ORD[H.n - 1], refEntry(ix, 'house', 'house' + H.n)) + sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + st + bl);
+      var bl = H.occupants.length ? '<div class="il-blend"><h5>إسهامات الكواكب في قراءة هذا البيت</h5>' + H.occupants.map(function (k) { return entry(ix, idBlend(k, H.n), false); }).join('') + '</div>' : '';
+      S.houseTpl[H.n] = tpl(houseIdentityNote(H) + sub('عن البيت ' + ORD[H.n - 1], refEntry(ix, 'house', 'house' + H.n)) + sub('رأس البيت في ' + SIGN_AR[H.sign], entry(ix, idCusp(H.n, H.sign), true)) + st + bl);
     });
     S.angles = rows(m.angles.map(function (A, i) {
-      return row(i, ANG_ABBR[A.body], A.label, SIGN_AR[A.sign], '', entry(ix, idAngle(A.body, A.sign), true), ' nd-hnum');
+      var H = m.houses.filter(function (h) { var a = sameAngle(h); return a && a.body === A.body; })[0];
+      var note = H ? '<p class="il-note" data-il-same-position="house' + H.n + '">هذا الموضع هو رأس البيت ' + ORD[H.n - 1] + ' نفسه، فلا تعدهما علامتين مستقلتين. قراءة رأس البيت متاحة في تبويب البيوت.</p>' : '';
+      return row(i, ANG_ABBR[A.body], A.label, SIGN_AR[A.sign], '', note + entry(ix, idAngle(A.body, A.sign), true), ' nd-hnum');
     }));
     return S;
   }

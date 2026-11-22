@@ -1,0 +1,240 @@
+{
+  "packet": 1,
+  "count": 39,
+  "rows": [
+    {
+      "id": "natal.modifier.mercury.retrograde",
+      "title_sha256": "70ceb05ed39ce0713ddbb1c09f891b66ae65cc031c4768b2660e32f205bb2622",
+      "summary_sha256": "3727bee25c3834bdc5124bf31f30044d2d3e16b8523f9877e7693610eccecf58",
+      "text_sha256": "838e1057e42af51fd4f05b82015e668e489cb10b577bb3a52709312cb85f4eb2"
+    },
+    {
+      "id": "natal.modifier.mars.retrograde",
+      "title_sha256": "f0b964d468a4784a410319760f7a7d47a674708743b3b3bd311b88d44021eee5",
+      "summary_sha256": "6cb3d8b8112ed57050fb9a3736dc270db3850af6c5b82b2e1800c13aa231d31e",
+      "text_sha256": "0d73501169d0dba78ddeffa942ee1135055ac85faa4fc540c7c291e95bb44aca"
+    },
+    {
+      "id": "natal.modifier.jupiter.retrograde",
+      "title_sha256": "7439c9cb92ed5659f7c8378c7980bf9f997b3db311f7109029bc83303f435668",
+      "summary_sha256": "af3b981f307336024244e650cd95591c7e202a2dcd0a8a6301af37dda5f92438",
+      "text_sha256": "1b75610a55132fbaeb993453b3003b8cbb9aa9b961320f322532a65e85f53c33"
+    },
+    {
+      "id": "natal.sign_only.mercury.aries",
+      "title_sha256": "a3f11f2bc9ffb4acca1b9ce42b5a04ac96035c0c7355585d448c0efd6b5711c2",
+      "summary_sha256": "6b470a03dff39b92e8cd79e8d833e71a07bb01c9937775f2f5b036a7b20294ae",
+      "text_sha256": "606d8b679cd44653a7dd6f7ab652b8f8e90d6e55b0e24305ef1b9ded59129050"
+    },
+    {
+      "id": "natal.sign_only.mercury.taurus",
+      "title_sha256": "205e87cd65b8f416ef4ba523ea41babfeb84befda63fecf0df2b7a864ecc6203",
+      "summary_sha256": "f911c1fed3d21ba6847a5264cbcd1cca6d160b22b9b017481c2265966c4863a0",
+      "text_sha256": "92925b52030a512c8386dd8858b541d89f2be357d4181b0ac147e081fac2035f"
+    },
+    {
+      "id": "natal.sign_only.mercury.gemini",
+      "title_sha256": "1cd10f2c730024f422bebcf27d785aca14e6727209e18a45b02444d9ea438386",
+      "summary_sha256": "4c1b3c782cbf2f3a51e802c5f4a23b92c754395c615c06adb63a45320f04d0f4",
+      "text_sha256": "829a446827b226c6f7a3252d6f314001c718ec92c56542bfcda6f6009abe1ed0"
+    },
+    {
+      "id": "natal.sign_only.mercury.cancer",
+      "title_sha256": "351969f7c1e8bb6b78502a587833080daa9785a98fc5ac34662f2d25f7eb6884",
+      "summary_sha256": "9a624843655a43d033c4f974cee3c8a3a5f1f7a52d91dc1a1cf4f8045672f856",
+      "text_sha256": "866e09465332506cecadc31f5928f225b234f3132bd0582efa466e1d4474c931"
+    },
+    {
+      "id": "natal.sign_only.mercury.leo",
+      "title_sha256": "961ead74c3e75802c8ea7edc6af1b08b9bbd290b61b695c8d291280140167b8e",
+      "summary_sha256": "0202c251f182b07a39cfe124730fe6152ba9727c0a383ae7c6021fb3781c369b",
+      "text_sha256": "6a5d2736e132c8bb769666650656e83082a2014b4c2425020a7b67bceceaaba4"
+    },
+    {
+      "id": "natal.sign_only.mercury.virgo",
+      "title_sha256": "a79082362393b800ff3bcdb1024fcf0476b951efd244fc8f6270dd9e7c247c23",
+      "summary_sha256": "1976bb1a5117e74925aa87e0380786c7ca4b9b911f672af7a049bb7a68275de7",
+      "text_sha256": "6ac619347abd328a520997dbcac04babc06c02675f9bf5981838a17de8c5cde3"
+    },
+    {
+      "id": "natal.sign_only.mercury.libra",
+      "title_sha256": "f4a5412e5822e7926cdd786442d0116b49e9898d606c89fd9a11e61a28a93991",
+      "summary_sha256": "e4aab00753ad628e90ff9cbbb0c2ac9d4fc050ac1fe1409262316d7cc8fbd555",
+      "text_sha256": "df4a346a83ad97f3aa9fa35aaf5acd1273269042004befec98b6a6ce210b46c2"
+    },
+    {
+      "id": "natal.sign_only.mercury.scorpio",
+      "title_sha256": "2b76f2283251363699b7302f6c959f2d4574e9717cb7158a870e7437fd08f1ad",
+      "summary_sha256": "114346930a1d0127c501fa0e686280840677755ff2f61ce1c0365a359b1f7d2e",
+      "text_sha256": "2603c9a0120bfee8ca565c533114695413001a1b552e33f3c116068fb089a51c"
+    },
+    {
+      "id": "natal.sign_only.mercury.sagittarius",
+      "title_sha256": "b17bdea594567fac9b0ffefbcddac550e8cf53dfdda19ff28ce803966c303ea4",
+      "summary_sha256": "abb6132d32a55bbeff62195206019dc72e091e7a21387042d70f9da45a490c2e",
+      "text_sha256": "deda1a65cbf440afd0553aaee34aca22ee583648dd6e21fa36e0fa05a6147d1b"
+    },
+    {
+      "id": "natal.sign_only.mercury.capricorn",
+      "title_sha256": "5f9f72fec407c23461ce3e12c5025e08b3cb5853221b6c7b18c7efbf56e7322e",
+      "summary_sha256": "76f54bed8a219fdcfb73bdfdbf2fd0747db36022b2c3478faac6e1a27200e118",
+      "text_sha256": "2afe602393ae09ffbead14cd358a03ef711766f327d858630bb0e2260d3e6083"
+    },
+    {
+      "id": "natal.sign_only.mercury.aquarius",
+      "title_sha256": "39095aef141f4d01214c1a2c5f064d3822d78de5d880d9d6deabace18b6614f5",
+      "summary_sha256": "6d14e70c14f0bf64fa4acfeb9d99e4c9d565d3d77b3ac364dae1f1aad16782e0",
+      "text_sha256": "425ba6c8c567d1f4908ddd5cc8f7d0905b84af3d98461a6ac8f196d768441ec2"
+    },
+    {
+      "id": "natal.sign_only.mercury.pisces",
+      "title_sha256": "4458aa6e3818785e3783573d9ad800a6a9e3ca822f48a1510ffbb67c2016d6f0",
+      "summary_sha256": "eb67fd2b79e38a15574a5e4eaafd9092cefce5b2fd284d271194887e74697bee",
+      "text_sha256": "d88bf040f5fd3e99791b422baf84e40915bf4645b3180e4c8cff4a04109694ce"
+    },
+    {
+      "id": "natal.sign_only.mars.aries",
+      "title_sha256": "075bd31d59bff616f2de43505be22ffd5434e8176607b439ac9f0f9c80728ed8",
+      "summary_sha256": "698e3efbfb9dc257aefd304998a0ce00cf7e7a3cc034bd461f5cb95008e487fb",
+      "text_sha256": "cbdaa79619a847821929c5b4b7c1af91a99b2bdb5a069348916010dbb03b2d8c"
+    },
+    {
+      "id": "natal.sign_only.mars.taurus",
+      "title_sha256": "163a79ea9bfb7c3ddb0f53f45aea2c37e4b012c2e6e5ae08b7f031566f2b9deb",
+      "summary_sha256": "5aac62e440f4a14803cbd3381280c29c411196bd2fe9d4c5768fbd46ffc76804",
+      "text_sha256": "5dca1b4a3179a0fac1cd52aae55aa87589420006d0db01080db5a5cefb070c32"
+    },
+    {
+      "id": "natal.sign_only.mars.gemini",
+      "title_sha256": "5792c5102a1e2d7291449293f891586dbe25abe202e4f498453546f5c3378728",
+      "summary_sha256": "ccb3adb2da48111f663e2da9e11c53a4ca5661802e06b2af8385bd045261f8d5",
+      "text_sha256": "8133264b95b45b7e1fb3b4bc54e888a6c0079ead2eb739a2667f73c0dc3586e5"
+    },
+    {
+      "id": "natal.sign_only.mars.cancer",
+      "title_sha256": "ce50713af3a0e84af9e0c3cfadae78c44db96066aa5fd653a6252335fa9677bf",
+      "summary_sha256": "8dfd7da5e4000488961ccb1f05d9ceac209d27ff03f15d37cdfd49e217d4e856",
+      "text_sha256": "5044c93b85767768adb2757ab5179ad853898c7d273df06889cedbc8d3d85308"
+    },
+    {
+      "id": "natal.sign_only.mars.leo",
+      "title_sha256": "fa44850e7106a973c1d0f2dad7b627a29a0b99b76ff13eb4bdd34ee1e764e33d",
+      "summary_sha256": "1146de754d5f3d752d24fd9a2081ca5bd0ca3f729120f22b07ce098823636744",
+      "text_sha256": "ca1f53b43e79c5077ace072d2d7069c58bc5af9bfc849cd1da0817ebf16d807a"
+    },
+    {
+      "id": "natal.sign_only.mars.virgo",
+      "title_sha256": "97881f619787922ec6335bc31b384bdda44d5e4cc0a6241b4c7fb49e5cfb7bfe",
+      "summary_sha256": "2837114ec67314de8086ef866438169a1b061f0b0d87325d427c33c2197fffb8",
+      "text_sha256": "b93e59773c5d565bb97c99111242d726a469ef6a064f2b1092ce9f789abd156a"
+    },
+    {
+      "id": "natal.sign_only.mars.libra",
+      "title_sha256": "0e112af4d5841175a2b39574759f4f53f97939fae73badc1011eb0ac1f834a2b",
+      "summary_sha256": "ec7c9474970781b90cea7a8f4408b9c3ba34171d4ed8c3216fb8ba8f2bf709a7",
+      "text_sha256": "1b20fb854193f29b52e383f7bd64b3c9c0d2936cff73a48dec153ba252a2d86d"
+    },
+    {
+      "id": "natal.sign_only.mars.scorpio",
+      "title_sha256": "6f635e02ce4a926c76c828bd25de7bfbdf3e9aaa250cf0dd848462dc4fb51214",
+      "summary_sha256": "65ce650ef92bb0cdace6478df092b82d59f45ba05a88a2c676b7178075121659",
+      "text_sha256": "62c870e95682c8e408138361af6f7ab2f5e23d11d2282f6280c6690fa8d23865"
+    },
+    {
+      "id": "natal.sign_only.mars.sagittarius",
+      "title_sha256": "57cc39bfbaba1e5f07393fb7fecdbdac5baff7dc0ab17da426b5953fa69a08d4",
+      "summary_sha256": "d33ec6e4c3e441025f48c921140737a2d3dd442a4bb5238b1fe8706d42c38030",
+      "text_sha256": "ea303fe411572574547afef15a750161b2c6e6910ab171554c251b179604b41b"
+    },
+    {
+      "id": "natal.sign_only.mars.capricorn",
+      "title_sha256": "5f415660546724e6fd4a38d2190ce7ccb6345b5a7d4fbc621c93b34b657605f5",
+      "summary_sha256": "a18810e8d8d85278e5372f6538086ae7048d24996cf96e22065f0610c4cec902",
+      "text_sha256": "b468fd89b1859c7522366385f52c90f8725686d6a7ad94d95ec4b0779edf3fb9"
+    },
+    {
+      "id": "natal.sign_only.mars.aquarius",
+      "title_sha256": "e8bc7396426a1ecfe7fcf66dc8e47a1a52361a4193ad53e0c7374f17c9f04565",
+      "summary_sha256": "10e67c7389e835f4688bd4ad0b91acf1a67a373842fcc79112ea46a49358bf9f",
+      "text_sha256": "a6046ff721e92be9f63617b0e0834a47f56a1e6607beaaed8171600027357498"
+    },
+    {
+      "id": "natal.sign_only.mars.pisces",
+      "title_sha256": "56c3744485a638cfe45826190afab8e77a3e93ed0052494226839c8b7ec93193",
+      "summary_sha256": "ddcd67825ce6e5a50f0b4f56431881b29041a40f23e8786bf143c19ba17ec692",
+      "text_sha256": "a24db2c58b5bb8af34990fdad0cd5f92857377254b9a889d9ace87104556477e"
+    },
+    {
+      "id": "natal.sign_only.jupiter.aries",
+      "title_sha256": "95e1b425e50e1b11ebdeeaa6c5474f3929cd732de7d9f43f3226fb9c2249f9ab",
+      "summary_sha256": "a0cc2ebbcda9c7e608866e9b049ca46b2e3be523acccf43c92c501156aa98db8",
+      "text_sha256": "d33ae926f7cbe1648478ecc1970f2c4b41fada60426c41ab22a04bdeaff7251e"
+    },
+    {
+      "id": "natal.sign_only.jupiter.taurus",
+      "title_sha256": "8c6628173d49e104aef3f39024b9c18748848186418c78a40ecb4ad10a35eb9d",
+      "summary_sha256": "909091b917c9488a4de93634bd6a803d34c932abcc849a193337c9d9bce2f4f0",
+      "text_sha256": "df5ecd1a0c99bb9e604cdd356bfaf6bc585bb534825925dc202b87904c06ce51"
+    },
+    {
+      "id": "natal.sign_only.jupiter.gemini",
+      "title_sha256": "70ae48b393bd259cd7d96fc741b669046abee3663dc065ee115ca67c4e51931f",
+      "summary_sha256": "2cbfca42c482eea0f74e1260a08b9d30d581294f3b93934b26be1c5d4b9d36be",
+      "text_sha256": "5fd2bc24c7d0ef68fcd50335dfdea183c546c5f45b83b5c48869b7f1f776c13e"
+    },
+    {
+      "id": "natal.sign_only.jupiter.cancer",
+      "title_sha256": "b9bfb4be21e092bc550ec025d9ce714a18a786f61f7fd99287bf3eb9b7ea963e",
+      "summary_sha256": "0096e37e3e7965f5ba4260601e6b20bc0bdfbc97682db95cc08923b07c009a37",
+      "text_sha256": "0fb14b00ee6f51c7cdc584b725c872b1ad522d0e093c7a46b09287f7f939db4d"
+    },
+    {
+      "id": "natal.sign_only.jupiter.leo",
+      "title_sha256": "efdd024dff913dbd40a19295ec18c65a95f0044a2af2727003dbb763160ec1a2",
+      "summary_sha256": "2cc81ef7a7a054bc54b31797f8a5002cea1c7f055fcc4db3163a8238ca8dad6f",
+      "text_sha256": "ed8fc5211eb99ad408d959fcf52cdfc4a421d596604124fa08d99edee2531458"
+    },
+    {
+      "id": "natal.sign_only.jupiter.virgo",
+      "title_sha256": "f4fda319369dc1f28499e5d57e0e5b5db4d1c23771e5dac87f845010cb6d66fe",
+      "summary_sha256": "80031fe1b0741f2a05c12ac60279548146a88767f58e7b2f3794af91ea1f5809",
+      "text_sha256": "bbead5153bc8023dbd9a2e64f1397cc526b333dfce88c0f9ca5b442515d7853b"
+    },
+    {
+      "id": "natal.sign_only.jupiter.libra",
+      "title_sha256": "14236bd225b7aba7797b848897c2e412f7c95ef97b41be418cc55dece4d489a5",
+      "summary_sha256": "fc04f3a2bea1322c23a8d37bb01fb444d67470c2ba1f4b0b6ffad00c0dd4a8df",
+      "text_sha256": "4f5a0cc36b1b97ac3149cb3d2d4fdc8b8d610efaa7caf0285a5454d2548c1438"
+    },
+    {
+      "id": "natal.sign_only.jupiter.scorpio",
+      "title_sha256": "f74b3d047d88d6d1590427db6ac64dea9fbea5c976fc2d0ba64ea96e4d59dc10",
+      "summary_sha256": "dc78d7397d47e1d120a270aad1f56d722a5ea8eb6dc7c76aed6ac83ddc7ffb4f",
+      "text_sha256": "753be4e3eb05633e66600e0e75acca62845bd5468f6852bbdb6b0a0bc5e47c8b"
+    },
+    {
+      "id": "natal.sign_only.jupiter.sagittarius",
+      "title_sha256": "afa4804ce6299423e5d419ef5c26fcc3b1d86d19645de77ecfb2128d296398da",
+      "summary_sha256": "e02d87a7e1bb52bb7d4e355c0513183a2813b37ba8f320259f2fca11fdf017a2",
+      "text_sha256": "6944d08a91a540cbc1ef140794521a34a9b259842a98290ff9e3baaf34a7fcbc"
+    },
+    {
+      "id": "natal.sign_only.jupiter.capricorn",
+      "title_sha256": "69a804b156afec500817fff3dbd178ef9bc90e54748499a1e3781d0dba4513b7",
+      "summary_sha256": "17b58d6eca729452c949501a0af861a54c929ebca08e9a4d75c86915a02265e2",
+      "text_sha256": "97e9e3e966e388da2c1c5c81f99714566e5086363b6e1da3a0e874b1ed0e846f"
+    },
+    {
+      "id": "natal.sign_only.jupiter.aquarius",
+      "title_sha256": "a00def67b49a4141cd32d3e63394426416e5075bc7f9877b5c445043df4da397",
+      "summary_sha256": "b350aa18fbda6097ccf1c77c23adbbbc62f55ee1f760dbee91bbed3faa99e236",
+      "text_sha256": "16cc43d8755d92a99f67f8bf2ef9387a603b3f5c2fe2a38f07c751351baee681"
+    },
+    {
+      "id": "natal.sign_only.jupiter.pisces",
+      "title_sha256": "4f0c5aa4bee6e1bb385427cc0727964cc735f1382df90c1f0633bf5d0805af37",
+      "summary_sha256": "e8bdae95ecc3de4343055a344816af9812e57109497ff0543bdfe002471631d0",
+      "text_sha256": "eb0e0925df8163a28bbc9ee45a64104f33aade4d62f7b44ce547f577e3bef728"
+    }
+  ]
+}

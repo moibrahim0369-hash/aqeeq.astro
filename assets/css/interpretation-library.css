@@ -54,3 +54,9 @@ details[open]>summary .il-chev{transform:rotate(180deg)}
 .pd-part[hidden]{display:none}
 .pd-root .nd-title p{line-height:1.8}
 .pd-add{margin:14px auto 0;display:block}
+
+/* Reader facts keep their label/value hierarchy on desktop as well as mobile. */
+.ndr-sheet .ndr-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 12px}
+.ndr-sheet .ndr-fact{padding:10px 12px;border-radius:14px;border:1px solid #D2AE6C;background:rgba(255,255,255,.7);display:flex;flex-direction:column;gap:2px}
+.ndr-sheet .ndr-fact small{font-size:.7rem;color:#7a5f50}
+.ndr-sheet .ndr-fact b{font:700 .95rem Amiri,serif;color:#4A1224}

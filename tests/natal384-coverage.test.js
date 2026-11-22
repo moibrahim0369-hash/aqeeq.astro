@@ -1,8 +1,14 @@
 'use strict';
 const A=require('../assets/js/interpretation-library.js'),fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
 const dir=path.resolve(__dirname,'../data/interpretations');
-const rows=fs.readdirSync(dir).filter(f=>f.endsWith('.json')&&!f.startsWith('_')).flatMap(f=>JSON.parse(fs.readFileSync(path.join(dir,f))));
+const allRows=fs.readdirSync(dir).filter(f=>f.endsWith('.json')&&!f.startsWith('_')).flatMap(f=>JSON.parse(fs.readFileSync(path.join(dir,f))));
+const baseline=require('./fixtures/natal384-baseline-hashes.json'),baselineIds=new Set(baseline.entries.map(e=>e.id));
+const rows=allRows.filter(e=>baselineIds.has(e.id));
+assert.equal(allRows.length,new Set(allRows.map(e=>e.id)).size,'duplicate global reading IDs');
 assert.equal(rows.length,384);assert.equal(new Set(rows.map(e=>e.id)).size,384);
+const stable=x=>x&&typeof x==='object'?(Array.isArray(x)?x.map(stable):Object.fromEntries(Object.keys(x).sort().map(k=>[k,stable(x[k])]))):x;
+for(const b of baseline.entries){const row=rows.find(e=>e.id===b.id);assert.equal(require('crypto').createHash('sha256').update(JSON.stringify(stable(row))).digest('hex'),b.canonical_sha256,'accepted baseline changed: '+b.id);}
+
 const ix=A.indexOf([rows]),seen=new Set();
 function see(m){const S=A.sections(m,ix);const html=Object.values(S).map(x=>typeof x==='object'?Object.values(x).join(''):x).join('');for(const q of html.matchAll(/data-il-id="([^"]+)/g))if(ix[q[1]])seen.add(q[1]);return S;}
 for(let house=1;house<=12;house++)for(let sign=0;sign<12;sign++)for(const known of [true,false]){
@@ -21,4 +27,4 @@ assert.equal(rows.some(e=>e.id==='natal.sign_only.lilith.libra'),false);
 assert(A.renderText('#### عنوان\n\nنص').includes('<h5'));
 assert(!A.renderText('<script>x</script>').includes('<script>'));
 if(process.env.NATAL_ACCEPTED_PROOF){const crypto=require('crypto'),p=JSON.parse(fs.readFileSync(process.env.NATAL_ACCEPTED_PROOF));for(const q of p.rows){const e=ix[q.reader_id];for(const key of ['text','summary'])assert.equal(crypto.createHash('sha256').update(e[key]).digest('hex'),q[key+'_sha256']);}}
-console.log('PASS384/384 reachable accepted readings; exact body/house/sign routes, true_node/opposite nodes, unknown-time guards,52asteroids+13Chiron+11element/modality references; no invented Lilith Libra; optional source hash proof');
+console.log('PASS frozen384/384 baseline readings, with all metadata hashes preserved; exact body/house/sign routes, true_node/opposite nodes, unknown-time guards,52asteroids+13Chiron+11element/modality references; baseline provenance preserved independently of authored completion; optional source hash proof');

@@ -21,6 +21,7 @@
   };
   var AS = {
     'اتصال': ['دمج الطاقتين', 'تمتزج الطاقتان في نقطة واحدة فتتضاعف قوتهما، وقد تحتاج إلى وعي بحدّتهما معًا.'],
+    'اقتران': ['دمج الطاقتين', 'تمتزج الطاقتان في نقطة واحدة فتتضاعف قوتهما، وقد تحتاج إلى وعي بحدّتهما معًا.'],
     'تثليث': ['اتصال متناغم', 'تتدفق الطاقتان بانسجام وسهولة، وتعطيان موهبة فطرية تحتاج إلى استخدام واعٍ.'],
     'سداسي': ['اتصال داعم', 'فرصة مفتوحة بين الطاقتين، تثمر حين تبادر إلى استثمارها.'],
     'تسديس': ['اتصال داعم', 'فرصة مفتوحة بين الطاقتين، تثمر حين تبادر إلى استثمارها.'],
@@ -63,9 +64,9 @@
       openSheet(g ? g.innerHTML : ICO.asp, name, mid + ' · ' + last,
         '<div class="ndr-facts">' + fact('نوع الاتصال', esc(mid)) + fact('الفارق', esc(last.replace('فارق', '').trim())) + '</div><h4>' + esc(a[0]) + '</h4><p>' + esc(a[1]) + '</p>' + (extra || pending('التفسير المفصل لاتصالك هذا قيد الإضافة.')));
     } else if (kind === 'houses') {
-      openSheet(ICO.house, name, mid, '<div class="ndr-facts">' + fact('البيت', esc(name)) + fact('البرج', esc(mid)) + '</div>' + (extra || pending('تفسير هذا البيت قيد الإضافة.')));
+      openSheet(ICO.house, name, mid, (extra || pending('تفسير هذا البيت قيد الإضافة.')));
     } else {
-      var house = last && last !== '—' ? last : 'يظهر مع وقت الميلاد';
+      var house = last && last !== '—' ? last.replace(/^البيت\s*/, '') : 'يظهر مع وقت الميلاد';
       openSheet(g ? '<span class="ndr-gl">' + g.innerHTML + '</span>' : ICO.planet, name, mid,
         '<div class="ndr-facts">' + fact('البرج والدرجة', esc(mid)) + fact('البيت', esc(house)) + '</div>' + (extra || '<h4>معنى ' + esc(name) + ' في خريطتك</h4><p>' + esc(PL[name] || 'أحد الأجرام الأساسية في خريطتك.') + '</p>' + pending('التفسير المفصل لموضع ' + name + ' هذا قيد الإضافة.')));
     }
@@ -86,7 +87,7 @@
     var p = $('.nd-title p', r); if (p && !p.getAttribute('data-ndr')) { p.setAttribute('data-ndr', '1'); p.textContent = 'اضغط على أي كوكب أو جانب لتعرف معناه'; }
     $$('.nd-list .nd-row', r).forEach(function (x) { if (!x.getAttribute('role')) { x.setAttribute('role', 'button'); x.setAttribute('tabindex', '0'); } });
     var key = ($('.nd-chips', r) || {}).textContent || '';
-    if (key !== lastKey) { lastKey = key; sec.scrollTop = 0; closeSheet(); }
+    if (key !== lastKey) { var previousKey = lastKey; lastKey = key; sec.scrollTop = 0; if (previousKey) closeSheet(); }
   }
   var q;
   new MutationObserver(function () { clearTimeout(q); q = setTimeout(prep, 60); }).observe(res, { childList: true, subtree: true, attributes: true, attributeFilter: ['hidden'] });

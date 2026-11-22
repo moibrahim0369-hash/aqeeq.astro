@@ -1,0 +1,1542 @@
+{
+  "baseline_commit": "350b30f12b83be5b1cc3dd493c9dc82ca01e1bc0",
+  "count": 384,
+  "entries": [
+    {
+      "id": "natal.angle.asc.aquarius",
+      "canonical_sha256": "004342c3a877e85932d6a05a5106b34bc6333e055c780cc06286c604ec8dd9e3"
+    },
+    {
+      "id": "natal.angle.asc.aries",
+      "canonical_sha256": "b3db9f65d4b10b9357f4ce5c3cd2d7f9a2c3b0c08e4cbf09158f64be010d656d"
+    },
+    {
+      "id": "natal.angle.asc.cancer",
+      "canonical_sha256": "233e6c6440949de5e67d52b18919bd5cb0a6689006a32dce5344c714f66e8623"
+    },
+    {
+      "id": "natal.angle.asc.capricorn",
+      "canonical_sha256": "23d56a8d31539ed5f9696ad176d68349968e97edd9f74a0556fe64e0b529fed7"
+    },
+    {
+      "id": "natal.angle.asc.gemini",
+      "canonical_sha256": "7383de48793fb72217dd592b9e92002cd2af42e6f5133cf1d590014af7f95b5b"
+    },
+    {
+      "id": "natal.angle.asc.leo",
+      "canonical_sha256": "6ca1e65a8e02999ab5ec8566ad68312bf0f28af73ff2acaeb818df9ca3198c08"
+    },
+    {
+      "id": "natal.angle.asc.libra",
+      "canonical_sha256": "55f4d7e3bf5c57d78a6ae00bdf631607c99e2a2315c3d66af12b3cf8252a687e"
+    },
+    {
+      "id": "natal.angle.asc.pisces",
+      "canonical_sha256": "4fdaf66f170550dcd286b969b45194cb02e2ba46b962ee0d12459b33dd994dcb"
+    },
+    {
+      "id": "natal.angle.asc.sagittarius",
+      "canonical_sha256": "b704aa8a9428b65fb45d8b7416ffb51645f09c3c30ff52530db4b59e6ff6729a"
+    },
+    {
+      "id": "natal.angle.asc.scorpio",
+      "canonical_sha256": "63a38dc5f0ce9aeeae8bf3c4263c1bfa0a09eeb1ac4564c9509c9352acbfb3a8"
+    },
+    {
+      "id": "natal.angle.asc.taurus",
+      "canonical_sha256": "c8f2aa128fb388c191a991372e2f99b845ad5c3da99ba7c0d801dd250aca6371"
+    },
+    {
+      "id": "natal.angle.asc.virgo",
+      "canonical_sha256": "6dcd52525610b710c917fe93e8a480c89e85e5cae95b2e31a0bbc8e112659158"
+    },
+    {
+      "id": "natal.core.fortune.house1",
+      "canonical_sha256": "2fc20c7eea9bbfcaeb20a55d4ed7b10814b1ca1440ae0fe830876f03c6290b04"
+    },
+    {
+      "id": "natal.core.fortune.house10",
+      "canonical_sha256": "f5d0141d6d05fed00e6c1e5ab5bd37f3380cb350ea2d967e113cb64ffefec6a3"
+    },
+    {
+      "id": "natal.core.fortune.house11",
+      "canonical_sha256": "64c2b55921d7adafeae91abb6638a3b525bf6a9c50f429f8e62e72ad0837326f"
+    },
+    {
+      "id": "natal.core.fortune.house12",
+      "canonical_sha256": "3c4582961b81626b05eab73129a95f1dc93fe5ccd36bbff391a329a01c981c98"
+    },
+    {
+      "id": "natal.core.fortune.house2",
+      "canonical_sha256": "61cb51b178c279095c9ef724f123b527b85d36c03d1f9195cefc855a78cde0c7"
+    },
+    {
+      "id": "natal.core.fortune.house3",
+      "canonical_sha256": "1bb73272cc95240e3ebffaae9ad9ccda4f61117f980dea0de4af96faf4f5d077"
+    },
+    {
+      "id": "natal.core.fortune.house4",
+      "canonical_sha256": "b6e35c9e6b3d6374b10085ce482e9b7394e2b0472b64f2b35b21f53bb2dfc8ae"
+    },
+    {
+      "id": "natal.core.fortune.house5",
+      "canonical_sha256": "92fa5ebf8fb64a8f917413fb44fad1d5b2814472b9652bcb24cf71589a45a401"
+    },
+    {
+      "id": "natal.core.fortune.house6",
+      "canonical_sha256": "54689c27ab85311e744cef48a8053475181cfaee37b850464436c3d26c5b2793"
+    },
+    {
+      "id": "natal.core.fortune.house7",
+      "canonical_sha256": "a3be0dda31da6492555b12fae2a9f61941abc4e9c80360307509ff33558d069c"
+    },
+    {
+      "id": "natal.core.fortune.house8",
+      "canonical_sha256": "ce7cb95c0f3116c0f671528ea6cbd48ed9e50523859e54960c0da9b4d9b9988e"
+    },
+    {
+      "id": "natal.core.fortune.house9",
+      "canonical_sha256": "75195f0c5654fd5d5a8c80ac58b73978728bf351c339d171687971cd716f4d68"
+    },
+    {
+      "id": "natal.core.jupiter.house1",
+      "canonical_sha256": "c56de70d1ba454edc088371b8000c059ffca8457e2c48869ca015384e737f966"
+    },
+    {
+      "id": "natal.core.jupiter.house10",
+      "canonical_sha256": "3e2a33679911efaa38bae91e2a2947194c1ecb996a8dc835508ecad16b1bb2af"
+    },
+    {
+      "id": "natal.core.jupiter.house11",
+      "canonical_sha256": "d7d60ea8b8d6d9ceb3093b9bd6615feff985c5ad7652fbcdad8cb9bd0180ed70"
+    },
+    {
+      "id": "natal.core.jupiter.house12",
+      "canonical_sha256": "7229d058dc436cb2b63778934ca10f2a1a37e7576f8b286855efddeb1dad7e62"
+    },
+    {
+      "id": "natal.core.jupiter.house2",
+      "canonical_sha256": "5e65a86954bc1bf0909490c6505492f172ac6441b738c3ed913483c938a0da18"
+    },
+    {
+      "id": "natal.core.jupiter.house3",
+      "canonical_sha256": "38cd231276ef929891bb502dde8bc99ac406925fb5789755522ddf39cdda3778"
+    },
+    {
+      "id": "natal.core.jupiter.house4",
+      "canonical_sha256": "012951333af9682fdf03c9dfaaded13a3769eff82777773a841419e620b85501"
+    },
+    {
+      "id": "natal.core.jupiter.house5",
+      "canonical_sha256": "46f77fd9e1f4fe1e69563ed39c0cdf46476b4c300d7a22c63a834d4092a9f5b7"
+    },
+    {
+      "id": "natal.core.jupiter.house6",
+      "canonical_sha256": "b5c53f64687ceb300b2b624d13c3938fa4de4c46c285d03c35d14600e769cd4f"
+    },
+    {
+      "id": "natal.core.jupiter.house7",
+      "canonical_sha256": "7fa1bf48602f78ad2102e4c371324e0a02fc0a800351e1550b7b297445b6294f"
+    },
+    {
+      "id": "natal.core.jupiter.house8",
+      "canonical_sha256": "4c35d144a68aebad358028956f494d9878f787ba1d5c940732928fd86c8b7f83"
+    },
+    {
+      "id": "natal.core.jupiter.house9",
+      "canonical_sha256": "dc5e0672a2876523260cbdd1995172e8d496687158028e0a80538841f581f634"
+    },
+    {
+      "id": "natal.core.lilith.house1",
+      "canonical_sha256": "201c8f6dd8ac43b039d8f6c6a0d69b92934f17a02be262fac2e5fc02f52ee1a2"
+    },
+    {
+      "id": "natal.core.lilith.house10",
+      "canonical_sha256": "85e3b2117b6927a3fbb85b31842e1ec91ac924a6da128bc10bb5360998728dca"
+    },
+    {
+      "id": "natal.core.lilith.house11",
+      "canonical_sha256": "38a4f2c2c1fa11bd6f29073dd2c4d9e777b893daff2a19400cb3497a01c554f0"
+    },
+    {
+      "id": "natal.core.lilith.house12",
+      "canonical_sha256": "795a37c01c9498367292fcd87aeeecba7b5b4f6f1cb120761e904ef25be295f0"
+    },
+    {
+      "id": "natal.core.lilith.house2",
+      "canonical_sha256": "76b80c717c8496ed9f661bc606237eb5077fb8c8c57cf9527d5d040e842a909b"
+    },
+    {
+      "id": "natal.core.lilith.house3",
+      "canonical_sha256": "33f9d072f72beb485c2270f00c25cefe41c9ffc2d0ee597afd684740dc560584"
+    },
+    {
+      "id": "natal.core.lilith.house4",
+      "canonical_sha256": "c6612f825bcbed51a71af40433d34902b631471e6916782e10ca7da09f012374"
+    },
+    {
+      "id": "natal.core.lilith.house5",
+      "canonical_sha256": "4126f877bb1774dfebbe993a090f5632a2b5f194b3c5c16e1c4c3ebaf1c23975"
+    },
+    {
+      "id": "natal.core.lilith.house6",
+      "canonical_sha256": "2bd33cd7a4db4fbf16d7848ef04433acebed54d41d93fcb867a293e0659e9f57"
+    },
+    {
+      "id": "natal.core.lilith.house7",
+      "canonical_sha256": "dc6f0dd938b94d0cda7eab25ce7f1904148e419858152cad5f1ea58b5eed55fb"
+    },
+    {
+      "id": "natal.core.lilith.house8",
+      "canonical_sha256": "7fc3f301967c6f1889ebec6fc44fdb388b6efd8ccc109d11318a52ff31e2886c"
+    },
+    {
+      "id": "natal.core.lilith.house9",
+      "canonical_sha256": "e6752ee32a7b304732ecb0a5233d7fa4a448aeef217f3c8c80a6a402abc11dae"
+    },
+    {
+      "id": "natal.core.mars.house1",
+      "canonical_sha256": "fdd02c793e38ad20ae734cc99752c328c9a744c77c248831d2cfa19da3625de1"
+    },
+    {
+      "id": "natal.core.mars.house10",
+      "canonical_sha256": "25301e28dd2e7227edc5fe9670448295ad517162619a76e7bf7f7e57b8c02367"
+    },
+    {
+      "id": "natal.core.mars.house11",
+      "canonical_sha256": "30e36ccae59636a87b75adf69e9c30a15611e574ab2e87c87abf92002b0d48bb"
+    },
+    {
+      "id": "natal.core.mars.house12",
+      "canonical_sha256": "fe95a374c4e5a6c7c687718bbe5f29d77e8948c3f87f9f0c7e560ab70262fcac"
+    },
+    {
+      "id": "natal.core.mars.house2",
+      "canonical_sha256": "b2f38dbcf72e97d00559a041fa22d0de0241c8c9bcdffa2f7f6410ca7b3fbf6d"
+    },
+    {
+      "id": "natal.core.mars.house3",
+      "canonical_sha256": "b844d59b05cb230c9a2c133727109b6c010e2a10b85c6360fe84aaad2d82791a"
+    },
+    {
+      "id": "natal.core.mars.house4",
+      "canonical_sha256": "21bf62cf03f4da0bdb4f891c68c217676deaba036762096430f012055a749407"
+    },
+    {
+      "id": "natal.core.mars.house5",
+      "canonical_sha256": "3e32847559680103532c3acede7a93c2e27afb6c4f42a2d6fa2eeda3cb08340e"
+    },
+    {
+      "id": "natal.core.mars.house6",
+      "canonical_sha256": "85aea7b6da899e58ea329aa70b70fee950b685b05bdfc7c42ba70793c56acf08"
+    },
+    {
+      "id": "natal.core.mars.house7",
+      "canonical_sha256": "d084458d31f3d50dfbc68668aa2182b1e3c1470a2df39740b4012f5930ea395a"
+    },
+    {
+      "id": "natal.core.mars.house8",
+      "canonical_sha256": "4e08f868380e951ce68c05007b5d774276d2e371d294b2b46ef4c2a1c250a337"
+    },
+    {
+      "id": "natal.core.mars.house9",
+      "canonical_sha256": "19d123edee534a786c2f848239b43e63aa6034807ab19be4b9c3d2d70c9dc91a"
+    },
+    {
+      "id": "natal.core.mercury.house1",
+      "canonical_sha256": "96867c2fb9b69623dac4ac4ca0a6aa293fa572499e4119b49345e23a37d6b4f9"
+    },
+    {
+      "id": "natal.core.mercury.house10",
+      "canonical_sha256": "90ea1e8d966b89bd130f49219c4fb75083fce11d04d18a5a8e777bc5669f215f"
+    },
+    {
+      "id": "natal.core.mercury.house11",
+      "canonical_sha256": "8db5fc5578000c7d8eef1a1f6425cb21a1f21682cec2e9cdaa50259586d55efc"
+    },
+    {
+      "id": "natal.core.mercury.house12",
+      "canonical_sha256": "8ec57a802a961c8bb96f3013c46d03fc60bb5e4d1e43d62922b647160ff821ee"
+    },
+    {
+      "id": "natal.core.mercury.house2",
+      "canonical_sha256": "f0dca6f5aae34f3bcd519219fd7ef2d6b3c3717c1ee165c178365a05ab19a396"
+    },
+    {
+      "id": "natal.core.mercury.house3",
+      "canonical_sha256": "6db87c5a273a89d5a64e17e45756ab1898c0aafd605afd4d58007167582961bb"
+    },
+    {
+      "id": "natal.core.mercury.house4",
+      "canonical_sha256": "56ef51f5f96fbea2d2552a628827b449229c75bddd14694ba334ee4491b10074"
+    },
+    {
+      "id": "natal.core.mercury.house5",
+      "canonical_sha256": "c4bb25047eb78ee8b0dd488a3d323e628805e52679f4ddef9cbe9a80cc104a06"
+    },
+    {
+      "id": "natal.core.mercury.house6",
+      "canonical_sha256": "c688b7489f5b02a6d66602169f3a8de8b6d1caa3f6d5e3ddda1e6ba236696fb0"
+    },
+    {
+      "id": "natal.core.mercury.house7",
+      "canonical_sha256": "91420d53781f052f9708f2a1ea6f316e9a013bb5f7f67a3ccdef806edeadfb14"
+    },
+    {
+      "id": "natal.core.mercury.house8",
+      "canonical_sha256": "4c5bc5f175c84c3173d5ef129012b05c754910f3c13646942ae369b78a7ca94d"
+    },
+    {
+      "id": "natal.core.mercury.house9",
+      "canonical_sha256": "9a0bbea0342906dc59aa07ca933595806f2c13fab4f560d1709abf6f46c2e919"
+    },
+    {
+      "id": "natal.core.moon.house1",
+      "canonical_sha256": "c650a41ccf9665073b79a5bd6d0a8ef822fb52ab76ebd0db9f5cfc156b5bf2bd"
+    },
+    {
+      "id": "natal.core.moon.house10",
+      "canonical_sha256": "4ca97094972cbec9aafda90375f200251dfb1c3ceec6e70472aeff28486a1700"
+    },
+    {
+      "id": "natal.core.moon.house11",
+      "canonical_sha256": "0cfcfdfacff5f54bbae0c333f181ca1b52424b6a2226bcf582e720075a6cf6b5"
+    },
+    {
+      "id": "natal.core.moon.house12",
+      "canonical_sha256": "b42328bd8bf085ff6290258ea55277ed389a04e6174644d4d59bd0ddd92cca2a"
+    },
+    {
+      "id": "natal.core.moon.house2",
+      "canonical_sha256": "c19a08c2a36fa41b30bf65772d3ec0cef8b751382525ada9dc86367310375f4c"
+    },
+    {
+      "id": "natal.core.moon.house3",
+      "canonical_sha256": "6a64550da8d1416ba511ba8225772e7e13ccaa6036c3e5793310dc4981c27198"
+    },
+    {
+      "id": "natal.core.moon.house4",
+      "canonical_sha256": "42296194f8cf906ba097383ff495dd2a6e88a68e54b90a4aaff5b90f5c247917"
+    },
+    {
+      "id": "natal.core.moon.house5",
+      "canonical_sha256": "9f7b7c26da187ebd4c7fd5bbaba3029fb8da6fcdbd5c17fddf58555a0792f0b0"
+    },
+    {
+      "id": "natal.core.moon.house6",
+      "canonical_sha256": "73846932ac224e566121da8ea2fcaa91aa739c06bae53f1e36b0541994d1fa76"
+    },
+    {
+      "id": "natal.core.moon.house7",
+      "canonical_sha256": "23b3a01c71229b59ad6396e9a3cdb8505c2976294c3549d0d4721272baefb43a"
+    },
+    {
+      "id": "natal.core.moon.house8",
+      "canonical_sha256": "304d104f4391e6e0a988a7c627f5575da537835663c1d05f573a557fa16f2bbf"
+    },
+    {
+      "id": "natal.core.moon.house9",
+      "canonical_sha256": "074146c55bd6769be36c65ed50fdf3e442248879d23c6816f0900006f0263a7f"
+    },
+    {
+      "id": "natal.core.neptune.house1",
+      "canonical_sha256": "b94cd64e11067e3fc5a388b7a03b95b4d6ad91867e60fdd3f03c6874280fbd33"
+    },
+    {
+      "id": "natal.core.neptune.house10",
+      "canonical_sha256": "e42490a0adfbc4a08f7a204bc55118199dc242daf8cdcd1534bc3af1dfab87d5"
+    },
+    {
+      "id": "natal.core.neptune.house11",
+      "canonical_sha256": "251543b99489bd7b35845ae35c3ace6c2330f82befe411d28dbec9be22f6e418"
+    },
+    {
+      "id": "natal.core.neptune.house12",
+      "canonical_sha256": "d632920eebf29a13f2eb356bb5fb54757723e14d00e08762a63b9c3cf35beb81"
+    },
+    {
+      "id": "natal.core.neptune.house2",
+      "canonical_sha256": "f97cfba02cde8442d9ef98f59693ab12c249774f8b8130097ea793c5999e554e"
+    },
+    {
+      "id": "natal.core.neptune.house3",
+      "canonical_sha256": "3046dea883697b2b3053b4b4cf14944a9435e88b2366540f4da57ca2da9737aa"
+    },
+    {
+      "id": "natal.core.neptune.house4",
+      "canonical_sha256": "ec8c34f303a2952a6676d3bd4abe27b3af5394ca2175ef6077b52e53fa77b7aa"
+    },
+    {
+      "id": "natal.core.neptune.house5",
+      "canonical_sha256": "d7bdaf6678d410a8d936e8d045788a7d4a7ea14a47edbc267eb9c0a0de74158f"
+    },
+    {
+      "id": "natal.core.neptune.house6",
+      "canonical_sha256": "0765169f019ba9638c6245f34118fb2955535e366f8903d3234b373e45a83384"
+    },
+    {
+      "id": "natal.core.neptune.house7",
+      "canonical_sha256": "d057993d72b6c22f3da59d142a9ef0ce279b64229ee4044c9851caaab965fa5f"
+    },
+    {
+      "id": "natal.core.neptune.house8",
+      "canonical_sha256": "0aa8802bb0e299c8ada0224878abce43bc6c421b437a6fd328f68cb5b5786e66"
+    },
+    {
+      "id": "natal.core.neptune.house9",
+      "canonical_sha256": "eac3e222decb41a791301866ec2ee84fde135dc8bbd573b9d32c84f36f844fe3"
+    },
+    {
+      "id": "natal.core.north_node.house1",
+      "canonical_sha256": "35d835696e764ac6b29c14145eeb03eea4b20e63e7ff5393e289430866c6bc3b"
+    },
+    {
+      "id": "natal.core.north_node.house10",
+      "canonical_sha256": "349d7238b74f0120cc68b88188fc2f31004dddb12434dfd8237a22733405084c"
+    },
+    {
+      "id": "natal.core.north_node.house11",
+      "canonical_sha256": "2f5339bdcf4a5d1783d60d14394a4305a08a39282352c047645a067937eb772a"
+    },
+    {
+      "id": "natal.core.north_node.house12",
+      "canonical_sha256": "01a0ef918f63794fdad3ca7a5962e7def92320de1129205cd5ff7ba8605355fa"
+    },
+    {
+      "id": "natal.core.north_node.house2",
+      "canonical_sha256": "8ddb0a266fba23d4f209a8cab11e807ef16488b0a5091d1f5d1b225d75b33a5f"
+    },
+    {
+      "id": "natal.core.north_node.house3",
+      "canonical_sha256": "446fddf80a55db288ed4d1b7ef1eba5daf5586c0ae22341df3bdbd07b75eb559"
+    },
+    {
+      "id": "natal.core.north_node.house4",
+      "canonical_sha256": "2d6d681f8362729bae2288c40dbf83f6fea4f50c1c61bdbc0d204ff8e03dabde"
+    },
+    {
+      "id": "natal.core.north_node.house5",
+      "canonical_sha256": "a358200fc878c46d4eeafc099454222b7f55e636bcb6379e84f9638ab6515903"
+    },
+    {
+      "id": "natal.core.north_node.house6",
+      "canonical_sha256": "e7a92b8f78be859bc92f7680f2e3e7e421680abd49fa6feaa153736172265bae"
+    },
+    {
+      "id": "natal.core.north_node.house7",
+      "canonical_sha256": "3bc2bb511513d25296cc85fdfa63751a5b02d1185d147afdf0848085e738314d"
+    },
+    {
+      "id": "natal.core.north_node.house8",
+      "canonical_sha256": "bc6b24ed4f8ba5699382a77dddd86880427ffa5620cf74c58fc5310f1644f154"
+    },
+    {
+      "id": "natal.core.north_node.house9",
+      "canonical_sha256": "044c9feed00e1c61a1f13ae7c0c09c2a11137621514969236080dc16219e3c0d"
+    },
+    {
+      "id": "natal.core.pluto.house1",
+      "canonical_sha256": "f2144df72f5f526685d1e26fb27634348f489db6ef61b05d3a77e55fa76c9824"
+    },
+    {
+      "id": "natal.core.pluto.house10",
+      "canonical_sha256": "046f49cbbe565161f330d5d28a109fb06d584db0b2c3c9939b9116d3a7a1c628"
+    },
+    {
+      "id": "natal.core.pluto.house11",
+      "canonical_sha256": "46947ebd86207a521aac7242931ce9da7242ca155d33a644c5cad9bed5c163f7"
+    },
+    {
+      "id": "natal.core.pluto.house12",
+      "canonical_sha256": "ccff91dcd71a58aaf5fc363acc0b8b30a7e96d1809909a3450303c844729585b"
+    },
+    {
+      "id": "natal.core.pluto.house2",
+      "canonical_sha256": "a1f2281210fb6cc2c7c901a42818b84f751173084983187999fb8c56f0c18627"
+    },
+    {
+      "id": "natal.core.pluto.house3",
+      "canonical_sha256": "f8c1dfa34abf69b5507836aaa5f9b42fe17112a604a95405d5d5688eedaa500a"
+    },
+    {
+      "id": "natal.core.pluto.house4",
+      "canonical_sha256": "094d37b02910f2a7c327ba398818b7ae2f2319d3c91b569242876f8f5b09b29e"
+    },
+    {
+      "id": "natal.core.pluto.house5",
+      "canonical_sha256": "16545dc3d5a8b294e11408c9e0638d79943b1dcab6419491ce62e719ca9d8e13"
+    },
+    {
+      "id": "natal.core.pluto.house6",
+      "canonical_sha256": "f0025b917dabce7d220396a9739ec59eb5737950553dc040c626026e4f27de11"
+    },
+    {
+      "id": "natal.core.pluto.house7",
+      "canonical_sha256": "fa8af53d6afc02f38496430777c31505709f96361b38d02f7010805f2c42e1d8"
+    },
+    {
+      "id": "natal.core.pluto.house8",
+      "canonical_sha256": "cec16f44998fde8556b2a3f16b6e97da9326d95478a63079193e1c27c0279b7b"
+    },
+    {
+      "id": "natal.core.pluto.house9",
+      "canonical_sha256": "c73e21fc4a83619216d84f58a3aa6a181cfa8e81c7ecb8a06f773bdd71479efa"
+    },
+    {
+      "id": "natal.core.saturn.house1",
+      "canonical_sha256": "6133a8a2bf0a03b9e0df038c6567cae5d393f314879ee2aa80223e7f72234984"
+    },
+    {
+      "id": "natal.core.saturn.house10",
+      "canonical_sha256": "88a5669415142f0b84975f84232a272360cc8aa9516e019668e059877d298bbd"
+    },
+    {
+      "id": "natal.core.saturn.house11",
+      "canonical_sha256": "3d4287de0b6c9878e943014a14aac5b8efc4821b3edf53c740de75e5945b6b4d"
+    },
+    {
+      "id": "natal.core.saturn.house12",
+      "canonical_sha256": "8389b2e8410e1b1eca8eb89790646b58a042ea16af0a7602a9e9385281d0905d"
+    },
+    {
+      "id": "natal.core.saturn.house2",
+      "canonical_sha256": "e906eae0b17e3b2bcda89ab9053577bdedce84af2dff40276d8b834d6d81c4cd"
+    },
+    {
+      "id": "natal.core.saturn.house3",
+      "canonical_sha256": "3de1ad8d9820bce736e6a2b3bc2d26518db5305f2f722faae9c210c34c0c534e"
+    },
+    {
+      "id": "natal.core.saturn.house4",
+      "canonical_sha256": "3305fc80d0b817d67020c95a2709dc7535c15a1f0155e471d3dffcff24159361"
+    },
+    {
+      "id": "natal.core.saturn.house5",
+      "canonical_sha256": "96743aad5c800028f72292126ceca0c163f4c03e8eca82f317e1d7f57d188798"
+    },
+    {
+      "id": "natal.core.saturn.house6",
+      "canonical_sha256": "cf649663a1e3bd4501bf341d777b9b8c608128f75231195c6d482597f97736b1"
+    },
+    {
+      "id": "natal.core.saturn.house7",
+      "canonical_sha256": "00248d9b567fbc2114881ebf8bee181a340013892d0f6a9e44c91edede04a2b6"
+    },
+    {
+      "id": "natal.core.saturn.house8",
+      "canonical_sha256": "3cce2f95bee61e0bcb4694701067e67572c074edcada515726c1a4024933dead"
+    },
+    {
+      "id": "natal.core.saturn.house9",
+      "canonical_sha256": "e30604a8fd30419b31c4b95769fefad9a47dd9c0da630d053ab93e4a76b444f2"
+    },
+    {
+      "id": "natal.core.south_node.house1",
+      "canonical_sha256": "902067d4b5f1566da250130361e2be602ce1330af0672a910eb141516300fcb8"
+    },
+    {
+      "id": "natal.core.south_node.house10",
+      "canonical_sha256": "97c3e32474cac8c097e2745d690932141a05af5e2f9c32bed952f7cb43f87284"
+    },
+    {
+      "id": "natal.core.south_node.house11",
+      "canonical_sha256": "0e2875e50c5058be4abbbd82456fa1800c8cf236712faf258fbcf107f75b5926"
+    },
+    {
+      "id": "natal.core.south_node.house12",
+      "canonical_sha256": "ee99aa5f856266b61e8c76d43b95715b9da67390bb5d2c3861486ca3d6c86c03"
+    },
+    {
+      "id": "natal.core.south_node.house2",
+      "canonical_sha256": "5a1a641235225e855756d1efd0db9f68679f4a944d9c80550a79f04a056d2cd8"
+    },
+    {
+      "id": "natal.core.south_node.house3",
+      "canonical_sha256": "c2fcfee48af261a06f68c16f34d5e0f1c488be4a57db8a363a01657cff18a47f"
+    },
+    {
+      "id": "natal.core.south_node.house4",
+      "canonical_sha256": "6ecd16147ab2d265f5ed857778d41794efa99b8e8bbf70bdc06ec44f1b53fb4b"
+    },
+    {
+      "id": "natal.core.south_node.house5",
+      "canonical_sha256": "bc36fe57ab2f78685bbc6b05aca62178154fb7cb3c62dece2238803ada3c65cb"
+    },
+    {
+      "id": "natal.core.south_node.house6",
+      "canonical_sha256": "2cfc51e4abcce12ffad1b25d83d6e271c66556f9c7e68a22de94e20ece72a9b6"
+    },
+    {
+      "id": "natal.core.south_node.house7",
+      "canonical_sha256": "a0b3ed1e62f90df646b64616a1987fbeb99d375e642e78493c12f8c7a4e39767"
+    },
+    {
+      "id": "natal.core.south_node.house8",
+      "canonical_sha256": "c13f6008c765c81e5601c37dc1c9eda701a73c9ecca56ae47ddd0858f5c5be23"
+    },
+    {
+      "id": "natal.core.south_node.house9",
+      "canonical_sha256": "fd0b006d3b28662749e1c85eb3bf8a5a0bd7815bb9e312591f2f9300df29e5e8"
+    },
+    {
+      "id": "natal.core.sun.house1",
+      "canonical_sha256": "a96adfce08d1b014ad55298b9290a916f16e9ccf6b8ab92aeb08646e30800e4c"
+    },
+    {
+      "id": "natal.core.sun.house10",
+      "canonical_sha256": "dfffd06a833d45c23df9dc6246f19e48cb8e2a0253317b8e9213f6b87a7ba09b"
+    },
+    {
+      "id": "natal.core.sun.house11",
+      "canonical_sha256": "cb88090644fa541bd0aedebde1eccde17768899c033b5eec9d719d2fa836eeb0"
+    },
+    {
+      "id": "natal.core.sun.house12",
+      "canonical_sha256": "cf54e62cc82d1540a5ed124093a8d4926bdade790b4bf9842d93cd395fb03571"
+    },
+    {
+      "id": "natal.core.sun.house2",
+      "canonical_sha256": "bc88cb6df8503b8619299f549f689e2a6132853c940f2dfff9cb5ca9776600ed"
+    },
+    {
+      "id": "natal.core.sun.house3",
+      "canonical_sha256": "388de0e9ddbf30d2ed7d4490844872ce3a50dd777c071d041c23ee1bdeff6a4a"
+    },
+    {
+      "id": "natal.core.sun.house4",
+      "canonical_sha256": "62799f7171ab3d7ac58819d3f3d93e717ae79733dead40a44807b7b170bcb691"
+    },
+    {
+      "id": "natal.core.sun.house5",
+      "canonical_sha256": "fe27fe354be1dec4d3ed3856dbf03128a41f3d9cf753ab3df8625f93cecedac2"
+    },
+    {
+      "id": "natal.core.sun.house6",
+      "canonical_sha256": "d1c6391b00ea1a7ff1e88c1a0de367408dad05eeb23c65d921908af32338035c"
+    },
+    {
+      "id": "natal.core.sun.house7",
+      "canonical_sha256": "95d1853c4d9acea9df9abe56985e0d5867965ca9774da9d8b029b8392a41b07b"
+    },
+    {
+      "id": "natal.core.sun.house8",
+      "canonical_sha256": "75661b9656eb41016a22fe27dc23ed5608ddb5c47ab558a5a4612ad5195e4546"
+    },
+    {
+      "id": "natal.core.sun.house9",
+      "canonical_sha256": "1b1f1e51f39c1e9b9e4779486ca7b0b06ee58d8141781409bea4f19c9cf192a3"
+    },
+    {
+      "id": "natal.core.uranus.house1",
+      "canonical_sha256": "e77fd64bdcd9e9c6ca8db007409baa743177c0c2c396d609856091eb2f16842b"
+    },
+    {
+      "id": "natal.core.uranus.house10",
+      "canonical_sha256": "15176ae9bb023c624fc62efbc395080c4a7dc417a84d56b2fefec6551f6a82f9"
+    },
+    {
+      "id": "natal.core.uranus.house11",
+      "canonical_sha256": "46f87d7820ad750f02f29269528904f5471c06bd58c3743bab0004f05f852f3e"
+    },
+    {
+      "id": "natal.core.uranus.house12",
+      "canonical_sha256": "094a1ce2eca61c719bf8ed48feb61237a735e7d3c3e1a9ae71f2b7678167ef57"
+    },
+    {
+      "id": "natal.core.uranus.house2",
+      "canonical_sha256": "8dbd46a00f098b1ae3bdf60f5d7cb603e48bf27a33d9116e6800f86300de523f"
+    },
+    {
+      "id": "natal.core.uranus.house3",
+      "canonical_sha256": "8eef10f4c37e87c881aaed1b2ae6188f28d62c07e73ce2689ff7c9aed0c33985"
+    },
+    {
+      "id": "natal.core.uranus.house4",
+      "canonical_sha256": "f48c569404f1996d656ccb8325c0d4996743d059fd503e27c5de56018c204c1e"
+    },
+    {
+      "id": "natal.core.uranus.house5",
+      "canonical_sha256": "a8b88aebb1c6909d2e1e14740db4d2ea6d7d3db49038047a1c8d6152653c0964"
+    },
+    {
+      "id": "natal.core.uranus.house6",
+      "canonical_sha256": "87a20368307f87e30b3f41be738132cd456b0e19b6ffb3d52bdbaea018aa6f0d"
+    },
+    {
+      "id": "natal.core.uranus.house7",
+      "canonical_sha256": "a76042894932a3f30ea3f1bf84a3f4ec14f24e97a11d1dc9c3dc6a2f4841b4b5"
+    },
+    {
+      "id": "natal.core.uranus.house8",
+      "canonical_sha256": "d3525deb7719de9578a36e9cf8430d363af586a0a7c311df09a1f6b9c84fa59e"
+    },
+    {
+      "id": "natal.core.uranus.house9",
+      "canonical_sha256": "8809285c4da4d5de00058740e25a8492c55aa952f8bcebdde5afe84b8887de30"
+    },
+    {
+      "id": "natal.core.venus.house1",
+      "canonical_sha256": "14afddc6e5c708d1a46a523d0a70cba2739ef84ec29eb03ed6f78f7bfa36f726"
+    },
+    {
+      "id": "natal.core.venus.house10",
+      "canonical_sha256": "249603f18964a6e8f766e7b4ee858aa8c0f0c7f918e27d4e9009bc59a36c74ce"
+    },
+    {
+      "id": "natal.core.venus.house11",
+      "canonical_sha256": "f6f061579adc953a17d35db57955002b0340544dd94e672e27ab7c563c6274e9"
+    },
+    {
+      "id": "natal.core.venus.house12",
+      "canonical_sha256": "0afdb5c6f5a069c4c82367a9bf08ce22a26b280db047ba947fdeb6d2d390c383"
+    },
+    {
+      "id": "natal.core.venus.house2",
+      "canonical_sha256": "966b1cfd262dcde6134bfb6592158113627819675e2d5abfaa9489625c963211"
+    },
+    {
+      "id": "natal.core.venus.house3",
+      "canonical_sha256": "a670a78c118471d2986d5fc4cdfa03bb8abd6bfc011ae89b0889969f789bdcdb"
+    },
+    {
+      "id": "natal.core.venus.house4",
+      "canonical_sha256": "831268913d3f88043f6678ee1e02f36d8c24ceb58dd815d7b5c985d8d2be4bb0"
+    },
+    {
+      "id": "natal.core.venus.house5",
+      "canonical_sha256": "c54a5f1bb3464c77e7def462cb6c015121a3b2f9b16a5de903c482b50da5f164"
+    },
+    {
+      "id": "natal.core.venus.house6",
+      "canonical_sha256": "53e9a7376fe2f0c56a17745339decd1fd545539f306718739f9cec13fbe7657f"
+    },
+    {
+      "id": "natal.core.venus.house7",
+      "canonical_sha256": "6e3efa98c1b5b177d6f8c341963a4bf9a8eb546129e70dc338c881a7e9472cee"
+    },
+    {
+      "id": "natal.core.venus.house8",
+      "canonical_sha256": "b39bf53475411eade86088c2982c0178856c91249e605fc5729099d2ce156dd4"
+    },
+    {
+      "id": "natal.core.venus.house9",
+      "canonical_sha256": "b2018df663664296e3bf69598a54194a5efad9b1f7013e0f4f718f73df00d090"
+    },
+    {
+      "id": "natal.modifier.saturn.house7.retrograde",
+      "canonical_sha256": "8660975d115ab5c09a343741cc49166f044791838ef1ddf0ce4ce1ba6a36f1dd"
+    },
+    {
+      "id": "natal.modifier.saturn.house8.retrograde",
+      "canonical_sha256": "56be4703b79e103a0ef33139abfbce85931464f36391647c673fb62b980b6a4d"
+    },
+    {
+      "id": "natal.reference.aspect.conjunction",
+      "canonical_sha256": "c101d3690f05aab437ced7e6f983d8868acaff4c405b5100c5e543764db2e2b3"
+    },
+    {
+      "id": "natal.reference.aspect.opposition",
+      "canonical_sha256": "82a5586647c3041a14c93926c5db86e1f151d0096540919cd7b488ad3ff1e174"
+    },
+    {
+      "id": "natal.reference.aspect.sextile",
+      "canonical_sha256": "6096fb5b7a1d91968c6615183d5725dbe58d37002200df9b862aea96963553a2"
+    },
+    {
+      "id": "natal.reference.aspect.square",
+      "canonical_sha256": "30f488a6e173a2b2ccc46ac2712e154f56b555df40ff8ff0b8559463b8c7b25e"
+    },
+    {
+      "id": "natal.reference.aspect.trine",
+      "canonical_sha256": "a5787e5d17a0997c182b74e02dc0411a0bab0973d33ed7f33ce9af78632d1143"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.general",
+      "canonical_sha256": "ee70bf6ffe4a937ef0bb6b23507fcded2637930f4a325f736fe99d3f9c5a0421"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house1",
+      "canonical_sha256": "0b3a5c2c8b74ce17df2c80fdcc219c28681df76d72769a2db59b8e53728d3bcc"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house10",
+      "canonical_sha256": "3fb9bcad6ce4f8e902fa717b6a7fbc8ccc4e8a829eb8fdbbfdd5c950daf1c899"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house11",
+      "canonical_sha256": "0ed223577ee6d0b853c17723f757af8a2c4fbf3df8b8d5f8b9380ed9fb4e974a"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house12",
+      "canonical_sha256": "421d8e3c7b42c43b837f4f65251c69dfd7c5b36554e2e3c6a0619ba7430d19e8"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house2",
+      "canonical_sha256": "0d3f4a6de88b873ec202780efc774900df9c5f0fec03f97b2e79399b05e5aa82"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house3",
+      "canonical_sha256": "4664ca421e2c98b6804f15f79760cf4ab31e079e2b3c68930ba8687fd547ea0a"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house4",
+      "canonical_sha256": "d4e356160bb80c6cf9884f47b40201860bdd6710fc3a8169516321e7dca13ce2"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house5",
+      "canonical_sha256": "083f80c1751535609ffd51d391eddd6e583b2318725563c4ddaa70de263597c7"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house6",
+      "canonical_sha256": "da7c25e8fc7353ce8aa151525928349c67129246239efec61939ab67a1841d36"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house7",
+      "canonical_sha256": "96a7a5cb200cd7ef02dcc8822c601df41ad3f690c8f96eb3a4d56fa5aae7aba8"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house8",
+      "canonical_sha256": "769cec241e6a42b1b7a90e8d292d73e619489bf0761819767afbbd1da5196274"
+    },
+    {
+      "id": "natal.reference.asteroids.ceres.house9",
+      "canonical_sha256": "98f123a06752b4e39bf1cc7c0f4bc1612542d599ea5cb17bd462b37435c1e1c5"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.general",
+      "canonical_sha256": "da8786e2c857ba90662e976fc3a51f1136c0efb86bde14bf2da9d5a44632147c"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house1",
+      "canonical_sha256": "2239c5f1302cf10777d5377a77a559844f70ac8af26694f2ec60dbde4968614f"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house10",
+      "canonical_sha256": "852c1d5e2146fa89b2936313cddb1d23a3dc423e89b7cae7ec2ebe7b340022b9"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house11",
+      "canonical_sha256": "2e24592957a012182e2d20f1c16042fe7d3367c9c654657f16de08e35bb025d2"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house12",
+      "canonical_sha256": "6f6f598e63495b32df9e2a774f35faacda23cb306d595ea9ee5846f3bba510e9"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house2",
+      "canonical_sha256": "1cce8046df04cd6d541ea495292f3a62dedf276f321682620d00c7e21fe53e9b"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house3",
+      "canonical_sha256": "c56fee7afcbc62a089e722eddbdd9628d4080bfb0cb0de273467082d06366f13"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house4",
+      "canonical_sha256": "fec6c18b650a3fea9bcea84eed2de95df884ee692bd1356bd1b6c6470125f272"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house5",
+      "canonical_sha256": "924e05e3788a742281f51349a8e550161d51adb89e367e5406880ea0aaed55d3"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house6",
+      "canonical_sha256": "193127088aa14ebe240e630fd0c8f362fcdcdd0ccb7d84f8dc23a9e410056cdb"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house7",
+      "canonical_sha256": "5d42fd284cd9662b637963071b9be62a6421f58683a8e9409d464897e01e48e5"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house8",
+      "canonical_sha256": "e602d5886be0f405c57586b4ccf5d4b7ef76bafdd7ed687a5ff458003c1dc1cf"
+    },
+    {
+      "id": "natal.reference.asteroids.juno.house9",
+      "canonical_sha256": "319c8d1dfd64c568b91ce9fc3325ac0ea4cd6fe780fe1f0b8437e8db9234c9c1"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.general",
+      "canonical_sha256": "e9f48ba6e1d7f741c86cf04737a6862c587e524e3e8c66731addc291cfc264bb"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house1",
+      "canonical_sha256": "225f7244cd028bc8fb3200f3cf4636a0bfb114624e0edab9c4a9e816f1ad90bd"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house10",
+      "canonical_sha256": "6d5b11a3dc4978cd52b17cb2722eebd81524b9b70eb2757f4c1774a8409f68ec"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house11",
+      "canonical_sha256": "b870bbc3cd5107e51460ffa5c48708891c7a7a381d5777ea5efa20ce7ae8598d"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house12",
+      "canonical_sha256": "35aadfef0e82ad02e954679c77b23ee54ceff39a526349ec49d210d467ee6578"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house2",
+      "canonical_sha256": "25d92c4f9121957d5572437f15b39196713e565da66efbf7345813b49b36e7da"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house3",
+      "canonical_sha256": "f380ac681178a242e67151e6d5a0934cd1d67de22a1aeb3b6ffaf054fcacccc2"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house4",
+      "canonical_sha256": "693b025ccfda76ccba48fd04d4b11993f6d936c1ad750b88cd9cfe2fe8f4cb6c"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house5",
+      "canonical_sha256": "3f393a7d1f128d0976cf259f9e4301a091531d0b9175c07948d8e03a1592b488"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house6",
+      "canonical_sha256": "650509a9c348d7624a6c730591c89f49d03f9fef94f9c2052d9ba0e796b66b01"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house7",
+      "canonical_sha256": "35957a5ce919c854fd0ce00736f045c6c90fc8011224060d1466f097b507d382"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house8",
+      "canonical_sha256": "430bc133efe02a3b1eef366727a152023c811a9ed49cc6e325f2f26a97572f55"
+    },
+    {
+      "id": "natal.reference.asteroids.pallas.house9",
+      "canonical_sha256": "3ea905ca7bef74aa38ffd577e778d211cb7c25c91c98eeac0ee7d72a77297947"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.general",
+      "canonical_sha256": "e7dc63b57a19f676ea4f3e2a3a191cb987a0e32ec16e80a7169145abf10b5489"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house1",
+      "canonical_sha256": "960ef97b4dcddd488504c60971f6e3e3122e5c7478720988fc117d8a64d25a78"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house10",
+      "canonical_sha256": "3a98e44e9a4e1789e1e91673288588c141caf789e312e21b0a512b8b62fb64bf"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house11",
+      "canonical_sha256": "e9ea0a34b972d87ae06dbecf510b722ff5265dc4e071c5fcfad068a553e7e9d8"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house12",
+      "canonical_sha256": "e839fe63940c592ff7aef77bf883d21773602363506291eae88c386144a12ea9"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house2",
+      "canonical_sha256": "236a3a595751424a92700f35128817005d20502a4e3ee8e421e18e3b8a23aa2c"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house3",
+      "canonical_sha256": "9d7b095e6661379bee2861a6709949f57eb338ef8425a06aed746b12440ee0d2"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house4",
+      "canonical_sha256": "19cb3e5eea853f7d65ddce6555d758bd09f88eb574b12dd6e109672c0b3a78e4"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house5",
+      "canonical_sha256": "23b7d1f1fed76c1fc2dbb94c5a16c70c7b003a391cd82f1bc832196b2be40456"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house6",
+      "canonical_sha256": "a649048f21fa6c09227dd5cab543fee43f1cb0fc96fb334e6379894f82895b13"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house7",
+      "canonical_sha256": "63aa5a61dda5b0399423cf39d8cde53fbd83557922207b2e14decc2246bc7c74"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house8",
+      "canonical_sha256": "39723ccb6dc033ee2448ac9605378db38df1cb8ca5ad42f1b004b3b9c4d4256c"
+    },
+    {
+      "id": "natal.reference.asteroids.vesta.house9",
+      "canonical_sha256": "4cdad8d2f2a9d6d8a1087d44a10f0daa31cb43c07a33471098371d7922707420"
+    },
+    {
+      "id": "natal.reference.element.dominant.air",
+      "canonical_sha256": "16cd060aa22eabc2cca53ae25021cd8c84cafba3be8c9f204ac9edfbf3d8361f"
+    },
+    {
+      "id": "natal.reference.element.dominant.earth",
+      "canonical_sha256": "a1f32afaa4631e7694d28a23a6be98ac574506ebdeeb2d228d02e264f4b1652d"
+    },
+    {
+      "id": "natal.reference.element.dominant.fire",
+      "canonical_sha256": "776f8027af441c330366323195b1e2d286532018fecb390be198f290cd3113ae"
+    },
+    {
+      "id": "natal.reference.element.dominant.water",
+      "canonical_sha256": "31dc333b22fc85bbcbc7564ab35759d7c2b30b5c6d9533d8a555bd6063bd5146"
+    },
+    {
+      "id": "natal.reference.element.low.air",
+      "canonical_sha256": "bdd20920949c255db83cb3a0cc629f85c15eae7c7675f562e2308d58e97e551f"
+    },
+    {
+      "id": "natal.reference.element.low.earth",
+      "canonical_sha256": "4f5341f1754f5f9535224154658dc617ffb588cd2bde1dacdaf885a19bf18448"
+    },
+    {
+      "id": "natal.reference.element.low.fire",
+      "canonical_sha256": "c9c29f719310ca26486680264a32a097a90e99a9f2fa09d6108380b6a787bd6b"
+    },
+    {
+      "id": "natal.reference.element.low.water",
+      "canonical_sha256": "f20bf273dd2f5d4b23f2f0874cf51f1a9ef75fe48a7f2c2d7a078e17c25c6c82"
+    },
+    {
+      "id": "natal.reference.house.house1",
+      "canonical_sha256": "9863d641654887729ac5cf6f7915550e25ee7ac7eb6223795ca5b106fd6bebb1"
+    },
+    {
+      "id": "natal.reference.house.house10",
+      "canonical_sha256": "ffaed73e49c1a4ce82a75762db4145c53796e534a0066ad4813102c1de73ce8e"
+    },
+    {
+      "id": "natal.reference.house.house11",
+      "canonical_sha256": "734f3d9350404fbc1f65d36d0046009020f4caeeac3f29cec0520b746cf180b8"
+    },
+    {
+      "id": "natal.reference.house.house12",
+      "canonical_sha256": "f0d22d9fb4ad83131557c0206d1d69805c1e21fe6b88d8e6f302032b8c1b80cd"
+    },
+    {
+      "id": "natal.reference.house.house2",
+      "canonical_sha256": "aeca8b42f12e8fe640e45544f7b6061be74e749dffac0a485206929b32ef0ceb"
+    },
+    {
+      "id": "natal.reference.house.house3",
+      "canonical_sha256": "55d610a34f0d235712b532a8ccc411fded72dc218ab54e4ee8cdb5ab6993a5dc"
+    },
+    {
+      "id": "natal.reference.house.house4",
+      "canonical_sha256": "b661a19e618653ee2881730c12a517d754aa01ed43b30ce4cb9685217bfd2fe9"
+    },
+    {
+      "id": "natal.reference.house.house5",
+      "canonical_sha256": "a1f8eaf037f4472b3e4cb597702146575d82d6072899d4f40c26c561c7132b5c"
+    },
+    {
+      "id": "natal.reference.house.house6",
+      "canonical_sha256": "b035f8395482c0ca0be5c0debf65d3466d31a480f40cfa9d8cbb57282929aeae"
+    },
+    {
+      "id": "natal.reference.house.house7",
+      "canonical_sha256": "4d38a68dd98dca48afddbba7dc8fab4b2c6168aa717d9c67c8b9e2e71186d162"
+    },
+    {
+      "id": "natal.reference.house.house8",
+      "canonical_sha256": "8af51e0d9b932736e488d49d8e53c135695e1ab88299a6f832c47c739e97388c"
+    },
+    {
+      "id": "natal.reference.house.house9",
+      "canonical_sha256": "9a9c97804b9d59b116b7adc24f93ba5179a362c1a22d60d9da57436f299bd103"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house1",
+      "canonical_sha256": "f1224d55b00ba69ad30345615d6bb4ba03104a865617fc8ae2adeda1c2e5c145"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house10",
+      "canonical_sha256": "312d2bd4715ecf89b5f73c0ce3029dd76021d6bbd661ba830e6e679cfe71a4bc"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house11",
+      "canonical_sha256": "2e9e913a2fd240c8981c951f825c6b0ace106015c2759340c0e7e709ebe0fcfb"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house12",
+      "canonical_sha256": "8bec321030d3d32dc68e214b63fcaefcdaba2fd752337678c5b7becfbb6e15a5"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house2",
+      "canonical_sha256": "a0e180f75fc56d34fc84d8bb1b00314b1b6ad00ba4429cf69af147c11eb6e2bb"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house3",
+      "canonical_sha256": "a4952e3c3ef68ad2c362e2943f8aa1fd64e4451273f19dfd4a429e149305e761"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house4",
+      "canonical_sha256": "3218e29bcd4b205efb4de39fe9fba17b2ebcace3b9a0be2ce35c24f2226a76b4"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house5",
+      "canonical_sha256": "6bdfe9113b3705b0d54d4fa26d913ab4819c5e6d095c1c85b5161774ed2a9d98"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house6",
+      "canonical_sha256": "83d637c4f097ffde7e8908daf594f623b7a5f93e03ca3dad87205a958e65332e"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house7",
+      "canonical_sha256": "3fd95518981d20ce0bcbf258a47823daf9fb46742ef4c69fea7d4ff84b9e5b67"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house8",
+      "canonical_sha256": "2d7aec71c001dbb0dacf6c0a5bcaae7159e0feac5f490a8ffde9c192d9f4a6ef"
+    },
+    {
+      "id": "natal.reference.house_position.chiron.house9",
+      "canonical_sha256": "a4edf00d0d82ff0773cd2360d87fac13e0368354b4c9471cb32e385f59689c67"
+    },
+    {
+      "id": "natal.reference.modality.dominant.cardinal",
+      "canonical_sha256": "d1793ca78c8736ff4aa1cf5d51b6a7e535b8d0b261d506b32480a3bf66f6e3e5"
+    },
+    {
+      "id": "natal.reference.modality.dominant.fixed",
+      "canonical_sha256": "295945f82e8a1dc1c713e3bdd265e1fca4b9bebe92f8f6589f85cfd2bb42d120"
+    },
+    {
+      "id": "natal.reference.modality.dominant.mutable",
+      "canonical_sha256": "fa696dbdb8c757695d8b6c7de2d7519e88e7526e4d11a47ae669f01146905b9f"
+    },
+    {
+      "id": "natal.reference.planet.chiron",
+      "canonical_sha256": "324da2ebf3c9bc50c63e5829cde1e7a2ea5cfd5edce71f0da5ef5f270f8ef37e"
+    },
+    {
+      "id": "natal.reference.planet.fortune",
+      "canonical_sha256": "b46bada2ffe0bbbc05edfeefb3b933d58876ba71c97a61d89f6fc14c4d844b8d"
+    },
+    {
+      "id": "natal.reference.planet.jupiter",
+      "canonical_sha256": "114e06903636b14ee6481a55838f62cb0ed87878202777c7842231c064bcff59"
+    },
+    {
+      "id": "natal.reference.planet.lilith",
+      "canonical_sha256": "0ec31a2741e28c445fffa399e0076fd487d5e2e8f8ced741a1eab86749cbc6f0"
+    },
+    {
+      "id": "natal.reference.planet.mars",
+      "canonical_sha256": "c14a8c0fb675a32d225ae34e70931d9c3e3378f3312cb399fcfedde4a7b794a3"
+    },
+    {
+      "id": "natal.reference.planet.mercury",
+      "canonical_sha256": "ef5b472e977ec42c946f68bd40b13b9eef8af72e33045a6a60dd4cd3bfc13b49"
+    },
+    {
+      "id": "natal.reference.planet.moon",
+      "canonical_sha256": "940742f3abb507f2610d46d5a8096608e8511a86d930c7c582c9da6ea7a7fc82"
+    },
+    {
+      "id": "natal.reference.planet.neptune",
+      "canonical_sha256": "ec2adb6442a20ce03a126c8699e8561bacc35751b0bbfbf8dffae055dc5931a3"
+    },
+    {
+      "id": "natal.reference.planet.north_node",
+      "canonical_sha256": "930f24694987511bdb059cf459e49ddacc65bbb2dc785fb4a6ab55b81dbd9c37"
+    },
+    {
+      "id": "natal.reference.planet.pluto",
+      "canonical_sha256": "96536c48078457d2eefce5c96093c2af7783ab4edecdcbd599f353e90021fd7f"
+    },
+    {
+      "id": "natal.reference.planet.saturn",
+      "canonical_sha256": "351b97a28080a664e38444b275a9be1907f50e2179b0d5089754445cc7e154a1"
+    },
+    {
+      "id": "natal.reference.planet.south_node",
+      "canonical_sha256": "457d17dbd3c9e6c738ca7a8ea1b75ffa20a7f1a8fa2d42dc75295da2ac334629"
+    },
+    {
+      "id": "natal.reference.planet.sun",
+      "canonical_sha256": "cfb5ea99e4d92cdd3f357441e6f405deb8652fbbb4709d159099108acdecc50d"
+    },
+    {
+      "id": "natal.reference.planet.uranus",
+      "canonical_sha256": "afc759cd05096a80df2e712de88d9520dc0a41227bdd8104d7b16fd0de1778f6"
+    },
+    {
+      "id": "natal.reference.planet.venus",
+      "canonical_sha256": "a51280e5550d15b4da745c0d1b7485353370d0fa99fa1f224db0b85592855ab7"
+    },
+    {
+      "id": "natal.reference.sign.aquarius",
+      "canonical_sha256": "929f2ff5801c4a6ff1422fb78641416caba83ffdd9ac1f55fca716dcaee38ab1"
+    },
+    {
+      "id": "natal.reference.sign.aries",
+      "canonical_sha256": "d7fe47f9f29a513b302b874d51b7bc4e4d6f75942b2c7e175562ac011ad85a95"
+    },
+    {
+      "id": "natal.reference.sign.cancer",
+      "canonical_sha256": "e4b279129718e88d837e3dc015307d138f24f6c8ed64eb033c1d14df2c142ae9"
+    },
+    {
+      "id": "natal.reference.sign.capricorn",
+      "canonical_sha256": "418cd081439ff48ddd8377ef5a4f8e6461fcbaaca271aeba7e295ee19218656b"
+    },
+    {
+      "id": "natal.reference.sign.gemini",
+      "canonical_sha256": "7c8ddd8f1f0fd0a1758b198251b9e85ebd315521b3e4884333cd29ed9cfb5734"
+    },
+    {
+      "id": "natal.reference.sign.leo",
+      "canonical_sha256": "1c18fefb20671346c4fe8fead7a5d5122896d6013053f7c6beda6d6e9d357c3d"
+    },
+    {
+      "id": "natal.reference.sign.libra",
+      "canonical_sha256": "2443f385fdfbf31412d462cd1ba5feeec8d14deb2aefcf15b57eba146a480833"
+    },
+    {
+      "id": "natal.reference.sign.pisces",
+      "canonical_sha256": "dd3823e1edc347779d48bd01ffed56b5413f88c468064f1fb43b744a1eda4205"
+    },
+    {
+      "id": "natal.reference.sign.sagittarius",
+      "canonical_sha256": "3fd744a33d856de6cba934e52307c67389338860a5575457bd9347ab335485a1"
+    },
+    {
+      "id": "natal.reference.sign.scorpio",
+      "canonical_sha256": "203166cb80de571bd48c648ea527023c991cf34f04b1602c8d6c9a37c199c22b"
+    },
+    {
+      "id": "natal.reference.sign.taurus",
+      "canonical_sha256": "3a0b1a836951912d840e5262dd4c12be4f68aed8c7c87ed60c4904e6dfcf6dcc"
+    },
+    {
+      "id": "natal.reference.sign.virgo",
+      "canonical_sha256": "9367a856436c29bf12ffdb4c707ef4208a1473aab27acb7a93d8e06689d7324d"
+    },
+    {
+      "id": "natal.sign_only.lilith.aquarius",
+      "canonical_sha256": "b8d6aab0804230f7b6079c3ad8e76aa2f79bba1176f15312a210444e3e4f503d"
+    },
+    {
+      "id": "natal.sign_only.lilith.aries",
+      "canonical_sha256": "2815e8c5210550744e32dd0955a84e0d29c172d4cfbfbb13fa7755d6fabbeea3"
+    },
+    {
+      "id": "natal.sign_only.lilith.cancer",
+      "canonical_sha256": "6b0c3860d5ac70397d1e351f7c5270103f05af668108dcbde0385f231e529120"
+    },
+    {
+      "id": "natal.sign_only.lilith.capricorn",
+      "canonical_sha256": "0e15c2d6d6d022d5b3c428ef9b5d85115e9b9d81d6328a5e357d048e0a5b73f4"
+    },
+    {
+      "id": "natal.sign_only.lilith.gemini",
+      "canonical_sha256": "8a52248ceb214768ab7517747d7daaa25027b7ad9110d654fbfdf4b651647c5d"
+    },
+    {
+      "id": "natal.sign_only.lilith.leo",
+      "canonical_sha256": "1da6251b568e1756a351816f27992f0c5789589d15c50f59b811340438676925"
+    },
+    {
+      "id": "natal.sign_only.lilith.pisces",
+      "canonical_sha256": "c2d4e73c4658eca9635b7022da292c25388a4bb46d06cd5ba20468a95b8efece"
+    },
+    {
+      "id": "natal.sign_only.lilith.sagittarius",
+      "canonical_sha256": "fc87b0e63a43de7af120940bd7d59eee94862948d6546c62fd148e5f4ce91c9b"
+    },
+    {
+      "id": "natal.sign_only.lilith.scorpio",
+      "canonical_sha256": "7171dab8638726d21d894656f70cf1df554109690c587eb816fae5db7a6c28ed"
+    },
+    {
+      "id": "natal.sign_only.lilith.taurus",
+      "canonical_sha256": "7131ec23668c74bcfc178790cedf1486deead7152cb34835f79600b61cfab2f7"
+    },
+    {
+      "id": "natal.sign_only.lilith.virgo",
+      "canonical_sha256": "cb53119d659f9dc1d74ae0705f52459037fc2c7d0e7b500bb16ccd51fd47679d"
+    },
+    {
+      "id": "natal.sign_only.moon.aquarius",
+      "canonical_sha256": "eeb01bd7f955a97e1fe30af6e1e097d5c5756d09c19d734001a81802700f4312"
+    },
+    {
+      "id": "natal.sign_only.moon.aries",
+      "canonical_sha256": "e47fe5b9a499c389d4353c077179f9793a285a8e21037546ddb00da526246d9d"
+    },
+    {
+      "id": "natal.sign_only.moon.cancer",
+      "canonical_sha256": "6874a21678c3bfce15910b220457b5ca43443dcb5aee477dc5ee4d606c2a7b98"
+    },
+    {
+      "id": "natal.sign_only.moon.capricorn",
+      "canonical_sha256": "e0b7b87a99e77df684b9cc814d7b0465cf650e37400af9209f74e800d29a8fbb"
+    },
+    {
+      "id": "natal.sign_only.moon.gemini",
+      "canonical_sha256": "c920feea35aa4c27c7a9a5d44689a189fdbc83dab9b9d987682db3d24c576675"
+    },
+    {
+      "id": "natal.sign_only.moon.leo",
+      "canonical_sha256": "7cd676dae54f493270a6493a8697638c7d9dd37dc28061e304cfa4dc62d7e701"
+    },
+    {
+      "id": "natal.sign_only.moon.libra",
+      "canonical_sha256": "0193b7d12d6c4a6fe47f2192ecfe214e917e045f63ee5e160c2bf31126c74a97"
+    },
+    {
+      "id": "natal.sign_only.moon.pisces",
+      "canonical_sha256": "dbcac3f7210f79e3bf98c0bfd9f84b203a490181ec621aaeb948ca8e29aaef8f"
+    },
+    {
+      "id": "natal.sign_only.moon.sagittarius",
+      "canonical_sha256": "c8ac49b2acbcae1269785531c1fcc24394eb7425be5da606cdb60e5d5e2b1152"
+    },
+    {
+      "id": "natal.sign_only.moon.scorpio",
+      "canonical_sha256": "6e846efd4d0c49255601e0bc7f3f646a9196bf1c8abc9d26afaf56b086e26fe9"
+    },
+    {
+      "id": "natal.sign_only.moon.taurus",
+      "canonical_sha256": "7c1703e33113520c5e29f32d56f3d23fad7c2ef9c8b7831688010d3fd53722a0"
+    },
+    {
+      "id": "natal.sign_only.moon.virgo",
+      "canonical_sha256": "678c1b5f210e32ca209997f615e4d61bef7074967e38c7cecf8ea2caf43ab184"
+    },
+    {
+      "id": "natal.sign_only.north_node.aquarius",
+      "canonical_sha256": "e8d96ea0620d1d161bdd5ee60ca52f62446e8aa701b7128ee887acff3e387985"
+    },
+    {
+      "id": "natal.sign_only.north_node.aries",
+      "canonical_sha256": "31678fa60ca8ec06ace885265100d811f15b1c4e83d757ef73c8b63c43586405"
+    },
+    {
+      "id": "natal.sign_only.north_node.cancer",
+      "canonical_sha256": "7348d4a92ffc549a1ab7f9ca0cc0c6f129204b7cee696a75ddd365dd6b39bdc5"
+    },
+    {
+      "id": "natal.sign_only.north_node.capricorn",
+      "canonical_sha256": "da6859a034b8696f5b263ddba1ec41d72464d1416499749601a8304d5e8040dd"
+    },
+    {
+      "id": "natal.sign_only.north_node.gemini",
+      "canonical_sha256": "dd21ca79c1eeea6c66c3597d03f59231b9cd80447a7dec38aa113f9c5e7f9d7f"
+    },
+    {
+      "id": "natal.sign_only.north_node.leo",
+      "canonical_sha256": "64456d1da535386f8347608e1b31957cb62ba1053e056a7d1e6c0b51508b9318"
+    },
+    {
+      "id": "natal.sign_only.north_node.libra",
+      "canonical_sha256": "127384449498f114a493ebd56190ad0e24a7d0f7ad42800628a54b45e69db200"
+    },
+    {
+      "id": "natal.sign_only.north_node.pisces",
+      "canonical_sha256": "0d532074cdfbae0a8405de25f94587b9bff159b22af25d993155d6f47f5c39b5"
+    },
+    {
+      "id": "natal.sign_only.north_node.sagittarius",
+      "canonical_sha256": "91aca05a5d004b48f7b34e88135e7087b63e822dd815d86e714b55e4f74233ea"
+    },
+    {
+      "id": "natal.sign_only.north_node.scorpio",
+      "canonical_sha256": "8b4dac105bd234563308ec5f4d0e227f9df65c75f467690529f351c59f07197e"
+    },
+    {
+      "id": "natal.sign_only.north_node.taurus",
+      "canonical_sha256": "ca02015571b9e84d0be763f482309b30a03384c7c4f1d1e5f3b544064b314a31"
+    },
+    {
+      "id": "natal.sign_only.north_node.virgo",
+      "canonical_sha256": "56d382aed14e5a4cd0dea1c458d1f300e3e48e59cb4514b06e76dcee35745f13"
+    },
+    {
+      "id": "natal.sign_only.south_node.aquarius",
+      "canonical_sha256": "86645971f7cb82828f9e7700e1ed5fc60ca10acededa4abecafb8a4e211b8624"
+    },
+    {
+      "id": "natal.sign_only.south_node.aries",
+      "canonical_sha256": "53a5998f34353fdfabc49872afbb757ee34497e6aa6392267f0ba66f162e8f26"
+    },
+    {
+      "id": "natal.sign_only.south_node.cancer",
+      "canonical_sha256": "733ce342842ac40e010aba8bcdc3cae87945f43af626568586632cba64c5775e"
+    },
+    {
+      "id": "natal.sign_only.south_node.capricorn",
+      "canonical_sha256": "2a7ef025b7c0599ecfdac8e5321263965c3d4b6c02ce6b4975722bb755799659"
+    },
+    {
+      "id": "natal.sign_only.south_node.gemini",
+      "canonical_sha256": "0369228029df13eea2f53ea4df151bed7673b620108c32d653e449532b4bc6ba"
+    },
+    {
+      "id": "natal.sign_only.south_node.leo",
+      "canonical_sha256": "563d0317379aea9169c8f8f0c3134b2dcacb509cd0a5d11ef229fbee75a0077c"
+    },
+    {
+      "id": "natal.sign_only.south_node.libra",
+      "canonical_sha256": "ecb38c25bf52e3e9b920f13407bc112cba5823722ebfc0ca620d97537a70b00d"
+    },
+    {
+      "id": "natal.sign_only.south_node.pisces",
+      "canonical_sha256": "0b963ca1efcf68713752e86f29fd99254955c73d3f81946183bc0fdcaf27405a"
+    },
+    {
+      "id": "natal.sign_only.south_node.sagittarius",
+      "canonical_sha256": "ce0caf75446ec1e9e5f7394c238b3f94f67357ffc125cab6242ddd2a6a0a81ab"
+    },
+    {
+      "id": "natal.sign_only.south_node.scorpio",
+      "canonical_sha256": "111ce3fd8a19ad48a20a02aac36a731aff18d672d63f85e05e3eadc199332c3d"
+    },
+    {
+      "id": "natal.sign_only.south_node.taurus",
+      "canonical_sha256": "cada500da26867afdc71f23dc4da57ca0223d7e38f57550865732fd7e625d964"
+    },
+    {
+      "id": "natal.sign_only.south_node.virgo",
+      "canonical_sha256": "b9db43feaeac5cb04c843cd40c028e065b26c689b3a39514835f02df67d39a87"
+    },
+    {
+      "id": "natal.sign_only.sun.aquarius",
+      "canonical_sha256": "78d1785b4da004fd3fc5fe8d32b0c53cc66f333eef7b14946176f87c18ab9a01"
+    },
+    {
+      "id": "natal.sign_only.sun.aries",
+      "canonical_sha256": "541bd5a921a1a6477afec9828433369ff261477d7573c4405e6b3090864c9e8d"
+    },
+    {
+      "id": "natal.sign_only.sun.cancer",
+      "canonical_sha256": "b5f714f8c69ea093e266b25a885e5c694c9f2a3709826306ddad479e6854bdf9"
+    },
+    {
+      "id": "natal.sign_only.sun.capricorn",
+      "canonical_sha256": "0b655d698ab20175c9b31798967700e049a5dfd894c084baedf93569a91a4b27"
+    },
+    {
+      "id": "natal.sign_only.sun.gemini",
+      "canonical_sha256": "2d44194e42873c09985930fff9659f8b276a17b576853ab06b1d88fd1673819d"
+    },
+    {
+      "id": "natal.sign_only.sun.leo",
+      "canonical_sha256": "495a89837a202f22793a202bf1e627ec73bde7f44d59e4ca6ffa5259da4d3c3b"
+    },
+    {
+      "id": "natal.sign_only.sun.libra",
+      "canonical_sha256": "2d5b8c77d6ca06664f5f5b6f13817acaebdc906441d40d7946e9150116379cd4"
+    },
+    {
+      "id": "natal.sign_only.sun.pisces",
+      "canonical_sha256": "428816200d88d8f2db038be8848c849a385a95ff9df992eaef5e670e068c4e52"
+    },
+    {
+      "id": "natal.sign_only.sun.sagittarius",
+      "canonical_sha256": "058a38c7037b06f02c211051839b28cdbe7440ed1c6a7c48aacab7105fb0dad6"
+    },
+    {
+      "id": "natal.sign_only.sun.scorpio",
+      "canonical_sha256": "f56def7bce5b905689f1be4bbcdbb24691c061878399666c60ed9fef2aaebaa0"
+    },
+    {
+      "id": "natal.sign_only.sun.taurus",
+      "canonical_sha256": "0fe62633326a2ec565e440a7e7687bd8fd331923827fe7f42bdf6917abeb5d22"
+    },
+    {
+      "id": "natal.sign_only.sun.virgo",
+      "canonical_sha256": "95c80e2cc5ea93c4b2213d53f179bd118f990e86931003a9a8c57879bbb4138e"
+    },
+    {
+      "id": "natal.sign_only.uranus.aquarius",
+      "canonical_sha256": "bc702d951b4618eab67ef8328f0d7029dbf603515a1ab259f4880b449f824ef9"
+    },
+    {
+      "id": "natal.sign_only.uranus.aries",
+      "canonical_sha256": "c382a1b33343076d9ce7d34e1817a09bc761c35d55bb6ca0d863920b2675a779"
+    },
+    {
+      "id": "natal.sign_only.uranus.cancer",
+      "canonical_sha256": "0e1a7dcf135cd2ae332e9dc7e376c1cd1298795bcddf5c7232470df22af37734"
+    },
+    {
+      "id": "natal.sign_only.uranus.capricorn",
+      "canonical_sha256": "144cb44053ae769e75f5661aa478d66e9cec054d2360f7fa403eea86b6f5da70"
+    },
+    {
+      "id": "natal.sign_only.uranus.gemini",
+      "canonical_sha256": "3dad20f465fadc95962171bdc10eb88ea1a10f8ef40282d82ffecfcaa0f1dddb"
+    },
+    {
+      "id": "natal.sign_only.uranus.leo",
+      "canonical_sha256": "20bb666b6fbc2227c2f491b4bb6de137f619180f6488f370782584245d996e6b"
+    },
+    {
+      "id": "natal.sign_only.uranus.libra",
+      "canonical_sha256": "82f987824afff1437fdae46019331a4a44e316cb488d86b63b95156e8b78bfef"
+    },
+    {
+      "id": "natal.sign_only.uranus.pisces",
+      "canonical_sha256": "32f9c316e9adf35aa61ee141a1144a8212ab24bf3a39b28d1e2e57422a30a420"
+    },
+    {
+      "id": "natal.sign_only.uranus.sagittarius",
+      "canonical_sha256": "89eb2b232f1f1e23ef56b403374e81d992efeb7d1c3a8095e14cf7431fd0a110"
+    },
+    {
+      "id": "natal.sign_only.uranus.scorpio",
+      "canonical_sha256": "51bceda79188fb425713b7a8be9a9bfe2addfada33da968536dedfc739caae86"
+    },
+    {
+      "id": "natal.sign_only.uranus.taurus",
+      "canonical_sha256": "60e8f7ac324bc1770cfdc8b83a462a9ddb03a945b2bcbff9909946025c6e59bd"
+    },
+    {
+      "id": "natal.sign_only.uranus.virgo",
+      "canonical_sha256": "6ecaead714e4bcee1e2b9aea50a026ce9c6097c5fcce59b28ba12cb69c32585d"
+    },
+    {
+      "id": "natal.sign_only.venus.aquarius",
+      "canonical_sha256": "d7191cb8d8c178a9186b3e5411aad22aa211009bad4af5b22341c74837a2d301"
+    },
+    {
+      "id": "natal.sign_only.venus.aries",
+      "canonical_sha256": "4c5bdcf17959b6080e5a5ea8bb1907235b4a570408670af9246aac81e8fbab9f"
+    },
+    {
+      "id": "natal.sign_only.venus.cancer",
+      "canonical_sha256": "669d6eb9c40f250e08e3a973aec5a302f4de2af9bb4ab0b1f81fe5f0cfc719f9"
+    },
+    {
+      "id": "natal.sign_only.venus.capricorn",
+      "canonical_sha256": "7d67ad97cb5b59836b1bd57caa57867ffa6d8c93dda753430775fbc9dfa7d442"
+    },
+    {
+      "id": "natal.sign_only.venus.gemini",
+      "canonical_sha256": "2a363a4c55e5b24219783e1f0418b4ef56ab074fc87034c8c6dad7f9d42272f3"
+    },
+    {
+      "id": "natal.sign_only.venus.leo",
+      "canonical_sha256": "d9454ff2a474def8d220a627e15983769c8cc5fa9545f6efc7eeb07603cff8b5"
+    },
+    {
+      "id": "natal.sign_only.venus.libra",
+      "canonical_sha256": "bd79205e9a3e9458419776ec9c4f6bbac69c38cc931bb9f003f30cb011db3dda"
+    },
+    {
+      "id": "natal.sign_only.venus.pisces",
+      "canonical_sha256": "ea4dc4fb66b6ca366422691dd60c51d213a515b4c0dc0bc38644e881053f754c"
+    },
+    {
+      "id": "natal.sign_only.venus.sagittarius",
+      "canonical_sha256": "3f68bf54cc24c32a20b007a1a4dc0d83012d2e0534eb7036d7f53a2d7eca0109"
+    },
+    {
+      "id": "natal.sign_only.venus.scorpio",
+      "canonical_sha256": "e875ed5c4d1f168a2c7755fb7d7574f0c59b1205419b88fdf63080049dee5ac1"
+    },
+    {
+      "id": "natal.sign_only.venus.taurus",
+      "canonical_sha256": "7eaa5821d84f50bae421ea28fb59ed7c3d78cfdd2693a48a728431ec30efc88f"
+    },
+    {
+      "id": "natal.sign_only.venus.virgo",
+      "canonical_sha256": "f728738fe7ffb1e0b1006eb853393296ad0d463a73bd11c2df746170f99342c7"
+    }
+  ]
+}
