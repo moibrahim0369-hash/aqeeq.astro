@@ -67,7 +67,7 @@
     natal=natal.filter(p=>!['Asc','MC'].includes(p.key));
     const later=new Date(date.getTime()+6*3600000), next=bodiesFromChart(getChart(later));
     if(!next.some(p=>p.key==='TrueNode')) next.push({key:'TrueNode',lon:trueNodeApprox(later)});   // احتياطي لو المحرك قديم
-    const nextChiron=chironApprox(later);if(nextChiron!=null)next.push({key:'Chiron',lon:nextChiron});
+    if(!next.some(p=>p.key==='Chiron')){const nextChiron=chironApprox(later);if(nextChiron!=null)next.push({key:'Chiron',lon:nextChiron});}
     const nextByKey=new Map(next.map(p=>[p.key,p.lon]));
     const slow=new Set(['Jupiter','Saturn','Uranus','Neptune','Pluto','TrueNode','Chiron']);
     const out=[];
@@ -93,8 +93,11 @@
       const nodeLon=trueNodeApprox(date), nodeSpeed=delta(trueNodeApprox(later),nodeLon)/0.25;
       node={key:'TrueNode',name:BODY_AR.TrueNode,lon:nodeLon,speed:nodeSpeed,retro:nodeSpeed<0,approximate:true};
     }
-    const chLon=chironApprox(date), chNext=chironApprox(later), chSpeed=chLon==null||chNext==null?0:delta(chNext,chLon)/0.25;
-    if(chLon!=null) transits.push({key:'Chiron',name:BODY_AR.Chiron,lon:chLon,speed:chSpeed,retro:chSpeed<0,approximate:true});
+    // كيرون من جدول NASA/JPL Horizons ضمن نطاقه؛ نموذج الجسمين احتياطي تقريبي عند غياب نتيجة المحرك.
+    if(!transits.some(p=>p.key==='Chiron')){
+      const chLon=chironApprox(date), chNext=chironApprox(later), chSpeed=chLon==null||chNext==null?0:delta(chNext,chLon)/0.25;
+      if(chLon!=null) transits.push({key:'Chiron',name:BODY_AR.Chiron,lon:chLon,speed:chSpeed,retro:chSpeed<0,approximate:true});
+    }
     if(node) transits.push(node);
     const natal=normalizeNatal(natalPlanets), aspects=calculateAspects(transits,natal,date);
     let phaseAngle=null,illumination=null;
@@ -123,7 +126,7 @@
       <div class="aqt-layout"><div class="aqt-wheelbox"><svg viewBox="0 0 360 360" role="img" aria-label="العجلة المزدوجة لخريطة الميلاد والعبور"><circle class="aqt-ring outer" cx="180" cy="180" r="150"/><circle class="aqt-ring" cx="180" cy="180" r="125"/><circle class="aqt-ring inner" cx="180" cy="180" r="105"/><circle class="aqt-ring" cx="180" cy="180" r="78"/>${SIGNS.map((s,i)=>`<text class="aqt-sign" x="180" y="37" transform="rotate(${i*30+15} 180 180)">${s.slice(0,1)}</text>`).join('')}${lines}${natalMarks}${transMarks}</svg><div class="aqt-tooltip" hidden></div><div class="aqt-legend"><span>● عابر</span><span>○ ميلاد</span><span>━ منسجم</span><span>━ ضاغط</span></div><div class="aqt-time"><button data-step="-1">− يوم</button><button data-step="0">اليوم</button><button data-step="1">+ يوم</button><button data-step="7">+ أسبوع</button></div></div>
       <aside class="aqt-weather"><h3>مؤشرات الطاقة</h3>${transits.some(x=>x.approximate)?`<p class="aqt-note" data-approx-bodies="1">تنبيه: موضع ${esc(transits.filter(x=>x.approximate).map(x=>x.name).join(' و'))} تقريبي (قد يختلف بدرجة أو أكثر)، فاعتبر عبوره إشارة عامة لا موعداً دقيقاً.</p>`:''}${scores.map(s=>`<div class="aqt-score"><div><span>${s.name}</span><b>${s.value}%</b></div><i><em style="width:${s.value}%"></em></i></div>`).join('')}</aside></div>
       <div class="aqt-cards"><h3>العبورات الأبرز</h3>${top.length?top.map(a=>{const t=cardText(a);return `<article class="aqt-card"><b>عبور ${esc(a.transit.name)} ${a.name} ميلاد ${esc(a.natal.name)} <small>· أورب ${round1(a.orb)}°</small></b><div class="aqt-domain">${esc(t.domain)} · ${a.state==='Applying'?'متصل':'منفصل'}</div><p>${esc(t.psych)}</p><p><strong>خطوة عملية:</strong> ${esc(t.advice)}</p></article>`}).join(''):'<p class="aqt-note">لا توجد اتصالات ضمن الأورب المحدد الآن.</p>'}</div>
-      <details class="aqt-matrix"><summary>جدول الاتصالات للمحللين (${aspects.length})</summary><div class="aqt-scroll"><table><thead><tr><th>العابر</th><th>حركته</th><th>الدرجة / البرج</th><th>الاتصال</th><th>كوكب الميلاد</th><th>الأورب</th><th>الحالة</th></tr></thead><tbody>${aspects.map(a=>{const s=signInfo(a.transit.lon);return `<tr><td>${esc(a.transit.name)}</td><td>${a.transit.retro?'R · تراجع':'أمامية'}</td><td>${fmtDeg(s.degree)} ${s.name}</td><td>${a.name}</td><td>${esc(a.natal.name)}</td><td>${fmtDeg(a.orb)}</td><td>${a.orb<1?'Exact':a.state==='Applying'?'App':'Sep'}</td></tr>`}).join('')}</tbody></table></div></details><footer class="aqt-foot">العقدة محسوبة بنموذج دوري تقريبي، وكيرون بتكامل مداري ثنائي الجسم من عناصر مدارية منشورة؛ قد تختلفان عن Swiss Ephemeris. بقية المواضع تعتمد محرك الموقع.</footer></section>`;
+      <details class="aqt-matrix"><summary>جدول الاتصالات للمحللين (${aspects.length})</summary><div class="aqt-scroll"><table><thead><tr><th>العابر</th><th>حركته</th><th>الدرجة / البرج</th><th>الاتصال</th><th>كوكب الميلاد</th><th>الأورب</th><th>الحالة</th></tr></thead><tbody>${aspects.map(a=>{const s=signInfo(a.transit.lon);return `<tr><td>${esc(a.transit.name)}</td><td>${a.transit.retro?'R · تراجع':'أمامية'}</td><td>${fmtDeg(s.degree)} ${s.name}</td><td>${a.name}</td><td>${esc(a.natal.name)}</td><td>${fmtDeg(a.orb)}</td><td>${a.orb<1?'Exact':a.state==='Applying'?'App':'Sep'}</td></tr>`}).join('')}</tbody></table></div></details><footer class="aqt-foot">${transits.some(x=>x.approximate)?'النقاط المذكورة في التنبيه أعلاه محسوبة بنماذج احتياطية تقريبية أقل دقة؛ بقية المواضع من محرك الموقع.':'الحسابات من محرك الموقع. جدول كيرون مشتق من NASA/JPL Horizons مع الترميز والاستيفاء.'}</footer></section>`;
     const tip=root.querySelector('.aqt-tooltip');
     const show=g=>{if(!g)return;const k=g.dataset.key,p=transits.find(x=>x.key===k),s=signInfo(p.lon),aa=aspects.filter(a=>a.transit.key===k).slice(0,3);tip.hidden=false;tip.innerHTML=`<b>${esc(p.name)}</b> · ${s.name} ${fmtDeg(s.degree)}<br>${aa.length?aa.map(a=>`${a.name} ${esc(a.natal.name)} (${round1(a.orb)}°)`).join('<br>'):'لا اتصال ضمن الأورب'}`;};
     root.querySelectorAll('.aqt-body.transit').forEach(g=>{g.addEventListener('mouseenter',()=>show(g));g.addEventListener('focus',()=>show(g));g.addEventListener('mouseleave',()=>{tip.hidden=true});g.addEventListener('blur',()=>{tip.hidden=true});g.addEventListener('click',()=>{root.dataset.selected=root.dataset.selected===g.dataset.key?'':g.dataset.key;onDate(date,root.dataset.selected);});});

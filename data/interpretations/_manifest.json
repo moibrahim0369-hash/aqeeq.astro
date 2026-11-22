@@ -1,5 +1,5 @@
 {
- "total": 1234,
+ "total": 1220,
  "entries": [
   {
    "id": "natal.core.sun.house1",
@@ -1182,84 +1182,84 @@
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house2",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house3",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house4",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house5",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house6",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house7",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house8",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house9",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house10",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house11",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.chiron.house12",
    "file": "data/interpretations/chiron.json",
    "layer": "core",
    "where": "كيرون في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.sun.aries",
@@ -2442,84 +2442,84 @@
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الحمل على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.aries)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.taurus",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الثور على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.taurus)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.gemini",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الجوزاء على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.gemini)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.cancer",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج السرطان على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.cancer)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.leo",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الأسد على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.leo)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.virgo",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج العذراء على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.virgo)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.libra",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الميزان على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.libra)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.scorpio",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج العقرب على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.scorpio)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.sagittarius",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج القوس على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.sagittarius)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.capricorn",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الجدي على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.capricorn)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.aquarius",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الدلو على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.aquarius)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_tint.chiron.pisces",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_tint",
    "where": "لون برج الحوت على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.pisces)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.modifier.mercury.retrograde",
@@ -2578,6 +2578,13 @@
    "status": "approved"
   },
   {
+   "id": "natal.modifier.chiron.retrograde",
+   "file": "data/interpretations/chiron.json",
+   "layer": "modifier",
+   "where": "كيرون المتراجع",
+   "status": "approved"
+  },
+  {
    "id": "natal.aspect.sun.conjunction.moon",
    "file": "data/interpretations/sun.json",
    "layer": "aspect",
@@ -2620,67 +2627,11 @@
    "status": "approved"
   },
   {
-   "id": "natal.aspect.sun.sextile.mercury",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس سداسي عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.mercury\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.sun.square.mercury",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس تربيع عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"square.mercury\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.sun.trine.mercury",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس تثليث عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.mercury\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.sun.opposition.mercury",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس مقابلة عطارد (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.mercury\")",
-   "status": "missing"
-  },
-  {
    "id": "natal.aspect.sun.conjunction.venus",
    "file": "data/interpretations/sun.json",
    "layer": "aspect",
    "where": "الشمس اتصال الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"conjunction.venus\")",
    "status": "approved"
-  },
-  {
-   "id": "natal.aspect.sun.sextile.venus",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس سداسي الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.venus\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.sun.square.venus",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس تربيع الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"square.venus\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.sun.trine.venus",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس تثليث الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.venus\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.sun.opposition.venus",
-   "file": "data/interpretations/sun.json",
-   "layer": "aspect",
-   "where": "الشمس مقابلة الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.venus\")",
-   "status": "missing"
   },
   {
    "id": "natal.aspect.sun.conjunction.mars",
@@ -3185,27 +3136,6 @@
    "layer": "aspect",
    "where": "عطارد سداسي الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"sextile.venus\")",
    "status": "approved"
-  },
-  {
-   "id": "natal.aspect.mercury.square.venus",
-   "file": "data/interpretations/mercury.json",
-   "layer": "aspect",
-   "where": "عطارد تربيع الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"square.venus\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.mercury.trine.venus",
-   "file": "data/interpretations/mercury.json",
-   "layer": "aspect",
-   "where": "عطارد تثليث الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"trine.venus\")",
-   "status": "missing"
-  },
-  {
-   "id": "natal.aspect.mercury.opposition.venus",
-   "file": "data/interpretations/mercury.json",
-   "layer": "aspect",
-   "where": "عطارد مقابلة الزهرة (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.venus\")",
-   "status": "missing"
   },
   {
    "id": "natal.aspect.mercury.conjunction.mars",
@@ -6677,84 +6607,84 @@
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.taurus",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.gemini",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.cancer",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.leo",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.virgo",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.libra",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.scorpio",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.sagittarius",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.capricorn",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.aquarius",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.chiron.pisces",
    "file": "data/interpretations/chiron.json",
    "layer": "sign_only",
    "where": "كيرون في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.stellium.house1",
@@ -7868,34 +7798,6 @@
    "layer": "reference",
    "where": "مرجع عام: كيرون",
    "status": "approved"
-  },
-  {
-   "id": "natal.reference.planet.ceres",
-   "file": "data/interpretations/reference.json",
-   "layer": "reference",
-   "where": "مرجع عام: ceres",
-   "status": "missing"
-  },
-  {
-   "id": "natal.reference.planet.pallas",
-   "file": "data/interpretations/reference.json",
-   "layer": "reference",
-   "where": "مرجع عام: pallas",
-   "status": "missing"
-  },
-  {
-   "id": "natal.reference.planet.juno",
-   "file": "data/interpretations/reference.json",
-   "layer": "reference",
-   "where": "مرجع عام: juno",
-   "status": "missing"
-  },
-  {
-   "id": "natal.reference.planet.vesta",
-   "file": "data/interpretations/reference.json",
-   "layer": "reference",
-   "where": "مرجع عام: vesta",
-   "status": "missing"
   },
   {
    "id": "natal.reference.sign.aries",

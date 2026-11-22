@@ -14,8 +14,20 @@ const add = (id, file, layer, where) => out.push({ id, file: `data/interpretatio
 BODIES.forEach(b => { for (let h = 1; h <= 12; h++) add(`natal.core.${b}.house${h}`, b, 'core', `${L[b]} في البيت ${h} (ملخص + نص كامل)`); });
 BODIES.forEach(b => SIGNS.forEach((s, i) => add(`natal.sign_tint.${b}.${s}`, b, 'sign_tint', `لون برج ${SIGN_AR[i]} على ${L[b]} (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.${b}.house{n}.${s})`)));
 PLANETS.slice(2).forEach(b => add(`natal.modifier.${b}.retrograde`, b, 'modifier', `${L[b]} الراجع`));
-for (let i = 0; i < PLANETS.length; i++) for (let j = i + 1; j < PLANETS.length; j++) Object.keys(ASP).forEach(t =>
-  add(`natal.aspect.${PLANETS[i]}.${t}.${PLANETS[j]}`, PLANETS[i], 'aspect', `${L[PLANETS[i]]} ${ASP[t]} ${L[PLANETS[j]]} (يظهر تحت الكوكبين؛ الحقل aspect = "${t}.${PLANETS[j]}")`));
+/* كيرون يتراجع ظاهريًا نحو خمسة أشهر في السنة، والعجلة تُظهر علامة الرجعية عليه، فنص رجعيته مطلوب مثل باقي الأجرام. */
+add(`natal.modifier.chiron.retrograde`, 'chiron', 'modifier', `${L.chiron} المتراجع`);
+/* اتصالات مستحيلة جيوسنتريًا بالأوربات المعتمدة: أقصى استطالة للشمس-عطارد ~28° وللشمس-الزهرة ~48°
+   (الاتصال الوحيد الممكن بينهما هو الاقتران)، ولعطارد-الزهرة ~76° (يضاف إليها السداسي فقط).
+   لا نطلب نصوص لها لأنها لا تقع أبدًا في أي خريطة حقيقية. */
+const IMPOSSIBLE_ASPECTS = new Set([
+  'sun.sextile.mercury', 'sun.square.mercury', 'sun.trine.mercury', 'sun.opposition.mercury',
+  'sun.sextile.venus', 'sun.square.venus', 'sun.trine.venus', 'sun.opposition.venus',
+  'mercury.square.venus', 'mercury.trine.venus', 'mercury.opposition.venus',
+]);
+for (let i = 0; i < PLANETS.length; i++) for (let j = i + 1; j < PLANETS.length; j++) Object.keys(ASP).forEach(t => {
+  if (IMPOSSIBLE_ASPECTS.has(`${PLANETS[i]}.${t}.${PLANETS[j]}`)) return;
+  add(`natal.aspect.${PLANETS[i]}.${t}.${PLANETS[j]}`, PLANETS[i], 'aspect', `${L[PLANETS[i]]} ${ASP[t]} ${L[PLANETS[j]]} (يظهر تحت الكوكبين؛ الحقل aspect = "${t}.${PLANETS[j]}")`);
+});
 ['asc', 'dsc', 'mc', 'ic'].forEach(a => SIGNS.forEach((s, i) => add(`natal.angle.${a}.${s}`, a, 'angle', `${L[a]} في ${SIGN_AR[i]}`)));
 for (let h = 1; h <= 12; h++) SIGNS.forEach((s, i) => add(`natal.house_cusp.house${h}.${s}`, 'house_cusp', 'house_cusp', `برج ${SIGN_AR[i]} على رأس البيت ${h} (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)`));
 BODIES.forEach(b => SIGNS.forEach((s, i) => add(`natal.sign_only.${b}.${s}`, b, 'sign_only', `${L[b]} في ${SIGN_AR[i]} في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)`)));
@@ -23,7 +35,7 @@ for (let h = 1; h <= 12; h++) add(`natal.stellium.house${h}`, 'stellium', 'stell
 SIGNS.forEach((s, i) => add(`natal.stellium.${s}`, 'stellium', 'stellium', `تجمّع 3 كواكب فأكثر في برج ${SIGN_AR[i]} (يظهر في تبويب الكواكب؛ نص واحد بلا أسماء كواكب)`));
 PLANETS.forEach(b => { for (let h = 1; h <= 12; h++) add(`natal.house_blend.${b}.house${h}`, 'house_blend', 'house_blend', `إسهام ${L[b]} في قراءة البيت ${h} الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)`); });
 // مراجع المصدر العامة، لا تُعامل كمواضع شخصية ولا تدخل أي حساب.
-BODIES.concat(['ceres','pallas','juno','vesta']).forEach(b => add(`natal.reference.planet.${b}`, 'reference', 'reference', `مرجع عام: ${L[b] || b}`));
+BODIES.forEach(b => add(`natal.reference.planet.${b}`, 'reference', 'reference', `مرجع عام: ${L[b] || b}`)); // الكويكبات الأربعة لها مراجعها تحت natal.reference.asteroids.* لا هنا
 SIGNS.forEach(s => add(`natal.reference.sign.${s}`, 'reference', 'reference', `مرجع عام للبرج ${s}`));
 for (let h = 1; h <= 12; h++) add(`natal.reference.house.house${h}`, 'reference', 'reference', `مرجع عام للبيت ${h}`);
 Object.keys(ASP).forEach(t => add(`natal.reference.aspect.${t}`, 'reference', 'reference', `مرجع نوع الاتصال ${t}`));

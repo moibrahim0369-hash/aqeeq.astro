@@ -1,0 +1,75 @@
+{
+  "source_url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%272060%3B%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&TLIST=%272422324.5%0A2422327.0%0A2431944.5%0A2450102.5%0A2451007.0%0A2451251.5%0A2451446.9166666665%0A2453422.5%0A2455306.5%0A2458225.5%0A2461210.5%0A2466517.0%0A2466520.5%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+  "target": "2060 Chiron (1977 UB), JPL#171",
+  "center": "500@399 geocentric",
+  "quantity": "31, apparent observer-centered IAU76/80 ecliptic of date, AIRLESS",
+  "time_scale": "UT",
+  "samples": [
+    {
+      "date": "1920-01-01T00:00:00Z",
+      "jd": 2422324.5,
+      "longitude": 2.6090909
+    },
+    {
+      "date": "1920-01-03T12:00:00Z",
+      "jd": 2422327.0,
+      "longitude": 2.6508274
+    },
+    {
+      "date": "1946-05-04T00:00:00Z",
+      "jd": 2431944.5,
+      "longitude": 196.2880139
+    },
+    {
+      "date": "1996-01-20T00:00:00Z",
+      "jd": 2450102.5,
+      "longitude": 194.2773372
+    },
+    {
+      "date": "1998-07-12T12:00:00Z",
+      "jd": 2451007.0,
+      "longitude": 222.4151889
+    },
+    {
+      "date": "1999-03-14T00:00:00Z",
+      "jd": 2451251.5,
+      "longitude": 243.8812689
+    },
+    {
+      "date": "1999-09-25T10:00:00Z",
+      "jd": 2451446.916666667,
+      "longitude": 240.2820054
+    },
+    {
+      "date": "2005-02-21T00:00:00Z",
+      "jd": 2453422.5,
+      "longitude": 299.9428712
+    },
+    {
+      "date": "2010-04-20T00:00:00Z",
+      "jd": 2455306.5,
+      "longitude": 329.9883408
+    },
+    {
+      "date": "2018-04-17T00:00:00Z",
+      "jd": 2458225.5,
+      "longitude": 359.9814242
+    },
+    {
+      "date": "2026-06-19T00:00:00Z",
+      "jd": 2461210.5,
+      "longitude": 29.9668721
+    },
+    {
+      "date": "2040-12-28T12:00:00Z",
+      "jd": 2466517.0,
+      "longitude": 110.7896052
+    },
+    {
+      "date": "2041-01-01T00:00:00Z",
+      "jd": 2466520.5,
+      "longitude": 110.5522395
+    }
+  ],
+  "note": "Synthetic numerical fixtures, not any person’s birth time."
+}
