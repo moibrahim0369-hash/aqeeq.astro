@@ -10,7 +10,7 @@
   var COMB = {moon:12,mars:17,mercury:14,jupiter:11,venus:10,saturn:15};
   var DRISHTI = {mars:[4,7,8],jupiter:[5,7,9],saturn:[3,7,10],node:[5,7,9],ketu:[5,7,9]};
   var KEYS = ['1','moon','sun','2','3','4','5','6','7','8','9','10','11','12','16','20','24','27','30','40','45','60'];
-  var VERSION = 'vedic-library-20261122a';
+  var VERSION = 'vedic-c9b8e7e57e19';
   var loaded = null, pending = null;
   function norm(x) { return ((x % 360) + 360) % 360; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
@@ -46,6 +46,19 @@
     });
     return {chart:String(map.n),basis:basis,timed:timed,houseReading:houseReading,groups:groups,by:by,aspects:aspects};
   }
+  function stability(map,natal,margin,deps) {
+    if ([0.5,1,2,5,10].indexOf(Number(margin))<0 || !natal || !isFinite(natal.utcMs)) return {status:'unavailable'};
+    deps=deps || {};
+    var E=window.AqEam,VC=window.AqVedicChart;
+    var chartAt=deps.chartAt || (E && function(ms){return E.siderealChart({ch:E.engineChart(ms,natal)});});
+    var build=deps.build || (VC && VC.build);
+    if(!chartAt || !build)return {status:'unavailable'};
+    function signature(m){return [m.lagna,m.basis].concat(m.items.map(function(x){return x.key+':'+x.sign+':'+x.house;}).sort()).join('|');}
+    var expected=signature(map),offsets=[-1,-.5,0,.5,1],changed=[];
+    try { offsets.forEach(function(f){var m=build(chartAt(natal.utcMs+Number(margin)*60000*f),map.n);if(signature(m)!==expected)changed.push(f*Number(margin));}); }
+    catch(e){return {status:'unavailable'};}
+    return {status:changed.length?'changed':'stable',margin:Number(margin),samples:offsets.length,changedOffsets:changed};
+  }
   function validate(data) {
     if (!data || data.schemaVersion!==1 || !data.charts || !data.planets) throw new Error('صيغة مكتبة القراءة غير صحيحة.');
     KEYS.forEach(function(k){
@@ -77,12 +90,13 @@
   function planetCard(x,map,data) {
     var p=data.planets[x.key];if(!p)return '';
     var id='vedic.'+String(map.n)+'.planet.'+x.key+'.sign.'+x.sign;
-    return '<article class="vn-planet" data-vn-entry="'+id+'"><h6>'+esc(x.name)+' في '+SIGNS[x.sign]+'</h6><p>'+esc(p.signs[x.sign])+'</p>'+paragraphs(conditionText(map,x))+(p.role ? '<details class="vn-role"><summary>دور '+esc(x.name)+' في القراءة</summary><p>'+esc(p.role)+'</p></details>' : '')+'</article>';
+    return '<article class="vn-planet" data-vn-entry="'+id+'"><h6>'+esc(x.name)+' في '+SIGNS[x.sign]+'</h6><small class="vn-context-label">أسلوب الكوكب ضمن موضوع هذه الخريطة، لا وصف للشخص كله</small><p>'+esc(p.signs[x.sign])+'</p>'+paragraphs(conditionText(map,x))+(p.role ? '<details class="vn-role"><summary>دور '+esc(x.name)+' في القراءة</summary><p>'+esc(p.role)+'</p></details>' : '')+'</article>';
   }
   function basisLabel(f) { return f.basis==='asc'?'الطالع المحسوب':f.basis==='sun'?'برج الشمس':'برج القمر'; }
   function render(map,data,options) {
     options=options || {};var f=facts(map),c=data.charts[f.chart];if(!c)return '';
     var h='<header class="vn-head"><span>قراءة عقيق · الخريطة الفيدية</span><h4>'+esc(c.title)+'</h4><p>'+esc(c.intro)+'</p></header>';
+    h+='<p class="vn-help">نصوص رمزية للتأمل، لا إثبات لوقائع أو تنبؤ علمي. <a href="vedic-library.html?chart='+f.chart+'">تصفح المكتبة وحدود المنهج</a></p>';
     h+='<div class="vn-basis"><b>مرجع البيوت: '+basisLabel(f)+'</b><p>'+(f.basis==='asc'?'البيوت في هذه القراءة من طالع التقسيم نفسه، بنظام البرج الكامل.':f.chart==='moon'?'الأبراج هي أبراج الميلاد النجمية نفسها، والبيوت تُعدّ من القمر. هذه زاوية النظر للمشاعر والعقل، وليست طالعًا جديدًا.':f.chart==='sun'?'الأبراج هي أبراج الميلاد النجمية نفسها، والبيوت تُعدّ من الشمس. هذه زاوية النظر للمعنى والإرادة، وليست طالعًا جديدًا.':'وقت الميلاد غير معروف. الرسم يستخدم القمر مرجعًا بديلًا، ولا نتعامل معه كطالع مقاس.')+'</p></div>';
     if(c.precisionNote)h+='<p class="vn-precision">'+esc(c.precisionNote)+'</p>';
     if(!f.houseReading){
@@ -92,9 +106,13 @@
     }
     if((f.chart==='moon'||f.chart==='sun') && options.birthTimeKnown===false)h+='<p class="vn-precision">وقت الميلاد غير معروف. هذه القراءة مشروطة بمواضع الكواكب على البيانات المدخلة؛ القمر سريع الحركة، وقد يتغير مرجعه إذا وقع قريبًا من حد برج.</p>';
     if(['27','30','40','45','60'].indexOf(f.chart)>=0 && !options.precisionAccepted){
-      h+='<div class="vn-limit"><h5>قبل القراءة الدقيقة</h5><p>وجود ساعة في النموذج لا يثبت أنها دقيقة. هذا التقسيم حساس لدقائق الميلاد، وخصوصًا طالع D60. إن كان وقتك تقريبيًا فاكتفِ بالرسم ولا تعتمد هذه البيوت في تفسير شخصي.</p><button type="button" class="vn-precision-accept">وقتي دقيق وأفهم حدود القراءة</button></div>';
+      h+='<div class="vn-limit"><h5>قبل القراءة الدقيقة</h5><p>وجود ساعة في النموذج لا يثبت أنها دقيقة. هذا التقسيم حساس لدقائق الميلاد، وخصوصًا طالع D60. اختر هامش الخطأ الذي تثق به فعلًا، لا الهامش الذي يمنحك نتيجة أريح.</p>'+
+        (options.precisionResult && options.precisionResult.status==='changed'?'<p class="vn-stability-message">تغيرت مواضع هذه الخريطة في عينات داخل الهامش الذي اخترته؛ لذلك لن نعرض تفسيرًا شخصيًا لبيوتها على أنه ثابت. يمكنك تصفح النصوص العامة في المكتبة، أو الرجوع إلى وقت أوثق إن توفر.</p>':'')+
+        (options.precisionResult && options.precisionResult.status==='unavailable'?'<p class="vn-stability-message">لم نستطع إتمام فحص الاستقرار الآن. نُبقي قراءة البيوت الدقيقة محجوبة بدل افتراض ثباتها.</p>':'')+
+        '<label class="vn-margin-label">مدى دقة وقت الميلاد<select class="vn-time-margin"><option value="">لا أعرف هامش الخطأ</option><option value="0.5">ضمن نصف دقيقة قبل أو بعد</option><option value="1">ضمن دقيقة قبل أو بعد</option><option value="2">ضمن دقيقتين قبل أو بعد</option><option value="5">ضمن خمس دقائق قبل أو بعد</option><option value="10">ضمن عشر دقائق قبل أو بعد</option></select></label><button type="button" class="vn-precision-accept" disabled>افحص الاستقرار واعرض القراءة إن ثبتت</button><a class="vn-library-link" href="vedic-library.html?chart='+f.chart+'">تصفح نصوص هذه الخريطة دون قراءة شخصية</a></div>';
       return h;
     }
+    if(options.precisionResult && options.precisionResult.status==='stable')h+='<p class="vn-precision">بقيت أبراج هذه الخريطة وبيوتها نفسها في خمس عينات ضمن '+options.precisionResult.margin+' دقيقة قبل وقت الميلاد وبعده. هذا فحص للعينة، وليس توثيقًا للوقت أو ضمانًا لدقته.</p>';
     h+='<p class="vn-help">تفتح القراءة للبيوت التي تشغلها كواكب فعلًا. البيت الخالي ليس نقصًا، وكل جزء يُقرأ مع خريطة الميلاد وبقية المواضع، لا بدلًا منها.</p><div class="vn-houses">';
     f.groups.forEach(function(g,i){
       var e=c.houseReadings[String(g.house+1)];if(!e)return;
@@ -112,11 +130,18 @@
   }
   function mount(host,map,ch,natal) {
     if(!host)return;
-    var accepted=false;
+    var accepted=false,result=null;
     host.innerHTML='<p class="vn-loading" role="status">نحضّر القراءة المطابقة لهذه الخريطة…</p>';
     function draw(data){
-      host.innerHTML=render(map,data,{precisionAccepted:accepted,birthTimeKnown:!!ch.known});
-      var accept=host.querySelector('.vn-precision-accept');if(accept)accept.addEventListener('click',function(){accepted=true;draw(data);});
+      host.innerHTML=render(map,data,{precisionAccepted:accepted,precisionResult:result,birthTimeKnown:!!ch.known});
+      var accept=host.querySelector('.vn-precision-accept'),select=host.querySelector('.vn-time-margin');
+      if(accept && select){
+        select.addEventListener('change',function(){accept.disabled=!select.value;});
+        accept.addEventListener('click',function(){
+          accept.disabled=true;accept.textContent='نفحص مواضع الخريطة حول الوقت المدخل…';
+          setTimeout(function(){result=stability(map,natal,Number(select.value));accepted=result.status==='stable';if(host.isConnected!==false)draw(data);},0);
+        });
+      }
       if(window.AqeeqGender)window.AqeeqGender.apply(host,natal && natal.gender);
     }
     load().then(function(data){if(host.isConnected!==false)draw(data);}).catch(function(){
@@ -125,5 +150,5 @@
       host.querySelector('.vn-retry').addEventListener('click',function(){mount(host,map,ch,natal);});
     });
   }
-  window.AqVedicNarratives={load:load,validate:validate,facts:facts,render:render,mount:mount,dignity:dignity,combustion:physicalCombustion,separation:separation,chartKeys:KEYS};
+  window.AqVedicNarratives={load:load,validate:validate,facts:facts,render:render,mount:mount,dignity:dignity,combustion:physicalCombustion,separation:separation,stability:stability,chartKeys:KEYS};
 })();

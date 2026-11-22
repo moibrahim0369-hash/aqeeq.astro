@@ -50,3 +50,10 @@ test('combustion uses physical natal separation only and preserves current thres
 test('content and names are escaped rather than treated as authored HTML',()=>{
  const d=library();d.charts['9'].houseReadings['1'].paragraphs=['<img src=x onerror=alert(1)>'];const h=N.render(map(),d);assert.ok(h.includes('&lt;img'));assert.ok(!h.includes('<img'));
 });
+test('precision checks use user-declared margins and withhold changed or unverifiable maps',()=>{
+ const m=map({n:60}),natal={utcMs:1000000},same={chartAt:()=>m,build:x=>x};
+ const stable=N.stability(m,natal,1,same);assert.equal(stable.status,'stable');assert.equal(stable.samples,5);assert.equal(stable.margin,1);
+ assert.equal(N.stability(m,natal,0,same).status,'unavailable');assert.equal(N.stability(m,null,1,same).status,'unavailable');
+ const changed={chartAt:ms=>ms===natal.utcMs?m:map({n:60,lagna:1}),build:x=>x};assert.equal(N.stability(m,natal,1,changed).status,'changed');
+ const broken={chartAt:()=>{throw new Error('no position');},build:x=>x};assert.equal(N.stability(m,natal,1,broken).status,'unavailable');
+});

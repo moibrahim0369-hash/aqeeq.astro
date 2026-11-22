@@ -38,3 +38,9 @@
 @media(prefers-reduced-motion:reduce) { #astro-maps .vn-reading * { scroll-behavior:auto; transition:none; } }
 #astro-maps .vn-role summary { font-size:.8rem; color:#896b44; cursor:pointer; padding:.2rem 0; line-height:1.8; }
 #astro-maps .vn-role p { font-size:.86rem; color:#746650; }
+#astro-maps .vn-margin-label { display:block; font-size:.84rem; line-height:1.8; color:#765a36; margin:1rem 0 .5rem; }
+#astro-maps .vn-time-margin { display:block; width:100%; padding:.65rem; border:1px solid #d5bc8d; border-radius:.55rem; background:#fffdf7; color:#584733; font:inherit; margin-top:.4rem; min-height:44px; }
+#astro-maps .vn-precision-accept:disabled { opacity:.5; cursor:default; }
+#astro-maps .vn-reading .vn-stability-message { font-size:.87rem; padding:.7rem; border-right:2px solid #9b6539; background:#f6ead6; }
+#astro-maps .vn-library-link { display:block; color:#78344a; font-size:.82rem; line-height:2; margin:.6rem 0 .1rem; }
+#astro-maps .vn-context-label { display:block; font-size:.72rem; color:#8f795a; line-height:1.9; }

@@ -2,7 +2,7 @@
 'use strict';
 // Merge reviewed Vedic prose sources. Combinations are never counted as authored texts.
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),vm=require('vm');
-const root=path.resolve(__dirname,'..'),dir=path.join(root,'content-sources/vedic');
+const root=path.resolve(__dirname,'..'),dir=path.join(root,'content/vedic');
 const files=['group-a.json','group-b.json','group-c.json','group-d.json','planets.json'];
 const out={schemaVersion:1,charts:{},planets:{}};
 for(const file of files){
@@ -44,5 +44,12 @@ out.statistics=stats;
 const target=path.join(root,'assets/data/vedic/chart-readings.json');fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,JSON.stringify(out));
 const version='vedic-'+crypto.createHash('sha256').update(fs.readFileSync(target)).digest('hex').slice(0,12);
 const resolver=path.join(root,'assets/js/vedic-narratives.js');fs.writeFileSync(resolver,fs.readFileSync(resolver,'utf8').replace(/var VERSION = '[^']+';/,'var VERSION = \''+version+'\';'));
+const libraryPage=path.join(root,'vedic-library.html');
+let html=fs.readFileSync(libraryPage,'utf8');
+for(const file of ['vedic-narratives.js','vedic-library-page.js']){
+ const assetHash=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'assets/js',file))).digest('hex').slice(0,12);
+ html=html.replace(new RegExp('assets/js/'+file.replace('.','\\.')+'\\?v=[^"\\s]+','g'),'assets/js/'+file+'?v='+assetHash);
+}
+fs.writeFileSync(libraryPage,html);
 fs.writeFileSync(path.join(dir,'coverage.json'),JSON.stringify({version,statistics:stats,wordRangeWarnings:warnings},null,2)+'\n');
 console.log(JSON.stringify({version,...stats,wordRangeWarnings:warnings},null,2));
