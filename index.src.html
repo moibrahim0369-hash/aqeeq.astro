@@ -149,6 +149,7 @@
 <link rel="stylesheet" href="assets/css/year2027-launch.css"/>
 <link rel="stylesheet" href="assets/css/first-run.css?v=7">
 <link rel="stylesheet" href="assets/css/matrix-authored-completion.css?v=20261122a">
+<link rel="stylesheet" href="assets/css/home-cream.css?v=20261122a">
 </head>
 <body>
 <canvas aria-hidden="true" id="aqeq-stars"></canvas>
@@ -270,6 +271,7 @@
       <div class="aqh-cue" aria-hidden="true"><span>كل باب يكشف جزءاً منك</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8l6 6 6-6"/><path d="M6 14l6 6 6-6" opacity=".5"/></svg></div>
       <div class="aqh-tools aqh-stagger" id="aqh-tools">
         <a class="aqh-tool aqh-tool-y27 aqh-reveal" id="aqh-y27" href="#year2027"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 5l3.6 10.4L38 19l-10.400 3.600L24 33l-3.600-10.400L10 19l10.400-3.600z"/><path d="M38 31l1.500 3.500L43 36l-3.500 1.500L38 41l-1.500-3.500L33 36l3.500-1.500z"/></svg></span><span class="aqh-tool-t"><em class="y27-year">قراءة سنتك من الفلك الفيدي</em><b>ما سيحدث في 2027</b><small>أبواب تُفتح أمامك، وما يجب أن تغتنمه، وما يجب أن تحذره، قبل أن تبدأ سنتك.</small></span><span class="aqh-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        <a class="aqh-tool aqh-tool-karmic aqh-reveal" id="aqh-karmic" href="#karmic"><span class="aqh-tool-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M40 27A16 16 0 1 1 21 8 13 13 0 0 0 40 27Z"/></svg></span><span class="aqh-tool-t"><em>الذيل الكارمي</em><b>ما الكارما التي تحملها؟</b><small>اعرف ذيلك الكارمي من مصفوفة القدر، وما يريده منك.</small></span><span class="aqh-go" aria-hidden="true"><b>اعرف ذيلك</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span></a>
         <div class="b3-rot" id="b3-rot" aria-live="off"></div>
       </div>
       <div class="grp hidden-feature" id="cat-relations" hidden style="display:none !important;"></div>
@@ -280,6 +282,17 @@
     </div>
   </div>
   </div><!-- /aqh-hero -->
+
+  <!-- السماء الآن على الهوم: شريط الكواكب الحي + ورقة القراءة الكريمية -->
+  <section class="aqhc aqh-wrap aqhc-strip" id="aqhc" aria-labelledby="aqhc-h">
+    <div class="aqhc-strip-head">
+      <h2 class="aqhc-strip-title" id="aqhc-h">السماء الآن</h2>
+      <span class="aqhc-strip-hint">اضغط على أي كوكب لقراءته</span>
+    </div>
+    <div class="aqhc-planets" id="aqhc-planets" role="group" aria-label="كواكب السماء الآن"></div>
+  </section>
+  <div id="aqhc-sheet-root" hidden></div>
+
 
   <!-- السماء الآن: بانر مضغوط أعلى المحتوى المميز -->
   <div class="aqh-band" id="aqh-band">
@@ -1535,6 +1548,7 @@
 <script src="assets/js/sky-moon-signs.js?v=20261118a" defer></script>
 <script src="assets/js/sky-aspect-library.js?v=20261119a" defer></script>
 <script src="assets/js/sign-forecast-sheet.js?v=20261123a" defer></script>
+<script src="assets/js/home-cream.js?v=20261122a" defer></script>
 <script src="assets/js/daily-banner.js?v=20261123a" defer></script>
 <script src="assets/js/inline/page-15.js?v=1"></script>
 <script src="assets/js/cosmic-background.js?v=20261125a" defer></script>

@@ -265,31 +265,41 @@
     return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) && window.AQ_MATRIX_LOCAL_PREVIEW === 'full';
   }
   function fullReadingPreview() { return window.AQ_REVIEW_OPEN === true || localFullPreview(); }
-  function readingHtml(sl, full) {
+  function readingHtml(sl, full, addition, additionError) {
     if (!sl) return '<p class="mxm-content-error" role="status">تعذّر تحميل هذا الجزء. أعد المحاولة.</p>';
     var f = typeof sl.free === 'string' ? sl.free.trim() : '', p = typeof sl.paid === 'string' ? sl.paid.trim() : '';
     var q = typeof sl.reflection_question === 'string' ? sl.reflection_question.trim() : '';
     if (!f || !p) return '<p class="mxm-content-error" role="status">تعذّر تحميل القراءة كاملة. أعد المحاولة.</p>';
+    var af = addition ? '<div class="mxm-addition" data-reading-layer="addition" data-addition-part="free"><p class="mxm-depth-label">إضافة إلى القراءة</p>' + paragraphs(addition.free) + '</div>' : '';
+    var ap = addition ? '<div class="mxm-addition" data-reading-layer="addition" data-addition-part="paid"><p class="mxm-depth-label">تفصيل الإضافة</p>' + paragraphs(addition.paid) + paragraphs(addition.reflection_question, 'aqm-reflection') + '</div>' : '';
+    var error = additionError ? '<div class="mxm-addition-error" role="status"><p>تعذّر تحميل الإضافة؛ النص المحفوظ ظاهر دون استبدال.</p><button type="button" data-addition-retry>إعادة تحميل الإضافة</button></div>' : '';
     return '<div class="mxm-free" data-reading-part="free">' + paragraphs(f) + '</div>' +
-      (full ? '<div class="mxm-paid" data-reading-part="paid"><p class="mxm-depth-label">تكملة القراءة</p>' + paragraphs(p) + (q ? paragraphs(q, 'aqm-reflection') : '') + '</div>' :
-      '<div class="mxm-depth-cut" data-reading-part="cut"><b>تكتمل الفكرة في القراءة المتعمقة</b><p>المشهد التالي يشرح موضع التعثر وكيف تختبر بديلًا مناسبًا، دون أن يحكم على الشخص.</p><small>معاينة فصل المحتوى فقط. إتاحة القراءة الكاملة لم تُفعّل بعد.</small></div>');
+      (full ? '<div class="mxm-paid" data-reading-part="paid"><p class="mxm-depth-label">تكملة القراءة</p>' + paragraphs(p) + (q ? paragraphs(q, 'aqm-reflection') : '') + '</div>' : '') +
+      (addition ? '<section class="mxm-addition-reading">' + af + (full ? ap : '') + '</section>' : '') +
+      (full ? '' : '<div class="mxm-depth-cut" data-reading-part="cut"><b>تكتمل الفكرة في القراءة المتعمقة</b><p>المشهد التالي يشرح موضع التعثر وكيف تختبر بديلًا مناسبًا، دون أن يحكم على الشخص.</p><small>معاينة فصل المحتوى فقط. إتاحة القراءة الكاملة لم تُفعّل بعد.</small></div>') + error;
   }
   function hydrateModeSlots(host, mode) {
     var L = window.AqeeqMatrix; if (!L || !L.modeSlots) return Promise.resolve([]);
     var cache = {};
-    var jobs = [].map.call(host.querySelectorAll('.mxm-ptslot'), function (el) {
+    function hydrate(el) {
       var n = +el.dataset.n; if (!(n >= 1 && n <= 22)) return Promise.resolve(false);
-      return (cache[n] = cache[n] || L.modeSlots(mode, n)).then(function (d) {
+      var job = cache[n] = cache[n] || Promise.all([L.modeSlots(mode, n), L.modeAdditions ? L.modeAdditions(mode, n) : Promise.resolve(null)]);
+      return job.then(function (docs) {
+        var d = docs[0], a = docs[1];
         var sec = d && d.sections.filter(function (s) { return s.id === el.dataset.sec; })[0];
         var sl = sec && sec.slots.filter(function (x) { return x.key === el.dataset.pt; })[0];
-        el.innerHTML = readingHtml(sl, fullReadingPreview());
+        var addition = window.AqeeqMatrixAdditions && window.AqeeqMatrixAdditions.get(a, el.dataset.sec, el.dataset.pt);
+        el.innerHTML = readingHtml(sl, fullReadingPreview(), addition, !!sl && !addition);
         el.dataset.loaded = sl ? 'true' : 'false';
+        el.dataset.additionLoaded = addition ? 'true' : 'false';
+        el.dataset.mode = mode;
         el.dispatchEvent(new CustomEvent('aq-matrix-reading-ready', { bubbles: true }));
-        return !!sl;
-      }).catch(function () { el.innerHTML = readingHtml(null, false); el.dataset.loaded = 'false'; return false; });
-    });
-    return Promise.all(jobs);
+        return !!sl && !!addition;
+      }).catch(function () { el.innerHTML = readingHtml(null, false); el.dataset.loaded = 'false'; el.dataset.additionLoaded = 'false'; return false; });
+    }
+    return Promise.all([].map.call(host.querySelectorAll('.mxm-ptslot'), hydrate));
   }
+
   function bindAcc(host) {
     if (host.__mxcAcc) return; host.__mxcAcc = true;
     host.addEventListener('click', function (e) {
@@ -469,6 +479,15 @@
   window.AqMatrixModes = { fromCorners: fromCorners, fromAnchors: fromAnchors, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull, renderChild: renderChild, hydrateModeSlots: hydrateModeSlots, readingHtml: readingHtml, localFullPreview: localFullPreview, fullReadingPreview: fullReadingPreview };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
+    /* المعالج المفوض يعمل أيضًا في نسخة نافذة القراءة المنسوخة. */
+    document.addEventListener('click', function(e) {
+      var button = e.target.closest && e.target.closest('[data-addition-retry]'); if (!button) return;
+      var clicked = button.closest('.mxm-ptslot'); if (!clicked) return;
+      var mode = clicked.dataset.mode; if (mode !== 'child' && mode !== 'compat') return;
+      e.preventDefault(); button.disabled = true;
+      var original = [].filter.call(document.querySelectorAll('#mxk-result .mxm-ptslot, #mxc-result .mxm-ptslot'), function(el) { return el.dataset.mode === mode && el.dataset.sec === clicked.dataset.sec && el.dataset.pt === clicked.dataset.pt && el.dataset.n === clicked.dataset.n; })[0] || clicked;
+      hydrateModeSlots({ querySelectorAll: function() { return [original]; } }, mode);
+    });
     var boot = function () { build(); buildCompatPage(); buildChildPage(); var n = 0; (function t() { buildCompatPage(); buildChildPage(); if (++n < 12 && !((document.getElementById('mxc-form') || {}).__mxc && (document.getElementById('mxk-form') || {}).__mxc)) setTimeout(t, 400); })(); };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   }
@@ -520,7 +539,7 @@
     if (nx) { var nt = nx.querySelector('.aqm-acc-title'); nb.querySelector('b').textContent = nt ? nt.textContent : ''; nb.hidden = false; } else nb.hidden = true;
   }
   document.addEventListener('aq-matrix-reading-ready', function (e) {
-    if (sheet && !sheet.hidden && cur && cur.contains(e.target)) fill(cur);
+    if (sheet && !sheet.hidden && cur && cur.contains(e.target)) { var sb=sheet.querySelector('.aqm-sheet-body'), top=sb.scrollTop; fill(cur); sb.scrollTop=top; }
   });
   function open(item) {
     var s = ensureSheet(); fill(item);
@@ -6892,7 +6911,10 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>',
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     save: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg>',
-    share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.2 11l7.6-4M8.2 13l7.6 4"/></svg>'
+    share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8.2 11l7.6-4M8.2 13l7.6 4"/></svg>',
+    tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13l-7 7-9-9V4h7z"/><circle cx="8.7" cy="8.7" r="1.4"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+    cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="14.5" rx="2.5"/><path d="M4 10.8h16M8.6 3.5V7M15.4 3.5V7"/></svg>'
   };
   function $(s, r) { return (r || document).querySelector(s); }
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -6902,8 +6924,8 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
   function toast(m) { if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'fc-toast'; toastEl.setAttribute('role', 'status'); document.body.appendChild(toastEl); } toastEl.textContent = m; toastEl.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('on'); }, 2400); }
   function mini(a, i) {
     return '<article class="fc-card fc-mini" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '" style="--d:' + Math.min(i, 8) * 60 + 'ms">' +
-      '<div class="fc-mini-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" loading="lazy" decoding="async" width="320" height="180" draggable="false"></div>' +
-      '<div class="fc-mini-b">' + topic(a) + '<h3><a href="#featured-content/' + esc(a.slug) + '" draggable="false">' + esc(a.title) + '</a></h3>' +
+      '<div class="fc-mini-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" loading="lazy" decoding="async" width="320" height="180" draggable="false"></div>' + topic(a) +
+      '<div class="fc-mini-b"><h3><a href="#featured-content/' + esc(a.slug) + '" draggable="false">' + esc(a.title) + '</a></h3>' +
       '<div class="fc-meta"><span>' + esc(fmtDate(a.publishedAt)) + '</span><span>' + esc(a.readingTime) + ' د</span></div></div></article>';
   }
   var ASTRO = ['الأبراج', 'الكواكب', 'القمر', 'العبور', 'التراجعات'];
@@ -7180,6 +7202,39 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
   (function restore() { try { var s = JSON.parse(sessionStorage.getItem('aq-fc-state') || 'null'); if (s) { st.cat = (CATS.indexOf(s.c) > -1 || groupOf(s.c)) ? s.c : 'الكل'; st.q = s.q || ''; } } catch (e) { } })();
 
 
+  /* ---------- حفظ/مشاركة موحّدة للنافذة والصفحة الكاملة ---------- */
+  function shareMenuFor(a) {
+    return '<div class="fc-menu" role="menu" hidden><button type="button" role="menuitem" data-fc-copy>نسخ الرابط</button>' +
+      '<a role="menuitem" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(a.title + ' ' + url(a.slug)) + '">واتساب</a>' +
+      '<a role="menuitem" target="_blank" rel="noopener" href="https://t.me/share/url?url=' + encodeURIComponent(url(a.slug)) + '&text=' + encodeURIComponent(a.title) + '">تيليجرام</a>' +
+      '<a role="menuitem" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=' + encodeURIComponent(url(a.slug)) + '&text=' + encodeURIComponent(a.title) + '">إكس</a></div>';
+  }
+  function wireSave(root, slug, useToast) {
+    var sv = $('[data-fc-save]', root); if (!sv) return;
+    var msg = $('.fc-saved', root);
+    var paint = function (on) { sv.setAttribute('aria-pressed', on); var t = $('span', sv); if (t) t.textContent = on ? 'محفوظ' : 'حفظ المقال'; };
+    getUser().then(function (u) { paint(getSaved(u && u.id).indexOf(slug) > -1); sv._u = u; });
+    sv.addEventListener('click', function () {
+      getUser().then(function (u) {
+        if (!u) { if (useToast) toast('سجّل الدخول لحفظ المقال'); else if (msg) msg.innerHTML = 'سجّل الدخول لحفظ المقال. <a href="#account">تسجيل الدخول</a>'; return; }
+        var l = getSaved(u.id), k = l.indexOf(slug), on = k === -1; if (on) l.push(slug); else l.splice(k, 1);
+        try { localStorage.setItem(savedKey(u.id), JSON.stringify(l)); } catch (e) { }
+        paint(on); if (msg) msg.textContent = on ? 'تم الحفظ' : ''; if (useToast && on) toast('تم الحفظ');
+      });
+    });
+  }
+  function wireShare(root, a) {
+    var sh = $('[data-fc-share]', root), menu = $('.fc-menu', root); if (!sh || !menu) return;
+    sh.addEventListener('click', function () {
+      if (navigator.share && matchMedia('(hover: none)').matches) { navigator.share({ title: a.title, url: url(a.slug) }).catch(function () { }); return; }
+      var o = menu.hidden; menu.hidden = !o; sh.setAttribute('aria-expanded', o ? 'true' : 'false');
+    });
+    $('[data-fc-copy]', root).addEventListener('click', function () {
+      var done = function () { menu.hidden = true; sh.setAttribute('aria-expanded', 'false'); toast('تم نسخ الرابط'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url(a.slug)).then(done, done);
+      else { var t = document.createElement('textarea'); t.value = url(a.slug); document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) { } t.remove(); done(); }
+    });
+  }
   /* ---------- نافذة القراءة المنبثقة (نص فقط، تمرير عمودي، زر إغلاق) ---------- */
   function popClose() {
     var el = document.getElementById('fc-pop'); if (!el) return;
@@ -7190,11 +7245,22 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     var a = bySlug(slug); if (!a) { location.hash = '#featured-content/' + slug; return; }
     var old = document.getElementById('fc-pop'); if (old) old.remove();
     var el = document.createElement('div'); el.id = 'fc-pop'; el.className = 'fc-pop'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-labelledby', 'fc-pop-t'); el.setAttribute('dir', 'rtl');
-    el.innerHTML = '<div class="fc-pop-top"><button type="button" class="fc-pop-x" data-fc-pop-x aria-label="إغلاق">' + ICO.x + '</button><div class="fc-pop-hd"><small>' + esc(a.category) + ' · ' + esc(a.readingTime) + ' دقائق قراءة</small><h3 id="fc-pop-t">' + esc(a.title) + '</h3></div></div>' +
-      '<div class="fc-pop-scroll" tabindex="0"><div class="fc-pop-col"><p class="fc-pop-lead">' + esc(a.excerpt) + '</p><div class="fc-body">' + body(a) + '</div>' +
+    el.innerHTML = '<button type="button" class="fc-pop-x" data-fc-pop-x aria-label="إغلاق">' + ICO.x + '</button>' +
+      '<span class="fc-pop-tools"><button type="button" class="fc-fab" data-fc-save aria-pressed="false" aria-label="حفظ المقال">' + ICO.save + '<span class="fc-sr">حفظ المقال</span></button>' +
+      '<span class="fc-share"><button type="button" class="fc-fab" data-fc-share aria-haspopup="menu" aria-expanded="false" aria-label="مشاركة المقال">' + ICO.share + '</button>' + shareMenuFor(a) + '</span></span>' +
+      '<div class="fc-pop-scroll" tabindex="0">' +
+      '<div class="fc-pop-hero"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '">' +
+      '<div class="fc-pop-hero-ov"><small>' + esc(a.category) + ' · ' + esc(a.readingTime) + ' دقائق قراءة</small><h3 id="fc-pop-t">' + esc(a.title) + '</h3></div></div>' +
+      '<div class="fc-pop-col fc-pop-sheet"><div class="fc-stats">' +
+      '<span class="fc-stat">' + ICO.tag + '<span>' + esc(a.category) + '</span></span>' +
+      '<span class="fc-stat">' + ICO.clock + '<span>' + esc(a.readingTime) + ' دقائق قراءة</span></span>' +
+      '<span class="fc-stat">' + ICO.cal + '<span>' + esc(fmtDate(a.publishedAt)) + '</span></span></div>' +
+      '<p class="fc-pop-lead">' + esc(a.excerpt) + '</p><div class="fc-body">' + body(a) + '</div>' +
+      nextBar(a) +
       '<div class="fc-pop-end"><a class="fc-pop-full" href="#featured-content/' + esc(a.slug) + '">فتح في صفحة كاملة</a><button type="button" class="fc-pop-close" data-fc-pop-x>إغلاق</button></div></div></div>';
     document.body.appendChild(el); document.documentElement.style.overflow = 'hidden';
     void el.offsetWidth; el.classList.add('is-open');
+    wireSave(el, slug, true); wireShare(el, a);
     var x = el.querySelector('.fc-pop-x'); if (x) x.focus({ preventScroll: true });
     el.addEventListener('click', function (e) { if (e.target.closest('[data-fc-pop-x]') || e.target.closest('a[href^="#"]')) popClose(); });
   }
@@ -7238,6 +7304,17 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
   }
   function getSaved(uid) { try { return JSON.parse(localStorage.getItem(savedKey(uid)) || '[]'); } catch (e) { return []; } }
 
+  function nextOf(a) {
+    var all = newest(); if (all.length < 2) return null;
+    for (var i = 0; i < all.length; i++) { if (all[i].slug === a.slug) return all[(i + 1) % all.length]; }
+    return null;
+  }
+  function nextBar(a) {
+    var nx = nextOf(a); if (!nx) return '';
+    return '<div class="fc-next"><div class="fc-next-t"><small>المقال التالي</small><b>' + esc(nx.title) + '</b></div>' +
+      '<div class="fc-next-act"><a class="fc-ghost" href="#featured-content"><span>رجوع للمكتبة</span></a>' +
+      '<a class="fc-btn" href="#featured-content/' + esc(nx.slug) + '"><span>اقرأ التالي</span>' + ARROW + '</a></div></div>';
+  }
   function showReader(slug) {
     var a = bySlug(slug), host = $('#fc-reader-body');
     reader.classList.add('fc-open'); reader.scrollTop = 0;
@@ -7247,43 +7324,29 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     }
     document.title = a.title + ' | AQEQ ASTRO';
     var rel = related(a);
+    var backLbl = backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز';
+    var shareMenu = shareMenuFor(a);
     host.innerHTML =
-      '<ol class="fc-crumb" aria-label="مسار التنقل" style="width:min(720px,100% - 40px);margin-inline:auto;margin-bottom:28px"><li><a href="#home">الرئيسية</a></li><li><a href="#featured-content">محتوى مميز</a></li><li aria-current="page">' + esc(a.category) + '</li></ol>' +
-      '<article class="fc-art" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '">' +
-      '<header class="fc-art-hd">'+ topic(a) +'<div class="fc-meta">' + meta(a) + '</div><h1 id="fc-art-title" tabindex="-1">' + esc(a.title) + '</h1><p class="fc-intro">' + esc(a.excerpt) + '</p></header></article>' +
-      '<div class="fc-hero-img"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async"></div>' +
-      '<div class="fc-art"><div class="fc-body">' + body(a) + '</div>' +
-      '<div class="fc-actions"><button type="button" class="fc-ghost" data-fc-back aria-label="' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '">' + ARROW + '<span>' + (backTarget() ? backTarget()[1] : 'رجوع إلى المحتوى المميز') + '</span></button>' +
-      '<button type="button" class="fc-ghost" data-fc-save aria-pressed="false" aria-label="حفظ المقال">' + ICO.save + '<span>حفظ المقال</span></button>' +
-      '<span class="fc-share"><button type="button" class="fc-ghost" data-fc-share aria-haspopup="menu" aria-expanded="false" aria-label="مشاركة المقال">' + ICO.share + '<span>مشاركة المقال</span></button>' +
-      '<div class="fc-menu" role="menu" hidden><button type="button" role="menuitem" data-fc-copy>نسخ الرابط</button>' +
-      '<a role="menuitem" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(a.title + ' ' + url(a.slug)) + '">واتساب</a>' +
-      '<a role="menuitem" target="_blank" rel="noopener" href="https://t.me/share/url?url=' + encodeURIComponent(url(a.slug)) + '&text=' + encodeURIComponent(a.title) + '">تيليجرام</a>' +
-      '<a role="menuitem" target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?url=' + encodeURIComponent(url(a.slug)) + '&text=' + encodeURIComponent(a.title) + '">إكس</a></div></span>' +
-      '<span class="fc-saved" role="status"></span></div></div>' +
+      '<ol class="fc-crumb" aria-label="مسار التنقل" style="width:min(1000px,100%);margin-inline:auto;margin-bottom:14px"><li><a href="#home">الرئيسية</a></li><li><a href="#featured-content">محتوى مميز</a></li><li aria-current="page">' + esc(a.category) + '</li></ol>' +
+      '<article class="fc-art2" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '">' +
+      '<div class="fc-hero-card"><img src="' + esc(a.coverImage) + '" alt="' + esc(a.coverAlt) + '" decoding="async">' +
+      '<div class="fc-hero-tools"><button type="button" class="fc-fab" data-fc-back aria-label="' + esc(backLbl) + '">' + ARROW + '</button>' +
+      '<span class="fc-hero-tools-g"><button type="button" class="fc-fab" data-fc-save aria-pressed="false" aria-label="حفظ المقال">' + ICO.save + '<span class="fc-sr">حفظ المقال</span></button>' +
+      '<span class="fc-share"><button type="button" class="fc-fab" data-fc-share aria-haspopup="menu" aria-expanded="false" aria-label="مشاركة المقال">' + ICO.share + '</button>' + shareMenu + '</span></span></div>' +
+      '<div class="fc-hero-ov">' + topic(a) + '<h1 id="fc-art-title" tabindex="-1">' + esc(a.title) + '</h1></div></div>' +
+      '<div class="fc-sheet"><div class="fc-stats">' +
+      '<span class="fc-stat">' + ICO.tag + '<span>' + esc(a.category) + '</span></span>' +
+      '<span class="fc-stat">' + ICO.clock + '<span>' + esc(a.readingTime) + ' دقائق قراءة</span></span>' +
+      '<span class="fc-stat">' + ICO.cal + '<span>' + esc(fmtDate(a.publishedAt)) + '</span></span></div>' +
+      '<p class="fc-intro">' + esc(a.excerpt) + '</p>' +
+      '<div class="fc-body">' + body(a) + '</div>' +
+      '<div class="fc-actions"><span class="fc-saved" role="status"></span></div></div></article>' +
+      nextBar(a) +
       '<div class="fc-art fc-art-cta">' + ctaCard(CAT_CTA[a.category] || 'chart', 'article') + '</div>' +
       '<section class="fc-related" aria-labelledby="fc-rel-t"><h2 id="fc-rel-t">محتوى ذو صلة</h2><div class="fc-grid">' + rel.map(function (x, i) { return card(x, i, true); }).join('') + '</div></section>' +
-      '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المحتوى المميز') + '</span>' + ARROW + '</a>' + (fromKey ? '' : '') + '</div>';
-    var sv = $('[data-fc-save]', host), msg = $('.fc-saved', host);
-    getUser().then(function (u) { var on = getSaved(u && u.id).indexOf(slug) > -1; sv.setAttribute('aria-pressed', on); $('span', sv).textContent = on ? 'محفوظ' : 'حفظ المقال'; sv._u = u; });
-    sv.addEventListener('click', function () {
-      getUser().then(function (u) {
-        if (!u) { msg.innerHTML = 'سجّل الدخول لحفظ المقال. <a href="#account">تسجيل الدخول</a>'; return; }
-        var l = getSaved(u.id), k = l.indexOf(slug), on = k === -1; if (on) l.push(slug); else l.splice(k, 1);
-        try { localStorage.setItem(savedKey(u.id), JSON.stringify(l)); } catch (e) { }
-        sv.setAttribute('aria-pressed', on); $('span', sv).textContent = on ? 'محفوظ' : 'حفظ المقال'; msg.textContent = on ? 'تم الحفظ' : '';
-      });
-    });
-    var sh = $('[data-fc-share]', host), menu = $('.fc-menu', host);
-    sh.addEventListener('click', function () {
-      if (navigator.share && matchMedia('(hover: none)').matches) { navigator.share({ title: a.title, url: url(slug) }).catch(function () { }); return; }
-      var o = menu.hidden; menu.hidden = !o; sh.setAttribute('aria-expanded', o ? 'true' : 'false');
-    });
-    $('[data-fc-copy]', host).addEventListener('click', function () {
-      var done = function () { menu.hidden = true; sh.setAttribute('aria-expanded', 'false'); toast('تم نسخ الرابط'); };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url(slug)).then(done, done);
-      else { var t = document.createElement('textarea'); t.value = url(slug); document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) { } t.remove(); done(); }
-    });
+      '<div class="fc-back-cta"><a class="fc-btn" href="' + (backTarget() ? backTarget()[0] : '#featured-content') + '"><span>' + (backTarget() ? backTarget()[1] : 'العودة إلى المحتوى المميز') + '</span>' + ARROW + '</a></div>';
+    wireSave(host, slug, false);
+    wireShare(host, a);
     $('[data-fc-back]', host).addEventListener('click', goBack);
     var h1 = $('#fc-art-title', host); if (h1) h1.focus({ preventScroll: true });
   }
@@ -7870,7 +7933,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261122-natal1183-review1';
+  var VERSION = '20261122-chiron-aspects1';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -7882,6 +7945,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو', north_node: 'العقدة القمرية الشمالية', south_node: 'العقدة القمرية الجنوبية',
     lilith: 'ليليث', fortune: 'نقطة الحظ', chiron: 'كيرون', asc: 'الطالع', dsc: 'الهابط', mc: 'وسط السماء', ic: 'قاع السماء' };
   var PLANETS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  var ASPECT_BODIES = PLANETS.concat(['chiron']);
   var POINTS = ['north_node', 'south_node', 'lilith', 'fortune', 'chiron'];
   var ANGLES = ['asc', 'dsc', 'mc', 'ic'];
   var ORDER = PLANETS.concat(POINTS);
@@ -7926,8 +7990,8 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     if (by.chiron) item('chiron', by.chiron, by.chiron.lon, by.chiron.house, by.chiron.retro);
     if (by.fortune && known) item('fortune', by.fortune, by.fortune.lon, by.fortune.house, false);
     var asp = [];
-    for (var i = 0; i < PLANETS.length; i++) for (var j = i + 1; j < PLANETS.length; j++) {
-      var a = items[PLANETS[i]], b = items[PLANETS[j]]; if (!a || !b) continue;
+    for (var i = 0; i < ASPECT_BODIES.length; i++) for (var j = i + 1; j < ASPECT_BODIES.length; j++) {
+      var a = items[ASPECT_BODIES[i]], b = items[ASPECT_BODIES[j]]; if (!a || !b) continue;
       var diff = d180(a.lon - b.lon);
       for (var t = 0; t < ASPECTS.length; t++) {
         var A = ASPECTS[t], lim = A.orb + ((a.body === 'sun' || a.body === 'moon' || b.body === 'sun' || b.body === 'moon') ? 1 : 0);
@@ -8140,7 +8204,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
   }
 
   return { partial: partial, boot: boot, build: build, sections: sections, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idReference: idReference, files: files, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idStellium: idStellium, idBlend: idBlend, idSignOnly: idSignOnly,
-    SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, POINTS: POINTS, ASPECTS: ASPECTS };
+    SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, ASPECT_BODIES: ASPECT_BODIES, POINTS: POINTS, ASPECTS: ASPECTS };
 });
 
 ;
@@ -9629,6 +9693,157 @@ window.AqMoonSigns = [{"t": "شرارة صغيرة تكفي اليوم لتشع�
     } catch (e) { return false; }
   }
   window.AqForecast = { open: open, close: close };
+})();
+
+;
+/* assets/js/home-cream.js */
+/* الهوم الكريمي الزجاجي: شريط الكواكب الحي + ورقة القراءة الكريمية.
+   مصادر النصوص: نفس ملفات الموقع الحالية بلا إعادة صياغة —
+   page-06.js (PLANETS/SIGNS + قوالب renderSkyPanel)، sky-moon-signs.js (AqMoonSigns)،
+   sky-readings.js (AqReadings.PL / AqReadings.RT) عبر AqSkyTexts.load().
+   المواضع لحظية من Astro.chart مثل صفحة السماء تمامًا. */
+(function () {
+  'use strict';
+
+  var KEYS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  var IMG = { sun: 'planet-sun.png', moon: 'planet-moon.png', mercury: 'planet-mercury.png', venus: 'planet-venus.png', mars: 'planet-mars.png', jupiter: 'planet-jupiter.png', saturn: 'planet-saturn.png', uranus: 'planet-uranus.png', neptune: 'planet-neptune.png', pluto: 'planet-pluto.png' };
+  /* أسئلة الكروت: نفس أسئلة PSY الموجودة في page-06 renderSkyPanel (العنصر الثالث) */
+  var Q = {
+    sun: 'لديك طاقة أكبر مما تُظهره، وحاجة هادئة إلى أن يُرى جهدك دون أن تطلب ذلك.',
+    moon: 'تبدو متماسكًا للآخرين، لكنك تحتاج أحيانًا إلى من يسألك عن حالك ويصدّق إجابتك.',
+    mercury: 'تفكر في أمور أكثر مما تقول، وتعيد صياغة كلام قيل لك قبل أيام.',
+    venus: 'تعطي في العلاقات أكثر مما تعترف به، وتنتظر أن يلاحظ أحدهم ذلك دون أن تشير إليه.',
+    mars: 'حين تصمت طويلًا ثم تنفجر، فالأمر لا يتعلق بالموقف الأخير بل بما سبقه.',
+    jupiter: 'تؤمن بأن الأمور ستتحسن، وفي الوقت نفسه تخاف أن يكون تفاؤلك ساذجًا.',
+    saturn: 'تحمل مسؤوليات كثيرة، وتتمنى سرًّا أن يخفف أحدهم عنك دون أن تضطر إلى الطلب.',
+    uranus: 'تحتاج إلى مساحة تخصك، حتى في أقرب العلاقات إليك.',
+    neptune: 'تشعر بما لا يقوله الناس، وهذا يُرهقك أحيانًا أكثر مما تعترف.',
+    pluto: 'مررت بتحولات لم يعرف الناس عنها شيئًا، وما زلت تحمل أثرها في طريقة ثقتك.'
+  };
+
+  var openKey = null, chart = null, host = null, sheetRoot = null;
+
+  function nd(n) { return n.toLocaleString('ar-EG'); }
+  function stageOf(deg) {
+    return deg < 10 ? ['بداية الدخول', 'الطاقة جديدة وما زالت تتشكل، وأثرها يبدأ بالظهور تدريجيًا.']
+      : deg < 20 ? ['منتصف الرحلة', 'الطاقة مستقرة وواضحة، وهذا أصفى وقت لتقرأ أثرها في يومك.']
+      : deg < 29 ? ['أواخر البرج', 'الطاقة ناضجة وتقترب من التبدّل، فخذ ما بدأته إلى خواتيمه.']
+      : ['على أعتاب برج جديد', 'آخر درجات البرج، وتغيّر الأجواء قريب جدًا.'];
+  }
+  function body(k) { return chart.bodies.find(function (x) { return x.key === k; }); }
+
+  function compute() {
+    chart = window.Astro.chart({ utcMs: Date.now(), lat: 30, lon: 31, known: false });
+  }
+
+  function renderStrip() {
+    if (!host || !chart) return;
+    host.innerHTML = KEYS.map(function (k) {
+      var p = window.PLANETS[k], bd = body(k), S = window.SIGNS[bd.sign];
+      var deg = bd.lon % 30;
+      var retro = bd.retro && k !== 'sun' && k !== 'moon';
+      return '<button type="button" class="aqhc-planet' + (openKey === k ? ' on' : '') + '" data-k="' + k + '" aria-pressed="' + (openKey === k) + '">'
+        + '<span class="aqhc-planet-img"><img src="assets/images/home/planets/' + IMG[k] + '" alt="" loading="lazy" decoding="async"></span>'
+        + '<span class="aqhc-planet-name">' + p.n + '</span>'
+        + '<span class="aqhc-planet-pos">' + S.n + ' ' + nd(Math.floor(deg)) + '°</span>'
+        + '<span class="aqhc-planet-move st-' + (retro ? 'retro' : 'direct') + '">' + (retro ? 'تراجع' : 'حركة مباشرة') + '</span>'
+        + '<span class="aqhc-planet-q">' + Q[k] + '</span>'
+        + '</button>';
+    }).join('');
+    Array.prototype.forEach.call(host.querySelectorAll('.aqhc-planet'), function (el) {
+      el.addEventListener('click', function () {
+        var k = el.getAttribute('data-k');
+        if (openKey === k) closeSheet(); else openSheet(k);
+      });
+    });
+  }
+
+  function sheetHtml(k) {
+    var p = window.PLANETS[k], bd = body(k), S = window.SIGNS[bd.sign];
+    var deg = bd.lon % 30, dInt = Math.floor(deg);
+    var retro = bd.retro && k !== 'sun' && k !== 'moon';
+    var st = stageOf(deg);
+    var defH = (p.n === 'الشمس' || p.n === 'الزهرة' ? 'ما هي ' : 'ما هو ') + p.n + '؟';
+    var def = p.n + ' يمثل ' + p.theme + '، وهو العدسة التي تُقرأ بها ' + p.lens + '. حين يكون متوازنًا يعطيك ' + p.give + '، ويحتاج منك انتباهًا إلى ' + p.watch + '.';
+    var lead;
+    if (k === 'moon' && window.AqMoonSigns && window.AqMoonSigns[bd.sign]) lead = window.AqMoonSigns[bd.sign].t;
+    else lead = 'يمرّ ' + p.n + ' الآن في ' + S.n + '، فيمنح ' + p.theme + ' طابعًا ' + S.way + '.';
+    var support = 'الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.';
+    var pl = (window.AqReadings && window.AqReadings.PL && window.AqReadings.PL[k]) || null;
+    var rt = (retro && window.AqReadings && window.AqReadings.RT && window.AqReadings.RT[k]) || '';
+    var nextK = KEYS[(KEYS.indexOf(k) + 1) % KEYS.length];
+    var chev = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
+    return '<div class="aqhc-sheet-scrim" data-close></div>'
+      + '<div class="aqhc-sheet" role="dialog" aria-label="قراءة ' + p.n + ' السريعة">'
+      + '<button type="button" class="aqhc-sheet-close" aria-label="إغلاق" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>'
+      + '<button type="button" class="aqhc-sheet-next" data-next="' + nextK + '">التالي: ' + window.PLANETS[nextK].n + chev + '</button>'
+      + '<div class="aqhc-sheet-grip"></div>'
+      + '<p class="aqhc-sheet-eyebrow">السماء الآن · قراءة سريعة</p>'
+      + '<h3 class="aqhc-sheet-title">' + p.n + ' في ' + S.n + '</h3>'
+      + '<div class="aqhc-sheet-pills">'
+      + '<span class="aqhc-pill st-' + (retro ? 'retro' : 'direct') + '">' + (retro ? 'تراجع' : 'حركة مباشرة') + '</span>'
+      + '<span class="aqhc-pill deg">' + S.n + ' ' + nd(dInt) + '°</span>'
+      + '</div>'
+      + '<div class="aqhc-deg"><div class="aqhc-deg-track"><i style="right:' + Math.min(96, (deg / 30) * 100).toFixed(1) + '%"></i></div>'
+      + '<div class="aqhc-deg-labels"><span>٠°</span><b>' + st[0] + '</b><span>٣٠°</span></div>'
+      + '<p class="aqhc-deg-stage">' + st[1] + '</p></div>'
+      + '<div class="aqhc-def"><p class="aqhc-def-h">' + defH + '</p><p class="aqhc-def-p">' + def + '</p></div>'
+      + '<p class="aqhc-lead">' + lead + '</p>'
+      + '<p class="aqhc-support">' + support + '</p>'
+      + (pl ? '<div class="aqhc-pl"><p class="aqhc-pl-t">' + pl[0] + '</p><p class="aqhc-pl-p">' + pl[1] + '</p><p class="aqhc-pl-p">' + pl[2] + '</p></div>'
+        + '<div class="aqhc-ask"><b>ما يطلبه منك</b>' + pl[3] + '</div>' : '')
+      + (rt ? '<p class="aqhc-retro">' + rt + '</p>' : '')
+      + '<div class="aqhc-links">'
+      + '<a class="aqhc-link" href="#signs" data-close><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M7 4.5C8 9 8 15 7 19.5M17 4.5C16 9 16 15 17 19.5M5 9.5c4.5 1.2 9.5 1.2 14 0M5 14.5c4.5-1.2 9.5-1.2 14 0"/></svg></i>شوف توقعات برجك</a>'
+      + '<a class="aqhc-link" href="#sky" data-close><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.2 5.6 6 .4-4.6 3.8 1.5 5.9L12 15.9l-5.1 3.3 1.5-5.9-4.6-3.8 6-.4Z"/></svg></i>اكتشف السما</a>'
+      + '</div></div>';
+  }
+
+  function openSheet(k) {
+    openKey = k;
+    var render = function () {
+      if (openKey !== k || !sheetRoot) return;
+      sheetRoot.innerHTML = sheetHtml(k);
+      sheetRoot.hidden = false;
+      document.body.classList.add('aqhc-lock');
+      renderStrip();
+      Array.prototype.forEach.call(sheetRoot.querySelectorAll('[data-close]'), function (el) {
+        el.addEventListener('click', closeSheet);
+      });
+      var nx = sheetRoot.querySelector('[data-next]');
+      if (nx) nx.addEventListener('click', function () { openSheet(nx.getAttribute('data-next')); });
+      var sh = sheetRoot.querySelector('.aqhc-sheet');
+      if (sh) sh.scrollTop = 0;
+    };
+    if (!window.AqReadings && window.AqSkyTexts) {
+      render(); /* يظهر بالنصوص الأساسية فورًا */
+      window.AqSkyTexts.load().then(function (ok) { if (ok) render(); });
+    } else render();
+  }
+
+  function closeSheet() {
+    openKey = null;
+    if (sheetRoot) { sheetRoot.hidden = true; sheetRoot.innerHTML = ''; }
+    document.body.classList.remove('aqhc-lock');
+    renderStrip();
+  }
+
+  function tick() {
+    try { compute(); renderStrip(); } catch (e) { }
+  }
+
+  function init() {
+    host = document.getElementById('aqhc-planets');
+    sheetRoot = document.getElementById('aqhc-sheet-root');
+    if (!host || !sheetRoot) return;
+    if (!window.Astro || !window.PLANETS || !window.SIGNS) { setTimeout(init, 400); return; }
+    tick();
+    setInterval(function () { if (!document.hidden && !openKey) tick(); }, 60000);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && openKey) closeSheet(); });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 
 ;
