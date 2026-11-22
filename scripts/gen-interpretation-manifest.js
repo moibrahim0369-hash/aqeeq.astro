@@ -28,6 +28,7 @@ for (let i = 0; i < PLANETS.length; i++) for (let j = i + 1; j < PLANETS.length;
   if (IMPOSSIBLE_ASPECTS.has(`${PLANETS[i]}.${t}.${PLANETS[j]}`)) return;
   add(`natal.aspect.${PLANETS[i]}.${t}.${PLANETS[j]}`, PLANETS[i], 'aspect', `${L[PLANETS[i]]} ${ASP[t]} ${L[PLANETS[j]]} (يظهر تحت الكوكبين؛ الحقل aspect = "${t}.${PLANETS[j]}")`);
 });
+PLANETS.forEach(b => Object.keys(ASP).forEach(t => add(`natal.aspect.${b}.${t}.chiron`, b, 'aspect', `${L[b]} ${ASP[t]} ${L.chiron} (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)`)));
 ['asc', 'dsc', 'mc', 'ic'].forEach(a => SIGNS.forEach((s, i) => add(`natal.angle.${a}.${s}`, a, 'angle', `${L[a]} في ${SIGN_AR[i]}`)));
 for (let h = 1; h <= 12; h++) SIGNS.forEach((s, i) => add(`natal.house_cusp.house${h}.${s}`, 'house_cusp', 'house_cusp', `برج ${SIGN_AR[i]} على رأس البيت ${h} (يظهر داخل أكورديون البيت، ويكفي وحده للبيت الخالي من الكواكب)`));
 BODIES.forEach(b => SIGNS.forEach((s, i) => add(`natal.sign_only.${b}.${s}`, b, 'sign_only', `${L[b]} في ${SIGN_AR[i]} في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)`)));

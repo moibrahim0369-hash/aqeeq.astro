@@ -9,7 +9,7 @@
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261122-natal1183-review1';
+  var VERSION = '20261122-chiron-aspects1';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
@@ -21,6 +21,7 @@
     uranus: 'أورانوس', neptune: 'نبتون', pluto: 'بلوتو', north_node: 'العقدة القمرية الشمالية', south_node: 'العقدة القمرية الجنوبية',
     lilith: 'ليليث', fortune: 'نقطة الحظ', chiron: 'كيرون', asc: 'الطالع', dsc: 'الهابط', mc: 'وسط السماء', ic: 'قاع السماء' };
   var PLANETS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  var ASPECT_BODIES = PLANETS.concat(['chiron']);
   var POINTS = ['north_node', 'south_node', 'lilith', 'fortune', 'chiron'];
   var ANGLES = ['asc', 'dsc', 'mc', 'ic'];
   var ORDER = PLANETS.concat(POINTS);
@@ -65,8 +66,8 @@
     if (by.chiron) item('chiron', by.chiron, by.chiron.lon, by.chiron.house, by.chiron.retro);
     if (by.fortune && known) item('fortune', by.fortune, by.fortune.lon, by.fortune.house, false);
     var asp = [];
-    for (var i = 0; i < PLANETS.length; i++) for (var j = i + 1; j < PLANETS.length; j++) {
-      var a = items[PLANETS[i]], b = items[PLANETS[j]]; if (!a || !b) continue;
+    for (var i = 0; i < ASPECT_BODIES.length; i++) for (var j = i + 1; j < ASPECT_BODIES.length; j++) {
+      var a = items[ASPECT_BODIES[i]], b = items[ASPECT_BODIES[j]]; if (!a || !b) continue;
       var diff = d180(a.lon - b.lon);
       for (var t = 0; t < ASPECTS.length; t++) {
         var A = ASPECTS[t], lim = A.orb + ((a.body === 'sun' || a.body === 'moon' || b.body === 'sun' || b.body === 'moon') ? 1 : 0);
@@ -279,5 +280,5 @@
   }
 
   return { partial: partial, boot: boot, build: build, sections: sections, renderText: renderText, indexOf: indexOf, idCore: idCore, idTint: idTint, idModifier: idModifier, idReference: idReference, files: files, idAspect: idAspect, idAngle: idAngle, idCusp: idCusp, idStellium: idStellium, idBlend: idBlend, idSignOnly: idSignOnly,
-    SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, POINTS: POINTS, ASPECTS: ASPECTS };
+    SIGN_EN: SIGN_EN, ORDER: ORDER, ANGLES: ANGLES, PLANETS: PLANETS, ASPECT_BODIES: ASPECT_BODIES, POINTS: POINTS, ASPECTS: ASPECTS };
 });

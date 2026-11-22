@@ -1,0 +1,507 @@
+{
+  "method": "Weekly sampled scan through the unmodified current chart engine. A found within-orb sample proves occurrence; absence of a weekly sample does not prove impossibility. No claim of independent astronomical validation of every day.",
+  "start": "1920-01-01T00:00:00.000Z",
+  "end": "2041-01-01T00:00:00.000Z",
+  "rows": [
+    {
+      "body": "sun",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.005551963763991807,
+      "jd": 2438459.5,
+      "date": "1964-03-05T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "sun",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.007989451446974272,
+      "jd": 2432943.5,
+      "date": "1949-01-27T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "sun",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.0024077982179733226,
+      "jd": 2465493.5,
+      "date": "2038-03-11T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "sun",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.0007484235512720261,
+      "jd": 2424753.5,
+      "date": "1926-08-26T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "sun",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.010581218547258686,
+      "jd": 2424074.5,
+      "date": "1924-10-16T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "moon",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.02679878282918935,
+      "jd": 2444920.5,
+      "date": "1981-11-12T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "moon",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.021345356090478163,
+      "jd": 2442673.5,
+      "date": "1975-09-18T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "moon",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.04373158791406695,
+      "jd": 2462084.5,
+      "date": "2028-11-09T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "moon",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.01382366004497726,
+      "jd": 2464219.5,
+      "date": "2034-09-14T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "moon",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.006285837567645558,
+      "jd": 2434350.5,
+      "date": "1952-12-04T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mercury",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.03637377365930661,
+      "jd": 2424648.5,
+      "date": "1926-05-13T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mercury",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.008265695241789217,
+      "jd": 2440265.5,
+      "date": "1969-02-13T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mercury",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.0031927597110552597,
+      "jd": 2433139.5,
+      "date": "1949-08-11T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mercury",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.0004627146200277821,
+      "jd": 2464982.5,
+      "date": "2036-10-16T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mercury",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.0853086815000097,
+      "jd": 2459872.5,
+      "date": "2022-10-20T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "venus",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.017091169774289483,
+      "jd": 2432481.5,
+      "date": "1947-10-23T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "venus",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.02057301272651557,
+      "jd": 2429709.5,
+      "date": "1940-03-21T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "venus",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.00979658794358329,
+      "jd": 2451409.5,
+      "date": "1999-08-19T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "venus",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.01734347017008986,
+      "jd": 2444626.5,
+      "date": "1981-01-22T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "venus",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.007734533878874572,
+      "jd": 2424109.5,
+      "date": "1924-11-20T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mars",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.02922652922495672,
+      "jd": 2434308.5,
+      "date": "1952-10-23T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mars",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.012252860348837658,
+      "jd": 2456974.5,
+      "date": "2014-11-13T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mars",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.003621940889445341,
+      "jd": 2456463.5,
+      "date": "2013-06-20T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mars",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.016151708940924436,
+      "jd": 2448602.5,
+      "date": "1991-12-12T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "mars",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.07675659616120356,
+      "jd": 2456064.5,
+      "date": "2012-05-17T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "jupiter",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.04108572067315208,
+      "jd": 2455035.5,
+      "date": "2009-07-23T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "jupiter",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.0170072224173623,
+      "jd": 2464268.5,
+      "date": "2034-11-02T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "jupiter",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.010962094715239346,
+      "jd": 2461223.5,
+      "date": "2026-07-02T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "jupiter",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.02000164563389717,
+      "jd": 2436387.5,
+      "date": "1958-07-03T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "jupiter",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.019955311553758293,
+      "jd": 2428470.5,
+      "date": "1936-10-29T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "saturn",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.03901224279860571,
+      "jd": 2439229.5,
+      "date": "1966-04-14T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "saturn",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.0038569322574062426,
+      "jd": 2435848.5,
+      "date": "1957-01-10T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "saturn",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.007817434849471283,
+      "jd": 2457751.5,
+      "date": "2016-12-29T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "saturn",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.023863001315021393,
+      "jd": 2426958.5,
+      "date": "1932-09-08T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "saturn",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.008978563174650844,
+      "jd": 2446488.5,
+      "date": "1986-02-27T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "uranus",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 15.01551679246461,
+      "jd": 2466445.5,
+      "date": "2040-10-18T00:00:00.000Z",
+      "withinExistingOrb": false
+    },
+    {
+      "body": "uranus",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.011781471220729145,
+      "jd": 2452109.5,
+      "date": "2001-07-19T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "uranus",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.03375750571711933,
+      "jd": 2430997.5,
+      "date": "1943-09-30T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "uranus",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.002575330159572786,
+      "jd": 2432075.5,
+      "date": "1946-09-12T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "uranus",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.009913199096558856,
+      "jd": 2438760.5,
+      "date": "1964-12-31T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "neptune",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.015876179887754915,
+      "jd": 2455245.5,
+      "date": "2010-02-18T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "neptune",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.00911531869837745,
+      "jd": 2433531.5,
+      "date": "1950-09-07T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "neptune",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.03466549477013814,
+      "jd": 2435113.5,
+      "date": "1955-01-06T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "neptune",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.009593587442964235,
+      "jd": 2423689.5,
+      "date": "1923-09-27T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "neptune",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.031286620136938836,
+      "jd": 2447909.5,
+      "date": "1990-01-18T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "pluto",
+      "type": "conjunction",
+      "angle": 0,
+      "orb": 8,
+      "minimum": 0.03188527924601203,
+      "jd": 2451542.5,
+      "date": "1999-12-30T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "pluto",
+      "type": "sextile",
+      "angle": 60,
+      "orb": 4,
+      "minimum": 0.02201024758960557,
+      "jd": 2456176.5,
+      "date": "2012-09-06T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "pluto",
+      "type": "square",
+      "angle": 90,
+      "orb": 6,
+      "minimum": 0.01705280294675049,
+      "jd": 2448959.5,
+      "date": "1992-12-03T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "pluto",
+      "type": "trine",
+      "angle": 120,
+      "orb": 6,
+      "minimum": 0.053836935454228296,
+      "jd": 2465437.5,
+      "date": "2038-01-14T00:00:00.000Z",
+      "withinExistingOrb": true
+    },
+    {
+      "body": "pluto",
+      "type": "opposition",
+      "angle": 180,
+      "orb": 8,
+      "minimum": 0.0009803234563605656,
+      "jd": 2437892.5,
+      "date": "1962-08-16T00:00:00.000Z",
+      "withinExistingOrb": true
+    }
+  ]
+}

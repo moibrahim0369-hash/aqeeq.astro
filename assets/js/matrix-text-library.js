@@ -1,5 +1,5 @@
 (function(root,factory){'use strict';var api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else{root.AqeeqMatrixTextLibrary=api;if(typeof document!=='undefined')api.boot();}})(typeof globalThis!=='undefined'?globalThis:this,function(){'use strict';
-var BASE='assets/data/matrix/',VERSION='unified-natal-matrix-20261122-v2';
+var BASE='assets/data/matrix/',VERSION='unified-natal-matrix-20261122-chiron1';
 var natalSource=typeof module==='object'&&module.exports?require('./natal-text-library.js'):globalThis.AqeeqNatalTextLibrary;
 var MODES={natal:'الخريطة الفلكية',individual:'الفردية',child:'الطفل',compat:'التوافق'};
 var GROUPS={core:'الجوهر والمركز',money:'المال والعمل',love:'العلاقات والحب',tail_entry:'مدخل الذيل الكارمي',mission:'المهمة والغاية',reference:'المرجع التفصيلي',center:'الشخصية',talents:'المواهب',father_line:'خط الأب',mother_line:'خط الأم',ancestral_programs:'الأجداد',age_cycles:'دورات العمر',children_line:'الأبناء',transformation_rx:'روشتة التحول',composite_programs:'البرامج المركبة',tails:'الذيول المخصصة',arcana:'الأركانا الأساسية',chakra:'الشاكرات',lower:'الجذر والعجز'};

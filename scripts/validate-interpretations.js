@@ -7,6 +7,7 @@ const dir = path.join(__dirname, '..', 'data', 'interpretations');
 const SIGNS = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
 const PLANETS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
 const BODIES = PLANETS.concat(['north_node', 'south_node', 'lilith', 'fortune', 'chiron']);
+const ASPECT_BODIES = PLANETS.concat(['chiron']);
 const ANGLES = ['asc', 'dsc', 'mc', 'ic'];
 const ASPECTS = ['conjunction', 'sextile', 'square', 'trine', 'opposition'];
 const MODS = ['retrograde'];
@@ -32,10 +33,10 @@ function expectedId(o, at) {
       if (!MODS.includes(o.modifier)) return bad('modifier');
       return `natal.modifier.${o.body}${o.house ? '.house' + o.house : ''}.${o.modifier}`;
     case 'aspect': {
-      if (!PLANETS.includes(o.body)) return bad('body غير معروف');
+      if (!ASPECT_BODIES.includes(o.body)) return bad('body غير معروف');
       const [type, second] = String(o.aspect || '').split('.');
-      if (!ASPECTS.includes(type) || !PLANETS.includes(second)) return bad('aspect يجب أن يكون type.body');
-      if (PLANETS.indexOf(o.body) >= PLANETS.indexOf(second)) return bad('الجسم الأول يجب أن يسبق الثاني في الترتيب (sun, moon, mercury ...)');
+      if (!ASPECTS.includes(type) || !ASPECT_BODIES.includes(second)) return bad('aspect يجب أن يكون type.body');
+      if (ASPECT_BODIES.indexOf(o.body) >= ASPECT_BODIES.indexOf(second)) return bad('الجسم الأول يجب أن يسبق الثاني في الترتيب (sun, moon, mercury ...)');
       return `natal.aspect.${o.body}.${type}.${second}`;
     }
     case 'house_cusp':

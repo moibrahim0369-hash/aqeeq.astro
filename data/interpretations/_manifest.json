@@ -1,5 +1,5 @@
 {
- "total": 1220,
+ "total": 1270,
  "entries": [
   {
    "id": "natal.core.sun.house1",
@@ -4080,6 +4080,356 @@
    "file": "data/interpretations/neptune.json",
    "layer": "aspect",
    "where": "نبتون مقابلة بلوتو (يظهر تحت الكوكبين؛ الحقل aspect = \"opposition.pluto\")",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.sun.conjunction.chiron",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.sun.sextile.chiron",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.sun.square.chiron",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.sun.trine.chiron",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.sun.opposition.chiron",
+   "file": "data/interpretations/sun.json",
+   "layer": "aspect",
+   "where": "الشمس مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.moon.conjunction.chiron",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.moon.sextile.chiron",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.moon.square.chiron",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.moon.trine.chiron",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.moon.opposition.chiron",
+   "file": "data/interpretations/moon.json",
+   "layer": "aspect",
+   "where": "القمر مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mercury.conjunction.chiron",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mercury.sextile.chiron",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mercury.square.chiron",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mercury.trine.chiron",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mercury.opposition.chiron",
+   "file": "data/interpretations/mercury.json",
+   "layer": "aspect",
+   "where": "عطارد مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.venus.conjunction.chiron",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.venus.sextile.chiron",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.venus.square.chiron",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.venus.trine.chiron",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.venus.opposition.chiron",
+   "file": "data/interpretations/venus.json",
+   "layer": "aspect",
+   "where": "الزهرة مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mars.conjunction.chiron",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mars.sextile.chiron",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mars.square.chiron",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mars.trine.chiron",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.mars.opposition.chiron",
+   "file": "data/interpretations/mars.json",
+   "layer": "aspect",
+   "where": "المريخ مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.jupiter.conjunction.chiron",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.jupiter.sextile.chiron",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.jupiter.square.chiron",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.jupiter.trine.chiron",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.jupiter.opposition.chiron",
+   "file": "data/interpretations/jupiter.json",
+   "layer": "aspect",
+   "where": "المشتري مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.saturn.conjunction.chiron",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.saturn.sextile.chiron",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.saturn.square.chiron",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.saturn.trine.chiron",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.saturn.opposition.chiron",
+   "file": "data/interpretations/saturn.json",
+   "layer": "aspect",
+   "where": "زحل مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.uranus.conjunction.chiron",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.uranus.sextile.chiron",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.uranus.square.chiron",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.uranus.trine.chiron",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.uranus.opposition.chiron",
+   "file": "data/interpretations/uranus.json",
+   "layer": "aspect",
+   "where": "أورانوس مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.neptune.conjunction.chiron",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.neptune.sextile.chiron",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.neptune.square.chiron",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.neptune.trine.chiron",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.neptune.opposition.chiron",
+   "file": "data/interpretations/neptune.json",
+   "layer": "aspect",
+   "where": "نبتون مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.pluto.conjunction.chiron",
+   "file": "data/interpretations/pluto.json",
+   "layer": "aspect",
+   "where": "بلوتو اتصال كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.pluto.sextile.chiron",
+   "file": "data/interpretations/pluto.json",
+   "layer": "aspect",
+   "where": "بلوتو سداسي كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.pluto.square.chiron",
+   "file": "data/interpretations/pluto.json",
+   "layer": "aspect",
+   "where": "بلوتو تربيع كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.pluto.trine.chiron",
+   "file": "data/interpretations/pluto.json",
+   "layer": "aspect",
+   "where": "بلوتو تثليث كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.aspect.pluto.opposition.chiron",
+   "file": "data/interpretations/pluto.json",
+   "layer": "aspect",
+   "where": "بلوتو مقابلة كيرون (نص ميلاد؛ يظهر عند تحقق الاتصال الفعلي فقط)",
    "status": "approved"
   },
   {
