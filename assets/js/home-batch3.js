@@ -30,19 +30,12 @@
     setInterval(function () { if (!document.hidden && /^(#home)?$/.test(location.hash)) show((i + 1) % ROT.length); }, 3000);
   }
 
-  /* ---------- 2) كارت الأبراج تحت السماء الآن ---------- */
-  function buildZodiac() {
-    var band = $('#aqh-band'); if (!band || $('#b3-zod')) return;
-    var a = document.createElement('a'); a.id = 'b3-zod'; a.className = 'b3-zod'; a.href = '#signs';
-    a.innerHTML = '<span class="b3-zod-ic">' + svg('<circle cx="12" cy="12" r="9" stroke-opacity=".5"/><circle cx="12" cy="3" r="1" fill="currentColor"/><circle cx="21" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="21" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><path d="M12 8l1.100 2.900L16 12l-2.900 1.100L12 16l-1.100-2.900L8 12l2.900-1.100z"/>', 30) + '</span><span class="b3-zod-t"><em>رسالة برجك اليوم</em><b>ما الذي تريد السماء أن تقوله لبرجك اليوم؟</b><small>اختر برجك واقرأ رسالتك وتوقعك اليومي</small></span><span class="b3-rot-go">' + svg(ARROW, 18) + '</span>';
-    band.parentNode.insertBefore(a, band.nextSibling);
-  }
-
   /* ---------- 3) نافذة الترحيب للزائر ---------- */
   function seen() { try { return localStorage.getItem('aq_b3_welcome') === '1'; } catch (e) { return false; } }
   function mark() { try { localStorage.setItem('aq_b3_welcome', '1'); } catch (e) {} }
   function openWelcome() {
     if (seen() || loggedIn() || $('#b3-welcome')) return;
+    var _bg = document.getElementById('aqh-burger'); if (_bg && _bg.getAttribute('aria-expanded') === 'true') return;
     if (!/^(#home)?$/.test(location.hash)) return;
     var w = document.createElement('div'); w.id = 'b3-welcome'; w.className = 'b3-welcome'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-labelledby', 'b3-w-h');
     w.innerHTML = '<div class="b3-w-bd"></div><div class="b3-w-sheet"><span class="b3-w-grip" aria-hidden="true"></span><h2 id="b3-w-h">خريطتك تنتظرك في مكان واحد</h2><p class="b3-w-lead">حين تسجّل بياناتك مرة واحدة، يتذكرك الموقع في كل زيارة:</p><ul>' +
@@ -158,10 +151,14 @@
   }
 
   function init() {
-    buildRot(); buildZodiac(); buildReports(); buildKarmic(); watchMatrix(); syncMe();
+    buildRot(); buildReports(); buildKarmic(); watchMatrix(); syncMe();
     var u = document.getElementById('acct-user'); if (u) new MutationObserver(syncMe).observe(u, { attributes: true, attributeFilter: ['hidden'] });
     document.addEventListener('aqeeq:natal-ready', syncMe); document.addEventListener('aq:session', function () { setTimeout(syncMe, 400); setTimeout(syncMe, 2500); });
     setTimeout(openWelcome, 14000);
+    document.addEventListener('click', function (e) {
+      var t = e.target && e.target.closest ? e.target.closest('#aqh-burger') : null; if (!t) return;
+      var w = document.getElementById('b3-welcome'); if (w) { mark(); w.remove(); }
+    }, true);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();

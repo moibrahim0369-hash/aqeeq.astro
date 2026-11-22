@@ -703,7 +703,7 @@ html body section#for-you .yp-rail>*:nth-child(n+4):not(#_a):not(#_b):not(#_c){d
 /* ===== المجلة في الرئيسية: معاينة 3 مقالات للزائر وسطح المكتب، وتختفي في شكل التطبيق (موبايل + مسجّل) ===== */
 html body #home.aqh #aqh-row2:not(#_a):not(#_b){display:none!important}
 html body #home.aqh #aqh-track .aqh-article:nth-child(n+4):not(#_a):not(#_b){display:none!important}
-@media(max-width:899px){html body.yp-user #home.aqh .aqh-band-arts:not(#_a):not(#_b){display:none!important}}
+/* اعتماد 2026-11-22: المقالات تظهر على الموبايل للمسجّل أيضًا */
 
 /* ===== حركة هادئة: استجابة اللمس والتنقل (بدون أنيميشن دخول للصفحات) ===== */
 @media(prefers-reduced-motion:no-preference){
@@ -730,11 +730,7 @@ html body .cmp-fab:not(#_a):not(#_b){width:44px!important;height:44px!important;
 html body .cmp-fab svg{width:22px;height:22px}
 }
 
-/* الزائر على الموبايل: الصفحة الرئيسية بقت أقرب للتطبيق: المقالات والفقرات المجلّية تتشال من الرئيسية (المقالات موجودة في تبويب "مميز" من الشريط السفلي) */
-@media(max-width:899px){
-html body:not(.yp-user) #home.aqh .aqh-band-arts:not(#_a):not(#_b),
-html body:not(.yp-user) #home.aqh .aqh-articles:not(#_a):not(#_b){display:none!important}
-}
+/* اعتماد 2026-11-22: المقالات تظهر على الموبايل للزائر أيضًا */
 
 /* استثمر في ذاتك: زر شراء واضح باللون العنابي (بدون ذهبي) يودّي لقسم الدفع */
 html body #invest .inv-cta:not(#_a):not(#_b){display:flex;align-items:center;justify-content:center;gap:8px;box-sizing:border-box;width:100%;max-width:320px;min-height:50px;margin:16px auto 6px;border-radius:999px;background:linear-gradient(135deg,#8a3d56,#70263F);color:#FFF8EE!important;font-weight:700;font-size:1rem;text-decoration:none;box-shadow:0 10px 24px rgba(112,38,63,.25)}

@@ -87,6 +87,19 @@
     if (drop) {
       var btn = $('.aqh-drop-btn', drop);
       var setOpen = function (v) { drop.classList.toggle('is-open', v); btn.setAttribute('aria-expanded', v ? 'true' : 'false'); };
+      var dropMenu = $('.aqh-drop-menu', drop);
+      var place = function () {
+        if (!dropMenu) return;
+        var r = btn.getBoundingClientRect();
+        dropMenu.style.top = (r.bottom + 6) + 'px';
+        if ((document.dir || getComputedStyle(document.documentElement).direction) === 'rtl') {
+          dropMenu.style.right = Math.max(8, window.innerWidth - r.right) + 'px'; dropMenu.style.left = 'auto';
+        } else { dropMenu.style.left = r.left + 'px'; dropMenu.style.right = 'auto'; }
+      };
+      btn.addEventListener('click', place);
+      drop.addEventListener('mouseenter', place);
+      drop.addEventListener('focusin', place);
+      window.addEventListener('resize', place);
       btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!drop.classList.contains('is-open')); });
       document.addEventListener('click', function () { setOpen(false); });
       drop.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });

@@ -29,7 +29,7 @@
 .aqh-nav>a::after,.aqh-drop-btn::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1.5px;background:var(--aqh-gold);transform:scaleX(0);transition:transform .35s ease}
 .aqh-nav>a:hover::after,.aqh-nav>a.aq-nav-active::after,.aqh-drop-btn:hover::after,.aqh-drop:focus-within .aqh-drop-btn::after{transform:scaleX(1)}
 .aqh-drop{position:relative}
-.aqh-drop-menu{position:absolute;top:100%;inset-inline-start:0;min-width:210px;display:grid;padding:8px;background:var(--aqh-card);border:1px solid var(--aqh-line);border-radius:12px;box-shadow:0 18px 40px rgba(60,40,30,.12);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s ease,transform .25s ease,visibility .25s}
+.aqh-drop-menu{position:fixed;top:60px;inset-inline-start:auto;z-index:130;min-width:210px;display:grid;padding:8px;background:var(--aqh-card);border:1px solid var(--aqh-line);border-radius:12px;box-shadow:0 18px 40px rgba(60,40,30,.12);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s ease,transform .25s ease,visibility .25s}
 .aqh-drop.is-open .aqh-drop-menu,.aqh-drop:hover .aqh-drop-menu,.aqh-drop:focus-within .aqh-drop-menu{opacity:1;visibility:visible;transform:none}
 .aqh-drop-menu a{padding:10px 14px;border-radius:8px;color:var(--aqh-ink)!important;text-decoration:none;font-size:.98rem}
 .aqh-drop-menu a:hover{background:var(--aqh-ivory-2)}
