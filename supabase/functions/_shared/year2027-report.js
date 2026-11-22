@@ -1,6 +1,7 @@
 import Astro from './astro-engine.js';
 import {ayanamsa,dashas,antars} from './vedic-engine.js';
 import './year2027-core.js';
+import './year2027-focused.js';
 const C=globalThis.AqYear2027Core;
 const norm=C.norm,delta=C.delta;
 export function validateInput(input){
@@ -32,5 +33,7 @@ export function reportFor(input,lib,ephem){
   const text=lib.templates[k][s.house-1],lord=lib.lordship[k]?.[R.lagna]||'',topics=k==='jupiter'?C.lordHouses(k,R.lagna).map(h=>lib.topics[h]):[];
   return {...s,text,lord,topics,contacts:R.hits.filter(h=>h.planet===k&&h.t>=s.s&&h.t<s.e)};
  })}));
- return {model:{known:R.known,periods:R.periods},closing,groups,periods:R.periods.map(p=>({...p,text:lib.dasha[p.lord]})),revision:lib.revision,calculation:{system:'Lahiri',node:'mean',transitResolution:'hourly engine samples, interpolated and angular-verified'},created:Date.now()};
+ const periods=R.periods.map(p=>({...p,text:lib.dasha[p.lord]}));
+ const focused=lib.focused?globalThis.AqYear2027Focused.assemble({groups,periods},sidereal(natal),lib.focused):null;
+ return {model:{known:R.known,periods:R.periods},closing,groups,periods,...(focused?{focused}:{}),revision:lib.revision,calculation:{system:'Lahiri',node:'mean',transitResolution:'hourly engine samples, interpolated and angular-verified'},created:Date.now()};
 }

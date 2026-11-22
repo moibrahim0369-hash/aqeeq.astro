@@ -77,6 +77,7 @@ for(let h=1;h<=12;h++){
   const ids=lex.house_map[String(h)];const f=lex.files.find(f=>ids.includes(f.id)&&f.type==='عام'&&f.example);
   data.topics[h]=f?clean(f.example):'';
 }
+const focusedFile=path.join(base,'focused','reading-2027.json');if(fs.existsSync(focusedFile)){data.focused=JSON.parse(fs.readFileSync(focusedFile,'utf8'));const F=require('../assets/js/year2027-focused.js');F.validate(data.focused);}
 const serialized=JSON.stringify(data);
 function check(v,p=''){if(typeof v==='string'&&/\[طبقة|\{[^}]+\}|ملفات السحب|<!--|ملاحظة هندسية/.test(v))throw new Error('Internal marker at '+p);else if(v&&typeof v==='object')Object.entries(v).forEach(([k,x])=>check(x,p+'.'+k));}check(data);
 data.revision=crypto.createHash('sha256').update(serialized).digest('hex').slice(0,16);
