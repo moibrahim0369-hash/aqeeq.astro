@@ -6,7 +6,7 @@ const path = require('path');
 const dir = path.join(__dirname, '..', 'data', 'interpretations');
 const SIGNS = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
 const PLANETS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
-const BODIES = PLANETS.concat(['north_node', 'south_node', 'lilith', 'fortune']);
+const BODIES = PLANETS.concat(['north_node', 'south_node', 'lilith', 'fortune', 'chiron']);
 const ANGLES = ['asc', 'dsc', 'mc', 'ic'];
 const ASPECTS = ['conjunction', 'sextile', 'square', 'trine', 'opposition'];
 const MODS = ['retrograde'];
@@ -27,9 +27,10 @@ function expectedId(o, at) {
       if (o.house != null && (!Number.isInteger(o.house) || o.house < 1 || o.house > 12)) return bad('house');
       return `natal.sign_tint.${o.body}${o.house ? '.house' + o.house : ''}.${o.sign}`;
     case 'modifier':
-      if (!PLANETS.includes(o.body)) return bad('body غير معروف');
+      if (!PLANETS.concat(['chiron']).includes(o.body)) return bad('body غير معروف');
+      if (o.house != null && (!Number.isInteger(o.house) || o.house < 1 || o.house > 12)) return bad('house');
       if (!MODS.includes(o.modifier)) return bad('modifier');
-      return `natal.modifier.${o.body}.${o.modifier}`;
+      return `natal.modifier.${o.body}${o.house ? '.house' + o.house : ''}.${o.modifier}`;
     case 'aspect': {
       if (!PLANETS.includes(o.body)) return bad('body غير معروف');
       const [type, second] = String(o.aspect || '').split('.');
@@ -43,7 +44,7 @@ function expectedId(o, at) {
       if (!SIGNS.includes(o.sign)) return bad('sign');
       return `natal.house_cusp.house${o.house}.${o.sign}`;
     case 'sign_only':
-      if (!PLANETS.includes(o.body)) return bad('body غير معروف');
+      if (!BODIES.includes(o.body)) return bad('body غير معروف');
       if (!SIGNS.includes(o.sign)) return bad('sign');
       return `natal.sign_only.${o.body}.${o.sign}`;
     case 'stellium':
@@ -59,6 +60,21 @@ function expectedId(o, at) {
       if (!PLANETS.includes(o.planet)) return bad('planet');
       if (!Number.isInteger(o.house) || o.house < 1 || o.house > 12) return bad('house');
       return `natal.house_blend.${o.planet}.house${o.house}`;
+    case 'reference': {
+      if (o.body !== 'reference') return bad('body يجب أن يكون reference');
+      const k = o.reference_key, kind = o.reference_kind;
+      const valid = kind === 'planet' ? BODIES.concat(['ceres', 'pallas', 'juno', 'vesta']).includes(k) :
+        kind === 'sign' ? SIGNS.includes(k) :
+        kind === 'house' ? /^house([1-9]|1[0-2])$/.test(k) :
+        kind === 'aspect' ? ASPECTS.includes(k) :
+        kind === 'house_position' ? /^chiron\.house([1-9]|1[0-2])$/.test(k) :
+        kind === 'asteroids' ? /^(ceres|pallas|juno|vesta)\.(general|house([1-9]|1[0-2]))$/.test(k) :
+        kind === 'element' ? /^(dominant|low)\.(fire|earth|air|water)$/.test(k) :
+        kind === 'modality' ? /^dominant\.(cardinal|fixed|mutable)$/.test(k) :
+        kind === 'asteroid_house' ? /^(ceres|pallas|juno|vesta)\.house([1-9]|1[0-2])$/.test(k) : false;
+      if (!valid) return bad('مرجع أو مفتاح غير معروف');
+      return `natal.reference.${kind}.${k}`;
+    }
     case 'angle':
       if (!ANGLES.includes(o.body)) return bad('body غير معروف');
       if (!SIGNS.includes(o.sign)) return bad('sign');

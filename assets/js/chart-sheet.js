@@ -67,7 +67,7 @@
     } else {
       var house = last && last !== '—' ? last : 'يظهر مع وقت الميلاد';
       openSheet(g ? '<span class="ndr-gl">' + g.innerHTML + '</span>' : ICO.planet, name, mid,
-        '<div class="ndr-facts">' + fact('البرج والدرجة', esc(mid)) + fact('البيت', esc(house)) + '</div><h4>معنى ' + esc(name) + ' في خريطتك</h4><p>' + esc(PL[name] || 'أحد الأجرام الأساسية في خريطتك.') + '</p>' + pending('التفسير المفصل لموضع ' + name + ' هذا قيد الإضافة.'));
+        '<div class="ndr-facts">' + fact('البرج والدرجة', esc(mid)) + fact('البيت', esc(house)) + '</div>' + (extra || '<h4>معنى ' + esc(name) + ' في خريطتك</h4><p>' + esc(PL[name] || 'أحد الأجرام الأساسية في خريطتك.') + '</p>' + pending('التفسير المفصل لموضع ' + name + ' هذا قيد الإضافة.')));
     }
   }
   document.addEventListener('click', function (e) {

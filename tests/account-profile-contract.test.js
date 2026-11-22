@@ -14,7 +14,7 @@ for (const id of [
 
 assert.match(html, /account-profile\.js/);
 assert.match(script, /\.from\('profiles'\)/);
-assert.match(script, /upsert\(\{ id: currentUser\.id/);
+assert.match(script, /upsert\(\{ id: saveUser\.id/);
 assert.match(script, /birth_time_unknown: timeUnknown/);
 assert.match(script, /actions\.hidden = !complete/);
 assert.match(script, /\.from\('avatars'\)\.upload/);

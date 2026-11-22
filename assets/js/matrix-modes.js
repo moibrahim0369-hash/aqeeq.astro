@@ -3,7 +3,7 @@
    - توافق الشريكين: تُجمع أركان الشخصين (اليوم/الشهر/السنة) ويُختزل المجموع إلى 1–22،
      ثم تُشتق باقي النقاط بنفس معادلات المصفوفة الفردية.
    - مصفوفة الطفل: مصفوفة الطفل الفردية كما هي، مع قراءة موجّهة للأهل.
-   النصوص هنا تمهيدية لحين تركيب النصوص النهائية. */
+   القراءة رمزية للتأمل، لا تشخيص ولا توقع مثبت. الفصل المجاني/المتعمق هنا للمعاينة المحلية إلى حين ربط استحقاق المنتج. */
 (function () {
   'use strict';
   var AD = function () { return window.AqeeqMatrixMethodAdapter || window.MatrixMethodAdapter; };
@@ -93,27 +93,27 @@
 
   /* كل قسم: عنوان + تمهيد + النقاط المحسوبة التي يقرأ منها */
   var PAIR = [
-    { t: 'لماذا التقى الشريكان؟', i: 'spark', intro: 'ليس كل لقاء صدفة. هنا الدرس الذي جمع بينكما والمعنى الذي يعود إليه كل منكما كلما اقترب من الآخر.', pts: [['E', 'جوهر العلاقة'], ['personal', 'الغرض المشترك']] },
-    { t: 'كيف يظهر الشريكان؟', i: 'tree', intro: 'الصورة التي يراها الناس حين تقفان معًا، والطاقة التي تفوح منكما قبل أن تتكلما.', pts: [['A', 'ما شدّ كلًّا منكما للآخر'], ['social', 'حضوركما أمام الآخرين']] },
-    { t: 'الرفاهية المالية والانسجام', i: 'gem', intro: 'ما يفتح باب الرزق حين تنسجمان، وما يغلقه حين يشدّ كل منكما في اتجاه. المال هنا مرآة لحال العلاقة.', pts: [['money', 'باب الوفرة المشتركة'], ['balance', 'ميزان العطاء والأخذ']] },
+    { t: 'لماذا التقى الشريكان؟', i: 'spark', intro: 'ارجعا إلى موقف شعرتما فيه أن وجودكما معًا أضاف شيئًا. ماذا وجد كل طرف عند الآخر، وما الذي تريدان بناءه الآن؟', pts: [['E', 'جوهر العلاقة'], ['personal', 'الغرض المشترك']] },
+    { t: 'كيف يظهر الشريكان؟', i: 'tree', intro: 'قد يبدأ الانتباه بتصرف صغير، ثم تتشكل مع الوقت صورة مشتركة. فرّقا بين ما جذبكما فعلًا وما تحاولان إظهاره أمام الآخرين.', pts: [['A', 'ما شدّ كلًّا منكما للآخر'], ['social', 'حضوركما أمام الآخرين']] },
+    { t: 'الرفاهية المالية والانسجام', i: 'gem', intro: 'حين تتشاركان وقتًا أو جهدًا أو مالًا، تظهر أسئلة لا تجيب عنها النوايا وحدها: من يقرر؟ ومن يتحمل؟ وكيف يتضح الاتفاق قبل أن يتحول إلى عتاب؟', pts: [['money', 'باب الوفرة المشتركة'], ['balance', 'ميزان العطاء والأخذ']] },
     { t: 'المشاكل والصعوبات', i: 'knot', intro: 'المواضع التي يتكرر فيها الخلاف بنفس الشكل. لا تُقرأ كعيب في أحدكما، بل كعقدة تحتاج أن تُفهم قبل أن تُحل.', pts: [['C', 'الدرس الذي يعود بلا توقف'], ['I', 'التواصل بينكما']] },
-    { t: 'كارما العلاقة', i: 'moon', intro: 'حين يبتعد الشريكان عن الغاية التي التقيا من أجلها، يظهر الدرس بصورة أقسى. هنا ما تحمله العلاقة من قديم يطلب أن يُغلق.', pts: [['D3', 'ما تحمله العلاقة من القديم'], ['C2', 'الدرس الذي يتكرر حتى يُتعلَّم']] },
+    { t: 'كارما العلاقة', i: 'moon', intro: 'ما الحوار الذي يبدأ جديدًا وينتهي بالنهاية القديمة نفسها؟ هنا تنظران إلى ما يتكرر اليوم، لا إلى ذنب موروث أو ماضٍ خفي.', pts: [['D3', 'ما تحمله العلاقة من القديم'], ['C2', 'الدرس الذي يتكرر حتى يُتعلَّم']] },
     { t: 'منطقة راحة الشريكين', i: 'home', intro: 'الحالة التي ترتاح فيها العلاقة حين لا يراقبها أحد، والإيقاع الذي تعودان إليه بعد أي توتر أو أزمة.', pts: [['D', 'البيت والحياة الأسرية'], ['D2', 'الحب والتواصل العاطفي']] },
     { t: 'توصيات للشريكين', i: 'scale', intro: 'خطوات عملية صغيرة تعدّل مسار العلاقة وتحميها من التآكل: ما يُقال وما يُترك وما يُفعل بانتظام.', pts: [['heart', 'الجاذبية والكيمياء'], ['B2', 'ما يغذّي العلاقة']] },
-    { t: 'سبب الانفصال', i: 'alert', intro: 'ليست نبوءة بالفراق. هي الموضع الأضعف الذي إن أُهمل تحوّل الصمت فيه إلى مسافة. انتبها له مبكرًا.', pts: [['H', 'نقطة الضعف في الأساس'], ['G', 'ما يُستنزف بصمت']] },
+    { t: 'سبب الانفصال', i: 'alert', intro: 'ليس كل خلاف مقدمة لفراق. انتبها لما يحدث بعده: هل تستطيعان الرجوع إلى الكلام، أم يبقى أمر مهم بلا جواب؟ ولا يلزم أحدًا البقاء مع الأذى.', pts: [['H', 'نقطة الضعف في الأساس'], ['G', 'ما يُستنزف بصمت']] },
     { t: 'أهداف الشريكين لإصلاح العلاقة', i: 'target', intro: 'ما يستطيع كل منكما فعله ليرمّم ما انكسر ويبني ما ينقص، دون أن ينتظر أن يبدأ الآخر.', pts: [['F', 'ما يُرمَّم أولًا'], ['spiritual', 'الغاية الأبعد للعلاقة']] },
     { t: 'أهداف الشريكين للنجاح أمام الناس', i: 'rise', intro: 'كيف تنجحان معًا كثنائي: في العمل أو الأسرة أو الصداقة، وما الأثر الذي تتركانه فيمن حولكما.', pts: [['personal', 'ما تبنيانه لأنفسكما'], ['earth', 'ما تثبّتانه على الأرض']] },
-    { t: 'موارد الشريكين وتوقعاتهما', i: 'compass', intro: 'الطاقة الكامنة التي لا تظهر في البداية وتنضج مع الصبر، وما تميل إليه العلاقة إذا أُعطيت وقتها.', pts: [['B', 'الطاقة الكامنة'], ['A2', 'ما تنضج إليه العلاقة']] }
+    { t: 'موارد الشريكين وتوقعاتهما', i: 'compass', intro: 'بعد أن يهدأ حماس البداية، ما الذي يبقى ممتعًا أو قابلًا للنمو بينكما؟ اختبرا ما يدعم العلاقة اليوم بدل انتظار وعد عن مستقبلها.', pts: [['B', 'الطاقة الكامنة'], ['A2', 'ما تنضج إليه العلاقة']] }
   ];
   var CHILD = [
-    { t: 'عالم الطفل الداخلي وطباعه', i: 'child', intro: 'هكذا يرى الطفل الدنيا من الداخل: ما يفرحه بسرعة، وما يربكه، والطبع الذي وُلد به قبل أن يعلّمه أحد شيئًا.', pts: [['A', 'طبعه الظاهر'], ['E', 'مركزه الداخلي']] },
-    { t: 'دليل الاحتواء', i: 'hands', intro: 'توصيات للأهل: الطريقة التي يشعر بها هذا الطفل بالأمان، وما الذي يهدّئه حين يضطرب، وما الأسلوب الذي يغلق عليه قلبه.', pts: [['A2', 'ما يطمئنه'], ['balance', 'ما يعيد إليه توازنه']] },
-    { t: 'ديناميكية العلاقة مع الأهل', i: 'tree', intro: 'ما يأخذه الطفل من جهة الأب وما يأخذه من جهة الأم، وأين يلتقي الخطّان في شخصيته.', pts: [['F', 'ما يحمله من جهة الأب'], ['G', 'ما يحمله من جهة الأم'], ['father', 'خط الأب مجتمعًا'], ['mother', 'خط الأم مجتمعًا']] },
-    { t: 'صندوق المواهب الفطرية', i: 'gem', intro: 'المواهب التي تظهر في لعبه قبل أن تظهر في دراسته. راقبها ولا تستعجلها، فهي تحتاج مساحة أكثر مما تحتاج توجيهًا.', pts: [['B', 'موهبته الأولى'], ['B2', 'ما يغذّي موهبته']] },
+    { t: 'عالم الطفل الداخلي وطباعه', i: 'child', intro: 'راقب الطفل وهو يبدأ لعبة، وحين يتعثر فيها، وحين يجد من يشاركه. التفاصيل الصغيرة أوضح من وضعه كله تحت صفة واحدة.', pts: [['A', 'طبعه الظاهر'], ['E', 'مركزه الداخلي']] },
+    { t: 'دليل الاحتواء', i: 'hands', intro: 'قد يحتاج الطفل وقتًا قبل الكلام، أو مساعدتك في أول خطوة، أو قربًا يطلبه بنفسه. جرّب ما يناسب عمره ولاحظ استجابته بدل فرض طريقة واحدة.', pts: [['A2', 'ما يطمئنه'], ['balance', 'ما يعيد إليه توازنه']] },
+    { t: 'ديناميكية العلاقة مع الأهل', i: 'tree', intro: 'كيف يرى الطفل الكبار يختلفون ويعتذرون ويوفون بوعد؟ المقصود هنا ما يراه ويسمعه ممن يرعونه، لا تحميل الأب أو الأم طبعًا أو ذنبًا من رقم.', pts: [['F', 'ما يحمله من جهة الأب'], ['G', 'ما يحمله من جهة الأم'], ['father', 'خط الأب مجتمعًا'], ['mother', 'خط الأم مجتمعًا']] },
+    { t: 'صندوق المواهب الفطرية', i: 'gem', intro: 'قبل اختيار نشاط آخر، لاحظ ما يعود إليه الطفل من نفسه. اعرض أدوات وتجارب قريبة من اهتمامه، واترك له فرصة أن يحبها أو يغيّر رأيه.', pts: [['B', 'موهبته الأولى'], ['B2', 'ما يغذّي موهبته']] },
     { t: 'بناء الشخصية وإثبات الذات', i: 'rise', intro: 'كيف يثبت هذا الطفل نفسه بين الآخرين، وأين يحتاج تشجيعًا وأين يحتاج حدًّا واضحًا.', pts: [['C', 'طاقته في الإنجاز'], ['C2', 'علاقته بما يملك وما يحقق']] },
-    { t: 'بوصلة القدر والمسار العام', i: 'compass', intro: 'الاتجاه العام الذي تميل إليه حياته: ما يتعلمه لنفسه، وما يقدمه للناس، وما يبقى معه في النهاية.', pts: [['personal', 'غايته لنفسه'], ['social', 'غايته مع الناس'], ['spiritual', 'غايته الأبعد']] },
-    { t: 'طبقة اللاوعي والمخاوف الخفية', i: 'moon', intro: 'مخاوف لا يعرف الطفل كيف يسمّيها. تظهر في سلوكه لا في كلامه، وتهدأ حين تُفهم لا حين تُمنع.', pts: [['D', 'الخوف الأقدم'], ['D2', 'ما يوقظ الخوف'], ['D3', 'ما يحمله من القديم']] },
-    { t: 'طاقة العام الحالي للطفل', i: 'sun', intro: 'ما يمر به الطفل في سنته هذه: الطاقة التي تحكم عامه من عيد ميلاده إلى الذي يليه، وطاقة المرحلة العمرية التي هو فيها.', pts: [['__year', 'طاقة عامه الحالي'], ['__age', 'طاقة مرحلته العمرية']] }
+    { t: 'بوصلة القدر والمسار العام', i: 'compass', intro: 'كيف يختار الطفل لنفسه؟ وكيف يشارك دون أن يتنازل عن صوته؟ ابدأ بمواقف يومه، لا بمهنة تنتظرها منه أو طريق تقرره له.', pts: [['personal', 'غايته لنفسه'], ['social', 'غايته مع الناس'], ['spiritual', 'غايته الأبعد']] },
+    { t: 'طبقة اللاوعي والمخاوف الخفية', i: 'moon', intro: 'إذا أقلقه موقف، ابدأ بما حدث وما يقوله عنه. لا تملأ سكوته بتفسير جاهز؛ اسأله سؤالًا بسيطًا واترك له وقتًا وحقًا في تصحيح فهمك.', pts: [['D', 'الخوف الأقدم'], ['D2', 'ما يوقظ الخوف'], ['D3', 'ما يحمله من القديم']] },
+    { t: 'طاقة العام الحالي للطفل', i: 'sun', intro: 'يمكنك استخدام هذه القراءة لاختيار تجربة صغيرة وملاحظة أثرها خلال العام. ليست جدولًا لما سيحدث للطفل أو لموعد تعلمه مهارة.', pts: [['__year', 'طاقة عامه الحالي'], ['__age', 'طاقة مرحلته العمرية']] }
   ];
 
   function energyHtml(n, label, extra) {
@@ -140,39 +140,61 @@
   function slotIc(k) { return '<svg class="aq-ic" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + SLOT_IC[k] + '</svg>'; }
   function slot(cls, k, title, inner) { return '<section class="aqm-slot ' + cls + '">' + (title ? '<h4 class="aqm-slot-title">' + slotIc(k) + ' ' + title + '</h4>' : '') + '<div class="aqm-slot-p">' + inner + '</div></section>'; }
   function toneOf(n) { n = +n; return [12, 13, 15, 16, 18].indexOf(n) >= 0 ? 's' : [10, 11, 14, 17, 19, 21].indexOf(n) >= 0 ? 'g' : 'n'; }
+  function visibleTitle(sp, child) {
+    var names = child ? { 'صندوق المواهب الفطرية': 'مساحة استكشاف المواهب', 'بوصلة القدر والمسار العام': 'الاختيار والمشاركة والمعنى', 'طبقة اللاوعي والمخاوف الخفية': 'مواقف القلق وما يحتاج إلى طمأنة' } : { 'سبب الانفصال': 'ما قد يصنع مسافة' };
+    return names[sp.t] || sp.t;
+  }
+  function visibleLabel(label, key, child) {
+    var names = child ? { D: 'ما قد يقلقه', D2: 'موقف يحتاج إلى طمأنة', D3: 'نمط مألوف يستحق الإصغاء', personal: 'الاختيار لنفسه', social: 'المشاركة مع الآخرين', spiritual: 'أسئلته عن المعنى' } : {};
+    return names[key] || label;
+  }
   function pairAccHtml(specs, get, subs) {
     return '<div class="aqm-accordion-container mxc-acc">' + specs.map(function (sp, i) {
       var badges = '', tc = { s: 0, g: 0, n: 0 }, body = slot('aqm-slot-primary', 'p', 'عن هذا القسم', '<p>' + esc(sp.intro) + '</p>');
       sp.pts.forEach(function (p, j) {
-        var v = get(p[0]), a = AD().getArcanaInfo(v.n);
-        tc[toneOf(v.n)]++; badges += '<span class="aqm-badge-arcana aqm-tone-' + (j % 4) + ' b3-tn-' + toneOf(v.n) + '"><b class="aqm-bn">' + v.n + '</b><span class="aqm-bl">' + esc(p[1]) + '</span></span> ';
-        body += '<div class="mxm-ptslot" data-sec="' + (specs === CHILD ? 'child-' : 'pair-') + i + '" data-pt="' + esc(p[0]) + '" data-n="' + v.n + '"></div>' + slot('aqm-slot-detailed', 'd', esc(p[1]) + ' · ' + v.n + ' ' + esc(a.name) + (v.x ? ' · ' + esc(v.x) : ''), '<p>' + esc(a.archetype) + '.</p>') +
-          slot('aqm-slot-strengths', 's', 'في حالتها الصافية', '<p>' + esc(a.light) + '.</p>') +
-          slot('aqm-slot-challenges', 'c', 'حين تختل', '<p>' + esc(a.shadow) + '.</p>');
+        var v = get(p[0]), a = AD().getArcanaInfo(v.n), plabel = visibleLabel(p[1], p[0], specs === CHILD);
+        tc[toneOf(v.n)]++; badges += '<span class="aqm-badge-arcana aqm-tone-' + (j % 4) + ' b3-tn-' + toneOf(v.n) + '"><b class="aqm-bn">' + v.n + '</b><span class="aqm-bl">' + esc(plabel) + '</span></span> ';
+        body += '<section class="mxm-reading" data-reading-key="' + esc(p[0]) + '"><h4 class="aqm-slot-title">' + esc(plabel) + ' · ' + v.n + ' ' + esc(a.name) + (v.x ? ' · ' + esc(v.x) : '') + '</h4>' +
+          '<div class="mxm-ptslot" data-sec="' + (specs === CHILD ? 'child-' : 'pair-') + i + '" data-pt="' + esc(p[0]) + '" data-n="' + v.n + '" aria-live="polite"><p class="mxm-loading">تُحمّل القراءة...</p></div></section>';
       });
       var dom = tc.s > tc.g && tc.s >= tc.n ? 's' : tc.g >= tc.n && tc.g > 0 ? 'g' : tc.n ? 'n' : 'g';
-      return '<div class="aqm-acc-item b3-ai-' + dom + '" id="mxc-sec-' + i + '" data-section-id="pair-' + i + '"><button class="aqm-acc-header" type="button" aria-expanded="false">' +
-        '<div class="aqm-acc-header-left"><span class="aqm-acc-icon" aria-hidden="true">' + ico(sp.i) + '</span><div class="aqm-acc-title-group"><h3 class="aqm-acc-title">' + esc(sp.t) + '</h3><p class="aqm-acc-subtitle">' + esc(PAIR_SUB[i] || '') + '</p></div></div>' +
+      return '<div class="aqm-acc-item b3-ai-' + dom + '" id="' + (specs === CHILD ? 'mxk' : 'mxc') + '-sec-' + i + '" data-section-id="' + (specs === CHILD ? 'child-' : 'pair-') + i + '"><button class="aqm-acc-header" type="button" aria-expanded="false">' +
+        '<div class="aqm-acc-header-left"><span class="aqm-acc-icon" aria-hidden="true">' + ico(sp.i) + '</span><div class="aqm-acc-title-group"><h3 class="aqm-acc-title">' + esc(visibleTitle(sp, specs === CHILD)) + '</h3><p class="aqm-acc-subtitle">' + esc((subs || PAIR_SUB)[i] || '') + '</p></div></div>' +
         '<div class="aqm-acc-badges">' + badges + '</div><span class="aqm-acc-chevron" aria-hidden="true">›</span></button>' +
         '<div class="aqm-acc-body">' + '<div class="aqm-content-grid">' + body + '</div></div></div>';
     }).join('') + '</div>';
   }
-  /* نصوص المؤلف من القوالب: تظهر فقط حين تكون الخانة غير فارغة، وبلا أي undefined */
+  /* مكتبة التحرير V2. المعاينة الكاملة محلية صراحة، وليست استحقاق شراء أو حماية محتوى. */
+  function paragraphs(t, cls) {
+    return String(t || '').trim().split(/\n{2,}/).filter(Boolean).map(function (p) { return '<p class="aqm-g-p ' + (cls || '') + '">' + esc(p) + '</p>'; }).join('');
+  }
+  function localFullPreview() {
+    return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) && window.AQ_MATRIX_LOCAL_PREVIEW === 'full';
+  }
+  function readingHtml(sl, full) {
+    if (!sl) return '<p class="mxm-content-error" role="status">تعذّر تحميل هذا الجزء. أعد المحاولة.</p>';
+    var f = typeof sl.free === 'string' ? sl.free.trim() : '', p = typeof sl.paid === 'string' ? sl.paid.trim() : '';
+    var q = typeof sl.reflection_question === 'string' ? sl.reflection_question.trim() : '';
+    if (!f || !p) return '<p class="mxm-content-error" role="status">تعذّر تحميل القراءة كاملة. أعد المحاولة.</p>';
+    return '<div class="mxm-free" data-reading-part="free">' + paragraphs(f) + '</div>' +
+      (full ? '<div class="mxm-paid" data-reading-part="paid"><p class="mxm-depth-label">تكملة القراءة</p>' + paragraphs(p) + (q ? paragraphs(q, 'aqm-reflection') : '') + '</div>' :
+      '<div class="mxm-depth-cut" data-reading-part="cut"><b>تكتمل الفكرة في القراءة المتعمقة</b><p>المشهد التالي يشرح موضع التعثر وكيف تختبر بديلًا مناسبًا، دون أن يحكم على الشخص.</p><small>معاينة فصل المحتوى فقط. إتاحة القراءة الكاملة لم تُفعّل بعد.</small></div>');
+  }
   function hydrateModeSlots(host, mode) {
-    var L = window.AqeeqMatrix; if (!L || !L.modeSlots) return;
+    var L = window.AqeeqMatrix; if (!L || !L.modeSlots) return Promise.resolve([]);
     var cache = {};
-    host.querySelectorAll('.mxm-ptslot').forEach(function (el) {
-      var n = +el.dataset.n; if (!(n >= 1 && n <= 22)) return;
-      (cache[n] = cache[n] || L.modeSlots(mode, n)).then(function (d) {
-        if (!d) return;
-        var sec = d.sections.filter(function (s) { return s.id === el.dataset.sec; })[0];
+    var jobs = [].map.call(host.querySelectorAll('.mxm-ptslot'), function (el) {
+      var n = +el.dataset.n; if (!(n >= 1 && n <= 22)) return Promise.resolve(false);
+      return (cache[n] = cache[n] || L.modeSlots(mode, n)).then(function (d) {
+        var sec = d && d.sections.filter(function (s) { return s.id === el.dataset.sec; })[0];
         var sl = sec && sec.slots.filter(function (x) { return x.key === el.dataset.pt; })[0];
-        var t = sl && typeof sl.text === 'string' ? sl.text.trim() : '';
-        var q = typeof sl.reflection_question === 'string' ? sl.reflection_question.trim() : '';
-        if (!t && !q) return;
-        el.innerHTML = (t ? t.split(/\n{2,}/).map(function (para) { return '<p class="aqm-g-p">' + esc(para) + '</p>'; }).join('') : '') + (q ? '<p class="aqm-g-p aqm-reflection"><em>' + esc(q) + '</em></p>' : '');
-      });
+        el.innerHTML = readingHtml(sl, localFullPreview());
+        el.dataset.loaded = sl ? 'true' : 'false';
+        el.dispatchEvent(new CustomEvent('aq-matrix-reading-ready', { bubbles: true }));
+        return !!sl;
+      }).catch(function () { el.innerHTML = readingHtml(null, false); el.dataset.loaded = 'false'; return false; });
     });
+    return Promise.all(jobs);
   }
   function bindAcc(host) {
     if (host.__mxcAcc) return; host.__mxcAcc = true;
@@ -207,9 +229,10 @@
     function show(head, sub, n) {
       var a = AD().getArcanaInfo(n);
       card.innerHTML = '<button type="button" class="mxc-pick-x" aria-label="إغلاق">×</button><div class="mxc-pick-h"><span class="mxm-num">' + n + '</span><div><b>' + esc(head) + '</b><small>' + esc(sub) + '</small></div></div>' +
-        '<p><strong>' + esc(a.name) + '</strong> — ' + esc(a.archetype) + '.</p><p><em>في حالتها الصافية:</em> ' + esc(a.light) + '.</p><p><em>حين تختل:</em> ' + esc(a.shadow) + '.</p>';
+        '<p><strong>' + esc(a.name) + '</strong></p><p>هذا اسم الرمز في هذه النقطة، وليس وصفًا محسومًا لشخص أو مرحلة. اقرأ معنى موضعه في الأقسام أسفل الخريطة، ثم قارنه بما تلاحظه فعلًا.</p>';
       card.hidden = false;
     }
+    card.addEventListener('click', function (e) { if (e.target.closest('.mxc-pick-x')) card.hidden = true; });
     map.querySelectorAll('[data-age], .aqm-svg-age-label, .aqm-node').forEach(function (el) { el.style.cursor = 'pointer'; });
     map.addEventListener('click', function (e) {
       var t = e.target; if (!t.closest) return;
@@ -227,7 +250,7 @@
       }
     });
   }
-  var CHILD_SUB = ['كيف يرى الدنيا من الداخل؟', 'ما الذي يطمئنه ويهدّئه؟', 'ماذا ورث من أبيه وأمه؟', 'ما الموهبة التي وُلد بها؟', 'كيف يثبت نفسه بين الناس؟', 'إلى أين يسير في حياته؟', 'ما المخاوف التي لا يحكيها؟', 'ما الذي ينتظره هذا العام؟'];
+  var CHILD_SUB = ['كيف يرى الدنيا من الداخل؟', 'ما الذي يطمئنه ويهدّئه؟', 'ما الرسائل التي يراها من مقدمي الرعاية؟', 'ما الذي يحب أن يجربه؟', 'كيف يثبت نفسه بين الناس؟', 'كيف تساعده على الاختيار والمشاركة؟', 'كيف تنصت لما يقلقه دون افتراض؟', 'ما المساحة التي تتيحها للتجربة هذا العام؟'];
   function renderChild(host, d, name) {
     var P = ofDate(d), age = ageOf(P.birth), ae = ageEnergy(P, age), full = null, map = '';
     try { full = AD().calculateDestinyMatrix(d); var N = window.AqeeqNumerology; if (N && N.generateMatrixSVG) map = '<div class="aqm-canvas-wrap mxm-map">' + N.generateMatrixSVG(full).replace(/>undefined</g, '>—<').replace(/data-arcana="undefined"/g, 'data-arcana=""') + '</div>'; } catch (e) { map = ''; }
@@ -239,7 +262,7 @@
         if (k === '__age') return { n: ae.number, x: 'من عمر ' + ae.age };
         return { n: P[k] };
       }, CHILD_SUB) + sum +
-      '<p class="mxm-note">النصوص داخل الأقسام تمهيدية، والأرقام محسوبة من تاريخ الميلاد.</p>';
+      '<p class="mxm-note">هذه قراءة رمزية للأهل، لا تقييمًا لنمو الطفل أو شخصيته. لاحظ اهتمامه واحتياجه الفعلي واترك له مساحة الاختلاف.</p>';
     host.hidden = false; bindAcc(host); hydrateModeSlots(host, 'child'); if (full) bindMap(host, full, { age: 'الطاقة التي يمرّ بها الطفل عند هذا العمر', dec: 'بداية مرحلة جديدة في عمره', node: 'نقطة من خريطة الطفل' });
   }
 
@@ -349,7 +372,7 @@
       saveMeta: function (p) { return { type: 'matrix-child', typeLabel: 'مصفوفة الطفل', title: p[0].n || 'مصفوفة الطفل', subtitle: fmtDate(p[0].d), inputs: { name: p[0].n, date: p[0].d } }; }
     });
   }
-  window.AqMatrixModes = { fromCorners: fromCorners, fromAnchors: fromAnchors, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull };
+  window.AqMatrixModes = { fromCorners: fromCorners, fromAnchors: fromAnchors, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull, renderChild: renderChild, hydrateModeSlots: hydrateModeSlots, readingHtml: readingHtml, localFullPreview: localFullPreview };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
     var boot = function () { build(); buildCompatPage(); buildChildPage(); var n = 0; (function t() { buildCompatPage(); buildChildPage(); if (++n < 12 && !((document.getElementById('mxc-form') || {}).__mxc && (document.getElementById('mxk-form') || {}).__mxc)) setTimeout(t, 400); })(); };

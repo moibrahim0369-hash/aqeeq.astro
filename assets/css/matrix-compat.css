@@ -742,3 +742,16 @@ html body #matrix .mxm-links{display:grid;grid-template-columns:repeat(2,1fr);ga
 html body #matrix .mxm-link{display:grid;justify-items:center;gap:6px;padding:10px 8px;border-radius:18px;border:1px solid #E3CFA4;background:linear-gradient(160deg,#FFFDF8,#F7EEDC);color:#6B1D2F;text-decoration:none;font-size:13px;font-weight:700}
 html body #matrix .mxm-link .mxm-sic{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:#fff;border:1px solid #E3CFA4}
 html body #matrix .mxm-link .mxm-sic svg{width:22px;height:22px}
+/* Matrix V2 editorial reading, scoped to compatibility and child modes. */
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-reading{padding:20px 0;border-top:1px solid rgba(152,112,61,.2);min-width:0}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-reading:first-of-type{border-top:0}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-reading>.aqm-slot-title{font-size:1.02rem;line-height:1.8;color:#6b2943;margin:0 0 14px}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-ptslot p{line-height:2.05;overflow-wrap:anywhere}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-paid{margin-top:22px;padding-top:16px;border-top:1px solid #d8c7ab}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-depth-label{font-size:.78rem;letter-spacing:.02em;color:#8b6537!important;font-weight:700}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-depth-cut{margin-top:20px;padding:18px;border:1px solid #d9c5a1;border-radius:14px;background:#f5eddc;color:#614b39}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-depth-cut p{margin:6px 0!important;font-size:.9rem}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-depth-cut small{display:block;font-size:.75rem;line-height:1.8;color:#806e5a}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-content-error{color:#8b3131}
+:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .aqm-reflection{border-inline-start:3px solid #b58b50;padding-inline-start:12px;margin-top:18px;color:#754057;font-style:normal}
+@media(max-width:420px){:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-reading{padding-block:16px}:is(#mxc-result,#mxk-result,.aqm-sheet.is-pair) .mxm-depth-cut{padding:14px}}

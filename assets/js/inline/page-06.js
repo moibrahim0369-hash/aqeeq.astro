@@ -1023,6 +1023,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   citySel.value = "0";
   function updateCityCoords() {
     if (citySel.value === "manual") { cityCoords.textContent = "الإدخال اليدوي: اكتب الإحداثيات وفرق التوقيت بنفسك."; return; }
+    if (!citySel.value) { cityCoords.textContent = "اختر مدينة الميلاد من القائمة أو أدخل الإحداثيات يدويًا."; return; }
     const place = CITIES[Number(citySel.value)];
     if (!place) return;
     cityCoords.textContent = "خط العرض: " + place.lat.toFixed(4) + "° · خط الطول: " + place.lon.toFixed(4) + "° · المنطقة الزمنية: " + (place.tz || "غير محددة");
@@ -1074,6 +1075,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       option.dataset.search = (place.n + " " + place.g + " " + (item.nameLatin || "")).toLocaleLowerCase("ar");
       group.appendChild(option);
     });
+    document.dispatchEvent(new Event("aqeeq:cities-ready"));
   })();
   $("#f-unknown").addEventListener("change", e => { $("#f-time").disabled = e.target.checked; });
 
@@ -1119,10 +1121,22 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const q = String(name || "").trim().toLocaleLowerCase("ar"); if (!q) return -1;
     return CITIES.findIndex(x => x.tz && x.n.trim().toLocaleLowerCase("ar") === q);
   }
+  // Select values are atlas indices, never city names. Do not guess on a miss.
+  function applyProfileCity(profile) {
+    const name = profile && (profile.city || profile.birth_city);
+    const country = profile && (profile.country || profile.birth_country);
+    const q = String(name || "").trim().toLocaleLowerCase("ar");
+    if (!q) return false;
+    const matches = CITIES.map((c, i) => ({c, i})).filter(x => x.c.tz && x.c.n.trim().toLocaleLowerCase("ar") === q && (!country || x.c.g === country));
+    if (matches.length !== 1) { citySel.selectedIndex = -1; updateCityCoords(); return false; }
+    citySel.value = String(matches[0].i);
+    citySel.dispatchEvent(new Event("change", { bubbles: true }));
+    return true;
+  }
   let MINE = null, MINEK = "";
   /* خريطة صاحب الحساب فقط من ملفه الشخصي، لا من آخر شخص حُسب في أي نموذج */
   function getMine() { const k = localStorage.getItem("aqeeq_profile_cache_v1") || ""; if (k !== MINEK) { MINEK = k; MINE = natalFromProfile(true); } return MINE; }
-  window.AqeeqChartContext = { getMine, getNatal: () => LAST, getOrPrefill: () => LAST || (LAST = natalFromProfile()), setFromInput, cityIndexByName, cityOptionsHTML: () => citySel.innerHTML };
+  window.AqeeqChartContext = { getMine, getNatal: () => LAST, getOrPrefill: () => LAST || (LAST = natalFromProfile()), setFromInput, cityIndexByName, applyProfileCity, cityOptionsHTML: () => citySel.innerHTML };
   $("#cform").addEventListener("submit", e => { e.preventDefault(); calc(); });
 
   function isolateResultView(activeView) {
@@ -1344,7 +1358,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       utcMs = Date.UTC(y, m - 1, d, hh, mm) - off * 3600000;
       placeName = `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
     } else {
-      const c = CITIES[+citySel.value];
+      const c = citySel.value === "" ? null : CITIES[+citySel.value];
+      if (!c) return fail("اختر مدينة ميلادك من القائمة أو أدخل الإحداثيات يدويًا.");
       lat = c.lat; lon = c.lon; placeName = c.n;
       try { utcMs = Astro.localToUtcMs(y, m, d, hh, mm, c.tz); }
       catch (err) { return fail("المتصفح مش قادر يحسب التوقيت المحلي للمكان ده. جرّب الإدخال اليدوي."); }
@@ -2144,6 +2159,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
         <div class="fy-actions"><a class="btn" href="#chart">احسب خريطة ميلادك</a><a class="btn ghost" href="#account">حسابي وبياناتي</a></div></div>`;
     }
     function render() {
+      if (host.dataset.renderer === "you-page" && window.AqSession && window.AqSession.user) return;
       let nat = null;
       try { nat = window.AqeeqChartContext && window.AqeeqChartContext.getOrPrefill(); } catch (e) { }
       if (!nat) { welcome(); return; }

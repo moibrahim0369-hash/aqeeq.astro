@@ -1,6 +1,9 @@
 /* صفحة «أنت» بعد تسجيل الدخول: صفحة مستقلة (عبوراتك + نمطك + المجالات). واجهة فقط، النصوص مؤقتة. */
 (function () {
   'use strict';
+  // This renderer owns the shared host; the legacy fallback must not replace it.
+  var ownedHost = document.getElementById('fy-body');
+  if (ownedHost) ownedHost.dataset.renderer = 'you-page';
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var SVG = function (p) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + p + '</svg>'; };
   var DAY = 864e5, MONTH = 30.44 * DAY;

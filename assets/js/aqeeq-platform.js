@@ -741,7 +741,8 @@
             timeEl.value = prof.time;
             timeEl.dispatchEvent(new Event('change', { bubbles: true }));
           }
-          showToast('تم ملء بيانات الميلاد من ملفك الشخصي');
+          const cityOK = !prof.city || (window.AqeeqChartContext && window.AqeeqChartContext.applyProfileCity && window.AqeeqChartContext.applyProfileCity(prof));
+          showToast(cityOK ? 'تم ملء بيانات الميلاد من ملفك الشخصي' : 'تم ملء بيانات الميلاد. اختر مدينة الميلاد من القائمة قبل الحساب');
         }
       },
       {

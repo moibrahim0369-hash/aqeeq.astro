@@ -20,6 +20,7 @@
   var currentProfile = null;
   var selectedAvatarFile = null;
   var isEditingProfile = false;
+  var profileSavePending = false;
 
   function $(id) { return document.getElementById(id); }
 
@@ -74,12 +75,14 @@
     var fDate = $('f-date');
     var fTime = $('f-time');
     var fUnk  = $('f-unknown');
-    var fCity = $('f-city');
     if (fName && !fName.value && fullName) fName.value = fullName;
     if (fDate && !fDate.value && profile.birth_date) fDate.value = profile.birth_date;
     if (fTime && profile.birth_time) fTime.value = String(profile.birth_time).slice(0, 5);
     if (fUnk) fUnk.checked = Boolean(profile.birth_time_unknown);
-    if (fCity && !fCity.value && profile.birth_city) fCity.value = profile.birth_city;
+    if (window.AqeeqChartContext && window.AqeeqChartContext.applyProfileCity) {
+      window.AqeeqChartContext.applyProfileCity(cachePayload);
+    }
+    if (fUnk) fUnk.dispatchEvent(new Event('change', { bubbles: true }));
 
     var lpName = $('lp-name');
     var lpDate = $('lp-date');
@@ -426,6 +429,7 @@
   }
 
   function fillProfileForm(profile, user) {
+    ensureProfileElements();
     var meta = (user && user.user_metadata) || {};
     var split = splitFullName(meta.full_name || meta.name || '');
     var first = (profile && profile.first_name) || meta.first_name || split.firstName || '';
@@ -546,7 +550,7 @@
 
   async function onProfileSubmit(e) {
     e.preventDefault();
-    if (!currentUser || !window.aqeeqSupabase) return;
+    if (!currentUser || !window.aqeeqSupabase || profileSavePending) return;
     showProfileMsg('');
 
     var firstName = $('profile-first-name').value.trim();
@@ -575,17 +579,22 @@
       return;
     }
 
+    profileSavePending = true;
+    var saveUser = currentUser;
+    var persisted = false;
     setProfileLoading(true);
     try {
-      var avatarUrl = await uploadAvatarIfNeeded(currentUser);
+      var avatarUrl = await uploadAvatarIfNeeded(saveUser);
       var timeUnknown = birthTimeUnknown;
       var res = await window.aqeeqSupabase
         .from('profiles')
-        .upsert({ id: currentUser.id, first_name: firstName, last_name: lastName, birth_date: birthDate, birth_time: birthTime, birth_time_unknown: timeUnknown, birth_city: birthCity, birth_country: birthCountry, avatar_path: avatarUrl, profile_completed_at: new Date().toISOString(), updated_at: new Date().toISOString() }, { onConflict: 'id' })
+        .upsert({ id: saveUser.id, first_name: firstName, last_name: lastName, birth_date: birthDate, birth_time: birthTime, birth_time_unknown: timeUnknown, birth_city: birthCity, birth_country: birthCountry, avatar_path: avatarUrl, profile_completed_at: new Date().toISOString(), updated_at: new Date().toISOString() }, { onConflict: 'id' })
         .select(PROFILE_COLS)
         .single();
 
       if (res.error) throw res.error;
+      persisted = true;
+      if (!currentUser || currentUser.id !== saveUser.id) return;
 
       // حفظ الاسم المفضّل في بيانات المستخدم المحلية وبيانات الجلسة
       try {
@@ -601,10 +610,15 @@
       fillProfileForm(currentProfile, currentUser);
       applyCompletionGate(currentProfile);
       showProfileMsg('تم حفظ ملفك الشخصي وتحديث هويتك الفلكية بنجاح.', true);
+      document.dispatchEvent(new CustomEvent('aqeeq:profile-saved', { detail: { userId: saveUser.id } }));
     } catch (err) {
       console.error('Profile completion save failed:', err);
-      showProfileMsg('تعذر حفظ البيانات حاليًا. تحقق من اتصالك وحاول مرة أخرى.');
+      if (currentUser && currentUser.id === saveUser.id) {
+        showProfileMsg(persisted ? 'تم حفظ البيانات في حسابك، لكن تعذر تحديث العرض. أعد تحميل الصفحة لعرضها.' : 'تعذر حفظ البيانات حاليًا. تحقق من اتصالك وحاول مرة أخرى.');
+      }
+      if (!persisted) document.dispatchEvent(new CustomEvent('aqeeq:profile-save-failed', { detail: { userId: saveUser.id } }));
     } finally {
+      profileSavePending = false;
       setProfileLoading(false);
     }
   }
@@ -627,7 +641,9 @@
     section.hidden = false;
     showProfileMsg('');
     try {
-      currentProfile = await fetchOrCreateProfile(user);
+      var fetched = await fetchOrCreateProfile(user);
+      if (!currentUser || currentUser.id !== user.id) return;
+      currentProfile = fetched;
       isEditingProfile = !isProfileComplete(currentProfile);
       fillProfileForm(currentProfile, user);
       applyCompletionGate(currentProfile);
@@ -644,6 +660,10 @@
       showProfileMsg('تعذر تحميل بيانات الملف الشخصي. يرجى المحاولة مرة أخرى.');
     }
   }
+
+  document.addEventListener('aqeeq:cities-ready', function () {
+    if (currentProfile && window.AqeeqChartContext && window.AqeeqChartContext.applyProfileCity) window.AqeeqChartContext.applyProfileCity(currentProfile);
+  });
 
   function initProfileCompletion() {
     if (!window.aqeeqSupabase) return;

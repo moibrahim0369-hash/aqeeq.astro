@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '43';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '44-editorial-local';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -90,10 +90,10 @@
     return load('gemini/pos-' + String(id).padStart(2, '0') + '.json', d => d && d.number === id && d.positions && typeof d.positions === 'object')
       .catch(() => null);   // رقم بلا ملف مصدر (مثل 22 للمرجع أو 17 للمواضع) = لا يوجد، وليس خطأ
   }
-  /* قوالب النصوص المخصصة للشراكة والطفل: gemini/compat-NN.json و gemini/child-NN.json (خانات نصية فارغة تُملأ لاحقًا) */
+  /* قوالب النصوص المخصصة للشراكة والطفل: gemini/compat-NN.json و gemini/child-NN.json (نصوص مرتبطة بكل موضع ورقم) */
   function modeSlots(mode, id) {
     if ((mode !== 'compat' && mode !== 'child') || !validId(id)) return Promise.resolve(null);
-    return load('gemini/' + mode + '-' + String(id).padStart(2, '0') + '.json', d => d && d.mode === mode && Array.isArray(d.sections)).catch(() => null);
+    return load('gemini/' + mode + '-' + String(id).padStart(2, '0') + '.json', d => d && d.mode === mode && d.arcana === id && Array.isArray(d.sections)).catch(() => null);
   }
   function geminiTails() {
     return load('gemini/tails.json', d => d && Array.isArray(d.tails));

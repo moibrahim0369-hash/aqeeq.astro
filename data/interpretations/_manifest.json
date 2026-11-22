@@ -1,5 +1,5 @@
 {
- "total": 1025,
+ "total": 1234,
  "entries": [
   {
    "id": "natal.core.sun.house1",
@@ -426,84 +426,84 @@
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house2",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house3",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house4",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house5",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house6",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house7",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house8",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house9",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house10",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house11",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.jupiter.house12",
    "file": "data/interpretations/jupiter.json",
    "layer": "core",
    "where": "المشتري في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.saturn.house1",
@@ -594,587 +594,671 @@
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house2",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house3",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house4",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house5",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house6",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house7",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house8",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house9",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house10",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house11",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.uranus.house12",
    "file": "data/interpretations/uranus.json",
    "layer": "core",
    "where": "أورانوس في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house1",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house2",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house3",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house4",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house5",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house6",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house7",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house8",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house9",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house10",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house11",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.neptune.house12",
    "file": "data/interpretations/neptune.json",
    "layer": "core",
    "where": "نبتون في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house1",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house2",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house3",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house4",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house5",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house6",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house7",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house8",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house9",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house10",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house11",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.pluto.house12",
    "file": "data/interpretations/pluto.json",
    "layer": "core",
    "where": "بلوتو في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house1",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house2",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house3",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house4",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house5",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house6",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house7",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house8",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house9",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house10",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house11",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.north_node.house12",
    "file": "data/interpretations/north_node.json",
    "layer": "core",
    "where": "العقدة الشمالية في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house1",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house2",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house3",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house4",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house5",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house6",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house7",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house8",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house9",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house10",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house11",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.south_node.house12",
    "file": "data/interpretations/south_node.json",
    "layer": "core",
    "where": "العقدة الجنوبية في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house1",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house2",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house3",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house4",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house5",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house6",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house7",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house8",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house9",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house10",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house11",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.lilith.house12",
    "file": "data/interpretations/lilith.json",
    "layer": "core",
    "where": "ليليث في البيت 12 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house1",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 1 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house2",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 2 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house3",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 3 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house4",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 4 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house5",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 5 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house6",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 6 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house7",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 7 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house8",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 8 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house9",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 9 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house10",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 10 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house11",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 11 (ملخص + نص كامل)",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.core.fortune.house12",
    "file": "data/interpretations/fortune.json",
    "layer": "core",
    "where": "نقطة الحظ في البيت 12 (ملخص + نص كامل)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.core.chiron.house1",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 1 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house2",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 2 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house3",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 3 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house4",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 4 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house5",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 5 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house6",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 6 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house7",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 7 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house8",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 8 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house9",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 9 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house10",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 10 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house11",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 11 (ملخص + نص كامل)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.core.chiron.house12",
+   "file": "data/interpretations/chiron.json",
+   "layer": "core",
+   "where": "كيرون في البيت 12 (ملخص + نص كامل)",
    "status": "missing"
   },
   {
@@ -2351,6 +2435,90 @@
    "file": "data/interpretations/fortune.json",
    "layer": "sign_tint",
    "where": "لون برج الحوت على نقطة الحظ (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.fortune.house{n}.pisces)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.aries",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحمل على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.aries)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.taurus",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الثور على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.taurus)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.gemini",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجوزاء على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.gemini)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.cancer",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج السرطان على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.cancer)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.leo",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الأسد على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.leo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.virgo",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج العذراء على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.virgo)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.libra",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الميزان على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.libra)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.scorpio",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج العقرب على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.scorpio)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.sagittarius",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج القوس على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.sagittarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.capricorn",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الجدي على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.capricorn)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.aquarius",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الدلو على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.aquarius)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_tint.chiron.pisces",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_tint",
+   "where": "لون برج الحوت على كيرون (قصير، يظهر تحت النص الأساسي؛ يمكن إضافة نسخة خاصة بالبيت: natal.sign_tint.chiron.house{n}.pisces)",
    "status": "missing"
   },
   {
@@ -3989,84 +4157,84 @@
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الحمل",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.taurus",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الثور",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.gemini",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الجوزاء",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.cancer",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في السرطان",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.leo",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الأسد",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.virgo",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في العذراء",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.libra",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الميزان",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.scorpio",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في العقرب",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.sagittarius",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في القوس",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.capricorn",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الجدي",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.aquarius",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الدلو",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.asc.pisces",
    "file": "data/interpretations/asc.json",
    "layer": "angle",
    "where": "الطالع في الحوت",
-   "status": "missing"
+   "status": "approved"
   },
   {
    "id": "natal.angle.dsc.aries",
@@ -5332,840 +5500,1260 @@
    "id": "natal.sign_only.sun.aries",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.taurus",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.gemini",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.cancer",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.leo",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.virgo",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.libra",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.scorpio",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.sagittarius",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.capricorn",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.aquarius",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.sun.pisces",
    "file": "data/interpretations/sun.json",
    "layer": "sign_only",
-   "where": "الشمس في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الشمس في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.aries",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.taurus",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.gemini",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.cancer",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.leo",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.virgo",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.libra",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.scorpio",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.sagittarius",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.capricorn",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.aquarius",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.moon.pisces",
    "file": "data/interpretations/moon.json",
    "layer": "sign_only",
-   "where": "القمر في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "القمر في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.mercury.aries",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.taurus",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.gemini",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.cancer",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.leo",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.virgo",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.libra",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.scorpio",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.sagittarius",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.capricorn",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.aquarius",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mercury.pisces",
    "file": "data/interpretations/mercury.json",
    "layer": "sign_only",
-   "where": "عطارد في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "عطارد في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.venus.aries",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.taurus",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.gemini",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.cancer",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.leo",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.virgo",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.libra",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.scorpio",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.sagittarius",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.capricorn",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.aquarius",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.venus.pisces",
    "file": "data/interpretations/venus.json",
    "layer": "sign_only",
-   "where": "الزهرة في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "الزهرة في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.mars.aries",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.taurus",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.gemini",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.cancer",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.leo",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.virgo",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.libra",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.scorpio",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.sagittarius",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.capricorn",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.aquarius",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.mars.pisces",
    "file": "data/interpretations/mars.json",
    "layer": "sign_only",
-   "where": "المريخ في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المريخ في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.aries",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.taurus",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.gemini",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.cancer",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.leo",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.virgo",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.libra",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.scorpio",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.sagittarius",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.capricorn",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.aquarius",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.jupiter.pisces",
    "file": "data/interpretations/jupiter.json",
    "layer": "sign_only",
-   "where": "المشتري في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "المشتري في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.aries",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.taurus",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.gemini",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.cancer",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.leo",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.virgo",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.libra",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.scorpio",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.sagittarius",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.capricorn",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.aquarius",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.saturn.pisces",
    "file": "data/interpretations/saturn.json",
    "layer": "sign_only",
-   "where": "زحل في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "زحل في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.uranus.aries",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.taurus",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.gemini",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.cancer",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.leo",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.virgo",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.libra",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.scorpio",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.sagittarius",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.capricorn",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.aquarius",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.uranus.pisces",
    "file": "data/interpretations/uranus.json",
    "layer": "sign_only",
-   "where": "أورانوس في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
-   "status": "missing"
+   "where": "أورانوس في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
   },
   {
    "id": "natal.sign_only.neptune.aries",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.taurus",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.gemini",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.cancer",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.leo",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.virgo",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.libra",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.scorpio",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.sagittarius",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.capricorn",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.aquarius",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.neptune.pisces",
    "file": "data/interpretations/neptune.json",
    "layer": "sign_only",
-   "where": "نبتون في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "نبتون في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.aries",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الحمل بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.taurus",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الثور بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.gemini",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الجوزاء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.cancer",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في السرطان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.leo",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الأسد بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.virgo",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في العذراء بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.libra",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الميزان بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.scorpio",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في العقرب بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.sagittarius",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في القوس بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.capricorn",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الجدي بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.aquarius",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الدلو بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
    "id": "natal.sign_only.pluto.pisces",
    "file": "data/interpretations/pluto.json",
    "layer": "sign_only",
-   "where": "بلوتو في الحوت بدون بيت (للميلاد بلا ساعة؛ نص مستقل لا يشير إلى بيت)",
+   "where": "بلوتو في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.north_node.aries",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.taurus",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.gemini",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.cancer",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.leo",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.virgo",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.libra",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.scorpio",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.sagittarius",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.capricorn",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.aquarius",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.north_node.pisces",
+   "file": "data/interpretations/north_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الشمالية في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.aries",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.taurus",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.gemini",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.cancer",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.leo",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.virgo",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.libra",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.scorpio",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.sagittarius",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.capricorn",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.aquarius",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.south_node.pisces",
+   "file": "data/interpretations/south_node.json",
+   "layer": "sign_only",
+   "where": "العقدة الجنوبية في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.aries",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.taurus",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.gemini",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.cancer",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.leo",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.virgo",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.libra",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.lilith.scorpio",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.sagittarius",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.capricorn",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.aquarius",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.lilith.pisces",
+   "file": "data/interpretations/lilith.json",
+   "layer": "sign_only",
+   "where": "ليليث في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "approved"
+  },
+  {
+   "id": "natal.sign_only.fortune.aries",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.taurus",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.gemini",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.cancer",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.leo",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.virgo",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.libra",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.scorpio",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.sagittarius",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.capricorn",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.aquarius",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.fortune.pisces",
+   "file": "data/interpretations/fortune.json",
+   "layer": "sign_only",
+   "where": "نقطة الحظ في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.aries",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الحمل في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.taurus",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الثور في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.gemini",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الجوزاء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.cancer",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في السرطان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.leo",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الأسد في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.virgo",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في العذراء في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.libra",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الميزان في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.scorpio",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في العقرب في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.sagittarius",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في القوس في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.capricorn",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الجدي في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.aquarius",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الدلو في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
+   "status": "missing"
+  },
+  {
+   "id": "natal.sign_only.chiron.pisces",
+   "file": "data/interpretations/chiron.json",
+   "layer": "sign_only",
+   "where": "كيرون في الحوت في البرج (نص مستقل لا يشير إلى بيت، مع الساعة أو بدونها)",
    "status": "missing"
   },
   {
@@ -7175,6 +7763,881 @@
    "layer": "house_blend",
    "where": "إسهام بلوتو في قراءة البيت 12 الموحّدة (نص بلا اسم الكوكب ولا إشارة إليه؛ يُدمج مع إسهامات باقي كواكب البيت في قراءة واحدة متصلة)",
    "status": "missing"
+  },
+  {
+   "id": "natal.reference.planet.sun",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: الشمس",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.moon",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: القمر",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.mercury",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: عطارد",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.venus",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: الزهرة",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.mars",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: المريخ",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.jupiter",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: المشتري",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.saturn",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: زحل",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.uranus",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: أورانوس",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.neptune",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: نبتون",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.pluto",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: بلوتو",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.north_node",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: العقدة الشمالية",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.south_node",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: العقدة الجنوبية",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.lilith",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: ليليث",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.fortune",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: نقطة الحظ",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.chiron",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: كيرون",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.planet.ceres",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: ceres",
+   "status": "missing"
+  },
+  {
+   "id": "natal.reference.planet.pallas",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: pallas",
+   "status": "missing"
+  },
+  {
+   "id": "natal.reference.planet.juno",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: juno",
+   "status": "missing"
+  },
+  {
+   "id": "natal.reference.planet.vesta",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام: vesta",
+   "status": "missing"
+  },
+  {
+   "id": "natal.reference.sign.aries",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج aries",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.taurus",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج taurus",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.gemini",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج gemini",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.cancer",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج cancer",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.leo",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج leo",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.virgo",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج virgo",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.libra",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج libra",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.scorpio",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج scorpio",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.sagittarius",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج sagittarius",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.capricorn",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج capricorn",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.aquarius",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج aquarius",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.sign.pisces",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبرج pisces",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house1",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 1",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house2",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 2",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house3",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 3",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house4",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 4",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house5",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 5",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house6",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 6",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house7",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 7",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house8",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 8",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house9",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 9",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house10",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 10",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house11",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 11",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house.house12",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع عام للبيت 12",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.aspect.conjunction",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع نوع الاتصال conjunction",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.aspect.sextile",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع نوع الاتصال sextile",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.aspect.square",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع نوع الاتصال square",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.aspect.trine",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع نوع الاتصال trine",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.aspect.opposition",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع نوع الاتصال opposition",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house1",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 1",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house2",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 2",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house3",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 3",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house4",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 4",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house5",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 5",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house6",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 6",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house7",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 7",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house8",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 8",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house9",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 9",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house10",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 10",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house11",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 11",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.house12",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: ceres في البيت 12",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house1",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 1",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house2",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 2",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house3",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 3",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house4",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 4",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house5",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 5",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house6",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 6",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house7",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 7",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house8",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 8",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house9",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 9",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house10",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 10",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house11",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 11",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.house12",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: pallas في البيت 12",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house1",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 1",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house2",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 2",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house3",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 3",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house4",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 4",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house5",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 5",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house6",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 6",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house7",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 7",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house8",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 8",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house9",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 9",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house10",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 10",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house11",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 11",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.house12",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: juno في البيت 12",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house1",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 1",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house2",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 2",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house3",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 3",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house4",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 4",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house5",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 5",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house6",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 6",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house7",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 7",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house8",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 8",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house9",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 9",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house10",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 10",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house11",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 11",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.house12",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب لخريطة المستخدم: vesta في البيت 12",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house1",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 1",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house2",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 2",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house3",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 3",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house4",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 4",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house5",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 5",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house6",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 6",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house7",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 7",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house8",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 8",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house9",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 9",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house10",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 10",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house11",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 11",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.house_position.chiron.house12",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "مرجع غير منسوب للمستخدم عندما لا تتاح إحداثيات كيرون: البيت 12",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.ceres.general",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "سيريس: المعنى العام",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.pallas.general",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "بالاس: المعنى العام",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.juno.general",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "جونو: المعنى العام",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.asteroids.vesta.general",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "فيستا: المعنى العام",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.dominant.fire",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "غلبة النار",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.dominant.earth",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "غلبة التراب",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.dominant.air",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "غلبة الهواء",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.dominant.water",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "غلبة الماء",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.low.fire",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "انخفاض تمثيل النار",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.low.earth",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "انخفاض تمثيل التراب",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.low.air",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "انخفاض تمثيل الهواء",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.element.low.water",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "انخفاض تمثيل الماء",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.modality.dominant.cardinal",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "غلبة الطابع الأساسي",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.modality.dominant.fixed",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "غلبة الطابع الثابت",
+   "status": "approved"
+  },
+  {
+   "id": "natal.reference.modality.dominant.mutable",
+   "file": "data/interpretations/reference.json",
+   "layer": "reference",
+   "where": "غلبة الطابع المتحول",
+   "status": "approved"
+  },
+  {
+   "id": "natal.modifier.saturn.house7.retrograde",
+   "file": "data/interpretations/saturn.json",
+   "layer": "modifier",
+   "where": "زحل | المحكمة اللي جوا العلاقة",
+   "status": "approved"
+  },
+  {
+   "id": "natal.modifier.saturn.house8.retrograde",
+   "file": "data/interpretations/saturn.json",
+   "layer": "modifier",
+   "where": "زحل | السر اللي بقى حارسًا عليك",
+   "status": "approved"
   }
  ]
 }
