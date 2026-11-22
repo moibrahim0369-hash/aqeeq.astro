@@ -81,7 +81,7 @@
     var nextK = KEYS[(KEYS.indexOf(k) + 1) % KEYS.length];
     var chev = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
     return '<div class="aqhc-sheet-scrim" data-close></div>'
-      + '<div class="aqhc-sheet" role="dialog" aria-label="قراءة ' + p.n + ' السريعة">'
+      + '<div class="aqhc-sheet" role="dialog" aria-modal="true" aria-label="قراءة ' + p.n + ' السريعة">'
       + '<button type="button" class="aqhc-sheet-close" aria-label="إغلاق" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>'
       + '<button type="button" class="aqhc-sheet-next" data-next="' + nextK + '">التالي: ' + gP()[nextK].n + chev + '</button>'
       + '<div class="aqhc-sheet-grip"></div>'
@@ -200,6 +200,7 @@
     host = document.getElementById('aqhc-planets');
     sheetRoot = document.getElementById('aqhc-sheet-root');
     if (!host || !sheetRoot) return;
+    if (sheetRoot.parentElement !== document.body) document.body.appendChild(sheetRoot);
     if (!window.Astro || !gP() || !gS()) { setTimeout(init, 400); return; }
     tick();
     Array.prototype.forEach.call(document.querySelectorAll('.aqhc-tab'), function (b) {

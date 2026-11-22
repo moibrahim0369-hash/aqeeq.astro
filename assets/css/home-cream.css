@@ -331,3 +331,20 @@ html body #home.aqh .aqh-fuse #aqh-tools > :is(#aqh-y27,#aqh-karmic) .aqh-go{dis
 
 /* The approved promo pair replaces the old rotating home banner. */
 html body #home.aqh .aqh-fuse #aqh-tools > #b3-rot{display:none!important}
+
+/* Approved eight-tile catalogue. Existing unavailable tools stay disabled. */
+#home .aqhc-catalog{padding:4px 16px 14px}
+#home .aqhc-catalog h2{margin:0 0 8px}
+#home .aqhc-categories{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);gap:6px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;justify-content:start}
+#home .aqhc-category{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:12px;font-family:inherit;font-weight:600;font-size:11px;color:#3a2a2f;white-space:nowrap;text-decoration:none;background:rgba(255,253,247,.78);border:1px solid rgba(106,32,56,.15);box-shadow:0 4px 12px #4a122410}
+#home .aqhc-category svg{width:14px;height:14px;color:#6a2038;flex:0 0 auto}
+#home .aqhc-category:focus-visible{outline:2px solid #6a2038;outline-offset:2px}
+#home .aqhc-category.is-unavailable{background:#eee9e1;color:#817870;box-shadow:none;border-style:dashed;cursor:not-allowed}
+#home .aqhc-category.is-unavailable svg{color:#817870}
+#home .aqhc-category small{font-size:9px;color:#817870}
+
+/* New home sky strip replaces these two old presentations, not their engines. */
+#home #aqh-band,#home #aqh-energy{display:none!important}
+/* Portal above fixed home navigation; do not obscure the reading or its links. */
+.aqhc-sheet-scrim{z-index:2000}
+.aqhc-sheet{z-index:2001}
