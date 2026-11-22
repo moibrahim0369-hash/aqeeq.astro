@@ -931,6 +931,7 @@
           html += t ? geminiBlocksHtml(t.blocks) : await composeTailFallback(tailTriad).catch(() => '');
         }
         grid.querySelector('[data-slot="gemini"]').innerHTML = html;
+        if (cfg.tail && window.AqeeqMatrixCompletion) window.AqeeqMatrixCompletion.mount(grid.querySelector('[data-slot="gemini"]'), [{kind:'tail',code:tailTriad.map(Number).join('-'),label:'الذيل الكارمي'}], loader.authoredCompletion, geminiBlocksHtml);
       }).catch(() => {
         grid.querySelector('[data-slot="gemini"]').innerHTML = '<p class="aqm-slot-p aqm-pending-note">تعذّر تحميل النص الآن. حاول مرة أخرى.</p>';
       });
@@ -1099,6 +1100,11 @@
           return `<article class="aqm-line-entry"><h4 class="aqm-slot-title">${escapeHtml(label)}${hit ? ' — ' + title : ''}<span class="aqm-code-badges">${badges}</span></h4>${body}</article>`;
         }).join('');
         cMount.innerHTML = html;
+        if (window.AqeeqMatrixCompletion) {
+          const requested = []; const exactSeen = {};
+          triads.forEach(([label,t]) => { const code=t.join('-'); if(exactSeen[code]) exactSeen[code].label+=' · '+label; else { const request={kind:'program',code,label}; exactSeen[code]=request; requested.push(request); } });
+          window.AqeeqMatrixCompletion.mount(cMount,requested,loader.authoredCompletion,geminiBlocksHtml);
+        }
       }).catch(() => { cMount.innerHTML = ''; });
     }
   }

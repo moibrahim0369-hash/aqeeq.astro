@@ -42,7 +42,7 @@
     if (nx) { var nt = nx.querySelector('.aqm-acc-title'); nb.querySelector('b').textContent = nt ? nt.textContent : ''; nb.hidden = false; } else nb.hidden = true;
   }
   document.addEventListener('aq-matrix-reading-ready', function (e) {
-    if (sheet && !sheet.hidden && cur && cur.contains(e.target)) fill(cur);
+    if (sheet && !sheet.hidden && cur && cur.contains(e.target)) { var sb=sheet.querySelector('.aqm-sheet-body'), top=sb.scrollTop; fill(cur); sb.scrollTop=top; }
   });
   function open(item) {
     var s = ensureSheet(); fill(item);

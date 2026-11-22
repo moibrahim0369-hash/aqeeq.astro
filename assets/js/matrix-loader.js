@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '20261122-additions924-v1';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '20261122-completion286-v1';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -102,6 +102,7 @@
       return !!window.AqeeqMatrixAdditions && window.AqeeqMatrixAdditions.validate(d, mode, id);
     }).catch(() => null);
   }
+  function authoredCompletion() { return load('completion/individual.json', d => !!window.AqeeqMatrixCompletion && window.AqeeqMatrixCompletion.validate(d)); }
   function geminiTails() {
     return load('gemini/tails.json', d => d && Array.isArray(d.tails));
   }
@@ -113,7 +114,7 @@
     modeSlots: modeSlots,
     modeAdditions: modeAdditions,
     chakraLower,
-    gemini, geminiTails,
+    gemini, geminiTails, authoredCompletion,
     core, arcana, chakraText, chakraReading, prefetch, FIELDS,
     karmicTails, karmicTail, resolveKarmicTail,
     section, sectionEntry
