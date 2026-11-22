@@ -140,7 +140,7 @@
     ids = [].concat(ids); var id = ids[ids.length - 1], e = null;
     for (var i = 0; i < ids.length && !e; i++) e = ix[ids[i]];
     if (e) return '<div class="il-entry" data-il-id="' + esc(e.id) + '">' + (e.title ? '<h4 class="il-entry-title">' + esc(e.title) + '</h4>' : '') + (withSummary && e.summary ? '<div class="il-sum">' + renderText(e.summary) + '</div>' : '') + '<div class="il-text">' + renderText(e.text) + '</div></div>';
-    return SHOW_EMPTY_SLOTS ? '<div class="il-slot" data-il-id="' + esc(id) + '"><span>النص قيد الكتابة</span><code dir="ltr">' + esc(id) + '</code></div>' : '';
+    return SHOW_EMPTY_SLOTS ? '<div class="il-slot" data-il-id="' + esc(id) + '"><span>التفسير المفصّل لهذا الموضع قيد الإعداد.</span></div>' : '';
   }
   function sub(title, body) { return body ? '<div class="il-sub"><h5>' + esc(title) + '</h5>' + body + '</div>' : ''; }
   function det(cls, sum, body, open) { return '<details class="' + cls + '"' + (open ? ' open' : '') + '><summary>' + sum + '</summary><div class="il-body">' + body + '</div></details>'; }

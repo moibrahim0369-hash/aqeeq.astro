@@ -23,6 +23,7 @@
   var saveEventListener = null, saveFailListener = null;   // مستمعا عقد الحفظ أثناء حفظ جارٍ
   var saveGeneration = 0;     // جيل عملية الحفظ: يتقدم عند كل إغلاق فتسكت أي عملية قديمة
   var savePollTimer = null, savePendTimer = null;
+  var profileReadGeneration = 0, profileReadOwner = null, dataStepOwner = null;
   function clearSaveListener() {
     if (saveEventListener) { document.removeEventListener('aqeeq:profile-saved', saveEventListener); saveEventListener = null; }
     if (saveFailListener) { document.removeEventListener('aqeeq:profile-save-failed', saveFailListener); saveFailListener = null; }
@@ -305,6 +306,7 @@
   }
   function show() { ensureRoot().hidden = false; document.documentElement.classList.add('aq-fr-open'); }
   function close() {
+    profileReadGeneration++; profileReadOwner = null; dataStepOwner = null;
     if (root) root.hidden = true;
     document.documentElement.classList.remove('aq-fr-open');
     cancelPendingSave();
@@ -382,6 +384,7 @@
   function geoList() { return Array.isArray(window.AQEEQ_GEO) ? window.AQEEQ_GEO : []; }
 
   function renderDataStep(prefill) {
+    dataStepOwner = (sessionUser() || {}).id || null;
     prefill = prefill || {};
     var r = ensureRoot();
     var countries = geoList().map(function (c) { return '<option value="' + esc(c.name) + '">' + esc(c.name) + '</option>'; }).join('');
@@ -467,6 +470,8 @@
 
   function onSave() {
     var r = root;
+    if (!r || !$('#fr-save', r) || $('#fr-save', r).disabled) return;
+    if (dataStepOwner && (!sessionUser() || sessionUser().id !== dataStepOwner)) return sayErr('تغيّر الحساب. أعد فتح بيانات الميلاد من حسابك الحالي.');
     var first = $('#fr-first', r).value.trim(), last = $('#fr-last', r).value.trim();
     var country = $('#fr-country', r).value.trim(), city = $('#fr-city', r).value.trim();
     var d = +$('#fr-d', r).value, m = +$('#fr-m', r).value, y = +$('#fr-y', r).value;
@@ -635,14 +640,23 @@
   /* ---------------- قرار الخطوة بعد الدخول ---------------- */
   function maybeProfileStep() {
     var user = sessionUser();
-    if (!user) return;
+    if (!user || getJourney() !== 'await-profile') return;
+    if (root && !root.hidden && $('#fr-save', root) && dataStepOwner === user.id) return;
+    if (profileReadOwner === user.id) return;
     var client = sb();
     if (!client) return;
+    var readGeneration = ++profileReadGeneration;
+    profileReadOwner = user.id;
     client.from('profiles')
       .select('id, first_name, last_name, birth_date, birth_time, birth_time_unknown, birth_city, birth_country, profile_completed_at')
       .eq('id', user.id)
       .maybeSingle()
       .then(function (res) {
+        if (readGeneration !== profileReadGeneration) return;
+        profileReadOwner = null;
+        var current = sessionUser();
+        if (!current || current.id !== user.id || getJourney() !== 'await-profile') return;
+        if (root && !root.hidden && $('#fr-save', root) && dataStepOwner === user.id) return;
         var p = res && res.data;
         var complete = p && p.profile_completed_at && p.first_name && p.last_name && p.birth_date && p.birth_city && p.birth_country && (p.birth_time_unknown || p.birth_time);
         if (complete) { setJourney(''); return; }
@@ -657,7 +671,7 @@
           time: p && p.birth_time ? String(p.birth_time).slice(0, 5) : '',
           timeUnknown: Boolean(p && p.birth_time_unknown)
         });
-      }, function () { /* فشل القراءة: نترك نموذج «حسابي» يقوم بدوره */ });
+      }, function () { if (readGeneration === profileReadGeneration) profileReadOwner = null; /* يبقى نموذج الحساب متاحًا عند فشل القراءة */ });
   }
 
   /* ---------------- الإقلاع ---------------- */
@@ -676,7 +690,8 @@
   document.addEventListener('aq:session', function (e) {
     var user = e && e.detail && e.detail.user;
     var j = getJourney();
-    if (!user) return;
+    if (!user) { if (dataStepOwner) close(); return; }
+    if (dataStepOwner && dataStepOwner !== user.id) close();
     if (j === 'await-auth' || j === 'await-profile') {
       setJourney('await-profile');
       /* نترك نموذج الحساب يجهّز نفسه أولًا */

@@ -171,6 +171,7 @@
   function localFullPreview() {
     return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) && window.AQ_MATRIX_LOCAL_PREVIEW === 'full';
   }
+  function fullReadingPreview() { return window.AQ_REVIEW_OPEN === true || localFullPreview(); }
   function readingHtml(sl, full) {
     if (!sl) return '<p class="mxm-content-error" role="status">تعذّر تحميل هذا الجزء. أعد المحاولة.</p>';
     var f = typeof sl.free === 'string' ? sl.free.trim() : '', p = typeof sl.paid === 'string' ? sl.paid.trim() : '';
@@ -188,7 +189,7 @@
       return (cache[n] = cache[n] || L.modeSlots(mode, n)).then(function (d) {
         var sec = d && d.sections.filter(function (s) { return s.id === el.dataset.sec; })[0];
         var sl = sec && sec.slots.filter(function (x) { return x.key === el.dataset.pt; })[0];
-        el.innerHTML = readingHtml(sl, localFullPreview());
+        el.innerHTML = readingHtml(sl, fullReadingPreview());
         el.dataset.loaded = sl ? 'true' : 'false';
         el.dispatchEvent(new CustomEvent('aq-matrix-reading-ready', { bubbles: true }));
         return !!sl;
@@ -372,7 +373,7 @@
       saveMeta: function (p) { return { type: 'matrix-child', typeLabel: 'مصفوفة الطفل', title: p[0].n || 'مصفوفة الطفل', subtitle: fmtDate(p[0].d), inputs: { name: p[0].n, date: p[0].d } }; }
     });
   }
-  window.AqMatrixModes = { fromCorners: fromCorners, fromAnchors: fromAnchors, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull, renderChild: renderChild, hydrateModeSlots: hydrateModeSlots, readingHtml: readingHtml, localFullPreview: localFullPreview };
+  window.AqMatrixModes = { fromCorners: fromCorners, fromAnchors: fromAnchors, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull, renderChild: renderChild, hydrateModeSlots: hydrateModeSlots, readingHtml: readingHtml, localFullPreview: localFullPreview, fullReadingPreview: fullReadingPreview };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
     var boot = function () { build(); buildCompatPage(); buildChildPage(); var n = 0; (function t() { buildCompatPage(); buildChildPage(); if (++n < 12 && !((document.getElementById('mxc-form') || {}).__mxc && (document.getElementById('mxk-form') || {}).__mxc)) setTimeout(t, 400); })(); };

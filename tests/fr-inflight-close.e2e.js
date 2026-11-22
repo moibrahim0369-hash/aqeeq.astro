@@ -52,7 +52,7 @@ const ok = (c, m) => { if (!c) fail++; console.log((c ? 'PASS ' : 'FAIL ') + m);
             return r.fulfill({ status: 200, contentType: 'application/json', headers: { 'content-range': '0-0/1' }, body: captured.row ? JSON.stringify([captured.row]) : '[]' });
           }
           let body = null; try { body = req.postDataJSON(); } catch (e) { try { body = JSON.parse(req.postData() || 'null'); } catch (e2) {} }
-          if (body && body.birth_date) { if (captured.delay) await new Promise(res=>setTimeout(res,captured.delay)); if (captured.fail) { captured.upserts.push(body); return r.fulfill({status:500,contentType:'application/json',body:JSON.stringify({message:'test rejected'})}); } }
+          if (body && body.birth_date) { captured.requests = (captured.requests || 0) + 1; if (captured.hold) await new Promise(res => { captured.release = res; }); if (captured.delay) await new Promise(res=>setTimeout(res,captured.delay)); if (captured.fail) { captured.upserts.push(body); return r.fulfill({status:500,contentType:'application/json',body:JSON.stringify({message:'test rejected'})}); } }
           if (body) { captured.upserts.push(body); captured.row = Object.assign({}, captured.row || { id: USER.id }, body); }
           return r.fulfill({ status: 201, contentType: 'application/json', body: wantsObject ? JSON.stringify(captured.row || {}) : JSON.stringify([captured.row || {}]) });
         }
@@ -89,7 +89,7 @@ const ok = (c, m) => { if (!c) fail++; console.log((c ? 'PASS ' : 'FAIL ') + m);
 
   /* ---------- B) رحلة أول دخول كاملة عبر الجسر ---------- */
   for (const mode of ['inflight-close']) {
-    const cap = { upserts: [], row: null, delay: mode==='late-success'?17000:mode==='inflight-close'?1500:0, fail:mode==='failure' };
+    const cap = { upserts: [], row: null, delay: mode==='late-success'?17000:0, hold: mode!=='late-success', fail:mode==='failure' };
     const p = await stubbedPage(cap);
     await p.goto(BASE + '/' + PAGE);
     /* الرحلة تفتح التعريف لأول مرة؛ نتخطاه أو نتقدمه حتى نموذج البيانات */
@@ -129,6 +129,9 @@ const ok = (c, m) => { if (!c) fail++; console.log((c ? 'PASS ' : 'FAIL ') + m);
       await p.waitForTimeout(300);
       await p.click('#fr-save');
       await p.evaluate(()=>{document.querySelector('#fr-save').click();document.querySelector('#profile-completion-form').requestSubmit()});
+      for (let wait=0;wait<150 && !cap.requests;wait++) await p.waitForTimeout(20);
+      ok(cap.requests===1,'pending: duplicate button/form submissions do not start a second request');
+      if (mode==='failure') cap.release();
       if(mode==='late-success') {
         await p.waitForTimeout(15500);
         ok(await p.locator('#fr-save').isDisabled(),'late: button stays disabled after 15s');
@@ -142,7 +145,7 @@ const ok = (c, m) => { if (!c) fail++; console.log((c ? 'PASS ' : 'FAIL ') + m);
         ok(await p.locator('.fr-done-title').count()===0,'failure: no success screen');
         ok(cap.upserts.filter(x=>x.birth_date).length===1,'failure: one rejected attempt');
       } else {
-        await p.waitForTimeout(400);await p.click('#fr-later');await p.waitForTimeout(2200);
+        await p.waitForTimeout(400);await p.click('#fr-later');cap.release();await p.waitForTimeout(2200);
         ok(await p.locator('#aq-fr').getAttribute('hidden')!==null,'close: late completion does not reopen journey');
         ok(await p.locator('.fr-done-title').count()===0,'close: no stale success');
         ok(cap.upserts.filter(x=>x.birth_date).length===1,'close: single in-flight upsert');
