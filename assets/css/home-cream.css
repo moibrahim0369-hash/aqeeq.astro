@@ -263,3 +263,8 @@ html body #home.aqh .aqh-fuse .aqh-system .aqh-system-ico{width:36px!important;h
 /* port fix pack 2 */
 html body #home.aqh .aqh-hero .aqh-eyebrow::before,html body #home.aqh .aqh-hero .aqh-eyebrow::after{content:none!important}
 html body #home.aqh .aqh-fuse .aqh-system:nth-child(3) .aqh-system-ico svg circle[fill="#fbf8f2"]{fill:#b8892c}
+
+/* port fix pack 3: desktop hero copy centering */
+html body #home.aqh .aqh-hero .aqh-hero-grid{width:100%!important;max-width:100%!important;margin-inline:0!important;padding-inline:20px!important;transform:none!important;left:auto!important;right:auto!important;inset-inline-start:auto!important;inset-inline-end:auto!important}
+html body #home.aqh .aqh-hero .aqh-hero-copy{margin-inline:auto!important;max-width:640px!important;width:100%!important;grid-column:auto!important;grid-row:auto!important}
+html body #home.aqh .aqh-hero .aqh-lead{margin-inline:auto!important}
