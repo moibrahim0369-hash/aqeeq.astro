@@ -86,8 +86,10 @@
     var drop = $('.aqh-drop');
     if (drop) {
       var btn = $('.aqh-drop-btn', drop);
-      var setOpen = function (v) { drop.classList.toggle('is-open', v); btn.setAttribute('aria-expanded', v ? 'true' : 'false'); };
       var dropMenu = $('.aqh-drop-menu', drop);
+      /* المنيو بتتنقل لـ body: هيدر الموقع عليه backdrop-filter فبيحبس position:fixed جواه، وناف التنقل overflow:auto فكان بيقصها */
+      if (dropMenu) document.body.appendChild(dropMenu);
+      var closeT = null;
       var place = function () {
         if (!dropMenu) return;
         var r = btn.getBoundingClientRect();
@@ -96,13 +98,30 @@
           dropMenu.style.right = Math.max(8, window.innerWidth - r.right) + 'px'; dropMenu.style.left = 'auto';
         } else { dropMenu.style.left = r.left + 'px'; dropMenu.style.right = 'auto'; }
       };
-      btn.addEventListener('click', place);
-      drop.addEventListener('mouseenter', place);
-      drop.addEventListener('focusin', place);
-      window.addEventListener('resize', place);
+      var setOpen = function (v) {
+        clearTimeout(closeT);
+        drop.classList.toggle('is-open', v);
+        if (dropMenu) dropMenu.classList.toggle('is-open', v);
+        btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+        if (v) place();
+      };
+      var scheduleClose = function () { clearTimeout(closeT); closeT = setTimeout(function () { setOpen(false); }, 180); };
+      var cancelClose = function () { clearTimeout(closeT); };
       btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!drop.classList.contains('is-open')); });
-      document.addEventListener('click', function () { setOpen(false); });
+      drop.addEventListener('mouseenter', function () { cancelClose(); setOpen(true); });
+      drop.addEventListener('mouseleave', scheduleClose);
+      drop.addEventListener('focusin', function () { cancelClose(); setOpen(true); });
+      drop.addEventListener('focusout', function (e) { if (!drop.contains(e.relatedTarget) && !(dropMenu && dropMenu.contains(e.relatedTarget))) scheduleClose(); });
       drop.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });
+      if (dropMenu) {
+        dropMenu.addEventListener('mouseenter', cancelClose);
+        dropMenu.addEventListener('mouseleave', scheduleClose);
+        dropMenu.addEventListener('focusout', function (e) { if (!drop.contains(e.relatedTarget) && !dropMenu.contains(e.relatedTarget)) scheduleClose(); });
+        dropMenu.addEventListener('keydown', function (e) { if (e.key === 'Escape') { setOpen(false); btn.focus(); } });
+        dropMenu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+      }
+      document.addEventListener('click', function (e) { if (!drop.contains(e.target) && !(dropMenu && dropMenu.contains(e.target))) setOpen(false); });
+      window.addEventListener('resize', place);
     }
     var burger = $('#aqh-burger'), menu = $('#aqh-menu');
     if (burger && menu) {
