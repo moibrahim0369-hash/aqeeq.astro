@@ -405,3 +405,37 @@ button.fc-row-t:hover .fc-row-ic{background:var(--fc-wine);color:var(--fc-gold)}
 .fc-row-ic,.fc-cta-ico,.fc-news-ico{background:rgba(112,38,63,.09)!important;border:1px solid rgba(112,38,63,.28)!important;color:#70263F!important}
 button.fc-row-t:hover .fc-row-ic{background:#70263F!important;color:#F1DDB0!important}
 .fc-row-all{border-color:rgba(112,38,63,.3)!important;color:#70263F!important}
+
+/* ===== معاينة: بطاقات كبيرة مدوّرة بهوية عقيق (كريمي فاتح زجاجي) — نمط الصورة المرجعية ===== */
+/* (تنسيق بطاقات المكتبة في assets/css/magazine.css — طبقة المجلة الأحدث) */
+/* صفحة المقال: صورة كبيرة مدوّرة فوق، وورقة كريمية زجاجية تغطي أسفلها */
+.fc-hero-card{position:relative;width:min(1000px,100%);margin:0 auto;height:clamp(380px,92vw,500px);border-radius:28px;overflow:hidden;background:#2a1520;box-shadow:0 26px 46px -20px rgba(53,27,40,.55)}
+.fc-hero-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.fc-hero-tools{position:absolute;top:14px;inset-inline:14px;z-index:3;display:flex;justify-content:space-between;align-items:center}
+.fc-hero-tools-g{display:flex;gap:10px;align-items:center}
+.fc-fab{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(251,248,242,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#4A1521;display:grid;place-items:center;cursor:pointer;padding:0;transition:background .2s,color .2s,transform .2s}
+.fc-fab svg{width:20px;height:20px}
+.fc-fab:hover{background:rgba(251,248,242,.85);transform:translateY(-1px)}
+.fc-fab[aria-pressed=true]{background:#642B3C;border-color:#642B3C;color:#F1DDB0}
+.fc-share{position:relative}
+.fc-hero-card .fc-menu{inset-inline-start:auto;inset-inline-end:0;top:calc(100% + 10px);border-radius:14px;z-index:6}
+.fc-hero-ov{position:absolute;inset-inline:0;bottom:0;z-index:2;padding:24px clamp(18px,4vw,34px) 58px;background:linear-gradient(0deg,rgba(28,10,18,.88),rgba(28,10,18,.3) 58%,transparent);color:#fff}
+.fc-hero-ov .fc-topic{background:rgba(251,244,230,.16);border-color:rgba(241,221,176,.55);color:#F6EAD6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.fc-hero-ov .fc-topic b{color:#F1DDB0}
+.fc-hero-ov .fc-topic-i{color:#F1DDB0}
+.fc-hero-ov h1{font-family:'Amiri',serif;font-weight:700;font-size:clamp(1.65rem,4.6vw,2.6rem);line-height:1.35;margin:10px 0 0;color:#fff;text-shadow:0 2px 10px rgba(20,6,12,.55)}
+.fc-hero-ov h1:focus,.fc-hero-ov h1:focus-visible{outline:none!important}
+.fc-sheet{position:relative;z-index:2;width:min(860px,100% - 24px);margin:-46px auto 0;padding:clamp(22px,4vw,44px);background:rgba(253,251,247,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.75);border-radius:26px;box-shadow:0 20px 42px -20px rgba(53,27,40,.3)}
+.fc-stats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 0 20px}
+.fc-stat{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:#F6EAD6;border:1px solid rgba(183,138,82,.45);color:#4A1521;font-weight:600;font-size:.9rem}
+.fc-stat svg{width:17px;height:17px;color:#70263F;flex:none}
+.fc-sheet .fc-intro{margin-top:0}
+.fc-sheet .fc-actions{margin-top:26px}
+/* شريط المقال التالي: اسم المقال + زر عنابي + رجوع للمكتبة */
+.fc-next{width:min(860px,100% - 24px);margin:26px auto 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-radius:22px;background:linear-gradient(135deg,#FBF4E6,#F6EAD6);border:1px solid rgba(183,138,82,.5);box-shadow:0 12px 26px -16px rgba(53,27,40,.35)}
+.fc-next-t{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 240px}
+.fc-next-t small{color:#9a6f2f;font-weight:700;font-size:.78rem;letter-spacing:.05em}
+.fc-next-t b{font-family:'Amiri',serif;font-size:1.22rem;color:#4A1521;line-height:1.5}
+.fc-next-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+@media(max-width:640px){.fc-next{flex-direction:column;align-items:stretch;text-align:center}.fc-next-act{justify-content:center}.fc-next-act .fc-btn{flex:1;justify-content:center}}
+@media(max-width:700px){.fc-hero-card{height:clamp(360px,96vw,440px);border-radius:24px}.fc-sheet{margin-top:-40px}}

@@ -59,3 +59,79 @@ html body #featured-content .fc-list .fc-card p{font-size:.85rem;-webkit-line-cl
 @media(prefers-reduced-motion:reduce){.fc-pop{transition:none}}
 html body #featured-content .fc-pick-img img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover}
 @media(min-width:900px){html body #featured-content .fc-pick{max-width:760px;margin-inline:auto}html body #featured-content .fc-pick-main{aspect-ratio:16/9}html body #featured-content .fc-track .fc-mini{flex-basis:220px}html body #featured-content .fc-row-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+
+/* ===== معاينة 22 نوفمبر: نمط الصورة المرجعية بهوية عقيق ===== */
+/* كروت أكبر تدويرًا، شارة تصنيف زجاجية على الصورة، ووقت القراءة والتاريخ ظاهران */
+html body #featured-content .fc-mini{border-radius:22px;box-shadow:0 18px 34px -18px rgba(53,27,40,.5)}
+html body #featured-content .fc-mini:hover{box-shadow:0 24px 40px -18px rgba(53,27,40,.62)}
+html body #featured-content .fc-mini .fc-topic{display:inline-flex;position:absolute;top:10px;inset-inline-start:10px;z-index:3;background:rgba(253,251,247,.55);border:1px solid rgba(255,255,255,.65);color:#4A1521;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 12px -6px rgba(30,12,20,.5)}
+html body #featured-content .fc-mini .fc-topic b{color:#4A1521}
+html body #featured-content .fc-mini .fc-topic-i{color:#70263F}
+html body #featured-content .fc-mini .fc-meta{display:flex;color:#EFE3D2}
+html body #featured-content .fc-mini h3{text-shadow:0 1px 6px rgba(20,6,12,.55)}
+html body #featured-content .fc-pick{border-radius:24px}
+/* تبويبات التصنيفات ظاهرة أعلى المكتبة (مثل تبويبات الصورة المرجعية) */
+html body #featured-content .fc-tools{display:block!important;margin:0 0 10px}
+html body #featured-content .fc-filters{justify-content:flex-start}
+@media(min-width:760px){html body #featured-content .fc-filters{justify-content:center}}
+/* نافذة القراءة: صورة كبيرة فوق بعنوان عليها، وورقة كريمية زجاجية تغطي أسفلها */
+.fc-pop{background:#F7F3EC}
+.fc-pop-x{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));inset-inline-end:14px;z-index:6;background:rgba(253,251,247,.6);border:1px solid rgba(255,255,255,.65);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#4A1521}
+.fc-pop-x:hover{background:rgba(253,251,247,.9)}
+.fc-pop-hero{position:relative;height:min(44vh,420px);min-height:280px;overflow:hidden;background:#2a1520}
+.fc-pop-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.fc-pop-hero-ov{position:absolute;inset-inline:0;bottom:0;padding:20px 22px 56px;background:linear-gradient(0deg,rgba(28,10,18,.88),rgba(28,10,18,.3) 55%,transparent)}
+.fc-pop-hero-ov small{display:block;color:#F1DDB0;font-weight:700;font-size:.8rem}
+.fc-pop-hero-ov h3{margin:6px 0 0;font:700 clamp(1.3rem,4.5vw,1.7rem)/1.4 'Amiri',serif;color:#fff;text-shadow:0 2px 10px rgba(20,6,12,.55)}
+.fc-pop-sheet{position:relative;z-index:2;margin-top:-42px;border-radius:26px 26px 0 0;background:rgba(253,251,247,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:22px;box-shadow:0 -14px 30px -18px rgba(53,27,40,.4)}
+.fc-pop-sheet .fc-stats{margin-bottom:16px}
+.fc-pop .fc-pop-end{margin-top:30px}
+
+/* إصلاح امتداد شريط المقال التالي على الموبايل */
+@media(max-width:640px){.fc-next-t{flex:none}}
+
+/* تطابق النافذة مع صفحة المقال: إغلاق يمين، وحفظ ومشاركة يسار أعلى الصورة */
+.fc-pop-x{inset-inline-end:auto;inset-inline-start:14px}
+.fc-pop-tools{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));inset-inline-end:14px;z-index:6;display:flex;gap:10px;align-items:center}
+.fc-pop-tools .fc-menu{inset-inline-start:auto;inset-inline-end:0;top:calc(100% + 10px);border-radius:14px;z-index:7;box-shadow:0 14px 30px -10px rgba(30,12,20,.45)}
+.fc-pop .fc-next{width:100%;margin:30px 0 0}
+
+/* متغيرات هوية عقيق داخل النافذة (خارج .fc-page) + التنبيه فوقها */
+.fc-pop{--fc-ivory:#F7F3EC;--fc-cream:#FBF8F2;--fc-wine:#642B3C;--fc-wine-d:#351B28;--fc-ink:#29252A;--fc-gold:#D9B979;--fc-line:#E5DED2;--fc-mute:#746C68}
+.fc-toast{z-index:6000}
+/* تنبيه واضح على الورقة الفاتحة أيضًا */
+.fc-toast{background:#351B28;color:#fff}
+
+/* معاينة تعديل محمد: كريمي فاتح موحد، ضباب للصورة فقط، وقراءة أكبر */
+html body #featured-content,html body #featured-reader,.fc-pop{background:#FDFAF5!important}
+html body #featured-content::before,html body #featured-reader::before{display:none}
+.fc-pop-hero img,.fc-hero-card>img{filter:blur(1.6px);transform:scale(1.025)}
+.fc-pop-hero::after,.fc-hero-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(253,250,245,.10);z-index:1}
+.fc-pop-hero-ov,.fc-hero-ov{z-index:2;background:linear-gradient(0deg,rgba(37,14,23,.92),rgba(37,14,23,.52) 66%,transparent)}
+.fc-pop-sheet,.fc-sheet{background:rgba(253,250,245,.98)}
+.fc-pop .fc-body,.fc-sheet .fc-body{font-size:1.2rem;line-height:2.05}
+.fc-pop-lead,.fc-sheet .fc-intro{font-size:1.22rem;line-height:1.95}
+.fc-pop .fc-body h2,.fc-sheet .fc-body h2{font-size:1.55rem;line-height:1.6}
+.fc-pop .fc-body blockquote,.fc-sheet .fc-body blockquote{font-size:1.4rem;line-height:1.95}
+/* أدوات أهدأ بصريًا: سطح 32px داخل مساحة لمس 44px */
+.fc-pop-x,.fc-fab{width:44px;height:44px;position:relative;background:transparent!important;border:0!important;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;padding:0;color:#4A1521}
+.fc-pop-x{position:absolute}
+.fc-pop-x::before,.fc-fab::before{content:"";position:absolute;inset:6px;border-radius:11px;background:rgba(253,250,245,.82);border:1px solid rgba(255,255,255,.65);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 2px 9px rgba(37,14,23,.1)}
+.fc-pop-x svg,.fc-fab svg{position:relative;z-index:1;width:17px;height:17px}
+.fc-fab[aria-pressed=true]{color:#fff}
+.fc-fab[aria-pressed=true]::before{background:#642B3C;border-color:#642B3C}
+.fc-pop-tools,.fc-hero-tools-g{gap:2px}
+.fc-pop-tools{top:8px;inset-inline-end:8px}
+.fc-pop-x{top:8px;inset-inline-start:8px}
+.fc-hero-tools{top:8px;inset-inline:8px}
+.fc-pop-x:focus-visible,.fc-fab:focus-visible{outline:none}
+.fc-pop-x:focus-visible::before,.fc-fab:focus-visible::before{outline:2px solid #B78A52;outline-offset:2px}
+
+/* بيانات المقال: شريط فاتح مدمج أعلى الورقة بدل الحبوب الكريمية الداكنة */
+.fc-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;padding:0 0 16px;border-bottom:1px solid rgba(100,43,60,.10);margin:0 0 22px}
+.fc-stat{padding:3px 0;background:transparent;border:0;border-radius:0;color:#6D555C;font-size:.82rem;font-weight:500;gap:6px;white-space:nowrap}
+.fc-stat svg{width:15px;height:15px;color:#8F6571}
+.fc-pop-sheet{padding-top:14px}
+.fc-pop-sheet .fc-stats{margin-bottom:22px}
+.fc-sheet{padding-top:18px}
+.fc-pop-hero-ov small{display:none}
