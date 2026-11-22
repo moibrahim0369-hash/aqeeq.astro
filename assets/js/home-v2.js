@@ -382,7 +382,7 @@
     function fmt(a) { var parts = []; if (a.category) parts.push(esc(a.category)); if (a.date) parts.push(esc(a.date)); if (a.readMinutes) parts.push(a.readMinutes + ' دقائق قراءة'); return parts.join(' · '); }
     function card(a) {
       return '<article class="aqh-article" data-content-id="' + esc(a.id) + '" data-content-type="article" data-slug="' + esc(a.slug) + '" data-category="' + esc(a.category) + '"><img src="' + esc(a.image) + '" alt="' + esc(a.imageAlt || '') + '" loading="lazy" decoding="async" draggable="false">' +
-        '<div class="aqh-article-txt"><time>' + fmt(a) + '</time><h3><a class="aqh-article-link" href="#featured-content/' + esc(a.slug) + '" data-slug="' + esc(a.slug) + '">' + esc(a.title) + '</a></h3>' + (a.hook ? '<p class="aqh-hook">' + esc(a.hook) + '</p>' : '') + '<p class="aqh-intro">' + esc(a.intro) + '</p></div>' +
+        '<div class="aqh-article-txt"><time>' + esc(a.category) + '</time><h3><a class="aqh-article-link" href="#featured-content/' + esc(a.slug) + '" data-slug="' + esc(a.slug) + '">' + esc(a.title) + '</a></h3>' + (a.hook ? '<p class="aqh-hook">' + esc(a.hook) + '</p>' : '') + '<p class="aqh-intro">' + esc(a.intro) + '</p></div>' +
         '<span class="aqh-go" aria-hidden="true">' + ARROW + '</span></article>';
     }
     function load() {
@@ -392,7 +392,8 @@
         if (!ARTICLES.length) { track.innerHTML = ''; state('empty', '<p>لا يوجد محتوى حاليًا.</p>'); return; }
         /* الصف الأول: أحدث المقالات. الصف الثاني: اختيار عشوائي مرتب من بقية المقالات (بدون تكرار الصف الأول) */
         ARTICLES = ARTICLES.map(function (a, n) { return { a: a, n: n }; }).sort(function (x, y) { return String(y.a.date).localeCompare(String(x.a.date)) || y.n - x.n; }).map(function (x) { return x.a; });
-        var TOP = ARTICLES.slice(0, 6), REST = ARTICLES.slice(6).map(function (a) { return { a: a, r: Math.random() }; }).sort(function (x, y) { return x.r - y.r; }).slice(0, 6).map(function (x) { return x.a; });
+        var bySlug = function (slug) { return ARTICLES.find(function (a) { return a.slug === slug; }); };
+        var TOP = ['venus-retrograde','venus-descent','saturn-sade-sati-wealth','saturn-heart-path'].map(bySlug).filter(Boolean), REST = ['sade-sati','saturn-over-moon','saturn-hermetic-path','symbol-and-reading'].map(bySlug).filter(Boolean);
         var track2 = $('#aqh-track2'), wrap2 = $('#aqh-row2');
         if (track2 && REST.length) { track2.innerHTML = REST.map(card).join(''); if (wrap2) wrap2.hidden = false; $$('.aqh-article', track2).forEach(function (el, k) { el.classList.add('aqh-reveal'); el.style.setProperty('--aqh-d', (k * 70) + 'ms'); if (window.__aqhObserve) window.__aqhObserve(el); }); track2.addEventListener('click', function (e) { var l = e.target.closest('.aqh-article-link'); if (l) { e.preventDefault(); openArticle(l.getAttribute('data-slug')); } }); }
         track.innerHTML = TOP.map(card).join(''); state('ready');

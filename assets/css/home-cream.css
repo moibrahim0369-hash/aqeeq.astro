@@ -348,3 +348,22 @@ html body #home.aqh .aqh-fuse #aqh-tools > #b3-rot{display:none!important}
 /* Portal above fixed home navigation; do not obscure the reading or its links. */
 .aqhc-sheet-scrim{z-index:2000}
 .aqhc-sheet{z-index:2001}
+
+/* Home article presentation only: approved compact two-row cards. */
+html body #home.aqh #aqh-articles .aqh-track{display:flex!important;gap:10px!important;padding:4px 2px 12px!important;overflow-x:auto!important;align-items:flex-start!important}
+html body #home.aqh #aqh-articles .aqh-article{flex:0 0 126px!important;width:126px!important;min-width:126px!important;min-height:0!important;height:auto!important;padding:0!important;gap:4px!important;border:0!important;background:none!important;box-shadow:none!important;border-radius:0!important;overflow:hidden!important}
+html body #home.aqh #aqh-articles .aqh-article > img{width:126px!important;height:68px!important;object-fit:cover!important;border-radius:12px!important;box-shadow:0 8px 18px #4a12242a,0 2px 4px #4a12241a!important}
+html body #home.aqh #aqh-articles .aqh-article-txt{display:flex!important;flex-direction:column!important;gap:3px!important;padding:0!important}
+html body #home.aqh #aqh-articles h3{font-family:inherit!important;font-size:12px!important;font-weight:700!important;line-height:1.6!important;margin:0!important;min-height:0!important;color:#3a2a2f!important;order:0}
+html body #home.aqh #aqh-articles .aqh-hook{display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden!important;min-height:34px!important;font-size:11px!important;line-height:1.55!important;color:#6a2038!important;margin:0!important;order:1}
+html body #home.aqh #aqh-articles time{font-size:9px!important;color:#a8741f!important;order:2}
+html body #home.aqh #aqh-articles .aqh-intro,html body #home.aqh #aqh-articles .aqh-go,html body #home.aqh #aqh-articles .aqh-new-badge{display:none!important}
+html body #home.aqh #aqh-row2:not(#_a):not(#_b){display:block!important;margin-top:4px!important}
+html body #home.aqh #aqh-articles .aqh-article::after{content:"";position:absolute;top:0;left:-80%;width:45%;height:68px;background:linear-gradient(110deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-18deg);pointer-events:none;animation:aqhc-article-shine 11s ease-in-out infinite}
+html body #home.aqh #aqh-articles .aqh-article:nth-child(2)::after{animation-delay:3.5s}
+html body #home.aqh #aqh-articles .aqh-article:nth-child(3)::after{animation-delay:6.8s}
+html body #home.aqh #aqh-articles .aqh-article:nth-child(4)::after{animation-delay:9.2s}
+@keyframes aqhc-article-shine{0%,86%{left:-80%;opacity:0}88%{opacity:1}98%,100%{left:140%;opacity:0}}
+@media(prefers-reduced-motion:reduce){html body #home.aqh #aqh-articles .aqh-article::after{animation:none!important;display:none!important}}
+/* Do not let scrollIntoView on a horizontal tile pan the entire home. */
+html body #home.aqh{overflow:clip!important}
