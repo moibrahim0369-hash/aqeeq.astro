@@ -6,7 +6,7 @@ const fs = require("fs"), path = require("path"), crypto = require("crypto");
 const root = path.resolve(__dirname, "..");
 const SRC = path.join(root, "index.src.html"), OUT = path.join(root, "index.html");
 const DIST = path.join(root, "assets", "dist");
-const KEEP = 3; // عدد الإصدارات السابقة المحفوظة (لمن يحمل صفحة قديمة من الكاش)
+const KEEP = 4; // عدد الإصدارات السابقة المحفوظة (لمن يحمل صفحة قديمة من الكاش)
 const rd = f => fs.readFileSync(path.join(root, f), "utf8");
 const hash = s => crypto.createHash("sha1").update(s).digest("hex").slice(0, 10);
 const clean = u => u.split("?")[0];

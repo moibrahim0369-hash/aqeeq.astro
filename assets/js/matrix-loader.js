@@ -5,7 +5,7 @@
 (() => {
   'use strict';
   const BASE = 'assets/data/matrix/';
-  const VERSION = '20261122-modes924-v2';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
+  const VERSION = '20261122-additions924-v1';                     // زوّده لما تحدّث النصوص عشان المتصفحات تجيب النسخة الجديدة
   const FIELDS = ['psychology', 'shadowTrap', 'bodySymbol', 'practice', 'physicsPsychology', 'energyPsychology', 'emotionsPsychology'];
   const cache = new Map();
 
@@ -95,6 +95,13 @@
     if ((mode !== 'compat' && mode !== 'child') || !validId(id)) return Promise.resolve(null);
     return load('gemini/' + mode + '-' + String(id).padStart(2, '0') + '.json', d => d && d.mode === mode && d.arcana === id && Array.isArray(d.sections)).catch(() => null);
   }
+  /* امتداد تحريري مستقل؛ لا يُكتب فوق ملف النص المحفوظ. */
+  function modeAdditions(mode, id) {
+    if ((mode !== 'compat' && mode !== 'child') || !validId(id)) return Promise.resolve(null);
+    return load('additions/' + mode + '-' + String(id).padStart(2, '0') + '.json', function(d) {
+      return !!window.AqeeqMatrixAdditions && window.AqeeqMatrixAdditions.validate(d, mode, id);
+    }).catch(() => null);
+  }
   function geminiTails() {
     return load('gemini/tails.json', d => d && Array.isArray(d.tails));
   }
@@ -104,6 +111,7 @@
 
   window.AqeeqMatrix = {
     modeSlots: modeSlots,
+    modeAdditions: modeAdditions,
     chakraLower,
     gemini, geminiTails,
     core, arcana, chakraText, chakraReading, prefetch, FIELDS,

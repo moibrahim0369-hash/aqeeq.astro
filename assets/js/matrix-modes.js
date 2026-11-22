@@ -172,31 +172,41 @@
     return /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname) && window.AQ_MATRIX_LOCAL_PREVIEW === 'full';
   }
   function fullReadingPreview() { return window.AQ_REVIEW_OPEN === true || localFullPreview(); }
-  function readingHtml(sl, full) {
+  function readingHtml(sl, full, addition, additionError) {
     if (!sl) return '<p class="mxm-content-error" role="status">تعذّر تحميل هذا الجزء. أعد المحاولة.</p>';
     var f = typeof sl.free === 'string' ? sl.free.trim() : '', p = typeof sl.paid === 'string' ? sl.paid.trim() : '';
     var q = typeof sl.reflection_question === 'string' ? sl.reflection_question.trim() : '';
     if (!f || !p) return '<p class="mxm-content-error" role="status">تعذّر تحميل القراءة كاملة. أعد المحاولة.</p>';
+    var af = addition ? '<div class="mxm-addition" data-reading-layer="addition" data-addition-part="free"><p class="mxm-depth-label">إضافة إلى القراءة</p>' + paragraphs(addition.free) + '</div>' : '';
+    var ap = addition ? '<div class="mxm-addition" data-reading-layer="addition" data-addition-part="paid"><p class="mxm-depth-label">تفصيل الإضافة</p>' + paragraphs(addition.paid) + paragraphs(addition.reflection_question, 'aqm-reflection') + '</div>' : '';
+    var error = additionError ? '<div class="mxm-addition-error" role="status"><p>تعذّر تحميل الإضافة؛ النص المحفوظ ظاهر دون استبدال.</p><button type="button" data-addition-retry>إعادة تحميل الإضافة</button></div>' : '';
     return '<div class="mxm-free" data-reading-part="free">' + paragraphs(f) + '</div>' +
-      (full ? '<div class="mxm-paid" data-reading-part="paid"><p class="mxm-depth-label">تكملة القراءة</p>' + paragraphs(p) + (q ? paragraphs(q, 'aqm-reflection') : '') + '</div>' :
-      '<div class="mxm-depth-cut" data-reading-part="cut"><b>تكتمل الفكرة في القراءة المتعمقة</b><p>المشهد التالي يشرح موضع التعثر وكيف تختبر بديلًا مناسبًا، دون أن يحكم على الشخص.</p><small>معاينة فصل المحتوى فقط. إتاحة القراءة الكاملة لم تُفعّل بعد.</small></div>');
+      (full ? '<div class="mxm-paid" data-reading-part="paid"><p class="mxm-depth-label">تكملة القراءة</p>' + paragraphs(p) + (q ? paragraphs(q, 'aqm-reflection') : '') + '</div>' : '') +
+      (addition ? '<section class="mxm-addition-reading">' + af + (full ? ap : '') + '</section>' : '') +
+      (full ? '' : '<div class="mxm-depth-cut" data-reading-part="cut"><b>تكتمل الفكرة في القراءة المتعمقة</b><p>المشهد التالي يشرح موضع التعثر وكيف تختبر بديلًا مناسبًا، دون أن يحكم على الشخص.</p><small>معاينة فصل المحتوى فقط. إتاحة القراءة الكاملة لم تُفعّل بعد.</small></div>') + error;
   }
   function hydrateModeSlots(host, mode) {
     var L = window.AqeeqMatrix; if (!L || !L.modeSlots) return Promise.resolve([]);
     var cache = {};
-    var jobs = [].map.call(host.querySelectorAll('.mxm-ptslot'), function (el) {
+    function hydrate(el) {
       var n = +el.dataset.n; if (!(n >= 1 && n <= 22)) return Promise.resolve(false);
-      return (cache[n] = cache[n] || L.modeSlots(mode, n)).then(function (d) {
+      var job = cache[n] = cache[n] || Promise.all([L.modeSlots(mode, n), L.modeAdditions ? L.modeAdditions(mode, n) : Promise.resolve(null)]);
+      return job.then(function (docs) {
+        var d = docs[0], a = docs[1];
         var sec = d && d.sections.filter(function (s) { return s.id === el.dataset.sec; })[0];
         var sl = sec && sec.slots.filter(function (x) { return x.key === el.dataset.pt; })[0];
-        el.innerHTML = readingHtml(sl, fullReadingPreview());
+        var addition = window.AqeeqMatrixAdditions && window.AqeeqMatrixAdditions.get(a, el.dataset.sec, el.dataset.pt);
+        el.innerHTML = readingHtml(sl, fullReadingPreview(), addition, !!sl && !addition);
         el.dataset.loaded = sl ? 'true' : 'false';
+        el.dataset.additionLoaded = addition ? 'true' : 'false';
+        el.dataset.mode = mode;
         el.dispatchEvent(new CustomEvent('aq-matrix-reading-ready', { bubbles: true }));
-        return !!sl;
-      }).catch(function () { el.innerHTML = readingHtml(null, false); el.dataset.loaded = 'false'; return false; });
-    });
-    return Promise.all(jobs);
+        return !!sl && !!addition;
+      }).catch(function () { el.innerHTML = readingHtml(null, false); el.dataset.loaded = 'false'; el.dataset.additionLoaded = 'false'; return false; });
+    }
+    return Promise.all([].map.call(host.querySelectorAll('.mxm-ptslot'), hydrate));
   }
+
   function bindAcc(host) {
     if (host.__mxcAcc) return; host.__mxcAcc = true;
     host.addEventListener('click', function (e) {
@@ -376,6 +386,15 @@
   window.AqMatrixModes = { fromCorners: fromCorners, fromAnchors: fromAnchors, ofDate: ofDate, pairOf: pairOf, ageEnergy: ageEnergy, renderPair: renderPair, pairFull: pairFull, renderChild: renderChild, hydrateModeSlots: hydrateModeSlots, readingHtml: readingHtml, localFullPreview: localFullPreview, fullReadingPreview: fullReadingPreview };
   if (typeof module !== 'undefined' && module.exports) module.exports = window.AqMatrixModes;
   if (typeof document !== 'undefined') {
+    /* المعالج المفوض يعمل أيضًا في نسخة نافذة القراءة المنسوخة. */
+    document.addEventListener('click', function(e) {
+      var button = e.target.closest && e.target.closest('[data-addition-retry]'); if (!button) return;
+      var clicked = button.closest('.mxm-ptslot'); if (!clicked) return;
+      var mode = clicked.dataset.mode; if (mode !== 'child' && mode !== 'compat') return;
+      e.preventDefault(); button.disabled = true;
+      var original = [].filter.call(document.querySelectorAll('#mxk-result .mxm-ptslot, #mxc-result .mxm-ptslot'), function(el) { return el.dataset.mode === mode && el.dataset.sec === clicked.dataset.sec && el.dataset.pt === clicked.dataset.pt && el.dataset.n === clicked.dataset.n; })[0] || clicked;
+      hydrateModeSlots({ querySelectorAll: function() { return [original]; } }, mode);
+    });
     var boot = function () { build(); buildCompatPage(); buildChildPage(); var n = 0; (function t() { buildCompatPage(); buildChildPage(); if (++n < 12 && !((document.getElementById('mxc-form') || {}).__mxc && (document.getElementById('mxk-form') || {}).__mxc)) setTimeout(t, 400); })(); };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
   }

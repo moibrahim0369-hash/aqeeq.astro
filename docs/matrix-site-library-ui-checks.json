@@ -1,0 +1,50 @@
+{
+  "results": [
+    {
+      "mode": "child",
+      "records": 440,
+      "allRowsRenderedExact": 440,
+      "allBlocksRenderedExact": 1320,
+      "sourceFiles": 22,
+      "numberFilters": 22,
+      "sectionFilters": 9,
+      "emptyReset": true,
+      "nextPrev": true,
+      "directLink": true,
+      "sourceReadable": true
+    },
+    {
+      "mode": "compat",
+      "records": 484,
+      "allRowsRenderedExact": 484,
+      "allBlocksRenderedExact": 1452,
+      "sourceFiles": 22,
+      "numberFilters": 22,
+      "sectionFilters": 12,
+      "emptyReset": true,
+      "nextPrev": true,
+      "directLink": true,
+      "sourceReadable": true
+    },
+    {
+      "mode": "individual",
+      "records": 519,
+      "allRowsRenderedExact": 519,
+      "allBlocksRenderedExact": 6506,
+      "sourceFiles": 55,
+      "numberFilters": 22,
+      "sectionFilters": 20,
+      "emptyReset": true,
+      "nextPrev": true,
+      "directLink": true,
+      "sourceReadable": true
+    },
+    {
+      "failureVisible": true,
+      "retryRecovers": true,
+      "noGenericFallback": true
+    }
+  ],
+  "jsErrors": [],
+  "stage": "local patch only, not published"
+}
