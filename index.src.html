@@ -289,7 +289,15 @@
       <h2 class="aqhc-strip-title" id="aqhc-h">السماء الآن</h2>
       <span class="aqhc-strip-hint">اضغط على أي كوكب لقراءته</span>
     </div>
+    <div class="aqhc-tabs" role="tablist" aria-label="أقسام السماء الآن">
+      <button type="button" role="tab" class="aqhc-tab on" data-tab="planets">الكواكب</button>
+      <button type="button" role="tab" class="aqhc-tab" data-tab="retro">التراجعات</button>
+      <button type="button" role="tab" class="aqhc-tab" data-tab="aspects">الزوايا</button>
+    </div>
     <div class="aqhc-planets" id="aqhc-planets" role="group" aria-label="كواكب السماء الآن"></div>
+    <div class="aqhc-retro" id="aqhc-retro" hidden></div>
+    <div class="aqhc-aspects" id="aqhc-aspects" hidden></div>
+    <a class="aqhc-allsky" href="#sky">اكتشف السماء كلها: الكواكب والقمر وأحداث الشهر<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
   </section>
   <div id="aqhc-sheet-root" hidden></div>
 

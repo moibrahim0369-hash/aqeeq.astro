@@ -22,7 +22,10 @@
     pluto: 'مررت بتحولات لم يعرف الناس عنها شيئًا، وما زلت تحمل أثرها في طريقة ثقتك.'
   };
 
-  var openKey = null, chart = null, host = null, sheetRoot = null;
+  var openKey = null, chart = null, host = null, sheetRoot = null, tab = 'planets';
+  var ASP = [['conj', 0, 'اقتران'], ['sext', 60, 'تسديس'], ['square', 90, 'تربيع'], ['trine', 120, 'تثليث'], ['opp', 180, 'مقابلة']];
+  /* سطر الزاوية: داعمة/متوترة من المعاينة المعتمدة، والاندماج من page-06 AM.conj حرفيًا */
+  var ASP_LINE = { sup: 'انسياب وسهولة يدعمان الطرفين.', ch: 'احتكاك يحرّك الأمور ويطلب قراراً.', neu: 'يلتقي المجالان في نقطة واحدة فيمتزجان، ويصعب الفصل بينهما.' };
 
   function nd(n) { return n.toLocaleString('ar-EG'); }
   function stageOf(deg) {
@@ -100,6 +103,63 @@
       + '</div></div>';
   }
 
+  function topAspects() {
+    var bs = chart.bodies.filter(function (x) { return KEYS.indexOf(x.key) >= 0; });
+    var found = [];
+    for (var i = 0; i < bs.length; i++) for (var j = i + 1; j < bs.length; j++) {
+      var A = bs[i], B = bs[j], d = Math.abs(A.lon - B.lon) % 360, sep = d > 180 ? 360 - d : d;
+      var lim = (A.key === 'sun' || A.key === 'moon' || B.key === 'sun' || B.key === 'moon') ? 8 : 6;
+      for (var a = 0; a < ASP.length; a++) {
+        var orb = Math.abs(sep - ASP[a][1]);
+        if (orb <= lim) { found.push({ A: A.key, B: B.key, name: ASP[a][2], kind: ASP[a][0], orb: orb }); break; }
+      }
+    }
+    found.sort(function (x, y) { return x.orb - y.orb; });
+    return found.slice(0, 6);
+  }
+
+  function renderRetro() {
+    var hostR = document.getElementById('aqhc-retro'); if (!hostR) return;
+    hostR.innerHTML = KEYS.filter(function (k) { var b = body(k); return b.retro && k !== 'sun' && k !== 'moon'; }).map(function (k) {
+      var p = window.PLANETS[k], bd = body(k), S = window.SIGNS[bd.sign];
+      return '<div class="aqhc-retro-row" data-k="' + k + '" role="button" tabindex="0">'
+        + '<img src="assets/images/home/planets/' + IMG[k] + '" alt="" loading="lazy" decoding="async">'
+        + '<div class="aqhc-retro-main"><div class="aqhc-retro-head"><b>' + p.n + '</b>'
+        + '<span class="aqhc-retro-pos">' + S.n + ' ' + nd(Math.floor(bd.lon % 30)) + '°</span>'
+        + '<span class="aqhc-planet-move st-retro">تراجع</span></div>'
+        + '<p class="aqhc-retro-q">' + Q[k] + '</p></div></div>';
+    }).join('') || '<p class="aqhc-none">لا توجد تراجعات مؤثرة الآن.</p>';
+    Array.prototype.forEach.call(hostR.querySelectorAll('.aqhc-retro-row'), function (el) {
+      el.addEventListener('click', function () { openSheet(el.getAttribute('data-k')); });
+    });
+  }
+
+  function renderAspects() {
+    var hostA = document.getElementById('aqhc-aspects'); if (!hostA) return;
+    hostA.innerHTML = topAspects().map(function (x) {
+      var cls = x.kind === 'trine' || x.kind === 'sext' ? 'sup' : (x.kind === 'conj' ? 'neu' : 'ch');
+      var lbl = cls === 'sup' ? 'داعمة' : (cls === 'neu' ? 'اندماج' : 'متوترة');
+      return '<div class="aqhc-aspect-card">'
+        + '<span class="aqhc-chip ' + cls + '">' + lbl + '</span>'
+        + '<b>' + window.PLANETS[x.A].n + ' ' + x.name + ' ' + window.PLANETS[x.B].n + '</b>'
+        + '<span class="aqhc-aspect-diff">فارق ' + x.orb.toFixed(1) + '°</span>'
+        + '<p>' + ASP_LINE[cls] + '</p></div>';
+    }).join('') || '<p class="aqhc-none">لا توجد أسبكتات مؤثرة في هذه اللحظة، فالسماء هادئة نسبيًا.</p>';
+  }
+
+  function setTab(t) {
+    tab = t; if (openKey) closeSheet();
+    var wrap = document.getElementById('aqhc'); if (!wrap) return;
+    Array.prototype.forEach.call(wrap.querySelectorAll('.aqhc-tab'), function (b) {
+      b.classList.toggle('on', b.getAttribute('data-tab') === t);
+    });
+    document.getElementById('aqhc-planets').hidden = t !== 'planets';
+    document.getElementById('aqhc-retro').hidden = t !== 'retro';
+    document.getElementById('aqhc-aspects').hidden = t !== 'aspects';
+    if (t === 'retro') renderRetro();
+    if (t === 'aspects') renderAspects();
+  }
+
   function openSheet(k) {
     openKey = k;
     var render = function () {
@@ -139,7 +199,10 @@
     if (!host || !sheetRoot) return;
     if (!window.Astro || !window.PLANETS || !window.SIGNS) { setTimeout(init, 400); return; }
     tick();
-    setInterval(function () { if (!document.hidden && !openKey) tick(); }, 60000);
+    Array.prototype.forEach.call(document.querySelectorAll('.aqhc-tab'), function (b) {
+      b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
+    });
+    setInterval(function () { if (!document.hidden && !openKey) { tick(); if (tab === 'retro') renderRetro(); if (tab === 'aspects') renderAspects(); } }, 60000);
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && openKey) closeSheet(); });
   }
 
