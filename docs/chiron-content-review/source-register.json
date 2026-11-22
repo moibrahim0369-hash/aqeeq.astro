@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "releaseReady": true,
+  "sources": [
+    {
+      "path": "docs/chiron-self-cycle-family.json",
+      "kind": "selfCycle",
+      "status": "accepted_source",
+      "note": "Substantive source accepted on 2026-11-22 19:28, two-person polish applied. Fixed accepted transit conjunction/square overrides take precedence.",
+      "sha256": "747e5fd85eaa1940a676a248848cca8d1122005cff0b83bf2a10dba09d8074fe"
+    },
+    {
+      "path": "docs/chiron-axis-horizon-family.json",
+      "kind": "axis",
+      "status": "accepted_source",
+      "note": "Substantive source pass on 2026-11-22 19:29:52; specified register/aside cleanup applied; actual point-owner time guard retained.",
+      "sha256": "e3a67652cf468a6fc91dcbe67c0458b84b13e2d41c334f64c0235486412f4eee"
+    },
+    {
+      "path": "docs/chiron-axis-meridian-family.json",
+      "kind": "axis",
+      "status": "accepted_source",
+      "note": "Substantive source review accepted 2026-11-22 19:34:15; matching/rendering QA remains separate.",
+      "sha256": "759d8c9a2d451fd9ec4a4b2e6cb45786c570c82d23d72be5648baa406c3efe0f"
+    },
+    {
+      "path": "docs/chiron-family-mercury-venus.json",
+      "kind": "planet",
+      "status": "accepted_source",
+      "note": "Newest 665ca1e3 replacement accepted in substantive editorial review 2026-11-22 19:34:38.",
+      "sha256": "dc3f6a4d4d9d015449edf37b09aa732b2dc750aa4c5db3b1e226831c4d78c44f"
+    },
+    {
+      "path": "docs/chiron-axis-nodes-family.json",
+      "kind": "axis",
+      "status": "accepted_source",
+      "note": "Substantive source review accepted 2026-11-22 19:37:09; node-square full override retains precedence.",
+      "sha256": "51cca213a70813e13abb8057bff097496b9aefda3bb2fb29e9de6d7461f7fee0"
+    },
+    {
+      "path": "docs/chiron-family-neptune-pluto.json",
+      "kind": "planet",
+      "status": "accepted_source",
+      "note": "Newest e09bdf4c replacement accepted in substantive editorial review 2026-11-22 19:36:55.",
+      "sha256": "4b715ff2f581f60f3216fb4e87e6c3de00a531380bd518d58b3e9ba8c5ce770b"
+    },
+    {
+      "path": "docs/chiron-family-lilith.json",
+      "kind": "point",
+      "status": "accepted_source",
+      "note": "Mean-Lilith source accepted in substantive editorial review 2026-11-22 19:40:24; accepted natal opposition override retained.",
+      "sha256": "cfb79b864622936b62c43635258134b9d2a51cfbec9a560b1b9663edb45a4a6e"
+    },
+    {
+      "path": "docs/chiron-family-fortune.json",
+      "kind": "point",
+      "status": "accepted_source",
+      "note": "Substantive source pass 2026-11-22 19:43:01. Existing day/night formula, airless solar-altitude sect fixtures, both horizon boundaries and owner-specific known-time gates verified separately by chiron-fortune-method.test.js.",
+      "sha256": "798844d6195d08e2e38dc68b3bc3cb0fb5ca3de8b4af36c339a6935d5c629620"
+    },
+    {
+      "path": "docs/chiron-family-saturn-uranus.json",
+      "kind": "planet",
+      "status": "accepted_source",
+      "note": "Exact e4ab4855 substantive source-final pass 2026-11-22 19:52:49; fixed representatives retain precedence.",
+      "sha256": "3b1c42d7f49df9d60408e2a9f7f9d178f6598138420dac1c251ddd06160885e1"
+    },
+    {
+      "path": "docs/chiron-family-sun-moon.json",
+      "kind": "planet",
+      "status": "accepted_source",
+      "note": "Exact c0362c5c substantive source-final pass 2026-11-22 19:54:47; fixed representatives retain precedence.",
+      "sha256": "95bf9d935e2e4b4822d89288b2948d1d364dacb818d42ae57fe7f89b482bf28f"
+    },
+    {
+      "path": "docs/chiron-family-mars-jupiter.json",
+      "kind": "planet",
+      "status": "accepted_source",
+      "note": "Exact v3 c6b75cec substantive source-final pass 2026-11-22 20:04:54; fixed representative transit overrides retain precedence.",
+      "sha256": "90083382f511723a669a5e0839dd3b30dab6bb191b6dbbea7349381e1783306e"
+    }
+  ],
+  "fixedSources": [
+    {
+      "path": "docs/chiron-representative-prose.json",
+      "status": "accepted_source",
+      "kind": "fullOverride",
+      "editorialStatus": "accepted_matrix_model",
+      "sha256": "9aede74304a837e6b57c6cfb3a76be562cbbcfbf0eef61ed800a3289d6074727"
+    },
+    {
+      "path": "docs/chiron-axis-family-revision.json",
+      "status": "accepted_source",
+      "kind": "fullOverride",
+      "editorialStatus": "accepted_axis_sample",
+      "sha256": "5f80e0fcba90d94d3b114ac63e7ada1134fa86de788642cabe6a02f3c890b25e"
+    }
+  ]
+}

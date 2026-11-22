@@ -283,6 +283,8 @@
         const t=currentTransit(natal,date),lines=t.aspects;
         result.hidden=false;result.innerHTML='<header class="eam-result-head"><span class="eam-kicker">خريطة العبور · '+esc(dateStamp(date))+'</span><h3>العبور فوق خريطة الميلاد</h3><p class="eam-note">الحلقة الخارجية لمواضع العبور، والداخلية لمواضع الميلاد.</p></header><div class="eam-wheel" id="eam-wheel"></div>'+transitHouseTable(t.chart,natal)+aspectLines(lines,'اتصالات العبور بخريطة الميلاد');
         window.AqeeqAstroWheel?.renderSynastryWheel($('#eam-wheel',result),natal.ch,t.chart,t.aspects);
+        result.dataset.ceInstant=String(date.getTime());
+        window.dispatchEvent(new CustomEvent('aqeeq:chiron-transits',{detail:{hostId:'eam-result',date:date.getTime(),natal:natal.ch,current:t.chart}}));
         window.AqeeqGender?.apply(result,natal.gender);
         mountCopy(result,'خريطة العبور · '+dateStamp(date));
       }else if(mode==='solar'){

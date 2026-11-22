@@ -39,27 +39,6 @@
     const corr=-1.4979*Math.sin((2*D-2*F)*rad)-0.1500*Math.sin(M*rad)-0.1226*Math.sin(2*D*rad)+0.1176*Math.sin(2*F*rad)-0.0801*Math.sin((2*Mp-2*F)*rad);
     return norm(mean+corr);
   }
-  // Approximate heliocentric two-body propagation from a JPL SBDB osculating-element snapshot.
-  // Its age and omitted perturbations make Chiron materially less accurate than the planets.
-  function chironApprox(date) {
-    const epoch=2461200.5, jd=date.getTime()/86400000+2440587.5, dt=jd-epoch, rad=Math.PI/180;
-    const a=13.68426761,e=0.37976563,i=6.93057447*rad,O=209.29612586131*rad,w=339.28783265897*rad;
-    let M=(216.71989660181+0.01947026*dt)*rad; M=((M%(2*Math.PI))+2*Math.PI)%(2*Math.PI);
-    let E=M; for(let k=0;k<8;k++) E-=(E-e*Math.sin(E)-M)/(1-e*Math.cos(E));
-    const x=a*(Math.cos(E)-e), y=a*Math.sqrt(1-e*e)*Math.sin(E);
-    const cw=Math.cos(w),sw=Math.sin(w),cO=Math.cos(O),sO=Math.sin(O),ci=Math.cos(i),si=Math.sin(i);
-    const X=(cO*cw-sO*sw*ci)*x+(-cO*sw-sO*cw*ci)*y;
-    const Y=(sO*cw+cO*sw*ci)*x+(-sO*sw+cO*cw*ci)*y;
-    const earth=window.Astronomy?.HelioVector?.(window.Astronomy.Body.Earth, new window.Astronomy.AstroTime(date));
-    if(!earth) return null;
-    // Convert ecliptic J2000 to equatorial J2000, subtract Earth, then recover ecliptic longitude.
-    const eps=23.439291111*rad, ey=Y*Math.cos(eps), ez=Y*Math.sin(eps);
-    const dx=X-earth.x, dy=ey-earth.y, dz=ez-earth.z;
-    const eclY=dy*Math.cos(eps)+dz*Math.sin(eps);
-    // العناصر على كسوف J2000 بينما بقية الخريطة على اعتدال التاريخ؛ نضيف المبادرة العامة حتى لا ينزاح كيرون ~0.37° في 2026.
-    const Tc=(jd-2451545)/36525, prec=(5028.796195*Tc+1.1054348*Tc*Tc)/3600;
-    return norm(Math.atan2(eclY,dx)/rad+prec);
-  }
   function normalizeNatal(input) {
     return (input||[]).map(p=>{const key=canonicalBodyKey(p.key||p.name);return key?({key,name:p.name||BODY_AR[key]||key,lon:norm(p.lon ?? p.longitude),speed:Number(p.speed)||0,retro:!!p.retro}):null;}).filter(p=>p&&Number.isFinite(p.lon));
   }
@@ -67,7 +46,6 @@
     natal=natal.filter(p=>!['Asc','MC'].includes(p.key));
     const later=new Date(date.getTime()+6*3600000), next=bodiesFromChart(getChart(later));
     if(!next.some(p=>p.key==='TrueNode')) next.push({key:'TrueNode',lon:trueNodeApprox(later)});   // احتياطي لو المحرك قديم
-    if(!next.some(p=>p.key==='Chiron')){const nextChiron=chironApprox(later);if(nextChiron!=null)next.push({key:'Chiron',lon:nextChiron});}
     const nextByKey=new Map(next.map(p=>[p.key,p.lon]));
     const slow=new Set(['Jupiter','Saturn','Uranus','Neptune','Pluto','TrueNode','Chiron']);
     const out=[];
@@ -75,7 +53,7 @@
       const a=ASPECTS.map(x=>({...x,orb:Math.abs(Math.abs(delta(t.lon,n.lon))-x.deg)})).sort((x,y)=>x.orb-y.orb)[0];
       const limit=(t.key==='Sun'||t.key==='Moon'||n.key==='Sun'||n.key==='Moon')?5:3;
       if(a.orb>limit) continue;
-      let state='Applying';
+      let state=nextByKey.has(t.key)?'Applying':'Uncertain';
       const nowOrb=a.orb, futureT=nextByKey.get(t.key);
       if(futureT!=null){const fut=Math.abs(Math.abs(delta(futureT,n.lon))-a.deg);state=fut<nowOrb-0.005?'Applying':fut>nowOrb+0.005?'Separating':'Applying';}
       out.push({transit:t,natal:n,...a,state,exact:a.orb<1});
@@ -93,17 +71,14 @@
       const nodeLon=trueNodeApprox(date), nodeSpeed=delta(trueNodeApprox(later),nodeLon)/0.25;
       node={key:'TrueNode',name:BODY_AR.TrueNode,lon:nodeLon,speed:nodeSpeed,retro:nodeSpeed<0,approximate:true};
     }
-    // كيرون من جدول NASA/JPL Horizons ضمن نطاقه؛ نموذج الجسمين احتياطي تقريبي عند غياب نتيجة المحرك.
-    if(!transits.some(p=>p.key==='Chiron')){
-      const chLon=chironApprox(date), chNext=chironApprox(later), chSpeed=chLon==null||chNext==null?0:delta(chNext,chLon)/0.25;
-      if(chLon!=null) transits.push({key:'Chiron',name:BODY_AR.Chiron,lon:chLon,speed:chSpeed,retro:chSpeed<0,approximate:true});
-    }
+    // No two-body fallback for Chiron: timed readings require the verified table.
+    const missingChiron=!transits.some(p=>p.key==='Chiron');
     if(node) transits.push(node);
     const natal=normalizeNatal(natalPlanets), aspects=calculateAspects(transits,natal,date);
     let phaseAngle=null,illumination=null;
     if(window.Astronomy){try{phaseAngle=window.Astronomy.MoonPhase(new window.Astronomy.AstroTime(date)); illumination=window.Astronomy.Illumination(window.Astronomy.Body.Moon,new window.Astronomy.AstroTime(date)).phase_fraction;}catch(_){}}
     const moon=transits.find(p=>p.key==='Moon');
-    return {date,transits,natal,aspects,moon:{...moon,...signInfo(moon.lon),phaseAngle,illumination:illumination==null?null:Math.round(illumination*100),phaseName:phaseAngle==null?'':['محاق','هلال متزايد','تربيع أول','أحدب متزايد','بدر','أحدب متناقص','تربيع أخير','هلال متناقص'][Math.floor(((phaseAngle+22.5)%360)/45)]},chart};
+    return {date,transits,natal,aspects,missingChiron,moon:{...moon,...signInfo(moon.lon),phaseAngle,illumination:illumination==null?null:Math.round(illumination*100),phaseName:phaseAngle==null?'':['محاق','هلال متزايد','تربيع أول','أحدب متزايد','بدر','أحدب متناقص','تربيع أخير','هلال متناقص'][Math.floor(((phaseAngle+22.5)%360)/45)]},chart};
   }
   const cardText = a => {
     const domain={Sun:'الهوية والاتجاه',Moon:'العاطفة والاحتياجات',Mercury:'التواصل والتفكير',Venus:'العلاقات والقيم',Mars:'الطاقة والمبادرة',Jupiter:'النمو والفرص',Saturn:'المسؤولية والحدود',Uranus:'التغيير والاستقلال',Neptune:'الخيال والحدس',Pluto:'التحول والعمق'}[a.transit.key]||'المجال الشخصي';
@@ -111,7 +86,7 @@
   };
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function render(root,data,onDate){
-    const {transits,natal,aspects,moon,date}=data;
+    const {transits,natal,aspects,moon,date,missingChiron}=data;
     const cx=180,cy=180,R=150, inner=105;
     const angle=lon=>(norm(lon)-90)*Math.PI/180;
     const pt=(lon,r)=>({x:cx+r*Math.cos(angle(lon)),y:cy+r*Math.sin(angle(lon))});
@@ -124,9 +99,9 @@
     const scores=weatherScores(data), top=aspects.slice(0,5);
     root.innerHTML=`<section class="aqt-shell" dir="rtl"><header class="aqt-head"><div><span class="aqt-kicker">عقيق أسترو · العبور الشخصي</span><h2>طقس السماء وخريطتك</h2><p>${date.toLocaleString('ar-SA',{dateStyle:'medium',timeStyle:'short'})}</p></div><div class="aqt-moon"><b>☾ ${moon.name}</b><span>${moon.name} ${fmtDeg(moon.degree)} · ${esc(moon.phaseName||'طور القمر')}</span><span>الإضاءة ${moon.illumination==null?'—':moon.illumination+'%'}</span></div></header>
       <div class="aqt-layout"><div class="aqt-wheelbox"><svg viewBox="0 0 360 360" role="img" aria-label="العجلة المزدوجة لخريطة الميلاد والعبور"><circle class="aqt-ring outer" cx="180" cy="180" r="150"/><circle class="aqt-ring" cx="180" cy="180" r="125"/><circle class="aqt-ring inner" cx="180" cy="180" r="105"/><circle class="aqt-ring" cx="180" cy="180" r="78"/>${SIGNS.map((s,i)=>`<text class="aqt-sign" x="180" y="37" transform="rotate(${i*30+15} 180 180)">${s.slice(0,1)}</text>`).join('')}${lines}${natalMarks}${transMarks}</svg><div class="aqt-tooltip" hidden></div><div class="aqt-legend"><span>● عابر</span><span>○ ميلاد</span><span>━ منسجم</span><span>━ ضاغط</span></div><div class="aqt-time"><button data-step="-1">− يوم</button><button data-step="0">اليوم</button><button data-step="1">+ يوم</button><button data-step="7">+ أسبوع</button></div></div>
-      <aside class="aqt-weather"><h3>مؤشرات الطاقة</h3>${transits.some(x=>x.approximate)?`<p class="aqt-note" data-approx-bodies="1">تنبيه: موضع ${esc(transits.filter(x=>x.approximate).map(x=>x.name).join(' و'))} تقريبي (قد يختلف بدرجة أو أكثر)، فاعتبر عبوره إشارة عامة لا موعداً دقيقاً.</p>`:''}${scores.map(s=>`<div class="aqt-score"><div><span>${s.name}</span><b>${s.value}%</b></div><i><em style="width:${s.value}%"></em></i></div>`).join('')}</aside></div>
-      <div class="aqt-cards"><h3>العبورات الأبرز</h3>${top.length?top.map(a=>{const t=cardText(a);return `<article class="aqt-card"><b>عبور ${esc(a.transit.name)} ${a.name} ميلاد ${esc(a.natal.name)} <small>· أورب ${round1(a.orb)}°</small></b><div class="aqt-domain">${esc(t.domain)} · ${a.state==='Applying'?'متصل':'منفصل'}</div><p>${esc(t.psych)}</p><p><strong>خطوة عملية:</strong> ${esc(t.advice)}</p></article>`}).join(''):'<p class="aqt-note">لا توجد اتصالات ضمن الأورب المحدد الآن.</p>'}</div>
-      <details class="aqt-matrix"><summary>جدول الاتصالات للمحللين (${aspects.length})</summary><div class="aqt-scroll"><table><thead><tr><th>العابر</th><th>حركته</th><th>الدرجة / البرج</th><th>الاتصال</th><th>كوكب الميلاد</th><th>الأورب</th><th>الحالة</th></tr></thead><tbody>${aspects.map(a=>{const s=signInfo(a.transit.lon);return `<tr><td>${esc(a.transit.name)}</td><td>${a.transit.retro?'R · تراجع':'أمامية'}</td><td>${fmtDeg(s.degree)} ${s.name}</td><td>${a.name}</td><td>${esc(a.natal.name)}</td><td>${fmtDeg(a.orb)}</td><td>${a.orb<1?'Exact':a.state==='Applying'?'App':'Sep'}</td></tr>`}).join('')}</tbody></table></div></details><footer class="aqt-foot">${transits.some(x=>x.approximate)?'النقاط المذكورة في التنبيه أعلاه محسوبة بنماذج احتياطية تقريبية أقل دقة؛ بقية المواضع من محرك الموقع.':'الحسابات من محرك الموقع. جدول كيرون مشتق من NASA/JPL Horizons مع الترميز والاستيفاء.'}</footer></section>`;
+      <aside class="aqt-weather"><h3>مؤشرات الطاقة</h3>${missingChiron?'<p class="aqt-note" data-chiron-unavailable>كيرون غير معروض في التاريخ ده، لأنه خارج جدول الحساب المتحقق منه. ما استبدلناش موضعه بتقدير تقريبي.</p>':''}${transits.some(x=>x.approximate)?`<p class="aqt-note" data-approx-bodies="1">تنبيه: موضع ${esc(transits.filter(x=>x.approximate).map(x=>x.name).join(' و'))} تقريبي (قد يختلف بدرجة أو أكثر)، فاعتبر عبوره إشارة عامة لا موعداً دقيقاً.</p>`:''}${scores.map(s=>`<div class="aqt-score"><div><span>${s.name}</span><b>${s.value}%</b></div><i><em style="width:${s.value}%"></em></i></div>`).join('')}</aside></div>
+      <div class="aqt-cards"><h3>العبورات الأبرز</h3>${top.length?top.map(a=>{const t=cardText(a);return `<article class="aqt-card"><b>عبور ${esc(a.transit.name)} ${a.name} ميلاد ${esc(a.natal.name)} <small>· أورب ${round1(a.orb)}°</small></b><div class="aqt-domain">${esc(t.domain)} · ${a.state==='Applying'?'متصل':a.state==='Separating'?'منفصل':'حالة الاقتراب غير متاحة'}</div><p>${esc(t.psych)}</p><p><strong>خطوة عملية:</strong> ${esc(t.advice)}</p></article>`}).join(''):'<p class="aqt-note">لا توجد اتصالات ضمن الأورب المحدد الآن.</p>'}</div>
+      <details class="aqt-matrix"><summary>جدول الاتصالات للمحللين (${aspects.length})</summary><div class="aqt-scroll"><table><thead><tr><th>العابر</th><th>حركته</th><th>الدرجة / البرج</th><th>الاتصال</th><th>كوكب الميلاد</th><th>الأورب</th><th>الحالة</th></tr></thead><tbody>${aspects.map(a=>{const s=signInfo(a.transit.lon);return `<tr><td>${esc(a.transit.name)}</td><td>${a.transit.retro?'R · تراجع':'أمامية'}</td><td>${fmtDeg(s.degree)} ${s.name}</td><td>${a.name}</td><td>${esc(a.natal.name)}</td><td>${fmtDeg(a.orb)}</td><td>${a.orb<1?'Exact':a.state==='Applying'?'App':a.state==='Separating'?'Sep':'?'}</td></tr>`}).join('')}</tbody></table></div></details><footer class="aqt-foot">${transits.some(x=>x.approximate)?'النقاط المذكورة في التنبيه أعلاه محسوبة بنماذج احتياطية تقريبية أقل دقة؛ بقية المواضع من محرك الموقع.':'الحسابات من محرك الموقع. جدول كيرون مشتق من NASA/JPL Horizons مع الترميز والاستيفاء.'}</footer></section>`;
     const tip=root.querySelector('.aqt-tooltip');
     const show=g=>{if(!g)return;const k=g.dataset.key,p=transits.find(x=>x.key===k),s=signInfo(p.lon),aa=aspects.filter(a=>a.transit.key===k).slice(0,3);tip.hidden=false;tip.innerHTML=`<b>${esc(p.name)}</b> · ${s.name} ${fmtDeg(s.degree)}<br>${aa.length?aa.map(a=>`${a.name} ${esc(a.natal.name)} (${round1(a.orb)}°)`).join('<br>'):'لا اتصال ضمن الأورب'}`;};
     root.querySelectorAll('.aqt-body.transit').forEach(g=>{g.addEventListener('mouseenter',()=>show(g));g.addEventListener('focus',()=>show(g));g.addEventListener('mouseleave',()=>{tip.hidden=true});g.addEventListener('blur',()=>{tip.hidden=true});g.addEventListener('click',()=>{root.dataset.selected=root.dataset.selected===g.dataset.key?'':g.dataset.key;onDate(date,root.dataset.selected);});});
@@ -150,14 +125,14 @@
     const chart=engine.chart({utcMs:utc,lat,lon,hs:document.querySelector('#f-hs')?.value||'placidus',known}), bodies=bodiesFromChart(chart);
     if(chart.asc!=null)bodies.push({key:'Asc',name:BODY_AR.Asc,lon:norm(chart.asc),speed:0});
     if(chart.mc!=null)bodies.push({key:'MC',name:BODY_AR.MC,lon:norm(chart.mc),speed:0});
-    return {bodies,lat,lon};
+    return {bodies,lat,lon,chart};
   }
   function mount(){
     const result=document.querySelector('#result'); if(!result||!siteAstro())return;
     const natal=currentNatal(); if(!natal)return;
     let host=result.querySelector('#aqeek-personal-transits');
     if(!host){host=document.createElement('div');host.id='aqeek-personal-transits';result.appendChild(host);}
-    const renderAt=(date,selected='')=>{host.dataset.selected=selected;try{render(host,calculateTransits(natal.bodies,date,{lat:natal.lat,lon:natal.lon}),renderAt);}catch(e){host.innerHTML=`<p class="aqt-error">${esc(e.message)}</p>`;}};
+    const renderAt=(date,selected='')=>{host.dataset.selected=selected;try{const data=calculateTransits(natal.bodies,date,{lat:natal.lat,lon:natal.lon});render(host,data,renderAt);host.dataset.ceInstant=String(date.getTime());window.dispatchEvent(new CustomEvent('aqeeq:chiron-transits',{detail:{date:date.getTime(),natal:natal.chart,current:data.chart}}));}catch(e){host.innerHTML=`<p class="aqt-error">${esc(e.message)}</p>`;}};
     renderAt(new Date());
   }
   window.AqeqPersonalTransits={calculateTransits,calculateAspects,mount};

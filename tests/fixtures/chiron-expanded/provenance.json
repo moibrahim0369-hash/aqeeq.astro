@@ -1,0 +1,103 @@
+{
+  "source": "NASA/JPL Horizons",
+  "retrievedOn": "2026-11-22",
+  "queries": [
+    {
+      "name": "jpl-1900-1920-00",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%272060%3B%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&START_TIME=%271900-01-01+00%3A00%27&STOP_TIME=%271920-01-01+00%3A00%27&STEP_SIZE=%271+d%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+      "sha256": "45ff404d20d624daf8d550a9e9b2f0461205e20dee0a1122d07eb941670755f9",
+      "rows": 7305,
+      "first": [
+        2415020.5,
+        258.8961931
+      ],
+      "last": [
+        2422324.5,
+        2.6090909
+      ]
+    },
+    {
+      "name": "jpl-1900-1920-12",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%272060%3B%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&START_TIME=%271900-01-01+12%3A00%27&STOP_TIME=%271920-01-01+12%3A00%27&STEP_SIZE=%271+d%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+      "sha256": "628a69e5b67ccafafa1a9a0aa29f1f86182aa9889b90ca047c055a5e058dcd2e",
+      "rows": 7305,
+      "first": [
+        2415021.0,
+        258.9521245
+      ],
+      "last": [
+        2422325.0,
+        2.6169874
+      ]
+    },
+    {
+      "name": "jpl-2041-2101-00",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%272060%3B%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&START_TIME=%272041-01-01+00%3A00%27&STOP_TIME=%272101-01-01+00%3A00%27&STEP_SIZE=%271+d%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+      "sha256": "8b128f689ad18acc0650cbed3d96d18a90359295f2f4b947832acbb2af79e293",
+      "rows": 21915,
+      "first": [
+        2466520.5,
+        110.5522395
+      ],
+      "last": [
+        2488434.5,
+        254.0483109
+      ]
+    },
+    {
+      "name": "jpl-2041-2101-12",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%272060%3B%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&START_TIME=%272041-01-01+12%3A00%27&STOP_TIME=%272101-01-01+12%3A00%27&STEP_SIZE=%271+d%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+      "sha256": "d5bf13b0f111db555a25abce6f4a99fb15a570d7f60ce4b0756f4325eb32d5fd",
+      "rows": 21915,
+      "first": [
+        2466521.0,
+        110.5179387
+      ],
+      "last": [
+        2488435.0,
+        254.1060357
+      ]
+    },
+    {
+      "name": "jpl-timezone-buffer",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%272060%3B%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&TLIST=%272415018.5+2415019.5+2488435.5%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+      "rows": [
+        [
+          2415018.5,
+          258.6713001
+        ],
+        [
+          2415019.5,
+          258.7839729
+        ],
+        [
+          2488435.5,
+          254.1636022
+        ]
+      ],
+      "sha256": "8d797dadd5a124907b6322c2e6d0a7bdaf899d54e39a1fb93b0218dd7f776409"
+    }
+  ],
+  "uranusExample": {
+    "date": "2043-06-14T18:00:00Z",
+    "samples": [
+      {
+        "target": "2060;",
+        "jd": 2467415.25,
+        "lon": 134.6001701,
+        "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%272060%3B%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&TLIST=%272467415.25%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+        "sha256": "a8d588a9a3be16bc398f764e5fe6627cad3730d19b3647980e3bb185c50c1db2"
+      },
+      {
+        "target": "799",
+        "jd": 2467415.25,
+        "lon": 134.5955989,
+        "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27799%27&CENTER=%27500%40399%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&QUANTITIES=%2731%27&TLIST=%272467415.25%27&CSV_FORMAT=%27YES%27&CAL_FORMAT=%27JD%27&TIME_TYPE=%27UT%27&ANG_FORMAT=%27DEG%27&APPARENT=%27AIRLESS%27&EXTRA_PREC=%27YES%27",
+        "sha256": "467a192a40c7b325f1e435750586318e5e056dae1f443c41085f7eb816d7ac18"
+      }
+    ],
+    "longitudeSeparation": 0.0045712000000150965,
+    "existingOrbDegrees": 8,
+    "forced": false
+  }
+}

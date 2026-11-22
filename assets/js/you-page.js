@@ -36,6 +36,7 @@
   var domOf = function (id) { return DOMAINS.filter(function (d) { return d.id === id; })[0]; };
   function selMs() { return ST.date || Date.now(); }
   function allCycles() {
+    if (window.AqeeqChironUI) window.AqeeqChironUI.load().catch(function(){});
     var ch = natal(); if (!ch || !window.AqeeqYou || typeof Astro === 'undefined') return null;
     var key = Math.floor(selMs() / DAY) + '|' + ch.bodies[0].lon;
     if (!ST.memo || ST.memo.k !== key) ST.memo = { k: key, list: window.AqeeqYou.cycles(ch, Math.floor(selMs() / DAY) * DAY) };
@@ -336,6 +337,7 @@
     var mycur = split(allCycles() || []).cur, shared = [];
     pcur.forEach(function (c) { mycur.forEach(function (m) { if (m.t === c.t && !shared.some(function (z) { return z.t === c.t; })) shared.push({ t: c.t, tn: c.tn, mine: m, his: c }); }); });
     if (shared.length) h += '<p class="yp-lab">عبور يمسّكما معًا</p><div class="yp-wl">' + shared.slice(0, 2).map(function (z) { return '<article class="yp-wc both"><span class="yp-chip">' + z.tn + ' يمرّ على خريطتيكما</span><h3>' + z.tn + ' يضغط عليكما في الوقت نفسه</h3><p>عندك: ' + esc(titleOf(z.mine)) + '. وعند ' + esc(nm) + ': ' + esc(titleOf(z.his)) + '. حين يمرّ الكوكب نفسه على اثنين معًا، يكثر سوء الفهم دون سبب ظاهر، فاسألا قبل أن تحكما على بعضكما.</p></article>'; }).join('') + '</div>';
+    if (window.AqeeqChironUI) h += '<section class="ce-section ce-we">' + window.AqeeqChironUI.synHtml(me, pc, my, nm) + '</section>';
     h += '<a class="yp-wb" href="#compat">تعمّق في التوافق الكامل</a><button type="button" class="yp-wb danger" data-we-del="' + p.id + '">حذف ' + esc(nm) + '</button>';
     return h;
   }
@@ -538,6 +540,7 @@
   function subTabs() {
     return '<div class="yp-ut" role="tablist">' + [['transits', 'عبوراتك'], ['pattern', 'نمطك']].map(function (t) { return '<button type="button" role="tab" data-tab="' + t[0] + '" aria-selected="' + (ST.tab === t[0]) + '">' + t[1] + '</button>'; }).join('') + '</div>';
   }
+  window.addEventListener('aqeeq:chiron-content-ready', function(){ render(); });
   function bodyHtml() {
     var v = ST.view, list;
     if (v && v.set) return settingsHtml();
@@ -549,6 +552,7 @@
         var pp0 = window.AqeeqYou.placements(natal()).filter(function (x) { return x.id === c.n; })[0], cc0 = pp0 && coreOf(pp0);
         return '<div class="yp-det"><span class="yp-chip">' + c.tn + ' · ' + c.an + ' · ' + c.nn + '</span><h3>' + esc(titleOf(c)) + '</h3><small class="yp-al">' + fmtD(c.start) + ' – ' + fmtD(c.end) + '</small>' + actBar(c.id + '|' + c.start, titleOf(c)) +
           timeline(c) +
+          (c.t === 'chiron' && window.AqeeqChironUI ? window.AqeeqChironUI.cycleHtml(c) : '') +
           (cc0 ? '<p class="yp-lab">ما تحمله ' + c.nn + ' عندك</p>' + textBlock(cc0.e, 'cyc', c.id + '|' + c.start) : '') + '</div>';
       }
     }
@@ -620,7 +624,7 @@
   /* نافذة التعمّق المنبثقة: شرح أطول بتنسيق زجاجي، تُغلق بزر أسفلها */
   function popOpen(kind, rid) {
     var pls = natal() ? window.AqeeqYou.placements(natal()) : [], tgt, ttl, kk;
-    if (kind === 'cyc') { var lc = (allCycles() || []).filter(function (x) { return x.id + '|' + x.start === rid; })[0]; if (!lc) return; tgt = pls.filter(function (x) { return x.id === lc.n; })[0]; ttl = titleOf(lc); kk = astroLine(lc); }
+    if (kind === 'cyc') { var lc = (allCycles() || []).filter(function (x) { return x.id + '|' + x.start === rid; })[0]; if (!lc) return; var ce = window.AqeeqChironUI && window.AqeeqChironUI.cycleReading(lc); if (ce) { readerOpen(ce.title, astroLine(lc), ce.text); return; } tgt = pls.filter(function (x) { return x.id === lc.n; })[0]; ttl = titleOf(lc); kk = astroLine(lc); }
     else { tgt = pls.filter(function (x) { return x.id === rid; })[0]; ttl = tgt ? tgt.nn + ' في ' + tgt.sign : ''; kk = 'صفة ثابتة في خريطتك'; }
     var cx = tgt && coreOf(tgt); if (!cx) return;
     var br = briefOf(cx.e), old = $('#yp-pop'); if (old) old.remove();
@@ -685,7 +689,7 @@
     if (t.hasAttribute('data-share')) { var tt = t.getAttribute('data-share') + ' — عقيق أسترو'; try { if (navigator.share) navigator.share({ title: tt, url: location.origin + location.pathname }); else if (navigator.clipboard) { navigator.clipboard.writeText(tt + ' ' + location.origin + location.pathname); t.querySelector('span').textContent = 'تم النسخ'; } } catch (x) {} return; }
     if (t.hasAttribute('data-read')) {
       var kind = t.getAttribute('data-read'), rid = t.getAttribute('data-id'), pls = natal() ? window.AqeeqYou.placements(natal()) : [], tgt, ttl, kk;
-      if (kind === 'cyc') { var lc = (allCycles() || []).filter(function (x) { return x.id + '|' + x.start === rid; })[0]; if (!lc) return; tgt = pls.filter(function (x) { return x.id === lc.n; })[0]; ttl = titleOf(lc); kk = astroLine(lc); }
+      if (kind === 'cyc') { var lc = (allCycles() || []).filter(function (x) { return x.id + '|' + x.start === rid; })[0]; if (!lc) return; var ce = window.AqeeqChironUI && window.AqeeqChironUI.cycleReading(lc); if (ce) { readerOpen(ce.title, astroLine(lc), ce.text); return; } tgt = pls.filter(function (x) { return x.id === lc.n; })[0]; ttl = titleOf(lc); kk = astroLine(lc); }
       else { tgt = pls.filter(function (x) { return x.id === rid; })[0]; ttl = tgt ? tgt.nn + ' في ' + tgt.sign : ''; kk = 'صفة ثابتة في خريطتك'; }
       var cx = tgt && coreOf(tgt); if (cx) readerOpen(ttl, kk, cx.e.text); return;
     }

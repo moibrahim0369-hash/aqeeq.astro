@@ -15,10 +15,6 @@
     var k = Math.round(ms / DAY / STEP), c = cache[k]; if (c) return c;
     var ch = Astro.chart({ utcMs: k * STEP * DAY, lat: 30, lon: 31, known: false }), o = {};
     ch.bodies.forEach(function (b) { if (T[b.key]) o[b.key] = norm(b.lon); });
-    try {
-      var P = window.AqeqPersonalTransits;
-      if (P) P.calculateTransits([], new Date(k * STEP * DAY)).transits.forEach(function (b) { if (b.key === 'Chiron') o.chiron = norm(b.lon); });
-    } catch (e) { /* كيرون تقريبي: لو فشل نتجاهله */ }
     return (cache[k] = o);
   }
   function natalPoints(ch) {
@@ -31,18 +27,25 @@
   /* كل دورات العبور حول تاريخ محدد (من -3 إلى +3 سنوات) */
   function cycles(natal, center) {
     var pts = natalPoints(natal); delete pts.desc; delete pts.ic;
-    var from = center - 3 * 365 * DAY, to = center + 3 * 365 * DAY, runs = {}, out = [];
+    var CX = window.AqeeqChironExtensions, chironPts = {}, chironAspects = ASP;
+    if (CX) { var cp = CX.positions(natal, true); Object.keys(cp).forEach(function(k){chironPts[k]=cp[k].lon;}); chironAspects = CX.MAJOR.concat(CX.MINOR).map(function(a){return {d:a.angle,k:({conjunction:'conj',sextile:'sext',square:'sq',trine:'tri',opposition:'opp'})[a.key]||a.key,n:a.label};}); }
+    else chironPts = pts;
+    var from = center - 3 * 365 * DAY, to = center + 3 * 365 * DAY, runs = {}, out = [], chironCoverage = { first: Infinity, last: -Infinity };
     from = Math.ceil(from / (STEP * DAY)) * STEP * DAY;
     for (var ms = from; ms <= to; ms += STEP * DAY) {
       var p = pos(ms);
-      for (var tk in p) for (var nk in pts) {
-        if (tk === nk) continue;
-        for (var i = 0; i < ASP.length; i++) {
-          if (ONLY[tk] && ONLY[tk].indexOf(ASP[i].k) < 0) continue;
-          var o = orbOf(p[tk], pts[nk], ASP[i].d); if (o > 2) continue;
-          var id = tk + '|' + ASP[i].k + '|' + nk, r = runs[id] || (runs[id] = []);
+      if (Number.isFinite(p.chiron)) { chironCoverage.first = Math.min(chironCoverage.first, ms); chironCoverage.last = Math.max(chironCoverage.last, ms); }
+      for (var tk in p) {
+       var targetPts = tk === 'chiron' ? chironPts : pts, aspectList = tk === 'chiron' ? chironAspects : ASP;
+       for (var nk in targetPts) {
+        if (tk === nk && tk !== 'chiron') continue;
+        for (var i = 0; i < aspectList.length; i++) {
+          if (ONLY[tk] && ONLY[tk].indexOf(aspectList[i].k) < 0) continue;
+          var o = orbOf(p[tk], targetPts[nk], aspectList[i].d); if (o > 2) continue;
+          var id = tk + '|' + aspectList[i].k + '|' + nk, r = runs[id] || (runs[id] = []);
           r.push({ ms: ms, o: o });
         }
+       }
       }
     }
     for (var id2 in runs) {
@@ -52,10 +55,12 @@
       g.forEach(function (x) {
         var start = x[0].ms, end = x[x.length - 1].ms;
         if (start <= from + STEP * DAY || end >= to - STEP * DAY) return;          /* دورة مقطوعة الطرف: نتجاهلها */
+        // A table edge is missing data, not an observed beginning or ending of a cycle.
+        if (s[0] === 'chiron' && (start <= chironCoverage.first + STEP * DAY || end >= chironCoverage.last - STEP * DAY)) return;
         var peaks = [], cur = null;
         x.forEach(function (q) { if (q.o <= 0.6) { if (!cur) peaks.push(cur = { a: q.ms, b: q.ms }); else cur.b = q.ms; } else cur = null; });
-        var asp = ASP.filter(function (a) { return a.k === s[1]; })[0];
-        out.push({ id: id2, t: s[0], asp: s[1], n: s[2], tn: T[s[0]], an: asp.n, nn: N[s[2]], doms: DOM[s[2]] || ['self'], start: start, end: end, peaks: peaks });
+        var asp = (s[0] === 'chiron' ? chironAspects : ASP).filter(function (a) { return a.k === s[1]; })[0];
+        out.push({ id: id2, t: s[0], asp: s[1], n: s[2], tn: T[s[0]], an: asp.n, nn: (CX && CX.LABELS[s[2]]) || N[s[2]], doms: DOM[s[2]] || ['self'], start: start, end: end, peaks: peaks });
       });
     }
     return out.sort(function (a, b) { return a.start - b.start; });
