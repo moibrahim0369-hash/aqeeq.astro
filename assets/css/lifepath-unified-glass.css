@@ -1,0 +1,650 @@
+/* مسار الحياة (فردي / توافق): نفس شكل المصفوفة المعتمد — معاينة خاصة. عرض فقط، لا يغيّر أي حساب ولا نصًا.
+   النطاق: حالة الإدخال فقط؛ شاشة النتيجة تحتفظ بشكلها الحالي. */
+
+/* ---------- خلفية وهيكل الصفحتين ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8),
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) {
+  background: #fffefa !important;
+  background-image: none !important;
+  color: #252528 !important;
+  padding-top: 78px !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8)::before,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8)::after,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8)::before,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8)::after {
+  display: none !important;
+}
+
+/* إخفاء: شريط رجوع، فتات التنقل، الزخارف الجانبية، بنر «الأرقام لغة كونية»، ومربعا الشرح قبل النموذج */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-section-topbar,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpj-crumb,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-art,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-orn,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-moons,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-ridge,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-corner,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-quote,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #service-lpform,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-section-topbar,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpj-crumb,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #service-synastry-form {
+  display: none !important;
+}
+
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-bottom {
+  display: block !important;
+  background: none !important;
+  padding: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
+  padding: 0 18px 30px !important;
+  box-sizing: border-box !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) > .wrap {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: 1000px !important;
+  padding: 0 18px 30px !important;
+  box-sizing: border-box !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-wrap { display: contents !important; }
+
+/* ---------- الرأس: نفس مقاييس المصفوفة ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 0 !important;
+  margin: 0 0 14px !important;
+  max-width: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head .eyebrow,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head .eyebrow {
+  display: block !important;
+  font-size: 10px !important;
+  color: #56565b !important;
+  letter-spacing: 0 !important;
+  margin: 0 0 6px !important;
+  text-shadow: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2 {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  font-size: 27px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  margin: 5px 0 !important;
+  color: #202024 !important;
+  -webkit-text-fill-color: #202024 !important;
+  background: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::before,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::after,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::before,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::after {
+  display: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head .intro,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head .intro {
+  font-size: 12px !important;
+  line-height: 1.8 !important;
+  color: #65676a !important;
+  max-width: 460px !important;
+  text-align: center !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+}
+
+/* ---------- تبويبات مسار الحياة (فردي / توافق) بشكل تبويبات المصفوفة ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-modes,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-modes {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin: 0 auto 16px !important;
+  padding: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  order: -2 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  min-height: 46px !important;
+  padding: 6px 10px !important;
+  border: 1px solid #e8e5db !important;
+  border-radius: 15px !important;
+  background: rgba(255, 255, 255, .88) !important;
+  color: #67645b !important;
+  box-shadow: 0 3px 10px #323c4505 !important;
+  text-decoration: none !important;
+  transform: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on {
+  background: #f4eddd !important;
+  border-color: #ddcda7 !important;
+  color: #75613d !important;
+  box-shadow: inset 0 1px 0 #fff !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mic,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mic {
+  width: 25px !important;
+  height: 25px !important;
+  display: grid !important;
+  place-items: center !important;
+  color: inherit !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mic svg,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mic svg {
+  width: 23px !important;
+  height: 23px !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mlb,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mlb {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: inherit !important;
+}
+
+/* ---------- بطاقات نوع العلاقة في التوافق بنفس شكل التبويبات ---------- */
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-modes {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: 0 auto 16px !important;
+  padding: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-mode {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  min-height: 46px !important;
+  padding: 6px 8px !important;
+  border: 1px solid #e8e5db !important;
+  border-radius: 15px !important;
+  background: rgba(255, 255, 255, .88) !important;
+  color: #67645b !important;
+  box-shadow: 0 3px 10px #323c4505 !important;
+  transform: none !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-mode.is-on {
+  background: #f4eddd !important;
+  border-color: #ddcda7 !important;
+  color: #75613d !important;
+  box-shadow: inset 0 1px 0 #fff !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-ic {
+  width: 25px !important;
+  height: 25px !important;
+  display: grid !important;
+  place-items: center !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-ic svg {
+  width: 23px !important;
+  height: 23px !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-lb {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: inherit !important;
+}
+
+/* ---------- بطاقة النموذج الزجاجية ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+  padding: 20px 18px !important;
+  border: 1px solid #e7e6de !important;
+  border-radius: 24px !important;
+  background: #ffffffd9 !important;
+  box-shadow: 0 8px 30px #252b3510 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-tabbox {
+  display: contents !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-compat {
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: auto !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) form.syn-form {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  column-gap: 14px !important;
+  row-gap: 8px !important;
+  padding: 20px 14px !important;
+  border: 1px solid #e7e6de !important;
+  border-radius: 24px !important;
+  background: #ffffffd9 !important;
+  box-shadow: 0 8px 30px #252b3510 !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .syn-person {
+  min-width: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .syn-person h3 {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #292c30 !important;
+  text-align: center !important;
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .syn-person h3::before,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .syn-person h3::after {
+  display: none !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lps-join { display: none !important; }
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #synastry-form > .btn,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #syn-error {
+  grid-column: 1 / -1 !important;
+}
+
+/* ---------- الحقول: نفس وضوح خانات المصفوفة (حدود ذهبية وكتابة أوضح) ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+  margin: 0 0 13px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  min-height: 0 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field label,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field label span,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field label,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field label span {
+  color: #3a2a2f !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  opacity: 1 !important;
+  margin: 0 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input:not([type=checkbox]):not([type=radio]):not(.aq-ds-src):not(.aq-dsx-src):not([type=hidden]),
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field select,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds select,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input:not([type=checkbox]):not([type=radio]):not(.aq-ds-src):not(.aq-dsx-src):not([type=hidden]),
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field select,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds select {
+  background: #fff !important;
+  border: 1.5px solid #c9a35a !important;
+  border-radius: 13px !important;
+  color: #2a1a20 !important;
+  -webkit-text-fill-color: #2a1a20 !important;
+  font-weight: 600 !important;
+  min-height: 46px !important;
+  box-shadow: 0 1px 4px rgba(74, 20, 40, .10) !important;
+  opacity: 1 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input::placeholder,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input::placeholder {
+  color: #7a6a64 !important;
+  -webkit-text-fill-color: #7a6a64 !important;
+  opacity: 1 !important;
+  font-weight: 500 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field select:has(option[value=""]:checked),
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field select:has(option[value=""]:checked) {
+  color: #6f625c !important;
+  -webkit-text-fill-color: #6f625c !important;
+  font-weight: 500 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input:focus,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field select:focus,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds select:focus,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input:focus,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field select:focus,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds select:focus {
+  border-color: #8a5a1f !important;
+  outline: 2px solid rgba(201, 163, 93, .55) !important;
+  box-shadow: 0 0 0 3px rgba(201, 163, 93, .25) !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-fi,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-fi {
+  color: #858d79 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 7px !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds select,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-ds select {
+  width: 100% !important;
+  min-width: 0 !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  padding: 7px 4px !important;
+}
+
+/* شريط التعبئة من الحساب: هادئ داخل البطاقة */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-bar,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-bar {
+  margin: 0 0 14px !important;
+  padding: 9px 12px !important;
+  border: 1px solid #ecead9 !important;
+  border-radius: 14px !important;
+  background: #fbf9f1 !important;
+  box-shadow: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-bar span,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-bar span {
+  font-size: 11px !important;
+  color: #6b6a5f !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-btn,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-btn {
+  font-size: 11px !important;
+}
+
+/* ---------- زر الحساب الذهبي بنفس روح المصفوفة ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform > .btn,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #synastry-form > .btn {
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  min-height: 48px !important;
+  margin: 5px 0 0 !important;
+  padding: 12px !important;
+  border: 1px solid #d7c69e !important;
+  border-radius: 15px !important;
+  background: linear-gradient(115deg, #e5d5ae, #f5e9ce 45%, #d9c799) !important;
+  color: #3e3c32 !important;
+  -webkit-text-fill-color: #3e3c32 !important;
+  box-shadow: inset 0 1px 0 #fff, 0 5px 15px #a38b5214 !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform > .btn::after,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #synastry-form > .btn::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: -50% -40% !important;
+  width: auto !important;
+  height: auto !important;
+  pointer-events: none !important;
+  background: linear-gradient(110deg, transparent 30%, #ffffff80 48%, transparent 62%) !important;
+  transform: translateX(110%) !important;
+  animation: lpv5sheen 4.8s ease-in-out infinite !important;
+  border: 0 !important;
+}
+@keyframes lpv5sheen {
+  0%, 24% { transform: translateX(110%); }
+  68%, 100% { transform: translateX(-110%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform > .btn::after,
+  html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #synastry-form > .btn::after {
+    animation: none !important;
+  }
+}
+
+/* ---------- الجزء السفلي بنفس انسجام المصفوفة ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-about {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  color: #626b6b !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-about h3 {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  color: #394345 !important;
+  line-height: 1.7 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-about h3 > span {
+  background: linear-gradient(90deg, transparent, #d8cba9, transparent) !important;
+  height: 1px !important;
+  box-shadow: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-about p {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.95 !important;
+  font-weight: 400 !important;
+  color: #687170 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-num {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-num > li {
+  gap: 14px !important;
+  padding: 20px 0 !important;
+  border-bottom: 1px solid #e7e6de !important;
+  align-items: flex-start !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-num > li:last-child {
+  border-bottom: 0 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-num > li > b {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  flex: 0 0 34px !important;
+  border-radius: 12px !important;
+  background: #f4eddd !important;
+  border: 1px solid #e3d8bf !important;
+  color: #7d6b42 !important;
+  box-shadow: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-num strong {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.7 !important;
+  font-weight: 500 !important;
+  color: #394345 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-num p {
+  margin-top: 6px !important;
+  margin-bottom: 0 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-gold {
+  margin-top: 24px !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-gold .aq-gold {
+  padding: 17px !important;
+  border: 1px solid #e4ddcb !important;
+  border-radius: 20px !important;
+  background: linear-gradient(120deg, #ffffffed, #f7f2e7) !important;
+  box-shadow: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-gold .aq-gold-t b {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  color: #394345 !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  font-weight: 500 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-mx-gold .aq-gold-t small {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  color: #687170 !important;
+  font-size: 12px !important;
+  line-height: 1.9 !important;
+  font-weight: 400 !important;
+}
+
+/* شرح صفحة التوافق بنفس هدوء المصفوفة */
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cp-explain {
+  margin: 20px 0 0 !important;
+  padding: 0 !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cp-explain h3 {
+  font-family: 'IBM Plex Sans Arabic', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  color: #394345 !important;
+  line-height: 1.7 !important;
+  margin: 0 0 12px !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cp-explain p {
+  font-size: 13px !important;
+  line-height: 1.9 !important;
+  color: #687170 !important;
+  margin: 0 !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cp-explain .y27-ex {
+  padding: 18px !important;
+  margin: 0 0 12px !important;
+  background: #ffffffbd !important;
+  border: 1px solid #e7e8df !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+}
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cp-explain .y27-ex > b {
+  color: #7d6b42 !important;
+  background: #f4eddd !important;
+  border: 1px solid #e3d8bf !important;
+  box-shadow: none !important;
+}
+
+/* ترتيب: الرأس ثم التبويبات ثم النموذج */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head { order: -3 !important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-modes,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-modes { order: -2 !important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform { order: -1 !important; }
+
+/* إصلاحات: شريط التعبئة يمتد بعرض النموذج */
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) form.syn-form .aq-autofill-bar { grid-column: 1 / -1 !important; }
+
+/* تبويبات أوضح وأقوى ذهبيًا — مطابقة لأحدث مرشح المصفوفة */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-mode {
+  opacity: 1 !important;
+  background: #fff !important;
+  border: 1.5px solid #c9a35a !important;
+  box-shadow: 0 2px 8px rgba(74, 20, 40, .08) !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mlb,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mlb,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-lb {
+  font-size: 14.5px !important;
+  font-weight: 800 !important;
+  color: #4a3242 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mic,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mic,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-ic {
+  color: #6a2438 !important;
+  opacity: 1 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-mode.is-on {
+  background: linear-gradient(135deg, #f0d28e, #d9b062) !important;
+  border-color: #b98d3e !important;
+  box-shadow: 0 4px 14px rgba(185, 141, 62, .45), inset 0 1px 0 #fff8 !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on .lpm-mlb,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on .lpm-mic,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on .lpm-mlb,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpm-mode.is-on .lpm-mic,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-mode.is-on .cpm-lb,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .cpm-mode.is-on .cpm-ic {
+  color: #4a1a2b !important;
+}
+
+/* ---------- الترويسة الموحدة بنمط المصفوفة: اسم الخريطة بخط Cairo + سؤال مناسب ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2 {
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 26px !important;
+  line-height: 1.45 !important;
+  margin: 0 !important;
+  color: #202024 !important;
+  -webkit-text-fill-color: #202024 !important;
+  background: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::before,
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::after,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::before,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2::after { display: none !important; }
+@media (min-width:850px){
+  html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2,
+  html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2 { font-size: 32px !important; }
+}
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head .lpx-sub,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head .lpx-sub {
+  display: block !important;
+  font-family: 'Cairo', sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: #5c5d61 !important;
+  line-height: 1.8 !important;
+  margin: 5px 0 0 !important;
+  text-shadow: none !important;
+}
+
+/* ---------- نموذج مدمج بمقاسات المصفوفة ---------- */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform .field .lpx-fi,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) form.syn-form .field .lpx-fi { display: none !important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform { padding: 20px 18px 16px !important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform .field,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) form.syn-form .field { margin: 0 0 13px !important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) #lpform .aq-autofill-bar,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) form.syn-form .aq-autofill-bar { margin: 0 0 13px !important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input::placeholder,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input::placeholder { font-size: 13px !important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .field input { text-overflow: ellipsis !important; }
+
+/* إخفاء أيقونات الحقول في نموذج التوافق أيضًا (مطابقة المصفوفة) */
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) form.syn-form .field .mxp-fi { display: none !important; }
