@@ -208,3 +208,26 @@ html body section#compat .aq-autofill-bar.aq-af-out .aq-af-note{display:block;fo
 html body section#compat .aq-autofill-bar.aq-af-out .aq-autofill-btn{padding:9px 14px!important;font-size:.8rem!important;min-height:0!important;border-radius:12px!important;background:linear-gradient(135deg,#7f3a52,#5a1f33)!important;color:#fff!important;border:1px solid rgba(228,196,134,.6)!important;white-space:nowrap;flex:0 0 auto}
 html body section#compat .aq-autofill-bar.aq-af-out:not(#_c):not(#_d):not(#_e){flex-direction:row!important;flex-wrap:nowrap!important}
 html body section#compat .aq-autofill-bar.aq-af-out span{min-width:0}
+
+/* Vedic chart picker: remove the duplicate opening block, retain navigation. */
+html body section.sec#astro-maps[data-eam-page="sidereal"]:has(.vh-pre:not([hidden])) > .wrap > .eam-hero:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e) {
+  display: none !important;
+}
+/* Near-white cream, without yellow washes or brown shadows. Vedic page only. */
+html body section.sec#astro-maps[data-eam-page="sidereal"]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g) {
+  background: #fffefa !important;
+  background-image: none !important;
+}
+html body #astro-maps[data-eam-page="sidereal"] .vh-pre {
+  margin-top: 4px !important;
+}
+html body #astro-maps[data-eam-page="sidereal"] .vh-hub .vh-tabs {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.95) !important;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+/* Requested follow-up: remove picker-only back/home row, keep app navigation. */
+html body section.sec#astro-maps[data-eam-page="sidereal"]:has(.vh-pre:not([hidden])):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f) > .wrap > .aq-section-topbar {
+  display: none !important;
+}
