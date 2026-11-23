@@ -95,7 +95,7 @@
   var TIMET = ['dasha', 'pratyantar', 'ashtakavarga', 'shadbala', 'varshaphala', 'sade', 'lunar', 'year', 'expert'];
   var ALIAS = { birth: 'c:1', vargas: 'c:1', moonsun: 'c:moon' };
   function tileOf(id) { return TILES.filter(function (t) { return t[0] === id; })[0]; }
-  function tilesHTML(admin) {
+  function desktopTilesHTML(admin) {
     var h = CHG.map(function (g, gi) {
       return '<section class="vh-sec" data-vhs="' + gi + '"><h5 class="vh-gh">' + g[0] + '</h5><div class="vh-cg' + ('') + '">' + g[1].map(function (k) {
         var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-m vh-ph" data-g="c:' + k + '"><span class="vh-ph-img"><img src="' + CHIMG[k] + '" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span></span></span><span class="vh-ph-b">' + sdesc(CQ[k], c[3]) + '<span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>احسب ' + c[0] + '</span></span></button>';
@@ -109,6 +109,27 @@
     var tabs = '<div class="vh-tabs" role="group" aria-label="أقسام الخرائط">' + [['all', 'الكل']].concat(CHG.map(function (g, gi) { return [String(gi), g[0]]; })).concat([['time', 'الأزمنة والتنبؤ'], ['adv', 'المتقدمة']]).map(function (t) {
       return '<button type="button" class="vh-tab' + (t[0] === VHTAB ? ' on' : '') + '" data-vht="' + t[0] + '" aria-pressed="' + (t[0] === VHTAB) + '">' + t[1] + '</button>';
     }).join('') + '</div>';
+    var hd = '<div class="vh-hd"><div class="vh-hd-t" role="heading" aria-level="3">الخرائط الفيدية</div><p class="vh-hd-p">خرائط من التقليد الهندي (جيوتيش) تقرأ مواضع الكواكب بالبروج النجمية.</p></div>';
+    return hd + tabs + '<div class="vh-secs" data-vhtab="' + VHTAB + '">' + h + '</div>';
+  }
+  function tilesHTML(admin) {
+    if (window.matchMedia && window.matchMedia("(min-width:700px)").matches) return desktopTilesHTML(admin);
+    function chart(k) {
+      var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-m vh-ph" data-g="c:' + k + '"><span class="vh-ph-img"><img src="' + CHIMG[k] + '" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span></span></span><span class="vh-ph-b">' + sdesc(CQ[k], c[3]) + '<span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>احسب</span></span></button>';
+    }
+    function tool(id) {
+      var t = tileOf(id), image = ADV.indexOf(id) >= 0 ? 'adv' : id;
+      return '<button type="button" class="vh-tile vh-tile-m vh-ph" data-g="' + id + '"' + (id === 'expert' ? ' data-admin="1"' : '') + '><span class="vh-ph-img"><img src="assets/images/vedic/' + image + '.jpg" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">' + t[1] + '</span>' + (t[3] ? '<span class="vh-v">' + t[3] + '</span>' : '') + '</span></span><span class="vh-ph-b">' + sdesc(TQ[id], t[2]) + '<span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>احسب</span></span></button>';
+    }
+    var groups = [
+      ['basic', 'الأساس', ['1', 'moon', 'sun'], ['lunar']],
+      ['life', 'مجالات الحياة', ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], []],
+      ['time', 'التوقيت والتنبؤ', [], ['dasha', 'pratyantar', 'sade', 'varshaphala', 'year']],
+      ['advanced', 'المتقدمة', ['16', '20', '24', '27', '30', '40', '45', '60'], ['shadbala', 'ashtakavarga']]
+    ];
+    var h = groups.map(function(g) { return '<section class="vh-sec" data-vhs="' + g[0] + '"><h5 class="vh-gh">' + g[1] + '</h5><div class="vh-cg">' + g[2].map(chart).join('') + g[3].map(tool).join('') + '</div></section>'; }).join('');
+    if (admin) h += '<section class="vh-sec" data-vhs="expert"><h5 class="vh-gh">خاص بك</h5><div class="vh-cg">' + tool('expert') + '</div></section>';
+    var tabs = '<div class="vh-tabs" role="group" aria-label="أقسام الخرائط">' + [['all', 'الكل']].concat(groups.map(function(g) { return [g[0],g[1]]; })).map(function(t) { return '<button type="button" class="vh-tab' + (t[0] === VHTAB ? ' on' : '') + '" data-vht="' + t[0] + '" aria-pressed="' + (t[0] === VHTAB) + '">' + t[1] + '</button>'; }).join('') + '</div>';
     var hd = '<div class="vh-hd"><div class="vh-hd-t" role="heading" aria-level="3">الخرائط الفيدية</div><p class="vh-hd-p">خرائط من التقليد الهندي (جيوتيش) تقرأ مواضع الكواكب بالبروج النجمية.</p></div>';
     return hd + tabs + '<div class="vh-secs" data-vhtab="' + VHTAB + '">' + h + '</div>';
   }

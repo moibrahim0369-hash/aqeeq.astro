@@ -680,3 +680,13 @@ html body #astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d):not(
 @media(max-width:699px){
 html body section.sec#astro-maps.eam-view-result:has(.vh-hub):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){background-image:linear-gradient(115deg,rgba(255,255,255,0) 18%,rgba(255,255,255,.45) 38%,rgba(255,255,255,0) 52%,rgba(255,255,255,.28) 72%,rgba(255,255,255,0) 90%),url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160' fill='none' stroke='%23C9A46A' stroke-width='1' stroke-linecap='round' opacity='.16'%3E%3Cpath d='M40 30l2.2 5.2 5.2 2.2-5.2 2.2L40 45l-2.2-5.4-5.2-2.2 5.2-2.2z'/%3E%3Ccircle cx='118' cy='104' r='5'/%3E%3Cpath d='M118 92v-4M118 120v-4M106 104h-4M134 104h-4'/%3E%3C/svg%3E") !important;background-color:#FFFCF5 !important}
 }
+
+/* Private proposal: five meaningful filters, two readable rows without swiping. */
+@media(max-width:699px){
+html body section.sec#astro-maps .vh-hub .vh-tabs:not(#_a):not(#_b):not(#_c){display:grid !important;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px !important;overflow:visible !important;padding:4px 2px 8px !important}
+html body section.sec#astro-maps .vh-hub .vh-tab:not(#_a):not(#_b):not(#_c){grid-column:span 2;min-width:0;padding:7px 4px !important;font-size:.76rem !important;white-space:nowrap}
+html body section.sec#astro-maps .vh-hub .vh-tab:nth-child(n+4):not(#_a):not(#_b):not(#_c){grid-column:span 3}
+#astro-maps .vh-secs[data-vhtab="basic"] .vh-sec:not([data-vhs="basic"]),
+#astro-maps .vh-secs[data-vhtab="life"] .vh-sec:not([data-vhs="life"]),
+#astro-maps .vh-secs[data-vhtab="advanced"] .vh-sec:not([data-vhs="advanced"]){display:none}
+}
