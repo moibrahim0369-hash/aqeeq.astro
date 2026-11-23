@@ -39,6 +39,10 @@
   };
   TICO['الأبراج'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3.5v6.3M12 14.2v6.3M4.6 7.8l5.5 3.2M13.9 13l5.5 3.2M4.6 16.2l5.5-3.2M13.9 11l5.5-3.2"/></svg>';
   TICO['الكواكب'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.6"/><path d="M3.2 15.5c-1-2.4 3.7-6.2 10.4-8.4 4.3-1.4 7.4-1.4 7.8-.3.5 1.3-2.4 3.9-6.8 5.8"/></svg>';
+  TICO['الكل'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg>';
+  TICO['القمر'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13.5A8.5 8.5 0 1 1 10.5 4 6.9 6.9 0 0 0 20 13.5z"/></svg>';
+  TICO['العبور'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="12" r="3.8"/><path d="M13.5 12h6.5M17 8.8l3.2 3.2-3.2 3.2"/></svg>';
+  TICO['التراجعات'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 0 1 12-4.9M19 12a7 7 0 0 1-12 4.9"/><path d="M17 3.4v3.7h-3.7M7 20.6v-3.7h3.7"/></svg>';
   TICO['أحدث'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
   var GROUPS = [
     { k: 'الأبراج', cats: ['الأبراج'], ico: 'الأبراج' },
@@ -127,7 +131,7 @@
     h += offline ? '<p class="fc-offline" role="status">أنت تتصفح نسخة محفوظة من المحتوى بسبب ضعف الاتصال.</p>' : '';
     h += showPick ? pick() : '';
     if (st.cat !== 'الكل' && !st.q) h += '<div class="fc-gpage"><button type="button" class="fc-gback" data-fc-reset aria-label="رجوع إلى المحتوى المميز">' + PGP + '</button><div><h2>' + esc(st.cat) + '</h2><small>' + (SUB[st.cat] || '') + '</small></div></div>';
-    h += '<div class="fc-tools"><div class="fc-filters" role="group" aria-label="تصنيفات المحتوى" id="fc-filters">' + CATS.map(function (c) { return '<button type="button" class="fc-chip" data-cat="' + esc(c) + '" aria-pressed="' + (c === st.cat) + '">' + esc(c) + '</button>'; }).join('') + '</div></div>';
+    h += '<div class="fc-tools"><div class="fc-filters" role="group" aria-label="تصنيفات المحتوى" id="fc-filters">' + CATS.map(function (c) { return '<button type="button" class="fc-chip" data-cat="' + esc(c) + '" aria-pressed="' + (c === st.cat) + '"><span class="fc-chip-i" aria-hidden="true">' + (TICO[c] || TICO['الفلك']) + '</span>' + esc(c) + '</button>'; }).join('') + '</div></div>';
     h += '<div class="fc-sub"><p class="fc-count" id="fc-count" role="status" aria-live="polite"></p>' +
       '<div class="fc-search" role="search"><label for="fc-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">ابحث في المحتوى</label>' + ICO.search +
       '<input id="fc-q" type="search" autocomplete="off" placeholder="ابحث بالعنوان أو التصنيف أو الكلمة" value="' + esc(st.q) + '"><button type="button" data-fc-clear aria-label="مسح البحث"' + (st.q ? '' : ' hidden') + '>' + ICO.x + '</button></div></div>';
