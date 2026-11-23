@@ -1,0 +1,63 @@
+/* نماذج الخرائط الفيدية: نفس وضوح خانات مصفوفة القدر، مع إخفاء العناصر المطلوبة فقط (رجوع/الرئيسية/بنر المجاني والتقرير/أزرار التعبئة اليدوية) */
+
+/* عنوان الصفحة بخط كايرو الحقيقي: عائلة AqCairo معرّفة بملف matrix-field-clarity.css المحمّل في نفس الصفحة */
+/* ١) إخفاء العناصر المسماة فقط — باقي الشرح السفلي محفوظ كما هو */
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .aq-section-topbar{display:none!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #service-eam-form{display:none!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .aq-autofill-bar{display:none!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-b-fill{display:none!important}
+
+/* ٢) الترويسة الموحدة بأسلوب المصفوفة: عقيق أسترو · اسم الخريطة، ثم الاسم عنوانًا رئيسيًا، ثم سؤال */
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-hero{text-align:center!important;margin:0 0 12px!important;padding:8px 0 4px!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-hero .eyebrow{display:block!important;background:none!important;border:none!important;box-shadow:none!important;padding:0!important;margin:0 auto 4px!important;font-family:'IBM Plex Sans Arabic',system-ui,-apple-system,sans-serif!important;font-size:10.5px!important;font-weight:600!important;color:#56565b!important;letter-spacing:.2px}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-hero h2{font-family:'AqCairo','Cairo','IBM Plex Sans Arabic',sans-serif!important;font-size:27px!important;line-height:1.4!important;font-weight:800!important;color:#202024!important;margin:0 0 6px!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-hero .y27-orn{display:none!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-hero .intro{font-size:15px!important;font-weight:600!important;color:#4a3a34!important;line-height:1.8!important;margin:0 auto!important;max-width:340px}
+
+/* ٣) خانات الإدخال بحدود وكتابة أوضح — نفس مرجع المصفوفة */
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field label,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field label span,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-yearpick>span,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-controls .field span{color:#3a2a2f!important;font-size:13px!important;font-weight:700!important;opacity:1!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field input:not([type=checkbox]):not([type=radio]):not(.aq-ds-src):not(.aq-dsx-src):not([type=hidden]),
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field select,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .aq-ds select,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .aq-dsx select,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .geo-pk select,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .geo-pk input,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .geo-pk button,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-controls input:not([type=checkbox]):not([type=radio]):not([type=hidden]),
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-controls select{background:#fff!important;border:1.5px solid #c9a35a!important;border-radius:13px!important;color:#2a1a20!important;-webkit-text-fill-color:#2a1a20!important;font-weight:600!important;min-height:46px!important;box-shadow:0 1px 4px rgba(74,20,40,.10)!important;opacity:1!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field input::placeholder{color:#7a6a64!important;-webkit-text-fill-color:#7a6a64!important;opacity:1!important;font-weight:500!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field select:has(option[value=""]:checked){color:#6f625c!important;-webkit-text-fill-color:#6f625c!important;font-weight:500!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field input:not([type=checkbox]):not([type=radio]):not(.aq-ds-src):not(.aq-dsx-src):not([type=hidden]):focus,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .field select:focus,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .aq-ds select:focus,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .aq-dsx select:focus,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .geo-pk select:focus,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-controls input:not([type=checkbox]):not([type=radio]):not([type=hidden]):focus,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-controls select:focus{border-color:#8a5a1f!important;outline:2px solid rgba(201,163,93,.55)!important;box-shadow:0 0 0 3px rgba(201,163,93,.25)!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form .y27-chk{color:#3a2a2f!important;font-size:13px!important;font-weight:700!important;opacity:1!important}
+
+/* أزرار السنة (السابقة/التالية والسريعة) بنفس إطار الخانات */
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-yp-b,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-yp-quick button,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-now{background:#fff!important;border:1.5px solid #c9a35a!important;border-radius:13px!important;color:#3a2a2f!important;font-weight:700!important;min-height:40px!important;box-shadow:0 1px 4px rgba(74,20,40,.10)!important;opacity:1!important}
+
+/* ٤) زر الحساب الرئيسي ذهبي كزر المصفوفة */
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form>button.btn,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form button.btn[type=submit],
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-calculate{background:linear-gradient(180deg,#f0d28e,#d9b062)!important;border:1.5px solid #b98a3e!important;color:#3a1020!important;-webkit-text-fill-color:#3a1020!important;font-weight:800!important;font-size:15px!important;border-radius:14px!important;box-shadow:0 2px 8px rgba(185,138,62,.45),inset 0 1px 0 rgba(255,255,255,.6)!important;min-height:48px!important;opacity:1!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-form>button.btn svg,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-calculate svg{color:#3a1020!important;stroke:#3a1020!important}
+
+/* ٥) تبويبات أقسام الخريطة (العبور/العودة الشمسية...) بأسلوب تبويبات المصفوفة */
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-tabs button{opacity:1!important;filter:none!important;background:#fff!important;border:1.5px solid #c9a35a!important;color:#3a2a2f!important;font-weight:800!important;font-size:13.5px!important;border-radius:13px!important;box-shadow:0 1px 4px rgba(74,20,40,.10)!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-tabs button[aria-selected=true],
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-tabs button.on,
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .eam-tabs button.is-on{background:linear-gradient(180deg,#f0d28e,#d9b062)!important;border-color:#b98a3e!important;color:#3a1020!important;box-shadow:0 2px 8px rgba(185,138,62,.45),inset 0 1px 0 rgba(255,255,255,.6)!important}
+
+/* ٦) الشرح السفلي وبطاقة الأدوات وبطاقات "تابع من هنا": بطاقات بيضاء متناسقة — إعادة تنسيق لا حذف */
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-explain .y27-about{background:#fff!important;border:1px solid rgba(201,163,93,.45)!important;border-radius:16px!important;box-shadow:0 1px 4px rgba(74,20,40,.08)!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) #eam-explain .y27-ex{background:#fff!important;border:1px solid rgba(201,163,93,.45)!important;border-radius:16px!important;box-shadow:0 1px 4px rgba(74,20,40,.08)!important}
+html body section#astro-maps:not(#zv1):not(#zv2):not(#zv3):not(#zv4):not(#zv5):not(#zv6):not(#zv7):not(#zv8):not(#zv9):not(#zv10):not(#zv11):not(#zv12) .aq-related .aq-rel{background:#fff!important;border:1px solid rgba(201,163,93,.45)!important;box-shadow:0 1px 4px rgba(74,20,40,.08)!important}
