@@ -515,3 +515,14 @@ html[data-aqr="home"] body #home.aqh:not(#_a):not(#_b):not(#_c){background:#FBFA
 html[data-aqr="home"] body #home::before,html[data-aqr="home"] body #home::after{content:none!important}
 html[data-aqr="home"] body #home .amb{display:none!important}
 html[data-aqr="home"] body #home.aqh .aqh-band:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m){background-image:none!important}
+
+/* ===== v18: بداية كروت الكواكب من أول الشريط + زر اكتشف السماء في المنتصف (معتمد للنشر) ===== */
+html[data-aqr="home"] body #home .aqhc-planets{padding:4px 16px 12px}
+html[data-aqr="home"] body #home .aqhc-allsky{
+  justify-content:center;width:fit-content;margin:12px auto 6px;
+  font-size:13px;font-weight:700;color:#6a2038;
+  padding:9px 20px;border-radius:999px;
+  background:rgba(255,253,247,.9);border:1px solid rgba(106,32,56,.28);
+  box-shadow:0 3px 10px rgba(74,18,36,.10);
+}
+html[data-aqr="home"] body #home .aqhc-allsky svg{display:none}

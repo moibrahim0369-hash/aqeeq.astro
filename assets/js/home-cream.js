@@ -114,11 +114,21 @@
     return best;
   }
 
+  function nearestToStart() {
+    if (!host || !host.children.length) return 0;
+    var r = host.getBoundingClientRect(), best = 0, bd = Infinity;
+    Array.prototype.forEach.call(host.children, function (el, i) {
+      var cr = el.getBoundingClientRect(), d = Math.abs(cr.right - r.right);
+      if (d < bd) { bd = d; best = i; }
+    });
+    return best;
+  }
+
   function onPlanetsScroll() {
     if (scrollRaf || !isMobile()) return;
     scrollRaf = (window.requestAnimationFrame || function (f) { return setTimeout(f, 60); })(function () {
       scrollRaf = 0;
-      var i = nearestToCenter();
+      var i = nearestToStart();
       if (i !== activeIdx) { activeIdx = i; syncOn(); }
     });
   }
@@ -302,7 +312,7 @@
     if (sheetRoot.parentElement !== document.body) document.body.appendChild(sheetRoot);
     if (!window.Astro || !gP() || !gS()) { setTimeout(init, 400); return; }
     tick();
-    activeIdx = isMobile() ? nearestToCenter() : 0;
+    activeIdx = isMobile() ? nearestToStart() : 0;
     syncOn();
     Array.prototype.forEach.call(document.querySelectorAll('.aqhc-tab'), function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
