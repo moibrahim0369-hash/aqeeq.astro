@@ -307,7 +307,8 @@
   <!-- السماء الآن على الهوم: شريط الكواكب الحي + ورقة القراءة الكريمية -->
   <section class="aqhc aqh-wrap aqhc-strip" id="aqhc" aria-labelledby="aqhc-h">
     <div class="aqhc-strip-head">
-      <h2 class="aqhc-strip-title" id="aqhc-h">السماء الآن</h2>
+      <h2 class="aqhc-strip-title" id="aqhc-h">السماء الآن<span class="aqhc-sparkle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 8.4L22 12l-8.4 1.6L12 22l-1.6-8.4L2 12l8.4-1.6z"/></svg></span></h2>
+      <span class="aqhc-live"><i aria-hidden="true"></i>العبور الحالي</span>
       <span class="aqhc-strip-hint">اضغط على أي كوكب لقراءته</span>
     </div>
     <div class="aqhc-tabs" role="tablist" aria-label="أقسام السماء الآن">
@@ -316,6 +317,7 @@
       <button type="button" role="tab" class="aqhc-tab" data-tab="aspects">الزوايا</button>
     </div>
     <div class="aqhc-planets" id="aqhc-planets" role="group" aria-label="كواكب السماء الآن"></div>
+    <div class="aqhc-pdots" id="aqhc-pdots" aria-hidden="true"></div>
     <div class="aqhc-retro" id="aqhc-retro" hidden></div>
     <div class="aqhc-aspects" id="aqhc-aspects" hidden></div>
     <a class="aqhc-allsky" href="#sky">اكتشف السماء كلها: الكواكب والقمر وأحداث الشهر<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
@@ -510,6 +512,28 @@
       </div>
     </div>
   </div>
+
+  <!-- بطاقة «يومك»: رقم اليوم ورسالته واقتراحه من نفس مصادر الموقع (aqeeq-platform.js + daily-banner.js) — يملؤها home-cream.js وتختفي إن تعذرت البيانات -->
+  <section class="aqhd" id="aqhd" aria-labelledby="aqhd-h" hidden>
+    <div class="aqhd-card">
+      <div class="aqhd-top">
+        <h2 class="aqhd-title" id="aqhd-h">يومك</h2>
+        <span class="aqhd-date" id="aqhd-date"></span>
+      </div>
+      <div class="aqhd-body">
+        <div class="aqhd-numside">
+          <span class="aqhd-num" id="aqhd-num"></span>
+          <span class="aqhd-numlabel">رقم اليوم · علم الأعداد</span>
+        </div>
+        <div class="aqhd-msg">
+          <h3 id="aqhd-theme"></h3>
+          <p id="aqhd-note"></p>
+        </div>
+      </div>
+      <div class="aqhd-tip" id="aqhd-tip" hidden><b>اقتراح اليوم:</b> <span id="aqhd-tip-t"></span></div>
+      <p class="aqhd-src" id="aqhd-src" hidden></p>
+    </div>
+  </section>
 
   <!-- طاقة اليوم: شريط كامل العرض بعد الواجهة -->
   <div class="aqh-band aqh-band-arts">

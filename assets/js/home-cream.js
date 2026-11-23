@@ -23,6 +23,8 @@
   };
 
   var openKey = null, chart = null, host = null, sheetRoot = null, tab = 'planets';
+  var activeIdx = 0, dotsHost = null, scrollRaf = 0;
+  function isMobile() { return !!(window.matchMedia && window.matchMedia('(max-width: 760px)').matches); }
   /* PLANETS/SIGNS in page-06.js are const globals (lexical, not window.*) */
   function gP() { return typeof PLANETS !== 'undefined' ? PLANETS : (window.PLANETS || null); }
   function gS() { return typeof SIGNS !== 'undefined' ? SIGNS : (window.SIGNS || null); }
@@ -52,17 +54,111 @@
       return '<button type="button" class="aqhc-planet' + (openKey === k ? ' on' : '') + '" data-k="' + k + '" aria-pressed="' + (openKey === k) + '">'
         + '<span class="aqhc-planet-img"><img src="assets/images/home/planets/' + IMG[k] + '" alt="" loading="lazy" decoding="async"></span>'
         + '<span class="aqhc-planet-name">' + p.n + '</span>'
-        + '<span class="aqhc-planet-pos">' + S.n + ' ' + nd(Math.floor(deg)) + '°</span>'
+        + '<span class="aqhc-planet-pos">' + S.n + ' <b>' + nd(Math.floor(deg)) + '°</b></span>'
         + '<span class="aqhc-planet-move st-' + (retro ? 'retro' : 'direct') + '">' + (retro ? 'تراجع' : 'حركة مباشرة') + '</span>'
         + '<span class="aqhc-planet-q">' + Q[k] + '</span>'
         + '</button>';
     }).join('');
-    Array.prototype.forEach.call(host.querySelectorAll('.aqhc-planet'), function (el) {
+    Array.prototype.forEach.call(host.querySelectorAll('.aqhc-planet'), function (el, i) {
       el.addEventListener('click', function () {
         var k = el.getAttribute('data-k');
+        if (isMobile()) centerCard(i);
         if (openKey === k) closeSheet(); else openSheet(k);
       });
     });
+    renderDots();
+  }
+
+  /* الكارت الأقرب لمنتصف الشريط يأخذ التمييز (مثل المعاينة المعتمدة) + نقاط التمرير */
+  function syncOn() {
+    if (!host) return;
+    var m = isMobile();
+    Array.prototype.forEach.call(host.querySelectorAll('.aqhc-planet'), function (el, i) {
+      el.classList.toggle('on', (m && i === activeIdx) || el.getAttribute('data-k') === openKey);
+    });
+    if (dotsHost) Array.prototype.forEach.call(dotsHost.children, function (d, i) {
+      d.classList.toggle('on', i === activeIdx);
+    });
+  }
+
+  function renderDots() {
+    if (!dotsHost) return;
+    if (dotsHost.children.length !== KEYS.length) {
+      dotsHost.innerHTML = KEYS.map(function (k, i) {
+        return '<button type="button" data-i="' + i + '" tabindex="-1"></button>';
+      }).join('');
+      Array.prototype.forEach.call(dotsHost.children, function (d) {
+        d.addEventListener('click', function () { centerCard(+d.getAttribute('data-i')); });
+      });
+    }
+    syncOn();
+  }
+
+  function centerCard(i) {
+    var el = host && host.children[i];
+    if (el && el.scrollIntoView) {
+      try { el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
+      catch (e) { el.scrollIntoView(); }
+    }
+    activeIdx = i;
+    syncOn();
+  }
+
+  function nearestToCenter() {
+    if (!host || !host.children.length) return 0;
+    var r = host.getBoundingClientRect(), mid = r.left + r.width / 2, best = 0, bd = Infinity;
+    Array.prototype.forEach.call(host.children, function (el, i) {
+      var cr = el.getBoundingClientRect(), d = Math.abs(cr.left + cr.width / 2 - mid);
+      if (d < bd) { bd = d; best = i; }
+    });
+    return best;
+  }
+
+  function onPlanetsScroll() {
+    if (scrollRaf || !isMobile()) return;
+    scrollRaf = (window.requestAnimationFrame || function (f) { return setTimeout(f, 60); })(function () {
+      scrollRaf = 0;
+      var i = nearestToCenter();
+      if (i !== activeIdx) { activeIdx = i; syncOn(); }
+    });
+  }
+
+  /* بطاقة «يومك»: قراءة حقول علم الأعداد المملوءة أصلًا (بدون إعادة حساب) */
+  function initDay() {
+    var sec = document.getElementById('aqhd');
+    if (!sec) return;
+    function txt(el) { return el ? (el.textContent || '').trim() : ''; }
+    function field(name) { return txt(document.querySelector('#aqh-energy [data-f="' + name + '"]')); }
+    function setT(id, v) { var n = document.getElementById(id); if (n) n.textContent = v; }
+    function fill() {
+      var numM = /(\d+)/.exec(txt(document.getElementById('aq-obs-daynum')));
+      var theme = txt(document.getElementById('aq-obs-focus')) || field('theme');
+      if (!numM || !theme) return false;
+      setT('aqhd-num', numM[1]);
+      setT('aqhd-theme', theme);
+      var note = field('themeNote');
+      var noteEl = document.getElementById('aqhd-note');
+      if (noteEl) { noteEl.textContent = note; noteEl.hidden = !note; }
+      var tip = field('themeDay').replace(/^\S+:\s*/, '');
+      if (tip) { setT('aqhd-tip-t', tip); document.getElementById('aqhd-tip').hidden = false; }
+      var src = field('themeSrc') || ('مصدر الرسالة: علم الأعداد — رقم اليوم ' + numM[1]);
+      var srcEl = document.getElementById('aqhd-src');
+      if (srcEl) { srcEl.textContent = src; srcEl.hidden = false; }
+      var today = txt(document.getElementById('aqh-today')).replace(/،/g, '');
+      var dateEl = document.getElementById('aqhd-date');
+      if (dateEl) { dateEl.textContent = today; dateEl.hidden = !today; }
+      sec.hidden = false;
+      return true;
+    }
+    var tries = 0;
+    (function attempt() {
+      if (fill()) return;
+      if (++tries < 40) setTimeout(attempt, 500);
+    })();
+    var energy = document.getElementById('aqh-energy');
+    if (energy && window.MutationObserver) {
+      new MutationObserver(function () { fill(); }).observe(energy, { childList: true, characterData: true, subtree: true });
+    }
   }
 
   function sheetHtml(k) {
@@ -198,11 +294,16 @@
 
   function init() {
     host = document.getElementById('aqhc-planets');
+    dotsHost = document.getElementById('aqhc-pdots');
     sheetRoot = document.getElementById('aqhc-sheet-root');
     if (!host || !sheetRoot) return;
+    host.addEventListener('scroll', onPlanetsScroll, { passive: true });
+    initDay();
     if (sheetRoot.parentElement !== document.body) document.body.appendChild(sheetRoot);
     if (!window.Astro || !gP() || !gS()) { setTimeout(init, 400); return; }
     tick();
+    activeIdx = isMobile() ? nearestToCenter() : 0;
+    syncOn();
     Array.prototype.forEach.call(document.querySelectorAll('.aqhc-tab'), function (b) {
       b.addEventListener('click', function () { setTab(b.getAttribute('data-tab')); });
     });
