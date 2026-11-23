@@ -405,7 +405,7 @@ html[data-aqr="home"] body .aqh-header{position:sticky!important;top:0!important
 html[data-aqr="home"] body .aqh-header::after{content:none!important}
 html[data-aqr="home"] body .aqh-header .aqh-header-in{padding-top:10px!important;padding-bottom:10px!important;gap:8px!important}
 html[data-aqr="home"] body .aqh-header .aqh-brand{gap:7px!important}
-html[data-aqr="home"] body .aqh-header .aqh-emblem{width:26px!important;height:26px!important;border-radius:50%!important;background:radial-gradient(circle,rgba(233,201,164,.55),transparent 72%);animation:aqhc-logo-glow 5s ease-in-out infinite alternate}
+html[data-aqr="home"] body .aqh-header .aqh-emblem:not(#_a):not(#_b):not(#_c){width:26px!important;height:26px!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;flex:0 0 26px!important;border-radius:50%!important;background:radial-gradient(circle,rgba(233,201,164,.55),transparent 72%);animation:aqhc-logo-glow 5s ease-in-out infinite alternate}
 html[data-aqr="home"] body .aqh-header .aqh-brand-text b{font-size:11px!important;font-weight:700!important;letter-spacing:1.6px!important;color:#4a1224!important}
 html[data-aqr="home"] body .aqh-header .aqh-brand-text small{font-size:8.5px!important;font-weight:400!important;letter-spacing:0!important;color:#8a6a55!important;margin-top:1px!important}
 html[data-aqr="home"] body .aqh-header .aqh-tools{display:flex!important;align-items:center!important;gap:6px!important}
@@ -432,7 +432,7 @@ html[data-aqr="home"] body nav.bnav .bnav-item.on svg:not(#_a):not(#_b):not(#_c)
 /* بطاقة السماء الزجاجية (هوم موبايل) */
 html[data-aqr="home"] body #home .aqhc-strip{width:auto!important;max-width:none!important;margin:10px 16px 0!important;padding:12px 12px 10px!important;background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.7);border-radius:22px;box-shadow:0 8px 24px rgba(74,18,36,.08)}
 html[data-aqr="home"] body #home .aqhc-strip-head{align-items:center;padding:0 4px;margin-bottom:9px}
-html[data-aqr="home"] body #home .aqhc-strip .aqhc-strip-title{font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;display:flex;align-items:center}
+html[data-aqr="home"] body #home .aqhc-strip #aqhc-h:not(#_a):not(#_b):not(#_c){font-family:'IBM Plex Sans Arabic',sans-serif!important;font-size:15px!important;font-weight:800!important;display:flex;align-items:center}
 html[data-aqr="home"] body #home .aqhc-strip .aqhc-strip-hint{display:none}
 html[data-aqr="home"] body #home .aqhc-sparkle{display:inline-flex;margin-inline-start:6px;color:#b78a52;animation:aqhc-twinkle 3s ease-in-out infinite alternate}
 html[data-aqr="home"] body #home .aqhc-sparkle svg{width:13px;height:13px}
@@ -442,7 +442,7 @@ html[data-aqr="home"] body #home .aqhc-tabs{gap:6px;margin:0 6px 8px;padding:3px
 html[data-aqr="home"] body #home .aqhc-tab{flex:1;border:none;background:transparent;font-size:11px;font-weight:600;color:#8a6a55;padding:5px 0;border-radius:999px}
 html[data-aqr="home"] body #home .aqhc-tab.on{background:linear-gradient(135deg,rgba(106,32,56,.92),rgba(74,18,36,.85));color:#f6e7cf;box-shadow:0 3px 8px rgba(74,18,36,.32),inset 0 1px 0 rgba(255,255,255,.18)}
 html[data-aqr="home"] body #home .aqhc-planets{gap:10px;padding:4px 110px 6px}
-html[data-aqr="home"] body #home .aqhc-planet{flex:0 0 138px;width:138px;scroll-snap-align:center;border-radius:16px;padding:10px 8px 9px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:none;backdrop-filter:none;border:1px solid rgba(74,18,36,.08);box-shadow:none;display:flex;flex-direction:column;align-items:center;gap:5px;transform:scale(.96);transition:transform .35s ease,box-shadow .35s ease,background .35s ease,border-color .35s ease}
+html[data-aqr="home"] body #home .aqhc-planet:not(#_a):not(#_b):not(#_c){flex:0 0 138px!important;width:138px!important;min-width:0!important;max-width:none!important;scroll-snap-align:center;border-radius:16px;padding:10px 8px 9px;background:rgba(255,255,255,.55);-webkit-backdrop-filter:none;backdrop-filter:none;border:1px solid rgba(74,18,36,.08);box-shadow:none;display:flex;flex-direction:column;align-items:center;gap:5px;transform:scale(.96);transition:transform .35s ease,box-shadow .35s ease,background .35s ease,border-color .35s ease}
 html[data-aqr="home"] body #home .aqhc-planet.on{transform:scale(1.05) translateY(-4px);background:rgba(255,253,248,.9);border-color:rgba(200,161,90,.55);box-shadow:0 14px 26px rgba(74,18,36,.2)}
 html[data-aqr="home"] body #home .aqhc-planet-img{width:46px;height:46px;margin:0}
 html[data-aqr="home"] body #home .aqhc-planet-img img{filter:drop-shadow(0 4px 7px rgba(74,18,36,.28)) drop-shadow(0 0 6px rgba(200,161,90,.35))}
@@ -477,8 +477,8 @@ html[data-aqr="home"] body #home #aqh-articles time{font-size:8px!important;colo
 html[data-aqr="home"] body #home .aqh-eyebrow{text-shadow:0 1px 8px rgba(250,246,238,.95),0 0 3px rgba(250,246,238,.95)!important}
 
 /* زر رفيق عقيق: دائرة زجاجية بشعار العقيق (هوم موبايل) */
-html[data-aqr="home"] body .cmp-fab{width:42px!important;height:42px!important;bottom:calc(74px + env(safe-area-inset-bottom,0px))!important;inset-inline-start:auto!important;inset-inline-end:auto!important;left:14px!important;right:auto!important;background:rgba(255,255,255,.6) url(../images/brand/logo-mark-160.png) center/20px no-repeat!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(200,161,90,.4)!important;box-shadow:0 8px 20px rgba(74,18,36,.15)!important;animation:none!important}
-html[data-aqr="home"] body .cmp-fab svg{display:none!important}
+html[data-aqr="home"] body .cmp-fab:not(#_a):not(#_b):not(#_c){width:42px!important;height:42px!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;bottom:calc(74px + env(safe-area-inset-bottom,0px))!important;inset-inline-start:auto!important;inset-inline-end:auto!important;left:14px!important;right:auto!important;background:rgba(255,255,255,.6) url(../images/brand/logo-mark-160.png) center/20px no-repeat!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(200,161,90,.4)!important;box-shadow:0 8px 20px rgba(74,18,36,.15)!important;animation:none!important}
+html[data-aqr="home"] body .cmp-fab:not(#_a):not(#_b):not(#_c) svg{display:none!important}
 
 /* تذييل مصغّر مثل المعاينة (هوم موبايل) */
 html[data-aqr="home"] body footer.foot{background:none!important;border:0!important;box-shadow:none!important;padding:14px 30px 8px!important}
