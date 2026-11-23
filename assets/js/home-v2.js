@@ -393,9 +393,11 @@
         /* الصف الأول: أحدث المقالات. الصف الثاني: اختيار عشوائي مرتب من بقية المقالات (بدون تكرار الصف الأول) */
         ARTICLES = ARTICLES.map(function (a, n) { return { a: a, n: n }; }).sort(function (x, y) { return String(y.a.date).localeCompare(String(x.a.date)) || y.n - x.n; }).map(function (x) { return x.a; });
         var bySlug = function (slug) { return ARTICLES.find(function (a) { return a.slug === slug; }); };
-        var TOP = ['venus-retrograde','venus-descent','saturn-sade-sati-wealth','saturn-heart-path'].map(bySlug).filter(Boolean), REST = ['sade-sati','saturn-over-moon','saturn-hermetic-path','symbol-and-reading'].map(bySlug).filter(Boolean);
+        var TOP = ARTICLES.slice(0, 4), REST = ['sade-sati','saturn-over-moon','saturn-hermetic-path','symbol-and-reading'].map(bySlug).filter(function (a) { return a && TOP.indexOf(a) < 0; });
         var track2 = $('#aqh-track2'), wrap2 = $('#aqh-row2');
         if (track2 && REST.length) { track2.innerHTML = REST.map(card).join(''); if (wrap2) wrap2.hidden = false; $$('.aqh-article', track2).forEach(function (el, k) { el.classList.add('aqh-reveal'); el.style.setProperty('--aqh-d', (k * 70) + 'ms'); if (window.__aqhObserve) window.__aqhObserve(el); }); track2.addEventListener('click', function (e) { var l = e.target.closest('.aqh-article-link'); if (l) { e.preventDefault(); openArticle(l.getAttribute('data-slug')); } }); }
+        var sec = track.closest('.aqh-articles');
+        if (sec && !sec.querySelector('.aqh-row-h')) { var rh = document.createElement('h3'); rh.className = 'aqh-row-h'; rh.textContent = 'أحدث ما نُشر'; sec.insertBefore(rh, sec.querySelector('.aqh-carousel')); }
         track.innerHTML = TOP.map(card).join(''); state('ready');
         $$('.aqh-article', track).forEach(function (el, k) { el.classList.add('aqh-reveal'); el.style.setProperty('--aqh-d', (k * 70) + 'ms'); if (window.__aqhObserve) window.__aqhObserve(el); });
         update(); autoTimer();
