@@ -526,3 +526,7 @@ html[data-aqr="home"] body #home .aqhc-allsky{
   box-shadow:0 3px 10px rgba(74,18,36,.10);
 }
 html[data-aqr="home"] body #home .aqhc-allsky svg{display:none}
+
+/* إخفاء مجموعة بانر اليوم من الهوم — بطلب صريح من المستخدم (قسم السماء يبقى كما هو) */
+#home #aqhd{display:none!important}
+
