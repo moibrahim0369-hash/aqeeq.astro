@@ -2602,8 +2602,10 @@
     ['sade', 'اختبار زحل', 'أين زحل من قمرك الآن', 'زحل · ساتي ساتي'],
     ['lunar', 'المنزل القمري', 'منزلك وحاكمه', 'القمر · نكشاترا'],
     ['year', 'قراءة السنة', 'ما تعيشه الآن'],
-    ['expert', 'وضع الخبير', 'ملاحظات خاصة بك وحدك']
+    ['expert', 'وضع الخبير', 'ملاحظات خاصة بك وحدك'],
+    ['adv', 'الخرائط المتقدمة', 'فارشافالا وشادبالا وأشتاكافارغا وبراتيانتر داشا', 'أدوات حساب متقدمة']
   ];
+  var ADV = ['varshaphala', 'shadbala', 'ashtakavarga', 'pratyantar'];
   var CH = {
     1: ['الخريطة الميلادية', 'راشي', 'D1', 'الخريطة الأم لجسدك وشخصيتك ومسار حياتك'],
     moon: ['خريطة القمر', 'تشاندرا لاغنا', 'القمر', 'مشاعرك وعقلك وأمانك الداخلي'],
@@ -2628,6 +2630,9 @@
     45: ['خريطة اتساق الاختيارات', 'أكشافيدامشا', 'D45', 'عدسة واسعة للاختيارات، لا سيرة خط الأب'],
     60: ['خريطة الأنماط العميقة', 'شاشتيامشا', 'D60', 'تأمل رمزي يحتاج وقتًا معلومًا وفحص عينات الدقة']
   };
+  var CQ = {"1": ["ما الصورة الكاملة لشخصيتك ومسار حياتك؟", "اكتشف طالعك وكواكبك ومنازلك في خريطة واحدة."], "moon": ["ماذا يقول قمرك عن مشاعرك وأمانك الداخلي؟", "اكتشف خريطتك مقروءة من موضع القمر."], "sun": ["أين يقف جوهرك وإرادتك؟", "اكتشف خريطتك مقروءة من موضع الشمس."], "2": ["كيف ترتبط مواردك بجهدك وبما يأتيك من غيرك؟", "اكتشف ما تعرضه هورا عن علاقتك بالمال."], "3": ["ما مبادراتك ومهاراتك العملية، ومن يشاركك الطريق؟", "اكتشف ما تعرضه دريكانا عن الإخوة والشجاعة."], "4": ["أي سكن واستقرار تبحث عنه؟", "اكتشف ما تعرضه تشاتورثامشا عن البيت والعقار والأمان."], "5": ["كيف يراك الناس، وما أثرك بينهم؟", "اكتشف ما تعرضه بانتشامشا عن المكانة والنفوذ."], "6": ["ما الذي يرهقك، وكيف تتعامل معه؟", "اكتشف ما تعرضه شاشثامشا عن الضغوط."], "7": ["ما الذي تبنيه ويبقى بعدك؟", "اكتشف ما تعرضه سابتامشا عن الأبناء والإبداع."], "8": ["ما الذي يتغير في حياتك دفعة واحدة؟", "اكتشف ما تعرضه أشتامشا عن التحولات والمفاجآت."], "9": ["ما الذي يعطي ارتباطك معناه؟", "اكتشف ما تضيفه نافامشا عن الارتباط والدارما بجانب D1."], "10": ["ما طريقك المهني وما الذي تُعرف به؟", "اكتشف ما تعرضه داشامشا عن مهنتك."], "11": ["ما دوائرك وما الذي تكسبه منها؟", "اكتشف عدسة إيكاداشامشا بقاعدة عدّ معلنة، دون وعد بمكسب."], "12": ["ما الذي ورثته من والديك وأصلك؟", "اكتشف ما تعرضه دوادشامشا عن هذا الأصل."], "16": ["ما الذي يمنحك الراحة والرفاهية؟", "اكتشف ما تعرضه شوداشامشا عن المركبات والمتع المادية."], "20": ["كيف ينمو داخلك ويصفو؟", "اكتشف ما تعرضه فيمشامشا عن نموك الروحي."], "24": ["أين تتعلم وتنجح بالمعرفة؟", "اكتشف ما تعرضه سيدهامشا عن الدراسة والمعرفة."], "27": ["ما حدود طاقتك وتحملك؟", "اكتشف تأملًا في بهامشا ضمن حدود الوقت."], "30": ["ما الذي يتعبك دون أن يظهر؟", "اكتشف ما تعرضه تريمشامشا عن الاختبارات الخفية."], "40": ["ما الذي يساند مسارك وما الذي يعطله؟", "اكتشف ما تعرضه خافيدامشا، لا سيرة خط الأم."], "45": ["كيف تتسق اختياراتك؟", "اكتشف عدسة أكشافيدامشا الواسعة، لا سيرة خط الأب."], "60": ["ما الأنماط العميقة في مسارك؟", "تأمل رمزي في شاشتيامشا يحتاج وقت ميلاد معلومًا."]};
+  var TQ = {"dasha": ["أي فترة من عمرك تعيشها الآن؟", "اكتشف فترتك الكبرى والصغرى بموعد بدايتها ونهايتها."], "sade": ["أين زحل من قمرك الآن؟", "اكتشف موقع ساتي ساتي في خريطتك."], "lunar": ["في أي منزل قمري وُلد قمرك؟", "اكتشف منزلك القمري وحاكمه."], "year": ["ما الذي تعيشه الآن؟", "اكتشف قراءة سنتك."], "adv": ["أي أدوات حساب متقدمة تريد؟", "اكتشف فارشافالا وشادبالا وأشتاكافارغا وبراتيانتر داشا."]};
+  function sdesc(q, fb) { return q ? '<span class="vh-s"><b class="vh-q">' + q[0] + '</b><span class="vh-i">' + q[1] + '</span></span>' : '<span class="vh-s">' + fb + '</span>'; }
   var CHIMG = {
     1: 'assets/images/vedic/natal.jpg', moon: 'assets/images/vedic/moon.jpg', sun: 'assets/images/vedic/sun.jpg',
     2: 'assets/images/vedic/money.jpg', 3: 'assets/images/vedic/3.jpg', 4: 'assets/images/vedic/4.jpg', 5: 'assets/images/vedic/5.jpg', 6: 'assets/images/vedic/6.jpg', 7: 'assets/images/vedic/7.jpg',
@@ -2640,16 +2645,30 @@
   var ALIAS = { birth: 'c:1', vargas: 'c:1', moonsun: 'c:moon' };
   function tileOf(id) { return TILES.filter(function (t) { return t[0] === id; })[0]; }
   function tilesHTML(admin) {
-    var h = CHG.map(function (g) {
-      return '<h5 class="vh-gh">' + g[0] + '</h5><div class="vh-cg' + ('') + '">' + g[1].map(function (k) {
-        var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-m vh-ph" data-g="c:' + k + '"><span class="vh-ph-img"><img src="' + CHIMG[k] + '" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span></span></span><span class="vh-ph-b"><span class="vh-s">' + c[3] + '</span><span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>احسب ' + c[0] + '</span></span></button>';
-      }).join('') + '</div>';
+    var h = CHG.map(function (g, gi) {
+      return '<section class="vh-sec" data-vhs="' + gi + '"><h5 class="vh-gh">' + g[0] + '</h5><div class="vh-cg' + ('') + '">' + g[1].map(function (k) {
+        var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-m vh-ph" data-g="c:' + k + '"><span class="vh-ph-img"><img src="' + CHIMG[k] + '" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span></span></span><span class="vh-ph-b">' + sdesc(CQ[k], c[3]) + '<span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>احسب ' + c[0] + '</span></span></button>';
+      }).join('') + '</div></section>';
     }).join('');
-    h += '<h5 class="vh-gh">الأزمنة والتنبؤ</h5><div class="vh-grid">' + TIMET.filter(function (id) { return id !== 'expert' || admin; }).map(function (id) {
-      var t = tileOf(id); return '<button type="button" class="vh-tile" data-g="' + id + '"' + (id === 'expert' ? ' data-admin="1"' : '') + '><span class="vh-ic">' + svg(id) + '</span><span class="vh-t">' + t[1] + '</span>' + (t[3] ? '<span class="vh-v">' + t[3] + '</span>' : '') + '<span class="vh-s">' + t[2] + '</span></button>';
+    h += '<section class="vh-sec" data-vhs="adv"><h5 class="vh-gh">المتقدمة</h5><div class="vh-cg"><button type="button" class="vh-tile vh-tile-m vh-ph vh-ph-open" data-g="adv"><span class="vh-ph-img"><img src="assets/images/vedic/adv.jpg" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">الخرائط المتقدمة</span><span class="vh-v">٤ أدوات حساب</span></span></span><span class="vh-ph-b">' + sdesc(TQ.adv) + '<span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>افتح</span></span></button></div></section>';
+    h += '<section class="vh-sec" data-vhs="time"><h5 class="vh-gh">الأزمنة والتنبؤ</h5><div class="vh-cg">' + TIMET.filter(function (id) { return (id !== 'expert' || admin) && ADV.indexOf(id) < 0; }).map(function (id) {
+      var t = tileOf(id);
+      return '<button type="button" class="vh-tile vh-tile-m vh-ph" data-g="' + id + '"' + (id === 'expert' ? ' data-admin="1"' : '') + '><span class="vh-ph-img"><img src="assets/images/vedic/' + id + '.jpg" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">' + t[1] + '</span>' + (t[3] ? '<span class="vh-v">' + t[3] + '</span>' : '') + '</span></span><span class="vh-ph-b">' + sdesc(TQ[id], t[2]) + '<span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>احسب ' + t[1] + '</span></span></button>';
+    }).join('') + '</div></section>';
+    var tabs = '<div class="vh-tabs" role="group" aria-label="أقسام الخرائط">' + [['all', 'الكل']].concat(CHG.map(function (g, gi) { return [String(gi), g[0]]; })).concat([['time', 'الأزمنة والتنبؤ'], ['adv', 'المتقدمة']]).map(function (t) {
+      return '<button type="button" class="vh-tab' + (t[0] === VHTAB ? ' on' : '') + '" data-vht="' + t[0] + '" aria-pressed="' + (t[0] === VHTAB) + '">' + t[1] + '</button>';
     }).join('') + '</div>';
-    return h;
+    var hd = '<div class="vh-hd"><div class="vh-hd-t" role="heading" aria-level="3">الخرائط الفيدية</div><p class="vh-hd-p">خرائط من التقليد الهندي (جيوتيش) تقرأ مواضع الكواكب بالبروج النجمية.</p></div>';
+    return hd + tabs + '<div class="vh-secs" data-vhtab="' + VHTAB + '">' + h + '</div>';
   }
+  var VHTAB = 'all';
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('.vh-tab'); if (!t) return;
+    e.preventDefault(); VHTAB = t.getAttribute('data-vht') || 'all';
+    var root = t.closest('.vh-hub') || document;
+    Array.prototype.forEach.call(root.querySelectorAll('.vh-tab'), function (b) { var on = b === t || b.getAttribute('data-vht') === VHTAB; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+    var w = root.querySelector('.vh-secs'); if (w) w.setAttribute('data-vhtab', VHTAB);
+  });
   var TARGET = null, PUSHED = 0;
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
@@ -2999,6 +3018,9 @@
     bar.innerHTML = '<button type="button" class="vh-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><span>كل الأقسام</span></button><b class="vh-cur"></b>';
     var head = result.querySelector('.eam-result-head');
     result.insertBefore(grid, head ? head.nextSibling : result.firstChild);
+    var advg = document.createElement('div'); advg.className = 'vh-adv'; advg.dataset.vhG = 'adv';
+    advg.innerHTML = '<div class="vh-grid">' + ADV.map(function (id) { var t = tileOf(id); return '<button type="button" class="vh-tile" data-g="' + id + '"><span class="vh-ic">' + svg(id) + '</span><span class="vh-t">' + t[1] + '</span><span class="vh-v">' + t[3] + '</span><span class="vh-s">' + t[2] + '</span></button>'; }).join('') + '</div>';
+    grid.parentNode.insertBefore(advg, grid.nextSibling);
     result.insertBefore(bar, grid);
     var tmc = timeCard(), tmw = accEl('آلة الزمن', 'dasha', '', true, 'dasha year'); tmw.querySelector('.eam-acc-body').appendChild(tmc); tmc.dataset.vhG = ''; result.appendChild(tmw);
     if (window.AqVarshaphala) {
@@ -3043,7 +3065,8 @@
     }
     function show(g, chart) {
       g = ALIAS[g] || g;
-      if (g !== 'hub' && result.dataset.vh === 'hub') { try { history.pushState({ vh: 1 }, ''); PUSHED++; } catch (e) { } }
+      if (ADV.indexOf(g) >= 0 && result.dataset.vh === 'adv') result.__fromAdv = 1; else if (g === 'hub' || g === 'adv') result.__fromAdv = 0;
+      if (g !== 'hub' && (result.dataset.vh === 'hub' || (result.dataset.vh === 'adv' && ADV.indexOf(g) >= 0))) { try { history.pushState({ vh: 1 }, ''); PUSHED++; } catch (e) { } }
       if (g.indexOf('c:') === 0 && !CH[g.slice(2)]) g = 'hub';
       if (g === 'sade' && !result.__sade) { result.__sade = 1; fillSade(result); }
       if (g.indexOf('c:') === 0) ensureChart(g.slice(2));
@@ -3062,7 +3085,8 @@
       setTimeout(function () { try { result.scrollIntoView({ block: 'start' }); } catch (e) { } }, 380);
     }
     grid.addEventListener('click', function (e) { var b = e.target.closest('.vh-tile'); if (b) show(b.dataset.g); });
-    bar.querySelector('.vh-back').addEventListener('click', function () { show('hub'); });
+    advg.addEventListener('click', function (e) { var b = e.target.closest('.vh-tile'); if (b) show(b.dataset.g); });
+    bar.querySelector('.vh-back').addEventListener('click', function () { show(result.__fromAdv ? 'adv' : 'hub'); });
     result.__show = show;
     show('hub');
     try { history.pushState({ vhr: 1 }, ''); PUSHED++; } catch (e) { }
@@ -3081,7 +3105,7 @@
     if (PUSHED > 0) PUSHED--;
     if (sec.classList.contains('vh-ask') && !sec.classList.contains('eam-view-result')) { if (window.__vhToPick) window.__vhToPick(); return; }
     var r = liveResult(); if (!r) return;
-    if (r.dataset.vh !== 'hub') r.__show('hub');
+    if (r.dataset.vh !== 'hub') r.__show(ADV.indexOf(r.dataset.vh) >= 0 && r.__fromAdv ? 'adv' : 'hub');
     else { var b = content.querySelector('.eam-backbar button'); if (b) b.click(); }
   });
   var timer = null;
