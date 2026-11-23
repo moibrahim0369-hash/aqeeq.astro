@@ -49,6 +49,14 @@
     return source.slice(0, 2).toUpperCase();
   }
 
+  // Keep an in-progress natal record intact across session/profile refreshes.
+  var natalEdited = false;
+  document.addEventListener('input', markNatalEdited, true);
+  document.addEventListener('change', markNatalEdited, true);
+  function markNatalEdited(e) {
+    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#cform')) natalEdited = true;
+  }
+
   function syncWithPlatformCache(profile, prefName) {
     if (!profile || !profile.birth_date) return;
     var fullName = (prefName || [profile.first_name, profile.last_name].filter(Boolean).join(' ')).trim();
@@ -71,18 +79,25 @@
     } catch (_) {}
 
     // تعبئة الحقول في الحاسبات تلقائياً إن كانت فارغة
-    var fName = $('f-name');
-    var fDate = $('f-date');
-    var fTime = $('f-time');
-    var fUnk  = $('f-unknown');
-    if (fName && !fName.value && fullName) fName.value = fullName;
-    if (fDate && !fDate.value && profile.birth_date) fDate.value = profile.birth_date;
-    if (fTime && profile.birth_time) fTime.value = String(profile.birth_time).slice(0, 5);
-    if (fUnk) fUnk.checked = Boolean(profile.birth_time_unknown);
-    if (window.AqeeqChartContext && window.AqeeqChartContext.applyProfileCity) {
-      window.AqeeqChartContext.applyProfileCity(cachePayload);
+    if (!natalEdited) {
+      var fName = $('f-name'), fDate = $('f-date'), fTime = $('f-time'), fUnk = $('f-unknown');
+      if (fName && !fName.value && fullName) fName.value = fullName;
+      if (fDate && !fDate.value && profile.birth_date) {
+        fDate.value = profile.birth_date;
+        fDate.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      if (fTime && !fTime.value && profile.birth_time) {
+        fTime.value = String(profile.birth_time).slice(0, 5);
+        fTime.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      if (fUnk) {
+        fUnk.checked = Boolean(profile.birth_time_unknown);
+        fUnk.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      if (window.AqeeqChartContext && window.AqeeqChartContext.applyProfileCity) {
+        window.AqeeqChartContext.applyProfileCity(cachePayload);
+      }
     }
-    if (fUnk) fUnk.dispatchEvent(new Event('change', { bubbles: true }));
 
     var lpName = $('lp-name');
     var lpDate = $('lp-date');
@@ -662,7 +677,7 @@
   }
 
   document.addEventListener('aqeeq:cities-ready', function () {
-    if (currentProfile && window.AqeeqChartContext && window.AqeeqChartContext.applyProfileCity) window.AqeeqChartContext.applyProfileCity(currentProfile);
+    if (!natalEdited && currentProfile && window.AqeeqChartContext && window.AqeeqChartContext.applyProfileCity) window.AqeeqChartContext.applyProfileCity(currentProfile);
   });
 
   function initProfileCompletion() {
