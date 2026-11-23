@@ -387,7 +387,7 @@ html body #home.aqh #aqh-articles #aqh-track .aqh-article:nth-child(n+4):not(#_a
 #home .aqhd-tip{margin-top:8px;font-size:10.5px;color:#6b4a2a;line-height:1.55;background:rgba(200,161,90,.12);border:1px solid rgba(200,161,90,.30);border-radius:12px;padding:6px 10px}
 #home .aqhd-tip b{font-weight:700}
 #home .aqhd-src{font-size:8.5px;color:#8a817c;margin:6px 0 0}
-@media(min-width:761px){#home .aqhd{max-width:560px;margin:14px auto 0}}
+@media(min-width:761px){html[data-aqr="home"] body #home #aqhd{display:none!important}html[data-aqr="home"] body #home .aqhc-strip-head .aqhc-sparkle{display:none!important}html[data-aqr="home"] body #home .aqhc-strip-head .aqhc-live{display:none!important}}
 
 /* نقاط شريط الكواكب: تظهر في الموبايل فقط */
 .aqhc-pdots{display:none}
@@ -498,4 +498,12 @@ html[data-aqr="home"] body footer.foot .foot-bottom{display:none!important}
   html[data-aqr="home"] body .aqh-header .aqh-emblem,
   html[data-aqr="home"] body #home .aqhc-planet.on .aqhc-planet-img img{animation:none!important}
   html[data-aqr="home"] body #home .aqhc-planet{transition:none!important}
+}
+
+/* سطر الأزرار: زر واحد في سطر واحد مثل المعاينة */
+@media(max-width:760px){
+html[data-aqr="home"] body #home .aqh-cta-row .aqh-cta:not(#_a):not(#_b):not(#_c){white-space:nowrap!important}
+html[data-aqr="home"] body #home .aqh-cta-row .aq-btn-burgundy:not(#_a):not(#_b):not(#_c){font-size:13px!important;padding:9px 18px!important;gap:5px!important}
+html[data-aqr="home"] body #home .aqh-cta-row .aqh-cta-gold:not(#_a):not(#_b):not(#_c){font-size:11.5px!important;padding:8px 12px!important;gap:5px!important}
+html[data-aqr="home"] body #home .aqh-cta-row .aqh-cta svg{width:13px!important;height:13px!important;flex:0 0 13px!important}
 }
