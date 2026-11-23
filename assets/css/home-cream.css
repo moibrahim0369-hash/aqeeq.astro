@@ -514,4 +514,4 @@ html[data-aqr="home"] body:not(#_a):not(#_b):not(#_c){background:#FBFAF7!importa
 html[data-aqr="home"] body #home.aqh:not(#_a):not(#_b):not(#_c){background:#FBFAF7!important}
 html[data-aqr="home"] body #home::before,html[data-aqr="home"] body #home::after{content:none!important}
 html[data-aqr="home"] body #home .amb{display:none!important}
-html[data-aqr="home"] body #home .aqh-band:not(#_a):not(#_b):not(#_c){background:none!important}
+html[data-aqr="home"] body #home.aqh .aqh-band:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m){background-image:none!important}
