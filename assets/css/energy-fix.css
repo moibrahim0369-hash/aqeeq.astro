@@ -676,7 +676,7 @@ html body #astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d):
 html body #astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){top:15px;inset-inline-start:16px}
 }
 
-/* معاينة 12:33: لمعة زجاجية خفيفة جدًا على خلفية الصفحة (بدون أصفر) */
+/* Vedic hub only: near-white warm cream, neutral glass sheen, no blue or lilac cast. */
 @media(max-width:699px){
-html body section.sec#astro-maps.eam-view-result:has(.vh-hub):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){background-image:linear-gradient(115deg,rgba(255,255,255,0) 18%,rgba(200,214,240,.62) 38%,rgba(255,255,255,0) 52%,rgba(222,214,244,.50) 72%,rgba(255,255,255,0) 90%),url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160' fill='none' stroke='%23C9A46A' stroke-width='1' stroke-linecap='round' opacity='.16'%3E%3Cpath d='M40 30l2.2 5.2 5.2 2.2-5.2 2.2L40 45l-2.2-5.4-5.2-2.2 5.2-2.2z'/%3E%3Ccircle cx='118' cy='104' r='5'/%3E%3Cpath d='M118 92v-4M118 120v-4M106 104h-4M134 104h-4'/%3E%3C/svg%3E") !important;background-color:#FEFEFF !important}
+html body section.sec#astro-maps.eam-view-result:has(.vh-hub):not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){background-image:linear-gradient(115deg,rgba(255,255,255,0) 18%,rgba(255,255,255,.45) 38%,rgba(255,255,255,0) 52%,rgba(255,255,255,.28) 72%,rgba(255,255,255,0) 90%),url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160' fill='none' stroke='%23C9A46A' stroke-width='1' stroke-linecap='round' opacity='.16'%3E%3Cpath d='M40 30l2.2 5.2 5.2 2.2-5.2 2.2L40 45l-2.2-5.4-5.2-2.2 5.2-2.2z'/%3E%3Ccircle cx='118' cy='104' r='5'/%3E%3Cpath d='M118 92v-4M118 120v-4M106 104h-4M134 104h-4'/%3E%3C/svg%3E") !important;background-color:#FFFCF5 !important}
 }
