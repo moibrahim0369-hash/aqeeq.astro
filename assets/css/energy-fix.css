@@ -401,3 +401,15 @@ html.vc-viewer-open{overflow:hidden}
 
 /* سنة العودة واسم التقسيم هما البؤرة، واسم عقيق توقيع هادئ داخل الختم. */
 #astro-maps .vyr .vc-expand:not(#_a):not(#_b){display:block;margin:10px auto 0;background:#FCF7EC;color:#672238;border:1px solid #D7BD90;border-radius:24px;padding:9px 16px;min-height:40px;font-size:12px}
+/* بلاطات الخرائط المصوّرة */
+#astro-maps .vh-tile.vh-ph:not(#_a):not(#_b):not(#_c){display:flex;flex-direction:column;gap:0;padding:0;min-height:0;overflow:hidden;background:#FDFCF9;border:1px solid #F0E9DA}
+#astro-maps .vh-cg>.vh-tile-m.vh-ph:last-child:nth-child(odd):not(#_a):not(#_b):not(#_c){grid-column:auto}
+#astro-maps .vh-ph-img:not(#_a):not(#_b):not(#_c){position:relative;display:block;height:132px}
+#astro-maps .vh-ph-img img:not(#_a):not(#_b):not(#_c){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+#astro-maps .vh-ph-band:not(#_a):not(#_b):not(#_c){position:absolute;inset:0;background:linear-gradient(to top,rgba(26,14,18,.38),rgba(26,14,18,0) 60%)}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c){position:absolute;left:0;right:0;bottom:0;display:block;padding:8px 12px 10px;background:rgba(26,14,18,.45);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c){display:block;font-family:'Cairo',sans-serif;font-size:.95rem;font-weight:800;line-height:1.45;margin:0;color:#FFF9F0;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+#astro-maps .vh-ph .vh-v:not(#_a):not(#_b):not(#_c){display:block;margin-top:3px;font-size:.72rem;font-weight:700;line-height:1.4;color:#F0D9A8;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+#astro-maps .vh-ph-b:not(#_a):not(#_b):not(#_c){display:block;padding:10px 13px 14px}
+#astro-maps .vh-ph .vh-s:not(#_a):not(#_b):not(#_c){font-size:.72rem;line-height:1.65;color:#6B5448}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c){display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:'Cairo',sans-serif;font-size:.78rem;font-weight:800;color:#8A2A3D}

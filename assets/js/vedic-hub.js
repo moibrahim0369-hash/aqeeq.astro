@@ -79,6 +79,12 @@
     45: ['خريطة اتساق الاختيارات', 'أكشافيدامشا', 'D45', 'عدسة واسعة للاختيارات، لا سيرة خط الأب'],
     60: ['خريطة الأنماط العميقة', 'شاشتيامشا', 'D60', 'تأمل رمزي يحتاج وقتًا معلومًا وفحص عينات الدقة']
   };
+  var CHIMG = {
+    1: 'assets/images/vedic/natal.jpg', moon: 'assets/images/vedic/moon.jpg', sun: 'assets/images/vedic/sun.jpg',
+    2: 'assets/images/vedic/money.jpg', 3: 'assets/images/vedic/3.jpg', 4: 'assets/images/vedic/4.jpg', 5: 'assets/images/vedic/5.jpg', 6: 'assets/images/vedic/6.jpg', 7: 'assets/images/vedic/7.jpg',
+    8: 'assets/images/vedic/8.jpg', 9: 'assets/images/vedic/9.jpg', 10: 'assets/images/vedic/10.jpg', 11: 'assets/images/vedic/11.jpg', 12: 'assets/images/vedic/12.jpg',
+    16: 'assets/images/vedic/16.jpg', 20: 'assets/images/vedic/spirit.jpg', 24: 'assets/images/vedic/24.jpg', 27: 'assets/images/vedic/27.jpg', 30: 'assets/images/vedic/30.jpg', 40: 'assets/images/vedic/door.jpg', 45: 'assets/images/vedic/45.jpg', 60: 'assets/images/vedic/60.jpg'
+  };
   function chName(k) { var c = CH[k]; return c[0] + ' (' + c[1] + ' · ' + c[2] + ')'; }
   var CHG = [['الأساس', ['1', 'moon', 'sun']], ['الحياة اليومية', ['2', '3', '4', '5', '6', '7']], ['المسار والعمق', ['8', '9', '10', '11', '12']], ['التخصص الدقيق', ['16', '20', '24', '27', '30', '40', '45', '60']]];
   var TIMET = ['dasha', 'pratyantar', 'ashtakavarga', 'shadbala', 'varshaphala', 'sade', 'lunar', 'year', 'expert'];
@@ -87,7 +93,7 @@
   function tilesHTML(admin) {
     var h = CHG.map(function (g) {
       return '<h5 class="vh-gh">' + g[0] + '</h5><div class="vh-cg' + ('') + '">' + g[1].map(function (k) {
-        var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-m" data-g="c:' + k + '"><span class="vh-ic">' + svg('c' + (k === 'moon' ? 'moon' : k === 'sun' ? 'sun' : k)) + '</span><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span><span class="vh-s">' + c[3] + '</span></button>';
+        var c = CH[k]; return '<button type="button" class="vh-tile vh-tile-m vh-ph" data-g="c:' + k + '"><span class="vh-ph-img"><img src="' + CHIMG[k] + '" alt="صورة توضيحية" loading="lazy"><span class="vh-ph-band"></span><span class="vh-ph-txt"><span class="vh-t">' + c[0] + '</span><span class="vh-v">' + c[1] + ' · ' + c[2] + '</span></span></span><span class="vh-ph-b"><span class="vh-s">' + c[3] + '</span><span class="vh-ph-cta"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>احسب ' + c[0] + '</span></span></button>';
       }).join('') + '</div>';
     }).join('');
     h += '<h5 class="vh-gh">الأزمنة والتنبؤ</h5><div class="vh-grid">' + TIMET.filter(function (id) { return id !== 'expert' || admin; }).map(function (id) {
