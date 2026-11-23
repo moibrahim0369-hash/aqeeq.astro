@@ -413,3 +413,161 @@ html.vc-viewer-open{overflow:hidden}
 #astro-maps .vh-ph-b:not(#_a):not(#_b):not(#_c){display:block;padding:10px 13px 14px}
 #astro-maps .vh-ph .vh-s:not(#_a):not(#_b):not(#_c){font-size:.72rem;line-height:1.65;color:#6B5448}
 #astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c){display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-family:'Cairo',sans-serif;font-size:.78rem;font-weight:800;color:#8A2A3D}
+
+/* موبايل: بلاطات الخرائط المصوّرة أصغر، ٣ في الصف، الصورة والاسم فقط */
+@media(max-width:699px){
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+#astro-maps .vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){border-radius:14px;box-shadow:0 3px 10px rgba(74,18,36,.10)}
+#astro-maps .vh-ph-img:not(#_a):not(#_b):not(#_c):not(#_d){height:auto;aspect-ratio:1/1.08}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){padding:5px 6px 6px;text-align:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.74rem;line-height:1.35;margin:0}
+#astro-maps .vh-ph .vh-v:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.6rem;margin-top:1px;line-height:1.3}
+#astro-maps .vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){position:relative}
+#astro-maps .vh-ph-b:not(#_a):not(#_b):not(#_c):not(#_d){position:absolute;top:6px;inset-inline-start:6px;padding:0;display:block}
+#astro-maps .vh-ph .vh-s:not(#_a):not(#_b):not(#_c):not(#_d){display:none}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){margin:0;gap:3px;font-size:0;padding:3px 7px 3px 6px;border-radius:999px;background:rgba(255,249,240,.94);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d)::after{content:"احسب";font-size:.64rem;font-weight:800;line-height:1.2}
+#astro-maps .vh-ph .vh-ph-cta svg:not(#_a):not(#_b):not(#_c):not(#_d){width:11px;height:11px}
+#astro-maps .vh-gh:not(#_a):not(#_b):not(#_c){scroll-margin-top:96px}
+}
+/* شاشات ضيقة جدًا (٣٢٠–٣٥٩): صورة أطول، أيقونة الحساب فقط، السطر الفرعي مخفي ليبقى الاسم مقروءًا */
+@media(max-width:359px){
+#astro-maps .vh-ph-img:not(#_a):not(#_b):not(#_c):not(#_d){aspect-ratio:1/1.3}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){padding:4px 3px 5px}
+#astro-maps .vh-ph .vh-v:not(#_a):not(#_b):not(#_c):not(#_d){display:none}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.64rem;line-height:1.3}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d)::after{font-size:.58rem}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){padding:3px 5px}
+}
+@media(max-width:699px){#astro-maps .vh-ph-open .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d)::after{content:"افتح"}}
+/* موبايل: الصف الأخير الناقص يتوسّط بدل ما يلتصق بطرف الشاشة */
+@media(max-width:699px){
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){flex:0 0 calc((100% - 16px)/3);min-width:0}
+}
+/* موبايل: مسافات بيضاء بين الكروت، والنص تحت الصورة على شريط فاتح بدل ما يلتصق بها */
+@media(max-width:699px){
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){gap:14px 10px;padding:2px 2px 6px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){flex:0 0 calc((100% - 20px)/3)}
+#astro-maps .vh-ph-img:not(#_a):not(#_b):not(#_c):not(#_d){aspect-ratio:1/.92}
+#astro-maps .vh-ph-band:not(#_a):not(#_b):not(#_c):not(#_d){display:none}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){position:static;background:#FDFCF9;-webkit-backdrop-filter:none;backdrop-filter:none;padding:8px 5px 9px}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){color:#4A1224;text-shadow:none;font-size:.76rem;line-height:1.4}
+#astro-maps .vh-ph .vh-v:not(#_a):not(#_b):not(#_c):not(#_d){color:#8A6A3D;text-shadow:none;margin-top:3px;font-size:.62rem}
+#astro-maps .vh-gh:not(#_a):not(#_b):not(#_c){margin:24px 4px 12px}
+}
+@media(max-width:359px){
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){gap:12px 8px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){flex:0 0 calc((100% - 16px)/3)}
+#astro-maps .vh-ph-img:not(#_a):not(#_b):not(#_c):not(#_d){aspect-ratio:1/1}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.66rem}
+}
+@media(max-width:699px){
+#astro-maps .vh-ph-img:not(#_a):not(#_b):not(#_c):not(#_d){aspect-ratio:auto;height:auto;display:block}
+#astro-maps .vh-ph-img img:not(#_a):not(#_b):not(#_c):not(#_d){position:static;width:100%;height:auto;aspect-ratio:1/.9}
+}
+@media(max-width:359px){#astro-maps .vh-ph-img img:not(#_a):not(#_b):not(#_c):not(#_d){aspect-ratio:1/.95}}
+
+/* موبايل: صف جنبًا إلى جنب، الصورة والاسم على جانب والوصف المختصر بجواره (موبايل فقط) */
+@media(max-width:699px){
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){display:grid;grid-template-columns:1fr;gap:14px;padding:2px 0 6px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){flex:none;display:flex;flex-direction:row;align-items:stretch;text-align:start;border-radius:16px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{flex:0 0 38%;max-width:38%;display:flex;flex-direction:column}
+#astro-maps .vh-ph-img img:not(#_a):not(#_b):not(#_c):not(#_d){aspect-ratio:1/.78}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){flex:1;display:flex;flex-direction:column;justify-content:center;padding:8px 6px}
+#astro-maps .vh-ph-b:not(#_a):not(#_b):not(#_c):not(#_d){position:static;flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;padding:12px 14px 12px 12px}
+#astro-maps .vh-ph .vh-s:not(#_a):not(#_b):not(#_c):not(#_d){display:block;font-size:.82rem;line-height:1.7;color:#5F473C}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){box-shadow:none;background:#F7EBDD}
+}
+/* مراجعة: بدون الحاوية البيضاء الطويلة ولا الأشرطة البيضاء؛ خلفية واحدة فاتحة، والصورة والاسم بطاقة مدورة بظل، والوصف بجوارها */
+@media(max-width:699px){
+#eam-result:has(.vh-hub):not(#_a):not(#_b){background:transparent;border-color:transparent;box-shadow:none;padding:0}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){background:transparent;border:0;box-shadow:none;overflow:visible;gap:12px;padding:0 2px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{border-radius:20px;overflow:hidden;background:rgba(255,252,246,.92);box-shadow:0 8px 20px rgba(74,18,36,.16),0 2px 5px rgba(74,18,36,.08)}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){background:rgba(255,252,246,.92)}
+#astro-maps .vh-ph-b:not(#_a):not(#_b):not(#_c):not(#_d){padding:6px 4px;background:transparent}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){background:rgba(255,255,255,.7);border:1px solid rgba(183,138,82,.35)}
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){gap:20px}
+}
+@media(max-width:699px){
+#eam-result.vh-ready:has(.vh-hub){background:transparent !important;border-color:transparent !important;box-shadow:none !important;padding:0 !important}
+#eam-result:has(.vh-hub) .vh-gh{border:0 !important;background:transparent !important}
+}
+@media(max-width:699px){
+#astro-maps #eam-result.vh-ready:has(.vh-hub){border:0 !important;border-width:0 !important;outline:0 !important;box-shadow:none !important;background:transparent !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important}
+}
+/* مراجعة 11:34: الصورة تكمل خلف الاسم وعليها طبقة بلور شفافة بدل الشريط الفاتح */
+@media(max-width:699px){
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{position:relative;display:block;aspect-ratio:1/1.02;background:#2a1a1f}
+#astro-maps .vh-ph-img img:not(#_a):not(#_b):not(#_c):not(#_d){position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+#astro-maps .vh-ph-band:not(#_a):not(#_b):not(#_c):not(#_d){display:block}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){position:absolute;left:0;right:0;bottom:0;display:block;padding:7px 5px 8px;text-align:center;background:rgba(26,14,18,.34);-webkit-backdrop-filter:blur(9px) saturate(1.2);backdrop-filter:blur(9px) saturate(1.2);border-top:1px solid rgba(255,255,255,.18)}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){color:#FFF9F0;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+#astro-maps .vh-ph .vh-v:not(#_a):not(#_b):not(#_c):not(#_d){color:#F0D9A8;text-shadow:0 1px 3px rgba(0,0,0,.55)}
+}
+/* مراجعة 11:34: كلمة احسب/افتح على الصورة مع الاسم، والشرح وحده بجوارها */
+@media(max-width:699px){
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d){position:relative}
+#astro-maps .vh-ph-b:not(#_a):not(#_b):not(#_c):not(#_d){display:contents}
+#astro-maps .vh-ph .vh-s:not(#_a):not(#_b):not(#_c):not(#_d){flex:1;align-self:center;padding:6px 4px}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){position:absolute;top:8px;inset-inline-start:8px;margin:0;background:rgba(255,249,240,.94);border:0;box-shadow:0 1px 4px rgba(0,0,0,.28)}
+}
+/* مراجعة 11:35: الصورة أعرض لا أطول، حواف دائرية أكبر وعمق كأنها مرفوعة */
+@media(max-width:699px){
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{flex:0 0 50%;max-width:50%;aspect-ratio:1.42/1;border-radius:24px;box-shadow:0 14px 26px -6px rgba(74,18,36,.30),0 4px 10px rgba(74,18,36,.14),inset 0 1px 0 rgba(255,255,255,.35)}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){padding:6px 6px 8px}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){top:9px;inset-inline-start:10px}
+}
+@media(max-width:359px){#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{flex-basis:46%;max-width:46%;aspect-ratio:1.2/1}}
+/* مراجعة 11:36: أقل ارتفاعًا ومسافة رأسية أصغر بين الكروت */
+@media(max-width:699px){
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){gap:10px;padding:0 0 4px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{aspect-ratio:1.6/1;box-shadow:0 10px 18px -6px rgba(74,18,36,.28),0 3px 8px rgba(74,18,36,.13),inset 0 1px 0 rgba(255,255,255,.35)}
+#astro-maps .vh-gh:not(#_a):not(#_b):not(#_c){margin:16px 4px 8px}
+}
+@media(max-width:359px){
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{flex-basis:50%;max-width:50%;aspect-ratio:1.3/1;border-radius:18px}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){padding:5px 4px 6px}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.68rem;line-height:1.3}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){top:7px;inset-inline-start:7px}
+}
+/* مراجعة 11:41: أعرض قليلًا، مسافة مريحة، ومنطقة بلور أكبر وأقوى تحت النص، و"احسب" فوق كما هي */
+@media(max-width:699px){
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){gap:14px}
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{flex-basis:57%;max-width:57%;aspect-ratio:1.5/1}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){min-height:54%;display:flex;flex-direction:column;justify-content:center;padding:8px 8px 10px;background:rgba(22,11,15,.52);-webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25)}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.82rem;line-height:1.4}
+#astro-maps .vh-ph .vh-v:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.66rem;margin-top:2px}
+}
+@media(max-width:359px){
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{flex-basis:54%;max-width:54%;aspect-ratio:1.25/1}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.7rem}
+}
+
+/* مراجعة 11:46: خلفية أبيض/كريم فاتحة زجاجية بزخرفة شمس ونجوم خفيفة (خلفية الصفحة فقط، لا إطارات حول الصفوف)، بلور أقوى، وبيانات الطالع/وسط السماء بعد الأقسام بشكل مضغوط */
+@media(max-width:699px){
+#astro-maps.eam-view-result:has(.vh-hub){background-color:#FBF8F1;background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180' fill='none' stroke='%23B78A52' stroke-width='1.1' stroke-linecap='round'%3E%3Cg opacity='.34'%3E%3Ccircle cx='38' cy='44' r='6'/%3E%3Cpath d='M38 30v5M38 53v5M24 44h5M47 44h5M28 34l3.5 3.5M44.5 50.5L48 54M48 34l-3.5 3.5M31.5 50.5L28 54'/%3E%3Cpath d='M128 112l2.2 5.6 5.8.4-4.5 3.8 1.5 5.7-5-3.2-5 3.2 1.5-5.7-4.5-3.8 5.8-.4z'/%3E%3Cpath d='M150 30v8M146 34h8'/%3E%3Cpath d='M70 140v6M67 143h6'/%3E%3C/g%3E%3C/svg%3E"),radial-gradient(120% 60% at 50% 0%,rgba(255,255,255,.95),rgba(255,255,255,0) 70%),linear-gradient(180deg,#FDFBF6 0%,#F8F2E7 100%);background-size:180px 180px,100% 100%,100% 100%}
+#astro-maps .vh-ph-txt:not(#_a):not(#_b):not(#_c):not(#_d){background:rgba(22,11,15,.42);-webkit-backdrop-filter:blur(26px) saturate(1.3);backdrop-filter:blur(26px) saturate(1.3)}
+}
+
+
+/* نهائي: كروت أصغر قليلًا مع مسافة مريحة، وأيقونة احسب أصغر */
+@media(max-width:699px){
+#astro-maps .vh-cg>.vh-tile.vh-ph:not(#_a):not(#_b):not(#_c):not(#_d)>.vh-ph-img{flex-basis:52%;max-width:52%;aspect-ratio:1.5/1}
+#astro-maps .vh-cg:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){gap:14px}
+#astro-maps .vh-ph .vh-t:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.78rem}
+#astro-maps .vh-ph .vh-v:not(#_a):not(#_b):not(#_c):not(#_d){font-size:.62rem}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d){padding:2px 6px 2px 5px;gap:2px;top:8px;inset-inline-start:8px}
+#astro-maps .vh-ph .vh-ph-cta:not(#_a):not(#_b):not(#_c):not(#_d)::after{font-size:.58rem}
+#astro-maps .vh-ph .vh-ph-cta svg:not(#_a):not(#_b):not(#_c):not(#_d){width:9px;height:9px}
+/* تابات الأقسام */
+#astro-maps .vh-tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;margin:4px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#astro-maps .vh-tabs::-webkit-scrollbar{display:none}
+#astro-maps .vh-tab{flex:0 0 auto;font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:700;color:#5A3A42;background:rgba(255,255,255,.78);border:1px solid rgba(183,138,82,.32);border-radius:999px;padding:7px 14px;box-shadow:0 2px 6px rgba(74,18,36,.06);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);cursor:pointer}
+#astro-maps .vh-tab.on{background:#6E1F36;color:#FFF9F0;border-color:#6E1F36}
+#astro-maps .vh-secs[data-vhtab="0"] .vh-sec:not([data-vhs="0"]),#astro-maps .vh-secs[data-vhtab="1"] .vh-sec:not([data-vhs="1"]),#astro-maps .vh-secs[data-vhtab="2"] .vh-sec:not([data-vhs="2"]),#astro-maps .vh-secs[data-vhtab="3"] .vh-sec:not([data-vhs="3"]),#astro-maps .vh-secs[data-vhtab="time"] .vh-sec:not([data-vhs="time"]),#astro-maps .vh-secs[data-vhtab="adv"] .vh-sec:not([data-vhs="adv"]){display:none}
+}
+@media(min-width:700px){#astro-maps .vh-tabs{display:none}}
+@media(max-width:699px){
+#astro-maps .vh-hub .vh-tabs:not(#_a):not(#_b):not(#_c){border:0;border-radius:0;background:transparent;box-shadow:none;padding:4px 2px 10px}
+}

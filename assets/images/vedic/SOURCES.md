@@ -24,3 +24,9 @@ All vedic hub tile images downloaded from Pexels (free license) on 2026-11-23.
 - money.jpg: https://www.pexels.com/photo/close-up-shot-of-gold-coins-8442425/
 - spirit.jpg: https://www.pexels.com/photo/a-woman-in-gray-robe-lighting-a-candle-7970228/
 - door.jpg: https://www.pexels.com/photo/view-of-light-coming-into-the-room-through-open-door-18861919/
+- adv.jpg: https://www.pexels.com/photo/big-spherical-astrolabe-14079804/ (photographer: Gülçay Çumak; Pexels free license; source page verified 2026-11-23). Used on the 'الخرائط المتقدمة' card.
+- dasha.jpg: https://www.pexels.com/photo/elegant-vintage-pocket-watch-against-dark-background-33696734/ (photographer: mohammad mohebbi; Pexels free license; verified 2026-11-23)
+- sade.jpg: https://www.pexels.com/photo/saturn-20337593/ (photographer: Zelch Csaba; Pexels free license; verified 2026-11-23)
+- lunar.jpg: https://www.pexels.com/photo/luminous-full-moon-surrounded-by-dramatic-clouds-34196321/ (photographer: Jay Brand; Pexels free license; verified 2026-11-23)
+- year.jpg: https://www.pexels.com/photo/paper-calendar-with-months-and-days-in-sunbeam-7059605/ (photographer: not recorded in origin packet; Pexels free license; page verified 2026-11-23)
+- expert.jpg: https://www.pexels.com/photo/antique-key-in-wooden-door-lock-close-up-40150787/ (photographer: Waskyria Miranda; Pexels free license; verified 2026-11-23; admin-only card)
