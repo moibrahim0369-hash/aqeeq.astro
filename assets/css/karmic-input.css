@@ -132,3 +132,10 @@ html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:
 html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-tools button.is-saved{background:#f3e7c6!important}
 html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .y27-editrow{display:none!important}
 html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-rows li{border:1px solid #d9c08a!important;border-bottom:3px solid #cfb06c!important;box-shadow:0 12px 22px -10px rgba(74,18,36,.22),0 2px 6px rgba(74,18,36,.06)!important}
+
+/* paid-content diamond on the home cards of karmic and 2027 */
+html body #aqh-y27,html body #aqh-karmic{position:relative}
+html body .aqh-gem{position:absolute;top:9px;inset-inline-end:10px;z-index:3;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:linear-gradient(115deg,#d7bd83,#ecd6a4 45%,#c6a866);border:1px solid #bb9857;color:#4b2930;box-shadow:inset 0 1px 0 #fff8,0 3px 9px #a1844b40;pointer-events:none}
+html body .aqh-gem svg{position:relative;z-index:1}
+html body .aqh-gem::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.75) 49%,transparent 62%);transform:translateX(-120%);animation:kt-vip-glint 2.6s ease-in-out infinite;pointer-events:none}
+@media(prefers-reduced-motion:reduce){html body .aqh-gem::after{animation:none}}
