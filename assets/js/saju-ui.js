@@ -33,49 +33,74 @@
     "الماء غائب أو قليل. جرّب ما يغذيه: وقت للتأمل والهدوء، والقراءة، وشرب الماء في يوم مزدحم، ومساحة تسمع فيها نفسك."
   ];
   var ELCLS = ["wood", "fire", "earth", "metal", "water"];
-  var COLS = [["السنة", "الجذور والبيئة الأولى"], ["الشهر", "العمل والبيت الذي تنشأ فيه"], ["اليوم", "ذاتك وعلاقتك القريبة"], ["الساعة", "ثمارك ومرحلة متأخرة"]];
+  var ELHEX = ["#2f7d4f", "#b5443e", "#c9a55c", "#8d939c", "#2563a8"];
+  var TONE = [2, 1, 0, 0, 2];
+  var PIL = [["year", "السنة", "الجذور والبيئة الأولى، وما ورثته من حولك"], ["month", "الشهر", "العمل والبيت الذي نشأت فيه، وطريقتك في بناء مكانك"], ["day", "اليوم", "ذاتك وعلاقتك القريبة، وفيه سيد اليوم"], ["hour", "الساعة", "ثمارك ومرحلة متأخرة من العمر، وما تتركه خلفك"]];
+  var ICO = {
+    pil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="3.5" height="16" rx="1"/><rect x="10.2" y="4" width="3.5" height="16" rx="1"/><rect x="16.5" y="4" width="3.5" height="16" rx="1"/></svg>',
+    dm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>',
+    el: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 5 6 5 9a5 5 0 0 1-10 0c0-3 2-5 5-9Z"/></svg>',
+    how: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/></svg>'
+  };
 
-  function pillarCard(label, sub, p) {
-    if (!p) return '<div class="sj-pil sj-pil-empty"><span class="sj-pl">' + label + '</span><b>—</b><small>تحتاج إلى وقت الميلاد</small></div>';
-    var se = S.ELEMENTS[p.stemInfo.el], be = S.ELEMENTS[p.branchInfo.el];
-    return '<div class="sj-pil"><span class="sj-pl">' + label + '</span>' +
-      '<div class="sj-han sj-' + ELCLS[p.stemInfo.el] + '">' + p.stemInfo.han + '</div>' +
-      '<small>' + se + (p.stemInfo.yang ? " يانغ" : " يين") + ' · ' + p.stemInfo.ko + '</small>' +
-      '<div class="sj-han sj-' + ELCLS[p.branchInfo.el] + '">' + p.branchInfo.han + '</div>' +
-      '<small>' + be + ' · ' + p.branchInfo.animal + ' · ' + p.branchInfo.ko + '</small>' +
-      '<em>' + sub + '</em></div>';
+  function badge(num, label, tone) { return '<span class="aqm-badge-arcana aqm-tone-' + tone + '"><b class="aqm-bn">' + num + '</b><span class="aqm-bl">' + label + '</span></span>'; }
+  function item(id, icon, title, sub, badges, inner, open) {
+    return '<div class="aqm-acc-item' + (open ? " open" : "") + '" id="sj-sec-' + id + '">' +
+      '<button class="aqm-acc-header" type="button" aria-expanded="' + (open ? "true" : "false") + '">' +
+      '<div class="aqm-acc-header-left"><span class="aqm-acc-icon" aria-hidden="true">' + icon + '</span>' +
+      '<div class="aqm-acc-title-group"><h3 class="aqm-acc-title">' + title + '</h3><p class="aqm-acc-subtitle">' + sub + '</p></div></div>' +
+      '<div class="aqm-acc-badges">' + badges + '</div><span class="aqm-acc-chevron" aria-hidden="true">\u203a</span></button>' +
+      '<div class="aqm-acc-body"><div class="aqm-content-grid"><section class="aqm-slot">' + inner + '</section></div></div></div>';
   }
 
   function render(r, box) {
     var P = r.pillars, dm = r.dayMaster, dmx = DM[S.STEMS.indexOf(dm)];
-    var cards = pillarCard(COLS[3][0], COLS[3][1], P.hour) + pillarCard(COLS[2][0], COLS[2][1], P.day) + pillarCard(COLS[1][0], COLS[1][1], P.month) + pillarCard(COLS[0][0], COLS[0][1], P.year);
+    /* لوحة الأعمدة */
+    var cols = ["hour", "day", "month", "year"].map(function (k, i) {
+      var p = P[k], lab = { year: "السنة", month: "الشهر", day: "اليوم", hour: "الساعة" }[k];
+      if (!p) return '<div class="sj-col sj-col-empty"><span>' + lab + '</span><b>\u2014</b><small>تحتاج إلى وقت الميلاد</small></div>';
+      return '<div class="sj-col' + (k === "day" ? " is-day" : "") + '"><span>' + lab + '</span>' +
+        '<b class="sj-han sj-' + ELCLS[p.stemInfo.el] + '">' + p.stemInfo.han + '</b><small>' + S.ELEMENTS[p.stemInfo.el] + (p.stemInfo.yang ? " يانغ" : " يين") + '</small>' +
+        '<b class="sj-han sj-' + ELCLS[p.branchInfo.el] + '">' + p.branchInfo.han + '</b><small>' + p.branchInfo.animal + ' \u00b7 ' + S.ELEMENTS[p.branchInfo.el] + '</small></div>';
+    }).join("");
+    var diagram = '<div class="sj-board"><div class="sj-cols">' + cols + '</div><p class="sj-board-note">السنة الساجوية عندك ' + r.sajuYear + '. تبدأ عند ليتشون (حوالي 4 فبراير) وليس عند 1 يناير.</p></div>';
+    var timeNote = r.hasTime ? "" : '<p class="aqm-g-p">لم تُدخل وقت الميلاد، فظهرت ثلاثة أعمدة وستة حروف. أضف الساعة لتكتمل الأعمدة الأربعة.</p>';
+    var late = r.lateZi ? '<p class="aqm-g-p">وُلدت بعد الساعة 23:00، وفي هذه الطريقة يبدأ اليوم الجديد عند 23:00، فحُسب عمود يومك على اليوم التالي. بعض المدارس تغيّر اليوم عند منتصف الليل، وقد يختلف عمود يومك عندها.</p>' : "";
+    /* أعمدة */
+    var pbadges = ["year", "month", "day", "hour"].map(function (k, i) {
+      var p = P[k]; return p ? badge(p.stemInfo.han + p.branchInfo.han, PIL[i][1], TONE[p.stemInfo.el]) : "";
+    }).join("");
+    var pin = "";
+    PIL.forEach(function (x) {
+      var p = P[x[0]]; if (!p) return;
+      pin += '<h6 class="aqm-g-h2">عمود ' + x[1] + ': ' + p.stemInfo.han + p.branchInfo.han + '</h6><p class="aqm-g-p">' +
+        S.ELEMENTS[p.stemInfo.el] + (p.stemInfo.yang ? " يانغ" : " يين") + ' فوق ' + S.ELEMENTS[p.branchInfo.el] + ' (' + p.branchInfo.animal + '). ' + x[2] + '.</p>';
+    });
+    /* سيد اليوم */
+    var dmIn = '<h6 class="aqm-g-h2">' + dmx.n + '</h6><p class="aqm-g-p">' + S.ELEMENTS[dm.el] + (dm.yang ? " يانغ" : " يين") + ' (' + dm.ko + '). جذع اليوم هو مركز قراءتك في الساجو ويرمز إلى ذاتك.</p><p class="aqm-g-p">' + dmx.t + '</p><blockquote class="aqm-g-q"><p>' + dmx.q + '</p></blockquote>';
+    /* عناصر */
     var max = Math.max.apply(null, r.elements) || 1;
     var bars = r.elements.map(function (c, i) {
-      return '<div class="sj-bar"><span>' + S.ELEMENTS[i] + '</span><i><u class="sj-' + ELCLS[i] + '" style="width:' + Math.round(c / max * 100) + '%"></u></i><b>' + c + '</b></div>';
+      return '<div class="sj-bar"><span>' + S.ELEMENTS[i] + '</span><i><u style="width:' + Math.round(c / max * 100) + '%;background:' + ELHEX[i] + '"></u></i><b>' + c + '</b></div>';
     }).join("");
     var strong = [], weak = [];
     r.elements.forEach(function (c, i) { if (c >= 3) strong.push(i); if (c === 0) weak.push(i); });
     var notes = "";
-    strong.forEach(function (i) { notes += '<p><strong>' + S.ELEMENTS[i] + ' بارز.</strong> ' + EL_STRONG[i] + '</p>'; });
-    weak.forEach(function (i) { notes += '<p><strong>' + S.ELEMENTS[i] + ' لا يظهر في حروفك.</strong> ' + EL_WEAK[i] + '</p>'; });
-    if (!notes) notes = '<p>لا يوجد عنصر طاغٍ ولا عنصر غائب في حروفك الظاهرة. هذا يوصف عادة بتوزيع متوازن نسبيًا، لكن التوازن في الساجو يُقرأ مع قوة كل عمود وليس بالعدد وحده.</p>';
-    var mine = r.elements[dm.el];
-    var timeNote = r.hasTime ? "" : '<p class="sj-note">لم تُدخل وقت الميلاد، فظهر ثلاثة أعمدة وستة حروف. أضف الساعة لتكتمل الأعمدة الأربعة.</p>';
-    var late = r.lateZi ? '<p class="sj-note">وُلدت بعد الساعة 23:00، وفي هذه الطريقة يبدأ اليوم الجديد عند 23:00، لذلك حُسب عمود يومك على اليوم التالي. بعض المدارس تغيّر اليوم عند منتصف الليل، فقد يختلف عمود يومك عندها.</p>' : '';
-    box.innerHTML =
-      '<div class="sj-res">' +
-      '<h3 class="sj-h">أعمدتك الأربعة</h3>' +
-      '<p class="sj-sub">تقرأ الأعمدة من اليمين إلى اليسار: السنة ثم الشهر ثم اليوم ثم الساعة. في كل عمود جذع سماوي فوق وفرع أرضي تحته. السنة الساجوية عندك: ' + r.sajuYear + '، وهي تبدأ عند ليتشون (حوالي 4 فبراير) وليس عند 1 يناير.</p>' +
-      '<div class="sj-pils">' + cards + '</div>' + timeNote + late +
-      '<h3 class="sj-h">سيد اليوم: ' + dm.han + ' · ' + dmx.n + '</h3>' +
-      '<p class="sj-sub">جذع اليوم هو مركز قراءتك في الساجو، ويرمز إلى ذاتك. عندك: ' + S.ELEMENTS[dm.el] + (dm.yang ? " يانغ" : " يين") + ' (' + dm.ko + ').</p>' +
-      '<div class="sj-card"><p>' + dmx.t + '</p><p class="sj-q">سؤال تأخذه معك: ' + dmx.q + '</p></div>' +
-      '<h3 class="sj-h">توازن العناصر</h3>' +
-      '<div class="sj-bars">' + bars + '</div>' +
-      '<p class="sj-sub">العدد من ' + r.total + ' حروف ظاهرة. عنصر ذاتك (' + S.ELEMENTS[dm.el] + ') يظهر ' + mine + (mine === 1 ? " مرة" : " مرات") + '.</p>' +
-      '<div class="sj-card">' + notes + '</div>' +
-      '<p class="sj-foot">هذه قراءة رمزية للتأمل وليست حكمًا على حياتك أو علاقاتك أو صحتك. نظام الساجو يقرأ الأعمدة أيضًا بقوة الفصل وبالعلاقات بين الحروف، وهذه نسخة أولى تعرض الأعمدة والعناصر وسيد اليوم. الحساب بتوقيت الميلاد المحلي الذي أدخلته مع فرق التوقيت، ولا يتضمن تصحيح الوقت الشمسي الحقيقي للمدينة.</p>' +
-      '</div>';
+    strong.forEach(function (i) { notes += '<h6 class="aqm-g-h2">' + S.ELEMENTS[i] + ' بارز</h6><p class="aqm-g-p">' + EL_STRONG[i] + '</p>'; });
+    weak.forEach(function (i) { notes += '<h6 class="aqm-g-h2">' + S.ELEMENTS[i] + ' لا يظهر في حروفك</h6><p class="aqm-g-p">' + EL_WEAK[i] + '</p>'; });
+    if (!notes) notes = '<p class="aqm-g-p">لا يوجد عنصر طاغٍ ولا عنصر غائب في حروفك الظاهرة. هذا يوصف عادة بتوزيع متوازن نسبيًا، لكن التوازن في الساجو يُقرأ أيضًا بقوة كل عمود وليس بالعدد وحده.</p>';
+    var ebadges = r.elements.map(function (c, i) { return badge(c, S.ELEMENTS[i], TONE[i]); }).join("");
+    var how = '<p class="aqm-g-p">الحساب فعلي بموضع الشمس: عمود السنة يتبدل عند ليتشون، وعمود الشهر بالمصطلحات الشمسية الاثني عشر، وعمود اليوم من دورة الستين يومًا، وعمود الساعة كل ساعتين. الحساب بتوقيت الميلاد المحلي مع فرق التوقيت الذي أدخلته، ولا يتضمن تصحيح الوقت الشمسي الحقيقي للمدينة.</p>' +
+      '<p class="aqm-g-p">هذه قراءة رمزية للتأمل وليست حكمًا على حياتك أو علاقاتك أو صحتك. الساجو يقرأ الأعمدة أيضًا بقوة الفصل وبالعلاقات بين الحروف، وهذه نسخة أولى تعرض الأعمدة والعناصر وسيد اليوم.</p>' +
+      '<p class="aqm-g-p"><a href="#featured-content/saju-how-pillars-calculated">اقرأ: كيف تُحسب أعمدتك الأربعة؟</a></p>';
+    box.innerHTML = diagram + '<p class="aqm-hint"><span>اضغط على أي قسم لعرض تفسيره</span></p><div class="aqm-accordion-container" id="sj-readings">' +
+      item("pillars", ICO.pil, "أعمدتك الأربعة", "من أي لحظة تبدأ خريطتك؟", pbadges, timeNote + late + pin, true) +
+      item("daymaster", ICO.dm, "سيد اليوم", dm.han + " \u00b7 " + dmx.n, badge(dm.han, S.ELEMENTS[dm.el], TONE[dm.el]), dmIn, false) +
+      item("elements", ICO.el, "توازن العناصر", "أي العناصر الخمسة يظهر في حروفك؟", ebadges, '<div class="sj-bars">' + bars + '</div>' + notes, false) +
+      item("how", ICO.how, "كيف حُسبت؟", "حدود الحساب وطريقته", "", how, false) + '</div>';
+    box.querySelectorAll(".aqm-acc-header").forEach(function (h) {
+      h.addEventListener("click", function () { var it = h.parentNode, o = !it.classList.contains("open"); it.classList.toggle("open", o); h.setAttribute("aria-expanded", o ? "true" : "false"); });
+    });
   }
 
   function init() {

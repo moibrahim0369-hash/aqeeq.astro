@@ -259,6 +259,245 @@ H.AddAcceleration(b.a,b.r,this.curr.gravitators[m.Uranus].r,1.292024916781969E-8
 return new kd(this.curr.time,a,b)};$jscomp.global.Object.defineProperties(H.prototype,{OriginBody:{configurable:!0,enumerable:!0,get:function(){return this.originBody}},Time:{configurable:!0,enumerable:!0,get:function(){return this.curr.time}}});e.GravitySimulator=H;var kd=function(a,b,c){this.time=a;this.gravitators=b;this.bodies=c}},{}]},{},[1])(1)});
 
 ;
+/* assets/js/saju-engine.js */
+/* عقيق أسترو · محرك الساجو (الأعمدة الأربعة) — حساب فعلي من تاريخ الميلاد وليس نصًا ثابتًا.
+   - عمود السنة يتبدل عند «ليتشون» (لحظة وصول الشمس إلى 315° تقريبًا 4 فبراير)، لا عند 1 يناير.
+   - عمود الشهر يتبع المصطلحات الشمسية الاثني عشر (كل 30° من الطول الفلكي للشمس) وتحسب لحظتها بمكتبة Astronomy.
+   - عمود اليوم من الدورة الستينية للأيام (يوم 2000-01-01 هو وو-أو).
+   - عمود الساعة: كل ساعتين فرع، وساعة 23:00 تنقل اليوم إلى اليوم التالي (الطريقة التقليدية الصينية). */
+(function (root) {
+  "use strict";
+  var STEMS = [
+    { han: "甲", ko: "갑", ar: "جاب", el: 0, yang: true },
+    { han: "乙", ko: "을", ar: "أول", el: 0, yang: false },
+    { han: "丙", ko: "병", ar: "بينغ", el: 1, yang: true },
+    { han: "丁", ko: "정", ar: "جونغ", el: 1, yang: false },
+    { han: "戊", ko: "무", ar: "مو", el: 2, yang: true },
+    { han: "己", ko: "기", ar: "غي", el: 2, yang: false },
+    { han: "庚", ko: "경", ar: "غيونغ", el: 3, yang: true },
+    { han: "辛", ko: "신", ar: "شين", el: 3, yang: false },
+    { han: "壬", ko: "임", ar: "إيم", el: 4, yang: true },
+    { han: "癸", ko: "계", ar: "غيه", el: 4, yang: false }
+  ];
+  var BRANCHES = [
+    { han: "子", ko: "자", animal: "الفأر", el: 4 },
+    { han: "丑", ko: "축", animal: "الثور", el: 2 },
+    { han: "寅", ko: "인", animal: "النمر", el: 0 },
+    { han: "卯", ko: "묘", animal: "الأرنب", el: 0 },
+    { han: "辰", ko: "진", animal: "التنين", el: 2 },
+    { han: "巳", ko: "사", animal: "الأفعى", el: 1 },
+    { han: "午", ko: "오", animal: "الحصان", el: 1 },
+    { han: "未", ko: "미", animal: "الماعز", el: 2 },
+    { han: "申", ko: "신", animal: "القرد", el: 3 },
+    { han: "酉", ko: "유", animal: "الديك", el: 3 },
+    { han: "戌", ko: "술", animal: "الكلب", el: 2 },
+    { han: "亥", ko: "해", animal: "الخنزير", el: 4 }
+  ];
+  var ELEMENTS = ["خشب", "نار", "أرض", "معدن", "ماء"];
+
+  function mod(a, n) { return ((a % n) + n) % n; }
+
+  function sunLongitude(astro, date) {
+    var v = astro.SunPosition(date);
+    return v.elon;
+  }
+  /* لحظة وصول الشمس إلى طول فلكي معين في السنة المعطاة (UTC) */
+  function termTime(astro, lon, year) {
+    var start = new Date(Date.UTC(year, 0, 1));
+    var t = astro.SearchSunLongitude(lon, start, 400);
+    return t ? t.date : null;
+  }
+  /* فهرس الشهر الشمسي 0..11 (0 = شهر النمر، يبدأ عند 315°) ولحظة بدايته */
+  function solarMonth(astro, date) {
+    var lon = sunLongitude(astro, date);
+    var idx = Math.floor(mod(lon - 315, 360) / 30);
+    return idx;
+  }
+  /* السنة الساجوية: قبل لحظة ليتشون تُحسب السنة السابقة */
+  function sajuYear(astro, date) {
+    var y = date.getUTCFullYear();
+    var lichun = termTime(astro, 315, y);
+    return date < lichun ? y - 1 : y;
+  }
+  function julianDayNumber(y, m, d) {
+    var a = Math.floor((14 - m) / 12), yy = y + 4800 - a, mm = m + 12 * a - 3;
+    return d + Math.floor((153 * mm + 2) / 5) + 365 * yy + Math.floor(yy / 4) - Math.floor(yy / 100) + Math.floor(yy / 400) - 32045;
+  }
+  function pillar(stemIdx, branchIdx) { return { stem: stemIdx, branch: branchIdx, stemInfo: STEMS[stemIdx], branchInfo: BRANCHES[branchIdx] }; }
+
+  /* year, month(1-12), day, hour(0-23)|null, minute, utcOffsetHours */
+  function compute(astro, o) {
+    var hasTime = o.hour != null && !isNaN(o.hour);
+    var h = hasTime ? o.hour : 12, mi = hasTime ? (o.minute || 0) : 0;
+    var off = o.utcOffset == null ? 0 : o.utcOffset;
+    var utc = new Date(Date.UTC(o.year, o.month - 1, o.day, h, mi) - off * 3600000);
+    var yr = sajuYear(astro, utc);
+    var yearP = pillar(mod(yr - 4, 10), mod(yr - 4, 12));
+    var mIdx = solarMonth(astro, utc);
+    var monthBranch = mod(2 + mIdx, 12);
+    var monthStem = mod((yearP.stem % 5) * 2 + 2 + mIdx, 10);
+    var monthP = pillar(monthStem, monthBranch);
+    /* اليوم: بالتوقيت المحلي المُدخل. بدون ساعة نحسب بمنتصف اليوم. 23:00 فما فوق تحسب لليوم التالي */
+    var dY = o.year, dM = o.month, dD = o.day;
+    var late = hasTime && h >= 23;
+    var jdn = julianDayNumber(dY, dM, dD) + (late ? 1 : 0);
+    var di = mod(jdn + 49, 60);
+    var dayP = pillar(di % 10, di % 12);
+    var hourP = null;
+    if (hasTime) {
+      var hb = Math.floor(mod(h + 1, 24) / 2);
+      hourP = pillar(mod((dayP.stem % 5) * 2 + hb, 10), hb);
+    }
+    var pillars = { year: yearP, month: monthP, day: dayP, hour: hourP };
+    var count = [0, 0, 0, 0, 0], total = 0;
+    ["year", "month", "day", "hour"].forEach(function (k) {
+      var p = pillars[k]; if (!p) return;
+      count[p.stemInfo.el]++; count[p.branchInfo.el]++; total += 2;
+    });
+    return { pillars: pillars, elements: count, total: total, hasTime: hasTime, sajuYear: yr, dayMaster: dayP.stemInfo, lateZi: late };
+  }
+  var api = { STEMS: STEMS, BRANCHES: BRANCHES, ELEMENTS: ELEMENTS, compute: compute, julianDayNumber: julianDayNumber };
+  root.AqSaju = api;
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
+})(typeof window !== "undefined" ? window : globalThis);
+
+;
+/* assets/js/saju-ui.js */
+/* عقيق أسترو · واجهة قراءة الساجو (تعتمد على saju-engine.js ومكتبة astronomy.min.js) */
+(function () {
+  "use strict";
+  var S = window.AqSaju;
+  if (!S) return;
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  function esc(v) { return String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+
+  var DM = [
+    { n: "الشجرة الكبيرة", t: "خشب يانغ. تميل إلى الاستقامة والنمو الثابت، وتكره أن تُلوى أو تُقصّ. غالبًا ترى نفسك صاحب اتجاه، وتحمل غيرك دون أن تذكر ذلك. الاختبار عندك هو المرونة: الشجرة التي لا تنحني قد تنكسر، فاسأل نفسك أين يكفي أن تميل قليلًا دون أن تفقد جذرك.", q: "هل أتمسك بهذا الموقف لأنه صواب، أم لأنني تعبت من التراجع؟" },
+    { n: "العشب والزهرة المتسلقة", t: "خشب يين. مرونة ولطف وقدرة على الالتفاف حول العقبات بدل مواجهتها. غالبًا تقرأ المكان قبل أن تتكلم، وتجد طريقك بين الناس بسهولة. الاختبار عندك هو الاتكاء: قد تتعلق بمن يحملك وتنسى أن لك جذرًا، فاسأل نفسك ما الذي تقدر أن تقف عليه وحدك.", q: "ما الذي أفعله لأنه يريح الآخرين فقط؟" },
+    { n: "الشمس", t: "نار يانغ. دفء وحضور وكرم يظهر في المكان قبل أن تقول شيئًا. غالبًا تعطي بسخاء ولا تحب الخفاء. الاختبار عندك هو الإنهاك: الشمس تضيء الجميع ثم تغيب، فتعلّم أن تستريح دون أن تعتذر، وأن تنتبه لمن يأخذ ضوءك ولا يعطي.", q: "من أضيء له وهو لا يراني؟" },
+    { n: "الشعلة والشمعة", t: "نار يين. ضوء هادئ مركز يضيء ما حوله من قرب، ويحتاج حماية من الريح. غالبًا ترى التفاصيل وتحس بالناس بعمق، وتميل إلى علاقات قليلة قوية. الاختبار عندك هو الاحتراق الصامت: تحمل أكثر مما يظهر، فاحتفظ بمساحة تشتعل فيها لنفسك.", q: "ما الذي أحمله ولم أقله لأحد؟" },
+    { n: "الجبل", t: "أرض يانغ. ثبات وثقل وقدرة على أن يتكئ الناس عليك. غالبًا لا تتعجل، وتفضل أن ترى الأمور تنضج. الاختبار عندك هو الجمود: الجبل لا يتحرك ولو كان المكان خطأ، فاسأل نفسك هل ثباتك حكمة أم خوف من الحركة.", q: "أين يكلفني البقاء أكثر مما يعطيني؟" },
+    { n: "الأرض الخصبة والبستان", t: "أرض يين. رعاية وتحمّل واحتضان لما يُزرع فيها. غالبًا تهتم بالتفاصيل وتحسن إنماء ما يُعهد إليك. الاختبار عندك هو أن تُستنزف: الأرض التي تعطي دائمًا ولا تُسقى تجف، فتعلّم أن تطلب وأن تقول لا دون شرح طويل.", q: "ما الذي زرعته في غير أرضه؟" },
+    { n: "السيف والحديد الخام", t: "معدن يانغ. حسم ووضوح وصراحة، ورغبة في إنهاء ما يتعطل. غالبًا تكره المماطلة وتحترم من يقول ما يقصد. الاختبار عندك هو القسوة غير المقصودة: الحد القاطع يجرح من يلمسه، فاسأل نفسك هل تحتاج إلى الحسم أم إلى الاستماع في هذا الموقف.", q: "هل قطعت لأنني متأكد، أم لأنني تعبت من الانتظار؟" },
+    { n: "الجوهرة", t: "معدن يين. دقة وذوق وحساسية للجمال والتفاصيل، مع رغبة في أن يُرى معدنك على حقيقته. غالبًا تحب الإتقان وتتألم من الإهمال. الاختبار عندك هو الحساسية للنقد: الجوهرة تُصقل بالاحتكاك، فميّز بين نقد يصقلك ونقد يريد فقط أن يخدشك.", q: "ما الذي أؤجله حتى يكتمل وقد يكفي أن أبدأ به؟" },
+    { n: "المحيط", t: "ماء يانغ. اتساع وحركة وفضول وقدرة على عبور الحدود والأفكار. غالبًا تحب الاستكشاف وتتأقلم مع الجديد. الاختبار عندك هو التشتت: البحر بلا ضفاف يضيع، فاحتفظ بضفتين تحدان مجراك، مثل التزام واحد وهدف واحد.", q: "أي اتجاه أتخلى عنه لأمضي في اتجاه أعمق؟" },
+    { n: "المطر والندى", t: "ماء يين. حدس ورقة وقدرة على التسلل إلى ما لا يدخله غيرك. غالبًا تلتقط الجو قبل أن يُقال، وتتأثر بما حولك. الاختبار عندك هو امتصاص مشاعر غيرك: فتعلّم أن تميز بين ما هو لك وما هو لسواك.", q: "هل هذا الشعور مني أنا أم التقطته من حولي؟" }
+  ];
+  var EL_STRONG = [
+    "الخشب الكثير يعني دفعًا إلى النمو والتوسع وكثرة المشاريع. قد تحتاج إلى حد وإلى حصاد، فالنمو بلا قطف يتحول إلى تشتت.",
+    "النار الكثيرة تعني حماسة وظهورًا وسرعة. قد تحتاج إلى ماء من الراحة والصمت كي لا تحرق الطاقة قبل الوصول.",
+    "الأرض الكثيرة تعني ثباتًا وتحفظًا وميلًا إلى الاستقرار. قد تحتاج إلى تجديد وحركة كي لا يتحول الثبات إلى جمود.",
+    "المعدن الكثير يعني انضباطًا ودقة ومعايير عالية. قد تحتاج إلى ليونة مع نفسك ومع الآخرين كي لا تتحول الجودة إلى قسوة.",
+    "الماء الكثير يعني عمقًا وحدسًا وتفكيرًا متواصلًا. قد تحتاج إلى مجرى وخطوات عملية كي لا يغرقك التفكير."
+  ];
+  var EL_WEAK = [
+    "الخشب غائب أو قليل. جرّب ما يغذيه: التعلم، والمشي في أماكن خضراء، وبدء شيء صغير جديد دون ضغط.",
+    "النار غائبة أو قليلة. جرّب ما يغذيها: الحماس المشترك، والظهور أمام الناس بدرجة تناسبك، والأنشطة التي تُدخل الدفء إلى يومك.",
+    "الأرض غائبة أو قليلة. جرّب ما يغذيها: روتين ثابت، ووجبات في وقتها، وأماكن تشعر فيها أنك على أرض صلبة.",
+    "المعدن غائب أو قليل. جرّب ما يغذيه: الترتيب، ووضع حدود واضحة، وإنهاء ما يتراكم دون حسم.",
+    "الماء غائب أو قليل. جرّب ما يغذيه: وقت للتأمل والهدوء، والقراءة، وشرب الماء في يوم مزدحم، ومساحة تسمع فيها نفسك."
+  ];
+  var ELCLS = ["wood", "fire", "earth", "metal", "water"];
+  var ELHEX = ["#2f7d4f", "#b5443e", "#c9a55c", "#8d939c", "#2563a8"];
+  var TONE = [2, 1, 0, 0, 2];
+  var PIL = [["year", "السنة", "الجذور والبيئة الأولى، وما ورثته من حولك"], ["month", "الشهر", "العمل والبيت الذي نشأت فيه، وطريقتك في بناء مكانك"], ["day", "اليوم", "ذاتك وعلاقتك القريبة، وفيه سيد اليوم"], ["hour", "الساعة", "ثمارك ومرحلة متأخرة من العمر، وما تتركه خلفك"]];
+  var ICO = {
+    pil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="3.5" height="16" rx="1"/><rect x="10.2" y="4" width="3.5" height="16" rx="1"/><rect x="16.5" y="4" width="3.5" height="16" rx="1"/></svg>',
+    dm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>',
+    el: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 5 6 5 9a5 5 0 0 1-10 0c0-3 2-5 5-9Z"/></svg>',
+    how: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v.01M11 12h1v4h1"/></svg>'
+  };
+
+  function badge(num, label, tone) { return '<span class="aqm-badge-arcana aqm-tone-' + tone + '"><b class="aqm-bn">' + num + '</b><span class="aqm-bl">' + label + '</span></span>'; }
+  function item(id, icon, title, sub, badges, inner, open) {
+    return '<div class="aqm-acc-item' + (open ? " open" : "") + '" id="sj-sec-' + id + '">' +
+      '<button class="aqm-acc-header" type="button" aria-expanded="' + (open ? "true" : "false") + '">' +
+      '<div class="aqm-acc-header-left"><span class="aqm-acc-icon" aria-hidden="true">' + icon + '</span>' +
+      '<div class="aqm-acc-title-group"><h3 class="aqm-acc-title">' + title + '</h3><p class="aqm-acc-subtitle">' + sub + '</p></div></div>' +
+      '<div class="aqm-acc-badges">' + badges + '</div><span class="aqm-acc-chevron" aria-hidden="true">\u203a</span></button>' +
+      '<div class="aqm-acc-body"><div class="aqm-content-grid"><section class="aqm-slot">' + inner + '</section></div></div></div>';
+  }
+
+  function render(r, box) {
+    var P = r.pillars, dm = r.dayMaster, dmx = DM[S.STEMS.indexOf(dm)];
+    /* لوحة الأعمدة */
+    var cols = ["hour", "day", "month", "year"].map(function (k, i) {
+      var p = P[k], lab = { year: "السنة", month: "الشهر", day: "اليوم", hour: "الساعة" }[k];
+      if (!p) return '<div class="sj-col sj-col-empty"><span>' + lab + '</span><b>\u2014</b><small>تحتاج إلى وقت الميلاد</small></div>';
+      return '<div class="sj-col' + (k === "day" ? " is-day" : "") + '"><span>' + lab + '</span>' +
+        '<b class="sj-han sj-' + ELCLS[p.stemInfo.el] + '">' + p.stemInfo.han + '</b><small>' + S.ELEMENTS[p.stemInfo.el] + (p.stemInfo.yang ? " يانغ" : " يين") + '</small>' +
+        '<b class="sj-han sj-' + ELCLS[p.branchInfo.el] + '">' + p.branchInfo.han + '</b><small>' + p.branchInfo.animal + ' \u00b7 ' + S.ELEMENTS[p.branchInfo.el] + '</small></div>';
+    }).join("");
+    var diagram = '<div class="sj-board"><div class="sj-cols">' + cols + '</div><p class="sj-board-note">السنة الساجوية عندك ' + r.sajuYear + '. تبدأ عند ليتشون (حوالي 4 فبراير) وليس عند 1 يناير.</p></div>';
+    var timeNote = r.hasTime ? "" : '<p class="aqm-g-p">لم تُدخل وقت الميلاد، فظهرت ثلاثة أعمدة وستة حروف. أضف الساعة لتكتمل الأعمدة الأربعة.</p>';
+    var late = r.lateZi ? '<p class="aqm-g-p">وُلدت بعد الساعة 23:00، وفي هذه الطريقة يبدأ اليوم الجديد عند 23:00، فحُسب عمود يومك على اليوم التالي. بعض المدارس تغيّر اليوم عند منتصف الليل، وقد يختلف عمود يومك عندها.</p>' : "";
+    /* أعمدة */
+    var pbadges = ["year", "month", "day", "hour"].map(function (k, i) {
+      var p = P[k]; return p ? badge(p.stemInfo.han + p.branchInfo.han, PIL[i][1], TONE[p.stemInfo.el]) : "";
+    }).join("");
+    var pin = "";
+    PIL.forEach(function (x) {
+      var p = P[x[0]]; if (!p) return;
+      pin += '<h6 class="aqm-g-h2">عمود ' + x[1] + ': ' + p.stemInfo.han + p.branchInfo.han + '</h6><p class="aqm-g-p">' +
+        S.ELEMENTS[p.stemInfo.el] + (p.stemInfo.yang ? " يانغ" : " يين") + ' فوق ' + S.ELEMENTS[p.branchInfo.el] + ' (' + p.branchInfo.animal + '). ' + x[2] + '.</p>';
+    });
+    /* سيد اليوم */
+    var dmIn = '<h6 class="aqm-g-h2">' + dmx.n + '</h6><p class="aqm-g-p">' + S.ELEMENTS[dm.el] + (dm.yang ? " يانغ" : " يين") + ' (' + dm.ko + '). جذع اليوم هو مركز قراءتك في الساجو ويرمز إلى ذاتك.</p><p class="aqm-g-p">' + dmx.t + '</p><blockquote class="aqm-g-q"><p>' + dmx.q + '</p></blockquote>';
+    /* عناصر */
+    var max = Math.max.apply(null, r.elements) || 1;
+    var bars = r.elements.map(function (c, i) {
+      return '<div class="sj-bar"><span>' + S.ELEMENTS[i] + '</span><i><u style="width:' + Math.round(c / max * 100) + '%;background:' + ELHEX[i] + '"></u></i><b>' + c + '</b></div>';
+    }).join("");
+    var strong = [], weak = [];
+    r.elements.forEach(function (c, i) { if (c >= 3) strong.push(i); if (c === 0) weak.push(i); });
+    var notes = "";
+    strong.forEach(function (i) { notes += '<h6 class="aqm-g-h2">' + S.ELEMENTS[i] + ' بارز</h6><p class="aqm-g-p">' + EL_STRONG[i] + '</p>'; });
+    weak.forEach(function (i) { notes += '<h6 class="aqm-g-h2">' + S.ELEMENTS[i] + ' لا يظهر في حروفك</h6><p class="aqm-g-p">' + EL_WEAK[i] + '</p>'; });
+    if (!notes) notes = '<p class="aqm-g-p">لا يوجد عنصر طاغٍ ولا عنصر غائب في حروفك الظاهرة. هذا يوصف عادة بتوزيع متوازن نسبيًا، لكن التوازن في الساجو يُقرأ أيضًا بقوة كل عمود وليس بالعدد وحده.</p>';
+    var ebadges = r.elements.map(function (c, i) { return badge(c, S.ELEMENTS[i], TONE[i]); }).join("");
+    var how = '<p class="aqm-g-p">الحساب فعلي بموضع الشمس: عمود السنة يتبدل عند ليتشون، وعمود الشهر بالمصطلحات الشمسية الاثني عشر، وعمود اليوم من دورة الستين يومًا، وعمود الساعة كل ساعتين. الحساب بتوقيت الميلاد المحلي مع فرق التوقيت الذي أدخلته، ولا يتضمن تصحيح الوقت الشمسي الحقيقي للمدينة.</p>' +
+      '<p class="aqm-g-p">هذه قراءة رمزية للتأمل وليست حكمًا على حياتك أو علاقاتك أو صحتك. الساجو يقرأ الأعمدة أيضًا بقوة الفصل وبالعلاقات بين الحروف، وهذه نسخة أولى تعرض الأعمدة والعناصر وسيد اليوم.</p>' +
+      '<p class="aqm-g-p"><a href="#featured-content/saju-how-pillars-calculated">اقرأ: كيف تُحسب أعمدتك الأربعة؟</a></p>';
+    box.innerHTML = diagram + '<p class="aqm-hint"><span>اضغط على أي قسم لعرض تفسيره</span></p><div class="aqm-accordion-container" id="sj-readings">' +
+      item("pillars", ICO.pil, "أعمدتك الأربعة", "من أي لحظة تبدأ خريطتك؟", pbadges, timeNote + late + pin, true) +
+      item("daymaster", ICO.dm, "سيد اليوم", dm.han + " \u00b7 " + dmx.n, badge(dm.han, S.ELEMENTS[dm.el], TONE[dm.el]), dmIn, false) +
+      item("elements", ICO.el, "توازن العناصر", "أي العناصر الخمسة يظهر في حروفك؟", ebadges, '<div class="sj-bars">' + bars + '</div>' + notes, false) +
+      item("how", ICO.how, "كيف حُسبت؟", "حدود الحساب وطريقته", "", how, false) + '</div>';
+    box.querySelectorAll(".aqm-acc-header").forEach(function (h) {
+      h.addEventListener("click", function () { var it = h.parentNode, o = !it.classList.contains("open"); it.classList.toggle("open", o); h.setAttribute("aria-expanded", o ? "true" : "false"); });
+    });
+  }
+
+  function init() {
+    var f = $("#sj-form"); if (!f) return;
+    var out = $("#sj-result"), err = $("#sj-err");
+    var tz = $("#sj-tz");
+    if (tz && !tz.options.length) {
+      var opts = [[2, "القاهرة (+2)"], [3, "الرياض / بغداد / الكويت / القاهرة صيفًا (+3)"], [4, "الإمارات / مسقط (+4)"], [1, "تونس / الجزائر (+1)"], [0, "المغرب / لندن (0)"], [9, "كوريا / اليابان (+9)"], [8, "الصين / سنغافورة (+8)"], [-5, "نيويورك (-5)"], [-8, "لوس أنجلوس (-8)"]];
+      tz.innerHTML = opts.map(function (o) { return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join("");
+    }
+    var noTime = $("#sj-notime"), time = $("#sj-time");
+    if (noTime && time) noTime.addEventListener("change", function () { time.disabled = noTime.checked; });
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      err.hidden = true;
+      try {
+        if (!window.Astronomy) throw new Error("مكتبة الحساب لم تُحمّل بعد. أعد المحاولة بعد لحظات.");
+        var d = ($("#sj-date").value || "").split("-").map(Number);
+        if (d.length !== 3 || !d[0]) throw new Error("اكتب تاريخ الميلاد.");
+        if (d[0] < 1900 || d[0] > 2100) throw new Error("التاريخ المتاح من 1900 إلى 2100.");
+        var h = null, mi = 0;
+        if (!(noTime && noTime.checked) && time.value) { var t = time.value.split(":").map(Number); h = t[0]; mi = t[1] || 0; }
+        var r = S.compute(window.Astronomy, { year: d[0], month: d[1], day: d[2], hour: h, minute: mi, utcOffset: Number(tz.value) });
+        render(r, out); out.hidden = false;
+        out.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (x) { err.textContent = x.message || "تعذر الحساب."; err.hidden = false; }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
+
+;
 /* name_engine.js */
 /* AQEQ ASTRO · Core Name Numbers Engine v1.0.0
  * CommonJS + browser global. Calculation only; no interpretation texts.
