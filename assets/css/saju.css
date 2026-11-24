@@ -1,10 +1,10 @@
 /* الساجو: عناصر خاصة فقط، وباقي الشكل مستنسخ من صفحة المصفوفة (saju-matrix.css) */
 #saju .sj-chk{display:flex;gap:8px;align-items:center;font-size:.9rem;color:#5f5258;margin-top:10px;font-weight:500}
 #saju .sj-chk input[type=checkbox]{width:20px!important;height:20px!important;min-width:20px;padding:0;margin:0;flex:none}
-#saju .sj-board{background:#FFFDFA;border:1px solid rgba(183,138,82,.45);border-radius:20px;padding:16px 10px 12px;box-shadow:0 10px 28px rgba(53,37,43,.07);margin:6px 0 18px}
+#saju .sj-board{background:#fff;border:1px solid #eadfcd;border-radius:20px;padding:16px 10px 12px;box-shadow:0 10px 28px rgba(53,37,43,.07);margin:6px 0 18px}
 #saju .sj-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;direction:rtl}
-#saju .sj-col{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:14px;background:#F8F1E4;text-align:center}
-#saju .sj-col.is-day{background:linear-gradient(180deg,#F3E2B8,#EBD29B);box-shadow:0 0 0 1.5px #C9A55C inset}
+#saju .sj-col{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:14px;background:#fff;border:1px solid #eadfcd;text-align:center}
+#saju .sj-col.is-day{border-color:#cdb78e}
 #saju .sj-col>span{font-weight:700;color:#35252B;font-size:.88rem}
 #saju .sj-col small{font-size:.66rem;color:#6b5d52;line-height:1.4}
 #saju .sj-han{font-size:2.1rem;line-height:1.1;font-weight:400;font-family:'Noto Serif CJK SC','Noto Serif SC','SimSun',serif}
@@ -20,3 +20,14 @@
 html body #saju .aqm-acc-item.open .aqm-acc-body{display:block!important}
 html body #saju .aqm-acc-item.open .aqm-acc-chevron{transform:rotate(90deg)}
 #saju .aqm-acc-body a{color:#9a6b2f;font-weight:700}
+
+#saju .sj-name{text-align:center;font-size:1.3rem;font-weight:800;color:#35252B;margin:14px 0 4px}
+#saju .sj-plain{margin-top:8px}
+#saju .sj-sec{margin:22px 0 0}
+#saju .sj-sh{display:flex;align-items:center;gap:12px;margin:0 0 12px;font-size:1.15rem;font-weight:800;color:#35252B;text-align:center}
+#saju .sj-sh:before,#saju .sj-sh:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#d9c8a8,transparent)}
+#saju .sj-p{margin:0 0 12px;line-height:2;color:#4a3d3f;font-size:.98rem}
+#saju .sj-h4{margin:14px 0 4px;font-size:1rem;font-weight:800;color:#35252B}
+#saju .sj-q{margin:12px 0 0;padding:4px 14px;border-inline-start:3px solid #d9c8a8}
+#saju .sj-q .sj-p{font-weight:700;margin:6px 0}
+#saju .sj-p a{color:#35252B;font-weight:700;text-decoration:underline}
