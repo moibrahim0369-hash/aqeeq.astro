@@ -56,3 +56,10 @@ html body #saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju
 #saju .sj-acc[open] .sj-acc-ch:after{transform:translateY(2px) rotate(-135deg)}
 #saju .sj-acc-body{padding:2px 16px 16px;border-top:1px solid #F0E4C8}
 #saju .sj-acc-body>.sj-h4:first-child{margin-top:12px}
+
+#saju .sj-accs{gap:16px}
+#saju .sj-acc>summary{min-height:68px;padding:18px 18px}
+#saju .sj-acc-t{font-size:1.14rem}
+#saju .sj-acc-ch{width:38px;height:38px;border-width:1.5px;box-shadow:0 3px 8px rgba(138,106,78,.22)}
+#saju .sj-acc-ch:after{width:10px;height:10px;border-inline-end-width:2.5px;border-bottom-width:2.5px;transform:translateY(-2px) rotate(45deg)}
+#saju .sj-acc[open] .sj-acc-ch:after{transform:translateY(3px) rotate(-135deg)}
