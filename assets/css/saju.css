@@ -3,8 +3,8 @@
 #saju .sj-chk input[type=checkbox]{width:20px!important;height:20px!important;min-width:20px;padding:0;margin:0;flex:none}
 #saju .sj-board{background:#FFFDFA;border:1px solid rgba(183,138,82,.45);border-radius:20px;padding:16px 10px 12px;box-shadow:0 10px 28px rgba(53,37,43,.07);margin:6px 0 18px}
 #saju .sj-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;direction:rtl}
-#saju .sj-col{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:14px;background:#F8F1E4;text-align:center}
-#saju .sj-col.is-day{background:linear-gradient(180deg,#F3E2B8,#EBD29B);box-shadow:0 0 0 1.5px #C9A55C inset}
+#saju .sj-col{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:14px;background:#FBF8F3;text-align:center}
+#saju .sj-col.is-day{background:#fff;box-shadow:0 0 0 1.5px #6A2038 inset}
 #saju .sj-col>span{font-weight:700;color:#35252B;font-size:.88rem}
 #saju .sj-col small{font-size:.66rem;color:#6b5d52;line-height:1.4}
 #saju .sj-han{font-size:2.1rem;line-height:1.1;font-weight:400;font-family:'Noto Serif CJK SC','Noto Serif SC','SimSun',serif}
@@ -20,3 +20,14 @@
 html body #saju .aqm-acc-item.open .aqm-acc-body{display:block!important}
 html body #saju .aqm-acc-item.open .aqm-acc-chevron{transform:rotate(90deg)}
 #saju .aqm-acc-body a{color:#9a6b2f;font-weight:700}
+#saju .sj-rhead{text-align:center;margin:8px 0 14px}
+#saju .sj-rtag{display:inline-block;color:#6A2038;font-weight:700;font-size:.82rem}
+#saju .sj-rhead h3{font-family:'Noto Serif CJK SC','Noto Serif SC',serif;font-size:1.7rem;letter-spacing:.12em;color:#35252B;margin:4px 0;font-weight:400}
+#saju .sj-rq{font-weight:800;color:#6A2038;margin:6px 0 2px;line-height:1.8}
+#saju .sj-rs{color:#5f5258;margin:0;font-size:.9rem;line-height:1.8}
+#saju .sj-accs{margin-top:6px}
+#saju .eam-card p{margin:10px 0 0;line-height:2;color:#33241d}
+#saju .sj-h4{color:#6A2038;font-weight:800;font-size:1rem;margin:14px 0 0}
+#saju .sj-q{margin:12px 0 0;padding:10px 14px;border-inline-start:3px solid #6A2038;background:rgba(106,32,56,.05);border-radius:10px;font-weight:700;color:#6A2038}
+#saju .sj-q p{margin:0;color:#6A2038}
+#saju .eam-card a{color:#6A2038;font-weight:700}
