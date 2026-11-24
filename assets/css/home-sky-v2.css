@@ -1,0 +1,36 @@
+/* Home "السماء الآن" v2: site identity (white cards, thin gold border, soft shadow, pale-gold planet rings, black text, gold buttons). Look only, data and texts unchanged. */
+html[data-aqr="home"] body #home #aqhc.aqhc-strip:not(#_a):not(#_b):not(#_c){background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1.5px solid rgba(212,175,106,.8)!important;border-radius:28px!important;box-shadow:0 16px 30px -18px rgba(120,90,40,.35),0 2px 8px rgba(120,90,40,.06)!important;padding:16px 12px 14px!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-strip-head{padding:0 6px!important;margin-bottom:12px!important;align-items:center!important}
+html[data-aqr="home"] body #home #aqhc #aqhc-h:not(#_a):not(#_b):not(#_c){font:800 17px 'Cairo','IBM Plex Sans Arabic',sans-serif!important;color:#17110f!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-strip-head .aqhc-sparkle:not(#_a):not(#_b){display:inline-flex!important;color:#c8a15a!important;margin-inline-start:6px}
+html[data-aqr="home"] body #home #aqhc .aqhc-strip-head .aqhc-sparkle svg{width:12px;height:12px}
+html[data-aqr="home"] body #home #aqhc .aqhc-strip-head .aqhc-live:not(#_a):not(#_b){display:inline-flex!important;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;background:#faf5e8;border:1px solid rgba(212,175,106,.6);font:600 11px 'IBM Plex Sans Arabic',sans-serif;color:#3d3426}
+/* tabs */
+html[data-aqr="home"] body #home #aqhc .aqhc-tabs:not(#_a):not(#_b){margin:0 4px 14px!important;padding:4px!important;background:#fcfbf7!important;border:1px solid rgba(212,175,106,.6)!important;border-radius:999px!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-tab:not(#_a):not(#_b):not(#_c){padding:8px 0!important;font:700 12px 'IBM Plex Sans Arabic',sans-serif!important;color:#3d3426!important;background:transparent!important;border:0!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-tab.on:not(#_a):not(#_b):not(#_c){background:linear-gradient(180deg,#eadcb2,#d2b672)!important;color:#17110f!important;box-shadow:0 6px 12px -6px rgba(120,90,40,.5),inset 0 1px 0 rgba(255,255,255,.6)!important}
+/* planets */
+html[data-aqr="home"] body #home #aqhc .aqhc-planets:not(#_a):not(#_b){gap:10px!important;padding:4px 8px 12px!important;scroll-snap-type:x mandatory}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet:not(#_a):not(#_b):not(#_c):not(#_d){flex:0 0 150px!important;width:150px!important;background:#fffdf8!important;border:1px solid rgba(212,175,106,.7)!important;border-radius:22px!important;padding:14px 10px 12px!important;box-shadow:0 10px 20px -14px rgba(120,90,40,.4)!important;transform:none!important;scroll-snap-align:start}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet.on:not(#_a):not(#_b):not(#_c):not(#_d){border:1.5px solid #c8a15a!important;background:#fff!important;box-shadow:0 14px 24px -14px rgba(120,90,40,.5)!important;transform:none!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet-img:not(#_a):not(#_b){width:64px!important;height:64px!important;margin:0 auto 8px!important;display:grid!important;place-items:center;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fffdf6,#f4ecd8);border:1px solid rgba(212,175,106,.6)}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet-img img{width:46px!important;height:46px!important;filter:drop-shadow(0 3px 5px rgba(74,18,36,.25))!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet-name:not(#_a):not(#_b){font:800 14px 'Cairo','IBM Plex Sans Arabic',sans-serif!important;color:#17110f!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet-pos:not(#_a):not(#_b){background:#faf5e8!important;border:1px solid rgba(212,175,106,.55)!important;color:#17110f!important;font-weight:600!important;margin-top:4px!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet-pos b{color:#7a5a22!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet-q:not(#_a):not(#_b){color:#3d3426!important;font-size:11px!important;line-height:1.65!important}
+/* retro rows + aspect cards */
+html[data-aqr="home"] body #home #aqhc .aqhc-retro:not(#_a):not(#_b){gap:10px!important;padding:2px 4px 12px!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-row:not(#_a):not(#_b),html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card:not(#_a):not(#_b){background:#fffdf8!important;border:1px solid rgba(212,175,106,.7)!important;border-radius:20px!important;box-shadow:0 10px 20px -14px rgba(120,90,40,.4)!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-row img{padding:6px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fffdf6,#f4ecd8);border:1px solid rgba(212,175,106,.6);width:54px!important;height:54px!important;box-sizing:border-box}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-head b,html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card b{color:#17110f!important;font-weight:800}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-q,html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card p{color:#3d3426!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-aspects:not(#_a):not(#_b){padding:2px 4px 12px!important}
+/* dots + link */
+html[data-aqr="home"] body #home #aqhc .aqhc-pdots button{background:rgba(212,175,106,.35)!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-pdots button.on{background:#c8a15a!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-allsky:not(#_a):not(#_b){display:flex!important;align-items:center;justify-content:center!important;height:38px;margin:8px 4px 0!important;padding:0 14px!important;border-radius:999px!important;background:#fffdf8!important;border:1px solid rgba(212,175,106,.8)!important;color:#17110f!important;font:700 12px 'IBM Plex Sans Arabic',sans-serif!important;box-shadow:none!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-planets:not(#_a):not(#_b):not(#_c){background:transparent!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet-img:not(#_a):not(#_b):not(#_c){background:radial-gradient(circle at 35% 30%,#fffdf6,#f4ecd8)!important}
+html[data-aqr="home"] body #home #aqhc:has(.aqhc-tab.on:not([data-tab=planets])) .aqhc-pdots:not(#_a):not(#_b){display:none!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro:not(#_a):not(#_b):not(#_c),html[data-aqr="home"] body #home #aqhc .aqhc-aspects:not(#_a):not(#_b):not(#_c){background:transparent!important;border:0!important;box-shadow:none!important}
