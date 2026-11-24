@@ -10,4 +10,10 @@ g.done=true;d.value=n.y+'-'+pad(n.m)+'-'+pad(n.d);fire(d);var nm=el('kt-name');i
 function start(){var f=el('kt-form');if(!f)return;['input','change'].forEach(function(t){f.addEventListener(t,function(e){if(e.isTrusted)g.edited=true;},true);});fill();var tries=0,t=setInterval(function(){fill();if(++tries>=100||g.done||g.edited)clearInterval(t);},150);}
 ['hashchange','aqeeq:natal-ready','aqeeq:profile-saved'].forEach(function(e){window.addEventListener(e,fill);document.addEventListener(e,fill);});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+
+/* After a result shows, hide the "how to read" explanation blocks that sit before it (the result card already explains the numbers). */
+function syncExplain(){var r=el('kt-result'),sec=el('karmic');if(!r||!sec)return;var shown=!r.hidden;
+Array.prototype.forEach.call(sec.querySelectorAll('.y27-explain > .y27-about, .y27-explain > h3, .y27-explain > .y27-ex'),function(n){if(shown)n.style.setProperty('display','none','important');else n.style.removeProperty('display');});}
+function watch(){var r=el('kt-result');if(!r)return;syncExplain();new MutationObserver(syncExplain).observe(r,{attributes:true,attributeFilter:['hidden'],childList:true});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch);else watch();
 })();
