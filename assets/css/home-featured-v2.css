@@ -37,3 +37,27 @@ html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article:not(#_
 html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article > img:not(#_a):not(#_b):not(#_c){width:38%!important;height:auto!important;min-height:100%!important;flex:0 0 38%!important}
 html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article-txt:not(#_a):not(#_b):not(#_c){padding:12px 14px!important;justify-content:center;gap:4px!important}
 html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article h3:not(#_a):not(#_b):not(#_c){font-size:13px!important;-webkit-line-clamp:3!important}
+
+/* v3: gold identity, light cards, smaller and airier, banner + small button up */
+html body #home.aqh .aqh-band-arts .aqh-articles-head h2:not(#_a):not(#_b){color:#a8802f!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article:not(#_a):not(#_b):not(#_c):not(#_d){flex:0 0 128px!important;width:128px!important;min-width:128px!important;background:#fffdf8!important;border:1px solid rgba(200,161,90,.5)!important;border-radius:16px!important;box-shadow:0 4px 12px rgba(120,90,30,.08)!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-track:not(#_a):not(#_b):not(#_c){gap:16px!important;padding:6px 4px 10px!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article > img:not(#_a):not(#_b):not(#_c):not(#_d){height:64px!important;min-height:64px!important;width:calc(100% - 12px)!important;margin:6px 6px 0!important;border-radius:11px!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article h3 a:not(#_a):not(#_b):not(#_c):not(#_d),html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article h3:not(#_a):not(#_b):not(#_c):not(#_d){color:#17110f!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article time:not(#_a):not(#_b):not(#_c):not(#_d){color:#a8802f!important}
+html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article:not(#_a):not(#_b):not(#_c):not(#_d){flex:0 0 70%!important;width:70%!important;min-width:70%!important;min-height:112px;background:#fffdf8!important}
+html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article > img:not(#_a):not(#_b):not(#_c):not(#_d){width:36%!important;flex:0 0 36%!important;height:auto!important;min-height:calc(100% - 12px)!important;margin:6px!important}
+html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article p.aqh-hook:not(#_a):not(#_b):not(#_c):not(#_d){color:#5b4d3a!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc:not(#_a){margin-top:14px;padding-bottom:12px}
+html[data-aqr="home"] body #home.aqh #aqh-articles #aqh-row2:not(#_a):not(#_b){margin-top:30px!important}
+/* small button up */
+html body #home.aqh #aqh-articles .aqh-all-up{display:flex;justify-content:center;margin:4px 0 14px}
+html body #home.aqh #aqh-articles .aqh-all-up .aqh-all-wrap{margin:0!important}
+html body #home.aqh #aqh-articles .aqh-all-up .aqh-all:not(#_a):not(#_b){height:28px;font-size:11.5px!important;color:#17110f!important;background:#fffdf8!important;border:1px solid rgba(200,161,90,.8)!important}
+html body #home.aqh #aqh-articles .aqh-all-up .aqh-all .aqh-all-ico:not(#_a){width:20px!important;height:20px!important;color:#a8802f!important}
+/* banner with shine */
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-h:not(#_a):not(#_b){margin:0 0 10px!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-link:not(#_a):not(#_b):not(#_c){position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;width:100%;box-sizing:border-box;height:44px;padding:0 18px;border:1px solid rgba(180,140,60,.7)!important;border-radius:14px;background:linear-gradient(135deg,#f3e6bd,#d9bd7a)!important;color:#17110f!important;font-size:13.5px;box-shadow:0 4px 12px rgba(180,140,60,.25)}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-link::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);transform:translateX(-130%);pointer-events:none}
+@keyframes aqfSweep{0%{transform:translateX(-130%)}60%,100%{transform:translateX(130%)}}
+@media(prefers-reduced-motion:no-preference){html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-link::after{animation:aqfSweep 3.4s ease-in-out infinite}}
