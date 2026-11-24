@@ -652,3 +652,8 @@ html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3)
 /* إخفاء شريط «تعبئة تلقائية من حسابي» — بطلب المستخدم، مثل المصفوفة */
 html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-bar,
 html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .aq-autofill-bar { display: none !important; }
+
+/* Input consistency: bold Cairo titles and one Matrix-sized horizontal gutter. */
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2,
+html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2 { font-weight:800!important; }
+html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) > .wrap { width:100%!important;max-width:1000px!important;margin:0 auto!important;padding:0!important;box-sizing:border-box!important; }
