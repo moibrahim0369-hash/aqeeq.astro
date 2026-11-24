@@ -89,3 +89,8 @@ html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc:not(#_a):not(#_b){dis
 html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc-i:not(#_a):not(#_b){flex:none;min-height:44px;width:auto}
 html body #home.aqh #aqh-articles .aqh-all-up:not(#_a){margin:38px 2px 10px}
 html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g){flex:0 0 74%!important;width:74%!important;min-width:74%!important;height:112px!important}
+
+/* v6: gaps between parts about half of v5 */
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc:not(#_a):not(#_b):not(#_c){margin-top:18px;padding-bottom:6px}
+html body #home.aqh #aqh-articles .aqh-all-up:not(#_a):not(#_b){margin:20px 2px 6px}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-track:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){gap:14px!important}
