@@ -16,3 +16,6 @@ function start(){groups.forEach(function(g){var f=el(g.form);if(!f)return;['inpu
 ['hashchange','aqeeq:natal-ready','aqeeq:profile-saved','aqeeq:cities-ready'].forEach(function(e){window.addEventListener(e,run);document.addEventListener(e,run);});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
+
+/* Browser name suggestions off for the first person, matching the second person. */
+(function(){'use strict';function run(){['mxc-n1','syn-name-a'].forEach(function(id){var e=document.getElementById(id);if(e)e.setAttribute('autocomplete','off');});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();})();
