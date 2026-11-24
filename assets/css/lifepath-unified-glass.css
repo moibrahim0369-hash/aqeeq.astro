@@ -657,3 +657,10 @@ html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3)
 html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2,
 html body section#lifepath-compat.lpx:not(.cp-res):not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) .lpx-head h2 { font-weight:800!important; }
 html:not(.lpr-on) body section#lifepath.lpx:not(#lq1):not(#lq2):not(#lq3):not(#lq4):not(#lq5):not(#lq6):not(#lq7):not(#lq8) > .wrap { width:100%!important;max-width:1000px!important;margin:0 auto!important;padding:0!important;box-sizing:border-box!important; }
+/* The new mode tabs remain compact after entering either result state. */
+:is(html.lpr-on #lifepath, #lifepath-compat.cp-res) .lpm-modes{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;width:100%!important;max-width:440px!important;margin:12px auto 16px!important;padding:0!important;}
+:is(html.lpr-on #lifepath, #lifepath-compat.cp-res) .lpm-mode{display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;min-height:46px!important;padding:6px 10px!important;border:1px solid #e8e5db!important;border-radius:15px!important;background:#fff!important;color:#70263f!important;text-decoration:none!important;}
+:is(html.lpr-on #lifepath, #lifepath-compat.cp-res) .lpm-mode.is-on{background:#f0d28e!important;border-color:#b98d3e!important;}
+:is(html.lpr-on #lifepath, #lifepath-compat.cp-res) .lpm-mic{display:grid!important;place-items:center!important;width:25px!important;height:25px!important;flex:0 0 25px!important;}
+:is(html.lpr-on #lifepath, #lifepath-compat.cp-res) .lpm-mic svg{width:23px!important;height:23px!important;}
+:is(html.lpr-on #lifepath, #lifepath-compat.cp-res) .lpm-mlb{font-size:13px!important;font-weight:700!important;}
