@@ -15,11 +15,11 @@ var IC={
  time:'<circle cx="12" cy="12" r="5"/><path d="M3.5 16.5c-1.5-.9-1-2.6 1.4-3.9 4.4-2.4 12.5-4 15.6-3.4 2 .4 2.3 1.9.5 3.2"/>'};
 IC.wallet='<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h14M16 14.5h2.5"/>';
 IC.child='<circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/>';
-var SC=[['wallet','#saju','ما لون محفظتك المناسب لك؟'],['compat','#astro-maps','ماذا عن زواجك في خريطتك؟'],['signs','#kigaku','اعرف عنصرك واتجاهك'],['time','#ziwei','ما بيوت حياتك الاثنا عشر؟'],['child','#matrix-child','اكتشف شخصية طفلك'],['path','#lifepath-compat','هل مساراكما يتفقان؟']];
+var SC=[['wallet','#saju','ما لون محفظتك المناسب لك؟'],['compat','#astro-maps','ماذا عن ارتباطك في خريطتك؟','c:9'],['signs','#kigaku','اعرف عنصرك واتجاهك'],['time','#ziwei','ما بيوت حياتك الاثنا عشر؟'],['child','#matrix-child','اكتشف شخصية طفلك'],['path','#astro-maps','ما حال مالك في خريطتك؟','c:2']];
 function shortcuts(sec){
  if(sec.querySelector('.aqh-sc'))return;var car=sec.querySelector('.aqh-carousel');if(!car)return;
  var d=document.createElement('nav');d.className='aqh-sc';d.setAttribute('aria-label','اختصارات');
- d.innerHTML=SC.map(function(x){return '<a class="aqh-sc-i" href="'+x[1]+'"><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+IC[x[0]]+'</svg></i><span>'+x[2]+'</span></a>'}).join('');
+ d.innerHTML=SC.map(function(x){return '<a class="aqh-sc-i" href="'+x[1]+'"'+(x[3]?' data-vh="'+x[3]+'"':'')+'><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'+IC[x[0]]+'</svg></i><span>'+x[2]+'</span></a>'}).join('');
  car.parentNode.insertBefore(d,car.nextSibling)}
 var PICK=['sade-sati','saturn-over-moon','saturn-hermetic-path','symbol-and-reading'];
 function build(list){
