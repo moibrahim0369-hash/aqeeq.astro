@@ -366,7 +366,7 @@
         if (k === '__age') return { n: ae.number, x: 'من عمر ' + ae.age };
         return { n: P[k] };
       }, CHILD_SUB) + sum +
-      "<p class=\"mxm-note\"> لاحظ اهتمامه واحتياجه الفعلي واترك له مساحة الاختلاف.</p>";
+      '<p class="mxm-note">هذه قراءة رمزية للأهل، لا تقييمًا لنمو الطفل أو شخصيته. لاحظ اهتمامه واحتياجه الفعلي واترك له مساحة الاختلاف.</p>';
     host.hidden = false; bindAcc(host); hydrateModeSlots(host, 'child'); if (full) bindMap(host, full, { age: 'الطاقة التي يمرّ بها الطفل عند هذا العمر', dec: 'بداية مرحلة جديدة في عمره', node: 'نقطة من خريطة الطفل' });
   }
 
@@ -1558,7 +1558,7 @@
     ['d9', 'التقسيم التاسع D9', 'الارتباط والدارما', 9, 'عدسة للارتباط والدارما وحال الكواكب، تُقرأ بجانب D1 ولا تبدأ في عمر ثابت.', 'venus', 'زهرتك'],
     ['d10', 'التقسيم العاشر D10', 'المهنة والمكانة', 10, 'يوضح طريقك المهني وما تُعرف به وكيف تتعامل مع النجاح.', 'saturn', 'زحلك'],
     ['d12', 'التقسيم الثاني عشر D12', 'الوالدان والجذور', 12, 'يوضح ما ورثته من والديك وأصلك، وكيف يظهر أثر البيت الأول الذي نشأت فيه.', 'sun', 'شمسك'],
-    ['d60', 'التقسيم الستون D60', 'العدسة الدقيقة', 60, "تقسيم شديد الحساسية لوقت الميلاد. تُقرأ نصوصه كقراءة ضمن حدود المدخلات، لا كإثبات لحياة سابقة أو رصيد موروث.", 'moon', 'قمرك']
+    ['d60', 'التقسيم الستون D60', 'العدسة الدقيقة', 60, 'تقسيم شديد الحساسية لوقت الميلاد. تُقرأ نصوصه كتأمل رمزي ضمن حدود المدخلات، لا كإثبات لحياة سابقة أو رصيد موروث.', 'moon', 'قمرك']
   ];
   var PL = [['sun', 'الشمس'], ['moon', 'القمر'], ['mars', 'المريخ'], ['mercury', 'عطارد'], ['jupiter', 'المشتري'], ['venus', 'الزهرة'], ['saturn', 'زحل'], ['node', 'راهو']];
   function norm(x) { return ((x % 360) + 360) % 360; }
@@ -1633,7 +1633,7 @@
     h += '<section class="eam-card vx"><h4>قراءة سنتك الحالية</h4>' + yr + '</section>';
     h += '<section class="eam-card vx"><h4>رحلة الفترات الكبرى (ماها داشا)</h4>' + table(['الفترة', 'من', 'إلى'], ds.map(function (x) { return '<tr' + (x === cm ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === cm ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
     h += '<section class="eam-card vx"><h4>داخل فترة ' + LORDS[cm.lord] + ' (أنتر داشا)</h4>' + table(['الفترة الصغرى', 'من', 'إلى'], antars(cm).map(function (x) { return '<tr' + (x === ca ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === ca ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
-    h += "<p class=\"eam-note\">الحسابات على نظام لاهيري وبيوت البرج الكامل. </p>";
+    h += '<p class="eam-note">الحسابات على نظام لاهيري وبيوت البرج الكامل. هذه قراءة للتأمل وتختلف من مدرسة لأخرى، وليست حكمًا نهائيًا.</p>';
     var box = document.createElement('div'); box.className = 'vx-wrap'; box.innerHTML = h;
     var host = result.querySelector('.eam-copy-anchor') || result; host.insertBefore(box, result.querySelector('.aq-copy-map-btn'));
     var top = document.createElement('div'); top.className = 'vx-wrap vx-top'; top.innerHTML = '<section class="eam-card vx vc-card" id="vx-vargas"></section>';
@@ -1744,7 +1744,7 @@
   function render(map,data,options) {
     options=options || {};var f=facts(map),c=data.charts[f.chart];if(!c)return '';
     var h='<header class="vn-head"><span>قراءة عقيق · الخريطة الفيدية</span><h4>'+esc(c.title)+'</h4><p>'+esc(c.intro)+'</p></header>';
-    h+="<p class=\"vn-help\"><a href=\"vedic-library.html?chart="+f.chart+'">تصفح المكتبة وحدود المنهج</a></p>';
+    h+='<p class="vn-help">نصوص رمزية للتأمل، لا إثبات لوقائع أو تنبؤ علمي. <a href="vedic-library.html?chart='+f.chart+'">تصفح المكتبة وحدود المنهج</a></p>';
     h+='<div class="vn-basis"><b>مرجع البيوت: '+basisLabel(f)+'</b><p>'+(f.basis==='asc'?'البيوت في هذه القراءة من طالع التقسيم نفسه، بنظام البرج الكامل.':f.chart==='moon'?'الأبراج هي أبراج الميلاد النجمية نفسها، والبيوت تُعدّ من القمر. هذه زاوية النظر للمشاعر والعقل، وليست طالعًا جديدًا.':f.chart==='sun'?'الأبراج هي أبراج الميلاد النجمية نفسها، والبيوت تُعدّ من الشمس. هذه زاوية النظر للمعنى والإرادة، وليست طالعًا جديدًا.':'وقت الميلاد غير معروف. الرسم يستخدم القمر مرجعًا بديلًا، ولا نتعامل معه كطالع مقاس.')+'</p></div>';
     if(c.precisionNote)h+='<p class="vn-precision">'+esc(c.precisionNote)+'</p>';
     if(!f.houseReading){
@@ -1833,7 +1833,7 @@
     [30, 'D30', 'التحديات', 'الضغوط والاختبارات الخفية وما يتعبك دون أن يظهر للناس.', 'saturn'],
     [40, 'D40', 'التيسير والتعقيد', 'عدسة تقليدية لجوانب التيسير والتعقيد، مع قراءة تأملية للسياق الموروث. لا تثبت أحداثًا في سيرة الأم أو العائلة.', 'moon'],
     [45, 'D45', 'الطبع والسلوك', 'عدسة واسعة للطبع والسلوك ومجالات الحياة. تُذكر القيم المتعلّمة كسؤال للتأمل، لا كإثبات لسيرة الأب أو إرث محدد.', 'sun'],
-    [60, 'D60', 'العدسة الدقيقة', "تقسيم شديد الحساسية لوقت الميلاد. تُعرض نصوصه كقراءة بعد فحص عينات ضمن هامش الدقة الذي تحدده، ولا يثبت حياة سابقة أو رصيدًا موروثًا.", 'moon']
+    [60, 'D60', 'العدسة الدقيقة', 'تقسيم شديد الحساسية لوقت الميلاد. تُعرض نصوصه كتأمل رمزي بعد فحص عينات ضمن هامش الدقة الذي تحدده، ولا يثبت حياة سابقة أو رصيدًا موروثًا.', 'moon']
   ];
   var ORIG = { moon: 'Chandra', sun: 'Surya', 1: 'Rasi', 2: 'Hora', 5: 'Panchamsa', 6: 'Shashthamsa', 8: 'Ashtamsa', 11: 'Ekadasamsa (Raman)', 3: 'Drekkana', 4: 'Chaturthamsa', 7: 'Saptamsa', 9: 'Navamsa', 10: 'Dasamsa', 12: 'Dwadasamsa', 16: 'Shodasamsa', 20: 'Vimsamsa', 24: 'Siddhamsa', 27: 'Bhamsa', 30: 'Trimsamsa', 40: 'Khavedamsa', 45: 'Akshavedamsa', 60: 'Shashtiamsa' };
   /* الرسم الجنوبي: البروج ثابتة في أماكنها (الحمل ثاني خلية في الصف الأول) ويمضي الترتيب مع عقارب الساعة */
@@ -2240,7 +2240,7 @@
     var L = window.AqVedic && window.AqVedic.last;
     if (!L) { el.textContent = 'احسب خريطتك أولًا.'; return el; }
     var r; try { r = calculate(L.ch); } catch(e) { el.innerHTML = '<p class="vad-warning"></p>'; el.firstChild.textContent=e.message+' لا نستبدل الطالع بالقمر هنا حتى لا نعطي مجموعًا مضللًا.'; return el; }
-    el.innerHTML = '<p class="vad-lead">نقاط البروج من الكواكب السبعة والطالع. اختر المجموع العام أو جدول كوكب لعرض مساهمات المصادر الثمانية.</p><label>الجدول<select class="vav-select"><option value="sav">سارفا · المجموع العام (337)</option>'+r.bav.map(function(b,p){return '<option value="'+p+'">بِهِنّا · '+NAMES[p]+' ('+b.total+')</option>';}).join('')+"</select></label><div class=\"vav-out\" aria-live=\"polite\"></div><p class=\"vad-note\">المدرسة: باراشارا، BPHS 66، النقاط الملائمة قبل أي اختزال. لا يشمل راهو وكيتو أو جدولًا ثامنًا للطالع. بعض النصوص تسمي العلامة الملائمة «ريخا»، ونسميها هنا نقطة ملائمة بوضوح. لا نخلطها بالنقاط غير الملائمة.</p><p class=\"vad-note\">مجموع الجداول السبعة دائمًا 337، لكنه لا يثبت المدرسة وحده. جداول فاراهاميهيرا تختلف في ست خلايا مع بقاء المجموع نفسه. </p>";
+    el.innerHTML = '<p class="vad-lead">نقاط البروج من الكواكب السبعة والطالع. اختر المجموع العام أو جدول كوكب لعرض مساهمات المصادر الثمانية.</p><label>الجدول<select class="vav-select"><option value="sav">سارفا · المجموع العام (337)</option>'+r.bav.map(function(b,p){return '<option value="'+p+'">بِهِنّا · '+NAMES[p]+' ('+b.total+')</option>';}).join('')+'</select></label><div class="vav-out" aria-live="polite"></div><p class="vad-note">المدرسة: باراشارا، BPHS 66، النقاط الملائمة قبل أي اختزال. لا يشمل راهو وكيتو أو جدولًا ثامنًا للطالع. بعض النصوص تسمي العلامة الملائمة «ريخا»، ونسميها هنا نقطة ملائمة بوضوح. لا نخلطها بالنقاط غير الملائمة.</p><p class="vad-note">مجموع الجداول السبعة دائمًا 337، لكنه لا يثبت المدرسة وحده. جداول فاراهاميهيرا تختلف في ست خلايا مع بقاء المجموع نفسه. هذه أعداد تقليدية للتأمل وليست احتمالات نجاح أو توقعًا مضمونًا.</p>';
     function render() {
       var val=el.querySelector('select').value, idx=val==='sav'?-1:+val, arr=idx<0?r.sav:r.bav[idx].values;
       var h='<div class="vad-signs">';
@@ -2628,9 +2628,9 @@
     30: ['خريطة التحديات', 'تريمشامشا', 'D30', 'الاختبارات الخفية وما يتعبك دون أن يظهر'],
     40: ['خريطة التيسير والتعقيد', 'خافيدامشا', 'D40', 'ما يساند المسار وما يعطله، لا سيرة خط الأم'],
     45: ['خريطة اتساق الاختيارات', 'أكشافيدامشا', 'D45', 'عدسة واسعة للاختيارات، لا سيرة خط الأب'],
-    60: ['خريطة الأنماط العميقة', 'شاشتيامشا', 'D60', "قراءة تحتاج وقتًا معلومًا وفحص عينات الدقة"]
+    60: ['خريطة الأنماط العميقة', 'شاشتيامشا', 'D60', 'تأمل رمزي يحتاج وقتًا معلومًا وفحص عينات الدقة']
   };
-  var CQ = {"1": ["ما الصورة الكاملة لشخصيتك ومسار حياتك؟", "اكتشف طالعك وكواكبك ومنازلك في خريطة واحدة."], "moon": ["ماذا يقول قمرك عن مشاعرك وأمانك الداخلي؟", "اكتشف خريطتك مقروءة من موضع القمر."], "sun": ["أين يقف جوهرك وإرادتك؟", "اكتشف خريطتك مقروءة من موضع الشمس."], "2": ["كيف ترتبط مواردك بجهدك وبما يأتيك من غيرك؟", "اكتشف ما تعرضه هورا عن علاقتك بالمال."], "3": ["ما مبادراتك ومهاراتك العملية، ومن يشاركك الطريق؟", "اكتشف ما تعرضه دريكانا عن الإخوة والشجاعة."], "4": ["أي سكن واستقرار تبحث عنه؟", "اكتشف ما تعرضه تشاتورثامشا عن البيت والعقار والأمان."], "5": ["كيف يراك الناس، وما أثرك بينهم؟", "اكتشف ما تعرضه بانتشامشا عن المكانة والنفوذ."], "6": ["ما الذي يرهقك، وكيف تتعامل معه؟", "اكتشف ما تعرضه شاشثامشا عن الضغوط."], "7": ["ما الذي تبنيه ويبقى بعدك؟", "اكتشف ما تعرضه سابتامشا عن الأبناء والإبداع."], "8": ["ما الذي يتغير في حياتك دفعة واحدة؟", "اكتشف ما تعرضه أشتامشا عن التحولات والمفاجآت."], "9": ["ما الذي يعطي ارتباطك معناه؟", "اكتشف ما تضيفه نافامشا عن الارتباط والدارما بجانب D1."], "10": ["ما طريقك المهني وما الذي تُعرف به؟", "اكتشف ما تعرضه داشامشا عن مهنتك."], "11": ["ما دوائرك وما الذي تكسبه منها؟", "اكتشف عدسة إيكاداشامشا بقاعدة عدّ معلنة، دون وعد بمكسب."], "12": ["ما الذي ورثته من والديك وأصلك؟", "اكتشف ما تعرضه دوادشامشا عن هذا الأصل."], "16": ["ما الذي يمنحك الراحة والرفاهية؟", "اكتشف ما تعرضه شوداشامشا عن المركبات والمتع المادية."], "20": ["كيف ينمو داخلك ويصفو؟", "اكتشف ما تعرضه فيمشامشا عن نموك الروحي."], "24": ["أين تتعلم وتنجح بالمعرفة؟", "اكتشف ما تعرضه سيدهامشا عن الدراسة والمعرفة."], "27": ["ما حدود طاقتك وتحملك؟", "اكتشف تأملًا في بهامشا ضمن حدود الوقت."], "30": ["ما الذي يتعبك دون أن يظهر؟", "اكتشف ما تعرضه تريمشامشا عن الاختبارات الخفية."], "40": ["ما الذي يساند مسارك وما الذي يعطله؟", "اكتشف ما تعرضه خافيدامشا، لا سيرة خط الأم."], "45": ["كيف تتسق اختياراتك؟", "اكتشف عدسة أكشافيدامشا الواسعة، لا سيرة خط الأب."], "60": ["ما الأنماط العميقة في مسارك؟", "قراءة في شاشتيامشا يحتاج وقت ميلاد معلومًا."]};
+  var CQ = {"1": ["ما الصورة الكاملة لشخصيتك ومسار حياتك؟", "اكتشف طالعك وكواكبك ومنازلك في خريطة واحدة."], "moon": ["ماذا يقول قمرك عن مشاعرك وأمانك الداخلي؟", "اكتشف خريطتك مقروءة من موضع القمر."], "sun": ["أين يقف جوهرك وإرادتك؟", "اكتشف خريطتك مقروءة من موضع الشمس."], "2": ["كيف ترتبط مواردك بجهدك وبما يأتيك من غيرك؟", "اكتشف ما تعرضه هورا عن علاقتك بالمال."], "3": ["ما مبادراتك ومهاراتك العملية، ومن يشاركك الطريق؟", "اكتشف ما تعرضه دريكانا عن الإخوة والشجاعة."], "4": ["أي سكن واستقرار تبحث عنه؟", "اكتشف ما تعرضه تشاتورثامشا عن البيت والعقار والأمان."], "5": ["كيف يراك الناس، وما أثرك بينهم؟", "اكتشف ما تعرضه بانتشامشا عن المكانة والنفوذ."], "6": ["ما الذي يرهقك، وكيف تتعامل معه؟", "اكتشف ما تعرضه شاشثامشا عن الضغوط."], "7": ["ما الذي تبنيه ويبقى بعدك؟", "اكتشف ما تعرضه سابتامشا عن الأبناء والإبداع."], "8": ["ما الذي يتغير في حياتك دفعة واحدة؟", "اكتشف ما تعرضه أشتامشا عن التحولات والمفاجآت."], "9": ["ما الذي يعطي ارتباطك معناه؟", "اكتشف ما تضيفه نافامشا عن الارتباط والدارما بجانب D1."], "10": ["ما طريقك المهني وما الذي تُعرف به؟", "اكتشف ما تعرضه داشامشا عن مهنتك."], "11": ["ما دوائرك وما الذي تكسبه منها؟", "اكتشف عدسة إيكاداشامشا بقاعدة عدّ معلنة، دون وعد بمكسب."], "12": ["ما الذي ورثته من والديك وأصلك؟", "اكتشف ما تعرضه دوادشامشا عن هذا الأصل."], "16": ["ما الذي يمنحك الراحة والرفاهية؟", "اكتشف ما تعرضه شوداشامشا عن المركبات والمتع المادية."], "20": ["كيف ينمو داخلك ويصفو؟", "اكتشف ما تعرضه فيمشامشا عن نموك الروحي."], "24": ["أين تتعلم وتنجح بالمعرفة؟", "اكتشف ما تعرضه سيدهامشا عن الدراسة والمعرفة."], "27": ["ما حدود طاقتك وتحملك؟", "اكتشف تأملًا في بهامشا ضمن حدود الوقت."], "30": ["ما الذي يتعبك دون أن يظهر؟", "اكتشف ما تعرضه تريمشامشا عن الاختبارات الخفية."], "40": ["ما الذي يساند مسارك وما الذي يعطله؟", "اكتشف ما تعرضه خافيدامشا، لا سيرة خط الأم."], "45": ["كيف تتسق اختياراتك؟", "اكتشف عدسة أكشافيدامشا الواسعة، لا سيرة خط الأب."], "60": ["ما الأنماط العميقة في مسارك؟", "تأمل رمزي في شاشتيامشا يحتاج وقت ميلاد معلومًا."]};
   var TQ = {"dasha": ["أي فترة من عمرك تعيشها الآن؟", "اكتشف فترتك الكبرى والصغرى بموعد بدايتها ونهايتها."], "sade": ["أين زحل من قمرك الآن؟", "اكتشف موقع ساتي ساتي في خريطتك."], "lunar": ["في أي منزل قمري وُلد قمرك؟", "اكتشف منزلك القمري وحاكمه."], "year": ["ما الذي تعيشه الآن؟", "اكتشف قراءة سنتك."], "adv": ["أي أدوات حساب متقدمة تريد؟", "اكتشف فارشافالا وشادبالا وأشتاكافارغا وبراتيانتر داشا."]};
   function sdesc(q, fb) { return q ? '<span class="vh-s"><b class="vh-q">' + q[0] + '</b><span class="vh-i">' + q[1] + '</span></span>' : '<span class="vh-s">' + fb + '</span>'; }
   var CHIMG = {
@@ -2830,7 +2830,7 @@
     h += '<h6>العبورات الفيدية فوق خريطتك (غوتشارا)</h6><div class="eam-table-wrap"><table class="eam-table"><thead><tr><th>الكوكب</th><th>البرج</th><th>البيت من ' + basis + '</th><th>البيت من القمر</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
     var SS = T.SS, idx = sat === 11 ? 0 : sat === 0 ? 1 : sat === 1 ? 2 : -1;
     h += '<p class="vh-tm-txt">' + (idx >= 0 ? esc(SS[idx]) : 'في هذا التاريخ كان زحل خارج دائرة ساتي ساتي بالنسبة لقمرك.') + '</p>';
-    h += "<p class=\"vh-tm-note\">الفترة تُظهر المناخ العام، والعبورات تُظهر أين يضغط الوقت على خريطتك، وما يحدث فعلًا يتوقف على ظروفك وقراراتك.</p>";
+    h += '<p class="vh-tm-note">هذه قراءة تحليلية محتملة لطاقة الفترة، وليست تنبؤًا بحدث بعينه. الفترة تُظهر المناخ العام، والعبورات تُظهر أين يضغط الوقت على خريطتك، وما يحدث فعلًا يتوقف على ظروفك وقراراتك.</p>';
     return h;
   }
 
@@ -3366,7 +3366,7 @@
 /* assets/js/year2027-reading-model.js */
 /* Select complete, already-calculated readings. This layer never computes a chart. */
 (function(root){'use strict';
- const recapIntro="دي قراءة لسنة٢٠٢٦ كاملة، من يناير لديسمبر. المشاهد أسئلة تفتكر بيها تجربتك، مش أحداث بنفرضها من الخريطة. خد اللي يشبه سنتك، وسيب اللي مش بتاعك.";
+ const recapIntro='دي قراءة رمزية لسنة٢٠٢٦ كاملة، من يناير لديسمبر. المشاهد أسئلة تفتكر بيها تجربتك، مش أحداث بنفرضها من الخريطة. خد اللي يشبه سنتك، وسيب اللي مش بتاعك.';
  const ids=['dasha','sadeSati','nodes','caution','opportunity','covenant'];
  const titles=['الفترة التي تحكم سنتك','ثقل زحل على قمرك (ساديه ساتي)','علاقاتك الكارمية','نقاط الحذر وكيف تتجاوزها','أفضل مسار للعمل والمال','ميثاقك لعام 2027: ما تلتزم به وما تتجنبه'];
  const phaseNotes={outside:'زحل خارج نطاق البرج السابق لبرج قمر الميلاد، وبرج القمر نفسه، والبرج التالي. العدّ بالأبراج؛ والخروج لا يحكم على سهولة التجربة.',rising:'زحل في البرج السابق لبرج قمر الميلاد، وهي المرحلة الأولى. العدّ هنا بالأبراج، وليس بدرجة اقتران دقيقة.',peak:'زحل في برج قمر الميلاد نفسه، وهي المرحلة الوسطى. العدّ هنا بالأبراج، وليس بدرجة اقتران دقيقة.',setting:'زحل في البرج التالي لبرج قمر الميلاد، وهي المرحلة الأخيرة، لا الخروج النهائي. العدّ بالأبراج؛ وقد يعيد التراجع مرحلة سابقة.'};
@@ -3442,9 +3442,9 @@
   }
   const focused=complete?part('focused','أقسام قراءتك',complete.slice(1).map(s=>'<section id="reading-'+s.id+'"><h2>'+E(s.title)+'</h2>'+s.entries.map(primaryEntry).join('')+'</section>').join('')):'';
 
-  const recap=part('recap','ملخص ٢٠٢٦','<p class="recap-intro">'+E(Model.recapIntro)+'</p>'+report.closing.map(p=>'<article class="entry"><h2>'+E(p.text.title)+'</h2><p class="note">'+E(range(p))+(p.houses?.length?' · البيوت المحسوبة: '+p.houses.join('، '):'')+'</p>'+reading(p.text)+'</article>').join('')+"<p class=\"note\">هذه قراءة لسنة ٢٠٢٦ كاملة. خذ منها ما يشبه تجربتك؛ ليست سجلًا يقرر أن كل المشاهد حدثت لك.</p>");
+  const recap=part('recap','ملخص ٢٠٢٦','<p class="recap-intro">'+E(Model.recapIntro)+'</p>'+report.closing.map(p=>'<article class="entry"><h2>'+E(p.text.title)+'</h2><p class="note">'+E(range(p))+(p.houses?.length?' · البيوت المحسوبة: '+p.houses.join('، '):'')+'</p>'+reading(p.text)+'</article>').join('')+'<p class="note">هذه قراءة رمزية لسنة ٢٠٢٦ كاملة. خذ منها ما يشبه تجربتك؛ ليست سجلًا يقرر أن كل المشاهد حدثت لك.</p>');
   const covenant=part('covenant','خطواتك وأسئلتك','<p>الخطوات والأسئلة جزء من كل قراءة أصلية. راجعها عبر الروابط بدل إعادة أجسامها في هذا الفصل.</p><ul>'+pg.concat(ng).map(g=>'<li>'+link(g.ref,g.ref+' · '+g.text.title)+'</li>').join('')+'</ul>');
-  const method=part('method','المنهجية والمصطلحات',"<dl><dt>النظام النجمي · Sidereal</dt><dd>مواضع نجمية مع تصحيح Lahiri، وليست الأبراج الاستوائية.</dd><dt>البيوت الكاملة · Whole Sign</dt><dd>يبدأ البيت الأول من برج الطالع، ويخصص برج كامل لكل بيت.</dd><dt>النكشاترا · Nakshatra</dt><dd>واحد من ٢٧ قسمًا قمريًا، يقسم كل منها إلى أربع أقدام.</dd><dt>الفترة الكوكبية · Dasha</dt><dd>التسلسل الزمني الفيدي، وتظهر الفترة الصغرى داخل الكبرى.</dd><dt>العبور · Gochara</dt><dd>حركة الكوكب مقارنة بخريطة الميلاد، مع العقدة المتوسطة لراهو وكيتو.</dd></dl><p>الأوقات الواردة بتوقيت القاهرة. نهاية المدة معروضة قبل بداية الفترة التالية بلحظة؛ قد يقع الانتقال في منتصف اليوم. الزيارات الأصلية مأخوذة كما أعادها الحساب؛ التقويم الشهري يقص مداها على حدود الشهر للعرض فقط. يظهر القالب مرة واحدة مهما تكررت الزيارات. جميع النصوص من النسخة المنقحة المختارة لهذا الحساب.</p><p> لا تُستخدم لاتخاذ قرار مؤثر بدل الوقائع ورأي المختص. لم أضف توقعات شهرية جديدة أو محطات كسوف/اكتمال غير موجودة في الحساب.</p>");
+  const method=part('method','المنهجية والمصطلحات','<dl><dt>النظام النجمي · Sidereal</dt><dd>مواضع نجمية مع تصحيح Lahiri، وليست الأبراج الاستوائية.</dd><dt>البيوت الكاملة · Whole Sign</dt><dd>يبدأ البيت الأول من برج الطالع، ويخصص برج كامل لكل بيت.</dd><dt>النكشاترا · Nakshatra</dt><dd>واحد من ٢٧ قسمًا قمريًا، يقسم كل منها إلى أربع أقدام.</dd><dt>الفترة الكوكبية · Dasha</dt><dd>التسلسل الزمني الفيدي، وتظهر الفترة الصغرى داخل الكبرى.</dd><dt>العبور · Gochara</dt><dd>حركة الكوكب مقارنة بخريطة الميلاد، مع العقدة المتوسطة لراهو وكيتو.</dd></dl><p>الأوقات الواردة بتوقيت القاهرة. نهاية المدة معروضة قبل بداية الفترة التالية بلحظة؛ قد يقع الانتقال في منتصف اليوم. الزيارات الأصلية مأخوذة كما أعادها الحساب؛ التقويم الشهري يقص مداها على حدود الشهر للعرض فقط. يظهر القالب مرة واحدة مهما تكررت الزيارات. جميع النصوص من النسخة المنقحة المختارة لهذا الحساب.</p><p>هذه قراءة رمزية للتأمل، لا ضمان لأحداث ولا تشخيص ولا نصيحة صحية أو قانونية أو مالية. لا تُستخدم لاتخاذ قرار مؤثر بدل الوقائع ورأي المختص. لم أضف توقعات شهرية جديدة أو محطات كسوف/اكتمال غير موجودة في الحساب.</p>');
   const css=styles(base);
   let html='<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>عقيق · تقرير ٢٠٢٧ · '+E(input.name||'قراءة شخصية')+'</title><style>'+css+'</style></head><body><div class="toolbar"><p>تقرير خاص ببياناتك. من نافذة الطباعة اختر «حفظ كملف PDF»، وفعّل رسومات الخلفية للحفاظ على الألوان. لا يلزم عدد صفحات ثابت.</p><button type="button" onclick="window.print()">طباعة أو حفظ PDF</button><span id="font-status">الخطوط قيد التحميل…</span></div><section class="cover"><img src="'+E(base+'assets/images/brand/logo-mark-512.png')+'" alt="شعار عقيق أسترو"><p>عقيق أسترو</p><h1>تقريرك الفيدي الشخصي</h1><strong>٢٠٢٧</strong><div class="gold-line"></div><h2>'+E(input.name||'قراءة شخصية')+'</h2><p>'+E(input.date)+' · '+E(input.time)+' · '+E(options.cityLabel||input.city)+'</p><p>من يناير إلى ديسمبر ٢٠٢٧</p><small>قراءة مبنية على بيانات الميلاد · للاستخدام الشخصي</small></section>'+part('contents','دليل التقرير',toc+'<p>اختر الشهر للوصول إلى فتراته ومراجعها. اضغط رمز القراءة للانتقال إلى النص الأصلي. في ملف PDF تبقى الروابط الداخلية قابلة للنقر.</p>')+part('profile','بيانات الميلاد والخريطة',profile)+recap+ds+focused+months+readings+covenant+method+'<script>document.fonts.ready.then(function(){document.getElementById("font-status").textContent="الخطوط جاهزة، يمكنك الحفظ";});<\/script></body></html>';
   html=html.replace(/<table>([\s\S]*?)<\/table>/g,(_,inside)=>{const labels=[...inside.matchAll(/<th>([\s\S]*?)<\/th>/g)].map(m=>m[1].replace(/<[^>]+>/g,''));return '<table>'+inside.replace(/<tr>([\s\S]*?)<\/tr>/g,(row,cells)=>{if(cells.includes('<th>'))return row;let col=0;return '<tr>'+cells.replace(/<td>/g,()=>'<td data-label="'+E(labels[col++]||'')+'">')+'</tr>';})+'</table>';});
@@ -3495,7 +3495,7 @@
  var h=originalHeader()+glance()+(!S.model.known?'<p class="y27-note">وقت الميلاد غير معروف، لذلك نعرض قراءة الفترة فقط، من غير تخمين للطالع أو البيوت.</p>':'')+'<p class="y27-hint"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>افتح أي قسم واقرأ التفاصيل</p><div id="y27-paid">';
  h+=originalAcc('ملخص 2026','n',IC.moon,'<div data-y27-closing>'+lock()+'</div>',false);
  sections.forEach((x,i)=>{h+=originalAcc(x[0],x[1],IC[x[2]],'<div data-y27-section="'+i+'">'+(i===0?free:'')+lock()+'</div>',i===0);});
- h+='</div>'+offer()+"<p class=\"y27-note\">هذه قراءة مبنية على حساب خريطتك. لو تغيرت بيانات الميلاد، يمكن تتغير الفترات والتواريخ.</p>";
+ h+='</div>'+offer()+'<p class="y27-note">هذه قراءة رمزية مبنية على حساب خريطتك. لو تغيرت بيانات الميلاد، يمكن تتغير الفترات والتواريخ.</p>';
  out.innerHTML=h;out.hidden=false;sec.classList.add('y27-has');$('#y27-name-print').textContent=S.input.name||'';bind();bindSheets();if(!state.model.known){sec.querySelectorAll('.y27-loading-reading').forEach(e=>e.textContent='هذا الجزء يحتاج وقت الميلاد. ما نريد نخمن بيوتًا ونبني عليها قراءة تخصك.');}checkPaid();
  }
  var sheet=null,currentDetails=null,lastFocus=null;
@@ -3504,14 +3504,14 @@
  function closeSheet(){if(!sheet||sheet.hidden)return;returnSheetBody();sheet.hidden=true;document.documentElement.classList.remove('aqm-sheet-open');if(lastFocus&&lastFocus.isConnected)lastFocus.focus();currentDetails=null;}
  function openSheet(d){if(!d)return;var same=currentDetails===d&&!sheet?.hidden;if(same)return;ensureSheet();returnSheetBody();lastFocus=d.querySelector('summary');currentDetails=d;var title=d.querySelector('.y27-t').childNodes[0].textContent.trim(),hook=d.querySelector('.y27-hook');sheet.querySelector('.y27-modal-icon').innerHTML=d.querySelector('.y27-ic').innerHTML;sheet.querySelector('.y27-section-data').innerHTML=d._y27data||'';sheet.querySelector('.y27-section-data').hidden=!d._y27data;sheet.querySelector('#y27-modal-title').textContent=title;sheet.querySelector('#y27-modal-hook').textContent=hook?hook.textContent:'';var body=d.querySelector('.y27-body');if(body)sheet.querySelector('.y27-modal-content').appendChild(body);var all=[...sec.querySelectorAll('.y27-acc')],i=all.indexOf(d),next=all[(i+1)%all.length];sheet.querySelector('[data-y27-next] b').textContent=next.querySelector('.y27-t').childNodes[0].textContent.trim();d.open=false;d.querySelector('summary').setAttribute('aria-expanded','true');sheet.classList.remove('is-closing');sheet.hidden=false;document.documentElement.classList.add('aqm-sheet-open');sheet.querySelector('.aqm-sheet-body').scrollTop=0;sheet.querySelector('.aqm-sheet-panel').focus();}
  function bindSheets(){sec.querySelectorAll('.y27-acc').forEach(d=>{d.open=false;var summary=d.querySelector('summary');summary.removeAttribute('aria-haspopup');summary.setAttribute('aria-expanded','false');summary.onclick=()=>{summary.setAttribute('aria-expanded',String(!d.open));};d.addEventListener('click',e=>{if(e.target.closest('[data-y27-review-open]')){e.preventDefault();openSheet(d);}});});}
- function shareText(){var R=state.model,p=state.period,t=state.free;return 'عقيق · فترتي في 2027\n'+range(p)+'\n\n'+t.paragraphs.join('\n\n')+'\n\nخطوتي: '+t.action+'\n\n'+t.question+"\n\n";}
+ function shareText(){var R=state.model,p=state.period,t=state.free;return 'عقيق · فترتي في 2027\n'+range(p)+'\n\n'+t.paragraphs.join('\n\n')+'\n\nخطوتي: '+t.action+'\n\n'+t.question+'\n\nقراءة رمزية للتأمل، لا ضمان لأحداث.';}
  async function copy(){try{await navigator.clipboard.writeText(shareText());$('#y27-share-status').textContent='تم نسخ القراءة من غير بيانات الميلاد.';}catch(_){$('#y27-share-status').textContent='تعذر النسخ. استخدم زر المشاركة أو حفظ الستوري.';}}
  async function story(){
   await document.fonts.ready;var cv=document.createElement('canvas');cv.width=1080;cv.height=1920;var g=cv.getContext('2d');
   var bg=g.createLinearGradient(0,0,0,1920);bg.addColorStop(0,'#2e1421');bg.addColorStop(1,'#672f43');g.fillStyle=bg;g.fillRect(0,0,1080,1920);g.strokeStyle='#c8a86a';g.lineWidth=3;g.strokeRect(55,55,970,1810);g.direction='rtl';g.textAlign='right';g.fillStyle='#ecd5a7';g.font='bold 62px Cairo, sans-serif';g.fillText('عقيق | فترتي في 2027',970,170);
   var p=state.period,t=state.free;g.font='32px Cairo, sans-serif';g.fillText(range(p),970,260);g.fillStyle='#fff5e6';g.font='38px Cairo, sans-serif';
   var y=370;function wrap(txt){var line='';txt.split(/\s+/).forEach(w=>{var test=line?line+' '+w:w;if(g.measureText(test).width>860){g.fillText(line,970,y);y+=69;line=w;}else line=test;});if(line){g.fillText(line,970,y);y+=69;}}
-  wrap(t.paragraphs[0]);y+=55;g.fillStyle='#ecd5a7';wrap('خطوتي');g.fillStyle='#fff5e6';wrap(t.action);y+=40;wrap(t.question);g.font='28px Cairo, sans-serif';g.fillStyle='#ecd5a7';g.fillText("",970,1780);
+  wrap(t.paragraphs[0]);y+=55;g.fillStyle='#ecd5a7';wrap('خطوتي');g.fillStyle='#fff5e6';wrap(t.action);y+=40;wrap(t.question);g.font='28px Cairo, sans-serif';g.fillStyle='#ecd5a7';g.fillText('قراءة رمزية للتأمل، لا ضمان لأحداث',970,1780);
   var blob=await new Promise(r=>cv.toBlob(r,'image/png'));if(!blob)return;var f=new File([blob],'aqeeq-2027-story.png',{type:'image/png'});
   if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:'عقيق · فترتي في 2027'});return;}catch(e){if(e.name==='AbortError')return;}}
   var a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download=f.name;a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);$('#y27-share-status').textContent='تم تجهيز الستوري للحفظ والمشاركة.';
@@ -3552,7 +3552,7 @@
  blocks[4]=periods(group('jupiter').concat(group('venus'),group('sun')))+moonPeriods(group('moon'));
  blocks[5]=report.periods.map(p=>{var t=p.text,chosen=(t.sections||[]).filter(s=>/يُستثمر|يستثمر|يُتجن|يتجن|ميثاق|خطو|فخ|عملي/.test(s.heading));if(!chosen.length)chosen=(t.sections||[]).filter(s=>/هدف|غضب|الجسد|حدود|ميزان|معيار|تمهل|الإفراط|التشتت|مهرب|لأ|حين تميل|حين يفقد/.test(s.heading));if(!chosen.length)chosen=(t.sections||[]).slice(-1);return '<article class="y27-seg y27-covenant"><span class="y27-when">'+esc(range(p))+'</span><h4>ما تختاره في فترة '+esc(window.AqVedic.T.LORDS[p.lord])+'</h4><div class="y27-prose">'+(t.dialogue?'<blockquote>'+esc(t.dialogue)+'</blockquote>':'')+chosen.map(s=>'<section class="y27-literary-section"><h5>'+esc(s.heading)+'</h5>'+prose(s.paragraphs)+'</section>').join('')+'<div class="y27-step"><b>خطوة تقدر ترجع لها</b><p>'+esc(t.action)+'</p></div><p class="y27-question"><b>قبل ما تقرر، اسأل نفسك:</b> '+esc(t.question)+'</p></div></article>';}).join('');
  function previewLock(){return '';}
- var cl=$('[data-y27-closing]');if(cl)cl.innerHTML=previewLock()+'<p class="y27-recap-intro">'+esc(window.AqYear2027ReadingModel.recapIntro)+'</p>'+report.closing.map(s=>'<article class="y27-seg y27-recap"><div class="y27-reading-card"><div class="y27-reading-card-text">'+(s.text.dialogue?'<blockquote class="y27-recap-opening">'+esc(s.text.dialogue)+'</blockquote>':'')+'<h4>'+esc(s.text.title)+'</h4>'+reading({...s.text,dialogue:''})+'</div></div></article>').join('')+"<p class=\"y27-note y27-recap-footer\">هذه قراءة لسنة2026. خذ منها ما يشبه تجربتك؛ هي لا تقول إن كل هذه المشاهد حصلت لك.</p>";
+ var cl=$('[data-y27-closing]');if(cl)cl.innerHTML=previewLock()+'<p class="y27-recap-intro">'+esc(window.AqYear2027ReadingModel.recapIntro)+'</p>'+report.closing.map(s=>'<article class="y27-seg y27-recap"><div class="y27-reading-card"><div class="y27-reading-card-text">'+(s.text.dialogue?'<blockquote class="y27-recap-opening">'+esc(s.text.dialogue)+'</blockquote>':'')+'<h4>'+esc(s.text.title)+'</h4>'+reading({...s.text,dialogue:''})+'</div></div></article>').join('')+'<p class="y27-note y27-recap-footer">هذه قراءة رمزية لسنة2026. خذ منها ما يشبه تجربتك؛ هي لا تقول إن كل هذه المشاهد حصلت لك.</p>';
  if(report.focused){
   var complete=window.AqYear2027ReadingModel.assemble(report);
   function completeEntry(e){
@@ -4626,7 +4626,7 @@
     },
     chart: {
       anchor: '.seo-authority-block',
-      def: ['الخريطة الفلكية صورة للسماء لحظة ولادتك: أين كانت الشمس والقمر والكواكب، وفي أي برج وأي بيت. من هذه الصورة تُقرأ طباعك، وطريقتك في الحب والعمل، وما يحرّكك من الداخل.', "هي لغة تساعدك على فهم نفسك بوضوح أكبر، ثم اختيار خطوتك التالية بثقة."],
+      def: ['الخريطة الفلكية صورة للسماء لحظة ولادتك: أين كانت الشمس والقمر والكواكب، وفي أي برج وأي بيت. من هذه الصورة تُقرأ طباعك، وطريقتك في الحب والعمل، وما يحرّكك من الداخل.', 'هي ليست حكمًا على حياتك، بل لغة تساعدك على فهم نفسك بوضوح أكبر، ثم اختيار خطوتك التالية بثقة.'],
       read: [['الكواكب', 'كل كوكب يمثل جانبًا فيك: العقل والعاطفة والرغبة والحدود. موقعه في البرج يحدد أسلوب تعبيره.'], ['البيوت الاثنا عشر', 'مجالات حياتك: الذات والمال والعلاقات والعمل. البيت الذي يسكنه الكوكب يخبرك أين يظهر أثره.'], ['الجوانب', 'الزوايا بين الكواكب تكشف التفاهم أو التوتر بين أجزاء شخصيتك، ومن أين تأتي قوتك ومن أين تأتي حيرتك.'], ['العناصر والطبائع', 'توزيع النار والأرض والهواء والماء يوضح مزاجك العام وما تحتاجه لتتوازن.']],
       gold: [['افهم علاقاتك وحبك من خريطتك', 'اعرف لماذا تنجذب لأشخاص بعينهم وكيف تحب', '<circle cx="12" cy="12" r="9"/><path d="M12 17s-5-3.200-5-6.600A2.800 2.800 0 0 1 12 9a2.800 2.800 0 0 1 5 1.400C17 13.800 12 17 12 17z"/>', '#featured-content/how-to-start-natal-chart'], ['اكتشف موهبتك ومسارك من خريطتك', 'اعرف ما خُلقت لتتقنه وأين تجد رزقك', '<circle cx="12" cy="12" r="9"/><path d="M12 6.500l1.600 3.400 3.700.5-2.700 2.600.7 3.700L12 14.900 8.700 16.700l.7-3.700L6.700 10.400l3.700-.5z"/>', '#featured-content/how-to-start-natal-chart']]
     }
@@ -5116,7 +5116,7 @@
       }).join('') + '</div>' ;
       if (id === 'matrix' && !sec.querySelector('.aq-mx-about')) {
         var ab = document.createElement('div'); ab.className = 'aq-mx-about';
-        ab.innerHTML = "<section class=\"aq-mx-def\"><h3><span></span>ما هي مصفوفة القدر؟<span></span></h3><p>مصفوفة القدر خريطة هندسية تُبنى من يوم ميلادك وشهره وسنته، فتتحول الأرقام إلى ثماني نقاط كبرى تحيط بمركز واحد. كل نقطة تحمل طاقة من الاثنتين والعشرين طاقة، وتحكي جانبًا من حياتك: من أنت في الداخل، وكيف تحب، وكيف تكسب، وأين تتعثر.</p><p>هي مرآة تريك الأنماط التي تتكرر معك والمواهب التي لم تستخدمها بعد، لتفهم نفسك أولًا ثم تختار خطوتك بوعي.</p></section>"
+        ab.innerHTML = '<section class="aq-mx-def"><h3><span></span>ما هي مصفوفة القدر؟<span></span></h3><p>مصفوفة القدر خريطة هندسية تُبنى من يوم ميلادك وشهره وسنته، فتتحول الأرقام إلى ثماني نقاط كبرى تحيط بمركز واحد. كل نقطة تحمل طاقة من الاثنتين والعشرين طاقة، وتحكي جانبًا من حياتك: من أنت في الداخل، وكيف تحب، وكيف تكسب، وأين تتعثر.</p><p>هي ليست تنبؤًا بالمستقبل، بل مرآة تريك الأنماط التي تتكرر معك والمواهب التي لم تستخدمها بعد، لتفهم نفسك أولًا ثم تختار خطوتك بوعي.</p></section>'
           + '<section class="aq-mx-read"><h3><span></span>كيف تقرأ مصفوفتك<span></span></h3><ol class="aq-mx-num"><li><b>١</b><div><strong>الجوهر</strong><p>النقطة المركزية في الخريطة، وهي من أنت حين تخلع الأدوار، والطاقة التي تعود إليها كلما ضللت طريقك.</p></div></li><li><b>٢</b><div><strong>المحاور الأربعة</strong><p>الروح والمادة والمواهب والعلاقات. حين تتوازن هذه الاتجاهات تهدأ حياتك، وحين يختل أحدها تظهر الأزمات التي تتكرر معك.</p></div></li><li><b>٣</b><div><strong>الدروس الكارمية</strong><p>أرقام تشير إلى الدرس الذي جئت لتتعلمه، والنمط الذي تعيده حتى تفهمه. معرفته أول خطوة في التحرر منه.</p></div></li><li><b>٤</b><div><strong>قنوات المال والعلاقات</strong><p>قناتان تكشفان كيف تتدفق الوفرة إليك، وما الذي يجذبك إلى أشخاص بعينهم دون غيرهم.</p></div></li></ol></section>'
           + '<section class="aq-mx-gold"><h3><span></span>استثمر في ذاتك<span></span></h3><a class="aq-gold" href="#featured-content/matrix-22-arcana"><span class="aq-gold-i">' + ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.2 1.2-1.8 2.500-1.800s2.500.7 2.500 1.800-1.200 1.600-2.500 1.900-2.500.8-2.500 2 1.200 1.800 2.500 1.800 2.500-.6 2.500-1.800"/>') + '</span><span class="aq-gold-t"><b>افتح مسارات المال من مصفوفتك</b><small>اعرف أين تتعثر وفرتك وكيف تُفتح لك أبواب الرزق</small></span></a><a class="aq-gold" href="#featured-content/matrix-22-arcana"><span class="aq-gold-i">' + ic('<circle cx="12" cy="12" r="9"/><path d="M8.500 12a3.500 3.500 0 0 1 6-2.400M15.500 12a3.500 3.500 0 0 1-6 2.400"/>') + '</span><span class="aq-gold-t"><b>فكّ الدين الكارمي من مصفوفتك</b><small>افهم الدرس الذي يتكرر في علاقاتك وقراراتك وتحرّر منه</small></span></a></section>';
         var ft0 = sec.querySelector(':scope > footer'); if (ft0) sec.insertBefore(ab, ft0); else sec.appendChild(ab);
@@ -5593,7 +5593,7 @@ function body(r){var e=X.reading(r,ix,reviewMode);return e?'<article class="ce-r
 function details(r,firstName,secondName){var e=X.reading(r,ix,reviewMode);if(!e)return '';var labels=firstName?r.firstLabel+' عند '+firstName+' · '+r.secondLabel+' عند '+secondName:r.context==='transit'?'العابر: '+r.firstLabel+' · موضع الميلاد: '+r.secondLabel:r.firstLabel+' · '+r.secondLabel;
  return '<details class="ce-entry" data-ce-entry="'+esc(r.id)+'"><summary><span>'+esc(labels)+'</span><small>'+esc(r.label)+' · '+r.orb.toFixed(2)+'°</small></summary><div class="ce-detail">'+body(r)+'</div></details>';}
 function heading(t,sub){return '<header class="ce-head"><span class="ce-mark" aria-hidden="true">⚷</span><div><h4>'+esc(t)+'</h4><p>'+esc(sub)+'</p></div></header>';}
-function footer(){return "<p class=\"ce-foot\"> الزوايا الصغيرة بهامش درجتين، والمعنى لا يغني عن الوقائع والاختيار. <a href=\"chiron-library.html\">مكتبة تفاصيل كيرون</a></p>";}
+function footer(){return '<p class="ce-foot">قراءات رمزية للتأمل، مش تشخيص ولا وعد بحدث. الزوايا الصغيرة بهامش درجتين، والمعنى لا يغني عن الوقائع والاختيار. <a href="chiron-library.html">مكتبة تفاصيل كيرون</a></p>';}
 function nativeRows(records){return records.map(function(r,i){var b=body(r);return b?'<div class="nd-row il-row ce-row" role="button" tabindex="0" data-ce-row="'+esc(r.id)+'" style="--i:'+i+'"><span class="nd-rg">⚷</span><b>'+esc(r.firstLabel+' · '+r.secondLabel)+'</b><span>'+esc(r.label)+'</span><span class="nd-rh">فارق '+r.orb.toFixed(1)+'°</span><template class="il-content">'+b+'</template></div>':'';}).join('');}
 function mountNatal(){if(!natalState||!ix)return;var p=document.querySelector('#result [data-nd-panel="aspects"]');if(!p)return;var key=natalState.key;if(p.querySelector('[data-ce-natal="'+key+'"]'))return;
  p.querySelectorAll('.ce-natal').forEach(function(e){e.remove();});var records=X.natal(natalState.chart,OPT),el=document.createElement('section');el.className='ce-section ce-natal nd-list';el.dataset.ceNatal=key;el.innerHTML=heading('تفاصيل كيرون الإضافية','الزوايا الصغيرة والنقاط الموجودة في خريطتك فقط. اتصالات الكواكب الرئيسية بكيرون تفضل في الصفوف الأصلية.')+(records.length?'<div class="nd-rows">'+nativeRows(records)+'</div>':'<p class="ce-empty">لا تفاصيل إضافية متحققة ضمن الحدود المحددة في الخريطة دي.</p>')+(!natalState.chart.known?'<p class="ce-note">الطالع والمحاور وسهم السعادة مش محسوبين من غير ساعة ميلاد.</p>':'')+footer();p.appendChild(el);}
@@ -6104,7 +6104,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
   function nfPreview() {
     var old = document.getElementById('yp-nfp'); if (old) old.remove();
     var o = nfGet(), on = NF_ITEMS.filter(function (x) { return o[x[0]]; }), it = on[0] || NF_ITEMS[0];
-    var el = document.createElement('div'); el.id = 'yp-nfp'; el.className = 'yp-tts';
+    var el = document.createElement('div'); el.id = 'yp-nfp'; el.className = 'yp-tts'; 
     el.innerHTML = '<div class="yp-tts-bd" data-nfp-x></div><div class="yp-tts-sh" role="dialog" aria-modal="true" aria-label="معاينة التنبيه"><i class="yp-tts-g"></i><h3>هكذا يصلك التنبيه</h3><div class="yp-nfp-c"><span class="yp-nfp-i">' + SVG('<path d="M12 3l2.200 5.600 5.800.500-4.400 3.900 1.400 5.700L12 15.600 7 18.700l1.400-5.700L4 9.100l5.800-.500z"/>') + '</span><div><small>عقيق أسترو · ' + esc(o.time) + '</small><b>' + esc(it[1]) + '</b><p>' + esc(it[3]) + '</p></div></div>' + (on.length ? '' : '<p>كل التنبيهات متوقفة الآن.</p>') + '<button type="button" class="yp-btn" data-nfp-x>تمام</button></div>';
     document.body.appendChild(el); requestAnimationFrame(function () { el.classList.add('on'); });
   }
@@ -8117,7 +8117,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
       return '<div class="nd-tile"><span class="nd-ti">' + ico + '</span><b>' + label + '</b><em>في ' + SG[si][0] + '</em><small>' + SG[si][4].join(' <i></i> ') + '</small></div>';
     };
     var summary = 'تغلب على خريطتك طاقة ' + ELN[domE] + ' (' + pc.el[domE] + '%) في إيقاع ' + MDN[domM].replace('ال', '') + ' يميل إلى ' + MDP[domM] + '، ' +
-      'مع شمس في ' + SG[sSign][0] + ' وقمر في ' + SG[mSign][0] + (known ? ' وطالع في ' + SG[aSign][0] : '') + '. نركّز هنا على ' + ELP[domE] + ". ";
+      'مع شمس في ' + SG[sSign][0] + ' وقمر في ' + SG[mSign][0] + (known ? ' وطالع في ' + SG[aSign][0] : '') + '. نركّز هنا على ' + ELP[domE] + '. قراءة رمزية للتأمل وليست حكمًا نهائيًا.';
     var chip = function (ico, label, val) { return '<div class="nd-chip"><span class="nd-chip-i">' + ico + '</span><span class="nd-chip-t"><small>' + label + '</small><b>' + esc(val) + '</b></span></div>'; };
     var dateTxt = S.y + '/' + n2(S.m) + '/' + n2(S.d), timeTxt = S.known ? n2(S.hh) + ':' + n2(S.mm) : 'غير معروف';
     var top = asps.slice().sort(function (a, b) { return b.score - a.score; }).slice(0, 5);
@@ -8491,7 +8491,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
       return /^natal\.reference\.(asteroids|asteroid_house|element|modality)\./.test(id) || /^natal\.reference\.house_position\.chiron\./.test(id) || id === 'natal.reference.planet.chiron';
     }).sort().map(function (id, i) {
       var e = ix[id];
-      return row(i, '◈', e.title || e.summary, 'مرجع عام', '', "<p class=\"il-note\">هذا شرح عام، وليس إثباتًا لوجود هذا الموضع في خريطتك.</p>" + entry(ix, id, true));
+      return row(i, '◈', e.title || e.summary, 'مرجع عام', '', '<p class="il-note">هذا شرح رمزي عام، وليس إثباتًا لوجود هذا الموضع في خريطتك.</p>' + entry(ix, id, true));
     });
     if (referenceRows.length) S.references = det('il-reference-list', 'تصفّح المراجع العامة', rows(referenceRows), false);
     var asps = m.aspects.slice().sort(function (x, y) { return x.orb - y.orb; });
@@ -8570,7 +8570,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
       var html = '<div class="nd-list il-wrap"><h4 class="il-gt">محاور الخريطة</h4>' + S.angles + '</div>';
       if (card) card.outerHTML = html; else po.insertAdjacentHTML('beforeend', html);
     }
-    if (po && S.references) po.insertAdjacentHTML('beforeend', "<div class=\"nd-list il-wrap\"><h4 class=\"il-gt\">مراجع إضافية، غير منسوبة لخريطتك</h4>" + S.references + '</div>');
+    if (po && S.references) po.insertAdjacentHTML('beforeend', '<div class="nd-list il-wrap"><h4 class="il-gt">مراجع رمزية إضافية، غير منسوبة لخريطتك</h4>' + S.references + '</div>');
     if (po && S.stelSigns) po.insertAdjacentHTML('beforeend', '<div class="nd-list il-wrap"><h4 class="il-gt">تجمّع الكواكب</h4>' + S.stelSigns + '</div>');
     var ab = box.querySelector('[data-il-addtime]');
     if (ab) ab.addEventListener('click', function () { var e = document.querySelector('.nd-edit'); if (e) e.click(); });
@@ -8784,7 +8784,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     if (quote.length > 130) quote = quote.slice(0, 127).replace(/\s+\S*$/, '') + '…';
     var CIRC = 2 * Math.PI * 52;
     var tri = '<div class="lpd-tri">' +
-      '<section class="lpd-card lpj-reveal" style="--d:380ms"><h3>' + IC('<path d="M12 3v18M5 7h14M5 7l-3 7a3.500 3.500 0 0 0 6 0zM19 7l-3 7a3.500 3.500 0 0 0 6 0z"/>') + "مؤشر التوازن</h3><p class=\"lpd-sub\">مؤشر من أرقام ميلادك لتوازن جوانب حياتك</p>" +
+      '<section class="lpd-card lpj-reveal" style="--d:380ms"><h3>' + IC('<path d="M12 3v18M5 7h14M5 7l-3 7a3.500 3.500 0 0 0 6 0zM19 7l-3 7a3.500 3.500 0 0 0 6 0z"/>') + 'مؤشر التوازن</h3><p class="lpd-sub">مؤشر رمزي من أرقام ميلادك لتوازن جوانب حياتك</p>' +
       '<div class="lpd-bal"><div class="lpd-donut" data-pct="' + BAL + '"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="lpd-d-bg"/><circle cx="60" cy="60" r="52" class="lpd-d-fg" stroke-dasharray="' + CIRC.toFixed(1) + '" stroke-dashoffset="' + CIRC.toFixed(1) + '" data-off="' + (CIRC * (1 - BAL / 100)).toFixed(1) + '" transform="rotate(-90 60 60)"/></svg><b data-count="' + BAL + '">0%</b></div>' +
       '<div class="lpd-bars">' + DNAMES.map(function (n, k) { return '<div class="lpd-br"><span>' + n + '</span><span class="lpd-bar"><i data-w="' + DPCT[k] + '"></i></span><b data-count="' + DPCT[k] + '">0%</b></div>'; }).join('') + '</div></div></section>' +
       '<section class="lpd-card lpj-reveal" style="--d:450ms"><h3>' + IC('<path d="M5 19c0-8 5-13 14-14 0 9-5 14-14 14zM5 19 13 11"/>') + 'مجال النمو</h3><p class="lpd-sub">مجال يحتاج إلى تركيزك في مرحلتك الحالية</p>' +
@@ -8806,7 +8806,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     /* التوقيت: الفترات الأربع على مقياس العمر */
     var AGEMAX = Math.max(90, age + 5), tseg = P.map(function (p, i) { var a = p.period.startAge, b = p.period.endAge == null ? AGEMAX : p.period.endAge + 1; return '<div class="lpd-seg" data-status="' + statusOf(i, cur) + '" style="flex:' + Math.max(1, b - a) + '"><b>' + (i + 1) + '</b><small>' + esc(p.period.label) + '</small><em>القمة ' + p.value + ' · التحدي ' + C[i].value + '</em></div>'; }).join('');
     var timing = '<div class="lpd-timing"><div class="lpd-scale">' + tseg + '<i class="lpd-mark" data-pos="' + Math.min(100, age / AGEMAX * 100).toFixed(1) + '"><span>عمرك ' + age + '</span></i></div></div>';
-    var how = '<div class="lpd-how"><span class="lpd-how-i">' + IC('<path d="M4 5.500C6.500 4.500 9.500 4.500 12 6c2.500-1.500 5.500-1.500 8-.5V19c-2.500-1-5.500-1-8 .5-2.500-1.500-5.500-1.500-8-.5z"/><path d="M12 6v13.500"/>') + "</span><div><h3>كيف نقرأ مسار الحياة؟</h3><p>مسار الحياة هو خريطة زمنية تُظهر المراحل الرئيسية في رحلتك، وتساعدك على فهم إيقاع حياتك واكتشاف الدروس واستشراف الفرص القادمة. من خلال الأرقام الكامنة في تاريخ ميلادك نقرأ الخط الذي يربط إمكاناتك الحالية بمحطاتك القادمة.</p></div>" +
+    var how = '<div class="lpd-how"><span class="lpd-how-i">' + IC('<path d="M4 5.500C6.500 4.500 9.500 4.500 12 6c2.500-1.500 5.500-1.500 8-.5V19c-2.500-1-5.500-1-8 .5-2.500-1.500-5.500-1.500-8-.5z"/><path d="M12 6v13.500"/>') + '</span><div><h3>كيف نقرأ مسار الحياة؟</h3><p>مسار الحياة هو خريطة زمنية رمزية تُظهر المراحل الرئيسية في رحلتك، وتساعدك على فهم إيقاع حياتك واكتشاف الدروس واستشراف الفرص القادمة. من خلال الأرقام الكامنة في تاريخ ميلادك نقرأ الخط الذي يربط إمكاناتك الحالية بمحطاتك القادمة.</p></div>' +
       '<ol class="lpd-pts"><li><b>1</b><strong>الأرقام تكشف</strong><small>كل رقم يحمل معنى ورسالة</small></li><li><b>2</b><strong>المراحل تتكامل</strong><small>كل مرحلة تبني على السابقة</small></li><li><b>3</b><strong>الدروس توجه</strong><small>التحديات هي فرص للنمو</small></li><li><b>4</b><strong>المستقبل يصنع</strong><small>الوعي اليوم يصنع غدًا أفضل</small></li></ol></div>';
 
     function rows(arr, kind) {
@@ -9253,7 +9253,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
   function S(h, a) { return '<h2>' + h + '</h2>' + P(a); }
   var PAGES = {
     about: { t: 'عن عقيق', sub: 'من نحن، ولماذا بنينا هذا المكان', ic: '<circle cx="12" cy="12" r="9"/><path d="M12 8v.01M12 11v5"/>',
-      b: S('البداية', ['عقيق أسترو مساحة عربية صغيرة بنيناها لتقرأ نفسك بهدوء. فيها خريطة ميلادك، ومصفوفة القدر، ومسار الحياة، وتوافق العلاقات، والسماء كما هي الآن.', "هي مرآة تساعدك تلاحظ ما تعرفه عن نفسك أصلًا، لكن بلغة أقرب."])
+      b: S('البداية', ['عقيق أسترو مساحة عربية صغيرة بنيناها لتقرأ نفسك بهدوء. فيها خريطة ميلادك، ومصفوفة القدر، ومسار الحياة، وتوافق العلاقات، والسماء كما هي الآن.', 'مش وعد بالمستقبل، ولا حكم عليك. هي مرآة تساعدك تلاحظ ما تعرفه عن نفسك أصلًا، لكن بلغة أقرب.'])
         + S('كيف نكتب', ['نكتب بصوت واحد هادئ، يخاطبك مباشرة، ويقول الصورة كاملة بدون تجميل وبدون تخويف. بعض الصفحات دافئة وتدعوك للدخول، وبعضها أعمق وأصرح لأن الموضوع نفسه يستحق ذلك.', 'كل النصوص كُتبت وراجعتها يد بشرية، وتُحدَّث باستمرار.'])
         + S('ما نعتمد عليه', ['حسابات الكواكب تُجرى على بيانات فلكية دقيقة في جهازك مباشرة. المصفوفة والأرقام تتبع طرقًا معروفة ومكتوبة بوضوح. وما نقدمه من معانٍ هو تفسير، والتفسير يختلف من مدرسة لأخرى.', 'نستخدم النظام الغربي المداري في الخريطة الأساسية، ونعرض النظام الفيدي النجمي كطريقة ثانية لمن يريد المقارنة.']) },
     terms: { t: 'شروط الاستخدام', sub: 'باختصار وبوضوح', ic: '<path d="M7 3h8l4 4v14H7z"/><path d="M15 3v4h4M10 12h6M10 16h6"/>',
@@ -10075,7 +10075,7 @@ window.AqMoonSigns = [{"t": "شرارة صغيرة تكفي اليوم لتشع�
       s.querySelector('.fc-body').innerHTML = b.html; s.querySelector('.fc-body').scrollTop = 0;
       s.classList.remove('is-closing'); s.hidden = false; root.classList.add('aqm-sheet-open');
       if (window.AqUpGlyphs) window.AqUpGlyphs();
-
+      
       return true;
     } catch (e) { return false; }
   }
@@ -11450,14 +11450,14 @@ window.addEventListener('hashchange',function(){setTimeout(go,200);});setTimeout
   'use strict';
   var ITEMS = {
     cform: ['خريطة ميلادك، قبل أن تبدأ', 'رسم الخريطة ومواضع الكواكب والقراءات المتاحة لها. اختر النظام الغربي أو الفيدي من النموذج.', 'تاريخ الميلاد، والمدينة، والوقت إن كنت تعرفه. إن لم تعرف الوقت اختر ذلك، ولا نعتمد طالعًا أو بيوتًا دقيقة.'],
-    mform: ['ماذا ستقرأ في مصفوفتك؟', "مخطط المصفوفة وأرقام مواضعها، ثم القراءات المتاحة لكل موضع.", 'تاريخ الميلاد. الاسم اختياري، ولا تحتاج ساعة الميلاد.'],
+    mform: ['ماذا ستقرأ في مصفوفتك؟', 'مخطط المصفوفة وأرقام مواضعها، ثم القراءات الرمزية المتاحة لكل موضع.', 'تاريخ الميلاد. الاسم اختياري، ولا تحتاج ساعة الميلاد.'],
     lpform: ['ماذا يعطيك مسار الحياة؟', 'رقم مسار الحياة وقراءته، مع قراءة الاسم إذا أدخلته. هذا مسار مختلف عن الخريطة الفلكية.', 'تاريخ الميلاد، والاسم إن أردت قراءة اسمه.'],
-    'synastry-form': ['قبل مقارنة مساريكما', "رقما مسار الحياة وقراءة المقارنة بينهما.", 'تاريخ ميلاد كل طرف. الأسماء اختيارية.'],
+    'synastry-form': ['قبل مقارنة مساريكما', 'رقما مسار الحياة وقراءة المقارنة بينهما، للتأمل لا للحكم على صلاحية علاقة.', 'تاريخ ميلاد كل طرف. الأسماء اختيارية.'],
     'mxc-form': ['قبل قراءة مصفوفة الشراكة', 'مصفوفة مشتركة وقراءات مواضعها المتاحة. ليست درجة نجاح للعلاقة ولا قرارًا بالبقاء أو الانفصال.', 'تاريخا الميلاد. لا تحتاج وقت الولادة.'],
-    'mxk-form': ['قبل قراءة مصفوفة الطفل', "مصفوفة الطفل وقراءة موجهة للأهل. لا تشخّص الطفل ولا تحدد قدرته أو مستقبله.", 'تاريخ ميلاد الطفل. الاسم اختياري.'],
+    'mxk-form': ['قبل قراءة مصفوفة الطفل', 'مصفوفة الطفل وقراءة رمزية موجهة للأهل. لا تشخّص الطفل ولا تحدد قدرته أو مستقبله.', 'تاريخ ميلاد الطفل. الاسم اختياري.'],
     'eam-form': ['ما الذي ستجده في الخرائط الفيدية؟', 'أدوات الخرائط والتقسيمات والفترات الفيدية المتاحة في هذه الصفحة. اختر الأداة التي تريدها بعد الحساب.', 'تاريخ ووقت ومكان الميلاد. راجع الإحداثيات والمنطقة الزمنية قبل الحساب.'],
-    'cp-form': ['قبل مقارنة الخريطتين', "خريطتا الميلاد والاتصالات المتبادلة والخريطة المركبة. ", 'تاريخ ووقت ومدينة ميلاد كل طرف، أو تحديد أن وقت الميلاد غير معروف.'],
-    'kt-form': ['قبل قراءة الذيل الكارمي', "أرقام الذيل من مصفوفة الميلاد والقراءة المتاحة لها. ", 'تاريخ الميلاد. لا تحتاج وقت الولادة.'],
+    'cp-form': ['قبل مقارنة الخريطتين', 'خريطتا الميلاد والاتصالات المتبادلة والخريطة المركبة. هذه قراءة رمزية وليست اختبار توافق علميًا.', 'تاريخ ووقت ومدينة ميلاد كل طرف، أو تحديد أن وقت الميلاد غير معروف.'],
+    'kt-form': ['قبل قراءة الذيل الكارمي', 'أرقام الذيل من مصفوفة الميلاد والقراءة المتاحة لها. الرمز مدخل للتأمل، وليس إثباتًا لحياة سابقة.', 'تاريخ الميلاد. لا تحتاج وقت الولادة.'],
     'swc-form': ['ماذا تحسب هذه الأداة؟', 'صورة للسماء بحسب الوقت والمكان المحددين، وليست خريطة ميلاد شخصية.', 'الوقت والمكان اللذان تريد استكشافهما.']
   };
   function node(tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; }
@@ -11486,7 +11486,7 @@ window.addEventListener('hashchange',function(){setTimeout(go,200);});setTimeout
     if (document.getElementById('service-guide')) return;
     var sec = node('section', 'sec alt svc-guide'); sec.id = 'service-guide';
     var wrap = node('div', 'wrap'); var close = node('a', 'sheet-x', '×'); close.href = '#home'; close.setAttribute('aria-label', 'العودة للرئيسية'); wrap.appendChild(close); wrap.appendChild(node('span', 'eyebrow', 'عقيق · قبل أن تختار')); wrap.appendChild(node('h2', '', 'إزاي القراءة والطلب بيشتغلوا؟'));
-    [['ابدأ بالنتيجة المتاحة', "افتح الأداة واقرأ ما تعطيه قبل كتابة بياناتك. يمكنك حساب النتيجة بدون إنشاء طلب شراء. "], ['اختر منتجًا بعينه', 'راجع اسم التقرير ومحتواه والسعر والعملة المعروضين له، وليس اسم الأداة وحده. لا تفترض أن تقريرًا واحدًا يشمل كل تقارير عقيق.'], ['قبل أي تحويل', 'راجع طريقة التسليم ومدة التجهيز وشروط الاسترداد الخاصة بالمنتج. إذا لم تظهر هذه التفاصيل، اطلب توضيحها قبل الدفع؛ لا نستبدل غيابها بوعد بتسليم فوري أو استرداد مضمون.'], ['تسليم التقرير الشخصي الكامل', 'في المسار الحالي، يتبع تأكيد الدفع تجهيز التقرير من قسم حسابك وإرساله إلى بريد الحساب. تأكيد التحويل وتجهيز التقرير ووصول البريد خطوات مختلفة. لا يوجد هنا موعد تسليم محدد معلن.']].forEach(function (item) { var art = node('article', 'svc-step'); art.appendChild(node('h3', '', item[0])); art.appendChild(node('p', '', item[1])); wrap.appendChild(art); });
+    [['ابدأ بالنتيجة المتاحة', 'افتح الأداة واقرأ ما تعطيه قبل كتابة بياناتك. يمكنك حساب النتيجة بدون إنشاء طلب شراء. القراءات رمزية للتأمل، وليست تشخيصًا أو نصيحة صحية أو مالية.'], ['اختر منتجًا بعينه', 'راجع اسم التقرير ومحتواه والسعر والعملة المعروضين له، وليس اسم الأداة وحده. لا تفترض أن تقريرًا واحدًا يشمل كل تقارير عقيق.'], ['قبل أي تحويل', 'راجع طريقة التسليم ومدة التجهيز وشروط الاسترداد الخاصة بالمنتج. إذا لم تظهر هذه التفاصيل، اطلب توضيحها قبل الدفع؛ لا نستبدل غيابها بوعد بتسليم فوري أو استرداد مضمون.'], ['تسليم التقرير الشخصي الكامل', 'في المسار الحالي، يتبع تأكيد الدفع تجهيز التقرير من قسم حسابك وإرساله إلى بريد الحساب. تأكيد التحويل وتجهيز التقرير ووصول البريد خطوات مختلفة. لا يوجد هنا موعد تسليم محدد معلن.']].forEach(function (item) { var art = node('article', 'svc-step'); art.appendChild(node('h3', '', item[0])); art.appendChild(node('p', '', item[1])); wrap.appendChild(art); });
     var back = node('a', 'svc-link', 'ارجع لاختيار القراءة'); back.href = '#invest'; wrap.appendChild(back); sec.appendChild(wrap); document.querySelector('main').appendChild(sec);
     var pay = document.querySelector('#pay .pay-head'); if (pay) { var note = node('aside', 'svc-brief svc-payment'); note.appendChild(node('h3', '', 'قبل التحويل')); note.appendChild(node('p', '', 'سعر الطلب وعملته يظهران بعد تسجيل الدخول. إذا لم يظهر سعر واضح، لا تحوّل مبلغًا تقديريًا. تأكد أيضًا من مدة التجهيز وشروط الاسترداد قبل الدفع.')); var a = node('a', '', 'اقرأ خطوات الطلب والتسليم'); a.href = '#service-guide'; note.appendChild(a); pay.after(note); }
   }
