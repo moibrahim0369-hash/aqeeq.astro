@@ -34,3 +34,30 @@ html[data-aqr="home"] body #home #aqhc .aqhc-planets:not(#_a):not(#_b):not(#_c){
 html[data-aqr="home"] body #home #aqhc .aqhc-planet-img:not(#_a):not(#_b):not(#_c){background:radial-gradient(circle at 35% 30%,#fffdf6,#f4ecd8)!important}
 html[data-aqr="home"] body #home #aqhc:has(.aqhc-tab.on:not([data-tab=planets])) .aqhc-pdots:not(#_a):not(#_b){display:none!important}
 html[data-aqr="home"] body #home #aqhc .aqhc-retro:not(#_a):not(#_b):not(#_c),html[data-aqr="home"] body #home #aqhc .aqhc-aspects:not(#_a):not(#_b):not(#_c){background:transparent!important;border:0!important;box-shadow:none!important}
+/* v2b: retrogrades and angles swipe sideways like the planets; Sun image cropped to a clean disc; soft rise-in animation */
+html[data-aqr="home"] body #home #aqhc .aqhc-retro:not([hidden]):not(#_a):not(#_b):not(#_c){display:flex!important;flex-direction:row!important;overflow-x:auto!important;scroll-snap-type:x mandatory;gap:10px!important;padding:4px 8px 12px!important;scrollbar-width:none}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro::-webkit-scrollbar{display:none}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-row:not(#_a):not(#_b):not(#_c){flex:0 0 168px!important;width:168px!important;flex-direction:column!important;align-items:center!important;text-align:center!important;padding:14px 12px 12px!important;gap:8px!important;scroll-snap-align:start}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-row img:not(#_a):not(#_b){width:64px!important;height:64px!important;padding:9px!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-head{justify-content:center!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-retro-main{width:100%}
+html[data-aqr="home"] body #home #aqhc .aqhc-aspects:not(#_a):not(#_b):not(#_c){scroll-snap-type:x mandatory}
+html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card:not(#_a):not(#_b):not(#_c){flex:0 0 190px!important;width:190px!important;scroll-snap-align:start;padding:14px 14px 12px!important}
+html[data-aqr="home"] body #home #aqhc img[src*="planet-sun"]:not(#_a):not(#_b){clip-path:circle(43% at 50% 50%);transform:scale(1.16);filter:drop-shadow(0 3px 5px rgba(160,100,0,.35))!important}
+@keyframes aqskyRise{from{opacity:0;transform:translateY(16px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes aqskyGlow{0%,100%{box-shadow:0 14px 24px -14px rgba(120,90,40,.5),0 0 0 0 rgba(200,161,90,.0)}50%{box-shadow:0 14px 24px -14px rgba(120,90,40,.5),0 0 0 5px rgba(200,161,90,.22)}}
+@media(prefers-reduced-motion:no-preference){
+html[data-aqr="home"] body #home #aqhc .aqhc-planet,html[data-aqr="home"] body #home #aqhc .aqhc-retro-row,html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card{animation:aqskyRise .6s cubic-bezier(.2,.8,.2,1) both}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet:nth-child(2),html[data-aqr="home"] body #home #aqhc .aqhc-retro-row:nth-child(2),html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card:nth-child(2){animation-delay:.07s}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet:nth-child(3),html[data-aqr="home"] body #home #aqhc .aqhc-retro-row:nth-child(3),html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card:nth-child(3){animation-delay:.14s}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet:nth-child(n+4),html[data-aqr="home"] body #home #aqhc .aqhc-retro-row:nth-child(n+4),html[data-aqr="home"] body #home #aqhc .aqhc-aspect-card:nth-child(n+4){animation-delay:.2s}
+html[data-aqr="home"] body #home #aqhc .aqhc-planet.on:not(#_a):not(#_b):not(#_c):not(#_d){animation:aqskyRise .6s cubic-bezier(.2,.8,.2,1) both,aqskyGlow 3.4s ease-in-out 1s infinite}}
+/* v2c: short sentence link with a soft shine instead of the big pill */
+html[data-aqr="home"] body #home #aqhc .aqhc-allsky:not(#_a):not(#_b):not(#_c){height:auto!important;margin:6px 4px 0!important;padding:6px 4px!important;border:0!important;background:transparent!important;border-radius:0!important;display:flex!important;justify-content:center!important;align-items:center;gap:6px;font:700 12.5px 'IBM Plex Sans Arabic','Cairo',sans-serif!important;color:#17110f!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-allsky:not(#_a):not(#_b):not(#_c)::before{content:"";width:5px;height:5px;border-radius:50%;background:#c8a15a;box-shadow:0 0 0 0 rgba(200,161,90,.5);animation:aqskyDot 2.4s ease-out infinite;flex:0 0 auto}
+html[data-aqr="home"] body #home #aqhc .aqhc-allsky svg:not(#_a):not(#_b){display:inline-block!important;width:12px;height:12px;color:#c8a15a}
+@keyframes aqskySweep{0%{transform:translateX(-130%)}60%,100%{transform:translateX(130%)}}
+@keyframes aqskyDot{0%{box-shadow:0 0 0 0 rgba(200,161,90,.55)}70%,100%{box-shadow:0 0 0 7px rgba(200,161,90,0)}}
+html[data-aqr="home"] body #home #aqhc .aqhc-allsky:not(#_a):not(#_b):not(#_c){position:relative;overflow:hidden;border-radius:999px!important}
+html[data-aqr="home"] body #home #aqhc .aqhc-allsky:not(#_a):not(#_b):not(#_c)::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 35%,rgba(212,175,106,.38) 50%,transparent 65%);transform:translateX(-130%);pointer-events:none}
+@media(prefers-reduced-motion:no-preference){html[data-aqr="home"] body #home #aqhc .aqhc-allsky:not(#_a):not(#_b):not(#_c)::after{animation:aqskySweep 3.6s ease-in-out infinite}}
