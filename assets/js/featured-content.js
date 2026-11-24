@@ -1,7 +1,7 @@
 /* المحتوى المميز — القائمة + صفحة القراءة (مصدر واحد: assets/data/featured-content.json) */
 (function () {
   'use strict';
-  var SRC = 'assets/data/featured-content.json', CK = 'aq-fc-cache', PAGE = 4;
+  var SRC = 'assets/data/featured-content.json', CK = 'aq-fc-cache', PAGE = 8;
   var CATS = ['الكل', 'الأبراج', 'الكواكب', 'القمر', 'العبور', 'التراجعات', 'مصفوفة القدر', 'مسار الحياة', 'العلاقات', 'الرموز'];
   var list = document.getElementById('featured-content'), reader = document.getElementById('featured-reader');
   if (!list || !reader) return;
@@ -142,7 +142,7 @@
     }
     var items = filtered(), showPick = st.cat === 'الكل' && !st.q;
     h += offline ? '<p class="fc-offline" role="status">أنت تتصفح نسخة محفوظة من المحتوى بسبب ضعف الاتصال.</p>' : '';
-    h += showPick ? pick() : '';
+    h += showPick ? '<p class="fc-ask">ما الذي تريد أن تفهمه عن نفسك اليوم؟</p>' : '';
     if (st.cat !== 'الكل' && !st.q) h += '<div class="fc-gpage"><button type="button" class="fc-gback" data-fc-reset aria-label="رجوع إلى المحتوى المميز">' + PGP + '</button><div><h2>' + esc(st.cat) + '</h2><small>' + (SUB[st.cat] || '') + '</small></div></div>';
     h += '<div class="fc-tools"><div class="fc-filters" role="group" aria-label="تصنيفات المحتوى" id="fc-filters">' + CATS.map(function (c) { return '<button type="button" class="fc-chip" data-cat="' + esc(c) + '" aria-pressed="' + (c === st.cat) + '"><span class="fc-chip-i" aria-hidden="true">' + (TICO[c] || TICO['الفلك']) + '</span>' + esc(c) + '</button>'; }).join('') + '</div></div>';
     h += '<div class="fc-sub"><p class="fc-count" id="fc-count" role="status" aria-live="polite"></p>' +
@@ -249,9 +249,9 @@
     }
     g.setAttribute('data-mode', 'rows'); g.className = 'fc-rows';
     var h = '<section class="fc-row is-latest" id="fc-latest" aria-label="أحدث ما نُشر">' + rowHead('أحدث ما نُشر', 'أحدث', all.length, false) +
-      '<div class="fc-row-grid" id="fc-latest-grid" data-n="4">' + latest.map(function (a, i) { return mini(a, i); }).join('') + '</div>' +
+      '<div class="fc-row-grid" id="fc-latest-grid" data-n="8">' + latest.map(function (a, i) { return mini(a, i); }).join('') + '</div>' +
       '<nav class="fc-pager" id="fc-more-l" aria-label="ترقيم الصفحات">' + pagerHTML(pages) + '</nav></section>';
-    rowDefs().forEach(function (r, ri) {
+    [].forEach(function (r, ri) {
       var newPreviewCount = 0;
       var previews = r.items.filter(function (a) { return !a.bodyUrl || ++newPreviewCount <= 4; });
       h += '<section class="fc-row" aria-label="' + esc(r.k) + '">' + rowHead(r.k, r.ico, r.items.length, true) +
