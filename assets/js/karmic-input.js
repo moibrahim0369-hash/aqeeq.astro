@@ -32,4 +32,19 @@ t.querySelector('[data-kt-edit]').onclick=function(){var x=el('kt-edit');if(x)x.
 var sv=t.querySelector('[data-kt-save]');sv.onclick=function(){var P=window.AqeeqPlatform;if(P&&P.saveReading)P.saveReading({type:'karmic',typeLabel:'الذيل الكارمي',title:nm||'ذيلي الكارمي',subtitle:ds,route:'#karmic',inputs:{name:nm,date:ds}});sv.classList.add('is-saved');var sp=sv.querySelector('span');if(sp)sp.textContent='تم الحفظ';};}
 function watch2(){var r=el('kt-result');if(!r)return;banner();new MutationObserver(banner).observe(r,{attributes:true,attributeFilter:['hidden'],childList:true});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch2);else watch2();
+
+/* Locked rows become accordions: free teaser inside, gold button to the payment page. */
+var LKS='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="2.4"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>';
+function rows(){var r=el('kt-result');if(!r||r.hidden)return;var lis=r.querySelectorAll('.kt-rows li');if(!lis.length||r.querySelector('.kt-acc'))return;
+var nm=[].map.call(r.querySelectorAll('.b3-kt-n span'),function(x){return x.textContent.trim();});var n0=nm[0]||'',n1=nm[1]||'',n2=nm[2]||'';
+var T=['لكل رقم من أرقامك الثلاثة أصل. جذرك عندك '+n0+'، وهو بداية الخيط. في التقرير الكامل ترى من أين جاء هذا الدرس ولماذا يعود إليك.',
+'الدرس يمر إلى علاقاتك عبر '+n1+'. قد تلاحظ أن المواقف المتشابهة تعود بوجوه مختلفة. في التقرير الكامل ترى كيف يظهر معك ومع من.',
+'الأثر نفسه يظهر في طريقة تعاملك مع المال. في التقرير الكامل ترى أين يظهر وما الذي تنتبه له.',
+'القرارات التي تحسمها بسرعة أو تؤجلها قد تخفي نفس الخيط، ويظهر عندك في صورة '+n2+'. التفاصيل في التقرير الكامل.',
+'خطوات قصيرة وعملية تخفف ثقل هذا الدرس. أول خطوة منها في التقرير الكامل.'];
+[].forEach.call(lis,function(li,i){var tt=(li.querySelector('b')||{}).textContent||'';var d=document.createElement('details');d.className='kt-acc';
+d.innerHTML='<summary><span class="kt-lk">'+LKS+'</span><b></b><i class="kt-ch" aria-hidden="true"></i></summary><div class="kt-prev"><p></p><a class="b3-b1" href="#pay"><span class="kt-lk2">'+LKS+'</span>افتح التقرير الكامل</a></div>';
+d.querySelector('b').textContent=tt;d.querySelector('p').textContent=T[i]||'';li.innerHTML='';li.appendChild(d);li.classList.add('kt-acc');});}
+function watch3(){var r=el('kt-result');if(!r)return;rows();new MutationObserver(rows).observe(r,{attributes:true,attributeFilter:['hidden'],childList:true});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch3);else watch3();
 })();
