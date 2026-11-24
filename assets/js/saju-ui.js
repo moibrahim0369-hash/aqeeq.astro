@@ -40,6 +40,124 @@
     return '<section class="sj-sec"><h3 class="sj-sh"><span>' + title + '</span></h3>' + inner + '</section>';
   }
 
+
+  /* ===== برجك الصيني وتفاصيل الخريطة (من الأعمدة المحسوبة + الجداول التقليدية) ===== */
+  var ANI = [
+    "فطنة وسرعة بديهة وقدرة على التكيف، وتلتقط الفرصة قبل غيرك.",
+    "صبر وثبات وصلابة، وتبني ببطء لكن على أساس متين يعتمد عليه الناس.",
+    "جرأة وحماسة وروح قيادة، ولا تحب أن يقيّدك أحد.",
+    "لطف وذوق وحس دبلوماسي، وتفضل الهدوء على الصدام.",
+    "حضور قوي وطموح وخيال واسع، وتميل إلى المشاريع الكبيرة.",
+    "تأمل وعمق وحدس، وتفكر كثيرًا قبل أن تتكلم.",
+    "طاقة وحرية وحب للحركة والناس، ولا تحتمل الروتين الطويل.",
+    "رقة وخيال وحس فني، وتعطي أفضل ما عندك في جو آمن ودافئ.",
+    "ذكاء وخفة ظل وحب للتجربة، وتحل المشكلات بطرق لا يتوقعها غيرك.",
+    "دقة واهتمام بالتفاصيل وحس بالنظام والمظهر، وتقول رأيك بوضوح.",
+    "وفاء وصدق وإحساس عالٍ بالعدل، وتحمي من تحب.",
+    "كرم وطيبة وحب للراحة والمتعة، وتثق بالناس بسهولة."
+  ];
+  var YEL = [
+    "نموًا وميلًا إلى التعلم والتوسع.",
+    "حماسة ودفئًا وحضورًا يُلاحظ.",
+    "ثباتًا واهتمامًا بالناس المحيطين بك.",
+    "حزمًا ووضوحًا وميلًا إلى الإتقان.",
+    "مرونة وعمقًا وقدرة على الانتظار."
+  ];
+  var BR_MAIN = [9, 5, 0, 1, 4, 2, 3, 5, 6, 7, 4, 8];
+  var TRI = [[8, 0, 4], [11, 3, 7], [2, 6, 10], [5, 9, 1]];
+  var SIX = [[0, 1], [2, 11], [3, 10], [4, 9], [5, 8], [6, 7]];
+  var PEACH = { 0: 9, 1: 6, 2: 3, 3: 0 };
+  var TRAVEL = { 0: 2, 1: 8, 2: 11, 3: 5 };
+  function triOf(b) { for (var i = 0; i < 4; i++) if (TRI[i].indexOf(b) > -1) return i; return 0; }
+  var NOBLE = { 0: [1, 7], 4: [1, 7], 6: [1, 7], 1: [0, 8], 5: [0, 8], 2: [11, 9], 3: [11, 9], 8: [5, 3], 9: [5, 3], 7: [2, 6] };
+  var COLORS = [
+    ["الأخضر والفيروزي", "أخضر داكن"],
+    ["الأحمر والبرتقالي والبنفسجي", "أحمر داكن"],
+    ["الأصفر والبيج والبني", "بني جملي"],
+    ["الأبيض والفضي والذهبي والرمادي", "أبيض أو فضي"],
+    ["الأزرق الداكن والأسود", "أزرق داكن"]
+  ];
+  var DIRS = ["الشرق", "الجنوب", "وسط البيت", "الغرب", "الشمال"];
+  var NUMS = ["3 و8", "2 و7", "5 و10", "4 و9", "1 و6"];
+  var GRP = [
+    ["الأنداد", "الأصدقاء والمنافسون وحس الاستقلال. حين يكثر هذا الباب تكون واثقًا بنفسك وصاحب رأي، وتحتاج إلى من تشاركه لا من تنافسه."],
+    ["التعبير", "الموهبة والكلام والإبداع وما تقدمه للعالم. حين يكثر هذا الباب تحتاج دائمًا أن تُنتج وتُظهر ما عندك."],
+    ["الثروة", "العمل العملي والسعي والنتائج الملموسة. حين يكثر هذا الباب تقيس الأمور بحصيلتها وتحب أن ترى أثرًا واضحًا."],
+    ["السلطة", "النظام والمسؤولية والمكانة والضغط. حين يكثر هذا الباب يكون حس الواجب عندك عاليًا وتأخذ الالتزامات بجدية."],
+    ["المعرفة", "التعلم والدعم والحماية وصلتك بمن يرعاك. حين يكثر هذا الباب تحب أن تفهم قبل أن تتحرك، وتستعين بغيرك."]
+  ];
+  function ans(arr) { return arr.length ? arr.join(" و") : ""; }
+  function yearsOf(b) { var o = []; for (var y = 1972; y <= 2031; y++) if (((y - 4) % 12 + 12) % 12 === b) o.push(y); return o.join("، "); }
+
+  function signSections(r, dm, dmx) {
+    var P = r.pillars, yp = P.year, ks = ["year", "month", "day", "hour"];
+    var Y = yp.branch, aniName = yp.branchInfo.animal;
+    var polar = yp.stemInfo.yang ? "يانغ" : "يين";
+    var out = "";
+    /* 1) البرج */
+    var early = r.gy && r.gy !== r.sajuYear ? '<p class="sj-p">وُلدت قبل بداية السنة الساجوية (ليتشون، حوالي 4 فبراير)، فبرجك هو حيوان سنة ' + r.sajuYear + ' وليس سنة ' + r.gy + '.</p>' : "";
+    out += item("برجك الصيني",
+      '<p class="sj-p">عمود سنتك ' + yp.stemInfo.han + yp.branchInfo.han + '، وحيوانك هو <strong>' + aniName + '</strong>، وعنصر سنتك <strong>' + S.ELEMENTS[yp.stemInfo.el] + ' ' + polar + '</strong>.</p>' + early +
+      '<p class="sj-p">' + aniName + ' يعني: ' + ANI[Y] + ' وعنصر ' + S.ELEMENTS[yp.stemInfo.el] + ' يضيف إلى هذا ' + YEL[yp.stemInfo.el] + '</p>');
+    /* 2) التوافق */
+    var tri = TRI[triOf(Y)].filter(function (b) { return b !== Y; });
+    var six = 0; SIX.forEach(function (p2) { if (p2[0] === Y) six = p2[1]; else if (p2[1] === Y) six = p2[0]; });
+    var clash = (Y + 6) % 12;
+    function line(b) { return "<strong>" + S.BRANCHES[b].animal + "</strong> (" + yearsOf(b) + ")"; }
+    out += item("الحيوانات المتوافقة معك",
+      '<p class="sj-p"><strong>التحالف الثلاثي:</strong> ' + tri.map(line).join(" و") + '. هؤلاء يتحركون معك في الاتجاه نفسه وتفهمون بعض بسرعة.</p>' +
+      '<p class="sj-p"><strong>الشريك الأقرب:</strong> ' + line(six) + '. هذا هو الاقتران الأكثر دفئًا في التقاليد، ويكمّل ما ينقصك.</p>' +
+      '<p class="sj-p"><strong>الحيوان المقابل:</strong> ' + line(clash) + '. إيقاعه يختلف عن إيقاعك، فالعلاقة معه تحتاج تفاهمًا وصبرًا أكثر.</p>' +
+      '<p class="sj-p">السنوات المذكورة هي سنوات الميلاد الساجوية من 1972 إلى 2031، وتبدأ كل سنة عند ليتشون.</p>');
+    /* 3) الآلهة العشرة */
+    var cnt = [0, 0, 0, 0, 0], d = dm.el, dy = dm.yang;
+    function add(el) { cnt[(el - d + 5) % 5]++; }
+    ks.forEach(function (k) {
+      var p = P[k]; if (!p) return;
+      if (k !== "day") add(p.stemInfo.el);
+      add(S.STEMS[BR_MAIN[p.branch]].el);
+    });
+    var tot = cnt.reduce(function (a, b) { return a + b; }, 0), mx = Math.max.apply(null, cnt);
+    var top = [], none = [];
+    cnt.forEach(function (c, i) { if (c === mx) top.push(i); if (c === 0) none.push(i); });
+    var gh = '<div class="sj-bars">' + cnt.map(function (c, i) {
+      return '<div class="sj-bar"><span>' + GRP[i][0] + '</span><i><u style="width:' + Math.round(c / (mx || 1) * 100) + '%;background:#c9a55c"></u></i><b>' + c + '</b></div>';
+    }).join("") + '</div>';
+    var gt = '<p class="sj-p">في الساجو يُقرأ كل حرف في خريطتك بعلاقته بسيد يومك. العدد من ' + tot + ' حروف (الجذوع الظاهرة والجذع الرئيسي داخل كل فرع).</p>';
+    top.forEach(function (i) { gt += '<p class="sj-p"><strong>' + GRP[i][0] + ' هو الأبرز عندك.</strong> ' + GRP[i][1] + '</p>'; });
+    if (none.length) gt += '<p class="sj-p"><strong>لا يظهر عندك:</strong> ' + ans(none.map(function (i) { return GRP[i][0]; })) + '. هذا الباب لا يأتيك تلقائيًا، وتحتاج أن تطلبه بقصد.</p>';
+    out += item("أبواب شخصيتك (الآلهة العشرة)", gh + gt);
+    /* 4) ألوان وأرقام */
+    var mn = Math.min.apply(null, r.elements), cand = [];
+    r.elements.forEach(function (c, i) { if (c === mn) cand.push(i); });
+    var sup = cand[0], res = (d + 4) % 5;
+    if (cand.indexOf(res) > -1) sup = res; else if (cand.indexOf(d) > -1) sup = d;
+    out += item("ألوانك وأرقامك واتجاهك",
+      '<p class="sj-p">العنصر الأقل حضورًا في خريطتك هو <strong>' + S.ELEMENTS[sup] + '</strong>' + (mn === 0 ? " (غائب تمامًا)" : " (" + mn + " فقط)") + '، فهو الذي يكمّل ميزانك.</p>' +
+      '<p class="sj-p"><strong>ألوانك الداعمة:</strong> ' + COLORS[sup][0] + '.</p>' +
+      '<p class="sj-p"><strong>لون محفظتك:</strong> ' + COLORS[sup][1] + '.</p>' +
+      '<p class="sj-p"><strong>اتجاهك:</strong> ' + DIRS[sup] + '. <strong>أرقامك:</strong> ' + NUMS[sup] + '.</p>' +
+      '<p class="sj-p">وألوان عنصر ذاتك (' + S.ELEMENTS[d] + ') هي ' + COLORS[d][0] + '، وهي تعبّر عنك حين تريد أن تظهر على طبيعتك.</p>');
+    /* 5) النجوم */
+    var brs = ks.map(function (k) { return P[k] ? P[k].branch : -1; });
+    function has(b) { return brs.indexOf(b) > -1; }
+    var bases = [Y, P.day.branch], pe = false, tv = false;
+    bases.forEach(function (b) { var g = triOf(b); if (has(PEACH[g])) pe = true; if (has(TRAVEL[g])) tv = true; });
+    var nb = false;
+    [P.day.stem, yp.stem].forEach(function (st) { NOBLE[st].forEach(function (b) { if (has(b)) nb = true; }); });
+    var st = "";
+    st += '<p class="sj-p"><strong>نجمة الجاذبية:</strong> ' + (pe ? "موجودة في خريطتك. عندك حضور يشدّ الناس إليك، وذوق في المظهر والكلام." : "لا تظهر في خريطتك. جاذبيتك تأتي من الفعل والمعاملة أكثر من الظهور.") + '</p>';
+    st += '<p class="sj-p"><strong>نجمة الحركة والسفر:</strong> ' + (tv ? "موجودة في خريطتك. طبعك يميل إلى التنقل وتغيير المكان أو العمل، وترتاح حين تتحرك." : "لا تظهر في خريطتك. تميل إلى الاستقرار في مكان واحد وإلى الروتين الذي تعرفه.") + '</p>';
+    st += '<p class="sj-p"><strong>نجمة النبيل الداعم:</strong> ' + (nb ? "موجودة في خريطتك. هذه علامة على من يدعمك ويفتح لك بابًا حين تحتاج، فاقبل المساعدة حين تُعرض عليك." : "لا تظهر في خريطتك. طريقك فيه اعتماد على النفس أكثر، فابنِ علاقاتك بيدك.") + '</p>';
+    out += item("نجومك في الخريطة", st);
+    /* 6) الصورة كاملة */
+    var gn = top.map(function (i) { return GRP[i][0]; }).join(" و");
+    out += item("صورتك كاملة",
+      '<p class="sj-p">أنت <strong>' + aniName + ' ' + S.ELEMENTS[yp.stemInfo.el] + ' ' + polar + '</strong>، وسيد يومك <strong>' + dmx.n + '</strong>. أبرز أبواب شخصيتك: ' + gn + '. والعنصر الذي يكمّل ميزانك: ' + S.ELEMENTS[sup] + '.</p>' +
+      '<p class="sj-p">اقرأ هذه الأقسام معًا: البرج يصف طبعك العام، وسيد اليوم يصف ذاتك القريبة، والأبواب العشرة تصف علاقتك بالعالم، والعناصر تحدد ما يكمّلك.</p>');
+    return out;
+  }
+
   function render(r, box, name) {
     var P = r.pillars, dm = r.dayMaster, dmx = DM[S.STEMS.indexOf(dm)];
     /* لوحة الأعمدة */
@@ -81,6 +199,7 @@
       item("أعمدتك الأربعة", timeNote + late + pin) +
       item("سيد اليوم", dmIn) +
       item("توازن العناصر", '<div class="sj-bars">' + bars + '</div><p class="sj-p">العدد من ' + r.total + ' حروف ظاهرة. عنصر ذاتك (' + S.ELEMENTS[dm.el] + ') يظهر ' + r.elements[dm.el] + (r.elements[dm.el] === 1 ? " مرة" : " مرات") + '.</p>' + notes) +
+      signSections(r, dm, dmx) +
       item("كيف حُسبت؟", how) + '</div>';
   }
 
@@ -105,7 +224,7 @@
         var h = null, mi = 0;
         if (!(noTime && noTime.checked) && time.value) { var t = time.value.split(":").map(Number); h = t[0]; mi = t[1] || 0; }
         var r = S.compute(window.Astronomy, { year: d[0], month: d[1], day: d[2], hour: h, minute: mi, utcOffset: Number(tz.value) });
-        render(r, out, (($("#sj-name") || {}).value || "").trim()); out.hidden = false;
+        r.gy = d[0]; render(r, out, (($("#sj-name") || {}).value || "").trim()); out.hidden = false;
         out.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch (x) { err.textContent = x.message || "تعذر الحساب."; err.hidden = false; }
     });
