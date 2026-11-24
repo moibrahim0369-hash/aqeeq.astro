@@ -526,3 +526,15 @@ html[data-aqr="home"] #home .hs-band picture{background-image:url(data:image/web
 html[data-aqr="home"] body #home.aqh .aqh-hero .aqh-hero-band.hs-band .hs-plate{aspect-ratio:2000/435!important;height:auto!important}@media(max-width:760px){html[data-aqr="home"] body #home.aqh .aqh-hero .aqh-hero-band.hs-band .hs-plate{aspect-ratio:920/880!important}}
 
 html body .aqh-header .aqh-brand-text small.aq-latin{color:#9E7428!important;font-weight:700!important;letter-spacing:.14em!important}
+
+/* Approved brand: larger header emblem so the orbit reads */
+html body .aqh-header .aqh-emblem{width:44px!important;height:44px!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;flex:0 0 44px!important}
+html[data-aqr="home"] body .aqh-header .aqh-emblem:not(#_a):not(#_b):not(#_c){width:44px!important;height:44px!important;flex:0 0 44px!important}
+@media(max-width:600px){
+html body .aqh-header .aqh-emblem,html body .aqh-brand .aqh-emblem{width:40px!important;height:40px!important;flex:0 0 40px!important}
+html[data-aqr="home"] body .aqh-header .aqh-emblem:not(#_a):not(#_b):not(#_c){width:40px!important;height:40px!important;flex:0 0 40px!important}
+}
+@media(max-width:359px){
+html body .aqh-header .aqh-emblem,html body .aqh-brand .aqh-emblem{width:34px!important;height:34px!important;flex:0 0 34px!important}
+html[data-aqr="home"] body .aqh-header .aqh-emblem:not(#_a):not(#_b):not(#_c){width:34px!important;height:34px!important;flex:0 0 34px!important}
+}
