@@ -1,0 +1,14 @@
+/* شاشة الدخول: شعار المدار الرسمي بلا رمشة عين */
+html body #account .acx-logo::after{display:none!important;animation:none!important;content:none!important}
+html body #account .acx-logo img{object-fit:contain}
+
+/* شاشة الدخول: ترتيب وتنفّس + زر إغلاق هادئ + ترك مساحة فوق الشريط السفلي */
+section.sec:target#account.acx>.wrap.acct-wrap{padding-bottom:130px!important}
+html body #account .acx-legal{margin-bottom:12px!important}
+html body #account .acx-note{text-align:center;font-size:12.5px;color:#8c736a;margin:14px 0 6px;line-height:1.8}
+html[data-aqr="account"] body section#account.acx.sec.acct-modal .acct-brand-header #acx-title:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){font-size:27px!important;line-height:1.55!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acct-brand-header{margin-bottom:34px!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) #acct-google,html[data-aqr="account"] body #account:not(:has(.acx-email)) #acct-email-open{min-height:54px!important}
+html body #account .sheet-x,html[data-aqr="account"] .sheet-x{width:34px!important;height:34px!important;background:rgba(255,255,255,.55)!important;border:1px solid rgba(140,115,106,.25)!important;color:#8c736a!important;box-shadow:none!important;top:14px!important}
+html body #account .sheet-x svg{width:15px!important;height:15px!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo img:not(#_a):not(#_b):not(#_c){width:122px!important;height:122px!important;margin:-8px 0}
