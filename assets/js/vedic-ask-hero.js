@@ -18,8 +18,12 @@
     var x = o.x;
     if (!x) { x = document.createElement('p'); x.className = 'vh-ask-ex'; h.appendChild(x); }
     x.textContent = ex; x.hidden = !ex;
+    var b = btn(); if (b) { if (!btnOrig) btnOrig = b.textContent; b.textContent = 'اعرض ' + nm; }
   }
+  var btnOrig = null;
+  function btn() { var b = document.querySelector('#eam-form button[type=submit] span, #eam-form button.btn span'); return b; }
   function reset() {
+    var bb = btn(); if (bb && btnOrig) bb.textContent = btnOrig;
     var h = hero(); if (!h || !orig) return; var o = parts(h);
     if (o.eb) o.eb.textContent = orig.eb; if (o.h) o.h.textContent = orig.h; if (o.p) o.p.textContent = orig.p; if (o.x) o.x.hidden = true;
   }
