@@ -3,7 +3,7 @@
   "contentType": "matrix-section",
   "section": "children_line",
   "title": "خط الأبناء — الأسرة والتربية",
-  "positionNote": "يصف نمط التربية والأجواء العائلية التي ترتبط بكل أركانا، وما يحتاج إلى وعي فيها. قراءة رمزية للتأمل، لا وصفاً لأبناء حقيقيين.",
+  "positionNote": "يصف نمط التربية والأجواء العائلية التي ترتبط بكل أركانا، وما يحتاج إلى وعي فيها. قراءة، لا وصفاً لأبناء حقيقيين.",
   "contentVersion": "fill-gaps-1",
   "updated": "2026-11-04",
   "language": "ar",
@@ -11,7 +11,7 @@
     "_archive_deprecated/assets/data/matrix/master-v1/master/ARCANA_NN.md (المرجع التشريحي، فقرة الأسرة والتربية)"
   ],
   "engineMapping": "unverified",
-  "safetyNote": "قراءة رمزية للتأمل في أسلوب التربية، وليست حكماً على أب أو أم ولا على أبناء.",
+  "safetyNote": "قراءة في أسلوب التربية، وليست حكماً على أب أو أم ولا على أبناء.",
   "entries": [
     {
       "id": 1,

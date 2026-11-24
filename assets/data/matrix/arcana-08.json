@@ -92,7 +92,7 @@
         "publicTopicLabel": "Sahasrara Mission",
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
-        "note": "نصوص رمزية أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
+        "note": "نصوص أصلية مرتبطة بهدف الحياة؛ لا تدعي قاعدة موضعية مثبتة ولا تصف عضواً أو عرضاً جسدياً."
       },
       "ajna": {
         "status": "partial-review",
@@ -100,7 +100,7 @@
         "publicTopicLabel": "Ajna Insight",
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
-        "note": "نصوص رمزية أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
+        "note": "نصوص أصلية للعين الثالثة؛ لا تمثل قاعدة موضعية موثقة ولا تشخيصاً نفسياً أو طبياً."
       },
       "vishuddha": {
         "status": "partial-review",
@@ -108,7 +108,7 @@
         "publicTopicLabel": "Vishuddha Expression",
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
-        "note": "نصوص رمزية أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
+        "note": "نصوص أصلية للتعبير والتواصل؛ لا تنسب أعراضاً أو قواعد جسدية للمدرسة."
       },
       "anahata": {
         "status": "partial-review",
@@ -116,7 +116,7 @@
         "publicTopicLabel": "Anahata Relationship",
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
-        "note": "صياغة رمزية أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
+        "note": "صياغة أصلية عن التبادل والقرب والحدود؛ لم تتحقق قاعدة هذا الموضع من المرجع، ولا تتضمن ادعاءً طبياً."
       },
       "manipura": {
         "status": "partial-review",
@@ -124,7 +124,7 @@
         "publicTopicLabel": "Manipura Agency",
         "referenceRuleStatus": "unverified",
         "bodySymbolStatus": "omitted-no-verified-rule",
-        "note": "صياغة رمزية أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
+        "note": "صياغة أصلية عن الإرادة والموارد والمكانة؛ لم تتحقق قاعدة هذا الموضع من المرجع ولا تتضمن ادعاءً طبياً."
       }
     }
   }
