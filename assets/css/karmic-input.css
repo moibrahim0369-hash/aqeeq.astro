@@ -145,3 +145,8 @@ html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:
 html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-prev p{font:400 13.5px/1.9 AqNatalCairo,sans-serif!important;color:#3d3236!important;margin:10px 0 12px!important}
 html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-prev .b3-b1{display:flex!important;gap:8px!important;width:100%!important;min-height:44px!important;margin:0 0 4px!important}
 html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-prev .kt-lk2{display:inline-grid!important;place-items:center!important}
+
+html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-lead{background:#fffdf6!important;border:1px solid #ecdcb4!important;border-radius:18px!important;padding:12px 14px!important;margin:0 0 12px!important}
+html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-lead b{display:block!important;font:800 14.5px/1.8 AqNatalCairo,sans-serif!important;color:#1f1a1c!important;margin:0 0 6px!important}
+html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-lead p{font:400 13.5px/1.95 AqNatalCairo,sans-serif!important;color:#3d3236!important;margin:0 0 8px!important}
+html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .kt-lead p:last-child{margin:0!important;color:#6b4f1d!important;font-weight:600!important}
