@@ -1,0 +1,35 @@
+/* Home featured content v2 + chips: compact swipe rows (whole card + a small edge of the next), small links and button, black chips */
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-track:not(#_a):not(#_b):not(#_c){display:flex!important;gap:10px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scroll-padding-inline:2px;padding:4px 2px 8px!important;margin:0!important;align-items:stretch!important;justify-content:flex-start!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-track::-webkit-scrollbar{display:none}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article:not(#_a):not(#_b):not(#_c){flex:0 0 150px!important;width:150px!important;min-width:150px!important;height:auto!important;display:flex!important;flex-direction:column!important;scroll-snap-align:start;border-radius:16px!important;background:#241119!important;box-shadow:0 8px 18px rgba(74,18,36,.16)!important;padding:0!important;overflow:hidden!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article > img:not(#_a):not(#_b):not(#_c){width:100%!important;height:78px!important;min-height:78px!important;object-fit:cover!important;object-position:center 25%!important;border-radius:0!important;box-shadow:none!important;flex:0 0 auto!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article-txt:not(#_a):not(#_b):not(#_c){padding:8px 10px 11px!important;gap:3px!important;display:flex!important;flex-direction:column!important;flex:1!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article h3:not(#_a):not(#_b):not(#_c){font-size:12px!important;line-height:1.55!important;margin:0!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article time:not(#_a):not(#_b):not(#_c){font-size:9.5px!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article p.aqh-intro:not(#_a):not(#_b):not(#_c),html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article .aqh-go:not(#_a):not(#_b):not(#_c),html body #home.aqh .aqh-band-arts #aqh-articles .aqh-article p.aqh-intro:not(#_a):not(#_b):not(#_c){display:none!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles #aqh-track .aqh-article p.aqh-hook:not(#_a):not(#_b):not(#_c),html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track .aqh-article p.aqh-hook:not(#_a):not(#_b):not(#_c){display:none!important}
+html body #home.aqh .aqh-band-arts #aqh-articles #aqh-track2 .aqh-article p.aqh-hook:not(#_a):not(#_b):not(#_c){display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;font-size:10.5px!important;line-height:1.5!important;color:rgba(255,255,255,.82)!important;min-height:0!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article::after{display:none!important}
+/* links instead of heading */
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-h:not(#_a):not(#_b){margin:6px 0 6px!important;text-align:right}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-h2:not(#_a):not(#_b){margin-top:34px!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-link{display:inline-flex;align-items:center;gap:6px;font:700 12.5px 'IBM Plex Sans Arabic','Cairo',sans-serif;color:#6a2038!important;text-decoration:none!important;padding:4px 0;border-bottom:1px solid rgba(200,161,90,.7)}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-row-link svg{width:14px;height:14px}
+html[data-aqr="home"] body #home.aqh #aqh-articles #aqh-row2:not(#_a):not(#_b){margin-top:0!important}
+/* thin small "show all" button */
+html body #home.aqh .aqh-band-arts .aqh-all-wrap{margin-top:18px!important}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all:not(#_a):not(#_b){display:inline-flex!important;align-items:center;gap:8px;min-height:0!important;height:32px;padding:0 6px 0 14px!important;font:700 12px 'IBM Plex Sans Arabic','Cairo',sans-serif!important;background:#fffdf8!important;color:#6a2038!important;border:1px solid rgba(200,161,90,.8)!important;border-radius:999px!important;box-shadow:none!important}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all .aqh-all-ico:not(#_a){width:22px!important;height:22px!important;background:#f4ecd8!important;color:#6a2038!important;box-shadow:none!important}
+html body #home.aqh .aqh-band-arts .aqh-all-wrap .aqh-all .aqh-all-ico svg{width:12px!important;height:12px!important}
+/* chips: black */
+html body #home .aqhc-categories .aqhc-category:not(#_a):not(#_b){color:#17110f!important}
+html body #home .aqhc-categories .aqhc-category svg:not(#_a):not(#_b){color:#17110f!important;stroke:#17110f}
+
+/* shortcuts strip between the rows: cream cards, gold edge, swipe */
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px 2px 6px;margin:6px 0 0;scrollbar-width:none}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc::-webkit-scrollbar{display:none}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc-i{flex:0 0 112px;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:84px;padding:12px 8px;border-radius:18px;background:#fffdf8;border:1px solid rgba(200,161,90,.75);box-shadow:0 8px 16px -10px rgba(120,90,40,.35);text-decoration:none;color:#17110f!important;text-align:center}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc-i i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#f4ecd8;border:1px solid rgba(200,161,90,.55);color:#17110f}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc-i svg{width:18px;height:18px}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-sc-i span{font:700 12px/1.45 'IBM Plex Sans Arabic','Cairo',sans-serif}
+html body #home.aqh .aqh-band-arts #aqh-articles .aqh-article:not(#_a):not(#_b):not(#_c){padding-bottom:0!important}
