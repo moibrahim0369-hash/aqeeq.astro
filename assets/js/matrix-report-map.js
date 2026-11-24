@@ -110,7 +110,7 @@
         implementationStatus: 'missing',
         projectState: 'لا يوجد قسم أطفال أو نتيجة مخصصة لهم في وحدة المصفوفة.',
         calculationRefs: [],
-        missingEvidence: 'مواضع الأطفال وقواعدها وحدود القراءة الرمزية، مع تجنب الأحكام الحتمية.'
+        missingEvidence: "مواضع الأطفال وقواعدها وحدود القراءة، مع تجنب الأحكام الحتمية."
       },
       {
         id: 'chakras',

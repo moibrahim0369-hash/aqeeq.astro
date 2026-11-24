@@ -180,7 +180,7 @@
       return /^natal\.reference\.(asteroids|asteroid_house|element|modality)\./.test(id) || /^natal\.reference\.house_position\.chiron\./.test(id) || id === 'natal.reference.planet.chiron';
     }).sort().map(function (id, i) {
       var e = ix[id];
-      return row(i, '◈', e.title || e.summary, 'مرجع عام', '', '<p class="il-note">هذا شرح رمزي عام، وليس إثباتًا لوجود هذا الموضع في خريطتك.</p>' + entry(ix, id, true));
+      return row(i, '◈', e.title || e.summary, 'مرجع عام', '', "<p class=\"il-note\">هذا شرح عام، وليس إثباتًا لوجود هذا الموضع في خريطتك.</p>" + entry(ix, id, true));
     });
     if (referenceRows.length) S.references = det('il-reference-list', 'تصفّح المراجع العامة', rows(referenceRows), false);
     var asps = m.aspects.slice().sort(function (x, y) { return x.orb - y.orb; });
@@ -259,7 +259,7 @@
       var html = '<div class="nd-list il-wrap"><h4 class="il-gt">محاور الخريطة</h4>' + S.angles + '</div>';
       if (card) card.outerHTML = html; else po.insertAdjacentHTML('beforeend', html);
     }
-    if (po && S.references) po.insertAdjacentHTML('beforeend', '<div class="nd-list il-wrap"><h4 class="il-gt">مراجع رمزية إضافية، غير منسوبة لخريطتك</h4>' + S.references + '</div>');
+    if (po && S.references) po.insertAdjacentHTML('beforeend', "<div class=\"nd-list il-wrap\"><h4 class=\"il-gt\">مراجع إضافية، غير منسوبة لخريطتك</h4>" + S.references + '</div>');
     if (po && S.stelSigns) po.insertAdjacentHTML('beforeend', '<div class="nd-list il-wrap"><h4 class="il-gt">تجمّع الكواكب</h4>' + S.stelSigns + '</div>');
     var ab = box.querySelector('[data-il-addtime]');
     if (ab) ab.addEventListener('click', function () { var e = document.querySelector('.nd-edit'); if (e) e.click(); });

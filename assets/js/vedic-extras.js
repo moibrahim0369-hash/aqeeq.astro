@@ -72,7 +72,7 @@
     ['d9', 'التقسيم التاسع D9', 'الارتباط والدارما', 9, 'عدسة للارتباط والدارما وحال الكواكب، تُقرأ بجانب D1 ولا تبدأ في عمر ثابت.', 'venus', 'زهرتك'],
     ['d10', 'التقسيم العاشر D10', 'المهنة والمكانة', 10, 'يوضح طريقك المهني وما تُعرف به وكيف تتعامل مع النجاح.', 'saturn', 'زحلك'],
     ['d12', 'التقسيم الثاني عشر D12', 'الوالدان والجذور', 12, 'يوضح ما ورثته من والديك وأصلك، وكيف يظهر أثر البيت الأول الذي نشأت فيه.', 'sun', 'شمسك'],
-    ['d60', 'التقسيم الستون D60', 'العدسة الدقيقة', 60, 'تقسيم شديد الحساسية لوقت الميلاد. تُقرأ نصوصه كتأمل رمزي ضمن حدود المدخلات، لا كإثبات لحياة سابقة أو رصيد موروث.', 'moon', 'قمرك']
+    ['d60', 'التقسيم الستون D60', 'العدسة الدقيقة', 60, "تقسيم شديد الحساسية لوقت الميلاد. تُقرأ نصوصه كقراءة ضمن حدود المدخلات، لا كإثبات لحياة سابقة أو رصيد موروث.", 'moon', 'قمرك']
   ];
   var PL = [['sun', 'الشمس'], ['moon', 'القمر'], ['mars', 'المريخ'], ['mercury', 'عطارد'], ['jupiter', 'المشتري'], ['venus', 'الزهرة'], ['saturn', 'زحل'], ['node', 'راهو']];
   function norm(x) { return ((x % 360) + 360) % 360; }
@@ -147,7 +147,7 @@
     h += '<section class="eam-card vx"><h4>قراءة سنتك الحالية</h4>' + yr + '</section>';
     h += '<section class="eam-card vx"><h4>رحلة الفترات الكبرى (ماها داشا)</h4>' + table(['الفترة', 'من', 'إلى'], ds.map(function (x) { return '<tr' + (x === cm ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === cm ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
     h += '<section class="eam-card vx"><h4>داخل فترة ' + LORDS[cm.lord] + ' (أنتر داشا)</h4>' + table(['الفترة الصغرى', 'من', 'إلى'], antars(cm).map(function (x) { return '<tr' + (x === ca ? ' class="vx-on"' : '') + '><th>' + LORDS[x.lord] + (x === ca ? ' · الآن' : '') + '</th><td>' + dt(x.s) + '</td><td>' + dt(x.e) + '</td></tr>'; })) + '</section>';
-    h += '<p class="eam-note">الحسابات على نظام لاهيري وبيوت البرج الكامل. هذه قراءة للتأمل وتختلف من مدرسة لأخرى، وليست حكمًا نهائيًا.</p>';
+    h += "<p class=\"eam-note\">الحسابات على نظام لاهيري وبيوت البرج الكامل. </p>";
     var box = document.createElement('div'); box.className = 'vx-wrap'; box.innerHTML = h;
     var host = result.querySelector('.eam-copy-anchor') || result; host.insertBefore(box, result.querySelector('.aq-copy-map-btn'));
     var top = document.createElement('div'); top.className = 'vx-wrap vx-top'; top.innerHTML = '<section class="eam-card vx vc-card" id="vx-vargas"></section>';

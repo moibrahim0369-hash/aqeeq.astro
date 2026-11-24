@@ -273,7 +273,7 @@
         if (k === '__age') return { n: ae.number, x: 'من عمر ' + ae.age };
         return { n: P[k] };
       }, CHILD_SUB) + sum +
-      '<p class="mxm-note">هذه قراءة رمزية للأهل، لا تقييمًا لنمو الطفل أو شخصيته. لاحظ اهتمامه واحتياجه الفعلي واترك له مساحة الاختلاف.</p>';
+      "<p class=\"mxm-note\"> لاحظ اهتمامه واحتياجه الفعلي واترك له مساحة الاختلاف.</p>";
     host.hidden = false; bindAcc(host); hydrateModeSlots(host, 'child'); if (full) bindMap(host, full, { age: 'الطاقة التي يمرّ بها الطفل عند هذا العمر', dec: 'بداية مرحلة جديدة في عمره', node: 'نقطة من خريطة الطفل' });
   }
 

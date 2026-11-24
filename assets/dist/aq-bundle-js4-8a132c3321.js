@@ -425,7 +425,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
         implementationStatus: 'missing',
         projectState: 'لا يوجد قسم أطفال أو نتيجة مخصصة لهم في وحدة المصفوفة.',
         calculationRefs: [],
-        missingEvidence: 'مواضع الأطفال وقواعدها وحدود القراءة الرمزية، مع تجنب الأحكام الحتمية.'
+        missingEvidence: "مواضع الأطفال وقواعدها وحدود القراءة، مع تجنب الأحكام الحتمية."
       },
       {
         id: 'chakras',
@@ -1130,7 +1130,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
         ctx.fillText(String(c[1]), x + capW / 2, y + 134);
       });
       ctx.fillStyle = '#74685F'; ctx.font = '400 28px serif';
-      ctx.fillText('مصفوفة القدر · للتأمل والوعي الذاتي', W / 2, 1720);
+      ctx.fillText("مصفوفة القدر · لمعرفة الذات", W / 2, 1720);
       URL.revokeObjectURL(img.src);
       canvas.toBlob(blob => {
         if (!blob) return;
@@ -1404,7 +1404,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
         <p class="aqm-slot-p"><strong>العمق النفسي:</strong> ${e(t.psychologicalDepth)}</p>
         <p class="aqm-slot-p"><strong>التناقض:</strong> ${e(v.paradox || t.paradox)}</p>
         <p class="aqm-slot-p"><strong>جذور الطفولة:</strong> ${e(v.childhoodRoots || t.childhoodRoots)}</p>
-        <p class="aqm-slot-p"><strong>التنبيه الجسدي الرمزي:</strong> ${e(t.symbolicBodyNote)}</p>
+        <p class="aqm-slot-p"><strong>التنبيه الجسدي:</strong> ${e(t.symbolicBodyNote)}</p>
       </div>`;
   }
 
@@ -1982,7 +1982,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
         const theme = lowDef ? `<p class="aqm-g-p aqm-chakra-theme">${escapeHtml(lowDef.theme)}</p>` : '';
         return `<article class="aqm-chakra-card"><h5 class="aqm-chakra-card-title"><span class="aqm-chakra-dot" style="background:${CHAKRA_COLORS[k] || '#C5A46D'}"></span>${escapeHtml(row.name)}</h5>${theme}${aspects}</article>`;
       }).join('');
-      grid.insertAdjacentHTML('beforeend', `<section class="aqm-slot aqm-slot-gemini aqm-chakra-readings" data-slot="chakra-readings"><h4 class="aqm-slot-title">قراءة كل شاكرا</h4>${html}<p class="aqm-g-p aqm-chakra-note">قراءة رمزية للتأمل، وليست تشخيصاً ولا بديلاً عن الطبيب.</p></section>`);
+      grid.insertAdjacentHTML('beforeend', `<section class="aqm-slot aqm-slot-gemini aqm-chakra-readings" data-slot="chakra-readings"><h4 class="aqm-slot-title">قراءة كل شاكرا</h4>${html}</section>`);
     }).catch(() => {});
   }
 
@@ -2794,7 +2794,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
             <nav class="aqm-crumbs" aria-label="مسار الصفحة"><a href="#home">الرئيسية</a><span aria-hidden="true">/</span><span>أدوات التحليل</span><span aria-hidden="true">/</span><span aria-current="page">مصفوفة القدر</span></nav>
             <div class="aqm-page-title">
           <h1>مصفوفة القدر</h1>
-          <p>خريطة رمزية لفهم أنماطك الداخلية وطاقاتك الأساسية</p>
+          <p>خريطة لفهم أنماطك الداخلية وطاقاتك الأساسية</p>
         </div>
             <header class="aqm-header">
           <span class="aqm-kicker">مصفوفة القدر · نظام الأركانا الاثنين والعشرين</span>
@@ -2854,7 +2854,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
         <section class="aqm-learn" aria-labelledby="aqm-learn-title">
           <div class="aqm-learn-main">
             <h3 id="aqm-learn-title">كيف نقرأ المصفوفة؟</h3>
-            <p>المصفوفة هي خريطة رمزية تعتمد على 22 طاقة، تعكس أنماطك الداخلية ومسارك في الحياة. من خلال تحليل مواقع الأرقام والعلاقات بينها، تكتشف نقاط القوة، مجالات النمو، والدروس الأساسية التي تحملها رحلتك.</p>
+            <p>المصفوفة هي خريطة تعتمد على 22 طاقة، تعكس أنماطك الداخلية ومسارك في الحياة. من خلال تحليل مواقع الأرقام والعلاقات بينها، تكتشف نقاط القوة، مجالات النمو، والدروس الأساسية التي تحملها رحلتك.</p>
             <a class="aqm-btn" href="#aqm-readings">اكتشف المزيد</a>
           </div>
           <svg class="aqm-learn-art" viewBox="0 0 120 120" width="120" height="120" fill="none" stroke="#D9B979" stroke-width="1" aria-hidden="true"><line x1="60" y1="60" x2="112.0" y2="60.0"/><line x1="60" y1="60" x2="108.0" y2="79.9"/><line x1="60" y1="60" x2="96.8" y2="96.8"/><line x1="60" y1="60" x2="79.9" y2="108.0"/><line x1="60" y1="60" x2="60.0" y2="112.0"/><line x1="60" y1="60" x2="40.1" y2="108.0"/><line x1="60" y1="60" x2="23.2" y2="96.8"/><line x1="60" y1="60" x2="12.0" y2="79.9"/><line x1="60" y1="60" x2="8.0" y2="60.0"/><line x1="60" y1="60" x2="12.0" y2="40.1"/><line x1="60" y1="60" x2="23.2" y2="23.2"/><line x1="60" y1="60" x2="40.1" y2="12.0"/><line x1="60" y1="60" x2="60.0" y2="8.0"/><line x1="60" y1="60" x2="79.9" y2="12.0"/><line x1="60" y1="60" x2="96.8" y2="23.2"/><line x1="60" y1="60" x2="108.0" y2="40.1"/><circle cx="60" cy="60" r="14"/><circle cx="60" cy="60" r="34" stroke-dasharray="2 4"/></svg>
@@ -2880,13 +2880,13 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
 
         <!-- الفهرس المرجعي للأركان (للتوافق المعياري مع الاختبارات) -->
         <div style="margin-top:32px;padding-top:20px;border-top:1px solid var(--aqm-gold-border);">
-          <h4 style="font-size:0.95rem;color:var(--aqm-text-muted);margin:0 0 10px;">المعجم الرمزي للمواضع (Karmic Tail & Ancestral Lines):</h4>
+          <h4 style="font-size:0.95rem;color:var(--aqm-text-muted);margin:0 0 10px;">معجم المواضع (Karmic Tail & Ancestral Lines):</h4>
           ${buildGlossaryGrid(P)}
         </div>
 
         <!-- التذييل وإخلاء المسؤولية الرمزية -->
         <footer style="margin-top:32px;text-align:center;font-size:0.82rem;color:var(--aqm-text-muted);line-height:1.7;">
-          <p>مصفوفة القدر نظام رمزي للتأمل واستكشاف الذات مبني على منهج ناتاليا لاديني (22 أركانا). عقيق أسترو يقدم القراءات كأداة للوعي والتمكين الذاتي وليست للتنبؤ القاطع أو المشورة الطبية.</p>
+          <p>مصفوفة القدر نظام مبني على منهج ناتاليا لاديني (22 أركانا). </p>
         </footer>
       </section>
     `;

@@ -184,7 +184,7 @@
       return '<div class="nd-tile"><span class="nd-ti">' + ico + '</span><b>' + label + '</b><em>في ' + SG[si][0] + '</em><small>' + SG[si][4].join(' <i></i> ') + '</small></div>';
     };
     var summary = 'تغلب على خريطتك طاقة ' + ELN[domE] + ' (' + pc.el[domE] + '%) في إيقاع ' + MDN[domM].replace('ال', '') + ' يميل إلى ' + MDP[domM] + '، ' +
-      'مع شمس في ' + SG[sSign][0] + ' وقمر في ' + SG[mSign][0] + (known ? ' وطالع في ' + SG[aSign][0] : '') + '. نركّز هنا على ' + ELP[domE] + '. قراءة رمزية للتأمل وليست حكمًا نهائيًا.';
+      'مع شمس في ' + SG[sSign][0] + ' وقمر في ' + SG[mSign][0] + (known ? ' وطالع في ' + SG[aSign][0] : '') + '. نركّز هنا على ' + ELP[domE] + ". ";
     var chip = function (ico, label, val) { return '<div class="nd-chip"><span class="nd-chip-i">' + ico + '</span><span class="nd-chip-t"><small>' + label + '</small><b>' + esc(val) + '</b></span></div>'; };
     var dateTxt = S.y + '/' + n2(S.m) + '/' + n2(S.d), timeTxt = S.known ? n2(S.hh) + ':' + n2(S.mm) : 'غير معروف';
     var top = asps.slice().sort(function (a, b) { return b.score - a.score; }).slice(0, 5);

@@ -96,7 +96,7 @@
   function render(map,data,options) {
     options=options || {};var f=facts(map),c=data.charts[f.chart];if(!c)return '';
     var h='<header class="vn-head"><span>قراءة عقيق · الخريطة الفيدية</span><h4>'+esc(c.title)+'</h4><p>'+esc(c.intro)+'</p></header>';
-    h+='<p class="vn-help">نصوص رمزية للتأمل، لا إثبات لوقائع أو تنبؤ علمي. <a href="vedic-library.html?chart='+f.chart+'">تصفح المكتبة وحدود المنهج</a></p>';
+    h+="<p class=\"vn-help\"><a href=\"vedic-library.html?chart="+f.chart+'">تصفح المكتبة وحدود المنهج</a></p>';
     h+='<div class="vn-basis"><b>مرجع البيوت: '+basisLabel(f)+'</b><p>'+(f.basis==='asc'?'البيوت في هذه القراءة من طالع التقسيم نفسه، بنظام البرج الكامل.':f.chart==='moon'?'الأبراج هي أبراج الميلاد النجمية نفسها، والبيوت تُعدّ من القمر. هذه زاوية النظر للمشاعر والعقل، وليست طالعًا جديدًا.':f.chart==='sun'?'الأبراج هي أبراج الميلاد النجمية نفسها، والبيوت تُعدّ من الشمس. هذه زاوية النظر للمعنى والإرادة، وليست طالعًا جديدًا.':'وقت الميلاد غير معروف. الرسم يستخدم القمر مرجعًا بديلًا، ولا نتعامل معه كطالع مقاس.')+'</p></div>';
     if(c.precisionNote)h+='<p class="vn-precision">'+esc(c.precisionNote)+'</p>';
     if(!f.houseReading){
