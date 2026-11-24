@@ -57,6 +57,7 @@
 <script src="assets/js/inline/page-04.js?v=1"></script>
 <link rel="stylesheet" href="styles.css?v=20261105g">
 <link rel="stylesheet" href="name_readings.css">
+<link rel="stylesheet" href="assets/css/saju.css?v=20261124a">
 <link rel="stylesheet" href="assets/css/personal-transits.css">
 <link rel="stylesheet" href="assets/css/numerology-matrix.css?v=20261120c">
 <link rel="stylesheet" href="assets/css/matrix-page.css?v=20261110k">
@@ -180,6 +181,7 @@
           <a role="menuitem" href="#matrix-child">مصفوفة الطفل</a>
           <a role="menuitem" href="matrix-library.html">مكتبة النصوص</a>
           <a role="menuitem" href="#lifepath">مسار الحياة</a>
+          <a role="menuitem" href="#saju">الساجو</a>
           <a role="menuitem" href="#compat">التوافق</a>
           <a role="menuitem" href="#signs">برجك اليوم</a>
           <a role="menuitem" href="#individual">كل الخرائط والأدوات</a>
@@ -209,7 +211,7 @@
     <a href="#home"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7v9a1.5 1.5 0 0 1-1.5 1.5H5a1.5 1.5 0 0 1-1.500-1.500z"/><path d="M9.500 21v-6h5v6"/></svg><span>الرئيسية</span></a>
     <a href="#for-you"><svg class="" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 6h16v10H8l-4 4z"/></svg><span>لك</span></a>
     <a href="matrix-library.html"><svg fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 6c-2-2-5-3-9-3v16c4 0 7 1 9 3 2-2 5-3 9-3V3c-4 0-7 1-9 3Z M12 6v16"/></svg><span>مكتبة النصوص</span></a>
-    <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>الخرائط والمسارات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#chart">الخريطة الفلكية</a><a href="#matrix">مصفوفة القدر</a><a href="#matrix-child">مصفوفة الطفل</a><a href="#lifepath">مسار الحياة</a><a href="#astro-maps">الفيدي والداشا</a><a href="#astro-maps">العبور</a><a href="#astro-maps">العودة الشمسية</a><a href="#astro-maps">التوجيهات السنوية</a><a href="#astro-maps">الكسوف والخسوف</a><a href="#astro-maps">العقد القمرية</a><a href="#karmic">ما الكارما التي تحملها؟</a><a href="#individual">كل الخرائط والأدوات</a></div></div>
+    <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>الخرائط والمسارات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#chart">الخريطة الفلكية</a><a href="#matrix">مصفوفة القدر</a><a href="#matrix-child">مصفوفة الطفل</a><a href="#lifepath">مسار الحياة</a><a href="#saju">الساجو (الأعمدة الأربعة)</a><a href="#astro-maps">الفيدي والداشا</a><a href="#astro-maps">العبور</a><a href="#astro-maps">العودة الشمسية</a><a href="#astro-maps">التوجيهات السنوية</a><a href="#astro-maps">الكسوف والخسوف</a><a href="#astro-maps">العقد القمرية</a><a href="#karmic">ما الكارما التي تحملها؟</a><a href="#individual">كل الخرائط والأدوات</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>التوافق والعلاقات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#compat">خريطة التوافق الفلكية</a><a href="#matrix-compat">توافق مصفوفة القدر</a><a href="#lifepath-compat">توافق مسار الحياة بالأرقام</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>السماء والتوقعات</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#sky">السماء الآن</a><a href="#signs">برجك اليوم</a><a href="#year2027">قراءة سنتك 2027</a></div></div>
     <div class="aqn-acc"><button type="button" class="aqn-acc-btn" aria-expanded="false"><span>استثمر في ذاتك والمحتوى</span><svg class="aqn-acc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="aqn-acc-panel" hidden><a href="#featured-content">المقالات</a><a href="#invest">الجلسات والتقارير المدفوعة</a></div></div>
@@ -1418,6 +1420,7 @@
 <a class="rh-card" href="#chart"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="8"/><path d="M24 7v5M24 36v5M7 24h5M36 24h5M12 12l3.500 3.500M32.500 32.500L36 36M36 12l-3.500 3.500M15.500 32.500L12 36"/><circle cx="24" cy="24" r="1.800" fill="currentColor"/></svg></span><h3>الخريطة الفلكية</h3><p>الكواكب والبيوت والزوايا وقراءتها بالتفصيل.</p><span class="rh-go">احسب خريطتي ←</span></a>
 <a class="rh-card" href="#matrix"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 5l19 19-19 19L5 24z"/><path d="M24 14l10 10-10 10-10-10z"/><path d="M24 5v38M5 24h38" stroke-opacity=".55"/><circle cx="24" cy="24" r="2" fill="currentColor"/></svg></span><h3>مصفوفة القدر</h3><p>الأنماط والطاقات التي تشكّل حياتك من تاريخ ميلادك.</p><span class="rh-go">احسب مصفوفتي ←</span></a>
 <a class="rh-card" href="#lifepath"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="38" r="3.500"/><path d="M11 34.500V30a7 7 0 0 1 7-7h12a7 7 0 0 0 7-7v-3"/><path d="M37 5l1.800 3.600L42.500 9.500l-2.700 2.600.6 3.800L37 14.200l-3.400 1.700.6-3.800-2.700-2.600 3.700-.9z"/></svg></span><h3>مسار الحياة</h3><p>محطات رحلتك ودروسك والاتجاه الذي يناسبك.</p><span class="rh-go">اكتشف مساري ←</span></a>
+<a class="rh-card" href="#saju"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="8" width="7" height="32" rx="1.5"/><rect x="17" y="8" width="7" height="32" rx="1.5"/><rect x="27" y="8" width="7" height="32" rx="1.5"/><rect x="37" y="8" width="5" height="32" rx="1.5"/></svg></span><h3>الساجو</h3><p>أعمدتك الأربعة وعناصرك الخمسة من تاريخ ميلادك.</p><span class="rh-go">احسب أعمدتي ←</span></a>
 <a class="rh-card" href="#astro-maps" data-am="sidereal"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="36" height="36" rx="2"/><path d="M6 6l36 36M42 6L6 42"/><path d="M24 6l18 18-18 18L6 24z" stroke-opacity=".8"/></svg></span><h3>الخريطة الفيدية</h3><p>الطالع النجمي والمنزل القمري وفترات الداشا.</p><span class="rh-go">افتح خريطتي ←</span></a>
 </div>
 <h3 class="rh-sub"><span>الفلك الغربي والتوقيت</span></h3>
@@ -1429,6 +1432,20 @@
 <a class="rh-card" href="#astro-maps" data-am="nodes"><span class="rh-ico"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 34a12 12 0 1 1 24 0"/><circle cx="12" cy="36" r="3"/><circle cx="36" cy="36" r="3"/><path d="M24 8v8" stroke-opacity=".6"/></svg></span><h3>العقد القمرية</h3><p>الشمالية والجنوبية ودرس عمرك.</p><span class="rh-go">احسب محور العقد ←</span></a>
 </div>
 
+</div></section>
+<section class="sec" id="saju"><div class="wrap">
+<a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
+<div class="aq-section-topbar"><a href="#home" class="aq-back-home-btn">← العودة للرئيسية</a></div>
+<div class="sj-head"><span class="eyebrow" dir="ltr">عقيق أسترو · SAJU 사주</span><h2>الساجو: أعمدتك الأربعة</h2>
+<p>الساجو علم كوري أصله صيني. يأخذ سنة ميلادك وشهرك ويومك وساعتك، ويجعل لكل منها عمودًا من حرفين، ثم يقرأ توازن العناصر الخمسة فيها: الخشب والنار والأرض والمعدن والماء. أدخل بياناتك ليحسب لك الأعمدة فعليًا بحركة الشمس.</p></div>
+<form class="sj-form" id="sj-form" novalidate>
+<div><label for="sj-date">تاريخ الميلاد</label><input id="sj-date" type="date" min="1900-01-01" max="2100-12-31" required></div>
+<div><label for="sj-time">وقت الميلاد</label><input id="sj-time" type="time"><label class="sj-chk"><input type="checkbox" id="sj-notime"> لا أعرف وقت ميلادي</label></div>
+<div><label for="sj-tz">فرق التوقيت وقت الميلاد</label><select id="sj-tz"></select></div>
+<p class="sj-err" id="sj-err" role="alert" hidden></p>
+<button class="sj-btn" type="submit">احسب أعمدتي</button>
+</form>
+<div id="sj-result" aria-live="polite" hidden></div>
 </div></section>
 <section class="sec alt rhub" id="relationships" aria-labelledby="rh-h"><div class="wrap">
 <a aria-label="إغلاق" class="sheet-x" href="#home">✕</a>
@@ -1491,6 +1508,8 @@
   </div>
 </div>
 <script src="astronomy.min.js"></script>
+<script src="assets/js/saju-engine.js?v=20261124a"></script>
+<script src="assets/js/saju-ui.js?v=20261124a"></script>
 <script src="name_engine.js"></script>
 <script src="pinnacles_challenges.js?v=3.0.0"></script>
 <script src="name_readings.js?v=4.0.0"></script>

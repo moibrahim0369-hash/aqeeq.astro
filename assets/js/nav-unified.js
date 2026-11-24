@@ -4,7 +4,7 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var root = document.documentElement;
-  var DISCOVER = ['#chart', '#matrix', '#lifepath', '#sky', '#astro-maps', '#signs'];
+  var DISCOVER = ['#chart', '#matrix', '#lifepath', '#saju', '#sky', '#astro-maps', '#signs'];
   var ALIAS = { '#life-path-synastry': '#lifepath', '#lifepath-compat': '#lifepath', '#matrix-compat': '#matrix', '#matrix-child': '#matrix', '': '#home' };
 
   function lock() { root.classList.toggle('aqn-lock', !!($('#aqn-sheet.is-open') || ($('#aqh-menu') && !$('#aqh-menu').hidden))); }
