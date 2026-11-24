@@ -10,6 +10,13 @@ const KEEP = 4; // عدد الإصدارات السابقة المحفوظة (ل
 const rd = f => fs.readFileSync(path.join(root, f), "utf8");
 const hash = s => crypto.createHash("sha1").update(s).digest("hex").slice(0, 10);
 const clean = u => u.split("?")[0];
+/* LOCK: index.html is now the source of truth (restored from 5d82897 + Saju on 2026-11-24).
+   index.src.html is stale and rebuilding from it silently drops stylesheets and hand-patched bundles.
+   Refuse unless the caller knowingly sets AQ_ALLOW_STALE_SRC_BUILD=1. */
+if (!process.env.AQ_ALLOW_STALE_SRC_BUILD) {
+  console.error("build-assets.js is LOCKED: index.html is the source of truth, index.src.html is stale. See README_LOCK.md.");
+  process.exit(1);
+}
 fs.mkdirSync(DIST, { recursive: true });
 let html = rd("index.src.html");
 const written = [];
