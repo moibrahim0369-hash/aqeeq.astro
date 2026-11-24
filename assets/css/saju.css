@@ -63,3 +63,6 @@ html body #saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju#saju
 #saju .sj-acc-ch{width:38px;height:38px;border-width:1.5px;box-shadow:0 3px 8px rgba(138,106,78,.22)}
 #saju .sj-acc-ch:after{width:10px;height:10px;border-inline-end-width:2.5px;border-bottom-width:2.5px;transform:translateY(-2px) rotate(45deg)}
 #saju .sj-acc[open] .sj-acc-ch:after{transform:translateY(3px) rotate(-135deg)}
+
+#saju .sj-what{margin:12px 0;padding:10px 14px;background:#fff;border:1px solid #E3CFA3;border-inline-start:3px solid #C9A25A;border-radius:12px;color:#4a3d3f;line-height:2;font-size:.94rem}
+#saju .sj-what strong{display:block;color:#35252B;margin-bottom:2px}
