@@ -64,6 +64,19 @@
     return '<span class="fc-topic" data-topic="' + esc(main) + '"><span class="fc-topic-i">' + (TICO[main] || TICO['الفلك']) + '</span><b>' + esc(main) + '</b>' + (sub ? '<i aria-hidden="true"></i><span>' + esc(sub) + '</span>' : '') + '</span>';
   }
   function bySlug(s) { return (DATA || []).filter(function (a) { return a.slug === s; })[0]; }
+  // New release bodies are fetched only when opened. Legacy26 stay inline.
+  var bodyRequests = {};
+  function ensureBody(a) {
+    if (!a.bodyUrl || Array.isArray(a.body)) return Promise.resolve(a);
+    if (!bodyRequests[a.slug]) bodyRequests[a.slug] = fetch(a.bodyUrl, { cache: 'force-cache' }).then(function (r) {
+      if (!r.ok) throw new Error('article-body-' + r.status);
+      return r.json();
+    }).then(function (j) {
+      if (j.slug !== a.slug || !Array.isArray(j.body) || !j.body.length) throw new Error('article-body-invalid');
+      a.body = j.body; a.related = j.related || a.related; return a;
+    }).catch(function (e) { delete bodyRequests[a.slug]; throw e; });
+    return bodyRequests[a.slug];
+  }
   function url(slug) { return location.origin + location.pathname + '#featured-content/' + slug; }
 
   /* ---------- البيانات: شبكة ← كاش محلي ---------- */
@@ -239,9 +252,11 @@
       '<div class="fc-row-grid" id="fc-latest-grid" data-n="4">' + latest.map(function (a, i) { return mini(a, i); }).join('') + '</div>' +
       '<nav class="fc-pager" id="fc-more-l" aria-label="ترقيم الصفحات">' + pagerHTML(pages) + '</nav></section>';
     rowDefs().forEach(function (r, ri) {
+      var newPreviewCount = 0;
+      var previews = r.items.filter(function (a) { return !a.bodyUrl || ++newPreviewCount <= 4; });
       h += '<section class="fc-row" aria-label="' + esc(r.k) + '">' + rowHead(r.k, r.ico, r.items.length, true) +
         '<div class="fc-track-wrap"><button type="button" class="fc-nav fc-nav-p" data-nav="1" aria-label="السابق" hidden>' + PGP + '</button>' +
-        '<div class="fc-track" tabindex="0" role="region" aria-label="' + esc(r.k) + ' — مرّر أفقيًا">' + r.items.map(function (a, i) { return mini(a, i); }).join('') + '</div>' +
+        '<div class="fc-track" tabindex="0" role="region" aria-label="' + esc(r.k) + ' — مرّر أفقيًا">' + previews.map(function (a, i) { return mini(a, i); }).join('') + '</div>' +
         '<button type="button" class="fc-nav fc-nav-n" data-nav="-1" aria-label="التالي" hidden>' + PGN + '</button></div></section>';
     });
     g.innerHTML = h; wireTracks(g);
@@ -348,6 +363,7 @@
   }
   function popOpen(slug) {
     var a = bySlug(slug); if (!a) { location.hash = '#featured-content/' + slug; return; }
+    if (a.bodyUrl && !Array.isArray(a.body)) { location.hash = '#featured-content/' + slug; return; }
     var old = document.getElementById('fc-pop'); if (old) old.remove();
     var el = document.createElement('div'); el.id = 'fc-pop'; el.className = 'fc-pop'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-labelledby', 'fc-pop-t'); el.setAttribute('dir', 'rtl');
     el.innerHTML = '<button type="button" class="fc-pop-x" data-fc-pop-x aria-label="إغلاق">' + ICO.x + '</button>' +
@@ -386,9 +402,9 @@
   function related(a) {
     var out = [], seen = { }; seen[a.slug] = 1;
     function add(x) { if (x && !seen[x.slug] && out.length < 3) { seen[x.slug] = 1; out.push(x); } }
-    (DATA || []).filter(function (x) { return x.category === a.category; }).forEach(add);
+    (DATA || []).filter(function (x) { return (a.bodyUrl || !x.bodyUrl) && x.category === a.category; }).forEach(add);
     (a.related || []).forEach(function (s) { add(bySlug(s)); });
-    (DATA || []).forEach(add);
+    (DATA || []).filter(function (x) { return a.bodyUrl || !x.bodyUrl; }).forEach(add);
     return out;
   }
   function body(a) {
@@ -410,7 +426,7 @@
   function getSaved(uid) { try { return JSON.parse(localStorage.getItem(savedKey(uid)) || '[]'); } catch (e) { return []; } }
 
   function nextOf(a) {
-    var all = newest(); if (all.length < 2) return null;
+    var all = newest().filter(function (x) { return a.bodyUrl || !x.bodyUrl; }); if (all.length < 2) return null;
     for (var i = 0; i < all.length; i++) { if (all[i].slug === a.slug) return all[(i + 1) % all.length]; }
     return null;
   }
@@ -426,6 +442,17 @@
     if (!a) {
       host.innerHTML = '<div class="fc-art"><div class="fc-msg"><p>هذا المحتوى غير متاح حاليًا.</p><a class="fc-btn" href="#featured-content"><span>رجوع إلى المحتوى المميز</span>' + ARROW + '</a></div></div>';
       document.title = 'محتوى غير متاح | AQEQ ASTRO'; return;
+    }
+    if (a.bodyUrl && !Array.isArray(a.body)) {
+      host.innerHTML = '<div class="fc-art"><p role="status">جارٍ تحميل المقال...</p></div>';
+      ensureBody(a).then(function () {
+        if (location.hash.split('?')[0] === '#featured-content/' + slug) showReader(slug);
+      }).catch(function () {
+        if (location.hash.split('?')[0] !== '#featured-content/' + slug) return;
+        host.innerHTML = '<div class="fc-art"><p role="status">تعذّر تحميل المقال. حاول مرة أخرى.</p><button type="button" class="fc-btn" data-body-retry>إعادة المحاولة</button></div>';
+        $('[data-body-retry]', host).addEventListener('click', function () { showReader(slug); });
+      });
+      return;
     }
     document.title = a.title + ' | AQEQ ASTRO';
     var rel = related(a);
