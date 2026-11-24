@@ -105,3 +105,5 @@ html body #year2027 .kt-vip b{font:inherit;position:relative;z-index:1}
 html body #year2027 .kt-vip svg{position:relative;z-index:1}
 html body #year2027 .kt-vip::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.65) 49%,transparent 62%);transform:translateX(-120%);animation:kt-vip-glint 2.6s ease-in-out infinite;pointer-events:none}
 @media(prefers-reduced-motion:reduce){html body #year2027 .kt-vip::after{animation:none}}
+/* v4: container back to light cream; only rows stay raised */
+html body main section#karmic#karmic#karmic#karmic#karmic#karmic:has(#kt-result:not([hidden])) .b3-lock{background:linear-gradient(180deg,#fffdf6,#fbf4e3)!important;border:1px solid #e3cd9f!important;border-radius:22px!important;padding:14px!important;box-shadow:0 8px 22px rgba(120,90,40,.08),inset 0 1px 0 #fff!important}
