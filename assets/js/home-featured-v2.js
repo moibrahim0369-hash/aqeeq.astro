@@ -34,10 +34,6 @@ function build(list){
  var h=sec.querySelector('.aqh-row-h');
  if(!h){h=document.createElement('h3');h.className='aqh-row-h';sec.insertBefore(h,sec.querySelector('.aqh-carousel'))}
  h.innerHTML='<a class="aqh-row-link" href="'+HREF+'"><span>عرض كل أحدث ما نشر</span>'+ARROW+'</a>';
- /* link above the second row */
- var h2=sec.querySelector('.aqh-row-h2');
- if(!h2&&row2){h2=document.createElement('h3');h2.className='aqh-row-h aqh-row-h2';row2.parentNode.insertBefore(h2,row2)}
- if(h2)h2.innerHTML='<a class="aqh-row-link" href="'+HREF+'"><span>عرض كل المقالات</span>'+ARROW+'</a>';
  two.onclick=function(e){var c=e.target.closest('.aqh-article');if(!c)return;var l=c.querySelector('.aqh-article-link');if(l&&!e.target.closest('a')){e.preventDefault();location.hash='#featured-content/'+l.getAttribute('data-slug')}};
  return true}
 function run(){
