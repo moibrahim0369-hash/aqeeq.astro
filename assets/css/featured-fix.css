@@ -1,0 +1,11 @@
+/* featured-content page: pager stays on one row (compact numbers), gold active page */
+.fc-page .fc-pager:not(#_a):not(#_b){display:flex!important;flex-wrap:nowrap!important;justify-content:center;gap:6px!important;align-items:center;max-width:100%;overflow:hidden}
+.fc-page .fc-pager .fc-pg:not(#_a):not(#_b){flex:0 0 auto!important;width:36px!important;min-width:36px!important;height:36px!important;font-size:.85rem!important;padding:0!important}
+.fc-page .fc-pager .fc-pg.fc-pg-hide{display:none!important}
+.fc-page .fc-pager .fc-pg.on:not(#_a):not(#_b){background:linear-gradient(135deg,#eadcb2,#d2b672)!important;color:#17110f!important}
+.fc-page .fc-pager .fc-pg-gap{flex:0 0 auto;color:#8a7a5a;font-weight:700;padding:0 2px}
+/* header on this page: the brand name must not be cut by the icons */
+@media(max-width:480px){html[data-aqr="featured-content"] .aqh-header .aqh-tools{gap:4px!important}
+html[data-aqr="featured-content"] .aqh-header .aqh-brand-text small{letter-spacing:.06em!important;font-size:9px!important;max-width:none!important;overflow:visible!important;text-overflow:clip!important}
+html[data-aqr="featured-content"] .aqh-header .aqh-join{padding-inline:12px!important}
+html[data-aqr="featured-content"] .aqh-header .aqh-icon,html[data-aqr="featured-content"] .aqh-header .aqh-burger{width:38px!important}}
