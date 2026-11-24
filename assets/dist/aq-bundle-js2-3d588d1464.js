@@ -402,7 +402,7 @@ return new kd(this.curr.time,a,b)};$jscomp.global.Object.defineProperties(H.prot
   var TONE = [2, 1, 0, 0, 2];
   var PIL = [["year", "السنة", "الجذور والبيئة الأولى"], ["month", "الشهر", "العمل والبيت الذي تنشأ فيه"], ["day", "اليوم", "ذاتك وعلاقتك القريبة"], ["hour", "الساعة", "ثمارك ومرحلة متأخرة"]];
   function item(title, inner) {
-    return '<section class="sj-sec"><h3 class="sj-sh"><span>' + title + '</span></h3>' + inner + '</section>';
+    return '<details class="sj-acc"><summary><span class="sj-acc-t">' + title + '</span><span class="sj-acc-ch" aria-hidden="true"></span></summary><div class="sj-acc-body">' + inner + '</div></details>';
   }
 
 
@@ -510,10 +510,12 @@ return new kd(this.curr.time,a,b)};$jscomp.global.Object.defineProperties(H.prot
     [d].concat(ye !== d && !amb.year ? [ye] : []).forEach(function (e) {
       rows += '<h4 class="sj-h4">' + S.ELEMENTS[e] + (e === d ? " (عنصر سيد يومك)" : " (عنصر سنتك)") + '</h4><p class="sj-p"><strong>الألوان:</strong> ' + COLORS[e] + '. <strong>الاتجاه:</strong> ' + DIRS[e] + '. <strong>الأرقام (جدول هو تو):</strong> ' + NUMS[e] + '.</p>';
     });
-    out += item("ألوانك وأرقامك واتجاهك",
+    out += item("ألوان عنصرك واتجاهه وأرقامه",
       '<p class="sj-p">هذه مراسلات العناصر في الجداول التقليدية، مأخوذة من عنصر سيد يومك وعنصر سنتك.</p>' + rows +
-      '<p class="sj-p"><strong>لون محفظتك بحسب عنصر ذاتك:</strong> ' + WALLET[d] + '.</p>' +
       '<p class="sj-p">لم نحدد لك عنصرًا نافعًا واحدًا، لأن ذلك يحتاج قراءة فصل الميلاد وقوة سيد اليوم، وهذه النسخة لا تحسبهما.</p>');
+    out += item("لون محفظتك",
+      '<p class="sj-p"><strong>لون محفظتك بحسب عنصر ذاتك (' + S.ELEMENTS[d] + '):</strong> ' + WALLET[d] + '.</p>' +
+      '<p class="sj-p">هذا أول لون في جدول عنصر سيد يومك: ' + COLORS[d] + '.</p>');
     /* 5) النجوم */
     if (!(amb.year || amb.month)) {
       var found = function (br) { var f = []; ks.forEach(function (k) { if (P[k] && P[k].branch === br) f.push(k); }); return f; };
@@ -548,7 +550,7 @@ return new kd(this.curr.time,a,b)};$jscomp.global.Object.defineProperties(H.prot
     return out.replace(/[\u4e00-\u9fff]+/g, "<bdi>$&</bdi>");
   }
 
-  function render(r, box, name) {
+  function render(r, box, name, meta) {
     var P = r.pillars, dm = r.dayMaster, dmx = DM[S.STEMS.indexOf(dm)];
     /* لوحة الأعمدة */
     var cols = ["hour", "day", "month", "year"].map(function (k, i) {
@@ -585,13 +587,34 @@ return new kd(this.curr.time,a,b)};$jscomp.global.Object.defineProperties(H.prot
     var how = '<p class="sj-p">الحساب فعلي بموضع الشمس: عمود السنة يتبدل عند ليتشون، وعمود الشهر بالمصطلحات الشمسية الاثني عشر، وعمود اليوم من دورة الستين يومًا، وعمود الساعة كل ساعتين.</p>' +
       '<p class="sj-p">كل ما في هذه الصفحة محسوب من أعمدتك الأربعة ومن الجداول التقليدية للساجو. هو قراءة لطبعك وميولك، وليس وعدًا بنتيجة ولا رأيًا طبيًا أو ماليًا. الحساب يشمل الأعمدة الأربعة والعناصر وسيد اليوم والبرج والآلهة العشرة والنجوم الثلاث. لا يشمل قوة سيد اليوم ولا العنصر النافع ولا فترات العمر، فهذه تحتاج قراءة الفصل. يبدأ اليوم الجديد عند الساعة 23:00. الحساب بتوقيت الميلاد المحلي الذي أدخلته مع فرق التوقيت، ولا يتضمن تصحيح الوقت الشمسي الحقيقي للمدينة.</p>' +
       '<p class="sj-p"><a href="#featured-content/saju-how-pillars-calculated">اقرأ: كيف تُحسب أعمدتك الأربعة؟</a></p>';
-    var who = name ? '<h3 class="sj-name">' + esc(name) + '</h3>' : "";
-    box.innerHTML = who + diagram + '<div class="sj-plain">' +
-      item("أعمدتك الأربعة", timeNote + ambn + late + pin) +
+    meta = meta || {};
+    var chip = function (l, v) { return '<div class="sj-chip"><small>' + l + '</small><b>' + esc(v) + '</b></div>'; };
+    var card = '<div class="sj-rcard"><div class="sj-rtop"><h3>' + (name ? "ساجو " + esc(name) : "قراءة الساجو") + '</h3><p>أعمدتك الأربعة وتفاصيلها</p></div>' +
+      '<div class="sj-chips">' + chip("تاريخ الميلاد", meta.date || "") + chip("وقت الميلاد", meta.time || "") + chip("فرق التوقيت", meta.tz || "") + '</div>' +
+      '<div class="sj-tools"><button type="button" class="sj-tool" data-sj-edit>تعديل البيانات</button><button type="button" class="sj-tool" data-sj-save>حفظ</button></div></div>';
+    box.innerHTML = card + '<div class="sj-accs">' +
+      item("أعمدتك الأربعة", diagram + timeNote + ambn + late + pin) +
       item("سيد اليوم", dmIn) +
       item("توازن العناصر", '<div class="sj-bars">' + bars + '</div><p class="sj-p">العدد من ' + r.total + ' حروف ظاهرة. عنصر ذاتك (' + S.ELEMENTS[dm.el] + ') يظهر ' + r.elements[dm.el] + (r.elements[dm.el] === 1 ? " مرة" : " مرات") + '.</p>' + notes) +
       signSections(r, dm, dmx) +
       item("كيف حُسبت؟", how) + '</div>';
+    var ttl = (name ? "ساجو " + name : "قراءة الساجو");
+    box.querySelector("[data-sj-save]").addEventListener("click", function () {
+      var txt = ttl + "\n" + (meta.date || "") + " | " + (meta.time || "") + " | " + (meta.tz || "") + "\n";
+      box.querySelectorAll(".sj-acc").forEach(function (a) {
+        txt += "\n== " + a.querySelector(".sj-acc-t").textContent + " ==\n" + a.querySelector(".sj-acc-body").innerText.replace(/\n{3,}/g, "\n\n") + "\n";
+      });
+      txt += "\nعقيق أسترو";
+      try {
+        var bl = new Blob(["\ufeff" + txt], { type: "text/plain;charset=utf-8" }), u = URL.createObjectURL(bl), el = document.createElement("a");
+        el.href = u; el.download = "saju-reading.txt"; document.body.appendChild(el); el.click(); el.remove();
+        setTimeout(function () { URL.revokeObjectURL(u); }, 4000);
+      } catch (e) { }
+    });
+    box.querySelector("[data-sj-edit]").addEventListener("click", function () {
+      var sec = document.getElementById("saju");
+      box.hidden = true; box.innerHTML = ""; if (sec) { sec.classList.remove("sj-view-result"); try { sec.scrollTo({ top: 0 }); } catch (e) { sec.scrollTop = 0; } }
+    });
   }
 
   function init() {
@@ -621,8 +644,10 @@ return new kd(this.curr.time,a,b)};$jscomp.global.Object.defineProperties(H.prot
           var ay = q0.year.stem !== q1.year.stem || q0.year.branch !== q1.year.branch, am = q0.month.stem !== q1.month.stem || q0.month.branch !== q1.month.branch;
           if (ay || am) { r.amb = { year: ay, month: am }; r.ambYear = [q0.year, q1.year]; }
         }
-        render(r, out, (($("#sj-name") || {}).value || "").trim()); out.hidden = false;
-        out.scrollIntoView({ behavior: "smooth", block: "start" });
+        var tzo = tz.options[tz.selectedIndex];
+        render(r, out, (($("#sj-name") || {}).value || "").trim(), { date: d[0] + "/" + (d[1] < 10 ? "0" : "") + d[1] + "/" + (d[2] < 10 ? "0" : "") + d[2], time: h === null ? "غير معروف" : (h < 10 ? "0" : "") + h + ":" + (mi < 10 ? "0" : "") + mi, tz: tzo ? tzo.textContent : "" });
+        out.hidden = false;
+        var secEl = document.getElementById("saju"); if (secEl) { secEl.classList.add("sj-view-result"); try { secEl.scrollTo({ top: 0 }); } catch (e2) { secEl.scrollTop = 0; } }
       } catch (x) { err.textContent = x.message || "تعذر الحساب."; err.hidden = false; }
     });
   }
