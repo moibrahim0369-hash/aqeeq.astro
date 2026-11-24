@@ -102,7 +102,7 @@
     var L = c.lunar;
     out += '<div class="sj-plain">';
     out += sec("خريطتك بإيجاز", p("ميلادك بالتقويم القمري الصيني: يوم <b>" + L.day + "</b> من الشهر <b>" + (L.leap ? "الكبيس " : "") + L.month + "</b> سنة <b>" + L.year + "</b>، وهي سنة " + Z.STEMS.charAt(c.yearStem) + Z.BRANCHES.charAt(c.yearBranch) + " (" + ANIMAL[c.yearBranch] + ").") +
-      p("بيت نفسك في فرع <b>" + Z.BRANCHES.charAt(c.ming) + "</b>، ودورة عنصرك <b>" + ELN[c.bureau.el] + " " + c.bureau.n + "</b>، ونجمة زي وي عندك في بيت <b>" + palName(c.palaces[c.ziwei]) + "</b>. " + (c.hasTime ? "" : "لم تُدخل وقت الميلاد، فاعتُبر وقت الظهيرة والنتيجة تقريبية. أدخل الساعة الدقيقة لتكتمل الخريطة.")) +
+      p("بيت نفسك في فرع <b>" + Z.BRANCHES.charAt(c.ming) + "</b>، ودورة عنصرك <b>" + ELN[c.bureau.el] + " " + c.bureau.n + "</b>، ونجمة زي وي عندك في بيت «<b>" + palName(c.palaces[c.ziwei]) + "</b>». " + (c.hasTime ? "" : "لم تُدخل وقت الميلاد، فاعتُبر وقت الظهيرة والنتيجة تقريبية. أدخل الساعة الدقيقة لتكتمل الخريطة.")) +
       p("بيت الجسد (مكان ثقلك العملي في الحياة) في <b>" + palName(body) + "</b>.") + (c.late ? p("وُلدت بعد الساعة 23:00، وهي ساعة «زي» التي يحسب لها اليوم التالي في هذه الطريقة.") : ""));
     out += sec("بيت نفسك", palText(c, ming, true));
     out += sec("البيوت الاثنا عشر", c.palaces.slice().sort(function (a, b) { return Z.PALACES.indexOf(a.name) - Z.PALACES.indexOf(b.name); }).filter(function (x) { return x.name !== "命宫"; }).map(function (x) { return palText(c, x, false); }).join(""));
