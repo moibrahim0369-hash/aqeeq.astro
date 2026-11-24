@@ -13,7 +13,9 @@ var IC={
  chart:'<circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>',
  matrix:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
  time:'<circle cx="12" cy="12" r="5"/><path d="M3.5 16.5c-1.5-.9-1-2.6 1.4-3.9 4.4-2.4 12.5-4 15.6-3.4 2 .4 2.3 1.9.5 3.2"/>'};
-var SC=[['signs','#signs','طاقة برجك'],['sky','#sky','توقعات السما'],['compat','#compat','التوافق بينك وبين حبيبك'],['path','#lifepath','المال'],['chart','#chart','خريطة ميلادك'],['matrix','#matrix','شفرة تاريخ ميلادك'],['time','#astro-maps','توقيتك القادم']];
+IC.wallet='<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M3 10h14M16 14.5h2.5"/>';
+IC.child='<circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/>';
+var SC=[['wallet','#saju','ما لون محفظتك المناسب لك؟'],['compat','#astro-maps','ماذا عن زواجك في خريطتك؟'],['signs','#kigaku','اعرف عنصرك واتجاهك'],['time','#ziwei','ما بيوت حياتك الاثنا عشر؟'],['child','#matrix-child','اكتشف شخصية طفلك'],['path','#lifepath-compat','هل مساراكما يتفقان؟']];
 function shortcuts(sec){
  if(sec.querySelector('.aqh-sc'))return;var car=sec.querySelector('.aqh-carousel');if(!car)return;
  var d=document.createElement('nav');d.className='aqh-sc';d.setAttribute('aria-label','اختصارات');
