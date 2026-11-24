@@ -34,9 +34,9 @@ function build(list){
  var h=sec.querySelector('.aqh-row-h');
  if(!h){h=document.createElement('h3');h.className='aqh-row-h';sec.insertBefore(h,sec.querySelector('.aqh-carousel'))}
  h.innerHTML='<a class="aqh-row-link" href="'+HREF+'"><span>عرض كل أحدث ما نشر</span>'+ARROW+'</a>';
- /* small "show all featured" button moves up, under the heading */
+ /* "show all featured" text link sits just above the lower row */
  var allw=document.querySelector('.aqh-band-arts .aqh-all-wrap'),allb=document.getElementById('aqh-all-articles'),mv=allw||allb;
- if(mv&&!sec.querySelector('.aqh-all-up')){var up=document.createElement('div');up.className='aqh-all-up';var hd=sec.querySelector('.aqh-articles-head');if(hd)hd.parentNode.insertBefore(up,hd.nextSibling);else sec.insertBefore(up,sec.firstChild);up.appendChild(mv)}
+ if(mv&&row2&&!sec.querySelector('.aqh-all-up')){var up=document.createElement('div');up.className='aqh-all-up';row2.parentNode.insertBefore(up,row2);up.appendChild(mv)}
  two.onclick=function(e){var c=e.target.closest('.aqh-article');if(!c)return;var l=c.querySelector('.aqh-article-link');if(l&&!e.target.closest('a')){e.preventDefault();location.hash='#featured-content/'+l.getAttribute('data-slug')}};
  return true}
 function run(){
