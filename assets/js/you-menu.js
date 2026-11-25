@@ -107,6 +107,7 @@
       var yp = $('#fy-body .yp'); if (!yp) return;
       if (yp.classList.contains('yp-t-home')) { yp.classList.add('yp-lite'); return; }
       if (!yp.classList.contains('yp-t-settings')) return;
+      if ($('.yp-inb', yp)) { yp.setAttribute('data-ypm', 'inb'); return; }
       var mode = window.__ypMode || 'profile'; yp.setAttribute('data-ypm', mode);
       var h1 = $('.yp-bar h1', yp); if (h1) h1.textContent = mode === 'site' ? 'الإعدادات' : 'الملف الشخصي';
       var map = { 'حسابك': 'p', 'الخصوصية': 'p', 'التنبيهات': 's', 'بياناتك وخريطتك': 'p', 'عن عقيق أسترو': 'a' };
