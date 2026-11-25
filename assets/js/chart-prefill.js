@@ -36,6 +36,7 @@
   function clean() {
     document.querySelectorAll('.aq-autofill-bar').forEach(function (b) { b.remove(); });
     document.querySelectorAll('.aq-mx-read,.y27-explain,#eam-explain').forEach(function (b) { b.remove(); });
+    ['matrix','lifepath','lifepath-compat','matrix-compat','matrix-child','chart','astro-maps','year2027','karmic','compat','saju','kigaku','ziwei'].forEach(function (i) { var s = document.getElementById(i); if (s) s.querySelectorAll('.aq-related').forEach(function (b) { b.remove(); }); });
   }
   function run() { clean(); G.forEach(fill); }
   function start() {
