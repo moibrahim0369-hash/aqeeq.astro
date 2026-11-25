@@ -39,3 +39,6 @@ html body #year2027 .y27-acc summary .y27-t{font-family:Amiri,serif!important;fo
 html body #year2027 .y27-reference-library[open]>.y27-body{display:block!important}#year2027 .y27-reference-library>.y27-body>details{padding:16px 0;border-bottom:1px solid #deccab}#year2027 .y27-reference-library>.y27-body>details>summary{font-size:20px;cursor:pointer}#year2027 .y27-focused-periods{font-size:14px;color:#806c51;margin:16px 0 24px}#year2027 .y27-focused-periods li{margin:6px 0}
 
 #year2027 #y27-library [data-y27-review-open]{position:static;transform:none;margin:16px auto 0}
+.y27-modal .y27-sub{font-family:Cairo,sans-serif;font-size:20px;font-weight:700;line-height:1.8;color:#4A1224;margin:22px 0 8px}
+
+.y27-lockbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:18px 0 6px;padding:14px 16px;border:1px solid #d6ba85;border-radius:16px;background:linear-gradient(180deg,#fffaf0,#f6ead2);color:#6a2038}.y27-lockbar span{flex:1 1 180px;font-family:Cairo,sans-serif;font-size:15px;line-height:1.8}.y27-hookbox h4{font-family:Cairo,sans-serif;font-size:21px;font-weight:700;color:#4a1224;margin:0 0 10px}

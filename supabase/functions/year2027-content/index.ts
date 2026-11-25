@@ -19,11 +19,13 @@ Deno.serve(async req=>{
   const url=Deno.env.get('SUPABASE_URL')!,key=Deno.env.get('SUPABASE_ANON_KEY')!,admin=createClient(url,Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,{auth:{persistSession:false}});
   const ip=req.headers.get('x-forwarded-for')?.split(',')[0].trim()||'unknown';const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(ip+'|'+new Date().toISOString().slice(0,10))))).map(b=>b.toString(16).padStart(2,'0')).join('');
   const rate=await admin.rpc('year2027_rate_limit',{p_key:digest,p_limit:body.mode==='preview'?30:60});if(rate.error||rate.data!==true)return response({error:'too_many_requests'},429);
-  if(body.mode==='preview'){const lib=await library(admin,false);return response({...previewFor(input,lib.content),country:geo});}
-  if(body.mode==='read'){if(input.unknown)return response({error:'birth_time_required'},400);const lib=await library(admin,true);return response({report:reportFor(input,lib.content,lib.ephemeris)});}
+  if(body.mode==='preview'){const lib=await library(admin,false);const base=previewFor(input,lib.content);let hooks=null,recap=null;
+   if(!input.unknown){try{const full=await library(admin,true),rep=reportFor(input,full.content,full.ephemeris);hooks=(rep.focused||[]).map((s:any)=>{const t=s.entries[0].text;return {id:s.id,title:t.title,free:t.free||''};});recap=rep.closing.map((c:any)=>c.text);}catch{}}
+   return response({...base,hooks,recap,country:geo});}
+  if(input.unknown)return response({error:'birth_time_required'},400);
   const sb=createClient(url,key,{global:{headers:{Authorization:req.headers.get('Authorization')||''}},auth:{persistSession:false}});
   const {data:{user},error}=await sb.auth.getUser();if(error||!user)return response({error:'sign_in_required'},401);
-  let ownerPreview=false;if(Deno.env.get('YEAR2027_OWNER_PREVIEW')==='1'){const {data:isOwner,error:ownerError}=await sb.rpc('is_app_admin');ownerPreview=!ownerError&&isOwner===true;}
+  let ownerPreview=false;{const {data:isOwner,error:ownerError}=await sb.rpc('is_app_admin');ownerPreview=!ownerError&&isOwner===true;}
   const {data:access,error:denied}=await sb.rpc('year2027_access',{p_input:input});if(!ownerPreview&&(denied||!access))return response({error:'annual_report_not_purchased'},403);
   const lib=await library(admin,true);return response({report:{...reportFor(input,lib.content,lib.ephemeris),ownerPreview},reportId:access});
  }catch{return response({error:'report_temporarily_unavailable'},500);}
