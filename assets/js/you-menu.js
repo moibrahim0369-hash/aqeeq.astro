@@ -134,11 +134,37 @@
     b.innerHTML = '<span class="yp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4.500-1 10-10a2.100 2.100 0 00-3-3l-10 10z"/></svg></span><b>' + esc(EDIT_LBL) + '</b><svg class="yp-ed-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
     slot.insertBefore(b, slot.firstChild);
   }
+
+  /* صور افتراضية من هويتنا لمن لا صورة له: ثلاث لكل جنس، تُحدَّد ثابتة من معرّف الحساب */
+  var AV = { male: ['m1', 'm2', 'm3'], female: ['f1', 'f2', 'f3'] };
+  function avGender() {
+    var g = '';
+    try { var m = window.AqeeqChartContext && window.AqeeqChartContext.getMine && window.AqeeqChartContext.getMine(); g = (m && (m.gender || (m.ch && m.ch.gender))) || ''; } catch (e) {}
+    try { var u = window.AqSession && window.AqSession.user; if (!g && u && u.user_metadata) g = u.user_metadata.gender || ''; } catch (e) {}
+    g = String(g).toLowerCase(); return g === 'male' || g === 'ذكر' ? 'male' : (g === 'female' || g === 'أنثى' ? 'female' : '');
+  }
+  function avUrl() {
+    var g = avGender(); if (!g) return 'assets/images/brand/logo-mark-160.png';
+    var u = (window.AqSession && window.AqSession.user) || {}, k = String(u.id || u.email || 'x'), h = 0, i;
+    for (i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) >>> 0;
+    return 'assets/images/avatars/' + AV[g][h % 3] + '.svg';
+  }
+  function avatars(root) {
+    var url = 'url(' + new URL(avUrl(), document.baseURI).href + ')';
+    [].forEach.call(root.querySelectorAll('.yp-av-i,.yp-who-card .yp-av,#profile-avatar-fallback,#profile-summary-avatar'), function (el) {
+      if (el.querySelector('img')) return;
+      el.classList.add('yp-dav'); el.style.setProperty('--dav', url);
+    });
+    [].forEach.call(root.querySelectorAll('#profile-form-wrapper .profile-photo-actions *'), function (el) {
+      if (/أول حرف اسمك|أحرف اسمك الأولى/.test(el.textContent) && ![].some.call(el.children, function (c) { return /أول حرف اسمك|أحرف اسمك الأولى/.test(c.textContent); })) el.classList.add('yp-hide');
+    });
+  }
   var busy = false;
   function adapt() {
     if (busy) return; busy = true;
     try {
       var yp = $('#fy-body .yp'); if (!yp) return;
+      avatars(document);
       if (yp.classList.contains('yp-t-home')) { yp.classList.add('yp-lite'); return; }
       if (!yp.classList.contains('yp-t-settings')) return;
       if ($('.yp-inb', yp)) { yp.setAttribute('data-ypm', 'inb'); return; }
