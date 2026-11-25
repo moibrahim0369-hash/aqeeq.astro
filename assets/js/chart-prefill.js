@@ -35,7 +35,7 @@
   }
   function clean() {
     document.querySelectorAll('.aq-autofill-bar').forEach(function (b) { b.remove(); });
-    document.querySelectorAll('.aq-mx-read').forEach(function (b) { b.remove(); });
+    document.querySelectorAll('.aq-mx-read,.y27-explain,#eam-explain').forEach(function (b) { b.remove(); });
   }
   function run() { clean(); G.forEach(fill); }
   function start() {
