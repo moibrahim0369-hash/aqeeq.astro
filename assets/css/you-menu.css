@@ -1,5 +1,5 @@
 /* «أنت»: صفحة مبسّطة (زر الضبط + صورة الحساب) وقائمة الحساب المنسدلة */
-html body section#for-you .yp-lite .yp-body:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h),html body section#for-you .yp-lite .yp-sub1:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h),html body section#for-you .yp-lite .yp-ib[data-sv]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h),html body section#for-you .yp-lite .yp-ib[data-inb]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h){display:none!important}
+html body section#for-you .yp-lite .yp-body:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h),html body section#for-you .yp-lite .yp-sub1:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h),html body section#for-you .yp-lite .yp-ib[data-sv]:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h){display:none!important}
 html body section#for-you .yp-lite .yp-who-t:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h){display:none!important}
 html body section#for-you .yp-lite .yp-who-b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h){padding:0!important;background:none!important;border:0!important;box-shadow:none!important;gap:0!important}
 html body section#for-you .yp-lite .yp-av.yp-av-b:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h){width:52px!important;height:52px!important;box-shadow:0 8px 20px -8px rgba(107,31,46,.5),0 0 0 3px #fff!important;overflow:hidden}
@@ -181,3 +181,8 @@ html body #profile-avatar-fallback.yp-dav,html body .profile-photo-row .profile-
 .yp-avs-o img{width:100%;height:100%;display:block;object-fit:cover}
 .yp-avs-o.on{box-shadow:0 0 0 2px #fff,0 0 0 4px #1b1b1f}
 .yp-avs-up{width:100%;min-height:48px;border-radius:15px;border:1px solid #c9a35a;background:#fff;color:#2a1a20;font:700 .95rem 'IBM Plex Sans Arabic',sans-serif;cursor:pointer}
+
+/* جرس الإشعارات في شريط «أنت»: بجانب الضبط، نقطة للجديد */
+html body section#for-you#for-you .yp.yp-lite:not(#_1):not(#_2):not(#_3):not(#_4):not(#_5):not(#_6):not(#_7):not(#_8):not(#_9):not(#_10) .yp-ib[data-inb],html body section#for-you#for-you .yp.yp-lite:not(#_1):not(#_2):not(#_3):not(#_4):not(#_5):not(#_6):not(#_7):not(#_8):not(#_9):not(#_10) .yp-ib[data-tab="settings"]{background:#fff!important;border:1px solid #eeece8!important;box-shadow:0 1px 2px rgba(20,20,30,.05)!important;color:#26262b!important}
+html body section#for-you#for-you .yp.yp-lite:not(#_1):not(#_2):not(#_3):not(#_4):not(#_5):not(#_6):not(#_7):not(#_8):not(#_9):not(#_10) .yp-ib svg{stroke-width:1.2!important}
+html body section#for-you#for-you .yp.yp-lite:not(#_1):not(#_2):not(#_3):not(#_4):not(#_5):not(#_6):not(#_7):not(#_8):not(#_9):not(#_10) .yp-ib[data-inb] i{font-size:0!important;line-height:0!important;min-width:0!important;width:9px!important;height:9px!important;padding:0!important;top:9px!important;inset-inline-start:11px!important;background:#1b1b1f!important;box-shadow:0 0 0 2px #fff!important}
