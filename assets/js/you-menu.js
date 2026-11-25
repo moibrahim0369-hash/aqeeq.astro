@@ -100,6 +100,40 @@
       r.insertBefore(i, r.firstChild);
     });
   }
+
+  /* صفحة تعديل البيانات: صفحة مستقلة فوق الصفحة بدل التمدد داخلها */
+  var EDIT_LBL = 'تعديل البيانات الشخصية';
+  function edWrap() { return document.getElementById('profile-form-wrapper'); }
+  function edOpen() {
+    var w = edWrap(); if (!w) return;
+    var b = document.getElementById('profile-edit-btn'), sp = b && b.querySelector('span'); if (sp && sp.textContent.trim()) EDIT_LBL = sp.textContent.trim();
+    if (!w.querySelector('.yp-ed-bar')) {
+      var bar = document.createElement('div'); bar.className = 'yp-ed-bar';
+      bar.innerHTML = '<button type="button" class="yp-ed-back" data-yed-close aria-label="رجوع"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button><h2>' + esc(EDIT_LBL) + '</h2><span></span>';
+      w.insertBefore(bar, w.firstChild);
+    }
+    w.classList.add('yp-ed-open'); document.documentElement.classList.add('yp-ed-lock');
+    var sc = w.scrollTop = 0;
+  }
+  function edClose() {
+    var w = edWrap(); if (w) w.classList.remove('yp-ed-open'); document.documentElement.classList.remove('yp-ed-lock');
+    var c = document.getElementById('profile-cancel-edit'); if (c && !c.hidden && c.offsetParent !== null) { try { c.click(); } catch (x) {} }
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target; if (!t || !t.closest) return;
+    if (t.closest('[data-yed-close]')) { e.preventDefault(); edClose(); return; }
+    if (t.closest('#profile-edit-btn') || t.closest('[data-yed-open]')) { edOpen(); }
+  }, true);
+  function edWatch() {
+    var w = edWrap(); if (!w || w._yedW) return; w._yedW = 1;
+    new MutationObserver(function () { if (w.classList.contains('yp-ed-open') && (w.hidden || w.style.display === 'none')) edClose(); }).observe(w, { attributes: true, attributeFilter: ['hidden', 'style'] });
+  }
+  function edEntry(set) {
+    var slot = $('#yp-prof-slot', set); if (!slot || $('.yp-ed-entry', slot)) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'yp-ed-entry'; b.setAttribute('data-yed-open', '');
+    b.innerHTML = '<span class="yp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4.500-1 10-10a2.100 2.100 0 00-3-3l-10 10z"/></svg></span><b>' + esc(EDIT_LBL) + '</b><svg class="yp-ed-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>';
+    slot.insertBefore(b, slot.firstChild);
+  }
   var busy = false;
   function adapt() {
     if (busy) return; busy = true;
@@ -112,7 +146,7 @@
       var h1 = $('.yp-bar h1', yp); if (h1) h1.textContent = mode === 'site' ? 'الإعدادات' : 'الملف الشخصي';
       var map = { 'حسابك': 'p', 'الخصوصية': 'p', 'التنبيهات': 's', 'بياناتك وخريطتك': 'p', 'عن عقيق أسترو': 'a' };
       [].forEach.call(yp.querySelectorAll('.yp-set-g'), function (g) { var l = $('.yp-lab', g); if (l) g.setAttribute('data-yg', map[l.textContent.trim()] || 'p'); });
-      var set = $('.yp-set', yp); if (set) icons(set);
+      var set = $('.yp-set', yp); if (set) { icons(set); edWatch(); if (mode === 'profile') edEntry(set); }
       if (set && !$('#yp-fbg', set)) {
         var g = document.createElement('div'); g.className = 'yp-set-g'; g.id = 'yp-fbg'; g.setAttribute('data-yg', 's');
         g.innerHTML = '<p class="yp-lab">اكتب رأيك</p><div class="yp-fb"><textarea id="yp-fb" rows="4" maxlength="2000" placeholder="اكتب رأيك أو اقتراحك هنا"></textarea><button type="button" class="yp-ab yp-fb-b" data-yfb-send><span>إرسال</span></button><p class="yp-fb-m" id="yp-fb-m" role="status"></p></div>';
