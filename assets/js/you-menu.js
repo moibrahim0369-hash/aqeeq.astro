@@ -143,12 +143,39 @@
     try { var u = window.AqSession && window.AqSession.user; if (!g && u && u.user_metadata) g = u.user_metadata.gender || ''; } catch (e) {}
     g = String(g).toLowerCase(); return g === 'male' || g === 'ذكر' ? 'male' : (g === 'female' || g === 'أنثى' ? 'female' : '');
   }
-  function avUrl() {
-    var g = avGender(); if (!g) return 'assets/images/brand/logo-mark-160.png';
-    var u = (window.AqSession && window.AqSession.user) || {}, k = String(u.id || u.email || 'x'), h = 0, i;
-    for (i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) >>> 0;
-    return 'assets/images/avatars/' + AV[g][h % 3] + '.svg';
+  function avKey() { var u = (window.AqSession && window.AqSession.user) || {}; return 'aq_default_avatar_v1:' + (u.id || u.email || 'x'); }
+  function avPick() {
+    var v = ''; try { v = localStorage.getItem(avKey()) || ''; } catch (e) {}
+    try { var u = window.AqSession && window.AqSession.user; if (!v && u && u.user_metadata && u.user_metadata.default_avatar) v = u.user_metadata.default_avatar; } catch (e) {}
+    return /^(m[1-3]|f[1-3]|logo)$/.test(v) ? v : '';
   }
+  function avFile(id) { return id === 'logo' ? 'assets/images/brand/logo-mark-160.png' : 'assets/images/avatars/' + id + '.svg'; }
+  function avUrl() {
+    var id = avPick(), g = avGender();
+    if (!id) id = g ? AV[g][0] : 'logo';
+    return avFile(id);
+  }
+  function avSheet() {
+    var old = $('#yp-avs'); if (old) old.remove();
+    var g = avGender(), ids = g ? AV[g].concat(['logo']) : ['m1', 'm2', 'm3', 'f1', 'f2', 'f3', 'logo'], cur = avPick() || (g ? AV[g][0] : 'logo');
+    var d = document.createElement('div'); d.id = 'yp-avs'; d.className = 'yp-avs'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true');
+    d.innerHTML = '<div class="yp-avs-bd" data-yav-x></div><div class="yp-avs-sh"><i class="yp-avs-g"></i><h3>اختر صورتك</h3><div class="yp-avs-l">' + ids.map(function (id) { return '<button type="button" class="yp-avs-o' + (id === cur ? ' on' : '') + '" data-yav="' + id + '" aria-label="صورة"><img src="' + avFile(id) + '" alt=""></button>'; }).join('') + '</div><button type="button" class="yp-avs-up" data-yav-up>رفع صورة</button></div>';
+    document.body.appendChild(d); requestAnimationFrame(function () { d.classList.add('on'); });
+  }
+  function avSet(id) {
+    try { localStorage.setItem(avKey(), id); } catch (e) {}
+    try { var sb = window.aqeeqSupabase; if (sb && sb.auth && sb.auth.updateUser) sb.auth.updateUser({ data: { default_avatar: id } }).then(function () {}, function () {}); } catch (e) {}
+    avatars(document);
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target; if (!t || !t.closest) return;
+    var o = t.closest('[data-yav]');
+    if (o) { avSet(o.getAttribute('data-yav')); var d = $('#yp-avs'); if (d) d.remove(); return; }
+    if (t.closest('[data-yav-x]')) { var d2 = $('#yp-avs'); if (d2) d2.remove(); return; }
+    if (t.closest('[data-yav-up]')) { var d3 = $('#yp-avs'); if (d3) d3.remove(); var f = $('#profile-form-wrapper input[type=file]'); if (f) f.click(); return; }
+    var c = t.closest('#profile-avatar-fallback.yp-dav, .profile-photo-row .profile-avatar-circle.yp-dav');
+    if (c) { e.preventDefault(); avSheet(); }
+  }, true);
   function avatars(root) {
     var url = 'url(' + new URL(avUrl(), document.baseURI).href + ')';
     [].forEach.call(root.querySelectorAll('.yp-av-i,.yp-who-card .yp-av,#profile-avatar-fallback,#profile-summary-avatar'), function (el) {
