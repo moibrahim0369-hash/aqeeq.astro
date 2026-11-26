@@ -1,0 +1,19 @@
+/* معاينة: كارت سماء اليوم. زجاجي كريمي، دهبي، عنابي لمسات صغيرة. */
+html[data-aqr="home"] body #home .aqsd{width:auto!important;max-width:none!important;box-sizing:border-box;margin:10px 16px 0!important;padding:14px 14px 14px;border-radius:22px;background:rgba(255,253,248,.72);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 24px rgba(74,18,36,.08);position:relative;overflow:hidden;text-align:right}
+.aqsd-top{display:flex;justify-content:flex-start;margin-bottom:8px}
+.aqsd-badge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;color:#4a5c48;background:rgba(46,139,87,.09);border:1px solid rgba(46,139,87,.2);border-radius:999px;padding:3px 10px}
+.aqsd-badge i{width:7px;height:7px;border-radius:50%;background:#2e8b57;animation:aqsdPulse 2.4s ease-out infinite}
+@keyframes aqsdPulse{0%{box-shadow:0 0 0 0 rgba(46,139,87,.4)}70%{box-shadow:0 0 0 6px rgba(46,139,87,0)}100%{box-shadow:0 0 0 0 rgba(46,139,87,0)}}
+html[data-aqr="home"] body #home .aqsd-title{display:flex;align-items:center;gap:6px;margin:0 0 10px;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:17px;font-weight:800;color:#29252a}
+.aqsd-title svg{width:13px;height:13px;color:#b78a52;animation:aqsdTw 3s ease-in-out infinite alternate}
+@keyframes aqsdTw{from{opacity:.4;transform:scale(.85) rotate(-8deg)}to{opacity:1;transform:scale(1.05) rotate(6deg)}}
+.aqsd-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.aqsd-chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#6b4a2a;background:rgba(200,161,90,.16);border:1px solid rgba(200,161,90,.3);border-radius:999px;padding:3px 10px}
+.aqsd-chip img{width:16px;height:16px;object-fit:contain}
+.aqsd-chip.rx{color:#8a6a12;background:rgba(196,152,24,.14);border-color:rgba(196,152,24,.3)}
+html[data-aqr="home"] body #home .aqsd-text{margin:0 0 14px;font-size:14px;line-height:1.95;color:#3a3433;font-weight:500}
+html[data-aqr="home"] body #home .aqsd-cta{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:999px;text-decoration:none;text-align:center;font-size:12.5px;font-weight:700;line-height:1.5;color:#4b2930;background:linear-gradient(115deg,#d7bd83,#ecd6a4 45%,#c6a866);border:1px solid #bb9857;box-shadow:inset 0 1px 0 rgba(255,255,255,.53),0 4px 12px rgba(161,132,75,.19)}
+.aqsd-cta span{position:relative;z-index:1}
+.aqsd-cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 36%,rgba(255,255,255,.5) 49%,transparent 62%);transform:translateX(110%);animation:aqsdSheen 4.8s ease-in-out infinite;pointer-events:none}
+@keyframes aqsdSheen{0%,24%{transform:translateX(110%)}68%,100%{transform:translateX(-110%)}}
+@media(prefers-reduced-motion:reduce){.aqsd-badge i,.aqsd-title svg,.aqsd-cta::after{animation:none}}
