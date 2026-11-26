@@ -1,0 +1,12 @@
+/* Article card titles (list view, outside the article): one style everywhere.
+   Reference: the "ربما في شخصيتك نقطة عمياء" card. */
+html body :is(.fc-card,.fc-mini,.fc-tile,.aqh-article) h3:not(#_a):not(#_b),
+html body :is(.fc-card,.fc-mini,.fc-tile,.aqh-article) h3 a:not(#_a):not(#_b){
+  font-family:'Amiri',Georgia,serif!important;
+  font-weight:700!important;
+  font-size:12.5px!important;
+  line-height:1.55!important;
+  color:#17110f!important;
+  text-shadow:0 1px 6px rgba(20,6,12,.55)!important;
+  letter-spacing:0!important;
+}
