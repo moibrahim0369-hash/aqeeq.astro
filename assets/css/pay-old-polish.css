@@ -1,0 +1,25 @@
+/* Old public #pay page: cream and gold, smaller scale, calm "before transfer" line. Styling only. Skipped in the 2027 flow. */
+html body:not(.pac-checkout-active) #pay .inv-orn{display:none}
+html body:not(.pac-checkout-active) #pay .pay-head{margin-bottom:10px}
+html body:not(.pac-checkout-active) #pay .pay-head h2{font-size:25px;line-height:1.4}
+html body:not(.pac-checkout-active) #pay .pay-head .intro{font:13px/1.9 'Cairo',sans-serif;color:#7d6c73}
+html body:not(.pac-checkout-active) #pay>.wrap>.svc-payment{box-sizing:border-box;width:min(430px,100%);margin:6px auto 12px;padding:8px 14px;border:0;border-radius:0;background:none;box-shadow:none;text-align:right}
+html body:not(.pac-checkout-active) #pay>.wrap>.svc-payment h3{display:inline;margin:0;font:700 11px/1.8 'Cairo',sans-serif;color:#9a763f}
+html body:not(.pac-checkout-active) #pay>.wrap>.svc-payment h3:after{content:" · ";color:#c4a263}
+html body:not(.pac-checkout-active) #pay>.wrap>.svc-payment p{display:inline;margin:0;font:11px/1.9 'Cairo',sans-serif;color:#8d7f84}
+html body:not(.pac-checkout-active) #pay>.wrap>.svc-payment a{display:inline;margin-inline-start:6px;font:600 11px 'Cairo',sans-serif;color:#8a6a35;text-decoration:none;border-bottom:1px solid rgba(160,125,65,.4)}
+html body:not(.pac-checkout-active) #pay .pay-card{border:1px solid rgba(192,161,111,.35);border-radius:18px;background:linear-gradient(110deg,rgba(255,255,255,.94),rgba(255,251,242,.8));box-shadow:0 6px 18px rgba(99,55,40,.05);padding:14px 16px}
+html body:not(.pac-checkout-active) #pay .pay-h3{font-size:15px;color:#6a2a3a;margin:12px 0 8px}
+html body:not(.pac-checkout-active) #pay .pay-sum strong{font-size:15px}
+html body:not(.pac-checkout-active) #pay .pay-price{font-size:19px;color:#8a6a35}
+html body:not(.pac-checkout-active) #pay .pay-m{padding:12px 8px;border-radius:16px;border:1px solid rgba(192,161,111,.4)}
+html body:not(.pac-checkout-active) #pay .pay-m[aria-pressed=true]{border-color:#b08a4a;box-shadow:0 0 0 1px rgba(176,138,74,.35)}
+html body:not(.pac-checkout-active) #pay .pay-mi{width:40px;height:40px}
+html body:not(.pac-checkout-active) #pay .pay-small,html body:not(.pac-checkout-active) #pay .pay-hint{font-size:12px;color:#8d7f84}
+/* lower part: pending notice, my orders, closing note */
+html body:not(.pac-checkout-active) #pay #pay-pending{font:600 13px/1.9 'Cairo',sans-serif;color:#6b5a60;padding:12px 16px}
+html body:not(.pac-checkout-active) #pay #pay-mine{padding:12px 16px}
+html body:not(.pac-checkout-active) #pay #pay-mine h3,html body:not(.pac-checkout-active) #pay #pay-mine .pay-h3{font-size:15px;margin:0 0 6px}
+html body:not(.pac-checkout-active) #pay #pay-mine li,html body:not(.pac-checkout-active) #pay #pay-mine .pay-row{font-size:12px;color:#7d6c73}
+html body:not(.pac-checkout-active) #pay #pay-mine [class*=status],html body:not(.pac-checkout-active) #pay #pay-mine b{font-size:12px;color:#9a763f}
+html body:not(.pac-checkout-active) #pay>.wrap>p:last-child{font-size:11px;line-height:1.9;color:#9a8b90;text-align:center}
