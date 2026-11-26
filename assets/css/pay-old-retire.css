@@ -1,0 +1,3 @@
+/* Old public #pay page removed from view: its entry buttons and its old content. 2027 flow (body.pac-checkout-active) unaffected. */
+a.inv-cta[href="#pay"],.b3-acts a[href="#pay"],#acct-buy,[data-invest-buy]{display:none!important}
+html body:not(.pac-checkout-active) #pay>.wrap>:not(.sheet-x):not(.pac-app){display:none!important}
