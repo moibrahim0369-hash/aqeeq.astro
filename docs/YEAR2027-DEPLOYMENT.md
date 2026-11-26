@@ -15,13 +15,7 @@ Default prices:
 | Market | Local display | Manual settlement |
 | --- | --- | --- |
 | Egypt | 299 EGP | 299 EGP, Etisalat wallet |
-| Saudi Arabia | 39 SAR | 10.40 USD, PayPal |
-| UAE | 39 AED | 10.62 USD, PayPal |
-| Kuwait | 3.5 KWD | 11.33 USD, PayPal |
-| Qatar | 39 QAR | 10.71 USD, PayPal |
-| Bahrain | 4 BHD | 10.64 USD, PayPal |
-| Oman | 4 OMR | 10.40 USD, PayPal |
-| International | 14.99 USD | 14.99 USD, PayPal |
+| All other countries (Gulf, US, Europe, rest) | 9 USD | 9 USD, PayPal |
 
 Country estimation calls country.is once without cookies or a referrer. IP geography is approximate, especially with VPNs. A manual market selector always wins and is remembered. Do not treat country estimation as fraud prevention.
 
