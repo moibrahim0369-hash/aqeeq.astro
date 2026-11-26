@@ -1,12 +1,12 @@
 /* صفحة اكتشف: إخفاء بطاقة "استخرج خريطتك الفلكية"، وبطاقات التصنيفات (غير الكل) بطاقة في كل صف بعرض كامل */
 html body .fc-page .fc-cta[data-cta="chart"]:not(#_a):not(#_b){display:none!important}
 html body .fc-page .fc-cta-row:has(>.fc-cta[data-cta="chart"]:only-child):not(#_a):not(#_b){display:none!important}
-html body .fc-page .fc-list:not(#_a):not(#_b):not(#_c):not(#_d){grid-template-columns:1fr!important;gap:22px!important;padding:6px 2px 0!important}
+html body .fc-page .fc-list:not(#_a):not(#_b):not(#_c):not(#_d){grid-template-columns:1fr!important;gap:40px!important;padding:8px 2px 0!important}
 html body .fc-page .fc-list>.fc-card:not(#_a):not(#_b):not(#_c):not(#_d){grid-column:auto!important;display:flex!important;flex-direction:row!important;align-items:center!important;height:auto!important;max-height:none!important;min-height:0!important;padding:0!important;gap:16px;border:0!important;border-radius:0!important;box-shadow:none!important;background:none!important;overflow:visible!important}
-html body .fc-page .fc-list>.fc-card .fc-card-img:not(#_a):not(#_b):not(#_c):not(#_d){width:30%!important;flex:0 0 30%!important;height:auto!important;min-height:0!important;aspect-ratio:3/2!important;margin:0!important;border-radius:14px!important;overflow:hidden;box-shadow:0 5px 14px rgba(120,88,40,.14)!important}
+html body .fc-page .fc-list>.fc-card .fc-card-img:not(#_a):not(#_b):not(#_c):not(#_d){width:36%!important;flex:0 0 36%!important;height:auto!important;min-height:0!important;aspect-ratio:4/3!important;margin:0!important;border-radius:14px!important;overflow:hidden;box-shadow:0 5px 14px rgba(120,88,40,.14)!important}
 html body .fc-page .fc-list>.fc-card .fc-card-img img:not(#_a):not(#_b){width:100%!important;height:100%!important;min-height:0!important;object-fit:cover}
 html body .fc-page .fc-list>.fc-card .fc-card-b:not(#_a):not(#_b):not(#_c){flex:1!important;min-width:0;padding:0!important;gap:6px!important;justify-content:center!important;background:none!important}
-html body .fc-page .fc-list>.fc-card h3:not(#_a):not(#_b):not(#_c),html body .fc-page .fc-list>.fc-card h3 a:not(#_a):not(#_b):not(#_c){font-size:15px!important;font-weight:700!important;line-height:1.6!important;color:#1a1214!important;-webkit-line-clamp:2!important}
+html body .fc-page .fc-list>.fc-card h3:not(#_a):not(#_b):not(#_c),html body .fc-page .fc-list>.fc-card h3 a:not(#_a):not(#_b):not(#_c){font-size:15.5px!important;font-weight:700!important;line-height:1.6!important;color:#1a1214!important;-webkit-line-clamp:2!important}
 html body .fc-page .fc-list>.fc-card p:not(#_a):not(#_b):not(#_c):not(#_d){display:none!important}
 html body .fc-page .fc-list>.fc-card .fc-card-f:not(#_a):not(#_b):not(#_c):not(#_d){display:flex!important;margin:0!important;padding:0!important;border:0!important}
 html body .fc-page .fc-list>.fc-card .fc-go{display:none!important}
