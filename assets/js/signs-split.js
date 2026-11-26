@@ -19,21 +19,18 @@
     if (h2 && h2Orig === null) h2Orig = h2.textContent;
     if (intro && introOrig === null) introOrig = intro.textContent;
     if (h2) h2.textContent = p === 'traits' ? T_TITLE : (h2Orig || h2.textContent);
-    if (intro) { intro.textContent = introOrig || intro.textContent; intro.style.display = p === 'traits' ? 'none' : ''; }
+    if (intro) { intro.textContent = introOrig || intro.textContent; intro.removeAttribute('style'); }
     var tab = $('#sg-cur [data-sgtab="' + (p === 'traits' ? 'traits' : 'forecast') + '"]');
     if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
-    $$('.aq-section-pill[data-sp-pill]', sec).forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-sp-pill') === p); });
+    var ct = $('.aq-ctx-title', sec); if (ct) ct.textContent = p === 'traits' ? T_TITLE : 'توقعات الأبراج';
+    $$('.sp-switch a', sec).forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-sp-pill') === p); });
   }
   function pills() {
-    sec = sec || $('#signs'); if (!sec) return;
-    var q = $('.aq-section-quick-links', sec); if (!q || q.getAttribute('data-sp-done')) return;
-    var first = $('a.aq-section-pill', q); if (!first) return;
-    q.setAttribute('data-sp-done', '1');
-    var f = first, t = first.cloneNode(true);
-    var lbl = function (a, txt) { var n = [].slice.call(a.childNodes).filter(function (x) { return x.nodeType === 3; }); n.forEach(function (x) { x.textContent = ''; }); a.appendChild(document.createTextNode(txt)); };
-    lbl(f, 'توقعات الأبراج'); f.setAttribute('data-sp-pill', 'forecast');
-    lbl(t, T_TITLE); t.setAttribute('href', TRAITS); t.setAttribute('data-sp-pill', 'traits'); t.classList.remove('active');
-    f.parentNode.insertBefore(t, f.nextSibling);
+    sec = sec || $('#signs'); if (!sec || $('.sp-switch', sec)) return;
+    var c = $('.center', sec); if (!c) return;
+    var d = document.createElement('div'); d.className = 'sp-switch';
+    d.innerHTML = '<a href="#signs" data-sp-pill="forecast">توقعات الأبراج</a><a href="' + TRAITS + '" data-sp-pill="traits">' + T_TITLE + '</a>';
+    c.parentNode.insertBefore(d, c.nextSibling);
   }
   function card() {
     var z = $('#zdc'); if (!z || $('#sp-zdc-traits')) return;
