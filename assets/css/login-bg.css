@@ -4,3 +4,5 @@ html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo img{width
 html[data-aqr="account"] body #account:not(:has(.acx-email)) .acct-brand-header{margin-top:0!important;margin-bottom:30px!important}
 html body section.sec:target#account.acx>.wrap.acct-wrap{padding-top:56px!important;padding-bottom:130px!important}
 html[data-aqr="account"] body #account .acct-card-shell{min-height:0!important}
+/* PREVIEW: detailed stone logo, large */
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo img{content:url("../images/brand/aqeeq-detailed-login.png")!important;width:212px!important;height:auto!important;max-width:78vw!important;filter:drop-shadow(0 8px 14px rgba(90,20,40,.18))}
