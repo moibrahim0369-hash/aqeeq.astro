@@ -36,3 +36,8 @@ html body.pac-checkout-active #pay>.wrap>.svc-payment a{display:inline-block;mar
 #pay .pac-mini.front .pac-mini-orbit{border-color:rgba(91,61,18,.35)!important;box-shadow:0 0 0 5px rgba(255,255,255,.12)!important}
 #pay .pac-mini.front:before,.pac-auth-banner:before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent)!important}
 #pay .pac-art-badge{background:#fff8e6!important;color:#9a763f!important;border-color:rgba(201,160,76,.55)!important}
+/* Variant: gold buttons with a soft moving shine */
+#pay .pac-bottom .inv-btn,#pay #y27-checkout-form .inv-btn{background:linear-gradient(135deg,#f4dc9f 0%,#e0bb68 50%,#cba350 100%)!important;color:#5b3d12!important;border:1px solid rgba(255,238,196,.9)!important;box-shadow:0 10px 22px rgba(150,112,44,.26),inset 0 1px 0 rgba(255,255,255,.7)!important;overflow:hidden;font-weight:700}
+#pay .pac-bottom .inv-btn:after,#pay #y27-checkout-form .inv-btn:after{content:"";position:absolute;top:0;bottom:0;width:38%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:pacbtn-shine 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes pacbtn-shine{0%,55%{left:-60%}100%{left:130%}}
+@media(prefers-reduced-motion:reduce){#pay .pac-bottom .inv-btn:after,#pay #y27-checkout-form .inv-btn:after{animation:none}}
