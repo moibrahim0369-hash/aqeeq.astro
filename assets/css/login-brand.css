@@ -1,0 +1,13 @@
+/* PREVIEW: brand name big on top, logo under it */
+html[data-aqr="account"] body #account .aqb-name{display:none}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .aqb-name{display:flex;flex-direction:column;align-items:center;gap:2px;margin:6px 0 4px;text-align:center}
+html[data-aqr="account"] body #account .aqb-name b{font-family:Cairo,AqAccount,sans-serif;font-size:50px;line-height:1.15;font-weight:800;color:#5a1428;letter-spacing:0}
+html[data-aqr="account"] body #account .aqb-name small{font-family:AqAccount,Cairo,sans-serif;font-size:12.5px;font-weight:800;letter-spacing:.42em;color:#9a7230;padding-inline-start:.42em}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo b{display:none!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo img{width:96px!important;height:96px!important;animation:none!important;margin:2px 0 0!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acct-brand-header{margin-bottom:20px!important}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d):not(:has(.acx-email)) #acx-title{font-size:25px!important;line-height:1.55!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo{margin-bottom:-26px!important}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d):not(:has(.acx-email)) #acx-title,
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acct-subtitle{display:none!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo{margin-bottom:6px!important}
