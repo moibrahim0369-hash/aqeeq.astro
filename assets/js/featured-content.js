@@ -149,6 +149,7 @@
       '<div class="fc-search" role="search"><label for="fc-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">ابحث في المحتوى</label>' + ICO.search +
       '<input id="fc-q" type="search" autocomplete="off" placeholder="ابحث بالعنوان أو التصنيف أو الكلمة" value="' + esc(st.q) + '"><button type="button" data-fc-clear aria-label="مسح البحث"' + (st.q ? '' : ' hidden') + '>' + ICO.x + '</button></div></div>';
     h += '<div class="fc-list" id="fc-grid"></div><nav class="fc-pager" id="fc-more" aria-label="ترقيم الصفحات"></nav><div id="fc-cta-slot"></div>';
+    h += '<div class="fc-back-cta"><a class="fc-btn" href="#home"><span>العودة إلى الرئيسية</span>' + ARROW + '</a></div>';
     h += newsletterHTML();
     host.innerHTML = h; paintGrid(); bindTools(); bindNewsletter(); if (showPick) startQuote(); else clearInterval(quoteT);
   }

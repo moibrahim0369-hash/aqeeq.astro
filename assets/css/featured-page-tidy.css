@@ -34,3 +34,5 @@ html body .fc-page .fc-news .fc-news-form .fc-news-btn:not(#_a):not(#_b){height:
 /* Pager: 3 numbers, roomier. */
 html body .fc-page .fc-pager:not(#_a):not(#_b){gap:14px!important;margin:30px 0 8px!important;overflow:visible!important}
 html body .fc-page .fc-pager .fc-pg:not(#_a):not(#_b){width:44px!important;min-width:44px!important;height:44px!important;font-size:.95rem!important}
+/* Discover list page: no "back to home" button at the end (article pages keep theirs). */
+html body .fc-page:has(#fc-grid) .fc-back-cta:not(#_a):not(#_b){display:none!important}
