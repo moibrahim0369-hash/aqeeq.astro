@@ -47,6 +47,7 @@
     }
     pickSimilar(a, all).forEach(function (x) {
       var r = el('a', 'aq-rel-item'); r.href = '#featured-content/' + x.slug;
+      if (x.coverImage) { var th = el('span', 'aq-rel-img'); var im = document.createElement('img'); im.src = x.coverImage; im.alt = x.coverAlt || ''; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); r.appendChild(th); }
       var tx = el('span', 'aq-rel-t'); tx.appendChild(el('small', null, x.category)); tx.appendChild(el('b', null, x.title));
       r.appendChild(tx); var ic = el('span', 'aq-rel-ic'); ic.innerHTML = ARR; r.appendChild(ic); sec.appendChild(r);
     });
