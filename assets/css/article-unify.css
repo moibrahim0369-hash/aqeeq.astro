@@ -42,3 +42,5 @@ html body :is(.fc-pop,#fc-reader-body) .fc-next-t:not(#_a):not(#_b):not(#_c):not
 html body :is(.fc-pop,#fc-reader-body) .fc-next-t small:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g){position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;font-size:0!important;padding:0!important;margin:-1px!important}
 html body :is(.fc-pop,#fc-reader-body) .fc-next-act .fc-ghost span:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g){position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;font-size:0!important}
 html body :is(.fc-pop,#fc-reader-body) .fc-next-act .fc-ghost:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g){justify-content:center!important;min-height:40px!important}
+/* v6: next-article and back-to-library banners removed everywhere (related content section stays) */
+html body :is(.fc-pop,#fc-reader-body) .fc-next:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h){display:none!important}
