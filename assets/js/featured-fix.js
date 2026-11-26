@@ -25,3 +25,26 @@ document.addEventListener('focusout',function(e){var s=e.target.closest&&e.targe
  setTimeout(function(){var i=s.querySelector('input');if(i&&!i.value&&document.activeElement!==i)s.classList.remove('is-open')},200)});
 setInterval(function(){[].forEach.call(document.querySelectorAll('.fc-page .fc-search'),function(s){var i=s.querySelector('input');if(i&&i.value&&!s.classList.contains('is-open'))s.classList.add('is-open')})},1000);
 })();
+/* Discover page, all-articles view: a light grouping. Cards that share a category (2 or more on the page) are placed together under a small heading with that category name; at most 2 headings per page. Other cards stay first, in date order. Order and labels only, no text is changed. */
+(function(){'use strict';
+function sig(g){return [].map.call(g.querySelectorAll('.fc-mini'),function(c){return c.getAttribute('data-slug')}).join('|')}
+function group(g){
+ var cards=[].slice.call(g.children).filter(function(c){return c.classList&&c.classList.contains('fc-mini')});
+ if(cards.length<4)return;
+ var s=sig(g);if(g.__sig===s)return;
+ var by={};cards.forEach(function(c){var k=c.getAttribute('data-category')||'';(by[k]=by[k]||[]).push(c)});
+ var keys=Object.keys(by).filter(function(k){return k&&by[k].length>=2}).sort(function(a,b){return by[b].length-by[a].length}).slice(0,2);
+ [].forEach.call(g.querySelectorAll('.fc-sec'),function(e){e.remove()});
+ cards.forEach(function(c){c.classList.remove('fc-wide')});
+ var rest=cards.filter(function(c){return keys.indexOf(c.getAttribute('data-category'))<0});
+ var blocks=[{h:null,c:rest}].concat(keys.map(function(k){return {h:k,c:by[k]}}));
+ var frag=document.createDocumentFragment();
+ blocks.forEach(function(b){if(!b.c.length)return;
+  if(b.h){var h=document.createElement('h3');h.className='fc-sec';h.textContent=b.h;frag.appendChild(h)}
+  if(b.c.length%2===1)b.c[0].classList.add('fc-wide');
+  b.c.forEach(function(c){frag.appendChild(c)})});
+ g.appendChild(frag);g.setAttribute('data-sec','1');g.__sig=sig(g)}
+function run(){var g=document.getElementById('fc-latest-grid');if(g)group(g)}
+new MutationObserver(function(){setTimeout(run,0)}).observe(document.documentElement,{childList:true,subtree:true});
+setInterval(run,1500);document.addEventListener('DOMContentLoaded',run);
+})();
