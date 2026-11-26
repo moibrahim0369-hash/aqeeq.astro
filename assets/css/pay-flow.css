@@ -49,3 +49,16 @@ html body.pac-checkout-active #pay>.wrap>.svc-payment a{display:block;font-size:
 #pay .pac-keep .pac-transfer{margin-top:4px}
 
 #pay .pac-wa{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#9a763f;background:rgba(255,255,255,.7);border:1px solid rgba(192,161,111,.5);flex-shrink:0;text-decoration:none}#pay .pac-wa svg{width:17px;height:17px}
+
+/* Round 2: bigger top star, card wording, shorter buttons, smaller page */
+#pay .pac-nav-mark{display:none!important}
+#pay .pac-mini-brand{font:600 15px 'Amiri',serif!important;padding-top:11px!important;letter-spacing:0}
+#pay .pac-mini-year{font-weight:700}
+#pay .pac-bottom .inv-btn,#pay #y27-checkout-form .inv-btn{width:78%!important;max-width:270px;min-height:40px!important;margin-inline:auto;border-radius:14px!important;font-size:11.5px!important;padding:0 16px!important;box-shadow:0 8px 16px rgba(112,38,63,.16)!important}
+#pay .pac-bottom .inv-btn svg,#pay #y27-checkout-form .inv-btn svg{width:16px!important;height:16px!important}
+#pay .pac-app{zoom:.88}
+#pay .pac-art{transform:scale(.82)!important;margin-bottom:-38px!important}
+#pay .pac-keep .pac-art{margin-bottom:-38px!important}
+#pay .pac-copy h3{font-size:21px!important}
+#pay #y27-checkout-form .inv-btn{margin-top:12px!important}
+#pay #y27-checkout-form input{min-height:44px!important}
