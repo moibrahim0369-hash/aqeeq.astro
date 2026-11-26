@@ -4,7 +4,7 @@
  var KEY='aq-karmic-checkout',Y27='aq-year2027-checkout',WALLET='01143813559',PAYPAL='https://www.paypal.me/elbr1mo';
  var WA='https://wa.me/201143813559?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C+%D9%87%D9%84+%D9%87%D9%86%D8%A7%D9%83+%D8%B7%D8%B1%D9%82+%D8%A3%D8%AE%D8%B1%D9%89+%D9%84%D8%B4%D8%B1%D8%A7%D8%A1+%D9%87%D8%B0%D8%A7+%D8%A7%D9%84%D8%AA%D9%82%D8%B1%D9%8A%D8%B1%D8%9F';
  var P={EGP:{code:'karmic_tail_egp_199',cents:19900,cur:'EGP',method:'wallet'},USD:{code:'karmic_tail_usd_7',cents:700,cur:'USD',method:'paypal'}};
- var sb=function(){return window.aqeeqSupabase;},box=null,draft=null,run=0,price=null;
+ var sb=function(){return window.aqeeqSupabase;},box=null,draft=null,run=0,price=null,mine=false;
  function read(k){try{return JSON.parse(sessionStorage.getItem(k||KEY)||'null');}catch(_){return null;}}
  var paths={back:'<path d="M9 5l7 7-7 7M16 12H3"/>',lock:'<rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 018 0v3"/>',wallet:'<rect x="3" y="6" width="18" height="14" rx="4"/><path d="M3 9V7a3 3 0 013-3h11M21 11h-5v5h5"/><circle cx="17" cy="13.5" r=".5"/>',globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c6 6 6 12 0 18-6-6-6-12 0-18"/>',check:'<path d="M5 12l5 5L20 7"/>',arrow:'<path d="M19 12H5M10 6l-6 6 6 6"/>'};
  function icon(n){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[n]||paths.lock)+'</svg>';}
@@ -16,11 +16,11 @@
   box.querySelectorAll('a[href="#account"]').forEach(function(a){a.onclick=function(){try{sessionStorage.setItem('aq-karmic-auth-return',String(Date.now()));}catch(_){}};});
   box.querySelector('.pac-back').onclick=function(){location.hash='#karmic';};}
  function card(title,body,foot,type){return art(type||'login')+'<div class="pac-copy"><h3>'+title+'</h3><p>'+body+'</p></div><div class="pac-bottom">'+(foot||'')+'</div>';}
- function leave(){document.body.classList.remove('pac-checkout-active');section.classList.remove('year2027-checkout');if(box){box.remove();box=null;}}
+ function leave(){if(!mine)return;mine=false;document.body.classList.remove('pac-checkout-active');section.classList.remove('year2027-checkout');if(box){box.remove();box=null;}}
  async function refresh(){var id=++run;draft=read();var y=read(Y27);
   if(y&&draft&&(y.created||0)>=(draft.created||0)){try{sessionStorage.removeItem(KEY);}catch(_){}draft=null;}
   if(location.hash!=='#pay'||!draft){leave();if(location.hash!=='#pay'&&location.hash!=='#account'){try{sessionStorage.removeItem(KEY);sessionStorage.removeItem('aq-karmic-auth-return');}catch(_){}}return;}
-  document.body.classList.add('pac-checkout-active');section.classList.add('year2027-checkout');price=null;
+  mine=true;document.body.classList.add('pac-checkout-active');section.classList.add('year2027-checkout');price=null;
   show(card('الذيل الكارمي','نتحقق من حسابك وسعر التقرير قبل عرض بيانات التحويل.'),0);
   var O=window.AqYear2027Offer;if(O&&O.ready)await O.ready();if(id!==run)return;
   if(!O||!O.isLocated()){show(card('لم نحدد عملة الدفع','تعذر تحديد العملة من اتصالك. حاول مرة أخرى، لن نختار بلدًا أو مبلغًا بدلًا منك.','<button type="button" class="inv-btn" data-retry>إعادة المحاولة '+icon('arrow')+'</button>'),0);box.querySelector('[data-retry]').onclick=function(){this.disabled=true;O.retryLocate().then(refresh);};return;}
