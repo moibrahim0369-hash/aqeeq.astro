@@ -3,11 +3,11 @@
 function fix(nav){
  if(nav.__fixing)return;nav.__fixing=true;
  var nums=[].filter.call(nav.querySelectorAll('.fc-pg[data-pg]'),function(b){return /^\d+$/.test(b.textContent.trim())});
- if(nums.length>7){
+ if(nums.length>3){
   var cur=0;nums.forEach(function(b){if(b.classList.contains('on'))cur=+b.textContent});
-  var last=+nums[nums.length-1].textContent,prev=0;
+  var last=+nums[nums.length-1].textContent,prev=0,st3=Math.max(1,Math.min(cur-1,last-2));
   [].forEach.call(nav.querySelectorAll('.fc-pg-gap'),function(g){g.remove()});
-  nums.forEach(function(b){var k=+b.textContent,keep=k===1||k===last||Math.abs(k-cur)<=1;b.classList.toggle('fc-pg-hide',!keep);
+  nums.forEach(function(b){var k=+b.textContent,keep=k>=st3&&k<=st3+2;b.classList.toggle('fc-pg-hide',!keep);
    if(keep){if(prev&&k-prev>1){var g=document.createElement('span');g.className='fc-pg-gap';g.setAttribute('aria-hidden','true');g.textContent='…';nav.insertBefore(g,b)}prev=k}});
  }
  setTimeout(function(){nav.__fixing=false},0)}

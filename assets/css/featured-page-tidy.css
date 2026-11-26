@@ -24,3 +24,13 @@ html body .fc-page .fc-sub .fc-search:not(.is-open):not(#_a) input{width:44px!im
 html body .fc-page .fc-sub .fc-search:not(.is-open)>svg:not(#_a):not(#_b){left:13px!important;top:13px!important;width:18px!important;height:18px!important}
 html body .fc-page .fc-ask:not(#_a):not(#_b):not(#_c){min-height:44px;display:flex!important;align-items:center;justify-content:center;margin:0 0 8px!important;padding-inline:50px}
 html body .fc-page .fc-sub .fc-search.is-open:not(#_a):not(#_b):not(#_c){width:calc(100% - 4px)!important}
+/* Newsletter box at the end of the اكتشف page: softer cream-and-gold card, burgundy button, clear of the bottom bar. */
+html body .fc-page .fc-news:not(#_a):not(#_b){margin:36px 0 120px!important;padding:30px 20px 24px!important;border-radius:22px!important;background:linear-gradient(160deg,#FFFBF2 0%,#F8EDD6 100%)!important;border:1px solid rgba(183,138,82,.45)!important;box-shadow:0 18px 36px -22px rgba(94,34,52,.35),inset 0 1px 0 #fff!important;text-align:center}
+html body .fc-page .fc-news .fc-news-ico:not(#_a):not(#_b){width:56px!important;height:56px!important;margin:0 auto 4px!important;background:linear-gradient(135deg,#F6E8BD,#D9B868)!important;border:1px solid rgba(183,138,82,.7)!important;color:#5e2234!important;box-shadow:0 6px 14px -6px rgba(120,80,20,.5)}
+html body .fc-page .fc-news .fc-news-txt h2:not(#_a):not(#_b){font-size:24px!important;color:#5e2234!important}
+html body .fc-page .fc-news .fc-news-txt p:not(#_a):not(#_b){color:#6d5a55!important;font-size:14px!important}
+html body .fc-page .fc-news .fc-news-form input:not(#_a):not(#_b){height:50px!important;border-radius:999px!important;border:1px solid rgba(183,138,82,.55)!important;background:rgba(255,255,255,.9)!important;padding:0 20px!important;text-align:center}
+html body .fc-page .fc-news .fc-news-form .fc-news-btn:not(#_a):not(#_b){height:50px!important;border-radius:999px!important;background:linear-gradient(135deg,#7a2c45,#4a1521)!important;color:#fff!important;font-weight:700!important;box-shadow:0 10px 20px -10px rgba(74,21,33,.6)}
+/* Pager: 3 numbers, roomier. */
+html body .fc-page .fc-pager:not(#_a):not(#_b){gap:14px!important;margin:30px 0 8px!important;overflow:visible!important}
+html body .fc-page .fc-pager .fc-pg:not(#_a):not(#_b){width:44px!important;min-width:44px!important;height:44px!important;font-size:.95rem!important}
