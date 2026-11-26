@@ -18,3 +18,9 @@ html body .fc-page .fc-tools:not(#_a):not(#_b){margin:0 0 8px!important}
 html body .fc-page #fc-grid:not(#_a):not(#_b),html body .fc-page .fc-list:not(#_a):not(#_b){gap:10px!important;row-gap:10px!important;margin-top:0!important}
 html body .fc-page .fc-ask:not(#_a):not(#_b):not(#_c){color:#5e2234!important}
 html body .fc-page .fc-hero:not(#_a):not(#_b){display:none!important}
+/* search magnifier: same size and style as the category pills */
+html body .fc-page .fc-sub .fc-search:not(#_a):not(#_b):not(#_c){top:0!important;left:2px!important;width:44px!important;height:44px!important}
+html body .fc-page .fc-sub .fc-search:not(.is-open):not(#_a) input{width:44px!important;height:44px!important;border:1px solid rgba(200,161,90,.45)!important;background:#fffdf8!important;box-shadow:0 3px 10px rgba(120,90,30,.07)}
+html body .fc-page .fc-sub .fc-search:not(.is-open)>svg:not(#_a):not(#_b){left:13px!important;top:13px!important;width:18px!important;height:18px!important}
+html body .fc-page .fc-ask:not(#_a):not(#_b):not(#_c){min-height:44px;display:flex!important;align-items:center;justify-content:center;margin:0 0 8px!important;padding-inline:50px}
+html body .fc-page .fc-sub .fc-search.is-open:not(#_a):not(#_b):not(#_c){width:calc(100% - 4px)!important}
