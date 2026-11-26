@@ -1,0 +1,3 @@
+/* Signed-in view matches the visitor view: hide the extra "نحن" tab and the unread badge on the bell until those features are ready. */
+html[data-auth="in"] #aqn-bnav [data-nav="compat"],html[data-auth="in"] #aqn-bnav a[href="#for-you"][data-we]{display:none!important}
+html[data-auth="in"] .aq-n-badge{display:none!important}
