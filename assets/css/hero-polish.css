@@ -2,6 +2,7 @@
 @media (max-width:820px){
 html body #home.aqh .aqh-hero:not(#_a):not(#_b){position:relative;isolation:isolate}
 html body #home.aqh .aqh-hero .aqh-hero-band:not(#_a):not(#_b){position:relative}
+html body #home.aqh .aqh-hero .aqh-hero-band picture:not(#_a):not(#_b){filter:brightness(1.12) saturate(.7) contrast(.92)!important;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 45%,rgba(0,0,0,.45) 75%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 0%,#000 45%,rgba(0,0,0,.45) 75%,transparent 100%)!important}
 /* الجملة العلوية: كبسولة زجاجية */
 html body #home.aqh .aqh-hero .aqh-eyebrow:not(#_a):not(#_b){font-weight:700!important;color:#6f5220!important}
 html body #home.aqh .aqh-hero .hs-copy-wrap:not(#_a):not(#_b){position:relative;z-index:2;padding-top:0}
@@ -12,7 +13,7 @@ html body #home.aqh .aqh-hero .hs-tail:not(#_a):not(#_b){padding-top:6px}
 /* الزرّان: نفس الحجم، متجاوران، ظل ناعم */
 html body #home.aqh .aqh-hero .aqh-cta-row:not(#_a):not(#_b){display:grid!important;grid-template-columns:1fr 1fr;gap:12px;width:min(100%,336px);margin:20px auto 0!important;padding:0!important}
 html body #home.aqh .aqh-hero .aqh-cta-row .aqh-cta:not(#_a):not(#_b){position:relative;overflow:hidden;display:flex!important;align-items:center;justify-content:center;gap:7px;min-width:0;width:100%!important;height:48px!important;padding:0 10px!important;margin:0!important;border-radius:16px!important;font-size:14px!important;font-weight:700;white-space:nowrap;text-decoration:none}
-html body #home.aqh .aqh-hero .aqh-cta-row .aq-btn-burgundy:not(#_a):not(#_b){color:#fff!important;background:linear-gradient(135deg,#7a2a43 0%,#5e1f35 100%)!important;border:1px solid rgba(228,196,134,.55)!important;box-shadow:0 10px 22px rgba(94,31,53,.24),0 1px 0 rgba(255,255,255,.22) inset!important}
+html body #home.aqh .aqh-hero .aqh-cta-row .aq-btn-burgundy:not(#_a):not(#_b){color:#5c2733!important;background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(250,240,218,.7))!important;border:1px solid rgba(201,164,92,.75)!important;box-shadow:0 10px 24px rgba(150,110,50,.16),0 1px 0 #fff inset!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 html body #home.aqh .aqh-hero .aqh-cta-row .aqh-cta-gold:not(#_a):not(#_b){color:#5c2733!important;background:rgba(255,255,255,.66)!important;border:1px solid rgba(201,164,92,.6)!important;box-shadow:0 8px 20px rgba(120,88,40,.12),0 1px 0 #fff inset!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 html body #home.aqh .aqh-hero .aqh-cta-row .aqh-cta:not(#_a):not(#_b)::after{content:"";position:absolute;top:0;bottom:0;width:38%;left:-60%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,236,190,.55),transparent);transform:skewX(-18deg);animation:aqhShine 6s ease-in-out 2s infinite}
 @keyframes aqhShine{0%,70%{left:-60%}100%{left:130%}}
