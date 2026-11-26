@@ -62,3 +62,22 @@ html body.pac-checkout-active #pay>.wrap>.svc-payment a{display:block;font-size:
 #pay .pac-copy h3{font-size:21px!important}
 #pay #y27-checkout-form .inv-btn{margin-top:12px!important}
 #pay #y27-checkout-form input{min-height:44px!important}
+
+/* Round 3: no star decorations, WhatsApp row at the bottom, calm gold motion */
+#pay .pac-star,#pay .pac-nav-mark{display:none!important}
+#pay .pac-wa-row{display:flex;align-items:center;justify-content:center;gap:9px;margin:10px auto 0;padding:8px 14px;max-width:330px;border-radius:14px;border:1px solid rgba(192,161,111,.45);background:linear-gradient(110deg,rgba(255,255,255,.9),rgba(255,248,232,.7));color:#8a6a35;text-decoration:none;font:600 10.5px/1.7 'Cairo',sans-serif;position:relative;overflow:hidden;box-shadow:0 5px 14px rgba(150,112,44,.08)}
+#pay .pac-wa-ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f4dc9f,#d9b25f);color:#5b3d12;flex-shrink:0}
+#pay .pac-wa-row:after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-50%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-18deg);animation:pacwa-shine 6s ease-in-out infinite;pointer-events:none}
+@keyframes pacwa-shine{0%,70%{left:-50%}100%{left:130%}}
+@keyframes pacfx-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pacfx-glow{0%,100%{box-shadow:0 8px 28px rgba(99,55,40,.035),0 0 0 0 rgba(214,176,99,0)}50%{box-shadow:0 8px 28px rgba(99,55,40,.035),0 0 0 4px rgba(214,176,99,.16)}}
+@keyframes pacfx-btn{0%,60%{left:-60%}100%{left:130%}}
+#pay .pac-screen>*:not(.pac-art):not(.pac-keep){animation:pacfx-rise .6s cubic-bezier(.2,.7,.2,1) both}
+#pay .pac-screen>*:nth-child(3){animation-delay:.08s}#pay .pac-screen>*:nth-child(4){animation-delay:.16s}#pay .pac-screen>*:nth-child(5){animation-delay:.24s}#pay .pac-screen>*:nth-child(6){animation-delay:.32s}
+#pay .pac-method{animation:pacfx-glow 5s ease-in-out infinite}
+#pay .pac-amount{background:linear-gradient(100deg,#64243d 40%,#a47a38 50%,#64243d 60%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:pacfx-text 7s ease-in-out infinite}
+#pay .pac-amount small{-webkit-text-fill-color:#967446}
+@keyframes pacfx-text{0%,60%{background-position:120% 0}100%{background-position:-120% 0}}
+#pay .pac-bottom .inv-btn,#pay #y27-checkout-form .inv-btn{overflow:hidden}
+#pay .pac-bottom .inv-btn:after,#pay #y27-checkout-form .inv-btn:after{content:"";position:absolute;top:0;bottom:0;width:34%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,236,190,.38),transparent);transform:skewX(-20deg);animation:pacfx-btn 4.5s ease-in-out infinite;pointer-events:none}
+@media(prefers-reduced-motion:reduce){#pay .pac-screen>*,#pay .pac-method,#pay .pac-amount,#pay .pac-wa-row:after,#pay .pac-bottom .inv-btn:after,#pay #y27-checkout-form .inv-btn:after{animation:none!important}#pay .pac-amount{-webkit-text-fill-color:currentColor;background:none}}
