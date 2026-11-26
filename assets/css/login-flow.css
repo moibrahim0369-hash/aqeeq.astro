@@ -1,0 +1,37 @@
+/* PREVIEW: welcome + sign-in, shiny burgundy top + white rounded sheet */
+html[data-aqr="account"] body #account .aqw-cta,html[data-aqr="account"] body #account .aqw-back{display:none}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d){background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.20) 42%,transparent 54%) 0 0/100% 420px no-repeat,radial-gradient(circle at 80% 8%,rgba(255,214,150,.30),transparent 40%) 0 0/100% 420px no-repeat,linear-gradient(135deg,#6a1030 0%,#9b2150 38%,#6f1235 62%,#8f1d47 100%)!important}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d)::after,html[data-aqr="account"] body #account .acx-ref-curve{display:none!important}
+/* shine */
+/* white sheet */
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d) .acct-wrap,html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d) .acct-card-shell{position:relative;z-index:2}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d) .aqw-sheet{position:fixed;left:0;right:0;bottom:0;top:352px;z-index:1;background:#fffaf1;border-radius:36px 36px 0 0;box-shadow:0 -10px 40px rgba(60,5,25,.35);pointer-events:none}
+/* logo badge */
+html[data-aqr="account"] body #account .acx-logo{margin-top:44px!important}
+html[data-aqr="account"] body #account .acx-logo img{background:radial-gradient(circle,#fffaf0 0%,#f6e6c8 100%)!important;border-radius:50%!important;padding:18px!important;box-sizing:border-box!important;box-shadow:0 0 0 3px rgba(227,196,140,.75),0 18px 40px rgba(40,0,15,.45)!important;animation:none!important;width:150px!important;height:150px!important}
+html[data-aqr="account"] body #account .acx-logo b{color:#f3dfae!important;margin-top:6px}
+/* welcome text sits on the sheet */
+html[data-aqr="account"] body #account.aqw-on .acx-logo{margin-bottom:84px!important}
+html[data-aqr="account"] body #account .acct-brand-header h2,html[data-aqr="account"] body #account #acx-title{color:#6a1030!important}
+html[data-aqr="account"] body #account .acct-subtitle{color:#7d6a62!important}
+html[data-aqr="account"] body #account.aqw-on #acct-guest{display:none!important}
+html[data-aqr="account"] body #account.aqw-on .aqw-cta{display:flex!important;flex-direction:column;align-items:center;gap:4px;margin-top:26px;padding:0 4px}
+html[data-aqr="account"] body #account .aqw-go{width:100%;min-height:58px;border:0;border-radius:999px;background:linear-gradient(135deg,#6a1030 0%,#9b2150 38%,#6f1235 62%,#8f1d47 100%);color:#fff;font:700 16px Cairo,AqAccount,sans-serif;box-shadow:0 14px 26px rgba(106,16,48,.35),inset 0 1px 0 rgba(255,255,255,.35)}
+html[data-aqr="account"] body #account .aqw-have{background:none;border:0;min-height:48px;color:#8a757c;font:500 13.5px Cairo,AqAccount,sans-serif}
+html[data-aqr="account"] body #account .aqw-have b{color:#7b1537;text-decoration:underline;text-underline-offset:4px}
+/* sign-in screen */
+html[data-aqr="account"] body #account:not(.aqw-on) .acx-logo{margin-top:44px!important;margin-bottom:122px!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)):not(.aqw-on) .acx-logo img{width:112px!important;height:112px!important;padding:14px!important}
+html[data-aqr="account"] body #account:not(.aqw-on) .aqw-back{display:flex;position:fixed;top:20px;right:18px;width:40px;height:40px;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(243,223,174,.6);color:#f3dfae;z-index:5}
+html[data-aqr="account"] body #account:not(:has(.acx-email)):not(.aqw-on) #acct-google,html[data-aqr="account"] body #account:not(:has(.acx-email)):not(.aqw-on) #acct-email-open{border-radius:999px!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)):not(.aqw-on) #acct-google{background:#fff!important;border:1px solid rgba(193,154,98,.55)!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)):not(.aqw-on) #acct-email-open{background:linear-gradient(135deg,#6a1030 0%,#9b2150 38%,#6f1235 62%,#8f1d47 100%)!important;border:0!important;color:#fff!important;box-shadow:0 12px 24px rgba(106,16,48,.3),inset 0 1px 0 rgba(255,255,255,.35)!important}
+html[data-aqr="account"] body #account .sheet-x{display:none!important}
+
+html[data-aqr="account"] body #account:not(.aqw-on) .acx-logo{margin-bottom:96px!important;margin-top:36px!important}
+html[data-aqr="account"] body #account:not(.aqw-on) .acct-brand-header{margin-bottom:6px!important;padding-bottom:0!important}
+html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d):not(.aqw-on) #acx-title{font-size:23px!important;line-height:1.5!important}
+html[data-aqr="account"] body #account:not(.aqw-on) .acct-subtitle{margin:4px 0 0!important;font-size:13px!important}
+html[data-aqr="account"] body #account:not(.aqw-on) #acct-guest{margin-top:-8px!important}
+html[data-aqr="account"] body #account:not(.aqw-on) .acx-switch{margin:14px 0 6px!important}
+html[data-aqr="account"] body #account:not(.aqw-on) .acx-legal{margin-bottom:0!important}
