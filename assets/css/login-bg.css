@@ -10,3 +10,5 @@ html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo img{conte
 html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo b{display:none!important}
 html[data-aqr="account"] body section#account.sec.acct-modal.acx:not(#_a):not(#_b):not(#_c):not(#_d):not(:has(.acx-email)) #acx-title{font-size:26px!important;line-height:1.55!important;font-weight:600!important;color:#7a4b5a!important}
 html[data-aqr="account"] body #account:not(:has(.acx-email)) .acct-brand-header{margin-bottom:24px!important}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acx-logo img{width:230px!important;max-width:72vw!important;filter:saturate(.7)!important;opacity:.62;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%)}
+html[data-aqr="account"] body #account:not(:has(.acx-email)) .acct-brand-header{margin-bottom:20px!important}
