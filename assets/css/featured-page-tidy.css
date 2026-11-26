@@ -36,3 +36,7 @@ html body .fc-page .fc-pager:not(#_a):not(#_b){gap:14px!important;margin:30px 0 
 html body .fc-page .fc-pager .fc-pg:not(#_a):not(#_b){width:44px!important;min-width:44px!important;height:44px!important;font-size:.95rem!important}
 /* Discover list page: no "back to home" button at the end (article pages keep theirs). */
 html body .fc-page:has(#fc-grid) .fc-back-cta:not(#_a):not(#_b){display:none!important}
+/* Discover list page: no newsletter box; page ends after the pager with only room for the bottom bar. */
+html body .fc-page:has(#fc-grid) .fc-news:not(#_a):not(#_b),html body .fc-page:has(#fc-grid) .fc-back-cta:not(#_a):not(#_b){display:none!important}
+html body .fc-page:has(#fc-grid) .fc-pager:not(#_a):not(#_b){margin-bottom:0!important}
+html body .fc-page:has(#fc-grid):not(#_a):not(#_b){padding-bottom:96px!important}
