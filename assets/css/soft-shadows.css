@@ -1,0 +1,6 @@
+/* Card titles: no hard dark text-shadow (it was clipped into dark boxes under the last line). Light, soft touch only. */
+html body :is(.fc-card,.fc-mini,.fc-tile,.aqh-article) h3:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e),html body :is(.fc-card,.fc-mini,.fc-tile,.aqh-article) h3 a:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f),html body #featured-content .fc-mini h3:not(#_a):not(#_b):not(#_c){text-shadow:0 1px 2px rgba(74,21,33,.10)!important;filter:none!important}
+html body #home.aqh #aqh-articles .aqh-article h3:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f){padding-bottom:3px!important}
+/* Home carousel: soft, unclipped card shadow */
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-track:not(#_a):not(#_b):not(#_c):not(#_d){padding-bottom:16px!important}
+html[data-aqr="home"] body #home.aqh #aqh-articles .aqh-article:not(#_a):not(#_b):not(#_c):not(#_d){box-shadow:0 3px 10px -4px rgba(94,34,52,.16)!important}
