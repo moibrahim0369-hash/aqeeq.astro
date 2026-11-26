@@ -1,7 +1,2 @@
-/* Category badge on article cards: gold, same family as the "انضم الآن" button. */
-html body .fc-page :is(.fc-mini,.fc-card) .fc-topic:not(#_a):not(#_b){background:linear-gradient(135deg,#f6e8bd,#d9b868 55%,#c8a15a)!important;border:1px solid #b88f46!important;color:#4a1521!important;box-shadow:0 4px 12px -4px rgba(120,80,20,.55),inset 0 1px 0 rgba(255,255,255,.6)!important;padding:4px 12px 4px 10px!important;gap:7px!important}
-html body .fc-page :is(.fc-mini,.fc-card) .fc-topic b:not(#_a):not(#_b){color:#4a1521!important;font-weight:800!important;font-size:.78rem!important}
-html body .fc-page :is(.fc-mini,.fc-card) .fc-topic .fc-topic-i:not(#_a):not(#_b){color:#4a1521!important}
-html body .fc-page :is(.fc-mini,.fc-card) .fc-topic .fc-topic-i svg{width:15px!important;height:15px!important;filter:drop-shadow(0 0 3px rgba(255,255,255,.7))}
-html body .fc-page :is(.fc-mini,.fc-card) .fc-topic i{background:#4a1521!important}
-html body .fc-page :is(.fc-mini,.fc-card) .fc-topic>span:not(.fc-topic-i){color:#4a1521!important}
+/* Category badge on article cards: same shape as before, glassy and transparent. */
+html body .fc-page :is(.fc-mini,.fc-card) .fc-topic:not(#_a):not(#_b){background:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,.10))!important;border:1px solid rgba(255,255,255,.55)!important;box-shadow:0 4px 14px -4px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(255,255,255,.12)!important;backdrop-filter:blur(10px) saturate(160%)!important;-webkit-backdrop-filter:blur(10px) saturate(160%)!important}
