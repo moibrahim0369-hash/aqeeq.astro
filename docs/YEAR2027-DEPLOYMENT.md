@@ -82,7 +82,7 @@ Server-engine extraction preserves the exact site's Astro calculations, Lahiri a
 
 ## Pricing experiment
 
-Egypt defaults to 299 EGP. The optional 249-versus-299 test is OFF. Enable only after a deliberate owner decision by setting `year2027_settings.eg_price_test=true`. The server assigns stable account cohorts. It does not accept an arbitrary amount from the browser. The quote is bound to the account and expires after 24 hours. Existing fixed quotes preserve their exact amount until expiration, unless a product price changes, in which case submission fails closed.
+Egypt is fixed at 299 EGP. The 249-versus-299 test switch was removed by migration 20261126170000 (the 249 product row stays in the table, unused).
 
 ## Payment and access
 
