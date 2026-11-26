@@ -1,0 +1,38 @@
+/* Purchase flow polish: compact layout, calm "before transfer" note, gold 2027 card. Styling only, no wording changes. */
+html body.pac-checkout-active #aqn-bnav{display:none!important}
+html body.pac-checkout-active #pay>.wrap>.svc-payment{box-sizing:border-box;width:min(430px,100%);margin:calc(env(safe-area-inset-top,0px) + 12px) auto 0;padding:9px 16px 10px;border:1px solid rgba(192,161,111,.42);border-radius:16px;background:linear-gradient(110deg,rgba(255,255,255,.92),rgba(255,251,242,.7));box-shadow:0 6px 18px rgba(99,55,40,.05),inset 0 1px 0 #fff;text-align:right;line-height:1.7;position:relative}
+html body.pac-checkout-active #pay>.wrap>.svc-payment h3{margin:0 0 1px;font:700 11px/1.6 'Cairo',sans-serif;color:#9a763f;letter-spacing:.02em}
+html body.pac-checkout-active #pay>.wrap>.svc-payment h3:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#c4a263;margin-inline-end:7px;vertical-align:middle}
+html body.pac-checkout-active #pay>.wrap>.svc-payment p{margin:0;font:11px/1.8 'Cairo',sans-serif;color:#7d6c73}
+html body.pac-checkout-active #pay>.wrap>.svc-payment a{display:inline-block;margin-top:3px;font:600 11px 'Cairo',sans-serif;color:#8a6a35;text-decoration:none;border-bottom:1px solid rgba(160,125,65,.4);padding-bottom:1px}
+/* compact app */
+#pay .pac-app{padding-top:6px;padding-bottom:92px}
+#pay .pac-nav{height:34px;font-size:10px}
+#pay .pac-back{width:32px;height:32px;border-radius:12px}#pay .pac-back svg{width:17px;height:17px}#pay .pac-nav-mark{font-size:20px;width:32px}
+#pay .pac-progress{margin-top:10px;font-size:9.5px}
+#pay .pac-art{height:210px;width:260px;margin:0 auto -78px;transform:scale(.66);transform-origin:50% 0}
+#year2027-checkout{align-content:start!important}
+#pay .pac-app{min-height:0!important}
+#pay .pac-copy{margin-top:0}
+#pay .pac-copy h3{font-size:23px;line-height:1.45;margin:2px 0 2px}
+#pay .pac-copy p{font-size:11px;line-height:1.8;margin-bottom:6px}
+#pay .pac-eyebrow{font-size:9.5px}
+#pay .pac-amount{font-size:32px;margin:0 0 10px;letter-spacing:-1px}#pay .pac-amount small{font-size:11px}
+#pay .pac-method{padding:9px 13px;border-radius:16px;gap:10px}
+#pay .pac-method-icon{width:34px;height:34px;border-radius:11px}#pay .pac-method-icon svg{width:19px;height:19px}
+#pay .pac-method b{font-size:12px}#pay .pac-method small{font-size:9.5px}
+#pay .pac-method-check{width:19px;height:19px}
+#pay .pac-bottom{padding-top:14px}
+#pay .pac-bottom .inv-btn,#pay #y27-checkout-form .inv-btn{min-height:46px;border-radius:15px;font-size:12px}
+#pay .pac-caption{font-size:9.5px;margin-top:8px}
+#pay .pac-number{padding:8px 2px}#pay .pac-number>b{font-size:19px}
+#pay .pac-receipt{padding:11px 0;margin:6px 0 14px;font-size:10.5px}#pay .pac-receipt b{font-size:13px}
+#pay #y27-checkout-form input{font-size:18px;min-height:50px;border-radius:15px}
+#pay #y27-checkout-form .inv-btn{margin-top:16px}
+#pay .pac-help{margin:10px 0 4px}
+#pay .pac-market{margin-top:12px}
+/* gold 2027 card, with a moving shine */
+#pay .pac-mini.front,.pac-auth-banner{background:linear-gradient(145deg,#f4dc9f 0%,#e0bb68 48%,#c9a04c 100%)!important;color:#5b3d12!important;border-color:rgba(255,238,196,.9)!important;box-shadow:0 14px 26px rgba(150,112,44,.28),inset 0 1px 0 rgba(255,255,255,.7)!important}
+#pay .pac-mini.front .pac-mini-orbit{border-color:rgba(91,61,18,.35)!important;box-shadow:0 0 0 5px rgba(255,255,255,.12)!important}
+#pay .pac-mini.front:before,.pac-auth-banner:before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent)!important}
+#pay .pac-art-badge{background:#fff8e6!important;color:#9a763f!important;border-color:rgba(201,160,76,.55)!important}
