@@ -17,3 +17,6 @@ html body :is(.fc-pop,#fc-reader-body) .aq-rel-t b{color:#4a1521;font:700 .98rem
 html body :is(.fc-pop,#fc-reader-body) .aq-rel-ic{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.7);border:1px solid rgba(200,161,90,.5);color:#5e2234}
 html body :is(.fc-pop,#fc-reader-body) .aq-rel-ic svg{width:18px;height:18px}
 html body :is(.fc-pop,#fc-reader-body) .aq-rel-tool{border-color:rgba(183,138,82,.9);background:linear-gradient(135deg,rgba(255,250,236,.95),rgba(246,232,196,.55))}
+html body :is(.fc-pop,#fc-reader-body) .aq-rel:not(#_a):not(#_b){align-items:stretch!important;box-sizing:border-box}
+html body :is(.fc-pop,#fc-reader-body) .aq-rel .aq-rel-item:not(#_a):not(#_b){width:100%!important;box-sizing:border-box!important;margin:0!important}
+html body :is(.fc-pop,#fc-reader-body) .aq-rel .aq-rel-h:not(#_a):not(#_b){text-align:start!important;width:100%}
