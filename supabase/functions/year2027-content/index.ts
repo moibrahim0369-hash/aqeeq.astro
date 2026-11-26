@@ -23,8 +23,10 @@ Deno.serve(async req=>{
    if(!input.unknown){try{const full=await library(admin,true),rep=reportFor(input,full.content,full.ephemeris);hooks=(rep.focused||[]).map((s:any)=>{const t=s.entries[0].text;return {id:s.id,title:t.title,free:t.free||''};});recap=rep.closing.map((c:any)=>c.text);}catch{}}
    return response({...base,hooks,recap,country:geo});}
   if(input.unknown)return response({error:'birth_time_required'},400);
-  const sb=createClient(url,key,{global:{headers:{Authorization:req.headers.get('Authorization')||''}},auth:{persistSession:false}});
-  const {data:{user},error}=await sb.auth.getUser();if(error||!user)return response({error:'sign_in_required'},401);
+  const authz=req.headers.get('Authorization')||'',token=authz.replace(/^Bearer\s+/i,'').trim();
+  if(!token||token.split('.').length!==3)return response({error:'sign_in_required'},401);
+  const sb=createClient(url,key,{global:{headers:{Authorization:'Bearer '+token}},auth:{persistSession:false,autoRefreshToken:false}});
+  const {data:ud,error}=await admin.auth.getUser(token);const user=ud?.user;if(error||!user)return response({error:'sign_in_required'},401);
   let ownerPreview=false;{const {data:isOwner,error:ownerError}=await sb.rpc('is_app_admin');ownerPreview=!ownerError&&isOwner===true;}
   const {data:access,error:denied}=await sb.rpc('year2027_access',{p_input:input});if(!ownerPreview&&(denied||!access))return response({error:'annual_report_not_purchased'},403);
   const lib=await library(admin,true);return response({report:{...reportFor(input,lib.content,lib.ephemeris),ownerPreview},reportId:access});
