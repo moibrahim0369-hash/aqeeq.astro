@@ -1,0 +1,3 @@
+/* صفحة الأبراج المنفصلة: إخفاء زرّي التبديل لأن كل صفحة تعرض قسمًا واحدًا */
+html body #signs[data-sp] .sg-tabs-main:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e){display:none!important}
+html body #sky a.zdc[data-sp-card]:not(#_a):not(#_b):not(#_c){margin:0 0 8px!important}
