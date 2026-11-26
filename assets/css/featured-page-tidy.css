@@ -16,3 +16,4 @@ html body .fc-page .fc-hero:not(#_a):not(#_b){padding-bottom:6px!important;margi
 html body .fc-page .fc-ask:not(#_a):not(#_b){margin:2px 0 8px!important}
 html body .fc-page .fc-tools:not(#_a):not(#_b){margin:0 0 8px!important}
 html body .fc-page #fc-grid:not(#_a):not(#_b),html body .fc-page .fc-list:not(#_a):not(#_b){gap:10px!important;row-gap:10px!important;margin-top:0!important}
+html body .fc-page .fc-ask:not(#_a):not(#_b):not(#_c){color:#5e2234!important}
