@@ -4,7 +4,7 @@ html body .fc-page .fc-hero p,html body .fc-page .fc-hero::after,html body .fc-p
 html body .fc-page .fc-hero h1:not(#_a):not(#_b){font-family:'Amiri',Georgia,serif!important;font-weight:700!important;color:#17110f!important;-webkit-text-fill-color:#17110f!important;background:none!important;filter:none!important;text-shadow:0 1px 6px rgba(20,6,12,.55)!important}
 html body .fc-page .fc-count:not(#_a):not(#_b){display:none!important}
 html body .fc-page #fc-latest .fc-row-h:not(#_a):not(#_b){display:none!important}
-html body .fc-page .fc-filters:not(#_a):not(#_b){display:flex!important;flex-wrap:nowrap!important;gap:8px!important;overflow-x:auto!important;padding:4px 2px 8px!important;scrollbar-width:none}
+html body .fc-page .fc-filters:not(#_a):not(#_b):not(#_c){display:flex!important;flex-wrap:nowrap!important;gap:8px!important;overflow-x:auto!important;padding:4px 2px 8px!important;scrollbar-width:none}
 html body .fc-page .fc-filters::-webkit-scrollbar{display:none}
 html body .fc-page .fc-chip:not(#_a):not(#_b):not(#_c){flex:0 0 auto!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-height:44px!important;padding:6px 14px 6px 12px!important;border-radius:999px!important;font-size:13px!important;white-space:nowrap}
 html body .fc-page .fc-chip .fc-chip-i{width:28px!important;height:28px!important}
