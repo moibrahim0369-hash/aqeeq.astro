@@ -1,0 +1,83 @@
+/* Purchase flow polish: compact layout, calm "before transfer" note, gold 2027 card. Styling only, no wording changes. */
+html body.pac-checkout-active #aqn-bnav{display:none!important}
+html body.pac-checkout-active #pay>.wrap>.svc-payment{box-sizing:border-box;width:min(430px,100%);margin:calc(env(safe-area-inset-top,0px) + 12px) auto 0;padding:9px 16px 10px;border:1px solid rgba(192,161,111,.42);border-radius:16px;background:linear-gradient(110deg,rgba(255,255,255,.92),rgba(255,251,242,.7));box-shadow:0 6px 18px rgba(99,55,40,.05),inset 0 1px 0 #fff;text-align:right;line-height:1.7;position:relative}
+html body.pac-checkout-active #pay>.wrap>.svc-payment h3{margin:0 0 1px;font:700 11px/1.6 'Cairo',sans-serif;color:#9a763f;letter-spacing:.02em}
+html body.pac-checkout-active #pay>.wrap>.svc-payment h3:before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#c4a263;margin-inline-end:7px;vertical-align:middle}
+html body.pac-checkout-active #pay>.wrap>.svc-payment p{margin:0;font:11px/1.8 'Cairo',sans-serif;color:#7d6c73}
+html body.pac-checkout-active #pay>.wrap>.svc-payment a{display:inline-block;margin-top:3px;font:600 11px 'Cairo',sans-serif;color:#8a6a35;text-decoration:none;border-bottom:1px solid rgba(160,125,65,.4);padding-bottom:1px}
+/* compact app */
+#pay .pac-app{padding-top:6px;padding-bottom:6px}
+#pay .pac-nav{height:34px;font-size:10px}
+#pay .pac-back{width:32px;height:32px;border-radius:12px}#pay .pac-back svg{width:17px;height:17px}#pay .pac-nav-mark{font-size:20px;width:32px}
+#pay .pac-progress{margin-top:10px;font-size:9.5px}
+#pay .pac-art{height:210px;width:260px;margin:0 auto -78px;transform:scale(.66);transform-origin:50% 0}
+#year2027-checkout{align-content:start!important;min-height:0!important;height:auto!important}
+#pay .pac-app{min-height:0!important}
+#pay .pac-copy{margin-top:0}
+#pay .pac-copy h3{font-size:23px;line-height:1.45;margin:2px 0 2px}
+#pay .pac-copy p{font-size:11px;line-height:1.8;margin-bottom:6px}
+#pay .pac-eyebrow{font-size:9.5px}
+#pay .pac-amount{font-size:32px;margin:0 0 10px;letter-spacing:-1px}#pay .pac-amount small{font-size:11px}
+#pay .pac-method{padding:9px 13px;border-radius:16px;gap:10px}
+#pay .pac-method-icon{width:34px;height:34px;border-radius:11px}#pay .pac-method-icon svg{width:19px;height:19px}
+#pay .pac-method b{font-size:12px}#pay .pac-method small{font-size:9.5px}
+#pay .pac-method-check{width:19px;height:19px}
+#pay .pac-bottom{padding-top:14px}
+#pay .pac-bottom .inv-btn,#pay #y27-checkout-form .inv-btn{min-height:46px;border-radius:15px;font-size:12px}
+#pay .pac-caption{font-size:9.5px;margin-top:8px}
+#pay .pac-number{padding:8px 2px}#pay .pac-number>b{font-size:19px}
+#pay .pac-receipt{padding:11px 0;margin:6px 0 14px;font-size:10.5px}#pay .pac-receipt b{font-size:13px}
+#pay #y27-checkout-form input{font-size:18px;min-height:50px;border-radius:15px}
+#pay #y27-checkout-form .inv-btn{margin-top:16px}
+#pay .pac-help{margin:10px 0 4px}
+#pay .pac-market{margin-top:12px}
+/* gold 2027 card, with a moving shine */
+#pay .pac-mini.front,.pac-auth-banner{background:linear-gradient(145deg,#f4dc9f 0%,#e0bb68 48%,#c9a04c 100%)!important;color:#5b3d12!important;border-color:rgba(255,238,196,.9)!important;box-shadow:0 14px 26px rgba(150,112,44,.28),inset 0 1px 0 rgba(255,255,255,.7)!important}
+#pay .pac-mini.front .pac-mini-orbit{border-color:rgba(91,61,18,.35)!important;box-shadow:0 0 0 5px rgba(255,255,255,.12)!important}
+#pay .pac-mini.front:before,.pac-auth-banner:before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent)!important}
+#pay .pac-art-badge{background:#fff8e6!important;color:#9a763f!important;border-color:rgba(201,160,76,.55)!important}
+/* One-screen look: the "قبل التحويل" note becomes a small line under the main button; the order-number step keeps the transfer details on top. */
+html body.pac-checkout-active #pay>.wrap{display:flex;flex-direction:column}
+html body.pac-checkout-active #pay>.wrap>.svc-payment{order:5;width:min(430px,100%);margin:0 auto;padding:2px 26px 96px;border:0;background:none;box-shadow:none;text-align:center;position:relative;z-index:2}
+html body.pac-checkout-active #pay>.wrap>.svc-payment h3{display:inline;font-size:10px;color:#a1804e}
+html body.pac-checkout-active #pay>.wrap>.svc-payment h3:before{display:none}
+html body.pac-checkout-active #pay>.wrap>.svc-payment h3:after{content:" · ";color:#c4a263}
+html body.pac-checkout-active #pay>.wrap>.svc-payment p{display:inline;font-size:10px;line-height:1.8;color:#9a8b90}
+html body.pac-checkout-active #pay>.wrap>.svc-payment a{display:block;font-size:10px;margin-top:2px}
+#pay .pac-keep{display:flex;flex-direction:column;text-align:center}
+#pay .pac-keep .pac-art{margin-bottom:-78px}
+#pay .pac-keep .pac-transfer{margin-top:4px}
+
+#pay .pac-wa{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#9a763f;background:rgba(255,255,255,.7);border:1px solid rgba(192,161,111,.5);flex-shrink:0;text-decoration:none}#pay .pac-wa svg{width:17px;height:17px}
+
+/* Round 2: bigger top star, card wording, shorter buttons, smaller page */
+#pay .pac-nav-mark{display:none!important}
+#pay .pac-mini-brand{font:600 15px 'Amiri',serif!important;padding-top:11px!important;letter-spacing:0}
+#pay .pac-mini-year{font-weight:700}
+#pay .pac-bottom .inv-btn,#pay #y27-checkout-form .inv-btn{width:78%!important;max-width:270px;min-height:40px!important;margin-inline:auto;border-radius:14px!important;font-size:11.5px!important;padding:0 16px!important;box-shadow:0 8px 16px rgba(112,38,63,.16)!important}
+#pay .pac-bottom .inv-btn svg,#pay #y27-checkout-form .inv-btn svg{width:16px!important;height:16px!important}
+#pay .pac-app{zoom:.88}
+#pay .pac-art{transform:scale(.82)!important;margin-bottom:-38px!important}
+#pay .pac-keep .pac-art{margin-bottom:-38px!important}
+#pay .pac-copy h3{font-size:21px!important}
+#pay #y27-checkout-form .inv-btn{margin-top:12px!important}
+#pay #y27-checkout-form input{min-height:44px!important}
+
+/* Round 3: no star decorations, WhatsApp row at the bottom, calm gold motion */
+#pay .pac-star,#pay .pac-nav-mark{display:none!important}
+#pay .pac-wa-row{display:flex;align-items:center;justify-content:center;gap:9px;margin:10px auto 0;padding:8px 14px;max-width:330px;border-radius:14px;border:1px solid rgba(192,161,111,.45);background:linear-gradient(110deg,rgba(255,255,255,.9),rgba(255,248,232,.7));color:#8a6a35;text-decoration:none;font:600 10.5px/1.7 'Cairo',sans-serif;position:relative;overflow:hidden;box-shadow:0 5px 14px rgba(150,112,44,.08)}
+#pay .pac-wa-ic{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#f4dc9f,#d9b25f);color:#5b3d12;flex-shrink:0}
+#pay .pac-wa-row:after{content:"";position:absolute;top:0;bottom:0;width:30%;left:-50%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-18deg);animation:pacwa-shine 6s ease-in-out infinite;pointer-events:none}
+@keyframes pacwa-shine{0%,70%{left:-50%}100%{left:130%}}
+@keyframes pacfx-rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pacfx-glow{0%,100%{box-shadow:0 8px 28px rgba(99,55,40,.035),0 0 0 0 rgba(214,176,99,0)}50%{box-shadow:0 8px 28px rgba(99,55,40,.035),0 0 0 4px rgba(214,176,99,.16)}}
+@keyframes pacfx-btn{0%,60%{left:-60%}100%{left:130%}}
+#pay .pac-screen>*:not(.pac-art):not(.pac-keep){animation:pacfx-rise .6s cubic-bezier(.2,.7,.2,1) both}
+#pay .pac-screen>*:nth-child(3){animation-delay:.08s}#pay .pac-screen>*:nth-child(4){animation-delay:.16s}#pay .pac-screen>*:nth-child(5){animation-delay:.24s}#pay .pac-screen>*:nth-child(6){animation-delay:.32s}
+#pay .pac-method{animation:pacfx-glow 5s ease-in-out infinite}
+#pay .pac-amount{background:linear-gradient(100deg,#64243d 40%,#a47a38 50%,#64243d 60%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:pacfx-text 7s ease-in-out infinite}
+#pay .pac-amount small{-webkit-text-fill-color:#967446}
+@keyframes pacfx-text{0%,60%{background-position:120% 0}100%{background-position:-120% 0}}
+#pay .pac-bottom .inv-btn,#pay #y27-checkout-form .inv-btn{overflow:hidden}
+#pay .pac-bottom .inv-btn:after,#pay #y27-checkout-form .inv-btn:after{content:"";position:absolute;top:0;bottom:0;width:34%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,236,190,.38),transparent);transform:skewX(-20deg);animation:pacfx-btn 4.5s ease-in-out infinite;pointer-events:none}
+@media(prefers-reduced-motion:reduce){#pay .pac-screen>*,#pay .pac-method,#pay .pac-amount,#pay .pac-wa-row:after,#pay .pac-bottom .inv-btn:after,#pay #y27-checkout-form .inv-btn:after{animation:none!important}#pay .pac-amount{-webkit-text-fill-color:currentColor;background:none}}

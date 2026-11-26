@@ -15,13 +15,7 @@ Default prices:
 | Market | Local display | Manual settlement |
 | --- | --- | --- |
 | Egypt | 299 EGP | 299 EGP, Etisalat wallet |
-| Saudi Arabia | 39 SAR | 10.40 USD, PayPal |
-| UAE | 39 AED | 10.62 USD, PayPal |
-| Kuwait | 3.5 KWD | 11.33 USD, PayPal |
-| Qatar | 39 QAR | 10.71 USD, PayPal |
-| Bahrain | 4 BHD | 10.64 USD, PayPal |
-| Oman | 4 OMR | 10.40 USD, PayPal |
-| International | 14.99 USD | 14.99 USD, PayPal |
+| All other countries (Gulf, US, Europe, rest) | 9 USD | 9 USD, PayPal |
 
 Country estimation calls country.is once without cookies or a referrer. IP geography is approximate, especially with VPNs. A manual market selector always wins and is remembered. Do not treat country estimation as fraud prevention.
 
@@ -82,7 +76,7 @@ Server-engine extraction preserves the exact site's Astro calculations, Lahiri a
 
 ## Pricing experiment
 
-Egypt defaults to 299 EGP. The optional 249-versus-299 test is OFF. Enable only after a deliberate owner decision by setting `year2027_settings.eg_price_test=true`. The server assigns stable account cohorts. It does not accept an arbitrary amount from the browser. The quote is bound to the account and expires after 24 hours. Existing fixed quotes preserve their exact amount until expiration, unless a product price changes, in which case submission fails closed.
+Egypt is fixed at 299 EGP. The 249-versus-299 test switch was removed by migration 20261126170000 (the 249 product row stays in the table, unused).
 
 ## Payment and access
 
