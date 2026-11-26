@@ -1,9 +1,9 @@
 /* صفحة اكتشف: إخفاء بطاقة "استخرج خريطتك الفلكية"، وبطاقات التصنيفات (غير الكل) بطاقة في كل صف بعرض كامل */
 html body .fc-page .fc-cta[data-cta="chart"]:not(#_a):not(#_b){display:none!important}
 html body .fc-page .fc-cta-row:has(>.fc-cta[data-cta="chart"]:only-child):not(#_a):not(#_b){display:none!important}
-html body .fc-page .fc-list:not(#_a):not(#_b):not(#_c):not(#_d){grid-template-columns:1fr!important;gap:9px!important}
-html body .fc-page .fc-list>.fc-card:not(#_a):not(#_b):not(#_c):not(#_d){grid-column:auto!important;display:flex!important;flex-direction:row!important;align-items:center!important;height:78px!important;min-height:0!important;max-height:78px!important;border-radius:15px!important;box-shadow:0 5px 14px rgba(120,88,40,.10)!important;background:linear-gradient(180deg,#fffefb,#fbf5e9)!important}
-html body .fc-page .fc-list>.fc-card .fc-card-img:not(#_a):not(#_b):not(#_c):not(#_d){width:76px!important;flex:0 0 76px!important;height:60px!important;min-height:0!important;aspect-ratio:auto!important;margin:0 9px!important;border-radius:10px!important}
-html body .fc-page .fc-list>.fc-card .fc-card-b:not(#_a):not(#_b):not(#_c){flex:1!important;min-width:0;padding:0 2px 0 12px!important;gap:3px!important;justify-content:center!important}
-html body .fc-page .fc-list>.fc-card h3:not(#_a):not(#_b):not(#_c),html body .fc-page .fc-list>.fc-card h3 a:not(#_a):not(#_b):not(#_c){font-size:13px!important;line-height:1.5!important;-webkit-line-clamp:2!important}
-html body .fc-page .fc-list>.fc-card .fc-meta:not(#_a):not(#_b),html body .fc-page .fc-list>.fc-card .fc-meta span{font-size:10.5px!important;margin:0!important}
+html body .fc-page .fc-list:not(#_a):not(#_b):not(#_c):not(#_d){grid-template-columns:1fr!important;gap:12px!important}
+html body .fc-page .fc-list>.fc-card:not(#_a):not(#_b):not(#_c):not(#_d){grid-column:auto!important;display:flex!important;flex-direction:column!important;height:auto!important;max-height:none!important;min-height:0!important;border-radius:18px!important;box-shadow:0 8px 22px rgba(120,88,40,.12)!important;background:linear-gradient(180deg,#fffefb,#fbf5e9)!important}
+html body .fc-page .fc-list>.fc-card .fc-card-img:not(#_a):not(#_b):not(#_c):not(#_d){width:calc(100% - 16px)!important;flex:none!important;height:84px!important;min-height:0!important;aspect-ratio:auto!important;margin:8px 8px 0!important;border-radius:13px!important}
+html body .fc-page .fc-list>.fc-card .fc-card-b:not(#_a):not(#_b):not(#_c){padding:9px 16px 12px!important;gap:4px!important;justify-content:flex-start!important}
+html body .fc-page .fc-list>.fc-card h3:not(#_a):not(#_b):not(#_c),html body .fc-page .fc-list>.fc-card h3 a:not(#_a):not(#_b):not(#_c){font-size:14.5px!important;line-height:1.55!important;-webkit-line-clamp:2!important}
+html body .fc-page .fc-list>.fc-card .fc-meta:not(#_a):not(#_b),html body .fc-page .fc-list>.fc-card .fc-meta span{font-size:11px!important;margin:0!important}
