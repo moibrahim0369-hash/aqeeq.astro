@@ -1,3 +1,5 @@
 /* شاشة الدخول: شعار المدار الرسمي بلا رمشة عين */
 html body #account .acx-logo::after{display:none!important;animation:none!important;content:none!important}
 html body #account .acx-logo img{object-fit:contain}
+/* شاشة الدخول: إخفاء زر الإغلاق (X) */
+html body #account .sheet-x,html[data-aqr="account"] #account .sheet-x{display:none!important}
