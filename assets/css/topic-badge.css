@@ -1,2 +1,2 @@
-/* Category badge on article cards: same shape as before, glassy and transparent. */
-html body .fc-page :is(.fc-mini,.fc-card) .fc-topic:not(#_a):not(#_b){background:linear-gradient(135deg,rgba(255,255,255,.34),rgba(255,255,255,.10))!important;border:1px solid rgba(255,255,255,.55)!important;box-shadow:0 4px 14px -4px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -1px 0 rgba(255,255,255,.12)!important;backdrop-filter:blur(10px) saturate(160%)!important;-webkit-backdrop-filter:blur(10px) saturate(160%)!important}
+/* Category badge on article cards: same shape as before, uniform white translucent glass on every card. */
+html body .fc-page :is(.fc-mini,.fc-card) .fc-topic:not(#_a):not(#_b){background:rgba(255,253,248,.80)!important;border:1px solid rgba(255,255,255,.75)!important;box-shadow:0 4px 14px -4px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.8)!important;backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important}
