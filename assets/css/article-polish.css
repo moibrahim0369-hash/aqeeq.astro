@@ -1,0 +1,23 @@
+/* Article reader (popup and full page): same language as the اكتشف page. Look only; no wording changes. */
+/* 1. Hero about a quarter of the screen, card-title font, highlighted key words */
+html body .fc-pop .fc-pop-hero:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-card:not(#_a):not(#_b){height:26vh!important;min-height:200px!important;max-height:240px!important}
+html body .fc-pop .fc-pop-hero-ov:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-ov:not(#_a):not(#_b){padding:14px 20px 34px!important}
+html body .fc-pop .fc-pop-hero-ov h3:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-ov h1:not(#_a):not(#_b){font-family:'Amiri',serif!important;font-weight:700!important;font-size:1.2rem!important;line-height:1.75!important;color:#fff!important;text-shadow:0 1px 6px rgba(20,6,12,.55)!important;margin:0!important}
+html body .fc-hl{background:rgba(94,34,52,.88);color:#fff;padding:1px 8px;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;border:1px solid rgba(241,221,176,.35)}
+html body #fc-reader-body .fc-hero-ov .fc-topic{display:none!important}
+/* 2. Meta chips: category + reading time as glass chips, date removed */
+html body :is(.fc-pop,#fc-reader-body) .fc-stats:not(#_a):not(#_b){display:flex!important;justify-content:center!important;gap:10px!important;padding:0 0 18px!important;margin:0 0 18px!important;border-bottom:1px solid rgba(183,138,82,.25)!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-stats .fc-stat:nth-child(3):not(#_a):not(#_b){display:none!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-stats .fc-stat:not(#_a):not(#_b){display:inline-flex!important;align-items:center;gap:8px!important;padding:7px 16px!important;border-radius:999px!important;background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(255,255,255,.5))!important;border:1px solid rgba(200,161,90,.6)!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 12px -6px rgba(94,34,52,.3),inset 0 1px 0 #fff!important;color:#5e2234!important;font-size:.86rem!important;font-weight:700!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-stats .fc-stat svg:not(#_a):not(#_b){color:#b88f46!important;width:16px!important;height:16px!important}
+/* 3. Bottom: no "open full page" / "close" row (the X at the top stays) */
+html body .fc-pop .fc-pop-end:not(#_a):not(#_b){display:none!important}
+html body .fc-pop .fc-pop-sheet:not(#_a):not(#_b){padding-bottom:36px!important}
+/* Next-article banner */
+html body :is(.fc-pop,#fc-reader-body) .fc-next:not(#_a):not(#_b):not(#_c){position:relative;overflow:hidden;width:100%!important;box-sizing:border-box!important;margin:30px 0 0!important;padding:22px 20px!important;border-radius:22px!important;background:radial-gradient(circle at 15% 0%,rgba(217,185,121,.28),transparent 55%),linear-gradient(150deg,#5e2234,#3a1223)!important;border:1px solid rgba(217,185,121,.6)!important;box-shadow:0 18px 34px -18px rgba(58,18,35,.7),inset 0 1px 0 rgba(255,255,255,.12)!important;text-align:center!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:16px!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-next-t:not(#_a):not(#_b){align-items:center;text-align:center;gap:6px!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-next-t small:not(#_a):not(#_b){color:#F1DDB0!important;letter-spacing:.08em;font-size:.78rem!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-next-t b:not(#_a):not(#_b){color:#fff!important;font-family:'Amiri',serif!important;font-size:1.2rem!important;line-height:1.7!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-next-act:not(#_a):not(#_b){display:flex!important;flex-direction:column-reverse;gap:10px!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-next-act .fc-btn:not(#_a):not(#_b){justify-content:center;background:linear-gradient(135deg,#f6e8bd,#d9b868)!important;color:#4a1521!important;border:1px solid rgba(255,255,255,.4)!important;border-radius:999px!important;font-weight:800!important;text-decoration:none!important;box-shadow:0 8px 18px -8px rgba(0,0,0,.5)!important}
+html body :is(.fc-pop,#fc-reader-body) .fc-next-act .fc-ghost:not(#_a):not(#_b){justify-content:center;background:rgba(255,255,255,.12)!important;color:#F6EAD6!important;border:1px solid rgba(241,221,176,.5)!important;border-radius:999px!important;text-decoration:none!important;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
