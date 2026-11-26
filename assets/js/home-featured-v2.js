@@ -35,7 +35,7 @@ function build(list){
  /* top link instead of the heading */
  var h=sec.querySelector('.aqh-row-h');
  if(!h){h=document.createElement('h3');h.className='aqh-row-h';sec.insertBefore(h,sec.querySelector('.aqh-carousel'))}
- h.innerHTML='<a class="aqh-row-link" href="'+HREF+'"><span>عرض كل أحدث ما نشر</span>'+ARROW+'</a>';
+ h.innerHTML='<a class="aqh-row-link" href="'+HREF+'"><span>عرض المكتبة</span>'+ARROW+'</a>';
  /* "show all featured" text link sits just above the lower row */
  var allw=document.querySelector('.aqh-band-arts .aqh-all-wrap'),allb=document.getElementById('aqh-all-articles'),mv=allw||allb;
  if(mv&&row2&&!sec.querySelector('.aqh-all-up')){var up=document.createElement('div');up.className='aqh-all-up';row2.parentNode.insertBefore(up,row2);up.appendChild(mv)}
