@@ -31,7 +31,6 @@ function sig(g){return [].map.call(g.querySelectorAll('.fc-mini'),function(c){re
 function group(g){
  var cards=[].slice.call(g.children).filter(function(c){return c.classList&&c.classList.contains('fc-mini')});if(g.getAttribute('data-sec')==='1'&&!cards.length)return;
  if(cards.length<4)return;
- var s=sig(g);if(g.__sig===s)return;
  var by={};cards.forEach(function(c){var k=c.getAttribute('data-category')||'';(by[k]=by[k]||[]).push(c)});
  var keys=Object.keys(by).filter(function(k){return k&&by[k].length>=2}).sort(function(a,b){return by[b].length-by[a].length}).slice(0,2);
  [].forEach.call(g.querySelectorAll('.fc-sec'),function(e){e.remove()});
