@@ -1,7 +1,7 @@
 /* Article reader (popup and full page): same language as the اكتشف page. Look only; no wording changes. */
 /* 1. Hero about a quarter of the screen, card-title font, highlighted key words */
-html body .fc-pop .fc-pop-hero:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-card:not(#_a):not(#_b){height:26vh!important;min-height:200px!important;max-height:240px!important}
-html body .fc-pop .fc-pop-hero-ov:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-ov:not(#_a):not(#_b){padding:14px 20px 34px!important}
+html body .fc-pop .fc-pop-hero:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-card:not(#_a):not(#_b){height:28vh!important;min-height:230px!important;max-height:270px!important}
+html body .fc-pop .fc-pop-hero-ov:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-ov:not(#_a):not(#_b){padding:14px 20px 48px!important}
 html body .fc-pop .fc-pop-hero-ov h3:not(#_a):not(#_b),html body #fc-reader-body .fc-hero-ov h1:not(#_a):not(#_b){font-family:'Amiri',serif!important;font-weight:700!important;font-size:1.2rem!important;line-height:1.75!important;color:#fff!important;text-shadow:0 1px 6px rgba(20,6,12,.55)!important;margin:0!important}
 html body .fc-hl{background:rgba(94,34,52,.88);color:#fff;padding:1px 8px;border-radius:8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;border:1px solid rgba(241,221,176,.35)}
 html body #fc-reader-body .fc-hero-ov .fc-topic{display:none!important}
