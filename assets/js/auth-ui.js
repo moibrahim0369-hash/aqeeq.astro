@@ -52,7 +52,7 @@
     window.addEventListener('hashchange', function () { if (location.hash !== '#account') guest.classList.remove('acx-email'); });
   }
 
-  var logo=q('.acx-logo img');if(logo){logo.src='assets/images/brand/logo-mark-512.png';logo.width=92;logo.height=92;}
+  var logo=q('.acx-logo img');if(logo){logo.src='assets/images/brand/aqeeq-header-emblem.png';logo.width=92;logo.height=92;}
   var curve=document.createElement('div');curve.className='acx-ref-curve';curve.setAttribute('aria-hidden','true');sec.appendChild(curve);
   var confirmField=document.createElement('div');confirmField.className='field';confirmField.id='acct-confirm-field';confirmField.hidden=true;
   confirmField.innerHTML='<label for="acct-pass-confirm">تأكيد كلمة المرور</label><input id="acct-pass-confirm" type="password" autocomplete="new-password" placeholder="تأكيد كلمة المرور" dir="ltr">';
