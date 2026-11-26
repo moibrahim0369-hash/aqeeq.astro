@@ -3,3 +3,24 @@ a.inv-cta[href="#pay"],#acct-buy,[data-invest-buy]{display:none!important}
 html body:not(.pac-checkout-active) #pay>.wrap>:not(.sheet-x):not(.pac-app){display:none!important}
 /* karmic checkout box shares the 2027 purchase look */
 #karmic-checkout{align-content:start!important;min-height:0!important;height:auto!important}
+/* karmic checkout: clearer golden icon and calm motion (this journey only) */
+#karmic-checkout .pac-mini.front{overflow:hidden;animation:kcFloat 6s ease-in-out infinite}
+#karmic-checkout .pac-mini.front:after{content:"";position:absolute;top:-20%;bottom:-20%;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg);animation:kcSheen 5.5s ease-in-out 1.2s infinite;pointer-events:none}
+#karmic-checkout .pac-mini.front .pac-mini-orbit{width:46px!important;height:46px!important;margin:6px 0!important;border:1px solid rgba(255,244,214,.95)!important;border-radius:50%;color:#4a300c;background:radial-gradient(circle at 35% 30%,#fffbe9 0%,#f6e2a6 55%,#dcb55c 100%);box-shadow:0 0 0 4px rgba(255,248,222,.28),0 4px 12px rgba(120,84,26,.35),inset 0 1px 0 #fff!important;animation:kcGlow 3.6s ease-in-out infinite}
+#karmic-checkout .pac-mini.front .pac-mini-orbit svg{width:26px!important;height:26px!important;stroke-width:1.9}
+#karmic-checkout .pac-art-wallet .pac-mini-orbit,#karmic-checkout .pac-art-paypal .pac-mini-orbit{margin:6px 0!important}
+#karmic-checkout .pac-art .pac-halo{animation:kcHalo 7s ease-in-out infinite}
+#karmic-checkout .pac-app>.pac-nav,#karmic-checkout .pac-app>.pac-progress,#karmic-checkout .pac-screen>*,#karmic-checkout .pac-app>.pac-wa-row{animation:kcIn .7s cubic-bezier(.2,.7,.2,1) backwards}
+#karmic-checkout .pac-app>.pac-progress{animation-delay:.06s}
+#karmic-checkout .pac-screen>:nth-child(1){animation-delay:.12s}
+#karmic-checkout .pac-screen>:nth-child(2){animation-delay:.2s}
+#karmic-checkout .pac-screen>:nth-child(3){animation-delay:.28s}
+#karmic-checkout .pac-screen>:nth-child(4){animation-delay:.36s}
+#karmic-checkout .pac-screen>:nth-child(5){animation-delay:.44s}
+#karmic-checkout .pac-screen>:nth-child(n+6),#karmic-checkout .pac-app>.pac-wa-row{animation-delay:.52s}
+@keyframes kcIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes kcFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+@keyframes kcSheen{0%,55%{left:-60%}100%{left:130%}}
+@keyframes kcGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(255,236,170,0))}50%{filter:drop-shadow(0 0 7px rgba(255,236,170,.95))}}
+@keyframes kcHalo{0%,100%{opacity:.75;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+@media (prefers-reduced-motion:reduce){#karmic-checkout *,#karmic-checkout *:after{animation:none!important}}
