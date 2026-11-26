@@ -3367,8 +3367,8 @@
 /* Select complete, already-calculated readings. This layer never computes a chart. */
 (function(root){'use strict';
  const recapIntro="هذه قراءة لسنة ٢٠٢٦ كاملة، من يناير إلى ديسمبر. المشاهد أسئلة تتذكّر بها تجربتك، وليست أحداثًا نفرضها من الخريطة. خذ ما يشبه سنتك، ودع ما ليس لك.";
- const ids=['dasha','sadeSati','nodes','caution','opportunity','covenant'];
- const titles=['الفترة التي تحكم سنتك','ثقل زحل على قمرك (ساديه ساتي)','علاقاتك الكارمية','نقاط الحذر وكيف تتجاوزها','أفضل مسار للعمل والمال','ميثاقك لعام 2027: ما تلتزم به وما تتجنبه'];
+ const ids=['dasha','sadeSati','nodes','caution','opportunity','months','covenant'];
+ const titles=['الفترة التي تحكم سنتك','ثقل زحل على قمرك (ساديه ساتي)','علاقاتك الكارمية','نقاط الحذر وكيف تتجاوزها','أفضل مسار للعمل والمال','أشهر سنتك: متى تتحرك ومتى تتمهل','ميثاقك لعام 2027: ما تلتزم به وما تتجنبه'];
  const phaseNotes={outside:'زحل خارج نطاق البرج السابق لبرج قمر الميلاد، وبرج القمر نفسه، والبرج التالي. العدّ بالأبراج؛ والخروج لا يحكم على سهولة التجربة.',rising:'زحل في البرج السابق لبرج قمر الميلاد، وهي المرحلة الأولى. العدّ هنا بالأبراج، وليس بدرجة اقتران دقيقة.',peak:'زحل في برج قمر الميلاد نفسه، وهي المرحلة الوسطى. العدّ هنا بالأبراج، وليس بدرجة اقتران دقيقة.',setting:'زحل في البرج التالي لبرج قمر الميلاد، وهي المرحلة الأخيرة، لا الخروج النهائي. العدّ بالأبراج؛ وقد يعيد التراجع مرحلة سابقة.'};
 
  function transitEntries(report,planets){
@@ -3382,7 +3382,7 @@
   const phaseEntries=phase.entries.map(e=>({kind:'phase',sourceRef:e.ref,text:e.text,visits:e.visits,metadata:e.metadata,phase:e.key,note:phaseNotes[e.key]}));
   const covenant=report.focused.find(s=>s.id==='covenant');if(!covenant)throw Error('Reviewed covenant copy missing.');
   const covEntries=covenant.entries.map(e=>({kind:'covenant',sourceRef:e.ref,text:e.text,visits:e.visits,metadata:e.metadata,maha:e.metadata.maha,lord:e.metadata.lord}));
-  const entries=[periodEntries(report),phaseEntries,transitEntries(report,['rahu','ketu']),transitEntries(report,['saturn']),transitEntries(report,['jupiter']),covEntries];
+  const months=report.focused.find(s=>s.id==='months');if(!months)throw Error('Reviewed months copy missing.');const monthEntries=months.entries.map(e=>({kind:'months',sourceRef:e.ref,text:e.text,visits:e.visits,metadata:e.metadata}));const entries=[periodEntries(report),phaseEntries,transitEntries(report,['rahu','ketu']),transitEntries(report,['saturn']),transitEntries(report,['jupiter']),monthEntries,covEntries];
   return ids.map((id,i)=>({id,title:titles[i],entries:entries[i]}));
  }
  root.AqYear2027ReadingModel={assemble,transitEntries,periodEntries,phaseNotes,recapIntro};
