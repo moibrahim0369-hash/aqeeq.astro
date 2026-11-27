@@ -2494,9 +2494,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const qs = [].slice.call(tmp.querySelectorAll(".sg-q p")).map(p => p.outerHTML.replace(/class="[^"]*"/, ""));
     const ps = [].filter.call(tmp.querySelectorAll("p"), p => !p.closest(".sg-q") && p.textContent.trim().length > 1).map(p => p.innerHTML);
     const lead = ps.shift();
-    const rows = (it.span ? `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true">${SG_CLOCK}</span><span>${it.span}</span></p>` : "") + (it.nxt ? `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true">›</span><span>${it.nxt}</span></p>` : "");
+    const rows = (it.span ? `<p class="swp-ing"><span>${it.span}</span></p>` : "") + (it.nxt ? `<p class="swp-ing"><span>${it.nxt}</span></p>` : "");
     sgBody.className = "aqm-sheet-body swp-body sgs-body";
-    sgBody.innerHTML = `<header class="swp-hero"><span class="swp-med" aria-hidden="true">${it.svg ? `<span class="sg sg-svg">${it.svg}</span>` : `<span class="sg">${gl(it.g)}</span>`}</span><div class="swp-ht">${it.sub ? `<small>${it.sub}</small>` : ""}<h3>${it.t}</h3></div></header>${rows}<div class="swp-fold">${lead ? `<p class="trm-lead">${lead}</p>` : ""}${ps.map(x => `<p class="swp-read">${x}</p>`).join("")}${qs.length ? `<div class="swp-psy swp-story">${qs.join("")}</div>` : ""}${it.q ? `<div class="swp-q"><p>${it.q}</p></div>` : ""}</div>`;
+    sgBody.innerHTML = `<header class="swp-hero"><div class="swp-ht">${it.sub ? `<small>${it.sub}</small>` : ""}<h3>${it.t}</h3></div></header>${rows}<div class="swp-fold">${lead ? `<p class="trm-lead">${lead}</p>` : ""}${ps.map(x => `<p class="swp-read">${x}</p>`).join("")}${qs.length ? `<div class="swp-psy swp-story">${qs.join("")}</div>` : ""}${it.q ? `<div class="swp-q"><p>${it.q}</p></div>` : ""}</div>`;
     sgRewind();
     const nb = sgSheet.querySelector("[data-sgn]"); nb.hidden = sgList.length < 2; const nx = sgList[(sgIdx + 1) % sgList.length]; nb.querySelector("b").textContent = nx ? nx.t : "";
   }
