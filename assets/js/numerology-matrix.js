@@ -312,8 +312,8 @@
         <line x1="${pos.north[0]}" y1="${pos.north[1]}" x2="${pos.south[0]}" y2="${pos.south[1]}" class="aqm-svg-axis" />
         <line x1="${fatherA[0]}" y1="${fatherA[1]}" x2="${fatherB[0]}" y2="${fatherB[1]}" class="aqm-svg-father" marker-end="url(#aqm-arr-father)" />
         <line x1="${motherA[0]}" y1="${motherA[1]}" x2="${motherB[0]}" y2="${motherB[1]}" class="aqm-svg-mother" marker-end="url(#aqm-arr-mother)" />
-        <text x="303" y="261" transform="rotate(45 303 261)" text-anchor="middle" font-size="10" font-weight="700" fill="#8E6E85" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">male generation line</text>
-        <text x="539" y="261" transform="rotate(-45 539 261)" text-anchor="middle" font-size="10" font-weight="700" fill="#B5443E" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">female generation line</text>
+        <text x="303" y="261" transform="rotate(45 303 261)" text-anchor="middle" font-size="10" font-weight="700" fill="#8E6E85" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">خط الأب</text>
+        <text x="539" y="261" transform="rotate(-45 539 261)" text-anchor="middle" font-size="10" font-weight="700" fill="#B5443E" stroke="#FFFFFF" stroke-width="3" paint-order="stroke" class="aqm-svg-gen-label">خط الأم</text>
 
         <!-- مسارات الحب والمال -->
         <polyline points="${pos.C2[0]},${pos.C2[1]} ${pos.money[0]},${pos.money[1]} ${pos.balance[0]},${pos.balance[1]}" class="aqm-svg-money-channel" fill="none" />
