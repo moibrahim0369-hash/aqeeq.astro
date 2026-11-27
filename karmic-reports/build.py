@@ -7,8 +7,8 @@ import re
 import subprocess
 import sys
 
-TEMPLATE = open('/downloads/karmic-pdf/template.html', encoding='utf-8').read()
-OUT = '/downloads/karmic-pdf/out'
+TEMPLATE = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html'), encoding='utf-8').read()
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)),'out')
 os.makedirs(OUT, exist_ok=True)
 
 
@@ -115,6 +115,6 @@ def build(md_path):
 
 
 if __name__ == '__main__':
-    paths = sys.argv[1:] or sorted(glob.glob('/downloads/karmic-new/*.md'))
+    paths = sys.argv[1:] or sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)),'final','karmic-tail-*.md')))
     for p in paths:
         build(p)
