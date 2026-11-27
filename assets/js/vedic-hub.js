@@ -445,6 +445,7 @@
     SHC = { d: d, body: body };
     s.querySelector('.aqm-sheet-ic').innerHTML = (d.querySelector('.eam-acc-ic') || {}).innerHTML || '';
     s.querySelector('h3').textContent = (d.querySelector('.eam-acc-t') || {}).textContent || '';
+    Array.prototype.forEach.call(body.querySelectorAll(':scope > .eam-in-acc'), function (x) { if (x.style.display === 'none') x.style.display = ''; });
     var sb = s.querySelector('.aqm-sheet-body'); sb.innerHTML = ''; sb.appendChild(body); sb.scrollTop = 0;
     s.classList.remove('is-closing'); s.hidden = false; document.documentElement.classList.add('aqm-sheet-open');
     s.querySelector('[data-vhn]').hidden = !nextAcc(d);
