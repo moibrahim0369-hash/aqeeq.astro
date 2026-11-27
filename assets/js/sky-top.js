@@ -1,0 +1,2 @@
+(function(){function go(){var q=document.querySelector('#swc .swc-quick'),c=document.querySelector('#swc .swc-cap'),a=document.querySelector('#swc .swc-adv');if(!q||!c||!a)return false;if(q.previousElementSibling!==c)c.insertAdjacentElement('afterend',q);if(a.previousElementSibling!==q)q.insertAdjacentElement('afterend',a);return true}
+if(!go()){var t=setInterval(function(){if(go())clearInterval(t)},300);setTimeout(function(){clearInterval(t)},8000)}})();
