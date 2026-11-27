@@ -78,7 +78,7 @@
     else location.hash = '#sky';
   }
   function addNext() {
-    var sh = document.querySelector('.fc-sheet'); if (!sh) return; var f = $('.aqm-sheet-foot', sh); if (!f || $('.hsk-next', f)) return;
+    var sh = document.querySelector('.fc-sheet'); if (!sh) return; sh.classList.add('y27-modal'); var f = $('.aqm-sheet-foot', sh); if (!f || $('.hsk-next', f)) return;
     var b = document.createElement('button'); b.type = 'button'; b.className = 'aqm-foot-next hsk-next'; b.textContent = 'التالي';
     b.addEventListener('click', function () { openSkyItem(k + 1); });
     f.insertBefore(b, f.firstChild);
@@ -87,7 +87,7 @@
   function signSheet(n) {
     sIdx = (n + 12) % 12;
     if (!shS) {
-      shS = document.createElement('div'); shS.className = 'aqm-sheet swp-sheet hsb-sheet'; shS.hidden = true;
+      shS = document.createElement('div'); shS.className = 'aqm-sheet swp-sheet y27-modal hsb-sheet'; shS.hidden = true;
       shS.innerHTML = '<div class="aqm-sheet-scrim" data-hc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-hc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body hsb-sbody"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-hn>التالي</button><button type="button" class="aqm-foot-close" data-hc>إغلاق</button></div></div>';
       document.body.appendChild(shS);
       shS.addEventListener('click', function (e) {
