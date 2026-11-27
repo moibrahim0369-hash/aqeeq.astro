@@ -26,7 +26,7 @@
     $$('.sp-switch a', sec).forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-sp-pill') === p); });
   }
   function pills() {
-    sec = sec || $('#signs'); if (!sec || $('.sp-switch', sec)) return;
+    return;
     var c = $('.center', sec); if (!c) return;
     var d = document.createElement('div'); d.className = 'sp-switch';
     d.innerHTML = '<a href="#signs" data-sp-pill="forecast">توقعات الأبراج</a><a href="' + TRAITS + '" data-sp-pill="traits">' + T_TITLE + '</a>';
