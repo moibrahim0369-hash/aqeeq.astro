@@ -123,11 +123,21 @@
       return '<button type="button" class="yt-tile" data-yt-open="areaS:' + a.id + '"><span class="yt-ic">' + SVG(a.ic) + '</span><b>' + a.t + '</b><small>' + a.s + '</small></button>';
     }).join('') + '</div>' + (ch.known ? '' : '<p class="yt-note">وقت ميلادك غير مسجّل، فالبيوت تقريبية. أضفه في «تعديل البيانات الشخصية» لتصير هذه الأقسام دقيقة.</p>');
   }
+  function tableHtml(p) {
+    var rows = PK.map(function (k) { var x = p[k]; if (!x) return ''; return '<button type="button" class="yt-tr" data-yt-open="pl:' + k + '"><span class="yt-tc yt-th">' + x.house + '</span><span class="yt-tc yt-tp"><i>' + (GL[k] || '') + '\uFE0E</i>' + PN[k] + '</span><span class="yt-tc yt-ts">' + x.sign + '</span></button>'; }).join('');
+    return '<div class="yt-tbl" role="table"><div class="yt-tr yt-thead"><span class="yt-tc">البيت</span><span class="yt-tc">الكوكب</span><span class="yt-tc">البرج</span></div>' + rows + '</div>';
+  }
+  function elementsHtml(p) {
+    var E = ['نار', 'أرض', 'هواء', 'ماء'], n = [0, 0, 0, 0], tot = 0;
+    PK.forEach(function (k) { if (p[k]) { n[p[k].si % 4]++; tot++; } });
+    if (!tot) return '';
+    return '<p class="yt-lab">عناصر خريطتك</p><div class="yt-el">' + E.map(function (e, i) { var pc = Math.round(n[i] / tot * 100); return '<div class="yt-er yt-e' + i + '"><span>' + e + '</span><div class="yt-bar"><i style="width:' + pc + '%"></i></div><b>' + pc + '%</b></div>'; }).join('') + '</div>';
+  }
   function chartHtml(ch) {
     var sw = '<div class="yt-sw" role="tablist"><button type="button" data-yt-sys="west" aria-selected="' + (ST.sys === 'west') + '">الخريطة الغربية</button><button type="button" data-yt-sys="east" aria-selected="' + (ST.sys === 'east') + '">الخريطة الشرقية</button></div>';
     if (ST.sys === 'east') return sw + eastHtml(ch);
     var p = natalPl(ch);
-    return sw + '<div class="yt-rows">' + PK.map(function (k) {
+    return sw + tableHtml(p) + elementsHtml(p) + '<p class="yt-lab">اقرأ كل كوكب</p><div class="yt-rows">' + PK.map(function (k) {
       var x = p[k]; if (!x) return '';
       return '<button type="button" class="yt-row" data-yt-open="pl:' + k + '">' + badge(k) + '<span class="yt-row-t"><b>' + PN[k] + ' في ' + x.sign + '</b><small>البيت ' + HN[x.house - 1] + ' · ' + HT[x.house - 1] + '</small></span>' + CHEV + '</button>';
     }).join('') + '</div>' + (ch.known ? '' : '<p class="yt-note">وقت ميلادك غير مسجّل، فأرقام البيوت تقريبية.</p>');
