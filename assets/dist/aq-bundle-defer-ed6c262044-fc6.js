@@ -8360,7 +8360,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261127-core-rich1';
+  var VERSION = '20261127b';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];
