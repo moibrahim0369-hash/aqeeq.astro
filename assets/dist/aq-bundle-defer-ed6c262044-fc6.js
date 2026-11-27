@@ -1366,18 +1366,20 @@
     if (c.nextS && !c.solar) o.push(fact('أقرب كسوف', fmtS(c.nextS.peak.date) + ' · ' + kindAr(c.nextS.kind)));
     return o.join('');
   }
+  function telHTML(c) { return tel('il', 'الإضاءة', Math.round(c.il * 100) + '%') + tel('age', 'عمر القمر', c.age.toFixed(1).replace('.', '٫') + ' يوم') + tel('sign', 'البرج', c.sign + ' ' + c.deg + '°') + tel('dist', 'المسافة عن الأرض', num(c.dist) + ' كم'); }
+  function signHTML(c) { var si = SIGNS.indexOf(c.sign), d = ''; for (var i = 0; i < 12; i++) d += '<i class="' + (i === si ? 'is-on' : '') + '"></i>'; return '<div class="mn-sign" id="mn-sign"><b>القمر في ' + c.sign + ' ' + c.deg + '°</b><span class="mn-dots" aria-hidden="true">' + d + '</span></div>'; }
   function moonView() {
     var c = calc(base + off * 864e5), p = PH[c.ph];
     var halo = c.full ? ' is-full' : '', ecl = c.lunar ? ' is-lunar' : c.solar ? ' is-solar' : '';
     var scale = c.supr ? ' is-super' : '';
-    return '<div class="mn-stage' + halo + ecl + scale + '"><div class="mn-halo" style="--mnh:' + Math.max(0, (c.il - .6) / .4).toFixed(2) + '"></div><div class="mn-moon" id="mn-moon" tabindex="0" aria-label="اسحب القمر لتغيير اليوم">' + moonSvg(c, 232) + '</div></div>' +
+    return signHTML(c) + '<div class="mn-stage' + halo + ecl + scale + '"><div class="mn-halo" style="--mnh:' + Math.max(0, (c.il - .6) / .4).toFixed(2) + '"></div><div class="mn-moon" id="mn-moon" tabindex="0" aria-label="اسحب القمر لتغيير اليوم">' + moonSvg(c, 232) + '</div></div>' +
       '<p class="mn-hint">اسحب القمر يمينًا أو يسارًا للتنقل بين الأيام</p>' +
       '<div class="mn-title"><h4>' + p[0] + '</h4><div class="mn-bs">' + badges(c) + '</div></div>' +
       '<div class="mn-date"><button type="button" data-mn-step="-1" aria-label="اليوم التالي"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button><span>' + fmtD(c.d) + (off === 0 ? ' · الآن' : '') + '</span><button type="button" data-mn-step="1" aria-label="اليوم السابق"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button></div>' +
       '<input class="mn-range" id="mn-range" type="range" min="-30" max="30" step="1" value="' + off + '" aria-label="تغيير اليوم"><button type="button" class="mn-now" data-mn-now' + (off === 0 ? ' hidden' : '') + '>العودة إلى الآن</button>' +
-      '<div class="mn-tel">' + tel('il', 'الإضاءة', Math.round(c.il * 100) + '%') + tel('age', 'عمر القمر', c.age.toFixed(1).replace('.', '٫') + ' يوم') + tel('sign', 'البرج', c.sign + ' ' + c.deg + '°') + tel('dist', 'المسافة عن الأرض', num(c.dist) + ' كم') + '</div>' +
-      phBody(p, { label: 'ماذا يعني هذا الطور لك' }) +
-      '<div class="mn-facts">' + nextEv(c) + '</div>';
+      '<details class="mn-acc" open><summary>حركة القمر</summary><div class="mn-tel">' + telHTML(c) + '</div></details>' +
+      '<details class="mn-acc"><summary>ماذا يعني هذا الطور لك</summary>' + phBody(p, { label: 'ماذا يعني هذا الطور لك' }) + '</details>' +
+      '<details class="mn-acc" open><summary>متى يتحرك</summary><div class="mn-facts">' + nextEv(c) + '</div></details>';
   }
   var DAYS = [0, 4, 7, 11, 15, 18, 22, 26];
   function compassView() {
@@ -1440,6 +1442,7 @@
     var h = $('.mn-title h4'); if (h) h.textContent = PH[c.ph][0]; var bs = $('.mn-bs'); if (bs) bs.innerHTML = badges(c);
     var ds = $('.mn-date span'); if (ds) ds.textContent = fmtD(c.d) + (off === 0 ? ' · الآن' : '');
     var r = $('#mn-range'); if (r) r.value = off;
+    var sg = $('#mn-sign'); if (sg) sg.outerHTML = signHTML(c); var tl = $('.mn-tel'); if (tl) tl.innerHTML = telHTML(c);
   }
   function ensure() {
     if (sheet) return sheet;
