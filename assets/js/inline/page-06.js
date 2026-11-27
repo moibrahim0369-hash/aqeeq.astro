@@ -2322,8 +2322,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   const signsSec = $("#signs");
   const ZI = {
-    sparkorb: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.200l1.900 5.300 5.300 1.900-5.300 1.900-1.900 5.300-1.900-5.300-5.300-1.900 5.300-1.900z"/><circle cx="19" cy="5" r="1.100"/><circle cx="5.500" cy="18.500" r="1.100"/><path d="M19.600 16.600l.5 1.200 1.200.5-1.200.5-.5 1.200-.5-1.200-1.200-.5 1.200-.5z"/></svg>',
-    crescent: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.500 3.800a8 8 0 1 0 5.700 11.600A6.600 6.600 0 0 1 14.500 3.800z"/><path d="M18 6.200l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg>',
+    sparkorb: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.200"/><path d="M12 3v2.300M12 18.700V21M3 12h2.300M18.700 12H21M5.600 5.600l1.600 1.600M16.800 16.800l1.600 1.600M5.600 18.400l1.600-1.600M16.800 7.200l1.600-1.600"/></svg>',
+    crescent: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.500 3.800a8 8 0 1 0 5.700 11.600A6.600 6.600 0 0 1 14.500 3.800z"/></svg>',
     gem: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.500 4h11L21 9l-9 11L3 9z"/><path d="M3 9h18M9.500 4L8 9l4 11 4-11-1.500-5"/></svg>',
     star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.4 5.6 6 .6-4.5 4 1.4 5.9L12 16l-5.300 3.100 1.400-5.900-4.500-4 6-.6z"/></svg>',
     heart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.500-4.600-7.500-10A4.300 4.300 0 0 1 12 7.500 4.300 4.300 0 0 1 19.500 10c0 5.400-7.500 10-7.500 10z"/></svg>',
@@ -2576,6 +2576,10 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     secs.push({ svg: ZI.sparkorb, t: "سؤال اليوم", sub: "للتأمل بهدوء", html: qBox(q) });
     secs.forEach((x, n) => { if (n) x.sub = `قسم ${nAr(n + 1)} من ${nAr(secs.length)}` + (x.sub ? " · " + x.sub : ""); });
     curList = { fc: secs };
+    const ord = [5, 0, 1, 2, 3, 4, 6].filter(k => k < secs.length), qi = secs.length - 1;
+    const ordL = ord.length === secs.length ? ord : secs.map((_, k) => k);
+    const bn = k => { const x = secs[k], ic = (x.t === "سؤال اليوم") ? AICs.tip : x.svg; return `<article class="sg-bn" data-sgrow="fc:${k}" role="button" tabindex="0"><div class="sg-bn-h">${bdi(ic)}<div><h5>${x.t}</h5>${x.sub ? `<small>${x.sub}</small>` : ""}</div></div><div class="sg-bn-x">${x.html}</div><span class="sg-more">اقرأ التفاصيل<i aria-hidden="true">${AICs.more}</i></span></article>`; };
+    return `<section class="sg-sec sg-bns">${ordL.map(bn).join("")}</section>`;
     return `
       <section class="sg-sec">
       <article class="sg-card sg-fc" data-sgrow="fc:0" role="button" tabindex="0"><div class="sg-fc-h">${bdi(ZI.sparkorb)}<div><h5>توقع يومك</h5><span class="sg-live"><i class="sg-dot" aria-hidden="true"></i>مباشر · طاقة اليوم</span></div></div>
