@@ -1,0 +1,10 @@
+/* صفحة السماء: بلا شريط الأزرار العلوي، وبطاقة قمر هادئة */
+html body section.sec#sky:not(#_z1):not(#_z2):not(#_z3):not(#_z4):not(#_z5):not(#_z6):not(#_z7):not(#_z8):not(#_z9):not(#_z10):not(#_z11):not(#_z12):not(#_z13):not(#_z14):not(#_z15):not(#_z16):not(#_z17):not(#_z18):not(#_z19):not(#_z20):not(#_z21):not(#_z22):not(#_z23):not(#_z24) .aq-section-topbar.aq-ctxbar:not(#_z1):not(#_z2):not(#_z3):not(#_z4):not(#_z5):not(#_z6):not(#_z7):not(#_z8):not(#_z9):not(#_z10):not(#_z11):not(#_z12):not(#_z13):not(#_z14):not(#_z15):not(#_z16):not(#_z17):not(#_z18):not(#_z19):not(#_z20):not(#_z21):not(#_z22):not(#_z23):not(#_z24){display:none!important}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c){display:flex!important;flex-direction:column!important;align-items:center;text-align:center;gap:4px;padding:22px 16px 16px!important;background:radial-gradient(120% 80% at 50% 0%,#fdf5f7,#fff 70%)!important;border:1px solid #f0dfe4!important;border-radius:26px!important;box-shadow:0 10px 28px rgba(110,40,70,.10)!important}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-fig{flex:none!important;width:150px!important;height:150px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,rgba(150,60,90,.20),rgba(150,60,90,0) 68%);margin-bottom:6px}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-svg{width:128px!important;height:128px!important;filter:drop-shadow(0 0 12px rgba(140,50,85,.30)) drop-shadow(0 4px 10px rgba(40,30,40,.28))}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt{display:grid!important;justify-items:center;gap:2px}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt small{color:#8a4a5e;font-size:.78rem}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt b{font-size:1.6rem;color:#1b1b1f}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt span{font-size:.88rem;color:#6b6560;line-height:1.6}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .mn-open{justify-content:center;width:100%;margin-top:12px;padding:10px 14px;border:1px solid #ecd6dd;background:#fdf6f8;color:#1b1b1f;font-weight:600}
