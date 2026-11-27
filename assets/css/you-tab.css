@@ -158,3 +158,8 @@ html body section#for-you#for-you .yt-root .yt-e0 .yt-bar i:not(#_t1):not(#_t2):
 html body section#for-you#for-you .yt-root .yt-e1 .yt-bar i:not(#_t1):not(#_t2):not(#_t3):not(#_t4):not(#_t5):not(#_t6):not(#_t7):not(#_t8):not(#_t9):not(#_t10):not(#_t11):not(#_t12){background:linear-gradient(90deg,#cfc79a,#a49a5c)}
 html body section#for-you#for-you .yt-root .yt-e2 .yt-bar i:not(#_t1):not(#_t2):not(#_t3):not(#_t4):not(#_t5):not(#_t6):not(#_t7):not(#_t8):not(#_t9):not(#_t10):not(#_t11):not(#_t12){background:linear-gradient(90deg,#b9cbd6,#7f9fb3)}
 html body section#for-you#for-you .yt-root .yt-e3 .yt-bar i:not(#_t1):not(#_t2):not(#_t3):not(#_t4):not(#_t5):not(#_t6):not(#_t7):not(#_t8):not(#_t9):not(#_t10):not(#_t11):not(#_t12){background:linear-gradient(90deg,#b8bdd8,#8189b8)}
+/* v13 */
+html body section#for-you#for-you .yt-root .yt-cyt .yt-tr:not(#_t1):not(#_t2):not(#_t3):not(#_t4):not(#_t5):not(#_t6):not(#_t7):not(#_t8):not(#_t9):not(#_t10):not(#_t11):not(#_t12){grid-template-columns:1fr auto;cursor:default}
+html body section#for-you#for-you .yt-root .yt-cyt .yt-tr:first-child:not(#_t1):not(#_t2):not(#_t3):not(#_t4):not(#_t5):not(#_t6):not(#_t7):not(#_t8):not(#_t9):not(#_t10):not(#_t11):not(#_t12){border-top:0}
+html body section#for-you#for-you .yt-root .yt-cyt .yt-ts:not(#_t1):not(#_t2):not(#_t3):not(#_t4):not(#_t5):not(#_t6):not(#_t7):not(#_t8):not(#_t9):not(#_t10):not(#_t11):not(#_t12){font-size:.78rem;white-space:nowrap}
+html body section#for-you#for-you .yt-root .yt-cyt .yt-tp:not(#_t1):not(#_t2):not(#_t3):not(#_t4):not(#_t5):not(#_t6):not(#_t7):not(#_t8):not(#_t9):not(#_t10):not(#_t11):not(#_t12){font-size:.9rem}

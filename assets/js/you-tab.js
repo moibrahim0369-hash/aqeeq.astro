@@ -87,22 +87,18 @@
     var day = L.DAY && L.DAY[mo.house - 1];
     out += '<article class="yt-hero"><small class="yt-k">طاقة اليوم · ' + dateS + '</small><h2>' + esc(L.HEAD && L.HEAD[mo.house - 1] || '') + '</h2><p>' + esc(firstSentence(day)) + '</p>' +
       '<span class="yt-x">القمر في ' + mo.sign + ' · في بيتك ' + HN[mo.house - 1] + '</span><button type="button" class="yt-more" data-yt-open="day"><span>اقرأ يومك كاملًا</span>' + CHEV + '</button></article>';
-    out += '<p class="yt-lab">مجالات يومك</p><div class="yt-rail">';
+    out += '<p class="yt-lab">مجالات يومك</p><div class="yt-rows">';
     ['love', 'work', 'money'].forEach(function (a) {
       var t = L.AREA && L.AREA[a] && L.AREA[a][mo.house - 1]; if (!t) return;
       var nm = { love: 'الحب والعلاقات', work: 'العمل', money: 'المال' }[a];
-      out += card('اليوم', nm, firstSentence(t), 'area:' + a, '', a);
+      out += '<button type="button" class="yt-row" data-yt-open="area:' + a + '">' + badge(a) + '<span class="yt-row-t"><b>' + nm + '</b><small>' + esc(firstSentence(t)) + '</small></span>' + CHEV + '</button>';
     });
-    out += '</div><p class="yt-lab">ما يعبر بيوتك الآن</p><div class="yt-rail">';
-    ['sun', 'mercury', 'venus', 'mars'].forEach(function (k) {
-      var t = tr[k]; if (!t) return; var R = window.AqReadings;
-      out += card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k, '', k);
-    });
-    return out + '</div>';
+    out += '</div><p class="yt-lab">ما يعبر بيوتك الآن</p>' + trTable(tr, ['sun', 'mercury', 'venus', 'mars']);
+    return out;
   }
   function transitsHtml(ch) {
     if (!texts()) return empty('نجهّز عبوراتك…');
-    var tr = transits(ch), R = window.AqReadings, out = '<p class="yt-lab">الكواكب البطيئة: أثرها يمتد أشهرًا</p><div class="yt-stack">';
+    var tr = transits(ch), R = window.AqReadings, out = '<p class="yt-lab">الكواكب البطيئة: أثرها يمتد أشهرًا</p>' + trTable(tr, ['jupiter', 'saturn', 'uranus', 'neptune', 'pluto']) + '<div class="yt-stack">';
     ['jupiter', 'saturn', 'uranus', 'neptune', 'pluto'].forEach(function (k) {
       var t = tr[k]; if (!t) return;
       out += card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'تعبر بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k, 'الدرجة ' + t.deg, k);
@@ -111,9 +107,9 @@
     var cyc = []; try { if (window.AqeeqYou && window.Astro) cyc = window.AqeeqYou.cycles(ch, Math.floor(Date.now() / 864e5) * 864e5) || []; } catch (e) {}
     var now = Date.now(), cur = cyc.filter(function (c) { return c.start <= now && c.end >= now; }).sort(function (a, b) { return a.end - b.end; }).slice(0, 4);
     if (cur.length) {
-      out += '<p class="yt-lab">دورات جارية عليك</p><div class="yt-stack">' + cur.map(function (c) {
-        var f = function (ms) { return new Date(ms).toLocaleDateString('ar-EG-u-nu-latn', { month: 'long', year: 'numeric' }); };
-        return '<article class="yt-c yt-cy"><small class="yt-k">دورة عبور · تنتهي ' + f(c.end) + '</small><h3>' + esc('دورة ' + c.tn + ' مع ' + c.nn) + '</h3><span class="yt-x">من ' + f(c.start) + ' إلى ' + f(c.end) + '</span></article>';
+      var f = function (ms) { return new Date(ms).toLocaleDateString('ar-EG-u-nu-latn', { month: 'short', year: 'numeric' }); };
+      out += '<p class="yt-lab">دورات جارية عليك</p><div class="yt-tbl yt-cyt">' + cur.map(function (c) {
+        return '<div class="yt-tr"><span class="yt-tc yt-tp">' + esc('دورة ' + c.tn + ' مع ' + c.nn) + '</span><span class="yt-tc yt-ts">' + f(c.start) + ' ← ' + f(c.end) + '</span></div>';
       }).join('') + '</div>';
     }
     return out;
@@ -122,6 +118,10 @@
     return '<div class="yt-grid">' + AREAS.map(function (a) {
       return '<button type="button" class="yt-tile" data-yt-open="areaS:' + a.id + '"><span class="yt-ic">' + SVG(a.ic) + '</span><b>' + a.t + '</b><small>' + a.s + '</small></button>';
     }).join('') + '</div>' + (ch.known ? '' : '<p class="yt-note">وقت ميلادك غير مسجّل، فالبيوت تقريبية. أضفه في «تعديل البيانات الشخصية» لتصير هذه الأقسام دقيقة.</p>');
+  }
+  function trTable(tr, keys) {
+    var rows = keys.map(function (k) { var x = tr[k]; if (!x) return ''; return '<button type="button" class="yt-tr" data-yt-open="tr:' + k + '"><span class="yt-tc yt-th">' + x.house + '</span><span class="yt-tc yt-tp"><i>' + (GL[k] || '') + '\uFE0E</i>' + PN[k] + (x.retro ? ' · راجع' : '') + '</span><span class="yt-tc yt-ts">' + x.sign + '</span></button>'; }).join('');
+    return '<div class="yt-tbl" role="table"><div class="yt-tr yt-thead"><span class="yt-tc">بيتك</span><span class="yt-tc">الكوكب</span><span class="yt-tc">البرج</span></div>' + rows + '</div>';
   }
   function tableHtml(p) {
     var rows = PK.map(function (k) { var x = p[k]; if (!x) return ''; return '<button type="button" class="yt-tr" data-yt-open="pl:' + k + '"><span class="yt-tc yt-th">' + x.house + '</span><span class="yt-tc yt-tp"><i>' + (GL[k] || '') + '\uFE0E</i>' + PN[k] + '</span><span class="yt-tc yt-ts">' + x.sign + '</span></button>'; }).join('');
