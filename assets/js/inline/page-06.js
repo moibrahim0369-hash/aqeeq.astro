@@ -2583,7 +2583,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     curList = { fc: secs };
     const ord = [5, 0, 1, 2, 3, 4, 6].filter(k => k < secs.length), qi = secs.length - 1;
     const ordL = ord.length === secs.length ? ord : secs.map((_, k) => k);
-    const bn = k => { const x = secs[k], ic = (x.t === "سؤال اليوم") ? AICs.tip : x.svg; return `<article class="sg-bn" data-sgrow="fc:${k}" role="button" tabindex="0"><div class="sg-bn-h">${bdi(ic)}<div><h5>${x.t}</h5>${x.sub ? `<small>${x.sub}</small>` : ""}</div></div><div class="sg-bn-x">${x.html}</div><span class="sg-lmore">اقرأ التفاصيل<i aria-hidden="true">${AICs.more}</i></span></article>`; };
+    const bn = k => { const x = secs[k], ic = (x.t === "سؤال اليوم") ? AICs.tip : x.svg; return `<article class="sg-bn" data-sgrow="fc:${k}" role="button" tabindex="0"><div class="sg-bn-h">${bdi(ic)}<div><h5>${x.t}</h5>${x.sub ? `<small>${x.sub}</small>` : ""}</div></div><div class="sg-bn-x">${x.html}</div><span class="sg-lmore">اقرأ التفاصيل<i aria-hidden="true">${AICs.more.replace("<svg ", '<svg style="background:transparent !important;border-radius:0 !important;box-shadow:none !important" ').replace("<path ", '<path style="background:transparent !important" ')}</i></span></article>`; };
     return `<section class="sg-sec sg-bns">${ordL.map(bn).join("")}</section>`;
     return `
       <section class="sg-sec">
