@@ -58,6 +58,17 @@
   var VN = { sun: 'الشمس', moon: 'القمر', mars: 'المريخ', mercury: 'عطارد', jupiter: 'المشتري', venus: 'الزهرة', saturn: 'زحل', node: 'راهو', ketu: 'كيتو' };
   var firstSentence = function (t) { t = String(t || ''); var m = t.search(/[.؟!]\s/); return m > 20 ? t.slice(0, m + 1) : t; };
   var paras = function (t) { return String(t || '').split(/\n+/).filter(Boolean); };
+  /* نص طويل بلا فواصل: يُقسَّم عند نهاية الجمل إلى فقرات قصيرة (جملتان أو ثلاث)، بنفس الكلمات */
+  var chunk = function (arr) {
+    var out = [];
+    arr.forEach(function (t) {
+      if (t.length < 360) { out.push(t); return; }
+      var sent = t.match(/[^.؟!]+[.؟!]+(?:\s|$)|[^.؟!]+$/g) || [t], cur = '';
+      sent.forEach(function (x) { cur += x; if (cur.length > 190) { out.push(cur.trim()); cur = ''; } });
+      if (cur.trim()) { if (out.length && cur.length < 80) out[out.length - 1] += ' ' + cur.trim(); else out.push(cur.trim()); }
+    });
+    return out;
+  };
   /* ---------- مكونات ---------- */
   var GL = { sun: '\u2609', moon: '\u263D', mercury: '\u263F', venus: '\u2640', mars: '\u2642', jupiter: '\u2643', saturn: '\u2644', uranus: '\u2645', neptune: '\u2646', pluto: '\u2647' };
   var AI = { love: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>', work: '<path d="M4 8h16v11H4zM9 8V5h6v3"/>', money: '<circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.500 10.500c0-1 1-1.500 2.500-1.500s2.500.5 2.500 1.500-1 1.500-2.500 1.500-2.500.5-2.500 1.500 1 1.500 2.500 1.500 2.500-.5 2.500-1.500"/>', day: '<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.600 5.600L7 7M17 17l1.400 1.400M5.600 18.400L7 17M17 7l1.400-1.400"/>' };
@@ -129,6 +140,12 @@
     var now = Date.now(), tot = st.end - st.start, pass = Math.min(Math.max(now - st.start, 0), tot), pc = Math.round(pass / tot * 100), R = 30, C = 2 * Math.PI * R;
     return '<div class="yt-tm"><div class="yt-ring"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="' + R + '" class="yt-r0"/><circle cx="36" cy="36" r="' + R + '" class="yt-r1" stroke-dasharray="' + (C * pc / 100).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 36 36)"/></svg><b>' + pc + '%</b></div>' +
       '<dl class="yt-tml"><div><dt>بدأ</dt><dd>' + fmtM(st.start) + '</dd></div><div><dt>ينتهي</dt><dd>' + fmtM(st.end) + '</dd></div><div><dt>المدة</dt><dd>' + durTxt(tot) + '</dd></div><div><dt>مضى</dt><dd>' + durTxt(pass) + '</dd></div><div><dt>باقي</dt><dd>' + durTxt(tot - pass) + '</dd></div></dl></div>';
+  }
+  /* شريط تفاصيل الدورة داخل الورقة: نفس بيانات الحلقة في البطاقة، بترتيب أوضح */
+  function bandHtml(st) {
+    var now = Date.now(), tot = st.end - st.start, pass = Math.min(Math.max(now - st.start, 0), tot), pc = Math.round(pass / tot * 100), R = 30, C = 2 * Math.PI * R;
+    return '<div class="yt-band"><div class="yt-band-l"><div><dt>المدة</dt><dd>' + durTxt(tot) + '</dd></div><div><dt>بدأ</dt><dd>' + fmtM(st.start) + '</dd></div><div><dt>ينتهي</dt><dd>' + fmtM(st.end) + '</dd></div></div>' +
+      '<div class="yt-band-r"><div class="yt-ring2"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="' + R + '" class="yt-r0"/><circle cx="36" cy="36" r="' + R + '" class="yt-r1" stroke-dasharray="' + (C * pc / 100).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 36 36)"/></svg><b>' + pc + '%</b></div><small>باقي ' + durTxt(tot - pass) + '</small></div></div>';
   }
   function transitsHtml(ch) {
     if (!texts()) return empty('نجهّز عبوراتك…');
@@ -212,7 +229,8 @@
       return { ttl: ttl, sub: sub, html: html };
     }
     var kick = kind === 'pl' ? '<small class="yt-k yt-mine">ده نمطك</small>' : '';
-    return { ttl: ttl, sub: sub, html: kick + body.map(function (q, i) { return '<p' + (i === 0 ? ' class="yt-lead"' : '') + '>' + esc(q) + '</p>'; }).join('') };
+    if (kind === 'tr') { var sy = stay(ch, id, tr[id].house); if (sy) kick = bandHtml(sy); }
+    return { ttl: ttl, sub: sub, html: kick + chunk(body).map(function (q, i) { return '<p' + (i === 0 ? ' class="yt-lead"' : '') + '>' + esc(q) + '</p>'; }).join('') };
   }
   function openSheet(key) {
     var ch = natal(); if (!ch) return; var b; try { b = sheetBody(key, ch.ch); } catch (e) { return; }

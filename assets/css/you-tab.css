@@ -175,3 +175,22 @@ html body section#for-you#for-you .yt-root .yt-tml div:not(#_m1):not(#_m2):not(#
 html body section#for-you#for-you .yt-root .yt-tml dt:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6):not(#_m7):not(#_m8):not(#_m9):not(#_m10):not(#_m11):not(#_m12):not(#_m13):not(#_m14){font-size:.7rem;color:#8a7440;font-weight:700}
 html body section#for-you#for-you .yt-root .yt-tml dd:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6):not(#_m7):not(#_m8):not(#_m9):not(#_m10):not(#_m11):not(#_m12):not(#_m13):not(#_m14){margin:0;font-size:.82rem;color:#1b1b1f;font-weight:600}
 html body section#for-you#for-you .yt-sheet .yt-mine:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6):not(#_m7):not(#_m8):not(#_m9):not(#_m10):not(#_m11):not(#_m12):not(#_m13):not(#_m14),html body .yt-sheet .yt-mine:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6):not(#_m7):not(#_m8):not(#_m9):not(#_m10):not(#_m11):not(#_m12):not(#_m13):not(#_m14){display:inline-block;color:#8a7440;font-weight:700;font-size:.8rem;margin:0 0 6px}
+
+/* v15: ورقة التعمّق: شريط الدورة وترتيب الفقرات (معاينة) */
+html body .yt-sheet .yt-sh-c{padding:0 0 70px!important;max-width:640px}
+html body .yt-sheet .yt-sh-c>p{padding:0 22px!important;margin:0 0 24px!important;font-size:1.06rem!important;line-height:2.1!important;color:#3d3236!important}
+html body .yt-sheet .yt-sh-c>p.yt-lead{font-size:1.18rem!important;font-weight:700!important;color:#2a1f23!important;margin-top:26px!important}
+html body .yt-sheet .yt-sh-c>.yt-sh-end{width:calc(100% - 44px)!important;margin:10px 22px 0!important}
+html body .yt-sheet .yt-sh-top h3{font-size:1.45rem!important;line-height:1.5!important}
+html body .yt-sheet .yt-band{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#f4eee2;padding:20px 22px;border-bottom:1px solid #eadfd0}
+html body .yt-sheet .yt-band-l{display:flex;flex-direction:column;gap:12px;flex:1}
+html body .yt-sheet .yt-band-l div{display:flex;align-items:baseline;gap:10px}
+html body .yt-sheet .yt-band-l dt{font-size:.74rem;color:#8a7440;font-weight:700;min-width:44px}
+html body .yt-sheet .yt-band-l dd{margin:0;font-size:.98rem;color:#1b1b1f;font-weight:700}
+html body .yt-sheet .yt-band-r{display:flex;flex-direction:column;align-items:center;gap:6px}
+html body .yt-sheet .yt-band-r small{font-size:.76rem;color:#6b6560;font-weight:600}
+html body .yt-sheet .yt-ring2{position:relative;width:92px;height:92px}
+html body .yt-sheet .yt-ring2 svg{width:100%;height:100%}
+html body .yt-sheet .yt-ring2 .yt-r0{fill:none;stroke:#e6dcc4;stroke-width:5}
+html body .yt-sheet .yt-ring2 .yt-r1{fill:none;stroke:#b8965a;stroke-width:5;stroke-linecap:round}
+html body .yt-sheet .yt-ring2 b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 1rem 'IBM Plex Sans Arabic','Cairo',sans-serif;color:#5b2a39}
