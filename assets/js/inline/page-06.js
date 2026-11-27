@@ -2500,6 +2500,17 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     sgRewind();
     const nb = sgSheet.querySelector("[data-sgn]"); nb.hidden = sgList.length < 2; const nx = sgList[(sgIdx + 1) % sgList.length]; nb.querySelector("b").textContent = nx ? nx.t : "";
   }
+  function sgAcc(r, it) {
+    const nx = r.nextElementSibling;
+    if (nx && nx.classList.contains("sg-acc")) { nx.remove(); r.classList.remove("is-open"); r.setAttribute("aria-expanded", "false"); return; }
+    const tmp = document.createElement("div"); tmp.innerHTML = it.html || "";
+    const qs = [].slice.call(tmp.querySelectorAll(".sg-q p")).map(p => p.innerHTML);
+    const ps = [].filter.call(tmp.querySelectorAll("p"), p => !p.closest(".sg-q") && p.textContent.trim().length > 1).map(p => p.innerHTML);
+    const lead = ps.shift();
+    const d = document.createElement("div"); d.className = "sg-acc";
+    d.innerHTML = (it.span ? `<p>${it.span}</p>` : "") + (it.nxt ? `<p>${it.nxt}</p>` : "") + (lead ? `<p class="sg-acc-lead">${lead}</p>` : "") + ps.map(x => `<p>${x}</p>`).join("") + (qs.length ? `<div class="sg-acc-q">${qs.map(x => `<p>${x}</p>`).join("")}</div>` : "") + (it.q ? `<div class="sg-acc-q"><p>${it.q}</p></div>` : "");
+    r.after(d); r.classList.add("is-open"); r.setAttribute("aria-expanded", "true");
+  }
   function sgShow(list, idx) {
     if (!sgSheet) {
       sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet swp-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true;
@@ -2548,8 +2559,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   }
   const secH = (icon, t) => `<h4 class="sg-h"><span class="sg-bd sg-bd-s" aria-hidden="true">${icon}</span><span>${t}</span></h4>`;
   const rowBd = it => it.svg ? bdi(it.svg) : it.pair ? `<span class="sg-pair">${bdg(PLANETS[it.A].g)}${bdg(PLANETS[it.B].g)}</span>` : bdg(it.g);
-  const rowsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-row${it.rx ? " is-rx" : ""}${it.tc ? " sg-t-" + it.tc : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<span class="sg-row-t"><b>${it.t}${it.rx ? ' <i class="rxb">راجع</i>' : ""}</b><small>${it.sub}</small>${it.when ? `<small class="sg-wh">${it.when}</small>` : ""}</span><span class="sg-chev" aria-hidden="true"></span></button>`).join("");
-  const cellsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-cell${it.rx ? " is-rx" : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<b>${it.t}</b><span class="sg-go" aria-hidden="true">التفاصيل</span></button>`).join("");
+  const rowsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-lrow sg-lprow${it.rx ? " is-rx" : ""}${it.tc ? " sg-t-" + it.tc : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<span class="sg-row-t"><b>${it.t}${it.rx ? ' <i class="rxb">راجع</i>' : ""}</b><small>${it.sub}</small>${it.when ? `<small class="sg-wh">${it.when}</small>` : ""}</span><span class="sg-lchev" aria-hidden="true"></span></button>`).join("");
+  const cellsHTML = (list, key) => list.map((it, n) => `<button type="button" class="sg-lrow sg-lcell${it.rx ? " is-rx" : ""}" data-sgrow="${key}:${n}">${rowBd(it)}<b>${it.t}</b><span class="sg-lgo" aria-hidden="true">التفاصيل</span></button>`).join("");
   const qBox = q => `<div class="sg-q"><p>${q}</p></div>`;
   function guideList(s) {
     return [
@@ -2597,9 +2608,9 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     curList = { tr: L.planets, as: L.aspects };
     const ci = (svg, h) => `<div class="sg-chip"><i class="sg-ci" aria-hidden="true">${svg}</i><span>${h}</span></div>`;
     const glance = `<div class="sg-chips">${ci(AICs.sun, `<b>الشمس</b> في بيتك ${HOUSES[L.sunH - 1].n}`)}${ci(ZI.crescent, `<b>القمر</b> في بيتك ${HOUSES[L.moonH - 1].n}`)}${ci(ZI.orbit, `<b>التراجع</b> ${L.rxN.length ? L.rxN.join("، ") : "لا كوكب راجع الآن"}`)}</div>`;
-    const aspHTML = L.aspects.length ? `<div class="sg-cells">${cellsHTML(curList.as, "as")}</div>` : `<p class="sg-empty">لا زوايا قوية على برجك في هذه اللحظة، فالسماء هادئة نسبيًا.</p>`;
+    const aspHTML = L.aspects.length ? `<div class="sg-lrows">${cellsHTML(curList.as, "as")}</div>` : `<p class="sg-empty">لا زوايا قوية على برجك في هذه اللحظة، فالسماء هادئة نسبيًا.</p>`;
     return `${glance}<div class="sg-trbox"><p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي عبور أو زاوية لقراءة تأثيرها الكامل</p>
-      <section class="sg-sec">${secH(ZI.orbit, "الكواكب العابرة في بيوت برجك")}<div class="sg-cells">${cellsHTML(curList.tr, "tr")}</div></section>
+      <section class="sg-sec">${secH(ZI.orbit, "الكواكب العابرة في بيوت برجك")}<div class="sg-lrows">${cellsHTML(curList.tr, "tr")}</div></section>
       <section class="sg-sec">${secH(ZI.orbit, "الزوايا المؤثرة على برجك")}${aspHTML}</section></div>`;
   }
   function periodsTab(i, L) {
@@ -2610,7 +2621,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     const caps = { mid: "دورات الشمس وعطارد والزهرة والمريخ الممتدة لأسابيع وشهور", far: "دورات المشتري وزحل وأورانوس ونبتون وبلوتو الممتدة لسنوات" };
     const rows = rowsHTML(curList[signsPer], signsPer).replace(/\s*\(راجع\)/g, "");
     return `<section class="sg-sec">${per}<p class="sg-tap"><span aria-hidden="true">${AICs.more}</span>اضغط على أي كوكب لقراءة تأثيره الكامل على فترتك</p>
-      <article class="sg-per sg-per-one">${caps[signsPer] ? `<p class="sg-cap">${caps[signsPer]}</p>` : ""}<div class="sg-rows">${rows}</div></article></section>`;
+      <article class="sg-lper">${caps[signsPer] ? `<p class="sg-cap">${caps[signsPer]}</p>` : ""}<div class="sg-lrows">${rows}</div></article></section>`;
   }
   function traitsTab(i) {
     const s = SIGNS[i];
@@ -2641,7 +2652,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   panel.addEventListener("click", e => {
     const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); toTop(); } return; }
     const pt = e.target.closest("[data-sgper]"); if (pt) { if (pt.dataset.sgper !== signsPer) { signsPer = pt.dataset.sgper; renderSign(); } return; }
-    const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); sgShow(curList[key], +n); }
+    const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); if (r.matches(".sg-lrow")) sgAcc(r, curList[key][+n]); else sgShow(curList[key], +n); }
   });
   function pickSign(i, lazy) {
     signCur = i; try { localStorage.setItem("aq-sky-sign", i); } catch (e) {}
