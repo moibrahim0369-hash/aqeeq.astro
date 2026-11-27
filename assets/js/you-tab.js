@@ -141,10 +141,36 @@
     return '<div class="yt-tm"><div class="yt-ring"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="' + R + '" class="yt-r0"/><circle cx="36" cy="36" r="' + R + '" class="yt-r1" stroke-dasharray="' + (C * pc / 100).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 36 36)"/></svg><b>' + pc + '%</b></div>' +
       '<dl class="yt-tml"><div><dt>بدأ</dt><dd>' + fmtM(st.start) + '</dd></div><div><dt>ينتهي</dt><dd>' + fmtM(st.end) + '</dd></div><div><dt>المدة</dt><dd>' + durTxt(tot) + '</dd></div><div><dt>مضى</dt><dd>' + durTxt(pass) + '</dd></div><div><dt>باقي</dt><dd>' + durTxt(tot - pass) + '</dd></div></dl></div>';
   }
+  /* ذروة التأثير: لحظات الاقتران الدقيق بين الكوكب العابر وكوكب في خريطتك يقع في نفس البيت، داخل فترة المرور (من الحسابات نفسها، بدقة يوم) */
+  var PEAKC = {}, PSTEP = { jupiter: 4, saturn: 6, uranus: 15, neptune: 25, pluto: 30 };
+  function wrap180(x) { x = ((x % 360) + 360) % 360; return x > 180 ? x - 360 : x; }
+  function peaks(ch, k, h, st) {
+    var ck = k + ':' + h + ':' + (ch.jde || ''); if (PEAKC[ck]) return PEAKC[ck];
+    var out = [];
+    try {
+      PK.forEach(function (n) {
+        var b = body(ch, n); if (!b) return; var nl = norm(b.lon); if (houseOf(ch, nl) !== h) return;
+        var step = PSTEP[k] * DAYMS, t = st.start, prev = null, lastHit = -1e18;
+        for (; t <= st.end + step; t += step) {
+          var l = lonAt(k, t); if (l == null) { prev = null; continue; }
+          var d = wrap180(l - nl);
+          if (prev && Math.abs(d) < 30 && Math.abs(prev.d) < 30 && (prev.d < 0) !== (d < 0)) {
+            var lo = prev.t, hi = t, dl = prev.d;
+            while (hi - lo > DAYMS) { var mid = Math.round((lo + hi) / 2), dm = wrap180(lonAt(k, mid) - nl); if ((dm < 0) === (dl < 0)) { lo = mid; } else { hi = mid; } }
+            var hit = hi; if (hit >= st.start && hit <= st.end) out.push({ t: hit, n: n });
+          }
+          prev = { t: t, d: d };
+        }
+      });
+    } catch (e) {}
+    out.sort(function (a, b) { return a.t - b.t; });
+    return (PEAKC[ck] = out);
+  }
+  var fmtD = function (ms) { return new Date(ms).toLocaleDateString('ar-EG-u-nu-latn', { day: 'numeric', month: 'long', year: 'numeric' }); };
   /* شريط تفاصيل الدورة داخل الورقة: نفس بيانات الحلقة في البطاقة، بترتيب أوضح */
-  function bandHtml(st) {
+  function bandHtml(st, pk) {
     var now = Date.now(), tot = st.end - st.start, pass = Math.min(Math.max(now - st.start, 0), tot), pc = Math.round(pass / tot * 100), R = 30, C = 2 * Math.PI * R;
-    return '<div class="yt-band"><div class="yt-band-l"><div><dt>المدة</dt><dd>' + durTxt(tot) + '</dd></div><div><dt>بدأ</dt><dd>' + fmtM(st.start) + '</dd></div><div><dt>ينتهي</dt><dd>' + fmtM(st.end) + '</dd></div></div>' +
+    return '<div class="yt-band"><div class="yt-band-l"><div><dt>المدة</dt><dd>' + durTxt(tot) + '</dd></div><div><dt>بدأ</dt><dd>' + fmtM(st.start) + '</dd></div><div><dt>ينتهي</dt><dd>' + fmtM(st.end) + '</dd></div>' + (pk && pk.length ? '<div class="yt-pk"><dt>ذروة التأثير</dt><dd>' + pk.map(function (x) { return fmtD(x.t) + ' <em>مع ' + PN[x.n] + '</em>'; }).join('<br>') + '</dd></div>' : '') + '</div>' +
       '<div class="yt-band-r"><div class="yt-ring2"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="' + R + '" class="yt-r0"/><circle cx="36" cy="36" r="' + R + '" class="yt-r1" stroke-dasharray="' + (C * pc / 100).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 36 36)"/></svg><b>' + pc + '%</b></div><small>باقي ' + durTxt(tot - pass) + '</small></div></div>';
   }
   function transitsHtml(ch) {
@@ -229,7 +255,7 @@
       return { ttl: ttl, sub: sub, html: html };
     }
     var kick = kind === 'pl' ? '<small class="yt-k yt-mine">ده نمطك</small>' : '';
-    if (kind === 'tr') { var sy = stay(ch, id, tr[id].house); if (sy) kick = bandHtml(sy); }
+    if (kind === 'tr') { var sy = stay(ch, id, tr[id].house); if (sy) kick = bandHtml(sy, peaks(ch, id, tr[id].house, sy)); }
     return { ttl: ttl, sub: sub, html: kick + chunk(body).map(function (q, i) { return '<p' + (i === 0 ? ' class="yt-lead"' : '') + '>' + esc(q) + '</p>'; }).join('') };
   }
   function openSheet(key) {
