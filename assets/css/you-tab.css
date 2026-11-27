@@ -134,3 +134,7 @@ html body section#for-you#for-you .yt-root .yt-bg3 .yt-bc+.yt-bc,html body secti
 html body section#for-you#for-you .yt-root .yt-ban-k,html body section#for-you#for-you .yt-root .yt-k{color:#8a7440!important}
 html body section#for-you#for-you .yt-root .yt-tabs button[aria-selected=true]{box-shadow:0 1px 5px rgba(0,0,0,.12)!important}
 html body section#for-you#for-you .yt-root .yt-tabs button[aria-selected=true]::after{height:2px!important;box-shadow:none!important}
+/* v11: قائمة الحساب فوق محتوى أنت */
+html body section#for-you#for-you .yp.yt-on .yp-top:not(#_u1):not(#_u2):not(#_u3):not(#_u4):not(#_u5):not(#_u6):not(#_u7):not(#_u8):not(#_u9):not(#_u10):not(#_u11):not(#_u12){position:relative!important;z-index:80!important}
+html body section#for-you#for-you .yp.yt-on .yp-menu:not(#_u1):not(#_u2):not(#_u3):not(#_u4):not(#_u5):not(#_u6):not(#_u7):not(#_u8):not(#_u9):not(#_u10):not(#_u11):not(#_u12){z-index:90!important;background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+html body section#for-you#for-you .yp.yt-on .yp-menu-scrim:not(#_u1):not(#_u2):not(#_u3):not(#_u4):not(#_u5):not(#_u6):not(#_u7):not(#_u8):not(#_u9):not(#_u10):not(#_u11):not(#_u12){z-index:85!important}
