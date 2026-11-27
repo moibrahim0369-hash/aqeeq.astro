@@ -5960,7 +5960,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
   var TXT = ['sun', 'moon', 'mercury', 'venus', 'mars', 'saturn'];
   function loadTexts() {
     if (ST.ix || ST.ixLoading) return; ST.ixLoading = true;
-    Promise.all(TXT.map(function (b) { return fetch('data/interpretations/' + b + '.json?v=20261127y').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); })).then(function (ls) {
+    Promise.all(TXT.map(function (b) { return fetch('data/interpretations/' + b + '.json?v=20261127z').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); })).then(function (ls) {
       var ix = {}; ls.forEach(function (a) { (Array.isArray(a) ? a : []).forEach(function (e) { if (e && e.id && e.status === 'approved' && e.text) ix[e.id] = e; }); });
       ST.ix = ix; ST.ixLoading = false; render();
     });
@@ -8360,7 +8360,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var SHOW_EMPTY_SLOTS = true;
-  var VERSION = '20261122-chiron-aspects1';
+  var VERSION = '20261127-core-rich1';
   var BASE = 'data/interpretations/';
 
   var SIGN_AR = ['الحمل', 'الثور', 'الجوزاء', 'السرطان', 'الأسد', 'العذراء', 'الميزان', 'العقرب', 'القوس', 'الجدي', 'الدلو', 'الحوت'];

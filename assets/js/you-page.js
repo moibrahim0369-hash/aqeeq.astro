@@ -17,7 +17,7 @@
   var TXT = ['sun', 'moon', 'mercury', 'venus', 'mars', 'saturn'];
   function loadTexts() {
     if (ST.ix || ST.ixLoading) return; ST.ixLoading = true;
-    Promise.all(TXT.map(function (b) { return fetch('data/interpretations/' + b + '.json?v=20261127y').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); })).then(function (ls) {
+    Promise.all(TXT.map(function (b) { return fetch('data/interpretations/' + b + '.json?v=20261127z').then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; }); })).then(function (ls) {
       var ix = {}; ls.forEach(function (a) { (Array.isArray(a) ? a : []).forEach(function (e) { if (e && e.id && e.status === 'approved' && e.text) ix[e.id] = e; }); });
       ST.ix = ix; ST.ixLoading = false; render();
     });
