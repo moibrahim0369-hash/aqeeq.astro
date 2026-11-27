@@ -9,7 +9,7 @@
     if (!e || !strip) return;
     done = true;
     var host = document.createElement('div');
-    host.id = 'sp-old-sky'; host.className = 'aqh-wrap';
+    host.id = 'sp-old-sky'; host.className = 'aqh-wrap aqh-skyb';
     strip.parentNode.insertBefore(host, strip);
     host.appendChild(e);
     document.documentElement.setAttribute('data-old-sky', '1');
