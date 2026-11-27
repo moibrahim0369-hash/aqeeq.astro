@@ -2,7 +2,7 @@
  {
   "id": "natal.core.mercury.house1",
   "title": "عطارد | حضور يسمع كما يتكلم",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -19,7 +19,7 @@
  {
   "id": "natal.core.mercury.house2",
   "title": "عطارد | سمِّ مهارتك قبل أن تعتذر عن سعرها",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -36,7 +36,7 @@
  {
   "id": "natal.core.mercury.house3",
   "title": "عطارد | فضول لا يبتلع يومك",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -53,7 +53,7 @@
  {
   "id": "natal.core.mercury.house4",
   "title": "عطارد | الكلام الذي بقي في الغرفة",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -70,7 +70,7 @@
  {
   "id": "natal.core.mercury.house5",
   "title": "عطارد | نكتة لا تخفي صاحبها",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -87,7 +87,7 @@
  {
   "id": "natal.core.mercury.house6",
   "title": "عطارد | لا تنتهي أنت بانتهاء القائمة",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -104,7 +104,7 @@
  {
   "id": "natal.core.mercury.house7",
   "title": "عطارد | الحوار الذي لا يبحث عن غالب",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -121,7 +121,7 @@
  {
   "id": "natal.core.mercury.house8",
   "title": "عطارد | معرفة لا تصير سلاحًا",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -138,7 +138,7 @@
  {
   "id": "natal.core.mercury.house9",
   "title": "عطارد | سؤال يترك أثرًا في الحياة",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -155,7 +155,7 @@
  {
   "id": "natal.core.mercury.house10",
   "title": "عطارد | اسمك لا يحتاج جوابًا لكل شيء",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -172,7 +172,7 @@
  {
   "id": "natal.core.mercury.house11",
   "title": "عطارد | محادثة تتحول إلى شيء حقيقي",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
@@ -189,7 +189,7 @@
  {
   "id": "natal.core.mercury.house12",
   "title": "عطارد | الجملة التي لم تخرج",
-  "version": 10,
+  "version": 14,
   "status": "approved",
   "chart_type": "natal",
   "body": "mercury",
