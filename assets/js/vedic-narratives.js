@@ -10,7 +10,7 @@
   var COMB = {moon:12,mars:17,mercury:14,jupiter:11,venus:10,saturn:15};
   var DRISHTI = {mars:[4,7,8],jupiter:[5,7,9],saturn:[3,7,10],node:[5,7,9],ketu:[5,7,9]};
   var KEYS = ['1','moon','sun','2','3','4','5','6','7','8','9','10','11','12','16','20','24','27','30','40','45','60'];
-  var VERSION = 'vedic-c9b8e7e57e19';
+  var VERSION = 'vedic-d3233e2d52d6';
   var loaded = null, pending = null;
   function norm(x) { return ((x % 360) + 360) % 360; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
@@ -84,7 +84,7 @@
     if(dg==='debilitated')out.push('يقع '+x.name+' هنا في برج هبوطه بحسب القاعدة المعتمدة. قد تحتاج صفته إلى وعي وتدرّب أكثر؛ لا نحول هذا الموضع وحده إلى حكم على نجاحك أو قيمتك.');
     if(dg==='own')out.push('يقع '+x.name+' في أحد بيوته البرجية، فيكون التعبير عن صفته أوضح في هذه العدسة. وضوح الصفة لا يلغي أثر بقية الخريطة أو اختياراتك.');
     if(x.retro && x.key!=='node' && x.key!=='ketu')out.push('علامة الرجوع تخص حركة '+x.name+' الظاهرية عند الميلاد. نذكرها كجزء من السياق، ولا نعدّها فشلًا أو عطبًا في طريقتك.');
-    if(d1 && physicalCombustion(map,x))out.push('المسافة بين '+x.name+' والشمس تقع داخل حد الاحتراق المستخدم هنا. هذا وصف تقليدي للقرب من الشمس، وليس تشخيصًا ولا حكمًا بإلغاء دور الكوكب.');
+    if(d1 && physicalCombustion(map,x))out.push('المسافة بين '+x.name+' والشمس تقع داخل حد الاحتراق المستخدم هنا. هذا وصف تقليدي للقرب من الشمس، وليس حكمًا بإلغاء دور الكوكب.');
     return out;
   }
   function planetCard(x,map,data) {

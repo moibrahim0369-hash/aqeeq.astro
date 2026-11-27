@@ -1,12 +1,12 @@
 {
-  "version": "vedic-c9b8e7e57e19",
+  "version": "vedic-d3233e2d52d6",
   "statistics": {
     "chartViews": 22,
     "chartIntroductions": 22,
     "applicableHouseReadings": 255,
     "planetSignContexts": 108,
     "planetRoles": 9,
-    "authoredWords": 34490,
+    "authoredWords": 34458,
     "authoredModules": 394
   },
   "wordRangeWarnings": []
