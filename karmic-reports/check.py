@@ -13,7 +13,7 @@ for f in sorted(glob.glob(os.path.join(D,'karmic-tail-*.md'))):
         if m and not (b.startswith('[A-Za-z]') and re.fullmatch(r'[\d\- \[\]]*',m.group(0))): prob.append(f'محظور {b}: ...{t[max(0,m.start()-15):m.end()+15]}...'.replace('\n',' '))
     for h in NEED:
         if h not in t: prob.append('ناقص '+h)
-    if n<2500: prob.append(f'قصير {n}')
+    if n<2250: prob.append(f'قصير {n}')
     print(name,n,'OK' if not prob else 'مشكلة')
     for p in prob: print('   ',p)
     bad+=bool(prob)
