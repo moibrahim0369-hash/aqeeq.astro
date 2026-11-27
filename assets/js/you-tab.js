@@ -96,20 +96,53 @@
     out += '</div><p class="yt-lab">ما يعبر بيوتك الآن</p>' + trTable(tr, ['sun', 'mercury', 'venus', 'mars']);
     return out;
   }
+  /* ---------- مدة العبور: من الحساب الفلكي الموجود (Astro.chart) ---------- */
+  var DAYMS = 864e5, STAYSTEP = { jupiter: 20, saturn: 30, uranus: 60, neptune: 90, pluto: 120 }, STAYC = {};
+  function lonAt(k, ms) { try { var c = window.Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false }), b = body(c, k); return b ? norm(b.lon) : null; } catch (e) { return null; } }
+  function houseAtMs(ch, k, ms) { var l = lonAt(k, ms); return l == null ? null : houseOf(ch, l); }
+  function edge(ch, k, h, dir) {
+    var step = STAYSTEP[k] * DAYMS, now = Date.now(), t = now, last = now, away = null, limit = 70 * 365 * DAYMS;
+    for (var i = 0; i < 1400; i++) {
+      t += dir * step; if (Math.abs(t - now) > limit) return null;
+      var hh = houseAtMs(ch, k, t); if (hh == null) return null;
+      if (hh === h) { last = t; away = null; continue; }
+      if (away == null) away = t;
+      if (Math.abs(t - away) >= 200 * DAYMS) break;
+    }
+    if (away == null) return null;
+    var lo = last, hi = away; /* lo داخل البيت وhi خارجه */
+    while (Math.abs(hi - lo) > DAYMS) { var mid = Math.round((lo + hi) / 2); if (houseAtMs(ch, k, mid) === h) lo = mid; else hi = mid; }
+    return hi;
+  }
+  function stay(ch, k, h) {
+    var key = k + ':' + h + ':' + (ch.jde || ''); if (STAYC[key] !== undefined) return STAYC[key];
+    var a = null, b = null; try { a = edge(ch, k, h, -1); b = edge(ch, k, h, 1); } catch (e) {}
+    return (STAYC[key] = (a && b && b > a) ? { start: a, end: b } : null);
+  }
+  var fmtM = function (ms) { return new Date(ms).toLocaleDateString('ar-EG-u-nu-latn', { month: 'long', year: 'numeric' }); };
+  function durTxt(ms) {
+    var d = Math.max(0, Math.round(ms / DAYMS)); if (d < 45) return d + ' يوم';
+    var m = Math.round(d / 30.44); if (m < 24) return m + ' شهر';
+    var y = Math.round(d / 365.25 * 10) / 10; return (y % 1 ? y.toFixed(1) : String(y)) + ' سنة';
+  }
+  function ringHtml(st) {
+    var now = Date.now(), tot = st.end - st.start, pass = Math.min(Math.max(now - st.start, 0), tot), pc = Math.round(pass / tot * 100), R = 30, C = 2 * Math.PI * R;
+    return '<div class="yt-tm"><div class="yt-ring"><svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="' + R + '" class="yt-r0"/><circle cx="36" cy="36" r="' + R + '" class="yt-r1" stroke-dasharray="' + (C * pc / 100).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 36 36)"/></svg><b>' + pc + '%</b></div>' +
+      '<dl class="yt-tml"><div><dt>بدأ</dt><dd>' + fmtM(st.start) + '</dd></div><div><dt>ينتهي</dt><dd>' + fmtM(st.end) + '</dd></div><div><dt>المدة</dt><dd>' + durTxt(tot) + '</dd></div><div><dt>مضى</dt><dd>' + durTxt(pass) + '</dd></div><div><dt>باقي</dt><dd>' + durTxt(tot - pass) + '</dd></div></dl></div>';
+  }
   function transitsHtml(ch) {
     if (!texts()) return empty('نجهّز عبوراتك…');
     var tr = transits(ch), R = window.AqReadings, out = '<p class="yt-lab">الكواكب البطيئة: أثرها يمتد أشهرًا</p>' + trTable(tr, ['jupiter', 'saturn', 'uranus', 'neptune', 'pluto']) + '<div class="yt-stack">';
     ['jupiter', 'saturn', 'uranus', 'neptune', 'pluto'].forEach(function (k) {
       var t = tr[k]; if (!t) return;
-      out += card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'تعبر بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k, 'الدرجة ' + t.deg, k);
+      var cd = card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'تعبر بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k, 'الدرجة ' + t.deg, k), sy = stay(ch, k, t.house); out += sy ? cd.replace('</article>', ringHtml(sy) + '</article>') : cd;
     });
     out += '</div>';
     var cyc = []; try { if (window.AqeeqYou && window.Astro) cyc = window.AqeeqYou.cycles(ch, Math.floor(Date.now() / 864e5) * 864e5) || []; } catch (e) {}
     var now = Date.now(), cur = cyc.filter(function (c) { return c.start <= now && c.end >= now; }).sort(function (a, b) { return a.end - b.end; }).slice(0, 4);
     if (cur.length) {
-      var f = function (ms) { return new Date(ms).toLocaleDateString('ar-EG-u-nu-latn', { month: 'short', year: 'numeric' }); };
-      out += '<p class="yt-lab">دورات جارية عليك</p><div class="yt-tbl yt-cyt">' + cur.map(function (c) {
-        return '<div class="yt-tr"><span class="yt-tc yt-tp">' + esc('دورة ' + c.tn + ' مع ' + c.nn) + '</span><span class="yt-tc yt-ts">' + f(c.start) + ' ← ' + f(c.end) + '</span></div>';
+      out += '<p class="yt-lab">دورات جارية عليك</p><div class="yt-stack">' + cur.map(function (c) {
+        return '<article class="yt-c yt-cy"><h3>' + esc('دورة ' + c.tn + ' مع ' + c.nn) + '</h3>' + ringHtml({ start: c.start, end: c.end }) + '</article>';
       }).join('') + '</div>';
     }
     return out;
@@ -178,7 +211,8 @@
       }
       return { ttl: ttl, sub: sub, html: html };
     }
-    return { ttl: ttl, sub: sub, html: body.map(function (q, i) { return '<p' + (i === 0 ? ' class="yt-lead"' : '') + '>' + esc(q) + '</p>'; }).join('') };
+    var kick = kind === 'pl' ? '<small class="yt-k yt-mine">ده نمطك</small>' : '';
+    return { ttl: ttl, sub: sub, html: kick + body.map(function (q, i) { return '<p' + (i === 0 ? ' class="yt-lead"' : '') + '>' + esc(q) + '</p>'; }).join('') };
   }
   function openSheet(key) {
     var ch = natal(); if (!ch) return; var b; try { b = sheetBody(key, ch.ch); } catch (e) { return; }
