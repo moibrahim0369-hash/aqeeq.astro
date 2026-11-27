@@ -3887,18 +3887,18 @@
     var o = '<defs><radialGradient id="swcC" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFFDF9"/><stop offset="1" stop-color="#FFFDF9"/></radialGradient></defs>';
     for (var i = 0; i < 12; i++) {
       var p0 = pt(i * 30, R1), p1 = pt(i * 30 + 30, R1), p2_ = pt(i * 30 + 30, R2), p3 = pt(i * 30, R2);
-      o += '<path d="M' + f(p0[0]) + ' ' + f(p0[1]) + 'A' + R1 + ' ' + R1 + ' 0 0 0 ' + f(p1[0]) + ' ' + f(p1[1]) + 'L' + f(p2_[0]) + ' ' + f(p2_[1]) + 'A' + R2 + ' ' + R2 + ' 0 0 1 ' + f(p3[0]) + ' ' + f(p3[1]) + 'Z" fill="' + (i % 2 ? '#6A2A3C' : '#5E2234') + '" stroke="#C5A059" stroke-width=".9"/>';
+      o += '<path d="M' + f(p0[0]) + ' ' + f(p0[1]) + 'A' + R1 + ' ' + R1 + ' 0 0 0 ' + f(p1[0]) + ' ' + f(p1[1]) + 'L' + f(p2_[0]) + ' ' + f(p2_[1]) + 'A' + R2 + ' ' + R2 + ' 0 0 1 ' + f(p3[0]) + ' ' + f(p3[1]) + 'Z" fill="' + (i % 2 ? '#F6EEDC' : '#FBF6EA') + '" stroke="#D9BE7E" stroke-width=".7"/>';
       var g = pt(i * 30 + 15, (R1 + R2) / 2), d = GLY['s' + i];
-      if (d) o += '<path transform="translate(' + f(g[0] - 16.8) + ' ' + f(g[1] - 16.8) + ') scale(1.4)" d="' + d + '" fill="none" stroke="#F3DFA8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>';
+      if (d) o += '<path transform="translate(' + f(g[0] - 13.8) + ' ' + f(g[1] - 13.8) + ') scale(1.15)" d="' + d + '" fill="none" stroke="#6B2234" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>';
     }
-    o += '<circle cx="' + cx + '" cy="' + cx + '" r="' + R2 + '" fill="url(#swcC)" stroke="#C5A059" stroke-width="1.2"/><circle cx="' + cx + '" cy="' + cx + '" r="' + R3 + '" fill="#FFFDF9" stroke="#C5A059" stroke-width="1"/>';
+    o += '<circle cx="' + cx + '" cy="' + cx + '" r="' + R2 + '" fill="url(#swcC)" stroke="#D9BE7E" stroke-width=".9"/><circle cx="' + cx + '" cy="' + cx + '" r="' + R3 + '" fill="#FFFDF9" stroke="#D9BE7E" stroke-width=".8"/>';
     var t1 = '', t5 = '', t10 = '';
     for (var a = 0; a < 360; a++) { var seg = 'M' + f(pt(a, R2)[0]) + ' ' + f(pt(a, R2)[1]) + 'L' + f(pt(a, R2 - (a % 10 === 0 ? 9 : a % 5 === 0 ? 6 : 3))[0]) + ' ' + f(pt(a, R2 - (a % 10 === 0 ? 9 : a % 5 === 0 ? 6 : 3))[1]); if (a % 10 === 0) t10 += seg; else if (a % 5 === 0) t5 += seg; else t1 += seg; }
-    o += '<g fill="none" stroke="#B8965A"><path d="' + t1 + '" stroke-width=".45" stroke-opacity=".7"/><path d="' + t5 + '" stroke-width=".75" stroke-opacity=".9"/><path d="' + t10 + '" stroke-width="1"/></g>';
+    o += '<g fill="none" stroke="#B8965A"><path d="' + t1 + '" stroke-width=".4" stroke-opacity=".5"/><path d="' + t5 + '" stroke-width=".75" stroke-opacity=".9"/><path d="' + t10 + '" stroke-width="1"/></g>';
     var cu = ch.cusps, hl = '', hn = '';
     for (i = 0; i < 12; i++) {
       var ax = i % 3 === 0;
-      hl += ln(pt(cu[i], R2), pt(cu[i], R3), 'stroke="' + (ax ? '#3A0D1B' : '#5A3E26') + '" stroke-width="' + (ax ? 3 : 2) + '" stroke-opacity="' + (ax ? 1 : .9) + '"');
+      hl += ln(pt(cu[i], R2), pt(cu[i], R3), 'stroke="' + (ax ? '#7A3347' : '#B8965A') + '" stroke-width="' + (ax ? 1.8 : 1) + '" stroke-opacity="' + (ax ? .85 : .6) + '"');
       var mid = cu[i] + mod(cu[(i + 1) % 12] - cu[i]) / 2, q = pt(mid, RN);
       hn += '<text x="' + f(q[0]) + '" y="' + f(q[1] + 3.5) + '" text-anchor="middle">' + (i + 1) + '</text>';
     }
@@ -3909,7 +3909,7 @@
     st.asp.forEach(function (x) {
       var hard = x.t[0] === 'square' || x.t[0] === 'opp';
       if (x.t[0] === 'conj') return;
-      as += ln(pt(x.A.lon, R3), pt(x.B.lon, R3), 'class="swc-al" data-a="' + x.A.k + '" data-b="' + x.B.k + '" stroke="' + (hard ? '#B5233B' : '#1E78A8') + '" stroke-opacity=".92" stroke-width="2.2" stroke-linecap="round"');
+      as += ln(pt(x.A.lon, R3), pt(x.B.lon, R3), 'class="swc-al" data-a="' + x.A.k + '" data-b="' + x.B.k + '" stroke="' + (hard ? '#B5233B' : '#1E78A8') + '" stroke-opacity=".7" stroke-width="1.5" stroke-linecap="round"');
     });
     o += as;
     /* تباعد: كل كوكب يبتعد عن جاره 15° على الأقل، وخط رفيع يربط الرمز بدرجته الحقيقية */
