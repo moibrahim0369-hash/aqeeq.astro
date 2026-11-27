@@ -4239,6 +4239,7 @@
   window.addEventListener('load', init);
   if (document.readyState === 'complete') init();
   setInterval(function () { if (live && !document.hidden) { setInputs(nowLocal(CITIES[+citySel.value])); render(); } }, 60000);
+  window.__swcWheel = wheel;
   window.__swc = { render: render, state: function () { return cur; } };
 })();
 
@@ -8037,7 +8038,22 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     '.nd-rx{fill:#c23b3b;font:700 11px Arial,sans-serif}.nd-tk{stroke:#70263F;stroke-width:2.2;fill:none}.nd-tka{fill:#70263F}.nd-tkh{stroke:#FFFDF9;stroke-width:5.5;fill:none;stroke-linecap:round}.nd-tkhp{fill:#FFFDF9;stroke-linejoin:round}' +
     '.nd-pl{cursor:pointer;outline:0}.nd-pl:hover .nd-pc,.nd-pl:focus-visible .nd-pc,.nd-pl.on .nd-pc{fill:#F6E8CC;stroke:#70263F;stroke-width:2.2}';
 
+  /* نفس عجلة صفحة السماء (الكواكب داخل الحلقة وأرقام البيوت) مع بيانات الميلاد */
+  function skyWheel(ch, planets, asps) {
+    var KM = { conj: 'conj', sext: 'sext', sq: 'square', tri: 'trine', opp: 'opp' }, keys = {};
+    planets.forEach(function (p) { keys[p.k] = 1; });
+    var st = {
+      ch: { asc: ch.asc, mc: ch.mc, cusps: ch.cusps },
+      items: planets.map(function (p) { return { k: p.k, n: p.n, lon: norm(p.lon), sign: Math.floor(norm(p.lon) / 30), retro: p.retro }; }),
+      asp: asps.filter(function (x) { return keys[x.a.k] && keys[x.b.k]; }).map(function (x) { return { A: { lon: x.a.lon, k: x.a.k }, B: { lon: x.b.lon, k: x.b.k }, t: [KM[x.A.k] || 'conj'] }; })
+    };
+    var svg = el('svg', { viewBox: '-4 -4 548 548', class: 'nd-wheel nd-wheel-sky', role: 'img', 'aria-label': 'عجلة الخريطة الفلكية', xmlns: NS });
+    svg.innerHTML = window.__swcWheel(st);
+    svg.querySelectorAll('.swc-pl').forEach(function (g) { g.classList.add('nd-pl'); });
+    return svg;
+  }
   function wheelSVG(ch, planets, asps, known) {
+    if (known && ch.cusps && window.__swcWheel) { try { return skyWheel(ch, planets, asps); } catch (e) {} }
     var C = 300, RO = 212, RS = 174, RH = 138, RP = 256, RD = 290;
     var asc = known ? ch.asc : 0;
     var ang = function (lon) { return (180 - (norm(lon) - asc)) * Math.PI / 180; };
@@ -8312,7 +8328,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
     var show = function (k) {
       var p = data.planets.filter(function (x) { return x.k === k; })[0]; if (!p) return;
       var f = fmtLon(p.lon); pick.innerHTML = '<b>' + p.n + '</b> في ' + SG[f.s][0] + ' ' + f.txt + (data.known && p.house ? ' · البيت ' + p.house + ' (' + HA[p.house - 1] + ')' : '') + (p.retro ? ' · تراجع' : '');
-      box.querySelectorAll('.nd-pl').forEach(function (n) { n.classList.toggle('on', n.getAttribute('data-k') === k); });
+      box.querySelectorAll('.nd-pl').forEach(function (n) { n.classList.toggle('on', n.getAttribute('data-k') === k); n.classList.toggle('is-sel', n.getAttribute('data-k') === k); });
       /* الضغط على كوكب في العجلة يفتح قراءته مباشرة، كأنك ضغطت صفه في قائمة الكواكب */
       var rows = box.querySelectorAll('[data-nd-panel="planets"] .nd-row');
       for (var r = 0; r < rows.length; r++) { var nm = ((rows[r].querySelector('b') || {}).textContent || '').replace(/\s*R\s*$/, '').trim(); if (nm === p.n) { rows[r].click(); break; } }
