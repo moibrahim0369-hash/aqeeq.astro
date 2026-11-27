@@ -56,9 +56,11 @@
   function gen(k, bd, S) {
     var D = window.AqSky, P = D.PLANETS[k], R = window.AqReadings, o = '';
     var ms = k === 'moon' && window.AqMoonSigns && window.AqMoonSigns[bd.sign];
+    var LG = window.AqSignLong && window.AqSignLong[k] && window.AqSignLong[k][bd.sign];
+    if (LG && LG.length) { o += '<p class="fc-lead2">' + LG[0] + '</p>' + LG.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join(''); } else {
     var lead = (ms && ms.t) ? ms.t : ('يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '.');
     o += '<p class="fc-lead2">' + lead + '</p>';
-    o += '<p>الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>';
+    o += '<p>الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>'; }
     var pl = R && R.PL && R.PL[k];
     if (pl) { o += '<h5>' + pl[0] + '</h5><p>' + pl[1] + '</p><p>' + pl[2] + '</p><div class="fc-ask"><b>ما يطلبه منك</b><p>' + pl[3] + '</p></div>'; }
     if (bd.retro && R && R.RT && R.RT[k]) o += '<p class="swp-rt">' + R.RT[k] + '</p>';
