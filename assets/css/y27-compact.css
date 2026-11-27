@@ -100,3 +100,11 @@ html body .aqm-sheet.y27-modal:not(#_y0):not(#_y1):not(#_y2):not(#_y3):not(#_y4)
   html body .aqm-sheet.y27-modal:not(#_y0):not(#_y1):not(#_y2):not(#_y3):not(#_y4):not(#_y5):not(#_y6):not(#_y7):not(#_y8):not(#_y9):not(#_y10):not(#_y11):not(#_y12):not(#_y13):not(#_y14):not(#_y15):not(#_y16):not(#_y17):not(#_y18):not(#_y19):not(#_y20):not(#_y21):not(#_y22):not(#_y23):not(#_y24):not(#_y25):not(#_y26):not(#_y27):not(#_y28):not(#_y29):not(#_y30):not(#_y31):not(#_y32):not(#_y33):not(#_y34):not(#_y35):not(#_y36):not(#_y37):not(#_y38):not(#_y39) .aqm-sheet-body>*{animation:none!important}
   html body .aqm-sheet.y27-modal:not(#_y0):not(#_y1):not(#_y2):not(#_y3):not(#_y4):not(#_y5):not(#_y6):not(#_y7):not(#_y8):not(#_y9):not(#_y10):not(#_y11):not(#_y12):not(#_y13):not(#_y14):not(#_y15):not(#_y16):not(#_y17):not(#_y18):not(#_y19):not(#_y20):not(#_y21):not(#_y22):not(#_y23):not(#_y24):not(#_y25):not(#_y26):not(#_y27):not(#_y28):not(#_y29):not(#_y30):not(#_y31):not(#_y32):not(#_y33):not(#_y34):not(#_y35):not(#_y36):not(#_y37):not(#_y38):not(#_y39) .y27-lock-btn{transition:none}
 }
+
+.y27-house-planet{padding:10px 0;border-top:1px solid rgba(122,31,43,.14)}
+.y27-house-planet:first-child{border-top:0;padding-top:0}
+.y27-house-planet h4{margin:0 0 4px}
+.y27-house-lead{margin:0 0 6px}
+.y27-house-dates{margin:0 0 6px;padding:0 18px;font-size:.9em;opacity:.8}
+.y27-house-more>summary{cursor:pointer;color:#7a1f2b;font-weight:700;list-style:none}
+.y27-house-more>summary::-webkit-details-marker{display:none}

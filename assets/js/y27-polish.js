@@ -34,7 +34,8 @@
   function schedule() {
     if (queued) return;
     queued = true;
-    (window.requestAnimationFrame || setTimeout)(function () { queued = false; run(); });
+    /* a plain timer: requestAnimationFrame is paused in hidden or background tabs */
+    setTimeout(function () { queued = false; run(); }, 60);
   }
 
   function start() {

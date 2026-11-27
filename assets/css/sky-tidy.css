@@ -1,10 +1,10 @@
 /* صفحة السماء: بلا شريط الأزرار العلوي، وبطاقة قمر هادئة */
 html body section.sec#sky:not(#_z1):not(#_z2):not(#_z3):not(#_z4):not(#_z5):not(#_z6):not(#_z7):not(#_z8):not(#_z9):not(#_z10):not(#_z11):not(#_z12):not(#_z13):not(#_z14):not(#_z15):not(#_z16):not(#_z17):not(#_z18):not(#_z19):not(#_z20):not(#_z21):not(#_z22):not(#_z23):not(#_z24) .aq-section-topbar.aq-ctxbar:not(#_z1):not(#_z2):not(#_z3):not(#_z4):not(#_z5):not(#_z6):not(#_z7):not(#_z8):not(#_z9):not(#_z10):not(#_z11):not(#_z12):not(#_z13):not(#_z14):not(#_z15):not(#_z16):not(#_z17):not(#_z18):not(#_z19):not(#_z20):not(#_z21):not(#_z22):not(#_z23):not(#_z24){display:none!important}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c){display:grid!important;grid-template-columns:92px 1fr;grid-template-areas:"fig txt" "btn btn";align-items:center;gap:6px 16px;padding:16px 16px 14px!important;background:linear-gradient(180deg,#fffdf8,#fff)!important;border:1px solid #efe4c8!important;border-radius:22px!important;box-shadow:0 6px 20px rgba(120,90,30,.08)!important}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-fig{grid-area:fig;flex:none!important;width:92px!important;height:92px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,rgba(214,174,94,.20),rgba(214,174,94,0) 70%)}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-svg{width:84px;height:84px;filter:drop-shadow(0 3px 8px rgba(80,60,20,.25))}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt{grid-area:txt;gap:2px}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt small{color:#9a7424}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt b{font-size:1.3rem;color:#1b1b1f}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt span{font-size:.84rem;color:#6b6560;line-height:1.55}
-html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .mn-open{grid-area:btn;justify-content:center;width:100%;margin-top:6px;padding:9px 14px;border:1px solid #ecdcb4;background:#fffaf0;color:#1b1b1f;font-weight:600}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c){display:flex!important;flex-direction:column!important;align-items:center;text-align:center;gap:4px;padding:22px 16px 16px!important;background:radial-gradient(120% 80% at 50% 0%,#fffaf0,#fff 70%)!important;border:1px solid #efe4c8!important;border-radius:26px!important;box-shadow:0 10px 28px rgba(120,90,30,.12)!important}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-fig{flex:none!important;width:150px!important;height:150px;display:grid;place-items:center;border-radius:50%;background:radial-gradient(circle,rgba(255,226,150,.55),rgba(214,174,94,0) 68%);margin-bottom:6px}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-svg{width:128px!important;height:128px!important;filter:drop-shadow(0 0 14px rgba(255,214,120,.65)) drop-shadow(0 4px 10px rgba(80,60,20,.3))}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt{display:grid!important;justify-items:center;gap:2px}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt small{color:#9a7424;font-size:.78rem}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt b{font-size:1.6rem;color:#1b1b1f}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .swc-moon-txt span{font-size:.88rem;color:#6b6560;line-height:1.6}
+html body #sky .swc-moon:not(#_a):not(#_b):not(#_c) .mn-open{justify-content:center;width:100%;margin-top:12px;padding:10px 14px;border:1px solid #ecdcb4;background:#fffaf0;color:#1b1b1f;font-weight:600}
