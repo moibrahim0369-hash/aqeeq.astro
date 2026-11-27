@@ -48,8 +48,7 @@
     hd = hd || {};
     return '<section class="mn-ed"><header class="mn-sh">' + mi('ed') + '<div><small>' + (hd.label || 'ماذا يعني هذا الطور لك') + '</small>' + (hd.title ? '<h4>' + hd.title + '</h4>' : '') + '</div><i class="mn-tag">' + p[1] + '</i></header><p class="mn-lead">' + p[2] + '</p></section>' +
       '<section class="mn-q"><ul><li>' + p[5][0] + '</li><li>' + p[5][1] + '</li></ul></section>' +
-      '<section class="mn-rd mn-rd-in"><header class="mn-sh">' + mi('rd') + '<b>قراءة من الداخل</b></header><p>' + p[6] + '</p></section>' +
-      '<section class="mn-rd mn-rd-real"><header class="mn-sh">' + mi('real') + '<b>قد تجد نفسك</b></header><ul><li>' + p[7].join('</li><li>') + '</li></ul></section>' +
+      '<section class="mn-rd mn-rd-in"><header class="mn-sh">' + mi('rd') + '<b>قراءة من الداخل</b></header><p>' + p[6] + '</p><b class="mn-sub">قد تجد نفسك</b><ul class="mn-rd-real"><li>' + p[7].join('</li><li>') + '</li></ul></section>' +
       '<section class="mn-act"><div class="mn-act-y"><header class="mn-sh">' + mi('yes') + '<b>تناسبك</b></header><p>' + p[3] + '</p></div><div class="mn-act-n"><header class="mn-sh">' + mi('no') + '<b>تجنّب</b></header><p>' + p[4] + '</p></div></section>';
   }
   function tel(k, label, val) { return '<div class="mn-tc">' + mi(k) + '<span><small>' + label + '</small><b>' + val + '</b></span></div>'; }
