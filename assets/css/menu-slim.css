@@ -1,0 +1,32 @@
+/* قائمة جانبية خفيفة وزجاجية: عناصر صغيرة، بلا مربعات ذهبية */
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6){width:min(76vw,288px)!important;background:rgba(252,250,246,.74)!important;-webkit-backdrop-filter:blur(26px) saturate(140%)!important;backdrop-filter:blur(26px) saturate(140%)!important;border-inline-end:1px solid rgba(255,255,255,.7)!important;box-shadow:0 0 40px rgba(53,37,43,.14)!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-head{padding:14px 16px 10px!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-head::after{inset-inline:16px!important;background:rgba(53,37,43,.08)!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-title{font:600 .82rem 'Cormorant Garamond','Cairo',serif!important;letter-spacing:.22em!important;color:#70263f!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-close{width:32px!important;height:32px!important;border:1px solid rgba(53,37,43,.1)!important;background:rgba(255,255,255,.6)!important;color:#4a3d40!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-close svg{width:16px!important;height:16px!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-body{padding:6px 10px 14px!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-body>a{min-height:38px!important;gap:10px!important;padding:6px 10px!important;margin:1px 0!important;border-radius:10px!important;font:500 .9rem 'IBM Plex Sans Arabic','Cairo',sans-serif!important;color:#3d3236!important;background:transparent!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-body>a svg{width:18px!important;height:18px!important;padding:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;color:#8a7c78!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-body>a.on{background:rgba(112,38,63,.07)!important;color:#70263f!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-body>a.on svg{color:#70263f!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc{margin:2px 0 0!important;border:0!important;border-top:1px solid rgba(53,37,43,.07)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc:first-of-type{margin-top:6px!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-btn{min-height:38px!important;padding:8px 10px!important;font:600 .84rem 'IBM Plex Sans Arabic','Cairo',sans-serif!important;color:#6b5b57!important;gap:8px!important;background:transparent!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-btn>span{padding-inline-start:0!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-btn>span::before{display:none!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-btn svg{width:16px!important;height:16px!important;padding:0!important;background:none!important;border-radius:0!important;color:#a39690!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-btn[aria-expanded=true]{color:#70263f!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc.has-on .aqn-acc-btn{background:transparent!important;color:#70263f!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel{padding:0 6px 6px!important;border-top:0!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel a{min-height:32px!important;padding:5px 12px!important;margin:0!important;font:400 .84rem 'IBM Plex Sans Arabic','Cairo',sans-serif!important;color:#5a4b4e!important;border-radius:8px!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel a.on{background:rgba(112,38,63,.07)!important;color:#70263f!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-foot{padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))!important;gap:8px!important;border-top:1px solid rgba(53,37,43,.07)!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-btn{height:34px!important;font:500 .8rem 'IBM Plex Sans Arabic','Cairo',sans-serif!important;background:rgba(255,255,255,.55)!important;border:1px solid rgba(53,37,43,.1)!important;color:#4a3d40!important;box-shadow:none!important;border-radius:999px!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-btn svg{width:15px!important;height:15px!important}
+/* مكتبة النصوص مخفية من كل القوائم (المحتوى باقٍ في المستودع) */
+nav a[href*="matrix-library"],.aqh-menu a[href*="matrix-library"],.aqn-grid a[href*="matrix-library"]{display:none!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-btn svg{border:0!important;box-shadow:none!important;outline:0!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel{background:transparent!important;border:0!important;box-shadow:none!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel a{background:transparent!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel a:hover{background:rgba(112,38,63,.06)!important}
