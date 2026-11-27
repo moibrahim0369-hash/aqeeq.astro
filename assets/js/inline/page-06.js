@@ -2923,7 +2923,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
         (d.paradox ? '<p><b>المفارقة النفسية:</b> ' + esc(d.paradox) + '</p>' : '') +
         '<p style="color:var(--burgundy);"><b>فخ الظل (-):</b> ' + esc(d.shadow) + '</p>' +
         '<p style="color:var(--aq-success);"><b>طاقة النور (+):</b> ' + esc(d.light) + '</p>' +
-        (d.psychosomatics ? '<p><b>العلامة الجسدية والسوماتيكية:</b> ' + esc(d.psychosomatics) + '</p>' : '') +
+        (d.psychosomatics ? '<p><b>لغة الجسد وما يريحه:</b> ' + esc(d.psychosomatics) + '</p>' : '') +
         '<p class="sub"><b>الخطوة العملية المباشرة:</b> ' + esc(d.growthStep || d.somaticRelease || 'الملاحظة الواعية للنمط اليومي.') + '</p>' +
         '</div></details>';
     }).join('');
@@ -3007,7 +3007,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     }
 
     if (tail.psychosomatics) {
-      o += mxs('الأعراض السوماتيكية واحتقانات الجسد للذيل', tail.psychosomatics);
+      o += mxs('أين يظهر الذيل في جسدك ويومك', tail.psychosomatics);
     }
 
     if (Array.isArray(tail.transformationProtocol) && tail.transformationProtocol.length) {

@@ -1404,7 +1404,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
         <p class="aqm-slot-p"><strong>العمق النفسي:</strong> ${e(t.psychologicalDepth)}</p>
         <p class="aqm-slot-p"><strong>التناقض:</strong> ${e(v.paradox || t.paradox)}</p>
         <p class="aqm-slot-p"><strong>جذور الطفولة:</strong> ${e(v.childhoodRoots || t.childhoodRoots)}</p>
-        <p class="aqm-slot-p"><strong>التنبيه الجسدي:</strong> ${e(t.symbolicBodyNote)}</p>
+        <p class="aqm-slot-p"><strong>أين يظهر في جسدك ويومك:</strong> ${e(t.symbolicBodyNote)}</p>
       </div>`;
   }
 
@@ -2234,7 +2234,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
             <div class="aqm-rich-card">
               <p class="aqm-slot-p"><strong>النموذج الأصلي:</strong> ${arcE.archetype || ''}</p>
               <p class="aqm-slot-p"><strong>مفارقة الطاقة:</strong> ${arcE.paradox || ''}</p>
-              ${arcE.psychosomatics ? `<p class="aqm-slot-p"><strong>الدلالة السيكوسوماتية:</strong> ${arcE.psychosomatics}</p>` : ''}
+              ${arcE.psychosomatics ? `<p class="aqm-slot-p"><strong>لغة الجسد وما يريحه:</strong> ${arcE.psychosomatics}</p>` : ''}
               ${arcE.pastLifeRoot ? `<p class="aqm-slot-p"><strong>الجذر الكارمي:</strong> ${arcE.pastLifeRoot}</p>` : ''}
               ${arcE.mirror ? `<p class="aqm-slot-p aqm-mirror"><strong>المرآة:</strong> ${arcE.mirror}</p>` : ''}
             </div>
@@ -2262,7 +2262,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
               <p class="aqm-slot-p"><strong>المفارقة النفسية:</strong> ${ktData.paradox || ''}</p>
               ${ktData.childhoodRoots ? `<p class="aqm-slot-p"><strong>جذور الطفولة والتكوين:</strong> ${ktData.childhoodRoots}</p>` : ''}
               ${ktData.tracks ? `<p class="aqm-slot-p"><strong>مسار التحرر:</strong> ${ktData.tracks.trackTwo || ''}</p>` : ''}
-              ${ktData.psychosomatics ? `<p class="aqm-slot-p"><strong>التنبيه الجسدي:</strong> ${ktData.psychosomatics}</p>` : ''}
+              ${ktData.psychosomatics ? `<p class="aqm-slot-p"><strong>أين يظهر في جسدك ويومك:</strong> ${ktData.psychosomatics}</p>` : ''}
             </div>
           ` : `الذيل الكارمي هو أكبر محفز للتطور الروحي؛ تظهر دروسه في صورة أنماط متكررة تختبرك حتى تعيها وتفك ارتباطك بالجانب السلبي لطاقة ${getInfo(D).name}.`,
           strengths: `تحويل خبرات الماضي إلى حكمة عميقة، واكتساب مناعة نفسية عالية ترشدك وتلهم المحيطين بك.`,
