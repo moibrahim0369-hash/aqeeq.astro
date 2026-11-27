@@ -2490,15 +2490,20 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   });
   function sgFill() {
     const it = sgList[sgIdx];
-    sgBody.innerHTML = `<header class="swp-hero"><span class="swp-med" aria-hidden="true">${it.svg ? `<span class="sg sg-svg">${it.svg}</span>` : `<span class="sg">${gl(it.g)}</span>`}</span><div class="swp-ht">${it.sub ? `<small>${it.sub}</small>` : ""}<h3>${it.t}</h3></div></header><div class="sg-sh-bd sign-detail">${it.span || it.nxt ? `<div class="sg-meta">${it.span ? `<p class="sg-span"><i aria-hidden="true">${SG_CLOCK}</i><span>${it.span}</span></p>` : ""}${it.nxt ? `<p class="sg-nx">${it.nxt}</p>` : ""}</div>` : ""}${it.html}${it.q ? `<div class="sgs-qdock"><i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p></div>` : ""}</div>`;
-    sgDeepen();
-    sgRewind(); sgReveal();
-    sgSheet.querySelector("[data-sgn]").hidden = sgList.length < 2;
+    const tmp = document.createElement("div"); tmp.innerHTML = it.html || "";
+    const qs = [].slice.call(tmp.querySelectorAll(".sg-q p")).map(p => p.outerHTML.replace(/class="[^"]*"/, ""));
+    const ps = [].filter.call(tmp.querySelectorAll("p"), p => !p.closest(".sg-q") && p.textContent.trim().length > 1).map(p => p.innerHTML);
+    const lead = ps.shift();
+    const rows = (it.span ? `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true">${SG_CLOCK}</span><span>${it.span}</span></p>` : "") + (it.nxt ? `<p class="swp-ing"><span class="swp-ing-ic" aria-hidden="true">›</span><span>${it.nxt}</span></p>` : "");
+    sgBody.className = "aqm-sheet-body swp-body sgs-body";
+    sgBody.innerHTML = `<header class="swp-hero"><span class="swp-med" aria-hidden="true">${it.svg ? `<span class="sg sg-svg">${it.svg}</span>` : `<span class="sg">${gl(it.g)}</span>`}</span><div class="swp-ht">${it.sub ? `<small>${it.sub}</small>` : ""}<h3>${it.t}</h3></div></header>${rows}<div class="swp-fold">${lead ? `<p class="trm-lead">${lead}</p>` : ""}${ps.map(x => `<p class="swp-read">${x}</p>`).join("")}${qs.length ? `<div class="swp-psy swp-story">${qs.join("")}</div>` : ""}${it.q ? `<div class="swp-q"><p>${it.q}</p></div>` : ""}</div>`;
+    sgRewind();
+    const nb = sgSheet.querySelector("[data-sgn]"); nb.hidden = sgList.length < 2; const nx = sgList[(sgIdx + 1) % sgList.length]; nb.querySelector("b").textContent = nx ? nx.t : "";
   }
   function sgShow(list, idx) {
     if (!sgSheet) {
-      sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet swp-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
-      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
+      sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet swp-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true;
+      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-sgn><span class="aqm-foot-l"><small>التالي</small><b></b></span><span aria-hidden="true">←</span></button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
       document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
       sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); sgRewind(); } });
       sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
