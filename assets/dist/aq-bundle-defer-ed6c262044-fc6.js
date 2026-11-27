@@ -1377,8 +1377,8 @@
       '<div class="mn-title"><h4>' + p[0] + '</h4><div class="mn-bs">' + badges(c) + '</div></div>' +
       '<div class="mn-date"><button type="button" data-mn-step="-1" aria-label="اليوم التالي"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button><span>' + fmtD(c.d) + (off === 0 ? ' · الآن' : '') + '</span><button type="button" data-mn-step="1" aria-label="اليوم السابق"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button></div>' +
       '<input class="mn-range" id="mn-range" type="range" min="-30" max="30" step="1" value="' + off + '" aria-label="تغيير اليوم"><button type="button" class="mn-now" data-mn-now' + (off === 0 ? ' hidden' : '') + '>العودة إلى الآن</button>' +
+      '<details class="mn-acc" open><summary>ماذا يعني هذا الطور لك</summary>' + phBody(p, { label: 'ماذا يعني هذا الطور لك' }) + '</details>' +
       '<details class="mn-acc" open><summary>حركة القمر</summary><div class="mn-tel">' + telHTML(c) + '</div></details>' +
-      '<details class="mn-acc"><summary>ماذا يعني هذا الطور لك</summary>' + phBody(p, { label: 'ماذا يعني هذا الطور لك' }) + '</details>' +
       '<details class="mn-acc" open><summary>متى يتحرك</summary><div class="mn-facts">' + nextEv(c) + '</div></details>';
   }
   var DAYS = [0, 4, 7, 11, 15, 18, 22, 26];
