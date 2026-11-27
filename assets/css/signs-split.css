@@ -5,3 +5,7 @@ html body #signs[data-sp=traits] .center p.intro:not(#_a):not(#_b):not(#_c):not(
 html body #signs .sp-switch:not(#_a):not(#_b){display:flex;gap:8px;justify-content:center;margin:6px 16px 12px;direction:rtl}
 html body #signs .sp-switch a:not(#_a):not(#_b){flex:1;text-align:center;padding:9px 8px;border-radius:999px;font-size:13px;font-weight:700;color:#7a5a2a;text-decoration:none;background:rgba(255,255,255,.7);border:1px solid rgba(184,146,74,.35);box-shadow:0 2px 8px rgba(120,90,40,.08)}
 html body #signs .sp-switch a.on:not(#_a):not(#_b){background:linear-gradient(135deg,#d9b872,#b8924a);color:#fff;border-color:transparent}
+/* بعد المظهر القديم: صفحتان منفصلتان (بدون زرّي التبديل) وإبقاء شريط الرجوع */
+html body #signs[data-sp] .sg-tabs-main:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){display:none!important}
+html body #signs[data-sp=traits] .center p.intro:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){display:none!important}
+html body #signs .aq-section-topbar.aq-ctxbar:not(#_a):not(#_b):not(#_c):not(#_d):not(#_e):not(#_f):not(#_g):not(#_h):not(#_i):not(#_j):not(#_k):not(#_l):not(#_m):not(#_n):not(#_o):not(#_p):not(#_q):not(#_r):not(#_s):not(#_t){display:flex!important}
