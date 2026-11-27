@@ -13,6 +13,7 @@
       var ORD = { 'حسابك': 1, 'التنبيهات': 2, 'الخصوصية': 3, 'بياناتك وخريطتك': 4, 'اكتب رأيك': 5, 'عن عقيق أسترو': 6 };
       [].forEach.call(yp.querySelectorAll('.yp-set-g'), function (g) { var l = $('.yp-lab', g); if (l) g.setAttribute('data-yr', ORD[l.textContent.trim()] || 5); });
       var so = $('.yp-set .yp-out', yp); if (so && !$('.yr-del', yp)) { var d = document.createElement('button'); d.type = 'button'; d.className = 'yr-del'; d.setAttribute('data-ym', 'delete'); d.textContent = 'حذف الحساب'; so.parentNode.appendChild(d); }
+      var nf = $('.yp-set-g[data-yr="2"]', yp); if (nf) nf.remove();
       var card = $('.yp-who-card', yp); if (!card || $('.yr-card-x', card)) return;
       var em = $('.yp-set-row b[dir="ltr"]', yp), email = em ? em.textContent.trim() : '';
       var ent = $('.yp-ed-entry b'), pb = $('#profile-edit-btn span'), label = (pb && pb.textContent.trim()) || (ent && ent.textContent.trim()) || 'تعديل البيانات الشخصية';
