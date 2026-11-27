@@ -3190,13 +3190,13 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     else if (e.target.closest("[data-sgnxt]")) { pickSign((signCur + 1) % 12); toTop(); }
   });
   const signsH2 = document.querySelector("#signs .center h2"), signsIntro = document.querySelector("#signs .center .intro");
-  const HEAD_T = "توقعات الأبراج", HEAD_P = "اعرف نبض السماء المؤثر على برجك اليوم، واكتشف خريطة شخصيتك بعمق لم يُقَل لك من قبل.";
+  const HEAD_T = "نبض السماء على برجك", HEAD_P = "اعرف نبض السماء المؤثر على برجك اليوم، واكتشف خريطة شخصيتك بعمق لم يُقَل لك من قبل.";
   let signsSub = "pulse", signsPer = "near";
   function updatePeriod() {
     const el = document.getElementById("period"); if (!el) return;
     el.textContent = new Date().toLocaleDateString("ar-EG", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   }
-  if (signsH2) signsH2.textContent = HEAD_T;
+  if (signsH2) signsH2.textContent = HEAD_T; if (signsH2 && signsH2.parentElement) { const bx = signsH2.parentElement.style; bx.setProperty("background", "transparent", "important"); bx.setProperty("border", "0", "important"); bx.setProperty("box-shadow", "none", "important"); bx.setProperty("border-radius", "0", "important"); bx.setProperty("padding", "6px 0 12px", "important"); bx.setProperty("margin", "14px 0 8px", "important"); }
   if (signsIntro) signsIntro.textContent = HEAD_P;
   function setMode(m) { signsMode = m; cur.querySelectorAll("[data-sgtab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.sgtab === m))); signsSec.setAttribute("data-mode", m); setCurtain(false); updatePeriod(); if (signCur >= 0) renderSign(); }
   updatePeriod();
@@ -3241,7 +3241,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     curList = { fc: secs };
     const ord = [5, 0, 1, 2, 3, 4, 6].filter(k => k < secs.length), qi = secs.length - 1;
     const ordL = ord.length === secs.length ? ord : secs.map((_, k) => k);
-    const bn = k => { const x = secs[k], ic = (x.t === "سؤال اليوم") ? AICs.tip : x.svg; return `<article class="sg-bn" data-sgrow="fc:${k}" role="button" tabindex="0"><div class="sg-bn-h">${bdi(ic)}<div><h5>${x.t}</h5>${x.sub ? `<small>${x.sub}</small>` : ""}</div></div><div class="sg-bn-x">${x.html}</div><span class="sg-more">اقرأ التفاصيل<i aria-hidden="true">${AICs.more}</i></span></article>`; };
+    const bn = k => { const x = secs[k], ic = (x.t === "سؤال اليوم") ? AICs.tip : x.svg; return `<article class="sg-bn" data-sgrow="fc:${k}" role="button" tabindex="0"><div class="sg-bn-h">${bdi(ic)}<div><h5>${x.t}</h5>${x.sub ? `<small>${x.sub}</small>` : ""}</div></div><div class="sg-bn-x">${x.html}</div><span class="sg-lmore">اقرأ التفاصيل<i aria-hidden="true">${AICs.more}</i></span></article>`; };
     return `<section class="sg-sec sg-bns">${ordL.map(bn).join("")}</section>`;
     return `
       <section class="sg-sec">
