@@ -42,3 +42,24 @@ html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-k,html.lpr-on body #
 html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-m span{padding:3px 9px!important;font-size:.68rem!important}
 html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools{gap:5px!important}
 html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools button,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .btn-edit-lp{padding:5px 10px!important;font-size:.72rem!important}
+html body .aq-pcard:not(#_a):not(#_b){background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(252,247,238,.62))!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(200,161,90,.7)!important;box-shadow:0 8px 22px rgba(106,32,56,.10)!important}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-k{color:#A07A2E}
+html body .aq-pcard:not(#_a):not(#_b) h2{color:#6A2038!important;-webkit-text-fill-color:#6A2038!important}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-pill{background:rgba(255,255,255,.6);border:1px solid rgba(200,161,90,.45);color:#4A1224}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-pill svg{color:#A07A2E}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-btn{background:#6A2038;border-color:#6A2038;color:#FFF3D6}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-btn svg{color:#E9CE8E}
+
+/* ===== كروت زجاجية كريمية لباقي الصفحات (مصفوفة/توافق/طفل/مسار) ===== */
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-header,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-head,html.lpr-on body #lpresult>.chart-summary-card.lpr-head:not(#_a):not(#_b){background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(252,247,238,.62))!important;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(200,161,90,.7)!important;box-shadow:0 8px 22px rgba(106,32,56,.10)!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-kicker,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-kicker,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-k,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-cap{color:#A07A2E!important;-webkit-text-fill-color:#A07A2E!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-header h2,html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-header #aqm-report-title,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-t{color:#6A2038!important;-webkit-text-fill-color:#6A2038!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-meta-pill,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-p,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-m span{background:rgba(255,255,255,.6)!important;border:1px solid rgba(200,161,90,.45)!important;color:#4A1224!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-p b{color:#4A1224!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-p small{color:#A07A2E!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-join{color:#A07A2E!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-actions .aqm-btn,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-tools button,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools button{background:rgba(255,255,255,.6)!important;border:1px solid rgba(200,161,90,.55)!important;color:#6A2038!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-actions .aqm-btn-primary{background:#6A2038!important;border-color:#6A2038!important;color:#FFF3D6!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-tools button svg,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools button svg{color:#A07A2E!important;stroke:#A07A2E!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-tools button.is-saved,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools button.is-saved{background:#6A2038!important;color:#FFF3D6!important;border-color:#6A2038!important}
+html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools button.is-saved svg{color:#E9CE8E!important;stroke:#E9CE8E!important}
