@@ -31,7 +31,7 @@ html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m
 html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel a{background:transparent!important}
 html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel a:hover{background:rgba(112,38,63,.06)!important}
 /* ترقيق الحافة: أضيق من نصف الشاشة، حواف مدورة وظل ناعم */
-html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6){width:min(48vw,250px)!important;min-width:186px!important;top:10px!important;bottom:10px!important;border:1px solid rgba(255,255,255,.6)!important;border-radius:22px!important;box-shadow:0 10px 40px rgba(53,37,43,.12)!important;inset-inline-start:8px!important;inset-inline-end:auto!important}
+html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6){width:min(45vw,240px)!important;min-width:174px!important;top:10px!important;bottom:10px!important;border:1px solid rgba(255,255,255,.6)!important;border-radius:22px!important;box-shadow:0 10px 40px rgba(53,37,43,.12)!important;inset-inline-start:8px!important;inset-inline-end:auto!important}
 html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-body{padding:4px 6px 10px!important}
 html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-dr-body>a,html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-btn{padding-inline:8px!important}
 html body nav.aqh-menu:not(#_m1):not(#_m2):not(#_m3):not(#_m4):not(#_m5):not(#_m6) .aqn-acc-panel a{padding-inline:10px!important}
