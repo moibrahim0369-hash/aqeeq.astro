@@ -16,3 +16,29 @@ html body section:has(.mxc-head) .aq-section-topbar,html body section:has(.mxc-h
 html body #chart.aq-has-pcard .nd-chips,html body #chart.aq-has-pcard .nd-title{display:none!important}
 
 html body section.aq-has-pcard:not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar,html body section:has(.aqm-header):not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar,html body section:has(.lpr-head):not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar,html body section:has(.mxc-head):not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar{display:none!important}
+
+/* ===== نسخة مصغّرة موحّدة لكل بطاقات الخرائط (ما عدا الكارما و2027 والساجو) ===== */
+html body .aq-pcard:not(#_a):not(#_b){padding:10px 12px 10px;margin:4px 0 10px;border-radius:16px}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-k{font-size:.7rem}
+html body .aq-pcard:not(#_a):not(#_b) h2{font-size:1.1rem;margin:2px 0 7px}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-pills{gap:5px;margin-bottom:8px}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-pill{padding:3px 9px;font-size:.68rem;gap:4px}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-pill svg,html body .aq-pcard:not(#_a):not(#_b) .aq-pc-btn svg{width:12px;height:12px}
+html body .aq-pcard:not(#_a):not(#_b) .aq-pc-btn{padding:5px 11px;font-size:.72rem}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-header,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-head{padding:10px 12px 10px!important;margin-bottom:10px!important;border-radius:16px!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-kicker,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-kicker{font-size:.7rem!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-header h2{font-size:1.1rem!important;margin:2px 0 7px!important}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-meta-info{gap:5px;margin-bottom:8px}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-meta-pill{padding:3px 9px;font-size:.68rem}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-actions,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-tools{gap:5px}
+html body #matrix:not(#_a):not(#_b):not(#_c) .aqm-actions .aqm-btn,html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-tools button{padding:5px 10px!important;font-size:.72rem!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-p{padding:4px 9px!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-p b{font-size:.78rem!important}
+html body :is(#matrix-compat,#matrix-child):not(#_a):not(#_b) .mxc-p small{font-size:.62rem!important}
+html.lpr-on body #lpresult>.chart-summary-card.lpr-head:not(#_a):not(#_b){padding:10px 12px 8px!important;margin:0 0 10px!important;border-radius:16px!important}
+html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-n{transform:scale(.62);transform-origin:center;margin:-14px 0!important}
+html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-t{font-size:1.05rem!important}
+html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-k,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-cap{font-size:.7rem!important}
+html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-m span{padding:3px 9px!important;font-size:.68rem!important}
+html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools{gap:5px!important}
+html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .lph-tools button,html.lpr-on body #lpresult .lpr-head:not(#_a):not(#_b) .btn-edit-lp{padding:5px 10px!important;font-size:.72rem!important}
