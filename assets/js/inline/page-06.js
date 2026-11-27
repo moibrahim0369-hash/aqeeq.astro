@@ -2490,15 +2490,20 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   });
   function sgFill() {
     const it = sgList[sgIdx];
-    sgBody.innerHTML = `<header class="sg-sh-hd">${it.svg ? bdi(it.svg) : bdg(it.g, "sg-bd-l")}<div><h3>${it.t}</h3></div></header><div class="sg-sh-bd sign-detail">${(it.span || it.sub) ? `<div class="sg-meta">${it.span ? `<p class="sg-span"><i aria-hidden="true">${SG_CLOCK}</i><span>${it.span}</span></p>` : ""}${it.sub ? `<p class="sg-hs"><i aria-hidden="true"></i><span>${it.sub}</span></p>` : ""}${it.nxt ? `<p class="sg-nx">${it.nxt}</p>` : ""}</div>` : ""}${it.html}${it.q ? `<div class="sgs-qdock"><i aria-hidden="true">${ZI.sparkorb}</i><p>${it.q}</p></div>` : ""}</div>`;
-    sgDeepen();
-    sgRewind(); sgReveal();
-    sgSheet.querySelector("[data-sgn]").hidden = sgList.length < 2;
+    const tmp = document.createElement("div"); tmp.innerHTML = it.html || "";
+    const qs = [].slice.call(tmp.querySelectorAll(".sg-q p")).map(p => p.outerHTML.replace(/class="[^"]*"/, ""));
+    const ps = [].filter.call(tmp.querySelectorAll("p"), p => !p.closest(".sg-q") && p.textContent.trim().length > 1).map(p => p.innerHTML);
+    const lead = ps.shift();
+    const rows = (it.span ? `<p class="swp-ing"><span>${it.span}</span></p>` : "") + (it.nxt ? `<p class="swp-ing"><span>${it.nxt}</span></p>` : "");
+    sgBody.className = "aqm-sheet-body swp-body sgs-body";
+    sgBody.innerHTML = `<header class="swp-hero"><div class="swp-ht">${it.sub ? `<small>${it.sub}</small>` : ""}<h3>${it.t}</h3></div></header>${rows}<div class="swp-fold">${lead ? `<p class="trm-lead">${lead}</p>` : ""}${ps.map(x => `<p class="swp-read">${x}</p>`).join("")}${qs.length ? `<div class="swp-psy swp-story">${qs.join("")}</div>` : ""}${it.q ? `<div class="swp-q"><p>${it.q}</p></div>` : ""}</div>`;
+    sgRewind();
+    const nb = sgSheet.querySelector("[data-sgn]"); nb.hidden = sgList.length < 2; const nx = sgList[(sgIdx + 1) % sgList.length]; nb.querySelector("b").textContent = nx ? nx.t : "";
   }
   function sgShow(list, idx) {
     if (!sgSheet) {
-      sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet sgs-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true; sgScopeCss();
-      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot sgs-foot"><button type="button" class="aqm-foot-next" data-sgn>التالي</button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
+      sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet swp-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true;
+      sgSheet.innerHTML = '<div class="aqm-sheet-scrim" data-sgc></div><div class="aqm-sheet-panel" role="dialog" aria-modal="true" aria-label="تفاصيل القراءة"><span class="aqm-sheet-grip"></span><button type="button" class="aqm-sheet-x" data-sgc aria-label="إغلاق"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="aqm-sheet-body sgs-body"></div><div class="aqm-sheet-foot"><button type="button" class="aqm-foot-next" data-sgn><span class="aqm-foot-l"><small>التالي</small><b></b></span><span aria-hidden="true">←</span></button><button type="button" class="aqm-foot-close" data-sgc>إغلاق</button></div></div>';
       document.body.appendChild(sgSheet); sgBody = sgSheet.querySelector(".sgs-body");
       sgSheet.addEventListener("click", e => { if (e.target.closest("[data-sgc]")) sgClose(); else if (e.target.closest("[data-sgn]")) { sgIdx = (sgIdx + 1) % sgList.length; sgFill(); sgRewind(); } });
       sgSheet.addEventListener("keydown", e => { if (e.key === "Escape") sgClose(); });
@@ -2527,7 +2532,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     else if (e.target.closest("[data-sgnxt]")) { pickSign((signCur + 1) % 12); toTop(); }
   });
   const signsH2 = document.querySelector("#signs .center h2"), signsIntro = document.querySelector("#signs .center .intro");
-  const HEAD_T = "توقعات وطاقة الأبراج الآن", HEAD_P = "اعرف نبض السماء المؤثر على برجك اليوم، واكتشف خريطة شخصيتك بعمق لم يُقَل لك من قبل.";
+  const HEAD_T = "توقعات برجك", HEAD_P = "اعرف نبض السماء المؤثر على برجك اليوم، واكتشف خريطة شخصيتك بعمق لم يُقَل لك من قبل.";
   let signsSub = "pulse", signsPer = "near";
   function updatePeriod() {
     const el = document.getElementById("period"); if (!el) return;
