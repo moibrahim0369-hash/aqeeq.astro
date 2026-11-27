@@ -2500,17 +2500,6 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     sgRewind();
     const nb = sgSheet.querySelector("[data-sgn]"); nb.hidden = sgList.length < 2; const nx = sgList[(sgIdx + 1) % sgList.length]; nb.querySelector("b").textContent = nx ? nx.t : "";
   }
-  function sgAcc(r, it) {
-    const nx = r.nextElementSibling;
-    if (nx && nx.classList.contains("sg-acc")) { nx.remove(); r.classList.remove("is-open"); r.setAttribute("aria-expanded", "false"); return; }
-    const tmp = document.createElement("div"); tmp.innerHTML = it.html || "";
-    const qs = [].slice.call(tmp.querySelectorAll(".sg-q p")).map(p => p.innerHTML);
-    const ps = [].filter.call(tmp.querySelectorAll("p"), p => !p.closest(".sg-q") && p.textContent.trim().length > 1).map(p => p.innerHTML);
-    const lead = ps.shift();
-    const d = document.createElement("div"); d.className = "sg-acc";
-    d.innerHTML = (it.span ? `<p>${it.span}</p>` : "") + (it.nxt ? `<p>${it.nxt}</p>` : "") + (lead ? `<p class="sg-acc-lead">${lead}</p>` : "") + ps.map(x => `<p>${x}</p>`).join("") + (qs.length ? `<div class="sg-acc-q">${qs.map(x => `<p>${x}</p>`).join("")}</div>` : "") + (it.q ? `<div class="sg-acc-q"><p>${it.q}</p></div>` : "");
-    r.after(d); r.classList.add("is-open"); r.setAttribute("aria-expanded", "true");
-  }
   function sgShow(list, idx) {
     if (!sgSheet) {
       sgSheet = document.createElement("div"); sgSheet.className = "aqm-sheet swp-sheet"; sgSheet.id = "sgs-sheet"; sgSheet.hidden = true;
@@ -2652,7 +2641,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   panel.addEventListener("click", e => {
     const u = e.target.closest("[data-sgsub]"); if (u) { if (u.dataset.sgsub !== signsSub) { signsSub = u.dataset.sgsub; renderSign(); toTop(); } return; }
     const pt = e.target.closest("[data-sgper]"); if (pt) { if (pt.dataset.sgper !== signsPer) { signsPer = pt.dataset.sgper; renderSign(); } return; }
-    const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); if (r.matches(".sg-lrow")) sgAcc(r, curList[key][+n]); else sgShow(curList[key], +n); }
+    const r = e.target.closest("[data-sgrow]"); if (r) { const [key, n] = r.dataset.sgrow.split(":"); sgShow(curList[key], +n); }
   });
   function pickSign(i, lazy) {
     signCur = i; try { localStorage.setItem("aq-sky-sign", i); } catch (e) {}
