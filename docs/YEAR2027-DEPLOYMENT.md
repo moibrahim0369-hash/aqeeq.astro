@@ -1,8 +1,21 @@
 # Annual report release and private editorial workflow
 
-## Open review, 21 November 2026
+## Current state: locked since 27 November 2026
 
-The owner requested all calculated personal readings remain visible to every visitor while reviewing. `mode:read` returns one assembled personal report without login, using the same private server library and rate limit. The source archive and database table remain inaccessible to clients. There is no lock or owner-preview marker in the reading UI. Login is required only when a visitor chooses purchase. The eventual purchase benefit is still undecided. Do not claim that purchasing unlocks hidden text or invent a PDF-only product. Restore any reading restriction only after the owner explicitly ends review and approves it.
+The owner ended the open review and asked for a real lock. The only server for the annual report is the `year2027-api` function (source: `supabase/functions/year2027-api/index.ts`; `year2027-content` is retired and answers 410).
+
+- `mode:preview` (no login): the short free reading, one free hook per section, and the 2026 summary. No paid text.
+- Any other mode (the full report) needs a signed-in session AND `year2027_access(input)`: same account, normalized birth inputs, approved manual payment, paid matching order, active entitlement. Otherwise it answers 401 (not signed in) or 403 (not purchased). Accounts that pass `is_app_admin()` get the full report as an owner preview, without a payment.
+- The page shows every visitor the same design: rows, a popup per section with a short free teaser and a lock, and the free 2026 summary. Pressing the lock button goes to checkout, which asks for sign-in and the birth data that is already in the session.
+- After a transfer reference is submitted the buyer sees "under review" (`year2027_status(input)` returns none / pending / approved / rejected). The page re-checks about every minute and on return; the buyer can also press the check button. When the owner approves in `#admin-pay` every section opens and the PDF button appears.
+
+The edge function's shared modules deployed on Supabase differ from the repo in one file: the deployed `_shared/astronomy-engine.js` is a two-line wrapper around `npm:astronomy-engine@2.1.19`, the repo copy is vendored. Keep that in mind when redeploying; deploy every file the function imports, otherwise bundling fails.
+
+Do not redeploy an older `year2027-api` (v4 or earlier answered the full report to anyone).
+
+## Open review, 21 November 2026 (superseded)
+
+The owner then requested all calculated personal readings remain visible to every visitor while reviewing. That mode is over.
 
 The sections retain literary subheadings from `####` source headings. Contact dates and longitudes come from the existing computed event objects, never editorial numbers. Text changes do not change the engine.
 
@@ -88,9 +101,9 @@ Journal notes stay on that device. Saving report inputs uses the site's existing
 
 ## Owner-only design preview
 
-`YEAR2027_OWNER_PREVIEW=1` enables full reports for a signed-in account that passes the existing server-side `is_app_admin()` check. It does not create a payment, order or entitlement. Other users still require their own valid paid report. The UI marks the owner's result as a preview.
+The deployed `year2027-api` always gives the full report to a signed-in account that passes the server-side `is_app_admin()` check (the `YEAR2027_OWNER_PREVIEW` secret is no longer read). It does not create a payment, order or entitlement. Other users still require their own valid paid report.
 
-Disable before announcing sales by changing the one Supabase secret `YEAR2027_OWNER_PREVIEW` to `0`. No front-end change or redeployment is needed. The owner signs in with the same account used for `#admin-pay`, opens `#year2027`, enters birth data with a known time, and requests the reading. The full report appears below the free result.
+To check the unlocked design and the PDF: sign in with the same account used for `#admin-pay`, open `#year2027`, enter birth data with a known time, and request the reading. All sections open and the PDF button appears.
 
 ## Owner notifications
 
