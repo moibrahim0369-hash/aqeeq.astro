@@ -769,13 +769,13 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
     const aT = axisTriple(A), bT = axisTriple(B);
     const chakraRow = (name, symbol, physics, energy) => ({ name, symbol, physics, energy, emotions: reduceArcana(physics + energy) });
     const chakras = {
-      sahasrara: chakraRow('التاج', '🟣', A, B),
-      ajna: chakraRow('العين الثالثة', '🔵', aT.x2, bT.x2),
-      vishuddha: chakraRow('الحلق', '🔷', aT.x1, bT.x1),
-      anahata: chakraRow('القلب', '🟢', aT.x3, bT.x3),
-      manipura: chakraRow('الضفيرة الشمسية', '🟡', E, E),
-      svadhisthana: chakraRow('العجز', '🟠', C2, D2),
-      muladhara: chakraRow('الجذر', '🔴', C, D)
+      sahasrara: chakraRow('التاج', '<i style="color:#7d5a9e;font-style:normal">●</i>', A, B),
+      ajna: chakraRow('العين الثالثة', '<i style="color:#4f5d95;font-style:normal">●</i>', aT.x2, bT.x2),
+      vishuddha: chakraRow('الحلق', '<i style="color:#4f86a8;font-style:normal">●</i>', aT.x1, bT.x1),
+      anahata: chakraRow('القلب', '<i style="color:#5d8a63;font-style:normal">●</i>', aT.x3, bT.x3),
+      manipura: chakraRow('الضفيرة الشمسية', '<i style="color:#c4a03a;font-style:normal">●</i>', E, E),
+      svadhisthana: chakraRow('العجز', '<i style="color:#c47a3a;font-style:normal">●</i>', C2, D2),
+      muladhara: chakraRow('الجذر', '<i style="color:#9e3b32;font-style:normal">●</i>', C, D)
     };
 
     const chakraRows = Object.values(chakras);
@@ -2223,7 +2223,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 1. الجوهر والمركز
       {
         id: 'center',
-        icon: '👑',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/></svg>',
         title: 'الجوهر والمركز — طاقة الروح ومنطقة الراحة',
         subtitle: 'الجوهر النفسي والمنطقة التي تشحن طاقتك عند العودة إليها',
         arcanaList: [{ num: E, name: getInfo(E).name }],
@@ -2248,7 +2248,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 2. الذيل الكارمي
       {
         id: 'karmic_tail',
-        icon: '⚓',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M5 13a7 7 0 0 0 14 0M8 11h8"/></svg>',
         title: ktData && ktData.title ? `الذيل الكارمي — ${ktData.title}` : 'الذيل الكارمي — دروس التناسخ والتحديات المتوارثة',
         subtitle: 'الأنماط النفسية المتكررة والمواقف التي تختبر وعيك حتى تحررها (Karmic Tail)',
         arcanaList: tailNums.map(n => ({ num: n, name: getInfo(n).name })),
@@ -2275,7 +2275,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 3. المهمة والغاية
       {
         id: 'purposes',
-        icon: '🎯',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
         title: 'المهمة والغاية — الغايات الحياتية الأربع الكبرى',
         subtitle: 'الغاية الشخصية، والاجتماعية، والروحية العامة، والغاية الكونية العليا (Purposes)',
         arcanaList: [
@@ -2319,7 +2319,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 4. الشخصية والصورة الخارجية
       {
         id: 'personal',
-        icon: '👤',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
         title: 'الشخصية والصورة الخارجية — طاقة يوم الميلاد',
         subtitle: 'الانطباع الأول، بطاقة التعارف، وكيف يراك العالم عند أول لقاء (Anchor A)',
         arcanaList: [{ num: A, name: getInfo(A).name }],
@@ -2341,7 +2341,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 5. المواهب والقدرات
       {
         id: 'talents',
-        icon: '✨',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>',
         title: 'المواهب والقدرات — هدايا الروح والإلهام',
         subtitle: 'المواهب الفطرية والاتصال بالإلهام والحدس (Anchor B)',
         arcanaList: [{ num: B, name: 'B' }, { num: axisPoints(P, adapter.reduceArcana).top.mid, name: 'B1' }, { num: axisPoints(P, adapter.reduceArcana).top.outer, name: 'B2' }, { num: P.corners.G, name: 'G الأم' }, { num: P.corners.F, name: 'F الأب' }],
@@ -2363,7 +2363,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 6. خط الأب
       {
         id: 'father_line',
-        icon: '🛡️',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>',
         title: 'خط الأب — التراث الكارمي لسلالة الذكور',
         subtitle: 'المحور الممتد من زاوية الأب الروحية (F) إلى زاوية الأب المادية (H)',
         arcanaList: [
@@ -2384,7 +2384,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 7. خط الأم
       {
         id: 'mother_line',
-        icon: '🌸',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.5"/><path d="M12 9.5C10 5 14 5 12 9.5M14.5 12c4.5-2 4.5 2 0 0M12 14.5c2 4.5-2 4.5 0 0M9.5 12C5 14 5 10 9.5 12"/></svg>',
         title: 'خط الأم — التراث الكارمي لسلالة الإناث',
         subtitle: 'المحور الممتد من زاوية الأم الروحية (G) إلى زاوية الأم المادية (I)',
         arcanaList: [
@@ -2405,7 +2405,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 8. الأجداد والبرامج العائلية
       {
         id: 'ancestral_programs',
-        icon: '🏛️',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></svg>',
         title: 'الأجداد والبرامج العائلية — طاقة التراث الجمعي ومحاور الأنساب',
         subtitle: 'العقد والعهود المتوارثة من أجيال السلف وكيفية تحرير شجرة العائلة',
         arcanaList: [
@@ -2438,7 +2438,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 9. خط العلاقات والحب
       {
         id: 'love_line',
-        icon: '💖',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg>',
         title: 'خط العلاقات والحب — الشريك ونقطة القلب',
         subtitle: 'صفات شريك الروح، كيفية الحفاظ على الشغف، ونقطة التقاء العاطفة بالواقع',
         arcanaList: [
@@ -2459,7 +2459,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 10. خط المال والعمل
       {
         id: 'money_line',
-        icon: '💰',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15 9.5c-.5-1-1.6-1.5-3-1.5-1.7 0-3 .8-3 2s1.3 1.7 3 2 3 .8 3 2-1.3 2-3 2c-1.4 0-2.5-.5-3-1.5M12 6v2M12 16v2"/></svg>',
         title: 'خط المال والعمل — مصادر الدخل وتدفق الوفرة والمهنة',
         subtitle: 'المسار المالي، المهام المهنية الأنسب، ومفتاح فتح التدفق المالي المستمر',
         arcanaList: [
@@ -2480,7 +2480,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 11. الشاكرات
       {
         id: 'chakras',
-        icon: '🧘',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 8v5M6 11l6 2 6-2M4 19c3-3 13-3 16 0"/></svg>',
         title: 'الشاكرات — جدول مراكز الطاقة ومستويات الوعي',
         subtitle: 'توزيع الطاقات على مراكز الوعي السبعة وتحليل مستويات الجسد والنفس',
         arcanaList: [
@@ -2530,7 +2530,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 12. برامج المصفوفة المركبة
       {
         id: 'composite_programs',
-        icon: '🔮',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="7"/><path d="M7 20h10M9 17l-1 3M15 17l1 3"/></svg>',
         title: 'برامج المصفوفة المركبة — الشيفرات الثلاثية والأنماط المعقدة',
         subtitle: 'تلاقي طاقات متعددة لتشكيل برامج نفسية وحياتية مركبة داخل الوعي',
         arcanaList: [
@@ -2555,7 +2555,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 13. الأطفال والمؤشرات المرتبطة بهم
       {
         id: 'children_line',
-        icon: '🌱',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9M12 12c0-4-3-6-7-6 0 4 3 6 7 6zM12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/></svg>',
         title: 'الأطفال والمؤشرات المرتبطة بهم — طاقة الأبناء واستمرارية الأجيال',
         subtitle: 'العلاقة مع الأبناء، والرسائل التي يحملها الأطفال لوالديهم',
         arcanaList: [
@@ -2580,7 +2580,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 14. دورات الحياة ومحطاتها
       {
         id: 'age_cycles',
-        icon: '⏳',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 5 10 6 10 9s-10 4-10 9M17 3c0 5-10 6-10 9s10 4 10 9"/></svg>',
         title: 'دورات الحياة ومحطاتها — الخريطة الزمنية (0 - 80 سنة) وطاقة العام',
         subtitle: 'المحطات العمرية على المحيط الخارجي ودورة الطاقات المؤثرة على كل مرحلة',
         arcanaList: [0, 10, 20, 30, 40, 50, 60, 70].map(a => ({ num: (P.ageMap && (P.ageMap[a] || P.ageMap[String(a)])) || A, name: 'سن ' + a })),
@@ -2607,7 +2607,7 @@ return{validate:validate,get:get,fields:FIELDS,keys:KEYS};
       // 15. روشتة التحول
       {
         id: 'transformation_rx',
-        icon: '⚖️',
+        icon: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M7 20h10M5 7h14M5 7l-3 6a3 3 0 0 0 6 0zM19 7l-3 6a3 3 0 0 0 6 0z"/></svg>',
         title: 'روشتة التحول — مفاتيح الموازنة والارتقاء من الظل إلى النور',
         subtitle: 'بروتوكول تفكيك العقد وتفعيل الطاقات الإيجابية في السلوك اليومي',
         arcanaList: [

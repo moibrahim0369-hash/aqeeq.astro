@@ -264,13 +264,13 @@
     const aT = axisTriple(A), bT = axisTriple(B);
     const chakraRow = (name, symbol, physics, energy) => ({ name, symbol, physics, energy, emotions: reduceArcana(physics + energy) });
     const chakras = {
-      sahasrara: chakraRow('التاج', '🟣', A, B),
-      ajna: chakraRow('العين الثالثة', '🔵', aT.x2, bT.x2),
-      vishuddha: chakraRow('الحلق', '🔷', aT.x1, bT.x1),
-      anahata: chakraRow('القلب', '🟢', aT.x3, bT.x3),
-      manipura: chakraRow('الضفيرة الشمسية', '🟡', E, E),
-      svadhisthana: chakraRow('العجز', '🟠', C2, D2),
-      muladhara: chakraRow('الجذر', '🔴', C, D)
+      sahasrara: chakraRow('التاج', '<i style="color:#7d5a9e;font-style:normal">●</i>', A, B),
+      ajna: chakraRow('العين الثالثة', '<i style="color:#4f5d95;font-style:normal">●</i>', aT.x2, bT.x2),
+      vishuddha: chakraRow('الحلق', '<i style="color:#4f86a8;font-style:normal">●</i>', aT.x1, bT.x1),
+      anahata: chakraRow('القلب', '<i style="color:#5d8a63;font-style:normal">●</i>', aT.x3, bT.x3),
+      manipura: chakraRow('الضفيرة الشمسية', '<i style="color:#c4a03a;font-style:normal">●</i>', E, E),
+      svadhisthana: chakraRow('العجز', '<i style="color:#c47a3a;font-style:normal">●</i>', C2, D2),
+      muladhara: chakraRow('الجذر', '<i style="color:#9e3b32;font-style:normal">●</i>', C, D)
     };
 
     const chakraRows = Object.values(chakras);
