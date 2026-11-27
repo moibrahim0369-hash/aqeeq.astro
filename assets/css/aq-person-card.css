@@ -1,0 +1,18 @@
+/* بطاقة الشخص الموحدة + إخفاء شريط رجوع/الرئيسية عند ظهورها */
+html body .aq-pcard{position:relative;overflow:hidden;text-align:center;border-radius:22px;padding:20px 16px 16px;margin:6px 0 14px;background:radial-gradient(70% 90% at 100% 0%,rgba(200,161,90,.20),transparent 62%),linear-gradient(160deg,#6A2038,#4A1224 62%,#3A0E1C);border:1.4px solid #C8A15A;box-shadow:0 14px 30px rgba(74,18,36,.28)}
+html body .aq-pc-k{display:block;color:#E0C58A;font:600 .82rem 'Cairo',sans-serif;letter-spacing:.03em}
+html body .aq-pcard h2{color:#FFF3D6;-webkit-text-fill-color:#FFF3D6;font:700 1.5rem/1.4 'Amiri','Cairo',serif;margin:6px 0 12px;text-align:center}
+html body .aq-pc-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:14px}
+html body .aq-pc-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,243,214,.10);border:1px solid rgba(224,197,138,.45);color:#FFF3D6;border-radius:999px;padding:6px 12px;font:600 .78rem 'Cairo',sans-serif}
+html body .aq-pc-pill svg,html body .aq-pc-btn svg{width:15px;height:15px;color:#E9CE8E;flex:none}
+html body .aq-pc-act{display:flex;justify-content:center;gap:8px}
+html body .aq-pc-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;font:600 .82rem 'Cairo',sans-serif;background:rgba(255,243,214,.10);border:1px solid rgba(224,197,138,.45);color:#FFF3D6;cursor:pointer}
+/* إخفاء شريط رجوع/الرئيسية */
+html body section.aq-has-pcard .aq-section-topbar,html body section.aq-has-pcard .aq-ctxbar,html body section.aq-has-pcard .aq-nav-actions,html body section.aq-has-pcard .eam-backbar,
+html body section:has(.aqm-header) .aq-section-topbar,html body section:has(.aqm-header) .aq-ctxbar,html body section:has(.aqm-header) .aq-nav-actions,
+html body section:has(.lpr-head) .aq-section-topbar,html body section:has(.lpr-head) .aq-ctxbar,html body section:has(.lpr-head) .aq-nav-actions,
+html body section:has(.mxc-head) .aq-section-topbar,html body section:has(.mxc-head) .aq-ctxbar,html body section:has(.mxc-head) .aq-nav-actions{display:none!important}
+/* لا تكرار لبيانات الميلاد داخل نتيجة الخريطة */
+html body #chart.aq-has-pcard .nd-chips,html body #chart.aq-has-pcard .nd-title{display:none!important}
+
+html body section.aq-has-pcard:not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar,html body section:has(.aqm-header):not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar,html body section:has(.lpr-head):not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar,html body section:has(.mxc-head):not(#_a):not(#_b):not(#_c):not(#_d) .aq-section-topbar{display:none!important}
