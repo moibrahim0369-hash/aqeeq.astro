@@ -59,17 +59,23 @@
   var firstSentence = function (t) { t = String(t || ''); var m = t.search(/[.؟!]\s/); return m > 20 ? t.slice(0, m + 1) : t; };
   var paras = function (t) { return String(t || '').split(/\n+/).filter(Boolean); };
   /* ---------- مكونات ---------- */
-  function card(kick, title, lead, key, extra) {
-    return '<article class="yt-c"><small class="yt-k">' + esc(kick) + '</small><h3>' + esc(title) + '</h3>' + (extra ? '<span class="yt-x">' + esc(extra) + '</span>' : '') + (lead ? '<p>' + esc(lead) + '</p>' : '') +
+  var GL = { sun: '\u2609', moon: '\u263D', mercury: '\u263F', venus: '\u2640', mars: '\u2642', jupiter: '\u2643', saturn: '\u2644', uranus: '\u2645', neptune: '\u2646', pluto: '\u2647' };
+  var AI = { love: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>', work: '<path d="M4 8h16v11H4zM9 8V5h6v3"/>', money: '<circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.500 10.500c0-1 1-1.500 2.500-1.500s2.500.5 2.500 1.500-1 1.500-2.500 1.500-2.500.5-2.500 1.500 1 1.500 2.500 1.500 2.500-.5 2.500-1.500"/>', day: '<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.600 5.600L7 7M17 17l1.400 1.400M5.600 18.400L7 17M17 7l1.400-1.400"/>' };
+  function badge(k) { return '<span class="yt-bd">' + (GL[k] ? '<i>' + GL[k] + '\uFE0E</i>' : SVG(AI[k] || AI.day)) + '</span>'; }
+  function card(kick, title, lead, key, extra, bk) {
+    return '<article class="yt-c"><div class="yt-ch">' + badge(bk) + '<div><small class="yt-k">' + esc(kick) + '</small><h3>' + esc(title) + '</h3>' + (extra ? '<span class="yt-x">' + esc(extra) + '</span>' : '') + '</div></div>' + (lead ? '<p>' + esc(lead) + '</p>' : '') +
       (key ? '<button type="button" class="yt-more" data-yt-open="' + esc(key) + '"><span>تعمّق</span>' + CHEV + '</button>' : '') + '</article>';
   }
   function empty(msg) { return '<div class="yt-empty"><p>' + esc(msg) + '</p></div>'; }
+  var BI = { sun: '<circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.600 5.600L7 7M17 17l1.400 1.400M5.600 18.400L7 17M17 7l1.400-1.400"/>', moon: '<path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/>', asc: '<path d="M3 17h18M6 17a6 6 0 0 1 12 0M12 5v3M5.600 8.600l1.800 1.800M18.400 8.600l-1.800 1.800"/>', path: '<path d="M4 20c3-8 5-8 8-2s5 4 8-12"/>', rashi: '<path d="M12 3l2.600 6.400L21 10l-5 4.300L17.500 21 12 17.500 6.500 21 8 14.300 3 10l6.400-.6z"/>', nak: '<path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18"/>' };
   function identity(ch, mine) {
-    var p = natalPl(ch), v = window.AqeeqLive && window.AqeeqLive.vedic(ch);
-    var rise = ch.known && typeof ch.asc === 'number' ? SG[Math.floor(norm(ch.asc) / 30)] : '';
-    var chip = function (k, t) { return '<span class="yt-chip"><small>' + k + '</small><b>' + esc(t) + '</b></span>'; };
-    return '<div class="yt-id">' + (p.sun ? chip('الشمس', p.sun.sign) : '') + (p.moon ? chip('القمر', p.moon.sign) : '') + (rise ? chip('الطالع', rise) : '') +
-      (v ? chip('برج القمر الفيدي', v.rashi) : '') + (v ? chip('النكشاترا', v.nak) : '') + '</div>';
+    var p = natalPl(ch), v = window.AqeeqLive && window.AqeeqLive.vedic(ch), lp = '';
+    try { lp = window.AqeqLifePathCore.lifePath(mine.d, mine.m, mine.y); } catch (e) {}
+    var rise = ch.known && typeof ch.asc === 'number' ? SG[Math.floor(norm(ch.asc) / 30)] : 'غير محدد';
+    var cell = function (ic, k, t) { return '<div class="yt-bc"><span class="yt-bi">' + SVG(BI[ic]) + '</span><small>' + k + '</small><b>' + esc(t) + '</b></div>'; };
+    return '<section class="yt-ban"><span class="yt-ban-k">بطاقة هويتك</span>' +
+      '<div class="yt-bg3">' + cell('sun', 'الشمس', p.sun ? p.sun.sign : '—') + cell('moon', 'القمر', p.moon ? p.moon.sign : '—') + cell('asc', 'الطالع', rise) + '</div>' +
+      '<div class="yt-bg2">' + (lp ? cell('path', 'مسار الحياة', String(lp)) : '') + (v ? cell('rashi', 'برج القمر الفيدي', v.rashi) : '') + (v ? cell('nak', 'النكشاترا', v.nak) : '') + '</div></section>';
   }
   /* ---------- الأقسام ---------- */
   function todayHtml(ch) {
@@ -85,12 +91,12 @@
     ['love', 'work', 'money'].forEach(function (a) {
       var t = L.AREA && L.AREA[a] && L.AREA[a][mo.house - 1]; if (!t) return;
       var nm = { love: 'الحب والعلاقات', work: 'العمل', money: 'المال' }[a];
-      out += card('اليوم', nm, firstSentence(t), 'area:' + a);
+      out += card('اليوم', nm, firstSentence(t), 'area:' + a, '', a);
     });
     out += '</div><p class="yt-lab">ما يعبر بيوتك الآن</p><div class="yt-rail">';
     ['sun', 'mercury', 'venus', 'mars'].forEach(function (k) {
       var t = tr[k]; if (!t) return; var R = window.AqReadings;
-      out += card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k);
+      out += card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k, '', k);
     });
     return out + '</div>';
   }
@@ -99,7 +105,7 @@
     var tr = transits(ch), R = window.AqReadings, out = '<p class="yt-lab">الكواكب البطيئة: أثرها يمتد أشهرًا</p><div class="yt-stack">';
     ['jupiter', 'saturn', 'uranus', 'neptune', 'pluto'].forEach(function (k) {
       var t = tr[k]; if (!t) return;
-      out += card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'تعبر بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k, 'الدرجة ' + t.deg);
+      out += card(PN[k] + ' في ' + t.sign + (t.retro ? ' · راجع' : ''), 'تعبر بيتك ' + HN[t.house - 1] + ': ' + HT[t.house - 1], R.TL && R.TL[k] && R.TL[k][t.house - 1], 'tr:' + k, 'الدرجة ' + t.deg, k);
     });
     out += '</div>';
     var cyc = []; try { if (window.AqeeqYou && window.Astro) cyc = window.AqeeqYou.cycles(ch, Math.floor(Date.now() / 864e5) * 864e5) || []; } catch (e) {}
@@ -123,7 +129,7 @@
     var p = natalPl(ch);
     return sw + '<div class="yt-rows">' + PK.map(function (k) {
       var x = p[k]; if (!x) return '';
-      return '<button type="button" class="yt-row" data-yt-open="pl:' + k + '"><span class="yt-row-t"><b>' + PN[k] + ' في ' + x.sign + '</b><small>البيت ' + HN[x.house - 1] + ' · ' + HT[x.house - 1] + '</small></span>' + CHEV + '</button>';
+      return '<button type="button" class="yt-row" data-yt-open="pl:' + k + '">' + badge(k) + '<span class="yt-row-t"><b>' + PN[k] + ' في ' + x.sign + '</b><small>البيت ' + HN[x.house - 1] + ' · ' + HT[x.house - 1] + '</small></span>' + CHEV + '</button>';
     }).join('') + '</div>' + (ch.known ? '' : '<p class="yt-note">وقت ميلادك غير مسجّل، فأرقام البيوت تقريبية.</p>');
   }
   function eastHtml(ch) {
@@ -134,7 +140,7 @@
     var occ = {}; Object.keys(vc.pl).forEach(function (k) { var h = vc.pl[k].house; (occ[h] = occ[h] || []).push(k); });
     out += '<p class="yt-lab">بيوتك المشغولة في الخريطة الفيدية</p><div class="yt-rows">';
     Object.keys(occ).sort(function (a, b) { return a - b; }).forEach(function (h) {
-      out += '<button type="button" class="yt-row" data-yt-open="vh:' + h + '"><span class="yt-row-t"><b>البيت ' + HN[h - 1] + ' · ' + HT[h - 1] + '</b><small>' + occ[h].map(function (k) { return VN[k]; }).join('، ') + '</small></span>' + CHEV + '</button>';
+      out += '<button type="button" class="yt-row" data-yt-open="vh:' + h + '"><span class="yt-bd yt-num">' + h + '</span><span class="yt-row-t"><b>البيت ' + HN[h - 1] + ' · ' + HT[h - 1] + '</b><small>' + occ[h].map(function (k) { return VN[k]; }).join('، ') + '</small></span>' + CHEV + '</button>';
     });
     return out + '</div>';
   }
