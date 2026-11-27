@@ -3190,7 +3190,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     else if (e.target.closest("[data-sgnxt]")) { pickSign((signCur + 1) % 12); toTop(); }
   });
   const signsH2 = document.querySelector("#signs .center h2"), signsIntro = document.querySelector("#signs .center .intro");
-  const HEAD_T = "توقعات برجك", HEAD_P = "اعرف نبض السماء المؤثر على برجك اليوم، واكتشف خريطة شخصيتك بعمق لم يُقَل لك من قبل.";
+  const HEAD_T = "توقعات الأبراج", HEAD_P = "اعرف نبض السماء المؤثر على برجك اليوم، واكتشف خريطة شخصيتك بعمق لم يُقَل لك من قبل.";
   let signsSub = "pulse", signsPer = "near";
   function updatePeriod() {
     const el = document.getElementById("period"); if (!el) return;
