@@ -3561,6 +3561,20 @@
 
  document.querySelectorAll('#year2027 [data-y27-share],#year2027 [data-y27-story],#year2027 [data-y27-copy],.y27-modal [data-y27-share],.y27-modal [data-y27-story],.y27-modal [data-y27-copy]').forEach(el=>el.remove());
  function periods(list){return list.map(s=>'<article class="y27-seg y27-period"><div class="y27-reading-card">'+banner(s)+'<div class="y27-reading-card-text">'+(s.contacts&&s.contacts.length?'<div class="y27-contacts">'+s.contacts.map(x=>'<p>'+date(x.t)+' · اقتران '+esc(C.NAMES[s.planet])+' بموضع '+esc(C.NAMES[x.natal])+' في الميلاد</p>').join('')+'</div>':'')+'<h4>'+esc(s.text.title)+'</h4>'+reading(s.text)+(s.lord?'<p>'+esc(s.lord)+'</p>':'')+(s.topics||[]).map(x=>'<p>'+esc(x)+'</p>').join('')+'</div></div></article>').join('');}
+ function housePeriods(list){
+  var order=['mars','mercury','venus','sun'],map=new Map();
+  list.forEach(function(s){var h=s.house||((s.houses||[])[0])||0,g=map.get(h);if(!g){g={house:h,pl:new Map()};map.set(h,g);}var e=g.pl.get(s.planet);if(!e){e={planet:s.planet,first:s,visits:[],seen:{}};g.pl.set(s.planet,e);}e.visits.push(s);});
+  var rows=[...map.values()].sort(function(a,b){return (a.house||99)-(b.house||99);});
+  return rows.map(function(g){
+   var pls=[...g.pl.values()].sort(function(a,b){return order.indexOf(a.planet)-order.indexOf(b.planet);});
+   var open=g.house?'<p class="y27-sky-opening">'+esc(pls.map(function(e){return C.NAMES[e.planet];}).join(' و'))+' في البيت '+g.house+'، والقراءة هنا عن '+esc(C.AREAS[g.house-1])+'.</p>':'';
+   var inner=pls.map(function(e){
+    var t=e.first.text||{},paras=(t.introParagraphs&&t.introParagraphs.length?t.introParagraphs:t.paragraphs)||[],lead=teaser((paras.find(function(x){return !/^## /.test(x);})||''),30);
+    var dates=e.visits.map(function(v){return '<li>'+esc(range(v))+'</li>';}).join('');
+    return '<div class="y27-house-planet"><h4>'+esc(C.NAMES[e.planet])+'</h4>'+(lead?'<p class="y27-house-lead">'+esc(lead)+'</p>':'')+'<ul class="y27-house-dates">'+dates+'</ul><details class="y27-house-more"><summary>تعمّق</summary>'+reading(t)+(e.first.lord?'<p>'+esc(e.first.lord)+'</p>':'')+(e.first.topics||[]).map(function(x){return '<p>'+esc(x)+'</p>';}).join('')+'</details></div>';}).join('');
+   return '<article class="y27-seg y27-period y27-house-card" data-house="'+g.house+'"><div class="y27-reading-card">'+open+'<div class="y27-reading-card-text">'+inner+'</div></div></article>';
+  }).join('');
+ }
  function moonPeriods(list){
   var map=new Map();list.forEach(p=>{var key=p.house+'|'+JSON.stringify(p.text),g=map.get(key);if(!g){g={first:p,visits:[],contacts:[]};map.set(key,g);}g.visits.push(p);g.contacts.push(...(p.contacts||[]));});
   var clock=t=>new Date(t).toLocaleDateString('ar-EG',{day:'numeric',month:'long',timeZone:'Africa/Cairo'})+'، '+new Date(t).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Africa/Cairo'});
@@ -3585,7 +3599,7 @@
   }
   blocks=complete.map(s=>s.entries.map(completeEntry).join(''));
   var existing=sec.querySelector('#y27-library');if(existing)existing.remove();
-  var library=document.createElement('details');library.id='y27-library';library.className='y27-acc y27-t-n y27-reference-library';library.dataset.lock='open';library.innerHTML='<summary><span class="y27-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">'+IC.clock+'</svg></span><span class="y27-t">بقية عبورات سنتك<small class="y27-hook">'+esc(ROWHOOK['بقية عبورات سنتك'])+'</small></span><span class="y27-ch" aria-hidden="true"></span></summary><div class="y27-body"><details><summary>المريخ وعطارد</summary>'+periods(group('mars').concat(group('mercury')))+'</details><details><summary>الزهرة والشمس والقمر</summary>'+periods(group('venus').concat(group('sun')))+moonPeriods(group('moon'))+'</details></div>';
+  var library=document.createElement('details');library.id='y27-library';library.className='y27-acc y27-t-n y27-reference-library';library.dataset.lock='open';library.innerHTML='<summary><span class="y27-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">'+IC.clock+'</svg></span><span class="y27-t">بقية عبورات سنتك<small class="y27-hook">'+esc(ROWHOOK['بقية عبورات سنتك'])+'</small></span><span class="y27-ch" aria-hidden="true"></span></summary><div class="y27-body"><details><summary>المريخ وعطارد والزهرة والشمس</summary>'+housePeriods(group('mars').concat(group('mercury'),group('venus'),group('sun')))+'</details><details><summary>القمر</summary>'+moonPeriods(group('moon'))+'</details></div>';
   $('#y27-paid').appendChild(library);bindSheets();try{if(window.AqYear2027Map)window.AqYear2027Map.mount($('#y27-paid'),report,C,C.AREAS);}catch(_){}
   allDetails.forEach(d=>{d.dataset.lock='open';});
  }
