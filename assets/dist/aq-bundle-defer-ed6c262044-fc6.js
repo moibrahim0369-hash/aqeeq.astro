@@ -9567,8 +9567,8 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
       '<div class="cph-tools">' + pill('edit', 'edit', 'تعديل البيانات') + pill('save', 'save', 'حفظ') + pill('new', 'add', 'توافق جديد') + '</div>';
     /* الوصف (حياته/حياتها) يتبع الجنس المختار، وإلا صيغة محايدة */
     var caps = h.querySelectorAll('.cph-p small');
-    caps[0].textContent = D.g1 === 'female' ? 'مسار حياتها' : 'مسار حياته';
-    caps[1].textContent = D.g2 === 'female' ? 'مسار حياتها' : 'مسار حياته';
+    caps[0].textContent = D.g1 === 'female' ? 'مسار حياتها' : D.g1 === 'male' ? 'مسار حياته' : 'رقم المسار';
+    caps[1].textContent = D.g2 === 'female' ? 'مسار حياتها' : D.g2 === 'male' ? 'مسار حياته' : 'رقم المسار';
     if (master) h.appendChild(master);
     out.insertBefore(h, out.firstChild);
     setForm(false);
