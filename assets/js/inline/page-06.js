@@ -2660,7 +2660,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     if (d < 0) { try { d = Astro.chart({ utcMs: Date.now(), lat: 30, lon: 31, known: false }).bodies.find(b => b.key === "sun").sign; } catch (e) { d = 0; } }
     pickSign(d, location.hash !== "#signs");
   })();
-  (function () { const ks = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"]; let n = 0; const step = () => { if (n >= ks.length) { ensureSignRender(); return; } try { nextIngress(ks[n++], Date.now()); } catch (e) {} setTimeout(step, 150); }; window.addEventListener("load", () => setTimeout(step, 2500)); })();
+  (function () { const ks = ["mercury", "venus", "mars", "jupiter", "saturn", "uranus", "neptune", "pluto"]; let n = 0; const step = () => { if (n >= ks.length) { ensureSignRender(); return; } try { nextIngress(ks[n++], Date.now()); } catch (e) {} setTimeout(step, 150); }; let started = false; const go = () => { if (started) return; if (location.hash !== "#sky" && location.hash !== "#signs") return; started = true; setTimeout(step, 600); }; window.addEventListener("hashchange", go); window.addEventListener("load", () => setTimeout(go, 800)); })();
   window.addEventListener("hashchange", () => { if (location.hash !== "#signs") sgClose(); else ensureSignRender(); });
   const glyphs = $("#glyphs");
   SIGNS.forEach((s, i) => {
