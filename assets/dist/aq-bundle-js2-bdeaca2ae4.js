@@ -2822,8 +2822,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <div class="swp-pills"><i class="swp-pill ${bd.retro ? "is-retro" : "is-direct"}">${bd.retro ? "متراجع" : (k === "sun" || k === "moon" ? "في حركته" : "مباشر")}</i><i class="swp-pill is-sign"><span class="swp-pill-g" aria-hidden="true"><span class="sg">${gl(S.g)}</span></span>${nd(dInt)}° ${nd(dMin)}′ ${S.n}</i></div></div></div>
       <div class="swp-deg" role="img" aria-label="الدرجة ${dInt} من 30"><div class="swp-track"><span class="swp-dot" style="--p:${(deg / 30 * 100).toFixed(1)}%"></span></div><div class="swp-scale"><span>٠°</span><span>١٠°</span><span>٢٠°</span><span>٣٠°</span></div><p><b>${stage[0]}</b> · ${stage[1]}</p></div>
       <div class="swp-fold">${(window.AqSignLeads&&window.AqSignLeads[k]&&window.AqSignLeads[k][bd.sign])?`<p class="trm-lead">${window.AqSignLeads[k][bd.sign]}</p>`:""}<p class="swp-read">${(window.AqSignLong&&window.AqSignLong[k]&&window.AqSignLong[k][bd.sign]&&window.AqSignLong[k][bd.sign][0])||(window.AqSignReads&&window.AqSignReads[k]&&window.AqSignReads[k][bd.sign])||`يمرّ ${p.n} الآن في ${S.n}، فيمنح ${p.theme} طابعًا ${S.way}. الأجواء تساعدك على ${S.strength}، وتذكّرك بلطف أن تنتبه من ${S.shadow}، فهو الوجه الذي يظهر حين تتعب.`}</p>
-      <button type="button" class="trm-bn" data-trm aria-expanded="false"><span class="trm-bn-t">تعمّق في القراءة كاملة</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="swp-full" hidden>${(window.AqSignLong&&window.AqSignLong[k]&&window.AqSignLong[k][bd.sign]||[]).slice(1).map(x=>`<p class="swp-read">${x}</p>`).join("")}${mv}${ingTxt}</div></div>`;
+      
+      <div class="swp-full">${(window.AqSignLong&&window.AqSignLong[k]&&window.AqSignLong[k][bd.sign]||[]).slice(1).map(x=>`<p class="swp-read">${x}</p>`).join("")}${mv}${ingTxt}</div></div>`;
     $("#sky-panel").innerHTML = o;
   }
   skyDateInput.addEventListener("change", renderSky);

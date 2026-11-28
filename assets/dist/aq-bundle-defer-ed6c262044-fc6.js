@@ -9942,8 +9942,7 @@ window.AqIngress = {"sun":["تدخل الشمس برج الحمل تقريبًا
     var t0 = ms || Date.now();
     setTimeout(function () { fill(); }, 40);
     return '<div class="trm"><div class="trm-slot" data-k="' + k + '" data-ms="' + t0 + '"></div><p class="trm-lead">' + lead + '</p><p class="trm-tz">' + ps[0] + '</p>' +
-      '<button type="button" class="trm-bn" data-trm aria-expanded="false"><span class="trm-bn-t">تعمّق في القراءة كاملة</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>' +
-      '<div class="trm-full" hidden>' + ps.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div></div>';
+      '<div class="trm-full">' + ps.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div></div>';
   }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-trm]'); if (!b) return;
