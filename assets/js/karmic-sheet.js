@@ -54,7 +54,7 @@
   }
 
   /* ---------- state ---------- */
-  var S = { mode: 'locked', code: null, rows: [], report: null, date: '', pollT: null, building: false };
+  var S = { mode: 'locked', code: null, triad: '', rows: [], report: null, date: '', pollT: null, building: false };
   function stopPoll() { if (S.pollT) { clearInterval(S.pollT); S.pollT = null; } }
 
   function lockPanel() {
@@ -89,7 +89,8 @@
     var lock = out.querySelector('.kt-lock'); if (!lock) return;
     var box = document.createElement('div'); box.className = 'kt-rows27';
     var open = S.mode === 'open';
-    var html = '<p class="y27-hint"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>' + (open ? 'اضغط أي قسم لتقرأه' : 'اضغط أي قسم لتقرأ معاينته') + '</p>';
+    var note = S.code && S.triad && S.code !== S.triad ? '<p class="kt-order-note">شفرتك ' + esc(S.triad) + '، وقراءتها المعتمدة مكتوبة بالترتيب المعاكس ' + esc(S.code) + '. فالجذر في النص هو رقم القمة عندك، والقمة فيه هي رقم جذرك.</p>' : '';
+    var html = note + '<p class="y27-hint"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"/></svg>' + (open ? 'اضغط أي قسم لتقرأه' : 'اضغط أي قسم لتقرأ معاينته') + '</p>';
     S.rows.forEach(function (r, i) {
       var st = r.free ? 'free' : (open ? 'open' : 'locked'), extra = i >= VISIBLE;
       html += '<details class="y27-acc y27-t-' + r.tone + (extra ? ' kt-extra' : '') + '" data-lock="' + st + '" data-i="' + i + '"' + (extra ? ' hidden' : '') + '><summary aria-haspopup="dialog"><span class="y27-ic">' + svg(r.ic) + '</span><span class="y27-t">' + esc(r.title) + '<small class="y27-hook">' + esc(r.hook) + '</small></span>' + BADGE + '<span class="y27-ch" aria-hidden="true"></span></summary></details>';
@@ -266,7 +267,7 @@
       var code = data.triads[c.triad];
       if (!code || !data.reports[code]) { stopPoll(); S.code = null; renderUnavailable(c); return; }
       stopPoll();
-      S.code = code; S.date = c.date; S.mode = 'locked'; S.report = null; S.rows = rowsFor(code);
+      S.code = code; S.triad = c.triad; S.date = c.date; S.mode = 'locked'; S.report = null; S.rows = rowsFor(code);
       render();
       refreshAccess();
     } finally { S.building = false; }

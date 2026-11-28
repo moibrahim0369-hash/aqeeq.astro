@@ -22,8 +22,10 @@
 
 Migration: `supabase/migrations/20261127130000_karmic_access.sql` (a later `create or replace` fixed a bigint cast in `karmic_triad`; the file already contains the fix).
 
-## Content gaps (the report set does not match the site)
-The matrix produces 26 different triads. The 26 finished reports cover 20 of them (5 exact, 15 reversed). Triads without a report: `10-13-3`, `13-7-21`, `17-5-6`, `20-8-6`, `21-3-9`, `8-5-15`. Four finished reports can never be produced by a birth date: `12-18-6`, `15-5-20`, `18-10-10`, `6-18-6`. Until the six are written those readers see "in preparation".
+## Coverage of the 26 triads (27 November 2026)
+The matrix produces 26 different triads. The 26 reports of the first batch covered only 20 of them. Six reports were written for the missing triads, in the exact order the matrix produces (base, middle, top): `10-13-3`, `13-7-21`, `17-5-6`, `20-8-6`, `21-3-9`, `8-5-15`. Now all 26 triads have a report: 11 exact and 15 through the reversed code. When the reversed code is used the page says so ("the root in the text is your top number"). Four reports of the first batch can never be produced by a birth date: `12-18-6`, `15-5-20`, `18-10-10`, `6-18-6`.
+
+The six new texts are NOT in the public repository. They live in the private table `karmic_content` and in the git-ignored folder `.private/karmic-final/` on the machine that wrote them (the build script reads that folder too). They follow the same rules as `karmic-reports/final/README.md` and pass its checks, with 2,300 to 2,500 words each (the README asks for 2,600 to 3,200).
 
 ## Public copies of the paid texts (must be removed)
 `karmic-reports/final`, `karmic-reports/out` and `karmic-reports/pdf` are committed in a public repository served by GitHub Pages, so anyone can download a report without paying (for example `/karmic-reports/pdf/karmic-tail-12-16-4.pdf`). The private table makes the page itself safe, but these files must leave the repository (and its history) before the lock means anything. To add or change a report: edit it outside the public tree, upload it to `karmic_content` (same `code`), then rerun `scripts/build-karmic-previews.js` from a private copy of the texts.

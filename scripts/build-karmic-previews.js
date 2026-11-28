@@ -6,7 +6,8 @@
    Usage: node scripts/build-karmic-previews.js */
 const fs = require("fs"), path = require("path");
 const root = path.resolve(__dirname, "..");
-const dir = path.join(root, "karmic-reports", "final");
+/* source texts: the public folder (older reports) and a git-ignored private folder (new ones are never committed) */
+const dirs = [path.join(root, "karmic-reports", "final"), path.join(root, ".private", "karmic-final")].filter(d => fs.existsSync(d));
 const out = path.join(root, "assets", "data", "karmic-previews.json");
 
 const ds = n => String(n).split("").reduce((a, c) => a + Number(c), 0);
@@ -75,7 +76,7 @@ function pick(section) {
 }
 
 const reports = {};
-for (const f of fs.readdirSync(dir).filter(f => /^karmic-tail-.+\.md$/.test(f)).sort()) {
+for (const [dir, f] of dirs.flatMap(d => fs.readdirSync(d).filter(x => /^karmic-tail-.+\.md$/.test(x)).sort().map(x => [d, x]))) {
   const code = f.replace(/^karmic-tail-/, "").replace(/\.md$/, "");
   const r = parse(fs.readFileSync(path.join(dir, f), "utf8"));
   reports[code] = {
