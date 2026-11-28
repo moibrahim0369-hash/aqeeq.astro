@@ -3282,15 +3282,15 @@ if (typeof window !== 'undefined') window.Astro = Astro;
   function renderSign() {
     signsDirty = false;
     const i = signCur, main = signsMode === "traits" ? "traits" : "forecast";
-    let body, sub = "";
+    let body, sub = "", foot = "";
     if (main === "traits") body = traitsTab(i);
     else {
       const L = signLive(i);
-      sub = '<nav class="sgq-row" aria-label="اختصارات"><a class="sgq-chip" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="3.6"></circle><path d="M12 3v2.6M12 18.4V21M3 12h2.6M18.4 12H21M5.6 5.6l1.9 1.9M16.5 16.5l1.9 1.9M18.4 5.6l-1.9 1.9M7.5 16.5l-1.9 1.9"></path></svg><span>السماء الآن</span></a><a class="sgq-chip" href="#sign-traits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3l2.1 5.2 5.4.4-4.1 3.5 1.3 5.3L12 14.5 7.3 17.4l1.3-5.3L4.5 8.6l5.4-.4z"/></svg><span>صفات الأبراج</span></a><a class="sgq-chip" href="#chart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg><span>الخريطة الفلكية</span></a><a class="sgq-chip" href="#lifepath"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 19c4 0 4-7 8-7s4-7 8-7"/><circle cx="4" cy="19" r="1.6"/><circle cx="20" cy="5" r="1.6"/></svg><span>مسار الحياة</span></a></nav>' + `<div class="sg-tabs sg-tabs-sub" role="tablist" aria-label="أقسام التوقعات">${subTabs.map(t => `<button type="button" role="tab" data-sgsub="${t[0]}" aria-selected="${signsSub === t[0]}"><i class="sg-sti" aria-hidden="true">${{ pulse: ZI.sparkorb, transits: ZI.orbit, periods: ZI.crescent }[t[0]]}</i><span>${t[1]}</span></button>`).join("")}</div>`;
+      foot = '<nav class="sgq-row sgq-foot" aria-label="اختصارات"><a class="sgq-chip" href="#sign-traits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 3l2.1 5.2 5.4.4-4.1 3.5 1.3 5.3L12 14.5 7.3 17.4l1.3-5.3L4.5 8.6l5.4-.4z"/></svg><span>صفات الأبراج</span></a><a class="sgq-chip" href="#sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="3.6"></circle><path d="M12 3v2.6M12 18.4V21M3 12h2.6M18.4 12H21M5.6 5.6l1.9 1.9M16.5 16.5l1.9 1.9M18.4 5.6l-1.9 1.9M7.5 16.5l-1.9 1.9"></path></svg><span>السماء الآن</span></a><a class="sgq-chip" href="#chart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg><span>الخريطة الفلكية</span></a></nav>'; sub = '' + `<div class="sg-tabs sg-tabs-sub" role="tablist" aria-label="أقسام التوقعات">${subTabs.map(t => `<button type="button" role="tab" data-sgsub="${t[0]}" aria-selected="${signsSub === t[0]}"><i class="sg-sti" aria-hidden="true">${{ pulse: ZI.sparkorb, transits: ZI.orbit, periods: ZI.crescent }[t[0]]}</i><span>${t[1]}</span></button>`).join("")}</div>`;
       body = signsSub === "transits" ? transitsTab(i, L) : signsSub === "periods" ? periodsTab(i, L) : pulseTab(i, L);
     }
     cur.querySelectorAll("[data-sgtab]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.sgtab === main)));
-    panel.innerHTML = `${sub}${body}`;
+    panel.innerHTML = `${sub}${body}${foot}`;
   }
   window.__aqSignsRerender = () => { try { if (panel && panel.innerHTML) renderSign(); } catch (e) {} };
   cur.addEventListener("click", e => {
