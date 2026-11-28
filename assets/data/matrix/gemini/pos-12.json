@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يتمنى المرء أن يُعطى له ويعطيه هو للجميع؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الخدمة التي تُقدَّم مجاناً منذ سنوات وتستحق أن تكون مصدراً للدخل؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو كان الحب بلا ثمن في الألم، فما الذي كان سيتغير في العلاقة؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -441,7 +441,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الخطوة التي تأجلت سنوات، وما الذي يحميه هذا التأجيل؟"
   },
   "mission": {
    "unit": 5,
@@ -500,7 +500,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الألم القديم الذي صار اليوم حكمة تنتظر أن تُعطى لمن يحتاجها؟"
   }
  },
  "header": [

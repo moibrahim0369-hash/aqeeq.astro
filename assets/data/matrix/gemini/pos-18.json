@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الشك الذي يعود في الليل، وما الذي يحاول أن يحميه منه؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الفكرة المالية التي يُؤمن بها في السر، وما الخوف المقابل لها؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الجملة الصريحة التي يمكن أن تقال لشريك اليوم وتخفف ليل الشك؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -436,7 +436,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الخوف الذي ورثته دون أن يشرح لك أحد من أين جاء، وكيف تتصرف حين يظهر؟"
   },
   "mission": {
    "unit": 5,
@@ -490,7 +490,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ماذا يحتاج من يمشي في العتمة أن يسمع منك حتى يكمل خطوته التالية؟"
   }
  },
  "header": [

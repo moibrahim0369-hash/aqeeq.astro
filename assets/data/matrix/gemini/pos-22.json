@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الالتزام الذي يخيف، وما الذي يُخشى فقدانه إن حدث الالتزام؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما المشروع الذي يحتاج شخصاً ثابتاً بجانب المرء ليخرج إلى النور؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الشيء الذي لو التُزم به اليوم لشعر الشريك بالأمان للمرة الأولى؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -441,7 +441,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو مُنحت الحرية الكاملة اليوم، فما أول مسؤولية سيختارها المرء بنفسه؟"
   },
   "mission": {
    "unit": 5,
@@ -500,7 +500,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "من الذي ينتظر إذناً بسيطاً ليبدأ من جديد؟"
   }
  },
  "header": [

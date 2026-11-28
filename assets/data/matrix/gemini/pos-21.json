@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "هل يُهرَب نحو شيء محبوب، أم يُبتعَد عن شيء لم يتم التصالح معه؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما المشروع الذي لو بقي المرء فيه حتى يكتمل لتحول إلى سوق عالمي؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما المكان الذي يجعل القلب يستقر، وهل هو مكان أم شخص؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -441,7 +441,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو لم يكن هناك خوف ولا هروب، فأي مكان كان سيختاره المرء ليقيم فيه؟"
   },
   "mission": {
    "unit": 5,
@@ -500,7 +500,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "من الذي يحتاج إلى جسر واحد فقط بينه وبين من يختلف عنه؟"
   }
  },
  "header": [

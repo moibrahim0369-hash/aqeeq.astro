@@ -116,7 +116,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يتوقف فجأة حين تشتد السرعة، وماذا يحاول أن يقوله؟"
   },
   "money": {
    "unit": 2,
@@ -204,7 +204,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الهدف الواحد الذي لو التزم به المرء ستة أشهر لتغير مسار المال كله؟"
   },
   "love": {
    "unit": 3,
@@ -377,7 +377,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي تُترك العلاقة تنتظره بينما العربة تسرع في مكان آخر؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -441,7 +441,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "أين تسرع إلى الأمام كي لا تلتفت إلى شيء قديم لم يُحسم؟"
   },
   "mission": {
    "unit": 5,
@@ -495,7 +495,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الاتجاه الذي ستقود الآخرين إليه حين يصير انتصارك الشخصي أقل أهمية من وصولهم؟"
   }
  },
  "header": [

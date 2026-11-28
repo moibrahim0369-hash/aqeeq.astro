@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الإهانة الصغيرة التي ابتُلعت مؤخراً وما زالت في الداخل؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الفرصة التي ضاعت لأن الخوف من التغيير الكبير غلب الطموح؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو سُمح للشغف أن يظهر، فما الذي كان سيتغير في هذا البيت؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -436,7 +436,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "في أي مجال تعلمت أن تعطي بحساب دقيق كي لا تخسر، وما الذي خسرته بسبب هذا الحساب؟"
   },
   "mission": {
    "unit": 5,
@@ -490,7 +490,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "أي توازن وجدته بتعب طويل تستطيع أن تعلمه لمن يتأرجح الآن بين طرفين؟"
   }
  },
  "header": [

@@ -101,7 +101,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الشيء الذي يُحمل وحيداً منذ زمن ويخف إذا قيل بصوت مسموع لشخص واحد؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "كم من حق مالي ضاع لأن طلبه علناً بدا أثقل من خسارته بصمت؟"
   },
   "love": {
    "unit": 3,
@@ -367,7 +367,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "هل الصمت عن المشكلات حب للشريك، أم خوف من أن يظهر الاحتياج الحقيقي فيُكتشف أن الصبر على احتوائه غير موجود؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -436,7 +436,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو رُفع الستار عن أسرار الطفولة كلها اليوم، فما الشيء الذي سيُكتشف أنه كان خوفاً لا حقيقة؟"
   },
   "mission": {
    "unit": 5,
@@ -505,7 +505,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي ينتظر الخروج من الكهف: الخوف من الظهور، أم الاعتقاد أن الحكمة لا تصلح إلا في الظل؟"
   }
  },
  "header": [

@@ -121,7 +121,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الفكرة التي ما زالت تلمع في الرأس منذ سنوات لأن صاحبها يخشى أن تُختبر في الواقع فلا تكون بقدر لمعانها؟"
   },
   "money": {
    "unit": 2,
@@ -214,7 +214,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "كم من الثروة التي كانت على بعد خطوة اقتربت ثم أُفسدت في اللحظة الأخيرة، لأن الالتزام بدا أثقل من الحلم؟"
   },
   "love": {
    "unit": 3,
@@ -382,7 +382,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "هل المطلوب شريك يشاركه الحياة نداً لند، أم جمهور يصفق لذكائه؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -446,7 +446,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الكلمة التي قيلت لك صغيرًا وما زلت تحاول إثبات عكسها في كل مرة تتكلم فيها؟"
   },
   "mission": {
    "unit": 5,
@@ -510,7 +510,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو علّمت شخصًا واحدًا كيف يبدأ، فما أول شيء ستعطيه إياه بيدك لا بكلامك؟"
   }
  },
  "header": [

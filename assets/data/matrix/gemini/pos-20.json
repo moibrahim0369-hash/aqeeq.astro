@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الثقل الذي يُحمل عن العائلة دون أن يطلبه أحد؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما النزاع المالي المعلق الذي يستهلك الطاقة وربما يسد باباً لرزق أكبر؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الخصوصية التي تستحق أن تُحمى من الجميع حتى من الأقرب؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -441,7 +441,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما العبء الذي لم يُختر وصار يُحمل باسم الوفاء للعائلة؟"
   },
   "mission": {
    "unit": 5,
@@ -500,7 +500,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "من الذي ينتظر أن يبدأ أحدهم الصلح أولاً؟"
   }
  },
  "header": [

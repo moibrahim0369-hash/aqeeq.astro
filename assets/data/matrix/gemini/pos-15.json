@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يُخاف منه إن لم يعد أحد يحتاج إلى صاحب هذه الطاقة؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو كُشفت كل تعاملات المال أمام الجميع غداً، فهل سيبقى المرء مطمئناً؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ماذا يحدث للعلاقة إن فُتح الباب للشريك ليغادر دون عقاب؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -436,7 +436,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما القيد الذي صار مألوفًا حتى ظننته جزءًا منك لا شيئًا ارتديته؟"
   },
   "mission": {
    "unit": 5,
@@ -490,7 +490,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي تقوله لمن يشبهك وهو ما زال داخل القيد، لو كنت قد خرجت منه فعلًا؟"
   }
  },
  "header": [

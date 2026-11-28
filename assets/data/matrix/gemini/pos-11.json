@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ماذا يحدث في الصدر لحظة الغضب، وماذا كان مطلوباً في الطفولة ولم يوجد؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما العمل الذي يُحمَل بالذراع كله ويمكن لو أُعطي لغيره أن يتضاعف؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يطلبه الأسد حقاً حين يغضب، وهل قيل بصوت منخفض مرة واحدة؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -436,7 +436,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الغضب أو الخوف الذي علّموك أن تخنقه صغيرًا، وأين يعود اليوم في صورة قسوة على نفسك؟"
   },
   "mission": {
    "unit": 5,
@@ -490,7 +490,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "من الذي يحتاج هذا الصبر الهادئ الذي تملكه، وما الذي يمنعك من تقديمه له؟"
   }
  },
  "header": [

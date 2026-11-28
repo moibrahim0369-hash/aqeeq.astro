@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما النور الذي يؤجل إظهاره حتى يشعر المرء أنه مستعد؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما العمل الذي لو قال المرء بوضوح «هذا ما أقدمه وهذا ثمنه» لتغير دخله؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الجملة التي يُنتظر أن يخمّنها الشريك بدل أن تُقال؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -441,7 +441,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو سُمح للنور بأن يُرى، فمن الذي سيتحرر معه ممن سبقوه؟"
   },
   "mission": {
    "unit": 5,
@@ -500,7 +500,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "من الذي يبحث عن طريقه في الظلام ولا يعرف أن عنده نوراً ينقصه؟"
   }
  },
  "header": [

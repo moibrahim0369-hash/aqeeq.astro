@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يُهرب منه حين تُطلب بداية جديدة بعيدة، وهل ما زال يلاحق؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما المشروع أو الأصل الذي يُصرف عليه المال والوقت وهو ينتظر قراراً بالإنهاء؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يخاف المرء أن يُفقد حقاً حين يلوّح بالنهاية؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -436,7 +436,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما النهاية التي لم تُغلق بوداع صادق، وما زالت تسحب من طاقتك كل يوم؟"
   },
   "mission": {
    "unit": 5,
@@ -490,7 +490,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي تعلمك النهايات أن تقوله لمن يخاف من نهاياته هو؟"
   }
  },
  "header": [

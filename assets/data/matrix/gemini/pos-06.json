@@ -116,7 +116,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يشعر به المرء حين تهدأ الأضواء ولا يكون أحد ينظر إليه؟"
   },
   "money": {
    "unit": 2,
@@ -204,7 +204,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما المشروع الذي يُترك معلقاً بين خيارين بينما الوقت يمر؟"
   },
   "love": {
    "unit": 3,
@@ -377,7 +377,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "في أي مكان من الحياة يوجد قدم هنا وقدم هناك؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -446,7 +446,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو غابت كل نظرات الإعجاب، فما الذي كان سيبقى من الإحساس بقيمة الذات؟"
   },
   "mission": {
    "unit": 5,
@@ -505,7 +505,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "من الذي ينتظر أن يُحَب دون أن يُطلب منه شيء مقابل؟"
   }
  },
  "header": [

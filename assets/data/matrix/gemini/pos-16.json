@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الصورة التي تُحمى في الحياة، ولو أسقطها غيرك فجأة ماذا سيُتعلم؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الأساس الذي يُعلم في الداخل أنه رخو، ويُبنى فوقه كأن شيئاً لم يكن؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الشرخ الصغير في هذه العلاقة الذي ما زال يمكن ترميمه الآن بكلمة؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -441,7 +441,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي يخشى المرء أن يتحطم إن اعترف بما يُكتم؟"
   },
   "mission": {
    "unit": 5,
@@ -500,7 +500,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "من الذي ينتظر من يقف معه وسط الركام ويقول له: يمكن البناء من جديد؟"
   }
  },
  "header": [

@@ -111,7 +111,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "في المرات التي صعد فيها المرء ثم هبط فجأة، ما الذي تكرر قبل السقوط؟"
   },
   "money": {
    "unit": 2,
@@ -199,7 +199,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما المبلغ الذي جاء فجأة وذهب فجأة، وماذا كان يمكن أن يبنيه لو اقتُطع منه جزء؟"
   },
   "love": {
    "unit": 3,
@@ -372,7 +372,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي كان سيفعله المرء لو افترض أن الحب يُبنى بالجهد لا بالصدفة؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -436,7 +436,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما التغيير المفاجئ الذي ما زلت تستعد له كل يوم كأنه سيعود، وماذا كلفك هذا الاستعداد؟"
   },
   "mission": {
    "unit": 5,
@@ -490,7 +490,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما الذي تعلمته من دورانك الطويل وتستطيع أن تقوله لمن يمر بما مررت به؟"
   }
  },
  "header": [

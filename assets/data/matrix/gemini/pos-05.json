@@ -116,7 +116,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "أين تختلف الصورة التي تُقدَّم للناس عمّا يُحَسّ به في الخلوة؟"
   },
   "money": {
    "unit": 2,
@@ -214,7 +214,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "ما العلم الذي تراكم سنوات وهو ينتظر أن يُسعَّر ويُعطى للناس؟"
   },
   "love": {
    "unit": 3,
@@ -382,7 +382,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "كم من الطاقة تُستهلك يومياً في حفظ الصورة المثالية أمام الناس مقارنة بما يُبذل ليكون المرء صادقاً في خلوته؟"
   },
   "tail_entry": {
    "unit": 4,
@@ -451,7 +451,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "لو سقطت الصورة اليوم أمام الجميع، فما الذي كان سيبقى من الإنسان الحقيقي تحتها؟"
   },
   "mission": {
    "unit": 5,
@@ -520,7 +520,7 @@
     }
    ],
    "voice": "aqeeq-v3",
-   "reflection_question": ""
+   "reflection_question": "أمانة العلم أن يُنقل لا أن يُحتكر، فما الذي ينتظر أن يُعطى بعد سنوات من التحصيل؟"
   }
  },
  "header": [
