@@ -3,5 +3,7 @@
 .sgq-chip svg{width:14px;height:14px;color:#6a2038;flex:0 0 auto}
 .sgq-chip:focus-visible{outline:2px solid #6a2038;outline-offset:2px}
 .sgq-foot .sgq-chip{padding:10px 6px;font-size:11.5px;gap:5px}
-.sgq-sp{height:14px;position:relative}
-.sgq-sp::after{content:"";position:absolute;top:6px;left:22%;right:22%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#c9a24a 30%,#c9a24a 70%,transparent)}
+.sgq-sp{height:32px;position:relative}
+.sgq-sp::after{content:"";position:absolute;top:8px;left:22%;right:22%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#c9a24a 30%,#c9a24a 70%,transparent)}
+html body section#signs#signs#signs#signs article#panel.arch:has(>.sgq-sp:first-child){background:transparent!important;box-shadow:none!important;border-color:transparent!important}
+html body section#signs#signs#signs#signs article#panel.arch>.sgq-sp{background:transparent!important}
