@@ -56,8 +56,8 @@
   function gen(k, bd, S) {
     var D = window.AqSky, P = D.PLANETS[k], R = window.AqReadings, o = '';
     var ms = k === 'moon' && window.AqMoonSigns && window.AqMoonSigns[bd.sign];
-    var LG = window.AqSignLong && window.AqSignLong[k] && window.AqSignLong[k][bd.sign];
-    if (LG && LG.length) { o += '<p class="fc-lead2">' + LG[0] + '</p>' + LG.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join(''); } else {
+    var LG = window.AqReadingBlock && window.AqReadingBlock.natParas ? window.AqReadingBlock.natParas(k, bd.sign) : null, TLd = R && R.TL && R.TL[k] && R.TL[k][bd.sign];
+    if (LG && LG.length) { o += '<p class="fc-lead2">' + (TLd || LG[0]) + '</p>' + (TLd ? LG : LG.slice(1)).map(function (x) { return '<p>' + x + '</p>'; }).join(''); } else {
     var lead = (ms && ms.t) ? ms.t : ('يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '.');
     o += '<p class="fc-lead2">' + lead + '</p>';
     o += '<p>الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>'; }

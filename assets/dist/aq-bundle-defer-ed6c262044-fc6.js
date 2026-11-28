@@ -9944,6 +9944,18 @@ window.AqIngress = {"sun":["تدخل الشمس برج الحمل تقريبًا
     return '<div class="trm"><div class="trm-slot" data-k="' + k + '" data-ms="' + t0 + '"></div><p class="trm-lead">' + lead + '</p><p class="trm-tz">' + ps[0] + '</p>' +
       '<div class="trm-full">' + ps.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join('') + '</div></div>';
   }
+
+  /* الزائر بلا تاريخ ميلاد: برج الكوكب يقابل بيته الطبيعي (الحمل=1 ... الحوت=12)، فنقرأ له من المكتبة نفسها نص الكوكب في ذلك البيت، ونحوّل عبارة «بيتك الخامس» إلى اسم المجال */
+  var NAT_ORD = ['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن','التاسع','العاشر','الحادي عشر','الثاني عشر'];
+  var NAT_AREA = ['الذات والحضور','المال والقيمة','الكلام والتعلم والتنقل','البيت والجذور','الحب والإبداع والمتعة','العمل اليومي والروتين','الشراكة والعلاقات القريبة','العمق والمال المشترك','السفر والمعنى والإيمان','المسار والمكانة','الأصدقاء والآمال','الباطن والعزلة'];
+  function natReword(t) {
+    return t.replace(/(?:بيتك|البيت) (الحادي عشر|الثاني عشر|الأول|الثاني|الثالث|الرابع|الخامس|السادس|السابع|الثامن|التاسع|العاشر)/g, function (m, o) {
+      var i = NAT_ORD.indexOf(o); return i < 0 ? m : 'مجال ' + NAT_AREA[i];
+    });
+  }
+  function natText(k, sg) { var R = window.AqReadings, t = R && R.TR && R.TR[k] && R.TR[k][sg]; return t ? natReword(t) : ''; }
+  function natParas(k, sg) { var t = natText(k, sg); return t ? paras(t) : []; }
+  function nat(k, sg, ms) { var t = natText(k, sg); return t ? block(k, sg + 1, t, ms) : ''; }
   document.addEventListener('click', function (e) {
     var b = e.target.closest && e.target.closest('[data-trm]'); if (!b) return;
     var box = b._trmBox || b.closest('.trm, .swp-fold'), f = b._trmF || (box && box.querySelector('.trm-full, .swp-full')); if (!f) return;
@@ -9961,7 +9973,7 @@ window.AqIngress = {"sun":["تدخل الشمس برج الحمل تقريبًا
       box.appendChild(f);
     }
   });
-  window.AqReadingBlock = { block: block, stay: stay };
+  window.AqReadingBlock = { block: block, stay: stay, nat: nat, natParas: natParas };
 })();
 
 ;
@@ -10097,8 +10109,8 @@ window.AqMoonSigns = [{"t": "شرارة صغيرة تكفي اليوم لتشع�
   function gen(k, bd, S) {
     var D = window.AqSky, P = D.PLANETS[k], R = window.AqReadings, o = '';
     var ms = k === 'moon' && window.AqMoonSigns && window.AqMoonSigns[bd.sign];
-    var LG = window.AqSignLong && window.AqSignLong[k] && window.AqSignLong[k][bd.sign];
-    if (LG && LG.length) { o += '<p class="fc-lead2">' + LG[0] + '</p>' + LG.slice(1).map(function (x) { return '<p>' + x + '</p>'; }).join(''); } else {
+    var LG = window.AqReadingBlock && window.AqReadingBlock.natParas ? window.AqReadingBlock.natParas(k, bd.sign) : null, TLd = R && R.TL && R.TL[k] && R.TL[k][bd.sign];
+    if (LG && LG.length) { o += '<p class="fc-lead2">' + (TLd || LG[0]) + '</p>' + (TLd ? LG : LG.slice(1)).map(function (x) { return '<p>' + x + '</p>'; }).join(''); } else {
     var lead = (ms && ms.t) ? ms.t : ('يمرّ ' + P.n + ' الآن في ' + S.n + '، فيمنح ' + P.theme + ' طابعًا ' + S.way + '.');
     o += '<p class="fc-lead2">' + lead + '</p>';
     o += '<p>الأجواء تساعد على ' + S.strength + '، وتذكّرك بلطف أن تنتبه من ' + S.shadow + '، فهو الوجه الذي يظهر حين تتعب.</p>'; }

@@ -2737,7 +2737,7 @@ if (typeof window !== 'undefined') window.Astro = Astro;
       <h3 class="mn-title">القمر <b>${MOON_NAMES[ph]}</b> في برج <b>${SIGNS[moon.sign].n}</b></h3>
       <p class="mn-meta"><span>مضاء ${nd(ill)}٪</span><span>${el < 180 ? "متزايد" : "متناقص"}</span><span>عمره ${nd(age)} يوم</span></p>
       <p class="mn-next">${ph === 4 ? "بدر كامل دلوقتي" : "البدر القادم بعد ~" + nd(toFull) + " يوم"} · ${ph === 0 ? "محاق دلوقتي" : "المحاق القادم بعد ~" + nd(toNew) + " يوم"}</p>
-      ${(() => { const E = window.AqMoonSigns && window.AqMoonSigns[moon.sign], LG = window.AqSignLong && window.AqSignLong.moon && window.AqSignLong.moon[moon.sign]; return E ? `<div class="mn-sign">${LG ? LG.map(x => `<p>${x}</p>`).join("") : `<p>${E.t}</p>`}<p class="mn-sign-q">${E.q}</p></div>` : ""; })()}
+      ${(() => { const E = window.AqMoonSigns && window.AqMoonSigns[moon.sign], LG = window.AqReadingBlock && window.AqReadingBlock.natParas ? window.AqReadingBlock.natParas('moon', moon.sign) : null; return E ? `<div class="mn-sign">${LG && LG.length ? LG.map(x => `<p>${x}</p>`).join("") : `<p>${E.t}</p>`}<p class="mn-sign-q">${E.q}</p></div>` : ""; })()}
       <small class="mn-date">${dtxt}${ttxt}</small></div>`;
   }
   setInterval(() => { if (!skyDateInput.value && !document.hidden) { const ms = Date.now(), ch = Astro.chart({ utcMs: ms, lat: 30, lon: 31, known: false }); moonCard(ms, ch.bodies.find(x => x.key === "moon"), ch.bodies.find(x => x.key === "sun")); } }, 60000);
@@ -2821,9 +2821,8 @@ if (typeof window !== 'undefined') window.Astro = Astro;
     let o = `<div class="swp-hero"><span class="swp-med${bd.retro ? " is-retro" : ""}" aria-hidden="true"><span class="sg">${gl(p.g)}</span></span><div class="swp-ht"><small>${skyDateInput.value ? "السماء في التاريخ المختار" : "السماء الآن"}</small><h3>${p.n} في ${S.n}</h3>
       <div class="swp-pills"><i class="swp-pill ${bd.retro ? "is-retro" : "is-direct"}">${bd.retro ? "متراجع" : (k === "sun" || k === "moon" ? "في حركته" : "مباشر")}</i><i class="swp-pill is-sign"><span class="swp-pill-g" aria-hidden="true"><span class="sg">${gl(S.g)}</span></span>${nd(dInt)}° ${nd(dMin)}′ ${S.n}</i></div></div></div>
       <div class="swp-deg" role="img" aria-label="الدرجة ${dInt} من 30"><div class="swp-track"><span class="swp-dot" style="--p:${(deg / 30 * 100).toFixed(1)}%"></span></div><div class="swp-scale"><span>٠°</span><span>١٠°</span><span>٢٠°</span><span>٣٠°</span></div><p><b>${stage[0]}</b> · ${stage[1]}</p></div>
-      <div class="swp-fold">${(window.AqSignLeads&&window.AqSignLeads[k]&&window.AqSignLeads[k][bd.sign])?`<p class="trm-lead">${window.AqSignLeads[k][bd.sign]}</p>`:""}<p class="swp-read">${(window.AqSignLong&&window.AqSignLong[k]&&window.AqSignLong[k][bd.sign]&&window.AqSignLong[k][bd.sign][0])||(window.AqSignReads&&window.AqSignReads[k]&&window.AqSignReads[k][bd.sign])||`يمرّ ${p.n} الآن في ${S.n}، فيمنح ${p.theme} طابعًا ${S.way}. الأجواء تساعدك على ${S.strength}، وتذكّرك بلطف أن تنتبه من ${S.shadow}، فهو الوجه الذي يظهر حين تتعب.`}</p>
-      
-      <div class="swp-full">${(window.AqSignLong&&window.AqSignLong[k]&&window.AqSignLong[k][bd.sign]||[]).slice(1).map(x=>`<p class="swp-read">${x}</p>`).join("")}${mv}${ingTxt}</div></div>`;
+      <div class="swp-fold">${(window.AqReadingBlock&&window.AqReadingBlock.nat&&window.AqReadingBlock.nat(k,bd.sign,skyMs()))||`${(window.AqSignLeads&&window.AqSignLeads[k]&&window.AqSignLeads[k][bd.sign])?`<p class="trm-lead">${window.AqSignLeads[k][bd.sign]}</p>`:""}<p class="swp-read">${(window.AqSignLong&&window.AqSignLong[k]&&window.AqSignLong[k][bd.sign]&&window.AqSignLong[k][bd.sign][0])||(window.AqSignReads&&window.AqSignReads[k]&&window.AqSignReads[k][bd.sign])||`يمرّ ${p.n} الآن في ${S.n}، فيمنح ${p.theme} طابعًا ${S.way}. الأجواء تساعدك على ${S.strength}، وتذكّرك بلطف أن تنتبه من ${S.shadow}، فهو الوجه الذي يظهر حين تتعب.`}</p>`}</div>
+      <div class="swp-full">${mv}${ingTxt}</div>`;
     $("#sky-panel").innerHTML = o;
   }
   skyDateInput.addEventListener("change", renderSky);
