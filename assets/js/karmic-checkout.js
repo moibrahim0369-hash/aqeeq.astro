@@ -37,9 +37,9 @@
   box.querySelector('form').onsubmit=submit;}
  async function submit(e){e.preventDefault();var ref=box.querySelector('input').value.trim(),st=box.querySelector('#y27-checkout-status'),btn=box.querySelector('button[type=submit]');if(ref.length<3){st.textContent='اكتب رقم العملية كاملًا.';return;}
   btn.disabled=true;st.textContent='جاري إرسال رقم العملية...';
-  try{var r=await sb().rpc('submit_manual_payment',{p_product:price.code,p_method:price.method,p_reference:ref});if(r.error)throw r.error;
-   show(card('وصل رقم العملية','طلبك قيد المراجعة، وهذا ليس تأكيدًا للدفع. بعد موافقة المالك يصلك التقرير الكامل بصيغة PDF.','<a class="inv-btn" href="#karmic">الرجوع للقراءة</a>','pending'),2);
-  }catch(x){st.textContent=/already_pending/.test((x&&x.message)||'')?'عندك طلب سابق لنفس التقرير قيد المراجعة.':'لم نتمكن من تسجيل الطلب. لا تكرر التحويل. احتفظ برقم العملية وحاول إرسال الرقم لاحقًا.';btn.disabled=false;}}
+  try{var r=await sb().rpc('karmic_submit',{p_product:price.code,p_method:price.method,p_reference:ref,p_date:(draft&&draft.date)||''});if(r.error)throw r.error;
+   show(card('وصل رقم العملية','طلبك قيد المراجعة، وهذا ليس تأكيدًا للدفع. بعد موافقة المالك يتفتح تقريرك الكامل في صفحة الذيل الكارمي بنفس تاريخ الميلاد، وتقدر تحفظه PDF.','<a class="inv-btn" href="#karmic">الرجوع للقراءة</a>','pending'),2);
+  }catch(x){var em=(x&&x.message)||'';st.textContent=/already_pending|already_submitted/.test(em)?'عندك طلب لنفس تاريخ الميلاد قيد المراجعة أو مقبول.':/report_unavailable/.test(em)?'تقرير هذه الشفرة لم يُنشر بعد، ولم نسجّل أي طلب. لا تحوّل أي مبلغ.':'لم نتمكن من تسجيل الطلب. لا تكرر التحويل. احتفظ برقم العملية وحاول إرسال الرقم لاحقًا.';btn.disabled=false;}}
  /* buy buttons inside the karmic result open this checkout */
  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('#kt-result .b3-acts a');if(!a)return;e.preventDefault();e.stopImmediatePropagation();
   var d=document.getElementById('kt-date'),n=document.getElementById('kt-name');
