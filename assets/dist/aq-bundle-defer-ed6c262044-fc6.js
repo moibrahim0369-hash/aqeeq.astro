@@ -9719,7 +9719,7 @@ document.addEventListener('click', function (e) { var a = e.target.closest && e.
       if (!ready()) return false;
       try { document.dispatchEvent(new CustomEvent('aq:sky-texts')); } catch (e) { }
       /* رسم #signs يحسب تواريخ الدخول بين الأبراج (ثقيل): لا نرسمه إلا إن كانت الصفحة مفتوحة، وإلا يُرسم عند دخولها */
-      if (/^#signs\b/.test(location.hash)) rerenderSigns(); else stale = true;
+      var onSigns = /^#signs\b/.test(location.hash); rerenderSigns(); if (onSigns) setTimeout(rerenderSigns, 500); else stale = true;
       return true;
     });
     return p;
